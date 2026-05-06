@@ -1,84 +1,55 @@
-jest.mock('@stencil/core', () => {
-  const actual = jest.requireActual('@stencil/core');
-  return { ...actual, getElement: (ref: { host: HTMLElement }) => ref.host };
-});
-
 import { Required } from '../required';
 
+class DecoratedRequiredComponent {
+  @Required() requiredValue: unknown;
+}
+
 describe('Required decorator', () => {
-  function createComponent(propValue?: unknown) {
-    class TestComponent {
-      host = { localName: 'post-test' } as HTMLElement;
+  let component: DecoratedRequiredComponent;
 
-      @Required()
-      testProp: unknown;
+  beforeEach(() => {
+    component = new DecoratedRequiredComponent();
+    console.error = jest.fn();
+  });
 
-      componentDidLoad() {}
-    }
-
-    const instance = new TestComponent();
-    instance.testProp = propValue;
-    return instance;
+  function setPropertyInitialValue(property: keyof DecoratedRequiredComponent, value?: unknown) {
+    component[property] = value;
+    (component as unknown as { componentDidLoad: () => void }).componentDidLoad();
   }
 
   it('should not log an error when value is defined', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent('valid');
-    instance.componentDidLoad();
-    expect(spy).not.toHaveBeenCalled();
-    spy.mockRestore();
+    setPropertyInitialValue('requiredValue', 'valid');
+    expect(console.error).not.toHaveBeenCalled();
   });
 
   it.each([undefined, null, '', Number.NaN])('should log an error when value is %s', emptyValue => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent(emptyValue);
-    instance.componentDidLoad();
-    expect(spy).toHaveBeenCalledWith(
-      expect.stringContaining('[post-test] Property "testProp" is required.'),
+    setPropertyInitialValue('requiredValue', emptyValue);
+    expect(console.error).toHaveBeenCalledWith(
+      expect.stringContaining('[post-test] Property "requiredValue" is required.'),
       expect.any(Object),
     );
-    spy.mockRestore();
   });
 
   it('should validate on property change after componentDidLoad', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent('valid');
-    instance.componentDidLoad();
-    spy.mockClear();
+    setPropertyInitialValue('requiredValue', 'valid');
+    (console.error as jest.Mock).mockClear();
 
-    instance.testProp = undefined;
-    expect(spy).toHaveBeenCalledWith(
-      expect.stringContaining('[post-test] Property "testProp" is required.'),
+    component.requiredValue = undefined;
+    expect(console.error).toHaveBeenCalledWith(
+      expect.stringContaining('[post-test] Property "requiredValue" is required.'),
       expect.any(Object),
     );
-    spy.mockRestore();
   });
 
   it('should not validate on property change before componentDidLoad', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    createComponent();
-    expect(spy).not.toHaveBeenCalled();
-    spy.mockRestore();
+    component.requiredValue = undefined;
+    expect(console.error).not.toHaveBeenCalled();
   });
 
   it('should block subsequent validators when failing', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
+    setPropertyInitialValue('requiredValue');
 
-    class TestComponent {
-      host = { localName: 'post-test' } as HTMLElement;
-
-      @Required()
-      testProp: unknown;
-
-      componentDidLoad() {}
-    }
-
-    const instance = new TestComponent();
-    instance.testProp = undefined;
-    instance.componentDidLoad();
-
-    expect(spy).toHaveBeenCalledTimes(1);
-    spy.mockRestore();
+    expect(console.error).toHaveBeenCalledTimes(1);
   });
 
   it('should call the original componentDidLoad', () => {
@@ -88,7 +59,7 @@ describe('Required decorator', () => {
       host = { localName: 'post-test' } as HTMLElement;
 
       @Required()
-      testProp: unknown = 'valid';
+      requiredValue: unknown = 'valid';
 
       componentDidLoad() {
         originalFn();
@@ -105,29 +76,23 @@ describe('Required decorator', () => {
       host = { localName: 'post-test' } as HTMLElement;
 
       @Required()
-      testProp: unknown;
+      requiredValue: unknown;
     }
 
-    const spy = jest.spyOn(console, 'error').mockImplementation();
     const instance = new TestComponent();
-    instance.testProp = undefined;
+    instance.requiredValue = undefined;
     (instance as unknown as { componentDidLoad: () => void }).componentDidLoad();
-    expect(spy).toHaveBeenCalledWith(
-      expect.stringContaining('[post-test] Property "testProp" is required.'),
+    expect(console.error).toHaveBeenCalledWith(
+      expect.stringContaining('[post-test] Property "requiredValue" is required.'),
       expect.any(Object),
     );
-    spy.mockRestore();
   });
 
   it('should pass for non-empty values like 0, false, [], {}', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-
     [0, false, [], {}, ' '].forEach(val => {
-      const instance = createComponent(val);
-      instance.componentDidLoad();
+      setPropertyInitialValue('requiredValue', val);
     });
 
-    expect(spy).not.toHaveBeenCalled();
-    spy.mockRestore();
+    expect(console.error).not.toHaveBeenCalled();
   });
 });

@@ -1,90 +1,66 @@
-jest.mock('@stencil/core', () => {
-  const actual = jest.requireActual('@stencil/core');
-  return { ...actual, getElement: (ref: { host: HTMLElement }) => ref.host };
-});
-
 import { Url } from '../url';
 
+class DecoratedUrlComponent {
+  @Url() urlValue: unknown = '';
+}
+
 describe('Url decorator', () => {
-  function createComponent(propValue: unknown) {
-    class TestComponent {
-      host = { localName: 'post-test' } as HTMLElement;
+  let component: DecoratedUrlComponent;
 
-      @Url()
-      testProp: unknown;
+  beforeEach(() => {
+    component = new DecoratedUrlComponent();
+    console.error = jest.fn();
+  });
 
-      componentDidLoad() {}
-    }
-
-    const instance = new TestComponent();
-    instance.testProp = propValue;
-    return instance;
+  function setPropertyInitialValue(property: keyof DecoratedUrlComponent, value: unknown) {
+    component[property] = value;
+    (component as unknown as { componentDidLoad: () => void }).componentDidLoad();
   }
 
   it('should not log an error for a valid absolute URL', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent('https://example.com');
-    instance.componentDidLoad();
-    expect(spy).not.toHaveBeenCalled();
-    spy.mockRestore();
+    setPropertyInitialValue('urlValue', 'https://example.com');
+    expect(console.error).not.toHaveBeenCalled();
   });
 
   it('should not log an error for a valid relative URL', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent('/path/to/page');
-    instance.componentDidLoad();
-    expect(spy).not.toHaveBeenCalled();
-    spy.mockRestore();
+    setPropertyInitialValue('urlValue', '/path/to/page');
+    expect(console.error).not.toHaveBeenCalled();
   });
 
   it('should not log an error for a URL instance', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent(new URL('https://example.com'));
-    instance.componentDidLoad();
-    expect(spy).not.toHaveBeenCalled();
-    spy.mockRestore();
+    setPropertyInitialValue('urlValue', new URL('https://example.com'));
+    expect(console.error).not.toHaveBeenCalled();
   });
 
   it('should log an error when value is not a string or URL', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent(123);
-    instance.componentDidLoad();
-    expect(spy).toHaveBeenCalledWith(
-      '[post-test] Property "testProp" must be a valid URL. Received: 123.',
+    setPropertyInitialValue('urlValue', 123);
+    expect(console.error).toHaveBeenCalledWith(
+      '[post-test] Property "urlValue" must be a valid URL. Received: 123.',
       expect.any(Object),
     );
-    spy.mockRestore();
   });
 
   it('should log an error for an invalid URL string', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent('http://[invalid');
-    instance.componentDidLoad();
-    expect(spy).toHaveBeenCalledWith(
-      '[post-test] Property "testProp" must be a valid URL. Received: "http://[invalid".',
+    setPropertyInitialValue('urlValue', 'https://[invalid');
+    expect(console.error).toHaveBeenCalledWith(
+      '[post-test] Property "urlValue" must be a valid URL. Received: "https://[invalid".',
       expect.any(Object),
     );
-    spy.mockRestore();
   });
 
   it('should validate on property change after componentDidLoad', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent('https://valid.com');
-    instance.componentDidLoad();
-    spy.mockClear();
+    setPropertyInitialValue('urlValue', 'https://valid.com');
+    (console.error as jest.Mock).mockClear();
 
-    instance.testProp = 123;
-    expect(spy).toHaveBeenCalledWith(
-      '[post-test] Property "testProp" must be a valid URL. Received: 123.',
+    component.urlValue = 123;
+    expect(console.error).toHaveBeenCalledWith(
+      '[post-test] Property "urlValue" must be a valid URL. Received: 123.',
       expect.any(Object),
     );
-    spy.mockRestore();
   });
 
   it('should not validate before componentDidLoad', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    createComponent(123);
-    expect(spy).not.toHaveBeenCalled();
-    spy.mockRestore();
+    component.urlValue = 123;
+    expect(console.error).not.toHaveBeenCalled();
   });
 });

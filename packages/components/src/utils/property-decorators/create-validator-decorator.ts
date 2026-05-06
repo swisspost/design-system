@@ -14,11 +14,13 @@ const propertyValuesByInstance = new WeakMap<object, Map<string, unknown>>();
 
 /** Returns or creates a value in a WeakMap for a given key. */
 function getOrCreate<K extends object, T>(map: WeakMap<K, T>, key: K, factory: () => T): T {
-  if (!map.has(key)) {
-    map.set(key, factory());
+  let value = map.get(key);
+  if (!value) {
+    value = factory();
+    map.set(key, value);
   }
 
-  return map.get(key)!;
+  return value;
 }
 
 /** Returns the list of validators registered for a property. */

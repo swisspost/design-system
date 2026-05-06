@@ -1,82 +1,61 @@
-jest.mock('@stencil/core', () => {
-  const actual = jest.requireActual('@stencil/core');
-  return { ...actual, getElement: (ref: { host: HTMLElement }) => ref.host };
-});
-
 import { DateValue } from '../date';
 
+class DecoratedDateValueComponent {
+  @DateValue() dateValue: unknown = '';
+}
+
 describe('DateValue decorator', () => {
-  function createComponent(propValue: unknown) {
-    class TestComponent {
-      host = { localName: 'post-test' } as HTMLElement;
+  let component: DecoratedDateValueComponent;
 
-      @DateValue()
-      testProp: unknown;
+  beforeEach(() => {
+    component = new DecoratedDateValueComponent();
+    console.error = jest.fn();
+  });
 
-      componentDidLoad() {}
-    }
-
-    const instance = new TestComponent();
-    instance.testProp = propValue;
-    return instance;
+  function setPropertyInitialValue(property: keyof DecoratedDateValueComponent, value: unknown) {
+    component[property] = value;
+    (component as unknown as { componentDidLoad: () => void }).componentDidLoad();
   }
 
   it('should not log an error for a valid date string', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent('2024-01-15');
-    instance.componentDidLoad();
-    expect(spy).not.toHaveBeenCalled();
-    spy.mockRestore();
+    setPropertyInitialValue('dateValue', '2024-01-15');
+    expect(console.error).not.toHaveBeenCalled();
   });
 
   it('should not log an error for a valid date-time string', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent('2024-01-15T10:30:00');
-    instance.componentDidLoad();
-    expect(spy).not.toHaveBeenCalled();
-    spy.mockRestore();
+    setPropertyInitialValue('dateValue', '2024-01-15T10:30:00');
+    expect(console.error).not.toHaveBeenCalled();
   });
 
   it('should log an error when value is not a string', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent(12345);
-    instance.componentDidLoad();
-    expect(spy).toHaveBeenCalledWith(
-      '[post-test] Property "testProp" must be a valid date string. Received: 12345.',
+    setPropertyInitialValue('dateValue', 12345);
+    expect(console.error).toHaveBeenCalledWith(
+      '[post-test] Property "dateValue" must be a valid date string. Received: 12345.',
       expect.any(Object),
     );
-    spy.mockRestore();
   });
 
   it('should log an error for an invalid date string', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent('not-a-date');
-    instance.componentDidLoad();
-    expect(spy).toHaveBeenCalledWith(
-      '[post-test] Property "testProp" must be a valid date string. Received: "not-a-date".',
+    setPropertyInitialValue('dateValue', 'not-a-date');
+    expect(console.error).toHaveBeenCalledWith(
+      '[post-test] Property "dateValue" must be a valid date string. Received: "not-a-date".',
       expect.any(Object),
     );
-    spy.mockRestore();
   });
 
   it('should validate on property change after componentDidLoad', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent('2024-01-15');
-    instance.componentDidLoad();
-    spy.mockClear();
+    setPropertyInitialValue('dateValue', '2024-01-15');
+    (console.error as jest.Mock).mockClear();
 
-    instance.testProp = 'invalid';
-    expect(spy).toHaveBeenCalledWith(
-      '[post-test] Property "testProp" must be a valid date string. Received: "invalid".',
+    component.dateValue = 'invalid';
+    expect(console.error).toHaveBeenCalledWith(
+      '[post-test] Property "dateValue" must be a valid date string. Received: "invalid".',
       expect.any(Object),
     );
-    spy.mockRestore();
   });
 
   it('should not validate before componentDidLoad', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    createComponent('invalid');
-    expect(spy).not.toHaveBeenCalled();
-    spy.mockRestore();
+    component.dateValue = 'invalid';
+    expect(console.error).not.toHaveBeenCalled();
   });
 });

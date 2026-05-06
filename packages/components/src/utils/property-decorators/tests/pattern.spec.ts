@@ -1,84 +1,63 @@
-jest.mock('@stencil/core', () => {
-  const actual = jest.requireActual('@stencil/core');
-  return { ...actual, getElement: (ref: { host: HTMLElement }) => ref.host };
-});
-
 import { Pattern } from '../pattern';
 
-const EMAIL_PATTERN = /^.+@.+\..+$/;
+const EMAIL_PATTERN = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+class DecoratedPatternComponent {
+  @Pattern(EMAIL_PATTERN) emailValue: unknown = '';
+}
 
 describe('Pattern decorator', () => {
-  function createComponent(propValue: unknown) {
-    class TestComponent {
-      host = { localName: 'post-test' } as HTMLElement;
+  let component: DecoratedPatternComponent;
 
-      @Pattern(EMAIL_PATTERN)
-      testProp: unknown;
+  beforeEach(() => {
+    component = new DecoratedPatternComponent();
+    console.error = jest.fn();
+  });
 
-      componentDidLoad() {}
-    }
-
-    const instance = new TestComponent();
-    instance.testProp = propValue;
-    return instance;
+  function setPropertyInitialValue(property: keyof DecoratedPatternComponent, value: unknown) {
+    component[property] = value;
+    (component as unknown as { componentDidLoad: () => void }).componentDidLoad();
   }
 
   it('should not log an error when value matches the pattern', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent('user@example.com');
-    instance.componentDidLoad();
-    expect(spy).not.toHaveBeenCalled();
-    spy.mockRestore();
+    setPropertyInitialValue('emailValue', 'user@example.com');
+    expect(console.error).not.toHaveBeenCalled();
   });
 
   it('should log an error when value does not match the pattern', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent('not-an-email');
-    instance.componentDidLoad();
-    expect(spy).toHaveBeenCalledWith(
-      `[post-test] Property "testProp" must match ${EMAIL_PATTERN}. Received: "not-an-email".`,
+    setPropertyInitialValue('emailValue', 'not-an-email');
+    expect(console.error).toHaveBeenCalledWith(
+      `[post-test] Property "emailValue" must match ${EMAIL_PATTERN}. Received: "not-an-email".`,
       expect.any(Object),
     );
-    spy.mockRestore();
   });
 
   it('should log an error when value is not a string', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent(123);
-    instance.componentDidLoad();
-    expect(spy).toHaveBeenCalledWith(
-      `[post-test] Property "testProp" must match ${EMAIL_PATTERN}. Received: 123.`,
+    setPropertyInitialValue('emailValue', 123);
+    expect(console.error).toHaveBeenCalledWith(
+      `[post-test] Property "emailValue" must match ${EMAIL_PATTERN}. Received: 123.`,
       expect.any(Object),
     );
-    spy.mockRestore();
   });
 
   it('should validate on property change after componentDidLoad', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent('user@example.com');
-    instance.componentDidLoad();
-    spy.mockClear();
+    setPropertyInitialValue('emailValue', 'user@example.com');
+    (console.error as jest.Mock).mockClear();
 
-    instance.testProp = 'bad';
-    expect(spy).toHaveBeenCalled();
-    spy.mockRestore();
+    component.emailValue = 'bad';
+    expect(console.error).toHaveBeenCalled();
   });
 
   it('should not validate before componentDidLoad', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    createComponent(123);
-    expect(spy).not.toHaveBeenCalled();
-    spy.mockRestore();
+    component.emailValue = 123;
+    expect(console.error).not.toHaveBeenCalled();
   });
 
   it('should not log an error when updating to a valid value', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent('user@example.com');
-    instance.componentDidLoad();
-    spy.mockClear();
+    setPropertyInitialValue('emailValue', 'user@example.com');
+    (console.error as jest.Mock).mockClear();
 
-    instance.testProp = 'other@test.org';
-    expect(spy).not.toHaveBeenCalled();
-    spy.mockRestore();
+    component.emailValue = 'other@test.org';
+    expect(console.error).not.toHaveBeenCalled();
   });
 });

@@ -1,109 +1,82 @@
-jest.mock('@stencil/core', () => {
-  const actual = jest.requireActual('@stencil/core');
-  return { ...actual, getElement: (ref: { host: HTMLElement }) => ref.host };
-});
-
 import { Type } from '../type';
 
+class DecoratedTypesComponent {
+  @Type('string') stringValue: unknown = '';
+  @Type('number') numberValue: unknown = 0;
+  @Type('boolean') booleanValue: unknown = false;
+  @Type('array') arrayValue: unknown = [];
+}
+
 describe('Type decorator', () => {
-  function createComponent(type: string, propValue: unknown) {
-    class TestComponent {
-      host = { localName: 'post-test' } as HTMLElement;
+  let component: DecoratedTypesComponent;
 
-      @Type(type as any)
-      testProp: unknown;
+  beforeEach(() => {
+    component = new DecoratedTypesComponent();
+    console.error = jest.fn();
+  });
 
-      componentDidLoad() {}
-    }
-
-    const instance = new TestComponent();
-    instance.testProp = propValue;
-    return instance;
+  function setPropertyInitialValue(property: keyof DecoratedTypesComponent, value: unknown) {
+    component[property] = value;
+    (component as unknown as { componentDidLoad: () => void }).componentDidLoad();
   }
 
   it('should not log an error when value matches string type', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent('string', 'hello');
-    instance.componentDidLoad();
-    expect(spy).not.toHaveBeenCalled();
-    spy.mockRestore();
+    setPropertyInitialValue('stringValue', 'hello');
+    expect(console.error).not.toHaveBeenCalled();
   });
 
   it('should not log an error when value matches number type', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent('number', 42);
-    instance.componentDidLoad();
-    expect(spy).not.toHaveBeenCalled();
-    spy.mockRestore();
+    setPropertyInitialValue('numberValue', 42);
+    expect(console.error).not.toHaveBeenCalled();
   });
 
   it('should not log an error when value matches boolean type', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent('boolean', true);
-    instance.componentDidLoad();
-    expect(spy).not.toHaveBeenCalled();
-    spy.mockRestore();
+    setPropertyInitialValue('booleanValue', true);
+    expect(console.error).not.toHaveBeenCalled();
   });
 
   it('should log an error when value does not match the type', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent('number', 'not-a-number');
-    instance.componentDidLoad();
-    expect(spy).toHaveBeenCalledWith(
-      '[post-test] Property "testProp" must be of type "number". Received: "not-a-number".',
+    setPropertyInitialValue('numberValue', 'not-a-number');
+    expect(console.error).toHaveBeenCalledWith(
+      '[post-test] Property "numberValue" must be of type "number". Received: "not-a-number".',
       expect.any(Object),
     );
-    spy.mockRestore();
   });
 
   it('should handle array type correctly for valid arrays', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent('array', [1, 2, 3]);
-    instance.componentDidLoad();
-    expect(spy).not.toHaveBeenCalled();
-    spy.mockRestore();
+    setPropertyInitialValue('arrayValue', [1, 2, 3]);
+    expect(console.error).not.toHaveBeenCalled();
   });
 
   it('should log an error when expecting array but value is not', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent('array', 'not-array');
-    instance.componentDidLoad();
-    expect(spy).toHaveBeenCalledWith(
-      '[post-test] Property "testProp" must be of type "array". Received: "not-array".',
+    setPropertyInitialValue('arrayValue', 'not-array');
+    expect(console.error).toHaveBeenCalledWith(
+      '[post-test] Property "arrayValue" must be of type "array". Received: "not-array".',
       expect.any(Object),
     );
-    spy.mockRestore();
   });
 
   it('should log an error when value is array but type is not array', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent('string', ['array']);
-    instance.componentDidLoad();
-    expect(spy).toHaveBeenCalledWith(
-      '[post-test] Property "testProp" must be of type "string". Received: ["array"].',
+    setPropertyInitialValue('stringValue', ['array']);
+    expect(console.error).toHaveBeenCalledWith(
+      '[post-test] Property "stringValue" must be of type "string". Received: ["array"].',
       expect.any(Object),
     );
-    spy.mockRestore();
   });
 
   it('should validate on property change after componentDidLoad', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    const instance = createComponent('number', 42);
-    instance.componentDidLoad();
-    spy.mockClear();
+    setPropertyInitialValue('numberValue', 42);
+    (console.error as jest.Mock).mockClear();
 
-    instance.testProp = 'string';
-    expect(spy).toHaveBeenCalledWith(
-      '[post-test] Property "testProp" must be of type "number". Received: "string".',
+    component.numberValue = 'string';
+    expect(console.error).toHaveBeenCalledWith(
+      '[post-test] Property "numberValue" must be of type "number". Received: "string".',
       expect.any(Object),
     );
-    spy.mockRestore();
   });
 
   it('should not validate before componentDidLoad', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-    createComponent('number', 'wrong');
-    expect(spy).not.toHaveBeenCalled();
-    spy.mockRestore();
+    component.numberValue = 'wrong';
+    expect(console.error).not.toHaveBeenCalled();
   });
 });

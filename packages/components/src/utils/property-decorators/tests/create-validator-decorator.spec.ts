@@ -1,8 +1,3 @@
-jest.mock('@stencil/core', () => {
-  const actual = jest.requireActual('@stencil/core');
-  return { ...actual, getElement: (ref: { host: HTMLElement }) => ref.host };
-});
-
 import { createValidatorDecorator, getValidationContext } from '../create-validator-decorator';
 import { OneOf } from '../one-of';
 import { Required } from '../required';
@@ -17,7 +12,9 @@ describe('createValidatorDecorator', () => {
       @createValidatorDecorator({ priority: 1, blocking: false, run: runFn })
       testProp: unknown;
 
-      componentDidLoad() {}
+      componentDidLoad() {
+        /* do nothing */
+      }
     }
 
     const instance = new TestComponent();
@@ -36,7 +33,9 @@ describe('createValidatorDecorator', () => {
       @createValidatorDecorator({ priority: 1, blocking: false, run: runFn })
       testProp: unknown;
 
-      componentDidLoad() {}
+      componentDidLoad() {
+        /* do nothing */
+      }
     }
 
     const instance = new TestComponent();
@@ -57,7 +56,9 @@ describe('createValidatorDecorator', () => {
       @createValidatorDecorator({ priority: 1, blocking: false, run: runFn })
       testProp: unknown;
 
-      componentDidLoad() {}
+      componentDidLoad() {
+        /* do nothing */
+      }
     }
 
     const instance = new TestComponent();
@@ -97,7 +98,9 @@ describe('createValidatorDecorator', () => {
       })
       testProp: unknown;
 
-      componentDidLoad() {}
+      componentDidLoad() {
+        /* do nothing */
+      }
     }
 
     const instance = new TestComponent();
@@ -131,7 +134,9 @@ describe('createValidatorDecorator', () => {
       })
       testProp: unknown;
 
-      componentDidLoad() {}
+      componentDidLoad() {
+        /* do nothing */
+      }
     }
 
     const instance = new TestComponent();
@@ -165,7 +170,9 @@ describe('createValidatorDecorator', () => {
       })
       testProp: unknown;
 
-      componentDidLoad() {}
+      componentDidLoad() {
+        /* do nothing */
+      }
     }
 
     const instance = new TestComponent();
@@ -187,7 +194,9 @@ describe('createValidatorDecorator', () => {
       @OneOf(['x', 'y'])
       propB: unknown;
 
-      componentDidLoad() {}
+      componentDidLoad() {
+        /* do nothing */
+      }
     }
 
     const instance = new TestComponent();
@@ -213,7 +222,9 @@ describe('createValidatorDecorator', () => {
       @OneOf(['a', 'b'])
       testProp: unknown;
 
-      componentDidLoad() {}
+      componentDidLoad() {
+        /* do nothing */
+      }
     }
 
     const instance = new TestComponent();
@@ -239,7 +250,9 @@ describe('createValidatorDecorator', () => {
       @OneOf(['a', 'b'])
       testProp: unknown;
 
-      componentDidLoad() {}
+      componentDidLoad() {
+        /* do nothing */
+      }
     }
 
     const instance = new TestComponent();
@@ -283,7 +296,9 @@ describe('createValidatorDecorator', () => {
     }
 
     const instance = new TestComponent();
-    expect(typeof (instance as any).componentDidLoad).toBe('function');
+    expect(typeof (instance as unknown as { componentDidLoad?: unknown }).componentDidLoad).toBe(
+      'function',
+    );
   });
 });
 
