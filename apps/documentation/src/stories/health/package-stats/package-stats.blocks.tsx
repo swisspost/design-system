@@ -45,21 +45,21 @@ const TotalDownloads: React.FC<{
   const maxDownloads = Math.max(0, ...relevantDays.map(d => d.downloads));
 
   return (
-    <div>
+    <div className="d-flex flex-sm-column flex-wrap gap-16">
       <div className="card card-stats">
         <h5>Days with data</h5>
         <p>{`${daysWithData} / ${totalDaysInYear}`}</p>
       </div>
-      <div className="card card-stats mt-16">
-        <h5>Total downloads ({year})</h5>
+      <div className="card card-stats">
+        <h5>Total downloads</h5>
         <p>{downloads.toLocaleString()}</p>
       </div>
-      <div className="card card-stats mt-16">
+      <div className="card card-stats">
         <h5>Average per day</h5>
         <p>{daysWithData > 0 ? Math.round(downloads / daysWithData).toLocaleString() : '…'}</p>
       </div>
-      <div className="card card-stats mt-16">
-        <h5>Max per day</h5>
+      <div className="card card-stats">
+        <h5>Maximum per day</h5>
         <p>{maxDownloads.toLocaleString()}</p>
       </div>
     </div>
@@ -197,7 +197,7 @@ const DownloadsChart: React.FC<{
   }, [days, releases]);
 
   return (
-    <div className="downloads-chart card card-charts">
+    <div className="downloads-chart card card-charts w-full">
       <AgCharts options={chartOptions} />
     </div>
   );
@@ -348,6 +348,7 @@ export const StatsYearBlock: React.FC<{ packageName: string; startYear: number }
           {Array.from({ length: endYear - startYear + 1 }, (_, i) => {
             const year = startYear + i;
             const yearReleases = releases.filter(r => r.date.getFullYear() === year);
+
             return (
               <LazyYearSection
                 key={year}
@@ -393,9 +394,9 @@ const LazyYearSection: React.FC<{
 
   return (
     <div ref={ref} className="mt-16">
-      <h4 className="text-center fw-normal">{year}</h4>
+      <h4 className="palette palette-accent p-4 text-center fw-normal">{year}</h4>
       {isVisible ? (
-        <div className="d-flex flex-wrap gap-16 justify-content-between align-items-start mt-16">
+        <div className="d-flex flex-column flex-sm-row flex-wrap gap-16 justify-content-between align-items-start">
           <TotalDownloads
             year={year}
             days={days}
