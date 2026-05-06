@@ -137,6 +137,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
+
     interface SwisspostInternetBreadcrumbs {
         /**
           * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
@@ -226,19 +228,46 @@ declare namespace LocalJSX {
          */
         "textUserLinks": string;
     }
+
+    interface SwisspostInternetBreadcrumbsAttributes {
+        "customItems": string | Array<LinkConfig>;
+        "textHome": string;
+        "textBreadcrumbs": string;
+        "textMoreItems": string;
+    }
+    interface SwisspostInternetFooterAttributes {
+        "textFooter": string;
+        "textCookieSettings": string;
+    }
+    interface SwisspostInternetHeaderAttributes {
+        "activeRoute": ActiveRouteProp;
+        "environment": Environment;
+        "fullWidth": boolean;
+        "language": 'de' | 'fr' | 'it' | 'en';
+        "project": string;
+        "textBack": string;
+        "textChangeLanguage": string;
+        "textClose": string;
+        "textCurrentLanguage": string;
+        "textCurrentUser": string;
+        "textMain": string;
+        "textMenu": string;
+        "textUserLinks": string;
+    }
+
     interface IntrinsicElements {
-        "swisspost-internet-breadcrumbs": SwisspostInternetBreadcrumbs;
-        "swisspost-internet-footer": SwisspostInternetFooter;
-        "swisspost-internet-header": SwisspostInternetHeader;
+        "swisspost-internet-breadcrumbs": Omit<SwisspostInternetBreadcrumbs, keyof SwisspostInternetBreadcrumbsAttributes> & { [K in keyof SwisspostInternetBreadcrumbs & keyof SwisspostInternetBreadcrumbsAttributes]?: SwisspostInternetBreadcrumbs[K] } & { [K in keyof SwisspostInternetBreadcrumbs & keyof SwisspostInternetBreadcrumbsAttributes as `attr:${K}`]?: SwisspostInternetBreadcrumbsAttributes[K] } & { [K in keyof SwisspostInternetBreadcrumbs & keyof SwisspostInternetBreadcrumbsAttributes as `prop:${K}`]?: SwisspostInternetBreadcrumbs[K] } & OneOf<"textHome", SwisspostInternetBreadcrumbs["textHome"], SwisspostInternetBreadcrumbsAttributes["textHome"]> & OneOf<"textBreadcrumbs", SwisspostInternetBreadcrumbs["textBreadcrumbs"], SwisspostInternetBreadcrumbsAttributes["textBreadcrumbs"]> & OneOf<"textMoreItems", SwisspostInternetBreadcrumbs["textMoreItems"], SwisspostInternetBreadcrumbsAttributes["textMoreItems"]>;
+        "swisspost-internet-footer": Omit<SwisspostInternetFooter, keyof SwisspostInternetFooterAttributes> & { [K in keyof SwisspostInternetFooter & keyof SwisspostInternetFooterAttributes]?: SwisspostInternetFooter[K] } & { [K in keyof SwisspostInternetFooter & keyof SwisspostInternetFooterAttributes as `attr:${K}`]?: SwisspostInternetFooterAttributes[K] } & { [K in keyof SwisspostInternetFooter & keyof SwisspostInternetFooterAttributes as `prop:${K}`]?: SwisspostInternetFooter[K] } & OneOf<"textFooter", SwisspostInternetFooter["textFooter"], SwisspostInternetFooterAttributes["textFooter"]> & OneOf<"textCookieSettings", SwisspostInternetFooter["textCookieSettings"], SwisspostInternetFooterAttributes["textCookieSettings"]>;
+        "swisspost-internet-header": Omit<SwisspostInternetHeader, keyof SwisspostInternetHeaderAttributes> & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes]?: SwisspostInternetHeader[K] } & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes as `attr:${K}`]?: SwisspostInternetHeaderAttributes[K] } & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes as `prop:${K}`]?: SwisspostInternetHeader[K] } & OneOf<"project", SwisspostInternetHeader["project"], SwisspostInternetHeaderAttributes["project"]> & OneOf<"textBack", SwisspostInternetHeader["textBack"], SwisspostInternetHeaderAttributes["textBack"]> & OneOf<"textChangeLanguage", SwisspostInternetHeader["textChangeLanguage"], SwisspostInternetHeaderAttributes["textChangeLanguage"]> & OneOf<"textClose", SwisspostInternetHeader["textClose"], SwisspostInternetHeaderAttributes["textClose"]> & OneOf<"textCurrentLanguage", SwisspostInternetHeader["textCurrentLanguage"], SwisspostInternetHeaderAttributes["textCurrentLanguage"]> & OneOf<"textCurrentUser", SwisspostInternetHeader["textCurrentUser"], SwisspostInternetHeaderAttributes["textCurrentUser"]> & OneOf<"textMain", SwisspostInternetHeader["textMain"], SwisspostInternetHeaderAttributes["textMain"]> & OneOf<"textMenu", SwisspostInternetHeader["textMenu"], SwisspostInternetHeaderAttributes["textMenu"]> & OneOf<"textUserLinks", SwisspostInternetHeader["textUserLinks"], SwisspostInternetHeaderAttributes["textUserLinks"]>;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "swisspost-internet-breadcrumbs": LocalJSX.SwisspostInternetBreadcrumbs & JSXBase.HTMLAttributes<HTMLSwisspostInternetBreadcrumbsElement>;
-            "swisspost-internet-footer": LocalJSX.SwisspostInternetFooter & JSXBase.HTMLAttributes<HTMLSwisspostInternetFooterElement>;
-            "swisspost-internet-header": LocalJSX.SwisspostInternetHeader & JSXBase.HTMLAttributes<HTMLSwisspostInternetHeaderElement>;
+            "swisspost-internet-breadcrumbs": LocalJSX.IntrinsicElements["swisspost-internet-breadcrumbs"] & JSXBase.HTMLAttributes<HTMLSwisspostInternetBreadcrumbsElement>;
+            "swisspost-internet-footer": LocalJSX.IntrinsicElements["swisspost-internet-footer"] & JSXBase.HTMLAttributes<HTMLSwisspostInternetFooterElement>;
+            "swisspost-internet-header": LocalJSX.IntrinsicElements["swisspost-internet-header"] & JSXBase.HTMLAttributes<HTMLSwisspostInternetHeaderElement>;
         }
     }
 }
