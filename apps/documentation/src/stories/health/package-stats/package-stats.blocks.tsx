@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { type AgChartOptions, AllCommunityModule, ModuleRegistry } from 'ag-charts-community';
 import { AgCharts } from 'ag-charts-react';
+import { PostIconTarget } from '@swisspost/design-system-components-react/icons/PostIconTarget';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -213,16 +214,22 @@ const DownloadsSummaryCards: React.FC<{
         <p>{`${count} / ${total}`}</p>
       </div>
       <div className="card card-stats">
-        <h5>Total downloads</h5>
-        <p>{downloads.toLocaleString()}</p>
+        <h5>Maximum per day</h5>
+        <p>{max.toLocaleString()}</p>
       </div>
       <div className="card card-stats">
         <h5>Average per day</h5>
         <p>{count > 0 ? Math.round(downloads / count).toLocaleString() : '…'}</p>
       </div>
       <div className="card card-stats">
-        <h5>Maximum per day</h5>
-        <p>{max.toLocaleString()}</p>
+        <h5>Total downloads</h5>
+        <p>{downloads.toLocaleString()}</p>
+        {isLastYear && count > 0 && (
+          <p className="d-flex gap-4 opacity-50 fs-10 mt-4">
+            <PostIconTarget />
+            <span>{(Math.round(downloads / count) * total).toLocaleString()}</span>
+          </p>
+        )}
       </div>
     </div>
   );
