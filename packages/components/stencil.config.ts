@@ -149,7 +149,7 @@ export const config: Config = {
     ],
   },
   testing: {
-    setupFilesAfterEnv: ['<rootDir>/test-setup.ts'],
+    setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
     testPathIgnorePatterns: [
       '<rootDir>/dist/',
       '<rootDir>/loader/',

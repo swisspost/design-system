@@ -58,8 +58,7 @@ describe('Required decorator', () => {
     class TestComponent {
       host = { localName: 'post-test' } as HTMLElement;
 
-      @Required()
-      requiredValue: unknown = 'valid';
+      @Required() requiredValue: unknown = 'valid';
 
       componentDidLoad() {
         originalFn();
@@ -75,8 +74,7 @@ describe('Required decorator', () => {
     class TestComponent {
       host = { localName: 'post-test' } as HTMLElement;
 
-      @Required()
-      requiredValue: unknown;
+      @Required() requiredValue: unknown;
     }
 
     const instance = new TestComponent();

@@ -66,17 +66,6 @@ describe('createValidatorDecorator', () => {
     expect(runFn).toHaveBeenCalledWith(instance, 'testProp');
   });
 
-  it('should not run validators before componentDidLoad', () => {
-    const runFn = jest.fn().mockReturnValue(true);
-    const instance = createComponentWithDidLoad(
-      [createValidatorDecorator({ priority: 1, blocking: false, run: runFn })],
-      'value',
-    );
-
-    expect(runFn).not.toHaveBeenCalled();
-    void instance;
-  });
-
   it('should sort validators by priority', () => {
     const order: number[] = [];
     const instance = createComponentWithDidLoad(

@@ -1,6 +1,6 @@
 import { Pattern } from '../pattern';
 
-const EMAIL_PATTERN = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+const EMAIL_PATTERN = /^[^@\s]{1,64}@[A-Za-z0-9.-]{1,255}\.[A-Za-z]{2,63}$/;
 
 class DecoratedPatternComponent {
   @Pattern(EMAIL_PATTERN) emailValue: unknown = '';
