@@ -1,7 +1,8 @@
-import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
-import meta, * as BreadcrumbsStories from './breadcrumbs.stories';
-import PackageTag from '@/shared/package-tag';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import PackageTag from '@/shared/package-tag';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import * as BreadcrumbItemStories from './breadcrumb-item.stories';
+import meta, * as BreadcrumbsStories from './breadcrumbs.stories';
 
 <Meta of={BreadcrumbsStories} />
 
@@ -21,9 +22,8 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 The `<post-breadcrumbs>` is a container for `<post-breadcrumb-item>` components, used to display a navigational trail, showing the user's location within the app and enabling quick access to parent pages.
 
-## `<post-breadcrumbs>`
-
 <Canvas of={BreadcrumbsStories.Default} sourceState="shown" />
+
 <Controls of={BreadcrumbsStories.Default} />
 
 <ComponentsPackageInstall component="<post-breadcrumbs>" />
@@ -33,9 +33,8 @@ The `<post-breadcrumbs>` is a container for `<post-breadcrumb-item>` components,
 When space is constrained, the `<post-breadcrumbs>` concatenates middle items into a dropdown menu.
 
 <Canvas of={BreadcrumbsStories.Concatenated} sourceState="shown" />
-<Controls of={BreadcrumbsStories.Concatenated} />
 
-## `<post-breadcrumb-item>`
+## Breadcrumb Item
 
-<Canvas of={BreadcrumbsStories.BreadcrumbItem} sourceState="shown" />
-<Controls of={BreadcrumbsStories.BreadcrumbItem} />
+<Canvas of={BreadcrumbItemStories.Default} sourceState="shown" />
+<Controls of={BreadcrumbItemStories.Default} />

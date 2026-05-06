@@ -7,6 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
+import { Variant } from "./components/post-breadcrumb-item/variants";
 import { ButtonType, Placement, Size } from "./components/post-closebutton/types";
 import { AirDatepickerCustomOptions } from "./components/post-date-picker/post-date-picker";
 import { PostIconAnimation } from "./types/icon-animations";
@@ -14,6 +15,7 @@ import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement as Placement1 } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
+export { Variant } from "./components/post-breadcrumb-item/variants";
 export { ButtonType, Placement, Size } from "./components/post-closebutton/types";
 export { AirDatepickerCustomOptions } from "./components/post-date-picker/post-date-picker";
 export { PostIconAnimation } from "./types/icon-animations";
@@ -116,33 +118,43 @@ export namespace Components {
     }
     interface PostBreadcrumbItem {
         /**
-          * ARIA description for additional context, read after the breadcrumb item content or `label`.
+          * An accessible description for additional context, read after the content or `label`.
          */
         "description"?: string;
         /**
-          * ARIA label, screen readers will use this instead of the breadcrumb item content.
+          * An accessible label screen readers will use this instead of the breadcrumb item content.
          */
         "label"?: string;
         /**
-          * The optional URL to which the breadcrumb item will link.
+          * Indicates that the item represents the current page, applying appropriate styling.
+          * @default false
+         */
+        "selected": boolean;
+        /**
+          * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
          */
         "url"?: string | URL;
+        /**
+          * Controls how the item is rendered, either as a standard list item or within an overflow menu.
+          * @default 'listitem'
+         */
+        "variant": Variant;
     }
     interface PostBreadcrumbs {
         /**
-          * The URL for the home breadcrumb item.
+          * The URL for the root (home) breadcrumb item.
          */
         "homeUrl": string;
         /**
-          * The accessible label for the breadcrumb component.
+          * An accessible label for the breadcrumb navigation.
          */
         "textBreadcrumbs": string;
         /**
-          * The text label for the home breadcrumb item.
+          * An accessible label for the root (home) breadcrumb item.
          */
         "textHome": string;
         /**
-          * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
+          * An accessible label for the overflow menu that contains collapsed breadcrumb items.
          */
         "textMoreItems": string;
     }
@@ -1345,33 +1357,43 @@ declare namespace LocalJSX {
     }
     interface PostBreadcrumbItem {
         /**
-          * ARIA description for additional context, read after the breadcrumb item content or `label`.
+          * An accessible description for additional context, read after the content or `label`.
          */
         "description"?: string;
         /**
-          * ARIA label, screen readers will use this instead of the breadcrumb item content.
+          * An accessible label screen readers will use this instead of the breadcrumb item content.
          */
         "label"?: string;
         /**
-          * The optional URL to which the breadcrumb item will link.
+          * Indicates that the item represents the current page, applying appropriate styling.
+          * @default false
+         */
+        "selected"?: boolean;
+        /**
+          * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
          */
         "url"?: string | URL;
+        /**
+          * Controls how the item is rendered, either as a standard list item or within an overflow menu.
+          * @default 'listitem'
+         */
+        "variant"?: Variant;
     }
     interface PostBreadcrumbs {
         /**
-          * The URL for the home breadcrumb item.
+          * The URL for the root (home) breadcrumb item.
          */
         "homeUrl": string;
         /**
-          * The accessible label for the breadcrumb component.
+          * An accessible label for the breadcrumb navigation.
          */
         "textBreadcrumbs": string;
         /**
-          * The text label for the home breadcrumb item.
+          * An accessible label for the root (home) breadcrumb item.
          */
         "textHome": string;
         /**
-          * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
+          * An accessible label for the overflow menu that contains collapsed breadcrumb items.
          */
         "textMoreItems": string;
     }

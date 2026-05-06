@@ -1,0 +1,42 @@
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/tokens/helpers';
+@use '@swisspost/design-system-styles/mixins/button';
+@use '@swisspost/design-system-styles/mixins/icons';
+
+@mixin breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: tokens.get('breadcrumb-gap-inline-inner', components.$post-breadcrumb);
+
+  :is(button, a) {
+    @include button.button-base;
+    font: inherit;
+    padding: unset;
+    border: unset;
+    color: tokens.get('breadcrumb-enabled-fg', components.$post-breadcrumb);
+    border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+    text-decoration: tokens.get(
+      'breadcrumb-link-enabled-text-decoration',
+      components.$post-breadcrumb
+    );
+
+    &:hover {
+      color: tokens.get('breadcrumb-hover-fg');
+      text-decoration: tokens.get(
+        'breadcrumb-link-hover-text-decoration',
+        components.$post-breadcrumb
+      );
+    }
+  }
+
+  &::before {
+    @include icons.mask-image('chevronright');
+    content: '';
+    display: block;
+    height: 16px;
+    width: 16px;
+    margin-block: tokens.get('breadcrumb-padding-block-icon-link', components.$post-breadcrumb);
+    margin-inline: tokens.get('breadcrumb-padding-inline-icon-link', components.$post-breadcrumb);
+  }
+}
