@@ -96,6 +96,20 @@ export const config: Config = {
       serializeShadowRoot: 'declarative-shadow-dom',
     }),
     /**
+     * Same as above, but exporting standalone components.
+     * This is used by the generated React icon wrapper components, to avoid unwanted side effects.
+     * Anyway, it can be used by everyone to load only specific components, without the need to load the whole library.
+     *
+     */
+    reactOutputTarget({
+      esModules: true,
+      customElementsDir: 'react',
+      outDir: '../components-react/src/stencil-generated/standalone',
+      hydrateModule: '@swisspost/design-system-components/hydrate',
+      clientModule: '@swisspost/design-system-components-react/standalone',
+      serializeShadowRoot: 'declarative-shadow-dom',
+    }),
+    /**
      * This output-target type automates the creation of Angular component wrappers for the Stencil web-components.
      * With `outputType: 'component'` the `dist` output is used to create the Angular compoments.
      * While `outputType: 'scam|standalone` uses the default `dist-custom-elements` output.

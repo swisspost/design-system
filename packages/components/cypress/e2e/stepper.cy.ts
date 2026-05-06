@@ -29,7 +29,7 @@ describe('stepper', { baseUrl: null }, () => {
     cy.get('@consoleError').should('be.called');
   });
 
-  it('should log an error if the mobile step label does not contain #number', () => {
+  it('should log an error if the mobile step label does not contain {number}', () => {
     cy.window().then(win => {
       cy.spy(win.console, 'error').as('consoleError');
     });
