@@ -33,80 +33,48 @@ const CHART_COLORS = [
 ];
 
 const TotalDownloads: React.FC<{
-  packageName: string;
   year: number;
+  days: { day: string; downloads: number }[];
   isFirstYear: boolean;
   isLastYear: boolean;
-}> = ({ packageName, year, isFirstYear, isLastYear }) => {
-  const [downloads, setDownloads] = useState<number | null>(null);
-  const [daysWithData, setDaysWithData] = useState<number | null>(null);
-
-  useEffect(() => {
-    fetch(`https://api.npmjs.org/downloads/range/${year}-01-01:${year}-12-31/${packageName}`)
-      .then(res => res.json())
-      .then(data => {
-        const days = data.downloads ?? [];
-        const totalDaysInYear = new Date(year, 1, 29).getMonth() === 1 ? 366 : 365;
-
-        if (isFirstYear || isLastYear) {
-          const daysWithDownloads = days.filter(d => d.downloads > 0);
-          setDaysWithData(daysWithDownloads.length);
-          setDownloads(daysWithDownloads.reduce((sum, d) => sum + d.downloads, 0));
-        } else {
-          setDaysWithData(totalDaysInYear);
-          setDownloads(days.reduce((sum, d) => sum + d.downloads, 0));
-        }
-      });
-  }, [packageName, year, isFirstYear, isLastYear]);
+}> = ({ year, days, isFirstYear, isLastYear }) => {
+  const totalDaysInYear = new Date(year, 1, 29).getMonth() === 1 ? 366 : 365;
+  const relevantDays = isFirstYear || isLastYear ? days.filter(d => d.downloads > 0) : days;
+  const daysWithData = relevantDays.length;
+  const downloads = relevantDays.reduce((sum, d) => sum + d.downloads, 0);
 
   return (
     <div>
       <div className="card card-stats">
         <h5>Days with data</h5>
-        <p>
-          {daysWithData != null
-            ? `${daysWithData} / ${new Date(year, 1, 29).getMonth() === 1 ? 366 : 365}`
-            : '…'}
-        </p>
+        <p>{`${daysWithData} / ${totalDaysInYear}`}</p>
       </div>
       <div className="card card-stats mt-16">
         <h5>Total downloads ({year})</h5>
-        <p>{downloads != null ? downloads.toLocaleString() : '…'}</p>
+        <p>{downloads.toLocaleString()}</p>
       </div>
       <div className="card card-stats mt-16">
         <h5>Average per day</h5>
-        <p>
-          {downloads && daysWithData ? Math.round(downloads / daysWithData).toLocaleString() : '…'}
-        </p>
+        <p>{daysWithData > 0 ? Math.round(downloads / daysWithData).toLocaleString() : '…'}</p>
       </div>
     </div>
   );
 };
 
 const DownloadsChart: React.FC<{
-  packageName: string;
   year: number;
+  days: { day: string; downloads: number }[];
   isFirstYear: boolean;
   isLastYear: boolean;
   releases: { version: string; date: Date }[];
-}> = ({ packageName, year, isFirstYear, isLastYear, releases }) => {
-  const [downloads, setDownloads] = useState<{ day: string; downloads: number }[]>([]);
+}> = ({ year, days, isFirstYear, isLastYear, releases }) => {
   const [chartOptions, setChartOptions] = useState<AgChartOptions>({});
 
   useEffect(() => {
-    fetch(`https://api.npmjs.org/downloads/range/${year}-01-01:${year}-12-31/${packageName}`)
-      .then(res => res.json())
-      .then(data =>
-        setDownloads(
-          (data.downloads ?? []).map(d => ({
-            ...d,
-            day: new Date(d.day),
-          })),
-        ),
-      );
-  }, [packageName, year]);
+    if (days.length === 0) return;
 
-  useEffect(() => {
+    const downloads = days.map(d => ({ ...d, day: new Date(d.day) }));
+
     const dataWithMedian = downloads.map((d, i) => {
       const start = Math.max(0, i - 3);
       const end = Math.min(downloads.length, i + 4);
@@ -221,7 +189,7 @@ const DownloadsChart: React.FC<{
         },
       },
     });
-  }, [downloads, releases]);
+  }, [days, releases]);
 
   return (
     <div className="downloads-chart card card-charts">
@@ -409,20 +377,29 @@ const LazyYearSection: React.FC<{
   releases: { version: string; date: Date }[];
 }> = ({ packageName, year, isFirstYear, isLastYear, releases }) => {
   const [ref, isVisible] = useIsVisible<HTMLDivElement>();
+  const [days, setDays] = useState<{ day: string; downloads: number }[]>([]);
+
+  useEffect(() => {
+    if (!isVisible) return;
+    fetch(`https://api.npmjs.org/downloads/range/${year}-01-01:${year}-12-31/${packageName}`)
+      .then(res => res.json())
+      .then(data => setDays(data.downloads ?? []));
+  }, [packageName, year, isVisible]);
+
   return (
     <div ref={ref} className="mt-16">
       <h4 className="text-center fw-normal">{year}</h4>
       {isVisible ? (
         <div className="d-flex flex-wrap gap-16 justify-content-between align-items-start mt-16">
           <TotalDownloads
-            packageName={packageName}
             year={year}
+            days={days}
             isFirstYear={isFirstYear}
             isLastYear={isLastYear}
           />
           <DownloadsChart
-            packageName={packageName}
             year={year}
+            days={days}
             isFirstYear={isFirstYear}
             isLastYear={isLastYear}
             releases={releases}
