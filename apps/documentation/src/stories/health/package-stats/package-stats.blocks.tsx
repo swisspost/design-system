@@ -42,6 +42,7 @@ const TotalDownloads: React.FC<{
   const relevantDays = isFirstYear || isLastYear ? days.filter(d => d.downloads > 0) : days;
   const daysWithData = relevantDays.length;
   const downloads = relevantDays.reduce((sum, d) => sum + d.downloads, 0);
+  const maxDownloads = Math.max(0, ...relevantDays.map(d => d.downloads));
 
   return (
     <div>
@@ -56,6 +57,10 @@ const TotalDownloads: React.FC<{
       <div className="card card-stats mt-16">
         <h5>Average per day</h5>
         <p>{daysWithData > 0 ? Math.round(downloads / daysWithData).toLocaleString() : '…'}</p>
+      </div>
+      <div className="card card-stats mt-16">
+        <h5>Max per day</h5>
+        <p>{maxDownloads.toLocaleString()}</p>
       </div>
     </div>
   );
