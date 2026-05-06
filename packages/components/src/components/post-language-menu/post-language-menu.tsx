@@ -17,6 +17,7 @@ import { nanoid } from 'nanoid';
 export class PostLanguageMenu {
   private readonly menuId = `p${nanoid(11)}`;
   private readonly listSpanId = `list-span-${nanoid(11)}`;
+  private menu: HTMLPostMenuElement;
   private get languageOptions(): HTMLPostLanguageMenuItemElement[] {
     return Array.from(
       this.host.querySelectorAll<HTMLPostLanguageMenuItemElement>('post-language-menu-item'),
@@ -108,6 +109,11 @@ export class PostLanguageMenu {
     }
   }
 
+  @Listen('scroll', {target: 'document', capture: true})
+  hideMenuOnScroll() {
+    if (this.menu) this.menu.hide();
+  }
+
   /**
    * Handles cases where the language menu is being rendered before options are available
    * @param event Initially emitted by <post-language-menu-item>
@@ -154,6 +160,7 @@ export class PostLanguageMenu {
           </button>
         </post-menu-trigger>
         <post-menu
+          ref={el => this.menu = el}
           id={this.menuId}
           class="post-language-menu-dropdown-container"
           label={this.textChangeLanguage}
