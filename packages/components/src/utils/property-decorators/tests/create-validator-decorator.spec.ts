@@ -2,23 +2,51 @@ import { createValidatorDecorator, getValidationContext } from '../create-valida
 import { OneOf } from '../one-of';
 import { Required } from '../required';
 
+type ValidatorDecorator = (target: object, property: string) => void;
+
+function createComponentWithDidLoad(
+  decorators: ValidatorDecorator[],
+  initialValue?: unknown,
+  onDidLoad?: () => void,
+) {
+  class TestComponent {
+    host = { localName: 'post-test' } as HTMLElement;
+    testProp: unknown;
+
+    componentDidLoad() {
+      onDidLoad?.();
+    }
+  }
+
+  decorators.forEach(decorator => decorator(TestComponent.prototype, 'testProp'));
+
+  const instance = new TestComponent();
+  if (arguments.length >= 2) {
+    instance.testProp = initialValue;
+  }
+
+  return instance;
+}
+
+function createComponentWithoutDidLoad(decorators: ValidatorDecorator[]) {
+  class TestComponent {
+    host = { localName: 'post-test' } as HTMLElement;
+    testProp: unknown;
+  }
+
+  decorators.forEach(decorator => decorator(TestComponent.prototype, 'testProp'));
+
+  return new TestComponent();
+}
+
 describe('createValidatorDecorator', () => {
   it('should register a validator and run it on componentDidLoad', () => {
     const runFn = jest.fn().mockReturnValue(true);
+    const instance = createComponentWithDidLoad(
+      [createValidatorDecorator({ priority: 1, blocking: false, run: runFn })],
+      'value',
+    );
 
-    class TestComponent {
-      host = { localName: 'post-test' } as HTMLElement;
-
-      @createValidatorDecorator({ priority: 1, blocking: false, run: runFn })
-      testProp: unknown;
-
-      componentDidLoad() {
-        /* do nothing */
-      }
-    }
-
-    const instance = new TestComponent();
-    instance.testProp = 'value';
     instance.componentDidLoad();
 
     expect(runFn).toHaveBeenCalledWith(instance, 'testProp');
@@ -26,20 +54,11 @@ describe('createValidatorDecorator', () => {
 
   it('should run validators on property change after componentDidLoad', () => {
     const runFn = jest.fn().mockReturnValue(true);
+    const instance = createComponentWithDidLoad(
+      [createValidatorDecorator({ priority: 1, blocking: false, run: runFn })],
+      'initial',
+    );
 
-    class TestComponent {
-      host = { localName: 'post-test' } as HTMLElement;
-
-      @createValidatorDecorator({ priority: 1, blocking: false, run: runFn })
-      testProp: unknown;
-
-      componentDidLoad() {
-        /* do nothing */
-      }
-    }
-
-    const instance = new TestComponent();
-    instance.testProp = 'initial';
     instance.componentDidLoad();
     runFn.mockClear();
 
@@ -49,62 +68,47 @@ describe('createValidatorDecorator', () => {
 
   it('should not run validators before componentDidLoad', () => {
     const runFn = jest.fn().mockReturnValue(true);
+    const instance = createComponentWithDidLoad(
+      [createValidatorDecorator({ priority: 1, blocking: false, run: runFn })],
+      'value',
+    );
 
-    class TestComponent {
-      host = { localName: 'post-test' } as HTMLElement;
-
-      @createValidatorDecorator({ priority: 1, blocking: false, run: runFn })
-      testProp: unknown;
-
-      componentDidLoad() {
-        /* do nothing */
-      }
-    }
-
-    const instance = new TestComponent();
-    instance.testProp = 'value';
     expect(runFn).not.toHaveBeenCalled();
+    void instance;
   });
 
   it('should sort validators by priority', () => {
     const order: number[] = [];
+    const instance = createComponentWithDidLoad(
+      [
+        createValidatorDecorator({
+          priority: 2,
+          blocking: false,
+          run() {
+            order.push(2);
+            return true;
+          },
+        }),
+        createValidatorDecorator({
+          priority: 0,
+          blocking: false,
+          run() {
+            order.push(0);
+            return true;
+          },
+        }),
+        createValidatorDecorator({
+          priority: 1,
+          blocking: false,
+          run() {
+            order.push(1);
+            return true;
+          },
+        }),
+      ],
+      'value',
+    );
 
-    class TestComponent {
-      host = { localName: 'post-test' } as HTMLElement;
-
-      @createValidatorDecorator({
-        priority: 2,
-        blocking: false,
-        run() {
-          order.push(2);
-          return true;
-        },
-      })
-      @createValidatorDecorator({
-        priority: 0,
-        blocking: false,
-        run() {
-          order.push(0);
-          return true;
-        },
-      })
-      @createValidatorDecorator({
-        priority: 1,
-        blocking: false,
-        run() {
-          order.push(1);
-          return true;
-        },
-      })
-      testProp: unknown;
-
-      componentDidLoad() {
-        /* do nothing */
-      }
-    }
-
-    const instance = new TestComponent();
-    instance.testProp = 'value';
     instance.componentDidLoad();
 
     expect(order).toEqual([0, 1, 2]);
@@ -112,35 +116,28 @@ describe('createValidatorDecorator', () => {
 
   it('should stop at a blocking validator that fails', () => {
     const order: number[] = [];
+    const instance = createComponentWithDidLoad(
+      [
+        createValidatorDecorator({
+          priority: 1,
+          blocking: false,
+          run() {
+            order.push(1);
+            return true;
+          },
+        }),
+        createValidatorDecorator({
+          priority: 0,
+          blocking: true,
+          run() {
+            order.push(0);
+            return false;
+          },
+        }),
+      ],
+      'value',
+    );
 
-    class TestComponent {
-      host = { localName: 'post-test' } as HTMLElement;
-
-      @createValidatorDecorator({
-        priority: 1,
-        blocking: false,
-        run() {
-          order.push(1);
-          return true;
-        },
-      })
-      @createValidatorDecorator({
-        priority: 0,
-        blocking: true,
-        run() {
-          order.push(0);
-          return false;
-        },
-      })
-      testProp: unknown;
-
-      componentDidLoad() {
-        /* do nothing */
-      }
-    }
-
-    const instance = new TestComponent();
-    instance.testProp = 'value';
     instance.componentDidLoad();
 
     expect(order).toEqual([0]);
@@ -148,50 +145,39 @@ describe('createValidatorDecorator', () => {
 
   it('should continue past a non-blocking validator that fails', () => {
     const order: number[] = [];
+    const instance = createComponentWithDidLoad(
+      [
+        createValidatorDecorator({
+          priority: 1,
+          blocking: false,
+          run() {
+            order.push(1);
+            return true;
+          },
+        }),
+        createValidatorDecorator({
+          priority: 0,
+          blocking: false,
+          run() {
+            order.push(0);
+            return false;
+          },
+        }),
+      ],
+      'value',
+    );
 
-    class TestComponent {
-      host = { localName: 'post-test' } as HTMLElement;
-
-      @createValidatorDecorator({
-        priority: 1,
-        blocking: false,
-        run() {
-          order.push(1);
-          return true;
-        },
-      })
-      @createValidatorDecorator({
-        priority: 0,
-        blocking: false,
-        run() {
-          order.push(0);
-          return false;
-        },
-      })
-      testProp: unknown;
-
-      componentDidLoad() {
-        /* do nothing */
-      }
-    }
-
-    const instance = new TestComponent();
-    instance.testProp = 'value';
     instance.componentDidLoad();
 
     expect(order).toEqual([0, 1]);
   });
 
   it('should handle multiple decorated properties independently', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
+    console.error = jest.fn();
 
     class TestComponent {
       host = { localName: 'post-test' } as HTMLElement;
-
-      @Required()
       propA: unknown;
-
-      @OneOf(['x', 'y'])
       propB: unknown;
 
       componentDidLoad() {
@@ -199,103 +185,64 @@ describe('createValidatorDecorator', () => {
       }
     }
 
+    Required()(TestComponent.prototype, 'propA');
+    OneOf(['x', 'y'])(TestComponent.prototype, 'propB');
+
     const instance = new TestComponent();
     instance.propA = 'valid';
     instance.propB = 'invalid';
     instance.componentDidLoad();
 
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith(
+    expect(console.error).toHaveBeenCalledTimes(1);
+    expect(console.error).toHaveBeenCalledWith(
       '[post-test] Property "propB" must be one of [x, y]. Received: "invalid".',
       expect.any(Object),
     );
-    spy.mockRestore();
   });
 
   it('should work when Required blocks OneOf on the same property', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
+    console.error = jest.fn();
+    const instance = createComponentWithDidLoad([Required(), OneOf(['a', 'b'])]);
 
-    class TestComponent {
-      host = { localName: 'post-test' } as HTMLElement;
-
-      @Required()
-      @OneOf(['a', 'b'])
-      testProp: unknown;
-
-      componentDidLoad() {
-        /* do nothing */
-      }
-    }
-
-    const instance = new TestComponent();
-    instance.testProp = undefined;
     instance.componentDidLoad();
 
-    // Only Required should fire, OneOf should be blocked
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith(
+    expect(console.error).toHaveBeenCalledTimes(1);
+    expect(console.error).toHaveBeenCalledWith(
       '[post-test] Property "testProp" is required. Received: undefined.',
       expect.any(Object),
     );
-    spy.mockRestore();
   });
 
   it('should run both Required and OneOf when value is present but invalid', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
+    console.error = jest.fn();
+    const instance = createComponentWithDidLoad([Required(), OneOf(['a', 'b'])], 'invalid');
 
-    class TestComponent {
-      host = { localName: 'post-test' } as HTMLElement;
-
-      @Required()
-      @OneOf(['a', 'b'])
-      testProp: unknown;
-
-      componentDidLoad() {
-        /* do nothing */
-      }
-    }
-
-    const instance = new TestComponent();
-    instance.testProp = 'invalid';
     instance.componentDidLoad();
 
-    // Required passes, OneOf fires
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith(
+    expect(console.error).toHaveBeenCalledTimes(1);
+    expect(console.error).toHaveBeenCalledWith(
       '[post-test] Property "testProp" must be one of [a, b]. Received: "invalid".',
       expect.any(Object),
     );
-    spy.mockRestore();
   });
 
   it('should call original componentDidLoad if present', () => {
     const originalFn = jest.fn();
+    const instance = createComponentWithDidLoad(
+      [createValidatorDecorator({ priority: 1, blocking: false, run: () => true })],
+      'value',
+      originalFn,
+    );
 
-    class TestComponent {
-      host = { localName: 'post-test' } as HTMLElement;
-
-      @createValidatorDecorator({ priority: 1, blocking: false, run: () => true })
-      testProp: unknown = 'value';
-
-      componentDidLoad() {
-        originalFn();
-      }
-    }
-
-    const instance = new TestComponent();
     instance.componentDidLoad();
     expect(originalFn).toHaveBeenCalledTimes(1);
   });
 
   it('should create componentDidLoad when none exists', () => {
-    class TestComponent {
-      host = { localName: 'post-test' } as HTMLElement;
+    const instance = createComponentWithoutDidLoad([
+      createValidatorDecorator({ priority: 1, blocking: false, run: () => true }),
+    ]);
 
-      @createValidatorDecorator({ priority: 1, blocking: false, run: () => true })
-      testProp: unknown;
-    }
-
-    const instance = new TestComponent();
     expect(typeof (instance as unknown as { componentDidLoad?: unknown }).componentDidLoad).toBe(
       'function',
     );
