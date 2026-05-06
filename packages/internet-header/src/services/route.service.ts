@@ -1,6 +1,6 @@
 import { state } from '@/data/store';
 import { ActiveRouteProp } from '../models/general.model';
-import { MainNavigationConfig, MegadropdownConfig } from '../models/header.model';
+import { MainNavigationConfig } from '../models/header.model';
 import { SimpleLinkConfig } from '../models/shared.model';
 
 interface ScoredLink {
@@ -56,17 +56,19 @@ export const getActiveLink = (activeRouteProp: ActiveRouteProp): SimpleLinkConfi
  * Find the first link marked as active in the portal config
  */
 const findPortalActiveLink = (config: MainNavigationConfig): SimpleLinkConfig | null => {
-  for (const item of config) {
-    if ('url' in item) {
-      if (item.active) return item as SimpleLinkConfig;
-    } else {
-      for (const section of item.sections) {
-        for (const link of section.items) {
-          if (link.active) return link;
-        }
-      }
+  config.forEach(item => {
+    if ('url' in item && item.active) {
+      return item;
     }
-  }
+
+    if ('sections' in item) {
+      item.sections.forEach(section => {
+        section.items.forEach(link => {
+          if (link.active) return link;
+        });
+      });
+    }
+  });
   return null;
 };
 
@@ -76,21 +78,23 @@ const findPortalActiveLink = (config: MainNavigationConfig): SimpleLinkConfig | 
 const extractCandidateLinks = (config: MainNavigationConfig): SimpleLinkConfig[] => {
   const links: SimpleLinkConfig[] = [];
 
-  for (const item of config) {
-    if ('url' in item) {
-      if (isNavigableUrl(item.url)) links.push(item as SimpleLinkConfig);
-    } else {
-      const megadropdown = item as MegadropdownConfig;
-      if (megadropdown.overview && isNavigableUrl(megadropdown.overview.url)) {
-        links.push(megadropdown.overview);
-      }
-      for (const section of megadropdown.sections) {
-        for (const link of section.items) {
-          if (isNavigableUrl(link.url)) links.push(link);
-        }
-      }
+  config.forEach(item => {
+    if ('url' in item && isNavigableUrl(item.url)) {
+      links.push(item);
     }
-  }
+
+    if ('sections' in item) {
+      if (item.overview && isNavigableUrl(item.overview.url)) {
+        links.push(item.overview);
+      }
+
+      item.sections.forEach(section => {
+        section.items.forEach(link => {
+          if (isNavigableUrl(link.url)) links.push(link);
+        });
+      });
+    }
+  });
 
   return links;
 };

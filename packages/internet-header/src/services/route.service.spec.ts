@@ -124,7 +124,7 @@ describe('route.service.ts', () => {
     });
 
     it('Returns null for an invalid URL', () => {
-      const result = getActiveLink('http://[invalid');
+      const result = getActiveLink('https://[invalid');
       expect(result).toBeNull();
     });
 
