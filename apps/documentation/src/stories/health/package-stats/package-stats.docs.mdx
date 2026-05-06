@@ -2,7 +2,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 import * as PackageStatsStories from './package-stats.stories';
 import './package-stats.styles.scss';
 
-import { StatsYearBlock } from './package-stats.blocks';
+import { PackageStatsBlock } from './package-stats.blocks';
 
 <Meta of={PackageStatsStories} />
 
@@ -11,22 +11,22 @@ import { StatsYearBlock } from './package-stats.blocks';
 <post-tabs>
   <post-tab-item name="styles">Styles</post-tab-item>
   <post-tab-panel for="styles">
-    <StatsYearBlock packageName="@swisspost/design-system-styles" startYear={2022}>
-    </StatsYearBlock>
+    <PackageStatsBlock packageName="@swisspost/design-system-styles" startYear={2022}>
+    </PackageStatsBlock>
   </post-tab-panel>
   <post-tab-item name="components">Components</post-tab-item>
   <post-tab-panel for="components">
-    <StatsYearBlock packageName="@swisspost/design-system-components" startYear={2022}>
-    </StatsYearBlock>
+    <PackageStatsBlock packageName="@swisspost/design-system-components" startYear={2022}>
+    </PackageStatsBlock>
   </post-tab-panel>
   <post-tab-item name="components-angular">Components Angular</post-tab-item>
   <post-tab-panel for="components-angular">
-    <StatsYearBlock packageName="@swisspost/design-system-components-angular" startYear={2023}>
-    </StatsYearBlock>
+    <PackageStatsBlock packageName="@swisspost/design-system-components-angular" startYear={2023}>
+    </PackageStatsBlock>
   </post-tab-panel>
   <post-tab-item name="components-react">Components React</post-tab-item>
   <post-tab-panel for="components-react">
-    <StatsYearBlock packageName="@swisspost/design-system-components-react" startYear={2024}>
-    </StatsYearBlock>
+    <PackageStatsBlock packageName="@swisspost/design-system-components-react" startYear={2024}>
+    </PackageStatsBlock>
   </post-tab-panel>
 </post-tabs>

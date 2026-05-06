@@ -4,51 +4,213 @@ import { AgCharts } from 'ag-charts-react';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-const LOCALE_DATE_STRING_OPTIONS: Intl.DateTimeFormatOptions = {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-};
+// --- Types ---
+
+type DayRecord = { day: string; downloads: number };
+type VersionRecord = { version: string; downloads: number };
+type Release = { version: string; date: Date };
+
+// --- Constants ---
+
+const DATE_FORMAT: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+const TRANSPARENT_BG = { fill: 'transparent' };
 const CHART_COLORS = [
-  '#eb283e',
-  '#edb168',
-  '#bacf76',
-  '#7feb91',
-  '#91dced',
-  '#cb91ed',
-  '#eb49c8',
-  '#f47b60',
-  '#78c4d4',
-  '#a3d977',
-  '#f9a03f',
-  '#8884d8',
-  '#e06b9f',
-  '#6bc5a0',
-  '#d4a76a',
-  '#7b9fe0',
-  '#c9e04e',
-  '#e87d5a',
-  '#5ec4b6',
-  '#d17de8',
+  '#e6194b',
+  '#3cb44b',
+  '#4363d8',
+  '#f58231',
+  '#911eb4',
+  '#42d4f4',
+  '#f032e6',
+  '#bfef45',
+  '#fabed4',
+  '#469990',
+  '#dcbeff',
+  '#9a6324',
+  '#800000',
+  '#aaffc3',
+  '#808000',
+  '#000075',
+  '#e6beff',
+  '#ff4500',
+  '#008080',
+  '#ffd700',
 ];
 
-const TotalDownloads: React.FC<{
+/**
+ * Main component that displays package statistics for a given npm package.
+ * Fetches registry metadata and version downloads when visible, then renders
+ * a versions chart and per-year download sections.
+ * @param packageName - The npm package name to display stats for
+ * @param startYear - The first year to show download statistics from
+ */
+export const PackageStatsBlock: React.FC<{ packageName: string; startYear: number }> = ({
+  packageName,
+  startYear,
+}) => {
+  const endYear = new Date().getFullYear();
+  const [ref, isVisible] = useIsVisible<HTMLDivElement>();
+  const [registryTime, setRegistryTime] = useState<Record<string, string>>({});
+  const [versions, setVersions] = useState<VersionRecord[]>([]);
+
+  useEffect(() => {
+    if (!isVisible) return;
+    const pkg = encodeURIComponent(packageName);
+
+    fetch(`https://registry.npmjs.org/${pkg}`)
+      .then(res => res.json())
+      .then(data => setRegistryTime(data.time ?? {}));
+
+    fetch(`https://api.npmjs.org/versions/${pkg}/last-week`)
+      .then(res => res.json())
+      .then(data => {
+        const grouped = new Map<string, number>();
+        for (const [version, count] of Object.entries(data.downloads ?? {})) {
+          const major = `${version.split('.')[0]}.x`;
+          grouped.set(major, (grouped.get(major) ?? 0) + (count as number));
+        }
+        setVersions(
+          [...grouped.entries()]
+            .map(([version, downloads]) => ({ version, downloads }))
+            .sort((a, b) => Number.parseInt(b.version) - Number.parseInt(a.version)),
+        );
+      });
+  }, [packageName, isVisible]);
+
+  const releases: Release[] = Object.entries(registryTime)
+    .filter(([key]) => key !== 'created' && key !== 'modified')
+    .map(([version, date]) => ({ version, date: new Date(date) }));
+
+  return (
+    <div ref={ref} className="stats-package lh-1">
+      {isVisible ? (
+        <>
+          <h2 className="text-center">{packageName}</h2>
+          <p className="text-center text-muted">
+            {registryTime.created && (
+              <span>
+                Created: <span className="fw-bold">{formatDate(registryTime.created)}</span>
+              </span>
+            )}
+            {registryTime.modified && (
+              <span>
+                {' '}
+                · Last modified:{' '}
+                <span className="fw-bold">{formatDate(registryTime.modified)}</span>
+              </span>
+            )}
+          </p>
+          <DownloadsPerVersionChart versions={versions} />
+
+          <hr className="my-32" />
+          <h3 className="text-center">Download stats</h3>
+
+          {Array.from({ length: endYear - startYear + 1 }, (_, i) => {
+            const year = startYear + i;
+            const yearReleases = releases.filter(r => r.date.getFullYear() === year);
+
+            return (
+              <LazyDownloadStatsSection
+                key={year}
+                packageName={packageName}
+                year={year}
+                isFirstYear={year === startYear}
+                isLastYear={year === endYear}
+                releases={yearReleases}
+              />
+            );
+          })}
+        </>
+      ) : (
+        <div className="spinner-bg">
+          <div className="spinner-modal">
+            <div role="status" aria-live="polite" className="spinner m-auto">
+              <span className="visually-hidden">Loading…</span>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+/**
+ * Lazily loaded section for a single year. Fetches daily download data
+ * only when scrolled into view, then renders DownloadsSummaryCards and DownloadsPerYearChart.
+ * @param packageName - The npm package name to fetch downloads for
+ * @param year - The calendar year to display
+ * @param isFirstYear - Whether this is the earliest year (affects average calculation)
+ * @param isLastYear - Whether this is the current year (affects average calculation)
+ * @param releases - Package releases that occurred during this year
+ */
+const LazyDownloadStatsSection: React.FC<{
+  packageName: string;
   year: number;
-  days: { day: string; downloads: number }[];
+  isFirstYear: boolean;
+  isLastYear: boolean;
+  releases: Release[];
+}> = ({ packageName, year, isFirstYear, isLastYear, releases }) => {
+  const [ref, isVisible] = useIsVisible<HTMLDivElement>();
+  const [days, setDays] = useState<DayRecord[]>([]);
+
+  useEffect(() => {
+    if (!isVisible) return;
+    fetch(`https://api.npmjs.org/downloads/range/${year}-01-01:${year}-12-31/${packageName}`)
+      .then(res => res.json())
+      .then(data => setDays(data.downloads ?? []));
+  }, [packageName, year, isVisible]);
+
+  return (
+    <div ref={ref} className="mt-16">
+      <h4 className="palette palette-accent p-4 text-center fw-normal">{year}</h4>
+      {isVisible ? (
+        <div className="d-flex flex-column flex-sm-row flex-wrap gap-16 justify-content-between align-items-start">
+          <DownloadsSummaryCards
+            year={year}
+            days={days}
+            isFirstYear={isFirstYear}
+            isLastYear={isLastYear}
+          />
+          <DownloadsPerYearChart
+            year={year}
+            days={days}
+            isFirstYear={isFirstYear}
+            isLastYear={isLastYear}
+            releases={releases}
+          />
+        </div>
+      ) : (
+        <div style={{ height: 300 }} />
+      )}
+    </div>
+  );
+};
+
+/**
+ * Displays summary statistics cards for a given year: days with data,
+ * total downloads, average per day, and maximum per day.
+ * @param year - The calendar year to display stats for
+ * @param days - Array of daily download records
+ * @param isFirstYear - Whether this is the earliest year (only counts days with downloads > 0)
+ * @param isLastYear - Whether this is the current year (only counts days with downloads > 0)
+ */
+const DownloadsSummaryCards: React.FC<{
+  year: number;
+  days: DayRecord[];
   isFirstYear: boolean;
   isLastYear: boolean;
 }> = ({ year, days, isFirstYear, isLastYear }) => {
-  const totalDaysInYear = new Date(year, 1, 29).getMonth() === 1 ? 366 : 365;
-  const relevantDays = isFirstYear || isLastYear ? days.filter(d => d.downloads > 0) : days;
-  const daysWithData = relevantDays.length;
-  const downloads = relevantDays.reduce((sum, d) => sum + d.downloads, 0);
-  const maxDownloads = Math.max(0, ...relevantDays.map(d => d.downloads));
+  const total = daysInYear(year);
+  const relevant = filterRelevantDays(days, isFirstYear || isLastYear);
+  const count = relevant.length;
+  const downloads = relevant.reduce((sum, d) => sum + d.downloads, 0);
+  const max = Math.max(0, ...relevant.map(d => d.downloads));
 
   return (
     <div className="d-flex flex-sm-column flex-wrap gap-16">
       <div className="card card-stats">
         <h5>Days with data</h5>
-        <p>{`${daysWithData} / ${totalDaysInYear}`}</p>
+        <p>{`${count} / ${total}`}</p>
       </div>
       <div className="card card-stats">
         <h5>Total downloads</h5>
@@ -56,22 +218,31 @@ const TotalDownloads: React.FC<{
       </div>
       <div className="card card-stats">
         <h5>Average per day</h5>
-        <p>{daysWithData > 0 ? Math.round(downloads / daysWithData).toLocaleString() : '…'}</p>
+        <p>{count > 0 ? Math.round(downloads / count).toLocaleString() : '…'}</p>
       </div>
       <div className="card card-stats">
         <h5>Maximum per day</h5>
-        <p>{maxDownloads.toLocaleString()}</p>
+        <p>{max.toLocaleString()}</p>
       </div>
     </div>
   );
 };
 
-const DownloadsChart: React.FC<{
+/**
+ * Line chart showing daily downloads for a given year with median smoothing,
+ * release markers, and crossLines for max/average values.
+ * @param year - The calendar year to display
+ * @param days - Array of daily download records
+ * @param isFirstYear - Whether this is the earliest year (affects average calculation)
+ * @param isLastYear - Whether this is the current year (affects average calculation)
+ * @param releases - Package releases to render as diamond markers on the chart
+ */
+const DownloadsPerYearChart: React.FC<{
   year: number;
-  days: { day: string; downloads: number }[];
+  days: DayRecord[];
   isFirstYear: boolean;
   isLastYear: boolean;
-  releases: { version: string; date: Date }[];
+  releases: Release[];
 }> = ({ year, days, isFirstYear, isLastYear, releases }) => {
   const [chartOptions, setChartOptions] = useState<AgChartOptions>({});
 
@@ -94,14 +265,20 @@ const DownloadsChart: React.FC<{
 
     const values = downloads.map(d => d.downloads);
     const max = Math.max(...values);
-    const relevantValues = isFirstYear || isLastYear ? values.filter(v => v > 0) : values;
-    const avg = Math.round(relevantValues.reduce((sum, v) => sum + v, 0) / relevantValues.length);
+    const relevant = filterRelevantDays(days, isFirstYear || isLastYear);
+    const avg = Math.round(relevant.reduce((sum, d) => sum + d.downloads, 0) / relevant.length);
 
-    const releaseY = max * 0.5;
-    const releaseData = releases.map(r => ({
-      day: r.date,
+    const releaseY = max * 0.9;
+    const grouped = releases.reduce<Record<string, string[]>>((acc, r) => {
+      const key = r.date.toISOString().slice(0, 10);
+      if (!acc[key]) acc[key] = [];
+      acc[key].push(r.version);
+      return acc;
+    }, {});
+    const releaseData = Object.entries(grouped).map(([day, versions]) => ({
+      day: new Date(day),
       downloads: releaseY,
-      version: r.version,
+      version: [...versions].sort((a, b) => Number.parseInt(a) - Number.parseInt(b)).join(', '),
     }));
 
     setChartOptions({
@@ -121,15 +298,11 @@ const DownloadsChart: React.FC<{
             enabled: true,
             shape: 'diamond',
             size: 8,
-            fill: CHART_COLORS[10],
-            stroke: CHART_COLORS[10],
+            fill: CHART_COLORS[3],
+            stroke: CHART_COLORS[3],
           },
           tooltip: {
-            renderer: params =>
-              `<div class="ag-chart-tooltip">
-            <span class="fs-11">${params.datum.day.toLocaleDateString(undefined, LOCALE_DATE_STRING_OPTIONS)}</span>
-                <span class="d-block mt-8 fs-9 fw-bold">${params.datum.version}</span>
-              </div>`,
+            renderer: params => chartTooltip(params.datum.version, params.datum.day),
           },
         },
         {
@@ -138,17 +311,14 @@ const DownloadsChart: React.FC<{
           xKey: 'day',
           yKey: 'downloads',
           yName: 'Daily downloads',
-          stroke: CHART_COLORS[8],
-          strokeWidth: 2,
+          stroke: CHART_COLORS[2],
+          strokeWidth: 1,
           marker: {
             enabled: false,
           },
           tooltip: {
             renderer: params =>
-              `<div class="ag-chart-tooltip">
-            <span class="fs-11">${params.datum.day.toLocaleDateString(undefined, LOCALE_DATE_STRING_OPTIONS)}</span>
-                <span class="d-block mt-8 fs-9 fw-bold">Daily downloads: ${params.datum.downloads}</span>
-              </div>`,
+              chartTooltip(`Daily downloads: ${params.datum.downloads}`, params.datum.day),
           },
         },
       ],
@@ -177,20 +347,22 @@ const DownloadsChart: React.FC<{
             {
               type: 'line',
               value: avg,
-              stroke: CHART_COLORS[7],
-              strokeWidth: 2,
+              stroke: CHART_COLORS[9],
+              strokeWidth: 1,
+              lineDash: [4, 2],
               label: { text: `Avg: ${avg.toLocaleString()}`, position: 'right' },
             },
           ],
         },
       },
-      background: {
-        fill: 'transparent',
+      background: TRANSPARENT_BG,
+      tooltip: {
+        mode: 'single',
       },
       theme: {
         palette: {
-          fills: [CHART_COLORS[1], CHART_COLORS[11]],
-          strokes: [CHART_COLORS[1], CHART_COLORS[11]],
+          fills: [CHART_COLORS[3], CHART_COLORS[2]],
+          strokes: [CHART_COLORS[3], CHART_COLORS[2]],
         },
       },
     });
@@ -203,39 +375,19 @@ const DownloadsChart: React.FC<{
   );
 };
 
-const VersionsChart: React.FC<{ packageName: string }> = ({ packageName }) => {
-  const [downloads, setDownloads] = useState<{ version: string; downloads: number }[]>([]);
+/**
+ * Horizontal bar chart showing downloads grouped by major version for the last week.
+ * @param versions - Array of major versions with their aggregated download counts
+ */
+const DownloadsPerVersionChart: React.FC<{
+  versions: VersionRecord[];
+}> = ({ versions }) => {
   const [chartOptions, setChartOptions] = useState<AgChartOptions>({});
 
   useEffect(() => {
-    fetch(`https://api.npmjs.org/versions/${encodeURIComponent(packageName)}/last-week`)
-      .then(res => res.json())
-      .then(data => {
-        setDownloads(
-          Object.entries(data.downloads ?? {})
-            .map(([version, downloads]) => ({
-              version: `${version.split('.')[0]}.x`, // major version only
-              downloads: downloads as number,
-            }))
-            .reduce(
-              (acc, { version, downloads }) => {
-                const existing = acc.find(d => d.version === version);
-                if (existing) {
-                  existing.downloads += downloads;
-                } else {
-                  acc.push({ version, downloads });
-                }
-                return acc;
-              },
-              [] as { version: string; downloads: number }[],
-            )
-            .sort((a, b) => parseInt(b.version) - parseInt(a.version)),
-        );
-      });
-  }, [packageName]);
+    if (versions.length === 0) return;
 
-  useEffect(() => {
-    const total = downloads.reduce((sum, d) => sum + d.downloads, 0);
+    const total = versions.reduce((sum, d) => sum + d.downloads, 0);
 
     setChartOptions({
       title: {
@@ -244,7 +396,7 @@ const VersionsChart: React.FC<{ packageName: string }> = ({ packageName }) => {
       subtitle: {
         text: `Total: ${total.toLocaleString()}`,
       },
-      data: downloads,
+      data: versions,
       series: [
         {
           type: 'bar',
@@ -262,14 +414,16 @@ const VersionsChart: React.FC<{ packageName: string }> = ({ packageName }) => {
             },
           },
           itemStyler: ({ datum }) => {
-            const index = downloads.findIndex(d => d.version === datum.version);
+            const index = versions.findIndex(d => d.version === datum.version);
             return { fill: CHART_COLORS[index % CHART_COLORS.length] };
+          },
+          tooltip: {
+            renderer: params =>
+              chartTooltip(`Downloads: ${params.datum.downloads.toLocaleString()}`),
           },
         },
       ],
-      background: {
-        fill: 'transparent',
-      },
+      background: TRANSPARENT_BG,
       theme: {
         overrides: {
           bar: {
@@ -280,7 +434,7 @@ const VersionsChart: React.FC<{ packageName: string }> = ({ packageName }) => {
         },
       },
     });
-  }, [downloads]);
+  }, [versions]);
 
   return (
     <div className="card card-charts">
@@ -289,156 +443,44 @@ const VersionsChart: React.FC<{ packageName: string }> = ({ packageName }) => {
   );
 };
 
-export const StatsYearBlock: React.FC<{ packageName: string; startYear: number }> = ({
-  packageName,
-  startYear,
-}) => {
-  const [ref, isVisible] = useIsVisible<HTMLDivElement>();
-  const endYear = new Date().getFullYear();
-  const [registryTime, setRegistryTime] = useState<Record<string, string>>({});
-
-  useEffect(() => {
-    if (!isVisible) return;
-    fetch(`https://registry.npmjs.org/${encodeURIComponent(packageName)}`)
-      .then(res => res.json())
-      .then(data => setRegistryTime(data.time ?? {}));
-  }, [packageName, isVisible]);
-
-  const releases = Object.entries(registryTime)
-    .filter(([key]) => key !== 'created' && key !== 'modified')
-    .map(([version, date]) => ({ version, date: new Date(date) }));
-
-  return (
-    <div ref={ref} className="stats-package lh-1">
-      {!isVisible ? (
-        <p className="text-center text-muted py-32">Loading...</p>
-      ) : (
-        <>
-          <h2 className="text-center">{packageName}</h2>
-          <p className="text-center text-muted">
-            {registryTime.created && (
-              <span>
-                Package created:{' '}
-                <span className="fw-bold">
-                  {new Date(registryTime.created).toLocaleDateString(
-                    undefined,
-                    LOCALE_DATE_STRING_OPTIONS,
-                  )}
-                </span>
-              </span>
-            )}
-            {registryTime.modified && (
-              <span>
-                {' '}
-                · Last modified:{' '}
-                <span className="fw-bold">
-                  {new Date(registryTime.modified).toLocaleDateString(
-                    undefined,
-                    LOCALE_DATE_STRING_OPTIONS,
-                  )}
-                </span>
-              </span>
-            )}
-          </p>
-          <LazyVersionsChart packageName={packageName} />
-
-          <hr className="my-32" />
-          <h3 className="text-center">Download stats</h3>
-
-          {Array.from({ length: endYear - startYear + 1 }, (_, i) => {
-            const year = startYear + i;
-            const yearReleases = releases.filter(r => r.date.getFullYear() === year);
-
-            return (
-              <LazyYearSection
-                key={year}
-                packageName={packageName}
-                year={year}
-                isFirstYear={year === startYear}
-                isLastYear={year === endYear}
-                releases={yearReleases}
-              />
-            );
-          })}
-        </>
-      )}
-    </div>
-  );
-};
-
-const LazyVersionsChart: React.FC<{ packageName: string }> = ({ packageName }) => {
-  const [ref, isVisible] = useIsVisible<HTMLDivElement>();
-  return (
-    <div ref={ref}>
-      {isVisible ? <VersionsChart packageName={packageName} /> : <div style={{ height: 300 }} />}
-    </div>
-  );
-};
-
-const LazyYearSection: React.FC<{
-  packageName: string;
-  year: number;
-  isFirstYear: boolean;
-  isLastYear: boolean;
-  releases: { version: string; date: Date }[];
-}> = ({ packageName, year, isFirstYear, isLastYear, releases }) => {
-  const [ref, isVisible] = useIsVisible<HTMLDivElement>();
-  const [days, setDays] = useState<{ day: string; downloads: number }[]>([]);
-
-  useEffect(() => {
-    if (!isVisible) return;
-    fetch(`https://api.npmjs.org/downloads/range/${year}-01-01:${year}-12-31/${packageName}`)
-      .then(res => res.json())
-      .then(data => setDays(data.downloads ?? []));
-  }, [packageName, year, isVisible]);
-
-  return (
-    <div ref={ref} className="mt-16">
-      <h4 className="palette palette-accent p-4 text-center fw-normal">{year}</h4>
-      {isVisible ? (
-        <div className="d-flex flex-column flex-sm-row flex-wrap gap-16 justify-content-between align-items-start">
-          <TotalDownloads
-            year={year}
-            days={days}
-            isFirstYear={isFirstYear}
-            isLastYear={isLastYear}
-          />
-          <DownloadsChart
-            year={year}
-            days={days}
-            isFirstYear={isFirstYear}
-            isLastYear={isLastYear}
-            releases={releases}
-          />
-        </div>
-      ) : (
-        <div style={{ height: 300 }} />
-      )}
-    </div>
-  );
-};
-
-function useIsVisible<T extends HTMLElement>(): [React.RefObject<T | null>, boolean] {
-  const ref = useRef<T | null>(null);
+/**
+ * Hook that uses IntersectionObserver to detect when an element becomes visible in the viewport.
+ * Once visible, the observer disconnects and the state remains true permanently.
+ * @returns A tuple of [ref to attach to the element, whether the element has been visible]
+ */
+function useIsVisible<T extends HTMLElement>(): [React.RefObject<T>, boolean] {
+  const ref = useRef<T>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0 },
-    );
-
-    observer.observe(element);
+    if (!ref.current) return;
+    const observer = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      setIsVisible(true);
+      observer.disconnect();
+    });
+    observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
 
   return [ref, isVisible];
 }
+
+// --- Helpers ---
+
+/** Format a date string using the shared locale options. */
+const formatDate = (date: string) => new Date(date).toLocaleDateString(undefined, DATE_FORMAT);
+
+/** Get the number of days in a given year. */
+const daysInYear = (year: number) => (new Date(year, 1, 29).getMonth() === 1 ? 366 : 365);
+
+/** Filter days to only those with downloads > 0 for partial years (first/last). */
+const filterRelevantDays = (days: DayRecord[], isPartialYear: boolean) =>
+  isPartialYear ? days.filter(d => d.downloads > 0) : days;
+
+/** Format a tooltip cell for ag-charts. */
+const chartTooltip = (label: string, date?: Date) =>
+  `<div class="ag-chart-tooltip">
+    ${date ? `<span class="fs-11">${date.toLocaleDateString(undefined, DATE_FORMAT)}</span>` : ''}
+    <span class="d-block mt-8 fs-9 fw-bold">${label}</span>
+  </div>`;

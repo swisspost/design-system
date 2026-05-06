@@ -24,13 +24,13 @@
   h5,
   h6 {
     margin: map.get(utils.$margin, 2);
-    font-size: map.get(utils.$font-size, 10);
+    font-size: map.get(utils.$font-size, 11);
     font-weight: map.get(utils.$font-weight, regular);
   }
 
   p {
     margin: 0;
-    font-size: map.get(utils.$font-size, 4);
+    font-size: map.get(utils.$font-size, 5);
     font-weight: map.get(utils.$font-weight, bold);
   }
 }
