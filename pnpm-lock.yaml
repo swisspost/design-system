@@ -81,6 +81,12 @@ importers:
       '@swisspost/internet-header':
         specifier: workspace:10.0.0-next.68
         version: link:../../packages/internet-header
+      ag-charts-community:
+        specifier: 13.2.1
+        version: 13.2.1
+      ag-charts-react:
+        specifier: 13.2.1
+        version: 13.2.1(react@18.3.1)
     devDependencies:
       '@eslint/js':
         specifier: 9.18.0
@@ -4799,8 +4805,25 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
+  ag-charts-community@13.2.1:
+    resolution: {integrity: sha512-A+DCiesRp6WQ5R5e3x9bLh50IWCachVF6gkz6Dz4icMcq6WL5JNKL+xZEzrKYl+kuD8Y8728xmVm/H53o9Nayw==}
+
+  ag-charts-core@13.2.1:
+    resolution: {integrity: sha512-Y7rk3kF+fA6bUMjU+vIzG5rRBd+8EKjyIjzNR2uV1+HyrlnOn6b7Eb9HPkDUoosWHhz+UNCOW/lYDzPP6mivHQ==}
+
+  ag-charts-locale@13.2.1:
+    resolution: {integrity: sha512-lwwV/l/O187R4DYUfjm6p8LijITe46IlDz8nOxNQNJAOpkzs+cWmjSxfNiM1BMVCWTcMdah/AKN+6iihbDa8IA==}
+
+  ag-charts-react@13.2.1:
+    resolution: {integrity: sha512-5t2DMM+MdQm5MOoGMnqTkri2vYrDbvvVOePBFvl6YU133dal1m5MOv+Srmv/J+139xzAOn1sCPuGwpl8yR1Snw==}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0
+
   ag-charts-types@11.3.2:
     resolution: {integrity: sha512-trPGqgGYiTeLgtf9nLuztDYOPOFOLbqHn1g2D99phf7QowcwdX0TPx0wfWG8Hm90LjB8IH+G2s3AZe2vrdAtMQ==}
+
+  ag-charts-types@13.2.1:
+    resolution: {integrity: sha512-r7veb3QqJtIKlXmeUsLR4/oDPwmHxFI2tmbZra/203mdaz3uwQUrrgYNg628nrK+7L2YxXnwGc6L05tWjLLjNQ==}
 
   ag-grid-community@33.3.2:
     resolution: {integrity: sha512-9bx0e/+ykOyLvUxHqmdy0cRVANH6JAtv0yZdnBZEXYYqBAwN+G5a4NY+2I1KvoOCYzbk8SnStG7y4hCdVAAWOQ==}
@@ -15667,7 +15690,26 @@ snapshots:
 
   acorn@8.16.0: {}
 
+  ag-charts-community@13.2.1:
+    dependencies:
+      ag-charts-core: 13.2.1
+      ag-charts-locale: 13.2.1
+      ag-charts-types: 13.2.1
+
+  ag-charts-core@13.2.1:
+    dependencies:
+      ag-charts-types: 13.2.1
+
+  ag-charts-locale@13.2.1: {}
+
+  ag-charts-react@13.2.1(react@18.3.1):
+    dependencies:
+      ag-charts-community: 13.2.1
+      react: 18.3.1
+
   ag-charts-types@11.3.2: {}
+
+  ag-charts-types@13.2.1: {}
 
   ag-grid-community@33.3.2:
     dependencies:

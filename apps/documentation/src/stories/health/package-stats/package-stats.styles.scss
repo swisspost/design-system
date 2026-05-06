@@ -1,0 +1,44 @@
+@use 'sass:map';
+@use '@swisspost/design-system-styles/tokens/utilities_formatted' as utils;
+
+.stats-package {
+  h2 {
+    margin: 0;
+    font-size: map.get(utils.$font-size, 2);
+  }
+
+  h3 {
+    margin: 0;
+    font-size: map.get(utils.$font-size, 5);
+  }
+}
+
+.card-stats {
+  padding: map.get(utils.$padding, 8);
+  border-radius: map.get(utils.$border-radius, 8);
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: map.get(utils.$margin, 2);
+    font-size: map.get(utils.$font-size, 10);
+    font-weight: map.get(utils.$font-weight, regular);
+  }
+
+  p {
+    margin: 0;
+    font-size: map.get(utils.$font-size, 4);
+    font-weight: map.get(utils.$font-weight, bold);
+  }
+}
+
+.downloads-chart {
+  flex: 1 0 0%;
+}
+
+.ag-chart-tooltip {
+  padding: map.get(utils.$padding, 12);
+}
