@@ -1,23 +1,4 @@
-@use '@swisspost/design-system-styles/basics';
-@use '@swisspost/design-system-styles/variables/type';
-
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: type.$font-family-sans-serif !important;
-}
-
-// For imported auto-generated readme files into .mdx documentations
-h1 ~ * h1 {
-  &,
-  & + h2 {
-    display: none;
-  }
-}
+@use '@swisspost/design-system-styles/post-default';
 
 .fake-content {
   position: relative;

@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
-import { state } from '../../data/store';
-import { Link } from '../../models/general.model';
+import { state } from '@/data/store';
+import { LinkConfig } from '@/models/shared.model';
 import '@swisspost/design-system-components';
 
 @Component({
@@ -12,7 +12,7 @@ export class PostInternetBreadcrumbs {
   /**
    * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
    */
-  @Prop() customItems?: string | Array<Link>;
+  @Prop() customItems?: string | Array<LinkConfig>;
 
   /**
    * Label for the home link.
@@ -29,7 +29,7 @@ export class PostInternetBreadcrumbs {
    */
   @Prop() textMoreItems!: string;
 
-  @State() customBreadcrumbItems?: Array<Link>;
+  @State() customBreadcrumbItems?: Array<LinkConfig>;
   @Element() host: HTMLSwisspostInternetBreadcrumbsElement;
 
   async componentWillLoad() {
@@ -43,7 +43,7 @@ export class PostInternetBreadcrumbs {
   }
 
   @Watch('customItems')
-  handleCustomConfigChange(newValue: string | Array<Link>) {
+  handleCustomConfigChange(newValue: string | Array<LinkConfig>) {
     try {
       this.customBreadcrumbItems = typeof newValue === 'string' ? JSON.parse(newValue) : newValue;
     } catch (error) {

@@ -1,15 +1,15 @@
-import { IPortalConfig } from '../../src/models/general.model';
+import { PortalConfig } from '../../src/models/general.model';
 import rawTestConfiguration from '../fixtures/internet-header/test-configuration.json';
 import { prepare } from '../support/prepare-story';
 import { BREADCRUMBS } from './shared/variables';
 
-const testConfiguration: IPortalConfig = rawTestConfiguration as unknown as IPortalConfig;
+const testConfiguration: PortalConfig = rawTestConfiguration as unknown as PortalConfig;
 
 describe('breadcrumb', () => {
   describe('configuration', () => {
     it(`should not rendered if no config present`, () => {
-      // Cast the imported JSON object to the IPortalConfig interface
-      const config: IPortalConfig = testConfiguration;
+      // Cast the imported JSON object to the PortalConfig interface
+      const config: PortalConfig = testConfiguration;
       const modifiedConfig = JSON.parse(JSON.stringify(config));
 
       // Clear breadcrumb config

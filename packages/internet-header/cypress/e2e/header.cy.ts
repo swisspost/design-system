@@ -8,7 +8,7 @@ const language = 'de';
 
 describe('header', () => {
   describe('default', () => {
-    const headerConfig = testConfiguration[language].header_new;
+    const headerConfig = testConfiguration[language].header;
     beforeEach(() => {
       prepare(HEADER, 'Default');
       cy.changeArg('language', language);
@@ -89,7 +89,7 @@ describe('header', () => {
   });
 
   describe('microsite', () => {
-    const headerConfig = micrositeConfiguration[language].header_new;
+    const headerConfig = micrositeConfiguration[language].header;
 
     beforeEach(() => {
       prepare(HEADER, 'Default', {

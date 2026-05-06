@@ -2,6 +2,8 @@ import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 
+import { renderHeader } from '../internet-header/header.stories';
+
 const meta: MetaComponent = {
   id: '27fc009d-3eec-43a9-b3a2-55531e721817',
   title: 'Raw Components/Internet Header/Footer',
@@ -28,11 +30,7 @@ export default meta;
 // DECORATORS
 function hiddenHeader(story: StoryFn, context: StoryContext) {
   return html`
-    <style>
-      swisspost-internet-header {
-        display: none;
-      }
-    </style>
+    <div class="d-none">${renderHeader()}</div>
     ${story(context.args, context)}
   `;
 }
@@ -40,7 +38,6 @@ function hiddenHeader(story: StoryFn, context: StoryContext) {
 // RENDERER
 function renderInternetFooter(args: Args) {
   return html`
-    <swisspost-internet-header project="test"></swisspost-internet-header>
     <swisspost-internet-footer
       text-footer=${args.textFooter}
       text-cookie-settings=${args.textCookieSettings}

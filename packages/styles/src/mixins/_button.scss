@@ -39,6 +39,7 @@
   transition: button.$btn-transition;
   border-width: tokens.get('button-border-width', components.$post-button);
   border-style: solid;
+  border-color: transparent;
   border-radius: tokens.get('button-border-radius-round', components.$post-button);
   background-color: transparent;
   box-shadow: none;

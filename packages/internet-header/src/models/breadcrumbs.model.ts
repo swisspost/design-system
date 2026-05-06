@@ -1,14 +1,9 @@
-import { Link } from './general.model';
+import { LinkConfig } from './shared.model';
 
 /**
  * Breadcrumb trail from the root to the current page.
  */
-export interface Breadcrumbs {
+export interface BreadcrumbsConfig {
   rootUrl: string;
-  items: Array<Link>;
-}
-
-export interface AdditionalAttribute {
-  name: string;
-  value: string;
+  items: Array<LinkConfig>;
 }

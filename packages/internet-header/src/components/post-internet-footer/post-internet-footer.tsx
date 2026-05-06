@@ -1,7 +1,11 @@
-import { Component, h, Host, Prop, State } from '@stencil/core';
-import { version } from '@root/package.json';
+import { Link, LinkProps, Title, TitleProps } from '@/components/internal';
 import { state } from '@/data/store';
-import { LinkList } from '@/components/shared';
+import { LinkListConfig } from '@/models/shared.model';
+import { createIdFrom } from '@/utils/create-id-from';
+import { getText } from '@/utils/get-text';
+import { version } from '@root/package.json';
+import { Component, h, Host, Prop, State } from '@stencil/core';
+import { JSXBase } from '@stencil/core/internal';
 
 @Component({
   tag: 'swisspost-internet-footer',
@@ -73,6 +77,29 @@ export class PostInternetFooter {
     window['UC_UI']['showSecondLayer']();
   }
 
+  private renderListWithTitle(
+    config: LinkListConfig | undefined,
+    props: { titleProps?: TitleProps; listProps?: JSXBase.HTMLAttributes; linkProps?: LinkProps },
+  ) {
+    if (!config) return undefined;
+
+    const { titleProps, listProps, linkProps } = props;
+
+    const titleText = getText(config.title);
+    const titleId = createIdFrom(titleText);
+
+    return [
+      <Title {...titleProps} config={config.title} id={titleId} />,
+      <ul {...listProps} aria-labelledby={titleId}>
+        {config.items.map(item => (
+          <li>
+            <Link {...linkProps} config={item} />
+          </li>
+        ))}
+      </ul>,
+    ];
+  }
+
   render() {
     // Config has not loaded yet
     if (!state.localizedConfig) {
@@ -94,45 +121,47 @@ export class PostInternetFooter {
     return (
       <Host data-version={version}>
         <post-footer textFooter={this.textFooter}>
-          {footerConfig.sections &&
-            footerConfig.sections.map((section, i) => (
-              <LinkList
-                config={section}
-                titleTag="span"
-                titleSlot={`grid-${i + 1}-title`}
-                listSlot={`grid-${i + 1}`}
-              />
-            ))}
+          {footerConfig.sections?.map((section, i) =>
+            this.renderListWithTitle(section, {
+              titleProps: { tag: 'span', slot: `grid-${i + 1}-title` },
+              listProps: { slot: `grid-${i + 1}` },
+            }),
+          )}
 
           {footerConfig.socialLinks && (
             <div slot="socialmedia">
-              <LinkList
-                config={footerConfig.socialLinks}
-                titleTag="h3"
-                linkProps={{ class: 'btn btn-primary btn-icon', hiddenText: true }}
-              />
+              {this.renderListWithTitle(footerConfig.socialLinks, {
+                titleProps: { tag: 'h3' },
+                linkProps: { class: 'btn btn-primary btn-icon', hiddenText: true },
+              })}
             </div>
           )}
 
           {footerConfig.appStoreLinks && (
             <div slot="app">
-              <LinkList
-                config={footerConfig.appStoreLinks}
-                titleTag="h3"
-                linkProps={{ class: 'app-store-badge', hiddenText: true }}
-              />
+              {this.renderListWithTitle(footerConfig.appStoreLinks, {
+                titleProps: { tag: 'h3' },
+                linkProps: { class: 'app-store-badge', hiddenText: true },
+              })}
             </div>
           )}
 
           {footerConfig.companyLinks && (
             <div slot="businesssectors">
-              <LinkList config={footerConfig.companyLinks} titleTag="h3" />
+              {this.renderListWithTitle(footerConfig.companyLinks, {
+                titleProps: { tag: 'h3' },
+              })}
             </div>
           )}
 
           {footerConfig.complianceLinks && (
             <div slot="meta">
-              <LinkList config={footerConfig.complianceLinks} hiddenTitle={true}>
+              <ul aria-label={getText(footerConfig.complianceLinks.title)}>
+                {footerConfig.complianceLinks.items.map(item => (
+                  <li>
+                    <Link config={item} />
+                  </li>
+                ))}
                 {this.cookieSettingsEnabled && (
                   <li>
                     <button
@@ -143,7 +172,7 @@ export class PostInternetFooter {
                     </button>
                   </li>
                 )}
-              </LinkList>
+              </ul>
             </div>
           )}
 

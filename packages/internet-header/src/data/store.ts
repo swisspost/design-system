@@ -1,14 +1,13 @@
 import { createStore } from '@stencil/store';
-import { Environment, ILocalizedConfig, ILocalizedCustomConfig } from '@/models/general.model';
+import { Environment, LocalizedConfig } from '@/models/general.model';
 
 export interface HeaderState {
-  localizedConfig: ILocalizedConfig | null;
+  localizedConfig: LocalizedConfig | null;
   currentLanguage: string | null;
   projectId: string | null;
   environment: Environment;
   search: boolean;
   login: boolean;
-  localizedCustomConfig?: ILocalizedCustomConfig;
 }
 
 export const { state, onChange, reset, dispose } = createStore<HeaderState>({

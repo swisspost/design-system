@@ -1,4 +1,3 @@
-import { translations } from '@/assets/i18n/translations';
 import { state } from '@/data/store';
 
 export const getUserLang = (
@@ -79,14 +78,3 @@ const getPreferredLanguageFromBrowser = (supportedLanguages: string[]): string |
 };
 
 const extractLanguage = (language: string): string => language.substring(0, 2).toLowerCase();
-
-/**
- * Simple translate function for general header UI strings
- *
- * @param key Translation key
- * @param lang Force a language
- * @param translationObject Optionally provide translations
- * @returns Translated string or the key
- */
-export const translate = (key: string, lang?: string, translationObject = translations) =>
-  translationObject[key]?.[lang ?? state.currentLanguage ?? ''] ?? key;

@@ -3,7 +3,7 @@ import { getLocalizedConfig, isValidProjectId } from '@/services/config.service'
 import { version } from '@root/package.json';
 import { ActiveRouteProp, Environment } from '@/models/general.model';
 import { dispose, state } from '@/data/store';
-import { Link, LinkProps, MegaDropdown, UserMenu } from '../shared';
+import { Link, LinkProps, MegaDropdown, UserMenu } from '@/components/internal';
 import { LinkConfig } from '@/models/shared.model';
 import { UserMenuConfig } from '@/models/header.model';
 import '@swisspost/design-system-components';
@@ -143,7 +143,6 @@ export class PostInternetHeader {
       projectId: this.project,
       environment: this.environment,
       language: this.language,
-      activeRouteProp: this.activeRoute,
     });
   }
 
@@ -188,7 +187,7 @@ export class PostInternetHeader {
       return;
     }
 
-    const { globalHeader, localHeader } = state.localizedConfig.header_new;
+    const { globalHeader, localHeader } = state.localizedConfig.header;
 
     return (
       <Host data-version={version}>
