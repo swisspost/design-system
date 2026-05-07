@@ -93,7 +93,7 @@
     "copy:styles:components-angular": "copyfiles -f www/build/post-components.css ../components-angular/projects/components/src/lib/stencil-generated/"
   },
   "dependencies": {
-    "@floating-ui/dom": "1.7.5",
+    "@floating-ui/dom": "1.7.6",
     "@oddbird/popover-polyfill": "0.6.0",
     "@stencil/core": "4.43.3",
     "@swisspost/design-system-icons": "workspace:10.0.0-next.68",
@@ -102,13 +102,13 @@
     "ally.js": "1.4.1",
     "imask": "7.6.1",
     "language-tags": "1.0.9",
-    "long-press-event": "2.5.0",
-    "nanoid": "5.1.6"
+    "long-press-event": "2.5.2",
+    "nanoid": "5.1.11"
   },
   "devDependencies": {
     "@eslint/compat": "1.2.5",
     "@eslint/js": "9.18.0",
-    "@percy/cli": "1.31.8",
+    "@percy/cli": "1.31.13",
     "@percy/cypress": "3.1.8",
     "@playwright/test": "1.56.1",
     "@stencil-community/eslint-plugin": "0.10.0",
@@ -139,8 +139,8 @@
     "throttle-debounce": "5.0.2",
     "ts-jest": "catalog:stencil/jest",
     "ts-node": "catalog:node",
-    "typescript": "5.8.3",
-    "typescript-eslint": "8.20.0"
+    "typescript": "catalog:typescript",
+    "typescript-eslint": "catalog:typescript"
   },
   "keywords": [
     "components",
