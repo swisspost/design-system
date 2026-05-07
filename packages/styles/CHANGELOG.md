@@ -1,5 +1,28 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.68
+
+### Major Changes
+
+- Updated the tag component (HTML/CSS) to match the latest design. The `.tag-danger` variant has been renamed to `.tag-error`, and the `.tag-yellow` and `.tag-white` have been removed. (by [@leagrdv](https://github.com/leagrdv) with [#7481](https://github.com/swisspost/design-system/pull/7481))
+
+- Removed the `index.scss` and `intranet.scss` files. The following entrypoints need to be used instead:
+  - For internet facing applications, use `post-default.scss` instead of `index.scss`
+  - For internal applications, use `post-compact.scss` instead of `intranet.scss` (by [@leagrdv](https://github.com/leagrdv) with [#7535](https://github.com/swisspost/design-system/pull/7535))
+
+### Minor Changes
+
+- Updated header styles so the local header no longer shrinks on scroll. (by [@alizedebray](https://github.com/alizedebray) with [#7516](https://github.com/swisspost/design-system/pull/7516))
+
+- Updated the button group component (HTML/CSS) to match the latest design and introduced a vertical layout variant.  
+  This update adds a vertical option (`.btn-group-vertical`) along with responsive modifier classes (e.g. .`btn-group-md-vertical`, `btn-group-lg-horizontal`) to allow switching between horizontal and vertical orientations at different breakpoints. (by [@leagrdv](https://github.com/leagrdv) with [#7471](https://github.com/swisspost/design-system/pull/7471))
+
+### Patch Changes
+
+- Visually separated active page state from open megadropdown state for `post-header` on desktop. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7283](https://github.com/swisspost/design-system/pull/7283))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.68
+
 ## 10.0.0-next.67
 
 ### Major Changes

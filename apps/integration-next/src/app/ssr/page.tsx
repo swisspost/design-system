@@ -247,7 +247,7 @@ export default function Home() {
       <PostStepper
         textCompletedStep="Completed step"
         textCurrentStep="Current step"
-        textStepNumber="Step #number:"
+        textStepNumber="Step {number}:"
         currentIndex={1}
       >
         <PostStepperItem> Step 1 </PostStepperItem>
