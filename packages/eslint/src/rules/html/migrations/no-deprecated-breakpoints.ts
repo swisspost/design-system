@@ -178,7 +178,7 @@ for (const type in classesConfig) {
         const keyPhase2 = `deprecatedBreakpointsPhase2_${index}`;
 
         messagesPhase2[keyPhase2] =
-          `The "${oldClass}" class is deprecated. Please replace it with "${newClass}".;`
+          `The "${oldClass}" class is deprecated. Please replace it with "${newClass}".`
         mutationsPhase2[keyPhase2] = [tempClass, newClass];
 
         index++;
