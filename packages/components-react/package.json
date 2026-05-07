@@ -82,8 +82,8 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "rimraf": "6.0.1",
-    "typescript": "5.8.3",
-    "typescript-eslint": "8.20.0"
+    "typescript": "catalog:typescript",
+    "typescript-eslint": "catalog:typescript"
   },
   "peerDependencies": {
     "react": ">=18.0.0 <20.0.0",

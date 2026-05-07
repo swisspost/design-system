@@ -16,3 +16,6 @@ catalogs:
     'jest': ^29.7.0
     'jest-cli': ^29.7.0
     'ts-jest': 29.4.9
+  'typescript':
+    'typescript': '5.9.3'
+    'typescript-eslint': '8.59.2'
