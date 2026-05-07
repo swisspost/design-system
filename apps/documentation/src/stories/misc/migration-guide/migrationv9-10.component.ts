@@ -683,7 +683,7 @@ export class MigrationV910Component extends LitElement {
 
                         <span class="info">
                           For instance, the old Bootstrap class <code>.g-1</code> (gutter of 4px) is
-                          now <code>.g-4</code> for better coherance.
+                          now <code>.g-4</code> for better coherence.
                           <br /><br />
                           ⚠️ <strong><code>*-1</code> and <code>*-4</code> classes cannot be auto-fixed.</strong>
                           If <code>*-1</code> were auto-renamed to <code>*-4</code>, the
