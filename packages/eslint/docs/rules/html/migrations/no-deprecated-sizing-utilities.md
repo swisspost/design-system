@@ -3,19 +3,7 @@
 Flags all deprecated sizing utility classes and replaces them with the new ones.
 
 - Type: problem
-- 🔧 Supports autofix (--fix) — **except for classes using values `1`, `4`, `hair`, or `micro` (see note below)**
-
-## ⚠️ Manual migration required for `*-1`, `*-4`, `*-hair`, and `*-micro` classes
-
-Classes using the values `1`, `4`, `hair`, or `micro` **cannot be auto-migrated**.
-
-These values form rename chains that ESLint's `--fix` loop would follow incorrectly:
-- `*-hair` → renames to `*-1`, which then chains `*-1` → `*-4` → `*-24`
-- `*-micro` → renames to `*-4`, which then chains `*-4` → `*-24`
-- `*-1` → renames to `*-4`, but `*-4` is itself deprecated → would chain to `*-24`
-- `*-4` → must also be manual-only, so that a user who manually renames `*-hair`/`*-micro`/`*-1` → `*-4` doesn't have `*-4` auto-renamed to `*-24` on the next run
-
-These classes are flagged as errors so you can find them, but you must rename them by hand.
+- 🔧 Supports autofix (--fix)
 
 ## Class list
 

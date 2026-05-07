@@ -786,9 +786,9 @@ export class MigrationV910Component extends LitElement {
                         Pixel sizing utility classes (<code>.w-*</code>,
                         <code>.h-*</code>, <code>.mh-*</code>, <code>.mw-*</code>) renamed
                         <ul>
-                          <li><code>*-hair</code> is now <code>*-1</code> — <b>⚠️ manual migration required</b></li>
+                          <li><code>*-hair</code> is now <code>*-1</code></li>
                           <li><code>*-line</code> is now <code>*-2</code></li>
-                          <li><code>*-micro</code> is now <code>*-4</code> — <b>⚠️ manual migration required</b></li>
+                          <li><code>*-micro</code> is now <code>*-4</code></li>
                           <li><code>*-mini</code> is now <code>*-8</code></li>
                           <li><code>*-small-regular</code> is now <code>*-12</code></li>
                           <li><code>*-regular</code> is now <code>*-16</code></li>
@@ -800,13 +800,6 @@ export class MigrationV910Component extends LitElement {
                           <li><code>*-small-giant</code> is now <code>*-78</code></li>
                           <li><code>*-giant</code> is now <code>*-80</code></li>
                         </ul>
-                        <span class="info">
-                          ⚠️ <strong><code>*-hair</code>, <code>*-micro</code>, and <code>*-1</code> (via Bootstrap rename) classes cannot be auto-fixed.</strong>
-                          <code>*-hair</code> → <code>*-1</code> and <code>*-micro</code> → <code>*-4</code>
-                          would immediately chain into further renames (<code>*-1</code> → <code>*-4</code> →
-                          <code>*-24</code>), producing the wrong final value. Search for these classes and rename
-                          them by hand.
-                        </span>
                       </label>
                     </div>
                   </li>
