@@ -7,7 +7,7 @@ Flags all deprecated breakpoint size classes and replaces with existing ones.
 
 ## ⚠️ Manual migration required for `-rg-` classes
 
-Classes using the `rg` breakpoint (e.g. `col-rg-6`) **cannot be auto-migrated**.
+Classes using the `rg` breakpoint (e.g. `col-rg-6`) **cannot be auto-fixed**.
 
 The `rg` → `sm` rename collides with the `sm` → `xs` rename: ESLint's `--fix` loops until no
 errors remain, so it would rename `col-rg-6` to `col-sm-6`, then immediately rename `col-sm-6`

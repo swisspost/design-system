@@ -7,7 +7,7 @@ Flags all deprecated responsive spacing utility classes and replaces them with t
 
 ## ⚠️ Manual migration required for `*-1`, `*-4`, `*-hair`, and `*-micro` classes
 
-Classes using the values `1`, `4`, `hair`, or `micro` **cannot be auto-migrated**.
+Classes using the values `1`, `4`, `hair`, or `micro` **cannot be auto-fixed**.
 
 These values form rename chains that ESLint's `--fix` loop would follow incorrectly:
 - `*-hair` → renames to `*-1`, which then chains `*-1` → `*-4` → `*-24`

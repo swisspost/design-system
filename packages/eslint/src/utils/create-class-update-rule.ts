@@ -63,9 +63,7 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
               context.report({
                 messageId,
                 loc: node.loc,
-                // Manual-only mutations must not provide a fixer: applying the fix would
-                // create a chain collision with another migration rule (e.g. rg→sm then sm→xs).
-                // Users must migrate these classes by hand.
+                // Reported but not auto-fixed — the renamed class would chain into another rule.
                 ...(manualOnly
                   ? {}
                   : {
@@ -106,8 +104,7 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
               context.report({
                 loc: node.loc,
                 messageId,
-                // Manual-only mutations are flagged but never auto-fixed, even in dynamic
-                // bindings — the fixer would produce a value that chains into another rule.
+                // Reported but not auto-fixed in dynamic bindings: chain collision risk.
                 ...(manualOnly
                   ? {}
                   : {

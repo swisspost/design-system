@@ -7,7 +7,7 @@ Flags all deprecated bootstrap gutter utility classes and replaces them with the
 
 ## ⚠️ Manual migration required for `*-1` and `*-4` classes
 
-Classes using the values `1` or `4` **cannot be auto-migrated**.
+Classes using the values `1` or `4` **cannot be auto-fixed**.
 
 These values form a rename chain that ESLint's `--fix` loop would follow incorrectly:
 - `*-1` → renames to `*-4`, but `*-4` is itself deprecated → would chain to `*-24`

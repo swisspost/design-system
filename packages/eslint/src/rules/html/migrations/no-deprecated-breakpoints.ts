@@ -136,11 +136,8 @@ const classesConfig: ClassesConfig = {
 };
 
 // Breakpoint changes
-// NOTE: 'rg' → 'sm' is intentionally excluded from the two-phase auto-fix approach.
-// The problem is that 'sm' is also a source breakpoint ('sm' → 'xs'), so after ESLint
-// renames *-rg-* to *-sm-*, it immediately picks up the result and renames it again to
-// *-xs-*. The 'rg' entries are therefore flagged as errors but marked manual-only so
-// no autofix is emitted. Users must rename these classes by hand.
+// 'rg' → 'sm' is reported but not auto-fixed: 'sm' is also a source breakpoint ('sm' → 'xs'),
+// so the renamed class would be picked up again and renamed to the wrong final value.
 const breakpointMap: Record<string, string> = {
   sm: 'xs',
   rg: 'sm',
@@ -172,8 +169,8 @@ for (const type in classesConfig) {
         const keyPhase1 = `deprecatedBreakpointsPhase1_${index}`;
 
         messagesPhase1[keyPhase1] = isConflicting
-          ? `The "${oldClass}" class is deprecated. Please replace it with "${newClass}". ⚠️ This cannot be auto-migrated — apply the fix manually to avoid a chain collision with the sm→xs rename.`
-          : `The "${oldClass}" class is deprecated. Please replace it with "${newClass}".`;
+          ? `The "${oldClass}" class is deprecated. Please replace it with "${newClass}". ⚠️ This cannot be auto-fixed — rename it manually to avoid a chain collision with the sm→xs rename.`
+          : `The "${oldClass}" class is deprecated. Please replace it with "${newClass}".`
         mutationsPhase1[keyPhase1] = isConflicting
           ? [oldClass, newClass, true]
           : [oldClass, tempClass];
@@ -181,7 +178,7 @@ for (const type in classesConfig) {
         const keyPhase2 = `deprecatedBreakpointsPhase2_${index}`;
 
         messagesPhase2[keyPhase2] =
-          `The "${oldClass}" class is deprecated. Please replace it with "${newClass}".`;
+          `The "${oldClass}" class is deprecated. Please replace it with "${newClass}".;`
         mutationsPhase2[keyPhase2] = [tempClass, newClass];
 
         index++;

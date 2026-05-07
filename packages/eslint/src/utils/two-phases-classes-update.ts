@@ -66,10 +66,10 @@ export function setUpClassesMutations(
         const keyPhase1 = `${messageId}Phase1_${index}`;
 
         messagesPhase1[keyPhase1] = isConflicting
-          ? `The "${oldClass}" class is deprecated. Please replace it with "${finalNewClass}". ⚠️ This cannot be auto-migrated — apply the fix manually to avoid a chain collision.`
+          ? `The "${oldClass}" class is deprecated. Please replace it with "${finalNewClass}". ⚠️ This cannot be auto-fixed — rename it manually to avoid a chain collision.`
           : `The "${oldClass}" class is deprecated. Please replace it with "${finalNewClass}".`;
-        // Conflicting old values must not be auto-fixed: they would be picked up again
-        // by a subsequent migration rule and renamed to the wrong final class.
+        // Conflicting values are reported but not auto-fixed — the renamed class would be
+        // picked up by another rule and renamed again to the wrong final value.
         mutationsPhase1[keyPhase1] = isConflicting
           ? [oldClass, finalNewClass, true]
           : [oldClass, tempClass];

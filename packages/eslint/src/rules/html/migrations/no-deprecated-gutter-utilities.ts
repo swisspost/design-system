@@ -13,8 +13,7 @@ export const data: TwoPhasesData = setUpClassesMutations(
   arrayToMap(classNames),
   bootstrapSizeMap,
   'deprecatedGutterUtilities',
-  // '1' → '4' and '4' → '24' form a chain: both must be manual-only so that
-  // a user who manually fixes '*-1' → '*-4' doesn't have '*-4' auto-renamed to '*-24'
+  // '1' → '4' and '4' → '24' form a chain collision: both are reported but not auto-fixed.
   new Set(['1', '4']),
 );
 
