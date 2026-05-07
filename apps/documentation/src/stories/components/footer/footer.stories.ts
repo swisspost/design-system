@@ -136,7 +136,7 @@ function render(args: Args) {
 
     <!-- sector links -->
     <div slot="businesssectors">
-      <h3 id="businesssectors">Die schweizerische Post AG</h3>
+      <h3 id="businesssectors">Die Schweizerische Post AG</h3>
       <ul aria-labelledby="businesssectors">
         <li>
           <a href="https://www.postauto.ch">PostAuto</a>
