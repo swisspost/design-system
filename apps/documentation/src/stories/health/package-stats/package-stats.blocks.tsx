@@ -14,6 +14,7 @@ type Release = { version: string; date: Date };
 // --- Constants ---
 
 const DATE_FORMAT: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+const NUMBER_FORMAT: Intl.NumberFormatOptions = { notation: 'standard', compactDisplay: 'short' };
 const TRANSPARENT_BG = { fill: 'transparent' };
 const CHART_COLORS = [
   '#e6194b',
@@ -53,6 +54,13 @@ export const PackageStatsBlock: React.FC<{ packageName: string; startYear: numbe
   const [ref, isVisible] = useIsVisible<HTMLDivElement>();
   const [registryTime, setRegistryTime] = useState<Record<string, string>>({});
   const [versions, setVersions] = useState<VersionRecord[]>([]);
+  const [locale, setLocale] = useState<string>(navigator.language);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    const lang = ref.current.closest('[lang]')?.getAttribute('lang');
+    if (lang) setLocale(lang);
+  }, []);
 
   useEffect(() => {
     if (!isVisible) return;
@@ -90,18 +98,18 @@ export const PackageStatsBlock: React.FC<{ packageName: string; startYear: numbe
           <p className="text-center text-muted">
             {registryTime.created && (
               <span>
-                Created: <span className="fw-bold">{formatDate(registryTime.created)}</span>
+                Created: <span className="fw-bold">{formatDate(registryTime.created, locale)}</span>
               </span>
             )}
             {registryTime.modified && (
               <span>
                 {' '}
                 · Last modified:{' '}
-                <span className="fw-bold">{formatDate(registryTime.modified)}</span>
+                <span className="fw-bold">{formatDate(registryTime.modified, locale)}</span>
               </span>
             )}
           </p>
-          <DownloadsPerVersionChart versions={versions} />
+          <DownloadsPerVersionChart versions={versions} locale={locale} />
 
           <hr className="my-32" />
           <h3 className="text-center">Download stats</h3>
@@ -118,6 +126,7 @@ export const PackageStatsBlock: React.FC<{ packageName: string; startYear: numbe
                 isFirstYear={year === startYear}
                 isLastYear={year === endYear}
                 releases={yearReleases}
+                locale={locale}
               />
             );
           })}
@@ -145,12 +154,13 @@ export const PackageStatsBlock: React.FC<{ packageName: string; startYear: numbe
  * @param releases - Package releases that occurred during this year
  */
 const LazyDownloadStatsSection: React.FC<{
+  locale: string;
   packageName: string;
   year: number;
+  releases: Release[];
   isFirstYear: boolean;
   isLastYear: boolean;
-  releases: Release[];
-}> = ({ packageName, year, isFirstYear, isLastYear, releases }) => {
+}> = ({ packageName, year, isFirstYear, isLastYear, releases, locale }) => {
   const [ref, isVisible] = useIsVisible<HTMLDivElement>();
   const [days, setDays] = useState<DayRecord[]>([]);
 
@@ -171,6 +181,7 @@ const LazyDownloadStatsSection: React.FC<{
             days={days}
             isFirstYear={isFirstYear}
             isLastYear={isLastYear}
+            locale={locale}
           />
           <DownloadsPerYearChart
             year={year}
@@ -178,6 +189,7 @@ const LazyDownloadStatsSection: React.FC<{
             isFirstYear={isFirstYear}
             isLastYear={isLastYear}
             releases={releases}
+            locale={locale}
           />
         </div>
       ) : (
@@ -196,11 +208,12 @@ const LazyDownloadStatsSection: React.FC<{
  * @param isLastYear - Whether this is the current year (only counts days with downloads > 0)
  */
 const DownloadsSummaryCards: React.FC<{
+  locale: string;
   year: number;
   days: DayRecord[];
   isFirstYear: boolean;
   isLastYear: boolean;
-}> = ({ year, days, isFirstYear, isLastYear }) => {
+}> = ({ year, days, isFirstYear, isLastYear, locale }) => {
   const total = daysInYear(year);
   const relevant = filterRelevantDays(days, isFirstYear || isLastYear);
   const count = relevant.length;
@@ -215,19 +228,19 @@ const DownloadsSummaryCards: React.FC<{
       </div>
       <div className="card card-stats">
         <h5>Maximum downloads per day</h5>
-        <p>{max.toLocaleString()}</p>
+        <p>{formatNumber(max, locale)}</p>
       </div>
       <div className="card card-stats">
         <h5>Average downloads per day</h5>
-        <p>{count > 0 ? Math.round(downloads / count).toLocaleString() : '…'}</p>
+        <p>{count > 0 ? formatNumber(Math.round(downloads / count), locale) : '…'}</p>
       </div>
       <div className="card card-stats">
         <h5>Total downloads</h5>
-        <p>{downloads.toLocaleString()}</p>
+        <p>{formatNumber(downloads, locale)}</p>
         {isLastYear && count > 0 && (
           <p className="d-flex gap-4 opacity-50 fs-10 mt-4">
             <PostIcon name="target" />
-            <span>{(Math.round(downloads / count) * total).toLocaleString()}</span>
+            <span>{formatNumber(Math.round(downloads / count) * total, locale)}</span>
           </p>
         )}
       </div>
@@ -245,12 +258,13 @@ const DownloadsSummaryCards: React.FC<{
  * @param releases - Package releases to render as diamond markers on the chart
  */
 const DownloadsPerYearChart: React.FC<{
+  locale: string;
   year: number;
   days: DayRecord[];
+  releases: Release[];
   isFirstYear: boolean;
   isLastYear: boolean;
-  releases: Release[];
-}> = ({ year, days, isFirstYear, isLastYear, releases }) => {
+}> = ({ year, days, isFirstYear, isLastYear, releases, locale }) => {
   const [chartOptions, setChartOptions] = useState<AgChartOptions>({});
 
   useEffect(() => {
@@ -309,7 +323,7 @@ const DownloadsPerYearChart: React.FC<{
             stroke: CHART_COLORS[3],
           },
           tooltip: {
-            renderer: params => chartTooltip(params.datum.version, params.datum.day),
+            renderer: params => chartTooltip(params.datum.version, locale, params.datum.day),
           },
         },
         {
@@ -325,7 +339,11 @@ const DownloadsPerYearChart: React.FC<{
           },
           tooltip: {
             renderer: params =>
-              chartTooltip(`Daily downloads: ${params.datum.downloads}`, params.datum.day),
+              chartTooltip(
+                `Daily downloads: ${formatNumber(params.datum.downloads, locale)}`,
+                locale,
+                params.datum.day,
+              ),
           },
         },
       ],
@@ -349,7 +367,7 @@ const DownloadsPerYearChart: React.FC<{
               stroke: CHART_COLORS[0],
               strokeWidth: 1,
               lineDash: [4, 2],
-              label: { text: `Max: ${max.toLocaleString()}`, position: 'right' },
+              label: { text: `Max: ${formatNumber(max, locale)}`, position: 'right' },
             },
             {
               type: 'line',
@@ -357,7 +375,7 @@ const DownloadsPerYearChart: React.FC<{
               stroke: CHART_COLORS[9],
               strokeWidth: 1,
               lineDash: [4, 2],
-              label: { text: `Avg: ${avg.toLocaleString()}`, position: 'right' },
+              label: { text: `Avg: ${formatNumber(avg, locale)}`, position: 'right' },
             },
           ],
         },
@@ -387,8 +405,9 @@ const DownloadsPerYearChart: React.FC<{
  * @param versions - Array of major versions with their aggregated download counts
  */
 const DownloadsPerVersionChart: React.FC<{
+  locale: string;
   versions: VersionRecord[];
-}> = ({ versions }) => {
+}> = ({ versions, locale }) => {
   const [chartOptions, setChartOptions] = useState<AgChartOptions>({});
 
   useEffect(() => {
@@ -401,7 +420,7 @@ const DownloadsPerVersionChart: React.FC<{
         text: 'Downloads per version (last week)',
       },
       subtitle: {
-        text: `Total: ${total.toLocaleString()}`,
+        text: `Total: ${formatNumber(total, locale)}`,
       },
       data: versions,
       series: [
@@ -426,7 +445,7 @@ const DownloadsPerVersionChart: React.FC<{
           },
           tooltip: {
             renderer: params =>
-              chartTooltip(`Downloads: ${params.datum.downloads.toLocaleString()}`),
+              chartTooltip(`Downloads: ${formatNumber(params.datum.downloads, locale)}`, locale),
           },
         },
       ],
@@ -476,7 +495,11 @@ function useIsVisible<T extends HTMLElement>(): [React.RefObject<T>, boolean] {
 // --- Helpers ---
 
 /** Format a date string using the shared locale options. */
-const formatDate = (date: string) => new Date(date).toLocaleDateString(undefined, DATE_FORMAT);
+const formatDate = (date: string, locale: string) =>
+  new Date(date).toLocaleDateString(locale, DATE_FORMAT);
+
+/** Format a number using the shared locale options. */
+const formatNumber = (value: number, locale: string) => value.toLocaleString(locale, NUMBER_FORMAT);
 
 /** Get the number of days in a given year. */
 const daysInYear = (year: number) => (new Date(year, 1, 29).getMonth() === 1 ? 366 : 365);
@@ -486,8 +509,8 @@ const filterRelevantDays = (days: DayRecord[], isPartialYear: boolean) =>
   isPartialYear ? days.filter(d => d.downloads > 0) : days;
 
 /** Format a tooltip cell for ag-charts. */
-const chartTooltip = (label: string, date?: Date) =>
+const chartTooltip = (label: string, locale: string, date?: Date) =>
   `<div class="ag-chart-tooltip">
-    ${date ? `<span class="fs-11">${date.toLocaleDateString(undefined, DATE_FORMAT)}</span>` : ''}
+    ${date ? `<span class="fs-11">${date.toLocaleDateString(locale, DATE_FORMAT)}</span>` : ''}
     <span class="d-block mt-8 fs-9 fw-bold">${label}</span>
   </div>`;
