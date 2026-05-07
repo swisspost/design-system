@@ -1,5 +1,19 @@
 # @swisspost/internet-header
 
+## 10.0.0-next.68
+
+### Major Changes
+
+- Updated the `swisspost-internet-breadcrumbs` to the new config and removed the `hide-buttons` prop as well as the `toggleOverlayById` method. (by [@leagrdv](https://github.com/leagrdv) with [#7271](https://github.com/swisspost/design-system/pull/7271))
+
+- Updated the `swisspost-internet-header` with a new design and a new configuration object. (by [@alizedebray](https://github.com/alizedebray) with [#7470](https://github.com/swisspost/design-system/pull/7470))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.68
+  - @swisspost/design-system-styles@10.0.0-next.68
+
 ## 10.0.0-next.67
 
 ### Patch Changes

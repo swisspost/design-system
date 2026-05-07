@@ -1,5 +1,19 @@
 # @swisspost/design-system-components-react
 
+## 10.0.0-next.68
+
+### Minor Changes
+
+- Added standalone entry points for the components-react package, to provide fine grained import options. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7559](https://github.com/swisspost/design-system/pull/7559))
+
+### Patch Changes
+
+- Added `reflect: true` to the `post-breadcrumb-item` props to ensure they are being correctly applied. (by [@leagrdv](https://github.com/leagrdv) with [#7271](https://github.com/swisspost/design-system/pull/7271))
+
+- Removed the usage of StencilJS [build conditionals](https://stenciljs.com/docs/guides/build-conditionals) in utility modules and updated the generated react icon components imports, to avoid unwanted side-effects in Next.js projects. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7559](https://github.com/swisspost/design-system/pull/7559))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.68
+
 ## 10.0.0-next.67
 
 ### Patch Changes

@@ -6,6 +6,7 @@ const IGNORE_ERROR_PATTERNS = [
   /^there was an error while hydrating/i,
   /^hydration error/i,
   /^a tree hydrated but/i,
+  /has been blocked by cors policy/i,
 ];
 
 type CapturedError = {
