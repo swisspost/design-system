@@ -1259,6 +1259,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
+
     interface PostAccordion {
         /**
           * Defines the hierarchical level of the `post-accordion-item` headers within the headings structure.
@@ -1905,100 +1907,284 @@ declare namespace LocalJSX {
          */
         "for": string;
     }
+
+    interface PostAccordionAttributes {
+        "headingLevel": HeadingLevel;
+        "multiple": boolean;
+    }
+    interface PostAccordionItemAttributes {
+        "collapsed": boolean;
+        "headingLevel": HeadingLevel;
+    }
+    interface PostAutocompleteAttributes {
+        "filterThreshold": number;
+        "clearable": boolean;
+        "listbox": string;
+    }
+    interface PostAvatarAttributes {
+        "firstname": string;
+        "lastname": string;
+        "userid": string;
+        "email": string;
+        "description": string;
+    }
+    interface PostBackToTopAttributes {
+        "textBackToTop": string;
+    }
+    interface PostBannerAttributes {
+        "type": BannerType;
+    }
+    interface PostBreadcrumbItemAttributes {
+        "url": string | URL;
+        "label": string;
+        "description": string;
+    }
+    interface PostBreadcrumbsAttributes {
+        "homeUrl": string;
+        "textHome": string;
+        "textBreadcrumbs": string;
+        "textMoreItems": string;
+    }
+    interface PostClosebuttonAttributes {
+        "buttonType": ButtonType;
+        "placement": Placement;
+        "size": Size;
+    }
+    interface PostCollapsibleAttributes {
+        "collapsed": boolean;
+    }
+    interface PostCollapsibleTriggerAttributes {
+        "for": string;
+    }
+    interface PostDatePickerAttributes {
+        "selectedStartDate": string;
+        "selectedEndDate": string;
+        "range": boolean;
+        "min": string;
+        "max": string;
+        "inline": boolean;
+        "textNextMonth": string;
+        "textNextYear": string;
+        "textNextDecade": string;
+        "textPreviousMonth": string;
+        "textPreviousYear": string;
+        "textPreviousDecade": string;
+        "textSwitchYear": string;
+        "textToggleCalendar": string;
+    }
+    interface PostFooterAttributes {
+        "textFooter": string;
+    }
+    interface PostHeaderAttributes {
+        "fullWidth": boolean;
+        "textMenu": string;
+    }
+    interface PostIconAttributes {
+        "animation": PostIconAnimation;
+        "base": string;
+        "url": string;
+        "flipH": boolean;
+        "flipV": boolean;
+        "name": string;
+        "rotate": number;
+        "scale": number;
+    }
+    interface PostLanguageMenuAttributes {
+        "textChangeLanguage": string;
+        "textCurrentLanguage": string;
+        "variant": SwitchVariant;
+    }
+    interface PostLanguageMenuItemAttributes {
+        "code": string;
+        "active": boolean;
+        "variant": SwitchVariant;
+        "name": string;
+        "description": string;
+        "url": string;
+    }
+    interface PostListboxOptionAttributes {
+        "value": string;
+        "selected": boolean;
+        "highlighted": boolean;
+    }
+    interface PostLogoAttributes {
+        "url": string | URL;
+    }
+    interface PostMainnavigationAttributes {
+        "textMain": string;
+    }
+    interface PostMegadropdownAttributes {
+        "textClose": string;
+        "textBack": string;
+    }
+    interface PostMegadropdownTriggerAttributes {
+        "active": boolean;
+        "for": string;
+    }
+    interface PostMenuAttributes {
+        "placement": Placement;
+        "label": string;
+    }
+    interface PostMenuTriggerAttributes {
+        "for": string;
+    }
+    interface PostPaginationAttributes {
+        "page": number;
+        "pageSize": number;
+        "collectionSize": number;
+        "label": string;
+        "textPrevious": string;
+        "textNext": string;
+        "textPage": string;
+        "textFirst": string;
+        "textLast": string;
+    }
+    interface PostPopoverAttributes {
+        "placement": Placement;
+        "textClose": string;
+        "arrow": boolean;
+    }
+    interface PostPopoverTriggerAttributes {
+        "for": string;
+    }
+    interface PostPopovercontainerAttributes {
+        "placement": Placement;
+        "edgeGap": number;
+        "offset": number;
+        "arrow": boolean;
+        "safeSpace": 'triangle' | 'trapezoid';
+    }
+    interface PostRatingAttributes {
+        "label": string;
+        "stars": number;
+        "currentRating": number;
+        "readonly": boolean;
+    }
+    interface PostStepperAttributes {
+        "textCurrentStep": string;
+        "textCompletedStep": string;
+        "textStepNumber": string;
+        "currentIndex": number;
+        "selectedIndex": number;
+    }
+    interface PostTabItemAttributes {
+        "name": string;
+    }
+    interface PostTabPanelAttributes {
+        "for": string;
+    }
+    interface PostTabsAttributes {
+        "activeTab": string;
+        "fullWidth": boolean;
+        "label": string;
+    }
+    interface PostTogglebuttonAttributes {
+        "toggled": boolean;
+    }
+    interface PostTooltipAttributes {
+        "placement": Placement;
+        "arrow": boolean;
+        "open": boolean;
+    }
+    interface PostTooltipTriggerAttributes {
+        "for": string;
+        "delay": number;
+    }
+
     interface IntrinsicElements {
-        "post-accordion": PostAccordion;
-        "post-accordion-item": PostAccordionItem;
-        "post-autocomplete": PostAutocomplete;
-        "post-avatar": PostAvatar;
-        "post-back-to-top": PostBackToTop;
-        "post-banner": PostBanner;
-        "post-breadcrumb-item": PostBreadcrumbItem;
-        "post-breadcrumbs": PostBreadcrumbs;
-        "post-closebutton": PostClosebutton;
-        "post-collapsible": PostCollapsible;
-        "post-collapsible-trigger": PostCollapsibleTrigger;
-        "post-date-picker": PostDatePicker;
-        "post-footer": PostFooter;
-        "post-header": PostHeader;
-        "post-icon": PostIcon;
-        "post-language-menu": PostLanguageMenu;
-        "post-language-menu-item": PostLanguageMenuItem;
+        "post-accordion": Omit<PostAccordion, keyof PostAccordionAttributes> & { [K in keyof PostAccordion & keyof PostAccordionAttributes]?: PostAccordion[K] } & { [K in keyof PostAccordion & keyof PostAccordionAttributes as `attr:${K}`]?: PostAccordionAttributes[K] } & { [K in keyof PostAccordion & keyof PostAccordionAttributes as `prop:${K}`]?: PostAccordion[K] } & OneOf<"headingLevel", PostAccordion["headingLevel"], PostAccordionAttributes["headingLevel"]>;
+        "post-accordion-item": Omit<PostAccordionItem, keyof PostAccordionItemAttributes> & { [K in keyof PostAccordionItem & keyof PostAccordionItemAttributes]?: PostAccordionItem[K] } & { [K in keyof PostAccordionItem & keyof PostAccordionItemAttributes as `attr:${K}`]?: PostAccordionItemAttributes[K] } & { [K in keyof PostAccordionItem & keyof PostAccordionItemAttributes as `prop:${K}`]?: PostAccordionItem[K] };
+        "post-autocomplete": Omit<PostAutocomplete, keyof PostAutocompleteAttributes> & { [K in keyof PostAutocomplete & keyof PostAutocompleteAttributes]?: PostAutocomplete[K] } & { [K in keyof PostAutocomplete & keyof PostAutocompleteAttributes as `attr:${K}`]?: PostAutocompleteAttributes[K] } & { [K in keyof PostAutocomplete & keyof PostAutocompleteAttributes as `prop:${K}`]?: PostAutocomplete[K] };
+        "post-avatar": Omit<PostAvatar, keyof PostAvatarAttributes> & { [K in keyof PostAvatar & keyof PostAvatarAttributes]?: PostAvatar[K] } & { [K in keyof PostAvatar & keyof PostAvatarAttributes as `attr:${K}`]?: PostAvatarAttributes[K] } & { [K in keyof PostAvatar & keyof PostAvatarAttributes as `prop:${K}`]?: PostAvatar[K] } & OneOf<"firstname", PostAvatar["firstname"], PostAvatarAttributes["firstname"]>;
+        "post-back-to-top": Omit<PostBackToTop, keyof PostBackToTopAttributes> & { [K in keyof PostBackToTop & keyof PostBackToTopAttributes]?: PostBackToTop[K] } & { [K in keyof PostBackToTop & keyof PostBackToTopAttributes as `attr:${K}`]?: PostBackToTopAttributes[K] } & { [K in keyof PostBackToTop & keyof PostBackToTopAttributes as `prop:${K}`]?: PostBackToTop[K] } & OneOf<"textBackToTop", PostBackToTop["textBackToTop"], PostBackToTopAttributes["textBackToTop"]>;
+        "post-banner": Omit<PostBanner, keyof PostBannerAttributes> & { [K in keyof PostBanner & keyof PostBannerAttributes]?: PostBanner[K] } & { [K in keyof PostBanner & keyof PostBannerAttributes as `attr:${K}`]?: PostBannerAttributes[K] } & { [K in keyof PostBanner & keyof PostBannerAttributes as `prop:${K}`]?: PostBanner[K] };
+        "post-breadcrumb-item": Omit<PostBreadcrumbItem, keyof PostBreadcrumbItemAttributes> & { [K in keyof PostBreadcrumbItem & keyof PostBreadcrumbItemAttributes]?: PostBreadcrumbItem[K] } & { [K in keyof PostBreadcrumbItem & keyof PostBreadcrumbItemAttributes as `attr:${K}`]?: PostBreadcrumbItemAttributes[K] } & { [K in keyof PostBreadcrumbItem & keyof PostBreadcrumbItemAttributes as `prop:${K}`]?: PostBreadcrumbItem[K] };
+        "post-breadcrumbs": Omit<PostBreadcrumbs, keyof PostBreadcrumbsAttributes> & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes]?: PostBreadcrumbs[K] } & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes as `attr:${K}`]?: PostBreadcrumbsAttributes[K] } & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes as `prop:${K}`]?: PostBreadcrumbs[K] } & OneOf<"homeUrl", PostBreadcrumbs["homeUrl"], PostBreadcrumbsAttributes["homeUrl"]> & OneOf<"textHome", PostBreadcrumbs["textHome"], PostBreadcrumbsAttributes["textHome"]> & OneOf<"textBreadcrumbs", PostBreadcrumbs["textBreadcrumbs"], PostBreadcrumbsAttributes["textBreadcrumbs"]> & OneOf<"textMoreItems", PostBreadcrumbs["textMoreItems"], PostBreadcrumbsAttributes["textMoreItems"]>;
+        "post-closebutton": Omit<PostClosebutton, keyof PostClosebuttonAttributes> & { [K in keyof PostClosebutton & keyof PostClosebuttonAttributes]?: PostClosebutton[K] } & { [K in keyof PostClosebutton & keyof PostClosebuttonAttributes as `attr:${K}`]?: PostClosebuttonAttributes[K] } & { [K in keyof PostClosebutton & keyof PostClosebuttonAttributes as `prop:${K}`]?: PostClosebutton[K] };
+        "post-collapsible": Omit<PostCollapsible, keyof PostCollapsibleAttributes> & { [K in keyof PostCollapsible & keyof PostCollapsibleAttributes]?: PostCollapsible[K] } & { [K in keyof PostCollapsible & keyof PostCollapsibleAttributes as `attr:${K}`]?: PostCollapsibleAttributes[K] } & { [K in keyof PostCollapsible & keyof PostCollapsibleAttributes as `prop:${K}`]?: PostCollapsible[K] };
+        "post-collapsible-trigger": Omit<PostCollapsibleTrigger, keyof PostCollapsibleTriggerAttributes> & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes]?: PostCollapsibleTrigger[K] } & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes as `attr:${K}`]?: PostCollapsibleTriggerAttributes[K] } & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes as `prop:${K}`]?: PostCollapsibleTrigger[K] } & OneOf<"for", PostCollapsibleTrigger["for"], PostCollapsibleTriggerAttributes["for"]>;
+        "post-date-picker": Omit<PostDatePicker, keyof PostDatePickerAttributes> & { [K in keyof PostDatePicker & keyof PostDatePickerAttributes]?: PostDatePicker[K] } & { [K in keyof PostDatePicker & keyof PostDatePickerAttributes as `attr:${K}`]?: PostDatePickerAttributes[K] } & { [K in keyof PostDatePicker & keyof PostDatePickerAttributes as `prop:${K}`]?: PostDatePicker[K] } & OneOf<"textNextMonth", PostDatePicker["textNextMonth"], PostDatePickerAttributes["textNextMonth"]> & OneOf<"textNextYear", PostDatePicker["textNextYear"], PostDatePickerAttributes["textNextYear"]> & OneOf<"textNextDecade", PostDatePicker["textNextDecade"], PostDatePickerAttributes["textNextDecade"]> & OneOf<"textPreviousMonth", PostDatePicker["textPreviousMonth"], PostDatePickerAttributes["textPreviousMonth"]> & OneOf<"textPreviousYear", PostDatePicker["textPreviousYear"], PostDatePickerAttributes["textPreviousYear"]> & OneOf<"textPreviousDecade", PostDatePicker["textPreviousDecade"], PostDatePickerAttributes["textPreviousDecade"]> & OneOf<"textSwitchYear", PostDatePicker["textSwitchYear"], PostDatePickerAttributes["textSwitchYear"]>;
+        "post-footer": Omit<PostFooter, keyof PostFooterAttributes> & { [K in keyof PostFooter & keyof PostFooterAttributes]?: PostFooter[K] } & { [K in keyof PostFooter & keyof PostFooterAttributes as `attr:${K}`]?: PostFooterAttributes[K] } & { [K in keyof PostFooter & keyof PostFooterAttributes as `prop:${K}`]?: PostFooter[K] } & OneOf<"textFooter", PostFooter["textFooter"], PostFooterAttributes["textFooter"]>;
+        "post-header": Omit<PostHeader, keyof PostHeaderAttributes> & { [K in keyof PostHeader & keyof PostHeaderAttributes]?: PostHeader[K] } & { [K in keyof PostHeader & keyof PostHeaderAttributes as `attr:${K}`]?: PostHeaderAttributes[K] } & { [K in keyof PostHeader & keyof PostHeaderAttributes as `prop:${K}`]?: PostHeader[K] } & OneOf<"textMenu", PostHeader["textMenu"], PostHeaderAttributes["textMenu"]>;
+        "post-icon": Omit<PostIcon, keyof PostIconAttributes> & { [K in keyof PostIcon & keyof PostIconAttributes]?: PostIcon[K] } & { [K in keyof PostIcon & keyof PostIconAttributes as `attr:${K}`]?: PostIconAttributes[K] } & { [K in keyof PostIcon & keyof PostIconAttributes as `prop:${K}`]?: PostIcon[K] } & OneOf<"name", PostIcon["name"], PostIconAttributes["name"]>;
+        "post-language-menu": Omit<PostLanguageMenu, keyof PostLanguageMenuAttributes> & { [K in keyof PostLanguageMenu & keyof PostLanguageMenuAttributes]?: PostLanguageMenu[K] } & { [K in keyof PostLanguageMenu & keyof PostLanguageMenuAttributes as `attr:${K}`]?: PostLanguageMenuAttributes[K] } & { [K in keyof PostLanguageMenu & keyof PostLanguageMenuAttributes as `prop:${K}`]?: PostLanguageMenu[K] } & OneOf<"textChangeLanguage", PostLanguageMenu["textChangeLanguage"], PostLanguageMenuAttributes["textChangeLanguage"]> & OneOf<"textCurrentLanguage", PostLanguageMenu["textCurrentLanguage"], PostLanguageMenuAttributes["textCurrentLanguage"]>;
+        "post-language-menu-item": Omit<PostLanguageMenuItem, keyof PostLanguageMenuItemAttributes> & { [K in keyof PostLanguageMenuItem & keyof PostLanguageMenuItemAttributes]?: PostLanguageMenuItem[K] } & { [K in keyof PostLanguageMenuItem & keyof PostLanguageMenuItemAttributes as `attr:${K}`]?: PostLanguageMenuItemAttributes[K] } & { [K in keyof PostLanguageMenuItem & keyof PostLanguageMenuItemAttributes as `prop:${K}`]?: PostLanguageMenuItem[K] } & OneOf<"code", PostLanguageMenuItem["code"], PostLanguageMenuItemAttributes["code"]>;
         "post-linkarea": PostLinkarea;
         "post-listbox": PostListbox;
-        "post-listbox-option": PostListboxOption;
+        "post-listbox-option": Omit<PostListboxOption, keyof PostListboxOptionAttributes> & { [K in keyof PostListboxOption & keyof PostListboxOptionAttributes]?: PostListboxOption[K] } & { [K in keyof PostListboxOption & keyof PostListboxOptionAttributes as `attr:${K}`]?: PostListboxOptionAttributes[K] } & { [K in keyof PostListboxOption & keyof PostListboxOptionAttributes as `prop:${K}`]?: PostListboxOption[K] } & OneOf<"value", PostListboxOption["value"], PostListboxOptionAttributes["value"]>;
         "post-login-widget": PostLoginWidget;
-        "post-logo": PostLogo;
-        "post-mainnavigation": PostMainnavigation;
-        "post-megadropdown": PostMegadropdown;
-        "post-megadropdown-trigger": PostMegadropdownTrigger;
-        "post-menu": PostMenu;
+        "post-logo": Omit<PostLogo, keyof PostLogoAttributes> & { [K in keyof PostLogo & keyof PostLogoAttributes]?: PostLogo[K] } & { [K in keyof PostLogo & keyof PostLogoAttributes as `attr:${K}`]?: PostLogoAttributes[K] } & { [K in keyof PostLogo & keyof PostLogoAttributes as `prop:${K}`]?: PostLogo[K] };
+        "post-mainnavigation": Omit<PostMainnavigation, keyof PostMainnavigationAttributes> & { [K in keyof PostMainnavigation & keyof PostMainnavigationAttributes]?: PostMainnavigation[K] } & { [K in keyof PostMainnavigation & keyof PostMainnavigationAttributes as `attr:${K}`]?: PostMainnavigationAttributes[K] } & { [K in keyof PostMainnavigation & keyof PostMainnavigationAttributes as `prop:${K}`]?: PostMainnavigation[K] } & OneOf<"textMain", PostMainnavigation["textMain"], PostMainnavigationAttributes["textMain"]>;
+        "post-megadropdown": Omit<PostMegadropdown, keyof PostMegadropdownAttributes> & { [K in keyof PostMegadropdown & keyof PostMegadropdownAttributes]?: PostMegadropdown[K] } & { [K in keyof PostMegadropdown & keyof PostMegadropdownAttributes as `attr:${K}`]?: PostMegadropdownAttributes[K] } & { [K in keyof PostMegadropdown & keyof PostMegadropdownAttributes as `prop:${K}`]?: PostMegadropdown[K] } & OneOf<"textClose", PostMegadropdown["textClose"], PostMegadropdownAttributes["textClose"]> & OneOf<"textBack", PostMegadropdown["textBack"], PostMegadropdownAttributes["textBack"]>;
+        "post-megadropdown-trigger": Omit<PostMegadropdownTrigger, keyof PostMegadropdownTriggerAttributes> & { [K in keyof PostMegadropdownTrigger & keyof PostMegadropdownTriggerAttributes]?: PostMegadropdownTrigger[K] } & { [K in keyof PostMegadropdownTrigger & keyof PostMegadropdownTriggerAttributes as `attr:${K}`]?: PostMegadropdownTriggerAttributes[K] } & { [K in keyof PostMegadropdownTrigger & keyof PostMegadropdownTriggerAttributes as `prop:${K}`]?: PostMegadropdownTrigger[K] } & OneOf<"for", PostMegadropdownTrigger["for"], PostMegadropdownTriggerAttributes["for"]>;
+        "post-menu": Omit<PostMenu, keyof PostMenuAttributes> & { [K in keyof PostMenu & keyof PostMenuAttributes]?: PostMenu[K] } & { [K in keyof PostMenu & keyof PostMenuAttributes as `attr:${K}`]?: PostMenuAttributes[K] } & { [K in keyof PostMenu & keyof PostMenuAttributes as `prop:${K}`]?: PostMenu[K] } & OneOf<"label", PostMenu["label"], PostMenuAttributes["label"]>;
         "post-menu-item": PostMenuItem;
-        "post-menu-trigger": PostMenuTrigger;
+        "post-menu-trigger": Omit<PostMenuTrigger, keyof PostMenuTriggerAttributes> & { [K in keyof PostMenuTrigger & keyof PostMenuTriggerAttributes]?: PostMenuTrigger[K] } & { [K in keyof PostMenuTrigger & keyof PostMenuTriggerAttributes as `attr:${K}`]?: PostMenuTriggerAttributes[K] } & { [K in keyof PostMenuTrigger & keyof PostMenuTriggerAttributes as `prop:${K}`]?: PostMenuTrigger[K] } & OneOf<"for", PostMenuTrigger["for"], PostMenuTriggerAttributes["for"]>;
         "post-number-input": PostNumberInput;
-        "post-pagination": PostPagination;
-        "post-popover": PostPopover;
-        "post-popover-trigger": PostPopoverTrigger;
-        "post-popovercontainer": PostPopovercontainer;
-        "post-rating": PostRating;
-        "post-stepper": PostStepper;
+        "post-pagination": Omit<PostPagination, keyof PostPaginationAttributes> & { [K in keyof PostPagination & keyof PostPaginationAttributes]?: PostPagination[K] } & { [K in keyof PostPagination & keyof PostPaginationAttributes as `attr:${K}`]?: PostPaginationAttributes[K] } & { [K in keyof PostPagination & keyof PostPaginationAttributes as `prop:${K}`]?: PostPagination[K] } & OneOf<"pageSize", PostPagination["pageSize"], PostPaginationAttributes["pageSize"]> & OneOf<"collectionSize", PostPagination["collectionSize"], PostPaginationAttributes["collectionSize"]> & OneOf<"label", PostPagination["label"], PostPaginationAttributes["label"]> & OneOf<"textPrevious", PostPagination["textPrevious"], PostPaginationAttributes["textPrevious"]> & OneOf<"textNext", PostPagination["textNext"], PostPaginationAttributes["textNext"]> & OneOf<"textPage", PostPagination["textPage"], PostPaginationAttributes["textPage"]> & OneOf<"textFirst", PostPagination["textFirst"], PostPaginationAttributes["textFirst"]> & OneOf<"textLast", PostPagination["textLast"], PostPaginationAttributes["textLast"]>;
+        "post-popover": Omit<PostPopover, keyof PostPopoverAttributes> & { [K in keyof PostPopover & keyof PostPopoverAttributes]?: PostPopover[K] } & { [K in keyof PostPopover & keyof PostPopoverAttributes as `attr:${K}`]?: PostPopoverAttributes[K] } & { [K in keyof PostPopover & keyof PostPopoverAttributes as `prop:${K}`]?: PostPopover[K] } & OneOf<"textClose", PostPopover["textClose"], PostPopoverAttributes["textClose"]>;
+        "post-popover-trigger": Omit<PostPopoverTrigger, keyof PostPopoverTriggerAttributes> & { [K in keyof PostPopoverTrigger & keyof PostPopoverTriggerAttributes]?: PostPopoverTrigger[K] } & { [K in keyof PostPopoverTrigger & keyof PostPopoverTriggerAttributes as `attr:${K}`]?: PostPopoverTriggerAttributes[K] } & { [K in keyof PostPopoverTrigger & keyof PostPopoverTriggerAttributes as `prop:${K}`]?: PostPopoverTrigger[K] };
+        "post-popovercontainer": Omit<PostPopovercontainer, keyof PostPopovercontainerAttributes> & { [K in keyof PostPopovercontainer & keyof PostPopovercontainerAttributes]?: PostPopovercontainer[K] } & { [K in keyof PostPopovercontainer & keyof PostPopovercontainerAttributes as `attr:${K}`]?: PostPopovercontainerAttributes[K] } & { [K in keyof PostPopovercontainer & keyof PostPopovercontainerAttributes as `prop:${K}`]?: PostPopovercontainer[K] };
+        "post-rating": Omit<PostRating, keyof PostRatingAttributes> & { [K in keyof PostRating & keyof PostRatingAttributes]?: PostRating[K] } & { [K in keyof PostRating & keyof PostRatingAttributes as `attr:${K}`]?: PostRatingAttributes[K] } & { [K in keyof PostRating & keyof PostRatingAttributes as `prop:${K}`]?: PostRating[K] } & OneOf<"label", PostRating["label"], PostRatingAttributes["label"]>;
+        "post-stepper": Omit<PostStepper, keyof PostStepperAttributes> & { [K in keyof PostStepper & keyof PostStepperAttributes]?: PostStepper[K] } & { [K in keyof PostStepper & keyof PostStepperAttributes as `attr:${K}`]?: PostStepperAttributes[K] } & { [K in keyof PostStepper & keyof PostStepperAttributes as `prop:${K}`]?: PostStepper[K] } & OneOf<"textCurrentStep", PostStepper["textCurrentStep"], PostStepperAttributes["textCurrentStep"]> & OneOf<"textCompletedStep", PostStepper["textCompletedStep"], PostStepperAttributes["textCompletedStep"]> & OneOf<"textStepNumber", PostStepper["textStepNumber"], PostStepperAttributes["textStepNumber"]>;
         "post-stepper-item": PostStepperItem;
-        "post-tab-item": PostTabItem;
-        "post-tab-panel": PostTabPanel;
-        "post-tabs": PostTabs;
-        "post-togglebutton": PostTogglebutton;
-        "post-tooltip": PostTooltip;
-        "post-tooltip-trigger": PostTooltipTrigger;
+        "post-tab-item": Omit<PostTabItem, keyof PostTabItemAttributes> & { [K in keyof PostTabItem & keyof PostTabItemAttributes]?: PostTabItem[K] } & { [K in keyof PostTabItem & keyof PostTabItemAttributes as `attr:${K}`]?: PostTabItemAttributes[K] } & { [K in keyof PostTabItem & keyof PostTabItemAttributes as `prop:${K}`]?: PostTabItem[K] } & OneOf<"name", PostTabItem["name"], PostTabItemAttributes["name"]>;
+        "post-tab-panel": Omit<PostTabPanel, keyof PostTabPanelAttributes> & { [K in keyof PostTabPanel & keyof PostTabPanelAttributes]?: PostTabPanel[K] } & { [K in keyof PostTabPanel & keyof PostTabPanelAttributes as `attr:${K}`]?: PostTabPanelAttributes[K] } & { [K in keyof PostTabPanel & keyof PostTabPanelAttributes as `prop:${K}`]?: PostTabPanel[K] } & OneOf<"for", PostTabPanel["for"], PostTabPanelAttributes["for"]>;
+        "post-tabs": Omit<PostTabs, keyof PostTabsAttributes> & { [K in keyof PostTabs & keyof PostTabsAttributes]?: PostTabs[K] } & { [K in keyof PostTabs & keyof PostTabsAttributes as `attr:${K}`]?: PostTabsAttributes[K] } & { [K in keyof PostTabs & keyof PostTabsAttributes as `prop:${K}`]?: PostTabs[K] };
+        "post-togglebutton": Omit<PostTogglebutton, keyof PostTogglebuttonAttributes> & { [K in keyof PostTogglebutton & keyof PostTogglebuttonAttributes]?: PostTogglebutton[K] } & { [K in keyof PostTogglebutton & keyof PostTogglebuttonAttributes as `attr:${K}`]?: PostTogglebuttonAttributes[K] } & { [K in keyof PostTogglebutton & keyof PostTogglebuttonAttributes as `prop:${K}`]?: PostTogglebutton[K] };
+        "post-tooltip": Omit<PostTooltip, keyof PostTooltipAttributes> & { [K in keyof PostTooltip & keyof PostTooltipAttributes]?: PostTooltip[K] } & { [K in keyof PostTooltip & keyof PostTooltipAttributes as `attr:${K}`]?: PostTooltipAttributes[K] } & { [K in keyof PostTooltip & keyof PostTooltipAttributes as `prop:${K}`]?: PostTooltip[K] };
+        "post-tooltip-trigger": Omit<PostTooltipTrigger, keyof PostTooltipTriggerAttributes> & { [K in keyof PostTooltipTrigger & keyof PostTooltipTriggerAttributes]?: PostTooltipTrigger[K] } & { [K in keyof PostTooltipTrigger & keyof PostTooltipTriggerAttributes as `attr:${K}`]?: PostTooltipTriggerAttributes[K] } & { [K in keyof PostTooltipTrigger & keyof PostTooltipTriggerAttributes as `prop:${K}`]?: PostTooltipTrigger[K] } & OneOf<"for", PostTooltipTrigger["for"], PostTooltipTriggerAttributes["for"]>;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "post-accordion": LocalJSX.PostAccordion & JSXBase.HTMLAttributes<HTMLPostAccordionElement>;
-            "post-accordion-item": LocalJSX.PostAccordionItem & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
-            "post-autocomplete": LocalJSX.PostAutocomplete & JSXBase.HTMLAttributes<HTMLPostAutocompleteElement>;
-            "post-avatar": LocalJSX.PostAvatar & JSXBase.HTMLAttributes<HTMLPostAvatarElement>;
-            "post-back-to-top": LocalJSX.PostBackToTop & JSXBase.HTMLAttributes<HTMLPostBackToTopElement>;
-            "post-banner": LocalJSX.PostBanner & JSXBase.HTMLAttributes<HTMLPostBannerElement>;
-            "post-breadcrumb-item": LocalJSX.PostBreadcrumbItem & JSXBase.HTMLAttributes<HTMLPostBreadcrumbItemElement>;
-            "post-breadcrumbs": LocalJSX.PostBreadcrumbs & JSXBase.HTMLAttributes<HTMLPostBreadcrumbsElement>;
-            "post-closebutton": LocalJSX.PostClosebutton & JSXBase.HTMLAttributes<HTMLPostClosebuttonElement>;
-            "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
-            "post-collapsible-trigger": LocalJSX.PostCollapsibleTrigger & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
-            "post-date-picker": LocalJSX.PostDatePicker & JSXBase.HTMLAttributes<HTMLPostDatePickerElement>;
-            "post-footer": LocalJSX.PostFooter & JSXBase.HTMLAttributes<HTMLPostFooterElement>;
-            "post-header": LocalJSX.PostHeader & JSXBase.HTMLAttributes<HTMLPostHeaderElement>;
+            "post-accordion": LocalJSX.IntrinsicElements["post-accordion"] & JSXBase.HTMLAttributes<HTMLPostAccordionElement>;
+            "post-accordion-item": LocalJSX.IntrinsicElements["post-accordion-item"] & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
+            "post-autocomplete": LocalJSX.IntrinsicElements["post-autocomplete"] & JSXBase.HTMLAttributes<HTMLPostAutocompleteElement>;
+            "post-avatar": LocalJSX.IntrinsicElements["post-avatar"] & JSXBase.HTMLAttributes<HTMLPostAvatarElement>;
+            "post-back-to-top": LocalJSX.IntrinsicElements["post-back-to-top"] & JSXBase.HTMLAttributes<HTMLPostBackToTopElement>;
+            "post-banner": LocalJSX.IntrinsicElements["post-banner"] & JSXBase.HTMLAttributes<HTMLPostBannerElement>;
+            "post-breadcrumb-item": LocalJSX.IntrinsicElements["post-breadcrumb-item"] & JSXBase.HTMLAttributes<HTMLPostBreadcrumbItemElement>;
+            "post-breadcrumbs": LocalJSX.IntrinsicElements["post-breadcrumbs"] & JSXBase.HTMLAttributes<HTMLPostBreadcrumbsElement>;
+            "post-closebutton": LocalJSX.IntrinsicElements["post-closebutton"] & JSXBase.HTMLAttributes<HTMLPostClosebuttonElement>;
+            "post-collapsible": LocalJSX.IntrinsicElements["post-collapsible"] & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
+            "post-collapsible-trigger": LocalJSX.IntrinsicElements["post-collapsible-trigger"] & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
+            "post-date-picker": LocalJSX.IntrinsicElements["post-date-picker"] & JSXBase.HTMLAttributes<HTMLPostDatePickerElement>;
+            "post-footer": LocalJSX.IntrinsicElements["post-footer"] & JSXBase.HTMLAttributes<HTMLPostFooterElement>;
+            "post-header": LocalJSX.IntrinsicElements["post-header"] & JSXBase.HTMLAttributes<HTMLPostHeaderElement>;
             /**
              * @class PostIcon - representing a stencil component
              */
-            "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
-            "post-language-menu": LocalJSX.PostLanguageMenu & JSXBase.HTMLAttributes<HTMLPostLanguageMenuElement>;
-            "post-language-menu-item": LocalJSX.PostLanguageMenuItem & JSXBase.HTMLAttributes<HTMLPostLanguageMenuItemElement>;
-            "post-linkarea": LocalJSX.PostLinkarea & JSXBase.HTMLAttributes<HTMLPostLinkareaElement>;
-            "post-listbox": LocalJSX.PostListbox & JSXBase.HTMLAttributes<HTMLPostListboxElement>;
-            "post-listbox-option": LocalJSX.PostListboxOption & JSXBase.HTMLAttributes<HTMLPostListboxOptionElement>;
-            "post-login-widget": LocalJSX.PostLoginWidget & JSXBase.HTMLAttributes<HTMLPostLoginWidgetElement>;
-            "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
-            "post-mainnavigation": LocalJSX.PostMainnavigation & JSXBase.HTMLAttributes<HTMLPostMainnavigationElement>;
-            "post-megadropdown": LocalJSX.PostMegadropdown & JSXBase.HTMLAttributes<HTMLPostMegadropdownElement>;
-            "post-megadropdown-trigger": LocalJSX.PostMegadropdownTrigger & JSXBase.HTMLAttributes<HTMLPostMegadropdownTriggerElement>;
-            "post-menu": LocalJSX.PostMenu & JSXBase.HTMLAttributes<HTMLPostMenuElement>;
-            "post-menu-item": LocalJSX.PostMenuItem & JSXBase.HTMLAttributes<HTMLPostMenuItemElement>;
-            "post-menu-trigger": LocalJSX.PostMenuTrigger & JSXBase.HTMLAttributes<HTMLPostMenuTriggerElement>;
-            "post-number-input": LocalJSX.PostNumberInput & JSXBase.HTMLAttributes<HTMLPostNumberInputElement>;
-            "post-pagination": LocalJSX.PostPagination & JSXBase.HTMLAttributes<HTMLPostPaginationElement>;
-            "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
-            "post-popover-trigger": LocalJSX.PostPopoverTrigger & JSXBase.HTMLAttributes<HTMLPostPopoverTriggerElement>;
-            "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
-            "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
-            "post-stepper": LocalJSX.PostStepper & JSXBase.HTMLAttributes<HTMLPostStepperElement>;
-            "post-stepper-item": LocalJSX.PostStepperItem & JSXBase.HTMLAttributes<HTMLPostStepperItemElement>;
-            "post-tab-item": LocalJSX.PostTabItem & JSXBase.HTMLAttributes<HTMLPostTabItemElement>;
-            "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
-            "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
-            "post-togglebutton": LocalJSX.PostTogglebutton & JSXBase.HTMLAttributes<HTMLPostTogglebuttonElement>;
-            "post-tooltip": LocalJSX.PostTooltip & JSXBase.HTMLAttributes<HTMLPostTooltipElement>;
-            "post-tooltip-trigger": LocalJSX.PostTooltipTrigger & JSXBase.HTMLAttributes<HTMLPostTooltipTriggerElement>;
+            "post-icon": LocalJSX.IntrinsicElements["post-icon"] & JSXBase.HTMLAttributes<HTMLPostIconElement>;
+            "post-language-menu": LocalJSX.IntrinsicElements["post-language-menu"] & JSXBase.HTMLAttributes<HTMLPostLanguageMenuElement>;
+            "post-language-menu-item": LocalJSX.IntrinsicElements["post-language-menu-item"] & JSXBase.HTMLAttributes<HTMLPostLanguageMenuItemElement>;
+            "post-linkarea": LocalJSX.IntrinsicElements["post-linkarea"] & JSXBase.HTMLAttributes<HTMLPostLinkareaElement>;
+            "post-listbox": LocalJSX.IntrinsicElements["post-listbox"] & JSXBase.HTMLAttributes<HTMLPostListboxElement>;
+            "post-listbox-option": LocalJSX.IntrinsicElements["post-listbox-option"] & JSXBase.HTMLAttributes<HTMLPostListboxOptionElement>;
+            "post-login-widget": LocalJSX.IntrinsicElements["post-login-widget"] & JSXBase.HTMLAttributes<HTMLPostLoginWidgetElement>;
+            "post-logo": LocalJSX.IntrinsicElements["post-logo"] & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
+            "post-mainnavigation": LocalJSX.IntrinsicElements["post-mainnavigation"] & JSXBase.HTMLAttributes<HTMLPostMainnavigationElement>;
+            "post-megadropdown": LocalJSX.IntrinsicElements["post-megadropdown"] & JSXBase.HTMLAttributes<HTMLPostMegadropdownElement>;
+            "post-megadropdown-trigger": LocalJSX.IntrinsicElements["post-megadropdown-trigger"] & JSXBase.HTMLAttributes<HTMLPostMegadropdownTriggerElement>;
+            "post-menu": LocalJSX.IntrinsicElements["post-menu"] & JSXBase.HTMLAttributes<HTMLPostMenuElement>;
+            "post-menu-item": LocalJSX.IntrinsicElements["post-menu-item"] & JSXBase.HTMLAttributes<HTMLPostMenuItemElement>;
+            "post-menu-trigger": LocalJSX.IntrinsicElements["post-menu-trigger"] & JSXBase.HTMLAttributes<HTMLPostMenuTriggerElement>;
+            "post-number-input": LocalJSX.IntrinsicElements["post-number-input"] & JSXBase.HTMLAttributes<HTMLPostNumberInputElement>;
+            "post-pagination": LocalJSX.IntrinsicElements["post-pagination"] & JSXBase.HTMLAttributes<HTMLPostPaginationElement>;
+            "post-popover": LocalJSX.IntrinsicElements["post-popover"] & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
+            "post-popover-trigger": LocalJSX.IntrinsicElements["post-popover-trigger"] & JSXBase.HTMLAttributes<HTMLPostPopoverTriggerElement>;
+            "post-popovercontainer": LocalJSX.IntrinsicElements["post-popovercontainer"] & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
+            "post-rating": LocalJSX.IntrinsicElements["post-rating"] & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
+            "post-stepper": LocalJSX.IntrinsicElements["post-stepper"] & JSXBase.HTMLAttributes<HTMLPostStepperElement>;
+            "post-stepper-item": LocalJSX.IntrinsicElements["post-stepper-item"] & JSXBase.HTMLAttributes<HTMLPostStepperItemElement>;
+            "post-tab-item": LocalJSX.IntrinsicElements["post-tab-item"] & JSXBase.HTMLAttributes<HTMLPostTabItemElement>;
+            "post-tab-panel": LocalJSX.IntrinsicElements["post-tab-panel"] & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
+            "post-tabs": LocalJSX.IntrinsicElements["post-tabs"] & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
+            "post-togglebutton": LocalJSX.IntrinsicElements["post-togglebutton"] & JSXBase.HTMLAttributes<HTMLPostTogglebuttonElement>;
+            "post-tooltip": LocalJSX.IntrinsicElements["post-tooltip"] & JSXBase.HTMLAttributes<HTMLPostTooltipElement>;
+            "post-tooltip-trigger": LocalJSX.IntrinsicElements["post-tooltip-trigger"] & JSXBase.HTMLAttributes<HTMLPostTooltipTriggerElement>;
         }
     }
 }

@@ -184,6 +184,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
+
     /**
      * Trap the focus inside a specific container.
      * @param active activate or deactivate the focus trap
@@ -291,13 +293,46 @@ declare namespace LocalJSX {
          */
         "textUserLinks": string;
     }
+
+    interface FocusTrapAttributes {
+        "active": boolean;
+    }
+    interface PostKlpLoginWidgetAttributes {
+        "logoutUrl": string;
+    }
+    interface SwisspostInternetBreadcrumbsAttributes {
+        "customItems": string | Array<Link>;
+        "textHome": string;
+        "textBreadcrumbs": string;
+        "textMoreItems": string;
+    }
+    interface SwisspostInternetFooterAttributes {
+        "textFooter": string;
+        "textCookieSettings": string;
+    }
+    interface SwisspostInternetHeaderAttributes {
+        "activeRoute": ActiveRouteProp;
+        "environment": Environment;
+        "fullWidth": boolean;
+        "language": 'de' | 'fr' | 'it' | 'en';
+        "project": string;
+        "textBack": string;
+        "textChangeLanguage": string;
+        "textClose": string;
+        "textCurrentLanguage": string;
+        "textCurrentUser": string;
+        "textMain": string;
+        "textMenu": string;
+        "textUserLinks": string;
+    }
+
     interface IntrinsicElements {
-        "focus-trap": FocusTrap;
-        "post-klp-login-widget": PostKlpLoginWidget;
+        "focus-trap": Omit<FocusTrap, keyof FocusTrapAttributes> & { [K in keyof FocusTrap & keyof FocusTrapAttributes]?: FocusTrap[K] } & { [K in keyof FocusTrap & keyof FocusTrapAttributes as `attr:${K}`]?: FocusTrapAttributes[K] } & { [K in keyof FocusTrap & keyof FocusTrapAttributes as `prop:${K}`]?: FocusTrap[K] };
+        "post-klp-login-widget": Omit<PostKlpLoginWidget, keyof PostKlpLoginWidgetAttributes> & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes]?: PostKlpLoginWidget[K] } & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes as `attr:${K}`]?: PostKlpLoginWidgetAttributes[K] } & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes as `prop:${K}`]?: PostKlpLoginWidget[K] };
         "post-skiplinks": PostSkiplinks;
-        "swisspost-internet-breadcrumbs": SwisspostInternetBreadcrumbs;
-        "swisspost-internet-footer": SwisspostInternetFooter;
-        "swisspost-internet-header": SwisspostInternetHeader;
+        "swisspost-internet-breadcrumbs": Omit<SwisspostInternetBreadcrumbs, keyof SwisspostInternetBreadcrumbsAttributes> & { [K in keyof SwisspostInternetBreadcrumbs & keyof SwisspostInternetBreadcrumbsAttributes]?: SwisspostInternetBreadcrumbs[K] } & { [K in keyof SwisspostInternetBreadcrumbs & keyof SwisspostInternetBreadcrumbsAttributes as `attr:${K}`]?: SwisspostInternetBreadcrumbsAttributes[K] } & { [K in keyof SwisspostInternetBreadcrumbs & keyof SwisspostInternetBreadcrumbsAttributes as `prop:${K}`]?: SwisspostInternetBreadcrumbs[K] } & OneOf<"textHome", SwisspostInternetBreadcrumbs["textHome"], SwisspostInternetBreadcrumbsAttributes["textHome"]> & OneOf<"textBreadcrumbs", SwisspostInternetBreadcrumbs["textBreadcrumbs"], SwisspostInternetBreadcrumbsAttributes["textBreadcrumbs"]> & OneOf<"textMoreItems", SwisspostInternetBreadcrumbs["textMoreItems"], SwisspostInternetBreadcrumbsAttributes["textMoreItems"]>;
+        "swisspost-internet-footer": Omit<SwisspostInternetFooter, keyof SwisspostInternetFooterAttributes> & { [K in keyof SwisspostInternetFooter & keyof SwisspostInternetFooterAttributes]?: SwisspostInternetFooter[K] } & { [K in keyof SwisspostInternetFooter & keyof SwisspostInternetFooterAttributes as `attr:${K}`]?: SwisspostInternetFooterAttributes[K] } & { [K in keyof SwisspostInternetFooter & keyof SwisspostInternetFooterAttributes as `prop:${K}`]?: SwisspostInternetFooter[K] } & OneOf<"textFooter", SwisspostInternetFooter["textFooter"], SwisspostInternetFooterAttributes["textFooter"]> & OneOf<"textCookieSettings", SwisspostInternetFooter["textCookieSettings"], SwisspostInternetFooterAttributes["textCookieSettings"]>;
+        "swisspost-internet-header": Omit<SwisspostInternetHeader, keyof SwisspostInternetHeaderAttributes> & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes]?: SwisspostInternetHeader[K] } & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes as `attr:${K}`]?: SwisspostInternetHeaderAttributes[K] } & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes as `prop:${K}`]?: SwisspostInternetHeader[K] } & OneOf<"project", SwisspostInternetHeader["project"], SwisspostInternetHeaderAttributes["project"]> & OneOf<"textBack", SwisspostInternetHeader["textBack"], SwisspostInternetHeaderAttributes["textBack"]> & OneOf<"textChangeLanguage", SwisspostInternetHeader["textChangeLanguage"], SwisspostInternetHeaderAttributes["textChangeLanguage"]> & OneOf<"textClose", SwisspostInternetHeader["textClose"], SwisspostInternetHeaderAttributes["textClose"]> & OneOf<"textCurrentLanguage", SwisspostInternetHeader["textCurrentLanguage"], SwisspostInternetHeaderAttributes["textCurrentLanguage"]> & OneOf<"textCurrentUser", SwisspostInternetHeader["textCurrentUser"], SwisspostInternetHeaderAttributes["textCurrentUser"]> & OneOf<"textMain", SwisspostInternetHeader["textMain"], SwisspostInternetHeaderAttributes["textMain"]> & OneOf<"textMenu", SwisspostInternetHeader["textMenu"], SwisspostInternetHeaderAttributes["textMenu"]> & OneOf<"textUserLinks", SwisspostInternetHeader["textUserLinks"], SwisspostInternetHeaderAttributes["textUserLinks"]>;
     }
 }
 export { LocalJSX as JSX };
@@ -308,12 +343,12 @@ declare module "@stencil/core" {
              * Trap the focus inside a specific container.
              * @param active activate or deactivate the focus trap
              */
-            "focus-trap": LocalJSX.FocusTrap & JSXBase.HTMLAttributes<HTMLFocusTrapElement>;
-            "post-klp-login-widget": LocalJSX.PostKlpLoginWidget & JSXBase.HTMLAttributes<HTMLPostKlpLoginWidgetElement>;
-            "post-skiplinks": LocalJSX.PostSkiplinks & JSXBase.HTMLAttributes<HTMLPostSkiplinksElement>;
-            "swisspost-internet-breadcrumbs": LocalJSX.SwisspostInternetBreadcrumbs & JSXBase.HTMLAttributes<HTMLSwisspostInternetBreadcrumbsElement>;
-            "swisspost-internet-footer": LocalJSX.SwisspostInternetFooter & JSXBase.HTMLAttributes<HTMLSwisspostInternetFooterElement>;
-            "swisspost-internet-header": LocalJSX.SwisspostInternetHeader & JSXBase.HTMLAttributes<HTMLSwisspostInternetHeaderElement>;
+            "focus-trap": LocalJSX.IntrinsicElements["focus-trap"] & JSXBase.HTMLAttributes<HTMLFocusTrapElement>;
+            "post-klp-login-widget": LocalJSX.IntrinsicElements["post-klp-login-widget"] & JSXBase.HTMLAttributes<HTMLPostKlpLoginWidgetElement>;
+            "post-skiplinks": LocalJSX.IntrinsicElements["post-skiplinks"] & JSXBase.HTMLAttributes<HTMLPostSkiplinksElement>;
+            "swisspost-internet-breadcrumbs": LocalJSX.IntrinsicElements["swisspost-internet-breadcrumbs"] & JSXBase.HTMLAttributes<HTMLSwisspostInternetBreadcrumbsElement>;
+            "swisspost-internet-footer": LocalJSX.IntrinsicElements["swisspost-internet-footer"] & JSXBase.HTMLAttributes<HTMLSwisspostInternetFooterElement>;
+            "swisspost-internet-header": LocalJSX.IntrinsicElements["swisspost-internet-header"] & JSXBase.HTMLAttributes<HTMLSwisspostInternetHeaderElement>;
         }
     }
 }

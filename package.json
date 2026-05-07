@@ -107,7 +107,7 @@
     "theme-ag-grid:build": "pnpm --filter design-system-theme-ag-grid build"
   },
   "devDependencies": {
-    "@changesets/cli": "2.29.8",
+    "@changesets/cli": "2.31.0",
     "start-server-and-test": "2.1.3",
     "turbo": "2.5.8"
   },
