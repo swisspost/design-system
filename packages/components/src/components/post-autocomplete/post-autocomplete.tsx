@@ -1,6 +1,6 @@
-import { Component, h, Host, Prop, Element, State, Event, EventEmitter } from '@stencil/core';
+import { Component, h, Host, Prop, Element, State, Event, EventEmitter, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { debounce } from '@/utils';
+import { debounce, checkRequiredAndType } from '@/utils';
 
 /**
  * @slot default - Slot for placing post-autocomplete-item components.
@@ -35,6 +35,11 @@ export class PostAutocomplete {
    */
   @Prop({ reflect: true }) readonly textAvailableSuggestions!: string;
 
+  @Watch('textAvailableSuggestions')
+  validateTextAvailableSuggestions() {
+    checkRequiredAndType(this, 'textAvailableSuggestions', 'string');
+  }
+
   @State() inputValue: string = '';
 
   /** Cancelable event emitted when the input value is to be filtered */
@@ -53,6 +58,8 @@ export class PostAutocomplete {
   }
 
   componentWillLoad() {
+    this.validateTextAvailableSuggestions();
+
     if (!this.inputElement) return;
     this.inputElement.role = 'combobox';
     this.inputElement.ariaAutoComplete = 'list';
@@ -105,6 +112,10 @@ export class PostAutocomplete {
     }
   }
 
+  private clearAnnouncement() {
+    if (this.outputElement) this.outputElement.textContent = '';
+  }
+
   private announceCount() {
     if (!this.outputElement || !this.listBoxElement) return;
     const count = this.listBoxElement.querySelectorAll('post-listbox-option:not([hidden])').length;
@@ -134,11 +145,11 @@ export class PostAutocomplete {
 
     if (query) {
       this.showListBox();
+      this.announceCount();
     } else {
       this.inputValue = '';
+      this.clearAnnouncement();
     }
-
-    this.announceCount();
   };
 
   private readonly handleKeyDown = (event: KeyboardEvent) => {
@@ -196,6 +207,7 @@ export class PostAutocomplete {
   };
 
   private readonly hideListBox = () => {
+    this.clearAnnouncement();
     this.listBoxElement.hide();
     this.inputElement.ariaExpanded = 'false';
     this.host.removeAttribute('open');
