@@ -3,13 +3,15 @@
 Flags all deprecated bootstrap gap utility classes and replaces them with the new ones.
 
 - Type: problem
-- 🔧 Supports autofix (--fix) — **except for classes using value `1` (see note below)**
+- 🔧 Supports autofix (--fix) — **except for classes using values `1` and `4` (see note below)**
 
-## ⚠️ Manual migration required for `*-1` classes
+## ⚠️ Manual migration required for `*-1` and `*-4` classes
 
-Classes using the value `1` **cannot be auto-migrated**.
+Classes using the values `1` or `4` **cannot be auto-migrated**.
 
-The value `1` renames to `4`, but `4` is itself deprecated and would be renamed again to `24` on ESLint's next fix pass, producing the wrong final class.
+These values form a rename chain that ESLint's `--fix` loop would follow incorrectly:
+- `*-1` → renames to `*-4`, but `*-4` is itself deprecated → would chain to `*-24`
+- `*-4` → must also be manual-only, so that a user who manually renames `*-1` → `*-4` doesn't have `*-4` auto-renamed to `*-24` on the next run
 
 These classes are flagged as errors so you can find them, but you must rename them by hand.
 
