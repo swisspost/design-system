@@ -240,7 +240,6 @@ export class PostAutocomplete {
           </button>
         )}
         <post-icon aria-hidden="true" class="autocomplete-icon" name="chevronDown"></post-icon>
-        {/* always in DOM, empty on load — required for aria-live to work correctly across all screen readers */}
         <output class="visually-hidden" ref={el => (this.outputElement = el)}></output>
       </Host>
     );
