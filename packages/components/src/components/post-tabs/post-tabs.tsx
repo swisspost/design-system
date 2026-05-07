@@ -215,6 +215,13 @@ export class PostTabs {
     }
 
     this.isNavigationMode = hasNavigationTabs;
+    // Removes mode related classes to reset the state and applies the detected mode class
+    this.host.classList.remove('navigation', 'panel');
+    if (this.isNavigationMode) {
+      this.host.classList.add('navigation');
+    } else {
+      this.host.classList.add('panel');
+    }
   }
 
   private findActiveNavigationTab(): HTMLPostTabItemElement | null {
