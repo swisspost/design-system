@@ -14,40 +14,12 @@ post-tab-item.nav-item a {
   display: inline-block;
   position: relative;
   box-sizing: border-box;
-  padding: nav.$nav-link-padding;
-  transition: background-color 100ms;
-  border-right: 1px solid transparent;
-  border-left: 1px solid transparent;
-  opacity: 0.7;
   color: color.$black;
-  text-decoration: none;
   background-color: transparent;
   cursor: pointer;
 
-  &:hover {
-    opacity: 1;
-    background-color: color.$black-alpha-60;
-    color: color.$white;
-  }
-
   // same styles as focus, can't use placeholder here because focus-visible can't be described outside of the support condition
   &:focus-visible {
-    outline: transparent;
-    opacity: 1;
-    background-color: color.$black-alpha-60;
-    color: color.$white;
-    box-shadow: none;
-
-    &::after {
-      content: '';
-      display: block;
-      position: absolute;
-      top: nav.$nav-tabs-focus-box-shadow-width;
-      right: nav.$nav-tabs-focus-box-shadow-width - 1px;
-      bottom: 0;
-      left: nav.$nav-tabs-focus-box-shadow-width - 1px;
-      box-shadow: nav.$nav-tabs-focus-box-shadow;
-    }
   }
 
   @include color-mx.on-dark-background() {
@@ -73,16 +45,19 @@ post-tab-item.nav-item a {
   }
 }
 
+// Navigation Mode
 post-tab-item.nav-item {
-  display: inline-block;
-  position: relative;
-  box-sizing: border-box;
   cursor: default;
+
+  transition:
+    background-color 100ms,
+    padding-block 300ms;
 
   &:focus,
   &:focus-visible {
     outline: none;
     box-shadow: none;
+    padding-block: 19px; // post-tabs-item-focused-padding-block
 
     &::after {
       display: none;
@@ -90,25 +65,54 @@ post-tab-item.nav-item {
   }
 
   a {
-    color: inherit;
+    //reset link styles?
     text-decoration: none;
-    display: block;
+    display: flex;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
     position: relative;
     outline: none;
     cursor: pointer;
-    border-radius: 0;
+
+    color: color.$white; //add token
+    border-block-start: 2px solid transparent; // post-tabs-item-enabled-border-color + post-tabs-item-border-width
+    border-inline-start: 2px solid transparent; // post-tabs-item-enabled-border-color + post-tabs-item-border-width
+    border-inline-end: 2px solid transparent; // post-tabs-item-enabled-border-color + post-tabs-item-border-width
+
+    background-color: #050400; //post-tabs-item-enabled-color-bg
+    border-radius: 12px 12px 0 0; // post-tabs-item-border-start-start-radius + post-tabs-scroll-button-left-border-end-end-radius
+
+    border-color: #050400; //post-tabs-item-enabled-border-color
+    padding-inline: 24px; //post-tabs-item-padding-inline
+    padding-block: 15px; //post-tabs-item-enabled-padding-block
 
     &:focus {
       outline: none;
     }
 
+    &:hover {
+      background-color: #504f4b; // post-tabs-item-hovered-color-bg
+      border-color: #504f4b; //post-tabs-item-hovered-border-color
+      padding-block: 19px; // post-tabs-item-hovered-padding-block
+    }
+
+    &:disabled {
+      background-color: #fafafa; // post-tabs-item-disabled-color-bg
+      border-color: #696864; // post-tabs-item-disabled-border-color
+      color: #696864; // post-tabs-item-disabled-color-fg
+    }
+
     &[aria-current='page'] {
-      opacity: 1;
-      background-color: color.$black-alpha-60;
-      color: color.$white;
+      background-color: #fafafa; // post-tabs-item-selected-color-bg
+      color: #050400; //add token
+      border-color: #050400; // post-tabs-item-selected-border-color
+      padding-block: 19px; // post-tabs-item-hovered-padding-block
+
+      &:hover {
+        color: #504f4b; // post-tabs-item-selected-hovered-color-fg
+        border-color: #504f4b; // post-tabs-item-selected-hovered-border-color
+      }
     }
 
     &:focus-visible {
@@ -133,8 +137,7 @@ post-tab-item.nav-item {
 post-tab-item.tab-title[aria-selected='true'],
 post-tab-item.nav-item a[aria-current='page'] {
   z-index: 1;
-  border-right-color: nav.$nav-tabs-border-color;
-  border-left-color: nav.$nav-tabs-border-color;
+
   opacity: 1;
   background-color: color.$white;
   color: color.$black;
@@ -144,23 +147,6 @@ post-tab-item.nav-item a[aria-current='page'] {
     border-left-color: ButtonText;
     border-right-color: ButtonText;
     color: Highlight;
-  }
-}
-
-// Create a line that does not suffer from border corner mitering
-post-tab-item.tab-title[aria-selected='true']::before,
-post-tab-item.nav-item a[aria-current='page']::before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  right: -1px;
-  left: -1px;
-  height: tokens.get('utility-gap-4');
-  background-color: nav.$nav-tabs-link-active-border-color;
-
-  @include utilities-mx.high-contrast-mode() {
-    background-color: Highlight;
   }
 }
 
@@ -191,27 +177,11 @@ post-tabs[active-tab] {
     font-weight: calc(400 + var(--active, 0) * 300);
     cursor: default;
 
-    &::before {
-      content: '';
-      height: var(--post-core-dimension-4);
-      background-color: nav.$nav-tabs-link-active-border-color;
-      display: block;
-      position: absolute;
-      top: 0;
-      left: -1px;
-      right: -1px;
-      opacity: var(--active, 0);
-    }
-
     @include utilities-mx.high-contrast-mode() {
       color: LinkText;
       border-left-color: ButtonText;
       border-right-color: ButtonText;
-
-      &::before {
-        background-color: Highlight;
-      }
-    } 
+    }
   }
 }
 
@@ -221,49 +191,31 @@ post-tabs:not([active-tab]) {
     display: block !important;
   }
 
-  post-tab-item.tab-title.ssr[data-navigation-mode='false']{
+  post-tab-item.tab-title.ssr[data-navigation-mode='false'] {
+    cursor: default;
 
-    cursor:default;
-
-  &:first-of-type {
-    z-index: 1;
-    border-right-color: nav.$nav-tabs-border-color;
-    border-left-color: nav.$nav-tabs-border-color;
-    opacity: 1;
-    background-color: color.$white;
-    color: color.$black;
-    font-weight: 700;
- 
-    &::before {
-      content: '';
-      display: block;
-      position: absolute;
-      top: 0;
-      right: -1px;
-      left: -1px;
-      height: tokens.get('utility-gap-4');
-      background-color: nav.$nav-tabs-link-active-border-color;
+    &:first-of-type {
+      z-index: 1;
+      border-right-color: nav.$nav-tabs-border-color;
+      border-left-color: nav.$nav-tabs-border-color;
       opacity: 1;
-    }
+      background-color: color.$white;
+      color: color.$black;
+      font-weight: 700;
 
-    @include utilities-mx.high-contrast-mode() {
-      border-left-color: ButtonText;
-      border-right-color: ButtonText;
-      color: Highlight;
-
-      &::before {
-        background-color: Highlight;
+      @include utilities-mx.high-contrast-mode() {
+        border-left-color: ButtonText;
+        border-right-color: ButtonText;
+        color: Highlight;
       }
     }
-  }
 
-  &:not(:first-of-type) {
-    &:hover{
-       opacity: 0.7;
-         color: color.$black;
-          background-color: transparent;
+    &:not(:first-of-type) {
+      &:hover {
+        opacity: 0.7;
+        color: color.$black;
+        background-color: transparent;
       }
     }
-  
   }
 }

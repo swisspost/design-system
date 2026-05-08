@@ -7,6 +7,7 @@
 
 :host {
   display: block;
+  border-block-end: 8px solid #fafafa; // post-tabs-border-block-end-width + post-tabs-border-color
 }
 
 :host([full-width='true']) {
@@ -18,5 +19,11 @@
     .tabs {
       padding-inline: var(--post-container-offset);
     }
+  }
+}
+
+:host(.navigation) {
+  .tabs {
+    padding-inline-start: 40px; //post-tabs-padding-inline-start
   }
 }
