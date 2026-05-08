@@ -1,0 +1,55 @@
+---
+'@swisspost/design-system-icons': minor
+---
+
+Added icons:
+
+- `aivoicetovoice` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `adding` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `administrator` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `alarmoff` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `arrowreturn` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `bottleglass` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `bottlepet` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `bunnyfast` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `candle` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `carcheck` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `digitallettersend` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `doormailbox` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `door` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `emoteangry` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `emotelaughy` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `favoriteoverview` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `forewardmessage` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `france` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `germany` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `github` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `handleft` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `handright` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `hat` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `italy` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `lettersorting` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `locationedit` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `locationunknown` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `mypost24display` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `mypost24mobile` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `mypost24notavailable` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `npm` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `notificationsettings` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `override` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `parcelletterdelivery` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `parcelsorting` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `pindeselected` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `ramp` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `rollingbelt` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `signature` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `snail` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `stamprregistered` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `steeringfork` (line): SteeringForkpx
+- `subtracting` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `tshirt` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `tacho` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `technicalproblem` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `turtleslow` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `voicecontrol` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `webstamp` (line & solid): 16, 24, 32, 40, 48 and 64px
