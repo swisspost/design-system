@@ -391,16 +391,9 @@ export class PostPopovercontainer {
 
       const staticSide = PostPopovercontainer.STATIC_SIDES[currentPlacement];
 
-      const rootFontSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize);
 
-      // Calculate dynamically the half side which provides the static side offset
-      const arrowSizeValue = getComputedStyle(this.arrowRef)
-        .getPropertyValue('--arrow-size')
-        .trim();
+      const arrowSizePx = this.arrowRef.offsetWidth;
 
-      const arrowSizePx = arrowSizeValue.endsWith('rem')
-        ? Number.parseFloat(arrowSizeValue) * rootFontSize
-        : Number.parseFloat(arrowSizeValue);
 
       const halfSide = -0.5 * arrowSizePx;
 
@@ -551,6 +544,8 @@ export class PostPopovercontainer {
               }}
             ></span>
           )}
+          {/* exposed via ::part for consuming components to activate as a bleed mask */}
+          <span part="post-popovercontainer-border-mask"></span>
           <slot></slot>
         </div>
       </Host>
