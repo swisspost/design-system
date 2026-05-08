@@ -129,7 +129,7 @@ Version 10 reworks the component from the inside out.
 `swisspost-internet-header` is now a thin wrapper that fetches the portal config and delegates all rendering to Design System components: `post-header`, `post-logo`, `post-language-menu`, `post-mainnavigation`, and others.
 
 The public tag name (`swisspost-internet-header`) and the `project`, `environment`, `language`, `active-route`, and `full-width` props are unchanged.
-Everything else — feature-toggle props, runtime overrides, and language detection helpers — has been removed.
+Everything else, including feature-toggle props, runtime overrides, and language detection helpers, has been removed.
 
 ### Support
 
@@ -138,9 +138,8 @@ don't hesitate to contact the [Design System Team](https://github.com/swisspost/
 
 ### 1. Add the new required `text-*` props
 
-Version 10 introduces a set of required visually hidden label props.
+Version 10 introduces a set of required props for accessibility purposes, providing visually hidden labels for interactive elements.
 They are passed through to the inner Design System components and the component will throw if any are missing.
-Provide translated values for every language your application supports.
 
 See the full list of `text-*` props and their descriptions in the [Internet Header documentation](?path=/docs/ebb11274-091b-4cb7-9a3f-3e0451c9a865--docs).
 
