@@ -7,7 +7,18 @@ import { UNICODE_BIDI } from '../../src/utils/locales';
 import { LOCALES_MAP } from './helper/date-picker';
 
 const DATEPICKER_ID = 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e';
-import { isPopoverSupported } from './popovercontainer.cy';
+
+const LABEL_PROPERTIES = [
+  'text-next-month',
+  'text-next-year',
+  'text-next-decade',
+  'text-previous-month',
+  'text-previous-year',
+  'text-previous-decade',
+  'text-switch-year',
+  'text-toggle-calendar',
+];
+
 describe('date-picker', { includeShadowDom: true }, () => {
   describe('default', () => {
     const selector = isPopoverSupported() ? ':popover-open' : String.raw`.\:popover-open`;
