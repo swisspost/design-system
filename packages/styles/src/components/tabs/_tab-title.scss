@@ -11,37 +11,46 @@ tokens.$default-map: utilities.$post-spacing;
 
 post-tab-item.tab-title,
 post-tab-item.nav-item a {
-  display: inline-block;
   position: relative;
   box-sizing: border-box;
-  color: color.$black;
   background-color: transparent;
   cursor: pointer;
+  color: #050400; //post-tabs-color-fg
 
-  // same styles as focus, can't use placeholder here because focus-visible can't be described outside of the support condition
-  &:focus-visible {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px; //post-tabs-item-elements-gap
+
+  // common tokens
+  padding-inline: 24px; //post-tabs-item-padding-inline
+
+  post-icon {
+    width: 24px; //post-tabs-item-icon-size
+    height: 24px; //post-tabs-item-icon-size
   }
 
-  @include color-mx.on-dark-background() {
-    &:hover,
-    &:focus-visible {
-      background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
-    }
-  }
+  @include utilities-mx.focus-style;
 
   @include utilities-mx.high-contrast-mode() {
     opacity: 1;
     border-left-color: Canvas;
     border-right-color: Canvas;
     color: LinkText;
+  }
+}
 
-    &:hover,
-    &:focus,
-    &:focus-within,
-    &:focus-visible {
-      outline: tokens.get('utility-gap-2') solid Highlight;
-      outline-offset: calc(tokens.get('utility-gap-4') * -1);
-    }
+// Panels Mode
+post-tab-item.tab-title {
+  height: 64px; //post-tabs-panel-item-height
+  padding-block: 20px; //post-tabs-panel-item-padding-block
+  transition:
+    background-color 100ms,
+    border-color 100ms,
+    color 100ms;
+
+  &[aria-selected='true'] {
+    border-bottom: 2px solid #050400; // post-tabs-panel-item-selected-border-color
   }
 }
 
@@ -49,23 +58,7 @@ post-tab-item.nav-item a {
 post-tab-item.nav-item {
   cursor: default;
 
-  transition:
-    background-color 100ms,
-    padding-block 300ms;
-
-  &:focus,
-  &:focus-visible {
-    outline: none;
-    box-shadow: none;
-    padding-block: 19px; // post-tabs-item-focused-padding-block
-
-    &::after {
-      display: none;
-    }
-  }
-
   a {
-    //reset link styles?
     text-decoration: none;
     display: flex;
     width: 100%;
@@ -74,6 +67,12 @@ post-tab-item.nav-item {
     position: relative;
     outline: none;
     cursor: pointer;
+
+    transition:
+      background-color 100ms,
+      border-color 100ms,
+      color 100ms,
+      padding-block 200ms;
 
     color: color.$white; //add token
     border-block-start: 2px solid transparent; // post-tabs-item-enabled-border-color + post-tabs-item-border-width
@@ -84,12 +83,8 @@ post-tab-item.nav-item {
     border-radius: 12px 12px 0 0; // post-tabs-item-border-start-start-radius + post-tabs-scroll-button-left-border-end-end-radius
 
     border-color: #050400; //post-tabs-item-enabled-border-color
-    padding-inline: 24px; //post-tabs-item-padding-inline
-    padding-block: 15px; //post-tabs-item-enabled-padding-block
 
-    &:focus {
-      outline: none;
-    }
+    padding-block: 15px; //post-tabs-item-enabled-padding-block
 
     &:hover {
       background-color: #504f4b; // post-tabs-item-hovered-color-bg
@@ -119,28 +114,12 @@ post-tab-item.nav-item {
       outline: none !important;
     }
   }
-
-  @include color-mx.on-dark-background() {
-    a {
-      &:hover {
-        background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
-      }
-
-      &:focus-visible {
-        background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
-      }
-    }
-  }
 }
 
 // active state
 post-tab-item.tab-title[aria-selected='true'],
 post-tab-item.nav-item a[aria-current='page'] {
   z-index: 1;
-
-  opacity: 1;
-  background-color: color.$white;
-  color: color.$black;
   font-weight: 700;
 
   @include utilities-mx.high-contrast-mode() {
@@ -198,7 +177,6 @@ post-tabs:not([active-tab]) {
       z-index: 1;
       border-right-color: nav.$nav-tabs-border-color;
       border-left-color: nav.$nav-tabs-border-color;
-      opacity: 1;
       background-color: color.$white;
       color: color.$black;
       font-weight: 700;
@@ -212,7 +190,6 @@ post-tabs:not([active-tab]) {
 
     &:not(:first-of-type) {
       &:hover {
-        opacity: 0.7;
         color: color.$black;
         background-color: transparent;
       }
