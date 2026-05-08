@@ -55,6 +55,19 @@ Type: `Promise<void>`
 | `"post-tabs-content"` | The container element that displays the content of the currently active tab. Only available in panels mode. |
 
 
+## Dependencies
+
+### Depends on
+
+- [post-icon](../post-icon)
+
+### Graph
+```mermaid
+graph TD;
+  post-tabs --> post-icon
+  style post-tabs fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

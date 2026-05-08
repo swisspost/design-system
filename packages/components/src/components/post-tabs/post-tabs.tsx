@@ -15,6 +15,14 @@ import { version } from '@root/package.json';
 import { fade } from '@/animations';
 import { componentOnReady, checkRequiredAndType } from '@/utils';
 
+// Extends the HTMLButtonElement interface to include ariaControlsElements, which is part of the
+// ARIA reflection API but not yet present in TypeScript's built-in DOM type definitions.
+declare global {
+  interface HTMLButtonElement {
+    ariaControlsElements: Element[];
+  }
+}
+
 /**
  * @slot default - Slot for placing tab items. Each tab item should be a <post-tab-item> element.
  * @slot panels - Slot for placing tab panels. Each tab panel should be a <post-tab-panel> element.
@@ -33,8 +41,18 @@ export class PostTabs {
   private hiding: Animation;
   private isLoaded = false;
   private contentObserver: MutationObserver;
+  private resizeObserver: ResizeObserver;
+  private tabsContainer: HTMLElement;
 
   @State() isNavigationMode: boolean = false;
+
+  @State() private showLeftScrollButton = false;
+  @State() private showRightScrollButton = false;
+
+  @Element() host: HTMLPostTabsElement;
+
+  private leftScrollButton!: HTMLButtonElement;
+  private rightScrollButton!: HTMLButtonElement;
 
   private get tabs(): HTMLPostTabItemElement[] {
     return Array.from(this.host.querySelectorAll<HTMLPostTabItemElement>('post-tab-item')).filter(
@@ -47,8 +65,6 @@ export class PostTabs {
       panel => panel.closest('post-tabs') === this.host,
     );
   }
-
-  @Element() host: HTMLPostTabsElement;
 
   /**
    * The name of the tab in the panel mode that is initially active.
@@ -88,10 +104,16 @@ export class PostTabs {
   }
 
   componentDidLoad() {
+    // Programmatically associates the scroll buttons with the tabs container via the ARIA reflection API, avoiding the need for ID-based aria-controls attributes.
+    this.leftScrollButton.ariaControlsElements = [this.tabsContainer];
+    this.rightScrollButton.ariaControlsElements = [this.tabsContainer];
+
     this.moveMisplacedTabs();
     this.moveMisplacedPanels();
     this.enableTabs();
+    this.handleScrollButtons();
     this.setupContentObserver();
+    this.setupResizeObserver();
     this.validateLabel();
 
     if (this.isNavigationMode) {
@@ -122,6 +144,11 @@ export class PostTabs {
     if (this.contentObserver) {
       this.contentObserver.disconnect();
     }
+
+    this.resizeObserver?.disconnect();
+
+    // Remove scroll event listener
+    this.tabsContainer?.removeEventListener('scroll', this.updateScrollButtons);
   }
 
   private setupContentObserver() {
@@ -136,6 +163,11 @@ export class PostTabs {
     this.contentObserver.observe(this.host, config);
   }
 
+  private setupResizeObserver() {
+    this.resizeObserver = new ResizeObserver(this.updateScrollButtons);
+    this.resizeObserver.observe(this.tabsContainer);
+  }
+
   private handleContentChange(mutations: MutationRecord[]) {
     const shouldRedetect = this.shouldRedetectMode(mutations);
     const ariaCurrentChanged = this.hasAriaCurrentChanged(mutations);
@@ -147,6 +179,8 @@ export class PostTabs {
     if (shouldRedetect) {
       this.handleModeChange();
     }
+
+    this.updateScrollButtons();
   }
 
   private shouldRedetectMode(mutations: MutationRecord[]): boolean {
@@ -396,6 +430,20 @@ export class PostTabs {
     void this.show(nextTab.name);
   }
 
+  // Handles the visibility of scroll buttons based on the scroll position of the tabs container
+  private readonly updateScrollButtons = () => {
+    if (!this.tabsContainer) return;
+    this.showLeftScrollButton = this.tabsContainer.scrollLeft > 0;
+    this.showRightScrollButton =
+      this.tabsContainer.scrollLeft + this.tabsContainer.clientWidth <
+      this.tabsContainer.scrollWidth;
+  };
+
+  private handleScrollButtons() {
+    this.updateScrollButtons();
+    this.tabsContainer.addEventListener('scroll', this.updateScrollButtons);
+  }
+
   render() {
     const TabsContainer = this.isNavigationMode ? 'nav' : 'div';
     const isSSR = Build.isServer;
@@ -407,7 +455,24 @@ export class PostTabs {
     return (
       <Host data-version={version} style={style}>
         <div class="tabs-wrapper" part="post-tabs">
+          <button
+            ref={el => (this.leftScrollButton = el!)}
+            class="scroll-btn scroll-btn-left"
+            type="button"
+            aria-label="Scroll button left"
+            tabindex={this.showLeftScrollButton ? 0 : -1}
+            hidden={!this.showLeftScrollButton}
+            onClick={() =>
+              this.tabsContainer.scrollBy({
+                left: -this.tabsContainer.clientWidth,
+                behavior: 'smooth',
+              })
+            }
+          >
+            <post-icon name="chevronleft"></post-icon>
+          </button>
           <TabsContainer
+            ref={el => (this.tabsContainer = el as HTMLElement)}
             class="tabs"
             role={this.isNavigationMode ? undefined : 'tablist'}
             aria-label={this.isNavigationMode ? this.label : undefined}
@@ -419,6 +484,22 @@ export class PostTabs {
               }}
             />
           </TabsContainer>
+          <button
+            ref={el => (this.rightScrollButton = el!)}
+            class="scroll-btn scroll-btn-right"
+            type="button"
+            aria-label="Scroll button right"
+            tabindex={this.showRightScrollButton ? 0 : -1}
+            hidden={!this.showRightScrollButton}
+            onClick={() =>
+              this.tabsContainer.scrollBy({
+                left: this.tabsContainer.clientWidth,
+                behavior: 'smooth',
+              })
+            }
+          >
+            <post-icon name="chevronright"></post-icon>
+          </button>
         </div>
         {!this.isNavigationMode && (
           <div class="tab-content" part="post-tabs-content">
