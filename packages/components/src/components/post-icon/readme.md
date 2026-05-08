@@ -39,6 +39,7 @@ some content
  - [post-number-input](../post-number-input)
  - [post-pagination](../post-pagination)
  - [post-rating](../post-rating)
+ - [post-tabs](../post-tabs)
 
 ### Graph
 ```mermaid
@@ -59,6 +60,7 @@ graph TD;
   post-number-input --> post-icon
   post-pagination --> post-icon
   post-rating --> post-icon
+  post-tabs --> post-icon
   style post-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
