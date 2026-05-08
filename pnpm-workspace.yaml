@@ -4,18 +4,23 @@ packages:
   - 'packages/components-angular/projects/*'
 
 catalogs:
+  cypress:
+    'cypress': 15.14.2
+    'cypress-each': 1.14.1
+    'cypress-axe': 1.6.0
+    'cypress-storybook': 1.0.0
   node:
-    '@types/node': ^24.0.0
+    '@types/node': 24.0.0
     'ts-node': 10.9.2
   jest:
-    '@types/jest': ^30.0.0
+    '@types/jest': 30.0.0
     'jest': 30.3.0
     'ts-jest': 29.4.9
   stencil/jest:
     '@types/jest': 29.5.14
-    'jest': ^29.7.0
-    'jest-cli': ^29.7.0
+    'jest': 29.7.0
+    'jest-cli': 29.7.0
     'ts-jest': 29.4.9
   'typescript':
-    'typescript': '5.9.3'
-    'typescript-eslint': '8.59.2'
+    'typescript': 5.9.3
+    'typescript-eslint': 8.59.2

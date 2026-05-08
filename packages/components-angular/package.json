@@ -48,7 +48,7 @@
     "@swisspost/design-system-components-angular": "workspace:10.0.0-next.68",
     "angular-eslint": "19.8.1",
     "copyfiles": "2.4.1",
-    "cypress": "14.3.2",
+    "cypress": "catalog:cypress",
     "eslint": "9.26.0",
     "globals": "17.3.0",
     "karma": "6.4.4",
