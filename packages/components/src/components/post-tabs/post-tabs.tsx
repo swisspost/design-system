@@ -14,7 +14,8 @@ import { version } from '@root/package.json';
 import { fade } from '@/animations';
 import { componentOnReady, checkRequiredAndType } from '@/utils';
 
-// Necessary to make the Element API ]ariaControlsElements] available in the TypeScript code, e.g. for type assertions and to avoid TS errors when accessing custom properties on the element.
+// Extends the HTMLButtonElement interface to include ariaControlsElements, which is part of the
+// ARIA reflection API but not yet present in TypeScript's built-in DOM type definitions.
 declare global {
   interface HTMLButtonElement {
     ariaControlsElements: Element[];
@@ -49,7 +50,6 @@ export class PostTabs {
 
   @Element() host: HTMLPostTabsElement;
 
-  private tabsId: string;
   private leftScrollButton: HTMLButtonElement;
   private rightScrollButton: HTMLButtonElement;
 
@@ -103,6 +103,7 @@ export class PostTabs {
   }
 
   componentDidLoad() {
+    // Programmatically associates the scroll buttons with the tabs container via the ARIA reflection API, avoiding the need for ID-based aria-controls attributes.
     this.leftScrollButton.ariaControlsElements = [this.tabsContainer];
     this.rightScrollButton.ariaControlsElements = [this.tabsContainer];
 
@@ -462,7 +463,6 @@ export class PostTabs {
             <post-icon name="chevronleft"></post-icon>
           </button>
           <TabsContainer
-            id={this.tabsId}
             ref={el => (this.tabsContainer = el as HTMLElement)}
             class="tabs"
             role={this.isNavigationMode ? undefined : 'tablist'}
