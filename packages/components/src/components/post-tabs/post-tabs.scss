@@ -9,6 +9,15 @@
   display: block;
 }
 
+.tabs {
+  // Hide scrollbar across browsers while keeping scroll functionality
+  scrollbar-width: none; // Firefox
+
+  &::-webkit-scrollbar {
+    display: none; // Chrome, Safari, Edge
+  }
+}
+
 :host([full-width='true']) {
   .tabs-wrapper {
     // Negative margin to make the tabs-wrapper fullwidth

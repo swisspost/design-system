@@ -120,11 +120,14 @@ export class PostTabs {
       const activeTab = this.findActiveNavigationTab();
       if (activeTab) {
         this.activateTab(activeTab);
+        activeTab.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' });
       }
     } else {
       const tabToActivate = this.activeTab || this.tabs[0]?.name;
       if (tabToActivate) {
         void this.show(tabToActivate);
+        const activeTab = this.tabs.find(t => t.name === tabToActivate);
+        activeTab?.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' });
       }
     }
 
@@ -205,6 +208,7 @@ export class PostTabs {
     const activeTab = this.findActiveNavigationTab();
     if (activeTab && activeTab !== this.currentActiveTab) {
       this.activateTab(activeTab);
+      activeTab.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' });
     }
   }
 
@@ -223,6 +227,7 @@ export class PostTabs {
       const activeTab = this.findActiveNavigationTab();
       if (activeTab) {
         this.activateTab(activeTab);
+        activeTab.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' });
       }
     } else {
       const tabToActivate = this.activeTab || this.tabs[0]?.name;
@@ -278,7 +283,7 @@ export class PostTabs {
     );
 
     this.activateTab(newTab);
-
+    newTab.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' });
     // if a panel is currently being displayed, remove it from the view and complete the associated animation
     if (this.showing) {
       this.showing.finish();
