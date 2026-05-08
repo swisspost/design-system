@@ -1,6 +1,6 @@
 # Swiss Post Browsersupport
 
-# https://web.post.ch/postweb/-/media/Corp/Intranet/Service-Portal/Kommunikation/Digital/Onlineredaktion/Dokumente/Browserunterst%C3%BCtzung.PDF
+# https://postchag.sharepoint.com/sites/postweb-service/SiteAssets/Forms/AllItems.aspx?id=%2Fsites%2Fpostweb%2Dservice%2FSiteAssets%2FSitePages%2Fpublishing%2FBrowserunterstuetzung%2EPDF&parent=%2Fsites%2Fpostweb%2Dservice%2FSiteAssets%2FSitePages%2Fpublishing
 
 # This file configures autoprefixer used in the build script
 
@@ -13,5 +13,7 @@ last 2 Safari versions
 last 2 iOS versions
 last 2 ChromeAndroid versions
 last 2 Samsung versions
-> 2%
+
+baseline widely available
+> 0.5%
 not dead
