@@ -172,23 +172,35 @@ export class MigrationV910Component extends LitElement {
               commands in your project root:
               <code-block code=${'npm install @swisspost/design-system-styles@10'}></code-block>
               <code-block
-                code=${this.angular
-                  ? 'npm install @swisspost/design-system-components-angular@10'
-                  : 'npm install @swisspost/design-system-components@10'}
+                code=${
+                  this.angular
+                    ? 'npm install @swisspost/design-system-components-angular@10'
+                    : 'npm install @swisspost/design-system-components@10'
+                }
               ></code-block>
-              ${!this.angular
-                ? html`
-                    <p class="mt-8">
-                      Are you using React? V10 of the design system comes with a
-                      <code>@swisspost/design-system-components-react</code> package. Go check out
-                      the
-                      <a href="/?path=/docs/13b9c7f1-993d-4348-a3b7-a7ceb92fd5c7--docs"
-                        >React package documentation</a
-                      >
-                      for more informations.
-                    </p>
-                  `
-                : nothing}
+              ${
+                !this.angular
+                  ? html`
+                      <p class="mt-8">
+                        Are you using React? V10 of the design system comes with a
+                        <code>@swisspost/design-system-components-react</code> package. Go check out
+                        the
+                        <a href="/?path=/docs/13b9c7f1-993d-4348-a3b7-a7ceb92fd5c7--docs"
+                          >React package documentation</a
+                        >
+                        for more informations.
+                      </p>
+                    `
+                  : nothing
+              }
+            </p>
+          </li>
+          <li>
+            <h3>Styles entrypoint</h3>
+            <p>
+              The main styles entrypoint has been renamed.
+              On your application, locate the <code>@use '@swisspost/design-system-styles/${this.environment === 'intranet' ? 'intranet' : 'index'}(.scss)';</code> import and rename it to:
+              <code-block code=${this.environment === 'intranet' ? "@use '@swisspost/design-system-styles/post-compact.scss';" : "@use '@swisspost/design-system-styles/post-default.scss';"}></code>
             </p>
           </li>
           <li>
@@ -1821,9 +1833,11 @@ export class MigrationV910Component extends LitElement {
                 Once you've verified that your project builds and displays correctly, uninstall the
                 packages by running:
                 <code-block
-                  code=${this.angular
-                    ? 'npm uninstall bootstrap @ng-bootstrap/ng-bootstrap'
-                    : 'npm uninstall bootstrap'}
+                  code=${
+                    this.angular
+                      ? 'npm uninstall bootstrap @ng-bootstrap/ng-bootstrap'
+                      : 'npm uninstall bootstrap'
+                  }
                 ></code-block>
               </li>
             </ol>

@@ -33,6 +33,7 @@ export default [
     languageOptions: {
       parserOptions: {
         project: './tsconfig.eslint.json',
+        tsconfigRootDir: import.meta.dirname,
       },
     },
     rules: {
