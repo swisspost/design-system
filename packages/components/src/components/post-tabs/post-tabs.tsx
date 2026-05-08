@@ -50,8 +50,8 @@ export class PostTabs {
 
   @Element() host: HTMLPostTabsElement;
 
-  private leftScrollButton: HTMLButtonElement;
-  private rightScrollButton: HTMLButtonElement;
+  private leftScrollButton!: HTMLButtonElement;
+  private rightScrollButton!: HTMLButtonElement;
 
   private get tabs(): HTMLPostTabItemElement[] {
     return Array.from(this.host.querySelectorAll<HTMLPostTabItemElement>('post-tab-item')).filter(
@@ -447,7 +447,7 @@ export class PostTabs {
       <Host data-version={version}>
         <div class="tabs-wrapper" part="post-tabs">
           <button
-            ref={el => (this.leftScrollButton = el as HTMLButtonElement)}
+            ref={el => (this.leftScrollButton = el!)}
             class="scroll-btn scroll-btn-left"
             type="button"
             aria-label="Scroll button left"
@@ -476,7 +476,7 @@ export class PostTabs {
             />
           </TabsContainer>
           <button
-            ref={el => (this.rightScrollButton = el as HTMLButtonElement)}
+            ref={el => (this.rightScrollButton = el!)}
             class="scroll-btn scroll-btn-right"
             type="button"
             aria-label="Scroll button right"
