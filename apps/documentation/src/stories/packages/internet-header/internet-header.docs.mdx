@@ -7,6 +7,8 @@ import SampleCDNBareComponent from './internet-header-cdn-bare-component.sample.
 import SampleCDNLazyLoaded from './internet-header-cdn-lazy-loaded.sample.html?raw';
 import SampleFrameworks from './internet-header-frameworks.sample.html?raw';
 import SampleLazyLoaded from './internet-header-lazy-loaded.sample.js?raw';
+import SampleMigrationV10 from './internet-header-migration-v10.sample.html?raw';
+import SampleMigrationRuntime from './internet-header-migration-runtime.sample.ts?raw';
 import * as PackageStories from './internet-header.stories';
 
 <Meta of={PackageStories} />
@@ -140,111 +142,37 @@ Version 10 introduces a set of required visually hidden label props.
 They are passed through to the inner Design System components and the component will throw if any are missing.
 Provide translated values for every language your application supports.
 
-| Prop | Purpose |
-|---|---|
-| `text-menu` | Label for the burger menu toggle button |
-| `text-back` | Label for the back button in mobile navigation |
-| `text-close` | Label for close buttons |
-| `text-current-language` | Announces the currently selected language. Use `#name` as a placeholder for the language name |
-| `text-change-language` | Label for the language switcher control |
-| `text-main` | Label for the main navigation landmark |
-| `text-current-user` | Label for the user avatar when logged in |
-| `text-user-links` | Label for the user menu action list |
+See the full list of `text-*` props and their descriptions in the [Internet Header documentation](?path=/docs/ebb11274-091b-4cb7-9a3f-3e0451c9a865--docs).
 
-<Source
-  code={`<!-- v9 -->
-<swisspost-internet-header
-  project="your-service-id"
-></swisspost-internet-header>
-
-<!-- v10 -->
-<swisspost-internet-header
-  project="your-service-id"
-  text-menu="Menu"
-  text-back="Back"
-  text-close="Close"
-  text-current-language="The currently selected language is #name."
-  text-change-language="Change the language"
-  text-main="Main navigation"
-  text-current-user="Current user is John Doe."
-  text-user-links="User links"
-></swisspost-internet-header>`}
-  dark={SourceDarkScheme}
-  language="html"
-/>
+<Source code={SampleMigrationV10} dark={SourceDarkScheme} language="html" />
 
 ### 2. Remove props that no longer exist
 
-The following props have been removed. Leaving them in your markup has no effect, but they should be cleaned up.
+The following props have been removed and have no effect in v10.
 
-| Removed prop | Reason |
-|---|---|
-| `stickyness` | Removed. |
-| `meta` | The meta navigation is no longer toggleable. |
-| `login` | Login rendering is driven by the portal config. |
-| `search` | Search is no longer configurable via prop. |
-| `skiplinks` | Removed from the internet header. Add skiplinks independently if needed. |
-| `config-proxy` | Removed. |
-| `language-cookie-key` | Cookie-based language detection removed. |
-| `language-local-storage-key` | Removed. Language is now detected from the URL, `document.lang`, or browser preferences. |
-| `logout-url` | Removed. |
-| `self-admin-origin` | Removed. |
-| `os-flyout-overrides` | Removed. |
-| `custom-config` | Removed. |
-| `language-switch-overrides` | Removed. |
+<ul>
+  <li><code>stickyness</code></li>
+  <li><code>meta</code></li>
+  <li><code>login</code></li>
+  <li><code>search</code></li>
+  <li><code>skiplinks</code></li>
+  <li><code>config-proxy</code></li>
+  <li><code>language-cookie-key</code></li>
+  <li><code>language-local-storage-key</code></li>
+  <li><code>logout-url</code></li>
+  <li><code>self-admin-origin</code></li>
+  <li><code>os-flyout-overrides</code></li>
+  <li><code>custom-config</code></li>
+  <li><code>language-switch-overrides</code></li>
+</ul>
 
-<Source
-  code={`<!-- v9 — remove all of these -->
-<swisspost-internet-header
-  project="your-service-id"
-  stickyness="minimal"
-  meta="true"
-  login="true"
-  search="true"
-  skiplinks="true"
-  language-cookie-key="lang"
-  language-local-storage-key="my-lang-key"
-  logout-url="https://example.com/logout"
-></swisspost-internet-header>
 
-<!-- v10 -->
-<swisspost-internet-header
-  project="your-service-id"
-  text-menu="Menu"
-  text-back="Back"
-  text-close="Close"
-  text-current-language="The currently selected language is #name."
-  text-change-language="Change the language"
-  text-main="Main navigation"
-  text-current-user="Current user is John Doe."
-  text-user-links="User links"
-></swisspost-internet-header>`}
-  dark={SourceDarkScheme}
-  language="html"
-/>
 
 ### 3. Update runtime usage
 
 The `language`, `active-route`, `environment`, and `full-width` props are still reactive and can be set at runtime.
-The `getCurrentLanguage()` method is also still available.
 All other programmatic property assignments from v9 have no effect in v10 and should be removed.
 
-<Source
-  code={`const header = document.querySelector<HTMLSwisspostInternetHeaderElement>(
-  'swisspost-internet-header',
-);
-
-// ✅ Still works in v10
-header.language = 'fr';
-const lang = await header.getCurrentLanguage();
-
-// ❌ No-ops in v10 — remove these
-header.search = false;
-header.stickyness = 'full';
-header.customConfig = { /* ... */ };
-header.languageSwitchOverrides = [ /* ... */ ];`}
-  dark={SourceDarkScheme}
-  language="typescript"
-/>
+<Source code={SampleMigrationRuntime} dark={SourceDarkScheme} language="typescript" />
 
 </PackageDocs>
