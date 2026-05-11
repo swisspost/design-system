@@ -204,7 +204,10 @@
           "Send mail",
           "Expédition",
           "Inviare",
+          "send",
+          "envoyer",
           "senden",
+          "inviare",
           "Lettre colis",
           "Lettera pacco",
           "Parcel Letter",
@@ -272,7 +275,10 @@
           "Parcel",
           "Pacco",
           "Colis",
+          "send",
+          "envoyer",
           "senden",
+          "inviare",
           "parcel depot",
           "dépôt de colis",
           "consegna dei pacchi",
@@ -324,7 +330,10 @@
           "Parcel",
           "Pacco",
           "Colis",
+          "send",
+          "envoyer",
           "senden",
+          "inviare",
           "parcel depot",
           "dépôt de colis",
           "consegna dei pacchi",
@@ -381,18 +390,14 @@
           "Receive mail",
           "Ricevere la corrispondenza",
           "Recevoir du courrier",
+          "parcel and letter",
+          "pacco e lettera",
           "Paket und Brief",
-          "Parcel and letter",
-          "Colis et lettre",
-          "Pacco e lettera",
+          "colis et lettre",
           "Service de distribution",
           "Servizio di distribuzione",
           "Distribution Service",
           "Zustelldienst",
-          "Absender",
-          "expéditeur",
-          "mittente",
-          "sender",
           "envoyer du courrier",
           "inviare posta",
           "send mail",
@@ -493,7 +498,10 @@
           "Send mail",
           "Expédition",
           "Inviare",
+          "send",
+          "envoyer",
           "senden",
+          "inviare",
           "domicile",
           "domicilio",
           "Wohnort",
@@ -544,7 +552,10 @@
           "Send mail",
           "Expédition",
           "Inviare",
+          "send",
+          "envoyer",
           "senden",
+          "inviare",
           "ricevere",
           "recevoir",
           "receive",
@@ -674,10 +685,10 @@
           "Parcel",
           "Pacco",
           "Colis",
-          "retourner",
-          "girare",
-          "turn around",
-          "Retournieren"
+          "retournieren",
+          "ritornare",
+          "return",
+          "Retourner"
         ],
         "year": [
           "2017"
@@ -978,9 +989,9 @@
           "Letter",
           "Lettera",
           "Lettre",
+          "documents",
           "Dokumente",
-          "Documents",
-          "Documenti",
+          "documenti",
           "Dokumentablage",
           "Document filing",
           "Archivio documenti",
@@ -1136,6 +1147,9 @@
           "Vente de marques",
           "Vendita del marchio",
           "A-Post",
+          "Courrier A",
+          "A Mail",
+          "Posta A",
           "vente de timbres",
           "vendita di francobolli",
           "Verkauf von Briefmarken",
@@ -1144,7 +1158,6 @@
           "Postage Stamp",
           "Timbro postale",
           "Timbre-poste",
-          "A Mail",
           "A E-mail",
           "E-mail A"
         ],
@@ -1164,7 +1177,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-11-29T13:53:12.000Z"
+      "modifiedAt": "2026-05-02T19:05:02.067Z"
     },
     {
       "uuid": "86e34040-c5fc-11e7-a943-005056a94f4a",
@@ -1178,19 +1191,21 @@
         ],
         "keywords": [
           "Brief/Wert",
+          "Lettre/valeur",
           "Letter/value",
           "Lettera/valore",
-          "Lettre/valeur",
           "Brief",
           "Letter",
           "Lettera",
           "Lettre",
           "A-Post",
+          "Courrier A",
+          "A Mail",
+          "Posta A",
           "Briefmarke",
           "Postage Stamp",
           "Timbro postale",
           "Timbre-poste",
-          "A Mail",
           "A E-mail",
           "E-mail A",
           "Briefumschlag",
@@ -1236,7 +1251,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-11-29T13:53:12.000Z"
+      "modifiedAt": "2026-05-02T19:05:02.067Z"
     },
     {
       "uuid": "86ec40f0-c5fc-11e7-a943-005056a94f4a",
@@ -1252,11 +1267,13 @@
           "Filatelia",
           "Philatelie",
           "A-Post",
+          "Courrier A",
+          "A Mail",
+          "Posta A",
           "Briefmarke",
           "Postage Stamp",
           "Timbro postale",
           "Timbre-poste",
-          "A Mail",
           "A E-mail",
           "E-mail A"
         ],
@@ -1276,7 +1293,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-11-29T13:53:13.000Z"
+      "modifiedAt": "2026-05-02T19:05:02.067Z"
     },
     {
       "uuid": "86f17110-c5fc-11e7-a943-005056a94f4a",
@@ -1293,14 +1310,17 @@
           "Missed postal items",
           "Invii postali mancati",
           "Envois postaux manqués",
+          "documents",
           "Dokumente",
-          "Documents",
-          "Documenti",
+          "documenti",
           "Versenden",
           "Send mail",
           "Expédition",
           "Inviare",
+          "send",
+          "envoyer",
           "senden",
+          "inviare",
           "Envois postaux non distribués",
           "Undistributed postal items",
           "Spedizioni postali non distribuite",
@@ -1351,15 +1371,14 @@
           "Samstag",
           "Sabato",
           "Samedi",
+          "send",
+          "envoyer",
           "senden",
+          "inviare",
           "Distribution le samedi",
           "Distribuzione il sabato",
           "Distribution on Saturday",
           "Zustellung am Samstag",
-          "calendrier",
-          "calendario",
-          "Timing",
-          "calendar",
           "ricevere",
           "recevoir",
           "receive",
@@ -1411,7 +1430,10 @@
           "Stars",
           "Stelle",
           "Étoiles",
+          "send",
+          "envoyer",
           "senden",
+          "inviare",
           "Versenden",
           "Send mail",
           "Expédition",
@@ -1599,10 +1621,6 @@
           "Étendre",
           "Ampliare",
           "Datum",
-          "calendrier",
-          "calendario",
-          "Timing",
-          "calendar",
           "Date",
           "Kalender",
           "Calendar",
@@ -1645,15 +1663,18 @@
           "Express",
           "Esprimere",
           "Exprimer",
-          "Pfeile",
           "arrows",
-          "Frecce",
-          "Flèches",
+          "flèches",
+          "frecce",
+          "Pfeile",
           "Versenden",
           "Send mail",
           "Expédition",
           "Inviare",
+          "send",
+          "envoyer",
           "senden",
+          "inviare",
           "nach rechts",
           "to the right",
           "verso destra",
@@ -1692,15 +1713,18 @@
           "kommunikation"
         ],
         "keywords": [
-          "Pfeile",
           "arrows",
-          "Frecce",
-          "Flèches",
+          "flèches",
+          "frecce",
+          "Pfeile",
           "nach rechts",
           "to the right",
           "verso destra",
           "Vers la droite",
+          "send",
+          "envoyer",
           "senden",
+          "inviare",
           "Versenden",
           "Send mail",
           "Expédition",
@@ -2125,10 +2149,6 @@
           "Gestion des changements",
           "Change Management",
           "Gestione del cambiamento",
-          "calendrier",
-          "calendario",
-          "Timing",
-          "calendar",
           "synchroniser",
           "synchronize",
           "sincronizzare",
@@ -2231,10 +2251,6 @@
           "Promemoria",
           "recollection",
           "Rappel",
-          "calendrier",
-          "calendario",
-          "Timing",
-          "calendar",
           "rappel",
           "abseilen",
           "rappello",
@@ -2292,10 +2308,6 @@
           "Person",
           "Persona",
           "Personne",
-          "gruppo",
-          "groupe",
-          "Konzern",
-          "group",
           "Personen",
           "People",
           "Gente",
@@ -2403,7 +2415,10 @@
           "Send mail",
           "Expédition",
           "Inviare",
+          "send",
+          "envoyer",
           "senden",
+          "inviare",
           "Person",
           "Persona",
           "Personne",
@@ -2745,7 +2760,10 @@
           "Send mail",
           "Expédition",
           "Inviare",
+          "send",
+          "envoyer",
           "senden",
+          "inviare",
           "Brief",
           "Letter",
           "Lettera",
@@ -2788,10 +2806,10 @@
           "kommunikation"
         ],
         "keywords": [
+          "letter with arrow",
+          "lettre avec flèche",
           "Brief mit Pfeil",
-          "Letter with arrow",
-          "Lettera con freccia",
-          "Lettre avec flèche",
+          "lettera con freccia",
           "Brief",
           "Letter",
           "Lettera",
@@ -2842,10 +2860,10 @@
           "kommunikation"
         ],
         "keywords": [
+          "letter with arrow",
+          "lettre avec flèche",
           "Brief mit Pfeil",
-          "Letter with arrow",
-          "Lettera con freccia",
-          "Lettre avec flèche",
+          "lettera con freccia",
           "Brief",
           "Letter",
           "Lettera",
@@ -3006,9 +3024,9 @@
           "Copy document",
           "Copiare documento",
           "Copier le document",
+          "documents",
           "Dokumente",
-          "Documents",
-          "Documenti",
+          "documenti",
           "Brief",
           "Letter",
           "Lettera",
@@ -3075,9 +3093,9 @@
           "lettres",
           "Lettere",
           "Letters",
+          "documents",
           "Dokumente",
-          "Documents",
-          "Documenti",
+          "documenti",
           "Several letters",
           "mehrere Briefe",
           "Più lettere",
@@ -3436,8 +3454,8 @@
           "kommunikation"
         ],
         "keywords": [
-          "Posteingang",
           "Inbox",
+          "Posteingang",
           "Boîte de réception",
           "Posta in arrivo",
           "Archivio",
@@ -3616,10 +3634,10 @@
           "kommunikation"
         ],
         "keywords": [
+          "settings",
           "Einstellungen",
-          "Settings",
-          "Impostazioni",
-          "Paramètres"
+          "impostazioni",
+          "paramètres"
         ],
         "year": [
           "2017"
@@ -3657,10 +3675,10 @@
           "Hand",
           "Mano",
           "Main",
+          "settings",
           "Einstellungen",
-          "Settings",
-          "Impostazioni",
-          "Paramètres"
+          "impostazioni",
+          "paramètres"
         ],
         "year": [
           "2017"
@@ -3898,8 +3916,8 @@
         "keywords": [
           "Lokalisieren",
           "Localize",
-          "Localiser",
           "Localizzare",
+          "Localiser",
           "GPS"
         ],
         "year": [
@@ -4030,7 +4048,6 @@
           "kommunikation"
         ],
         "keywords": [
-          "Foto",
           "Photo",
           "Gallery",
           "Gemälde",
@@ -4114,10 +4131,10 @@
           "no access",
           "nessun accesso",
           "Pas d’accès",
+          "access closed",
+          "accesso chiuso",
           "Zugang geschlossen",
-          "Access closed",
-          "Accesso chiuso",
-          "Accès fermé",
+          "accès fermé",
           "geschlossen",
           "Chiuso",
           "Fermé",
@@ -4981,10 +4998,10 @@
           "Avanzamento veloce",
           "Avance rapide",
           "Fast Forward",
-          "deux triangles",
           "two triangles",
-          "Zwei Dreiecke",
           "due triangoli",
+          "Zwei Dreiecke",
+          "deux triangles",
           "Dreieck",
           "Triangle",
           "Triangolo"
@@ -5022,10 +5039,10 @@
           "Ritorno rapido",
           "Quick Return",
           "Schnelle Rücksendung",
-          "deux triangles",
           "two triangles",
-          "Zwei Dreiecke",
           "due triangoli",
+          "Zwei Dreiecke",
+          "deux triangles",
           "Dreieck",
           "Triangle",
           "Triangolo",
@@ -5101,7 +5118,7 @@
           "Turn off sound",
           "Désactiver le son",
           "Disattivare l’audio",
-          "stumm",
+          "Stumm",
           "mute",
           "muet",
           "muto",
@@ -5266,13 +5283,15 @@
           "Preferito asterisco",
           "Etoile favori",
           "Stern",
+          "star",
+          "étoile",
+          "stella",
           "Favoriten",
           "Favourites",
           "Preferiti",
           "Favoris",
           "Étoile favori",
           "Étoile gefällig",
-          "Etoile",
           "Favorite star",
           "Lieblingsstern",
           "Stella preferita",
@@ -5307,10 +5326,10 @@
           "kommunikation"
         ],
         "keywords": [
-          "Wunschliste",
-          "wish list",
-          "Liste de souhaits",
+          "Wish list",
           "Lista dei desideri",
+          "Wunschliste",
+          "Liste de souhaits",
           "Herz",
           "Heart",
           "Cuore",
@@ -6113,10 +6132,10 @@
           "no access",
           "nessun accesso",
           "Pas d’accès",
+          "access closed",
+          "accesso chiuso",
           "Zugang geschlossen",
-          "Access closed",
-          "Accesso chiuso",
-          "Accès fermé",
+          "accès fermé",
           "geschlossen",
           "Chiuso",
           "Fermé",
@@ -6312,18 +6331,18 @@
           "kommunikation"
         ],
         "keywords": [
+          "settings",
           "Einstellungen",
-          "Settings",
-          "Impostazioni",
-          "Paramètres",
+          "impostazioni",
+          "paramètres",
+          "computer settings",
           "Computereinstellungen",
-          "Computer settings",
-          "Impostazioni del computer",
-          "Paramètres de l’ordinateur",
+          "impostazioni del computer",
+          "paramètres de l'ordinateur",
+          "display settings",
           "Anzeigeeinstellungen",
-          "Impostazioni di visualizzazione",
-          "Display settings",
-          "Paramètres d’affichage",
+          "paramètres d'affichage",
+          "impostazioni di visualizzazione",
           "Services IT",
           "Servizi IT",
           "responsabilité des processus",
@@ -6503,10 +6522,10 @@
           "Touchscreen",
           "Touch screen",
           "Écran tactile",
-          "Hands",
+          "hands",
+          "mains",
+          "mani",
           "Hände",
-          "Mani",
-          "Mains",
           "berühren",
           "affect",
           "Toucher",
@@ -6604,10 +6623,10 @@
           "Cercle",
           "circle",
           "cerchio",
+          "two circles",
           "deux cercles",
-          "due cerchi",
           "Zwei Kreise",
-          "two circles"
+          "due cerchi"
         ],
         "year": [
           "2017"
@@ -6777,10 +6796,10 @@
         "keywords": [
           "Transformation",
           "Trasformazione",
-          "transformieren",
           "transform",
-          "Transformer",
+          "transformer",
           "trasformare",
+          "transformieren",
           "modification",
           "Modifikation",
           "modifica",
@@ -7766,10 +7785,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Sinnbild",
           "Symbol",
           "Simbolo",
@@ -7808,11 +7823,7 @@
           "Elektronik",
           "Electronics",
           "Elettronica",
-          "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch"
+          "Électronique"
         ]
       },
       "file": {
@@ -7909,10 +7920,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Mobiltelefon",
           "Mobile Phone",
           "Cellulare",
@@ -7968,10 +7975,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Sack",
           "Bag",
           "Borsa",
@@ -8270,11 +8273,7 @@
           "Elektronik",
           "Electronics",
           "Elettronica",
-          "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch"
+          "Électronique"
         ],
         "year": [
           "2020"
@@ -8328,10 +8327,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Mobiltelefon",
           "Mobile Phone",
           "Cellulare",
@@ -8684,8 +8679,6 @@
           "Car Analytics",
           "Connected Car",
           "Car  Wifi",
-          "Wifi Auto",
-          "Auto Analytics",
           "Rasenfläche",
           "Lawn",
           "Campo",
@@ -8740,11 +8733,14 @@
           "ecology",
           "Écologie",
           "Ecologia",
-          "Energia",
-          "veicoli elettrici",
-          "electric vehicles",
-          "véhicules électriques",
-          "Elektro Fahrzeuge",
+          "energy",
+          "énergie",
+          "Energie",
+          "energia",
+          "Elektrofahrzeuge",
+          "Electric vehicles",
+          "Veicoli elettrici",
+          "Véhicules électriques",
           "Sinnbild",
           "Symbol",
           "Simbolo",
@@ -9348,10 +9344,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Dynamit",
           "Dynamite",
           "Dinamite",
@@ -9463,11 +9455,7 @@
           "Elektronik",
           "Electronics",
           "Elettronica",
-          "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch"
+          "Électronique"
         ],
         "year": [
           "2020"
@@ -9824,11 +9812,7 @@
           "Elektronik",
           "Electronics",
           "Elettronica",
-          "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch"
+          "Électronique"
         ],
         "year": [
           "2020"
@@ -10311,20 +10295,15 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/535282/storage/NTM1Mjg0LzAvbWFzdGVy",
         "keywords": [
-          "Nespresso Beutel",
+          "Nespresso bag",
           "Recycling Beutel",
           "Recycling bags",
           "Sachets de recyclage",
           "Sacchetti per il riciclaggio",
-          "Sachet Nespresso",
           "sachet de recyclage",
           "recycling bag",
           "sacchetto di riciclaggio",
           "Recycling-Beutel",
-          "Sacchetto Nespresso",
-          "Sac Nespresso",
-          "Nespresso bag",
-          "Nespresso-Beutel",
           "Sinnbild",
           "Symbol",
           "Simbolo",
@@ -10663,11 +10642,7 @@
           "Elektronik",
           "Electronics",
           "Elettronica",
-          "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch"
+          "Électronique"
         ],
         "year": [
           "2020"
@@ -10820,10 +10795,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Gaspumpe",
           "Gas Pump",
           "Pompa del gas",
@@ -11323,10 +11294,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Mobiltelefon",
           "Mobile Phone",
           "Cellulare",
@@ -11462,10 +11429,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Mobiltelefon",
           "Mobile Phone",
           "Cellulare",
@@ -11541,10 +11504,10 @@
           "function description",
           "Explication de la fonction",
           "Spiegazione della funzione",
+          "functional explanation",
           "explication fonctionnelle",
           "spiegazione funzionale",
-          "functional explanation",
-          "Funktionale Erklärung",
+          "funktionale Erklärung",
           "Wegweiser",
           "Sign",
           "Segno",
@@ -12017,7 +11980,10 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/598337/storage/NTk4MzM5LzAvbWFzdGVy",
         "keywords": [
-          "Riskmanagement",
+          "Risk management",
+          "Risikomanagement",
+          "Gestione del rischio",
+          "Gestion des risques",
           "Sinnbild",
           "Symbol",
           "Simbolo",
@@ -12141,10 +12107,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Aufhänger",
           "Hook",
           "Gancio",
@@ -12252,10 +12214,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Sinnbild",
           "Symbol",
           "Simbolo",
@@ -12291,17 +12249,13 @@
           "Informatique flexible",
           "Flessibilità IT",
           "Flexible network",
+          "Rete flessibile",
           "Flexibles Netzwerk",
           "Réseau flexible",
-          "Rete flessibile",
           "Elektronik",
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Aufhänger",
           "Hook",
           "Gancio",
@@ -12380,10 +12334,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Aufhänger",
           "Hook",
           "Gancio",
@@ -12521,11 +12471,7 @@
           "Elektronik",
           "Electronics",
           "Elettronica",
-          "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch"
+          "Électronique"
         ],
         "year": [
           "2021"
@@ -12599,10 +12545,10 @@
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/600083/storage/NjAwMDg1LzAvbWFzdGVy",
         "keywords": [
           "Virus",
+          "pandemic",
+          "pandémie",
           "Pandemie",
-          "Pandemic",
-          "Pandemia",
-          "Pandémie",
+          "pandemia",
           "Sinnbild",
           "Symbol",
           "Simbolo",
@@ -12928,10 +12874,10 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/600156/storage/NjAwMTU4LzAvbWFzdGVy",
         "keywords": [
-          "Konstruktiver Dialog",
-          "Dialogo costruttivo",
           "Constructive dialogue",
+          "Konstruktiver Dialog",
           "Dialogue constructif",
+          "Dialogo costruttivo",
           "Wegweiser",
           "Sign",
           "Segno",
@@ -13808,10 +13754,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Mobiltelefon",
           "Mobile Phone",
           "Cellulare",
@@ -14027,10 +13969,7 @@
           "Forwarding consignment",
           "Inoltro dell’invio",
           "Réexpédition de l’envoi",
-          "Expédition d'expédition",
-          "Versand Versand",
-          "Shipping Shipment",
-          "Spedizione di spedizione",
+          "Expedition",
           "Inoltro della spedizione",
           "Versand ableiten",
           "Transmission de l'envoi",
@@ -14266,10 +14205,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Fernbedienung",
           "Remote Control",
           "Controllo remoto",
@@ -14429,10 +14364,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Mobiltelefon",
           "Mobile Phone",
           "Cellulare",
@@ -14750,10 +14681,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Mobiltelefon",
           "Mobile Phone",
           "Cellulare",
@@ -14834,11 +14761,7 @@
           "Elektronik",
           "Electronics",
           "Elettronica",
-          "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch"
+          "Électronique"
         ],
         "year": [
           "2021"
@@ -14922,10 +14845,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Mobiltelefon",
           "Mobile Phone",
           "Cellulare",
@@ -15030,10 +14949,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Vignette",
           "Sticker",
           "Adesivo",
@@ -15085,10 +15000,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Hand",
           "Mano",
           "Main",
@@ -15744,9 +15655,9 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/616998/storage/NjE3MDAxLzAvbWFzdGVy",
         "keywords": [
+          "spare Parts",
+          "pezzi di ricambio",
           "Ersatzteile",
-          "Spare parts",
-          "Pezzi di ricambio",
           "Pièces de rechange",
           "Dynamit",
           "Dynamite",
@@ -16123,10 +16034,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Mobiltelefon",
           "Mobile Phone",
           "Cellulare",
@@ -16831,10 +16738,6 @@
           "Consegna in PickPost",
           "Delivery in PickPost",
           "Anlieferung als PickPost",
-          "Consegna all'PickPost",
-          "Livraison au PickPost",
-          "Übergabe an PickPost",
-          "Delivery to PickPost",
           "delivery to PickPost",
           "durchqueren",
           "Cross",
@@ -16947,10 +16850,10 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/623948/storage/NjIzOTUyLzAvbWFzdGVy",
         "keywords": [
+          "markets",
+          "marchés",
+          "mercati",
           "Märkte",
-          "Markets",
-          "Mercati",
-          "Marchés",
           "Die Märkte",
           "les marchés",
           "i mercati",
@@ -17002,7 +16905,6 @@
           "signature POD",
           "POD signature",
           "Signature POD",
-          "firma POD",
           "durchqueren",
           "Cross",
           "Incrocio",
@@ -17132,10 +17034,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Mobiltelefon",
           "Mobile Phone",
           "Cellulare",
@@ -17616,10 +17514,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Sinnbild",
           "Symbol",
           "Simbolo",
@@ -17782,10 +17676,9 @@
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/636529/storage/NjM2NTMyLzAvbWFzdGVy",
         "keywords": [
           "sea freight",
-          "Seefracht",
-          "Trasporto marittimo",
-          "Fret maritime",
           "fret maritime",
+          "Seefracht",
+          "trasporto marittimo",
           "fret marittimo",
           "Fret Maritime",
           "Logo"
@@ -18063,8 +17956,8 @@
           "Artrite",
           "Knochen",
           "bone",
-          "Osso",
-          "Os"
+          "os",
+          "osso"
         ],
         "year": [
           "2022"
@@ -18390,10 +18283,10 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/639801/storage/NjM5ODA0LzAvbWFzdGVy",
         "keywords": [
+          "Occupational Safety",
+          "Sécurité Au Travail",
           "Arbeitssicherheit",
           "Sicurezza sul lavoro",
-          "Occupational safety",
-          "Sécurité au travail",
           "Arbeitsschutz",
           "Protection au travail",
           "tutela del lavoro",
@@ -18686,11 +18579,7 @@
           "Elektronik",
           "Electronics",
           "Elettronica",
-          "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch"
+          "Électronique"
         ],
         "year": [
           "2022"
@@ -18724,10 +18613,10 @@
           "Achetez-le",
           "Software",
           "Logiciel",
-          "Telefonia",
+          "telephony",
           "Telefonie",
-          "Telephony",
-          "Téléphonie",
+          "téléphonie",
+          "telefonia",
           "Wegweiser",
           "Sign",
           "Segno",
@@ -18910,10 +18799,10 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/640580/storage/NjQwNTgyLzAvbWFzdGVy",
         "keywords": [
+          "mortgage",
           "Hypothek",
-          "Ipoteca",
-          "Mortgage",
-          "Hypothèque",
+          "hypothèque",
+          "ipoteca",
           "Pensionskasse"
         ],
         "year": [
@@ -19402,7 +19291,6 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/641969/storage/NjQxOTcyLzAvbWFzdGVy",
         "keywords": [
-          "POS",
           "Kasse",
           "Cash desk",
           "Cassa",
@@ -19438,10 +19326,10 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/641975/storage/NjQxOTc3LzAvbWFzdGVy",
         "keywords": [
-          "DXP Fahrzeuge",
           "DXP vehicles",
-          "Veicoli DXP",
+          "DXP Fahrzeuge",
           "Véhicules DXP",
+          "Veicoli DXP",
           "Elektroroller",
           "Scooters électriques",
           "Scooter elettrici",
@@ -19499,10 +19387,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Mobiltelefon",
           "Mobile Phone",
           "Cellulare",
@@ -19695,10 +19579,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Computerhardware",
           "Computer Hardware",
           "Hardware del computer",
@@ -19869,7 +19749,6 @@
           "bis zum Ende",
           "fino alla fine",
           "jusqu'au bout",
-          "Doublefwd",
           "Sinnbild",
           "Symbol",
           "Simbolo",
@@ -20009,10 +19888,10 @@
           "Revenue",
           "Chiffre d’affaires",
           "Fatturato",
-          "Erfolg",
           "success",
-          "Succès",
-          "Successo",
+          "succès",
+          "successo",
+          "Erfolg",
           "Kurve",
           "twist",
           "Curva",
@@ -21206,10 +21085,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Text",
           "Testo",
           "Texte"
@@ -21799,10 +21674,10 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/650420/storage/NjUwNDE5LzAvbWFzdGVy",
         "keywords": [
-          "Défi",
           "Sfida",
-          "Challenge",
           "Herausforderung",
+          "challenge",
+          "Défi",
           "una sfida",
           "eine Herausforderung",
           "un défi",
@@ -22586,7 +22461,6 @@
           "DigiStamp package",
           "pack DigiStamp",
           "Paket DigiStamp",
-          "Colis DigiStamp",
           "Computerhardware",
           "Computer Hardware",
           "Hardware del computer",
@@ -22595,10 +22469,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Computer",
           "Ordinateur"
         ],
@@ -22800,9 +22670,9 @@
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/658506/storage/NjU4NTA1LzAvbWFzdGVy",
         "keywords": [
           "Gesetz",
-          "Loi",
+          "Law",
           "Legge",
-          "law",
+          "Loi",
           "Justiz",
           "justice",
           "Giustizia",
@@ -23099,10 +22969,10 @@
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/660994/storage/NjYwOTkzLzAvbWFzdGVy",
         "keywords": [
           "E-Urne",
-          "Elektronische Urne",
+          "Electronic ballot box",
           "Urne électronique",
           "Urna elettronica",
-          "Electronic ballot box",
+          "Elektronische Urne",
           "Sinnbild",
           "Symbol",
           "Simbolo",
@@ -23388,10 +23258,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Maschine",
           "Machine",
           "Macchina"
@@ -24493,10 +24359,10 @@
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/674521/storage/Njc0NTIwLzAvbWFzdGVy",
         "keywords": [
           "WCM",
+          "Modello software",
+          "Software model",
           "Modèle logiciel",
-          "Software Model",
           "Software-Modell",
-          "Template - software",
           "Sinnbild",
           "Symbol",
           "Simbolo",
@@ -24818,11 +24684,7 @@
           "Elektronik",
           "Electronics",
           "Elettronica",
-          "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch"
+          "Électronique"
         ],
         "year": [
           "2023"
@@ -25098,11 +24960,7 @@
           "Elektronik",
           "Electronics",
           "Elettronica",
-          "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch"
+          "Électronique"
         ],
         "year": [
           "2023"
@@ -25142,10 +25000,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Mobiltelefon",
           "Mobile Phone",
           "Cellulare",
@@ -25211,9 +25065,9 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/681869/storage/NjgxODY4LzAvbWFzdGVy",
         "keywords": [
-          "Einfach",
           "Simple",
           "Semplice",
+          "Einfach",
           "Body Part",
           "Partie du corps",
           "Parte corpo",
@@ -26146,10 +26000,7 @@
           "Geschwindigkeit Standard",
           "Velocità standard",
           "Vitesse standard",
-          "velocità standard",
-          "vitesse standard",
-          "standard speed",
-          "Geschwindigkeiten Standard",
+          "Standardgeschwindigkeit",
           "Text",
           "Testo",
           "Texte"
@@ -26426,10 +26277,9 @@
           "Strengths",
           "Points forts",
           "Punti di forza",
-          "Muskeln",
           "muscles",
-          "Muscles",
-          "Muscoli",
+          "muscoli",
+          "Muskeln",
           "Gewalt",
           "Force",
           "Forza",
@@ -27047,10 +26897,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "électronique",
-          "elettronica",
-          "electronics",
-          "elektronisch",
           "Zwischensockel",
           "Adapter",
           "Adattatore",
@@ -27318,6 +27164,9 @@
           "Preferito asterisco",
           "Etoile favori",
           "Stern",
+          "star",
+          "étoile",
+          "stella",
           "Sternsymbol",
           "Star Symbol",
           "Simbolo della stella",
@@ -27925,7 +27774,6 @@
           "Lumière",
           "Luce",
           "light",
-          "Light",
           "luce",
           "léger"
         ]
@@ -28162,7 +28010,6 @@
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811211/storage/ODExMjEwLzAvbWFzdGVy",
         "keywords": [
           "Microsoft AI Builder",
-          "MS AI Builder",
           "Microsoft"
         ]
       },
@@ -28216,7 +28063,6 @@
           "Microsoft",
           "Microsoft Powerapps",
           "Microsoft PowerApps",
-          "MS Powerapps",
           "Powerapps"
         ]
       },
@@ -28245,7 +28091,6 @@
           "Microsoft",
           "Microsoft Power Automate",
           "Microsoft Power Automate Corporation",
-          "MS Power Automate",
           "Power terminals",
           "Power Automate",
           "Powerautomate",
@@ -28658,9 +28503,9 @@
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/817436/storage/ODE3NDM1LzAvbWFzdGVy",
         "keywords": [
           "sea freight",
+          "fret maritime",
           "Seefracht",
-          "Trasporto marittimo",
-          "Fret maritime"
+          "trasporto marittimo"
         ]
       },
       "file": {
@@ -30718,10 +30563,10 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3300390/storage/MDAzMzAwMzg5LzAvbWFzdGVy",
         "keywords": [
-          "Cibersécurité",
           "Cibersicurezza",
-          "Cibersecurity",
+          "Cybersécurité",
           "Cybersecurity",
+          "Cybersicherheit",
           "Hackademy"
         ]
       },
@@ -32522,10 +32367,7 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7351970/storage/MDA3MzUxOTY5LzAvbWFzdGVy",
         "keywords": [
-          "Mobility",
-          "Mobilität",
-          "Mobilité",
-          "Mobilità",
+          "Mobil",
           "AmiGo",
           "On-demand mobility",
           "On-Demand Mobilität",
@@ -32703,7 +32545,7 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/8786532/storage/MDA4Nzg2NTMwLzAvbWFzdGVy",
         "keywords": [
-          "Foto",
+          "Photo",
           "photon detection",
           "Fotonachweis",
           "Preuve photographique",
@@ -33261,9 +33103,9 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/9628320/storage/MDA5NjI4MzE4LzAvbWFzdGVy",
         "keywords": [
-          "Sdoganamento",
           "Customs clearance",
           "Verzollung",
+          "Sdoganamento",
           "Dédouanement",
           "Zoll",
           "customs",
@@ -33705,7 +33547,11 @@
         "name": "2780.svg",
         "basename": "2780",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-04-23T08:48:53.000Z",
       "modifiedAt": "2026-04-24T08:05:01.657Z"
@@ -33817,6 +33663,377 @@
       },
       "createdAt": "2026-04-23T13:37:23.000Z",
       "modifiedAt": "2026-04-23T13:38:43.000Z"
+    },
+    {
+      "uuid": "58a73530-478d-11f1-ab36-0050568d2654",
+      "id": 10279474,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279474/storage/MDEwMjc5NDczLzAvbWFzdGVy",
+        "keywords": [
+          "No identification",
+          "keine Identifikation",
+          "Pas d’identification",
+          "nessuna identificazione",
+          "without identification",
+          "ohne Identifikation",
+          "sans identification",
+          "senza identificazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2785.svg",
+        "basename": "2785",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-05-04T07:46:22.000Z",
+      "modifiedAt": "2026-05-05T07:05:07.785Z"
+    },
+    {
+      "uuid": "3e8d1ec0-478e-11f1-ab36-0050568d2654",
+      "id": 10279483,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279483/storage/MDEwMjc5NDgyLzAvbWFzdGVy",
+        "keywords": [
+          "Top up credit",
+          "Guthaben aufladen",
+          "Recharger du crédit",
+          "Ricaricare il credito"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2786.svg",
+        "basename": "2786",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-05-04T07:52:48.000Z",
+      "modifiedAt": "2026-05-05T07:05:07.785Z"
+    },
+    {
+      "uuid": "6c100180-479a-11f1-ab36-0050568d2654",
+      "id": 10279704,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279704/storage/MDEwMjc5NzAzLzAvbWFzdGVy",
+        "keywords": [
+          "Kreditkarte",
+          "Credit Card",
+          "Carta di credito",
+          "Carte De Crédit",
+          "Bloquer",
+          "Bloccare",
+          "Sperren",
+          "Block"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2787.svg",
+        "basename": "2787",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-05-04T09:19:58.000Z",
+      "modifiedAt": "2026-05-04T09:21:59.000Z"
+    },
+    {
+      "uuid": "82529830-479b-11f1-ab36-0050568d2654",
+      "id": 10279708,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279708/storage/MDEwMjc5NzA3LzAvbWFzdGVy",
+        "keywords": [
+          "Barriere",
+          "Bar",
+          "Barra",
+          "Barre",
+          "Grenze",
+          "frontier",
+          "Limite",
+          "Confine"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2788.svg",
+        "basename": "2788",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-05-04T09:27:45.000Z",
+      "modifiedAt": "2026-05-04T09:30:06.000Z"
+    },
+    {
+      "uuid": "a23700e0-479c-11f1-ab36-0050568d2654",
+      "id": 10279713,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279713/storage/MDEwMjc5NzEyLzAvbWFzdGVy",
+        "keywords": [
+          "transparency",
+          "Transparenz",
+          "Transparence",
+          "trasparenza"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2789.svg",
+        "basename": "2789",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-05-04T09:35:48.000Z",
+      "modifiedAt": "2026-05-04T09:37:18.000Z"
+    },
+    {
+      "uuid": "2d72c590-479d-11f1-ab36-0050568d2654",
+      "id": 10279718,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279718/storage/MDEwMjc5NzE3LzAvbWFzdGVy",
+        "keywords": [
+          "App",
+          "Application",
+          "Bloquer",
+          "Bloccare",
+          "Sperren",
+          "Block"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2790.svg",
+        "basename": "2790",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-05-04T09:39:42.000Z",
+      "modifiedAt": "2026-05-04T09:41:53.000Z"
+    },
+    {
+      "uuid": "004bab80-479e-11f1-ab36-0050568d2654",
+      "id": 10279722,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279722/storage/MDEwMjc5NzIxLzAvbWFzdGVy",
+        "keywords": [
+          "expenditure",
+          "Ausgaben",
+          "Dépense",
+          "Uscite",
+          "Expenditure under control",
+          "Ausgaben im Griff",
+          "Maîtriser ses dépenses",
+          "Spese sotto controllo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2791.svg",
+        "basename": "2791",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-05-04T09:45:36.000Z",
+      "modifiedAt": "2026-05-05T09:05:05.346Z"
+    },
+    {
+      "uuid": "8e622e80-479e-11f1-ab36-0050568d2654",
+      "id": 10279731,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279731/storage/MDEwMjc5NzMwLzAvbWFzdGVy",
+        "keywords": [
+          "Vaglio",
+          "Screening",
+          "Crible",
+          "Prüfung"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2792.svg",
+        "basename": "2792",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-05-04T09:49:34.000Z",
+      "modifiedAt": "2026-05-04T09:52:11.000Z"
+    },
+    {
+      "uuid": "51183870-479f-11f1-ab36-0050568d2654",
+      "id": 10279737,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279737/storage/MDEwMjc5NzM2LzAvbWFzdGVy",
+        "keywords": [
+          "Teenager",
+          "Teen",
+          "Adolescente",
+          "Adolescent",
+          "Jugendliche",
+          "Teenagers",
+          "Giovani",
+          "Adolescents"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2793.svg",
+        "basename": "2793",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-05-04T09:55:01.000Z",
+      "modifiedAt": "2026-05-04T09:57:30.000Z"
+    },
+    {
+      "uuid": "23a26cb0-47a1-11f1-b1f0-0050568d2654",
+      "id": 10279750,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279750/storage/MDEwMjc5NzQ5LzAvbWFzdGVy",
+        "keywords": [
+          "Online-Shopping",
+          "Online shopping",
+          "Shopping online",
+          "Achats en ligne",
+          "Mobile Shopping",
+          "Achats mobiles",
+          "Acquisti per dispositivi mobili",
+          "Secure shopping",
+          "Sicheres Shopping",
+          "Shopping sécurisé",
+          "Shopping sicuro"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2794.svg",
+        "basename": "2794",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-05-04T10:08:03.000Z",
+      "modifiedAt": "2026-05-05T10:05:07.473Z"
+    },
+    {
+      "uuid": "ef0bf100-47a1-11f1-b1f0-0050568d2654",
+      "id": 10279755,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279755/storage/MDEwMjc5NzU0LzAvbWFzdGVy",
+        "keywords": [
+          "App",
+          "Application",
+          "Control via app",
+          "Kontrolle per App",
+          "Contrôle via l’application",
+          "Controllo tramite app"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2795.svg",
+        "basename": "2795",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-05-04T10:13:45.000Z",
+      "modifiedAt": "2026-05-05T10:05:07.473Z"
+    },
+    {
+      "uuid": "6b20c5e0-47a2-11f1-b1f0-0050568d2654",
+      "id": 10279760,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10279760/storage/MDEwMjc5NzU5LzAvbWFzdGVy",
+        "keywords": [
+          "Sicherheit",
+          "Security",
+          "Sicurezza",
+          "Sécurité",
+          "Travelling safely",
+          "Sicher unterwegs",
+          "Sécurité en déplacement",
+          "Sicuri fuori casa"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2796.svg",
+        "basename": "2796",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-05-04T10:17:13.000Z",
+      "modifiedAt": "2026-05-05T10:05:07.473Z"
     },
     {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
@@ -35287,10 +35504,6 @@
           "distant",
           "prenotato",
           "Réservé",
-          "réservé",
-          "cauto",
-          "reserved",
-          "zurückhaltend",
           "Reserviert",
           "Reserved",
           "Riservato"
@@ -36926,10 +37139,10 @@
           "Brief-/Paketwaage",
           "Balance pour lettres/colis",
           "Autovetture per lettere/pacchi",
-          "Peso",
+          "weight",
+          "poids",
+          "peso",
           "Gewicht",
-          "Weight",
-          "Poids",
           "Paket",
           "Parcel",
           "Pacco",
@@ -37593,7 +37806,6 @@
           "Flights",
           "Voyages en avion",
           "Viaggi aerei",
-          "vol",
           "départ en avion",
           "departure by plane",
           "Abflug Flugzeug",
@@ -37826,10 +38038,6 @@
           "Enregistrer",
           "Registrare",
           "absorb",
-          "filmer",
-          "Filmen",
-          "film",
-          "filmare",
           "Speichern",
           "enregistrer",
           "record",
@@ -37877,10 +38085,6 @@
           "Enregistrer",
           "Registrare",
           "absorb",
-          "filmer",
-          "Filmen",
-          "film",
-          "filmare",
           "Speichern",
           "enregistrer",
           "record",
@@ -37938,10 +38142,6 @@
           "Vidéo de smartphone",
           "Video di smartphone",
           "Smartphone Video",
-          "filmer",
-          "Filmen",
-          "film",
-          "filmare",
           "Film",
           "Mobiltelefon",
           "Mobile Phone",
@@ -37989,11 +38189,6 @@
           "shot",
           "Registrazione",
           "Enregistrement",
-          "Foto",
-          "filmer",
-          "Filmen",
-          "film",
-          "filmare",
           "Speichern",
           "enregistrer",
           "record",
@@ -38051,10 +38246,6 @@
           "Enregistrer",
           "Registrare",
           "absorb",
-          "filmer",
-          "Filmen",
-          "film",
-          "filmare",
           "Speichern",
           "enregistrer",
           "record",
@@ -38154,7 +38345,6 @@
           "kommunikation"
         ],
         "keywords": [
-          "Kultur",
           "Burg",
           "Culture",
           "Château-fort",
@@ -38286,10 +38476,10 @@
           "Direzione opposta",
           "opposite direction",
           "Contre-sens",
-          "Pfeile",
           "arrows",
-          "Frecce",
-          "Flèches"
+          "flèches",
+          "frecce",
+          "Pfeile"
         ],
         "year": [
           "2017"
@@ -38452,10 +38642,7 @@
           "Informazioni di guida AutoPostale",
           "Bus",
           "Autobus",
-          "Mobility",
-          "Mobilität",
-          "Mobilité",
-          "Mobilità",
+          "Mobil",
           "public transport",
           "öffentliche Verkehr",
           "trasporto pubblico",
@@ -38862,10 +39049,7 @@
           "Driving",
           "Guida",
           "Conduite",
-          "Mobility",
-          "Mobilität",
-          "Mobilité",
-          "Mobilità",
+          "Mobil",
           "conduire",
           "fahren",
           "drive",
@@ -39188,9 +39372,9 @@
         ],
         "keywords": [
           "Parking spaces",
+          "Parcheggi",
           "Parkplätze",
           "Places de stationnement",
-          "Parcheggi",
           "parkieren",
           "Park",
           "Parco",
@@ -40124,10 +40308,10 @@
           "Price in CHF",
           "Prezzo in CHF",
           "CHF",
-          "Monnaie",
+          "currency",
           "Währung",
-          "Currency",
-          "Valuta",
+          "monnaie",
+          "valuta",
           "Franc suisse",
           "Schweizer Franken",
           "Swiss franc",
@@ -40168,10 +40352,10 @@
           "Europäische Währung",
           "Valuta europea",
           "Monnaie européenne",
-          "Monnaie",
+          "currency",
           "Währung",
-          "Currency",
-          "Valuta",
+          "monnaie",
+          "valuta",
           "Eurozeichen",
           "eurosign",
           "Segno di euro",
@@ -40217,10 +40401,10 @@
           "Coins",
           "Pièces",
           "Monete",
-          "Monnaie",
+          "currency",
           "Währung",
-          "Currency",
-          "Valuta",
+          "monnaie",
+          "valuta",
           "devise",
           "escogitare",
           "erfinden",
@@ -40344,10 +40528,10 @@
           "legale Vermögen",
           "legal assets",
           "Patrimonio legale",
-          "Monnaie",
+          "currency",
           "Währung",
-          "Currency",
-          "Valuta",
+          "monnaie",
+          "valuta",
           "Münzen",
           "Coins",
           "Pièces",
@@ -40414,10 +40598,10 @@
           "riduzione dei costi",
           "réduction des coûts",
           "Kostenreduktion",
-          "Monnaie",
+          "currency",
           "Währung",
-          "Currency",
-          "Valuta",
+          "monnaie",
+          "valuta",
           "Kostendreduktion",
           "Cost reduction",
           "Riduzione dei costi",
@@ -40465,10 +40649,10 @@
           "kommunikation"
         ],
         "keywords": [
-          "Monnaie",
+          "currency",
           "Währung",
-          "Currency",
-          "Valuta",
+          "monnaie",
+          "valuta",
           "Münzen",
           "Coins",
           "Pièces",
@@ -40531,10 +40715,10 @@
           "Banconote",
           "Banknotes",
           "Billets",
-          "Monnaie",
+          "currency",
           "Währung",
-          "Currency",
-          "Valuta",
+          "monnaie",
+          "valuta",
           "devise",
           "escogitare",
           "erfinden",
@@ -40566,10 +40750,10 @@
           "kommunikation"
         ],
         "keywords": [
-          "Monnaie",
+          "currency",
           "Währung",
-          "Currency",
-          "Valuta",
+          "monnaie",
+          "valuta",
           "Geldscheine",
           "Banconote",
           "Banknotes",
@@ -40621,10 +40805,10 @@
           "kommunikation"
         ],
         "keywords": [
-          "Monnaie",
+          "currency",
           "Währung",
-          "Currency",
-          "Valuta",
+          "monnaie",
+          "valuta",
           "Geldscheine",
           "Banconote",
           "Banknotes",
@@ -41047,10 +41231,10 @@
           "Prozessverbesserung",
           "Amélioration de processus",
           "Miglioramento dei processi",
+          "settings",
           "Einstellungen",
-          "Settings",
-          "Impostazioni",
-          "Paramètres",
+          "impostazioni",
+          "paramètres",
           "Einstellung erfolgreich",
           "Configuration successful",
           "Réglage réussi",
@@ -41675,7 +41859,10 @@
           "Brief mit Fensterkuvert",
           "Lettre avec enveloppe à panneau transparent",
           "Lettera con busta a finestra",
+          "send",
+          "envoyer",
           "senden",
+          "inviare",
           "ricevere",
           "recevoir",
           "receive",
@@ -42318,10 +42505,10 @@
           "equilibrio",
           "équilibrer",
           "Saldo",
-          "Peso",
+          "weight",
+          "poids",
+          "peso",
           "Gewicht",
-          "Weight",
-          "Poids",
           "peser",
           "reader",
           "PESER",
@@ -42498,10 +42685,10 @@
           "Hand",
           "Mano",
           "Main",
-          "Hands",
+          "hands",
+          "mains",
+          "mani",
           "Hände",
-          "Mani",
-          "Mains",
           "Händeschütteln",
           "Handshake",
           "stretta di mano",
@@ -42806,9 +42993,9 @@
           "Sustainability",
           "Sostenibilità",
           "Développement durable",
-          "Elektrizität",
+          "electricity",
           "elettricità",
-          "Electricity",
+          "Elektrizität",
           "électricité",
           "power",
           "puissance",
@@ -42845,10 +43032,10 @@
           "recyclage",
           "Recycling",
           "riciclaggio",
-          "Pfeile",
           "arrows",
-          "Frecce",
-          "Flèches",
+          "flèches",
+          "frecce",
+          "Pfeile",
           "Nachhaltigkeit",
           "Sustainability",
           "Sostenibilità",
@@ -42884,8 +43071,7 @@
           "kommunikation"
         ],
         "keywords": [
-          "Europe",
-          "Europa",
+          "uropas",
           "Sterne",
           "Stars",
           "Stelle",
@@ -42930,10 +43116,6 @@
           "schedule",
           "Fixer un délai",
           "Fissare una scadenza",
-          "calendrier",
-          "calendario",
-          "Timing",
-          "calendar",
           "Date",
           "convenir d’un rendez-vous",
           "concordare un appuntamento",
@@ -42978,10 +43160,6 @@
           "Scheduled",
           "Temporellement défini",
           "Temporalmente delimitato",
-          "calendrier",
-          "calendario",
-          "Timing",
-          "calendar",
           "Kalender",
           "Calendar",
           "Calendario",
@@ -43078,10 +43256,10 @@
           "Ablage",
           "Filing",
           "Archivage",
+          "patient documents",
           "Patientendokumente",
-          "Patient documents",
-          "Documents du patient",
-          "Documenti del paziente",
+          "documents du patient",
+          "documenti del paziente",
           "Dokument",
           "Document",
           "Documento",
@@ -43788,6 +43966,9 @@
           "Favorit",
           "Preferito",
           "Stern",
+          "star",
+          "étoile",
+          "stella",
           "PIN",
           "Sinnbild",
           "Symbol",
@@ -46270,37 +46451,6 @@
   "wrongViewBox": [],
   "noKeywords": [
     {
-      "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
-      "id": 352314,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352314/storage/NTM3MjI0LzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3073.svg",
-        "basename": "3073",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-11-29T13:53:43.000Z"
-    },
-    {
       "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
       "id": 352299,
       "type": "picture.pictogram.",
@@ -46330,6 +46480,37 @@
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
       "modifiedAt": "2024-11-29T13:53:42.000Z"
+    },
+    {
+      "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
+      "id": 352314,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352314/storage/NTM3MjI0LzAvbWFzdGVy",
+        "businessfield": [
+          "kommunikation"
+        ],
+        "keywords": [
+          ""
+        ],
+        "year": [
+          "2017"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "3073.svg",
+        "basename": "3073",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2017-11-10T10:11:07.000Z",
+      "modifiedAt": "2024-11-29T13:53:43.000Z"
     },
     {
       "uuid": "6b09bf30-9901-11eb-935b-005056873709",
@@ -46443,11 +46624,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2026-04-26T04:04:20.262Z",
+  "created": "2026-05-10T04:33:22.832Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 1114
+    "success": 1126
   },
-  "version": "9.11.0"
+  "version": "9.12.0"
 }
