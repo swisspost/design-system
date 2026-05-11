@@ -96,10 +96,6 @@ export namespace Components {
           * Defines the users lastname.
          */
         "lastname"?: string;
-        /**
-          * Defines the company internal userId.<post-banner type="warning" data-size="sm"><p>Can only be used on post.ch domains!</p></post-banner>
-         */
-        "userid"?: string;
     }
     interface PostBackToTop {
         /**
@@ -1334,10 +1330,6 @@ declare namespace LocalJSX {
           * Defines the users lastname.
          */
         "lastname"?: string;
-        /**
-          * Defines the company internal userId.<post-banner type="warning" data-size="sm"><p>Can only be used on post.ch domains!</p></post-banner>
-         */
-        "userid"?: string;
     }
     interface PostBackToTop {
         /**
@@ -1943,7 +1935,6 @@ declare namespace LocalJSX {
     interface PostAvatarAttributes {
         "firstname": string;
         "lastname": string;
-        "userid": string;
         "email": string;
         "description": string;
     }
