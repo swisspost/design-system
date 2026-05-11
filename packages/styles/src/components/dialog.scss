@@ -144,7 +144,7 @@ dialog {
     // prevent overflow: auto from clipping focus rings of child elements
     $focus-space: calc(
       #{tokens.get('focus-outline-offset', helpers.$post-focus)} +
-      #{tokens.get('focus-outline-width', helpers.$post-focus)}
+        #{tokens.get('focus-outline-width', helpers.$post-focus)}
     );
 
     padding: $focus-space;
