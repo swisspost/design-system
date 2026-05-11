@@ -148,7 +148,9 @@ dialog {
     );
 
     padding: $focus-space;
-    margin: calc(-1 * #{$focus-space});
+    margin-top: calc(-1 * #{$focus-space});
+    margin-left: calc(-1 * #{$focus-space});
+    margin-right: calc(-1 * #{$focus-space});
 
     > *:last-child {
       margin-bottom: 0;
