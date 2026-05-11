@@ -195,6 +195,39 @@ describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
     });
   });
 
+  describe('announcements', () => {
+    beforeEach(() => {
+      cy.visit(FIXTURE_PATH);
+      cy.get('post-autocomplete#autocomplete-nested[data-hydrated]').as('autocomplete');
+      cy.get('@autocomplete').find('input').as('input');
+      cy.get('@autocomplete').shadow().find('output').as('output');
+    });
+
+    it('should render an output element in the shadow dom', () => {
+      cy.get('@output').should('exist');
+    });
+
+    it('should announce the total count when the listbox opens', () => {
+      cy.get('@input').click();
+
+      cy.get('@output').should('have.text', '10 suggestions available');
+    });
+
+    it('should announce the filtered count after typing', () => {
+      cy.get('@input').type('por');
+      cy.wait(DEBOUNCE_TIMEOUT);
+
+      cy.get('@output').should('have.text', '1 suggestions available');
+    });
+
+    it('should announce zero when no options match', () => {
+      cy.get('@input').type('zzz');
+      cy.wait(DEBOUNCE_TIMEOUT);
+
+      cy.get('@output').should('have.text', '0 suggestions available');
+    });
+  });
+
   describe('Accessibility', () => {
     beforeEach(() => {
       cy.visit(FIXTURE_PATH);
