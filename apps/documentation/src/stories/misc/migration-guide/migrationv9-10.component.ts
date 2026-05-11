@@ -633,12 +633,12 @@ export class MigrationV910Component extends LitElement {
                         Breakpoints updated
                         <ul>
                           <li>
-                            All classes containing <code>*-sm-*</code> are renamed to
-                            <code>*-xs-*</code> — <b>auto-migrated ✅</b>
-                          </li>
-                          <li>
                             All classes containing <code>*-xxl-*</code> are renamed to
                             <code>*-xl-*</code> — <b>auto-migrated ✅</b>
+                          </li>
+                          <li>
+                            All classes containing <code>*-sm-*</code> are renamed to
+                            <code>*-xs-*</code> — <b>⚠️ manual migration required</b>
                           </li>
                           <li>
                             All classes containing <code>*-rg-*</code> are renamed to
@@ -650,11 +650,15 @@ export class MigrationV910Component extends LitElement {
                           <code>sm</code> covers old <code>rg</code>. <code>xl</code> covers old
                           <code>xl</code> and <code>xxl</code> breakpoints.
                           <br /><br />
-                          ⚠️ <strong><code>*-rg-*</code> classes cannot be auto-fixed.</strong>
+                          ⚠️ <strong><code>*-sm-*</code> and <code>*-rg-*</code> classes cannot be auto-fixed.</strong>
                           Renaming <code>rg</code> → <code>sm</code> would immediately be picked up
                           by the <code>sm</code> → <code>xs</code> rule and renamed again to the
-                          wrong value. Search for <code>-rg-</code> in your templates and rename
-                          them to <code>-sm-</code> by hand.
+                          wrong value. Search for <code>-sm-*</code> and <code>-rg-*</code> in your
+                          templates and rename them by hand:
+                          <ul>
+                            <li><code>*-rg-*</code> → <code>*-sm-*</code></li>
+                            <li><code>*-sm-*</code> → <code>*-xs-*</code></li>
+                          </ul>
                         </span>
                       </label>
                     </div>
@@ -683,7 +687,7 @@ export class MigrationV910Component extends LitElement {
 
                         <span class="info">
                           For instance, the old Bootstrap class <code>.g-1</code> (gutter of 4px) is
-                          now <code>.g-4</code> for better coherence.
+                          now <code>.g-4</code> for better coherance.
                           <br /><br />
                           ⚠️ <strong><code>*-1</code> and <code>*-4</code> classes cannot be auto-fixed.</strong>
                           If <code>*-1</code> were auto-renamed to <code>*-4</code>, the
