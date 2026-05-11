@@ -1,5 +1,7 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import meta, * as DialogStories from './dialog.stories';
+import BottomSheetContainerFluid from './dialog-bottom-sheet-container-fluid.sample.html?raw';
+import BottomSheetWidth from './dialog-bottom-sheet-width.sample.html?raw';
 import JSFormData from './samples/js-form-data?raw';
 import StylesPackageImport from '@/shared/styles-package-import';
 import PackageTag from '@/shared/package-tag';
@@ -64,21 +66,9 @@ The default width follows the layout:
 The <code>data-position</code> attribute is deprecated for the bottom-sheet variant and should not
 be used.
 
-<Source
-  code={`<dialog class="post-dialog" data-variant="bottom-sheet" style="--post-dialog-width: min(100vw - 2rem, 48rem)">
-  ...
-</dialog>`}
-  language="html"
-/>
+<Source code={BottomSheetWidth} language="html" />
 
-<Source
-  code={`<div class="container-fluid">
-  <dialog class="post-dialog" data-variant="bottom-sheet">
-    ...
-  </dialog>
-</div>`}
-  language="html"
-/>
+<Source code={BottomSheetContainerFluid} language="html" />
 
 ### Form dialog
 

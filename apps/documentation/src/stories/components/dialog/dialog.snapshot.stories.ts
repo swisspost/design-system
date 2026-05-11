@@ -48,21 +48,26 @@ export const DialogBottomSheet: Story = {
       () => html`
         <style>
           dialog {
+            position: static;
+            margin: 0;
             transition: none !important;
           }
         </style>
-        ${Default.render?.(
-          {
-            ...context.args,
-            variant: 'bottom-sheet',
-            animation: 'slide-in',
-            open: true,
-            width: '',
-            content:
-              'Contentus momentus vero siteos et accusam iretea et justo. Contentus momentus vero siteos et accusam iretea et justo.',
-          },
-          context,
-        )}
+        <div class="d-flex flex-wrap align-items-start gap-16">
+          ${Default.render?.(
+            {
+              ...context.args,
+              variant: 'bottom-sheet',
+              animation: 'slide-in',
+              open: true,
+              width: '',
+              content:
+                'Contentus momentus vero siteos et accusam iretea et justo. Contentus momentus vero siteos et accusam iretea et justo.',
+            },
+            context,
+          )}
+          <div class="d-flex flex-wrap align-items-start gap-16"></div>
+        </div>
       `,
     );
   },

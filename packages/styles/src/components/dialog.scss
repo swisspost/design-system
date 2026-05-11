@@ -327,10 +327,10 @@ dialog:not([data-animation='none']) {
 
   &#{$dialog-bottom-sheet-selector} {
     @media (prefers-reduced-motion: reduce) {
-      transition-duration: 0s;
+      transition: none;
 
       &::backdrop {
-        transition-duration: 0s;
+        transition: none;
       }
     }
   }

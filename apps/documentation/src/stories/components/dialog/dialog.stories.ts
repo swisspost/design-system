@@ -1,6 +1,17 @@
 import { Args, Meta, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit-html';
 
+const DIALOG_VARIANT_OPTIONS = {
+  'default': {
+    allowedAnimations: ['pop-in', 'none'],
+    widthOverrideAllowed: false,
+  },
+  'bottom-sheet': {
+    allowedAnimations: ['slide-in', 'none'],
+    widthOverrideAllowed: true,
+  },
+};
+
 const meta: Meta = {
   id: '562eac2b-6dc1-4007-ba8e-4e981cef0cbc',
   title: 'Components/Dialog',
@@ -14,8 +25,8 @@ const meta: Meta = {
   args: {
     title: 'Dialog',
     content: 'This is a dialog',
-    type: 'default',
     variant: 'default',
+    type: 'default',
     size: 'medium',
     position: 'center',
     animation: 'pop-in',
@@ -51,7 +62,7 @@ const meta: Meta = {
       control: {
         type: 'radio',
       },
-      options: ['default', 'bottom-sheet'],
+      options: Object.keys(DIALOG_VARIANT_OPTIONS),
       table: { category: 'Variant' },
     },
     size: {
@@ -88,6 +99,7 @@ const meta: Meta = {
         'Optional `--post-dialog-width` override. This replaces the bottom-sheet variant’s responsive default width.',
       control: 'text',
       table: { category: 'Variant' },
+      if: { arg: 'variant', eq: 'bottom-sheet' },
     },
     closeButton: {
       name: 'Close button',
@@ -178,12 +190,14 @@ const getControls = () => {
 const Template = {
   render: (args: Args) => {
     const postDialogCloseButton = args.closeButton ? getCloseButton() : nothing;
-    const isBottomSheet = args.variant === 'bottom-sheet';
-    const animation =
-      (isBottomSheet && args.animation === 'slide-in') || (!isBottomSheet && args.animation === 'pop-in')
-        ? nothing
-        : args.animation;
-    const style = args.width ? `--post-dialog-width: ${args.width}` : nothing;
+    const variant = args.variant as keyof typeof DIALOG_VARIANT_OPTIONS;
+    const animation = DIALOG_VARIANT_OPTIONS[variant].allowedAnimations.includes(args.animation)
+      ? args.animation
+      : nothing;
+    const style =
+      DIALOG_VARIANT_OPTIONS[variant].widthOverrideAllowed && args.width
+        ? `--post-dialog-width: ${args.width}`
+        : nothing;
 
     // Don't declare default values or show empty containers
     if (args.position === 'center') args.position = nothing;
@@ -192,8 +206,8 @@ const Template = {
     return html`
       <dialog
         class="post-dialog"
-        data-type="${args.type !== 'default' ? args.type : nothing}"
-        data-variant="${isBottomSheet ? args.variant : nothing}"
+        data-type="${args.type === 'default' ? nothing : args.type}"
+        data-variant="${args.variant === 'default' ? nothing : args.variant}"
         data-size="${args.size}"
         data-position="${args.position}"
         data-animation="${animation}"
@@ -279,17 +293,13 @@ const CustomContentTemplate = {
 const BottomSheetTemplate = {
   ...Template,
   render: (args: Args) => {
-    const postDialogCloseButton = args.closeButton ? getCloseButton() : nothing;
-    const style = args.width ? `--post-dialog-width: ${args.width}` : nothing;
-
     return html`
       <dialog
         class="post-dialog"
         data-variant="bottom-sheet"
-        data-type="${args.type !== 'default' ? args.type : nothing}"
-        data-animation="${args.animation === 'slide-in' ? nothing : args.animation}"
+        data-type="${args.type}"
+        data-animation="${args.animation}"
         open="${args.open || nothing}"
-        style="${style}"
         aria-labelledby="bottom-sheet-title"
         aria-describedby="bottom-sheet-description"
       >
@@ -298,7 +308,8 @@ const BottomSheetTemplate = {
           <div class="dialog-body">
             <p id="bottom-sheet-description">${args.content}</p>
             <p>
-              This variant keeps the action area visible while the content region becomes scrollable.
+              This variant keeps the action area visible while the content region becomes
+              scrollable.
             </p>
             <p>
               Use the --post-dialog-width custom property when the default responsive width needs to
@@ -310,7 +321,7 @@ const BottomSheetTemplate = {
             </p>
           </div>
           <div class="dialog-controls">${getControls()}</div>
-          ${postDialogCloseButton}
+          ${getCloseButton()}
         </form>
       </dialog>
     `;
