@@ -76,6 +76,10 @@ export namespace Components {
           * Optional idref to connect the autocomplete with the options dropdown if not nested
          */
         "listbox"?: string;
+        /**
+          * Announcement template for screen readers when the suggestion list updates. Use {count} as placeholder for the number of available suggestions, e.g. "{count} suggestions available"
+         */
+        "textAvailableSuggestions": string;
     }
     interface PostAvatar {
         /**
@@ -206,6 +210,11 @@ export namespace Components {
           * @default false
          */
         "inline": boolean;
+        /**
+          * The date pickers locale (e.g. "it", "it-CH", etc.), which specifies the date format and language. <post-banner type="info" data-size="sm"><span>If not set, it defaults to either the closest ancestor with a `lang` attribute (e.g. \<html lang="de"\>), or falls back to English.</span></post-banner>
+          * @default this.systemLocale
+         */
+        "locale"?: string;
         /**
           * Maximum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
@@ -1315,6 +1324,10 @@ declare namespace LocalJSX {
           * Cancelable event emitted when the input value is to be filtered
          */
         "onPostFilteringEvent"?: (event: PostAutocompleteCustomEvent<string>) => void;
+        /**
+          * Announcement template for screen readers when the suggestion list updates. Use {count} as placeholder for the number of available suggestions, e.g. "{count} suggestions available"
+         */
+        "textAvailableSuggestions": string;
     }
     interface PostAvatar {
         /**
@@ -1437,6 +1450,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "inline"?: boolean;
+        /**
+          * The date pickers locale (e.g. "it", "it-CH", etc.), which specifies the date format and language. <post-banner type="info" data-size="sm"><span>If not set, it defaults to either the closest ancestor with a `lang` attribute (e.g. \<html lang="de"\>), or falls back to English.</span></post-banner>
+          * @default this.systemLocale
+         */
+        "locale"?: string;
         /**
           * Maximum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
@@ -1942,6 +1960,7 @@ declare namespace LocalJSX {
         "filterThreshold": number;
         "clearable": boolean;
         "listbox": string;
+        "textAvailableSuggestions": string;
     }
     interface PostAvatarAttributes {
         "firstname": string;
@@ -1979,9 +1998,10 @@ declare namespace LocalJSX {
         "for": string;
     }
     interface PostDatePickerAttributes {
+        "locale": string;
+        "range": boolean;
         "selectedStartDate": string;
         "selectedEndDate": string;
-        "range": boolean;
         "min": string;
         "max": string;
         "inline": boolean;
@@ -2116,7 +2136,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "post-accordion": Omit<PostAccordion, keyof PostAccordionAttributes> & { [K in keyof PostAccordion & keyof PostAccordionAttributes]?: PostAccordion[K] } & { [K in keyof PostAccordion & keyof PostAccordionAttributes as `attr:${K}`]?: PostAccordionAttributes[K] } & { [K in keyof PostAccordion & keyof PostAccordionAttributes as `prop:${K}`]?: PostAccordion[K] } & OneOf<"headingLevel", PostAccordion["headingLevel"], PostAccordionAttributes["headingLevel"]>;
         "post-accordion-item": Omit<PostAccordionItem, keyof PostAccordionItemAttributes> & { [K in keyof PostAccordionItem & keyof PostAccordionItemAttributes]?: PostAccordionItem[K] } & { [K in keyof PostAccordionItem & keyof PostAccordionItemAttributes as `attr:${K}`]?: PostAccordionItemAttributes[K] } & { [K in keyof PostAccordionItem & keyof PostAccordionItemAttributes as `prop:${K}`]?: PostAccordionItem[K] };
-        "post-autocomplete": Omit<PostAutocomplete, keyof PostAutocompleteAttributes> & { [K in keyof PostAutocomplete & keyof PostAutocompleteAttributes]?: PostAutocomplete[K] } & { [K in keyof PostAutocomplete & keyof PostAutocompleteAttributes as `attr:${K}`]?: PostAutocompleteAttributes[K] } & { [K in keyof PostAutocomplete & keyof PostAutocompleteAttributes as `prop:${K}`]?: PostAutocomplete[K] };
+        "post-autocomplete": Omit<PostAutocomplete, keyof PostAutocompleteAttributes> & { [K in keyof PostAutocomplete & keyof PostAutocompleteAttributes]?: PostAutocomplete[K] } & { [K in keyof PostAutocomplete & keyof PostAutocompleteAttributes as `attr:${K}`]?: PostAutocompleteAttributes[K] } & { [K in keyof PostAutocomplete & keyof PostAutocompleteAttributes as `prop:${K}`]?: PostAutocomplete[K] } & OneOf<"textAvailableSuggestions", PostAutocomplete["textAvailableSuggestions"], PostAutocompleteAttributes["textAvailableSuggestions"]>;
         "post-avatar": Omit<PostAvatar, keyof PostAvatarAttributes> & { [K in keyof PostAvatar & keyof PostAvatarAttributes]?: PostAvatar[K] } & { [K in keyof PostAvatar & keyof PostAvatarAttributes as `attr:${K}`]?: PostAvatarAttributes[K] } & { [K in keyof PostAvatar & keyof PostAvatarAttributes as `prop:${K}`]?: PostAvatar[K] } & OneOf<"firstname", PostAvatar["firstname"], PostAvatarAttributes["firstname"]>;
         "post-back-to-top": Omit<PostBackToTop, keyof PostBackToTopAttributes> & { [K in keyof PostBackToTop & keyof PostBackToTopAttributes]?: PostBackToTop[K] } & { [K in keyof PostBackToTop & keyof PostBackToTopAttributes as `attr:${K}`]?: PostBackToTopAttributes[K] } & { [K in keyof PostBackToTop & keyof PostBackToTopAttributes as `prop:${K}`]?: PostBackToTop[K] } & OneOf<"textBackToTop", PostBackToTop["textBackToTop"], PostBackToTopAttributes["textBackToTop"]>;
         "post-banner": Omit<PostBanner, keyof PostBannerAttributes> & { [K in keyof PostBanner & keyof PostBannerAttributes]?: PostBanner[K] } & { [K in keyof PostBanner & keyof PostBannerAttributes as `attr:${K}`]?: PostBannerAttributes[K] } & { [K in keyof PostBanner & keyof PostBannerAttributes as `prop:${K}`]?: PostBanner[K] };
