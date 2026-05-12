@@ -5,6 +5,7 @@ import { checkRequiredAndType, breakpoint, Device } from '@/utils';
 const GRID_SLOTS = ['grid-1', 'grid-2', 'grid-3', 'grid-4'];
 
 /**
+ * @slot prefooter - Slot for the pre-footer.
  * @slot grid-{1|2|3|4}-title - Slot for the accordion headers (mobile).
  * @slot grid-{1|2|3|4} - Slot for the accordion bodies (mobile) and the grid cells (tablet, desktop).
  * @slot socialmedia - Slot for the social media links.

@@ -12,7 +12,7 @@ tokens.$default-map: elements.$post-heading;
 }
 
 footer {
-  border-block-start: 1px solid color.$black;
+  border-block-start: 1px solid color.$sandgray-80;
 
   // mobile
   --post-footer-container-padding-block: 32px;
@@ -119,7 +119,7 @@ footer {
     padding-block: 0;
   }
 
-  ::slotted(div) {
+  ::slotted([slot='prefooter']) {
     padding-block: var(--post-footer-prefooter-padding-block);
   }
 }
