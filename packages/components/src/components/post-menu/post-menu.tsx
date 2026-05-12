@@ -209,6 +209,7 @@ export class PostMenu {
         currentIndex = (currentIndex + 1) % menuItems.length;
         break;
       case this.KEYCODES.HOME:
+        e.preventDefault();
         currentIndex = 0;
         break;
       case this.KEYCODES.END:
