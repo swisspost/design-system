@@ -34,12 +34,12 @@ const meta: MetaComponent<
     'variant': {
       name: 'variant',
       description:
-        'Select between panels variant (content sections) or navigation variant (page navigation). <post-banner data-size="sm"><p>If you attempt to mix modes (anchors + panels), the component will throw an error.</p></post-banner>',
+        'Select between Content Tabs (panels) or Page Tabs variant (navigation links). <post-banner data-size="sm"><p>If you attempt to mix modes (panels + links), the component will throw an error.</p></post-banner>',
       control: 'radio',
-      options: ['panels', 'navigation'],
+      options: ['Content Tabs', 'Page Tabs'],
       table: {
         category: 'Component Variant',
-        defaultValue: { summary: 'panels' },
+        defaultValue: { summary: 'Content Tabs' },
       },
     },
     'activeTabPanels': {
@@ -48,7 +48,7 @@ const meta: MetaComponent<
         'The name of the tab that is initially active. If not specified, it defaults to the first tab.\n\n**Changing this value after initialization has no effect.**',
       control: 'select',
       options: ['first', 'second', 'third'],
-      if: { arg: 'variant', eq: 'panels' },
+      if: { arg: 'variant', eq: 'Content Tabs' },
       table: {
         category: 'Props',
         type: { summary: 'string' },
@@ -72,7 +72,7 @@ const meta: MetaComponent<
       name: 'label',
       description: 'The accessible label for the tabs component in navigation mode.',
       control: 'text',
-      if: { arg: 'variant', eq: 'navigation' },
+      if: { arg: 'variant', eq: 'Page Tabs' },
       table: {
         category: 'Props',
       },
@@ -85,7 +85,7 @@ const meta: MetaComponent<
       name: 'postChange ',
       description:
         'An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab.',
-      if: { arg: 'variant', eq: 'panels' },
+      if: { arg: 'variant', eq: 'Content Tabs' },
       table: {
         category: 'Events',
         type: {
@@ -97,7 +97,7 @@ const meta: MetaComponent<
       name: 'post-tabs-content ', // trailing space is intentional to avoid conflict with auto-generated part
       description: 'The container element that displays the content of the currently active tab.',
       control: false,
-      if: { arg: 'variant', eq: 'panels' },
+      if: { arg: 'variant', eq: 'Content Tabs' },
       table: {
         category: 'CSS Shadow Parts',
         type: {
@@ -120,7 +120,7 @@ const meta: MetaComponent<
       name: 'show ',
       description:
         'Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.',
-      if: { arg: 'variant', eq: 'panels' },
+      if: { arg: 'variant', eq: 'Content Tabs' },
       table: {
         category: 'Methods',
         type: {
@@ -149,7 +149,7 @@ const meta: MetaComponent<
         type: 'text',
         disable: true,
       },
-      if: { arg: 'variant', eq: 'panels' },
+      if: { arg: 'variant', eq: 'Content Tabs' },
       table: {
         category: 'Slots',
         type: {
@@ -159,7 +159,7 @@ const meta: MetaComponent<
     },
   },
   args: {
-    'variant': 'panels',
+    'variant': 'Content Tabs',
     'postChange': 'postChange',
     'post-tabs-content': 'post-tabs-content',
     'activeTabPanels': undefined,
@@ -171,7 +171,7 @@ const meta: MetaComponent<
 
 export default meta;
 
-function renderNavigationVariant(
+function renderPagesVariant(
   fullWidth: boolean | undefined,
   label: string | undefined,
   customSlots: string,
@@ -256,10 +256,10 @@ function renderTabs(
     }
   >,
 ) {
-  const variant = args.variant || 'panels';
+  const variant = args.variant || 'Content Tabs';
 
-  return variant === 'navigation'
-    ? renderNavigationVariant(args.fullWidth, args.label, args['slots-default'] || '')
+  return variant === 'Page Tabs'
+    ? renderPagesVariant(args.fullWidth, args.label, args['slots-default'] || '')
     : renderPanelsVariant(
         args.activeTabPanels,
         args.fullWidth,
@@ -285,12 +285,12 @@ export const PanelsVariant: Story = {
     docs: {
       description: {
         story:
-          'Panels variant displays tabbed content sections. Each tab shows its associated panel when clicked. Use this for organizing content on the same page.',
+          'Content Tabs variant displays tabbed content sections. Each tab shows its associated panel when clicked. Use this for organizing content on the same page.',
       },
     },
   },
   args: {
-    variant: 'panels',
+    variant: 'Content Tabs',
   },
 };
 
@@ -303,7 +303,7 @@ export const ActiveTab: Story = {
     },
   },
   args: {
-    variant: 'panels',
+    variant: 'Content Tabs',
     activeTabPanels: 'second',
   },
 };
@@ -314,39 +314,39 @@ export const FullWidth: Story = {
   },
   args: {
     fullWidth: true,
-    variant: 'panels',
+    variant: 'Content Tabs',
   },
   decorators: [story => html`<div class="container">${story()}</div>`],
 };
 
-export const NavigationFullWidth: Story = {
+export const PagesFullWidth: Story = {
   parameters: {
     layout: 'fullscreen',
   },
   args: {
     fullWidth: true,
-    variant: 'navigation',
+    variant: 'Page Tabs',
   },
   decorators: [story => html`<div class="container">${story()}</div>`],
 };
 
-export const NavigationVariant: Story = {
+export const PagesVariant: Story = {
   parameters: {
     docs: {
       description: {
         story:
-          'Navigation variant displays tabs as page navigation links. Each tab contains an anchor element for routing. Use this for site navigation. The active link must have an `aria-current="page"` attribute to ensure correct accessibility and styling.',
+          'Page Tabs variant displays tabs as page navigation links. Each tab contains an anchor element for routing. Use this for site navigation. The active link must have an `aria-current="page"` attribute to ensure correct accessibility and styling.',
       },
     },
   },
   args: {
-    variant: 'navigation',
+    variant: 'Page Tabs',
   },
 };
 
-export const ActiveNavigationItem: Story = {
+export const ActivePagesItem: Story = {
   args: {
-    'variant': 'navigation',
+    'variant': 'Page Tabs',
     'slots-default': `
       <post-tab-item name="letters">
         <a href="/letters">Letters</a>
