@@ -1179,11 +1179,11 @@
     },
     "footer": {
       "prefooter": {
-        "title": "Service name",
+        "title": "Dienstname",
         "items": [
-            { "text": "Service link 1", "url": "#" },
-            { "text": "Service link 2", "url": "#" },
-            { "text": "Service link 3", "url": "#" }
+            { "text": "Dienstlink 1", "url": "#" },
+            { "text": "Dienstlink 2", "url": "#" },
+            { "text": "Dienstlink 3", "url": "#" }
         ]
       },
       "sections": [
@@ -2076,11 +2076,11 @@
     },
     "footer": {
       "prefooter": {
-        "title": "Service name",
+        "title": "Nom du service",
         "items": [
-            { "text": "Service link 1", "url": "#" },
-            { "text": "Service link 2", "url": "#" },
-            { "text": "Service link 3", "url": "#" }
+            { "text": "Lien du service 1", "url": "#" },
+            { "text": "Lien du service 2", "url": "#" },
+            { "text": "Lien du service 3", "url": "#" }
         ]
       },
       "sections": [
@@ -2976,11 +2976,11 @@
     },
     "footer": {
       "prefooter": {
-        "title": "Service name",
+        "title": "Nome del servizio",
         "items": [
-            { "text": "Service link 1", "url": "#" },
-            { "text": "Service link 2", "url": "#" },
-            { "text": "Service link 3", "url": "#" }
+            { "text": "Link al servizio 1", "url": "#" },
+            { "text": "Link al servizio 2", "url": "#" },
+            { "text": "Link al servizio 3", "url": "#" }
         ]
       },
       "sections": [
