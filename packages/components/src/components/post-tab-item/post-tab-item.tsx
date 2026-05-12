@@ -4,7 +4,7 @@ import { checkRequiredAndType } from '@/utils';
 import { nanoid } from 'nanoid';
 
 /**
- * @slot default - Slot for the content of the tab item. Can contain text or an <a> element for navigation mode.
+ * @slot default - Slot for the content of the tab item. Can contain text or an <a> element for Page Tabs variant.
  */
 
 @Component({
