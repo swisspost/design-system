@@ -12,6 +12,7 @@ export function Required() {
   return createValidatorDecorator({
     priority: 0,
     blocking: true,
+    validateEmptyValues: true,
     run(component, property) {
       const { value, showError } = getValidationContext(component, property);
 

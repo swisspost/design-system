@@ -66,4 +66,12 @@ describe('ArrayOf decorator', () => {
       expect.any(Object),
     );
   });
+
+  it.each([undefined, null, '', Number.NaN])(
+    'should not log an error when value is empty (%s)',
+    emptyValue => {
+      setPropertyInitialValue('arrayOfNumbers', emptyValue);
+      expect(console.error).not.toHaveBeenCalled();
+    },
+  );
 });

@@ -63,4 +63,12 @@ describe('Url decorator', () => {
     component.urlValue = 123;
     expect(console.error).not.toHaveBeenCalled();
   });
+
+  it.each([undefined, null, '', Number.NaN])(
+    'should not log an error when value is empty (%s)',
+    emptyValue => {
+      setPropertyInitialValue('urlValue', emptyValue);
+      expect(console.error).not.toHaveBeenCalled();
+    },
+  );
 });

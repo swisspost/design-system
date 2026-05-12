@@ -57,6 +57,14 @@ describe('OneOf decorator', () => {
     expect(console.error).not.toHaveBeenCalled();
   });
 
+  it.each([undefined, null, '', Number.NaN])(
+    'should not log an error when value is empty (%s)',
+    emptyValue => {
+      setPropertyInitialValue('oneOfStrings', emptyValue);
+      expect(console.error).not.toHaveBeenCalled();
+    },
+  );
+
   it('should work with numeric values', () => {
     setPropertyInitialValue('oneOfNumbers', 2);
     expect(console.error).not.toHaveBeenCalled();

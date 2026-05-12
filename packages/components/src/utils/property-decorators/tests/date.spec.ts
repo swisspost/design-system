@@ -58,4 +58,12 @@ describe('DateValue decorator', () => {
     component.dateValue = 'invalid';
     expect(console.error).not.toHaveBeenCalled();
   });
+
+  it.each([undefined, null, '', Number.NaN])(
+    'should not log an error when value is empty (%s)',
+    emptyValue => {
+      setPropertyInitialValue('dateValue', emptyValue);
+      expect(console.error).not.toHaveBeenCalled();
+    },
+  );
 });

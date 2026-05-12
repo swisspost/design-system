@@ -60,4 +60,12 @@ describe('Pattern decorator', () => {
     component.emailValue = 'other@test.org';
     expect(console.error).not.toHaveBeenCalled();
   });
+
+  it.each([undefined, null, '', Number.NaN])(
+    'should not log an error when value is empty (%s)',
+    emptyValue => {
+      setPropertyInitialValue('emailValue', emptyValue);
+      expect(console.error).not.toHaveBeenCalled();
+    },
+  );
 });

@@ -79,4 +79,12 @@ describe('Type decorator', () => {
     component.numberValue = 'wrong';
     expect(console.error).not.toHaveBeenCalled();
   });
+
+  it.each([undefined, null, '', Number.NaN])(
+    'should not log an error when value is empty (%s)',
+    emptyValue => {
+      setPropertyInitialValue('numberValue', emptyValue);
+      expect(console.error).not.toHaveBeenCalled();
+    },
+  );
 });

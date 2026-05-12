@@ -1,8 +1,10 @@
+import { isValueEmpty } from '@/utils/is-value-empty';
 import { getElement } from '@stencil/core';
 
 interface Validator {
   priority: number;
   blocking: boolean;
+  validateEmptyValues?: boolean;
   run: (component: object, property: string) => boolean;
 }
 
@@ -97,7 +99,14 @@ function runValidators(component: object, property: string): void {
   if (!validators || validators.length === 0) return;
 
   const sortedValidators = [...validators].sort((a, b) => a.priority - b.priority);
+  const value = component[property as keyof typeof component];
+  const valueIsEmpty = isValueEmpty(value);
+
   for (const validator of sortedValidators) {
+    if (valueIsEmpty && !validator.validateEmptyValues) {
+      continue;
+    }
+
     const passed = validator.run(component, property);
     if (!passed && validator.blocking) break;
   }

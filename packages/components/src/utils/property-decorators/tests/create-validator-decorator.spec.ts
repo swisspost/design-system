@@ -161,6 +161,43 @@ describe('createValidatorDecorator', () => {
     expect(order).toEqual([0, 1]);
   });
 
+  it.each([undefined, null, '', Number.NaN])(
+    'should skip non-required validators when value is empty (%s)',
+    emptyValue => {
+      const runFn = jest.fn().mockReturnValue(true);
+      const instance = createComponentWithDidLoad(
+        [createValidatorDecorator({ priority: 1, blocking: false, run: runFn })],
+        emptyValue,
+      );
+
+      instance.componentDidLoad();
+
+      expect(runFn).not.toHaveBeenCalled();
+    },
+  );
+
+  it.each([undefined, null, '', Number.NaN])(
+    'should run validator when validateEmptyValues is true (%s)',
+    emptyValue => {
+      const runFn = jest.fn().mockReturnValue(true);
+      const instance = createComponentWithDidLoad(
+        [
+          createValidatorDecorator({
+            priority: 1,
+            blocking: false,
+            validateEmptyValues: true,
+            run: runFn,
+          }),
+        ],
+        emptyValue,
+      );
+
+      instance.componentDidLoad();
+
+      expect(runFn).toHaveBeenCalledWith(instance, 'testProp');
+    },
+  );
+
   it('should handle multiple decorated properties independently', () => {
     console.error = jest.fn();
 
