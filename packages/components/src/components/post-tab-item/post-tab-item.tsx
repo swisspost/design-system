@@ -60,7 +60,7 @@ export class PostTabItem {
         id={this.tabId}
         role={!this.isPagesVariant ? 'tab' : undefined}
         data-version={version}
-        data-navigation-mode={this.isPagesVariant.toString()}
+        data-pages-variant={this.isPagesVariant.toString()}
         aria-selected={!this.isPagesVariant ? 'false' : undefined}
         tabindex={!this.isPagesVariant ? '-1' : undefined}
         class={`${!this.isPagesVariant ? 'tab-title' : 'nav-item'}${isSSR && !this.isPagesVariant ? ' ssr' : ''}`}
