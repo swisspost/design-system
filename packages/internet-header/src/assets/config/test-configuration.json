@@ -1178,6 +1178,14 @@
       ]
     },
     "footer": {
+      "prefooter": {
+        "title": "Service name",
+        "items": [
+            { "text": "Service link 1", "url": "#" },
+            { "text": "Service link 2", "url": "#" },
+            { "text": "Service link 3", "url": "#" }
+        ]
+      },
       "sections": [
         {
           "title": "Titel 1",
@@ -2067,6 +2075,14 @@
       ]
     },
     "footer": {
+      "prefooter": {
+        "title": "Service name",
+        "items": [
+            { "text": "Service link 1", "url": "#" },
+            { "text": "Service link 2", "url": "#" },
+            { "text": "Service link 3", "url": "#" }
+        ]
+      },
       "sections": [
         {
           "title": "Titre 1",
@@ -2959,6 +2975,14 @@
       ]
     },
     "footer": {
+      "prefooter": {
+        "title": "Service name",
+        "items": [
+            { "text": "Service link 1", "url": "#" },
+            { "text": "Service link 2", "url": "#" },
+            { "text": "Service link 3", "url": "#" }
+        ]
+      },
       "sections": [
         {
           "title": "Titolo 1",
@@ -3848,6 +3872,14 @@
       ]
     },
     "footer": {
+      "prefooter": {
+        "title": "Service name",
+        "items": [
+            { "text": "Service link 1", "url": "#" },
+            { "text": "Service link 2", "url": "#" },
+            { "text": "Service link 3", "url": "#" }
+        ]
+      },
       "sections": [
         {
           "title": "Title 1",

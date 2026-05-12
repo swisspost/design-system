@@ -109,31 +109,39 @@ export class PostFooter {
         <footer>
           <h2 class="visually-hidden">{this.textFooter}</h2>
 
-          <div class="footer-container">
-            <div class="footer-grid">
-              {this.device === 'mobile' ? this.renderAccordion() : this.renderColumns()}
+          <div class="prefooter">
+            <div class="footer-container">
+              <slot name="prefooter"></slot>
             </div>
+          </div>
 
-            <div class="footer-column">
-              <div class="footer-socialmedia">
-                <slot name="socialmedia"></slot>
+          <div class="footer-main">
+            <div class="footer-container">
+              <div class="footer-grid">
+                {this.device === 'mobile' ? this.renderAccordion() : this.renderColumns()}
               </div>
 
-              <div class="footer-app">
-                <slot name="app"></slot>
+              <div class="footer-column">
+                <div class="footer-socialmedia">
+                  <slot name="socialmedia"></slot>
+                </div>
+
+                <div class="footer-app">
+                  <slot name="app"></slot>
+                </div>
               </div>
-            </div>
 
-            <div class="footer-businesssectors">
-              <slot name="businesssectors"></slot>
-            </div>
+              <div class="footer-businesssectors">
+                <slot name="businesssectors"></slot>
+              </div>
 
-            <div class="footer-meta">
-              <slot name="meta"></slot>
-            </div>
+              <div class="footer-meta">
+                <slot name="meta"></slot>
+              </div>
 
-            <div class="footer-copyright">
-              <slot name="copyright"></slot>
+              <div class="footer-copyright">
+                <slot name="copyright"></slot>
+              </div>
             </div>
           </div>
         </footer>

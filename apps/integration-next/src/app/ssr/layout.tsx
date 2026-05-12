@@ -229,6 +229,27 @@ export default function Layout({ children }: { readonly children: React.ReactNod
       </main>
 
       <PostFooter text-footer="Footer">
+        <div slot="prefooter">
+          <h3 id="prefooter">Service name</h3>
+          <ul aria-labelledby="prefooter">
+            <li>
+              <a href="#" className="btn btn-link">
+                Pre-Footer Link 1
+              </a>
+            </li>
+            <li>
+              <a href="#" className="btn btn-link">
+                Pre-Footer Link 2
+              </a>
+            </li>
+            <li>
+              <a href="#" className="btn btn-link">
+                Pre-Footer Link 3
+              </a>
+            </li>
+          </ul>
+        </div>
+
         <span id="grid-1-title" slot="grid-1-title">
           Title 1
         </span>

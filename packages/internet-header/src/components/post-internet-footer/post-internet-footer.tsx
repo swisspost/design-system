@@ -94,6 +94,12 @@ export class PostInternetFooter {
     return (
       <Host data-version={version}>
         <post-footer textFooter={this.textFooter}>
+          {footerConfig.prefooter && (
+            <div slot="prefooter">
+              <LinkList config={footerConfig.prefooter} titleTag="h3" />
+            </div>
+          )}
+
           {footerConfig.sections &&
             footerConfig.sections.map((section, i) => (
               <LinkList
