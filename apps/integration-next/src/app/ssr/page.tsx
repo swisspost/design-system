@@ -113,7 +113,7 @@ export default function Home() {
       </PostDatePicker>
 
       <h2>Autocomplete</h2>
-      <PostAutocomplete clearable={true}>
+      <PostAutocomplete clearable={true} textAvailableSuggestions="{count} suggestions available">
         <div className="form-floating">
           <input
             type="text"
