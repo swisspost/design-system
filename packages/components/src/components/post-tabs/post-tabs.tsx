@@ -27,7 +27,7 @@ declare global {
  * @slot default - Slot for placing tab items. Each tab item should be a <post-tab-item> element.
  * @slot panels - Slot for placing tab panels. Each tab panel should be a <post-tab-panel> element.
  * @part post-tabs - The container element that holds the set of tabs.
- * @part post-tabs-content - The container element that displays the content of the currently active tab. Only available in panels mode.
+ * @part post-tabs-content - The container element that displays the content of the currently active tab. Only available in Content variant.
  */
 
 @Component({
@@ -44,12 +44,12 @@ export class PostTabs {
   private resizeObserver: ResizeObserver;
   private tabsContainer: HTMLElement;
 
-  @State() isNavigationMode: boolean = false;
+  @State() isPagesVariant: boolean = false;
+
+  @Element() host: HTMLPostTabsElement;
 
   @State() private showLeftScrollButton = false;
   @State() private showRightScrollButton = false;
-
-  @Element() host: HTMLPostTabsElement;
 
   private leftScrollButton!: HTMLButtonElement;
   private rightScrollButton!: HTMLButtonElement;
@@ -67,7 +67,7 @@ export class PostTabs {
   }
 
   /**
-   * The name of the tab in the panel mode that is initially active.
+   * The name of the tab in the Content Tabs variant that is initially active.
    * Changing this value after initialization has no effect.
    * If not specified, defaults to the first tab.
    */
@@ -81,13 +81,13 @@ export class PostTabs {
   @Prop({ reflect: true }) fullWidth: boolean = false;
 
   /**
-   * The accessible label for the tabs component in navigation mode.
+   * The accessible label for the Content Tabs variant.
    */
   @Prop({ reflect: true }) readonly label?: string;
 
   @Watch('label')
   validateLabel() {
-    if (this.isNavigationMode) {
+    if (this.isPagesVariant) {
       checkRequiredAndType(this, 'label', 'string');
     }
   }
@@ -95,12 +95,12 @@ export class PostTabs {
   /**
    * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished.
    * The payload is the name of the newly active tab.
-   * Only emitted in panel mode.
+   * Only emitted in Content Tabs variant.
    */
   @Event() postChange: EventEmitter<string>;
 
   componentWillRender() {
-    this.detectMode();
+    this.detectVariant();
   }
 
   componentDidLoad() {
@@ -116,8 +116,8 @@ export class PostTabs {
     this.setupResizeObserver();
     this.validateLabel();
 
-    if (this.isNavigationMode) {
-      const activeTab = this.findActiveNavigationTab();
+    if (this.isPagesVariant) {
+      const activeTab = this.findActivePagesTab();
       if (activeTab) {
         this.activateTab(activeTab);
         activeTab.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' });
@@ -145,7 +145,7 @@ export class PostTabs {
     }
 
     if (this.contentObserver) {
-      this.contentObserver.disconnect();
+      this.contentObserver?.disconnect();
     }
 
     this.resizeObserver?.disconnect();
@@ -159,7 +159,7 @@ export class PostTabs {
       childList: true,
       subtree: true,
       attributes: true,
-      attributeFilter: ['data-navigation-mode', 'aria-current'],
+      attributeFilter: ['data-pages-variant', 'aria-current'],
     };
 
     this.contentObserver = new MutationObserver(this.handleContentChange.bind(this));
@@ -172,26 +172,26 @@ export class PostTabs {
   }
 
   private handleContentChange(mutations: MutationRecord[]) {
-    const shouldRedetect = this.shouldRedetectMode(mutations);
+    const shouldRedetect = this.shouldRedetectVariant(mutations);
     const ariaCurrentChanged = this.hasAriaCurrentChanged(mutations);
 
-    if (ariaCurrentChanged && this.isNavigationMode) {
-      this.updateActiveNavigationTab();
+    if (ariaCurrentChanged && this.isPagesVariant) {
+      this.updateActivePagesTab();
     }
 
     if (shouldRedetect) {
-      this.handleModeChange();
+      this.handleVariantChange();
     }
 
     this.updateScrollButtons();
   }
 
-  private shouldRedetectMode(mutations: MutationRecord[]): boolean {
+  private shouldRedetectVariant(mutations: MutationRecord[]): boolean {
     return mutations.some(mutation => {
       if (mutation.type === 'childList') {
         return mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0;
       }
-      if (mutation.type === 'attributes' && mutation.attributeName === 'data-navigation-mode') {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-pages-variant') {
         return true;
       }
       return false;
@@ -204,27 +204,27 @@ export class PostTabs {
     );
   }
 
-  private updateActiveNavigationTab(): void {
-    const activeTab = this.findActiveNavigationTab();
+  private updateActivePagesTab(): void {
+    const activeTab = this.findActivePagesTab();
     if (activeTab && activeTab !== this.currentActiveTab) {
       this.activateTab(activeTab);
       activeTab.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' });
     }
   }
 
-  private handleModeChange(): void {
-    const previousMode = this.isNavigationMode;
-    this.detectMode();
+  private handleVariantChange(): void {
+    const previousVariant = this.isPagesVariant;
+    this.detectVariant();
 
-    if (previousMode !== this.isNavigationMode) {
+    if (previousVariant !== this.isPagesVariant) {
       this.enableTabs();
       this.initializeActiveTab();
     }
   }
 
   private initializeActiveTab(): void {
-    if (this.isNavigationMode) {
-      const activeTab = this.findActiveNavigationTab();
+    if (this.isPagesVariant) {
+      const activeTab = this.findActivePagesTab();
       if (activeTab) {
         this.activateTab(activeTab);
         activeTab.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' });
@@ -237,27 +237,27 @@ export class PostTabs {
     }
   }
 
-  private detectMode() {
-    // Check for navigation mode by looking for anchor elements in tabs
-    // This works even before post-tab-item sets data-navigation-mode attribute
-    const hasNavigationTabs = this.tabs.some(tab => {
+  private detectVariant() {
+    // Identify Page Tabs variant by looking for anchor elements in tabs
+    // This works even before post-tab-item sets [data-pages-variant] attribute
+    const hasPages = this.tabs.some(tab => {
       const hasAnchor = tab.querySelector('a') !== null;
-      const navModeAttr = tab.dataset.navigationMode === 'true';
-      return hasAnchor || navModeAttr;
+      const pagesVariantAttr = tab.dataset.pagesVariant === 'true';
+      return hasAnchor || pagesVariantAttr;
     });
 
     const hasPanels = this.panels.length > 0;
 
-    if (hasNavigationTabs && hasPanels) {
+    if (hasPages && hasPanels) {
       throw new Error(
-        'PostTabs: Mixed mode detected. Cannot use both navigation mode (anchor elements) and panel mode (post-tab-panel elements) at the same time.',
+        'PostTabs: Mixed mode detected. Cannot use both Page Tabs (anchor elements) and Content Tabs (post-tab-panel elements) variants at the same time.',
       );
     }
 
-    this.isNavigationMode = hasNavigationTabs;
+    this.isPagesVariant = hasPages;
   }
 
-  private findActiveNavigationTab(): HTMLPostTabItemElement | null {
+  private findActivePagesTab(): HTMLPostTabItemElement | null {
     return (
       this.tabs.find(tab => {
         const anchor = tab.querySelector('a[aria-current="page"]');
@@ -331,12 +331,12 @@ export class PostTabs {
     this.tabs.forEach(async tab => {
       await componentOnReady(tab);
 
-      // In navigation mode, navigation is handled by the consumer's routing
-      if (this.isNavigationMode) {
+      // In Page Tabs variant, navigation is handled by the consumer's routing
+      if (this.isPagesVariant) {
         return;
       }
 
-      // Panel mode: set up ARIA relationships and event handlers
+      // Content Tabs variant: set up ARIA relationships and event handlers
       if (tab.getAttribute('aria-controls')) return;
 
       const tabPanel = this.getPanel(tab.name);
@@ -360,6 +360,7 @@ export class PostTabs {
         if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') this.navigateTabs(tab, e.key);
       });
     });
+
     // if the currently active tab was removed from the DOM then select the first one
     if (this.currentActiveTab && !this.currentActiveTab.isConnected) {
       void this.show(this.tabs[0]?.name);
@@ -369,13 +370,13 @@ export class PostTabs {
   private activateTab(tab: HTMLPostTabItemElement) {
     // Deactivate previous tab
     if (this.currentActiveTab) {
-      if (!this.isNavigationMode) {
+      if (!this.isPagesVariant) {
         this.currentActiveTab.setAttribute('aria-selected', 'false');
         this.currentActiveTab.setAttribute('tabindex', '-1');
       }
     }
 
-    if (!this.isNavigationMode) {
+    if (!this.isPagesVariant) {
       tab.setAttribute('aria-selected', 'true');
       tab.setAttribute('tabindex', '0');
     }
@@ -443,13 +444,13 @@ export class PostTabs {
   }
 
   render() {
-    const TabsContainer = this.isNavigationMode ? 'nav' : 'div';
+    const TabsContainer = this.isPagesVariant ? 'nav' : 'div';
     const isSSR = Build.isServer;
     const tabStyle = {
       [`--post-tab-panel-${this.activeTab}`]: 'block',
       [`--post-tab-item-${this.activeTab}`]: '1',
     };
-    const style = isSSR && !this.isNavigationMode ? tabStyle : undefined;
+    const style = isSSR && !this.isPagesVariant ? tabStyle : undefined;
     return (
       <Host data-version={version} style={style}>
         <div class="tabs-wrapper" part="post-tabs">
@@ -472,8 +473,8 @@ export class PostTabs {
           <TabsContainer
             ref={el => (this.tabsContainer = el as HTMLElement)}
             class="tabs"
-            role={this.isNavigationMode ? undefined : 'tablist'}
-            aria-label={this.isNavigationMode ? this.label : undefined}
+            role={this.isPagesVariant ? undefined : 'tablist'}
+            aria-label={this.isPagesVariant ? this.label : undefined}
           >
             <slot
               onSlotchange={() => {
@@ -499,7 +500,7 @@ export class PostTabs {
             <post-icon name="chevronright"></post-icon>
           </button>
         </div>
-        {!this.isNavigationMode && (
+        {!this.isPagesVariant && (
           <div class="tab-content" part="post-tabs-content">
             <slot name="panels" onSlotchange={() => this.moveMisplacedPanels()} />
           </div>

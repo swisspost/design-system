@@ -13,12 +13,12 @@ import { nanoid } from 'nanoid';
   shadow: true,
 })
 export class PostTabItem {
-  private mutationObserver = new MutationObserver(this.checkNavigationMode.bind(this));
+  private mutationObserver = new MutationObserver(this.checkPagesVariant.bind(this));
 
   @Element() host: HTMLPostTabItemElement;
 
   @State() tabId: string;
-  @State() isNavigationMode = false;
+  @State() isPagesVariant = false;
 
   /**
    * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
@@ -39,7 +39,7 @@ export class PostTabItem {
 
   componentWillLoad() {
     this.tabId = `tab-${this.host.id || nanoid(6)}`;
-    this.checkNavigationMode();
+    this.checkPagesVariant();
   }
 
   disconnectedCallback() {
@@ -48,9 +48,9 @@ export class PostTabItem {
     }
   }
 
-  private checkNavigationMode() {
+  private checkPagesVariant() {
     const hasAnchor = this.host.querySelector('a') !== null;
-    this.isNavigationMode = hasAnchor;
+    this.isPagesVariant = hasAnchor;
   }
 
   render() {
@@ -58,14 +58,14 @@ export class PostTabItem {
     return (
       <Host
         id={this.tabId}
-        role={!this.isNavigationMode ? 'tab' : undefined}
+        role={!this.isPagesVariant ? 'tab' : undefined}
         data-version={version}
-        data-navigation-mode={this.isNavigationMode.toString()}
-        aria-selected={!this.isNavigationMode ? 'false' : undefined}
-        tabindex={!this.isNavigationMode ? '-1' : undefined}
-        class={`${!this.isNavigationMode ? 'tab-title' : 'nav-item'}${isSSR && !this.isNavigationMode ? ' ssr' : ''}`}
+        data-navigation-mode={this.isPagesVariant.toString()}
+        aria-selected={!this.isPagesVariant ? 'false' : undefined}
+        tabindex={!this.isPagesVariant ? '-1' : undefined}
+        class={`${!this.isPagesVariant ? 'tab-title' : 'nav-item'}${isSSR && !this.isPagesVariant ? ' ssr' : ''}`}
         style={
-          isSSR && !this.isNavigationMode
+          isSSR && !this.isPagesVariant
             ? { '--active': `var(--post-tab-item-${this.name}, 0)` }
             : undefined
         }

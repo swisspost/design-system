@@ -682,7 +682,7 @@ export namespace Components {
     }
     interface PostTabs {
         /**
-          * The name of the tab in the panel mode that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
+          * The name of the tab in the Content Tabs variant that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
          */
         "activeTab"?: string;
         /**
@@ -691,7 +691,7 @@ export namespace Components {
          */
         "fullWidth": boolean;
         /**
-          * The accessible label for the tabs component in navigation mode.
+          * The accessible label for the Content Tabs variant.
          */
         "label"?: string;
         /**
@@ -1873,7 +1873,7 @@ declare namespace LocalJSX {
     }
     interface PostTabs {
         /**
-          * The name of the tab in the panel mode that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
+          * The name of the tab in the Content Tabs variant that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
          */
         "activeTab"?: string;
         /**
@@ -1882,11 +1882,11 @@ declare namespace LocalJSX {
          */
         "fullWidth"?: boolean;
         /**
-          * The accessible label for the tabs component in navigation mode.
+          * The accessible label for the Content Tabs variant.
          */
         "label"?: string;
         /**
-          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. Only emitted in panel mode.
+          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. Only emitted in Content Tabs variant.
          */
         "onPostChange"?: (event: PostTabsCustomEvent<string>) => void;
     }
