@@ -1,9 +1,5 @@
 @use 'sass:map';
-@use '@swisspost/design-system-styles/components/tabs/tabs-wrapper';
-@use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/functions/tokens';
-@use '@swisspost/design-system-styles/variables/breakpoints';
-@use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
 @use '@swisspost/design-system-styles/mixins/button' as button-mx;
 
@@ -12,7 +8,7 @@
     // Negative margin to make the tabs-wrapper fullwidth
     margin-inline: calc(-1 * var(--post-container-offset));
 
-    //Internal padding to align the tabs content to the container
+    // Internal padding to align the tabs content to the container
     .tabs {
       padding-inline: var(--post-container-offset);
     }
@@ -30,42 +26,51 @@
     button.scroll-btn {
       @include button-mx.reset-button;
       display: flex;
+      align-items: center;
+      justify-content: center;
       transition:
         background-color 100ms,
         border-color 100ms,
         color 100ms;
+      color: #050400; // post-tabs-scroll-button-color-fg
       padding-block: 12px; // post-tabs-scroll-button-padding-block
 
       post-icon {
-        width: 24px; // post-tabs-item-icon-size
-        height: 24px; // ppost-tabs-item-icon-size
+        color: currentColor;
+        width: 24px; // post-tabs-scroll-button-icon-size
+        height: 24px; // post-tabs-scroll-button-icon-size
       }
 
       &[hidden] {
         display: none;
       }
 
-      &:hover {
-        border-color: #504f4b; //post-tabs-scroll-button-hovered-border-color
-        color: #504f4b; //post-tabs-scroll-button-hovered-color-fg
-      }
-
       // Left Scroll button
       &.scroll-btn-left {
         left: 0;
-        padding-inline: 7px 9px; // post-tabs-scroll-button-left-padding-inline
+        padding-inline: 7px 9px; // post-tabs-scroll-button-left-padding-inline-start + post-tabs-scroll-button-left-padding-inline-end
       }
 
       // Right Scroll button
       &.scroll-btn-right {
         right: 0;
-        padding-inline: 9px 7px; // post-tabs-scroll-button-right-padding-inline
+        padding-inline: 9px 7px; // post-tabs-scroll-button-left-padding-inline-end + post-tabs-scroll-button-right-padding-inline-end
       }
-    }
 
-    @include utilities-mx.high-contrast-mode() {
-      &::after {
-        background-color: ButtonBorder;
+      &:hover {
+        border-color: #504f4b !important; // post-tabs-scroll-button-hovered-border-color
+        color: #504f4b; // post-tabs-scroll-button-hovered-color-fg
+
+        @include utilities-mx.high-contrast-mode() {
+          color: HighlightText;
+          border-color: HighlightText;
+        }
+      }
+
+      @include utilities-mx.focus-style;
+
+      @include utilities-mx.high-contrast-mode() {
+        transition: none;
       }
     }
 
@@ -88,34 +93,30 @@
 
 // Navigation mode only
 :host(.navigation) {
-  border-block-end: 8px solid #fafafa; // post-tabs-border-block-end-width + post-tabs-border-color
-
   .tabs-wrapper {
     button.scroll-btn {
-      background-color: #fafafa; //tabs-scroll-button-color-bg
-      border-block: 2px solid #050400; // tabs-scroll-button-border-width  +  post-tabs-scroll-button-border-colorpost-tabs-scroll-button-icon-size
+      background-color: #fafafa; // post-tabs-page-scroll-button-color-bg
+      border: 2px solid #050400; // post-tabs-page-scroll-button-border-width  +  post-tabs-page-scroll-button-border-color
       position: absolute;
-      top: 12px; //post-tabs-scroll-button-position-top
+      top: 12px; // post-tabs-page-scroll-button-position-top
       z-index: 2;
+      width: 40px; // post-tabs-page-scroll-button-width
+      height: 48px; // post-tabs-page-scroll-button-height
 
       &:hover {
-        background-color: #fafafa; //post-tabs-scroll-button-color-hovered-bg
+        background-color: #fafafa; // post-tabs-page-scroll-button-color-hovered-bg
       }
 
       &.scroll-btn-left {
-        border-inline-end: 2px solid #050400; // tabs-scroll-button-border-width  +  post-tabs-scroll-button-border-color
+        border-inline-start: none;
         border-radius: 0 8px 8px 0; //   post-tabs-scroll-button-left-border-start-end-radius + post-tabs-scroll-button-left-border-end-end-radius
       }
 
       // Right Scroll button
       &.scroll-btn-right {
-        border-inline-start: 2px solid #050400; // tabs-scroll-button-border-width  +  post-tabs-scroll-button-border-color
+        border-inline-end: none;
         border-radius: 8px 0 0 8px; //   post-tabs-scroll-button-right-border-start-end-radius + post-tabs-scroll-button-right-border-end-end-radius
       }
-    }
-
-    .tabs {
-      padding-inline-start: 40px; //post-tabs-padding-inline-start
     }
 
     // Create a line that lies below the active but above the passive elements
@@ -126,8 +127,16 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 2px; // post-tabs-border-block-end-width
-      background-color: #050400; // post-tabs-wrapper-border-color
+      height: 2px; // post-tabs-page-border-block-end-width
+      background-color: #050400; // post-tabs-page-wrapper-border-color
+
+      @include utilities-mx.high-contrast-mode() {
+        background-color: LinkText;
+      }
+    }
+
+    .tabs {
+      padding-inline-start: 40px; //post-tabs-padding-inline-start
     }
   }
 }

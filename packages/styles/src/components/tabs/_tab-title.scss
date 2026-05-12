@@ -28,29 +28,59 @@ post-tab-item.nav-item a {
   post-icon {
     width: 24px; //post-tabs-item-icon-size
     height: 24px; //post-tabs-item-icon-size
+
+    @include utilities-mx.high-contrast-mode() {
+      forced-color-adjust: auto;
+      color: inherit;
+    }
   }
 
   @include utilities-mx.focus-style;
-
-  @include utilities-mx.high-contrast-mode() {
-    opacity: 1;
-    border-left-color: Canvas;
-    border-right-color: Canvas;
-    color: LinkText;
-  }
 }
 
 // Panels Mode
 post-tab-item.tab-title {
-  height: 64px; //post-tabs-panel-item-height
+  height: 64px; //post-tabs-content-item-height
   padding-block: 20px; //post-tabs-panel-item-padding-block
   transition:
     background-color 100ms,
     border-color 100ms,
     color 100ms;
+  border-bottom: 2px solid transparent; //  post-tabs-content-item-hovered-border-block-end-width
+  color: #050400; // post-tabs-content-item-color-fg
+
+  &[disabled] {
+    color: #696864; //post-tabs-content-item-disabled-color-fg
+    pointer-events: none;
+  }
+
+  &:hover:not([disabled]) {
+    border-color: #504f4b; // post-tabs-content-item-hovered-border-color
+    color: #504f4b; // post-tabs-content-item-hovered-color-fg
+  }
 
   &[aria-selected='true'] {
-    border-bottom: 2px solid #050400; // post-tabs-panel-item-selected-border-color
+    border-color: #050400; // post-tabs-content-item-selected-border-color
+
+    &:hover {
+      border-color: #504f4b; // post-tabs-content-item-selected-hovered-border-color
+      color: #504f4b; // post-tabs-content-item-selected-hovered-color-fg
+    }
+  }
+
+  @include utilities-mx.high-contrast-mode() {
+    border-color: Canvas;
+    color: ButtonText;
+
+    &[disabled] {
+      color: GrayText;
+    }
+
+    &:hover:not([disabled]),
+    &[aria-selected='true'] {
+      border-color: Highlight;
+      color: HighlightText;
+    }
   }
 }
 
@@ -74,59 +104,77 @@ post-tab-item.nav-item {
       color 100ms,
       padding-block 200ms;
 
-    color: color.$white; //add token
-    border-block-start: 2px solid transparent; // post-tabs-item-enabled-border-color + post-tabs-item-border-width
-    border-inline-start: 2px solid transparent; // post-tabs-item-enabled-border-color + post-tabs-item-border-width
-    border-inline-end: 2px solid transparent; // post-tabs-item-enabled-border-color + post-tabs-item-border-width
-
-    background-color: #050400; //post-tabs-item-enabled-color-bg
-    border-radius: 12px 12px 0 0; // post-tabs-item-border-start-start-radius + post-tabs-scroll-button-left-border-end-end-radius
-
-    border-color: #050400; //post-tabs-item-enabled-border-color
-
-    padding-block: 15px; //post-tabs-item-enabled-padding-block
+    border-block-start: 2px solid transparent; // post-tabs-item-enabled-border-color + post-tabs-page-item-border-width
+    border-inline-start: 2px solid transparent; // post-tabs-item-enabled-border-color + post-tabs-page-item-border-width
+    border-inline-end: 2px solid transparent; // post-tabs-item-enabled-border-color + post-tabs-page-item-border-width
+    background-color: #050400; // post-tabs-page-item-enabled-color-bg
+    border-radius: 12px 12px 0 0; // post-tabs-page-item-border-start-start-radius + post-tabs-page-item-border-start-end-radius
+    border-color: #050400; //post-tabs-page-item-enabled-border-color
+    color: white; //post-tabs-page-item-enabled-color-fg
+    padding-block: 15px; //post-tabs-page-item-enabled-padding-block
 
     &:hover {
-      background-color: #504f4b; // post-tabs-item-hovered-color-bg
-      border-color: #504f4b; //post-tabs-item-hovered-border-color
-      padding-block: 19px; // post-tabs-item-hovered-padding-block
-    }
-
-    &:disabled {
-      background-color: #fafafa; // post-tabs-item-disabled-color-bg
-      border-color: #696864; // post-tabs-item-disabled-border-color
-      color: #696864; // post-tabs-item-disabled-color-fg
+      background-color: #504f4b; // post-tabs-page-item-hovered-color-bg
+      border-color: #504f4b; //post-tabs-page-item-hovered-border-color
+      padding-block: 19px; // post-tabs-page-item-hovered-padding-block
     }
 
     &[aria-current='page'] {
-      background-color: #fafafa; // post-tabs-item-selected-color-bg
-      color: #050400; //add token
-      border-color: #050400; // post-tabs-item-selected-border-color
-      padding-block: 19px; // post-tabs-item-hovered-padding-block
+      background-color: #fafafa; // post-tabs-page-item-selected-color-bg
+      color: #050400; //post-tabs-page-item-selected-color-fg
+      border-color: #050400; // post-tabs-page-item-selected-border-color
+      padding-block: 19px; // post-tabs-page-item-hovered-padding-block
 
       &:hover {
-        color: #504f4b; // post-tabs-item-selected-hovered-color-fg
-        border-color: #504f4b; // post-tabs-item-selected-hovered-border-color
+        color: #504f4b; // post-tabs-page-item-selected-hovered-color-fg
+        border-color: #504f4b; // post-tabs-page-item-selected-hovered-border-color
       }
     }
 
-    &:focus-visible {
-      outline: none !important;
+    @include utilities-mx.high-contrast-mode() {
+      color: LinkText;
+      border-color: LinkText;
+      forced-color-adjust: none;
+      transition: padding-block 200ms;
+
+      &:hover {
+        background-color: Highlight;
+        border-color: HighlightText;
+        color: HighlightText;
+      }
+
+      &[aria-current='page'] {
+        background-color: Highlight;
+        border-color: Highlight;
+        color: HighlightText;
+
+        &:hover {
+          border-color: HighlightText;
+          color: HighlightText;
+        }
+      }
+    }
+  }
+
+  &[disabled] a:not([aria-current='page']) {
+    background-color: #fafafa; // post-tabs-page-item-disabled-color-bg
+    border-color: #696864; // post-tabs-page-item-disabled-border-color
+    color: #696864; // post-tabs-item-page-disabled-color-fg
+    border-style: dashed;
+    pointer-events: none;
+
+    @include utilities-mx.high-contrast-mode() {
+      color: GrayText;
+      border-color: GrayText;
     }
   }
 }
 
-// active state
+// Active state
 post-tab-item.tab-title[aria-selected='true'],
 post-tab-item.nav-item a[aria-current='page'] {
   z-index: 1;
   font-weight: 700;
-
-  @include utilities-mx.high-contrast-mode() {
-    border-left-color: ButtonText;
-    border-right-color: ButtonText;
-    color: Highlight;
-  }
 }
 
 // SSR specific styles
@@ -182,9 +230,8 @@ post-tabs:not([active-tab]) {
       font-weight: 700;
 
       @include utilities-mx.high-contrast-mode() {
-        border-left-color: ButtonText;
-        border-right-color: ButtonText;
-        color: Highlight;
+        color: HighlightText;
+        background-color: Highlight;
       }
     }
 
