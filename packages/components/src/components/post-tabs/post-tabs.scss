@@ -100,8 +100,8 @@
   }
 }
 
-// Navigation mode only
-:host(.navigation) {
+// Pages Tabs variant
+:host(.page-tabs) {
   .tabs-wrapper {
     button.scroll-btn {
       background-color: #fafafa; // post-tabs-page-scroll-button-color-bg
@@ -147,12 +147,5 @@
     .tabs {
       padding-inline-start: 40px; //post-tabs-padding-inline-start
     }
-  }
-}
-
-// Panel mode only
-:host(.panel) {
-  .tabs-wrapper button.scroll-btn {
-    align-items: center;
   }
 }

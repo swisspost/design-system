@@ -255,13 +255,14 @@ export class PostTabs {
     }
 
     this.isPagesVariant = hasPages;
-    // // Removes mode related classes to reset the state and applies the detected variant class
-    // this.host.classList.remove('navigation', 'panel');
-    // if (this.isNavigationMode) {
-    //   this.host.classList.add('navigation');
-    // } else {
-    //   this.host.classList.add('panel');
-    // }
+
+    // // Removes variant related classes to reset the state and applies the newly detected variant
+    this.host.classList.remove('page-tabs', 'content-tabs');
+    if (this.isPagesVariant) {
+      this.host.classList.add('page-tabs');
+    } else {
+      this.host.classList.add('content-tabs');
+    }
   }
 
   private findActivePagesTab(): HTMLPostTabItemElement | null {

@@ -38,7 +38,7 @@ post-tab-item.nav-item a {
   @include utilities-mx.focus-style;
 }
 
-// Panels Mode
+// Content Tabs Variant
 post-tab-item.tab-title {
   height: 64px; //post-tabs-content-item-height
   padding-block: 20px; //post-tabs-panel-item-padding-block
@@ -84,7 +84,7 @@ post-tab-item.tab-title {
   }
 }
 
-// Navigation Mode
+// Page Tabs Variant
 post-tab-item.nav-item {
   cursor: default;
 
@@ -162,6 +162,7 @@ post-tab-item.nav-item {
     color: #696864; // post-tabs-item-page-disabled-color-fg
     border-style: dashed;
     pointer-events: none;
+    border-block-end: none;
 
     @include utilities-mx.high-contrast-mode() {
       color: GrayText;
