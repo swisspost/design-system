@@ -92,7 +92,7 @@ export class PostInternetFooter {
       <Title {...titleProps} config={config.title} id={titleId} />,
       <ul {...listProps} aria-labelledby={titleId}>
         {config.items.map(item => (
-          <li>
+          <li key={item.text}>
             <Link {...linkProps} config={item} />
           </li>
         ))}
@@ -158,7 +158,7 @@ export class PostInternetFooter {
             <div slot="meta">
               <ul aria-label={getText(footerConfig.complianceLinks.title)}>
                 {footerConfig.complianceLinks.items.map(item => (
-                  <li>
+                  <li key={item.text}>
                     <Link config={item} />
                   </li>
                 ))}

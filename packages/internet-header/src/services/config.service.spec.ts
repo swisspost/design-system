@@ -7,7 +7,7 @@ import {
   isValidProjectId,
 } from './config.service';
 
-const testConfig: PortalConfig = testConfigRaw as PortalConfig;
+const testConfig: PortalConfig = testConfigRaw;
 
 describe('config.service.ts', () => {
   global.fetch = jest.fn(() => {

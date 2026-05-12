@@ -3,7 +3,7 @@ import rawTestConfiguration from '../fixtures/internet-header/test-configuration
 import { prepare } from '../support/prepare-story';
 import { BREADCRUMBS } from './shared/variables';
 
-const testConfiguration: PortalConfig = rawTestConfiguration as unknown as PortalConfig;
+const testConfiguration: PortalConfig = rawTestConfiguration;
 
 describe('breadcrumb', () => {
   describe('configuration', () => {
