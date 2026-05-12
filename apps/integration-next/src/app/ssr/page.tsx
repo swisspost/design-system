@@ -113,7 +113,7 @@ export default function Home() {
       </PostDatePicker>
 
       <h2>Autocomplete</h2>
-      <PostAutocomplete clearable={true}>
+      <PostAutocomplete clearable={true} textAvailableSuggestions="{count} suggestions available">
         <div className="form-floating">
           <input
             type="text"
@@ -247,7 +247,7 @@ export default function Home() {
       <PostStepper
         textCompletedStep="Completed step"
         textCurrentStep="Current step"
-        textStepNumber="Step #number:"
+        textStepNumber="Step {number}:"
         currentIndex={1}
       >
         <PostStepperItem> Step 1 </PostStepperItem>

@@ -9,7 +9,10 @@ const meta: MetaComponent = {
   tags: ['package:Styles', 'status:Stable'],
   render: render,
   parameters: {
-    badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=30020-144868',
+    },
   },
   args: {
     label: 'Label',
