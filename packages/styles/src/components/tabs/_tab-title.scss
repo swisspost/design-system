@@ -1,9 +1,6 @@
-@use './../../mixins/color' as color-mx;
 @use './../../mixins/utilities' as utilities-mx;
 @use './../../variables/color';
-@use './../../variables/spacing';
 @use './../../variables/components/nav';
-
 @use './../../functions/tokens';
 @use './../../tokens/utilities';
 
@@ -16,7 +13,6 @@ post-tab-item.nav-item a {
   background-color: transparent;
   cursor: pointer;
   color: #050400; //post-tabs-color-fg
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,6 +32,7 @@ post-tab-item.nav-item a {
   }
 
   @include utilities-mx.focus-style;
+  @include utilities-mx.focus-inset;
 }
 
 // Content Tabs Variant
@@ -82,6 +79,8 @@ post-tab-item.tab-title {
       color: HighlightText;
     }
   }
+
+  @include utilities-mx.focus-inset;
 }
 
 // Page Tabs Variant
@@ -95,7 +94,6 @@ post-tab-item.nav-item {
     height: 100%;
     box-sizing: border-box;
     position: relative;
-    outline: none;
     cursor: pointer;
 
     transition:
@@ -116,6 +114,12 @@ post-tab-item.nav-item {
     &:hover {
       background-color: #504f4b; // post-tabs-page-item-hovered-color-bg
       border-color: #504f4b; //post-tabs-page-item-hovered-border-color
+      padding-block: 19px; // post-tabs-page-item-hovered-padding-block
+    }
+
+    &:focus,
+    &:focus-visible,
+    &:focus-within {
       padding-block: 19px; // post-tabs-page-item-hovered-padding-block
     }
 

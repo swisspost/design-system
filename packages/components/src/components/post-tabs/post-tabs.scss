@@ -12,7 +12,7 @@
   }
 }
 
-:host([full-width='true']) {
+:host([full-width]) {
   .tabs-wrapper {
     // Negative margin to make the tabs-wrapper fullwidth
     margin-inline: calc(-1 * var(--post-container-offset));
@@ -43,6 +43,7 @@
         color 100ms;
       color: #050400; // post-tabs-scroll-button-color-fg
       padding-block: 12px; // post-tabs-scroll-button-padding-block
+      cursor: pointer;
 
       post-icon {
         color: currentColor;
@@ -76,7 +77,7 @@
         }
       }
 
-      @include utilities-mx.focus-style;
+      @include utilities-mx.focus-inset;
 
       @include utilities-mx.high-contrast-mode() {
         transition: none;
@@ -147,5 +148,13 @@
     .tabs {
       padding-inline-start: 40px; //post-tabs-padding-inline-start
     }
+  }
+}
+
+:host(.page-tabs[full-width]) {
+  .tabs {
+    padding-inline-start: calc(
+      var(--post-container-offset) + 40px
+    ); //post-tabs-padding-inline-start
   }
 }
