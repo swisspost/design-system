@@ -841,8 +841,8 @@ importers:
         specifier: ^18
         version: 18.3.0
       autoprefixer:
-        specifier: ^10.0.1
-        version: 10.4.19(postcss@8.4.40)
+        specifier: ^10.5.0
+        version: 10.5.0(postcss@8.4.40)
       eslint:
         specifier: ^8
         version: 8.57.0
@@ -884,8 +884,8 @@ importers:
         specifier: 20.14.14
         version: 20.14.14
       autoprefixer:
-        specifier: 10.4.20
-        version: 10.4.20(postcss@8.4.40)
+        specifier: 10.5.0
+        version: 10.5.0(postcss@8.4.40)
       copyfiles:
         specifier: 2.4.1
         version: 2.4.1
@@ -986,7 +986,7 @@ importers:
     devDependencies:
       '@angular/build':
         specifier: ^21.1.2
-        version: 21.1.5(@angular/compiler-cli@21.1.3(@angular/compiler@21.1.3)(typescript@5.9.3))(@angular/compiler@21.1.3)(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)(zone.js@0.15.0))(@angular/platform-browser@21.1.3(@angular/animations@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)(zone.js@0.15.0)))(@angular/common@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)(zone.js@0.15.0)))(@types/node@22.16.3)(chokidar@5.0.0)(jiti@1.21.6)(karma@6.4.4)(less@4.3.0)(ng-packagr@21.1.0(@angular/compiler-cli@21.1.3(@angular/compiler@21.1.3)(typescript@5.9.3))(tailwindcss@3.4.17)(tslib@2.6.3)(typescript@5.9.3))(postcss@8.4.40)(tailwindcss@3.4.17)(terser@5.43.1)(tslib@2.6.3)(typescript@5.9.3)(yaml@2.8.0)
+        version: 21.1.5(@angular/compiler-cli@21.1.3(@angular/compiler@21.1.3)(typescript@5.9.3))(@angular/compiler@21.1.3)(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)(zone.js@0.15.0))(@angular/platform-browser@21.1.3(@angular/animations@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)(zone.js@0.15.0)))(@angular/common@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)(zone.js@0.15.0)))(@types/node@22.16.3)(chokidar@5.0.0)(jiti@1.21.6)(karma@6.4.4)(less@4.3.0)(ng-packagr@21.1.0(@angular/compiler-cli@21.1.3(@angular/compiler@21.1.3)(typescript@5.9.3))(tailwindcss@3.4.17)(tslib@2.6.3)(typescript@5.9.3))(postcss@8.5.6)(tailwindcss@3.4.17)(terser@5.43.1)(tslib@2.6.3)(typescript@5.9.3)(yaml@2.8.0)
       '@angular/cli':
         specifier: 21.1.2
         version: 21.1.2(@types/node@22.16.3)(chokidar@5.0.0)(hono@4.12.2)
@@ -1025,7 +1025,7 @@ importers:
         version: 16.8.1(typescript@5.9.3)
       stylelint-config-sass-guidelines:
         specifier: 11.1.0
-        version: 11.1.0(postcss@8.4.40)(stylelint@16.8.1(typescript@5.9.3))
+        version: 11.1.0(postcss@8.5.6)(stylelint@16.8.1(typescript@5.9.3))
       stylelint-prettier:
         specifier: 5.0.2
         version: 5.0.2(prettier@3.3.3)(stylelint@16.8.1(typescript@5.9.3))
@@ -6104,15 +6104,15 @@ packages:
     resolution: {integrity: sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg==}
     engines: {node: '>= 4.0.0'}
 
-  autoprefixer@10.4.19:
-    resolution: {integrity: sha512-BaENR2+zBZ8xXhM4pUaKUxlVdxZ0EZhjvbopwnXmxRUfqDmwSpC2lAi/QXvx7NRdPCo1WKEcEF6mV64si1z4Ew==}
+  autoprefixer@10.4.20:
+    resolution: {integrity: sha512-XY25y5xSv/wEoqzDyXXME4AFfkZI0P23z6Fs3YgymDnKJkCGOnkL0iTxCa85UTqaSgfcqyf3UA6+c7wUvx/16g==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
     peerDependencies:
       postcss: ^8.1.0
 
-  autoprefixer@10.4.20:
-    resolution: {integrity: sha512-XY25y5xSv/wEoqzDyXXME4AFfkZI0P23z6Fs3YgymDnKJkCGOnkL0iTxCa85UTqaSgfcqyf3UA6+c7wUvx/16g==}
+  autoprefixer@10.5.0:
+    resolution: {integrity: sha512-FMhOoZV4+qR6aTUALKX2rEqGG+oyATvwBt9IIzVR5rMa2HRWPkxf+P+PAJLD1I/H5/II+HuZcBJYEFBpq39ong==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
     peerDependencies:
@@ -6238,6 +6238,11 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
+  baseline-browser-mapping@2.10.29:
+    resolution: {integrity: sha512-Asa2krT+XTPZINCS+2QcyS8WTkObE77RwkydwF7h6DmnKqbvlalz93m/dnphUyCa6SWSP51VgtEUf2FN+gelFQ==}
+    engines: {node: '>=6.0.0'}
+    hasBin: true
+
   basic-auth@2.0.1:
     resolution: {integrity: sha512-NF+epuEdnUYVlGuhaxbbq+dvJttwLnGY+YixlXlME5KpQ5W3CnXA5cVTneY3SPbPDRkcjMbifrwmFYcClgOZeg==}
     engines: {node: '>= 0.8'}
@@ -6331,6 +6336,11 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
 
+  browserslist@4.28.2:
+    resolution: {integrity: sha512-48xSriZYYg+8qXna9kwqjIVzuQxi+KYWp2+5nCYnYKPTr0LvD89Jqk2Or5ogxz0NUMfIjhh2lIUX/LyX9B4oIg==}
+    engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
+    hasBin: true
+
   bs-logger@0.2.6:
     resolution: {integrity: sha512-pd8DCoxmbgc7hyPKOvxtqNcjYoOsABPQdcCUjGp3d42VR2CX1ORhk2A87oqqu5R1kk+76nsxZupkmyd+MVtCog==}
     engines: {node: '>= 6'}
@@ -6412,14 +6422,14 @@ packages:
   caniuse-api@3.0.0:
     resolution: {integrity: sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw==}
 
-  caniuse-lite@1.0.30001617:
-    resolution: {integrity: sha512-mLyjzNI9I+Pix8zwcrpxEbGlfqOkF9kM3ptzmKNw5tizSyYwMe+nGLTqMK9cO+0E+Bh6TsBxNAaHWEM8xwSsmA==}
-
   caniuse-lite@1.0.30001707:
     resolution: {integrity: sha512-3qtRjw/HQSMlDWf+X79N206fepf4SOOU6SQLMaq/0KkZLmSjPxAkBOQQ+FxbHKfHmYLZFfdWsO3KA90ceHPSnw==}
 
   caniuse-lite@1.0.30001774:
     resolution: {integrity: sha512-DDdwPGz99nmIEv216hKSgLD+D4ikHQHjBC/seF98N9CPqRX4M5mSxT9eTV6oyisnJcuzxtZy4n17yKKQYmYQOA==}
+
+  caniuse-lite@1.0.30001792:
+    resolution: {integrity: sha512-hVLMUZFgR4JJ6ACt1uEESvQN1/dBVqPAKY0hgrV70eN3391K6juAfTjKZLKvOMsx8PxA7gsY1/tLMMTcfFLLpw==}
 
   caseless@0.12.0:
     resolution: {integrity: sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==}
@@ -7237,6 +7247,9 @@ packages:
   electron-to-chromium@1.5.302:
     resolution: {integrity: sha512-sM6HAN2LyK82IyPBpznDRqlTQAtuSaO+ShzFiWTvoMJLHyZ+Y39r8VMfHzwbU8MVBzQ4Wdn85+wlZl2TLGIlwg==}
 
+  electron-to-chromium@1.5.354:
+    resolution: {integrity: sha512-JaBHwWcfIdmSAfWM5l3uwjGd431j8YEMikZ+K/2nXVuBqJKyZ0f+2h4n4JY5AyNiZmnY9qQr2RU3v9DxDmHMNg==}
+
   emittery@0.13.1:
     resolution: {integrity: sha512-DeWwawk6r5yR9jFgnDKYt4sLS0LmHJJi3ZOnb5/JdbYwj3nW+FxQnHIjhBKz8YLC7oRNPVM9NQ47I3CVx34eqQ==}
     engines: {node: '>=12'}
@@ -7970,6 +7983,9 @@ packages:
 
   fraction.js@4.3.7:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
+
+  fraction.js@5.3.4:
+    resolution: {integrity: sha512-1X1NTtiJphryn/uLQz3whtY6jK3fTqoE3ohKs0tT+Ujr1W59oopxmoEh7Lu5p6vBaPbgoM0bzveAW4Qi5RyWDQ==}
 
   fresh@0.5.2:
     resolution: {integrity: sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==}
@@ -10029,6 +10045,9 @@ packages:
 
   node-releases@2.0.27:
     resolution: {integrity: sha512-nmh3lCkYZ3grZvqcCH+fjmQ7X+H0OeZgP40OierEaAptX4XofMh5kwNbWh7lBduUzCcV/8kZ+NDLCwm2iorIlA==}
+
+  node-releases@2.0.44:
+    resolution: {integrity: sha512-5WUyunoPMsvvEhS8AxHtRzP+oA8UCkJ7YRxatWKjngndhDGLiqEVAQKWjFAiAiuL8zMRGzGSJxFnLetoa43qGQ==}
 
   noms@0.0.0:
     resolution: {integrity: sha512-lNDU9VJaOPxUmXcLb+HQFeUgQQPtMI24Gt6hgfuMHRJgMRHMF/qZ4HJD3GDru4sSw9IQl2jPjAYnQrdIeLbwow==}
@@ -13623,61 +13642,6 @@ snapshots:
       - tsx
       - yaml
 
-  '@angular/build@21.1.5(@angular/compiler-cli@21.1.3(@angular/compiler@21.1.3)(typescript@5.9.3))(@angular/compiler@21.1.3)(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)(zone.js@0.15.0))(@angular/platform-browser@21.1.3(@angular/animations@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)(zone.js@0.15.0)))(@angular/common@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)(zone.js@0.15.0)))(@types/node@22.16.3)(chokidar@5.0.0)(jiti@1.21.6)(karma@6.4.4)(less@4.3.0)(ng-packagr@21.1.0(@angular/compiler-cli@21.1.3(@angular/compiler@21.1.3)(typescript@5.9.3))(tailwindcss@3.4.17)(tslib@2.6.3)(typescript@5.9.3))(postcss@8.4.40)(tailwindcss@3.4.17)(terser@5.43.1)(tslib@2.6.3)(typescript@5.9.3)(yaml@2.8.0)':
-    dependencies:
-      '@ampproject/remapping': 2.3.0
-      '@angular-devkit/architect': 0.2101.5(chokidar@5.0.0)
-      '@angular/compiler': 21.1.3
-      '@angular/compiler-cli': 21.1.3(@angular/compiler@21.1.3)(typescript@5.9.3)
-      '@babel/core': 7.28.5
-      '@babel/helper-annotate-as-pure': 7.27.3
-      '@babel/helper-split-export-declaration': 7.24.7
-      '@inquirer/confirm': 5.1.21(@types/node@22.16.3)
-      '@vitejs/plugin-basic-ssl': 2.1.0(vite@7.3.0(@types/node@22.16.3)(jiti@1.21.6)(less@4.3.0)(sass@1.97.1)(terser@5.43.1)(yaml@2.8.0))
-      beasties: 0.3.5
-      browserslist: 4.28.1
-      esbuild: 0.27.2
-      https-proxy-agent: 7.0.6
-      istanbul-lib-instrument: 6.0.3
-      jsonc-parser: 3.3.1
-      listr2: 9.0.5
-      magic-string: 0.30.21
-      mrmime: 2.0.1
-      parse5-html-rewriting-stream: 8.0.0
-      picomatch: 4.0.3
-      piscina: 5.1.4
-      rolldown: 1.0.0-beta.58
-      sass: 1.97.1
-      semver: 7.7.3
-      source-map-support: 0.5.21
-      tinyglobby: 0.2.15
-      tslib: 2.6.3
-      typescript: 5.9.3
-      undici: 7.20.0
-      vite: 7.3.0(@types/node@22.16.3)(jiti@1.21.6)(less@4.3.0)(sass@1.97.1)(terser@5.43.1)(yaml@2.8.0)
-      watchpack: 2.5.0
-    optionalDependencies:
-      '@angular/core': 21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)(zone.js@0.15.0)
-      '@angular/platform-browser': 21.1.3(@angular/animations@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)(zone.js@0.15.0)))(@angular/common@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)(zone.js@0.15.0))
-      karma: 6.4.4
-      less: 4.3.0
-      lmdb: 3.4.4
-      ng-packagr: 21.1.0(@angular/compiler-cli@21.1.3(@angular/compiler@21.1.3)(typescript@5.9.3))(tailwindcss@3.4.17)(tslib@2.6.3)(typescript@5.9.3)
-      postcss: 8.4.40
-      tailwindcss: 3.4.17(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.4))
-    transitivePeerDependencies:
-      - '@types/node'
-      - chokidar
-      - jiti
-      - lightningcss
-      - sass-embedded
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
-      - tsx
-      - yaml
-
   '@angular/build@21.1.5(@angular/compiler-cli@21.1.3(@angular/compiler@21.1.3)(typescript@5.9.3))(@angular/compiler@21.1.3)(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)(zone.js@0.15.0))(@angular/platform-browser@21.1.3(@angular/animations@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)(zone.js@0.15.0)))(@angular/common@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)(zone.js@0.15.0)))(@types/node@22.16.3)(chokidar@5.0.0)(jiti@1.21.6)(karma@6.4.4)(less@4.3.0)(ng-packagr@21.1.0(@angular/compiler-cli@21.1.3(@angular/compiler@21.1.3)(typescript@5.9.3))(tailwindcss@3.4.17)(tslib@2.6.3)(typescript@5.9.3))(postcss@8.5.6)(tailwindcss@3.4.17)(terser@5.43.1)(tslib@2.6.3)(typescript@5.9.3)(yaml@2.8.0)':
     dependencies:
       '@ampproject/remapping': 2.3.0
@@ -14180,7 +14144,7 @@ snapshots:
     dependencies:
       '@babel/compat-data': 7.25.2
       '@babel/helper-validator-option': 7.24.8
-      browserslist: 4.28.1
+      browserslist: 4.28.2
       lru-cache: 5.1.1
       semver: 6.3.1
 
@@ -19449,34 +19413,23 @@ snapshots:
 
   at-least-node@1.0.0: {}
 
-  autoprefixer@10.4.19(postcss@8.4.40):
-    dependencies:
-      browserslist: 4.28.1
-      caniuse-lite: 1.0.30001617
-      fraction.js: 4.3.7
-      normalize-range: 0.1.2
-      picocolors: 1.0.0
-      postcss: 8.4.40
-      postcss-value-parser: 4.2.0
-
-  autoprefixer@10.4.20(postcss@8.4.40):
-    dependencies:
-      browserslist: 4.28.1
-      caniuse-lite: 1.0.30001774
-      fraction.js: 4.3.7
-      normalize-range: 0.1.2
-      picocolors: 1.1.1
-      postcss: 8.4.40
-      postcss-value-parser: 4.2.0
-
   autoprefixer@10.4.20(postcss@8.5.2):
     dependencies:
       browserslist: 4.28.1
-      caniuse-lite: 1.0.30001774
+      caniuse-lite: 1.0.30001792
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.1.1
       postcss: 8.5.2
+      postcss-value-parser: 4.2.0
+
+  autoprefixer@10.5.0(postcss@8.4.40):
+    dependencies:
+      browserslist: 4.28.2
+      caniuse-lite: 1.0.30001792
+      fraction.js: 5.3.4
+      picocolors: 1.1.1
+      postcss: 8.4.40
       postcss-value-parser: 4.2.0
 
   available-typed-arrays@1.0.7:
@@ -19688,6 +19641,8 @@ snapshots:
 
   baseline-browser-mapping@2.10.0: {}
 
+  baseline-browser-mapping@2.10.29: {}
+
   basic-auth@2.0.1:
     dependencies:
       safe-buffer: 5.1.2
@@ -19823,6 +19778,14 @@ snapshots:
       node-releases: 2.0.27
       update-browserslist-db: 1.2.3(browserslist@4.28.1)
 
+  browserslist@4.28.2:
+    dependencies:
+      baseline-browser-mapping: 2.10.29
+      caniuse-lite: 1.0.30001792
+      electron-to-chromium: 1.5.354
+      node-releases: 2.0.44
+      update-browserslist-db: 1.2.3(browserslist@4.28.2)
+
   bs-logger@0.2.6:
     dependencies:
       fast-json-stable-stringify: 2.1.0
@@ -19919,16 +19882,16 @@ snapshots:
 
   caniuse-api@3.0.0:
     dependencies:
-      browserslist: 4.28.1
-      caniuse-lite: 1.0.30001774
+      browserslist: 4.28.2
+      caniuse-lite: 1.0.30001792
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
-
-  caniuse-lite@1.0.30001617: {}
 
   caniuse-lite@1.0.30001707: {}
 
   caniuse-lite@1.0.30001774: {}
+
+  caniuse-lite@1.0.30001792: {}
 
   caseless@0.12.0: {}
 
@@ -20756,6 +20719,8 @@ snapshots:
       jake: 10.9.2
 
   electron-to-chromium@1.5.302: {}
+
+  electron-to-chromium@1.5.354: {}
 
   emittery@0.13.1: {}
 
@@ -21922,6 +21887,8 @@ snapshots:
   forwarded@0.2.0: {}
 
   fraction.js@4.3.7: {}
+
+  fraction.js@5.3.4: {}
 
   fresh@0.5.2: {}
 
@@ -24583,6 +24550,8 @@ snapshots:
 
   node-releases@2.0.27: {}
 
+  node-releases@2.0.44: {}
+
   noms@0.0.0:
     dependencies:
       inherits: 2.0.4
@@ -25353,7 +25322,7 @@ snapshots:
 
   postcss-colormin@5.3.1(postcss@8.5.6):
     dependencies:
-      browserslist: 4.28.1
+      browserslist: 4.28.2
       caniuse-api: 3.0.0
       colord: 2.9.3
       postcss: 8.5.6
@@ -25361,7 +25330,7 @@ snapshots:
 
   postcss-convert-values@5.1.3(postcss@8.5.6):
     dependencies:
-      browserslist: 4.28.1
+      browserslist: 4.28.2
       postcss: 8.5.6
       postcss-value-parser: 4.2.0
 
@@ -25438,7 +25407,7 @@ snapshots:
 
   postcss-merge-rules@5.1.4(postcss@8.5.6):
     dependencies:
-      browserslist: 4.28.1
+      browserslist: 4.28.2
       caniuse-api: 3.0.0
       cssnano-utils: 3.1.0(postcss@8.5.6)
       postcss: 8.5.6
@@ -25458,7 +25427,7 @@ snapshots:
 
   postcss-minify-params@5.1.4(postcss@8.5.6):
     dependencies:
-      browserslist: 4.28.1
+      browserslist: 4.28.2
       cssnano-utils: 3.1.0(postcss@8.5.6)
       postcss: 8.5.6
       postcss-value-parser: 4.2.0
@@ -25558,7 +25527,7 @@ snapshots:
 
   postcss-normalize-unicode@5.1.1(postcss@8.5.6):
     dependencies:
-      browserslist: 4.28.1
+      browserslist: 4.28.2
       postcss: 8.5.6
       postcss-value-parser: 4.2.0
 
@@ -25581,7 +25550,7 @@ snapshots:
 
   postcss-reduce-initial@5.1.2(postcss@8.5.6):
     dependencies:
-      browserslist: 4.28.1
+      browserslist: 4.28.2
       caniuse-api: 3.0.0
       postcss: 8.5.6
 
@@ -25601,6 +25570,10 @@ snapshots:
   postcss-scss@4.0.9(postcss@8.4.40):
     dependencies:
       postcss: 8.4.40
+
+  postcss-scss@4.0.9(postcss@8.5.6):
+    dependencies:
+      postcss: 8.5.6
 
   postcss-selector-parser@6.1.0:
     dependencies:
@@ -27002,7 +26975,7 @@ snapshots:
 
   stylehacks@5.1.1(postcss@8.5.6):
     dependencies:
-      browserslist: 4.28.1
+      browserslist: 4.28.2
       postcss: 8.5.6
       postcss-selector-parser: 6.1.1
 
@@ -27010,6 +26983,13 @@ snapshots:
     dependencies:
       postcss: 8.4.40
       postcss-scss: 4.0.9(postcss@8.4.40)
+      stylelint: 16.8.1(typescript@5.9.3)
+      stylelint-scss: 6.4.1(stylelint@16.8.1(typescript@5.9.3))
+
+  stylelint-config-sass-guidelines@11.1.0(postcss@8.5.6)(stylelint@16.8.1(typescript@5.9.3)):
+    dependencies:
+      postcss: 8.5.6
+      postcss-scss: 4.0.9(postcss@8.5.6)
       stylelint: 16.8.1(typescript@5.9.3)
       stylelint-scss: 6.4.1(stylelint@16.8.1(typescript@5.9.3))
 
@@ -27758,6 +27738,12 @@ snapshots:
   update-browserslist-db@1.2.3(browserslist@4.28.1):
     dependencies:
       browserslist: 4.28.1
+      escalade: 3.2.0
+      picocolors: 1.1.1
+
+  update-browserslist-db@1.2.3(browserslist@4.28.2):
+    dependencies:
+      browserslist: 4.28.2
       escalade: 3.2.0
       picocolors: 1.1.1
 

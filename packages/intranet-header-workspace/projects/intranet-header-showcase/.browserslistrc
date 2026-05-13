@@ -1,10 +1,8 @@
-# Swiss Post Browsersupport
-
-# https://postchag.sharepoint.com/sites/postweb-service/SiteAssets/Forms/AllItems.aspx?id=%2Fsites%2Fpostweb%2Dservice%2FSiteAssets%2FSitePages%2Fpublishing%2FBrowserunterstuetzung%2EPDF&parent=%2Fsites%2Fpostweb%2Dservice%2FSiteAssets%2FSitePages%2Fpublishing
-
 # This file configures autoprefixer used in the build script
 
 # Docs: https://github.com/browserslist/browserslist
+
+baseline widely available and > 0.5% and not dead
 
 last 2 Chrome versions
 last 2 Firefox versions
@@ -13,7 +11,3 @@ last 2 Safari versions
 last 2 iOS versions
 last 2 ChromeAndroid versions
 last 2 Samsung versions
-
-baseline widely available
-> 0.5%
-not dead
