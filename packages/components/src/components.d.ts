@@ -1979,6 +1979,8 @@ declare namespace LocalJSX {
         "url": string | URL;
         "label": string;
         "description": string;
+        "variant": Variant;
+        "selected": boolean;
     }
     interface PostBreadcrumbsAttributes {
         "homeUrl": string;
