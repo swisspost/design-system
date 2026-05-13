@@ -1,5 +1,30 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.69
+
+### Major Changes
+
+- Changed the `post-stepper` component's **text-step-number** prop format from `Step #number:` to `Step {number}:`. (by [@leagrdv](https://github.com/leagrdv) with [#7581](https://github.com/swisspost/design-system/pull/7581))
+
+- Removed palette class support from `post-tooltip`. The tooltip now always uses the accent palette and no longer requires or accepts a palette class. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7544](https://github.com/swisspost/design-system/pull/7544))
+
+### Minor Changes
+
+- Added internationalization (i18n) to the date-picker component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7447](https://github.com/swisspost/design-system/pull/7447))
+
+### Patch Changes
+
+- Updated the styles for `post-tooltip` component to align with the new design specification. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7544](https://github.com/swisspost/design-system/pull/7544))
+
+- Fixed a scroll-triggered flickering issue in the `post-header` component when used in Angular applications. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7599](https://github.com/swisspost/design-system/pull/7599))
+
+- Prevented unintended page scroll when pressing `Home` key while navigating the `post-menu` component dropdown with keyboard. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7624](https://github.com/swisspost/design-system/pull/7624))
+
+- Fixed an issue where using the language menu would stop the header from collapsing when scrolling. (by [@alizedebray](https://github.com/alizedebray) with [#7445](https://github.com/swisspost/design-system/pull/7445))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.69
+  - @swisspost/design-system-styles@10.0.0-next.69
+
 ## 10.0.0-next.68
 
 ### Minor Changes
