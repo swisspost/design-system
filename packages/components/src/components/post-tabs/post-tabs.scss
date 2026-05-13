@@ -86,6 +86,14 @@
 
     .tabs {
       overflow-x: hidden;
+      // Allow the focus ring (offset + width = 4px) to paint outside tabs without being clipped.
+      // Compensated with negative margins so layout dimensions are unchanged.
+      padding-block: calc(
+        var(--post-device-spacing-padding-2) + var(--post-device-border-width-focus)
+      );
+      margin-block: calc(
+        -1 * (var(--post-device-spacing-padding-2) + var(--post-device-border-width-focus))
+      );
       background-color: transparent !important;
       display: flex;
       flex-wrap: nowrap;
@@ -138,7 +146,7 @@
       left: 0;
       width: 100%;
       height: 2px; // post-tabs-page-border-block-end-width
-      background-color: #050400; // post-tabs-page-wrapper-border-color
+      background-color: #050400; // post-tabs-page-border-color
 
       @include utilities-mx.high-contrast-mode() {
         background-color: LinkText;
@@ -146,15 +154,7 @@
     }
 
     .tabs {
-      padding-inline-start: 40px; //post-tabs-padding-inline-start
+      padding-inline-start: 40px; // post-tabs-page-padding-inline-start
     }
-  }
-}
-
-:host(.page-tabs[full-width]) {
-  .tabs {
-    padding-inline-start: calc(
-      var(--post-container-offset) + 40px
-    ); //post-tabs-padding-inline-start
   }
 }
