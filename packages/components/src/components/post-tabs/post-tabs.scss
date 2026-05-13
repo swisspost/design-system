@@ -97,7 +97,6 @@
       background-color: transparent !important;
       display: flex;
       flex-wrap: nowrap;
-      gap: 2px; // post-tabs-wrapper-item-gap
       align-items: end;
 
       /* prevent scroll chaining on x scroll */
@@ -120,10 +119,6 @@
       z-index: 2;
       width: 40px; // post-tabs-page-scroll-button-width
       height: 48px; // post-tabs-page-scroll-button-height
-
-      &:hover {
-        background-color: #fafafa; // post-tabs-page-scroll-button-color-hovered-bg
-      }
 
       &.scroll-btn-left {
         border-inline-start: none;
@@ -155,6 +150,7 @@
 
     .tabs {
       padding-inline-start: 40px; // post-tabs-page-padding-inline-start
+      gap: 2px; // post-tabs-page-item-gap
     }
   }
 }
