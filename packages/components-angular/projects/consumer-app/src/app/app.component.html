@@ -148,6 +148,21 @@
 <post-back-to-top textBackToTop="Back to top"></post-back-to-top>
 
 <post-footer textFooter="Footer">
+  <div slot="prefooter">
+    <h3 id="prefooter">Service name</h3>
+    <ul aria-labelledby="prefooter">
+      <li>
+        <a href="#">Pre-Footer Link 1</a>
+      </li>
+      <li>
+        <a href="#">Pre-Footer Link 2</a>
+      </li>
+      <li>
+        <a href="#">Pre-Footer Link 3</a>
+      </li>
+    </ul>
+  </div>
+
   @for (grid of footerGrids; track grid.slot) {
     <span [attr.id]="grid.slot + '-title'" [attr.slot]="grid.slot + '-title'">{{
       grid.title
@@ -207,7 +222,7 @@
   </div>
 
   <div slot="businesssectors">
-    <h3 id="businesssectors">Die schweizerische Post AG</h3>
+    <h3 id="businesssectors">Die Schweizerische Post AG</h3>
     <ul aria-labelledby="businesssectors">
       <li>
         <a href="https://www.postauto.ch">PostAuto</a>
