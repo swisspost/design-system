@@ -25,6 +25,18 @@
   }
 }
 
+:host(.page-tabs[full-width]) {
+  .tabs-wrapper {
+    // Negative margin to make the tabs-wrapper fullwidth
+    margin-inline: calc(-1 * calc(var(--post-container-offset) + 40px));
+
+    .tabs {
+      padding-inline: calc(var(--post-container-offset) + 40px);
+      // post-tabs-page-padding-inline-start;
+    }
+  }
+}
+
 :host {
   display: block;
 
@@ -90,12 +102,6 @@
 
       // Allow the focus ring (offset + width = 4px) to paint outside tabs without being clipped.
       // Compensated with negative margins so layout dimensions are unchanged.
-      // padding-block-start: calc(
-      //   var(--post-device-spacing-padding-2) + var(--post-device-border-width-focus)
-      // );
-      // margin-block-start: calc(
-      //   -1 * (var(--post-device-spacing-padding-2) + var(--post-device-border-width-focus))
-      // );
       background-color: transparent !important;
       display: flex;
       flex-wrap: nowrap;
