@@ -4,7 +4,7 @@
 @use './placeholders' as *;
 
 $min-text-width-desktop: 12ch;
-$min-text-width-tablet: 25ch;
+$min-text-width-tablet: 28ch;
 
 post-megadropdown {
   --min-text-width: #{$min-text-width-desktop};
