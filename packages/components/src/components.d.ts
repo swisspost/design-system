@@ -430,7 +430,7 @@ export namespace Components {
         /**
           * Accessible label for the dropdown menu
          */
-        "textMenu": string;
+        "textUserMenu": string;
         /**
           * Hidden label for the user menu trigger button, for accessibility purposes. It should describe the purpose of the button (e.g. "Access user links").
          */
@@ -1652,7 +1652,7 @@ declare namespace LocalJSX {
         /**
           * Accessible label for the dropdown menu
          */
-        "textMenu": string;
+        "textUserMenu": string;
         /**
           * Hidden label for the user menu trigger button, for accessibility purposes. It should describe the purpose of the button (e.g. "Access user links").
          */
@@ -2053,7 +2053,7 @@ declare namespace LocalJSX {
     }
     interface PostLoginWidgetAttributes {
         "textCurrentUser": string;
-        "textMenu": string;
+        "textUserMenu": string;
         "textUserMenuTrigger": string;
     }
     interface PostLogoAttributes {
@@ -2161,7 +2161,7 @@ declare namespace LocalJSX {
         "post-linkarea": PostLinkarea;
         "post-listbox": PostListbox;
         "post-listbox-option": Omit<PostListboxOption, keyof PostListboxOptionAttributes> & { [K in keyof PostListboxOption & keyof PostListboxOptionAttributes]?: PostListboxOption[K] } & { [K in keyof PostListboxOption & keyof PostListboxOptionAttributes as `attr:${K}`]?: PostListboxOptionAttributes[K] } & { [K in keyof PostListboxOption & keyof PostListboxOptionAttributes as `prop:${K}`]?: PostListboxOption[K] } & OneOf<"value", PostListboxOption["value"], PostListboxOptionAttributes["value"]>;
-        "post-login-widget": Omit<PostLoginWidget, keyof PostLoginWidgetAttributes> & { [K in keyof PostLoginWidget & keyof PostLoginWidgetAttributes]?: PostLoginWidget[K] } & { [K in keyof PostLoginWidget & keyof PostLoginWidgetAttributes as `attr:${K}`]?: PostLoginWidgetAttributes[K] } & { [K in keyof PostLoginWidget & keyof PostLoginWidgetAttributes as `prop:${K}`]?: PostLoginWidget[K] } & OneOf<"textCurrentUser", PostLoginWidget["textCurrentUser"], PostLoginWidgetAttributes["textCurrentUser"]> & OneOf<"textMenu", PostLoginWidget["textMenu"], PostLoginWidgetAttributes["textMenu"]> & OneOf<"textUserMenuTrigger", PostLoginWidget["textUserMenuTrigger"], PostLoginWidgetAttributes["textUserMenuTrigger"]>;
+        "post-login-widget": Omit<PostLoginWidget, keyof PostLoginWidgetAttributes> & { [K in keyof PostLoginWidget & keyof PostLoginWidgetAttributes]?: PostLoginWidget[K] } & { [K in keyof PostLoginWidget & keyof PostLoginWidgetAttributes as `attr:${K}`]?: PostLoginWidgetAttributes[K] } & { [K in keyof PostLoginWidget & keyof PostLoginWidgetAttributes as `prop:${K}`]?: PostLoginWidget[K] } & OneOf<"textCurrentUser", PostLoginWidget["textCurrentUser"], PostLoginWidgetAttributes["textCurrentUser"]> & OneOf<"textUserMenu", PostLoginWidget["textUserMenu"], PostLoginWidgetAttributes["textUserMenu"]> & OneOf<"textUserMenuTrigger", PostLoginWidget["textUserMenuTrigger"], PostLoginWidgetAttributes["textUserMenuTrigger"]>;
         "post-logo": Omit<PostLogo, keyof PostLogoAttributes> & { [K in keyof PostLogo & keyof PostLogoAttributes]?: PostLogo[K] } & { [K in keyof PostLogo & keyof PostLogoAttributes as `attr:${K}`]?: PostLogoAttributes[K] } & { [K in keyof PostLogo & keyof PostLogoAttributes as `prop:${K}`]?: PostLogo[K] };
         "post-mainnavigation": Omit<PostMainnavigation, keyof PostMainnavigationAttributes> & { [K in keyof PostMainnavigation & keyof PostMainnavigationAttributes]?: PostMainnavigation[K] } & { [K in keyof PostMainnavigation & keyof PostMainnavigationAttributes as `attr:${K}`]?: PostMainnavigationAttributes[K] } & { [K in keyof PostMainnavigation & keyof PostMainnavigationAttributes as `prop:${K}`]?: PostMainnavigation[K] } & OneOf<"textMain", PostMainnavigation["textMain"], PostMainnavigationAttributes["textMain"]>;
         "post-megadropdown": Omit<PostMegadropdown, keyof PostMegadropdownAttributes> & { [K in keyof PostMegadropdown & keyof PostMegadropdownAttributes]?: PostMegadropdown[K] } & { [K in keyof PostMegadropdown & keyof PostMegadropdownAttributes as `attr:${K}`]?: PostMegadropdownAttributes[K] } & { [K in keyof PostMegadropdown & keyof PostMegadropdownAttributes as `prop:${K}`]?: PostMegadropdown[K] } & OneOf<"textClose", PostMegadropdown["textClose"], PostMegadropdownAttributes["textClose"]> & OneOf<"textBack", PostMegadropdown["textBack"], PostMegadropdownAttributes["textBack"]>;

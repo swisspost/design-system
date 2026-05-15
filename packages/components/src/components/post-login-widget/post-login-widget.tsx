@@ -49,11 +49,11 @@ export class PostLoginWidget {
   /**
    * Accessible label for the dropdown menu
    */
-  @Prop({ reflect: true }) textMenu!: string;
+  @Prop({ reflect: true }) textUserMenu!: string;
 
-  @Watch('textMenu')
-  validateTextMenu() {
-    checkRequiredAndType(this, 'textMenu', 'string');
+  @Watch('textUserMenu')
+  validateTextUserMenu() {
+    checkRequiredAndType(this, 'textUserMenu', 'string');
   }
 
   /**
@@ -73,6 +73,7 @@ export class PostLoginWidget {
   componentDidLoad() {
     this.validateTextCurrentUser();
     this.validateTextUserMenuTrigger();
+    this.validateTextUserMenu();
   }
 
   async componentWillLoad() {
@@ -144,7 +145,7 @@ export class PostLoginWidget {
                 <span class="visually-hidden">{this.textUserMenuTrigger}</span>
               </button>
             </post-menu-trigger>
-            <post-menu label={this.textMenu} id="user-menu-default">
+            <post-menu label={this.textUserMenu} id="user-menu-default">
               <div slot="header">
                 <post-avatar
                   firstname={this.user.name}
