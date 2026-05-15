@@ -61,6 +61,7 @@ function render() {
     <post-login-widget
       text-current-user="Current user is {user}."
       text-user-menu-trigger="Access user links"
+      text-user-menu="User links"
     >
       ${renderLoginLink()}
       <div slot="user-links">${renderUserMenuLinks()}</div>
@@ -103,6 +104,7 @@ export const Authenticated: Story = {
     <post-login-widget
       text-current-user="Current user is {user}."
       text-user-menu-trigger="Access user links"
+      text-user-menu="User links"
     >
       ${renderLoginLink()}
       <div slot="user-links">${renderUserMenuLinks()}</div>

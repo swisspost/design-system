@@ -47,6 +47,16 @@ export class PostLoginWidget {
   }
 
   /**
+   * Accessible label for the dropdown menu
+   */
+  @Prop({ reflect: true }) textMenu!: string;
+
+  @Watch('textMenu')
+  validateTextMenu() {
+    checkRequiredAndType(this, 'textMenu', 'string');
+  }
+
+  /**
    * Hidden label for the user menu trigger button, for accessibility purposes. It should describe the purpose of the button (e.g. "Access user links").
    */
   @Prop({ reflect: true }) textUserMenuTrigger!: string;
@@ -59,6 +69,11 @@ export class PostLoginWidget {
   @State() private authenticated: boolean | null = null;
 
   @State() private user: { name: string; surname: string; email: string } | null = null;
+
+  componentDidLoad() {
+    this.validateTextCurrentUser();
+    this.validateTextUserMenuTrigger();
+  }
 
   async componentWillLoad() {
     if (Build.isBrowser) {
@@ -129,7 +144,7 @@ export class PostLoginWidget {
                 <span class="visually-hidden">{this.textUserMenuTrigger}</span>
               </button>
             </post-menu-trigger>
-            <post-menu label="User links" id="user-menu-default">
+            <post-menu label={this.textMenu} id="user-menu-default">
               <div slot="header">
                 <post-avatar
                   firstname={this.user.name}
