@@ -2,6 +2,7 @@
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
 @use '@swisspost/design-system-styles/mixins/button' as button-mx;
+@use '@swisspost/design-system-styles/variables/elevation';
 
 .tabs {
   // Hide scrollbar across browsers while keeping scroll functionality
@@ -47,8 +48,6 @@
 
       post-icon {
         color: currentColor;
-        width: 24px; // post-tabs-scroll-button-icon-size
-        height: 24px; // post-tabs-scroll-button-icon-size
       }
 
       &[hidden] {
@@ -77,7 +76,9 @@
         }
       }
 
-      @include utilities-mx.focus-inset;
+      @include utilities-mx.focus-style() {
+        outline-offset: -4px !important; // post-tabs-item-focus-outline-offset
+      }
 
       @include utilities-mx.high-contrast-mode() {
         transition: none;
@@ -86,13 +87,15 @@
 
     .tabs {
       overflow-x: hidden;
-      // Allow the focus ring (offset + width = 4px) to paint outside tab items without being clipped.
-      // padding-block is compensated with a negative margin to preserve outer layout dimensions.
-      // padding-inline has no negative margin — it sits inside the scroll clip boundary, so it
-      // does not affect the outer layout while still giving the inline ring room to paint.
-      padding-block: calc(var(--post-device-spacing-padding-2) + var(--post-device-border-width-focus));
-      margin-block: calc(-1 * (var(--post-device-spacing-padding-2) + var(--post-device-border-width-focus)));
-      padding-inline: calc(var(--post-device-spacing-padding-2) + var(--post-device-border-width-focus));
+
+      // Allow the focus ring (offset + width = 4px) to paint outside tabs without being clipped.
+      // Compensated with negative margins so layout dimensions are unchanged.
+      // padding-block-start: calc(
+      //   var(--post-device-spacing-padding-2) + var(--post-device-border-width-focus)
+      // );
+      // margin-block-start: calc(
+      //   -1 * (var(--post-device-spacing-padding-2) + var(--post-device-border-width-focus))
+      // );
       background-color: transparent !important;
       display: flex;
       flex-wrap: nowrap;
@@ -118,16 +121,22 @@
       z-index: 2;
       width: 40px; // post-tabs-page-scroll-button-width
       height: 48px; // post-tabs-page-scroll-button-height
+      box-shadow: elevation.$elevation-200;
+
+      post-icon {
+        width: 24px; // post-tabs-page-scroll-button-icon-size
+        height: 24px; // post-tabs-page-scroll-button-icon-size
+      }
 
       &.scroll-btn-left {
         border-inline-start: none;
-        border-radius: 0 8px 8px 0; //   post-tabs-scroll-button-left-border-start-end-radius + post-tabs-scroll-button-left-border-end-end-radius
+        border-radius: 0 8px 8px 0; // post-tabs-scroll-button-left-border-start-end-radius + post-tabs-scroll-button-left-border-end-end-radius
       }
 
       // Right Scroll button
       &.scroll-btn-right {
         border-inline-end: none;
-        border-radius: 8px 0 0 8px; //   post-tabs-scroll-button-right-border-start-end-radius + post-tabs-scroll-button-right-border-end-end-radius
+        border-radius: 8px 0 0 8px; // post-tabs-scroll-button-right-border-start-end-radius + post-tabs-scroll-button-right-border-end-end-radius
       }
     }
 
@@ -154,4 +163,16 @@
   }
 }
 
+:host(.content-tabs) {
+  button.scroll-btn {
+    border-radius: 4px; // post-tabs-content-scroll-button-border-radius
+    width: 44px; // post-tabs-content-scroll-button-width
+    height: 52px; // post-tabs-content-scroll-button-height
+    flex-shrink: 0;
 
+    post-icon {
+      width: 16px; // post-tabs-content-scroll-button-icon-size
+      height: 16px; // post-tabs-content-scroll-button-icon-size
+    }
+  }
+}

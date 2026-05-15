@@ -3,6 +3,7 @@
 @use './../../variables/components/nav';
 @use './../../functions/tokens';
 @use './../../tokens/utilities';
+@use './../../tokens/helpers';
 
 tokens.$default-map: utilities.$post-spacing;
 
@@ -32,7 +33,9 @@ post-tab-item.nav-item a {
     }
   }
 
-  @include utilities-mx.focus-style;
+  @include utilities-mx.focus-style() {
+    outline-offset: -4px !important; // post-tabs-item-focus-outline-offset
+  }
 }
 
 // Content Tabs Variant
@@ -109,6 +112,11 @@ post-tab-item.nav-item {
     color: white; // post-tabs-page-item-enabled-color-fg
     padding-block: 15px; // post-tabs-page-item-enabled-padding-block
 
+    // Dark background needs the inverted focus ring color
+    @include utilities-mx.focus-style-custom {
+      outline-color: tokens.get('focus-outline-color-inverted', helpers.$post-focus) !important;
+    }
+
     &:hover {
       background-color: #504f4b; // post-tabs-page-item-hovered-color-bg
       border-color: #504f4b; //post-tabs-page-item-hovered-border-color
@@ -126,6 +134,11 @@ post-tab-item.nav-item {
       color: #050400; //post-tabs-page-item-selected-color-fg
       border-color: #050400; // post-tabs-page-item-selected-border-color
       padding-block: 19px; // post-tabs-page-item-selected-padding-block
+
+      // Light background reverts to the default focus ring color
+      @include utilities-mx.focus-style-custom {
+        outline-color: tokens.get('focus-outline-color', helpers.$post-focus) !important;
+      }
 
       &:hover {
         color: #504f4b; // post-tabs-page-item-hovered-color-fg
@@ -182,8 +195,8 @@ post-tab-item.nav-item {
 // Active state
 post-tab-item.tab-title[aria-selected='true'],
 post-tab-item.nav-item a[aria-current='page'] {
-  z-index: 1;
   font-weight: 700;
+  z-index: 1;
 }
 
 // SSR specific styles
