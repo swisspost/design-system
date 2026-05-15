@@ -9,6 +9,7 @@ import {
   PostLanguageMenuItem,
   PostLanguageMenu,
   PostLogo,
+  PostLoginWidget,
   PostMainnavigation,
   PostMegadropdown,
   PostMegadropdownTrigger,
@@ -83,10 +84,12 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </PostLanguageMenu>
 
         {/* Global header login/user menu */}
-        <a href="" slot="post-login">
-          <span>Login</span>
-          <PostIcon name="login" />
-        </a>
+        <PostLoginWidget slot="post-login">
+          <a href="#login" slot="unauthenticated">
+            <span>Login</span>
+            <PostIcon aria-hidden="true" name="login" />
+          </a>
+        </PostLoginWidget>
         {/* Main navigation */}
         <PostMainnavigation slot="main-nav" text-main="Main">
           <ul>
@@ -226,6 +229,21 @@ export default function Layout({ children }: { readonly children: React.ReactNod
       </main>
 
       <PostFooter text-footer="Footer">
+        <div slot="prefooter">
+          <h3 id="prefooter">Service name</h3>
+          <ul aria-labelledby="prefooter">
+            <li>
+              <a href="#">Pre-Footer Link 1</a>
+            </li>
+            <li>
+              <a href="#">Pre-Footer Link 2</a>
+            </li>
+            <li>
+              <a href="#">Pre-Footer Link 3</a>
+            </li>
+          </ul>
+        </div>
+
         <span id="grid-1-title" slot="grid-1-title">
           Title 1
         </span>
@@ -443,7 +461,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </div>
 
         <div slot="businesssectors">
-          <h3 id="businesssectors">Die schweizerische Post AG</h3>
+          <h3 id="businesssectors">Die Schweizerische Post AG</h3>
           <ul aria-labelledby="businesssectors">
             <li>
               <a href="https://www.postauto.ch">PostAuto</a>

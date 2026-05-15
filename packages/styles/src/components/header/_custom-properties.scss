@@ -123,6 +123,11 @@ post-header:not(:has([slot='main-nav'])) {
 // ============================================================
 
 :root:has(post-header) {
+  // Opt out of scroll anchoring so the browser doesn't adjust scrollY when the
+  // sticky header repositions itself on scroll. Removing this breaks shrink-on-scroll
+  // in frameworks that flush layout synchronously between scroll events (e.g. Angular).
+  overflow-anchor: none;
+
   // --- Expanded height ---
   --post-local-header-expanded-height: var(--post-local-header-expanded-min-height);
   --post-header-expanded-height: calc(

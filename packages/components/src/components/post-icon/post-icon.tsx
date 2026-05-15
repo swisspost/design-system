@@ -1,5 +1,9 @@
 import { Component, Element, Host, h, Prop, Watch, Build } from '@stencil/core';
-import { checkEmptyOrType, checkRequiredAndType, checkEmptyOrOneOf } from '@/utils';
+import {
+  checkEmptyOrType,
+  checkRequiredAndType,
+  checkEmptyOrOneOf,
+} from '@/utils/property-checkers';
 import { version } from '@root/package.json';
 import { ANIMATION_KEYS, PostIconAnimation } from '@/types/icon-animations';
 

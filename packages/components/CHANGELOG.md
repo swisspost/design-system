@@ -1,5 +1,57 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.69
+
+### Major Changes
+
+- Changed the `post-stepper` component's **text-step-number** prop format from `Step #number:` to `Step {number}:`. (by [@leagrdv](https://github.com/leagrdv) with [#7581](https://github.com/swisspost/design-system/pull/7581))
+
+- Removed palette class support from `post-tooltip`. The tooltip now always uses the accent palette and no longer requires or accepts a palette class. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7544](https://github.com/swisspost/design-system/pull/7544))
+
+### Minor Changes
+
+- Added internationalization (i18n) to the date-picker component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7447](https://github.com/swisspost/design-system/pull/7447))
+
+### Patch Changes
+
+- Updated the styles for `post-tooltip` component to align with the new design specification. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7544](https://github.com/swisspost/design-system/pull/7544))
+
+- Fixed a scroll-triggered flickering issue in the `post-header` component when used in Angular applications. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7599](https://github.com/swisspost/design-system/pull/7599))
+
+- Prevented unintended page scroll when pressing `Home` key while navigating the `post-menu` component dropdown with keyboard. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7624](https://github.com/swisspost/design-system/pull/7624))
+
+- Fixed an issue where using the language menu would stop the header from collapsing when scrolling. (by [@alizedebray](https://github.com/alizedebray) with [#7445](https://github.com/swisspost/design-system/pull/7445))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.69
+  - @swisspost/design-system-styles@10.0.0-next.69
+
+## 10.0.0-next.68
+
+### Minor Changes
+
+- Added two props to the `post-breadcrumb-item`:
+  - `label`: ARIA label, screen readers will use this instead of the breadcrumb item content.
+  - `description`: ARIA description for additional context, read after the breadcrumb item content or `label`. (by [@leagrdv](https://github.com/leagrdv) with [#7271](https://github.com/swisspost/design-system/pull/7271))
+
+- Added standalone entry points for the components-react package, to provide fine grained import options. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7559](https://github.com/swisspost/design-system/pull/7559))
+
+- Added a `description` property to enable aria-description on the `post-language-menu-item` component. (by [@alizedebray](https://github.com/alizedebray) with [#7470](https://github.com/swisspost/design-system/pull/7470))
+
+- Added the `post-login-widget` component, which conditionally renders its authenticated or unauthenticated slot based on the KLP session API response. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7580](https://github.com/swisspost/design-system/pull/7580))
+
+### Patch Changes
+
+- Visually separated active page state from open megadropdown state for `post-header` on desktop. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7283](https://github.com/swisspost/design-system/pull/7283))
+
+- Fixed expanding animation of collapsible/accordion to prevent content from overflowing during the opening phase. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7526](https://github.com/swisspost/design-system/pull/7526))
+
+- Added `reflect: true` to the `post-breadcrumb-item` props to ensure they are being correctly applied. (by [@leagrdv](https://github.com/leagrdv) with [#7271](https://github.com/swisspost/design-system/pull/7271))
+
+- Removed the usage of StencilJS [build conditionals](https://stenciljs.com/docs/guides/build-conditionals) in utility modules and updated the generated react icon components imports, to avoid unwanted side-effects in Next.js projects. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7559](https://github.com/swisspost/design-system/pull/7559))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.68
+  - @swisspost/design-system-styles@10.0.0-next.68
+
 ## 10.0.0-next.67
 
 ### Minor Changes
