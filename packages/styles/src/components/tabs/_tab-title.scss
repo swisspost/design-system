@@ -17,6 +17,7 @@ post-tab-item.nav-item a {
   justify-content: center;
   align-items: center;
   gap: 12px; //post-tabs-item-elements-gap
+  border-radius: 12px 12px 0 0; // post-tabs-item-border-start-start-radius + post-tabs-item-border-start-end-radius
 
   // common tokens
   padding-inline: 24px; //post-tabs-item-padding-inline
@@ -47,6 +48,7 @@ post-tab-item.tab-title {
 
   &[disabled] {
     color: #696864; // post-tabs-content-item-disabled-color-fg
+    border-color: #696864; // post-tabs-content-item-disabled-border-color
     pointer-events: none;
   }
 
@@ -103,7 +105,6 @@ post-tab-item.nav-item {
     border-inline-start: 2px solid transparent; // post-tabs-item-enabled-border-color + post-tabs-page-item-border-width
     border-inline-end: 2px solid transparent; // post-tabs-item-enabled-border-color + post-tabs-page-item-border-width
     background-color: #050400; // post-tabs-page-item-enabled-color-bg
-    border-radius: 12px 12px 0 0; // post-tabs-page-item-border-start-start-radius + post-tabs-page-item-border-start-end-radius
     border-color: #050400; // post-tabs-page-item-enabled-border-color
     color: white; // post-tabs-page-item-enabled-color-fg
     padding-block: 15px; // post-tabs-page-item-enabled-padding-block

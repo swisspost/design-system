@@ -201,7 +201,7 @@ function renderPagesVariant(
 }
 
 // Helper function to render tabs variant
-function renderPanelsVariant(
+function renderContentVariant(
   activeTab: string | undefined,
   fullWidth: boolean | undefined,
   customSlots: string,
@@ -260,7 +260,7 @@ function renderTabs(
 
   return variant === 'Page Tabs'
     ? renderPagesVariant(args.fullWidth, args.label, args['slots-default'] || '')
-    : renderPanelsVariant(
+    : renderContentVariant(
         args.activeTabPanels,
         args.fullWidth,
         args['slots-default'] || '',
@@ -280,7 +280,7 @@ type Story = StoryObj<
 
 export const Default: Story = {};
 
-export const PanelsVariant: Story = {
+export const ContentVariant: Story = {
   parameters: {
     docs: {
       description: {

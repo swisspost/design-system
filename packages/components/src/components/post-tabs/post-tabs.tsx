@@ -362,6 +362,17 @@ export class PostTabs {
           e.preventDefault();
           void this.show(tab.name);
         }
+        if (e.key !== 'Home' && e.key !== 'End') return;
+        e.preventDefault();
+
+        const enabledTabs = this.tabs.filter(t => !t.hasAttribute('disabled'));
+        if (enabledTabs.length === 0) return;
+
+        const targetTab = e.key === 'Home' ? enabledTabs[0] : enabledTabs.at(-1);
+        if (targetTab) {
+          targetTab?.focus();
+          void this.show(targetTab.name);
+        }
       });
 
       tab.addEventListener('keydown', (e: KeyboardEvent) => {
