@@ -203,84 +203,84 @@ post-tab-item.nav-item a[aria-current='page'] {
 
 // Show by default the first panel for SSR if no explicit prop is set
 post-tabs[active-tab] {
-  // Style active post-tab-item for SSR if there is a [active-tab] set
+  // Content Tabs: Style active post-tab-item for SSR if there is a [active-tab] set
   post-tab-item.tab-title.ssr {
-    z-index: calc(var(--active, 0) * 1);
-    border-right-color: color-mix(
+    border-color: color-mix(
       in srgb,
-      #{nav.$nav-tabs-border-color} calc(var(--active, 0) * 100%),
+      #050400 calc(var(--active, 0) * 100%),
       transparent
-    );
-    border-left-color: color-mix(
-      in srgb,
-      #{nav.$nav-tabs-border-color} calc(var(--active, 0) * 100%),
-      transparent
-    );
-    opacity: calc(0.7 + var(--active, 0) * 0.3);
-    background-color: color-mix(
-      in srgb,
-      #{color.$white} calc(var(--active, 0) * 100%),
-      transparent
-    );
-    color: #{color.$black};
+    ); // post-tabs-content-item-selected-border-color
     font-weight: calc(400 + var(--active, 0) * 300);
-    cursor: default;
+    z-index: calc(var(--active, 0) * 1);
 
     @include utilities-mx.high-contrast-mode() {
-      color: LinkText;
-      border-left-color: ButtonText;
-      border-right-color: ButtonText;
+      border-color: Canvas;
+
+      &[style*='--active: 1'] {
+        border-color: Highlight;
+        color: HighlightText;
+      }
+    }
+  }
+
+  // Page Tabs: Style active post-tab-item for SSR if there is a [active-tab] set
+  post-tab-item.nav-item.ssr a {
+    background-color: color-mix(
+      in srgb,
+      #fafafa calc(var(--active, 0) * 100%),
+      #050400
+    ); // post-tabs-page-item-selected-color-bg / post-tabs-page-item-enabled-color-bg
+    color: color-mix(
+      in srgb,
+      #050400 calc(var(--active, 0) * 100%),
+      white
+    ); // post-tabs-page-item-selected-color-fg / post-tabs-page-item-enabled-color-fg
+    padding-block: calc(
+      15px + var(--active, 0) * 4px
+    ); // post-tabs-page-item-selected-padding-block / post-tabs-page-item-enabled-padding-block
+    font-weight: calc(400 + var(--active, 0) * 300);
+    z-index: calc(var(--active, 0) * 1);
+
+    @include utilities-mx.high-contrast-mode() {
+      &[style*='--active: 1'] {
+        background-color: Highlight;
+        border-color: Highlight;
+        color: HighlightText;
+      }
     }
   }
 }
 
 // Style the first item for SSR when no [active-tab] is set
 post-tabs:not([active-tab]) {
-  &:has(post-tab-item.tab-title.ssr) post-tab-panel:first-of-type {
+  &:has(post-tab-item.tab-title.ssr, post-tab-item.nav-item.ssr) post-tab-panel:first-of-type {
     display: block !important;
   }
 
-  post-tab-item.tab-title.ssr[data-pages-variant='false'] {
-    cursor: default;
+  // Content Tabs: first item is active
+  post-tab-item.tab-title.ssr:first-of-type {
+    border-color: #050400; // post-tabs-content-item-selected-border-color
+    font-weight: 700;
+    z-index: 1;
 
-    &:first-of-type {
-      z-index: 1;
-      border-right-color: nav.$nav-tabs-border-color;
-      border-left-color: nav.$nav-tabs-border-color;
-      opacity: 1;
-      background-color: color.$white;
-      color: color.$black;
-      font-weight: 700;
-
-      &::before {
-        content: '';
-        display: block;
-        position: absolute;
-        top: 0;
-        right: -1px;
-        left: -1px;
-        height: tokens.get('utility-gap-4');
-        background-color: nav.$nav-tabs-link-active-border-color;
-        opacity: 1;
-      }
-
-      @include utilities-mx.high-contrast-mode() {
-        border-left-color: ButtonText;
-        border-right-color: ButtonText;
-        color: Highlight;
-
-        &::before {
-          background-color: Highlight;
-        }
-      }
+    @include utilities-mx.high-contrast-mode() {
+      border-color: Highlight;
+      color: HighlightText;
     }
+  }
 
-    &:not(:first-of-type) {
-      &:hover {
-        opacity: 0.7;
-        color: color.$black;
-        background-color: transparent;
-      }
+  // Page Tabs: first item is active
+  post-tab-item.nav-item.ssr:first-of-type a {
+    background-color: #fafafa; // post-tabs-page-item-selected-color-bg
+    color: #050400; // post-tabs-page-item-selected-color-fg
+    padding-block: 19px; // post-tabs-page-item-selected-padding-block
+    font-weight: 700;
+    z-index: 1;
+
+    @include utilities-mx.high-contrast-mode() {
+      background-color: Highlight;
+      border-color: Highlight;
+      color: HighlightText;
     }
   }
 }

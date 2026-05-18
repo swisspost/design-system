@@ -83,6 +83,8 @@
       <post-mainnavigation slot="main-nav" text-main="Haupt">
         <ul>
           <!-- Link only level 1 -->
+
+          <li><a href="/pakete">Pakete</a></li>
           <li><a href="/briefe">Briefe</a></li>
           <li><a href="/pakete">Pakete</a></li>
 
@@ -173,5 +175,136 @@
       <option value="compact">Post compact</option>
     </select>
     <hr />
+    <post-tabs label="Tabs navigation">
+      <post-tab-item name="first">
+        <a href="/first"> <post-icon name="letter"></post-icon>First page</a>
+      </post-tab-item>
+      <post-tab-item name="second" disabled>
+        <a href="/second"><post-icon name="letter"></post-icon>Second page</a>
+      </post-tab-item>
+      <post-tab-item name="third">
+        <a href="/third" aria-current="page"><post-icon name="letter"></post-icon>Third page</a>
+      </post-tab-item>
+      <post-tab-item name="third4">
+        <a href="/third">Third page</a>
+      </post-tab-item>
+
+      <post-tab-item name="third5">
+        <a href="/third">Third page</a>
+      </post-tab-item>
+      <post-tab-item name="third6">
+        <a href="/third">Third page</a>
+      </post-tab-item>
+      <post-tab-item name="third7">
+        <a href="/third">Third page</a>
+      </post-tab-item>
+    </post-tabs>
+    <div style="height: 50px"></div>
+    <div class="container">
+      <post-tabs label="Tabs navigation">
+        <post-tab-item name="first">
+          <a href="/first"> <post-icon name="letter"></post-icon>First page</a>
+        </post-tab-item>
+        <post-tab-item name="second">
+          <a href="/second"><post-icon name="letter"></post-icon>Second page</a>
+        </post-tab-item>
+        <post-tab-item name="third" disabled>
+          <a href="/third" aria-current="page"><post-icon name="letter"></post-icon>Third page</a>
+        </post-tab-item>
+        <post-tab-item name="third">
+          <a href="/third"><post-icon name="letter"></post-icon>Third page</a>
+        </post-tab-item>
+        <post-tab-item name="third5">
+          <a href="/third">Third page</a>
+        </post-tab-item>
+        <post-tab-item name="third6">
+          <a href="/third">Third page</a>
+        </post-tab-item>
+        <post-tab-item name="third7">
+          <a href="/third">Third page</a>
+        </post-tab-item>
+      </post-tabs>
+    </div>
+    <div class="container">
+      <post-tabs label="Tabs navigation" full-width="true">
+        <post-tab-item name="first">
+          <a href="/first"> <post-icon name="letter"></post-icon>First page</a>
+        </post-tab-item>
+        <post-tab-item name="second">
+          <a href="/second"><post-icon name="letter"></post-icon>Second page</a>
+        </post-tab-item>
+        <post-tab-item name="third" disabled>
+          <a href="/third" aria-current="page"><post-icon name="letter"></post-icon>Third page</a>
+        </post-tab-item>
+        <post-tab-item name="third">
+          <a href="/third"><post-icon name="letter"></post-icon>Third page</a>
+        </post-tab-item>
+        <post-tab-item name="third5">
+          <a href="/third">Third page</a>
+        </post-tab-item>
+        <post-tab-item name="third6">
+          <a href="/third">Third page</a>
+        </post-tab-item>
+        <post-tab-item name="third7">
+          <a href="/third">Third page</a>
+        </post-tab-item>
+      </post-tabs>
+    </div>
+    <div style="height: 50px"></div>
+    <post-tabs>
+      <post-tab-item name="first">First tab</post-tab-item>
+      <post-tab-item name="second">Second tab</post-tab-item>
+      <post-tab-item name="third">Third tab</post-tab-item>
+
+      <post-tab-panel for="first">
+        This is the content of the first tab. By default it is shown initially.
+      </post-tab-panel>
+      <post-tab-panel for="second">
+        This is the content of the second tab. By default it is hidden initially.
+      </post-tab-panel>
+      <post-tab-panel for="third">
+        This is the content of the third tab. By default it is also hidden initially.
+      </post-tab-panel>
+    </post-tabs>
+    <div style="height: 50px"></div>
+
+    <div class="container">
+      <post-tabs>
+        <post-tab-item name="first">First tab</post-tab-item>
+        <post-tab-item name="second">Second tab</post-tab-item>
+        <post-tab-item name="third">Third tab</post-tab-item>
+
+        <post-tab-panel for="first">
+          This is the content of the first tab. By default it is shown initially.
+        </post-tab-panel>
+        <post-tab-panel for="second">
+          This is the content of the second tab. By default it is hidden initially.
+        </post-tab-panel>
+        <post-tab-panel for="third">
+          This is the content of the third tab. By default it is also hidden initially.
+        </post-tab-panel>
+      </post-tabs>
+    </div>
+    <div style="height: 50px"></div>
+    <div class="container">
+      <post-tabs full-width="true">
+        <post-tab-item name="first"><post-icon name="letter"></post-icon> First tab</post-tab-item>
+        <post-tab-item name="second">
+          <post-icon name="letter"></post-icon> Second tab</post-tab-item
+        >
+        <post-tab-item name="third"> <post-icon name="letter"></post-icon>Third tab</post-tab-item>
+
+        <post-tab-panel for="first">
+          This is the content of the first tab. By default it is shown initially.
+        </post-tab-panel>
+        <post-tab-panel for="second">
+          This is the content of the second tab. By default it is hidden initially.
+        </post-tab-panel>
+        <post-tab-panel for="third">
+          This is the content of the third tab. By default it is also hidden initially.
+        </post-tab-panel>
+      </post-tabs>
+    </div>
+    <div style="height: 50px"></div>
   </body>
 </html>
