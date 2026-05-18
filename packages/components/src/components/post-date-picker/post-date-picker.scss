@@ -176,12 +176,13 @@ tokens.$default-map: components.$post-datepicker;
               }
             }
 
-            &.-other-month- {
+            &.-other-month-,
+            &:empty {
               pointer-events: none;
             }
 
             /* Day: Hovered */
-            &:hover:not(.-disabled-, .-other-month-, .-in-range-) {
+            &:hover:not(.-disabled-, .-other-month-, .-in-range-):not(:empty) {
               color: tokens.get('post-datepicker-grid-day-cell-element-color-hovered-fg');
 
               &:not(.-current-) {
@@ -234,7 +235,7 @@ tokens.$default-map: components.$post-datepicker;
             }
 
             /* Day: Current */
-            &.-current-:not(.-disabled-, .-other-month-) {
+            &.-current-:not(.-disabled-, .-other-month-):not(:empty) {
               border: var(--adp-cell-border-width) solid
                 tokens.get('post-datepicker-grid-day-cell-element-current-color-enabled-border');
 
@@ -711,6 +712,8 @@ tokens.$default-map: components.$post-datepicker;
 }
 
 :host {
+  display: block;
+
   ::slotted(input.form-control:is(.is-invalid, .is-valid):not(:disabled)) {
     background-position: top 50% right
       calc(
