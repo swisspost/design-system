@@ -1,9 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { type AgChartOptions, AllCommunityModule, ModuleRegistry } from 'ag-charts-community';
+import {
+  type AgChartOptions,
+  BarSeriesModule,
+  CategoryAxisModule,
+  LegendModule,
+  LineSeriesModule,
+  ModuleRegistry,
+  NumberAxisModule,
+  TimeAxisModule,
+} from 'ag-charts-community';
 import { AgCharts } from 'ag-charts-react';
 import { PostIcon } from '@swisspost/design-system-components-react/post-icon';
 
-ModuleRegistry.registerModules([AllCommunityModule]);
+ModuleRegistry.registerModules([
+  BarSeriesModule,
+  LineSeriesModule,
+  NumberAxisModule,
+  CategoryAxisModule,
+  TimeAxisModule,
+  LegendModule,
+]);
 
 // --- Types ---
 
@@ -68,7 +84,8 @@ export const PackageStatsBlock: React.FC<{ packageName: string; startYear: numbe
 
     fetch(`https://registry.npmjs.org/${pkg}`)
       .then(res => res.json())
-      .then(data => setRegistryTime(data.time ?? {}));
+      .then(data => setRegistryTime(data.time ?? {}))
+      .catch(e => console.error('Failed to fetch registry data:', e));
 
     fetch(`https://api.npmjs.org/versions/${pkg}/last-week`)
       .then(res => res.json())
@@ -83,7 +100,8 @@ export const PackageStatsBlock: React.FC<{ packageName: string; startYear: numbe
             .map(([version, downloads]) => ({ version, downloads }))
             .sort((a, b) => Number.parseInt(b.version) - Number.parseInt(a.version)),
         );
-      });
+      })
+      .catch(e => console.error('Failed to fetch version downloads:', e));
   }, [packageName, isVisible]);
 
   const releases: Release[] = Object.entries(registryTime)
@@ -168,7 +186,8 @@ const LazyDownloadStatsSection: React.FC<{
     if (!isVisible) return;
     fetch(`https://api.npmjs.org/downloads/range/${year}-01-01:${year}-12-31/${packageName}`)
       .then(res => res.json())
-      .then(data => setDays(data.downloads ?? []));
+      .then(data => setDays(data.downloads ?? []))
+      .catch(e => console.error('Failed to fetch daily downloads:', e));
   }, [packageName, year, isVisible]);
 
   return (
@@ -289,6 +308,7 @@ const DownloadsPerYearChart: React.FC<{
     const relevant = filterRelevantDays(days, isFirstYear || isLastYear);
     const avg = Math.round(relevant.reduce((sum, d) => sum + d.downloads, 0) / relevant.length);
 
+    // Position release markers at 90% of max height to keep them visible but below the peak
     const releaseY = max * 0.9;
     const grouped = releases.reduce<Record<string, string[]>>((acc, r) => {
       const key = r.date.toISOString().slice(0, 10);
@@ -391,7 +411,7 @@ const DownloadsPerYearChart: React.FC<{
         },
       },
     });
-  }, [days, releases]);
+  }, [days, releases, locale]);
 
   return (
     <div className="downloads-chart card card-charts w-full">
@@ -460,7 +480,7 @@ const DownloadsPerVersionChart: React.FC<{
         },
       },
     });
-  }, [versions]);
+  }, [versions, locale]);
 
   return (
     <div className="card card-charts">
