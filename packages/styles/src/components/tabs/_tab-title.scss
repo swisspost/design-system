@@ -215,12 +215,10 @@ post-tabs[active-tab] {
     z-index: calc(var(--active, 0) * 1);
 
     @include utilities-mx.high-contrast-mode() {
-      border-color: Canvas;
-
-      &[style*='--active: 1'] {
-        border-color: Highlight;
-        color: HighlightText;
-      }
+      forced-color-adjust: none;
+      transition: none;
+      border-color: color-mix(in srgb, Highlight calc(var(--active, 0) * 100%), Canvas);
+      color: color-mix(in srgb, HighlightText calc(var(--active, 0) * 100%), ButtonText);
     }
   }
 
