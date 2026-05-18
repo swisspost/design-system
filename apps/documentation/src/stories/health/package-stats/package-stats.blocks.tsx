@@ -33,26 +33,16 @@ const DATE_FORMAT: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long'
 const NUMBER_FORMAT: Intl.NumberFormatOptions = { notation: 'standard', compactDisplay: 'short' };
 const TRANSPARENT_BG = { fill: 'transparent' };
 const CHART_COLORS = [
-  '#e6194b',
-  '#3cb44b',
-  '#4363d8',
-  '#f58231',
-  '#911eb4',
-  '#42d4f4',
-  '#f032e6',
-  '#bfef45',
-  '#fabed4',
-  '#469990',
-  '#dcbeff',
-  '#9a6324',
-  '#800000',
-  '#aaffc3',
-  '#808000',
-  '#000075',
-  '#e6beff',
-  '#ff4500',
-  '#008080',
-  '#ffd700',
+  '#547A00',
+  '#00807D',
+  '#1279B5',
+  '#686ABB',
+  '#9C636C',
+  '#D63900',
+  '#C436A1',
+  '#9C33FF',
+  '#8A6E00',
+  '#737373',
 ];
 
 /**
@@ -339,8 +329,8 @@ const DownloadsPerYearChart: React.FC<{
             enabled: true,
             shape: 'diamond',
             size: 8,
-            fill: CHART_COLORS[3],
-            stroke: CHART_COLORS[3],
+            fill: CHART_COLORS[7],
+            stroke: CHART_COLORS[7],
           },
           tooltip: {
             renderer: params => chartTooltip(params.datum.version, locale, params.datum.day),
@@ -384,7 +374,7 @@ const DownloadsPerYearChart: React.FC<{
             {
               type: 'line',
               value: max,
-              stroke: CHART_COLORS[0],
+              stroke: CHART_COLORS[4],
               strokeWidth: 1,
               lineDash: [4, 2],
               label: { text: `Max: ${formatNumber(max, locale)}`, position: 'right' },
@@ -392,7 +382,7 @@ const DownloadsPerYearChart: React.FC<{
             {
               type: 'line',
               value: avg,
-              stroke: CHART_COLORS[9],
+              stroke: CHART_COLORS[5],
               strokeWidth: 1,
               lineDash: [4, 2],
               label: { text: `Avg: ${formatNumber(avg, locale)}`, position: 'right' },

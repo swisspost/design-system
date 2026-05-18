@@ -133,3 +133,90 @@ describe('menus', { baseUrl: null, includeShadowDom: true }, () => {
     });
   });
 });
+
+describe('menu keyboard navigation', { baseUrl: null, includeShadowDom: true }, () => {
+  beforeEach(() => {
+    cy.visit('cypress/fixtures/post-menu.test.html');
+    cy.get('post-menu-trigger[data-hydrated]');
+    cy.get('post-menu[data-hydrated]');
+    cy.get('post-menu-trigger[for="menu-one"]').as('trigger');
+    cy.get('post-menu#menu-one').as('menu');
+  });
+
+  it('should open menu with Space key on trigger', () => {
+    cy.get('@trigger').find('button').focus().type(' ');
+    cy.get('@menu').shadow().find('post-popovercontainer').should('not.have.css', 'display', 'none');
+  });
+
+  it('should navigate menu items with Arrow Down', () => {
+    cy.get('@trigger').click();
+    cy.get('@menu').find('button, a').first().as('firstItem');
+    cy.get('@menu').find('button, a').eq(1).as('secondItem');
+
+    cy.get('@firstItem').focus().type('{downarrow}', { force: true });
+    cy.get('@secondItem').should('have.focus');
+  });
+
+  it('should navigate menu items with Arrow Up', () => {
+    cy.get('@trigger').click();
+    cy.get('@menu').find('button, a').first().as('firstItem');
+    cy.get('@menu').find('button, a').last().as('lastItem');
+
+    cy.get('@lastItem').focus().type('{uparrow}', { force: true });
+    cy.get('@firstItem').should('have.focus');
+  });
+
+  it('should move focus to first item with Home key', () => {
+    cy.get('@trigger').click();
+    cy.get('@menu').find('button, a').first().as('firstItem');
+    cy.get('@menu').find('button, a').last().as('lastItem');
+
+    cy.get('@lastItem').focus().type('{home}', { force: true });
+    cy.get('@firstItem').should('have.focus');
+  });
+
+  it('should not scroll page when pressing Home key', () => {
+    cy.window().then(win => {
+      cy.wrap(win.pageYOffset).as('initialScroll');
+    });
+
+    cy.get('@trigger').click();
+    cy.get('@menu').find('button, a').last().focus();
+    cy.get('@menu').find('button, a').last().type('{home}', { force: true });
+
+    cy.window().then(win => {
+      cy.get('@initialScroll').should('equal', win.pageYOffset);
+    });
+  });
+
+  it('should move focus to last item with End key', () => {
+    cy.get('@trigger').click();
+    cy.get('@menu').find('button, a').first().as('firstItem');
+    cy.get('@menu').find('button, a').last().as('lastItem');
+
+    cy.get('@firstItem').focus().type('{end}', { force: true });
+    cy.get('@lastItem').should('have.focus');
+  });
+
+  it('should not scroll page when pressing End key', () => {
+    cy.window().then(win => {
+      cy.wrap(win.pageYOffset).as('initialScroll');
+    });
+
+    cy.get('@trigger').click();
+    cy.get('@menu').find('button, a').first().focus();
+    cy.get('@menu').find('button, a').first().type('{end}', { force: true });
+
+    cy.window().then(win => {
+      cy.get('@initialScroll').should('equal', win.pageYOffset);
+    });
+  });
+
+  it('should close menu with Escape key', () => {
+    cy.get('@trigger').click();
+    cy.get('@menu').shadow().find('post-popovercontainer').should('not.have.css', 'display', 'none');
+
+    cy.get('@menu').find('button, a').first().focus().type('{esc}', { force: true });
+    cy.get('@menu').shadow().find('post-popovercontainer').should('have.css', 'display', 'none');
+  });
+});
