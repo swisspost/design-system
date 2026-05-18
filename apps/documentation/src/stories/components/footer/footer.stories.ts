@@ -1,5 +1,5 @@
 import { Args, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const GRID_CELLS = [1, 2, 3, 4];
@@ -21,8 +21,20 @@ const meta: MetaComponent = {
   render,
   args: {
     textFooter: 'Footer',
+    prefooter: true,
   },
-  argTypes: {},
+  argTypes: {
+    prefooter: {
+      name: 'prefooter',
+      description: 'Whether the footer contains a pre-footer or not.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'General',
+      },
+    },
+  },
 };
 
 export default meta;
@@ -31,6 +43,24 @@ type Story = StoryObj;
 
 function render(args: Args) {
   return html`<post-footer text-footer=${args.textFooter}>
+    ${args.prefooter
+      ? html`
+          <div slot="prefooter">
+            <h3 id="prefooter">Service name</h3>
+            <ul aria-labelledby="prefooter">
+              <li>
+                <a href="#" class="btn btn-link">Pre-Footer Link 1</a>
+              </li>
+              <li>
+                <a href="#" class="btn btn-link">Pre-Footer Link 2</a>
+              </li>
+              <li>
+                <a href="#" class="btn btn-link">Pre-Footer Link 3</a>
+              </li>
+            </ul>
+          </div>
+        `
+      : nothing}
     ${GRID_CELLS.map(
       cell => html`
         <span id="grid-${cell}-title" slot="grid-${cell}-title">Title ${cell}</span>
@@ -136,7 +166,7 @@ function render(args: Args) {
 
     <!-- sector links -->
     <div slot="businesssectors">
-      <h3 id="businesssectors">Die schweizerische Post AG</h3>
+      <h3 id="businesssectors">Die Schweizerische Post AG</h3>
       <ul aria-labelledby="businesssectors">
         <li>
           <a href="https://www.postauto.ch">PostAuto</a>
