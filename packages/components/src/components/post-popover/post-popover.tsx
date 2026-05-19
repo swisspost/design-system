@@ -1,5 +1,5 @@
 import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core';
-import { Placement } from '@floating-ui/dom';
+import type { Placement } from '@floating-ui/dom';
 import { PLACEMENT_TYPES } from '@/types';
 import { version } from '@root/package.json';
 import { checkRequiredAndType, checkEmptyOrOneOf, getDeepFocusableChildren } from '@/utils';
