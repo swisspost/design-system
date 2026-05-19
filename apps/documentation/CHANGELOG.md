@@ -1,5 +1,22 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.71
+
+### Minor Changes
+
+- Added an optional prefooter section to the `post-footer` component. (by [@leagrdv](https://github.com/leagrdv) with [#7630](https://github.com/swisspost/design-system/pull/7630))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.70
+  - @swisspost/internet-header@10.0.0-next.70
+  - @swisspost/design-system-styles@10.0.0-next.70
+  - @swisspost/design-system-components-react@10.0.0-next.70
+  - @swisspost/design-system-icons@10.0.0-next.70
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.70
+  - @swisspost/design-system-tokens@10.0.0-next.70
+
 ## 6.0.0-next.70
 
 ### Patch Changes
