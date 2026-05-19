@@ -68,25 +68,25 @@ importers:
   apps/documentation:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../../packages/components
       '@swisspost/design-system-components-react':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../../packages/components-react
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../../packages/icons
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../../packages/styles/dist
       '@swisspost/design-system-theme-ag-grid':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../../packages/theme-ag-grid
       '@swisspost/design-system-tokens':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../../packages/tokens/dist
       '@swisspost/internet-header':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../../packages/internet-header
     devDependencies:
       '@eslint/js':
@@ -120,7 +120,7 @@ importers:
         specifier: 9.0.18
         version: 9.0.18(lit@3.3.2)(storybook@9.1.19(@testing-library/dom@10.4.1)(prettier@3.6.2)(vite@7.3.2(@types/node@25.7.0)(jiti@2.7.0)(less@4.6.4)(lightningcss@1.30.2)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.47.1)(yaml@2.9.0)))(vite@7.3.2(@types/node@25.7.0)(jiti@2.7.0)(less@4.6.4)(lightningcss@1.30.2)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.47.1)(yaml@2.9.0))
       '@swisspost/design-system-components-angular':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../../packages/components-angular/dist/components
       '@types/css-modules':
         specifier: 1.0.5
@@ -210,10 +210,10 @@ importers:
   apps/integration-next:
     dependencies:
       '@swisspost/design-system-components-react':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../../packages/components-react
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../../packages/styles/dist
       next:
         specifier: 16.2.3
@@ -235,7 +235,7 @@ importers:
         specifier: 1.56.1
         version: 1.56.1
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../../packages/components
       '@tailwindcss/postcss':
         specifier: 4.1.18
@@ -323,10 +323,10 @@ importers:
         specifier: 4.43.3
         version: 4.43.3
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../styles/dist
       air-datepicker:
         specifier: 3.6.0
@@ -375,7 +375,7 @@ importers:
         specifier: 3.0.12
         version: 3.0.12(@stencil/core@4.43.3)
       '@swisspost/design-system-eslint':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../eslint
       '@types/jest':
         specifier: catalog:stencil/jest
@@ -477,10 +477,10 @@ importers:
         specifier: 20.3.19
         version: 20.3.19(@angular/common@20.3.19(@angular/core@20.3.19(@angular/compiler@20.3.19)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@20.3.19(@angular/compiler@20.3.19)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@20.3.19(@angular/animations@20.3.19(@angular/core@20.3.19(@angular/compiler@20.3.19)(rxjs@7.8.2)(zone.js@0.16.1)))(@angular/common@20.3.19(@angular/core@20.3.19(@angular/compiler@20.3.19)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@20.3.19(@angular/compiler@20.3.19)(rxjs@7.8.2)(zone.js@0.16.1)))(rxjs@7.8.2)
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../components
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../styles/dist
       rxjs:
         specifier: 7.8.2
@@ -508,7 +508,7 @@ importers:
         specifier: 9.18.0
         version: 9.18.0
       '@swisspost/design-system-components-angular':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:dist/components
       angular-eslint:
         specifier: 19.8.1
@@ -565,7 +565,7 @@ importers:
         specifier: '>=19.0.0 <21.0.0'
         version: 20.3.19(@angular/common@20.3.19(@angular/core@20.3.19(@angular/compiler@20.3.19)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.3.19(@angular/compiler@20.3.19)(rxjs@7.8.2))(@angular/platform-browser@20.3.19(@angular/animations@20.3.19(@angular/core@20.3.19(@angular/compiler@20.3.19)(rxjs@7.8.2)))(@angular/common@20.3.19(@angular/core@20.3.19(@angular/compiler@20.3.19)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.3.19(@angular/compiler@20.3.19)(rxjs@7.8.2)))(rxjs@7.8.2)
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../../../components
       tslib:
         specifier: 2.8.1
@@ -581,14 +581,14 @@ importers:
         specifier: 0.3.0
         version: 0.3.0(next@16.2.3(@playwright/test@1.56.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.90.0))(vite@7.3.2(@types/node@24.12.4)(jiti@2.7.0)(less@4.6.4)(lightningcss@1.30.2)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.47.1)(yaml@2.9.0))(webpack@5.106.2(lightningcss@1.30.2))
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../components
     devDependencies:
       '@eslint/js':
         specifier: 9.18.0
         version: 9.18.0
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../icons
       '@types/node':
         specifier: catalog:node
@@ -769,10 +769,10 @@ importers:
   packages/internet-header:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../components
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../styles/dist
       body-scroll-lock:
         specifier: 4.0.0-beta.0
@@ -911,14 +911,14 @@ importers:
         specifier: 2.11.8
         version: 2.11.8
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../icons
       gulp-sourcemaps:
         specifier: 3.0.0
         version: 3.0.0
     devDependencies:
       '@swisspost/design-system-tokens':
-        specifier: workspace:10.0.0-next.69
+        specifier: workspace:10.0.0-next.70
         version: link:../tokens/dist
       '@types/node':
         specifier: catalog:node
