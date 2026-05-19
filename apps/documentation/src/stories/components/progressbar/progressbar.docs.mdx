@@ -1,0 +1,38 @@
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import PackageTag from '@/shared/package-tag';
+import StylesPackageImport from '@/shared/styles-package-import';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as ProgressbarStories from './progressbar.stories';
+
+<Meta of={ProgressbarStories} />
+
+<div className="docs-title">
+  # Progressbar
+
+<link-design of={JSON.stringify(ProgressbarStories)}></link-design>
+
+</div>
+
+<PackageTag meta={meta} />
+
+<div className="lead">
+  A progress bar indicates that the user's request has been received and the application is making
+  progress toward completing the requested action. It informs the user about the status of ongoing
+  process or activity, the estimated time of how long a process will take, or if a request is being
+  executed.
+</div>
+
+<Canvas sourceState="shown" of={ProgressbarStories.Default} />
+<Controls of={ProgressbarStories.Default} />
+
+<ComponentsPackageInstall component="<post-progressbar>" />
+
+<StylesPackageImport components={['progressbar']} />
+
+## States
+
+The progressbar supports four states: `neutral` (default), `success`, `error`, and `warning`. For
+all states except `neutral`, a signal icon is automatically prepended to the label via CSS and the
+status message becomes visible.
+
+<Canvas of={ProgressbarStories.States} />
