@@ -21,13 +21,6 @@
     "dist/",
     "hydrate/"
   ],
-  "sideEffects": [
-    "./dist/post-components/post-components.esm.js",
-    "./dist/esm/post-components.js",
-    "./dist/cjs/post-components.cjs.js",
-    "./dist/components/react/*.js",
-    "*.css"
-  ],
   "type": "module",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
