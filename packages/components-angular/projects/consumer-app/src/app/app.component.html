@@ -80,9 +80,9 @@
             <a class="post-megadropdown-overview" [href]="dropdown.overviewLink"
               >Overview {{ dropdown.trigger }}</a
             >
-            <div class="row row-cols-1 row-cols-sm-2">
+            <div class="post-megadropdown-grid">
               @for (section of dropdown.sections; track section.title) {
-                <div class="col">
+                <div>
                   @if (section.titleLink) {
                     <a
                       class="post-megadropdown-list-title"
@@ -144,6 +144,21 @@
 <post-back-to-top textBackToTop="Back to top"></post-back-to-top>
 
 <post-footer textFooter="Footer">
+  <div slot="prefooter">
+    <h3 id="prefooter">Service name</h3>
+    <ul aria-labelledby="prefooter">
+      <li>
+        <a href="#">Pre-Footer Link 1</a>
+      </li>
+      <li>
+        <a href="#">Pre-Footer Link 2</a>
+      </li>
+      <li>
+        <a href="#">Pre-Footer Link 3</a>
+      </li>
+    </ul>
+  </div>
+
   @for (grid of footerGrids; track grid.slot) {
     <span [attr.id]="grid.slot + '-title'" [attr.slot]="grid.slot + '-title'">{{
       grid.title
