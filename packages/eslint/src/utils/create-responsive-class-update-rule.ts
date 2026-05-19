@@ -1,9 +1,10 @@
 import { createRule } from './create-rule';
 import { HtmlNode } from '../parsers/html/html-node';
 import { getDynamicClassType, isStringLiteral, updateStringLiteral } from './class-binding-helpers';
-import { Rule } from 'eslint';
 import type { Cheerio } from 'cheerio';
 import type { AnyNode } from 'domhandler';
+import { removeEmptyAttrs } from './empty-attrs-remover';
+import { TSESLint } from '@typescript-eslint/utils';
 
 export interface ResponsiveClassMapping {
   old: string;
@@ -51,9 +52,8 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
     $node: Cheerio<AnyNode>,
     node: HtmlNode,
     attribs: Record<string, string>,
-    context: unknown,
+    context: TSESLint.RuleContext<string, []>,
   ) => {
-    const ctx = context as { report: (descriptor: Record<string, unknown>) => void };
     for (const [messageId, [oldClass, newClasses]] of Object.entries(mutations)) {
       const newClassesStr = newClasses.join(' ');
 
@@ -69,32 +69,34 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
 
         // `[class.old]` cannot expand to multiple bindings — flag without autofix
         if (isClassBinding) {
-          ctx.report({ messageId, loc: node.loc });
+          context.report({ messageId, loc: node.loc });
           continue;
         }
 
         // String-literal `[ngClass]`/`[class]` can be fixed inline
         if ((isNgClass || isClass) && value && isStringLiteral(value)) {
-          ctx.report({
+          context.report({
             messageId,
             loc: node.loc,
-            fix(fixer: Rule.RuleFixer) {
+            fix(fixer: TSESLint.RuleFixer) {
               const newValue = updateStringLiteral(value, oldClass, newClassesStr);
-              const targetAttr = isNgClass ? '[ngClass]' : '[class]';
+
+              const targetAttr = attrName;
 
               if (newValue === '') $node.removeAttr(targetAttr);
               else $node.attr(targetAttr, newValue);
 
               if (isNgClass && attrName !== targetAttr) $node.removeAttr(attrName);
 
-              return fixer.replaceTextRange(node.range, $node.toString());
+              const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
+              return fixer.replaceTextRange(node.range, fixedHtml);
             },
           });
           continue;
         }
 
         // Object-literal `[ngClass]`/`[class]` cannot expand one key to many — flag without autofix
-        ctx.report({ messageId, loc: node.loc });
+        context.report({ messageId, loc: node.loc });
       }
     }
   };
@@ -141,7 +143,8 @@ export const createResponsiveClassUpdateRule = (config: ResponsiveRuleConfig) =>
                 // Remove empty class attribute
                 if (!fixedNode.attr('class')?.trim()) fixedNode.removeAttr('class');
 
-                return fixer.replaceTextRange(node.range, fixedNode.toString());
+                const fixedHtml = removeEmptyAttrs(fixedNode.toString(), context, node);
+                return fixer.replaceTextRange(node.range, fixedHtml);
               },
             });
 

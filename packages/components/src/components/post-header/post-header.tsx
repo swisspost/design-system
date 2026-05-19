@@ -407,7 +407,7 @@ export class PostHeader {
   @Listen('focusout')
   onFocusChange(e: FocusEvent) {
     const isHeaderFocused =
-      e.target === document.activeElement && this.host.matches(':focus-within');
+      e.target === document.activeElement && this.host.matches(':focus-visible:focus-within');
 
     const mustRemainCollapsedOnDesktop =
       this.device === 'desktop' && this.host.querySelector('post-mainnavigation:focus-within');
