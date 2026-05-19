@@ -30,6 +30,7 @@
   .tabs-wrapper {
     position: relative;
     display: flex;
+    align-items: center;
 
     // Scroll buttons
     button.scroll-btn {
@@ -143,6 +144,7 @@
     }
 
     .tabs {
+      align-items: end;
       padding-inline-start: 40px; // post-tabs-page-padding-inline-start
       gap: 2px; // post-tabs-page-item-gap
     }
