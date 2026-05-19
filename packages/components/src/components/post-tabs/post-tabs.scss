@@ -4,21 +4,10 @@
 @use '@swisspost/design-system-styles/mixins/button' as button-mx;
 @use '@swisspost/design-system-styles/variables/elevation';
 
-.tabs {
-  // Hide scrollbar across browsers while keeping scroll functionality
-  scrollbar-width: none; // Firefox
-
-  &::-webkit-scrollbar {
-    display: none; // Chrome, Safari, Edge
-  }
-}
-
-:host([full-width]) {
+:host(.content-tabs[full-width]) {
   .tabs-wrapper {
-    // Negative margin to make the tabs-wrapper fullwidth
     margin-inline: calc(-1 * var(--post-container-offset));
 
-    // Internal padding to align the tabs content to the container
     .tabs {
       padding-inline: var(--post-container-offset);
     }
@@ -27,12 +16,10 @@
 
 :host(.page-tabs[full-width]) {
   .tabs-wrapper {
-    // Negative margin to make the tabs-wrapper fullwidth
-    margin-inline: calc(-1 * calc(var(--post-container-offset) + 40px));
+    margin-inline: calc(-1 * (var(--post-container-offset) + 40px));
 
     .tabs {
       padding-inline: calc(var(--post-container-offset) + 40px);
-      // post-tabs-page-padding-inline-start;
     }
   }
 }
@@ -99,15 +86,10 @@
 
     .tabs {
       overflow-x: hidden;
-
-      // Allow the focus ring (offset + width = 4px) to paint outside tabs without being clipped.
-      // Compensated with negative margins so layout dimensions are unchanged.
       background-color: transparent !important;
       display: flex;
       flex-wrap: nowrap;
       align-items: end;
-
-      /* prevent scroll chaining on x scroll */
       overscroll-behavior-x: contain;
       white-space: nowrap;
 
@@ -146,8 +128,6 @@
       }
     }
 
-    // Create a line that lies below the active but above the passive elements
-    // This way hover works smoothly with the background color
     &::after {
       content: '';
       position: absolute;

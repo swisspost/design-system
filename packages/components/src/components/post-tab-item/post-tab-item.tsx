@@ -9,7 +9,6 @@ import { nanoid } from 'nanoid';
 
 @Component({
   tag: 'post-tab-item',
-  styleUrl: 'post-tab-item.scss',
   shadow: true,
 })
 export class PostTabItem {
