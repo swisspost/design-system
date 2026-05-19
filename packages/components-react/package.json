@@ -20,6 +20,13 @@
     "access": "public",
     "linkDirectory": true
   },
+  "sideEffects": [
+    "./dist/index.js",
+    "./dist/index.server.js",
+    "./dist/stencil-generated/components.js",
+    "./dist/stencil-generated/components.server.js",
+    "*.css"
+  ],
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
