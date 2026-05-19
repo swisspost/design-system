@@ -108,8 +108,8 @@ export default function Layout({ children }: { readonly children: React.ReactNod
                 <a className="post-megadropdown-overview" href="/letters">
                   Overview Letters
                 </a>
-                <div className="row row-cols-1 row-cols-sm-2">
-                  <div className="col">
+                <div className="post-megadropdown-grid">
+                  <div>
                     <p className="post-megadropdown-list-title" id="send-letters">
                       Send letters
                     </p>
@@ -128,7 +128,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
                       </li>
                     </ul>
                   </div>
-                  <div className="col">
+                  <div>
                     <a
                       className="post-megadropdown-list-title"
                       id="step-by-step-letters"
@@ -162,8 +162,8 @@ export default function Layout({ children }: { readonly children: React.ReactNod
                 <a className="post-megadropdown-overview" href="/packages">
                   Overview Packages
                 </a>
-                <div className="row row-cols-1 row-cols-sm-2">
-                  <div className="col">
+                <div className="post-megadropdown-grid">
+                  <div>
                     <p className="post-megadropdown-list-title" id="send-packages">
                       Send packages
                     </p>
@@ -182,7 +182,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
                       </li>
                     </ul>
                   </div>
-                  <div className="col">
+                  <div>
                     <a
                       className="post-megadropdown-list-title"
                       id="step-by-step-packages"
@@ -229,6 +229,21 @@ export default function Layout({ children }: { readonly children: React.ReactNod
       </main>
 
       <PostFooter text-footer="Footer">
+        <div slot="prefooter">
+          <h3 id="prefooter">Service name</h3>
+          <ul aria-labelledby="prefooter">
+            <li>
+              <a href="#">Pre-Footer Link 1</a>
+            </li>
+            <li>
+              <a href="#">Pre-Footer Link 2</a>
+            </li>
+            <li>
+              <a href="#">Pre-Footer Link 3</a>
+            </li>
+          </ul>
+        </div>
+
         <span id="grid-1-title" slot="grid-1-title">
           Title 1
         </span>
