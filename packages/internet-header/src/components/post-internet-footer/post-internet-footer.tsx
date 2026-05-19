@@ -121,6 +121,14 @@ export class PostInternetFooter {
     return (
       <Host data-version={version}>
         <post-footer textFooter={this.textFooter}>
+          {footerConfig.prefooter && (
+            <div slot="prefooter">
+              {this.renderListWithTitle(footerConfig.prefooter, {
+                titleProps: { tag: 'h3' },
+              })}
+            </div>
+          )}
+
           {footerConfig.sections?.map((section, i) =>
             this.renderListWithTitle(section, {
               titleProps: { tag: 'span', slot: `grid-${i + 1}-title` },
