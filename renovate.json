@@ -2,6 +2,9 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:best-practices"],
   "labels": ["⛓️ dependencies"],
+  "timezone": "Europe/Zurich",
+  "schedule": ["before 4am on the first day of the month"],
+  "minimumReleaseAge": "7 days",
   "packageRules": [
     {
       "extends": [
@@ -69,7 +72,5 @@
       "allowedVersions": "0.2.3",
       "matchPackageNames": ["@oddbird/popover-polyfill"]
     }
-  ],
-  "timezone": "Europe/Zurich",
-  "schedule": ["before 4am on the first day of the month"]
+  ]
 }
