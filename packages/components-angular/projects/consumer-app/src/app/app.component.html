@@ -80,9 +80,9 @@
             <a class="post-megadropdown-overview" [href]="dropdown.overviewLink"
               >Overview {{ dropdown.trigger }}</a
             >
-            <div class="row row-cols-1 row-cols-sm-2">
+            <div class="post-megadropdown-grid">
               @for (section of dropdown.sections; track section.title) {
-                <div class="col">
+                <div>
                   @if (section.titleLink) {
                     <a
                       class="post-megadropdown-list-title"
