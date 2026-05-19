@@ -92,6 +92,7 @@
     "apps-next:start": "pnpm --filter design-system-integration-next start",
     "apps-next:build": "pnpm --filter design-system-integration-next build",
     "apps-next:build:serve": "pnpm --filter design-system-integration-next build:serve",
+    "apps-next:analyze": "pnpm --filter design-system-integration-next analyze",
     "apps-next:e2e": "pnpm --filter design-system-integration-next e2e",
     "apps-next:e2e:watch": "pnpm --filter design-system-integration-next e2e:watch",
     "apps-next:lint": "pnpm --filter design-system-integration-next lint",
