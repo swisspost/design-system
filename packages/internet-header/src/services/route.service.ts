@@ -56,19 +56,19 @@ export const getActiveLink = (activeRouteProp: ActiveRouteProp): SimpleLinkConfi
  * Find the first link marked as active in the portal config
  */
 const findPortalActiveLink = (config: MainNavigationConfig): SimpleLinkConfig | null => {
-  config.forEach(item => {
+  for (const item of config) {
     if ('url' in item && item.active) {
       return item;
     }
 
     if ('sections' in item) {
-      item.sections.forEach(section => {
-        section.items.forEach(link => {
+      for (const section of item.sections) {
+        for (const link of section.items) {
           if (link.active) return link;
-        });
-      });
+        }
+      }
     }
-  });
+  }
   return null;
 };
 
