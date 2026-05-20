@@ -98,10 +98,6 @@ export namespace Components {
           * Defines the users lastname.
          */
         "lastname"?: string;
-        /**
-          * Defines the company internal userId.<post-banner type="warning" data-size="sm"><p>Can only be used on post.ch domains!</p></post-banner>
-         */
-        "userid"?: string;
     }
     interface PostBackToTop {
         /**
@@ -435,6 +431,18 @@ export namespace Components {
           * Re-fetches the authentication state from the session API and updates the component rendering accordingly.
          */
         "refresh": () => Promise<void>;
+        /**
+          * Label for the "Current user is {user}" accessibility description. Use `{user}` as a placeholder — it will be replaced with the current user's name at runtime.
+         */
+        "textCurrentUser": string;
+        /**
+          * Accessible label for the dropdown menu
+         */
+        "textUserMenu": string;
+        /**
+          * Hidden label for the user menu trigger button, for accessibility purposes. It should describe the purpose of the button (e.g. "Access user links").
+         */
+        "textUserMenuTrigger": string;
     }
     interface PostLogo {
         /**
@@ -1346,10 +1354,6 @@ declare namespace LocalJSX {
           * Defines the users lastname.
          */
         "lastname"?: string;
-        /**
-          * Defines the company internal userId.<post-banner type="warning" data-size="sm"><p>Can only be used on post.ch domains!</p></post-banner>
-         */
-        "userid"?: string;
     }
     interface PostBackToTop {
         /**
@@ -1655,6 +1659,18 @@ declare namespace LocalJSX {
           * Emitted when the authentication state changes. The event payload is an object with an `authenticated` property: `true` when the user is logged in, `false` when the user is not logged in or the API request failed.
          */
         "onPostChange"?: (event: PostLoginWidgetCustomEvent<{ authenticated: boolean }>) => void;
+        /**
+          * Label for the "Current user is {user}" accessibility description. Use `{user}` as a placeholder — it will be replaced with the current user's name at runtime.
+         */
+        "textCurrentUser": string;
+        /**
+          * Accessible label for the dropdown menu
+         */
+        "textUserMenu": string;
+        /**
+          * Hidden label for the user menu trigger button, for accessibility purposes. It should describe the purpose of the button (e.g. "Access user links").
+         */
+        "textUserMenuTrigger": string;
     }
     interface PostLogo {
         /**
@@ -1965,7 +1981,6 @@ declare namespace LocalJSX {
     interface PostAvatarAttributes {
         "firstname": string;
         "lastname": string;
-        "userid": string;
         "email": string;
         "description": string;
     }
@@ -2050,6 +2065,11 @@ declare namespace LocalJSX {
         "value": string;
         "selected": boolean;
         "highlighted": boolean;
+    }
+    interface PostLoginWidgetAttributes {
+        "textCurrentUser": string;
+        "textUserMenu": string;
+        "textUserMenuTrigger": string;
     }
     interface PostLogoAttributes {
         "url": string | URL;
@@ -2156,7 +2176,7 @@ declare namespace LocalJSX {
         "post-linkarea": PostLinkarea;
         "post-listbox": PostListbox;
         "post-listbox-option": Omit<PostListboxOption, keyof PostListboxOptionAttributes> & { [K in keyof PostListboxOption & keyof PostListboxOptionAttributes]?: PostListboxOption[K] } & { [K in keyof PostListboxOption & keyof PostListboxOptionAttributes as `attr:${K}`]?: PostListboxOptionAttributes[K] } & { [K in keyof PostListboxOption & keyof PostListboxOptionAttributes as `prop:${K}`]?: PostListboxOption[K] } & OneOf<"value", PostListboxOption["value"], PostListboxOptionAttributes["value"]>;
-        "post-login-widget": PostLoginWidget;
+        "post-login-widget": Omit<PostLoginWidget, keyof PostLoginWidgetAttributes> & { [K in keyof PostLoginWidget & keyof PostLoginWidgetAttributes]?: PostLoginWidget[K] } & { [K in keyof PostLoginWidget & keyof PostLoginWidgetAttributes as `attr:${K}`]?: PostLoginWidgetAttributes[K] } & { [K in keyof PostLoginWidget & keyof PostLoginWidgetAttributes as `prop:${K}`]?: PostLoginWidget[K] } & OneOf<"textCurrentUser", PostLoginWidget["textCurrentUser"], PostLoginWidgetAttributes["textCurrentUser"]> & OneOf<"textUserMenu", PostLoginWidget["textUserMenu"], PostLoginWidgetAttributes["textUserMenu"]> & OneOf<"textUserMenuTrigger", PostLoginWidget["textUserMenuTrigger"], PostLoginWidgetAttributes["textUserMenuTrigger"]>;
         "post-logo": Omit<PostLogo, keyof PostLogoAttributes> & { [K in keyof PostLogo & keyof PostLogoAttributes]?: PostLogo[K] } & { [K in keyof PostLogo & keyof PostLogoAttributes as `attr:${K}`]?: PostLogoAttributes[K] } & { [K in keyof PostLogo & keyof PostLogoAttributes as `prop:${K}`]?: PostLogo[K] };
         "post-mainnavigation": Omit<PostMainnavigation, keyof PostMainnavigationAttributes> & { [K in keyof PostMainnavigation & keyof PostMainnavigationAttributes]?: PostMainnavigation[K] } & { [K in keyof PostMainnavigation & keyof PostMainnavigationAttributes as `attr:${K}`]?: PostMainnavigationAttributes[K] } & { [K in keyof PostMainnavigation & keyof PostMainnavigationAttributes as `prop:${K}`]?: PostMainnavigation[K] } & OneOf<"textMain", PostMainnavigation["textMain"], PostMainnavigationAttributes["textMain"]>;
         "post-megadropdown": Omit<PostMegadropdown, keyof PostMegadropdownAttributes> & { [K in keyof PostMegadropdown & keyof PostMegadropdownAttributes]?: PostMegadropdown[K] } & { [K in keyof PostMegadropdown & keyof PostMegadropdownAttributes as `attr:${K}`]?: PostMegadropdownAttributes[K] } & { [K in keyof PostMegadropdown & keyof PostMegadropdownAttributes as `prop:${K}`]?: PostMegadropdown[K] } & OneOf<"textClose", PostMegadropdown["textClose"], PostMegadropdownAttributes["textClose"]> & OneOf<"textBack", PostMegadropdown["textBack"], PostMegadropdownAttributes["textBack"]>;
