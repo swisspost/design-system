@@ -25,6 +25,7 @@
     "./dist/index.server.js",
     "./dist/stencil-generated/components.js",
     "./dist/stencil-generated/components.server.js",
+    "./dist/stencil-generated/standalone/components.js",
     "*.css"
   ],
   "type": "module",
