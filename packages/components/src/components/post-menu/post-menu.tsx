@@ -240,7 +240,10 @@ export class PostMenu {
         // If the element is a slot, get the assigned elements
         .flatMap(el => (el instanceof HTMLSlotElement ? el.assignedElements() : el))
         // For each menu item, get any focusable children (e.g., buttons, links)
-        .flatMap(el => Array.from(getFocusableChildren(el)))
+        .flatMap(el => [
+          ...getFocusableChildren(el),
+          ...(el.shadowRoot ? getFocusableChildren(el.shadowRoot) : []),
+        ])
     );
   }
 
