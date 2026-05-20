@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { nanoid } from 'nanoid';
+import { nanoid } from 'nanoid/non-secure';
 import { checkRequiredAndType } from '@/utils';
 
 /**

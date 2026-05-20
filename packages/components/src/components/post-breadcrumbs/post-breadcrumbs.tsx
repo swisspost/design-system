@@ -1,5 +1,5 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
-import { nanoid } from 'nanoid';
+import { nanoid } from 'nanoid/non-secure';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { checkRequiredAndUrl, checkRequiredAndType, componentOnReady } from '@/utils';
