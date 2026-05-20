@@ -4,10 +4,10 @@ import {
   checkRequiredAndPattern,
   checkEmptyOrOneOf,
   EventFrom,
+  nanoid,
 } from '@/utils';
 import { version } from '@root/package.json';
 import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
-import { nanoid } from 'nanoid/non-secure';
 
 @Component({
   tag: 'post-language-menu',

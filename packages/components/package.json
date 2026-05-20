@@ -101,8 +101,7 @@
     "air-datepicker": "3.6.0",
     "ally.js": "1.4.1",
     "imask": "7.6.1",
-    "long-press-event": "2.5.2",
-    "nanoid": "5.1.11"
+    "long-press-event": "2.5.2"
   },
   "devDependencies": {
     "@eslint/compat": "1.2.5",

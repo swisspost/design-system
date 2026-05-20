@@ -1,8 +1,7 @@
 import { Component, Element, h, Host, Listen, Method, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { HEADING_LEVELS, HeadingLevel } from '@/types';
-import { checkEmptyOrOneOf, EventFrom } from '@/utils';
-import { nanoid } from 'nanoid/non-secure';
+import { checkEmptyOrOneOf, EventFrom, nanoid } from '@/utils';
 
 /**
  * @part post-accordion-button - The element that toggles the accordion item (header button).
