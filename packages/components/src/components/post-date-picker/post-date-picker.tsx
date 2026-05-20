@@ -19,7 +19,7 @@ import AirDatepicker, {
 } from 'air-datepicker';
 import { airDatepickerLocales } from './air-locales';
 import type { InputMask } from 'imask';
-import IMask from 'imask/imask';
+import IMask from 'imask';
 import {
   checkEmptyOrDate,
   checkRequiredAndType,
