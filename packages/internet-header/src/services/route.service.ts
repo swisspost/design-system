@@ -61,14 +61,30 @@ const findPortalActiveLink = (config: MainNavigationConfig): SimpleLinkConfig | 
       return item;
     }
 
-    if ('sections' in item) {
-      for (const section of item.sections) {
-        for (const link of section.items) {
-          if (link.active) return link;
-        }
+    if (!('sections' in item)) {
+      continue;
+    }
+
+    const activeSectionLink = findFirstActiveSectionLink(item.sections);
+    if (activeSectionLink) {
+      return activeSectionLink;
+    }
+  }
+
+  return null;
+};
+
+const findFirstActiveSectionLink = (
+  sections: Extract<MainNavigationConfig[number], { sections: unknown }>['sections'],
+): SimpleLinkConfig | null => {
+  for (const section of sections) {
+    for (const link of section.items) {
+      if (link.active) {
+        return link;
       }
     }
   }
+
   return null;
 };
 
