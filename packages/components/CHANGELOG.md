@@ -1,5 +1,48 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.70
+
+### Major Changes
+
+- Updated `post-header` megadropdown to use a responsive grid layout, ensuring columns take up the available space regardless of their count across breakpoints.  
+  The `<div class="row row-cols-1 row-cols-sm-2">` column wrapper switches to `<div class="post-megadropdown-grid">`, and the `col` class is dropped from each column div.
+
+  BEFORE:
+
+  ```html
+  <post-megadropdown id="letters" text-close="Close" text-back="Back">
+    <a class="post-megadropdown-overview" href="/letters">Overview Letters</a>
+    <div class="row row-cols-1 row-cols-sm-2">
+      <div class="col"></div>
+      <div class="col"></div>
+    </div>
+  </post-megadropdown>
+  ```
+
+  AFTER:
+
+  ````html
+  <post-megadropdown id="letters" text-close="Close" text-back="Back">
+    <a class="post-megadropdown-overview" href="/letters">Overview Letters</a>
+    <div class="post-megadropdown-grid">
+      <div></div>
+      <div></div>
+    </div>
+  </post-megadropdown>
+  ``` (by [@myrta2302](https://github.com/myrta2302) with
+  [#7479](https://github.com/swisspost/design-system/pull/7479))
+  ````
+
+### Minor Changes
+
+- Added an optional prefooter section to the `post-footer` component. (by [@leagrdv](https://github.com/leagrdv) with [#7630](https://github.com/swisspost/design-system/pull/7630))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.70
+  - @swisspost/design-system-icons@10.0.0-next.70
+
 ## 10.0.0-next.69
 
 ### Major Changes

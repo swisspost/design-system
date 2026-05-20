@@ -14,12 +14,12 @@ export const CustomIconSignalMapping: Record<string, string> = {
 const meta: MetaComponent = {
   id: '1b1ea384-7421-4064-ad34-e3f48a36b39f',
   title: 'Components/Tag',
-  tags: ['package:Styles', 'status:InProgress'],
+  tags: ['package:Styles', 'status:Stable'],
   render: renderTag,
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=18807-68180&mode=design&t=PR2ZnqAacaK7UiXP-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=30341-74503',
     },
   },
   args: {
