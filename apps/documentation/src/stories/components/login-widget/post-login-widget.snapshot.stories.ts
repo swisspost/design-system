@@ -1,5 +1,5 @@
 import type { StoryObj } from '@storybook/web-components-vite';
-import meta, { renderLoginLink, renderUserMenu } from './post-login-widget.stories';
+import meta, { renderLoginLink, renderUserMenuLinks } from './post-login-widget.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 
@@ -23,7 +23,7 @@ export const LoginWidget: Story = {
           </div>
           <div>
             <h3>Authenticated</h3>
-            ${renderUserMenu('snapshot-user-menu')}
+            ${renderUserMenuLinks}
           </div>
         </div>
       `,
