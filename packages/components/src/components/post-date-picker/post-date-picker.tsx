@@ -18,8 +18,8 @@ import AirDatepicker, {
   AirDatepickerViewsSingle,
 } from 'air-datepicker';
 import { airDatepickerLocales } from './air-locales';
-import IMask from 'imask/core/holder';
-import InputMask from 'imask/controls/input';
+import type { InputMask } from 'imask';
+import IMask from 'imask/imask';
 import {
   checkEmptyOrDate,
   checkRequiredAndType,
