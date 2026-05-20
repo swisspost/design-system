@@ -17,9 +17,11 @@ export function getLocaleTextDirection(locale: string) {
 
 export function isValidLocale(locale: string | undefined): boolean {
   if (!locale) return false;
+
   try {
     return Intl.DateTimeFormat.supportedLocalesOf(locale).length > 0;
-  } catch {
+  } catch (err) {
+    console.log(err);
     return false;
   }
 }
