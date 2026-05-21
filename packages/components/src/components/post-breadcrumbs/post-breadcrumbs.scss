@@ -28,7 +28,7 @@ nav {
 
 [role='list'] {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: tokens.get('breadcrumb-gap-inline-outer');
 }
 

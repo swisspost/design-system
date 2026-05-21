@@ -18,3 +18,12 @@ tokens.$default-map: components.$post-breadcrumb;
     text-decoration: tokens.get('breadcrumb-link-selected-text-decoration');
   }
 }
+
+:host([selected]:not([selected='false']):not([data-measuring])) {
+  align-items: flex-start;
+
+  :is(a, span) {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}
