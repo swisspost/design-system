@@ -35,32 +35,28 @@
   "exports": {
     "./post-components.css": "./dist/post-components.css",
     ".": {
-      "types": "./dist/types/index.d.ts",
-      "default": "./dist/index.js"
-    },
-    "./*": {
-      "types": "./dist/types/stencil-generated/standalone/*.d.ts",
-      "default": "./dist/stencil-generated/standalone/*.js"
-    },
-    "./server": {
       "react-server": {
         "types": "./dist/types/index.server.d.ts",
         "default": "./dist/index.server.js"
       },
-      "default": {
-        "types": "./dist/types/index.d.ts",
-        "default": "./dist/index.js"
-      }
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/index.js"
     },
-    "./server/*": {
+    "./*": {
       "react-server": {
         "types": "./dist/types/stencil-generated/standalone/*.server.d.ts",
         "default": "./dist/stencil-generated/standalone/*.server.js"
       },
-      "default": {
-        "types": "./dist/types/stencil-generated/standalone/*.d.ts",
-        "default": "./dist/stencil-generated/standalone/*.js"
-      }
+      "types": "./dist/types/stencil-generated/standalone/*.d.ts",
+      "default": "./dist/stencil-generated/standalone/*.js"
+    },
+    "./server": {
+      "types": "./dist/types/index.server.d.ts",
+      "default": "./dist/index.server.js"
+    },
+    "./server/*": {
+      "types": "./dist/types/stencil-generated/standalone/*.server.d.ts",
+      "default": "./dist/stencil-generated/standalone/*.server.js"
     },
     "./icons": {
       "types": "./dist/types/icons-generated/index.d.ts",
@@ -69,10 +65,6 @@
     "./icons/*": {
       "types": "./dist/types/icons-generated/*.d.ts",
       "default": "./dist/icons-generated/*.js"
-    },
-    "./standalone": {
-      "types": "./dist/types/stencil-generated/standalone/components.d.ts",
-      "default": "./dist/stencil-generated/standalone/components.js"
     }
   },
   "scripts": {
