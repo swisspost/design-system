@@ -8,7 +8,9 @@ tokens.$default-map: components.$post-breadcrumb;
 
 :host(:not([variant='menuitem'])) {
   @include mixins.breadcrumb-item;
+}
 
+:host {
   :is(a, span) {
     margin-block: tokens.get('breadcrumb-padding-block-text');
   }
