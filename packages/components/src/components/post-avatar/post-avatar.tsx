@@ -21,9 +21,6 @@ enum AvatarType {
   shadow: true,
 })
 export class PostAvatar {
-  private static readonly INTERNAL_USERID_IMAGE_SRC =
-    'https://web.post.ch/UserProfileImage/{userid}.png';
-
   private slottedImageObserver: MutationObserver; // To watch the slotted image src.
 
   @Element() host: HTMLPostAvatarElement;
@@ -37,11 +34,6 @@ export class PostAvatar {
    * Defines the users lastname.
    */
   @Prop() readonly lastname?: string;
-
-  /**
-   * Defines the company internal userId.<post-banner type="warning" data-size="sm"><p>Can only be used on post.ch domains!</p></post-banner>
-   */
-  @Prop() readonly userid?: string;
 
   /**
    * Defines the users email address associated with a gravatar profile picture.
@@ -59,7 +51,7 @@ export class PostAvatar {
   @State() imageAlt = '';
   @State() initials = '';
 
-  // To handle email or userid updates and reset the storage item
+  // To handle email updates and reset the storage item
   @State() storageKey: string = '';
 
   @Watch('firstname')
@@ -70,12 +62,6 @@ export class PostAvatar {
   @Watch('lastname')
   validateLastname() {
     checkEmptyOrType(this, 'lastname', 'string');
-  }
-
-  @Watch('userid')
-  updateUserid() {
-    this.validateUserId();
-    this.getAvatarImage();
   }
 
   @Watch('email')
@@ -89,10 +75,6 @@ export class PostAvatar {
     checkEmptyOrType(this, 'description', 'string');
   }
 
-  private validateUserId() {
-    checkEmptyOrType(this, 'userid', 'string');
-  }
-
   private validateEmail() {
     if (this.email) checkEmptyOrPattern(this, 'email', emailPattern);
   }
@@ -103,10 +85,7 @@ export class PostAvatar {
     const imageUrl = this.slottedImage?.getAttribute('src');
 
     if (!imageUrl) {
-      if (this.userid) {
-        imageLoaded = await this.getImageByProp(this.userid, this.fetchImageByUserId.bind(this));
-      }
-      if (!imageLoaded && this.email?.match(emailPattern)) {
+      if (this.email?.match(emailPattern)) {
         imageLoaded = await this.getImageByProp(this.email, this.fetchImageByEmail.bind(this));
       }
       if (!imageLoaded) {
@@ -146,12 +125,6 @@ export class PostAvatar {
       this.avatarType = AvatarType.Image;
       return true;
     }
-  }
-
-  private async fetchImageByUserId() {
-    return await fetch(
-      PostAvatar.INTERNAL_USERID_IMAGE_SRC.replace('{userid}', encodeURIComponent(this.userid)),
-    );
   }
 
   private async fetchImageByEmail() {
@@ -205,7 +178,6 @@ export class PostAvatar {
     this.validateFirstname();
     this.validateLastname();
     this.validateDescription();
-    this.validateUserId();
     this.validateEmail();
   }
 
