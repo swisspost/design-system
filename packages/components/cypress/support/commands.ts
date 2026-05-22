@@ -122,15 +122,11 @@ Cypress.Commands.add(
       '[hidden]:not([hidden="false"])',
     ].join(',')})`;
 
-    function isElementFocusable(el: HTMLElement): boolean {
-      return el.matches(`${focusableSelector}:not(${focusDisablingSelector})`);
-    }
-
     function collectDeep(root: ParentNode, result: HTMLElement[]) {
       // Query all focusable elements in the current scope (does not cross shadow boundaries)
-      root.querySelectorAll<HTMLElement>(
-        `${focusableSelector}:not(${focusDisablingSelector})`,
-      ).forEach(el => result.push(el));
+      root
+        .querySelectorAll<HTMLElement>(`${focusableSelector}:not(${focusDisablingSelector})`)
+        .forEach(el => result.push(el));
 
       // For each element in this scope that hosts a shadow root, recurse into it
       root.querySelectorAll<HTMLElement>('*').forEach(el => {
@@ -141,7 +137,7 @@ Cypress.Commands.add(
     }
 
     const result: HTMLElement[] = [];
-    collectDeep(subject[0] as unknown as ParentNode, result);
+    collectDeep(subject[0], result);
 
     // Deduplicate while preserving order (shadow elements may already be in querySelectorAll results if Cypress patches it)
     return cy.wrap([...new Set(result)]);
