@@ -122,10 +122,50 @@ Cypress.Commands.add(
       '[hidden]:not([hidden="false"])',
     ].join(',')})`;
 
-    const focusableElements = subject[0].querySelectorAll<HTMLElement>(
-      `${focusableSelector}:not(${focusDisablingSelector})`,
-    );
+    function isFocusBlockedByCSS(el: HTMLElement): boolean {
+      if (typeof el.checkVisibility === 'function') {
+        return !el.checkVisibility({ visibilityProperty: true });
+      }
+      const style = globalThis.getComputedStyle(el);
+      return style.display === 'none' || style.visibility !== 'visible';
+    }
 
-    return cy.wrap(Array.from(focusableElements));
+    function isElementFocusable(node: Element): node is HTMLElement {
+      return (
+        node instanceof HTMLElement &&
+        node.matches(`${focusableSelector}:not(${focusDisablingSelector})`) &&
+        !isFocusBlockedByCSS(node)
+      );
+    }
+
+    function collect(
+      el: Element | DocumentFragment,
+      visited: Set<Node> = new Set(),
+    ): HTMLElement[] {
+      if (visited.has(el)) return [];
+      visited.add(el);
+
+      let nodes: Element[];
+      if (el instanceof HTMLSlotElement) {
+        const assigned = el.assignedElements({ flatten: true });
+        nodes = assigned.length > 0 ? assigned : Array.from(el.children);
+      } else if (el instanceof HTMLElement && el.shadowRoot) {
+        nodes = Array.from(el.shadowRoot.children);
+      } else {
+        nodes = Array.from(el.children);
+      }
+
+      const result: HTMLElement[] = [];
+      for (const node of nodes) {
+        if (isElementFocusable(node)) {
+          result.push(node);
+          continue;
+        }
+        result.push(...collect(node, visited));
+      }
+      return result;
+    }
+
+    return cy.wrap(collect(subject[0]));
   },
 );
