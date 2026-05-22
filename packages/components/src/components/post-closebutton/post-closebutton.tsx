@@ -1,4 +1,4 @@
-import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Prop, Watch, AttachInternals } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkEmptyOrOneOf, checkRequiredAndOneOf } from '@/utils';
 import { BUTTON_TYPES, ButtonType, Placement, PLACEMENT, SIZE, Size } from './types';
@@ -10,8 +10,11 @@ import { BUTTON_TYPES, ButtonType, Placement, PLACEMENT, SIZE, Size } from './ty
   tag: 'post-closebutton',
   styleUrl: 'post-closebutton.scss',
   shadow: true,
+  formAssociated: true,
 })
 export class PostClosebutton {
+  @AttachInternals() internals: ElementInternals;
+
   private mutationObserver: MutationObserver;
 
   private visuallyHidden: HTMLSpanElement;
@@ -53,8 +56,6 @@ export class PostClosebutton {
       this.mutationObserver = new MutationObserver(this.checkContent.bind(this));
       this.mutationObserver.observe(this.host, {
         childList: true,
-        characterData: true,
-        subtree: true,
       });
     }
   }
@@ -83,10 +84,19 @@ export class PostClosebutton {
     }
   }
 
+  private handleClick() {
+    if (this.buttonType === 'submit') this.internals.form?.requestSubmit();
+    else if (this.buttonType === 'reset') this.internals.form?.reset();
+  }
+
   render() {
     return (
       <Host data-version={version}>
-        <button type={this.buttonType} class="btn btn-icon btn-secondary btn-sm">
+        <button
+          type={this.buttonType}
+          class="btn btn-icon btn-secondary btn-sm"
+          onClick={() => this.handleClick()}
+        >
           <post-icon aria-hidden="true" name="closex"></post-icon>
           <span ref={el => (this.visuallyHidden = el as HTMLSpanElement)} class="visually-hidden">
             <slot></slot>
