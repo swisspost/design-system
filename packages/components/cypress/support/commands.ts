@@ -122,19 +122,10 @@ Cypress.Commands.add(
       '[hidden]:not([hidden="false"])',
     ].join(',')})`;
 
-    function isFocusBlockedByCSS(el: HTMLElement): boolean {
-      if (typeof el.checkVisibility === 'function') {
-        return !el.checkVisibility({ visibilityProperty: true });
-      }
-      const style = globalThis.getComputedStyle(el);
-      return style.display === 'none' || style.visibility !== 'visible';
-    }
-
     function isElementFocusable(node: Element): node is HTMLElement {
       return (
         node instanceof HTMLElement &&
-        node.matches(`${focusableSelector}:not(${focusDisablingSelector})`) &&
-        !isFocusBlockedByCSS(node)
+        node.matches(`${focusableSelector}:not(${focusDisablingSelector})`)
       );
     }
 
