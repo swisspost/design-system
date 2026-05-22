@@ -1,6 +1,7 @@
 @use '@swisspost/design-system-styles/elements/anchor';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/mixins/media';
 @use './mixins';
 
 tokens.$default-map: components.$post-breadcrumb;
@@ -20,10 +21,17 @@ tokens.$default-map: components.$post-breadcrumb;
 }
 
 :host([selected]:not([selected='false']):not([data-measuring])) {
-  align-items: flex-start;
+  align-items: start;
 
   :is(a, span) {
     white-space: normal;
     overflow-wrap: anywhere;
+
+    @include media.only(desktop) {
+      margin-block-start: 1px; // to be removed after token is added
+    }
+    @include media.only(mobile) {
+      margin-block-start: 1.5px; // to be removed after token is added
+    }
   }
 }

@@ -13,7 +13,7 @@
   :is(button, a) {
     @include button.button-base;
     display: flex;
-    align-self: center;
+    align-self: start;
     font: inherit;
     padding: unset;
     border: unset;
@@ -39,8 +39,15 @@
     display: block;
     height: 16px;
     width: 16px;
-    margin-block: tokens.get('breadcrumb-padding-block-icon-link', components.$post-breadcrumb);
+    margin-block: tokens.get(
+      'breadcrumb-padding-block-icon-link',
+      components.$post-breadcrumb
+    ); // This token will be updated with 8px /4px/4px
     margin-inline: tokens.get('breadcrumb-padding-inline-icon-link', components.$post-breadcrumb);
     flex-shrink: 0;
+
+    @include media.only(desktop) {
+      margin-block: 8px; // to be removed after token is added
+    }
   }
 }
