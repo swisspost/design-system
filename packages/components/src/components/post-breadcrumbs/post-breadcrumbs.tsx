@@ -1,13 +1,8 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { nanoid } from 'nanoid';
+import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
-import { checkRequiredAndUrl, debounce, checkRequiredAndType } from '@/utils';
-
-type BreadcrumbItem = {
-  url: string | undefined;
-  text: string;
-  description: string | undefined;
-  label: string | undefined;
-};
+import { checkRequiredAndUrl, checkRequiredAndType, componentOnReady } from '@/utils';
 
 @Component({
   tag: 'post-breadcrumbs',
@@ -15,53 +10,56 @@ type BreadcrumbItem = {
   shadow: true,
 })
 export class PostBreadcrumbs {
+  private mutationObserver: MutationObserver;
+  private resizeObserver: ResizeObserver;
+
   @Element() host: HTMLPostBreadcrumbsElement;
 
+  @State() shouldRenderMenu = false;
+  @State() id: string;
+
   /**
-   * The URL for the home breadcrumb item.
+   * The URL for the root (home) breadcrumb item.
    */
   @Prop({ reflect: true }) homeUrl!: string;
-
-  /**
-   * The text label for the home breadcrumb item.
-   */
-  @Prop({ reflect: true }) textHome!: string;
-
-  /**
-   * The accessible label for the breadcrumb component.
-   */
-  @Prop({ reflect: true }) textBreadcrumbs!: string;
-
-  /**
-   * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
-   */
-  @Prop({ reflect: true }) textMoreItems!: string;
-
-  @State() breadcrumbItems: BreadcrumbItem[] = [];
-  @State() isConcatenated: boolean;
-  @State() lastWindowWidth: number;
-
-  private breadcrumbsNavRef?: HTMLElement;
-  private lastItem: BreadcrumbItem;
 
   @Watch('homeUrl')
   validateHomeUrl() {
     checkRequiredAndUrl(this, 'homeUrl');
   }
 
+  /**
+   * An accessible label for the root (home) breadcrumb item.
+   */
+  @Prop({ reflect: true }) textHome!: string;
+
   @Watch('textHome')
   validateTextHome() {
     checkRequiredAndType(this, 'textHome', 'string');
   }
+
+  /**
+   * An accessible label for the breadcrumb navigation.
+   */
+  @Prop({ reflect: true }) textBreadcrumbs!: string;
 
   @Watch('textBreadcrumbs')
   validateTextBreadcrumbs() {
     checkRequiredAndType(this, 'textBreadcrumbs', 'string');
   }
 
+  /**
+   * An accessible label for the overflow menu that contains collapsed breadcrumb items.
+   */
+  @Prop({ reflect: true }) textMoreItems!: string;
+
   @Watch('textMoreItems')
   validateTextMoreItems() {
     checkRequiredAndType(this, 'textMoreItems', 'string');
+  }
+
+  componentWillLoad() {
+    this.id = this.host.id || `b${nanoid(6)}`;
   }
 
   componentDidLoad() {
@@ -69,197 +67,127 @@ export class PostBreadcrumbs {
     this.validateTextHome();
     this.validateTextBreadcrumbs();
     this.validateTextMoreItems();
-    window.addEventListener('resize', this.handleResize);
-    this.waitForBreadcrumbsRef();
-    requestAnimationFrame(() => {
-      this.updateBreadcrumbItems();
-    });
+
+    this.createMutationObserver();
+    this.createResizeObserver();
   }
 
   disconnectedCallback() {
-    window.removeEventListener('resize', this.handleResize);
+    this.mutationObserver?.disconnect();
+    this.resizeObserver?.disconnect();
   }
 
-  // Waits for breadcrumbs navigation reference to be available
-  private waitForBreadcrumbsRef = debounce(() => {
-    if (this.breadcrumbsNavRef?.clientWidth > 0) {
-      this.checkConcatenation();
-    } else {
-      this.waitForBreadcrumbsRef();
-    }
-  }, 50);
+  private createMutationObserver() {
+    this.mutationObserver = new MutationObserver(this.duplicateNavElement.bind(this));
+    this.mutationObserver.observe(this.host, {
+      childList: true,
+      characterData: true,
+      subtree: true,
+    });
 
-  // Updates breadcrumb items and sets the last item
-  private updateBreadcrumbItems() {
-    this.breadcrumbItems = Array.from(this.host.querySelectorAll('post-breadcrumb-item')).map(
-      item => ({
-        text: item.textContent || '',
-        url: item.getAttribute('url') ?? undefined,
-        description: item.getAttribute('description') ?? undefined,
-        label: item.getAttribute('label') ?? undefined,
-      }),
+    this.duplicateNavElement();
+  }
+
+  private createResizeObserver() {
+    this.resizeObserver = new ResizeObserver(throttle(50, this.checkOverflow.bind(this)));
+    this.resizeObserver.observe(document.body);
+  }
+
+  /**
+   * To measure overflow, we duplicate the entire breadcrumb so an inline version is always available.
+   */
+  private duplicateNavElement() {
+    const shadowRoot = this.host.shadowRoot;
+    const nav = shadowRoot?.querySelector('nav');
+    if (!shadowRoot || !nav) return;
+
+    this.prepareBreadcrumbItemsForClone();
+
+    const clone = nav.cloneNode(true) as HTMLElement;
+    clone.classList.add('invisible');
+
+    shadowRoot.querySelector('nav.invisible')?.remove();
+    shadowRoot.append(clone);
+
+    requestAnimationFrame(() => {
+      this.duplicateSlottedElements(clone, 'slot:not([name])');
+      this.duplicateSlottedElements(clone, 'slot[name="selected"]');
+
+      this.checkOverflow();
+    });
+  }
+
+  private duplicateSlottedElements(clone: Element, slotSelector: string) {
+    const originalSlot = this.host.shadowRoot?.querySelector<HTMLSlotElement>(slotSelector);
+    const clonedSlot = clone.querySelector(slotSelector);
+    if (!originalSlot || !clonedSlot) return;
+
+    originalSlot.assignedElements().forEach(element => {
+      clonedSlot.insertAdjacentElement('beforebegin', element.cloneNode(true) as Element);
+    });
+
+    clonedSlot.remove();
+  }
+
+  private checkOverflow() {
+    const hiddenNav = this.host.shadowRoot?.querySelector('nav.invisible');
+    if (!hiddenNav) return;
+
+    const breadcrumbItems = Array.from(hiddenNav.querySelectorAll('post-breadcrumb-item'));
+    Promise.all(breadcrumbItems.map(item => componentOnReady(item))).then(() => {
+      this.shouldRenderMenu = hiddenNav.scrollWidth > hiddenNav.clientWidth;
+      this.updateBreadcrumbItemProps();
+    });
+  }
+
+  private prepareBreadcrumbItemsForClone() {
+    this.shouldRenderMenu = false;
+    this.updateBreadcrumbItemProps();
+  }
+
+  private updateBreadcrumbItemProps() {
+    const breadcrumbItems = this.host.querySelectorAll('post-breadcrumb-item');
+    breadcrumbItems.forEach((item, index) => {
+      item.setAttribute('variant', this.shouldRenderMenu ? 'menuitem' : 'listitem');
+      item.setAttribute('selected', String(index === breadcrumbItems.length - 1));
+    });
+  }
+
+  private renderMenu() {
+    const menuId = `${this.id}-menu`;
+
+    return (
+      <div role="listitem">
+        {/* Extra wrapper aligns menu with button, excluding .breadcrumb-item chevron. */}
+        <div class="breadcrumb-item">
+          <post-menu-trigger for={menuId}>
+            <button>
+              <span class="visually-hidden">{this.textMoreItems}</span>
+              <span aria-hidden="true">...</span>
+            </button>
+          </post-menu-trigger>
+        </div>
+
+        <post-menu id={menuId} label={this.textMoreItems} placement="bottom-start">
+          <slot />
+        </post-menu>
+      </div>
     );
-    this.lastItem = this.breadcrumbItems.at(-1);
-  }
-
-  // Handles resizing to check concatenation
-  private handleResize = () => {
-    if (window.innerWidth === this.lastWindowWidth) return;
-    this.lastWindowWidth = window.innerWidth;
-    this.checkConcatenation();
-  };
-
-  // Determines parent width for concatenation logic
-  private getParentWidth(): number {
-    let parent = this.host.parentNode;
-    while (parent && !(parent instanceof HTMLElement)) {
-      parent = parent.parentNode;
-    }
-    return parent instanceof HTMLElement ? parent.clientWidth : window.innerWidth;
-  }
-
-  private checkConcatenation() {
-    if (!this.breadcrumbsNavRef) return;
-
-    const visibleWidth = this.getParentWidth();
-
-    // Measure all hidden breadcrumb items
-    const hiddenItems = Array.from(
-      this.host.shadowRoot?.querySelectorAll('.hidden-breadcrumb-item') || [],
-    );
-
-    const totalWidth = hiddenItems.reduce((accum, element) => {
-      const rect = (element as HTMLElement).getBoundingClientRect();
-      return accum + rect.width;
-    }, 0);
-
-    this.isConcatenated = totalWidth > visibleWidth;
-  }
-
-  // Handles breadcrumb item click to open the menu
-  private handleBreadcrumbItemClick() {
-    if (this.host.shadowRoot) {
-      const menuTrigger = this.host.shadowRoot
-        ?.querySelector('.menu-trigger-wrapper')
-        ?.querySelector('button');
-      if (menuTrigger) {
-        menuTrigger.click();
-      }
-    }
   }
 
   render() {
-    const visibleItems = this.breadcrumbItems.slice(0, -1);
-
     return (
       <Host data-version={version}>
-        <nav
-          aria-label={this.textBreadcrumbs}
-          class="breadcrumbs-nav"
-          ref={el => (this.breadcrumbsNavRef = el)}
-        >
-          <ol class="no-list breadcrumbs-list">
-            <li>
-              <a href={this.homeUrl} class="breadcrumb-link">
+        <nav aria-label={this.textBreadcrumbs}>
+          <div role="list">
+            <div class="breadcrumb-item home" role="listitem">
+              <a href={this.homeUrl}>
                 <span class="visually-hidden">{this.textHome}</span>
-                <post-icon name="home" class="home-icon" />
+                <post-icon aria-hidden="true" name="home" />
               </a>
-            </li>
-
-            {/* Conditionally render concatenated menu or individual breadcrumb items */}
-            {this.isConcatenated ? (
-              <li class="menu-trigger-wrapper">
-                <post-icon name="chevronright" class="breadcrumb-item-icon" />
-                <div class="actual-menu">
-                  <post-menu-trigger
-                    for="breadcrumb-menu"
-                    tabIndex={0}
-                    onKeyDown={e => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        this.handleBreadcrumbItemClick();
-                      }
-                    }}
-                  >
-                    <button class="btn" tabIndex={-1}>
-                      ...
-                    </button>
-                  </post-menu-trigger>
-                  <post-menu id="breadcrumb-menu" label={this.textMoreItems}>
-                    {visibleItems.map(item => (
-                      <post-menu-item
-                        key={item.url || item.text}
-                        class="breadcrumb-item"
-                        onKeyDown={e => {
-                          if (e.key === 'Enter' || e.key === ' ') {
-                            const linkElement = (e.currentTarget as HTMLElement).querySelector('a');
-                            linkElement?.click();
-                            e.preventDefault();
-                          }
-                        }}
-                      >
-                        {item.url ? (
-                          <a
-                            href={item.url}
-                            aria-label={item.label}
-                            aria-description={item.description}
-                          >
-                            {item.text}
-                          </a>
-                        ) : (
-                          <span>{item.text}</span>
-                        )}
-                      </post-menu-item>
-                    ))}
-                  </post-menu>
-                </div>
-              </li>
-            ) : (
-              visibleItems.map(item => (
-                <li>
-                  <post-breadcrumb-item
-                    url={item.url}
-                    label={item.label}
-                    description={item.description}
-                    key={item.url || item.text}
-                  >
-                    {item.text}
-                  </post-breadcrumb-item>
-                </li>
-              ))
-            )}
-
-            {this.lastItem && (
-              <li aria-current="page">
-                <post-breadcrumb-item
-                  url={this.lastItem.url}
-                  label={this.lastItem.label}
-                  description={this.lastItem.description}
-                  tabindex={-1}
-                >
-                  {this.lastItem.text}
-                </post-breadcrumb-item>
-              </li>
-            )}
-          </ol>
-
-          {/* Hidden items for width calculation */}
-          <div class="hidden-items">
-            <a href={this.homeUrl} class="hidden-breadcrumb-item">
-              <span class="visually-hidden">{this.textHome}</span>
-              <post-icon name="home" class="home-icon" />
-            </a>
-            {this.breadcrumbItems.map(item => (
-              <post-breadcrumb-item
-                url={item.url}
-                key={`hidden-${item.url || item.text}`}
-                label={item.label}
-                description={item.description}
-                class="hidden-breadcrumb-item"
-              >
-                {item.text}
-              </post-breadcrumb-item>
-            ))}
+            </div>
+            {this.shouldRenderMenu ? this.renderMenu() : <slot />}
+            <slot name="selected" />
           </div>
         </nav>
       </Host>
