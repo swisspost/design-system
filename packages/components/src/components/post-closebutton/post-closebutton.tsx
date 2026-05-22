@@ -9,10 +9,12 @@ import { BUTTON_TYPES, ButtonType, Placement, PLACEMENT, SIZE, Size } from './ty
 @Component({
   tag: 'post-closebutton',
   styleUrl: 'post-closebutton.scss',
-  shadow: false,
+  shadow: true,
 })
 export class PostClosebutton {
-  private mutationObserver = new MutationObserver(this.checkContent.bind(this));
+  private mutationObserver: MutationObserver;
+
+  private visuallyHidden: HTMLSpanElement;
 
   @Element() host: HTMLPostClosebuttonElement;
 
@@ -46,16 +48,19 @@ export class PostClosebutton {
     checkRequiredAndOneOf(this, 'size', SIZE);
   }
 
-  componentDidLoad() {
-    this.checkContent();
+  connectedCallback() {
+    if (globalThis.MutationObserver) {
+      this.mutationObserver = new MutationObserver(this.checkContent.bind(this));
+      this.mutationObserver.observe(this.host, {
+        childList: true,
+        characterData: true,
+        subtree: true,
+      });
+    }
   }
 
-  connectedCallback() {
-    this.mutationObserver.observe(this.host, {
-      childList: true,
-      characterData: true,
-      subtree: true,
-    });
+  componentDidLoad() {
+    this.checkContent();
   }
 
   disconnectedCallback() {
@@ -69,7 +74,11 @@ export class PostClosebutton {
     this.validatePlacement();
     this.validateSize();
 
-    if (!this.host.querySelector('.visually-hidden').textContent) {
+    const slot = this.visuallyHidden?.querySelector('slot') as HTMLSlotElement;
+    const hasContent = slot
+      ?.assignedNodes({ flatten: true })
+      .some(node => node.textContent?.trim());
+    if (!hasContent) {
       console.error(`The \`${this.host.localName}\` component requires content for accessibility.`);
     }
   }
@@ -79,7 +88,7 @@ export class PostClosebutton {
       <Host data-version={version}>
         <button type={this.buttonType} class="btn btn-icon btn-secondary btn-sm">
           <post-icon aria-hidden="true" name="closex"></post-icon>
-          <span class="visually-hidden">
+          <span ref={el => (this.visuallyHidden = el as HTMLSpanElement)} class="visually-hidden">
             <slot></slot>
           </span>
         </button>
