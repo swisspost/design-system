@@ -8,6 +8,10 @@ tokens.$default-map: components.$post-breadcrumb;
 
 :host(:not([variant='menuitem'])) {
   @include mixins.breadcrumb-item;
+
+  :is(a, span) {
+    margin-block: tokens.get('breadcrumb-padding-block-text');
+  }
 }
 
 :host([selected]:not([selected='false'])) {
@@ -26,6 +30,5 @@ tokens.$default-map: components.$post-breadcrumb;
   :is(a, span) {
     white-space: normal;
     overflow-wrap: anywhere;
-    margin-block: tokens.get('breadcrumb-padding-block-text');
   }
 }
