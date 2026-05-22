@@ -122,41 +122,28 @@ Cypress.Commands.add(
       '[hidden]:not([hidden="false"])',
     ].join(',')})`;
 
-    function isElementFocusable(node: Element): node is HTMLElement {
-      return (
-        node instanceof HTMLElement &&
-        node.matches(`${focusableSelector}:not(${focusDisablingSelector})`)
-      );
+    function isElementFocusable(el: HTMLElement): boolean {
+      return el.matches(`${focusableSelector}:not(${focusDisablingSelector})`);
     }
 
-    function collect(
-      el: Element | DocumentFragment,
-      visited: Set<Node> = new Set(),
-    ): HTMLElement[] {
-      if (visited.has(el)) return [];
-      visited.add(el);
+    function collectDeep(root: ParentNode, result: HTMLElement[]) {
+      // Query all focusable elements in the current scope (does not cross shadow boundaries)
+      root.querySelectorAll<HTMLElement>(
+        `${focusableSelector}:not(${focusDisablingSelector})`,
+      ).forEach(el => result.push(el));
 
-      let nodes: Element[];
-      if (el instanceof HTMLSlotElement) {
-        const assigned = el.assignedElements({ flatten: true });
-        nodes = assigned.length > 0 ? assigned : Array.from(el.children);
-      } else if (el instanceof HTMLElement && el.shadowRoot) {
-        nodes = Array.from(el.shadowRoot.children);
-      } else {
-        nodes = Array.from(el.children);
-      }
-
-      const result: HTMLElement[] = [];
-      for (const node of nodes) {
-        if (isElementFocusable(node)) {
-          result.push(node);
-          continue;
+      // For each element in this scope that hosts a shadow root, recurse into it
+      root.querySelectorAll<HTMLElement>('*').forEach(el => {
+        if (el.shadowRoot) {
+          collectDeep(el.shadowRoot, result);
         }
-        result.push(...collect(node, visited));
-      }
-      return result;
+      });
     }
 
-    return cy.wrap(collect(subject[0]));
+    const result: HTMLElement[] = [];
+    collectDeep(subject[0] as unknown as ParentNode, result);
+
+    // Deduplicate while preserving order (shadow elements may already be in querySelectorAll results if Cypress patches it)
+    return cy.wrap([...new Set(result)]);
   },
 );
