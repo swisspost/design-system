@@ -1,5 +1,7 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import meta, * as DialogStories from './dialog.stories';
+import BottomSheetContainerFluid from './dialog-bottom-sheet-container-fluid.sample.html?raw';
+import BottomSheetWidth from './dialog-bottom-sheet-width.sample.html?raw';
 import JSFormData from './samples/js-form-data?raw';
 import StylesPackageImport from '@/shared/styles-package-import';
 import PackageTag from '@/shared/package-tag';
@@ -45,6 +47,28 @@ import PackageTag from '@/shared/package-tag';
 <StylesPackageImport components={['dialog']} />
 
 ## Examples
+
+### Bottom sheet dialog
+
+<Canvas sourceState="shown" of={DialogStories.BottomSheet} />
+
+The bottom-sheet variant is enabled with <code>data-variant="bottom-sheet"</code>. It defaults to
+the slide-in animation, ignores <code>data-size</code>, and supports an optional
+<code>--post-dialog-width</code> custom property override.
+
+The default width follows the layout:
+
+- mobile: <code>100%</code>
+- tablet: container width
+- desktop inside <code>.container</code>: container width
+- desktop inside <code>.container-fluid</code>: <code>50%</code> of the container width
+
+The <code>data-position</code> attribute is deprecated for the bottom-sheet variant and should not
+be used.
+
+<Source code={BottomSheetWidth} language="html" />
+
+<Source code={BottomSheetContainerFluid} language="html" />
 
 ### Form dialog
 
