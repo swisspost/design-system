@@ -36,18 +36,11 @@
   &::before {
     @include icons.mask-image('chevronright');
     content: '';
-    display: block;
+    display: flex;
     height: 16px;
     width: 16px;
-    margin-block: tokens.get(
-      'breadcrumb-padding-block-icon-link',
-      components.$post-breadcrumb
-    ); // This token will be updated with 8px /4px/4px
+    margin-block: tokens.get('breadcrumb-padding-block-icon-link', components.$post-breadcrumb);
     margin-inline: tokens.get('breadcrumb-padding-inline-icon-link', components.$post-breadcrumb);
     flex-shrink: 0;
-
-    @include media.only(desktop) {
-      margin-block: 8px; // to be removed after token is added
-    }
   }
 }

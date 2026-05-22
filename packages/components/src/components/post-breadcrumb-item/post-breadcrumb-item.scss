@@ -26,12 +26,6 @@ tokens.$default-map: components.$post-breadcrumb;
   :is(a, span) {
     white-space: normal;
     overflow-wrap: anywhere;
-
-    @include media.only(desktop) {
-      margin-block-start: 1px; // to be removed after token is added
-    }
-    @include media.only(mobile) {
-      margin-block-start: 1.5px; // to be removed after token is added
-    }
+    margin-block: tokens.get('breadcrumb-padding-block-text');
   }
 }
