@@ -122,24 +122,60 @@ Cypress.Commands.add(
       '[hidden]:not([hidden="false"])',
     ].join(',')})`;
 
-    function collectDeep(root: ParentNode, result: HTMLElement[]) {
-      // Query all focusable elements in the current scope (does not cross shadow boundaries)
+    const focusableElements = subject[0].querySelectorAll<HTMLElement>(
+      `${focusableSelector}:not(${focusDisablingSelector})`,
+    );
+
+    return cy.wrap(Array.from(focusableElements));
+  },
+);
+
+Cypress.Commands.add(
+  'getDeepFocusableElements',
+  { prevSubject: true },
+  (subject: JQuery<HTMLElement>) => {
+    const focusableSelector = `:where(${[
+      'button',
+      'input:not([type="hidden"])',
+      '[tabindex]',
+      'select',
+      'textarea',
+      '[contenteditable]',
+      'a[href]',
+      'iframe',
+      'audio[controls]',
+      'video[controls]',
+      'area[href]',
+      'details > summary:first-of-type',
+    ].join(',')})`;
+
+    const focusDisablingSelector = `:where(${[
+      '[inert]',
+      '[inert] *',
+      ':disabled',
+      'dialog:not([open]) *',
+      '[popover]:not(:popover-open) *',
+      'details:not([open]) > *:not(details > summary:first-of-type)',
+      'details:not([open]) > *:not(details > summary:first-of-type) *',
+      '[tabindex^"-"]',
+      '[hidden]:not([hidden="false"])',
+    ].join(',')})`;
+
+    function collect(root: ParentNode, result: HTMLElement[]) {
       root
         .querySelectorAll<HTMLElement>(`${focusableSelector}:not(${focusDisablingSelector})`)
         .forEach(el => result.push(el));
 
-      // For each element in this scope that hosts a shadow root, recurse into it
       root.querySelectorAll<HTMLElement>('*').forEach(el => {
         if (el.shadowRoot) {
-          collectDeep(el.shadowRoot, result);
+          collect(el.shadowRoot, result);
         }
       });
     }
 
     const result: HTMLElement[] = [];
-    collectDeep(subject[0], result);
+    collect(subject[0], result);
 
-    // Deduplicate while preserving order (shadow elements may already be in querySelectorAll results if Cypress patches it)
     return cy.wrap([...new Set(result)]);
   },
 );
