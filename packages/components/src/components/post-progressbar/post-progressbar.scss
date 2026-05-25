@@ -1,5 +1,7 @@
 @use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/variables/animation';
 
 tokens.$default-map: components.$post-progressbar;
 
@@ -22,4 +24,15 @@ tokens.$default-map: components.$post-progressbar;
     --post-progressbar-status-color,
     tokens.get('progressbar-status-color-neutral')
   );
+  transition: width animation.$transition-base-timing;
+}
+
+@include utilities.high-contrast-mode {
+  :host {
+    border: 1px solid Highlight;
+  }
+
+  .progress-value {
+    background-color: Highlight;
+  }
 }
