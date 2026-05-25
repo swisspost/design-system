@@ -1,6 +1,7 @@
 describe('stepper', { baseUrl: null }, () => {
   beforeEach(() => {
     cy.visit('./cypress/fixtures/post-stepper.test.html');
+    cy.get('post-stepper[data-hydrated]', { timeout: 30000 });
   });
 
   afterEach(() => {
