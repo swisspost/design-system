@@ -1,5 +1,5 @@
 export { ArrayOf } from './array-of';
-export { createValidatorDecorator, getValidationContext } from './create-validator-decorator';
+export { GreaterThan, LessThan } from './bound';
 export { DateValue } from './date';
 export { IsoDate } from './iso-date';
 export { OneOf } from './one-of';

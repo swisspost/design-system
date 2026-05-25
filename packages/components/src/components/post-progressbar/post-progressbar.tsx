@@ -1,5 +1,5 @@
-import { checkEmptyOrBetween, checkEmptyOrGreaterThan, checkEmptyOrType } from '@/utils';
-import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
+import { GreaterThan, LessThan, Type } from '@/utils';
+import { Component, Element, h, Host, Prop } from '@stencil/core';
 
 @Component({
   tag: 'post-progressbar',
@@ -13,37 +13,29 @@ export class PostProgressbar {
    * The minimum value of the progress bar.
    * Must be a valid floating point number less than max.
    */
-  @Prop() min: number = 0;
-
-  @Watch('min')
-  validateMin() {
-    checkEmptyOrType(this, 'min', 'number');
-    this.validateMax();
-  }
+  @Prop()
+  @Type('number')
+  min: number = 0;
 
   /**
    * Describes how much work the task indicated by the progress element requires.
    * Must be a valid floating point number greater than min.
    */
-  @Prop() max: number = 100;
-
-  @Watch('max')
-  validateMax() {
-    checkEmptyOrGreaterThan(this, 'max', this.getEffectiveMin());
-    this.validateValue();
-  }
+  @Prop()
+  @Type('number')
+  @GreaterThan('min')
+  max: number = 100;
 
   /**
    * Specifies how much of the task has been completed.
    * Must be a valid floating point number between min and max.
    * If there is no value attribute, the progress bar is indeterminate; this indicates that an activity is ongoing with no indication of how long it is expected to take.
    */
-  @Prop() value?: number;
-
-  @Watch('value')
-  validateValue() {
-    checkEmptyOrBetween(this, 'value', this.getEffectiveMin(), this.getEffectiveMax());
-  }
+  @Prop()
+  @Type('number')
+  @GreaterThan('min')
+  @LessThan('max')
+  value?: number;
 
   private getEffectiveMin() {
     return Number.isFinite(this.min) ? this.min : 0;
@@ -64,11 +56,6 @@ export class PostProgressbar {
     }
 
     return this.value;
-  }
-
-  componentWillLoad() {
-    // validating min also validates max and value
-    this.validateMin();
   }
 
   render() {
