@@ -12,7 +12,6 @@ tokens.$default-map: components.$post-banner;
   grid-template-columns: 1fr;
   grid-auto-rows: auto;
   grid-auto-flow: row;
-  row-gap: tokens.get('banner-content-gap');
   min-height: calc(#{tokens.get('banner-icon-size')} + (2 * #{tokens.get('banner-padding')}));
   padding: tokens.get('banner-padding');
   padding-inline-start: calc(
@@ -50,6 +49,13 @@ tokens.$default-map: components.$post-banner;
       background-image: var(--post-signal-icon-#{$name});
     }
   }
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: tokens.get('banner-content-gap');
+  overflow-x: auto;
 }
 
 .actions {
