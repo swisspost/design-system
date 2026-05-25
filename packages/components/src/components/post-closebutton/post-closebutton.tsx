@@ -1,6 +1,6 @@
-import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
+import { OneOf, Required } from '@/utils';
 import { version } from '@root/package.json';
-import { checkEmptyOrOneOf, checkRequiredAndOneOf } from '@/utils';
+import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { BUTTON_TYPES, ButtonType, Placement, PLACEMENT, SIZE, Size } from './types';
 
 /**
@@ -19,32 +19,25 @@ export class PostClosebutton {
   /**
    * The "type" attribute used for the close button
    */
-  @Prop() buttonType?: ButtonType = 'button';
-
-  @Watch('buttonType')
-  validateButtonType() {
-    checkEmptyOrOneOf(this, 'buttonType', BUTTON_TYPES);
-  }
+  @OneOf(BUTTON_TYPES)
+  @Prop()
+    buttonType?: ButtonType = 'button';
 
   /**
    * Defines whether the close button is positioned automatically by the component or left unpositioned for manual styling.
    */
-  @Prop({ reflect: true }) placement: Placement = 'auto';
-
-  @Watch('placement')
-  validatePlacement() {
-    checkRequiredAndOneOf(this, 'placement', PLACEMENT);
-  }
+  @Required()
+  @OneOf(PLACEMENT)
+  @Prop({ reflect: true })
+    placement: Placement = 'auto';
 
   /**
    * The size of the close button.
    */
-  @Prop({ reflect: true }) size: Size = 'default';
-
-  @Watch('size')
-  validateSize() {
-    checkRequiredAndOneOf(this, 'size', SIZE);
-  }
+  @Required()
+  @OneOf(SIZE)
+  @Prop({ reflect: true })
+    size: Size = 'default';
 
   componentDidLoad() {
     this.checkContent();
@@ -65,10 +58,6 @@ export class PostClosebutton {
   }
 
   private checkContent() {
-    this.validateButtonType();
-    this.validatePlacement();
-    this.validateSize();
-
     if (!this.host.querySelector('.visually-hidden').textContent) {
       console.error(`The \`${this.host.localName}\` component requires content for accessibility.`);
     }

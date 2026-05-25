@@ -1,4 +1,9 @@
+import { slide } from '@/animations';
+import { fadeSlide, FadeSlideOptions } from '@/animations/fade-slide';
+import { Required, Type } from '@/utils';
+import { breakpoint, Device } from '@/utils/breakpoints';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
+import { version } from '@root/package.json';
 import {
   Component,
   Element,
@@ -9,13 +14,7 @@ import {
   Method,
   Prop,
   State,
-  Watch,
 } from '@stencil/core';
-import { version } from '@root/package.json';
-import { breakpoint, Device } from '@/utils/breakpoints';
-import { slide } from '@/animations';
-import { fadeSlide, FadeSlideOptions } from '@/animations/fade-slide';
-import { checkRequiredAndType } from '@/utils';
 
 @Component({
   tag: 'post-megadropdown',
@@ -46,22 +45,18 @@ export class PostMegadropdown {
   /**
    * An accessible label for the close button visible on desktop
    */
-  @Prop({ reflect: true }) textClose!: string;
-
-  @Watch('textClose')
-  validateTextClose() {
-    checkRequiredAndType(this, 'textClose', 'string');
-  }
+  @Required()
+  @Type('string')
+  @Prop({ reflect: true })
+    textClose!: string;
 
   /**
    * A label for the back button visible on tablet and mobile
    */
-  @Prop({ reflect: true }) textBack!: string;
-
-  @Watch('textBack')
-  validateTextBack() {
-    checkRequiredAndType(this, 'textBack', 'string');
-  }
+  @Required()
+  @Type('string')
+  @Prop({ reflect: true })
+    textBack!: string;
 
   @State() device: Device = breakpoint.get('device');
 
@@ -107,8 +102,6 @@ export class PostMegadropdown {
   }
 
   componentDidLoad() {
-    this.validateTextClose();
-    this.validateTextBack();
     this.checkInitialAriaCurrent();
     this.setupObserver();
     this.handleAriaCurrentChange([]);

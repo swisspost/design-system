@@ -1,8 +1,8 @@
-import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core';
-import { Placement } from '@floating-ui/dom';
 import { PLACEMENT_TYPES } from '@/types';
+import { getDeepFocusableChildren, OneOf, Required, Type } from '@/utils';
+import { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
-import { checkRequiredAndType, checkEmptyOrOneOf, getDeepFocusableChildren } from '@/utils';
+import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 
 /**
  * @slot default - Slot for placing content inside the popover.
@@ -23,32 +23,22 @@ export class PostPopover {
    * Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
    * For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
    */
-  @Prop() readonly placement?: Placement = 'top';
-
-  @Watch('placement')
-  validatePlacement() {
-    checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
-  }
+  @OneOf(PLACEMENT_TYPES)
+  @Prop()
+  readonly placement?: Placement = 'top';
 
   /**
    * Define the text of the close button for assistive technology
    */
-  @Prop({ reflect: true }) readonly textClose!: string;
-
-  @Watch('textClose')
-  validateTextClose() {
-    checkRequiredAndType(this, 'textClose', 'string');
-  }
+  @Required()
+  @Type('string')
+  @Prop({ reflect: true })
+  readonly textClose!: string;
   /**
    * Show a little indicator arrow
    */
   // eslint-disable-next-line @stencil-community/ban-default-true
   @Prop() readonly arrow?: boolean = true;
-
-  componentDidLoad() {
-    this.validatePlacement();
-    this.validateTextClose();
-  }
 
   /**
    * Programmatically display the popover

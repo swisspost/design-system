@@ -1,6 +1,6 @@
-import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { breakpoint, Device, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { checkRequiredAndType, breakpoint, Device } from '@/utils';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 
 const GRID_SLOTS = ['grid-1', 'grid-2', 'grid-3', 'grid-4'];
 
@@ -25,15 +25,13 @@ export class PostFooter {
   /**
    * The textFooter to add to the footer (visually hidden).
    */
-  @Prop({ reflect: true }) readonly textFooter!: string;
+  @Required()
+  @Type('string')
+  @Prop({ reflect: true })
+  readonly textFooter!: string;
 
   @State() device: Device = breakpoint.get('device');
   @State() gridSlotDisplayed: Record<string, boolean> = {};
-
-  @Watch('textFooter')
-  validateTextFooter() {
-    checkRequiredAndType(this, 'textFooter', 'string');
-  }
 
   constructor() {
     this.handleGridSlotChange = this.handleGridSlotChange.bind(this);
@@ -44,8 +42,6 @@ export class PostFooter {
   }
 
   componentWillLoad() {
-    this.validateTextFooter();
-
     // initialize grid visibility by checking the content of each slot
     GRID_SLOTS.forEach(slotName => {
       const assignedElements = this.host.querySelectorAll(`[slot="${slotName}"]`);

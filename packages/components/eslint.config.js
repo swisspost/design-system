@@ -1,14 +1,14 @@
 // this config was created using https://eslint.org/blog/2024/04/eslint-config-inspector/
 
-import js from '@eslint/js';
-import ts from 'typescript-eslint';
-import globals from 'globals';
 import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
+import js from '@eslint/js';
+import globals from 'globals';
+import ts from 'typescript-eslint';
 
-import reactPlugin from 'eslint-plugin-react';
 import stencilCommunityPlugin from '@stencil-community/eslint-plugin';
-import pluginCypress from 'eslint-plugin-cypress/flat';
 import { configs as dsEslintConfigs } from '@swisspost/design-system-eslint';
+import pluginCypress from 'eslint-plugin-cypress/flat';
+import reactPlugin from 'eslint-plugin-react';
 
 const compatStencilCommunityBaseRules = fixupConfigRules(stencilCommunityPlugin.configs.base)[0]
   .overrides[0].rules;
@@ -88,6 +88,7 @@ export default [
     rules: {
       ...compatStencilCommunityBaseRules,
       ...compatStencilCommunityRecommendedRules,
+      '@stencil-community/decorators-style': ['error', { prop: 'ignore' }],
     },
   },
   {

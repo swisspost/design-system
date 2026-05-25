@@ -1,6 +1,6 @@
-import { checkEmptyOrOneOf, checkEmptyOrUrl, checkRequiredAndType } from '@/utils';
+import { OneOf, Required, Type, Url } from '@/utils';
 import { version } from '@root/package.json';
-import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { Variant, VARIANTS } from './variants';
 
 /**
@@ -17,42 +17,38 @@ export class PostBreadcrumbItem {
   /**
    * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
    */
-  @Prop({ reflect: true }) url?: string | URL;
+  @Url()
+  @Prop({ reflect: true })
+    url?: string | URL;
 
   /**
    * An accessible label screen readers will use this instead of the breadcrumb item content.
    */
-  @Prop({ reflect: true }) label?: string;
+  @Type('string')
+  @Prop({ reflect: true })
+    label?: string;
 
   /**
    * An accessible description for additional context, read after the content or `label`.
    */
-  @Prop({ reflect: true }) description?: string;
-
-  @Watch('url')
-  validateURL() {
-    checkEmptyOrUrl(this, 'url');
-  }
+  @Type('string')
+  @Prop({ reflect: true })
+    description?: string;
 
   /**
    * Controls how the item is rendered, either as a standard list item or within an overflow menu.
    */
-  @Prop({ reflect: true }) variant: Variant = 'listitem';
-
-  @Watch('variant')
-  validateVariant() {
-    checkEmptyOrOneOf(this, 'variant', VARIANTS);
-  }
+  @OneOf(VARIANTS)
+  @Prop({ reflect: true })
+    variant: Variant = 'listitem';
 
   /**
    * Indicates that the item represents the current page, applying appropriate styling.
    */
-  @Prop({ reflect: true }) selected = false;
-
-  @Watch('selected')
-  validateSelected() {
-    checkRequiredAndType(this, 'selected', 'boolean');
-  }
+  @Required()
+  @Type('boolean')
+  @Prop({ reflect: true })
+    selected = false;
 
   render() {
     const href = this.url instanceof URL ? this.url.href : this.url;

@@ -1,6 +1,6 @@
-import { Component, h, Host, Prop, Element, State, Event, EventEmitter, Watch } from '@stencil/core';
+import { debounce, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { debounce, checkRequiredAndType } from '@/utils';
+import { Component, Element, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core';
 
 /**
  * @slot default - Slot for placing post-autocomplete-item components.
@@ -33,12 +33,10 @@ export class PostAutocomplete {
    * Use {count} as placeholder for the number of available suggestions,
    * e.g. "{count} suggestions available"
    */
-  @Prop({ reflect: true }) readonly textAvailableSuggestions!: string;
-
-  @Watch('textAvailableSuggestions')
-  validateTextAvailableSuggestions() {
-    checkRequiredAndType(this, 'textAvailableSuggestions', 'string');
-  }
+  @Required()
+  @Type('string')
+  @Prop({ reflect: true })
+  readonly textAvailableSuggestions!: string;
 
   @State() inputValue: string = '';
 
@@ -58,8 +56,6 @@ export class PostAutocomplete {
   }
 
   componentWillLoad() {
-    this.validateTextAvailableSuggestions();
-
     if (!this.inputElement) return;
     this.inputElement.role = 'combobox';
     this.inputElement.ariaAutoComplete = 'list';

@@ -1,8 +1,8 @@
-import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { componentOnReady, Required, Type, Url } from '@/utils';
+import { version } from '@root/package.json';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { nanoid } from 'nanoid';
 import { throttle } from 'throttle-debounce';
-import { version } from '@root/package.json';
-import { checkRequiredAndUrl, checkRequiredAndType, componentOnReady } from '@/utils';
 
 @Component({
   tag: 'post-breadcrumbs',
@@ -21,53 +21,40 @@ export class PostBreadcrumbs {
   /**
    * The URL for the root (home) breadcrumb item.
    */
-  @Prop({ reflect: true }) homeUrl!: string;
-
-  @Watch('homeUrl')
-  validateHomeUrl() {
-    checkRequiredAndUrl(this, 'homeUrl');
-  }
+  @Required()
+  @Url()
+  @Prop({ reflect: true })
+    homeUrl!: string;
 
   /**
    * An accessible label for the root (home) breadcrumb item.
    */
-  @Prop({ reflect: true }) textHome!: string;
-
-  @Watch('textHome')
-  validateTextHome() {
-    checkRequiredAndType(this, 'textHome', 'string');
-  }
+  @Required()
+  @Type('string')
+  @Prop({ reflect: true })
+    textHome!: string;
 
   /**
    * An accessible label for the breadcrumb navigation.
    */
-  @Prop({ reflect: true }) textBreadcrumbs!: string;
-
-  @Watch('textBreadcrumbs')
-  validateTextBreadcrumbs() {
-    checkRequiredAndType(this, 'textBreadcrumbs', 'string');
-  }
+  @Required()
+  @Type('string')
+  @Prop({ reflect: true })
+    textBreadcrumbs!: string;
 
   /**
    * An accessible label for the overflow menu that contains collapsed breadcrumb items.
    */
-  @Prop({ reflect: true }) textMoreItems!: string;
-
-  @Watch('textMoreItems')
-  validateTextMoreItems() {
-    checkRequiredAndType(this, 'textMoreItems', 'string');
-  }
+  @Required()
+  @Type('string')
+  @Prop({ reflect: true })
+    textMoreItems!: string;
 
   componentWillLoad() {
     this.id = this.host.id || `b${nanoid(6)}`;
   }
 
   componentDidLoad() {
-    this.validateHomeUrl();
-    this.validateTextHome();
-    this.validateTextBreadcrumbs();
-    this.validateTextMoreItems();
-
     this.createMutationObserver();
     this.createResizeObserver();
   }

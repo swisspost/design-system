@@ -1,16 +1,6 @@
-import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Prop,
-  State,
-  Watch,
-} from '@stencil/core';
+import { Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { checkRequiredAndType } from '@/utils';
+import { Component, Element, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'post-rating',
@@ -27,17 +17,26 @@ export class PostRating {
   /**
    * A hidden, descriptive label that explains the role of the rating component to assistive technologies.
    */
-  @Prop({ reflect: true }) readonly label!: string;
+  @Required()
+  @Type('string')
+  @Prop({ reflect: true })
+  readonly label!: string;
 
   /**
    * Defines the total amount of stars rendered in the component.
    */
-  @Prop() readonly stars: number = 5;
+  @Required()
+  @Type('number')
+  @Prop()
+  readonly stars: number = 5;
 
   /**
    * Defines the rating that the component should show.
    */
-  @Prop({ mutable: true }) currentRating = 0;
+  @Required()
+  @Type('number')
+  @Prop({ mutable: true })
+    currentRating = 0;
 
   /**
    * Defines if the component is readonly or not.
@@ -56,27 +55,6 @@ export class PostRating {
    * The event payload can be used like so: `event.detail.value`.
    */
   @Event() postChange: EventEmitter<{ value: number }>;
-
-  @Watch('label')
-  validateLabel() {
-    checkRequiredAndType(this, 'label', 'string');
-  }
-
-  @Watch('stars')
-  validateStars() {
-    checkRequiredAndType(this, 'stars', 'number');
-  }
-
-  @Watch('currentRating')
-  validateCurrentRating() {
-    checkRequiredAndType(this, 'currentRating', 'number');
-  }
-
-  componentWillLoad() {
-    this.validateLabel();
-    this.validateStars();
-    this.validateCurrentRating();
-  }
 
   constructor() {
     this.keydownHandler = this.keydownHandler.bind(this);

@@ -1,6 +1,6 @@
-import { Component, Element, Host, h, State, Listen, Prop, Watch } from '@stencil/core';
-import { checkRequiredAndType } from '@/utils';
+import { Required, Type } from '@/utils';
 import { version } from '@root/package.json';
+import { Component, Element, h, Host, Listen, Prop, State } from '@stencil/core';
 
 const SCROLL_REPEAT_INTERVAL = 100; // Interval for repeated scrolling when holding down scroll button
 const NAVBAR_DISABLE_DURATION = 400; // Duration to temporarily disable navbar interactions during scrolling
@@ -27,12 +27,10 @@ export class PostMainnavigation {
   /**
    * Defines the accessible label for the navigation element. This text is used as the `aria-label` attribute to provide screen reader users with a description of the navigation's purpose.
    */
-  @Prop({ reflect: true }) textMain!: string;
-
-  @Watch('textMain')
-  validateTextMain() {
-    checkRequiredAndType(this, 'textMain', 'string');
-  }
+  @Required()
+  @Type('string')
+  @Prop({ reflect: true })
+    textMain!: string;
 
   constructor() {
     this.scrollRight = this.scrollRight.bind(this);
@@ -44,8 +42,6 @@ export class PostMainnavigation {
   }
 
   componentDidLoad() {
-    this.validateTextMain();
-
     setTimeout(() => {
       this.checkScrollability();
     });

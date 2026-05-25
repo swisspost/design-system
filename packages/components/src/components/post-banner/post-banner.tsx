@@ -1,19 +1,18 @@
+import { fade } from '@/animations';
+import { EventFrom, OneOf } from '@/utils';
+import { version } from '@root/package.json';
 import {
   Component,
   Element,
   Event,
   EventEmitter,
-  Host,
   h,
+  Host,
   Listen,
   Method,
   Prop,
   State,
-  Watch,
 } from '@stencil/core';
-import { version } from '@root/package.json';
-import { fade } from '@/animations';
-import { checkEmptyOrOneOf, EventFrom } from '@/utils';
 import { BANNER_TYPES, BannerType } from './banner-types';
 
 /**
@@ -38,12 +37,9 @@ export class PostBanner {
   /**
    * The type of the banner.
    */
-  @Prop({ reflect: true }) readonly type: BannerType = 'info';
-
-  @Watch('type')
-  validateType() {
-    checkEmptyOrOneOf(this, 'type', BANNER_TYPES);
-  }
+  @OneOf(BANNER_TYPES)
+  @Prop({ reflect: true })
+  readonly type: BannerType = 'info';
 
   /**
    * An event emitted when the banner element is dismissed, after the transition.
@@ -57,7 +53,6 @@ export class PostBanner {
 
   componentDidLoad() {
     this.checkContent();
-    this.validateType();
   }
 
   disconnectedCallback() {

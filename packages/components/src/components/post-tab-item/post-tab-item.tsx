@@ -1,6 +1,6 @@
-import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { Type } from '@/utils';
 import { version } from '@root/package.json';
-import { checkRequiredAndType } from '@/utils';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { nanoid } from 'nanoid';
 
 /**
@@ -23,12 +23,9 @@ export class PostTabItem {
   /**
    * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
    */
-  @Prop({ reflect: true }) readonly name!: string;
-
-  @Watch('name')
-  validateName() {
-    checkRequiredAndType(this, 'name', 'string');
-  }
+  @Type('string')
+  @Prop({ reflect: true })
+  readonly name!: string;
 
   connectedCallback() {
     this.mutationObserver.observe(this.host, {

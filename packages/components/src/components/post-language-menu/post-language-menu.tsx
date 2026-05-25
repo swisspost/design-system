@@ -1,13 +1,8 @@
-import { Component, Element, Host, h, Prop, Watch, State, Listen } from '@stencil/core';
-import {
-  checkRequiredAndType,
-  checkRequiredAndPattern,
-  checkEmptyOrOneOf,
-  EventFrom,
-} from '@/utils';
+import { EventFrom, OneOf, Pattern, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
+import { Component, Element, h, Host, Listen, Prop, State, Watch } from '@stencil/core';
 import { nanoid } from 'nanoid';
+import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
 
 @Component({
   tag: 'post-language-menu',
@@ -29,31 +24,28 @@ export class PostLanguageMenu {
   /**
    * A title for the list of language options
    */
-  @Prop({ reflect: true }) textChangeLanguage!: string;
-
-  @Watch('textChangeLanguage')
-  validateTextChangeLanguage() {
-    checkRequiredAndType(this, 'textChangeLanguage', 'string');
-  }
+  @Required()
+  @Type('string')
+  @Prop({ reflect: true })
+    textChangeLanguage!: string;
 
   /**
    * An accessible description text for the list of language options. The `#name` placeholder is dynamic and will be replaced with the active language name.
    */
-  @Prop({ reflect: true }) textCurrentLanguage!: string;
-
-  @Watch('textCurrentLanguage')
-  validateTextCurrentLanguage() {
-    checkRequiredAndPattern(this, 'textCurrentLanguage', /#name\b/);
-  }
+  @Required()
+  @Pattern(/#name\b/)
+  @Prop({ reflect: true })
+    textCurrentLanguage!: string;
 
   /**
    * Whether the component is rendered as a list or a menu
    */
-  @Prop({ reflect: true }) variant: SwitchVariant = 'menu';
+  @OneOf(SWITCH_VARIANTS)
+  @Prop({ reflect: true })
+    variant: SwitchVariant = 'menu';
 
   @Watch('variant')
-  validateVariant() {
-    checkEmptyOrOneOf(this, 'variant', SWITCH_VARIANTS);
+  handleVariantChange() {
     this.updateChildrenVariant();
   }
 
@@ -76,10 +68,6 @@ export class PostLanguageMenu {
   }
 
   componentDidLoad() {
-    this.validateTextChangeLanguage();
-    this.validateTextCurrentLanguage();
-    this.validateVariant();
-
     // Initially set variants and active language
     // Handles cases where the language-menu is rendered after the language-options have been rendered
     this.updateChildrenVariant();
@@ -109,7 +97,7 @@ export class PostLanguageMenu {
     }
   }
 
-  @Listen('scroll', {target: 'document', capture: true})
+  @Listen('scroll', { target: 'document', capture: true })
   hideMenuOnScroll() {
     if (this.menu) this.menu.hide();
   }
@@ -160,7 +148,7 @@ export class PostLanguageMenu {
           </button>
         </post-menu-trigger>
         <post-menu
-          ref={el => this.menu = el}
+          ref={el => (this.menu = el)}
           id={this.menuId}
           class="post-language-menu-dropdown-container"
           label={this.textChangeLanguage}

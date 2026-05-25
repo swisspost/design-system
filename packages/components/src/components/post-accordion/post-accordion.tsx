@@ -1,7 +1,7 @@
-import { Component, Element, h, Host, Listen, Method, Prop, Watch } from '@stencil/core';
-import { version } from '@root/package.json';
 import { HEADING_LEVELS, HeadingLevel } from '@/types';
-import { checkRequiredAndOneOf, EventFrom } from '@/utils';
+import { EventFrom, OneOf, Required } from '@/utils';
+import { version } from '@root/package.json';
+import { Component, Element, h, Host, Listen, Method, Prop, Watch } from '@stencil/core';
 
 /**
  * @slot default - Slot for placing post-accordion-item components.
@@ -21,11 +21,13 @@ export class PostAccordion {
   /**
    * Defines the hierarchical level of the `post-accordion-item` headers within the headings structure.
    */
-  @Prop({ reflect: true }) readonly headingLevel!: HeadingLevel;
+  @Required()
+  @OneOf(HEADING_LEVELS)
+  @Prop({ reflect: true })
+  readonly headingLevel!: HeadingLevel;
 
   @Watch('headingLevel')
-  validateHeadingLevel() {
-    checkRequiredAndOneOf(this, 'headingLevel', HEADING_LEVELS);
+  syncHeadingLevel() {
     this.accordionItems.forEach(item => {
       item.setAttribute('heading-level', String(this.headingLevel));
     });
@@ -41,7 +43,7 @@ export class PostAccordion {
   }
 
   componentDidLoad() {
-    this.validateHeadingLevel();
+    this.syncHeadingLevel();
   }
 
   @Listen('postToggle')

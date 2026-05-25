@@ -1,7 +1,7 @@
-import { Component, h, Host, Prop, Watch, Element, State } from '@stencil/core';
+import { Type } from '@/utils';
 import { version } from '@root/package.json';
+import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import isFocusable from 'ally.js/is/focusable';
-import { checkEmptyOrType } from '@/utils';
 
 @Component({
   tag: 'post-popover-trigger',
@@ -14,7 +14,9 @@ export class PostPopoverTrigger {
   /**
    * ID of the popover element that this trigger is linked to. Used to open and close the popover.
    */
-  @Prop({ reflect: true }) for?: string;
+  @Type('string')
+  @Prop({ reflect: true })
+    for?: string;
 
   /**
    * Manages the accessibility attribute `aria-expanded` to indicate whether the associated popover is expanded or collapsed.
@@ -38,11 +40,6 @@ export class PostPopoverTrigger {
    * Watch for changes to the `for` property to validate its type and ensure it is a string.
    * @param forValue - The new value of the `for` property.
    */
-  @Watch('for')
-  validateFor() {
-    checkEmptyOrType(this, 'for', 'string');
-  }
-
   /**
    * Reference to the element inside the host that will act as the trigger.
    */
@@ -139,7 +136,6 @@ export class PostPopoverTrigger {
   }
 
   componentDidLoad() {
-    this.validateFor();
     this.setupTrigger();
     this.popover?.addEventListener('postToggle', this.boundHandlePostToggle);
   }
