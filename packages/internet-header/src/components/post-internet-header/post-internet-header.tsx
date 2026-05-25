@@ -86,6 +86,11 @@ export class PostInternetHeader {
   @Prop({ reflect: true }) readonly textMenu!: string;
 
   /**
+   * Visually hidden label for the login widget trigger button.
+   */
+  @Prop({ reflect: true }) readonly textUserMenuTrigger!: string;
+
+  /**
    * Visually hidden label for the user menu.
    */
   @Prop({ reflect: true }) readonly textUserLinks!: string;
@@ -238,7 +243,14 @@ export class PostInternetHeader {
             </post-language-menu>
           )}
 
-          {globalHeader.login && this.renderNavItem(globalHeader.login, { slot: 'post-login' })}
+          {globalHeader.login && (
+            <swisspost-internet-login-widget
+              slot="post-login"
+              textCurrentUser={this.textCurrentUser}
+              textUserMenu={this.textUserLinks}
+              textUserMenuTrigger={this.textUserMenuTrigger}
+            />
+          )}
 
           {localHeader.title && <p slot="title">{localHeader.title}</p>}
 

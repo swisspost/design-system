@@ -17,6 +17,7 @@ export interface HeaderConfig {
     secondaryNavigation?: Array<IconLinkConfig>; // Secondary navigation items: move to the footer of the burger menu on tablet and mobile.
     languages?: Array<LanguageLinkConfig>; // Language menu options.
     login?: IconLinkConfig | UserMenuConfig; // Login link or authenticated user menu.
+    userMenuLinks?: Array<IconLinkConfig>; // Links shown in the user menu when authenticated (used by post-internet-login-widget).
   };
 
   /**
