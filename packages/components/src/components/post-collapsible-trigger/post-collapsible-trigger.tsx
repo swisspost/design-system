@@ -19,7 +19,7 @@ export class PostCollapsibleTrigger {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    for!: string;
+  for!: string;
 
   /**
    * Set the "aria-controls" and "aria-expanded" attributes on the trigger to match the state of the controlled post-collapsible

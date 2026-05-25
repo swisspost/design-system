@@ -19,7 +19,7 @@ export class PostLanguageMenuItem {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    code!: string;
+  code!: string;
 
   /**
    * If set to `true`, the language option is considered the current language for the page.
@@ -31,21 +31,21 @@ export class PostLanguageMenuItem {
    */
   @OneOf(SWITCH_VARIANTS)
   @Prop()
-    variant?: SwitchVariant;
+  variant?: SwitchVariant;
 
   /**
    * The full name of the language. For example, "Deutsch".
    */
   @Type('string')
   @Prop()
-    name?: string;
+  name?: string;
 
   /**
    * A description for the language read by screen-readers for improved accessibility.
    */
   @Type('string')
   @Prop()
-    description?: string;
+  description?: string;
 
   /**
    * The URL used for the href attribute of the internal anchor.
@@ -53,7 +53,7 @@ export class PostLanguageMenuItem {
    */
   @Url()
   @Prop()
-    url?: string;
+  url?: string;
 
   componentDidLoad() {
     if (!this.name && this.isNameRequired()) {

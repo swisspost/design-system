@@ -36,7 +36,7 @@ export class PostRating {
   @Required()
   @Type('number')
   @Prop({ mutable: true })
-    currentRating = 0;
+  currentRating = 0;
 
   /**
    * Defines if the component is readonly or not.

@@ -28,7 +28,7 @@ export class PostStepper {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    textCurrentStep!: string;
+  textCurrentStep!: string;
 
   /**
    * "Completed step" label for accessibility
@@ -36,7 +36,7 @@ export class PostStepper {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    textCompletedStep!: string;
+  textCompletedStep!: string;
 
   /**
    * Label for the "Step {number}:" indicator for mobile view.
@@ -45,7 +45,7 @@ export class PostStepper {
   @Required()
   @Pattern(/\{number\}/)
   @Prop({ reflect: true })
-    textStepNumber!: string;
+  textStepNumber!: string;
 
   @Watch('textStepNumber')
   validateTextStepNumber() {
@@ -58,7 +58,7 @@ export class PostStepper {
   @Required()
   @Type('number')
   @Prop()
-    currentIndex: number = -1;
+  currentIndex: number = -1;
 
   @Watch('currentIndex')
   validateCurrentIndex() {
@@ -74,7 +74,7 @@ export class PostStepper {
    */
   @Type('number')
   @Prop()
-    selectedIndex?: number;
+  selectedIndex?: number;
 
   @Watch('selectedIndex')
   validateSelectedIndex() {

@@ -18,7 +18,7 @@ export class PostBackToTop {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    textBackToTop!: string;
+  textBackToTop!: string;
 
   @State() belowFold: boolean = false;
 

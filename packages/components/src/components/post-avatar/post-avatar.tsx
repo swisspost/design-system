@@ -52,7 +52,7 @@ export class PostAvatar {
    */
   @Type('string')
   @Prop()
-    description?: string;
+  description?: string;
 
   @State() slottedImage: HTMLImageElement;
   @State() avatarType: AvatarType = null;

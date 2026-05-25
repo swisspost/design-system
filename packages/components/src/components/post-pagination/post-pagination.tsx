@@ -48,7 +48,7 @@ export class PostPagination {
    */
   @Type('number')
   @Prop({ mutable: true })
-    page?: number;
+  page?: number;
 
   /**
    * The number of items per page.
@@ -56,7 +56,7 @@ export class PostPagination {
   @Required()
   @Type('number')
   @Prop({ reflect: true })
-    pageSize!: number;
+  pageSize!: number;
 
   /**
    * The total number of items in the collection.
@@ -64,7 +64,7 @@ export class PostPagination {
   @Required()
   @Type('number')
   @Prop({ reflect: true })
-    collectionSize!: number;
+  collectionSize!: number;
 
   /**
    * A descriptive label for the pagination navigation, used by assistive technologies.

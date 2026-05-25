@@ -24,7 +24,7 @@ export class PostBreadcrumbs {
   @Required()
   @Url()
   @Prop({ reflect: true })
-    homeUrl!: string;
+  homeUrl!: string;
 
   /**
    * An accessible label for the root (home) breadcrumb item.
@@ -32,7 +32,7 @@ export class PostBreadcrumbs {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    textHome!: string;
+  textHome!: string;
 
   /**
    * An accessible label for the breadcrumb navigation.
@@ -40,7 +40,7 @@ export class PostBreadcrumbs {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    textBreadcrumbs!: string;
+  textBreadcrumbs!: string;
 
   /**
    * An accessible label for the overflow menu that contains collapsed breadcrumb items.
@@ -48,7 +48,7 @@ export class PostBreadcrumbs {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    textMoreItems!: string;
+  textMoreItems!: string;
 
   componentWillLoad() {
     this.id = this.host.id || `b${nanoid(6)}`;

@@ -21,7 +21,7 @@ export class PostClosebutton {
    */
   @OneOf(BUTTON_TYPES)
   @Prop()
-    buttonType?: ButtonType = 'button';
+  buttonType?: ButtonType = 'button';
 
   /**
    * Defines whether the close button is positioned automatically by the component or left unpositioned for manual styling.
@@ -29,7 +29,7 @@ export class PostClosebutton {
   @Required()
   @OneOf(PLACEMENT)
   @Prop({ reflect: true })
-    placement: Placement = 'auto';
+  placement: Placement = 'auto';
 
   /**
    * The size of the close button.
@@ -37,7 +37,7 @@ export class PostClosebutton {
   @Required()
   @OneOf(SIZE)
   @Prop({ reflect: true })
-    size: Size = 'default';
+  size: Size = 'default';
 
   componentDidLoad() {
     this.checkContent();

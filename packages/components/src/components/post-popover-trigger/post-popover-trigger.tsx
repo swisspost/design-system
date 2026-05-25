@@ -16,7 +16,7 @@ export class PostPopoverTrigger {
    */
   @Type('string')
   @Prop({ reflect: true })
-    for?: string;
+  for?: string;
 
   /**
    * Manages the accessibility attribute `aria-expanded` to indicate whether the associated popover is expanded or collapsed.

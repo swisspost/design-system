@@ -100,6 +100,7 @@ export default [
         2,
         {
           SwitchCase: 1,
+          ignoredNodes: ['PropertyDefinition[decorators]'],
         },
       ],
       'quotes': ['error', 'single'],

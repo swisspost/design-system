@@ -19,28 +19,28 @@ export class PostBreadcrumbItem {
    */
   @Url()
   @Prop({ reflect: true })
-    url?: string | URL;
+  url?: string | URL;
 
   /**
    * An accessible label screen readers will use this instead of the breadcrumb item content.
    */
   @Type('string')
   @Prop({ reflect: true })
-    label?: string;
+  label?: string;
 
   /**
    * An accessible description for additional context, read after the content or `label`.
    */
   @Type('string')
   @Prop({ reflect: true })
-    description?: string;
+  description?: string;
 
   /**
    * Controls how the item is rendered, either as a standard list item or within an overflow menu.
    */
   @OneOf(VARIANTS)
   @Prop({ reflect: true })
-    variant: Variant = 'listitem';
+  variant: Variant = 'listitem';
 
   /**
    * Indicates that the item represents the current page, applying appropriate styling.
@@ -48,7 +48,7 @@ export class PostBreadcrumbItem {
   @Required()
   @Type('boolean')
   @Prop({ reflect: true })
-    selected = false;
+  selected = false;
 
   render() {
     const href = this.url instanceof URL ? this.url.href : this.url;

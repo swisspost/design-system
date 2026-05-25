@@ -19,7 +19,7 @@ export class PostMenuTrigger {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    for!: string;
+  for!: string;
 
   constructor() {
     this.updateAriaExpanded = this.updateAriaExpanded.bind(this);

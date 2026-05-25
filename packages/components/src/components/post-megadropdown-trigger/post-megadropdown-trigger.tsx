@@ -27,7 +27,7 @@ export class PostMegadropdownTrigger {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    for!: string;
+  for!: string;
 
   componentWillRender() {
     this.handleSlottedContentChanges();

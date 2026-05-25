@@ -102,7 +102,7 @@ export class PostDatePicker {
   @DateValue()
   @IsoDate()
   @Prop({ mutable: true })
-    selectedStartDate?: string;
+  selectedStartDate?: string;
 
   /**
    * The date picker's selected end date (for range date picker only).
@@ -111,7 +111,7 @@ export class PostDatePicker {
   @DateValue()
   @IsoDate()
   @Prop({ mutable: true })
-    selectedEndDate?: string;
+  selectedEndDate?: string;
 
   /**
    * Minimun possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
@@ -119,7 +119,7 @@ export class PostDatePicker {
   @DateValue()
   @IsoDate()
   @Prop()
-    min?: string;
+  min?: string;
 
   /**
    * Maximum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
@@ -127,7 +127,7 @@ export class PostDatePicker {
   @DateValue()
   @IsoDate()
   @Prop()
-    max?: string;
+  max?: string;
 
   /**
    * Used to extend the existing on render cell to disable dates.
@@ -151,7 +151,7 @@ export class PostDatePicker {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    textNextMonth!: string;
+  textNextMonth!: string;
 
   /**
    * Label for "Next year" button.
@@ -159,7 +159,7 @@ export class PostDatePicker {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    textNextYear!: string;
+  textNextYear!: string;
 
   /**
    * Label for "Next decade" button.
@@ -167,7 +167,7 @@ export class PostDatePicker {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    textNextDecade!: string;
+  textNextDecade!: string;
 
   /**
    * Label for "Previous month" button.
@@ -175,7 +175,7 @@ export class PostDatePicker {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    textPreviousMonth!: string;
+  textPreviousMonth!: string;
 
   /**
    * Label for "Previous year" button.
@@ -183,7 +183,7 @@ export class PostDatePicker {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    textPreviousYear!: string;
+  textPreviousYear!: string;
 
   /**
    * Label for "Previous decade" button.
@@ -191,7 +191,7 @@ export class PostDatePicker {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    textPreviousDecade!: string;
+  textPreviousDecade!: string;
 
   /**
    * Label for the "Switch to year view" title button.
@@ -199,7 +199,7 @@ export class PostDatePicker {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    textSwitchYear!: string;
+  textSwitchYear!: string;
 
   /**
    * Label for the toggle button that opens the calendar.
@@ -207,7 +207,7 @@ export class PostDatePicker {
    */
   @Type('string')
   @Prop()
-    textToggleCalendar?: string;
+  textToggleCalendar?: string;
   @Watch('textToggleCalendar')
   validateTextToggleCalendar() {
     if (!this.inline) {

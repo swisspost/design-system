@@ -95,7 +95,7 @@ export class PostHeader {
   @Required()
   @Type('boolean')
   @Prop({ reflect: true })
-    fullWidth = false;
+  fullWidth = false;
 
   /**
    * The label of the burger menu button.
@@ -103,7 +103,7 @@ export class PostHeader {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    textMenu!: string;
+  textMenu!: string;
 
   @Watch('device')
   @Watch('burgerMenuExtended')

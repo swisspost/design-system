@@ -48,7 +48,7 @@ export class PostMegadropdown {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    textClose!: string;
+  textClose!: string;
 
   /**
    * A label for the back button visible on tablet and mobile
@@ -56,7 +56,7 @@ export class PostMegadropdown {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    textBack!: string;
+  textBack!: string;
 
   @State() device: Device = breakpoint.get('device');
 

@@ -30,7 +30,7 @@ export class PostMainnavigation {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    textMain!: string;
+  textMain!: string;
 
   constructor() {
     this.scrollRight = this.scrollRight.bind(this);

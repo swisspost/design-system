@@ -31,7 +31,7 @@ export class PostCollapsible {
    */
   @Type('boolean')
   @Prop({ mutable: true })
-    collapsed?: boolean = false;
+  collapsed?: boolean = false;
 
   /**
    * An event emitted when the collapse element is shown or hidden, before the transition.

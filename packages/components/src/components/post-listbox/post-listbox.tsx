@@ -1,6 +1,6 @@
-import { Component, Element, h, Host, Listen, Method, Event, EventEmitter } from '@stencil/core';
-import { version } from '@root/package.json';
 import { EventFrom } from '@/utils';
+import { version } from '@root/package.json';
+import { Component, Element, Event, EventEmitter, h, Host, Listen, Method } from '@stencil/core';
 
 @Component({
   tag: 'post-listbox',

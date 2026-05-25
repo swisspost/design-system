@@ -41,7 +41,7 @@ export class PostLoginWidget {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    textCurrentUser!: string;
+  textCurrentUser!: string;
 
   /**
    * Accessible label for the dropdown menu
@@ -49,7 +49,7 @@ export class PostLoginWidget {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    textUserMenu!: string;
+  textUserMenu!: string;
 
   /**
    * Hidden label for the user menu trigger button, for accessibility purposes. It should describe the purpose of the button (e.g. "Access user links").
@@ -57,7 +57,7 @@ export class PostLoginWidget {
   @Required()
   @Type('string')
   @Prop({ reflect: true })
-    textUserMenuTrigger!: string;
+  textUserMenuTrigger!: string;
 
   @State() private authenticated: boolean | null = null;
 

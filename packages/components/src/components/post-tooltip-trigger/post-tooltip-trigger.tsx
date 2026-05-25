@@ -27,7 +27,7 @@ export class PostTooltipTrigger {
    */
   @Type('string')
   @Prop({ reflect: true })
-    for!: string;
+  for!: string;
 
   /**
    * Delay (in milliseconds) before the tooltip is shown.

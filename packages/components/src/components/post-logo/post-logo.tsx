@@ -18,7 +18,7 @@ export class PostLogo {
    */
   @Url()
   @Prop()
-    url?: string | URL;
+  url?: string | URL;
 
   componentDidLoad() {
     this.checkDescription();
