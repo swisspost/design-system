@@ -44,7 +44,7 @@ export class PostInternetLoginWidget {
           )}
           <div slot="user-links">
             {globalHeader.userMenuLinks?.map(link => (
-              <post-menu-item>
+              <post-menu-item key={link.url}>
                 <a href={link.url}>
                   <post-icon aria-hidden="true" name={link.icon}></post-icon>
                   {link.text}
