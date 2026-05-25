@@ -42,14 +42,16 @@ export class PostInternetLoginWidget {
           {globalHeader.login && 'url' in globalHeader.login && (
             <Link slot="login-link" config={globalHeader.login} />
           )}
-          {globalHeader.userMenuLinks?.map(link => (
-            <post-menu-item slot="user-links">
-              <a href={link.url}>
-                <post-icon aria-hidden="true" name={link.icon}></post-icon>
-                {link.text}
-              </a>
-            </post-menu-item>
-          ))}
+          <div slot="user-links">
+            {globalHeader.userMenuLinks?.map(link => (
+              <post-menu-item>
+                <a href={link.url}>
+                  <post-icon aria-hidden="true" name={link.icon}></post-icon>
+                  {link.text}
+                </a>
+              </post-menu-item>
+            ))}
+          </div>
         </post-login-widget>
       </Host>
     );
