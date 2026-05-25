@@ -89,8 +89,8 @@ describe('header', () => {
 
     context('active route', () => {
       const activeRouteConfig = copyConfig();
-      activeRouteConfig[language]!.header.globalHeader.audience![0]!.url = '/audience-private';
-      activeRouteConfig[language]!.header.globalHeader.secondaryNavigation![0]!.url = '/jobs';
+      activeRouteConfig[language]!.header.globalHeader.audience![0].url = '/audience-private';
+      activeRouteConfig[language]!.header.globalHeader.secondaryNavigation![0].url = '/jobs';
 
       beforeEach(() => {
         prepare(HEADER, 'Default', {
@@ -140,8 +140,8 @@ describe('header', () => {
 
       it('should set only one active link when URL exists in multiple header areas', () => {
         const conflictConfig = copyConfig();
-        conflictConfig[language]!.header.globalHeader.audience![0]!.url = '/letters';
-        conflictConfig[language]!.header.globalHeader.secondaryNavigation![0]!.url = '/jobs';
+        conflictConfig[language]!.header.globalHeader.audience![0].url = '/letters';
+        conflictConfig[language]!.header.globalHeader.secondaryNavigation![0].url = '/jobs';
 
         prepare(HEADER, 'Default', {
           config: conflictConfig,
