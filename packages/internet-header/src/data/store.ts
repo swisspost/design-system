@@ -1,5 +1,5 @@
 import { Environment, LocalizedConfig } from '@/models/general.model';
-import { SimpleLinkConfig } from '@/models/shared.model';
+import { RouteLink } from '@/models/shared.model';
 import { createStore } from '@stencil/store';
 
 export interface HeaderState {
@@ -7,7 +7,7 @@ export interface HeaderState {
   currentLanguage: string | null;
   projectId: string | null;
   environment: Environment;
-  activeLink: SimpleLinkConfig | null;
+  activeLink: RouteLink | null;
   search: boolean;
   login: boolean;
 }

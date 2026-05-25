@@ -1,6 +1,7 @@
 import * as testConfig from '@/assets/config/test-configuration.json';
 import { state } from '@/data/store';
 import { MainNavigationConfig } from '@/models/header.model';
+import { IconLinkConfig } from '@/models/shared.model';
 import { compareRoutes, getActiveLink, getSimilarityScore } from './route.service';
 
 describe('route.service.ts', () => {
@@ -138,6 +139,17 @@ describe('route.service.ts', () => {
       state.localizedConfig = {
         header: {
           ...testConfig.de.header,
+          globalHeader: {
+            ...testConfig.de.header.globalHeader,
+            audience: testConfig.de.header.globalHeader.audience.map(link => ({
+              ...link,
+              active: false,
+            })),
+            languages: testConfig.de.header.globalHeader.languages.map(language => ({
+              ...language,
+              active: false,
+            })),
+          },
           localHeader: {
             mainNavigation: [activeLink, { text: 'Other Link', url: '/other' }],
           },
@@ -161,6 +173,89 @@ describe('route.service.ts', () => {
       const result = getActiveLink(`${document.location.origin}/sch`);
       expect(result).toBe(link1);
       expect(result).not.toBe(link2);
+    });
+
+    it('Returns a match from localHeader.navigation', () => {
+      const localAction: IconLinkConfig = { text: 'Search', url: '/search', icon: 'search' };
+      state.localizedConfig = {
+        header: {
+          ...testConfig.de.header,
+          localHeader: {
+            ...testConfig.de.header.localHeader,
+            navigation: [localAction],
+          },
+        },
+      };
+
+      const result = getActiveLink(`${document.location.origin}/search`);
+      expect(result).toBe(localAction);
+    });
+
+    it('Returns a match from globalHeader.secondaryNavigation', () => {
+      const secondaryLink: IconLinkConfig = { text: 'Jobs', url: '/jobs', icon: 'jobs' };
+      state.localizedConfig = {
+        header: {
+          ...testConfig.de.header,
+          globalHeader: {
+            ...testConfig.de.header.globalHeader,
+            secondaryNavigation: [secondaryLink],
+          },
+        },
+      };
+
+      const result = getActiveLink(`${document.location.origin}/jobs`);
+      expect(result).toBe(secondaryLink);
+    });
+
+    it('Returns the first encountered link when duplicate URLs have the same score', () => {
+      const mainNavigationLink = { text: 'Main', url: '/shared' };
+      const secondaryLink: IconLinkConfig = { text: 'Secondary', url: '/shared', icon: 'jobs' };
+
+      state.localizedConfig = {
+        header: {
+          ...testConfig.de.header,
+          localHeader: {
+            ...testConfig.de.header.localHeader,
+            mainNavigation: [mainNavigationLink],
+          },
+          globalHeader: {
+            ...testConfig.de.header.globalHeader,
+            secondaryNavigation: [secondaryLink],
+          },
+        },
+      };
+
+      const result = getActiveLink(`${document.location.origin}/shared`);
+      expect(result).toBe(secondaryLink);
+      expect(result).not.toBe(mainNavigationLink);
+    });
+
+    it('Includes user-menu options in localHeader.navigation', () => {
+      const optionLink = { text: 'Profile', url: '/profile', icon: 'profile' };
+
+      state.localizedConfig = {
+        header: {
+          ...testConfig.de.header,
+          localHeader: {
+            ...testConfig.de.header.localHeader,
+            navigation: [
+              {
+                user: {
+                  id: '1',
+                  firstName: 'Jane',
+                  lastName: 'Doe',
+                  email: 'jane.doe@example.com',
+                  profilePicture: '/profile.jpg',
+                },
+                options: [optionLink],
+              },
+            ],
+          },
+        },
+      };
+
+      const result = getActiveLink(`${document.location.origin}/profile`);
+      expect(result).toBe(optionLink);
     });
   });
 });

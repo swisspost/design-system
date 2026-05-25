@@ -1,29 +1,24 @@
 import { state } from '@/data/store';
 import { ActiveRouteProp } from '../models/general.model';
-import { MainNavigationConfig } from '../models/header.model';
-import { SimpleLinkConfig } from '../models/shared.model';
-
-interface ScoredLink {
-  link: SimpleLinkConfig;
-  score: number;
-}
+import { HeaderConfig } from '../models/header.model';
+import { RouteLink } from '../models/shared.model';
 
 /**
- * Determine the active link from the main navigation config and the activeRoute prop.
+ * Determine the active link from the header config and the activeRoute prop.
  * @param activeRouteProp Match mode or custom URL
  * @returns The best-matching link config object, or null
  */
-export const getActiveLink = (activeRouteProp: ActiveRouteProp): SimpleLinkConfig | null => {
-  const mainNavigationConfig = state.localizedConfig?.header?.localHeader?.mainNavigation;
+export const getActiveLink = (activeRouteProp: ActiveRouteProp): RouteLink | null => {
+  const headerLinks = getHeaderLinks(state.localizedConfig?.header);
 
-  if (!mainNavigationConfig || activeRouteProp === 'none') {
+  if (headerLinks.length === 0 || activeRouteProp === 'none') {
     return null;
   }
 
   // If 'auto' or 'exact', check if any link is already marked active in the config
   if (activeRouteProp === 'auto' || activeRouteProp === 'exact') {
-    const portalActiveLink = findPortalActiveLink(mainNavigationConfig);
-    if (portalActiveLink) return portalActiveLink;
+    const activeLink = findActiveLink(headerLinks);
+    if (activeLink) return activeLink;
   }
 
   let compareUrl: URL;
@@ -41,103 +36,81 @@ export const getActiveLink = (activeRouteProp: ActiveRouteProp): SimpleLinkConfi
     }
   }
 
-  const candidates = extractCandidateLinks(mainNavigationConfig);
+  const candidates = extractCandidateLinks(headerLinks);
   const matchMode = activeRouteProp === 'exact' ? 'exact' : 'auto';
-  const scoreList = scoreCandidates(candidates, compareUrl, matchMode);
-
-  if (scoreList.length === 0) {
-    return null;
-  }
-
-  return scoreList[0].link;
+  return findBestMatch(candidates, compareUrl, matchMode);
 };
 
 /**
- * Find the first link marked as active in the portal config
+ * Find the first link marked as active in the header config
  */
-const findPortalActiveLink = (config: MainNavigationConfig): SimpleLinkConfig | null => {
-  for (const item of config) {
-    if ('url' in item && item.active) {
-      return item;
-    }
-
-    if (!('sections' in item)) {
-      continue;
-    }
-
-    const activeSectionLink = findFirstActiveSectionLink(item.sections);
-    if (activeSectionLink) {
-      return activeSectionLink;
-    }
-  }
-
-  return null;
-};
-
-const findFirstActiveSectionLink = (
-  sections: Extract<MainNavigationConfig[number], { sections: unknown }>['sections'],
-): SimpleLinkConfig | null => {
-  for (const section of sections) {
-    for (const link of section.items) {
-      if (link.active) {
-        return link;
-      }
-    }
-  }
-
-  return null;
+const findActiveLink = (headerLinks: RouteLink[]): RouteLink | undefined => {
+  return headerLinks.find(link => link.active);
 };
 
 /**
- * Extract all candidate links from the main navigation config
+ * Extract all candidate links from the header config.
  */
-const extractCandidateLinks = (config: MainNavigationConfig): SimpleLinkConfig[] => {
-  const links: SimpleLinkConfig[] = [];
+const extractCandidateLinks = (headerLinks: RouteLink[]): RouteLink[] => {
+  return headerLinks.filter(link => link.url !== '' && link.url !== '#' && link.url !== '/');
+};
 
-  config.forEach(item => {
-    if ('url' in item && isNavigableUrl(item.url)) {
-      links.push(item);
+/**
+ * Recursively walks the header config and returns every item with a `url` property.
+ */
+const getHeaderLinks = (headerConfig: HeaderConfig | undefined): RouteLink[] => {
+  const links: RouteLink[] = [];
+
+  if (!headerConfig) {
+    return links;
+  }
+
+  const walk = (value: unknown): void => {
+    if (value === null || value === undefined) {
+      return;
     }
 
-    if ('sections' in item) {
-      if (item.overview && isNavigableUrl(item.overview.url)) {
-        links.push(item.overview);
-      }
-
-      item.sections.forEach(section => {
-        section.items.forEach(link => {
-          if (isNavigableUrl(link.url)) links.push(link);
-        });
-      });
+    if (Array.isArray(value)) {
+      value.forEach(walk);
+      return;
     }
-  });
+
+    if (typeof value !== 'object' || value === null) {
+      return;
+    }
+
+    if ('url' in value && typeof value.url === 'string') {
+      links.push(value as RouteLink);
+    }
+
+    Object.values(value).forEach(walk);
+  };
+
+  walk(headerConfig);
 
   return links;
 };
 
-const isNavigableUrl = (url: string): boolean => {
-  return url !== '' && url !== '#';
-};
-
 /**
- * Score candidate links against the compare URL and return sorted results
+ * Find the best matching link against the compare URL and return it
  */
-const scoreCandidates = (
-  candidates: SimpleLinkConfig[],
+const findBestMatch = (
+  candidates: RouteLink[],
   compareUrl: URL,
   matchMode: 'auto' | 'exact',
-): ScoredLink[] => {
-  const scoreList: ScoredLink[] = [];
+): RouteLink | null => {
+  let bestMatch: { link: RouteLink; score: number } | null = null;
 
   for (const candidate of candidates) {
-    if (!candidate.url) continue;
-
     try {
       const candidateUrl = new URL(candidate.url, document.location.origin);
       const score = compareRoutes(compareUrl, candidateUrl, matchMode);
 
       if (score > 0) {
-        scoreList.push({ link: candidate, score });
+        if (!bestMatch || score > bestMatch.score) {
+          bestMatch = { link: candidate, score };
+        }
+
         if (score === Infinity) break;
       }
     } catch {
@@ -145,7 +118,7 @@ const scoreCandidates = (
     }
   }
 
-  return scoreList.sort((a, b) => b.score - a.score);
+  return bestMatch ? bestMatch.link : null;
 };
 
 /**
