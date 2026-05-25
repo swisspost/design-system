@@ -51,7 +51,7 @@ tokens.$default-map: components.$post-banner;
   }
 }
 
-.content {
+.post-banner-content {
   display: grid;
   grid-template-columns: 1fr;
   row-gap: tokens.get('banner-content-gap');

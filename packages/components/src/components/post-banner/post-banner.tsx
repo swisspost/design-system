@@ -92,7 +92,7 @@ export class PostBanner {
       <Host data-version={version} role="alert" data-color-scheme="light">
         <slot name="close-button" />
 
-        <div class="content">
+        <div class="post-banner-content">
           <slot name="heading" />
 
           <slot />
