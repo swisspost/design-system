@@ -5,6 +5,15 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property                           | Attribute                | Description                                                                                                                                                    | Type     | Default     |
+| ---------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `textCurrentUser` _(required)_     | `text-current-user`      | Label for the "Current user is {user}" accessibility description. Use `{user}` as a placeholder — it will be replaced with the current user's name at runtime. | `string` | `undefined` |
+| `textUserMenu` _(required)_        | `text-user-menu`         | Accessible label for the dropdown menu                                                                                                                         | `string` | `undefined` |
+| `textUserMenuTrigger` _(required)_ | `text-user-menu-trigger` | Hidden label for the user menu trigger button, for accessibility purposes. It should describe the purpose of the button (e.g. "Access user links").            | `string` | `undefined` |
+
+
 ## Events
 
 | Event        | Description                                                                                                                                                                                                          | Type                                       |
@@ -39,11 +48,29 @@ Type: `Promise<void>`
 
 ## Slots
 
-| Slot                | Description                                                            |
-| ------------------- | ---------------------------------------------------------------------- |
-| `"authenticated"`   | Content rendered when the user is authenticated (e.g. user menu).      |
-| `"unauthenticated"` | Content rendered when the user is not authenticated (e.g. login link). |
+| Slot           | Description                                                    |
+| -------------- | -------------------------------------------------------------- |
+| `"login-link"` | Content rendered when the user is not authenticated.           |
+| `"user-links"` | Links to show in the user menu when the user is authenticated. |
 
+
+## Dependencies
+
+### Depends on
+
+- [post-menu-trigger](../post-menu-trigger)
+- [post-avatar](../post-avatar)
+- [post-menu](../post-menu)
+
+### Graph
+```mermaid
+graph TD;
+  post-login-widget --> post-menu-trigger
+  post-login-widget --> post-avatar
+  post-login-widget --> post-menu
+  post-menu --> post-popovercontainer
+  style post-login-widget fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

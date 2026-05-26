@@ -20,6 +20,10 @@ const meta: MetaComponent = {
   render: renderButtonGroup,
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=30287-184034 ',
+    },
     controls: {
       exclude: ['disabledElement', 'groupClass'],
     },

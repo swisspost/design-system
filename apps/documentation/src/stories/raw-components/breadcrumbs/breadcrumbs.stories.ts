@@ -5,6 +5,8 @@ import { getAttributes } from '@/utils';
 import customItems from './custom-items';
 import { MetaComponent } from '@root/types';
 
+import { renderHeader } from '../internet-header/header.stories';
+
 const meta: MetaComponent<HTMLSwisspostInternetBreadcrumbsElement> = {
   id: '4347e5bf-8bf2-4f44-9075-9faaa53591ed',
   title: 'Raw Components/Internet Header/Breadcrumbs',
@@ -42,9 +44,7 @@ export default meta;
 // DECORATORS
 function hiddenHeader(story: StoryFn, context: StoryContext) {
   return html`
-    <div class="d-none">
-      <swisspost-internet-header project="test"></swisspost-internet-header>
-    </div>
+    <div class="d-none">${renderHeader()}</div>
     ${story(context.args, context)}
   `;
 }
