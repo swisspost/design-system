@@ -52,9 +52,12 @@
     "@changesets/cli": "2.26.0",
     "start-server-and-test": "1.15.4"
   },
-  "engines": {
-    "node": "16",
-    "pnpm": ">=7.13"
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "^16",
+      "onFail": "error"
+    }
   },
   "packageManager": "pnpm@7.13.6"
 }
