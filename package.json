@@ -114,13 +114,10 @@
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
   },
-  "engines": {
-    "node": "22||24"
-  },
   "devEngines": {
     "runtime": {
       "name": "node",
-      "version": ">=22 <23 || >=24 <25",
+      "version": "^22 || ^24",
       "onFail": "error"
     }
   },
