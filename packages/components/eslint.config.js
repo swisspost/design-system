@@ -88,7 +88,6 @@ export default [
     rules: {
       ...compatStencilCommunityBaseRules,
       ...compatStencilCommunityRecommendedRules,
-      '@stencil-community/decorators-style': ['error', { prop: 'ignore' }],
     },
   },
   {
@@ -109,12 +108,8 @@ export default [
       '@stencil-community/strict-boolean-conditions': 'off',
       '@stencil-community/prefer-vdom-listener': 'off',
       '@stencil-community/required-prefix': ['error', ['post-']],
-      '@stencil-community/class-pattern': [
-        'error',
-        {
-          pattern: '^Post.*(?!Component)$',
-        },
-      ],
+      '@stencil-community/class-pattern': ['error', { pattern: '^Post.*(?!Component)$' }],
+      '@stencil-community/decorators-style': ['error', { prop: 'ignore' }],
     },
   },
   {
