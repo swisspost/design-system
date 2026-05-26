@@ -3,6 +3,22 @@ import { html, nothing } from 'lit';
 import { fakeContent } from '@/utils';
 import { MetaComponent } from '@root/types';
 
+const defaultArgs: Args = {
+  project: 'test',
+  environment: 'int01',
+  language: 'en',
+  activeRoute: 'auto',
+  fullWidth: false,
+  textMain: 'Main',
+  textMenu: 'Menu',
+  textChangeLanguage: 'Change the language',
+  textCurrentLanguage: 'The currently selected language is #name.',
+  textCurrentUser: 'Current user is John Doe.',
+  textUserLinks: 'User links',
+  textClose: 'Close',
+  textBack: 'Back',
+};
+
 const meta: MetaComponent = {
   id: 'ebb11274-091b-4cb7-9a3f-3e0451c9a865',
   title: 'Raw Components/Internet Header',
@@ -17,22 +33,8 @@ const meta: MetaComponent = {
       url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=19536-26512&mode=design&t=HksCTWa2MMccgMl4-0',
     },
   },
-  render,
-  args: {
-    project: 'test',
-    environment: 'int01',
-    language: 'en',
-    activeRoute: 'auto',
-    fullWidth: false,
-    textMain: 'Main',
-    textMenu: 'Menu',
-    textChangeLanguage: 'Change the language',
-    textCurrentLanguage: 'The currently selected language is #name.',
-    textCurrentUser: 'Current user is John Doe.',
-    textUserLinks: 'User links',
-    textClose: 'Close',
-    textBack: 'Back',
-  },
+  args: defaultArgs,
+  render: renderHeader,
   decorators: [
     story => html`
       <div
@@ -45,7 +47,7 @@ const meta: MetaComponent = {
   ],
 };
 
-function render({ innerHMTL, ...args }: Args) {
+export function renderHeader({ innerHMTL, ...args }: Args = defaultArgs) {
   return html`
     <swisspost-internet-header
       active-route=${args.activeRoute !== 'auto' ? args.activeRoute : nothing}

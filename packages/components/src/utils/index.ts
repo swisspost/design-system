@@ -1,4 +1,5 @@
 export * from './property-checkers';
+export * from './property-decorators';
 
 export * from './attribute-observer';
 export * from './breakpoints';
