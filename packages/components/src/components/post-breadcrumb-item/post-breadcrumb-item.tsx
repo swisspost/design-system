@@ -17,37 +17,37 @@ export class PostBreadcrumbItem {
   /**
    * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
    */
-  @Url()
   @Prop({ reflect: true })
+  @Url()
   url?: string | URL;
 
   /**
    * An accessible label screen readers will use this instead of the breadcrumb item content.
    */
-  @Type('string')
   @Prop({ reflect: true })
+  @Type('string')
   label?: string;
 
   /**
    * An accessible description for additional context, read after the content or `label`.
    */
-  @Type('string')
   @Prop({ reflect: true })
+  @Type('string')
   description?: string;
 
   /**
    * Controls how the item is rendered, either as a standard list item or within an overflow menu.
    */
-  @OneOf(VARIANTS)
   @Prop({ reflect: true })
+  @OneOf(VARIANTS)
   variant: Variant = 'listitem';
 
   /**
    * Indicates that the item represents the current page, applying appropriate styling.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('boolean')
-  @Prop({ reflect: true })
   selected = false;
 
   render() {

@@ -46,72 +46,72 @@ export class PostPagination {
    *
    * **If not specified, defaults to the first page.**
    */
-  @Type('number')
   @Prop({ mutable: true })
+  @Type('number')
   page?: number;
 
   /**
    * The number of items per page.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('number')
-  @Prop({ reflect: true })
   pageSize!: number;
 
   /**
    * The total number of items in the collection.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('number')
-  @Prop({ reflect: true })
   collectionSize!: number;
 
   /**
    * A descriptive label for the pagination navigation, used by assistive technologies.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   readonly label!: string;
 
   /**
    * Accessible label for the previous page button.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   readonly textPrevious!: string;
 
   /**
    * Accessible label for the next page button.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   readonly textNext!: string;
 
   /**
    * Prefix text for page number labels.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   readonly textPage!: string;
 
   /**
    * Prefix text for the first page label.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   readonly textFirst!: string;
 
   /**
    * Prefix text for the last page label.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   readonly textLast!: string;
 
   /**

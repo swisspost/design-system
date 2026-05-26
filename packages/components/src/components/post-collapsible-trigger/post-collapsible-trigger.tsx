@@ -16,9 +16,9 @@ export class PostCollapsibleTrigger {
   /**
    * Link the trigger to a post-collapsible with this id
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   for!: string;
 
   /**

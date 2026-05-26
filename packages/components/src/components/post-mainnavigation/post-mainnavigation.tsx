@@ -27,9 +27,9 @@ export class PostMainnavigation {
   /**
    * Defines the accessible label for the navigation element. This text is used as the `aria-label` attribute to provide screen reader users with a description of the navigation's purpose.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   textMain!: string;
 
   constructor() {

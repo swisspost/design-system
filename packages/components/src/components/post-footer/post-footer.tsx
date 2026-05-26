@@ -25,9 +25,9 @@ export class PostFooter {
   /**
    * The textFooter to add to the footer (visually hidden).
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   readonly textFooter!: string;
 
   @State() device: Device = breakpoint.get('device');

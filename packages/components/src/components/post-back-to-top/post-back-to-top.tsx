@@ -15,9 +15,9 @@ export class PostBackToTop {
    * The label of the back-to-top button, intended solely for accessibility purposes.
    * This label is always hidden from view.
    **/
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   textBackToTop!: string;
 
   @State() belowFold: boolean = false;

@@ -45,17 +45,17 @@ export class PostMegadropdown {
   /**
    * An accessible label for the close button visible on desktop
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   textClose!: string;
 
   /**
    * A label for the back button visible on tablet and mobile
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   textBack!: string;
 
   @State() device: Device = breakpoint.get('device');

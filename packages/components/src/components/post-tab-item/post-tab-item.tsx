@@ -23,8 +23,8 @@ export class PostTabItem {
   /**
    * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
    */
-  @Type('string')
   @Prop({ reflect: true })
+  @Type('string')
   readonly name!: string;
 
   connectedCallback() {

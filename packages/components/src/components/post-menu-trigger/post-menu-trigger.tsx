@@ -16,9 +16,9 @@ export class PostMenuTrigger {
   /**
    * ID of the menu element that this trigger is linked to. Used to open and close the specified menu.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   for!: string;
 
   constructor() {

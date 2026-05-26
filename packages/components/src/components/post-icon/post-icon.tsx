@@ -20,15 +20,15 @@ export class PostIcon {
   /**
    * The name of the animation.
    */
-  @OneOf(ANIMATION_KEYS)
   @Prop({ reflect: true })
+  @OneOf(ANIMATION_KEYS)
   readonly animation?: PostIconAnimation;
 
   /**
    * The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url.
    */
-  @Type('string')
   @Prop()
+  @Type('string')
   readonly base?: string;
 
   /**
@@ -49,23 +49,23 @@ export class PostIcon {
   /**
    * The name/id of the icon (e.g. 1000, 1001, ...).
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   readonly name!: string;
 
   /**
    * The number of degree for the css rotate transformation.
    */
-  @Type('number')
   @Prop()
+  @Type('number')
   readonly rotate?: number;
 
   /**
    * The number for the css scale transformation.
    */
-  @Type('number')
   @Prop()
+  @Type('number')
   readonly scale?: number;
 
   /**

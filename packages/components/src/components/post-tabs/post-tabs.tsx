@@ -66,8 +66,8 @@ export class PostTabs {
   /**
    * The accessible label for the tabs component in navigation mode.
    */
-  @Type('string')
   @Prop({ reflect: true })
+  @Type('string')
   readonly label?: string;
 
   @Watch('label')

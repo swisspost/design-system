@@ -120,15 +120,15 @@ export class PostPopovercontainer {
    * Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted
    * towards the viewport if they would overlap edge boundaries.
    */
-  @OneOf(PLACEMENT_TYPES)
   @Prop()
+  @OneOf(PLACEMENT_TYPES)
   readonly placement?: Placement = 'top';
 
   /**
    * Gap between the edge of the page and the popovercontainer
    */
-  @Type('number')
   @Prop()
+  @Type('number')
   readonly edgeGap?: number = 8;
 
   /**
@@ -145,8 +145,8 @@ export class PostPopovercontainer {
   /**
    * Enables a safespace through which the cursor can be moved without the popover being disabled
    */
-  @OneOf(['triangle', 'trapezoid'])
   @Prop({ reflect: true })
+  @OneOf(['triangle', 'trapezoid'])
   readonly safeSpace?: 'triangle' | 'trapezoid';
 
   /**

@@ -20,9 +20,9 @@ export class PostTabPanel {
   /**
    * The name of the tab that this panel is associated with.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   readonly for!: string;
 
   componentWillLoad() {

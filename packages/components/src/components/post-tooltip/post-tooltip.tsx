@@ -20,8 +20,8 @@ export class PostTooltip {
    * Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
    * For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
    */
-  @OneOf(PLACEMENT_TYPES)
   @Prop()
+  @OneOf(PLACEMENT_TYPES)
   readonly placement?: Placement = 'top';
 
   /**

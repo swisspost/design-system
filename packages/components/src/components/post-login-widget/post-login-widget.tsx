@@ -38,25 +38,25 @@ export class PostLoginWidget {
    * Label for the "Current user is {user}" accessibility description.
    * Use `{user}` as a placeholder — it will be replaced with the current user's name at runtime.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   textCurrentUser!: string;
 
   /**
    * Accessible label for the dropdown menu
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   textUserMenu!: string;
 
   /**
    * Hidden label for the user menu trigger button, for accessibility purposes. It should describe the purpose of the button (e.g. "Access user links").
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   textUserMenuTrigger!: string;
 
   @State() private authenticated: boolean | null = null;

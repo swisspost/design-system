@@ -24,24 +24,24 @@ export class PostLanguageMenu {
   /**
    * A title for the list of language options
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   textChangeLanguage!: string;
 
   /**
    * An accessible description text for the list of language options. The `#name` placeholder is dynamic and will be replaced with the active language name.
    */
+  @Prop({ reflect: true })
   @Required()
   @Pattern(/#name\b/)
-  @Prop({ reflect: true })
   textCurrentLanguage!: string;
 
   /**
    * Whether the component is rendered as a list or a menu
    */
-  @OneOf(SWITCH_VARIANTS)
   @Prop({ reflect: true })
+  @OneOf(SWITCH_VARIANTS)
   variant: SwitchVariant = 'menu';
 
   @Watch('variant')

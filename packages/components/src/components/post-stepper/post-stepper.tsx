@@ -25,26 +25,26 @@ export class PostStepper {
   /**
    * "Current step" label for accessibility
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   textCurrentStep!: string;
 
   /**
    * "Completed step" label for accessibility
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   textCompletedStep!: string;
 
   /**
    * Label for the "Step {number}:" indicator for mobile view.
    * Use `{number}` as a placeholder — it will be replaced with the current step number at runtime.
    */
+  @Prop({ reflect: true })
   @Required()
   @Pattern(/\{number\}/)
-  @Prop({ reflect: true })
   textStepNumber!: string;
 
   @Watch('textStepNumber')
@@ -55,9 +55,9 @@ export class PostStepper {
   /**
    * Defines the current step, which is the next step the user has to complete.
    */
+  @Prop()
   @Required()
   @Type('number')
-  @Prop()
   currentIndex: number = -1;
 
   @Watch('currentIndex')
@@ -72,8 +72,8 @@ export class PostStepper {
    * Defines the selected (active) step, which is the step the user is currently on.
    * If not defined, the selected step is the current step.
    */
-  @Type('number')
   @Prop()
+  @Type('number')
   selectedIndex?: number;
 
   @Watch('selectedIndex')

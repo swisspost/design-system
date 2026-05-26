@@ -21,33 +21,33 @@ export class PostBreadcrumbs {
   /**
    * The URL for the root (home) breadcrumb item.
    */
+  @Prop({ reflect: true })
   @Required()
   @Url()
-  @Prop({ reflect: true })
   homeUrl!: string;
 
   /**
    * An accessible label for the root (home) breadcrumb item.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   textHome!: string;
 
   /**
    * An accessible label for the breadcrumb navigation.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   textBreadcrumbs!: string;
 
   /**
    * An accessible label for the overflow menu that contains collapsed breadcrumb items.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   textMoreItems!: string;
 
   componentWillLoad() {

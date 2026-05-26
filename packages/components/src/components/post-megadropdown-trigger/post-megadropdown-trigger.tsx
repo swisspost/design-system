@@ -24,9 +24,9 @@ export class PostMegadropdownTrigger {
   /**
    * ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   for!: string;
 
   componentWillRender() {

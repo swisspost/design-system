@@ -21,9 +21,9 @@ export class PostAccordion {
   /**
    * Defines the hierarchical level of the `post-accordion-item` headers within the headings structure.
    */
+  @Prop({ reflect: true })
   @Required()
   @OneOf(HEADING_LEVELS)
-  @Prop({ reflect: true })
   readonly headingLevel!: HeadingLevel;
 
   @Watch('headingLevel')

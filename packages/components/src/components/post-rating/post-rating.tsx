@@ -17,25 +17,25 @@ export class PostRating {
   /**
    * A hidden, descriptive label that explains the role of the rating component to assistive technologies.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   readonly label!: string;
 
   /**
    * Defines the total amount of stars rendered in the component.
    */
+  @Prop()
   @Required()
   @Type('number')
-  @Prop()
   readonly stars: number = 5;
 
   /**
    * Defines the rating that the component should show.
    */
+  @Prop({ mutable: true })
   @Required()
   @Type('number')
-  @Prop({ mutable: true })
   currentRating = 0;
 
   /**

@@ -25,8 +25,8 @@ export class PostTooltipTrigger {
   /**
    * ID of the tooltip element that this trigger is linked to.
    */
-  @Type('string')
   @Prop({ reflect: true })
+  @Type('string')
   for!: string;
 
   /**

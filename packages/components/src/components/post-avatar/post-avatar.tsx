@@ -28,30 +28,30 @@ export class PostAvatar {
   /**
    * Defines the users firstname.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   readonly firstname!: string;
 
   /**
    * Defines the users lastname.
    */
-  @Type('string')
   @Prop()
+  @Type('string')
   readonly lastname?: string;
 
   /**
    * Defines the users email address associated with a gravatar profile picture.
    */
-  @Pattern(emailPattern)
   @Prop()
+  @Pattern(emailPattern)
   readonly email?: string;
 
   /**
    * Provides a custom description for the avatar, used for accessibility purposes.
    */
-  @Type('string')
   @Prop()
+  @Type('string')
   description?: string;
 
   @State() slottedImage: HTMLImageElement;

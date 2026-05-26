@@ -33,9 +33,9 @@ export class PostAutocomplete {
    * Use {count} as placeholder for the number of available suggestions,
    * e.g. "{count} suggestions available"
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   readonly textAvailableSuggestions!: string;
 
   @State() inputValue: string = '';

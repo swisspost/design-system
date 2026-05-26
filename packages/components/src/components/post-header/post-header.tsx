@@ -92,17 +92,17 @@ export class PostHeader {
   /**
    * Makes the header content span the full width on screens larger than 1440px.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('boolean')
-  @Prop({ reflect: true })
   fullWidth = false;
 
   /**
    * The label of the burger menu button.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   textMenu!: string;
 
   @Watch('device')

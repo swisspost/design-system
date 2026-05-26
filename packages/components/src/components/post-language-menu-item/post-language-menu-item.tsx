@@ -16,9 +16,9 @@ export class PostLanguageMenuItem {
   /**
    *  The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   code!: string;
 
   /**
@@ -29,30 +29,30 @@ export class PostLanguageMenuItem {
   /**
    * To communicate the variant prop from the parent (post-language-menu) component to the child (post-language-menu-item) component. See parent docs for a description about the property itself.
    */
-  @OneOf(SWITCH_VARIANTS)
   @Prop()
+  @OneOf(SWITCH_VARIANTS)
   variant?: SwitchVariant;
 
   /**
    * The full name of the language. For example, "Deutsch".
    */
-  @Type('string')
   @Prop()
+  @Type('string')
   name?: string;
 
   /**
    * A description for the language read by screen-readers for improved accessibility.
    */
-  @Type('string')
   @Prop()
+  @Type('string')
   description?: string;
 
   /**
    * The URL used for the href attribute of the internal anchor.
    * This field is optional; if not provided, a button will be used internally instead of an anchor.
    */
-  @Url()
   @Prop()
+  @Url()
   url?: string;
 
   componentDidLoad() {

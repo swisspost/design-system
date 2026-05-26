@@ -16,8 +16,8 @@ export class PostLogo {
   /**
    * The URL to which the user is redirected upon clicking the logo.
    */
-  @Url()
   @Prop()
+  @Url()
   url?: string | URL;
 
   componentDidLoad() {

@@ -14,8 +14,8 @@ export class PostPopoverTrigger {
   /**
    * ID of the popover element that this trigger is linked to. Used to open and close the popover.
    */
-  @Type('string')
   @Prop({ reflect: true })
+  @Type('string')
   for?: string;
 
   /**

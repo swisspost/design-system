@@ -99,34 +99,34 @@ export class PostDatePicker {
    * The date picker's selected date. If in range mode, the selected start date.
    * Must be a valid date in ISO 8601 format (YYYY-MM-DD).
    */
+  @Prop({ mutable: true })
   @DateValue()
   @IsoDate()
-  @Prop({ mutable: true })
   selectedStartDate?: string;
 
   /**
    * The date picker's selected end date (for range date picker only).
    * Must be a valid date in ISO 8601 format (YYYY-MM-DD).
    */
+  @Prop({ mutable: true })
   @DateValue()
   @IsoDate()
-  @Prop({ mutable: true })
   selectedEndDate?: string;
 
   /**
    * Minimun possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
    */
+  @Prop()
   @DateValue()
   @IsoDate()
-  @Prop()
   min?: string;
 
   /**
    * Maximum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
    */
+  @Prop()
   @DateValue()
   @IsoDate()
-  @Prop()
   max?: string;
 
   /**
@@ -148,65 +148,65 @@ export class PostDatePicker {
   /**
    * Label for "Next month" button.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   textNextMonth!: string;
 
   /**
    * Label for "Next year" button.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   textNextYear!: string;
 
   /**
    * Label for "Next decade" button.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   textNextDecade!: string;
 
   /**
    * Label for "Previous month" button.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   textPreviousMonth!: string;
 
   /**
    * Label for "Previous year" button.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   textPreviousYear!: string;
 
   /**
    * Label for "Previous decade" button.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   textPreviousDecade!: string;
 
   /**
    * Label for the "Switch to year view" title button.
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   textSwitchYear!: string;
 
   /**
    * Label for the toggle button that opens the calendar.
    * It is only needed when the calendar is connected to the input.
    */
-  @Type('string')
   @Prop()
+  @Type('string')
   textToggleCalendar?: string;
   @Watch('textToggleCalendar')
   validateTextToggleCalendar() {

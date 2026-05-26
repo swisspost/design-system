@@ -37,8 +37,8 @@ export class PostBanner {
   /**
    * The type of the banner.
    */
-  @OneOf(BANNER_TYPES)
   @Prop({ reflect: true })
+  @OneOf(BANNER_TYPES)
   readonly type: BannerType = 'info';
 
   /**

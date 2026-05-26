@@ -29,8 +29,8 @@ export class PostCollapsible {
   /**
    * If `true`, the element is collapsed otherwise it is displayed.
    */
-  @Type('boolean')
   @Prop({ mutable: true })
+  @Type('boolean')
   collapsed?: boolean = false;
 
   /**

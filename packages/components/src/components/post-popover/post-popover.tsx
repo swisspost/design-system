@@ -23,16 +23,16 @@ export class PostPopover {
    * Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
    * For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
    */
-  @OneOf(PLACEMENT_TYPES)
   @Prop()
+  @OneOf(PLACEMENT_TYPES)
   readonly placement?: Placement = 'top';
 
   /**
    * Define the text of the close button for assistive technology
    */
+  @Prop({ reflect: true })
   @Required()
   @Type('string')
-  @Prop({ reflect: true })
   readonly textClose!: string;
   /**
    * Show a little indicator arrow
