@@ -81,9 +81,17 @@
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
   },
-  "engines": {
-    "node": "18.20",
-    "pnpm": "8.15"
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "18.20",
+      "onFail": "error"
+    },
+    "packageManager": {
+      "name": "pnpm",
+      "version": "8.15",
+      "onFail": "error"
+    }
   },
   "pnpm": {
     "peerDependencyRules": {
