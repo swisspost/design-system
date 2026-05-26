@@ -420,10 +420,12 @@ export class PostPopovercontainer {
       // flip should come before shift. For non-aligned, shift before flip.
       ...(isAligned ? [flipMiddleware, shiftMiddleware] : [shiftMiddleware, flipMiddleware]),
       size({
-        apply({ availableWidth, elements }) {
-          Object.assign(elements.floating.style, {
-            maxWidth: `${availableWidth - gap * 2}px`,
-          });
+        apply({ availableWidth, availableHeight, elements }) {
+          elements.floating.style.maxWidth = `${availableWidth - gap * 2}px`;
+          elements.floating.style.setProperty(
+            '--post-popovercontainer-available-height',
+            `${availableHeight - gap * 2}px`,
+          );
         },
       }),
     ];
@@ -531,7 +533,9 @@ export class PostPopovercontainer {
           )}
           {/* exposed via ::part for consuming components to activate as a bleed mask */}
           <span part="post-popovercontainer-border-mask"></span>
-          <slot></slot>
+          <div class="popover-scroll">
+            <slot></slot>
+          </div>
         </div>
       </Host>
     );
