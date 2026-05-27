@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-module */
 exports.renderToString = undefined;
 exports.serializeProperty = undefined;
 exports.deserializeProperty = undefined;
