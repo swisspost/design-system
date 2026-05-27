@@ -46,26 +46,27 @@ post-tab-item.tab-title {
     background-color 100ms,
     border-color 100ms,
     color 100ms;
-  border-bottom: 2px solid transparent; //  post-tabs-content-item-border-block-end-width
-  color: #050400; // post-tabs-content-item-color-fg
+  border-bottom: 2px solid transparent; // post-tabs-content-tab-border-width
+  color: #050400; // post-tabs-content-tab-color-enabled-fg
 
   &[disabled] {
-    color: #696864; // post-tabs-content-item-disabled-color-fg
-    border-color: #696864; // post-tabs-content-item-disabled-border-color
+    color: #696864; // post-tabs-content-tab-color-disabled-fg
+    border-color: #696864; // missing??????????
     pointer-events: none;
   }
 
   &:hover:not([disabled]) {
-    border-color: #504f4b; // post-tabs-content-item-hovered-border-color
-    color: #504f4b; // post-tabs-content-item-hovered-color-fg
+    border-color: #504f4b; // post-tabs-content-tab-color-hovered-border
+    color: #504f4b; // post-tabs-content-tab-color-hovered-fg
   }
 
   &[aria-selected='true'] {
-    border-color: #050400; // post-tabs-content-item-selected-border-color
+    border-color: #050400; // post-tabs-content-tab-selected-color-enabled-border
+    color: #050400; // post-tabs-content-tab-selected-color-enabled-fg;
 
     &:hover {
-      border-color: #504f4b; // post-tabs-content-item-selected-hovered-border-color
-      color: #504f4b; // post-tabs-content-item-selected-hovered-color-fg
+      border-color: #504f4b; // post-tabs-content-tab-selected-color-hovered-border
+      color: #504f4b; // post-tabs-content-tab-selected-color-hovered-fg
     }
   }
 
@@ -105,23 +106,25 @@ post-tab-item.nav-item {
       color 100ms,
       padding-block 200ms;
 
-    border-block-start: 2px solid transparent; // post-tabs-item-enabled-border-color + post-tabs-page-item-border-width
-    border-inline-start: 2px solid transparent; // post-tabs-item-enabled-border-color + post-tabs-page-item-border-width
-    border-inline-end: 2px solid transparent; // post-tabs-item-enabled-border-color + post-tabs-page-item-border-width
-    background-color: #050400; // post-tabs-page-item-enabled-color-bg
-    border-color: #050400; // post-tabs-page-item-enabled-border-color
-    color: white; // post-tabs-page-item-enabled-color-fg
+    border-block-start: 2px solid transparent; // post-tabs-page-tab-border-width + post-tabs-item-enabled-border-color
+    border-inline-start: 2px solid transparent; // post-tabs-page-tab-border-width + post-tabs-item-enabled-border-color
+    border-inline-end: 2px solid transparent; // post-tabs-page-tab-border-width + post-tabs-item-enabled-border-color
+    background-color: #050400; // post-tabs-page-default-tab-color-enabled-bg
+    border-color: #050400; // post-tabs-page-default-tab-color-enabled-border
+    color: white; // post-tabs-page-default-tab-color-enabled-fg
     padding-block: 15px; // post-tabs-page-item-enabled-padding-block
 
     // Dark background needs the inverted focus ring color
     @include utilities-mx.focus-style-custom {
       outline-color: tokens.get('focus-outline-color-inverted', helpers.$post-focus) !important;
+      outline-offset: -4px !important;
     }
 
     &:hover {
-      background-color: #504f4b; // post-tabs-page-item-hovered-color-bg
-      border-color: #504f4b; //post-tabs-page-item-hovered-border-color
+      background-color: #504f4b; // post-tabs-page-default-tab-color-hovered-bg
+      border-color: #504f4b; // post-tabs-page-default-tab-color-hovered-border
       padding-block: 19px; // post-tabs-page-item-hovered-padding-block
+      color: #ffffff; //post-tabs-page-default-tab-color-hovered-fg
     }
 
     &:focus,
@@ -130,20 +133,23 @@ post-tab-item.nav-item {
       padding-block: 19px; // post-tabs-page-item-hovered-padding-block
     }
 
+    // selected
     &[aria-current='page'] {
-      background-color: #fafafa; // post-tabs-page-item-selected-color-bg
-      color: #050400; //post-tabs-page-item-selected-color-fg
-      border-color: #050400; // post-tabs-page-item-selected-border-color
+      background-color: #fafafa; // post-tabs-page-default-tab-selected-color-enabled-bg
+      color: #050400; // post-tabs-page-default-tab-selected-color-enabled-fg
+      border-color: #050400; // post-tabs-page-default-tab-selected-color-enabled-border
       padding-block: 19px; // post-tabs-page-item-selected-padding-block
 
       // Light background reverts to the default focus ring color
       @include utilities-mx.focus-style-custom {
         outline-color: tokens.get('focus-outline-color', helpers.$post-focus) !important;
+        outline-offset: -4px !important;
       }
 
       &:hover {
-        color: #504f4b; // post-tabs-page-item-hovered-color-fg
-        border-color: #504f4b; // post-tabs-page-item-hovered-border-color
+        color: #504f4b; // post-tabs-page-default-tab-selected-color-hovered-fg
+        background-color: #fafafa; // post-tabs-page-default-tab-selected-color-hovered-bg
+        border-color: #504f4b; // ppost-tabs-page-default-tab-selected-color-hovered-border
       }
     }
 
@@ -173,10 +179,10 @@ post-tab-item.nav-item {
   }
 
   &[disabled] a:not([aria-current='page']) {
-    background-color: #fafafa; // post-tabs-page-item-disabled-color-bg
-    border-color: #696864; // post-tabs-page-item-disabled-border-color
-    color: #696864; // post-tabs-page-item-disabled-color-fg
-    border-style: dashed; // post-tabs-page-item-disabled-border-style
+    background-color: #fafafa; // post-tabs-page-default-tab-color-disabled-bg
+    border-color: #696864; // post-tabs-page-default-tab-color-disabled-border
+    color: #696864; // post-tabs-page-default-tab-color-disabled-fg
+    border-style: dashed; // post-tabs-tab-disabled-border-style
     pointer-events: none;
     border-block-end: none;
 

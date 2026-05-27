@@ -42,7 +42,7 @@
         background-color 100ms,
         border-color 100ms,
         color 100ms;
-      color: #050400; // post-tabs-scroll-button-color-fg
+
       padding-block: 12px; // post-tabs-scroll-button-padding-block
       cursor: pointer;
 
@@ -67,9 +67,6 @@
       }
 
       &:hover {
-        border-color: #504f4b !important; // post-tabs-scroll-button-hovered-border-color
-        color: #504f4b; // post-tabs-scroll-button-hovered-color-fg
-
         @include utilities-mx.high-contrast-mode() {
           color: HighlightText;
           border-color: HighlightText;
@@ -77,7 +74,7 @@
       }
 
       @include utilities-mx.focus-style() {
-        outline-offset: -4px !important; // post-tabs-item-focus-outline-offset
+        outline-offset: -4px !important; // post-tabs-tab-focus-outline-offset
       }
 
       @include utilities-mx.high-contrast-mode() {
@@ -101,20 +98,30 @@
 
 // Pages Tabs variant
 :host(.page-tabs) {
+  border: 2px solid #050400; // post-tabs-border-width    + post-tabs-page-default-color-border ????
+
   .tabs-wrapper {
     button.scroll-btn {
-      background-color: #fafafa; // post-tabs-page-scroll-button-color-bg
-      border: 2px solid #050400; // post-tabs-page-scroll-button-border-width  +  post-tabs-page-scroll-button-border-color
+      color: #050400; // post-tabs-page-scroll-button-color-enabled-fg
+      background-color: #fafafa; // post-tabs-page-scroll-button-color-enabled-bg
+      border: 2px solid #050400; // post-tabs-page-scroll-button-border-width +  post-tabs-page-scroll-button-color-enabled-border
       position: absolute;
       top: 12px; // post-tabs-page-scroll-button-position-top
       z-index: 2;
       width: 40px; // post-tabs-page-scroll-button-width
       height: 48px; // post-tabs-page-scroll-button-height
       box-shadow: elevation.$elevation-200;
+      border-radius: 8px; // post-tabs-page-scroll-button-border-radius
 
       post-icon {
         width: 24px; // post-tabs-page-scroll-button-icon-size
         height: 24px; // post-tabs-page-scroll-button-icon-size
+      }
+
+      &:hover {
+        border-color: #504f4b !important; // post-tabs-page-scroll-button-color-hovered-border
+        color: #504f4b; // post-tabs-page-scroll-button-color-hovered-fg
+        background-color: #ffffff; //post-tabs-page-scroll-button-color-hovered-bg
       }
 
       &.scroll-btn-left {
@@ -145,8 +152,8 @@
 
     .tabs {
       align-items: end;
-      padding-inline-start: 40px; // post-tabs-page-padding-inline-start
-      gap: 2px; // post-tabs-page-item-gap
+      padding-inline-start: 40px; // post-tabs-page-padding-inline
+      gap: 2px; // post-tabs-page-gap-inline
     }
   }
 }
@@ -157,10 +164,16 @@
     width: 44px; // post-tabs-content-scroll-button-width
     height: 52px; // post-tabs-content-scroll-button-height
     flex-shrink: 0;
+    color: #050400; // post-tabs-content-scroll-button-color-enabled-fg
 
     post-icon {
       width: 16px; // post-tabs-content-scroll-button-icon-size
       height: 16px; // post-tabs-content-scroll-button-icon-size
+    }
+
+    &:hover {
+      border-color: #504f4b !important; // post-tabs-scroll-button-hovered-border-color
+      color: #504f4b; // post-tabs-content-scroll-button-color-hovered-fg
     }
   }
 }
