@@ -92,7 +92,7 @@ export const config: Config = {
     reactOutputTarget({
       customElementsDir: 'react',
       outDir: '../components-react/src/stencil-generated',
-      hydrateModule: '@swisspost/design-system-components/hydrate',
+      hydrateModule: '@swisspost/design-system-components/hydrate/next',
       clientModule: './components.js',
       serializeShadowRoot: 'declarative-shadow-dom',
     }),
@@ -106,7 +106,7 @@ export const config: Config = {
       esModules: true,
       customElementsDir: 'react',
       outDir: '../components-react/src/stencil-generated/standalone',
-      hydrateModule: '@swisspost/design-system-components/hydrate',
+      hydrateModule: '@swisspost/design-system-components/hydrate/next',
       clientModule: './components.js',
       serializeShadowRoot: 'declarative-shadow-dom',
     }),

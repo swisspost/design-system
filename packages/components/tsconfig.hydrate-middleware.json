@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "target": "es2022",
+    "outDir": "hydrate",
+    "rootDir": "src/hydrate-middleware",
+    "declaration": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/hydrate-middleware"]
+}
