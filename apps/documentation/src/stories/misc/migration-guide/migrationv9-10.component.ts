@@ -627,8 +627,8 @@ export class MigrationV910Component extends LitElement {
                         ?checked="${this.state.grid.breakpoints}"
                       />
                       <label class="form-check-label" for="grid-breakpoints">
-                        <span data-info="automigration" class="tag tag-sm tag-info"
-                          >🪄 migration rule</span
+                        <span data-info="partial-automigration" class="tag tag-sm tag-warning"
+                          >⚠️ partial migration rule</span
                         >
                         Breakpoints updated
                         <ul>
@@ -654,11 +654,7 @@ export class MigrationV910Component extends LitElement {
                           Renaming <code>rg</code> → <code>sm</code> would immediately be picked up
                           by the <code>sm</code> → <code>xs</code> rule and renamed again to the
                           wrong value. Search for <code>-sm-*</code> and <code>-rg-*</code> in your
-                          templates and rename them by hand:
-                          <ul>
-                            <li><code>*-rg-*</code> → <code>*-sm-*</code></li>
-                            <li><code>*-sm-*</code> → <code>*-xs-*</code></li>
-                          </ul>
+                          templates and rename them by hand.
                         </span>
                       </label>
                     </div>
@@ -672,8 +668,8 @@ export class MigrationV910Component extends LitElement {
                         ?checked="${this.state.grid.gutter}"
                       />
                       <label class="form-check-label" for="grid-gutter">
-                        <span data-info="automigration" class="tag tag-sm tag-info"
-                          >🪄 migration rule</span
+                        <span data-info="partial-automigration" class="tag tag-sm tag-warning"
+                          >⚠️ partial migration rule</span
                         >
                         Gutter classes (<code>.g-*</code>, <code>.gx-*</code>, <code>.gy-*</code>)
                         renamed
@@ -706,8 +702,8 @@ export class MigrationV910Component extends LitElement {
                         ?checked="${this.state.grid.gap}"
                       />
                       <label class="form-check-label" for="grid-gap">
-                        <span data-info="automigration" class="tag tag-sm tag-info"
-                          >🪄 migration rule</span
+                        <span data-info="partial-automigration" class="tag tag-sm tag-warning"
+                          >⚠️ partial migration rule</span
                         >
                         Gap classes (<code>.gap-*</code>, <code>.row-gap-*</code>,
                         <code>.column-gap-*</code>) renamed
@@ -903,8 +899,8 @@ export class MigrationV910Component extends LitElement {
                         ?checked="${this.state.utilities.renamed_spacing}"
                       />
                       <label class="form-check-label" for="utilities-renamed_spacing">
-                        <span data-info="automigration" class="tag tag-sm tag-info"
-                          >🪄 migration rule</span
+                        <span data-info="partial-automigration" class="tag tag-sm tag-warning"
+                          >⚠️ partial migration rule</span
                         >
                         Margin and padding utilities classes (
                         <code>.{m/p}{x/y/s/e/t/b}-*</code>) renamed
@@ -1894,7 +1890,8 @@ export class MigrationV910Component extends LitElement {
     _updatePersistedState(MIGRATION_CHECKS_KEY_V9, this.state);
   }
 
-  // Toggle visibility of all lines that have the auto migration tag
+  // Toggle visibility of all lines that have the auto migration tag.
+  // Items with data-info="partial-automigration" are never hidden — they contain manual steps.
   private _toggleAutoMigrationVisibility() {
     document
       .querySelectorAll('[data-info="automigration"]')
