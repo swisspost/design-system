@@ -42,7 +42,7 @@
     ".": {
       "types": "./dist/types/index.d.ts",
       "import": "./dist/esm/post-components.js",
-      "require": "./dist/cjs/post-components.cjs.js"
+      "default": "./dist/cjs/post-components.cjs.js"
     },
     "./dist/*": {
       "default": "./dist/*"
@@ -50,7 +50,7 @@
     "./loader": {
       "types": "./dist/loader/index.d.ts",
       "import": "./dist/loader/index.js",
-      "require": "./dist/loader/index.cjs.js"
+      "default": "./dist/loader/index.cjs.js"
     },
     "./components": {
       "types": "./dist/components/index.d.ts",
@@ -68,19 +68,12 @@
     },
     "./hydrate": {
       "types": "./hydrate/index.d.ts",
-      "import": "./hydrate/index.mjs",
-      "require": "./hydrate/index.js",
-      "default": "./hydrate/index.js"
-    },
-    "./hydrate/next": {
-      "import": {
-        "types": "./hydrate/next.d.mts",
-        "default": "./hydrate/next.mjs"
+      "node": {
+        "import": "./hydrate/index.mjs",
+        "default": "./hydrate/index.js"
       },
-      "require": {
-        "types": "./hydrate/next.d.ts",
-        "default": "./hydrate/next.js"
-      }
+      "import": "./hydrate/index.stub.mjs",
+      "default": "./hydrate/index.stub.js"
     }
   },
   "scripts": {
@@ -88,7 +81,7 @@
     "start": "pnpm prebuild:script && stencil build --dev --watch --docs --docs-readme",
     "prebuild": "pnpm clean && pnpm prebuild:script",
     "build": "stencil build --docs-readme",
-    "postbuild": "pnpm postbuild:hydrate-middleware & pnpm copy:component-names & pnpm copy:styles:components-react & pnpm copy:styles:components-angular",
+    "postbuild": "pnpm postbuild:hydrate & pnpm copy:component-names & pnpm copy:styles:components-react & pnpm copy:styles:components-angular",
     "clean": "rimraf --glob dist hydrate loader loaders www src/styles/generated src/_generated ../components-react/**/stencil-generated/ ../components-angular/projects/components/src/lib/stencil-generated/",
     "unit": "stencil test --spec",
     "unit:watch": "stencil test --spec --watchAll --silent",
@@ -106,7 +99,7 @@
     "vrt:safari": "node vrt/generate-header-html.js && playwright test --project=webkit",
     "generate": "stencil generate",
     "prebuild:script": "node --loader ts-node/esm prebuild.ts",
-    "postbuild:hydrate-middleware": "tsc -p tsconfig.hydrate-middleware.json",
+    "postbuild:hydrate": "copyfiles -f src/hydrate-stub/* hydrate/",
     "copy:component-names": "copyfiles -f src/_generated/component-names.json dist/",
     "copy:styles:components-react": "copyfiles -f www/build/post-components.css ../components-react/src/stencil-generated/",
     "copy:styles:components-angular": "copyfiles -f www/build/post-components.css ../components-angular/projects/components/src/lib/stencil-generated/"
