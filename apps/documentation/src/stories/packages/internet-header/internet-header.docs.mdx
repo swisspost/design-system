@@ -163,11 +163,10 @@ The following props have been removed and have no effect in v10.
   <li><code>language-switch-overrides</code></li>
 </ul>
 
-
-
 ### 3. Update runtime usage
 
-The `language`, `active-route`, `environment`, and `full-width` props are still reactive and can be set at runtime.
+The `language` and `active-route` props are still reactive and can be set at runtime.
+The `environment` and `full-width` props are accepted but do not trigger reactive updates after initial render.
 All other programmatic property assignments from v9 have no effect in v10 and should be removed.
 
 <Source code={SampleMigrationRuntime} dark={SourceDarkScheme} language="typescript" />
