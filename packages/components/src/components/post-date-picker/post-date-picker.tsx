@@ -1206,7 +1206,7 @@ export class PostDatePicker {
   render() {
     return (
       <Host data-version={version}>
-        {this.inline && <div class="datepicker-container"></div>}
+        {this.inline && <div class="datepicker-container" dir={this.textDirection}></div>}
         {!this.inline && (
           <div dir={this.textDirection}>
             <div
