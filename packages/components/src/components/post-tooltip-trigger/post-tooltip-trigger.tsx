@@ -1,15 +1,19 @@
 import { Component, Element, Prop, h, Host, Watch, Build } from '@stencil/core';
-import { checkEmptyOrType } from '@/utils';
+import { checkEmptyOrType } from '@/utils/property-checkers';
 import { version } from '@root/package.json';
-import isFocusable from 'ally.js/is/focusable';
 
 const TRIGGER_EVENTS = ['pointerenter', 'pointerleave', 'focusin', 'focusout', 'long-press'];
+let longPressEventImport: Promise<unknown> | undefined;
+let isFocusable: ((element: HTMLElement) => boolean) | undefined;
 
-if (Build.isBrowser) {
-  (async () => {
-    await import('long-press-event');
-  })();
-}
+const ensureLongPressEvent = async () => {
+  if (Build.isServer) {
+    return;
+  }
+
+  longPressEventImport ??= import('long-press-event');
+  await longPressEventImport;
+};
 
 /**
  * @slot default - Content to trigger the tooltip. Can contain any focusable element or will be made focusable automatically.
@@ -65,6 +69,12 @@ export class PostTooltipTrigger {
     return ref?.localName === 'post-tooltip' ? (ref as HTMLPostTooltipElement) : null;
   }
 
+  async componentWillLoad() {
+    await ensureLongPressEvent();
+    const allyModule = await import('ally.js/is/focusable');
+    isFocusable ??= allyModule.default;
+  }
+
   componentDidLoad() {
     this.setupTrigger();
     this.attachListeners();
@@ -112,7 +122,7 @@ export class PostTooltipTrigger {
     this.trigger = this.host.querySelector('*');
 
     if (this.trigger) {
-      if (!isFocusable(this.trigger)) {
+      if (!isFocusable?.(this.trigger)) {
         this.trigger.setAttribute('tabindex', '0');
       }
 
