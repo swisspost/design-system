@@ -4,7 +4,6 @@ import { html, nothing } from 'lit';
 import { components } from '@swisspost/design-system-components/dist/docs.json';
 
 const AVATAR_ARGTYPES = components.find(c => c.tag === 'post-avatar');
-const USERID_ARGTYPE = AVATAR_ARGTYPES?.props.find(p => p.name === 'userid');
 const EMAIL_ARGTYPE = AVATAR_ARGTYPES?.props.find(p => p.name === 'email');
 
 const meta: MetaComponent = {
@@ -21,17 +20,11 @@ const meta: MetaComponent = {
   args: {
     firstname: 'Firstname',
     lastname: '',
-    userid: '',
     email: '',
     imageSrc: '',
     description: 'The current user is Firstname.',
   },
   argTypes: {
-    'userid': {
-      description: `${
-        USERID_ARGTYPE?.docs ?? ''
-      }<post-banner data-size="sm"><p>Do you need an example userid? Try it out with the username of your own post account.</p></post-banner>`,
-    },
     'email': {
       description: `${
         EMAIL_ARGTYPE?.docs ?? ''
@@ -69,7 +62,6 @@ export const Default: Story = {
     return html`<post-avatar
       firstname="${args.firstname || nothing}"
       lastname="${args.lastname || nothing}"
-      userid="${args.userid || nothing}"
       email="${args.email || nothing}"
       description="${args.description || nothing}"
       >${args.imageSrc
