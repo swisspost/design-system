@@ -21,7 +21,7 @@
 
   AFTER:
 
-  ````html
+  ```html
   <post-megadropdown id="letters" text-close="Close" text-back="Back">
     <a class="post-megadropdown-overview" href="/letters">Overview Letters</a>
     <div class="post-megadropdown-grid">
@@ -29,9 +29,9 @@
       <div></div>
     </div>
   </post-megadropdown>
-  ``` (by [@myrta2302](https://github.com/myrta2302) with
+  ```
+  (by [@myrta2302](https://github.com/myrta2302) with
   [#7479](https://github.com/swisspost/design-system/pull/7479))
-  ````
 
 ### Minor Changes
 
