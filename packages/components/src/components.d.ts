@@ -7,6 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
+import { Variant } from "./components/post-breadcrumb-item/variants";
 import { ButtonType, Placement, Size } from "./components/post-closebutton/types";
 import { AirDatepickerCustomOptions } from "./components/post-date-picker/post-date-picker";
 import { PostIconAnimation } from "./types/icon-animations";
@@ -14,6 +15,7 @@ import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement as Placement1 } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
+export { Variant } from "./components/post-breadcrumb-item/variants";
 export { ButtonType, Placement, Size } from "./components/post-closebutton/types";
 export { AirDatepickerCustomOptions } from "./components/post-date-picker/post-date-picker";
 export { PostIconAnimation } from "./types/icon-animations";
@@ -96,10 +98,6 @@ export namespace Components {
           * Defines the users lastname.
          */
         "lastname"?: string;
-        /**
-          * Defines the company internal userId.<post-banner type="warning" data-size="sm"><p>Can only be used on post.ch domains!</p></post-banner>
-         */
-        "userid"?: string;
     }
     interface PostBackToTop {
         /**
@@ -120,33 +118,43 @@ export namespace Components {
     }
     interface PostBreadcrumbItem {
         /**
-          * ARIA description for additional context, read after the breadcrumb item content or `label`.
+          * An accessible description for additional context, read after the content or `label`.
          */
         "description"?: string;
         /**
-          * ARIA label, screen readers will use this instead of the breadcrumb item content.
+          * An accessible label screen readers will use this instead of the breadcrumb item content.
          */
         "label"?: string;
         /**
-          * The optional URL to which the breadcrumb item will link.
+          * Indicates that the item represents the current page, applying appropriate styling.
+          * @default false
+         */
+        "selected": boolean;
+        /**
+          * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
          */
         "url"?: string | URL;
+        /**
+          * Controls how the item is rendered, either as a standard list item or within an overflow menu.
+          * @default 'listitem'
+         */
+        "variant": Variant;
     }
     interface PostBreadcrumbs {
         /**
-          * The URL for the home breadcrumb item.
+          * The URL for the root (home) breadcrumb item.
          */
         "homeUrl": string;
         /**
-          * The accessible label for the breadcrumb component.
+          * An accessible label for the breadcrumb navigation.
          */
         "textBreadcrumbs": string;
         /**
-          * The text label for the home breadcrumb item.
+          * An accessible label for the root (home) breadcrumb item.
          */
         "textHome": string;
         /**
-          * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
+          * An accessible label for the overflow menu that contains collapsed breadcrumb items.
          */
         "textMoreItems": string;
     }
@@ -423,6 +431,18 @@ export namespace Components {
           * Re-fetches the authentication state from the session API and updates the component rendering accordingly.
          */
         "refresh": () => Promise<void>;
+        /**
+          * Label for the "Current user is {user}" accessibility description. Use `{user}` as a placeholder — it will be replaced with the current user's name at runtime.
+         */
+        "textCurrentUser": string;
+        /**
+          * Accessible label for the dropdown menu
+         */
+        "textUserMenu": string;
+        /**
+          * Hidden label for the user menu trigger button, for accessibility purposes. It should describe the purpose of the button (e.g. "Access user links").
+         */
+        "textUserMenuTrigger": string;
     }
     interface PostLogo {
         /**
@@ -1334,10 +1354,6 @@ declare namespace LocalJSX {
           * Defines the users lastname.
          */
         "lastname"?: string;
-        /**
-          * Defines the company internal userId.<post-banner type="warning" data-size="sm"><p>Can only be used on post.ch domains!</p></post-banner>
-         */
-        "userid"?: string;
     }
     interface PostBackToTop {
         /**
@@ -1358,33 +1374,43 @@ declare namespace LocalJSX {
     }
     interface PostBreadcrumbItem {
         /**
-          * ARIA description for additional context, read after the breadcrumb item content or `label`.
+          * An accessible description for additional context, read after the content or `label`.
          */
         "description"?: string;
         /**
-          * ARIA label, screen readers will use this instead of the breadcrumb item content.
+          * An accessible label screen readers will use this instead of the breadcrumb item content.
          */
         "label"?: string;
         /**
-          * The optional URL to which the breadcrumb item will link.
+          * Indicates that the item represents the current page, applying appropriate styling.
+          * @default false
+         */
+        "selected"?: boolean;
+        /**
+          * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
          */
         "url"?: string | URL;
+        /**
+          * Controls how the item is rendered, either as a standard list item or within an overflow menu.
+          * @default 'listitem'
+         */
+        "variant"?: Variant;
     }
     interface PostBreadcrumbs {
         /**
-          * The URL for the home breadcrumb item.
+          * The URL for the root (home) breadcrumb item.
          */
         "homeUrl": string;
         /**
-          * The accessible label for the breadcrumb component.
+          * An accessible label for the breadcrumb navigation.
          */
         "textBreadcrumbs": string;
         /**
-          * The text label for the home breadcrumb item.
+          * An accessible label for the root (home) breadcrumb item.
          */
         "textHome": string;
         /**
-          * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
+          * An accessible label for the overflow menu that contains collapsed breadcrumb items.
          */
         "textMoreItems": string;
     }
@@ -1633,6 +1659,18 @@ declare namespace LocalJSX {
           * Emitted when the authentication state changes. The event payload is an object with an `authenticated` property: `true` when the user is logged in, `false` when the user is not logged in or the API request failed.
          */
         "onPostChange"?: (event: PostLoginWidgetCustomEvent<{ authenticated: boolean }>) => void;
+        /**
+          * Label for the "Current user is {user}" accessibility description. Use `{user}` as a placeholder — it will be replaced with the current user's name at runtime.
+         */
+        "textCurrentUser": string;
+        /**
+          * Accessible label for the dropdown menu
+         */
+        "textUserMenu": string;
+        /**
+          * Hidden label for the user menu trigger button, for accessibility purposes. It should describe the purpose of the button (e.g. "Access user links").
+         */
+        "textUserMenuTrigger": string;
     }
     interface PostLogo {
         /**
@@ -1943,7 +1981,6 @@ declare namespace LocalJSX {
     interface PostAvatarAttributes {
         "firstname": string;
         "lastname": string;
-        "userid": string;
         "email": string;
         "description": string;
     }
@@ -1957,6 +1994,8 @@ declare namespace LocalJSX {
         "url": string | URL;
         "label": string;
         "description": string;
+        "variant": Variant;
+        "selected": boolean;
     }
     interface PostBreadcrumbsAttributes {
         "homeUrl": string;
@@ -2026,6 +2065,11 @@ declare namespace LocalJSX {
         "value": string;
         "selected": boolean;
         "highlighted": boolean;
+    }
+    interface PostLoginWidgetAttributes {
+        "textCurrentUser": string;
+        "textUserMenu": string;
+        "textUserMenuTrigger": string;
     }
     interface PostLogoAttributes {
         "url": string | URL;
@@ -2132,7 +2176,7 @@ declare namespace LocalJSX {
         "post-linkarea": PostLinkarea;
         "post-listbox": PostListbox;
         "post-listbox-option": Omit<PostListboxOption, keyof PostListboxOptionAttributes> & { [K in keyof PostListboxOption & keyof PostListboxOptionAttributes]?: PostListboxOption[K] } & { [K in keyof PostListboxOption & keyof PostListboxOptionAttributes as `attr:${K}`]?: PostListboxOptionAttributes[K] } & { [K in keyof PostListboxOption & keyof PostListboxOptionAttributes as `prop:${K}`]?: PostListboxOption[K] } & OneOf<"value", PostListboxOption["value"], PostListboxOptionAttributes["value"]>;
-        "post-login-widget": PostLoginWidget;
+        "post-login-widget": Omit<PostLoginWidget, keyof PostLoginWidgetAttributes> & { [K in keyof PostLoginWidget & keyof PostLoginWidgetAttributes]?: PostLoginWidget[K] } & { [K in keyof PostLoginWidget & keyof PostLoginWidgetAttributes as `attr:${K}`]?: PostLoginWidgetAttributes[K] } & { [K in keyof PostLoginWidget & keyof PostLoginWidgetAttributes as `prop:${K}`]?: PostLoginWidget[K] } & OneOf<"textCurrentUser", PostLoginWidget["textCurrentUser"], PostLoginWidgetAttributes["textCurrentUser"]> & OneOf<"textUserMenu", PostLoginWidget["textUserMenu"], PostLoginWidgetAttributes["textUserMenu"]> & OneOf<"textUserMenuTrigger", PostLoginWidget["textUserMenuTrigger"], PostLoginWidgetAttributes["textUserMenuTrigger"]>;
         "post-logo": Omit<PostLogo, keyof PostLogoAttributes> & { [K in keyof PostLogo & keyof PostLogoAttributes]?: PostLogo[K] } & { [K in keyof PostLogo & keyof PostLogoAttributes as `attr:${K}`]?: PostLogoAttributes[K] } & { [K in keyof PostLogo & keyof PostLogoAttributes as `prop:${K}`]?: PostLogo[K] };
         "post-mainnavigation": Omit<PostMainnavigation, keyof PostMainnavigationAttributes> & { [K in keyof PostMainnavigation & keyof PostMainnavigationAttributes]?: PostMainnavigation[K] } & { [K in keyof PostMainnavigation & keyof PostMainnavigationAttributes as `attr:${K}`]?: PostMainnavigationAttributes[K] } & { [K in keyof PostMainnavigation & keyof PostMainnavigationAttributes as `prop:${K}`]?: PostMainnavigation[K] } & OneOf<"textMain", PostMainnavigation["textMain"], PostMainnavigationAttributes["textMain"]>;
         "post-megadropdown": Omit<PostMegadropdown, keyof PostMegadropdownAttributes> & { [K in keyof PostMegadropdown & keyof PostMegadropdownAttributes]?: PostMegadropdown[K] } & { [K in keyof PostMegadropdown & keyof PostMegadropdownAttributes as `attr:${K}`]?: PostMegadropdownAttributes[K] } & { [K in keyof PostMegadropdown & keyof PostMegadropdownAttributes as `prop:${K}`]?: PostMegadropdown[K] } & OneOf<"textClose", PostMegadropdown["textClose"], PostMegadropdownAttributes["textClose"]> & OneOf<"textBack", PostMegadropdown["textBack"], PostMegadropdownAttributes["textBack"]>;

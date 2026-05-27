@@ -7,11 +7,15 @@ const meta: MetaComponent = {
   title: 'Components/Breadcrumbs',
   component: 'post-breadcrumbs',
   tags: ['package:WebComponents', 'status:Experimental'],
+  render,
   parameters: {
     badges: [],
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=558-16158&m=dev',
+    },
+    controls: {
+      exclude: ['itemCount'],
     },
   },
   args: {
@@ -19,88 +23,36 @@ const meta: MetaComponent = {
     textHome: 'Home',
     textBreadcrumbs: 'Breadcrumbs',
     textMoreItems: 'More items',
+    itemCount: 3,
   },
 };
+
+function render(args: Args) {
+  return html`
+    <post-breadcrumbs
+      home-url=${args.homeUrl}
+      text-home=${args.textHome}
+      text-breadcrumbs=${args.textBreadcrumbs}
+      text-more-items=${args.textMoreItems}
+    >
+      ${Array.from({ length: args.itemCount }).map(
+        (_, i) =>
+          html`<post-breadcrumb-item url="/section${i + 1}"
+            >Section ${i + 1}</post-breadcrumb-item
+          > `,
+      )}
+    </post-breadcrumbs>
+  `;
+}
 
 export default meta;
 
 type Story = StoryObj;
 
-export const Default: Story = {
-  render: (args: Args) => html`
-    <post-breadcrumbs
-      home-url=${args.homeUrl}
-      text-home=${args.textHome}
-      text-breadcrumbs=${args.textBreadcrumbs}
-      text-more-items=${args.textMoreItems}
-    >
-      <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
-    </post-breadcrumbs>
-  `,
-};
+export const Default: Story = {};
 
 export const Concatenated: Story = {
-  render: (args: Args) => html`
-    <post-breadcrumbs
-      home-url=${args.homeUrl}
-      text-home=${args.textHome}
-      text-breadcrumbs=${args.textBreadcrumbs}
-      text-more-items=${args.textMoreItems}
-    >
-      <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section4">Section 4</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section5">Section 5</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section6">Section 6</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section7">Section 7</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section8">Section 8</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section9">Section 9</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section10">Section 10</post-breadcrumb-item>
-    </post-breadcrumbs>
-  `,
-};
-
-export const BreadcrumbItem: Story = {
-  render: (args: Args) => html`
-    <post-breadcrumb-item url=${args.url} label=${args.label} description=${args.description}
-      >${args.content}</post-breadcrumb-item
-    >
-  `,
   args: {
-    url: '/section1',
-    content: 'Section 1',
-    label: 'Products section',
-    description: 'This section contains all the products you can buy.',
-  },
-  argTypes: {
-    url: {
-      name: 'url',
-      description: 'The URL of the breadcrumb item.',
-      control: { type: 'text' },
-    },
-    content: {
-      name: 'content',
-      description: 'The visible label of the breadcrumb item.',
-      control: { type: 'text' },
-    },
-    label: {
-      name: 'label',
-      description:
-        'ARIA label, screen readers will use this instead of the breadcrumb item content.',
-      control: { type: 'text' },
-    },
-    description: {
-      name: 'description',
-      description:
-        'ARIA description for additional context, read after the breadcrumb item content or `label`.',
-      control: { type: 'text' },
-    },
-    homeUrl: { table: { disable: true } },
-    textHome: { table: { disable: true } },
-    textBreadcrumbs: { table: { disable: true } },
-    textMoreItems: { table: { disable: true } },
+    itemCount: 10,
   },
 };
