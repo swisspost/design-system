@@ -92,7 +92,7 @@ export class PostInternetFooter {
       <Title {...titleProps} config={config.title} id={titleId} />,
       <ul {...listProps} aria-labelledby={titleId}>
         {config.items.map(item => (
-          <li>
+          <li key={item.text}>
             <Link {...linkProps} config={item} />
           </li>
         ))}
@@ -121,6 +121,14 @@ export class PostInternetFooter {
     return (
       <Host data-version={version}>
         <post-footer textFooter={this.textFooter}>
+          {footerConfig.prefooter && (
+            <div slot="prefooter">
+              {this.renderListWithTitle(footerConfig.prefooter, {
+                titleProps: { tag: 'h3' },
+              })}
+            </div>
+          )}
+
           {footerConfig.sections?.map((section, i) =>
             this.renderListWithTitle(section, {
               titleProps: { tag: 'span', slot: `grid-${i + 1}-title` },
@@ -158,7 +166,7 @@ export class PostInternetFooter {
             <div slot="meta">
               <ul aria-label={getText(footerConfig.complianceLinks.title)}>
                 {footerConfig.complianceLinks.items.map(item => (
-                  <li>
+                  <li key={item.text}>
                     <Link config={item} />
                   </li>
                 ))}

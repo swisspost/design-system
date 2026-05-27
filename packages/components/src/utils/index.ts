@@ -1,4 +1,5 @@
 export * from './property-checkers';
+export * from './property-decorators';
 
 export * from './attribute-observer';
 export * from './breakpoints';
@@ -13,5 +14,5 @@ export * from './is-value-empty';
 export * from './repeat-on-long-press';
 export * from './sass-export';
 export * from './timeout';
-
 export * from './is-iso-date';
+export * from './locales';

@@ -1,9 +1,10 @@
+import { angularOutputTarget } from '@stencil/angular-output-target';
 import { Config } from '@stencil/core';
+import { reactOutputTarget } from '@stencil/react-output-target';
 import { sass } from '@stencil/sass';
 import postcss from 'rollup-plugin-postcss';
-import { reactOutputTarget } from '@stencil/react-output-target';
-import { angularOutputTarget } from '@stencil/angular-output-target';
 import { angularValueAccessorBindings } from './.config/bindings.angular';
+import { airDatepickerLocalePlugin } from './.config/rollup-plugin.air-datepicker-locale';
 
 export const config: Config = {
   namespace: 'post-components',
@@ -137,6 +138,7 @@ export const config: Config = {
   ],
   rollupPlugins: {
     before: [
+      airDatepickerLocalePlugin(),
       postcss({
         use: {
           sass: {
@@ -149,6 +151,7 @@ export const config: Config = {
     ],
   },
   testing: {
+    setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
     testPathIgnorePatterns: [
       '<rootDir>/dist/',
       '<rootDir>/loader/',
