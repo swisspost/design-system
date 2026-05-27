@@ -13632,7 +13632,7 @@ snapshots:
 
   '@npmcli/fs@5.0.0':
     dependencies:
-      semver: 7.8.0
+      semver: 7.8.1
 
   '@npmcli/git@5.0.8':
     dependencies:
@@ -14851,7 +14851,7 @@ snapshots:
   '@typescript-eslint/project-service@8.59.2(typescript@5.9.3)':
     dependencies:
       '@typescript-eslint/tsconfig-utils': 8.59.2(typescript@5.9.3)
-      '@typescript-eslint/types': 8.59.4
+      '@typescript-eslint/types': 8.60.0
       debug: 4.4.3(supports-color@5.5.0)
       typescript: 5.9.3
     transitivePeerDependencies:
