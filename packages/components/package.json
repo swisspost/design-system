@@ -27,6 +27,7 @@
     "./dist/components/index.js",
     "./dist/loader/index.js",
     "./dist/loader/index.cjs.js",
+    "./cypress/**",
     "*.css"
   ],
   "type": "module",
