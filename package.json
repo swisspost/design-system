@@ -102,6 +102,8 @@
         "zone.js": ">=0.14"
       }
     },
-    "overrides": {}
+    "overrides": {
+      "browserslist": ">=4.27.0"
+    }
   }
 }
