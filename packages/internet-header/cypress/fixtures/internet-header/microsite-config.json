@@ -1,9 +1,6 @@
 {
   "de": {
     "header": {
-      "navMain": []
-    },
-    "header_new": {
       "globalHeader": {
         "postLogo": {
           "text": "Benutzerdefiniertes Logo",
@@ -17,30 +14,22 @@
           {
             "code": "de-CH",
             "text": "DE",
-            "label": "Deutsch",
-            "url": "#",
-            "active": false
+            "url": "#"
           },
           {
             "code": "fr-CH",
             "text": "FR",
-            "label": "Französisch",
-            "url": "#",
-            "active": false
+            "url": "#"
           },
           {
             "code": "it-CH",
             "text": "IT",
-            "label": "Italienisch",
-            "url": "#",
-            "active": false
+            "url": "#"
           },
           {
             "code": "en",
             "text": "EN",
-            "label": "Englisch",
-            "url": "#",
-            "active": true
+            "url": "#"
           }
         ]
       },
@@ -53,7 +42,13 @@
             "icon": "search"
           },
           {
-            "user": {},
+            "user": {
+              "id": "user-123",
+              "firstName": "John",
+              "lastName": "Doe",
+              "email": "john@example.com",
+              "profilePicture": "/profile.jpg"
+            },
             "options": [
               {
                 "text": "Mein Profil",
