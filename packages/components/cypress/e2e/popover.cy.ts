@@ -1,8 +1,8 @@
-import { getPopoverOpenSelector } from './helper/popovercontainer';
+import { isPopoverSupported } from './helper/popovercontainer';
 
 describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
   describe('default', () => {
-    const selector = getPopoverOpenSelector();
+    const selector = isPopoverSupported() ? ':popover-open' : String.raw`.\:popover-open`;
 
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-popover.test.html');
