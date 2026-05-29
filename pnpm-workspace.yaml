@@ -3,6 +3,8 @@ packages:
   - 'packages/*'
   - 'packages/components-angular/projects/*'
 
+catalog:
+  '@playwright/test': 1.60.0
 catalogs:
   node:
     '@types/node': ^24.0.0
