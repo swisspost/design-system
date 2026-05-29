@@ -325,6 +325,9 @@ $toolbar-icons: (
   // and its safe-space `::after` overlay with `pointer-events: auto` ends up covering the story
   // preview, blocking all touch events). `clip` avoids this iOS quirk.
   overflow-x: clip;
+  div:has(> .docblock-argstable) {
+    overflow-x: visible;
+  }
 }
 
 @include media.min(xl) {
