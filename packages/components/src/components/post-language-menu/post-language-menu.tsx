@@ -4,10 +4,10 @@ import {
   checkRequiredAndPattern,
   checkEmptyOrOneOf,
   EventFrom,
+  nanoid,
 } from '@/utils';
 import { version } from '@root/package.json';
 import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
-import { nanoid } from 'nanoid';
 
 @Component({
   tag: 'post-language-menu',
@@ -109,7 +109,7 @@ export class PostLanguageMenu {
     }
   }
 
-  @Listen('scroll', {target: 'document', capture: true})
+  @Listen('scroll', { target: 'document', capture: true })
   hideMenuOnScroll() {
     if (this.menu) this.menu.hide();
   }
@@ -160,7 +160,7 @@ export class PostLanguageMenu {
           </button>
         </post-menu-trigger>
         <post-menu
-          ref={el => this.menu = el}
+          ref={el => (this.menu = el)}
           id={this.menuId}
           class="post-language-menu-dropdown-container"
           label={this.textChangeLanguage}

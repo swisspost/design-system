@@ -21,6 +21,15 @@
     "dist/",
     "hydrate/"
   ],
+  "sideEffects": [
+    "./dist/esm/post-components.js",
+    "./dist/cjs/post-components.cjs.js",
+    "./dist/components/index.js",
+    "./dist/loader/index.js",
+    "./dist/loader/index.cjs.js",
+    "./cypress/**",
+    "*.css"
+  ],
   "type": "module",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -34,7 +43,7 @@
     ".": {
       "types": "./dist/types/index.d.ts",
       "import": "./dist/esm/post-components.js",
-      "require": "./dist/cjs/post-components.cjs.js"
+      "default": "./dist/cjs/post-components.cjs.js"
     },
     "./dist/*": {
       "default": "./dist/*"
@@ -42,7 +51,7 @@
     "./loader": {
       "types": "./dist/loader/index.d.ts",
       "import": "./dist/loader/index.js",
-      "require": "./dist/loader/index.cjs.js"
+      "default": "./dist/loader/index.cjs.js"
     },
     "./components": {
       "types": "./dist/components/index.d.ts",
@@ -60,9 +69,11 @@
     },
     "./hydrate": {
       "types": "./hydrate/index.d.ts",
-      "import": "./hydrate/index.mjs",
-      "require": "./hydrate/index.js",
-      "default": "./hydrate/index.js"
+      "node": {
+        "import": "./hydrate/index.mjs",
+        "default": "./hydrate/index.js"
+      },
+      "default": "./hydrate/index.stub.js"
     }
   },
   "scripts": {
@@ -70,7 +81,7 @@
     "start": "pnpm prebuild:script && stencil build --dev --watch --docs --docs-readme",
     "prebuild": "pnpm clean && pnpm prebuild:script",
     "build": "stencil build --docs-readme",
-    "postbuild": "pnpm copy:component-names & pnpm copy:styles:components-react & pnpm copy:styles:components-angular",
+    "postbuild": "pnpm copy:hydrate-stub & pnpm copy:component-names & pnpm copy:styles:components-react & pnpm copy:styles:components-angular",
     "clean": "rimraf --glob dist hydrate loader loaders www src/styles/generated src/_generated ../components-react/**/stencil-generated/ ../components-angular/projects/components/src/lib/stencil-generated/",
     "unit": "stencil test --spec",
     "unit:watch": "stencil test --spec --watchAll --silent",
@@ -88,6 +99,7 @@
     "vrt:safari": "node vrt/generate-header-html.js && playwright test --project=webkit",
     "generate": "stencil generate",
     "prebuild:script": "node --loader ts-node/esm prebuild.ts",
+    "copy:hydrate-stub": "copyfiles -f src/hydrate-stub/* hydrate/",
     "copy:component-names": "copyfiles -f src/_generated/component-names.json dist/",
     "copy:styles:components-react": "copyfiles -f www/build/post-components.css ../components-react/src/stencil-generated/",
     "copy:styles:components-angular": "copyfiles -f www/build/post-components.css ../components-angular/projects/components/src/lib/stencil-generated/"
@@ -101,9 +113,7 @@
     "air-datepicker": "3.6.0",
     "ally.js": "1.4.1",
     "imask": "7.6.1",
-    "language-tags": "1.0.9",
-    "long-press-event": "2.5.2",
-    "nanoid": "5.1.11"
+    "long-press-event": "2.5.2"
   },
   "devDependencies": {
     "@eslint/compat": "1.2.5",

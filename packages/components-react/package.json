@@ -20,6 +20,15 @@
     "access": "public",
     "linkDirectory": true
   },
+  "sideEffects": [
+    "./dist/index.js",
+    "./dist/index.server.js",
+    "./dist/stencil-generated/components.js",
+    "./dist/stencil-generated/components.server.js",
+    "./dist/stencil-generated/standalone/components.js",
+    "./dist/stencil-generated/standalone/*.server.js",
+    "*.css"
+  ],
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -27,32 +36,36 @@
   "exports": {
     "./post-components.css": "./dist/post-components.css",
     ".": {
+      "node": {
+        "types": "./dist/types/index.server.d.ts",
+        "default": "./dist/index.server.js"
+      },
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/index.js"
+      "default": "./dist/index.js"
     },
     "./*": {
+      "node": {
+        "types": "./dist/types/stencil-generated/standalone/*.server.d.ts",
+        "default": "./dist/stencil-generated/standalone/*.server.js"
+      },
       "types": "./dist/types/stencil-generated/standalone/*.d.ts",
-      "import": "./dist/stencil-generated/standalone/*.js"
+      "default": "./dist/stencil-generated/standalone/*.js"
     },
     "./server": {
       "types": "./dist/types/index.server.d.ts",
-      "import": "./dist/index.server.js"
+      "default": "./dist/index.server.js"
     },
     "./server/*": {
       "types": "./dist/types/stencil-generated/standalone/*.server.d.ts",
-      "import": "./dist/stencil-generated/standalone/*.server.js"
-    },
-    "./standalone": {
-      "types": "./dist/types/stencil-generated/standalone/components.d.ts",
-      "import": "./dist/stencil-generated/standalone/components.js"
+      "default": "./dist/stencil-generated/standalone/*.server.js"
     },
     "./icons": {
       "types": "./dist/types/icons-generated/index.d.ts",
-      "import": "./dist/icons-generated/index.js"
+      "default": "./dist/icons-generated/index.js"
     },
     "./icons/*": {
       "types": "./dist/types/icons-generated/*.d.ts",
-      "import": "./dist/icons-generated/*.js"
+      "default": "./dist/icons-generated/*.js"
     }
   },
   "scripts": {

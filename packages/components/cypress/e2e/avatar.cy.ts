@@ -50,9 +50,9 @@ describe('Avatar', () => {
       cy.get('@initials').should('not.have.text');
     });
 
-    it('should show initials if gravatar does not exist, otherwise show img', () => {
+    it('should show initials if gravatar does not exist, otherwise show img', async () => {
       const email = 'no-gravatar-account@post.ch';
-      const url = getGravatarUrl(email);
+      const url = await getGravatarUrl(email);
 
       cy.request({
         url,
