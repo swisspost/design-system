@@ -321,6 +321,10 @@ $toolbar-icons: (
   overflow-x: hidden;
   div:has(> .docblock-argstable) {
     overflow-x: visible;
+    
+    @media (hover: hover) {
+      overflow-x: auto;
+    }
   }
 }
 
