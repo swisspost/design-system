@@ -36,7 +36,7 @@
   "exports": {
     "./post-components.css": "./dist/post-components.css",
     ".": {
-      "react-server": {
+      "node": {
         "types": "./dist/types/index.server.d.ts",
         "default": "./dist/index.server.js"
       },
@@ -44,7 +44,7 @@
       "default": "./dist/index.js"
     },
     "./*": {
-      "react-server": {
+      "node": {
         "types": "./dist/types/stencil-generated/standalone/*.server.d.ts",
         "default": "./dist/stencil-generated/standalone/*.server.js"
       },
