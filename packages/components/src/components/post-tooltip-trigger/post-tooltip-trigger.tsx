@@ -3,17 +3,7 @@ import { checkEmptyOrType } from '@/utils/property-checkers';
 import { version } from '@root/package.json';
 
 const TRIGGER_EVENTS = ['pointerenter', 'pointerleave', 'focusin', 'focusout', 'long-press'];
-let longPressEventImport: Promise<unknown> | undefined;
 let isFocusable: ((element: HTMLElement) => boolean) | undefined;
-
-const ensureLongPressEvent = async () => {
-  if (Build.isServer) {
-    return;
-  }
-
-  longPressEventImport ??= import('long-press-event');
-  await longPressEventImport;
-};
 
 /**
  * @slot default - Content to trigger the tooltip. Can contain any focusable element or will be made focusable automatically.
@@ -70,7 +60,7 @@ export class PostTooltipTrigger {
   }
 
   async componentWillLoad() {
-    await ensureLongPressEvent();
+    await import('long-press-event');
     const allyModule = await import('ally.js/is/focusable');
     isFocusable ??= allyModule.default;
   }
