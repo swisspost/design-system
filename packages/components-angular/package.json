@@ -46,7 +46,7 @@
     "@angular/compiler-cli": "20.3.19",
     "@eslint/js": "9.18.0",
     "@swisspost/design-system-components-angular": "workspace:10.0.0-next.70",
-    "@playwright/test": "1.56.1",
+    "@playwright/test": "catalog:",
     "angular-eslint": "19.8.1",
     "copyfiles": "2.4.1",
     "eslint": "9.26.0",
