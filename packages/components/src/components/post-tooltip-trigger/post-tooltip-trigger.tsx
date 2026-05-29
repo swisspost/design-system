@@ -59,11 +59,15 @@ export class PostTooltipTrigger {
   }
 
   private get tooltip(): HTMLPostTooltipElement | null {
-    if (Build.isServer) return null;
+  if (Build.isServer) return null;
 
-    const ref = document.getElementById(this.for);
-    return ref?.localName === 'post-tooltip' ? (ref as HTMLPostTooltipElement) : null;
-  }
+  const root = this.host.getRootNode() as Document | ShadowRoot;
+  const ref = (root as Document).getElementById
+    ? (root as Document).getElementById(this.for)
+    : (root as ShadowRoot).querySelector(`#${this.for}`);
+
+  return ref?.localName === 'post-tooltip' ? (ref as HTMLPostTooltipElement) : null;
+}
 
   componentDidLoad() {
     this.setupTrigger();
@@ -84,7 +88,6 @@ export class PostTooltipTrigger {
 
   private handleSlotChange() {
     this.cleanupTrigger();
-
     this.setupTrigger();
   }
 
