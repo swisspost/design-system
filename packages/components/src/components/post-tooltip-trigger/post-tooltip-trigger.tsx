@@ -32,8 +32,19 @@ export class PostTooltipTrigger {
    */
   @Prop() delay: number = 0;
 
+  /**
+   * Reference to the element inside the host that will act as the trigger.
+   */
   private trigger: HTMLElement | null = null;
+
+  /**
+   * Timeout ID for the delay.
+   */
   private delayTimeout: ReturnType<typeof globalThis.setTimeout> | null = null;
+
+  /**
+   * Bound event handlers for proper removal
+   */
   private boundTriggerHandler: (event: Event) => void;
   private boundTooltipHandler: (event: PointerEvent) => void;
 
@@ -50,11 +61,7 @@ export class PostTooltipTrigger {
   private get tooltip(): HTMLPostTooltipElement | null {
     if (Build.isServer) return null;
 
-    const root = (this.host.getRootNode() as Document | ShadowRoot);
-    const ref = (root as Document).getElementById
-      ? (root as Document).getElementById(this.for)
-      : (root as ShadowRoot).querySelector(`#${this.for}`);
-
+    const ref = document.getElementById(this.for);
     return ref?.localName === 'post-tooltip' ? (ref as HTMLPostTooltipElement) : null;
   }
 
@@ -77,6 +84,7 @@ export class PostTooltipTrigger {
 
   private handleSlotChange() {
     this.cleanupTrigger();
+
     this.setupTrigger();
   }
 
@@ -146,7 +154,6 @@ export class PostTooltipTrigger {
   }
 
   private handleTriggerEvent(event: Event) {
-    console.log('[trigger] event fired:', event.type, 'pointerType:', (event as PointerEvent).pointerType);
     switch (event.type) {
       case 'pointerenter':
       case 'focusin':
@@ -193,16 +200,13 @@ export class PostTooltipTrigger {
   }
 
   private interestHandler() {
-    console.log('[trigger] interestHandler called, trigger:', this.trigger, 'tooltip:', this.tooltip);
     if (this.trigger) {
       if (this.delay > 0) {
         this.delayTimeout = globalThis.setTimeout(() => {
-          console.log('[trigger] calling tooltip.show() after delay');
           this.tooltip?.show(this.trigger);
           this.delayTimeout = null;
         }, this.delay);
       } else {
-        console.log('[trigger] calling tooltip.show() immediately');
         this.tooltip?.show(this.trigger);
       }
     }
