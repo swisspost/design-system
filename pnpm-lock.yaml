@@ -5,6 +5,10 @@ settings:
   excludeLinksFromLockfile: false
 
 catalogs:
+  default:
+    '@playwright/test':
+      specifier: 1.60.0
+      version: 1.60.0
   jest:
     '@types/jest':
       specifier: ^30.0.0
@@ -88,6 +92,12 @@ importers:
       '@swisspost/internet-header':
         specifier: workspace:10.0.0-next.70
         version: link:../../packages/internet-header
+      ag-charts-community:
+        specifier: 13.2.1
+        version: 13.2.1
+      ag-charts-react:
+        specifier: 13.2.1
+        version: 13.2.1(react@18.3.1)
     devDependencies:
       '@eslint/js':
         specifier: 9.18.0
@@ -217,7 +227,7 @@ importers:
         version: link:../../packages/styles/dist
       next:
         specifier: 16.2.6
-        version: 16.2.6(@playwright/test@1.56.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.89.2)
+        version: 16.2.6(@playwright/test@1.60.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.89.2)
       react:
         specifier: 19.1.1
         version: 19.1.1
@@ -232,8 +242,8 @@ importers:
         specifier: 15.1.5
         version: 15.1.5
       '@playwright/test':
-        specifier: 1.56.1
-        version: 1.56.1
+        specifier: 'catalog:'
+        version: 1.60.0
       '@swisspost/design-system-components':
         specifier: workspace:10.0.0-next.70
         version: link:../../packages/components
@@ -354,8 +364,8 @@ importers:
         specifier: 3.1.8
         version: 3.1.8(cypress@14.3.2)
       '@playwright/test':
-        specifier: 1.56.1
-        version: 1.56.1
+        specifier: 'catalog:'
+        version: 1.60.0
       '@stencil-community/eslint-plugin':
         specifier: 0.10.0
         version: 0.10.0(@typescript-eslint/eslint-plugin@8.59.2(@typescript-eslint/parser@7.18.0(eslint@9.26.0(jiti@2.7.0))(typescript@5.9.3))(eslint@9.26.0(jiti@2.7.0))(typescript@5.9.3))(@typescript-eslint/parser@7.18.0(eslint@9.26.0(jiti@2.7.0))(typescript@5.9.3))(eslint-plugin-react@7.37.5(eslint@9.26.0(jiti@2.7.0)))(eslint@9.26.0(jiti@2.7.0))(typescript@5.9.3)
@@ -573,7 +583,7 @@ importers:
         version: 1.2.0(@stencil/core@4.43.3)(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@stencil/ssr':
         specifier: 0.3.0
-        version: 0.3.0(next@16.2.6(@playwright/test@1.56.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.90.0))(vite@7.3.2(@types/node@24.12.4)(jiti@2.7.0)(less@4.6.4)(lightningcss@1.30.2)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.48.0)(yaml@2.9.0))(webpack@5.107.2(lightningcss@1.30.2))
+        version: 0.3.0(next@16.2.6(@playwright/test@1.60.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.90.0))(vite@7.3.2(@types/node@24.12.4)(jiti@2.7.0)(less@4.6.4)(lightningcss@1.30.2)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.48.0)(yaml@2.9.0))(webpack@5.107.2(lightningcss@1.30.2))
       '@swisspost/design-system-components':
         specifier: workspace:10.0.0-next.70
         version: link:../components
@@ -3355,8 +3365,8 @@ packages:
     resolution: {integrity: sha512-QNqXyfVS2wm9hweSYD2O7F0G06uurj9kZ96TRQE5Y9hU7+tgdZwIkbAKc5Ocy1HxEY2kuDQa6cQ1WRs/O5LFKA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
-  '@playwright/test@1.56.1':
-    resolution: {integrity: sha512-vSMYtL/zOcFpvJCW71Q/OEGQb7KYBPAdKh35WNSkaZA75JlAO8ED8UN6GUNTm3drWomcbcqRPFqQbLae8yBTdg==}
+  '@playwright/test@1.60.0':
+    resolution: {integrity: sha512-O71yZIbAh/PxDMNGns37GHBIfrVkEVyn+AXyIa5dOTfb4/xNvRWV+Vv/NMbNCtODB/pO7vLlF2OTmMVLhmr7Ag==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -4667,8 +4677,25 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
+  ag-charts-community@13.2.1:
+    resolution: {integrity: sha512-A+DCiesRp6WQ5R5e3x9bLh50IWCachVF6gkz6Dz4icMcq6WL5JNKL+xZEzrKYl+kuD8Y8728xmVm/H53o9Nayw==}
+
+  ag-charts-core@13.2.1:
+    resolution: {integrity: sha512-Y7rk3kF+fA6bUMjU+vIzG5rRBd+8EKjyIjzNR2uV1+HyrlnOn6b7Eb9HPkDUoosWHhz+UNCOW/lYDzPP6mivHQ==}
+
+  ag-charts-locale@13.2.1:
+    resolution: {integrity: sha512-lwwV/l/O187R4DYUfjm6p8LijITe46IlDz8nOxNQNJAOpkzs+cWmjSxfNiM1BMVCWTcMdah/AKN+6iihbDa8IA==}
+
+  ag-charts-react@13.2.1:
+    resolution: {integrity: sha512-5t2DMM+MdQm5MOoGMnqTkri2vYrDbvvVOePBFvl6YU133dal1m5MOv+Srmv/J+139xzAOn1sCPuGwpl8yR1Snw==}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0
+
   ag-charts-types@11.3.2:
     resolution: {integrity: sha512-trPGqgGYiTeLgtf9nLuztDYOPOFOLbqHn1g2D99phf7QowcwdX0TPx0wfWG8Hm90LjB8IH+G2s3AZe2vrdAtMQ==}
+
+  ag-charts-types@13.2.1:
+    resolution: {integrity: sha512-r7veb3QqJtIKlXmeUsLR4/oDPwmHxFI2tmbZra/203mdaz3uwQUrrgYNg628nrK+7L2YxXnwGc6L05tWjLLjNQ==}
 
   ag-grid-community@33.3.2:
     resolution: {integrity: sha512-9bx0e/+ykOyLvUxHqmdy0cRVANH6JAtv0yZdnBZEXYYqBAwN+G5a4NY+2I1KvoOCYzbk8SnStG7y4hCdVAAWOQ==}
@@ -9042,13 +9069,13 @@ packages:
   platform@1.3.3:
     resolution: {integrity: sha512-VJK1SRmXBpjwsB4YOHYSturx48rLKMzHgCqDH2ZDa6ZbMS/N5huoNqyQdK5Fj/xayu3fqbXckn5SeCS1EbMDZg==}
 
-  playwright-core@1.56.1:
-    resolution: {integrity: sha512-hutraynyn31F+Bifme+Ps9Vq59hKuUCz7H1kDOcBs+2oGguKkWTU50bBWrtz34OUWmIwpBTWDxaRPXrIXkgvmQ==}
+  playwright-core@1.60.0:
+    resolution: {integrity: sha512-9bW6zvX/m0lEbgTKJ6YppOKx8H3VOPBMOCFh2irXFOT4BbHgrx5hPjwJYLT40Lu+4qtD36qKc/Hn56StUW57IA==}
     engines: {node: '>=18'}
     hasBin: true
 
-  playwright@1.56.1:
-    resolution: {integrity: sha512-aFi5B0WovBHTEvpM3DzXTUaeN6eN0qWnTkKx4NQaH4Wvcmc153PdaY2UBdSYKaGYw+UyWXSVyxDUg5DoPEttjw==}
+  playwright@1.60.0:
+    resolution: {integrity: sha512-hheHdokM8cdqCb0lcE3s+zT4t4W+vvjpGxsZlDnikarzx8tSzMebh3UiFtgqwFwnTnjYQcsyMF8ei2mCO/tpeA==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -13986,9 +14013,9 @@ snapshots:
 
   '@pkgr/core@0.2.9': {}
 
-  '@playwright/test@1.56.1':
+  '@playwright/test@1.60.0':
     dependencies:
-      playwright: 1.56.1
+      playwright: 1.60.0
 
   '@popperjs/core@2.11.8': {}
 
@@ -14307,14 +14334,14 @@ snapshots:
     dependencies:
       '@stencil/core': 4.43.3
 
-  '@stencil/ssr@0.3.0(next@16.2.6(@playwright/test@1.56.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.90.0))(vite@7.3.2(@types/node@24.12.4)(jiti@2.7.0)(less@4.6.4)(lightningcss@1.30.2)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.48.0)(yaml@2.9.0))(webpack@5.107.2(lightningcss@1.30.2))':
+  '@stencil/ssr@0.3.0(next@16.2.6(@playwright/test@1.60.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.90.0))(vite@7.3.2(@types/node@24.12.4)(jiti@2.7.0)(less@4.6.4)(lightningcss@1.30.2)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.48.0)(yaml@2.9.0))(webpack@5.107.2(lightningcss@1.30.2))':
     dependencies:
       ast-types: 0.14.2
       decamelize: 6.0.1
       esbuild: 0.25.12
       imports-loader: 5.0.0(webpack@5.107.2(lightningcss@1.30.2))
       mlly: 1.8.2
-      next: 16.2.6(@playwright/test@1.56.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.90.0)
+      next: 16.2.6(@playwright/test@1.60.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.90.0)
       recast: 0.23.11
       vite: 7.3.2(@types/node@24.12.4)(jiti@2.7.0)(less@4.6.4)(lightningcss@1.30.2)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.48.0)(yaml@2.9.0)
       webpack: 5.107.2(lightningcss@1.30.2)
@@ -15249,7 +15276,26 @@ snapshots:
 
   acorn@8.16.0: {}
 
+  ag-charts-community@13.2.1:
+    dependencies:
+      ag-charts-core: 13.2.1
+      ag-charts-locale: 13.2.1
+      ag-charts-types: 13.2.1
+
+  ag-charts-core@13.2.1:
+    dependencies:
+      ag-charts-types: 13.2.1
+
+  ag-charts-locale@13.2.1: {}
+
+  ag-charts-react@13.2.1(react@18.3.1):
+    dependencies:
+      ag-charts-community: 13.2.1
+      react: 18.3.1
+
   ag-charts-types@11.3.2: {}
+
+  ag-charts-types@13.2.1: {}
 
   ag-grid-community@33.3.2:
     dependencies:
@@ -20519,7 +20565,7 @@ snapshots:
 
   next-tick@1.1.0: {}
 
-  next@16.2.6(@playwright/test@1.56.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.90.0):
+  next@16.2.6(@playwright/test@1.60.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.90.0):
     dependencies:
       '@next/env': 16.2.6
       '@swc/helpers': 0.5.15
@@ -20538,14 +20584,14 @@ snapshots:
       '@next/swc-linux-x64-musl': 16.2.6
       '@next/swc-win32-arm64-msvc': 16.2.6
       '@next/swc-win32-x64-msvc': 16.2.6
-      '@playwright/test': 1.56.1
+      '@playwright/test': 1.60.0
       sass: 1.90.0
       sharp: 0.34.5
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
 
-  next@16.2.6(@playwright/test@1.56.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.89.2):
+  next@16.2.6(@playwright/test@1.60.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.89.2):
     dependencies:
       '@next/env': 16.2.6
       '@swc/helpers': 0.5.15
@@ -20564,7 +20610,7 @@ snapshots:
       '@next/swc-linux-x64-musl': 16.2.6
       '@next/swc-win32-arm64-msvc': 16.2.6
       '@next/swc-win32-x64-msvc': 16.2.6
-      '@playwright/test': 1.56.1
+      '@playwright/test': 1.60.0
       sass: 1.89.2
       sharp: 0.34.5
     transitivePeerDependencies:
@@ -21142,11 +21188,11 @@ snapshots:
 
   platform@1.3.3: {}
 
-  playwright-core@1.56.1: {}
+  playwright-core@1.60.0: {}
 
-  playwright@1.56.1:
+  playwright@1.60.0:
     dependencies:
-      playwright-core: 1.56.1
+      playwright-core: 1.60.0
     optionalDependencies:
       fsevents: 2.3.2
 

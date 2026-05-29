@@ -121,7 +121,7 @@
     "@eslint/js": "9.18.0",
     "@percy/cli": "1.31.13",
     "@percy/cypress": "3.1.8",
-    "@playwright/test": "1.56.1",
+    "@playwright/test": "catalog:",
     "@stencil-community/eslint-plugin": "0.10.0",
     "@stencil/angular-output-target": "1.1.1",
     "@stencil/react-output-target": "1.2.0",
