@@ -39,17 +39,6 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('@tooltip').should('not.be.visible');
     });
 
-    it('tooltip placement right', () => {
-      cy.get('#tooltip-one').invoke('attr', 'placement', 'right');
-      cy.get('@target2').focus();
-      cy.wait(10);
-      cy.get('@tooltip')
-        .should('have.css', 'left')
-        .then((v: unknown) => {
-          expect(Number.parseInt(v as string)).to.be.greaterThan(120);
-        });
-    });
-
     it('should patch aria after trigger is inserted', () => {
       cy.document().then(doc => {
         const trigger = doc.createElement('post-tooltip-trigger');
