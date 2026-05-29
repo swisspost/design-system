@@ -11,6 +11,10 @@ const meta: MetaComponent = {
   parameters: {
     badges: [],
     docs: {
+      story: {
+        inline: false,
+        height: '120px',
+      },
       page: null,
     },
   },

@@ -13,6 +13,12 @@ const meta: MetaComponent = {
   decorators: [story => html`<div style="padding: 3rem;">${story()}</div>`],
   parameters: {
     badges: [],
+    docs: {
+      story: {
+        inline: false,
+        height: '120px',
+      },
+    },
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=14016-23251&t=0yPuKvPCIphY5J5M-0',
