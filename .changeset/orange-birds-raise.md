@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-components-react': minor
+'@swisspost/design-system-components-react': major
 ---
 
 Removed the `./standalone` export in the package.json, since it was only there for internal usage and is no longer needed.
