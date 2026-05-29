@@ -525,12 +525,12 @@ importers:
       '@angular/compiler-cli':
         specifier: 20.3.19
         version: 20.3.19(@angular/compiler@20.3.19)(typescript@5.9.3)
-      '@cypress/schematic':
-        specifier: 3.0.0
-        version: 3.0.0(@angular/cli@20.3.25(@types/node@25.7.0)(chokidar@4.0.1))(@angular/core@20.3.19(@angular/compiler@20.3.19)(rxjs@7.8.2)(zone.js@0.16.1))
       '@eslint/js':
         specifier: 9.18.0
         version: 9.18.0
+      '@playwright/test':
+        specifier: 'catalog:'
+        version: 1.60.0
       '@swisspost/design-system-components-angular':
         specifier: workspace:10.0.0-next.70
         version: link:dist/components
@@ -540,9 +540,6 @@ importers:
       copyfiles:
         specifier: 2.4.1
         version: 2.4.1
-      cypress:
-        specifier: catalog:cypress
-        version: 15.14.2
       eslint:
         specifier: 9.26.0
         version: 9.26.0(jiti@2.6.1)
@@ -1690,12 +1687,6 @@ packages:
   '@cypress/request@3.0.10':
     resolution: {integrity: sha512-hauBrOdvu08vOsagkZ/Aju5XuiZx6ldsLfByg1htFeldhex+PeMrYauANzFsMJeAA0+dyPLbDoX2OYuvVoLDkQ==}
     engines: {node: '>= 6'}
-
-  '@cypress/schematic@3.0.0':
-    resolution: {integrity: sha512-LFT0sl4HOykGWwrDfvHnQxucSvT2P/VA+GOk89dbSRMkXLG8u8h9GfbqK+9keoJBGTnfJFU8MWTtwjyYwPZW6w==}
-    peerDependencies:
-      '@angular/cli': '>=17.2'
-      '@angular/core': '>=17.2'
 
   '@cypress/xvfb@1.2.4':
     resolution: {integrity: sha512-skbBzPggOVYCbnGgV+0dmBdW/s77ZkAOXIC1knS8NagwDjBrNC1LuXtQJeiN6l+m7lzmHtaoUw/ctJKdqkG57Q==}
@@ -6036,19 +6027,9 @@ packages:
 
   debug@2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
 
   debug@3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
 
   debug@4.3.7:
     resolution: {integrity: sha512-Er2nc/H7RrMXZBFCEim6TCmMk02Z8vLC2Rbi1KEBggpo0fS6l0S1nnapwmIi3yW/+GOJap1Krg4w0Hg80oCqgQ==}
@@ -9923,11 +9904,6 @@ packages:
 
   promise-inflight@1.0.1:
     resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
-    peerDependencies:
-      bluebird: '*'
-    peerDependenciesMeta:
-      bluebird:
-        optional: true
 
   promise-retry@2.0.1:
     resolution: {integrity: sha512-y+WKFlBR8BGXnsNlIHFGPZmyDf3DFMoLhaflAnyZgV6rG6xu+JwesTo2Q9R6XwYmtmwAFCkAk3e35jEdoeh/3g==}
@@ -10600,10 +10576,6 @@ packages:
     resolution: {integrity: sha512-9GUyuksjw70uNpb1MTYWsH9MQHOHY6kwfnkafC24+7aOMZn9+rVMBxRbLvw756mrBFbIsFg6Xw9IkR2Fnn3k+Q==}
     engines: {node: '>=14.0.0'}
     hasBin: true
-
-  sax@1.4.4:
-    resolution: {integrity: sha512-1n3r/tGXO6b6VXMdFT54SHzT9ytu9yr7TaELowdYpMqY/Ao7EnlQGmAQ1+RatX7Tkkdm6hONI2owqNx2aZj5Sw==}
-    engines: {node: '>=11.0.0'}
 
   sax@1.6.0:
     resolution: {integrity: sha512-6R3J5M4AcbtLUdZmRv2SygeVaM7IhrLXu9BmnOGmmACak8fiUtOsYNWUS4uK7upbmHIBbLBeFeI//477BKLBzA==}
@@ -13030,19 +13002,10 @@ snapshots:
       tunnel-agent: 0.6.0
       uuid: 8.3.2
 
-  '@cypress/schematic@3.0.0(@angular/cli@20.3.25(@types/node@25.7.0)(chokidar@4.0.1))(@angular/core@20.3.19(@angular/compiler@20.3.19)(rxjs@7.8.2)(zone.js@0.16.1))':
+  '@cypress/xvfb@1.2.4':
     dependencies:
-      '@angular/cli': 20.3.25(@types/node@25.7.0)(chokidar@4.0.1)
-      '@angular/core': 20.3.19(@angular/compiler@20.3.19)(rxjs@7.8.2)(zone.js@0.16.1)
-      jsonc-parser: 3.3.1
-      rxjs: 7.8.2
-
-  '@cypress/xvfb@1.2.4(supports-color@8.1.1)':
-    dependencies:
-      debug: 3.2.7(supports-color@8.1.1)
+      debug: 3.2.7
       lodash.once: 4.1.1
-    transitivePeerDependencies:
-      - supports-color
 
   '@dual-bundle/import-meta-resolve@4.2.1': {}
 
@@ -14508,8 +14471,6 @@ snapshots:
       proc-log: 4.2.0
       semver: 7.7.4
       walk-up-path: 3.0.1
-    transitivePeerDependencies:
-      - bluebird
 
   '@npmcli/fs@5.0.0':
     dependencies:
@@ -14526,8 +14487,6 @@ snapshots:
       promise-retry: 2.0.1
       semver: 7.7.4
       which: 4.0.0
-    transitivePeerDependencies:
-      - bluebird
 
   '@npmcli/git@7.0.2':
     dependencies:
@@ -14565,8 +14524,6 @@ snapshots:
       normalize-package-data: 6.0.2
       proc-log: 4.2.0
       semver: 7.7.4
-    transitivePeerDependencies:
-      - bluebird
 
   '@npmcli/package-json@7.0.5':
     dependencies:
@@ -16691,8 +16648,6 @@ snapshots:
       raw-body: 2.5.2
       type-is: 1.6.18
       unpipe: 1.0.0
-    transitivePeerDependencies:
-      - supports-color
 
   body-parser@2.2.2:
     dependencies:
@@ -17069,8 +17024,6 @@ snapshots:
       finalhandler: 1.1.2
       parseurl: 1.3.3
       utils-merge: 1.0.1
-    transitivePeerDependencies:
-      - supports-color
 
   content-disposition@0.5.4:
     dependencies:
@@ -17318,7 +17271,7 @@ snapshots:
   cypress@15.14.2:
     dependencies:
       '@cypress/request': 3.0.10
-      '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
+      '@cypress/xvfb': 1.2.4
       '@types/sinonjs__fake-timers': 8.1.1
       '@types/sizzle': 2.3.9
       '@types/tmp': 0.2.6
@@ -17406,21 +17359,17 @@ snapshots:
 
   debug-fabulous@1.1.0:
     dependencies:
-      debug: 3.2.7(supports-color@8.1.1)
+      debug: 3.2.7
       memoizee: 0.4.17
       object-assign: 4.1.1
-    transitivePeerDependencies:
-      - supports-color
 
   debug@2.6.9:
     dependencies:
       ms: 2.0.0
 
-  debug@3.2.7(supports-color@8.1.1):
+  debug@3.2.7:
     dependencies:
       ms: 2.1.3
-    optionalDependencies:
-      supports-color: 8.1.1
 
   debug@4.3.7:
     dependencies:
@@ -17995,7 +17944,6 @@ snapshots:
       uvu: 0.5.6
       vfile: 6.0.3
     transitivePeerDependencies:
-      - bluebird
       - supports-color
 
   eslint-plugin-cypress@4.2.0(eslint@9.26.0(jiti@2.6.1)):
@@ -18039,7 +17987,6 @@ snapshots:
       unified: 11.0.5
       vfile: 6.0.3
     transitivePeerDependencies:
-      - bluebird
       - remark-lint-file-extension
       - supports-color
 
@@ -18481,8 +18428,6 @@ snapshots:
       parseurl: 1.3.3
       statuses: 1.5.0
       unpipe: 1.0.0
-    transitivePeerDependencies:
-      - supports-color
 
   finalhandler@2.1.0:
     dependencies:
@@ -18895,8 +18840,6 @@ snapshots:
       source-map: 0.6.1
       strip-bom-string: 1.0.0
       through2: 2.0.5
-    transitivePeerDependencies:
-      - supports-color
 
   gulp@5.0.1:
     dependencies:
@@ -19118,7 +19061,6 @@ snapshots:
       url-join: 4.0.1
     transitivePeerDependencies:
       - debug
-      - supports-color
 
   http-signature@1.4.0:
     dependencies:
@@ -20629,8 +20571,6 @@ snapshots:
       mime: 1.6.0
       needle: 3.2.0
       source-map: 0.6.1
-    transitivePeerDependencies:
-      - supports-color
 
   less@4.3.0:
     dependencies:
@@ -20825,8 +20765,6 @@ snapshots:
     dependencies:
       '@npmcli/config': 8.3.4
       import-meta-resolve: 4.2.0
-    transitivePeerDependencies:
-      - bluebird
 
   loader-runner@4.3.2: {}
 
@@ -21617,11 +21555,9 @@ snapshots:
 
   needle@3.2.0:
     dependencies:
-      debug: 3.2.7(supports-color@8.1.1)
+      debug: 3.2.7
       iconv-lite: 0.6.3
-      sax: 1.4.4
-    transitivePeerDependencies:
-      - supports-color
+      sax: 1.6.0
     optional: true
 
   needle@3.5.0:
@@ -21721,8 +21657,6 @@ snapshots:
     optionalDependencies:
       rollup: 4.60.2
       tailwindcss: 4.1.18
-    transitivePeerDependencies:
-      - supports-color
 
   node-addon-api@6.1.0:
     optional: true
@@ -22295,10 +22229,8 @@ snapshots:
   portfinder@1.0.32:
     dependencies:
       async: 2.6.4
-      debug: 3.2.7(supports-color@8.1.1)
+      debug: 3.2.7
       mkdirp: 0.5.6
-    transitivePeerDependencies:
-      - supports-color
 
   possible-typed-array-names@1.1.0: {}
 
@@ -23370,9 +23302,6 @@ snapshots:
       source-map-js: 1.2.1
     optionalDependencies:
       '@parcel/watcher': 2.5.1
-
-  sax@1.4.4:
-    optional: true
 
   sax@1.6.0: {}
 
@@ -24528,7 +24457,6 @@ snapshots:
       vfile-statistics: 3.0.0
       yaml: 2.8.3
     transitivePeerDependencies:
-      - bluebird
       - supports-color
 
   unified@11.0.5:
