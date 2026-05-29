@@ -73,7 +73,6 @@
         "import": "./hydrate/index.mjs",
         "default": "./hydrate/index.js"
       },
-      "import": "./hydrate/index.stub.mjs",
       "default": "./hydrate/index.stub.js"
     }
   },
