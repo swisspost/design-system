@@ -3,6 +3,8 @@ packages:
   - 'packages/*'
   - 'packages/components-angular/projects/*'
 
+catalog:
+  '@playwright/test': 1.60.0
 catalogs:
   cypress:
     'cypress': 15.14.2
