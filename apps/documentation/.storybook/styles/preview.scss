@@ -318,7 +318,13 @@ $toolbar-icons: (
 }
 
 #storybook-docs {
-  overflow-x: hidden;
+  // `overflow-x: clip` visually clips horizontal overflow like `hidden` does, but unlike
+  // `hidden` it does NOT create a new block formatting context. On iOS Safari, `overflow: hidden`
+  // causes `position: fixed` descendants to be anchored to this container instead of the viewport,
+  // which breaks all popover/tooltip/menu components (post-popovercontainer uses `position: fixed`,
+  // and its safe-space `::after` overlay with `pointer-events: auto` ends up covering the story
+  // preview, blocking all touch events). `clip` avoids this iOS quirk.
+  overflow-x: clip;
 }
 
 @include media.min(xl) {
