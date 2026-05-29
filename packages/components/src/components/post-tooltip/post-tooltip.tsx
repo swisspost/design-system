@@ -56,6 +56,7 @@ export class PostTooltip {
    */
   @Method()
   async show(target: HTMLElement) {
+    console.log('[tooltip] show() called, open:', this.open, 'target:', target, 'popoverRef:', this.popoverRef);
     if (this.open) return;
     await this.popoverRef.show(target);
   }
