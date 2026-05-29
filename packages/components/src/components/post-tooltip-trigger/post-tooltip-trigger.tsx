@@ -59,10 +59,16 @@ export class PostTooltipTrigger {
     return ref?.localName === 'post-tooltip' ? (ref as HTMLPostTooltipElement) : null;
   }
 
-  async componentWillLoad() {
-    await import('long-press-event');
-    const allyModule = await import('ally.js/is/focusable');
-    isFocusable ??= allyModule.default;
+  componentWillLoad() {
+    if (Build.isBrowser) {
+      // Fire-and-forget: long-press-event registers a global event listener on import.
+      import('long-press-event');
+      // Load ally.js lazily; setupTrigger uses optional chaining to handle the
+      // case where it hasn't loaded yet (falls back to adding tabindex="0").
+      import('ally.js/is/focusable').then(m => {
+        isFocusable ??= m.default;
+      });
+    }
   }
 
   componentDidLoad() {

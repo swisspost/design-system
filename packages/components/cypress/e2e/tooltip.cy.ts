@@ -144,6 +144,8 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
 
     it('positions the tooltip above the trigger by default (placement=top)', () => {
       cy.get('@trigger').focus();
+      shouldBeOpen();
+      cy.wait(50);
       cy.get('@trigger').then($trigger => {
         const triggerTop = $trigger[0].getBoundingClientRect().top;
         cy.get('@tooltip').then($tooltip => {
@@ -156,6 +158,7 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
     it('positions the tooltip below the trigger for placement=bottom', () => {
       cy.get('#tooltip-one').invoke('attr', 'placement', 'bottom');
       cy.get('@trigger').focus();
+      shouldBeOpen();
       cy.wait(50);
       cy.get('@trigger').then($trigger => {
         const triggerBottom = $trigger[0].getBoundingClientRect().bottom;
@@ -169,6 +172,7 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
     it('positions the tooltip to the right for placement=right', () => {
       cy.get('#tooltip-one').invoke('attr', 'placement', 'right');
       cy.get('@trigger').focus();
+      shouldBeOpen();
       cy.wait(50);
       cy.get('@trigger').then($trigger => {
         const triggerRight = $trigger[0].getBoundingClientRect().right;
@@ -180,12 +184,9 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('positions the tooltip to the left for placement=left', () => {
-      // Move the trigger to the horizontal center so floating-ui has room on the left
-      cy.get('@trigger').invoke('css', 'position', 'fixed');
-      cy.get('@trigger').invoke('css', 'left', '700px');
-      cy.get('@trigger').invoke('css', 'top', '450px');
       cy.get('#tooltip-one').invoke('attr', 'placement', 'left');
       cy.get('@trigger').focus();
+      shouldBeOpen();
       cy.wait(50);
       cy.get('@trigger').then($trigger => {
         const triggerLeft = $trigger[0].getBoundingClientRect().left;
@@ -378,6 +379,8 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
         });
       });
       cy.get(POPOVER_OPEN_SELECTOR).should('exist');
+      // Wait for floating-ui positioning to settle before measuring layout.
+      cy.wait(100);
     };
 
     const hideLayoutTooltip = () => {
