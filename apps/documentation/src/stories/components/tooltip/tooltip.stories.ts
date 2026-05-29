@@ -10,6 +10,7 @@ const meta: MetaComponent = {
   title: 'Components/Tooltip',
   tags: ['package:WebComponents', 'status:InProgress'],
   component: 'post-tooltip',
+  decorators: [story => html`<div style="padding: 3rem;">${story()}</div>`],
   parameters: {
     badges: [],
     design: {
