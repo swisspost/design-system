@@ -83,7 +83,7 @@ export function setupComponentErrorCapture(page: Page, componentNames: string[])
 
   /**
    * Checks if an error message matches known patterns that should be ignored.
-   * Currently filters out hydration-related errors, CORS errors, and other non-critical messages.
+   * Currently filters out CORS/network errors and other non-critical messages.
    *
    * @param text - Error message to check against ignore patterns
    * @returns True if the error should be ignored, false otherwise
