@@ -93,7 +93,7 @@ export const config: Config = {
       customElementsDir: 'react',
       outDir: '../components-react/src/stencil-generated',
       hydrateModule: '@swisspost/design-system-components/hydrate',
-      clientModule: '@swisspost/design-system-components-react',
+      clientModule: './components.js',
       serializeShadowRoot: 'declarative-shadow-dom',
     }),
     /**
@@ -107,7 +107,7 @@ export const config: Config = {
       customElementsDir: 'react',
       outDir: '../components-react/src/stencil-generated/standalone',
       hydrateModule: '@swisspost/design-system-components/hydrate',
-      clientModule: '@swisspost/design-system-components-react/standalone',
+      clientModule: './components.js',
       serializeShadowRoot: 'declarative-shadow-dom',
     }),
     /**

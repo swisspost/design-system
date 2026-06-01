@@ -1,5 +1,5 @@
 import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core';
-import { Placement } from '@floating-ui/dom';
+import type { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
 import { PostPopovercontainerCustomEvent } from '@/components';
 import { checkEmptyOrOneOf } from '@/utils';

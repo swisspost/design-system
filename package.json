@@ -16,7 +16,9 @@
     "start": "pnpm docs:start",
     "start:clean": "pnpm bootstrap && pnpm start",
     "e2e": "start-server-and-test docs:headless 9001 'pnpm -r --stream e2e'",
-    "e2e:ci": "start-server-and-test docs:headless 9001 'pnpm --filter \"...[origin/main]\" --stream e2e:ci'",
+    "e2e:ci": "start-server-and-test docs:headless 9001 'pnpm --filter \"...[origin/main]\" --filter \"!design-system-components-angular-workspace\" --stream e2e:ci'",
+    "e2e:next:ci": "pnpm install && pnpm --filter design-system-integration-next^... build",
+    "e2e:angular:ci": "pnpm install && pnpm --filter design-system-components-angular-workspace... build",
     "unit": "pnpm -r unit",
     "lint": "pnpm -r lint",
     "lint:fix": "pnpm -r lint:fix",
@@ -92,11 +94,14 @@
     "apps-next:start": "pnpm --filter design-system-integration-next start",
     "apps-next:build": "pnpm --filter design-system-integration-next build",
     "apps-next:build:serve": "pnpm --filter design-system-integration-next build:serve",
+    "apps-next:analyze": "pnpm --filter design-system-integration-next analyze",
     "apps-next:e2e": "pnpm --filter design-system-integration-next e2e",
     "apps-next:e2e:watch": "pnpm --filter design-system-integration-next e2e:watch",
     "apps-next:lint": "pnpm --filter design-system-integration-next lint",
     "apps-next:lint:fix": "pnpm --filter design-system-integration-next lint:fix",
     "apps-next:typecheck": "pnpm --filter design-system-integration-next typecheck",
+    "apps-next:unit": "pnpm --filter design-system-integration-next unit",
+    "apps-next:unit:watch": "pnpm --filter design-system-integration-next unit:watch",
     "tokens:build": "pnpm --filter design-system-tokens build",
     "tokens:build:verbose": "pnpm --filter design-system-tokens build:verbose",
     "tokens:lint": "pnpm --filter design-system-tokens lint",
@@ -132,6 +137,7 @@
       }
     },
     "overrides": {
+      "browserslist": ">=4.27.0",
       "form-data@>=4.0.0 <4.0.4": "4.0.5",
       "parse5": "npm:parse5-case-sensitive@7.1.2-0"
     },

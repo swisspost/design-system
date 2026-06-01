@@ -10,8 +10,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { version } from '@root/package.json';
-import { nanoid } from 'nanoid';
-import { checkEmptyOrType, checkRequiredAndType, debounce } from '@/utils';
+import { checkEmptyOrType, checkRequiredAndType, debounce, nanoid } from '@/utils';
 
 const ELLIPSIS = '...';
 const MEASUREMENT_DEBOUNCE_MS = 50;
