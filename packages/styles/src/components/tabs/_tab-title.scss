@@ -184,8 +184,9 @@ post-tab-item.nav-item a[aria-current='page'] {
 }
 
 // Large variant (default)
-post-tabs[size='large'] post-tab-item,
 post-tabs post-tab-item {
+  font-size: 20px; //post-tabs-large-font-size
+
   // content tabs
   &.tab-title {
     padding-inline: 24px; // post-tabs-large-tab-padding-inline
@@ -241,6 +242,8 @@ post-tabs post-tab-item {
 
 // Small variant
 post-tabs[size='small'] post-tab-item {
+  font-size: 16px; //post-tabs-small-font-size
+
   // content tabs
   &.tab-title {
     padding-inline: 16px; // post-tabs-small-tab-padding-inline
@@ -256,7 +259,7 @@ post-tabs[size='small'] post-tab-item {
       padding-inline: 16px; // post-tabs-small-tab-padding-inline
       gap: 8px; // post-tabs-small-tab-gap-inline
       height: 46px; // post-tabs-page-small-tab-enabled-height
-      border-radius: 8px; // post-tabs-page-small-tab-border-radius ?? added
+      border-radius: 8px 8px 0 0; // post-tabs-page-small-tab-border-radius
       padding-block: 10px; // post-tabs-page-small-tab-enabled-padding-block
 
       // selected
@@ -290,7 +293,7 @@ post-tabs[size='small'] post-tab-item {
   post-icon {
     width: 16px; // post-tabs-small-icon-size
     height: 16px; // post-tabs-small-icon-size
-    padding-block: 4px; // post-tabs-small-tab-icon-padding-block ?? added ??
+    // padding-block: 4px; // post-tabs-small-tab-icon-padding-block ?? added ??
   }
 }
 
