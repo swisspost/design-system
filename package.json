@@ -94,11 +94,14 @@
     "apps-next:start": "pnpm --filter design-system-integration-next start",
     "apps-next:build": "pnpm --filter design-system-integration-next build",
     "apps-next:build:serve": "pnpm --filter design-system-integration-next build:serve",
+    "apps-next:analyze": "pnpm --filter design-system-integration-next analyze",
     "apps-next:e2e": "pnpm --filter design-system-integration-next e2e",
     "apps-next:e2e:watch": "pnpm --filter design-system-integration-next e2e:watch",
     "apps-next:lint": "pnpm --filter design-system-integration-next lint",
     "apps-next:lint:fix": "pnpm --filter design-system-integration-next lint:fix",
     "apps-next:typecheck": "pnpm --filter design-system-integration-next typecheck",
+    "apps-next:unit": "pnpm --filter design-system-integration-next unit",
+    "apps-next:unit:watch": "pnpm --filter design-system-integration-next unit:watch",
     "tokens:build": "pnpm --filter design-system-tokens build",
     "tokens:build:verbose": "pnpm --filter design-system-tokens build:verbose",
     "tokens:lint": "pnpm --filter design-system-tokens lint",
@@ -116,8 +119,12 @@
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
   },
-  "engines": {
-    "node": "22||24"
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "^22 || ^24",
+      "onFail": "error"
+    }
   },
   "packageManager": "pnpm@10.29.3",
   "pnpm": {

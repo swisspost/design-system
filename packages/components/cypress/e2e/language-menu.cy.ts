@@ -1,9 +1,9 @@
-import { isPopoverSupported } from './helper/popovercontainer';
+import { getPopoverOpenSelector } from './helper/popovercontainer';
 
 const LANGUAGE_SWITCH_ID = 'decbb10c-2b39-4f47-b67d-337d8111a3ae';
 const LANGUAGE_OPTION_ID = '3753ab83-a659-47b5-a2f2-ac452ec97916';
 
-const popoverOpenSelector = isPopoverSupported() ? ':popover-open' : String.raw`.\:popover-open`;
+const POPOVER_OPEN_SELECTOR = getPopoverOpenSelector();
 
 describe('post-language-menu', () => {
   describe('list variant', () => {
@@ -94,13 +94,13 @@ describe('post-language-menu', () => {
 
     it('should show the menu on trigger click', () => {
       cy.get('@trigger').find('button').click();
-      cy.get(`post-popovercontainer${popoverOpenSelector}`, { timeout: 10000 }).should('exist');
+      cy.get('@language-menu').find('post-popovercontainer').should('match', POPOVER_OPEN_SELECTOR);
       cy.get('@language-menu').find('post-language-menu-item button').should('be.visible');
     });
 
     it('should correctly switch language and hide menu on option click', () => {
       cy.get('@trigger').find('button').click();
-      cy.get(`post-popovercontainer${popoverOpenSelector}`, { timeout: 10000 }).should('exist');
+      cy.get('@language-menu').find('post-popovercontainer').should('match', POPOVER_OPEN_SELECTOR);
       cy.get('@language-menu').find('post-language-menu-item[code="de"]').click();
 
       cy.get('@trigger').should('contain.text', 'de');
@@ -109,7 +109,7 @@ describe('post-language-menu', () => {
 
     it('should have correct ARIA roles', () => {
       cy.get('@trigger').find('button').click();
-      cy.get(`post-popovercontainer${popoverOpenSelector}`, { timeout: 10000 }).should('exist');
+      cy.get('@language-menu').find('post-popovercontainer').should('match', POPOVER_OPEN_SELECTOR);
       cy.get('@language-menu').find('post-menu').should('have.attr', 'role', 'menu');
       cy.get('@language-menu')
         .find('post-language-menu-item')

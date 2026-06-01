@@ -1,8 +1,7 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
-import { nanoid } from 'nanoid';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
-import { checkRequiredAndUrl, checkRequiredAndType, componentOnReady } from '@/utils';
+import { checkRequiredAndUrl, checkRequiredAndType, componentOnReady, nanoid } from '@/utils';
 
 @Component({
   tag: 'post-breadcrumbs',
