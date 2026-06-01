@@ -7,26 +7,20 @@
 
 tokens.$default-map: utilities.$post-spacing;
 
+// Common for all variants
 post-tab-item.tab-title,
 post-tab-item.nav-item a {
   position: relative;
   box-sizing: border-box;
   background-color: transparent;
   cursor: pointer;
-  color: #050400; //post-tabs-color-fg
+  color: #050400; // post-tabs-color-fg
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px; //post-tabs-item-elements-gap
-  border-radius: 12px 12px 0 0; // post-tabs-item-border-start-start-radius + post-tabs-item-border-start-end-radius
-
-  // common tokens
-  padding-inline: 24px; //post-tabs-item-padding-inline
+  font-weight: 700; // missing token
 
   post-icon {
-    width: 24px; //post-tabs-item-icon-size
-    height: 24px; //post-tabs-item-icon-size
-
     @include utilities-mx.high-contrast-mode() {
       forced-color-adjust: auto;
       color: inherit;
@@ -34,42 +28,39 @@ post-tab-item.nav-item a {
   }
 
   @include utilities-mx.focus-style() {
-    outline-offset: -4px !important; // post-tabs-item-focus-outline-offset
+    outline-offset: -4px !important; // post-tabs-tab-focus-outline-offset
   }
 }
 
 // Content Tabs Variant
 post-tab-item.tab-title {
-  height: 64px; //post-tabs-content-item-height
-  padding-block: 20px; //post-tabs-panel-item-padding-block
+  padding-block: 20px; // post-tabs-panel-item-padding-block
   transition:
     background-color 100ms,
     border-color 100ms,
     color 100ms;
-  border-bottom: 2px solid transparent; // post-tabs-content-tab-border-width
+  border-block-end: 2px solid transparent; // post-tabs-border-width
   color: #050400; // post-tabs-content-tab-color-enabled-fg
 
-  &[disabled] {
-    color: #696864; // post-tabs-content-tab-color-disabled-fg
-    border-color: #696864; // missing??????????
-    pointer-events: none;
+  // selected
+  &[aria-selected='true'] {
+    border-color: #050400; // post-tabs-content-tab-selected-color-enabled-border
+    color: #050400; // post-tabs-content-tab-selected-color-enabled-fg;
   }
 
+  // hovered
   &:hover:not([disabled]) {
     border-color: #504f4b; // post-tabs-content-tab-color-hovered-border
     color: #504f4b; // post-tabs-content-tab-color-hovered-fg
   }
 
-  &[aria-selected='true'] {
-    border-color: #050400; // post-tabs-content-tab-selected-color-enabled-border
-    color: #050400; // post-tabs-content-tab-selected-color-enabled-fg;
-
-    &:hover {
-      border-color: #504f4b; // post-tabs-content-tab-selected-color-hovered-border
-      color: #504f4b; // post-tabs-content-tab-selected-color-hovered-fg
-    }
+  // disabled
+  &[disabled] {
+    color: #696864; // post-tabs-content-tab-color-disabled-fg
+    pointer-events: none;
   }
 
+  // HCM
   @include utilities-mx.high-contrast-mode() {
     transition: none;
     border-color: Canvas;
@@ -89,30 +80,25 @@ post-tab-item.tab-title {
 
 // Page Tabs Variant
 post-tab-item.nav-item {
-  cursor: default;
-
   a {
+    // enabled
+    cursor: default;
     text-decoration: none;
-    display: flex;
     width: 100%;
     height: 100%;
-    box-sizing: border-box;
-    position: relative;
-    cursor: pointer;
-
     transition:
       background-color 100ms,
       border-color 100ms,
       color 100ms,
-      padding-block 200ms;
+      padding-block 200ms,
+      height 200ms;
 
-    border-block-start: 2px solid transparent; // post-tabs-page-tab-border-width + post-tabs-item-enabled-border-color
-    border-inline-start: 2px solid transparent; // post-tabs-page-tab-border-width + post-tabs-item-enabled-border-color
-    border-inline-end: 2px solid transparent; // post-tabs-page-tab-border-width + post-tabs-item-enabled-border-color
+    border-block-start: 2px solid transparent; // post-tabs-border-width + post-tabs-item-enabled-border-color
+    border-inline-start: 2px solid transparent; // post-tabs-border-width + post-tabs-item-enabled-border-color
+    border-inline-end: 2px solid transparent; // post-tabs-border-width + post-tabs-item-enabled-border-color
     background-color: #050400; // post-tabs-page-default-tab-color-enabled-bg
     border-color: #050400; // post-tabs-page-default-tab-color-enabled-border
     color: white; // post-tabs-page-default-tab-color-enabled-fg
-    padding-block: 15px; // post-tabs-page-item-enabled-padding-block
 
     // Dark background needs the inverted focus ring color
     @include utilities-mx.focus-style-custom {
@@ -120,17 +106,11 @@ post-tab-item.nav-item {
       outline-offset: -4px !important;
     }
 
+    // hovered
     &:hover {
       background-color: #504f4b; // post-tabs-page-default-tab-color-hovered-bg
       border-color: #504f4b; // post-tabs-page-default-tab-color-hovered-border
-      padding-block: 19px; // post-tabs-page-item-hovered-padding-block
       color: #ffffff; //post-tabs-page-default-tab-color-hovered-fg
-    }
-
-    &:focus,
-    &:focus-visible,
-    &:focus-within {
-      padding-block: 19px; // post-tabs-page-item-hovered-padding-block
     }
 
     // selected
@@ -138,7 +118,6 @@ post-tab-item.nav-item {
       background-color: #fafafa; // post-tabs-page-default-tab-selected-color-enabled-bg
       color: #050400; // post-tabs-page-default-tab-selected-color-enabled-fg
       border-color: #050400; // post-tabs-page-default-tab-selected-color-enabled-border
-      padding-block: 19px; // post-tabs-page-item-selected-padding-block
 
       // Light background reverts to the default focus ring color
       @include utilities-mx.focus-style-custom {
@@ -146,6 +125,7 @@ post-tab-item.nav-item {
         outline-offset: -4px !important;
       }
 
+      // selected — hovered
       &:hover {
         color: #504f4b; // post-tabs-page-default-tab-selected-color-hovered-fg
         background-color: #fafafa; // post-tabs-page-default-tab-selected-color-hovered-bg
@@ -153,11 +133,14 @@ post-tab-item.nav-item {
       }
     }
 
+    // HCM
     @include utilities-mx.high-contrast-mode() {
       color: LinkText;
       border-color: LinkText;
       forced-color-adjust: none;
-      transition: padding-block 200ms;
+      transition:
+        padding-block 200ms,
+        height 200ms; // no color transition in HCM
 
       &:hover {
         background-color: Highlight;
@@ -178,6 +161,7 @@ post-tab-item.nav-item {
     }
   }
 
+  // disabled
   &[disabled] a:not([aria-current='page']) {
     background-color: #fafafa; // post-tabs-page-default-tab-color-disabled-bg
     border-color: #696864; // post-tabs-page-default-tab-color-disabled-border
@@ -186,12 +170,6 @@ post-tab-item.nav-item {
     pointer-events: none;
     border-block-end: none;
 
-    &:focus,
-    &:focus-visible,
-    &:focus-within {
-      padding-block: 15px; // post-tabs-page-item-disabled-padding-block
-    }
-
     @include utilities-mx.high-contrast-mode() {
       color: GrayText;
       border-color: GrayText;
@@ -199,14 +177,124 @@ post-tab-item.nav-item {
   }
 }
 
-// Active state
+// Active state — all variants
 post-tab-item.tab-title[aria-selected='true'],
 post-tab-item.nav-item a[aria-current='page'] {
-  font-weight: 700;
   z-index: 1;
 }
 
-// SSR specific styles
+// Large variant (default)
+post-tabs[size='large'] post-tab-item,
+post-tabs post-tab-item {
+  // content tabs
+  &.tab-title {
+    padding-inline: 24px; // post-tabs-large-tab-padding-inline
+    gap: 12px; // post-tabs-large-tab-gap-inline
+    height: 64px; // post-tabs-content-large-tab-height
+    padding-block: 17px; // post-tabs-content-large-tab-padding-block
+  }
+
+  // large page
+  &.nav-item {
+    a {
+      // enabled
+      padding-inline: 24px; // post-tabs-large-tab-padding-inline
+      gap: 12px; // post-tabs-large-tab-gap-inline
+      border-radius: 12px 12px 0 0; // post-tabs-page-large-tab-border-radius
+      padding-block: 15px; // post-tabs-page-large-tab-enabled-padding-block
+      height: 62px; //post-tabs-page-large-tab-enabled-height;
+
+      post-icon {
+        width: 24px; // post-tabs-large-icon-size
+        height: 24px; // post-tabs-large-icon-size
+        padding-block: 3px; // post-tabs-large-tab-icon-padding-block ?? added
+      }
+
+      // selected
+      &[aria-current='page'] {
+        padding-block: 19px; // post-tabs-page-large-tab-selected-enabled-padding-block
+        height: 70px; // post-tabs-page-large-tab-selected-enabled-height
+      }
+
+      // hovered
+      &:hover {
+        height: 70px; // post-tabs-page-large-tab-hovered-height
+        padding-block: 19px; // post-tabs-page-large-tab-hovered-padding-block
+      }
+
+      // focused
+      &:focus,
+      &:focus-visible,
+      &:focus-within {
+        height: 70px; // post-tabs-page-large-tab-focused-height
+        padding-block: 19px; // post-tabs-page-large-tab-focused-padding-block
+      }
+    }
+
+    // disabled
+    &[disabled] a:not([aria-current='page']) {
+      padding-block: 15px; // post-tabs-page-large-tab-disabled-padding-block
+      height: 62px; // post-tabs-page-large-tab-disabled-height
+    }
+  }
+}
+
+// Small variant
+post-tabs[size='small'] post-tab-item {
+  // content tabs
+  &.tab-title {
+    padding-inline: 16px; // post-tabs-small-tab-padding-inline
+    gap: 8px; // post-tabs-small-tab-gap-inline
+    height: 48px; // post-tabs-content-small-tab-height
+    padding-block: 12px; // post-tabs-content-small-tab-padding-block
+  }
+
+  // page variant
+  &.nav-item {
+    a {
+      // enabled
+      padding-inline: 16px; // post-tabs-small-tab-padding-inline
+      gap: 8px; // post-tabs-small-tab-gap-inline
+      height: 46px; // post-tabs-page-small-tab-enabled-height
+      border-radius: 8px; // post-tabs-page-small-tab-border-radius ?? added
+      padding-block: 10px; // post-tabs-page-small-tab-enabled-padding-block
+
+      // selected
+      &[aria-current='page'] {
+        padding-block: 14px; // post-tabs-page-small-tab-selected-enabled-padding-block
+        height: 54px; // post-tabs-page-small-tab-selected-enabled-height
+      }
+
+      // hovered
+      &:hover {
+        padding-block: 14px; // post-tabs-page-small-tab-hovered-padding-block
+        height: 54px; // post-tabs-page-small-tab-hovered-height
+      }
+
+      // focused
+      &:focus,
+      &:focus-visible,
+      &:focus-within {
+        padding-block: 14px; // post-tabs-page-small-tab-focused-padding-block
+        height: 54px; // post-tabs-page-small-tab-focused-height
+      }
+    }
+
+    // disabled
+    &[disabled] a:not([aria-current='page']) {
+      padding-block: 10px; // post-tabs-page-small-tab-disabled-padding-block
+      height: 46px; // post-tabs-page-small-tab-disabled-height
+    }
+  }
+
+  post-icon {
+    width: 16px; // post-tabs-small-icon-size
+    height: 16px; // post-tabs-small-icon-size
+    padding-block: 4px; // post-tabs-small-tab-icon-padding-block ?? added ??
+  }
+}
+
+// SSR
 
 // Show by default the first panel for SSR if no explicit prop is set
 post-tabs[active-tab] {

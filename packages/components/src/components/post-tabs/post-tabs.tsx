@@ -13,7 +13,7 @@ import {
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { fade } from '@/animations';
-import { componentOnReady, checkRequiredAndType } from '@/utils';
+import { componentOnReady, checkRequiredAndType, checkRequiredAndOneOf } from '@/utils';
 
 // Extends the HTMLButtonElement interface to include ariaControlsElements, which is part of the
 // ARIA reflection API but not yet present in TypeScript's built-in DOM type definitions.
@@ -81,6 +81,12 @@ export class PostTabs {
   @Prop({ reflect: true }) fullWidth: boolean = false;
 
   /**
+   * The size of the tabs, corresponding to the different designs in Figma.
+   * Default is 'large'.
+   */
+  @Prop() size: 'small' | 'large' = 'large';
+
+  /**
    * The accessible label for the Content Tabs variant.
    */
   @Prop({ reflect: true }) readonly label?: string;
@@ -90,6 +96,11 @@ export class PostTabs {
     if (this.isPagesVariant) {
       checkRequiredAndType(this, 'label', 'string');
     }
+  }
+
+  @Watch('size')
+  validateSize() {
+    checkRequiredAndOneOf(this, 'size', ['small', 'large']);
   }
 
   /**
@@ -115,6 +126,7 @@ export class PostTabs {
     this.setupContentObserver();
     this.setupResizeObserver();
     this.validateLabel();
+    this.validateSize();
 
     if (this.isPagesVariant) {
       const activeTab = this.findActivePagesTab();
