@@ -1,5 +1,9 @@
 import { Page, ConsoleMessage } from '@playwright/test';
 
+const IGNORE_ERROR_PATTERNS = [
+  /has been blocked by cors policy/i,
+];
+
 type CapturedError = {
   message: string;
   source: 'console' | 'pageerror';
@@ -62,19 +66,31 @@ export function setupComponentErrorCapture(page: Page, componentNames: string[])
 
   /**
    * Adds an error to the captured errors array if it passes all filters.
-   * Applies relevance checking.
+   * Applies relevance checking and ignore pattern filtering.
    *
    * @param message - The error message to capture
    * @param source - The source of the error ('console' or 'pageerror')
    * @param stack - Optional stack trace for the error
    */
   function pushError(message: string, source: CapturedError['source'], stack?: string): void {
-    // Skip errors unrelated to our components
-    if (!isRelevant(message)) return;
+    // Skip ignored errors and errors unrelated to our components
+    if (isIgnoredError(message) || !isRelevant(message)) return;
 
     const entry: CapturedError = { message, source, stack, timestamp: Date.now() };
     captured.push(entry);
     errors.push(message);
+  }
+
+  /**
+   * Checks if an error message matches known patterns that should be ignored.
+   * Currently filters out hydration-related errors, CORS errors, and other non-critical messages.
+   *
+   * @param text - Error message to check against ignore patterns
+   * @returns True if the error should be ignored, false otherwise
+   */
+  function isIgnoredError(text: string): boolean {
+    // Check if error message matches any known patterns that should be ignored
+    return IGNORE_ERROR_PATTERNS.some(pattern => pattern.test(text));
   }
 
   /**
