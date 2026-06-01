@@ -1,5 +1,73 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.70
+
+### Major Changes
+
+- Updated `post-header` megadropdown to use a responsive grid layout, ensuring columns take up the available space regardless of their count across breakpoints.  
+  The `<div class="row row-cols-1 row-cols-sm-2">` column wrapper switches to `<div class="post-megadropdown-grid">`, and the `col` class is dropped from each column div.
+
+  BEFORE:
+
+  ```html
+  <post-megadropdown id="letters" text-close="Close" text-back="Back">
+    <a class="post-megadropdown-overview" href="/letters">Overview Letters</a>
+    <div class="row row-cols-1 row-cols-sm-2">
+      <div class="col"></div>
+      <div class="col"></div>
+    </div>
+  </post-megadropdown>
+  ```
+
+  AFTER:
+
+  ```html
+  <post-megadropdown id="letters" text-close="Close" text-back="Back">
+    <a class="post-megadropdown-overview" href="/letters">Overview Letters</a>
+    <div class="post-megadropdown-grid">
+      <div></div>
+      <div></div>
+    </div>
+  </post-megadropdown>
+  ```
+  (by [@myrta2302](https://github.com/myrta2302) with
+  [#7479](https://github.com/swisspost/design-system/pull/7479))
+
+### Minor Changes
+
+- Added an optional prefooter section to the `post-footer` component. (by [@leagrdv](https://github.com/leagrdv) with [#7630](https://github.com/swisspost/design-system/pull/7630))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.70
+  - @swisspost/design-system-icons@10.0.0-next.70
+
+## 10.0.0-next.69
+
+### Major Changes
+
+- Changed the `post-stepper` component's **text-step-number** prop format from `Step #number:` to `Step {number}:`. (by [@leagrdv](https://github.com/leagrdv) with [#7581](https://github.com/swisspost/design-system/pull/7581))
+
+- Removed palette class support from `post-tooltip`. The tooltip now always uses the accent palette and no longer requires or accepts a palette class. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7544](https://github.com/swisspost/design-system/pull/7544))
+
+### Minor Changes
+
+- Added internationalization (i18n) to the date-picker component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7447](https://github.com/swisspost/design-system/pull/7447))
+
+### Patch Changes
+
+- Updated the styles for `post-tooltip` component to align with the new design specification. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7544](https://github.com/swisspost/design-system/pull/7544))
+
+- Fixed a scroll-triggered flickering issue in the `post-header` component when used in Angular applications. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7599](https://github.com/swisspost/design-system/pull/7599))
+
+- Prevented unintended page scroll when pressing `Home` key while navigating the `post-menu` component dropdown with keyboard. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7624](https://github.com/swisspost/design-system/pull/7624))
+
+- Fixed an issue where using the language menu would stop the header from collapsing when scrolling. (by [@alizedebray](https://github.com/alizedebray) with [#7445](https://github.com/swisspost/design-system/pull/7445))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.69
+  - @swisspost/design-system-styles@10.0.0-next.69
+
 ## 10.0.0-next.68
 
 ### Minor Changes

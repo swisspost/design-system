@@ -1,17 +1,16 @@
 import {
   Environment,
-  IPortalConfig,
-  ILocalizedConfig,
+  PortalConfig,
+  LocalizedConfig,
   LocalizedConfigParameters,
 } from '@/models/general.model';
 import { state } from '@/data/store';
 import { getUserLang } from './language.service';
-import { markActiveRoute } from './route.service';
 
 // Prevent double requests
-let request: Promise<IPortalConfig> | null = null;
+let request: Promise<PortalConfig> | null = null;
 
-const getPPMConfig = (): ILocalizedConfig | null => {
+const getPPMConfig = (): LocalizedConfig | null => {
   const ppmConfigScript = document.querySelector('#PPM_HEADER_DATA');
 
   if (ppmConfigScript?.textContent != null) {
@@ -32,11 +31,10 @@ export const getLocalizedConfig = async ({
   projectId,
   environment,
   language,
-  activeRouteProp,
-}: LocalizedConfigParameters): Promise<ILocalizedConfig> => {
+}: LocalizedConfigParameters): Promise<LocalizedConfig> => {
   const ppmConfig = getPPMConfig();
-  let localizedConfig: ILocalizedConfig;
-  let config: IPortalConfig | null = null;
+  let localizedConfig: LocalizedConfig;
+  let config: PortalConfig | null = null;
   let lang: string | undefined;
 
   if (ppmConfig) {
@@ -58,14 +56,6 @@ export const getLocalizedConfig = async ({
     localizedConfig = { ...config[lang] };
   }
 
-  // Mark active route
-  if (activeRouteProp != null) {
-    localizedConfig.header.navMain = markActiveRoute(
-      localizedConfig.header.navMain,
-      activeRouteProp,
-    );
-  }
-
   // Set the new language choice
   state.currentLanguage = lang;
 
@@ -80,7 +70,7 @@ export const getLocalizedConfig = async ({
 export const fetchConfig = async (
   projectId: string,
   environment: Environment,
-): Promise<IPortalConfig> => {
+): Promise<PortalConfig> => {
   // Check if project id is sanitized
   if (!isValidProjectId(projectId)) {
     throw new Error(`Internet Header: invalid project id "${projectId}"`);
@@ -95,7 +85,7 @@ export const fetchConfig = async (
   // Get the config if cache is invalid
   try {
     const res = await fetch(url);
-    return (await res.json()) as IPortalConfig;
+    return (await res.json()) as PortalConfig;
   } catch (error) {
     throw new Error(`Internet Header: fetching config failed. ${error.message}`);
   }
