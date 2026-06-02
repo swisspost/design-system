@@ -3,4 +3,4 @@
 '@swisspost/design-system-components': minor
 ---
 
-Ιmplemented the back-to-top button component.
+Implemented the back-to-top button component.
