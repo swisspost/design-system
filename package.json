@@ -16,7 +16,9 @@
     "start": "pnpm docs:start",
     "start:clean": "pnpm bootstrap && pnpm start",
     "e2e": "start-server-and-test docs:headless 9001 'pnpm -r --stream e2e'",
-    "e2e:ci": "start-server-and-test docs:headless 9001 'pnpm --filter \"...[origin/main]\" --stream e2e:ci'",
+    "e2e:ci": "start-server-and-test docs:headless 9001 'pnpm --filter \"...[origin/main]\" --filter \"!design-system-components-angular-workspace\" --stream e2e:ci'",
+    "e2e:next:ci": "pnpm install && pnpm --filter design-system-integration-next^... build",
+    "e2e:angular:ci": "pnpm install && pnpm --filter design-system-components-angular-workspace... build",
     "unit": "pnpm -r unit",
     "lint": "pnpm -r lint",
     "lint:fix": "pnpm -r lint:fix",
@@ -46,12 +48,12 @@
     "components:e2e:watch": "start-server-and-test docs:headless 9001 'pnpm --filter design-system-components e2e:watch'",
     "components:lint": "pnpm --filter design-system-components lint",
     "components:lint:fix": "pnpm --filter design-system-components lint:fix",
-    "components:vrt": "pnpm --filter design-system-components build && pnpm --filter design-system-components test:visual",
-    "components:vrt:update": "pnpm --filter design-system-components build && pnpm --filter design-system-components test:visual:update",
-    "components:vrt:ui": "pnpm --filter design-system-components build && pnpm --filter design-system-components test:visual:ui",
-    "components:vrt:chrome": "pnpm --filter design-system-components build && pnpm --filter design-system-components test:visual:chrome",
-    "components:vrt:firefox": "pnpm --filter design-system-components build && pnpm --filter design-system-components test:visual:firefox",
-    "components:vrt:safari": "pnpm --filter design-system-components build && pnpm --filter design-system-components test:visual:safari",
+    "components:vrt": "pnpm --filter design-system-components build && pnpm --filter design-system-components vrt",
+    "components:vrt:update": "pnpm --filter design-system-components build && pnpm --filter design-system-components vrt:update",
+    "components:vrt:ui": "pnpm --filter design-system-components build && pnpm --filter design-system-components vrt:ui",
+    "components:vrt:chrome": "pnpm --filter design-system-components build && pnpm --filter design-system-components vrt:chrome",
+    "components:vrt:firefox": "pnpm --filter design-system-components build && pnpm --filter design-system-components vrt:firefox",
+    "components:vrt:safari": "pnpm --filter design-system-components build && pnpm --filter design-system-components vrt:safari",
     "components-angular": "pnpm components-angular:start",
     "components-angular:start": "pnpm --filter design-system-components-angular-workspace start",
     "components-angular:build": "pnpm --filter design-system-components-angular-workspace build",
@@ -92,11 +94,14 @@
     "apps-next:start": "pnpm --filter design-system-integration-next start",
     "apps-next:build": "pnpm --filter design-system-integration-next build",
     "apps-next:build:serve": "pnpm --filter design-system-integration-next build:serve",
+    "apps-next:analyze": "pnpm --filter design-system-integration-next analyze",
     "apps-next:e2e": "pnpm --filter design-system-integration-next e2e",
     "apps-next:e2e:watch": "pnpm --filter design-system-integration-next e2e:watch",
     "apps-next:lint": "pnpm --filter design-system-integration-next lint",
     "apps-next:lint:fix": "pnpm --filter design-system-integration-next lint:fix",
     "apps-next:typecheck": "pnpm --filter design-system-integration-next typecheck",
+    "apps-next:unit": "pnpm --filter design-system-integration-next unit",
+    "apps-next:unit:watch": "pnpm --filter design-system-integration-next unit:watch",
     "tokens:build": "pnpm --filter design-system-tokens build",
     "tokens:build:verbose": "pnpm --filter design-system-tokens build:verbose",
     "tokens:lint": "pnpm --filter design-system-tokens lint",
@@ -109,13 +114,17 @@
   "devDependencies": {
     "@changesets/cli": "2.31.0",
     "start-server-and-test": "2.1.5",
-    "turbo": "2.5.8"
+    "turbo": "2.9.14"
   },
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
   },
-  "engines": {
-    "node": "22||24"
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "^22 || ^24",
+      "onFail": "error"
+    }
   },
   "packageManager": "pnpm@10.29.3",
   "pnpm": {
@@ -128,6 +137,7 @@
       }
     },
     "overrides": {
+      "browserslist": ">=4.27.0",
       "form-data@>=4.0.0 <4.0.4": "4.0.5",
       "parse5": "npm:parse5-case-sensitive@7.1.2-0"
     },

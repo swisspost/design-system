@@ -10,7 +10,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { Placement } from '@floating-ui/dom';
+import type { Placement } from '@floating-ui/dom';
 import { PLACEMENT_TYPES } from '@/types';
 import { version } from '@root/package.json';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
@@ -180,7 +180,6 @@ export class PostMenu {
     }
   }
 
-
   private readonly handleClick = (e: MouseEvent) => {
     const target = e.target as HTMLElement;
     if (['BUTTON', 'A', 'INPUT', 'SELECT', 'TEXTAREA'].includes(target.tagName)) {
@@ -241,7 +240,10 @@ export class PostMenu {
         // If the element is a slot, get the assigned elements
         .flatMap(el => (el instanceof HTMLSlotElement ? el.assignedElements() : el))
         // For each menu item, get any focusable children (e.g., buttons, links)
-        .flatMap(el => Array.from(getFocusableChildren(el)))
+        .flatMap(el => [
+          ...getFocusableChildren(el),
+          ...(el.shadowRoot ? getFocusableChildren(el.shadowRoot) : []),
+        ])
     );
   }
 
