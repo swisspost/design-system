@@ -75,9 +75,9 @@ describe('collapsible', () => {
     });
   });
 
-  describe('nested', () => {
+  describe('wrapped', () => {
     beforeEach(() => {
-      cy.getComponents(COLLAPSIBLE_ID, 'nested', 'post-collapsible', 'post-collapsible-trigger');
+      cy.getComponents(COLLAPSIBLE_ID, 'wrapped', 'post-collapsible', 'post-collapsible-trigger');
       cy.get('@collapsible-trigger').find('.btn').as('trigger');
     });
 

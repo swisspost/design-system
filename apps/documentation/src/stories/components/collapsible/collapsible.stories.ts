@@ -71,7 +71,7 @@ export const InitiallyCollapsed: Story = {
   args: { collapsed: true },
 };
 
-export const Nested: Story = {
+export const Wrapped: Story = {
   render: ({ innerHTML, ...args }: Partial<HTMLPostCollapsibleElement>) => html`
     <post-collapsible-trigger>
       <button class="btn btn-secondary">Toggle Collapsible</button>
