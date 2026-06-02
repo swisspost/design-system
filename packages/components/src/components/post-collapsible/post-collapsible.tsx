@@ -88,10 +88,10 @@ export class PostCollapsible {
   private updateTriggers() {
     const triggers = this.host.id
       ? Array.from(
-          document.querySelectorAll<HTMLPostCollapsibleTriggerElement>(
-            `post-collapsible-trigger[for="${this.host.id}"]`,
-          ),
-        )
+        document.querySelectorAll<HTMLPostCollapsibleTriggerElement>(
+          `post-collapsible-trigger[for="${this.host.id}"]`,
+        ),
+      )
       : [];
 
     // also update an ancestor trigger when the collapsible is nested inside one
