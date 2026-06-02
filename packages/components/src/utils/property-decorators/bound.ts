@@ -64,7 +64,7 @@ function createBoundValidatorDecorator<T extends object>(
 
   return function (target: T, property: string): void {
     if (typeof bound === 'string') {
-      registerDependency(target, bound as string, property);
+      registerDependency(target, bound, property);
     }
 
     decorator(target, property);

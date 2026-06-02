@@ -118,15 +118,15 @@ function createDecoratedComponent(config: BoundTestConfig) {
     config;
 
   class DecoratedComponent {
-    @(decorator(hardcodedBound) as PropertyDecorator) value: unknown = undefined;
-    @(decorator(hardcodedBound, {
+    @decorator(hardcodedBound) value: unknown = undefined;
+    @decorator(hardcodedBound, {
       [inclusionOptionKey]: !config.defaultIncludesEquality,
-    }) as PropertyDecorator)
+    })
     valueToggled: unknown = undefined;
-    @(decorator(dynamicBoundProp) as PropertyDecorator) dynamicValue: unknown = undefined;
-    @(decorator(dynamicBoundProp, {
+    @decorator(dynamicBoundProp) dynamicValue: unknown = undefined;
+    @decorator(dynamicBoundProp, {
       [inclusionOptionKey]: !config.defaultIncludesEquality,
-    }) as PropertyDecorator)
+    })
     dynamicValueToggled: unknown = undefined;
     [dynamicBoundProp] = dynamicBoundValue;
   }
@@ -225,7 +225,6 @@ configs.forEach(config => {
       });
 
       it('should log an error when value violates referenced property bound', () => {
-        const boundProp = config.dynamicBoundProp;
         const boundVal = config.dynamicBoundValue;
 
         // Set a value that violates the bound
@@ -312,8 +311,8 @@ configs.forEach(config => {
         component[config.dynamicBoundProp] = newBound;
 
         const msg = config.defaultIncludesEquality
-          ? config.messages.inclusive(newBound, config.values.valid as number)
-          : config.messages.exclusive(newBound, config.values.valid as number);
+          ? config.messages.inclusive(newBound, config.values.valid)
+          : config.messages.exclusive(newBound, config.values.valid);
         expect(console.error).toHaveBeenCalledWith(
           msg.replace('"value"', '"dynamicValue"'),
           expect.any(Object),
