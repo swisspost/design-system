@@ -1,6 +1,5 @@
 ---
 '@swisspost/design-system-components': major
-'@swisspost/design-system-documentation': patch
 ---
 
 Renamed `post-tabs` parts to avoid naming confusions with other components.

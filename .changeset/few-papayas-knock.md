@@ -1,7 +1,5 @@
 ---
 '@swisspost/design-system-components-angular': major
-'@swisspost/design-system-components-angular-workspace': major
-'@swisspost/design-system-integration-next': major
 '@swisspost/design-system-documentation': major
 '@swisspost/design-system-components': major
 ---

@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Fixed alignment of ´form-switch´ label.
+Fixed alignment of `form-switch` label.

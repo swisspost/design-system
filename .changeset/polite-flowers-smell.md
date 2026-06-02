@@ -1,6 +1,5 @@
 ---
 '@swisspost/design-system-styles': major
-'@swisspost/design-system-documentation': patch
 ---
 
 Refactored the icon mixins so that icons no longer need to be included separately, imports are now handled automatically.
