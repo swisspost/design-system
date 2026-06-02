@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkRequiredAndType, EventFrom, getRoot } from '@/utils';
+import { checkEmptyOrType, EventFrom, getRoot } from '@/utils';
 
 @Component({
   tag: 'post-collapsible-trigger',
@@ -14,16 +14,17 @@ export class PostCollapsibleTrigger {
   @Element() host: HTMLPostCollapsibleTriggerElement;
 
   /**
-   * Link the trigger to a post-collapsible with this id
+   * Link the trigger to a post-collapsible by its ID.
+   * If omitted, a post-collapsible nested directly inside this element is used instead.
    */
-  @Prop({ reflect: true }) for!: string;
+  @Prop({ reflect: true }) for?: string;
 
   /**
    * Set the "aria-controls" and "aria-expanded" attributes on the trigger to match the state of the controlled post-collapsible
    */
   @Watch('for')
   validateAriaAttributes() {
-    checkRequiredAndType(this, 'for', 'string');
+    checkEmptyOrType(this, 'for', 'string');
   }
 
   constructor() {
@@ -42,6 +43,10 @@ export class PostCollapsibleTrigger {
   componentDidLoad() {
     this.setTrigger();
     if (!this.trigger) console.warn('The post-collapsible-trigger must contain a button.');
+    if (!this.collapsible) {
+      const target = this.for ? `with id "${this.for}"` : 'nested inside <post-collapsible-trigger>';
+      console.warn(`No post-collapsible found ${target}. Either nest a post-collapsible inside the trigger or set the "for" attribute to the id of the collapsible.`);
+    }
     this.validateAriaAttributes();
   }
 
@@ -70,20 +75,24 @@ export class PostCollapsibleTrigger {
   }
 
   private updateAriaAttributes() {
-    if (!this.trigger) return;
+    const collapsible = this.collapsible;
+    if (!this.trigger || !collapsible) return;
 
-    // add the provided id to the aria-controls list
+    // a nested collapsible may have no id, but aria-controls needs one to reference
+    collapsible.id ||= `collapsible-${crypto.randomUUID()}`;
+
+    const collapsibleId = collapsible.id;
+
+    // add the controlled collapsible's id to the aria-controls list
     const ariaControls = this.trigger.getAttribute('aria-controls');
 
-    if (!ariaControls?.includes(this.for)) {
-      const newAriaControls = ariaControls ? `${ariaControls} ${this.for}` : this.for;
+    if (!ariaControls?.includes(collapsibleId)) {
+      const newAriaControls = ariaControls ? `${ariaControls} ${collapsibleId}` : collapsibleId;
       this.trigger.setAttribute('aria-controls', newAriaControls);
     }
 
-    // set the aria-expanded to `false` if the controlled collapsible is collapsed or undefined, set it to `true` otherwise
-    const isCollapsed = this.collapsible?.collapsed;
-    const newAriaExpanded = isCollapsed !== undefined ? !isCollapsed : undefined;
-    this.trigger.setAttribute('aria-expanded', `${newAriaExpanded}`);
+    // set aria-expanded to `true` if expanded, `false` if collapsed (collapsed defaults to false)
+    this.trigger.setAttribute('aria-expanded', `${!collapsible.collapsed}`);
   }
 
   /**
@@ -97,7 +106,10 @@ export class PostCollapsibleTrigger {
    * Retrieve the post-collapsible controlled by the trigger
    */
   private get collapsible(): HTMLPostCollapsibleElement | null {
-    const ref = this.root.getElementById(this.for);
+    // prefer a nested post-collapsible, fall back to an id reference via `for`
+    const ref =
+      this.host.querySelector('post-collapsible') ??
+      (this.for ? this.root?.getElementById(this.for) ?? null : null);
 
     if (ref && ref.localName === 'post-collapsible') {
       return ref as HTMLPostCollapsibleElement;
