@@ -1,4 +1,4 @@
-import { isPopoverSupported } from './helper/popovercontainer';
+import { getPopoverOpenSelector } from './helper/popovercontainer';
 import {
   DATE_FORMAT_RANGE_SEPARATOR,
   DATE_FORMAT_STRING_OPTIONS,
@@ -21,7 +21,7 @@ const LABEL_PROPERTIES = [
 
 describe('date-picker', { includeShadowDom: true }, () => {
   describe('default', () => {
-    const selector = isPopoverSupported() ? ':popover-open' : String.raw`.\:popover-open`;
+    const selector = getPopoverOpenSelector();
     beforeEach(() => {
       cy.getComponent('date-picker', DATEPICKER_ID);
       cy.get('@date-picker').find('input').as('input');
