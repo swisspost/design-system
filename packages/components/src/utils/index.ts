@@ -12,6 +12,7 @@ export * from './is-iso-date';
 export * from './is-motion-reduced';
 export * from './is-value-empty';
 export * from './locales';
+export * from './nanoid';
 export * from './repeat-on-long-press';
 export * from './sass-export';
 export * from './timeout';

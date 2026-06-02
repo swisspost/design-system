@@ -1,4 +1,4 @@
-import { debounce, Required, Type } from '@/utils';
+import { debounce, nanoid, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
 import {
   Component,
@@ -11,7 +11,6 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { nanoid } from 'nanoid';
 
 const ELLIPSIS = '...';
 const MEASUREMENT_DEBOUNCE_MS = 50;

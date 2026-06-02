@@ -1,7 +1,7 @@
 import { PostPopovercontainerCustomEvent } from '@/components';
-import { PLACEMENT_TYPES } from '@/types';
+import { PLACEMENT_TYPES } from '@/types/placement';
 import { OneOf } from '@/utils';
-import { Placement } from '@floating-ui/dom';
+import type { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
 import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 

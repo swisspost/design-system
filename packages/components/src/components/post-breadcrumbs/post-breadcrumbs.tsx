@@ -1,7 +1,6 @@
-import { componentOnReady, Required, Type, Url } from '@/utils';
+import { componentOnReady, nanoid, Required, Type, Url } from '@/utils';
 import { version } from '@root/package.json';
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
-import { nanoid } from 'nanoid';
 import { throttle } from 'throttle-debounce';
 
 @Component({
@@ -110,7 +109,9 @@ export class PostBreadcrumbs {
     if (!originalSlot || !clonedSlot) return;
 
     originalSlot.assignedElements().forEach(element => {
-      clonedSlot.insertAdjacentElement('beforebegin', element.cloneNode(true) as Element);
+      const cloned = element.cloneNode(true) as HTMLElement;
+      cloned.dataset.measuring = 'true';
+      clonedSlot.before(cloned);
     });
 
     clonedSlot.remove();

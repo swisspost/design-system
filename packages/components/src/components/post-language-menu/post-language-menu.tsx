@@ -1,7 +1,6 @@
-import { EventFrom, OneOf, Pattern, Required, Type } from '@/utils';
+import { EventFrom, nanoid, OneOf, Pattern, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
 import { Component, Element, h, Host, Listen, Prop, State, Watch } from '@stencil/core';
-import { nanoid } from 'nanoid';
 import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
 
 @Component({

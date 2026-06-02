@@ -1,7 +1,6 @@
-import { Required, Type } from '@/utils';
+import { nanoid, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
-import { nanoid } from 'nanoid';
 
 /**
  * @slot default - Slot for placing the content of the tab panel.

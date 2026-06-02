@@ -29,7 +29,8 @@ import AirDatepicker, {
   AirDatepickerViews,
   AirDatepickerViewsSingle,
 } from 'air-datepicker';
-import IMask, { InputMask } from 'imask';
+import type { InputMask } from 'imask';
+import IMask from 'imask';
 import { airDatepickerLocales } from './air-locales';
 import {
   DATE_FORMAT_KEYS,
