@@ -1,4 +1,4 @@
-import { Type } from '@/utils';
+import { Required, Type } from '@/utils';
 import { version } from '@root/package.json';
 import { Build, Component, Element, h, Host, Prop } from '@stencil/core';
 import isFocusable from 'ally.js/is/focusable';
@@ -26,6 +26,7 @@ export class PostTooltipTrigger {
    * ID of the tooltip element that this trigger is linked to.
    */
   @Prop({ reflect: true })
+  @Required()
   @Type('string')
   for!: string;
 

@@ -1,6 +1,6 @@
 import { EventFrom, getRoot, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 
 @Component({
   tag: 'post-collapsible-trigger',
@@ -20,14 +20,6 @@ export class PostCollapsibleTrigger {
   @Required()
   @Type('string')
   for!: string;
-
-  /**
-   * Set the "aria-controls" and "aria-expanded" attributes on the trigger to match the state of the controlled post-collapsible
-   */
-  @Watch('for')
-  watchFor() {
-    this.updateAriaAttributes();
-  }
 
   constructor() {
     this.handlePostToggle = this.handlePostToggle.bind(this);
