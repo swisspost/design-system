@@ -1,4 +1,14 @@
-import { Component, h, Host, Prop, Element, State, Event, EventEmitter, Watch } from '@stencil/core';
+import {
+  Component,
+  h,
+  Host,
+  Prop,
+  Element,
+  State,
+  Event,
+  EventEmitter,
+  Watch,
+} from '@stencil/core';
 import { version } from '@root/package.json';
 import { debounce, checkRequiredAndType } from '@/utils';
 
@@ -69,6 +79,13 @@ export class PostAutocomplete {
     if (!this.listBoxElement.id) this.listBoxElement.id = crypto.randomUUID();
     this.inputElement.setAttribute('aria-controls', this.listBoxElement.id);
     this.inputElement.setAttribute('aria-expanded', 'false');
+
+    const inputLabel = this.inputElement.labels?.[0];
+    if (inputLabel) {
+      if (!inputLabel.id) inputLabel.id = crypto.randomUUID();
+      this.listBoxElement.setAttribute('aria-labelledby', inputLabel.id);
+    }
+
     // Because we're handling that and the browser would show a duplicate native autocomplete dropdown
     this.inputElement.autocomplete = 'off';
     this.attachInputListeners();

@@ -16,3 +16,4 @@ export * from './sass-export';
 export * from './timeout';
 export * from './is-iso-date';
 export * from './locales';
+export * from './nanoid';

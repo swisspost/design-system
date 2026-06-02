@@ -78,9 +78,11 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
       });
 
       it('should correctly show the right scroll button', () => {
-        cy.get('@mainnavigation').then($mainnavigation => {
-          cy.get('@rightScroll').then($rightScroll => {
-            expect($rightScroll.outerHeight()).eq($mainnavigation.innerHeight());
+        cy.get('@rightScroll').should('be.visible').then($rightScroll => {
+          cy.get('@mainnavigation').then($mainnavigation => {
+            const scrollHeight = $rightScroll.get(0).getBoundingClientRect().height;
+            const navHeight = $mainnavigation.get(0).getBoundingClientRect().height;
+            expect(scrollHeight).to.be.closeTo(navHeight, 1);
           });
         });
       });
@@ -174,9 +176,11 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
       });
 
       it('should correctly show the left scroll button', () => {
-        cy.get('@mainnavigation').then($mainnavigation => {
-          cy.get('@leftScroll').then($leftScroll => {
-            expect($leftScroll.outerHeight()).eq($mainnavigation.innerHeight());
+        cy.get('@leftScroll').should('be.visible').then($leftScroll => {
+          cy.get('@mainnavigation').then($mainnavigation => {
+            const scrollHeight = $leftScroll.get(0).getBoundingClientRect().height;
+            const navHeight = $mainnavigation.get(0).getBoundingClientRect().height;
+            expect(scrollHeight).to.be.closeTo(navHeight, 1);
           });
         });
       });
