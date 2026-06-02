@@ -47,11 +47,6 @@ export class PostStepper {
   @Pattern(/\{number\}/)
   textStepNumber!: string;
 
-  @Watch('textStepNumber')
-  validateTextStepNumber() {
-    this.updateActiveStepNumber();
-  }
-
   /**
    * Defines the current step, which is the next step the user has to complete.
    */
@@ -87,6 +82,20 @@ export class PostStepper {
     this.updateSteps();
   }
 
+  @Watch('textStepNumber')
+  updateActiveStepNumber() {
+    if (this.textStepNumber) {
+      const labelTemplate = this.textStepNumber;
+      this.mobileActiveStepLabel = labelTemplate.replaceAll(
+        '{number}',
+        `${this.selectedIndex + 1}`,
+      );
+      if (this.stepItems) {
+        this.updateMobileActiveStepVisibility();
+      }
+    }
+  }
+
   componentDidLoad() {
     // Wait for slotchange
     setTimeout(() => {
@@ -100,19 +109,6 @@ export class PostStepper {
       console.error(
         'The selected-index cannot be higher than the current-index, as only the current and completed steps can be selected.',
       );
-    }
-  }
-
-  private updateActiveStepNumber() {
-    if (this.textStepNumber) {
-      const labelTemplate = this.textStepNumber;
-      this.mobileActiveStepLabel = labelTemplate.replaceAll(
-        '{number}',
-        `${this.selectedIndex + 1}`,
-      );
-      if (this.stepItems) {
-        this.updateMobileActiveStepVisibility();
-      }
     }
   }
 

@@ -206,20 +206,9 @@ export class PostDatePicker {
    * It is only needed when the calendar is connected to the input.
    */
   @Prop()
+  @Required({ when: 'inline', truthy: false })
   @Type('string')
   textToggleCalendar?: string;
-  @Watch('textToggleCalendar')
-  validateTextToggleCalendar() {
-    if (!this.inline) {
-      const isValid = typeof this.textToggleCalendar === 'string';
-      if (!isValid) {
-        console.error(
-          `[${this.host.localName}] Property "textToggleCalendar" is required when "inline" is false. Received: ${JSON.stringify(this.textToggleCalendar)}.`,
-          this.host,
-        );
-      }
-    }
-  }
 
   @State() inputDisabled = false;
   @State() today = new Date();
@@ -1150,7 +1139,6 @@ export class PostDatePicker {
     this.setupInputObserver();
 
     this.validateLocale();
-    this.validateTextToggleCalendar();
     this.validateInline();
 
     if (this.inline) {
