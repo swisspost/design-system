@@ -83,7 +83,7 @@ export class PostCollapsible {
   }
 
   /**
-   * Update all post-collapsible-trigger elements referring to the collapsible
+   * Update all post-collapsible-trigger elements referring to or wrapping the collapsible
    */
   private updateTriggers() {
     const triggers = this.host.id
