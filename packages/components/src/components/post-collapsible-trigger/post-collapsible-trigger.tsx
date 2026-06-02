@@ -85,10 +85,11 @@ export class PostCollapsibleTrigger {
 
     // add the controlled collapsible's id to the aria-controls list
     const ariaControls = this.trigger.getAttribute('aria-controls');
+    const tokens = ariaControls ? ariaControls.split(/\s+/) : [];
 
-    if (!ariaControls?.includes(collapsibleId)) {
-      const newAriaControls = ariaControls ? `${ariaControls} ${collapsibleId}` : collapsibleId;
-      this.trigger.setAttribute('aria-controls', newAriaControls);
+    if (!tokens.includes(collapsibleId)) {
+      tokens.push(collapsibleId);
+      this.trigger.setAttribute('aria-controls', tokens.join(' '));
     }
 
     // set aria-expanded to `true` if expanded, `false` if collapsed (collapsed defaults to false)
