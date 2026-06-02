@@ -6,7 +6,7 @@ import '@swisspost/design-system-components';
 @Component({
   tag: 'swisspost-internet-login-widget',
   styleUrl: 'post-internet-login-widget.scss',
-  shadow: false,
+  shadow: true,
 })
 export class PostInternetLoginWidget {
   /**
