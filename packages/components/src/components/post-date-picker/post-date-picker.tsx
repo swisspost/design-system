@@ -18,7 +18,8 @@ import AirDatepicker, {
   AirDatepickerViewsSingle,
 } from 'air-datepicker';
 import { airDatepickerLocales } from './air-locales';
-import IMask, { InputMask } from 'imask';
+import type { InputMask } from 'imask';
+import IMask from 'imask';
 import {
   checkEmptyOrDate,
   checkRequiredAndType,
@@ -1205,7 +1206,7 @@ export class PostDatePicker {
   render() {
     return (
       <Host data-version={version}>
-        {this.inline && <div class="datepicker-container"></div>}
+        {this.inline && <div class="datepicker-container" dir={this.textDirection}></div>}
         {!this.inline && (
           <div dir={this.textDirection}>
             <div

@@ -1,7 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { nanoid } from 'nanoid';
-import { checkRequiredAndType } from '@/utils';
+import { checkRequiredAndType, nanoid } from '@/utils';
 
 /**
  * @slot default - Slot for placing the content of the tab panel.
