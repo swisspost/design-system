@@ -2,4 +2,4 @@
 "@swisspost/design-system-components": patch
 ---
 
-Fixed missing accessibility attributes on `post-autocomplete`.
+Fixed missing `role` and `aria-labelledby` attributes on `post-autocomplete`.
