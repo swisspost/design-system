@@ -37,3 +37,9 @@ This method is asynchronous and returns a promise that resolves with the current
 It optionally takes a boolean parameter: `true` forces it open, and `false` forces it closed.
 
 <Source code={SampleCustomTrigger} language="typescript" />
+
+### Nested Trigger
+
+When the trigger and collapsible are co-located, you can nest the `<post-collapsible>` directly inside `<post-collapsible-trigger>` and omit the `for` attribute and the `id` entirely.
+
+<Canvas of={CollapsibleStories.Nested} />
