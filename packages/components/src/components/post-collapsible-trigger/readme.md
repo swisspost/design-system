@@ -5,9 +5,9 @@
 
 ## Properties
 
-| Property | Attribute | Description                                         | Type     | Default     |
-| -------- | --------- | --------------------------------------------------- | -------- | ----------- |
-| `for`    | `for`     | Link the trigger to a post-collapsible with this id | `string` | `undefined` |
+| Property | Attribute | Description                                                                                                                           | Type     | Default     |
+| -------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `for`    | `for`     | Link the trigger to a post-collapsible by its ID. If omitted, a post-collapsible nested directly inside this element is used instead. | `string` | `undefined` |
 
 
 ## Methods
