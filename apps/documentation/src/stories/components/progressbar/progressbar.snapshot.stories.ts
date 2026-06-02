@@ -15,44 +15,36 @@ type Story = StoryObj;
 
 export const Progressbar: Story = {
   render: (_args: Args, context: StoryContext) => {
+    const state = ['success', 'error', 'warning'];
     const combinations = bombArgs({
-      state: ['neutral', 'success', 'error', 'warning'],
       hiddenLabel: [false, true],
       showValue: [true, false],
-      ariaValueText: ['', '11 of 17'],
+      valueText: ['', '11 of 17'],
     }).filter((args: Args) => {
       // Hidden label implies no visible value
       if (args.hiddenLabel && args.showValue) return false;
+      if (!args.showValue && args.valueText !== '') return false;
       return true;
     });
 
     return schemes(
       () => html`
-        <div class="d-flex flex-wrap gap-32 p-16">
-          ${combinations.map((args: Args) => {
-            const statusMessage = args.state !== 'neutral' ? 'Status message' : '';
-            const combinedArgs = {
-              ...context.args,
-              ...args,
-              label: 'Loading packages',
-              value: 11,
-              max: 17,
-              min: 0,
-              labelIcon: args.state === 'neutral' ? 'import' : '',
-              helperMessage: 'Filename and type',
-              statusMessage,
-            };
-            return html`
-              <div style="min-width: 280px; max-width: 360px; flex: 1 1 280px;">
-                <p class="h6 mb-8">
-                  ${args.state} / ${args.hiddenLabel ? 'hidden label' : 'visible label'} /
-                  ${args.showValue ? 'with value' : 'no value'} /
-                  ${args.ariaValueText ? 'custom value text' : 'percentage'}
-                </p>
-                ${meta.render?.(combinedArgs, context)}
-              </div>
-            `;
-          })}
+        <div class="d-flex flex-column gap-32 p-32">
+          <div class="row row-cols-4 align-items-end">
+            ${combinations.map(
+              (args: Args) => html`
+                <div class="col">${meta.render?.({ ...context.args, ...args }, context)}</div>
+              `,
+            )}
+          </div>
+          <div class="row row-cols-4 align-items-end">
+            ${state.map(state => {
+              const statusMessage = 'Status message';
+              return html`<div class="col">
+                ${meta.render?.({ ...context.args, state, statusMessage }, context)}
+              </div>`;
+            })}
+          </div>
         </div>
       `,
     );
