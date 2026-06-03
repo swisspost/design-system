@@ -1,0 +1,57 @@
+---
+'@swisspost/design-system-icons': minor
+---
+
+Added icons:
+
+- `aivoicetovoiceoff` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `addressgeodata` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `adressmanagement` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `adresssubadress` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `advertisingonline` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `arrowforewardbackward` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `arrowupdown` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `bookopen` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `book` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `calendardurationai` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `calendarend` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `calendarstart` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `carbreaks` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `collapseleft` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `collapseright` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `despatchpublication` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `digitaloutofhome` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `directmailing` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `documentemail` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `drawer` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `journalsubmission` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `letteradvancenotice` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `letterdigital` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `letterlocation` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `linkunlinked` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `logisticsfigures` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `mailboxprivatenofit` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `motor` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `newspaperpost` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `nothome` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `offersonrequest` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `oilchange` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `paragraph` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `postcardcreator` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `promotionalmailing` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `rearviewmirror` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `recallproofmailing` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `recieveathome` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `redirectmail` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `returntransport` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `reusablecontainers` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `seaairfreight` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `securemail` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `shoponline` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `singleauthorization` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `stampaandbpost` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `stampchecked` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `switzerlandlocation` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `targetarea` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `vehiclelights` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `withholdmail` (line & solid): 16, 24, 32, 40, 48 and 64px
