@@ -51,7 +51,7 @@ describe('header', () => {
       cy.get('[slot="post-login"]')
         .invoke('prop', 'localName')
         .should('eq', 'swisspost-internet-login-widget');
-      cy.get('[slot="post-login"] [slot="login-link"]').should('be.visible');
+      cy.get('[slot="post-login"]').shadow().find('[slot="login-link"]').should('be.visible');
     });
 
     context('main navigation', () => {
