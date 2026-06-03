@@ -1874,6 +1874,73 @@ export class MigrationV910Component extends LitElement {
               </li>
             </ol>
           </li>
+          <li>
+            <h3>Internet Header (@swisspost/internet-header)</h3>
+            <p>
+              If you are using the <code>@swisspost/internet-header</code> package, follow these
+              additional migration steps. Version 10 reworks the component from the inside out:
+              <code>swisspost-internet-header</code> is now a thin wrapper that fetches the portal
+              config and delegates all rendering to Design System components. The public tag name,
+              along with the <code>project</code>, <code>environment</code>, <code>language</code>,
+              <code>active-route</code>, and <code>full-width</code> props, are unchanged. Everything
+              else has been removed.
+            </p>
+            <post-accordion heading-level="4">
+              <post-accordion-item>
+                <span slot="header">1. Update the package</span>
+                <p>Update the Internet Header package to version 10:</p>
+                <code-block
+                  code=${'npm install @swisspost/internet-header@10'}
+                ></code-block>
+              </post-accordion-item>
+              <post-accordion-item>
+                <span slot="header">2. Add the new required <code>text-*</code> props</span>
+                <p>
+                  Version 10 introduces a set of required <code>text-*</code> props for
+                  accessibility purposes, providing visually hidden labels for interactive elements.
+                  The component will throw if any are missing. Add them to your
+                  <code>swisspost-internet-header</code> element:
+                </p>
+                <code-block
+                  code=${'<swisspost-internet-header\n    project="your-service-id"\n    text-menu="Menu"\n    text-back="Back"\n    text-close="Close"\n    text-current-language="The currently selected language is #name."\n    text-change-language="Change the language"\n    text-main="Main navigation"\n    text-current-user="Current user is John Doe."\n    text-user-links="User links"\n  ></swisspost-internet-header>'}
+                ></code-block>
+              </post-accordion-item>
+              <post-accordion-item>
+                <span slot="header">3. Remove props that no longer exist</span>
+                <p>
+                  The following props have been removed and have no effect in v10:
+                </p>
+                <ul>
+                  <li><code>stickyness</code></li>
+                  <li><code>meta</code></li>
+                  <li><code>login</code></li>
+                  <li><code>search</code></li>
+                  <li><code>skiplinks</code></li>
+                  <li><code>config-proxy</code></li>
+                  <li><code>language-cookie-key</code></li>
+                  <li><code>language-local-storage-key</code></li>
+                  <li><code>logout-url</code></li>
+                  <li><code>self-admin-origin</code></li>
+                  <li><code>os-flyout-overrides</code></li>
+                  <li><code>custom-config</code></li>
+                  <li><code>language-switch-overrides</code></li>
+                </ul>
+              </post-accordion-item>
+              <post-accordion-item>
+                <span slot="header">4. Update runtime usage</span>
+                <p>
+                  The <code>language</code> and <code>active-route</code> props are still reactive
+                  and can be set at runtime. The <code>environment</code> and
+                  <code>full-width</code> props are accepted but do not trigger reactive updates
+                  after initial render. All other programmatic property assignments from v9 have no
+                  effect in v10 and should be removed:
+                </p>
+                <code-block
+                  code=${"const header = document.querySelector('swisspost-internet-header');\n  \n  // \u2705 Still works in v10\n  header.language = 'fr';\n  header.activeRoute = '/path/to/page';\n  \n  // \u274c No longer available in v10 - remove these\n  header.search = false;\n  header.stickyness = 'full';\n  header.customConfig = { /* ... */ };\n  header.languageSwitchOverrides = [ /* ... */ ];\n  await header.getCurrentLanguage(); // method removed"}
+                ></code-block>
+              </post-accordion-item>
+            </post-accordion>
+          </li>
         </ol>
       </section>
     `;
