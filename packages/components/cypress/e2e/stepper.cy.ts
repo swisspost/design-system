@@ -17,7 +17,7 @@ describe('stepper', { baseUrl: null }, () => {
     cy.window().then(win => {
       cy.spy(win.console, 'error').as('consoleError');
     });
-    cy.get('post-stepper').invoke('attr', 'text-current-step', null);
+    cy.get('post-stepper[data-hydrated]').invoke('attr', 'text-current-step', null);
     cy.get('@consoleError').should('be.called');
   });
 
@@ -25,7 +25,7 @@ describe('stepper', { baseUrl: null }, () => {
     cy.window().then(win => {
       cy.spy(win.console, 'error').as('consoleError');
     });
-    cy.get('post-stepper').invoke('attr', 'text-completed-step', null);
+    cy.get('post-stepper[data-hydrated]').invoke('attr', 'text-completed-step', null);
     cy.get('@consoleError').should('be.called');
   });
 
@@ -33,7 +33,7 @@ describe('stepper', { baseUrl: null }, () => {
     cy.window().then(win => {
       cy.spy(win.console, 'error').as('consoleError');
     });
-    cy.get('post-stepper').invoke('attr', 'text-step-number', 'Step:');
+    cy.get('post-stepper[data-hydrated]').invoke('attr', 'text-step-number', 'Step:');
     cy.get('@consoleError').should('be.called');
   });
 
@@ -41,7 +41,7 @@ describe('stepper', { baseUrl: null }, () => {
     cy.window().then(win => {
       cy.spy(win.console, 'error').as('consoleError');
     });
-    cy.get('post-stepper').invoke('attr', 'text-step-number', null);
+    cy.get('post-stepper[data-hydrated]').invoke('attr', 'text-step-number', null);
     cy.get('@consoleError').should('be.called');
   });
 

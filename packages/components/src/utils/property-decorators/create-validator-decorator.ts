@@ -26,6 +26,8 @@ const validatorsByTarget = new WeakMap<object, Map<string, Validator[]>>();
 const decoratedPropertiesByTarget = new WeakMap<object, Set<string>>();
 /** Stores per-instance property values captured by dynamically created accessors. */
 const propertyValuesByInstance = new WeakMap<object, Map<string, unknown>>();
+/** Stores dependency relationships per prototype: dependencyProp -> Set<dependentProp>. */
+const dependenciesByTarget = new WeakMap<object, Map<string, Set<string>>>();
 
 /**
  * Returns the value for a key in a {@link WeakMap} and lazily creates it when missing.
@@ -80,6 +82,23 @@ function getValuesByProperty(instance: object): Map<string, unknown> {
 }
 
 /**
+ * Registers that `dependentProp` should be re-validated when `dependencyProp` changes.
+ * Ensures the dependency property has an accessor so its setter can trigger dependents.
+ */
+export function registerDependency(
+  target: object,
+  dependencyProp: string,
+  dependentProp: string,
+): void {
+  // Ensure dependency has an accessor so its setter can run dependent validators
+  createPropertyAccessor(target, dependencyProp);
+
+  const depsByProp = getOrCreate(dependenciesByTarget, target, () => new Map());
+  const dependents = getOrCreate(depsByProp, dependencyProp, () => new Set<string>());
+  dependents.add(dependentProp);
+}
+
+/**
  * Defines an accessor for a decorated property that stores values per instance and
  * triggers validation after the component first loads.
  *
@@ -101,6 +120,17 @@ function createPropertyAccessor(target: object, property: string): void {
       getValuesByProperty(this).set(property, newValue);
       if (loadedInstances.has(this)) {
         runValidators(this, property);
+        // Run validators for any properties that depend on this property.
+        const proto = Object.getPrototypeOf(this);
+        const depsByProp = dependenciesByTarget.get(proto);
+        if (depsByProp) {
+          const dependents = depsByProp.get(property);
+          if (dependents) {
+            for (const dependent of dependents) {
+              runValidators(this, dependent);
+            }
+          }
+        }
       }
     },
     enumerable: true,
