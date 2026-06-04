@@ -47,7 +47,7 @@ tokens.$default-map: components.$post-progressbar;
   }
 
   > .progressbar-message:not(:last-child) {
-    margin-block-end: tokens.get('progressbar-gap-block');
+    margin-block-end: tokens.get('progressbar-assistive-area-gap-block');
   }
 
   > .progressbar-status {
