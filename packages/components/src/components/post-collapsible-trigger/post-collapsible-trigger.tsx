@@ -113,7 +113,7 @@ export class PostCollapsibleTrigger {
   }
 
   /**
-   * Find the trigger button and attach its click handler and ARIA attributes.
+   * Find the button and add the proper event listener and ARIA attributes to it
    */
   private setTrigger() {
     // skip buttons that belong to a nested collapsible's content
