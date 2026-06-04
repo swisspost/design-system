@@ -1,6 +1,6 @@
-import { Component, h, Host, Prop, Element, State, Event, EventEmitter, Watch } from '@stencil/core';
+import { debounce, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { debounce, checkRequiredAndType } from '@/utils';
+import { Component, Element, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core';
 
 /**
  * @slot default - Slot for placing post-autocomplete-item components.
@@ -33,12 +33,10 @@ export class PostAutocomplete {
    * Use {count} as placeholder for the number of available suggestions,
    * e.g. "{count} suggestions available"
    */
-  @Prop({ reflect: true }) readonly textAvailableSuggestions!: string;
-
-  @Watch('textAvailableSuggestions')
-  validateTextAvailableSuggestions() {
-    checkRequiredAndType(this, 'textAvailableSuggestions', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  readonly textAvailableSuggestions!: string;
 
   @State() inputValue: string = '';
 
@@ -58,8 +56,6 @@ export class PostAutocomplete {
   }
 
   componentWillLoad() {
-    this.validateTextAvailableSuggestions();
-
     if (!this.inputElement) return;
     this.inputElement.role = 'combobox';
     this.inputElement.ariaAutoComplete = 'list';
@@ -69,6 +65,13 @@ export class PostAutocomplete {
     if (!this.listBoxElement.id) this.listBoxElement.id = crypto.randomUUID();
     this.inputElement.setAttribute('aria-controls', this.listBoxElement.id);
     this.inputElement.setAttribute('aria-expanded', 'false');
+
+    const inputLabel = this.inputElement.labels?.[0];
+    if (inputLabel) {
+      if (!inputLabel.id) inputLabel.id = crypto.randomUUID();
+      this.listBoxElement.setAttribute('aria-labelledby', inputLabel.id);
+    }
+
     // Because we're handling that and the browser would show a duplicate native autocomplete dropdown
     this.inputElement.autocomplete = 'off';
     this.attachInputListeners();

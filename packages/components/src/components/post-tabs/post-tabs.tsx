@@ -1,3 +1,6 @@
+import { fade } from '@/animations';
+import { componentOnReady, Type } from '@/utils';
+import { version } from '@root/package.json';
 import {
   Component,
   Element,
@@ -11,17 +14,6 @@ import {
   Watch,
   Build,
 } from '@stencil/core';
-import { version } from '@root/package.json';
-import { fade } from '@/animations';
-import { componentOnReady, checkRequiredAndType, checkRequiredAndOneOf } from '@/utils';
-
-// Extends the HTMLButtonElement interface to include ariaControlsElements, which is part of the
-// ARIA reflection API but not yet present in TypeScript's built-in DOM type definitions.
-declare global {
-  interface HTMLButtonElement {
-    ariaControlsElements: Element[];
-  }
-}
 
 /**
  * @slot default - Slot for placing tab items. Each tab item should be a <post-tab-item> element.
@@ -89,12 +81,17 @@ export class PostTabs {
   /**
    * The accessible label for the Content Tabs variant.
    */
-  @Prop({ reflect: true }) readonly label?: string;
+  @Prop({ reflect: true })
+  @Type('string')
+  readonly label?: string;
 
   @Watch('label')
   validateLabel() {
-    if (this.isPagesVariant) {
-      checkRequiredAndType(this, 'label', 'string');
+    if (this.isNavigationMode && !this.label) {
+      console.error(
+        `[${this.host.localName}] Property "label" is required in navigation mode. Received: ${JSON.stringify(this.label)}.`,
+        this.host,
+      );
     }
   }
 
