@@ -1,7 +1,7 @@
-import { Component, Element, h, Host, Listen, Method, Prop, State, Watch } from '@stencil/core';
+import { HeadingLevel } from '@/types';
+import { EventFrom, nanoid } from '@/utils';
 import { version } from '@root/package.json';
-import { HEADING_LEVELS, HeadingLevel } from '@/types';
-import { checkEmptyOrOneOf, EventFrom, nanoid } from '@/utils';
+import { Component, Element, h, Host, Listen, Method, Prop, State } from '@stencil/core';
 
 /**
  * @part post-accordion-button - The element that toggles the accordion item (header button).
@@ -29,23 +29,15 @@ export class PostAccordionItem {
    * If `true`, the element is collapsed otherwise it is displayed.
    */
   @Prop({ mutable: true, reflect: true }) collapsed?: boolean = false;
+
   /**
    * Defines the hierarchical level of the accordion item header within the headings structure.
    * @deprecated set the `heading-level` property on the parent `post-accordion` instead.
    */
   @Prop() readonly headingLevel?: HeadingLevel;
 
-  @Watch('headingLevel')
-  validateHeadingLevel() {
-    checkEmptyOrOneOf(this, 'headingLevel', HEADING_LEVELS);
-  }
-
   componentWillLoad() {
     this.id = this.host.id || `p${nanoid(6)}`;
-  }
-
-  componentDidLoad() {
-    this.validateHeadingLevel();
   }
 
   // Capture to make sure the "collapsed" property is updated before the event is consumed

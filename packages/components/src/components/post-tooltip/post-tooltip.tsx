@@ -1,9 +1,9 @@
-import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core';
+import { PostPopovercontainerCustomEvent } from '@/components';
+import { PLACEMENT_TYPES } from '@/types/placement';
+import { OneOf } from '@/utils';
 import type { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
-import { PostPopovercontainerCustomEvent } from '@/components';
-import { checkEmptyOrOneOf } from '@/utils';
-import { PLACEMENT_TYPES } from '@/types';
+import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 
 @Component({
   tag: 'post-tooltip',
@@ -20,12 +20,9 @@ export class PostTooltip {
    * Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
    * For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
    */
-  @Prop() readonly placement?: Placement = 'top';
-
-  @Watch('placement')
-  validatePlacement() {
-    checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
-  }
+  @Prop()
+  @OneOf(PLACEMENT_TYPES)
+  readonly placement?: Placement = 'top';
 
   /**
    * Whether or not to display a little pointer arrow
@@ -36,10 +33,6 @@ export class PostTooltip {
    * Indicates the open state of the tooltip
    */
   @Prop({ reflect: true, mutable: true }) open = false;
-
-  componentWillLoad() {
-    this.validatePlacement();
-  }
 
   componentDidLoad() {
     if (!this.host.id) {
