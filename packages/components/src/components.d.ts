@@ -663,6 +663,14 @@ export namespace Components {
          */
         "stars": number;
     }
+    interface PostSidenavigation {
+        /**
+          * Triggers the subnavigation programmatically.
+         */
+        "toggle": () => Promise<void>;
+    }
+    interface PostSidenavigationTrigger {
+    }
     interface PostStepper {
         /**
           * Defines the current step, which is the next step the user has to complete.
@@ -1183,6 +1191,18 @@ declare global {
         prototype: HTMLPostRatingElement;
         new (): HTMLPostRatingElement;
     };
+    interface HTMLPostSidenavigationElement extends Components.PostSidenavigation, HTMLStencilElement {
+    }
+    var HTMLPostSidenavigationElement: {
+        prototype: HTMLPostSidenavigationElement;
+        new (): HTMLPostSidenavigationElement;
+    };
+    interface HTMLPostSidenavigationTriggerElement extends Components.PostSidenavigationTrigger, HTMLStencilElement {
+    }
+    var HTMLPostSidenavigationTriggerElement: {
+        prototype: HTMLPostSidenavigationTriggerElement;
+        new (): HTMLPostSidenavigationTriggerElement;
+    };
     interface HTMLPostStepperElement extends Components.PostStepper, HTMLStencilElement {
     }
     var HTMLPostStepperElement: {
@@ -1277,6 +1297,8 @@ declare global {
         "post-popover-trigger": HTMLPostPopoverTriggerElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-rating": HTMLPostRatingElement;
+        "post-sidenavigation": HTMLPostSidenavigationElement;
+        "post-sidenavigation-trigger": HTMLPostSidenavigationTriggerElement;
         "post-stepper": HTMLPostStepperElement;
         "post-stepper-item": HTMLPostStepperItemElement;
         "post-tab-item": HTMLPostTabItemElement;
@@ -1872,6 +1894,10 @@ declare namespace LocalJSX {
          */
         "stars"?: number;
     }
+    interface PostSidenavigation {
+    }
+    interface PostSidenavigationTrigger {
+    }
     interface PostStepper {
         /**
           * Defines the current step, which is the next step the user has to complete.
@@ -2190,6 +2216,8 @@ declare namespace LocalJSX {
         "post-popover-trigger": Omit<PostPopoverTrigger, keyof PostPopoverTriggerAttributes> & { [K in keyof PostPopoverTrigger & keyof PostPopoverTriggerAttributes]?: PostPopoverTrigger[K] } & { [K in keyof PostPopoverTrigger & keyof PostPopoverTriggerAttributes as `attr:${K}`]?: PostPopoverTriggerAttributes[K] } & { [K in keyof PostPopoverTrigger & keyof PostPopoverTriggerAttributes as `prop:${K}`]?: PostPopoverTrigger[K] };
         "post-popovercontainer": Omit<PostPopovercontainer, keyof PostPopovercontainerAttributes> & { [K in keyof PostPopovercontainer & keyof PostPopovercontainerAttributes]?: PostPopovercontainer[K] } & { [K in keyof PostPopovercontainer & keyof PostPopovercontainerAttributes as `attr:${K}`]?: PostPopovercontainerAttributes[K] } & { [K in keyof PostPopovercontainer & keyof PostPopovercontainerAttributes as `prop:${K}`]?: PostPopovercontainer[K] };
         "post-rating": Omit<PostRating, keyof PostRatingAttributes> & { [K in keyof PostRating & keyof PostRatingAttributes]?: PostRating[K] } & { [K in keyof PostRating & keyof PostRatingAttributes as `attr:${K}`]?: PostRatingAttributes[K] } & { [K in keyof PostRating & keyof PostRatingAttributes as `prop:${K}`]?: PostRating[K] } & OneOf<"label", PostRating["label"], PostRatingAttributes["label"]>;
+        "post-sidenavigation": PostSidenavigation;
+        "post-sidenavigation-trigger": PostSidenavigationTrigger;
         "post-stepper": Omit<PostStepper, keyof PostStepperAttributes> & { [K in keyof PostStepper & keyof PostStepperAttributes]?: PostStepper[K] } & { [K in keyof PostStepper & keyof PostStepperAttributes as `attr:${K}`]?: PostStepperAttributes[K] } & { [K in keyof PostStepper & keyof PostStepperAttributes as `prop:${K}`]?: PostStepper[K] } & OneOf<"textCurrentStep", PostStepper["textCurrentStep"], PostStepperAttributes["textCurrentStep"]> & OneOf<"textCompletedStep", PostStepper["textCompletedStep"], PostStepperAttributes["textCompletedStep"]> & OneOf<"textStepNumber", PostStepper["textStepNumber"], PostStepperAttributes["textStepNumber"]>;
         "post-stepper-item": PostStepperItem;
         "post-tab-item": Omit<PostTabItem, keyof PostTabItemAttributes> & { [K in keyof PostTabItem & keyof PostTabItemAttributes]?: PostTabItem[K] } & { [K in keyof PostTabItem & keyof PostTabItemAttributes as `attr:${K}`]?: PostTabItemAttributes[K] } & { [K in keyof PostTabItem & keyof PostTabItemAttributes as `prop:${K}`]?: PostTabItem[K] } & OneOf<"name", PostTabItem["name"], PostTabItemAttributes["name"]>;
@@ -2241,6 +2269,8 @@ declare module "@stencil/core" {
             "post-popover-trigger": LocalJSX.IntrinsicElements["post-popover-trigger"] & JSXBase.HTMLAttributes<HTMLPostPopoverTriggerElement>;
             "post-popovercontainer": LocalJSX.IntrinsicElements["post-popovercontainer"] & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-rating": LocalJSX.IntrinsicElements["post-rating"] & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
+            "post-sidenavigation": LocalJSX.IntrinsicElements["post-sidenavigation"] & JSXBase.HTMLAttributes<HTMLPostSidenavigationElement>;
+            "post-sidenavigation-trigger": LocalJSX.IntrinsicElements["post-sidenavigation-trigger"] & JSXBase.HTMLAttributes<HTMLPostSidenavigationTriggerElement>;
             "post-stepper": LocalJSX.IntrinsicElements["post-stepper"] & JSXBase.HTMLAttributes<HTMLPostStepperElement>;
             "post-stepper-item": LocalJSX.IntrinsicElements["post-stepper-item"] & JSXBase.HTMLAttributes<HTMLPostStepperItemElement>;
             "post-tab-item": LocalJSX.IntrinsicElements["post-tab-item"] & JSXBase.HTMLAttributes<HTMLPostTabItemElement>;
