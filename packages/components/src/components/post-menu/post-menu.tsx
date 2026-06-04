@@ -1,3 +1,7 @@
+import { PLACEMENT_TYPES } from '@/types';
+import { EventFrom, getFocusableChildren, getRoot, OneOf, Required, Type } from '@/utils';
+import type { Placement } from '@floating-ui/dom';
+import { version } from '@root/package.json';
 import {
   Component,
   Element,
@@ -8,13 +12,7 @@ import {
   Method,
   Prop,
   State,
-  Watch,
 } from '@stencil/core';
-import type { Placement } from '@floating-ui/dom';
-import { PLACEMENT_TYPES } from '@/types';
-import { version } from '@root/package.json';
-import { getFocusableChildren } from '@/utils/get-focusable-children';
-import { getRoot, checkEmptyOrOneOf, checkRequiredAndType, EventFrom } from '@/utils';
 
 /**
  * @part post-menu - The container element that holds the list of menu items.
@@ -48,22 +46,17 @@ export class PostMenu {
    * Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
    * For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
    */
-  @Prop() readonly placement?: Placement = 'bottom';
-
-  @Watch('placement')
-  validatePlacement() {
-    checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
-  }
+  @Prop()
+  @OneOf(PLACEMENT_TYPES)
+  readonly placement?: Placement = 'bottom';
 
   /**
    * A descriptive label that clearly identifies the menu’s content so assistive technologies can convey its purpose.
    */
-  @Prop({ reflect: true }) readonly label!: string;
-
-  @Watch('label')
-  validateLabel() {
-    checkRequiredAndType(this, 'label', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  readonly label!: string;
 
   /**
    * Holds the current visibility state of the menu.
@@ -89,11 +82,6 @@ export class PostMenu {
   disconnectedCallback() {
     this.host.removeEventListener('keydown', this.handleKeyDown);
     this.host.removeEventListener('click', this.handleClick);
-  }
-
-  componentDidLoad() {
-    this.validatePlacement();
-    this.validateLabel();
   }
 
   /**
