@@ -1,4 +1,8 @@
+import { collapse, collapsedKeyframe, expand } from '@/animations/collapse';
+import { Type } from '@/utils';
+import { version } from '@root/package.json';
 import {
+  Build,
   Component,
   Element,
   Event,
@@ -7,12 +11,7 @@ import {
   Host,
   Method,
   Prop,
-  Watch,
-  Build,
 } from '@stencil/core';
-import { version } from '@root/package.json';
-import { collapsedKeyframe, collapse, expand } from '@/animations/collapse';
-import { checkEmptyOrType } from '@/utils';
 
 type InlineStyles = { [key: string]: string };
 
@@ -30,12 +29,9 @@ export class PostCollapsible {
   /**
    * If `true`, the element is collapsed otherwise it is displayed.
    */
-  @Prop({ mutable: true }) collapsed?: boolean = false;
-
-  @Watch('collapsed')
-  collapsedChange() {
-    checkEmptyOrType(this, 'collapsed', 'boolean');
-  }
+  @Prop({ mutable: true })
+  @Type('boolean')
+  collapsed?: boolean = false;
 
   /**
    * An event emitted when the collapse element is shown or hidden, before the transition.
@@ -49,7 +45,6 @@ export class PostCollapsible {
   }
 
   componentDidLoad() {
-    this.collapsedChange();
     this.updateTriggers();
   }
 

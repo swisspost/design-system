@@ -1,6 +1,6 @@
-import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { nanoid, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { checkRequiredAndType, nanoid } from '@/utils';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 
 /**
  * @slot default - Slot for placing the content of the tab panel.
@@ -19,15 +19,12 @@ export class PostTabPanel {
   /**
    * The name of the tab that this panel is associated with.
    */
-  @Prop({ reflect: true }) readonly for!: string;
-
-  @Watch('for')
-  validateFor() {
-    checkRequiredAndType(this, 'for', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  readonly for!: string;
 
   componentWillLoad() {
-    this.validateFor();
     // get the id set on the host element or use a random id by default
     this.panelId = `panel-${this.host.id || nanoid(6)}`;
   }
