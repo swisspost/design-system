@@ -113,10 +113,16 @@ export class PostCollapsibleTrigger {
   }
 
   /**
-   * Find the button and add the proper event listener and ARIA attributes to it
+   * Find the trigger button and attach its click handler and ARIA attributes.
    */
   private setTrigger() {
-    const trigger = this.host.querySelector('button');
+    // skip buttons that belong to a nested collapsible's content
+    const trigger = Array.from(this.host.querySelectorAll('button')).find(button => {
+      const collapsible = button.closest('post-collapsible');
+      const isInsidePanel = !!collapsible && this.host.contains(collapsible);
+      return !isInsidePanel;
+    });
+
     if (!trigger || (this.trigger && trigger.isEqualNode(this.trigger))) return;
 
     this.trigger = trigger;
