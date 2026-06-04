@@ -2,6 +2,9 @@
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
 @use '@swisspost/design-system-styles/mixins/button' as button-mx;
 @use '@swisspost/design-system-styles/variables/elevation';
+@use '@swisspost/design-system-styles/tokens/components' as components;
+
+tokens.$default-map: components.$post-tabs;
 
 :host {
   display: block;
@@ -21,8 +24,7 @@
         background-color 100ms,
         border-color 100ms,
         color 100ms;
-
-      padding-block: 12px; // post-tabs-scroll-button-padding-block
+      padding-block: tokens.get('post-tabs-scroll-button-padding-block');
       cursor: pointer;
 
       post-icon {
@@ -34,7 +36,7 @@
       }
 
       @include utilities-mx.focus-style() {
-        outline-offset: -4px !important; // post-tabs-tab-focus-outline-offset
+        outline-offset: -4px !important; // post-tabs-tab-focus-outline-offset is it ok to add a -4px token?
       }
 
       @include utilities-mx.high-contrast-mode() {
@@ -65,39 +67,42 @@
 :host(.page-tabs) {
   .tabs-wrapper {
     button.scroll-btn {
-      color: #050400; // post-tabs-page-scroll-button-color-enabled-fg
-      background-color: #fafafa; // post-tabs-page-scroll-button-color-enabled-bg
-      border: 2px solid #050400; // post-tabs-page-scroll-button-border-width +  post-tabs-page-scroll-button-color-enabled-border
+      color: tokens.get('post-tabs-page-scroll-button-color-enabled-fg');
+      background-color: tokens.get('post-tabs-page-scroll-button-color-enabled-bg');
+      border: tokens.get('post-tabs-page-scroll-button-border-width') solid
+        tokens.get('post-tabs-page-scroll-button-color-enabled-border');
       position: absolute;
-      inset-block-start: 12px; // post-tabs-page-scroll-button-position-top
+      inset-block-start: tokens.get('post-tabs-page-scroll-button-position-top');
       z-index: 2;
       box-shadow: elevation.$elevation-200;
-      border-radius: 8px; // post-tabs-page-scroll-button-border-radius
+      border-radius: tokens.get('post-tabs-page-scroll-button-border-radius');
 
       post-icon {
-        width: 24px; // post-tabs-page-scroll-button-icon-size
-        height: 24px; // post-tabs-page-scroll-button-icon-size
+        width: tokens.get('post-tabs-page-scroll-button-icon-size');
+        height: tokens.get('post-tabs-page-scroll-button-icon-size');
       }
 
       // hovered
       &:hover {
-        border-color: #504f4b !important; // post-tabs-page-scroll-button-color-hovered-border
-        color: #504f4b; // post-tabs-page-scroll-button-color-hovered-fg
-        background-color: #ffffff; //post-tabs-page-scroll-button-color-hovered-bg
+        border-color: tokens.get('post-tabs-page-scroll-button-color-hovered-border') !important;
+        color: tokens.get('post-tabs-page-scroll-button-color-hovered-fg');
+        background-color: tokens.get('post-tabs-page-scroll-button-color-hovered-bg');
       }
 
       // Left Scroll button
       &.scroll-btn-left {
         inset-inline-start: 0;
         border-inline-start: none;
-        border-radius: 0 8px 8px 0; // post-tabs-page-scroll-button-border-radius (start side: 0 — flush with wrapper edge)
+        border-radius: 0 tokens.get('post-tabs-page-scroll-button-border-radius')
+          tokens.get('post-tabs-page-scroll-button-border-radius') 0;
       }
 
       // Right Scroll button
       &.scroll-btn-right {
         inset-inline-end: 0;
         border-inline-end: none;
-        border-radius: 8px 0 0 8px; // post-tabs-page-scroll-button-border-radius (end side: 0 — flush with wrapper edge)
+        border-radius: tokens.get('post-tabs-page-scroll-button-border-radius') 0 0
+          tokens.get('post-tabs-page-scroll-button-border-radius');
       }
     }
 
@@ -107,8 +112,8 @@
       inset-block-end: 0;
       inset-inline-start: 0;
       width: 100%;
-      height: 2px; // post-tabs-border-width
-      background-color: #050400; // post-tabs-page-border-color ?? or post-tabs-page-default-color-border
+      height: tokens.get('post-tabs-border-width');
+      background-color: tokens.get('post-tabs-page-border-color');
 
       @include utilities-mx.high-contrast-mode() {
         background-color: LinkText;
@@ -116,8 +121,8 @@
     }
 
     .tabs {
-      padding-inline-start: 40px; // post-tabs-page-padding-inline
-      gap: 2px; // post-tabs-page-gap-inline
+      padding-inline-start: tokens.get('post-tabs-page-padding-inline');
+      gap: tokens.get('post-tabs-page-gap-inline');
     }
   }
 }
@@ -127,12 +132,12 @@
   .tabs-wrapper {
     button.scroll-btn {
       flex-shrink: 0;
-      color: #050400; // post-tabs-content-scroll-button-color-enabled-fg
+      color: tokens.get('post-tabs-content-scroll-button-color-enabled-fg');
 
       // hovered
       &:hover {
-        border-color: #504f4b !important; // post-tabs-scroll-button-hovered-border-color
-        color: #504f4b; // post-tabs-content-scroll-button-color-hovered-fg
+        border-color: tokens.get('post-tabs-content-scroll-button-color-hovered-border') !important;
+        color: tokens.get('post-tabs-content-scroll-button-color-hovered-fg');
       }
     }
   }
@@ -143,17 +148,19 @@
 :host {
   .tabs-wrapper {
     button.scroll-btn {
-      height: 48px; //post-tabs-large-scroll-button-height
-      width: 40px; //post-tabs-large-scroll-button-width
+      height: tokens.get('post-tabs-large-scroll-button-height');
+      width: tokens.get('post-tabs-large-scroll-button-width');
 
       // Left Scroll button
       &.scroll-btn-left {
-        padding-inline: 7px 9px; // post-tabs-large-scroll-button-left-padding-inline-start + post-tabs-large-scroll-button-left-padding-inline-end
+        padding-inline: tokens.get('post-tabs-large-scroll-button-left-padding-inline-start')
+          tokens.get('post-tabs-large-scroll-button-left-padding-inline-end');
       }
 
       // Right Scroll button
       &.scroll-btn-right {
-        padding-inline: 9px 7px; // post-tabs-large-scroll-button-right-padding-inline-start + post-tabs-large-scroll-button-right-padding-inline-end
+        padding-inline: tokens.get('post-tabs-large-scroll-button-right-padding-inline-start')
+          tokens.get('post-tabs-large-scroll-button-right-padding-inline-end');
       }
     }
   }
@@ -163,17 +170,19 @@
 :host([size='small']) {
   .tabs-wrapper {
     button.scroll-btn {
-      height: 40px; //post-tabs-small-scroll-button-size
-      width: 40px; //post-tabs-small-scroll-button-size
+      height: tokens.get('post-tabs-small-scroll-button-size');
+      width: tokens.get('post-tabs-small-scroll-button-size');
 
       // Left Scroll button
       &.scroll-btn-left {
-        padding-inline: 11px 13px; // post-tabs-small-scroll-button-left-padding-inline-start + post-tabs-small-scroll-button-left-padding-inline-end
+        padding-inline: tokens.get('post-tabs-small-scroll-button-left-padding-inline-start')
+          tokens.get('post-tabs-small-scroll-button-left-padding-inline-end');
       }
 
       // Right Scroll button
       &.scroll-btn-right {
-        padding-inline: 13px 11px; // post-tabs-small-scroll-button-right-padding-inline-start + post-tabs-small-scroll-button-right-padding-inline-end
+        padding-inline: tokens.get('post-tabs-small-scroll-button-right-padding-inline-start')
+          tokens.get('post-tabs-small-scroll-button-right-padding-inline-end');
       }
     }
   }

@@ -3,9 +3,17 @@
 @use './../../variables/components/nav';
 @use './../../functions/tokens';
 @use './../../tokens/utilities';
+@use './../../tokens/components' as components;
 @use './../../tokens/helpers';
 
-tokens.$default-map: utilities.$post-spacing;
+// tokens.$default-map: utilities.$post-spacing;
+
+tokens.$default-map: components.$post-tabs;
+
+$tabs-outline-offset: calc(
+  tokens.get('post-tabs-tab-focus-outline-offset', helpers.$post-focus) +
+    tokens.get('post-tabs-border-width')
+);
 
 // Common for all variants
 post-tab-item.tab-title,
@@ -14,11 +22,11 @@ post-tab-item.nav-item a {
   box-sizing: border-box;
   background-color: transparent;
   cursor: pointer;
-  color: #050400; // post-tabs-color-fg
+  color: tokens.get('post-tabs-color-fg');
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 700; // missing token
+  font-weight: 700; // missing token?
 
   post-icon {
     @include utilities-mx.high-contrast-mode() {
@@ -28,35 +36,35 @@ post-tab-item.nav-item a {
   }
 
   @include utilities-mx.focus-style() {
-    outline-offset: -4px !important; // post-tabs-tab-focus-outline-offset
+    outline-offset: $tabs-outline-offset !important;
   }
 }
 
 // Content Tabs Variant
 post-tab-item.tab-title {
-  padding-block: 20px; // post-tabs-panel-item-padding-block
+  padding-block: tokens.get('post-tabs-panel-item-padding-block');
   transition:
     background-color 100ms,
     border-color 100ms,
     color 100ms;
-  border-block-end: 2px solid transparent; // post-tabs-border-width
-  color: #050400; // post-tabs-content-tab-color-enabled-fg
+  border-block-end: tokens.get('post-tabs-border-width') solid transparent;
+  color: tokens.get('post-tabs-content-tab-color-enabled-fg');
 
   // selected
   &[aria-selected='true'] {
-    border-color: #050400; // post-tabs-content-tab-selected-color-enabled-border
-    color: #050400; // post-tabs-content-tab-selected-color-enabled-fg;
+    border-color: tokens.get('post-tabs-content-tab-selected-color-enabled-border');
+    color: tokens.get('post-tabs-content-tab-selected-color-enabled-fg');
   }
 
   // hovered
   &:hover:not([disabled]) {
-    border-color: #504f4b; // post-tabs-content-tab-color-hovered-border
-    color: #504f4b; // post-tabs-content-tab-color-hovered-fg
+    border-color: tokens.get('post-tabs-content-tab-color-hovered-border');
+    color: tokens.get('post-tabs-content-tab-color-hovered-fg');
   }
 
   // disabled
   &[disabled] {
-    color: #696864; // post-tabs-content-tab-color-disabled-fg
+    color: tokens.get('post-tabs-content-tab-color-disabled-fg');
     pointer-events: none;
   }
 
@@ -93,43 +101,43 @@ post-tab-item.nav-item {
       padding-block 200ms,
       height 200ms;
 
-    border-block-start: 2px solid transparent; // post-tabs-border-width + post-tabs-item-enabled-border-color
-    border-inline-start: 2px solid transparent; // post-tabs-border-width + post-tabs-item-enabled-border-color
-    border-inline-end: 2px solid transparent; // post-tabs-border-width + post-tabs-item-enabled-border-color
-    background-color: #050400; // post-tabs-page-default-tab-color-enabled-bg
-    border-color: #050400; // post-tabs-page-default-tab-color-enabled-border
-    color: white; // post-tabs-page-default-tab-color-enabled-fg
+    border-block-start: tokens.get('post-tabs-border-width') solid transparent;
+    border-inline-start: tokens.get('post-tabs-border-width') solid transparent;
+    border-inline-end: tokens.get('post-tabs-border-width') solid transparent;
+    background-color: tokens.get('post-tabs-page-tab-color-enabled-bg');
+    border-color: tokens.get('post-tabs-page-tab-color-enabled-border');
+    color: tokens.get('post-tabs-page-tab-color-enabled-fg');
 
     // Dark background needs the inverted focus ring color
     @include utilities-mx.focus-style-custom {
       outline-color: tokens.get('focus-outline-color-inverted', helpers.$post-focus) !important;
-      outline-offset: -4px !important;
+      outline-offset: $tabs-outline-offset !important;
     }
 
     // hovered
     &:hover {
-      background-color: #504f4b; // post-tabs-page-default-tab-color-hovered-bg
-      border-color: #504f4b; // post-tabs-page-default-tab-color-hovered-border
-      color: #ffffff; //post-tabs-page-default-tab-color-hovered-fg
+      background-color: tokens.get('post-tabs-page-tab-color-hovered-bg');
+      border-color: tokens.get('post-tabs-page-tab-color-hovered-border');
+      color: tokens.get('post-tabs-page-tab-color-hovered-fg');
     }
 
     // selected
     &[aria-current='page'] {
-      background-color: #fafafa; // post-tabs-page-default-tab-selected-color-enabled-bg
-      color: #050400; // post-tabs-page-default-tab-selected-color-enabled-fg
-      border-color: #050400; // post-tabs-page-default-tab-selected-color-enabled-border
+      background-color: tokens.get('post-tabs-page-tab-selected-color-enabled-bg');
+      color: tokens.get('post-tabs-page-tab-selected-color-enabled-fg');
+      border-color: tokens.get('post-tabs-page-tab-selected-color-enabled-border');
 
       // Light background reverts to the default focus ring color
       @include utilities-mx.focus-style-custom {
         outline-color: tokens.get('focus-outline-color', helpers.$post-focus) !important;
-        outline-offset: -4px !important;
+        outline-offset: $tabs-outline-offset !important;
       }
 
       // selected — hovered
       &:hover {
-        color: #504f4b; // post-tabs-page-default-tab-selected-color-hovered-fg
-        background-color: #fafafa; // post-tabs-page-default-tab-selected-color-hovered-bg
-        border-color: #504f4b; // ppost-tabs-page-default-tab-selected-color-hovered-border
+        color: tokens.get('post-tabs-page-tab-selected-color-hovered-fg');
+        background-color: tokens.get('post-tabs-page-tab-selected-color-hovered-bg');
+        border-color: tokens.get('post-tabs-page-tab-selected-color-hovered-border');
       }
     }
 
@@ -140,7 +148,7 @@ post-tab-item.nav-item {
       forced-color-adjust: none;
       transition:
         padding-block 200ms,
-        height 200ms; // no color transition in HCM
+        height 200ms; // No color transition in HCM
 
       &:hover {
         background-color: Highlight;
@@ -163,10 +171,10 @@ post-tab-item.nav-item {
 
   // disabled
   &[disabled] a:not([aria-current='page']) {
-    background-color: #fafafa; // post-tabs-page-default-tab-color-disabled-bg
-    border-color: #696864; // post-tabs-page-default-tab-color-disabled-border
-    color: #696864; // post-tabs-page-default-tab-color-disabled-fg
-    border-style: dashed; // post-tabs-tab-disabled-border-style
+    background-color: tokens.get('post-tabs-page-tab-color-disabled-bg');
+    border-color: tokens.get('post-tabs-page-tab-color-disabled-border');
+    color: tokens.get('post-tabs-page-tab-color-disabled-fg');
+    border-style: tokens.get('post-tabs-page-tab-color-disabled-border-style');
     pointer-events: none;
     border-block-end: none;
 
@@ -185,115 +193,115 @@ post-tab-item.nav-item a[aria-current='page'] {
 
 // Large variant (default)
 post-tabs post-tab-item {
-  font-size: 20px; //post-tabs-large-font-size
+  font-size: tokens.get('post-tabs-large-font-size');
 
-  // content tabs
   &.tab-title {
-    padding-inline: 24px; // post-tabs-large-tab-padding-inline
-    gap: 12px; // post-tabs-large-tab-gap-inline
-    height: 64px; // post-tabs-content-large-tab-height
-    padding-block: 17px; // post-tabs-content-large-tab-padding-block
+    padding-inline: tokens.get('post-tabs-large-tab-padding-inline');
+    gap: tokens.get('post-tabs-large-tab-gap-inline');
+    height: tokens.get('post-tabs-content-large-tab-height');
+    padding-block: tokens.get('post-tabs-content-large-tab-padding-block');
   }
 
   // large page
   &.nav-item {
     a {
       // enabled
-      padding-inline: 24px; // post-tabs-large-tab-padding-inline
-      gap: 12px; // post-tabs-large-tab-gap-inline
-      border-radius: 12px 12px 0 0; // post-tabs-page-large-tab-border-radius
-      padding-block: 15px; // post-tabs-page-large-tab-enabled-padding-block
-      height: 62px; //post-tabs-page-large-tab-enabled-height;
+      padding-inline: tokens.get('post-tabs-large-tab-padding-inline');
+      gap: tokens.get('post-tabs-large-tab-gap-inline');
+      border-radius: tokens.get('post-tabs-page-large-tab-border-radius')
+        tokens.get('post-tabs-page-large-tab-border-radius') 0 0;
+      padding-block: tokens.get('post-tabs-page-large-tab-enabled-padding-block');
+      height: tokens.get('post-tabs-page-large-tab-enabled-height');
 
       post-icon {
-        width: 24px; // post-tabs-large-icon-size
-        height: 24px; // post-tabs-large-icon-size
-        padding-block: 3px; // post-tabs-large-tab-icon-padding-block ?? added
+        width: tokens.get('post-tabs-large-icon-size');
+        height: tokens.get('post-tabs-large-icon-size');
+        padding-block: tokens.get('post-tabs-large-tab-icon-padding-block');
       }
 
       // selected
       &[aria-current='page'] {
-        padding-block: 19px; // post-tabs-page-large-tab-selected-enabled-padding-block
-        height: 70px; // post-tabs-page-large-tab-selected-enabled-height
+        padding-block: tokens.get('post-tabs-page-large-tab-selected-enabled-padding-block');
+        height: tokens.get('post-tabs-page-large-tab-selected-enabled-height');
       }
 
       // hovered
       &:hover {
-        height: 70px; // post-tabs-page-large-tab-hovered-height
-        padding-block: 19px; // post-tabs-page-large-tab-hovered-padding-block
+        height: tokens.get('post-tabs-page-large-tab-hovered-height');
+        padding-block: tokens.get('post-tabs-page-large-tab-hovered-padding-block');
       }
 
       // focused
       &:focus,
       &:focus-visible,
       &:focus-within {
-        height: 70px; // post-tabs-page-large-tab-focused-height
-        padding-block: 19px; // post-tabs-page-large-tab-focused-padding-block
+        height: tokens.get('post-tabs-page-large-tab-focused-height');
+        padding-block: tokens.get('post-tabs-page-large-tab-focused-padding-block');
       }
     }
 
     // disabled
     &[disabled] a:not([aria-current='page']) {
-      padding-block: 15px; // post-tabs-page-large-tab-disabled-padding-block
-      height: 62px; // post-tabs-page-large-tab-disabled-height
+      padding-block: tokens.get('post-tabs-page-large-tab-disabled-padding-block');
+      height: tokens.get('post-tabs-page-large-tab-disabled-height');
     }
   }
 }
 
 // Small variant
 post-tabs[size='small'] post-tab-item {
-  font-size: 16px; //post-tabs-small-font-size
+  font-size: tokens.get('post-tabs-small-font-size');
 
   // content tabs
   &.tab-title {
-    padding-inline: 16px; // post-tabs-small-tab-padding-inline
-    gap: 8px; // post-tabs-small-tab-gap-inline
-    height: 48px; // post-tabs-content-small-tab-height
-    padding-block: 12px; // post-tabs-content-small-tab-padding-block
+    padding-inline: tokens.get('post-tabs-small-tab-padding-inline');
+    gap: tokens.get('post-tabs-small-tab-gap-inline');
+    height: tokens.get('post-tabs-content-small-tab-height');
+    padding-block: tokens.get('post-tabs-content-small-tab-padding-block');
   }
 
   // page variant
   &.nav-item {
     a {
       // enabled
-      padding-inline: 16px; // post-tabs-small-tab-padding-inline
-      gap: 8px; // post-tabs-small-tab-gap-inline
-      height: 46px; // post-tabs-page-small-tab-enabled-height
-      border-radius: 8px 8px 0 0; // post-tabs-page-small-tab-border-radius
-      padding-block: 10px; // post-tabs-page-small-tab-enabled-padding-block
+      padding-inline: tokens.get('post-tabs-small-tab-padding-inline');
+      gap: tokens.get('post-tabs-small-tab-gap-inline');
+      height: tokens.get('post-tabs-page-small-tab-enabled-height');
+      border-radius: tokens.get('post-tabs-page-small-tab-border-radius');
+      padding-block: tokens.get('post-tabs-page-small-tab-enabled-padding-block');
 
       // selected
       &[aria-current='page'] {
-        padding-block: 14px; // post-tabs-page-small-tab-selected-enabled-padding-block
-        height: 54px; // post-tabs-page-small-tab-selected-enabled-height
+        padding-block: tokens.get('post-tabs-page-small-tab-selected-enabled-padding-block');
+        height: tokens.get('post-tabs-page-small-tab-selected-enabled-height');
       }
 
       // hovered
       &:hover {
-        padding-block: 14px; // post-tabs-page-small-tab-hovered-padding-block
-        height: 54px; // post-tabs-page-small-tab-hovered-height
+        padding-block: tokens.get('post-tabs-page-small-tab-hovered-padding-block');
+        height: tokens.get('post-tabs-page-small-tab-hovered-height');
       }
 
       // focused
       &:focus,
       &:focus-visible,
       &:focus-within {
-        padding-block: 14px; // post-tabs-page-small-tab-focused-padding-block
-        height: 54px; // post-tabs-page-small-tab-focused-height
+        padding-block: tokens.get('post-tabs-page-small-tab-focused-padding-block');
+        height: tokens.get('post-tabs-page-small-tab-focused-height');
       }
     }
 
     // disabled
     &[disabled] a:not([aria-current='page']) {
-      padding-block: 10px; // post-tabs-page-small-tab-disabled-padding-block
-      height: 46px; // post-tabs-page-small-tab-disabled-height
+      padding-block: tokens.get('post-tabs-page-small-tab-disabled-padding-block');
+      height: tokens.get('post-tabs-page-small-tab-disabled-height');
     }
   }
 
   post-icon {
-    width: 16px; // post-tabs-small-icon-size
-    height: 16px; // post-tabs-small-icon-size
-    // padding-block: 4px; // post-tabs-small-tab-icon-padding-block ?? added ??
+    width: tokens.get('post-tabs-small-icon-size');
+    height: tokens.get('post-tabs-small-icon-size');
+    // padding-block: tokens.get('post-tabs-small-tab-icon-padding-block'); ?? added ??
   }
 }
 
@@ -305,10 +313,10 @@ post-tabs[active-tab] {
   post-tab-item.tab-title.ssr {
     border-color: color-mix(
       in srgb,
-      #050400 calc(var(--active, 0) * 100%),
+      tokens.get(' post-tabs-content-item-selected-border-color') calc(var(--active, 0) * 100%),
       transparent
-    ); // post-tabs-content-item-selected-border-color
-    font-weight: calc(400 + var(--active, 0) * 300);
+    );
+    font-weight: calc(400 + var(--active, 0) * 300); // TOKEN HERE ALSO
     z-index: calc(var(--active, 0) * 1);
 
     @include utilities-mx.high-contrast-mode() {
@@ -323,17 +331,22 @@ post-tabs[active-tab] {
   post-tab-item.nav-item.ssr a {
     background-color: color-mix(
       in srgb,
-      #fafafa calc(var(--active, 0) * 100%),
-      #050400
-    ); // post-tabs-page-item-selected-color-bg / post-tabs-page-item-enabled-color-bg
+      tokens.get('post-tabs-page-item-selected-color-bg') calc(var(--active, 0) * 100%),
+      tokens.get('post-tabs-page-item-enabled-color-bg')
+    );
     color: color-mix(
       in srgb,
-      #050400 calc(var(--active, 0) * 100%),
-      white
-    ); // post-tabs-page-item-selected-color-fg / post-tabs-page-item-enabled-color-fg
+      tokens.get('post-tabs-page-item-selected-color-fg') calc(var(--active, 0) * 100%),
+      tokens.get('post-tabs-page-item-enabled-color-fg')
+    );
     padding-block: calc(
-      15px + var(--active, 0) * 4px
-    ); // post-tabs-page-item-selected-padding-block / post-tabs-page-item-enabled-padding-block
+      tokens.get('post-tabs-page-item-selected-padding-block') + var(--active, 0) *
+        (
+          tokens.get('post-tabs-page-item-enabled-padding-block') - tokens.get(
+              'post-tabs-page-item-selected-padding-block'
+            )
+        )
+    );
     font-weight: calc(400 + var(--active, 0) * 300);
     z-index: calc(var(--active, 0) * 1);
 
@@ -355,8 +368,8 @@ post-tabs:not([active-tab]) {
 
   // Content Tabs: first item is active
   post-tab-item.tab-title.ssr:first-of-type {
-    border-color: #050400; // post-tabs-content-item-selected-border-color
-    font-weight: 700;
+    border-color: tokens.get('post-tabs-content-item-selected-border-color');
+    font-weight: 700; //same token as above
     z-index: 1;
 
     @include utilities-mx.high-contrast-mode() {
@@ -367,11 +380,11 @@ post-tabs:not([active-tab]) {
 
   // Page Tabs: first item is active
   post-tab-item.nav-item.ssr:first-of-type a {
-    background-color: #fafafa; // post-tabs-page-item-selected-color-bg
-    color: #050400; // post-tabs-page-item-selected-color-fg
-    padding-block: 19px; // post-tabs-page-item-selected-padding-block
-    font-weight: 700;
-    z-index: 1;
+    background-color: tokens.get('post-tabs-page-item-selected-color-bg');
+    color: tokens.get('post-tabs-page-item-selected-color-fg');
+    padding-block: tokens.get('post-tabs-page-item-selected-padding-block');
+    font-weight: tokens.get('post-tabs-page-item-selected-font-weight');
+    z-index: tokens.get('post-tabs-page-item-selected-z-index');
 
     @include utilities-mx.high-contrast-mode() {
       background-color: Highlight;
