@@ -1,4 +1,4 @@
-import { EventFrom, getRoot, Required, Type } from '@/utils';
+import { EventFrom, getRoot, Type } from '@/utils';
 import { version } from '@root/package.json';
 import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 
@@ -18,9 +18,8 @@ export class PostCollapsibleTrigger {
    * If omitted, a post-collapsible nested directly inside this element is used instead.
    */
   @Prop({ reflect: true })
-  @Required()
   @Type('string')
-  for!: string;
+  for?: string;
 
   constructor() {
     this.handlePostToggle = this.handlePostToggle.bind(this);
@@ -42,7 +41,6 @@ export class PostCollapsibleTrigger {
       const target = this.for ? `with id "${this.for}"` : 'nested inside <post-collapsible-trigger>';
       console.warn(`No post-collapsible found ${target}. Either nest a post-collapsible inside the trigger or set the "for" attribute to the id of the collapsible.`);
     }
-    this.validateAriaAttributes();
   }
 
   disconnectedCallback() {
