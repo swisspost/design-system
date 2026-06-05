@@ -1,6 +1,6 @@
 import { nanoid, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State, Build } from '@stencil/core';
 
 /**
  * @slot default - Slot for the content of the tab item. Can contain text or an <a> element for Page Tabs variant.

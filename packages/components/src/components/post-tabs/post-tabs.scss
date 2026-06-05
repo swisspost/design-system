@@ -3,8 +3,17 @@
 @use '@swisspost/design-system-styles/mixins/button' as button-mx;
 @use '@swisspost/design-system-styles/variables/elevation';
 @use '@swisspost/design-system-styles/tokens/components' as components;
+@use '@swisspost/design-system-styles/tokens/helpers';
 
 tokens.$default-map: components.$post-tabs;
+
+$tabs-outline-offset: calc(
+  -1 *
+    (
+      tokens.get('focus-outline-offset2', helpers.$post-focus) +
+        tokens.get('post-tabs-border-width')
+    )
+);
 
 :host {
   display: block;
@@ -36,29 +45,29 @@ tokens.$default-map: components.$post-tabs;
       }
 
       @include utilities-mx.focus-style() {
-        outline-offset: -4px !important; // post-tabs-tab-focus-outline-offset is it ok to add a -4px token?
-      }
+        outline-offset: $tabs-outline-offset !important;
 
-      @include utilities-mx.high-contrast-mode() {
-        transition: none;
+        @include utilities-mx.high-contrast-mode() {
+          transition: none;
 
-        &:hover {
-          color: HighlightText;
-          border-color: HighlightText;
+          &:hover {
+            color: HighlightText;
+            border-color: HighlightText;
+          }
         }
       }
-    }
 
-    .tabs {
-      overflow-x: hidden;
-      background-color: transparent !important;
-      display: flex;
-      flex-wrap: nowrap;
-      align-items: end;
-      overscroll-behavior-x: contain;
-      white-space: nowrap;
+      .tabs {
+        overflow-x: hidden;
+        background-color: transparent !important;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: end;
+        overscroll-behavior-x: contain;
+        white-space: nowrap;
 
-      @include utilities-mx.reset-list;
+        @include utilities-mx.reset-list;
+      }
     }
   }
 }
@@ -67,26 +76,26 @@ tokens.$default-map: components.$post-tabs;
 :host(.page-tabs) {
   .tabs-wrapper {
     button.scroll-btn {
-      color: tokens.get('post-tabs-page-scroll-button-color-enabled-fg');
-      background-color: tokens.get('post-tabs-page-scroll-button-color-enabled-bg');
-      border: tokens.get('post-tabs-page-scroll-button-border-width') solid
-        tokens.get('post-tabs-page-scroll-button-color-enabled-border');
+      color: tokens.get('post-tabs-page-scroll-button-enabled-fg');
+      background-color: tokens.get('post-tabs-page-scroll-button-enabled-bg');
+      border: tokens.get('post-tabs-border-width') solid
+        tokens.get('post-tabs-page-scroll-button-enabled-border');
       position: absolute;
-      inset-block-start: tokens.get('post-tabs-page-scroll-button-position-top');
+      inset-block-start: 12px; // tokens.get('post-tabs-page-scroll-button-position-top');
       z-index: 2;
       box-shadow: elevation.$elevation-200;
       border-radius: tokens.get('post-tabs-page-scroll-button-border-radius');
 
       post-icon {
-        width: tokens.get('post-tabs-page-scroll-button-icon-size');
-        height: tokens.get('post-tabs-page-scroll-button-icon-size');
+        // width: tokens.get('post-tabs-page-scroll-button-icon-size'); is this needed?
+        // height: tokens.get('post-tabs-page-scroll-button-icon-size'); is this needed?
       }
 
       // hovered
       &:hover {
-        border-color: tokens.get('post-tabs-page-scroll-button-color-hovered-border') !important;
-        color: tokens.get('post-tabs-page-scroll-button-color-hovered-fg');
-        background-color: tokens.get('post-tabs-page-scroll-button-color-hovered-bg');
+        border-color: tokens.get('post-tabs-page-scroll-button-hovered-border') !important;
+        color: tokens.get('post-tabs-page-scroll-button-hovered-fg');
+        background-color: tokens.get('post-tabs-page-scroll-button-hovered-bg');
       }
 
       // Left Scroll button
@@ -113,7 +122,7 @@ tokens.$default-map: components.$post-tabs;
       inset-inline-start: 0;
       width: 100%;
       height: tokens.get('post-tabs-border-width');
-      background-color: tokens.get('post-tabs-page-border-color');
+      background-color: tokens.get('post-tabs-page-color-border');
 
       @include utilities-mx.high-contrast-mode() {
         background-color: LinkText;
@@ -136,7 +145,7 @@ tokens.$default-map: components.$post-tabs;
 
       // hovered
       &:hover {
-        border-color: tokens.get('post-tabs-content-scroll-button-color-hovered-border') !important;
+        // border-color: tokens.get('post-tabs-content-scroll-button-color-hovered-border') !important; missinh token???
         color: tokens.get('post-tabs-content-scroll-button-color-hovered-fg');
       }
     }
@@ -170,8 +179,8 @@ tokens.$default-map: components.$post-tabs;
 :host([size='small']) {
   .tabs-wrapper {
     button.scroll-btn {
-      height: tokens.get('post-tabs-small-scroll-button-size');
-      width: tokens.get('post-tabs-small-scroll-button-size');
+      height: 48px; // tokens.get('post-tabs-small-scroll-button-height');
+      width: 48px; // tokens.get('post-tabs-small-scroll-button-width');
 
       // Left Scroll button
       &.scroll-btn-left {

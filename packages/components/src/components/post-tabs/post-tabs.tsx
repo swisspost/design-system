@@ -1,6 +1,7 @@
 import { fade } from '@/animations';
-import { componentOnReady, Type } from '@/utils';
+import { componentOnReady, OneOf, Type, Required } from '@/utils';
 import { version } from '@root/package.json';
+
 import {
   Component,
   Element,
@@ -14,6 +15,14 @@ import {
   Watch,
   Build,
 } from '@stencil/core';
+
+// Extends the HTMLButtonElement interface to include ariaControlsElements, which is part of the
+// ARIA reflection API but not yet present in TypeScript's built-in DOM type definitions.
+declare global {
+  interface HTMLButtonElement {
+    ariaControlsElements: Element[];
+  }
+}
 
 /**
  * @slot default - Slot for placing tab items. Each tab item should be a <post-tab-item> element.
@@ -77,6 +86,8 @@ export class PostTabs {
    * Default is 'large'.
    */
   @Prop() size: 'small' | 'large' = 'large';
+  @Required()
+  @OneOf(['small', 'large'])
 
   /**
    * The accessible label for the Content Tabs variant.
@@ -87,7 +98,7 @@ export class PostTabs {
 
   @Watch('label')
   validateLabel() {
-    if (this.isNavigationMode && !this.label) {
+    if (this.isPagesVariant && !this.label) {
       console.error(
         `[${this.host.localName}] Property "label" is required in navigation mode. Received: ${JSON.stringify(this.label)}.`,
         this.host,
@@ -95,17 +106,13 @@ export class PostTabs {
     }
   }
 
-  @Watch('size')
-  validateSize() {
-    checkRequiredAndOneOf(this, 'size', ['small', 'large']);
-  }
-
   /**
    * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished.
    * The payload is the name of the newly active tab.
    * Only emitted in Content Tabs variant.
    */
-  @Event() postChange: EventEmitter<string>;
+  @Event()
+  postChange: EventEmitter<string>;
 
   componentWillRender() {
     this.detectVariant();
@@ -123,7 +130,6 @@ export class PostTabs {
     this.setupContentObserver();
     this.setupResizeObserver();
     this.validateLabel();
-    this.validateSize();
 
     if (this.isPagesVariant) {
       const activeTab = this.findActivePagesTab();

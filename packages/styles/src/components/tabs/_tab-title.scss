@@ -2,17 +2,17 @@
 @use './../../variables/color';
 @use './../../variables/components/nav';
 @use './../../functions/tokens';
-@use './../../tokens/utilities';
 @use './../../tokens/components' as components;
 @use './../../tokens/helpers';
-
-// tokens.$default-map: utilities.$post-spacing;
 
 tokens.$default-map: components.$post-tabs;
 
 $tabs-outline-offset: calc(
-  tokens.get('post-tabs-tab-focus-outline-offset', helpers.$post-focus) +
-    tokens.get('post-tabs-border-width')
+  -1 *
+    (
+      tokens.get('focus-outline-offset2', helpers.$post-focus) +
+        tokens.get('post-tabs-border-width')
+    )
 );
 
 // Common for all variants
@@ -22,7 +22,7 @@ post-tab-item.nav-item a {
   box-sizing: border-box;
   background-color: transparent;
   cursor: pointer;
-  color: tokens.get('post-tabs-color-fg');
+  // color: tokens.get('post-tabs-color-fg'); maybe this is not needed!!!
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,29 +42,28 @@ post-tab-item.nav-item a {
 
 // Content Tabs Variant
 post-tab-item.tab-title {
-  padding-block: tokens.get('post-tabs-panel-item-padding-block');
   transition:
     background-color 100ms,
     border-color 100ms,
     color 100ms;
   border-block-end: tokens.get('post-tabs-border-width') solid transparent;
-  color: tokens.get('post-tabs-content-tab-color-enabled-fg');
+  color: tokens.get('post-tabs-content-tab-enabled-fg');
 
   // selected
   &[aria-selected='true'] {
-    border-color: tokens.get('post-tabs-content-tab-selected-color-enabled-border');
-    color: tokens.get('post-tabs-content-tab-selected-color-enabled-fg');
+    border-color: tokens.get('post-tabs-content-tab-selected-border');
+    color: tokens.get('post-tabs-content-tab-selected-fg');
   }
 
   // hovered
   &:hover:not([disabled]) {
-    border-color: tokens.get('post-tabs-content-tab-color-hovered-border');
-    color: tokens.get('post-tabs-content-tab-color-hovered-fg');
+    border-color: tokens.get('post-tabs-content-tab-hovered-border');
+    color: tokens.get('post-tabs-content-tab-hovered-fg');
   }
 
   // disabled
   &[disabled] {
-    color: tokens.get('post-tabs-content-tab-color-disabled-fg');
+    color: tokens.get('post-tabs-content-tab-disabled-fg');
     pointer-events: none;
   }
 
@@ -104,9 +103,9 @@ post-tab-item.nav-item {
     border-block-start: tokens.get('post-tabs-border-width') solid transparent;
     border-inline-start: tokens.get('post-tabs-border-width') solid transparent;
     border-inline-end: tokens.get('post-tabs-border-width') solid transparent;
-    background-color: tokens.get('post-tabs-page-tab-color-enabled-bg');
-    border-color: tokens.get('post-tabs-page-tab-color-enabled-border');
-    color: tokens.get('post-tabs-page-tab-color-enabled-fg');
+    background-color: tokens.get('post-tabs-page-tab-enabled-bg');
+    border-color: tokens.get('post-tabs-page-tab-enabled-border');
+    color: tokens.get('post-tabs-page-tab-enabled-fg');
 
     // Dark background needs the inverted focus ring color
     @include utilities-mx.focus-style-custom {
@@ -116,16 +115,16 @@ post-tab-item.nav-item {
 
     // hovered
     &:hover {
-      background-color: tokens.get('post-tabs-page-tab-color-hovered-bg');
-      border-color: tokens.get('post-tabs-page-tab-color-hovered-border');
-      color: tokens.get('post-tabs-page-tab-color-hovered-fg');
+      background-color: tokens.get('post-tabs-page-tab-hovered-bg');
+      border-color: tokens.get('post-tabs-page-tab-hovered-border');
+      color: tokens.get('post-tabs-page-tab-hovered-fg');
     }
 
     // selected
     &[aria-current='page'] {
-      background-color: tokens.get('post-tabs-page-tab-selected-color-enabled-bg');
-      color: tokens.get('post-tabs-page-tab-selected-color-enabled-fg');
-      border-color: tokens.get('post-tabs-page-tab-selected-color-enabled-border');
+      background-color: tokens.get('post-tabs-page-tab-selected-bg');
+      color: tokens.get('post-tabs-page-tab-selected-fg');
+      border-color: tokens.get('post-tabs-page-tab-selected-border');
 
       // Light background reverts to the default focus ring color
       @include utilities-mx.focus-style-custom {
@@ -135,9 +134,9 @@ post-tab-item.nav-item {
 
       // selected — hovered
       &:hover {
-        color: tokens.get('post-tabs-page-tab-selected-color-hovered-fg');
-        background-color: tokens.get('post-tabs-page-tab-selected-color-hovered-bg');
-        border-color: tokens.get('post-tabs-page-tab-selected-color-hovered-border');
+        color: tokens.get('post-tabs-page-tab-hovered-fg');
+        background-color: tokens.get('post-tabs-page-tab-selected-bg');
+        border-color: tokens.get('post-tabs-page-tab-hovered-border');
       }
     }
 
@@ -171,10 +170,10 @@ post-tab-item.nav-item {
 
   // disabled
   &[disabled] a:not([aria-current='page']) {
-    background-color: tokens.get('post-tabs-page-tab-color-disabled-bg');
-    border-color: tokens.get('post-tabs-page-tab-color-disabled-border');
-    color: tokens.get('post-tabs-page-tab-color-disabled-fg');
-    border-style: tokens.get('post-tabs-page-tab-color-disabled-border-style');
+    background-color: tokens.get('post-tabs-page-tab-disabled-bg');
+    border-color: tokens.get('post-tabs-page-tab-disabled-border');
+    color: tokens.get('post-tabs-page-tab-disabled-fg');
+    border-style: tokens.get('post-tabs-tab-disabled-border-style');
     pointer-events: none;
     border-block-end: none;
 
@@ -193,7 +192,7 @@ post-tab-item.nav-item a[aria-current='page'] {
 
 // Large variant (default)
 post-tabs post-tab-item {
-  font-size: tokens.get('post-tabs-large-font-size');
+  // font-size: tokens.get('post-tabs-large-font-size'); //; thus is the default can it be removed
 
   &.tab-title {
     padding-inline: tokens.get('post-tabs-large-tab-padding-inline');
@@ -221,8 +220,8 @@ post-tabs post-tab-item {
 
       // selected
       &[aria-current='page'] {
-        padding-block: tokens.get('post-tabs-page-large-tab-selected-enabled-padding-block');
-        height: tokens.get('post-tabs-page-large-tab-selected-enabled-height');
+        padding-block: tokens.get('post-tabs-page-large-tab-selected-padding-block');
+        height: tokens.get('post-tabs-page-large-tab-selected-height');
       }
 
       // hovered
@@ -272,8 +271,8 @@ post-tabs[size='small'] post-tab-item {
 
       // selected
       &[aria-current='page'] {
-        padding-block: tokens.get('post-tabs-page-small-tab-selected-enabled-padding-block');
-        height: tokens.get('post-tabs-page-small-tab-selected-enabled-height');
+        padding-block: tokens.get('post-tabs-page-small-tab-selected-padding-block');
+        height: tokens.get('post-tabs-page-small-tab-selected-height');
       }
 
       // hovered
@@ -313,7 +312,7 @@ post-tabs[active-tab] {
   post-tab-item.tab-title.ssr {
     border-color: color-mix(
       in srgb,
-      tokens.get(' post-tabs-content-item-selected-border-color') calc(var(--active, 0) * 100%),
+      tokens.get('post-tabs-content-tab-selected-border') calc(var(--active, 0) * 100%),
       transparent
     );
     font-weight: calc(400 + var(--active, 0) * 300); // TOKEN HERE ALSO
@@ -331,19 +330,19 @@ post-tabs[active-tab] {
   post-tab-item.nav-item.ssr a {
     background-color: color-mix(
       in srgb,
-      tokens.get('post-tabs-page-item-selected-color-bg') calc(var(--active, 0) * 100%),
-      tokens.get('post-tabs-page-item-enabled-color-bg')
+      tokens.get('post-tabs-page-tab-selected-bg') calc(var(--active, 0) * 100%),
+      tokens.get('post-tabs-page-tab-enabled-bg')
     );
     color: color-mix(
       in srgb,
-      tokens.get('post-tabs-page-item-selected-color-fg') calc(var(--active, 0) * 100%),
-      tokens.get('post-tabs-page-item-enabled-color-fg')
+      tokens.get('post-tabs-page-tab-selected-fg') calc(var(--active, 0) * 100%),
+      tokens.get('post-tabs-page-tab-enabled-fg')
     );
     padding-block: calc(
-      tokens.get('post-tabs-page-item-selected-padding-block') + var(--active, 0) *
+      tokens.get('post-tabs-page-large-tab-selected-padding-block') + var(--active, 0) *
         (
-          tokens.get('post-tabs-page-item-enabled-padding-block') - tokens.get(
-              'post-tabs-page-item-selected-padding-block'
+          tokens.get('post-tabs-page-large-tab-enabled-padding-block') - tokens.get(
+              'post-tabs-page-large-tab-selected-padding-block'
             )
         )
     );
@@ -358,6 +357,17 @@ post-tabs[active-tab] {
       }
     }
   }
+
+  &[size='small'] post-tab-item.nav-item.ssr a {
+    padding-block: calc(
+      tokens.get('post-tabs-page-small-tab-selected-padding-block') + var(--active, 0) *
+        (
+          tokens.get('post-tabs-page-small-tab-enabled-padding-block') - tokens.get(
+              'post-tabs-page-small-tab-selected-padding-block'
+            )
+        )
+    );
+  }
 }
 
 // Style the first item for SSR when no [active-tab] is set
@@ -368,7 +378,7 @@ post-tabs:not([active-tab]) {
 
   // Content Tabs: first item is active
   post-tab-item.tab-title.ssr:first-of-type {
-    border-color: tokens.get('post-tabs-content-item-selected-border-color');
+    border-color: tokens.get('post-tabs-content-tab-selected-border');
     font-weight: 700; //same token as above
     z-index: 1;
 
@@ -380,16 +390,20 @@ post-tabs:not([active-tab]) {
 
   // Page Tabs: first item is active
   post-tab-item.nav-item.ssr:first-of-type a {
-    background-color: tokens.get('post-tabs-page-item-selected-color-bg');
-    color: tokens.get('post-tabs-page-item-selected-color-fg');
-    padding-block: tokens.get('post-tabs-page-item-selected-padding-block');
-    font-weight: tokens.get('post-tabs-page-item-selected-font-weight');
-    z-index: tokens.get('post-tabs-page-item-selected-z-index');
+    background-color: tokens.get('post-tabs-page-tab-selected-bg');
+    color: tokens.get('post-tabs-page-tab-selected-fg');
+    padding-block: tokens.get('post-tabs-page-large-tab-selected-padding-block');
+    font-weight: 700; //same token as above
+    z-index: 1;
 
     @include utilities-mx.high-contrast-mode() {
       background-color: Highlight;
       border-color: Highlight;
       color: HighlightText;
     }
+  }
+
+  &[size='small'] post-tab-item.nav-item.ssr:first-of-type a {
+    padding-block: tokens.get('post-tabs-page-small-tab-selected-padding-block');
   }
 }
