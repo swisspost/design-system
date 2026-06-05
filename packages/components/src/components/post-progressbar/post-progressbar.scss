@@ -12,6 +12,7 @@ tokens.$default-map: components.$post-progressbar;
   border-radius: tokens.get('progressbar-indicator-border-radius');
   box-shadow: 0px 0px 0px tokens.get('progressbar-indicator-border-width')
     tokens.get('progressbar-track-color-stroke') inset;
+  overflow: hidden;
 }
 
 .progress-value {
