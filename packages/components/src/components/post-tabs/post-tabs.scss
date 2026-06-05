@@ -8,11 +8,8 @@
 tokens.$default-map: components.$post-tabs;
 
 $tabs-outline-offset: calc(
-  -1 *
-    (
-      tokens.get('focus-outline-offset2', helpers.$post-focus) +
-        tokens.get('post-tabs-border-width')
-    )
+  tokens.get('focus-outline-offset2', helpers.$post-focus) + -1 *
+    (tokens.get('post-tabs-border-width'))
 );
 
 :host {
@@ -56,18 +53,17 @@ $tabs-outline-offset: calc(
           }
         }
       }
+    }
+    .tabs {
+      overflow-x: hidden;
+      background-color: transparent !important;
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: end;
+      overscroll-behavior-x: contain;
+      white-space: nowrap;
 
-      .tabs {
-        overflow-x: hidden;
-        background-color: transparent !important;
-        display: flex;
-        flex-wrap: nowrap;
-        align-items: end;
-        overscroll-behavior-x: contain;
-        white-space: nowrap;
-
-        @include utilities-mx.reset-list;
-      }
+      @include utilities-mx.reset-list;
     }
   }
 }
@@ -81,15 +77,10 @@ $tabs-outline-offset: calc(
       border: tokens.get('post-tabs-border-width') solid
         tokens.get('post-tabs-page-scroll-button-enabled-border');
       position: absolute;
-      inset-block-start: 12px; // tokens.get('post-tabs-page-scroll-button-position-top');
+      padding-block: 12px;
       z-index: 2;
       box-shadow: elevation.$elevation-200;
       border-radius: tokens.get('post-tabs-page-scroll-button-border-radius');
-
-      post-icon {
-        // width: tokens.get('post-tabs-page-scroll-button-icon-size'); is this needed?
-        // height: tokens.get('post-tabs-page-scroll-button-icon-size'); is this needed?
-      }
 
       // hovered
       &:hover {
@@ -179,8 +170,8 @@ $tabs-outline-offset: calc(
 :host([size='small']) {
   .tabs-wrapper {
     button.scroll-btn {
-      height: 48px; // tokens.get('post-tabs-small-scroll-button-height');
-      width: 48px; // tokens.get('post-tabs-small-scroll-button-width');
+      height: tokens.get('post-tabs-small-scroll-button-height');
+      width: tokens.get('post-tabs-small-scroll-button-height'); // to be replaced by width
 
       // Left Scroll button
       &.scroll-btn-left {
@@ -192,6 +183,11 @@ $tabs-outline-offset: calc(
       &.scroll-btn-right {
         padding-inline: tokens.get('post-tabs-small-scroll-button-right-padding-inline-start')
           tokens.get('post-tabs-small-scroll-button-right-padding-inline-end');
+      }
+
+      post-icon {
+        height: tokens.get('post-tabs-small-icon-size');
+        width: tokens.get('post-tabs-small-icon-size');
       }
     }
   }

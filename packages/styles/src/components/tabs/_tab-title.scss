@@ -8,11 +8,8 @@
 tokens.$default-map: components.$post-tabs;
 
 $tabs-outline-offset: calc(
-  -1 *
-    (
-      tokens.get('focus-outline-offset2', helpers.$post-focus) +
-        tokens.get('post-tabs-border-width')
-    )
+  tokens.get('focus-outline-offset2', helpers.$post-focus) + -1 *
+    (tokens.get('post-tabs-border-width'))
 );
 
 // Common for all variants
@@ -22,7 +19,6 @@ post-tab-item.nav-item a {
   box-sizing: border-box;
   background-color: transparent;
   cursor: pointer;
-  // color: tokens.get('post-tabs-color-fg'); maybe this is not needed!!!
   display: flex;
   justify-content: center;
   align-items: center;
@@ -116,7 +112,7 @@ post-tab-item.nav-item {
     // hovered
     &:hover {
       background-color: tokens.get('post-tabs-page-tab-hovered-bg');
-      border-color: tokens.get('post-tabs-page-tab-hovered-border');
+      border-color: #504f4b; // tokens.get('post-tabs-page-tab-hovered-border'); // wrong value
       color: tokens.get('post-tabs-page-tab-hovered-fg');
     }
 
@@ -134,9 +130,11 @@ post-tab-item.nav-item {
 
       // selected — hovered
       &:hover {
-        color: tokens.get('post-tabs-page-tab-hovered-fg');
+        color: #504f4b; // add selected hover token =  new: post.theme.color.palettes.default.nested.tabs.page.tab.selected.hovered.fg
+        // post.scheme.color.palette.nested.fg.4
         background-color: tokens.get('post-tabs-page-tab-selected-bg');
-        border-color: tokens.get('post-tabs-page-tab-hovered-border');
+        border-color: #504f4b; //tokens.get('post-tabs-page-tab-hovered-border');// this has a wrong token value
+        // tokens.get('post-tabs-page-tab-hovered-border');
       }
     }
 
@@ -191,8 +189,11 @@ post-tab-item.nav-item a[aria-current='page'] {
 }
 
 // Large variant (default)
-post-tabs post-tab-item {
-  // font-size: tokens.get('post-tabs-large-font-size'); //; thus is the default can it be removed
+post-tabs post-tab-item,
+post-tabs[size='large'] post-tab-item {
+  post-icon {
+    margin-block: 3px;
+  }
 
   &.tab-title {
     padding-inline: tokens.get('post-tabs-large-tab-padding-inline');
@@ -215,7 +216,6 @@ post-tabs post-tab-item {
       post-icon {
         width: tokens.get('post-tabs-large-icon-size');
         height: tokens.get('post-tabs-large-icon-size');
-        padding-block: tokens.get('post-tabs-large-tab-icon-padding-block');
       }
 
       // selected
@@ -251,6 +251,10 @@ post-tabs post-tab-item {
 post-tabs[size='small'] post-tab-item {
   font-size: tokens.get('post-tabs-small-font-size');
 
+  post-icon {
+    margin-block: 4px;
+  }
+
   // content tabs
   &.tab-title {
     padding-inline: tokens.get('post-tabs-small-tab-padding-inline');
@@ -266,7 +270,8 @@ post-tabs[size='small'] post-tab-item {
       padding-inline: tokens.get('post-tabs-small-tab-padding-inline');
       gap: tokens.get('post-tabs-small-tab-gap-inline');
       height: tokens.get('post-tabs-page-small-tab-enabled-height');
-      border-radius: tokens.get('post-tabs-page-small-tab-border-radius');
+      border-radius: tokens.get('post-tabs-page-small-tab-border-radius')
+        tokens.get('post-tabs-page-small-tab-border-radius') 0 0;
       padding-block: tokens.get('post-tabs-page-small-tab-enabled-padding-block');
 
       // selected
