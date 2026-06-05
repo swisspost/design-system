@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collapsible Test</title>
+    <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
+    <style>
+      body {
+        margin: 0;
+      }
+
+      main {
+        display: grid;
+        gap: 2rem;
+        padding: 1.5rem;
+      }
+
+      section {
+        inline-size: 20rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <!-- Linked by id (for / id) -->
+      <section id="by-id">
+        <post-collapsible-trigger for="collapsible-by-id">
+          <button class="btn btn-secondary">Toggle</button>
+        </post-collapsible-trigger>
+        <post-collapsible id="collapsible-by-id">
+          <p class="border rounded p-24">Content of the id-linked collapsible.</p>
+        </post-collapsible>
+      </section>
+
+      <!-- Nested: button before the collapsible -->
+      <section id="nested">
+        <post-collapsible-trigger>
+          <button class="btn btn-secondary">Toggle</button>
+          <post-collapsible>
+            <p class="border rounded p-24">Content of the nested collapsible.</p>
+          </post-collapsible>
+        </post-collapsible-trigger>
+      </section>
+
+      <!-- Nested edge case: a button lives inside the panel, before the real trigger -->
+      <section id="nested-inner-button">
+        <post-collapsible-trigger>
+          <post-collapsible>
+            <p class="border rounded p-24">Content with its own button.</p>
+            <button class="btn btn-secondary">Button inside the panel</button>
+          </post-collapsible>
+          <button class="btn btn-secondary" data-testid="real-trigger">Toggle</button>
+        </post-collapsible-trigger>
+      </section>
+    </main>
+  </body>
+</html>
