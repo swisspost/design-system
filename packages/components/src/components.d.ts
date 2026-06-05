@@ -188,9 +188,9 @@ export namespace Components {
     }
     interface PostCollapsibleTrigger {
         /**
-          * Link the trigger to a post-collapsible with this id
+          * Link the trigger to a post-collapsible by its ID. If omitted, a post-collapsible nested directly inside this element is used instead.
          */
-        "for": string;
+        "for"?: string;
         /**
           * Update the "aria-controls" and "aria-expanded" attributes on the trigger button
          */
@@ -1444,9 +1444,9 @@ declare namespace LocalJSX {
     }
     interface PostCollapsibleTrigger {
         /**
-          * Link the trigger to a post-collapsible with this id
+          * Link the trigger to a post-collapsible by its ID. If omitted, a post-collapsible nested directly inside this element is used instead.
          */
-        "for": string;
+        "for"?: string;
     }
     interface PostDatePicker {
         /**
@@ -2166,7 +2166,7 @@ declare namespace LocalJSX {
         "post-breadcrumbs": Omit<PostBreadcrumbs, keyof PostBreadcrumbsAttributes> & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes]?: PostBreadcrumbs[K] } & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes as `attr:${K}`]?: PostBreadcrumbsAttributes[K] } & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes as `prop:${K}`]?: PostBreadcrumbs[K] } & OneOf<"homeUrl", PostBreadcrumbs["homeUrl"], PostBreadcrumbsAttributes["homeUrl"]> & OneOf<"textHome", PostBreadcrumbs["textHome"], PostBreadcrumbsAttributes["textHome"]> & OneOf<"textBreadcrumbs", PostBreadcrumbs["textBreadcrumbs"], PostBreadcrumbsAttributes["textBreadcrumbs"]> & OneOf<"textMoreItems", PostBreadcrumbs["textMoreItems"], PostBreadcrumbsAttributes["textMoreItems"]>;
         "post-closebutton": Omit<PostClosebutton, keyof PostClosebuttonAttributes> & { [K in keyof PostClosebutton & keyof PostClosebuttonAttributes]?: PostClosebutton[K] } & { [K in keyof PostClosebutton & keyof PostClosebuttonAttributes as `attr:${K}`]?: PostClosebuttonAttributes[K] } & { [K in keyof PostClosebutton & keyof PostClosebuttonAttributes as `prop:${K}`]?: PostClosebutton[K] };
         "post-collapsible": Omit<PostCollapsible, keyof PostCollapsibleAttributes> & { [K in keyof PostCollapsible & keyof PostCollapsibleAttributes]?: PostCollapsible[K] } & { [K in keyof PostCollapsible & keyof PostCollapsibleAttributes as `attr:${K}`]?: PostCollapsibleAttributes[K] } & { [K in keyof PostCollapsible & keyof PostCollapsibleAttributes as `prop:${K}`]?: PostCollapsible[K] };
-        "post-collapsible-trigger": Omit<PostCollapsibleTrigger, keyof PostCollapsibleTriggerAttributes> & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes]?: PostCollapsibleTrigger[K] } & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes as `attr:${K}`]?: PostCollapsibleTriggerAttributes[K] } & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes as `prop:${K}`]?: PostCollapsibleTrigger[K] } & OneOf<"for", PostCollapsibleTrigger["for"], PostCollapsibleTriggerAttributes["for"]>;
+        "post-collapsible-trigger": Omit<PostCollapsibleTrigger, keyof PostCollapsibleTriggerAttributes> & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes]?: PostCollapsibleTrigger[K] } & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes as `attr:${K}`]?: PostCollapsibleTriggerAttributes[K] } & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes as `prop:${K}`]?: PostCollapsibleTrigger[K] };
         "post-date-picker": Omit<PostDatePicker, keyof PostDatePickerAttributes> & { [K in keyof PostDatePicker & keyof PostDatePickerAttributes]?: PostDatePicker[K] } & { [K in keyof PostDatePicker & keyof PostDatePickerAttributes as `attr:${K}`]?: PostDatePickerAttributes[K] } & { [K in keyof PostDatePicker & keyof PostDatePickerAttributes as `prop:${K}`]?: PostDatePicker[K] } & OneOf<"textNextMonth", PostDatePicker["textNextMonth"], PostDatePickerAttributes["textNextMonth"]> & OneOf<"textNextYear", PostDatePicker["textNextYear"], PostDatePickerAttributes["textNextYear"]> & OneOf<"textNextDecade", PostDatePicker["textNextDecade"], PostDatePickerAttributes["textNextDecade"]> & OneOf<"textPreviousMonth", PostDatePicker["textPreviousMonth"], PostDatePickerAttributes["textPreviousMonth"]> & OneOf<"textPreviousYear", PostDatePicker["textPreviousYear"], PostDatePickerAttributes["textPreviousYear"]> & OneOf<"textPreviousDecade", PostDatePicker["textPreviousDecade"], PostDatePickerAttributes["textPreviousDecade"]> & OneOf<"textSwitchYear", PostDatePicker["textSwitchYear"], PostDatePickerAttributes["textSwitchYear"]>;
         "post-footer": Omit<PostFooter, keyof PostFooterAttributes> & { [K in keyof PostFooter & keyof PostFooterAttributes]?: PostFooter[K] } & { [K in keyof PostFooter & keyof PostFooterAttributes as `attr:${K}`]?: PostFooterAttributes[K] } & { [K in keyof PostFooter & keyof PostFooterAttributes as `prop:${K}`]?: PostFooter[K] } & OneOf<"textFooter", PostFooter["textFooter"], PostFooterAttributes["textFooter"]>;
         "post-header": Omit<PostHeader, keyof PostHeaderAttributes> & { [K in keyof PostHeader & keyof PostHeaderAttributes]?: PostHeader[K] } & { [K in keyof PostHeader & keyof PostHeaderAttributes as `attr:${K}`]?: PostHeaderAttributes[K] } & { [K in keyof PostHeader & keyof PostHeaderAttributes as `prop:${K}`]?: PostHeader[K] } & OneOf<"textMenu", PostHeader["textMenu"], PostHeaderAttributes["textMenu"]>;
