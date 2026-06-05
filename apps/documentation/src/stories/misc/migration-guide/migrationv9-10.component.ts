@@ -541,7 +541,7 @@ export class MigrationV910Component extends LitElement {
                         <code>swisspost-internet-header</code> element
                         <span class="info">
                           Version 10 requires these props for accessibility — they provide visually
-                          hidden labels for interactive elements. The component will throw if any are
+                          hidden labels for interactive elements. The component will throw an error if any are
                           missing.
                         </span>
                         <code-block
