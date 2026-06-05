@@ -125,6 +125,78 @@ Import one of our stylesheets into your project (for example into your `/src/sty
   </table>
 </div>
 
+### Selective component imports
+
+If you want to import individual CSS components instead of the full bundle, keep the same source order as `post-default` or `post-compact`.
+
+Import the shared foundation files first:
+
+<Source
+  code={`@import '@swisspost/design-system-styles/tokens/schemes-static.css';
+@import '@swisspost/design-system-styles/tokens/schemes.css';
+@import '@swisspost/design-system-styles/tokens/device-default.css';
+@import '@swisspost/design-system-styles/tokens/appearance-default.css';
+@import '@swisspost/design-system-styles/tokens/post-theme.css';
+@import '@swisspost/design-system-styles/tokens/palettes.css';
+@import '@swisspost/design-system-styles/icons/signal-icons.css';
+@import '@swisspost/design-system-styles/layout/index.css';
+@import '@swisspost/design-system-styles/utilities/index.css';
+@import '@swisspost/design-system-styles/elements/index.css';`}
+  language="css"
+/>
+
+For `post-compact`, replace `device-default.css` with `device-compact.css` and `appearance-default.css` with `appearance-compact.css`.
+
+Then import the component entry files you need, in this order:
+
+<Source
+  code={`@import '@swisspost/design-system-styles/components/fonts.css';
+@import '@swisspost/design-system-styles/components/breakpoints.css';
+@import '@swisspost/design-system-styles/components/appstore-badge.css';
+@import '@swisspost/design-system-styles/components/avatar.css';
+@import '@swisspost/design-system-styles/components/badge.css';
+@import '@swisspost/design-system-styles/components/blockquote.css';
+@import '@swisspost/design-system-styles/components/button.css';
+@import '@swisspost/design-system-styles/components/button-group.css';
+@import '@swisspost/design-system-styles/components/card.css';
+@import '@swisspost/design-system-styles/components/selection-card.css';
+@import '@swisspost/design-system-styles/components/chip.css';
+@import '@swisspost/design-system-styles/components/error-container.css';
+@import '@swisspost/design-system-styles/components/form-footer.css';
+@import '@swisspost/design-system-styles/components/form-search-input.css';
+@import '@swisspost/design-system-styles/components/form-select.css';
+@import '@swisspost/design-system-styles/components/form-textarea.css';
+@import '@swisspost/design-system-styles/components/dialog.css';
+@import '@swisspost/design-system-styles/components/divider.css';
+@import '@swisspost/design-system-styles/components/radio-button.css';
+@import '@swisspost/design-system-styles/components/checkbox.css';
+@import '@swisspost/design-system-styles/components/switch.css';
+@import '@swisspost/design-system-styles/components/form-hint.css';
+@import '@swisspost/design-system-styles/components/form-input.css';
+@import '@swisspost/design-system-styles/components/header/index.css';
+@import '@swisspost/design-system-styles/components/footer/index.css';
+@import '@swisspost/design-system-styles/components/icon-button.css';
+@import '@swisspost/design-system-styles/components/lead.css';
+@import '@swisspost/design-system-styles/components/list-interactive.css';
+@import '@swisspost/design-system-styles/components/list-check.css';
+@import '@swisspost/design-system-styles/components/palette.css';
+@import '@swisspost/design-system-styles/components/popover.css';
+@import '@swisspost/design-system-styles/components/segmented-button.css';
+@import '@swisspost/design-system-styles/components/skiplinks.css';
+@import '@swisspost/design-system-styles/components/spinner.css';
+@import '@swisspost/design-system-styles/components/tables.css';
+@import '@swisspost/design-system-styles/components/tabs/index.css';
+@import '@swisspost/design-system-styles/components/teaser.css';
+@import '@swisspost/design-system-styles/components/text-highlight.css';
+@import '@swisspost/design-system-styles/components/toast.css';
+@import '@swisspost/design-system-styles/components/tag.css';
+@import '@swisspost/design-system-styles/components/validation.css';
+@import '@swisspost/design-system-styles/helpers/index.css';`}
+  language="css"
+/>
+
+The same paths also work with `.scss` imports if you compile Sass in your project.
+
 ### Variables, mixins, functions and placeholders
 
 Use the SCSS core for your custom styles and make sure you're always using the most up to date definitions:
