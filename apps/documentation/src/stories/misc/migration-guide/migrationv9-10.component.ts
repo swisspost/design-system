@@ -509,75 +509,76 @@ export class MigrationV910Component extends LitElement {
                 </ul>
               </section>
 
-              <section>
-                <h4>Internet Header (@swisspost/internet-header)</h4>
-                <ul class="list-unstyled">
-                  <li class="mb-16">
-                    <div class="form-check">
-                      <input
-                        id="internet_header-update_package"
-                        class="form-check-input"
-                        type="checkbox"
-                        ?checked="${this.state.internet_header.update_package}"
-                      />
-                      <label class="form-check-label" for="internet_header-update_package">
-                        Update the <code>@swisspost/internet-header</code> package to version 10
-                        <code-block
-                          code=${'npm install @swisspost/internet-header@10'}
-                        ></code-block>
-                      </label>
-                    </div>
-                  </li>
-                  <li class="mb-16">
-                    <div class="form-check">
-                      <input
-                        id="internet_header-add_text_props"
-                        class="form-check-input"
-                        type="checkbox"
-                        ?checked="${this.state.internet_header.add_text_props}"
-                      />
-                      <label class="form-check-label" for="internet_header-add_text_props">
-                        Add the new required <code>text-*</code> props to your
-                        <code>swisspost-internet-header</code> element
-                        <span class="info">
-                          Version 10 requires these props for accessibility — they provide visually
-                          hidden labels for interactive elements. The component will throw an error if any are
-                          missing.
-                        </span>
-                        <code-block
-                          code=${'<swisspost-internet-header\n    project="your-service-id"\n    text-menu="Menu"\n    text-back="Back"\n    text-close="Close"\n    text-current-language="The currently selected language is #name."\n    text-change-language="Change the language"\n    text-main="Main navigation"\n    text-current-user="Current user is John Doe."\n    text-user-links="User links"\n  ></swisspost-internet-header>'}
-                        ></code-block>
-                      </label>
-                    </div>
-                  </li>
-                  <li class="mb-16">
-                    <div class="form-check">
-                      <input
-                        id="internet_header-remove_props"
-                        class="form-check-input"
-                        type="checkbox"
-                        ?checked="${this.state.internet_header.remove_props}"
-                      />
-                      <label class="form-check-label" for="internet_header-remove_props">
-                        Remove props and runtime assignments that no longer exist
-                        <span class="info">
-                          The following props have been removed and have no effect in v10:
-                          <code>stickyness</code>, <code>meta</code>, <code>login</code>,
-                          <code>search</code>, <code>skiplinks</code>, <code>config-proxy</code>,
-                          <code>language-cookie-key</code>, <code>language-local-storage-key</code>,
-                          <code>logout-url</code>, <code>self-admin-origin</code>,
-                          <code>os-flyout-overrides</code>, <code>custom-config</code>,
-                          <code>language-switch-overrides</code>. Only <code>language</code> and
-                          <code>active-route</code> remain reactive at runtime.
-                        </span>
-                        <code-block
-                          code=${"const header = document.querySelector('swisspost-internet-header');\n  \n  // ✅ Still works in v10\n  header.language = 'fr';\n  header.activeRoute = '/path/to/page';\n  \n  // ❌ No longer available in v10 - remove these\n  header.search = false;\n  header.stickyness = 'full';\n  header.customConfig = { /* ... */ };\n  header.languageSwitchOverrides = [ /* ... */ ];\n  await header.getCurrentLanguage(); // method removed"}
-                        ></code-block>
-                      </label>
-                    </div>
-                  </li>
-                </ul>
-              </section>
+              ${this.environment !== 'intranet'
+                ? html`
+                    <section>
+                      <h4>Internet Header (@swisspost/internet-header)</h4>
+                      <ul class="list-unstyled">
+                        <li class="mb-16">
+                          <div class="form-check">
+                            <input
+                              id="internet_header-update_package"
+                              class="form-check-input"
+                              type="checkbox"
+                              ?checked="${this.state.internet_header.update_package}"
+                            />
+                            <label class="form-check-label" for="internet_header-update_package">
+                              Update the <code>@swisspost/internet-header</code> package to version 10
+                              <code-block
+                                code=${'npm install @swisspost/internet-header@10'}
+                              ></code-block>
+                            </label>
+                          </div>
+                        </li>
+                        <li class="mb-16">
+                          <div class="form-check">
+                            <input
+                              id="internet_header-add_text_props"
+                              class="form-check-input"
+                              type="checkbox"
+                              ?checked="${this.state.internet_header.add_text_props}"
+                            />
+                            <label class="form-check-label" for="internet_header-add_text_props">
+                              Add the new required <code>text-*</code> props to your
+                              <code>swisspost-internet-header</code> element
+                              <span class="info">
+                                Version 10 requires these props for accessibility — they provide visually
+                                hidden labels for interactive elements. The component will throw an error if any are
+                                missing.
+                              </span>
+                              <code-block
+                                code=${'<swisspost-internet-header\n    project="your-service-id"\n    text-menu="Menu"\n    text-back="Back"\n    text-close="Close"\n    text-current-language="The currently selected language is #name."\n    text-change-language="Change the language"\n    text-main="Main navigation"\n    text-current-user="Current user is John Doe."\n    text-user-links="User links"\n  ></swisspost-internet-header>'}
+                              ></code-block>
+                            </label>
+                          </div>
+                        </li>
+                        <li class="mb-16">
+                          <div class="form-check">
+                            <input
+                              id="internet_header-remove_props"
+                              class="form-check-input"
+                              type="checkbox"
+                              ?checked="${this.state.internet_header.remove_props}"
+                            />
+                            <label class="form-check-label" for="internet_header-remove_props">
+                              Remove props and runtime assignments that no longer exist
+                              <span class="info">
+                                The following props have been removed and have no effect in v10:
+                                <code>stickyness</code>, <code>meta</code>, <code>login</code>,
+                                <code>search</code>, <code>skiplinks</code>, <code>config-proxy</code>,
+                                <code>language-cookie-key</code>, <code>language-local-storage-key</code>,
+                                <code>logout-url</code>, <code>self-admin-origin</code>,
+                                <code>os-flyout-overrides</code>, <code>custom-config</code>,
+                                <code>language-switch-overrides</code>. Only <code>language</code> and
+                                <code>active-route</code> remain reactive at runtime.
+                              </span>
+                            </label>
+                          </div>
+                        </li>
+                      </ul>
+                    </section>
+                  `
+                : nothing}
 
               <section>
                 <h4>Styles</h4>
