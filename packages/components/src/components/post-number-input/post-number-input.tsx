@@ -1,7 +1,7 @@
-import { Component, Element, Host, h, State } from '@stencil/core';
-import { debounce } from 'throttle-debounce';
-import { version } from '@root/package.json';
 import { getSlottedElement, repeatOnLongPress } from '@/utils';
+import { version } from '@root/package.json';
+import { Component, Element, h, Host, State } from '@stencil/core';
+import { debounce } from 'throttle-debounce';
 
 function parseNumber(input: HTMLInputElement, key: 'value' | 'min' | 'max'): number | undefined {
   const value = Number.parseFloat(input[key]);
