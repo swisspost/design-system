@@ -37,3 +37,9 @@ This method is asynchronous and returns a promise that resolves with the current
 It optionally takes a boolean parameter: `true` forces it open, and `false` forces it closed.
 
 <Source code={SampleCustomTrigger} language="typescript" />
+
+### Wrapped Collapsible
+
+The `<post-collapsible>` can be nested within the `<post-collapsible-trigger>` to establish the trigger–collapsible relationship, eliminating the need for an explicit id reference.
+
+<Canvas of={CollapsibleStories.WrappedCollapsible} />

@@ -1,7 +1,7 @@
-import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { Pattern, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { checkRequiredAndType, checkEmptyOrPattern, checkEmptyOrType } from '@/utils';
-import { GRAVATAR_BASE_URL, cryptify } from './avatar-utils';
+import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { cryptify, GRAVATAR_BASE_URL } from './avatar-utils';
 
 const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -28,22 +28,31 @@ export class PostAvatar {
   /**
    * Defines the users firstname.
    */
-  @Prop({ reflect: true }) readonly firstname!: string;
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  readonly firstname!: string;
 
   /**
    * Defines the users lastname.
    */
-  @Prop() readonly lastname?: string;
+  @Prop()
+  @Type('string')
+  readonly lastname?: string;
 
   /**
    * Defines the users email address associated with a gravatar profile picture.
    */
-  @Prop() readonly email?: string;
+  @Prop()
+  @Pattern(emailPattern)
+  readonly email?: string;
 
   /**
    * Provides a custom description for the avatar, used for accessibility purposes.
    */
-  @Prop() description?: string;
+  @Prop()
+  @Type('string')
+  description?: string;
 
   @State() slottedImage: HTMLImageElement;
   @State() avatarType: AvatarType = null;
@@ -54,29 +63,9 @@ export class PostAvatar {
   // To handle email updates and reset the storage item
   @State() storageKey: string = '';
 
-  @Watch('firstname')
-  validateFirstname() {
-    checkRequiredAndType(this, 'firstname', 'string');
-  }
-
-  @Watch('lastname')
-  validateLastname() {
-    checkEmptyOrType(this, 'lastname', 'string');
-  }
-
   @Watch('email')
   updateEmail() {
-    this.validateEmail();
     this.getAvatarImage();
-  }
-
-  @Watch('description')
-  validateDescription() {
-    checkEmptyOrType(this, 'description', 'string');
-  }
-
-  private validateEmail() {
-    if (this.email) checkEmptyOrPattern(this, 'email', emailPattern);
   }
 
   private async getAvatarImage() {
@@ -172,13 +161,6 @@ export class PostAvatar {
     //This provides a fallback by showing the initials while the image is still loading or delayed.
     this.avatarType = AvatarType.Initials;
     this.getAvatarImage();
-  }
-
-  componentDidLoad() {
-    this.validateFirstname();
-    this.validateLastname();
-    this.validateDescription();
-    this.validateEmail();
   }
 
   render() {

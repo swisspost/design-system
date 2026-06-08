@@ -1,6 +1,6 @@
-import { Component, Element, Prop, h, Host, Watch, Build } from '@stencil/core';
-import { checkEmptyOrType } from '@/utils/property-checkers';
+import { Required, Type } from '@/utils';
 import { version } from '@root/package.json';
+import { Build, Component, Element, h, Host, Prop } from '@stencil/core';
 
 const TRIGGER_EVENTS = ['pointerenter', 'pointerleave', 'focusin', 'focusout', 'long-press'];
 let isFocusable: ((element: HTMLElement) => boolean) | undefined;
@@ -19,7 +19,10 @@ export class PostTooltipTrigger {
   /**
    * ID of the tooltip element that this trigger is linked to.
    */
-  @Prop({ reflect: true }) for!: string;
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  for!: string;
 
   /**
    * Delay (in milliseconds) before the tooltip is shown.
@@ -45,11 +48,6 @@ export class PostTooltipTrigger {
   constructor() {
     this.boundTriggerHandler = this.handleTriggerEvent.bind(this);
     this.boundTooltipHandler = this.handleTooltipEvent.bind(this);
-  }
-
-  @Watch('for')
-  validateControlFor() {
-    checkEmptyOrType(this, 'for', 'string');
   }
 
   private get tooltip(): HTMLPostTooltipElement | null {
