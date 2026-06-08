@@ -1,8 +1,8 @@
 import { html, LitElement, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { _restorePersistedState, MIGRATION_CHECKS_KEY_V9 } from './util/persist.util';
 import { V910Checks } from './types';
 import { _updateOnChange, _updatePersistedState } from './util/migration-checks.util';
+import { _restorePersistedState, MIGRATION_CHECKS_KEY_V9 } from './util/persist.util';
 
 @customElement('migration-version-9-10')
 export class MigrationV910Component extends LitElement {
@@ -327,7 +327,10 @@ export class MigrationV910Component extends LitElement {
                             >
                           </li>
                           <li>pagination → <i>coming soon</i></li>
-                          <li>progressbar → <i>coming soon</i></li>
+                          <li>progressbar → 
+                            <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs"
+                              >post-progressbar</a
+                            ></li>
                           <li>timepicker → <i>coming soon</i></li>
                           <li>
                             typeahead →
