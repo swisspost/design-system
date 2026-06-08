@@ -60,6 +60,21 @@ header,
     min-height: var(--post-global-header-reduced-height);
     max-height: 100%;
     margin-inline-end: calc(1.25rem - var(--post-header-gap));
+
+    // Offset the logo to ensure visual alignment with the local header content
+    $min-height: var(--post-global-header-reduced-height);
+    $max-height: var(--post-global-header-expanded-height);
+    $min-offset: var(--post-logo-expanded-offset);
+    $max-offset: var(--post-logo-reduced-offset);
+    $scroll-top: var(--post-header-scroll-top, 0px);
+    margin-inline-start: clamp(
+      $min-offset,
+      calc(
+        $min-offset + ($max-offset - $min-offset) * $scroll-top /
+          max(1px, $max-height - $min-height)
+      ),
+      $max-offset
+    );
   }
 
   .sliding-controls {
@@ -74,7 +89,7 @@ header,
   }
 
   @include media-mx.max(desktop) {
-    slot:where([name="audience"], [name="global-nav-secondary"]) {
+    slot:where([name='audience'], [name='global-nav-secondary']) {
       display: none;
     }
   }
@@ -126,7 +141,7 @@ header,
   }
 
   @include media-mx.max(desktop) {
-    slot[name="main-nav"] {
+    slot[name='main-nav'] {
       display: none;
     }
   }
