@@ -16,6 +16,7 @@ export class MigrationV910Component extends LitElement {
       hide_automigration: false,
     },
     ngbootstrap: {
+      modal: false,
       typeahead: false,
     },
     forms: {
@@ -99,7 +100,10 @@ export class MigrationV910Component extends LitElement {
     super();
     const restored = _restorePersistedState<V910Checks>(MIGRATION_CHECKS_KEY_V9);
     if (restored) {
-      this.state = { ...restored, internet_header: restored.internet_header ?? this.state.internet_header };
+      this.state = {
+        ...restored,
+        internet_header: restored.internet_header ?? this.state.internet_header,
+      };
     }
     setTimeout(() => this._toggleAutoMigrationVisibility(), 0);
   }
@@ -311,16 +315,101 @@ export class MigrationV910Component extends LitElement {
                       <li>datepicker → <i>coming soon</i></li>
                       <li>dropdown → <i>coming soon</i></li>
                       <li>
-                        modal →
-                        <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
-                          >dialog</a
-                        >
-                      </li>
-                      <li>
-                        notification overlay →
-                        <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
-                          >dialog</a
-                        >
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-modal"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.modal}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-modal">
+                            modal / notification overlay →
+                            <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
+                              >dialog</a
+                            >
+                            <span class="info">
+                              <p>
+                                Both the modal and the notification overlay were built on top of the
+                                same <code>NgbModal</code> service — they only differed visually.
+                                Both are replaced by the native HTML
+                                <code>dialog</code> element with the class <code>.post-dialog</code>.
+                              </p>
+                              <p><strong>Before (v9 — NgbModal)</strong></p>
+                              <p>
+                                The modal content was a separate component injected with
+                                <code>NgbActiveModal</code> to close itself, and the host opened it
+                                via the <code>NgbModal</code> service:
+                              </p>
+                              <code-block
+                                code=${`// modal-content.component.ts\n@Component({\n  template: \`\n    <div class="modal-header">\n      <h4 class="modal-title">{{ title }}</h4>\n      <button type="button" class="btn-close" (click)="activeModal.dismiss()"></button>\n    </div>\n    <div class="modal-body">{{ message }}</div>\n    <div class="modal-footer">\n      <button class="btn btn-primary" (click)="activeModal.close('confirmed')">Confirm</button>\n      <button class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>\n    </div>\n  \`\n})\nexport class ModalContentComponent {\n  @Input() title = '';\n  @Input() message = '';\n  constructor(public activeModal: NgbActiveModal) {}\n}`}
+                              ></code-block>
+                              <code-block
+                                code=${`// host.component.ts\nexport class HostComponent {\n  constructor(private modalService: NgbModal) {}\n\n  openModal() {\n    const modalRef = this.modalService.open(ModalContentComponent);\n    modalRef.componentInstance.title = 'Confirm action';\n    modalRef.componentInstance.message = 'Are you sure?';\n\n    // Resolves when activeModal.close(result) is called\n    modalRef.closed.subscribe(result => console.log('Closed with:', result));\n\n    // Resolves when activeModal.dismiss(reason) is called, or ESC / backdrop click\n    modalRef.dismissed.subscribe(reason => console.log('Dismissed:', reason));\n  }\n}`}
+                              ></code-block>
+                              <p><strong>After (v10 — post-dialog)</strong></p>
+                              <p>
+                                The dialog content is declared directly in the component template.
+                                Use <code>&lt;form method="dialog"&gt;</code> inside the dialog so
+                                that submit buttons close it automatically and set
+                                <code>dialog.returnValue</code> to their <code>value</code>
+                                attribute:
+                              </p>
+                              <code-block
+                                code=${`<!-- host.component.html -->\n<button class="btn btn-primary" (click)="confirmDialog.showModal()">Open</button>\n\n<dialog #confirmDialog class="post-dialog" aria-labelledby="dialog-title">\n  <form method="dialog" class="dialog-grid">\n    <h3 class="dialog-header" id="dialog-title">Confirm action</h3>\n    <div class="dialog-body">\n      <p>Are you sure?</p>\n    </div>\n    <div class="dialog-controls">\n      <button class="btn btn-primary" value="confirmed">Confirm</button>\n      <button class="btn btn-secondary" value="cancelled">Cancel</button>\n    </div>\n    <post-closebutton button-type="submit">Close</post-closebutton>\n  </form>\n</dialog>`}
+                              ></code-block>
+                              <p>
+                                Listen to the <code>close</code> event to react when the dialog is
+                                closed, and read <code>dialog.returnValue</code> to know which
+                                button was pressed:
+                              </p>
+                              <code-block
+                                code=${`// host.component.ts\n@Component({ ... })\nexport class HostComponent implements AfterViewInit {\n  @ViewChild('confirmDialog') dialogRef!: ElementRef<HTMLDialogElement>;\n\n  ngAfterViewInit() {\n    this.dialogRef.nativeElement.addEventListener('close', () => {\n      const result = this.dialogRef.nativeElement.returnValue;\n      if (result === 'confirmed') {\n        console.log('User confirmed');\n      }\n    });\n  }\n}`}
+                              ></code-block>
+                              <p>
+                                To pass data <strong>into</strong> the dialog, bind directly in the
+                                template — no <code>componentInstance</code> needed:
+                              </p>
+                              <code-block
+                                code=${`<!-- host.component.html -->\n<dialog #myDialog class="post-dialog">\n  <form method="dialog" class="dialog-grid">\n    <h3 class="dialog-header">{{ dialogTitle }}</h3>\n    <div class="dialog-body">{{ dialogMessage }}</div>\n    <div class="dialog-controls">\n      <button class="btn btn-primary" value="ok">OK</button>\n    </div>\n  </form>\n</dialog>`}
+                              ></code-block>
+                              <p>
+                                <strong>Common migration patterns:</strong>
+                              </p>
+                              <ul>
+                                <li>
+                                  <strong
+                                    ><code>backdrop: 'static'</code> (prevent backdrop
+                                    close) and <code>keyboard: false</code> (disable ESC key):</strong
+                                  >
+                                    <ul>
+                                    <li>
+                                      <code>closedby="none"</code>: disables closing the modal with anything but the provided mechanisms within the modal
+                                    </li>
+                                    <li>
+                                      <code>closedby="closerequest"</code>: allows closing the modal with ESC key and provided mechanisms
+                                    </li>
+                                    <li>
+                                      <code>closedby="any"</code>: allows closing the modal with outside click, ESC key and provided mechanisms
+                                    </li>
+                                  </ul>
+                                </li>
+                                <li>
+                                  <strong
+                                    ><code>beforeDismiss</code> callback (guard before
+                                    close):</strong
+                                  >
+                                  Listen to <code>cancel</code> for ESC and perform your guard
+                                  logic before calling <code>dialog.close()</code>.
+                                </li>
+                                <li>
+                                  <strong>Programmatic close with a result value:</strong>
+                                  Call <code>dialog.close('myValue')</code> anywhere — the value
+                                  becomes <code>dialog.returnValue</code>.
+                                </li>
+                              </ul>
+                            </span>
+                          </label>
+                        </div>
                       </li>
                       <li>pagination → <i>coming soon</i></li>
                       <li>progressbar → <i>coming soon</i></li>
