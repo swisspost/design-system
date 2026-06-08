@@ -16,7 +16,7 @@ const OUTPUT_DIR = path.resolve(process.cwd(), 'src/icons-generated');
 const getComponentTemplate = (iconName, base64) => `/* Auto-generated file. Do not edit directly. */
 import * as React from "react";
 import type { StencilReactComponent } from "@stencil/react-output-target/runtime";
-import { PostIcon } from "../stencil-generated/standalone/post-icon.server.js";
+import { PostIcon } from "@swisspost/design-system-components-react/post-icon";
 
 export const ${iconName}: StencilReactComponent<HTMLPostIconElement> = props => (
   <PostIcon

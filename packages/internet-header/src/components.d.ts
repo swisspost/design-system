@@ -5,38 +5,16 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { Link } from "./models/general.model";
+import { LinkConfig } from "./models/shared.model";
 import { ActiveRouteProp, Environment } from "./models/general.model";
-export { Link } from "./models/general.model";
+export { LinkConfig } from "./models/shared.model";
 export { ActiveRouteProp, Environment } from "./models/general.model";
 export namespace Components {
-    /**
-     * Trap the focus inside a specific container.
-     * @param active activate or deactivate the focus trap
-     */
-    interface FocusTrap {
-        /**
-          * @default false
-         */
-        "active": boolean;
-    }
-    interface PostKlpLoginWidget {
-        /**
-          * Override the logout-url provided by the portal config.
-         */
-        "logoutUrl"?: string;
-        /**
-          * Sets the focus on the login button
-         */
-        "setFocus": () => Promise<void>;
-    }
-    interface PostSkiplinks {
-    }
     interface SwisspostInternetBreadcrumbs {
         /**
           * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
          */
-        "customItems"?: string | Array<Link>;
+        "customItems"?: string | Array<LinkConfig>;
         /**
           * Accessible label for the breadcrumbs navigation.
          */
@@ -116,6 +94,24 @@ export namespace Components {
           * Visually hidden label for the user menu.
          */
         "textUserLinks": string;
+        /**
+          * Visually hidden label for the login widget trigger button.
+         */
+        "textUserMenuTrigger": string;
+    }
+    interface SwisspostInternetLoginWidget {
+        /**
+          * Label for the "Current user is {user}" accessibility description. Use `{user}` as a placeholder — it will be replaced with the current user's name at runtime.
+         */
+        "textCurrentUser": string;
+        /**
+          * Accessible label for the dropdown menu.
+         */
+        "textUserMenu": string;
+        /**
+          * Hidden label for the user menu trigger button, for accessibility purposes.
+         */
+        "textUserMenuTrigger": string;
     }
 }
 export interface SwisspostInternetHeaderCustomEvent<T> extends CustomEvent<T> {
@@ -123,28 +119,6 @@ export interface SwisspostInternetHeaderCustomEvent<T> extends CustomEvent<T> {
     target: HTMLSwisspostInternetHeaderElement;
 }
 declare global {
-    /**
-     * Trap the focus inside a specific container.
-     * @param active activate or deactivate the focus trap
-     */
-    interface HTMLFocusTrapElement extends Components.FocusTrap, HTMLStencilElement {
-    }
-    var HTMLFocusTrapElement: {
-        prototype: HTMLFocusTrapElement;
-        new (): HTMLFocusTrapElement;
-    };
-    interface HTMLPostKlpLoginWidgetElement extends Components.PostKlpLoginWidget, HTMLStencilElement {
-    }
-    var HTMLPostKlpLoginWidgetElement: {
-        prototype: HTMLPostKlpLoginWidgetElement;
-        new (): HTMLPostKlpLoginWidgetElement;
-    };
-    interface HTMLPostSkiplinksElement extends Components.PostSkiplinks, HTMLStencilElement {
-    }
-    var HTMLPostSkiplinksElement: {
-        prototype: HTMLPostSkiplinksElement;
-        new (): HTMLPostSkiplinksElement;
-    };
     interface HTMLSwisspostInternetBreadcrumbsElement extends Components.SwisspostInternetBreadcrumbs, HTMLStencilElement {
     }
     var HTMLSwisspostInternetBreadcrumbsElement: {
@@ -174,41 +148,27 @@ declare global {
         prototype: HTMLSwisspostInternetHeaderElement;
         new (): HTMLSwisspostInternetHeaderElement;
     };
+    interface HTMLSwisspostInternetLoginWidgetElement extends Components.SwisspostInternetLoginWidget, HTMLStencilElement {
+    }
+    var HTMLSwisspostInternetLoginWidgetElement: {
+        prototype: HTMLSwisspostInternetLoginWidgetElement;
+        new (): HTMLSwisspostInternetLoginWidgetElement;
+    };
     interface HTMLElementTagNameMap {
-        "focus-trap": HTMLFocusTrapElement;
-        "post-klp-login-widget": HTMLPostKlpLoginWidgetElement;
-        "post-skiplinks": HTMLPostSkiplinksElement;
         "swisspost-internet-breadcrumbs": HTMLSwisspostInternetBreadcrumbsElement;
         "swisspost-internet-footer": HTMLSwisspostInternetFooterElement;
         "swisspost-internet-header": HTMLSwisspostInternetHeaderElement;
+        "swisspost-internet-login-widget": HTMLSwisspostInternetLoginWidgetElement;
     }
 }
 declare namespace LocalJSX {
     type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
 
-    /**
-     * Trap the focus inside a specific container.
-     * @param active activate or deactivate the focus trap
-     */
-    interface FocusTrap {
-        /**
-          * @default false
-         */
-        "active"?: boolean;
-    }
-    interface PostKlpLoginWidget {
-        /**
-          * Override the logout-url provided by the portal config.
-         */
-        "logoutUrl"?: string;
-    }
-    interface PostSkiplinks {
-    }
     interface SwisspostInternetBreadcrumbs {
         /**
           * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
          */
-        "customItems"?: string | Array<Link>;
+        "customItems"?: string | Array<LinkConfig>;
         /**
           * Accessible label for the breadcrumbs navigation.
          */
@@ -292,16 +252,28 @@ declare namespace LocalJSX {
           * Visually hidden label for the user menu.
          */
         "textUserLinks": string;
+        /**
+          * Visually hidden label for the login widget trigger button.
+         */
+        "textUserMenuTrigger": string;
+    }
+    interface SwisspostInternetLoginWidget {
+        /**
+          * Label for the "Current user is {user}" accessibility description. Use `{user}` as a placeholder — it will be replaced with the current user's name at runtime.
+         */
+        "textCurrentUser": string;
+        /**
+          * Accessible label for the dropdown menu.
+         */
+        "textUserMenu": string;
+        /**
+          * Hidden label for the user menu trigger button, for accessibility purposes.
+         */
+        "textUserMenuTrigger": string;
     }
 
-    interface FocusTrapAttributes {
-        "active": boolean;
-    }
-    interface PostKlpLoginWidgetAttributes {
-        "logoutUrl": string;
-    }
     interface SwisspostInternetBreadcrumbsAttributes {
-        "customItems": string | Array<Link>;
+        "customItems": string | Array<LinkConfig>;
         "textHome": string;
         "textBreadcrumbs": string;
         "textMoreItems": string;
@@ -323,32 +295,30 @@ declare namespace LocalJSX {
         "textCurrentUser": string;
         "textMain": string;
         "textMenu": string;
+        "textUserMenuTrigger": string;
         "textUserLinks": string;
+    }
+    interface SwisspostInternetLoginWidgetAttributes {
+        "textCurrentUser": string;
+        "textUserMenu": string;
+        "textUserMenuTrigger": string;
     }
 
     interface IntrinsicElements {
-        "focus-trap": Omit<FocusTrap, keyof FocusTrapAttributes> & { [K in keyof FocusTrap & keyof FocusTrapAttributes]?: FocusTrap[K] } & { [K in keyof FocusTrap & keyof FocusTrapAttributes as `attr:${K}`]?: FocusTrapAttributes[K] } & { [K in keyof FocusTrap & keyof FocusTrapAttributes as `prop:${K}`]?: FocusTrap[K] };
-        "post-klp-login-widget": Omit<PostKlpLoginWidget, keyof PostKlpLoginWidgetAttributes> & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes]?: PostKlpLoginWidget[K] } & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes as `attr:${K}`]?: PostKlpLoginWidgetAttributes[K] } & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes as `prop:${K}`]?: PostKlpLoginWidget[K] };
-        "post-skiplinks": PostSkiplinks;
         "swisspost-internet-breadcrumbs": Omit<SwisspostInternetBreadcrumbs, keyof SwisspostInternetBreadcrumbsAttributes> & { [K in keyof SwisspostInternetBreadcrumbs & keyof SwisspostInternetBreadcrumbsAttributes]?: SwisspostInternetBreadcrumbs[K] } & { [K in keyof SwisspostInternetBreadcrumbs & keyof SwisspostInternetBreadcrumbsAttributes as `attr:${K}`]?: SwisspostInternetBreadcrumbsAttributes[K] } & { [K in keyof SwisspostInternetBreadcrumbs & keyof SwisspostInternetBreadcrumbsAttributes as `prop:${K}`]?: SwisspostInternetBreadcrumbs[K] } & OneOf<"textHome", SwisspostInternetBreadcrumbs["textHome"], SwisspostInternetBreadcrumbsAttributes["textHome"]> & OneOf<"textBreadcrumbs", SwisspostInternetBreadcrumbs["textBreadcrumbs"], SwisspostInternetBreadcrumbsAttributes["textBreadcrumbs"]> & OneOf<"textMoreItems", SwisspostInternetBreadcrumbs["textMoreItems"], SwisspostInternetBreadcrumbsAttributes["textMoreItems"]>;
         "swisspost-internet-footer": Omit<SwisspostInternetFooter, keyof SwisspostInternetFooterAttributes> & { [K in keyof SwisspostInternetFooter & keyof SwisspostInternetFooterAttributes]?: SwisspostInternetFooter[K] } & { [K in keyof SwisspostInternetFooter & keyof SwisspostInternetFooterAttributes as `attr:${K}`]?: SwisspostInternetFooterAttributes[K] } & { [K in keyof SwisspostInternetFooter & keyof SwisspostInternetFooterAttributes as `prop:${K}`]?: SwisspostInternetFooter[K] } & OneOf<"textFooter", SwisspostInternetFooter["textFooter"], SwisspostInternetFooterAttributes["textFooter"]> & OneOf<"textCookieSettings", SwisspostInternetFooter["textCookieSettings"], SwisspostInternetFooterAttributes["textCookieSettings"]>;
-        "swisspost-internet-header": Omit<SwisspostInternetHeader, keyof SwisspostInternetHeaderAttributes> & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes]?: SwisspostInternetHeader[K] } & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes as `attr:${K}`]?: SwisspostInternetHeaderAttributes[K] } & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes as `prop:${K}`]?: SwisspostInternetHeader[K] } & OneOf<"project", SwisspostInternetHeader["project"], SwisspostInternetHeaderAttributes["project"]> & OneOf<"textBack", SwisspostInternetHeader["textBack"], SwisspostInternetHeaderAttributes["textBack"]> & OneOf<"textChangeLanguage", SwisspostInternetHeader["textChangeLanguage"], SwisspostInternetHeaderAttributes["textChangeLanguage"]> & OneOf<"textClose", SwisspostInternetHeader["textClose"], SwisspostInternetHeaderAttributes["textClose"]> & OneOf<"textCurrentLanguage", SwisspostInternetHeader["textCurrentLanguage"], SwisspostInternetHeaderAttributes["textCurrentLanguage"]> & OneOf<"textCurrentUser", SwisspostInternetHeader["textCurrentUser"], SwisspostInternetHeaderAttributes["textCurrentUser"]> & OneOf<"textMain", SwisspostInternetHeader["textMain"], SwisspostInternetHeaderAttributes["textMain"]> & OneOf<"textMenu", SwisspostInternetHeader["textMenu"], SwisspostInternetHeaderAttributes["textMenu"]> & OneOf<"textUserLinks", SwisspostInternetHeader["textUserLinks"], SwisspostInternetHeaderAttributes["textUserLinks"]>;
+        "swisspost-internet-header": Omit<SwisspostInternetHeader, keyof SwisspostInternetHeaderAttributes> & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes]?: SwisspostInternetHeader[K] } & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes as `attr:${K}`]?: SwisspostInternetHeaderAttributes[K] } & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes as `prop:${K}`]?: SwisspostInternetHeader[K] } & OneOf<"project", SwisspostInternetHeader["project"], SwisspostInternetHeaderAttributes["project"]> & OneOf<"textBack", SwisspostInternetHeader["textBack"], SwisspostInternetHeaderAttributes["textBack"]> & OneOf<"textChangeLanguage", SwisspostInternetHeader["textChangeLanguage"], SwisspostInternetHeaderAttributes["textChangeLanguage"]> & OneOf<"textClose", SwisspostInternetHeader["textClose"], SwisspostInternetHeaderAttributes["textClose"]> & OneOf<"textCurrentLanguage", SwisspostInternetHeader["textCurrentLanguage"], SwisspostInternetHeaderAttributes["textCurrentLanguage"]> & OneOf<"textCurrentUser", SwisspostInternetHeader["textCurrentUser"], SwisspostInternetHeaderAttributes["textCurrentUser"]> & OneOf<"textMain", SwisspostInternetHeader["textMain"], SwisspostInternetHeaderAttributes["textMain"]> & OneOf<"textMenu", SwisspostInternetHeader["textMenu"], SwisspostInternetHeaderAttributes["textMenu"]> & OneOf<"textUserMenuTrigger", SwisspostInternetHeader["textUserMenuTrigger"], SwisspostInternetHeaderAttributes["textUserMenuTrigger"]> & OneOf<"textUserLinks", SwisspostInternetHeader["textUserLinks"], SwisspostInternetHeaderAttributes["textUserLinks"]>;
+        "swisspost-internet-login-widget": Omit<SwisspostInternetLoginWidget, keyof SwisspostInternetLoginWidgetAttributes> & { [K in keyof SwisspostInternetLoginWidget & keyof SwisspostInternetLoginWidgetAttributes]?: SwisspostInternetLoginWidget[K] } & { [K in keyof SwisspostInternetLoginWidget & keyof SwisspostInternetLoginWidgetAttributes as `attr:${K}`]?: SwisspostInternetLoginWidgetAttributes[K] } & { [K in keyof SwisspostInternetLoginWidget & keyof SwisspostInternetLoginWidgetAttributes as `prop:${K}`]?: SwisspostInternetLoginWidget[K] } & OneOf<"textCurrentUser", SwisspostInternetLoginWidget["textCurrentUser"], SwisspostInternetLoginWidgetAttributes["textCurrentUser"]> & OneOf<"textUserMenu", SwisspostInternetLoginWidget["textUserMenu"], SwisspostInternetLoginWidgetAttributes["textUserMenu"]> & OneOf<"textUserMenuTrigger", SwisspostInternetLoginWidget["textUserMenuTrigger"], SwisspostInternetLoginWidgetAttributes["textUserMenuTrigger"]>;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            /**
-             * Trap the focus inside a specific container.
-             * @param active activate or deactivate the focus trap
-             */
-            "focus-trap": LocalJSX.IntrinsicElements["focus-trap"] & JSXBase.HTMLAttributes<HTMLFocusTrapElement>;
-            "post-klp-login-widget": LocalJSX.IntrinsicElements["post-klp-login-widget"] & JSXBase.HTMLAttributes<HTMLPostKlpLoginWidgetElement>;
-            "post-skiplinks": LocalJSX.IntrinsicElements["post-skiplinks"] & JSXBase.HTMLAttributes<HTMLPostSkiplinksElement>;
             "swisspost-internet-breadcrumbs": LocalJSX.IntrinsicElements["swisspost-internet-breadcrumbs"] & JSXBase.HTMLAttributes<HTMLSwisspostInternetBreadcrumbsElement>;
             "swisspost-internet-footer": LocalJSX.IntrinsicElements["swisspost-internet-footer"] & JSXBase.HTMLAttributes<HTMLSwisspostInternetFooterElement>;
             "swisspost-internet-header": LocalJSX.IntrinsicElements["swisspost-internet-header"] & JSXBase.HTMLAttributes<HTMLSwisspostInternetHeaderElement>;
+            "swisspost-internet-login-widget": LocalJSX.IntrinsicElements["swisspost-internet-login-widget"] & JSXBase.HTMLAttributes<HTMLSwisspostInternetLoginWidgetElement>;
         }
     }
 }

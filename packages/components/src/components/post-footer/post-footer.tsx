@@ -1,10 +1,11 @@
-import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { breakpoint, Device, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { checkRequiredAndType, breakpoint, Device } from '@/utils';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 
 const GRID_SLOTS = ['grid-1', 'grid-2', 'grid-3', 'grid-4'];
 
 /**
+ * @slot prefooter - Slot for the pre-footer.
  * @slot grid-{1|2|3|4}-title - Slot for the accordion headers (mobile).
  * @slot grid-{1|2|3|4} - Slot for the accordion bodies (mobile) and the grid cells (tablet, desktop).
  * @slot socialmedia - Slot for the social media links.
@@ -24,15 +25,13 @@ export class PostFooter {
   /**
    * The textFooter to add to the footer (visually hidden).
    */
-  @Prop({ reflect: true }) readonly textFooter!: string;
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  readonly textFooter!: string;
 
   @State() device: Device = breakpoint.get('device');
   @State() gridSlotDisplayed: Record<string, boolean> = {};
-
-  @Watch('textFooter')
-  validateTextFooter() {
-    checkRequiredAndType(this, 'textFooter', 'string');
-  }
 
   constructor() {
     this.handleGridSlotChange = this.handleGridSlotChange.bind(this);
@@ -43,8 +42,6 @@ export class PostFooter {
   }
 
   componentWillLoad() {
-    this.validateTextFooter();
-
     // initialize grid visibility by checking the content of each slot
     GRID_SLOTS.forEach(slotName => {
       const assignedElements = this.host.querySelectorAll(`[slot="${slotName}"]`);
@@ -109,31 +106,39 @@ export class PostFooter {
         <footer>
           <h2 class="visually-hidden">{this.textFooter}</h2>
 
-          <div class="footer-container">
-            <div class="footer-grid">
-              {this.device === 'mobile' ? this.renderAccordion() : this.renderColumns()}
+          <div class="prefooter">
+            <div class="footer-container">
+              <slot name="prefooter"></slot>
             </div>
+          </div>
 
-            <div class="footer-column">
-              <div class="footer-socialmedia">
-                <slot name="socialmedia"></slot>
+          <div class="footer-main">
+            <div class="footer-container">
+              <div class="footer-grid">
+                {this.device === 'mobile' ? this.renderAccordion() : this.renderColumns()}
               </div>
 
-              <div class="footer-app">
-                <slot name="app"></slot>
+              <div class="footer-column">
+                <div class="footer-socialmedia">
+                  <slot name="socialmedia"></slot>
+                </div>
+
+                <div class="footer-app">
+                  <slot name="app"></slot>
+                </div>
               </div>
-            </div>
 
-            <div class="footer-businesssectors">
-              <slot name="businesssectors"></slot>
-            </div>
+              <div class="footer-businesssectors">
+                <slot name="businesssectors"></slot>
+              </div>
 
-            <div class="footer-meta">
-              <slot name="meta"></slot>
-            </div>
+              <div class="footer-meta">
+                <slot name="meta"></slot>
+              </div>
 
-            <div class="footer-copyright">
-              <slot name="copyright"></slot>
+              <div class="footer-copyright">
+                <slot name="copyright"></slot>
+              </div>
             </div>
           </div>
         </footer>

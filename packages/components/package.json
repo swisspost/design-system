@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components",
-  "version": "10.0.0-next.68",
+  "version": "10.0.0-next.71",
   "description": "A collection of web components built with Stencil JS for the Swiss Post Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -21,6 +21,15 @@
     "dist/",
     "hydrate/"
   ],
+  "sideEffects": [
+    "./dist/esm/post-components.js",
+    "./dist/cjs/post-components.cjs.js",
+    "./dist/components/index.js",
+    "./dist/loader/index.js",
+    "./dist/loader/index.cjs.js",
+    "./cypress/**",
+    "*.css"
+  ],
   "type": "module",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -34,7 +43,7 @@
     ".": {
       "types": "./dist/types/index.d.ts",
       "import": "./dist/esm/post-components.js",
-      "require": "./dist/cjs/post-components.cjs.js"
+      "default": "./dist/cjs/post-components.cjs.js"
     },
     "./dist/*": {
       "default": "./dist/*"
@@ -42,7 +51,7 @@
     "./loader": {
       "types": "./dist/loader/index.d.ts",
       "import": "./dist/loader/index.js",
-      "require": "./dist/loader/index.cjs.js"
+      "default": "./dist/loader/index.cjs.js"
     },
     "./components": {
       "types": "./dist/components/index.d.ts",
@@ -60,9 +69,11 @@
     },
     "./hydrate": {
       "types": "./hydrate/index.d.ts",
-      "import": "./hydrate/index.mjs",
-      "require": "./hydrate/index.js",
-      "default": "./hydrate/index.js"
+      "node": {
+        "import": "./hydrate/index.mjs",
+        "default": "./hydrate/index.js"
+      },
+      "default": "./hydrate/index.stub.js"
     }
   },
   "scripts": {
@@ -70,7 +81,7 @@
     "start": "pnpm prebuild:script && stencil build --dev --watch --docs --docs-readme",
     "prebuild": "pnpm clean && pnpm prebuild:script",
     "build": "stencil build --docs-readme",
-    "postbuild": "pnpm copy:component-names & pnpm copy:styles:components-react & pnpm copy:styles:components-angular",
+    "postbuild": "pnpm copy:hydrate-stub & pnpm copy:component-names & pnpm copy:styles:components-react & pnpm copy:styles:components-angular",
     "clean": "rimraf --glob dist hydrate loader loaders www src/styles/generated src/_generated ../components-react/**/stencil-generated/ ../components-angular/projects/components/src/lib/stencil-generated/",
     "unit": "stencil test --spec",
     "unit:watch": "stencil test --spec --watchAll --silent",
@@ -88,6 +99,7 @@
     "vrt:safari": "node vrt/generate-header-html.js && playwright test --project=webkit",
     "generate": "stencil generate",
     "prebuild:script": "node --loader ts-node/esm prebuild.ts",
+    "copy:hydrate-stub": "copyfiles -f src/hydrate-stub/* hydrate/",
     "copy:component-names": "copyfiles -f src/_generated/component-names.json dist/",
     "copy:styles:components-react": "copyfiles -f www/build/post-components.css ../components-react/src/stencil-generated/",
     "copy:styles:components-angular": "copyfiles -f www/build/post-components.css ../components-angular/projects/components/src/lib/stencil-generated/"
@@ -96,33 +108,31 @@
     "@floating-ui/dom": "1.7.6",
     "@oddbird/popover-polyfill": "0.6.0",
     "@stencil/core": "4.43.3",
-    "@swisspost/design-system-icons": "workspace:10.0.0-next.68",
-    "@swisspost/design-system-styles": "workspace:10.0.0-next.68",
+    "@swisspost/design-system-icons": "workspace:10.0.0-next.71",
+    "@swisspost/design-system-styles": "workspace:10.0.0-next.71",
     "air-datepicker": "3.6.0",
     "ally.js": "1.4.1",
     "imask": "7.6.1",
-    "language-tags": "1.0.9",
-    "long-press-event": "2.5.2",
-    "nanoid": "5.1.11"
+    "long-press-event": "2.5.2"
   },
   "devDependencies": {
     "@eslint/compat": "1.2.5",
     "@eslint/js": "9.18.0",
     "@percy/cli": "1.31.13",
     "@percy/cypress": "3.1.8",
-    "@playwright/test": "1.56.1",
+    "@playwright/test": "catalog:",
     "@stencil-community/eslint-plugin": "0.10.0",
     "@stencil/angular-output-target": "1.1.1",
     "@stencil/react-output-target": "1.2.0",
     "@stencil/sass": "3.0.12",
-    "@swisspost/design-system-eslint": "workspace:10.0.0-next.68",
+    "@swisspost/design-system-eslint": "workspace:10.0.0-next.71",
     "@types/jest": "catalog:stencil/jest",
     "@types/node": "catalog:node",
     "@typescript-eslint/parser": "7.18.0",
     "copyfiles": "2.4.1",
-    "cypress": "14.3.2",
-    "cypress-axe": "1.6.0",
-    "cypress-storybook": "1.0.0",
+    "cypress": "catalog:cypress",
+    "cypress-axe": "catalog:cypress",
+    "cypress-storybook": "catalog:cypress",
     "eslint": "9.26.0",
     "eslint-plugin-cypress": "4.2.0",
     "eslint-plugin-react": "7.37.5",

@@ -1,5 +1,11 @@
 # @swisspost/design-system-eslint
 
+## 10.0.0-next.71
+
+## 10.0.0-next.70
+
+## 10.0.0-next.69
+
 ## 10.0.0-next.68
 
 ### Patch Changes

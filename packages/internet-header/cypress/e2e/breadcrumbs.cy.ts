@@ -1,15 +1,15 @@
-import { IPortalConfig } from '../../src/models/general.model';
+import { PortalConfig } from '../../src/models/general.model';
 import rawTestConfiguration from '../fixtures/internet-header/test-configuration.json';
 import { prepare } from '../support/prepare-story';
 import { BREADCRUMBS } from './shared/variables';
 
-const testConfiguration: IPortalConfig = rawTestConfiguration as unknown as IPortalConfig;
+const testConfiguration: PortalConfig = rawTestConfiguration;
 
 describe('breadcrumb', () => {
   describe('configuration', () => {
     it(`should not rendered if no config present`, () => {
-      // Cast the imported JSON object to the IPortalConfig interface
-      const config: IPortalConfig = testConfiguration;
+      // Cast the imported JSON object to the PortalConfig interface
+      const config: PortalConfig = testConfiguration;
       const modifiedConfig = JSON.parse(JSON.stringify(config));
 
       // Clear breadcrumb config
@@ -34,17 +34,17 @@ describe('breadcrumb', () => {
       cy.get('post-breadcrumbs')
         .as('breadcrumbs')
         .shadow()
-        .find('.hidden-items post-breadcrumb-item')
+        .find('post-breadcrumb-item')
         .should('to.have.length', 4);
 
       // Contains both elements and sets the url to the post-breadcrumb-item
       cy.get('@breadcrumbs')
         .shadow()
-        .contains('.hidden-items post-breadcrumb-item', 'Test1')
+        .contains('post-breadcrumb-item', 'Test1')
         .should('to.have.attr', 'url', '/x/y/z');
       cy.get('@breadcrumbs')
         .shadow()
-        .contains('.hidden-items post-breadcrumb-item', 'Test2')
+        .contains('post-breadcrumb-item', 'Test2')
         .should('to.have.attr', 'url', '/a/b/c');
     });
   });

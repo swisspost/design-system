@@ -1,14 +1,14 @@
-import { prepare } from '../support/prepare-story';
+import { copyConfig, prepare } from '../support/prepare-story';
 import { HEADER } from './shared/variables';
 
-import testConfiguration from '../fixtures/internet-header/test-configuration.json';
 import micrositeConfiguration from '../fixtures/internet-header/microsite-config.json';
+import testConfiguration from '../fixtures/internet-header/test-configuration.json';
 
 const language = 'de';
 
 describe('header', () => {
   describe('default', () => {
-    const headerConfig = testConfiguration[language].header_new;
+    const headerConfig = testConfiguration[language].header;
     beforeEach(() => {
       prepare(HEADER, 'Default');
       cy.changeArg('language', language);
@@ -48,7 +48,10 @@ describe('header', () => {
     });
 
     it('should correctly show the login link', () => {
-      cy.get('[slot="post-login"]').invoke('prop', 'localName').should('eq', 'a');
+      cy.get('[slot="post-login"]')
+        .invoke('prop', 'localName')
+        .should('eq', 'swisspost-internet-login-widget');
+      cy.get('[slot="post-login"]').shadow().find('[slot="login-link"]').should('be.visible');
     });
 
     context('main navigation', () => {
@@ -86,10 +89,79 @@ describe('header', () => {
           });
       });
     });
+
+    context('active route', () => {
+      const activeRouteConfig = copyConfig();
+      activeRouteConfig[language]!.header.globalHeader.audience![0].url = '/audience-private';
+      activeRouteConfig[language]!.header.globalHeader.secondaryNavigation![0].url = '/jobs';
+
+      beforeEach(() => {
+        prepare(HEADER, 'Default', {
+          config: activeRouteConfig,
+        });
+        cy.changeArg('language', language);
+      });
+
+      it('should set aria-current="page" on matching link', () => {
+        cy.changeArg('activeRoute', '/letters');
+        cy.get('[aria-current="page"]').should('have.length', 1);
+      });
+
+      it('should set aria-current="location" on matching audience link', () => {
+        cy.changeArg('activeRoute', '/audience-private');
+        cy.get('[slot="audience"] [aria-current="location"]')
+          .should('have.length', 1)
+          .and('have.attr', 'href', '/audience-private');
+      });
+
+      it('should set aria-current="location" on matching global secondary link', () => {
+        cy.changeArg('activeRoute', '/jobs');
+        cy.get('[aria-current="location"]').its('length').should('be.gte', 1);
+      });
+
+      it('should not set aria-current="page" when activeRoute is "none"', () => {
+        cy.changeArg('activeRoute', 'none');
+        cy.get('[slot="main-nav"] [aria-current="page"]').should('not.exist');
+        cy.get('[slot="audience"] [aria-current="location"]').should('not.exist');
+        cy.get('[slot="global-nav-secondary"] [aria-current="location"]').should('not.exist');
+      });
+
+      it('should move aria-current="page" when activeRoute changes', () => {
+        cy.changeArg('activeRoute', '/letters');
+        cy.get('[aria-current="page"]').should('have.length', 1);
+
+        cy.changeArg('activeRoute', '/sch');
+        cy.get('[aria-current="page"]').should('have.length', 1);
+      });
+
+      it('should not set aria-current="page" when no link matches', () => {
+        cy.changeArg('activeRoute', '/nonexistent');
+        cy.get('[slot="main-nav"] [aria-current="page"]').should('not.exist');
+        cy.get('[slot="audience"] [aria-current="location"]').should('not.exist');
+        cy.get('[slot="global-nav-secondary"] [aria-current="location"]').should('not.exist');
+      });
+
+      it('should set only one active link when URL exists in multiple header areas', () => {
+        const conflictConfig = copyConfig();
+        conflictConfig[language]!.header.globalHeader.audience![0].url = '/letters';
+        conflictConfig[language]!.header.globalHeader.secondaryNavigation![0].url = '/jobs';
+
+        prepare(HEADER, 'Default', {
+          config: conflictConfig,
+        });
+        cy.changeArg('language', language);
+
+        cy.changeArg('activeRoute', '/letters');
+
+        cy.get('[aria-current="page"], [aria-current="location"]')
+          .should('have.length', 1)
+          .and('have.attr', 'href', '/letters');
+      });
+    });
   });
 
   describe('microsite', () => {
-    const headerConfig = micrositeConfiguration[language].header_new;
+    const headerConfig = micrositeConfiguration[language].header;
 
     beforeEach(() => {
       prepare(HEADER, 'Default', {

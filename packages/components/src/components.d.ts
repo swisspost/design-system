@@ -7,6 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
+import { Variant } from "./components/post-breadcrumb-item/variants";
 import { ButtonType, Placement, Size } from "./components/post-closebutton/types";
 import { AirDatepickerCustomOptions } from "./components/post-date-picker/post-date-picker";
 import { PostIconAnimation } from "./types/icon-animations";
@@ -14,6 +15,7 @@ import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement as Placement1 } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
+export { Variant } from "./components/post-breadcrumb-item/variants";
 export { ButtonType, Placement, Size } from "./components/post-closebutton/types";
 export { AirDatepickerCustomOptions } from "./components/post-date-picker/post-date-picker";
 export { PostIconAnimation } from "./types/icon-animations";
@@ -96,10 +98,6 @@ export namespace Components {
           * Defines the users lastname.
          */
         "lastname"?: string;
-        /**
-          * Defines the company internal userId.<post-banner type="warning" data-size="sm"><p>Can only be used on post.ch domains!</p></post-banner>
-         */
-        "userid"?: string;
     }
     interface PostBackToTop {
         /**
@@ -120,33 +118,43 @@ export namespace Components {
     }
     interface PostBreadcrumbItem {
         /**
-          * ARIA description for additional context, read after the breadcrumb item content or `label`.
+          * An accessible description for additional context, read after the content or `label`.
          */
         "description"?: string;
         /**
-          * ARIA label, screen readers will use this instead of the breadcrumb item content.
+          * An accessible label screen readers will use this instead of the breadcrumb item content.
          */
         "label"?: string;
         /**
-          * The optional URL to which the breadcrumb item will link.
+          * Indicates that the item represents the current page, applying appropriate styling.
+          * @default false
+         */
+        "selected": boolean;
+        /**
+          * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
          */
         "url"?: string | URL;
+        /**
+          * Controls how the item is rendered, either as a standard list item or within an overflow menu.
+          * @default 'listitem'
+         */
+        "variant": Variant;
     }
     interface PostBreadcrumbs {
         /**
-          * The URL for the home breadcrumb item.
+          * The URL for the root (home) breadcrumb item.
          */
         "homeUrl": string;
         /**
-          * The accessible label for the breadcrumb component.
+          * An accessible label for the breadcrumb navigation.
          */
         "textBreadcrumbs": string;
         /**
-          * The text label for the home breadcrumb item.
+          * An accessible label for the root (home) breadcrumb item.
          */
         "textHome": string;
         /**
-          * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
+          * An accessible label for the overflow menu that contains collapsed breadcrumb items.
          */
         "textMoreItems": string;
     }
@@ -180,9 +188,9 @@ export namespace Components {
     }
     interface PostCollapsibleTrigger {
         /**
-          * Link the trigger to a post-collapsible with this id
+          * Link the trigger to a post-collapsible by its ID. If omitted, a post-collapsible nested directly inside this element is used instead.
          */
-        "for": string;
+        "for"?: string;
         /**
           * Update the "aria-controls" and "aria-expanded" attributes on the trigger button
          */
@@ -423,6 +431,18 @@ export namespace Components {
           * Re-fetches the authentication state from the session API and updates the component rendering accordingly.
          */
         "refresh": () => Promise<void>;
+        /**
+          * Label for the "Current user is {user}" accessibility description. Use `{user}` as a placeholder — it will be replaced with the current user's name at runtime.
+         */
+        "textCurrentUser": string;
+        /**
+          * Accessible label for the dropdown menu
+         */
+        "textUserMenu": string;
+        /**
+          * Hidden label for the user menu trigger button, for accessibility purposes. It should describe the purpose of the button (e.g. "Access user links").
+         */
+        "textUserMenuTrigger": string;
     }
     interface PostLogo {
         /**
@@ -621,6 +641,22 @@ export namespace Components {
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<boolean>;
+    }
+    interface PostProgressbar {
+        /**
+          * Describes how much work the task indicated by the progress element requires. Must be a valid floating point number greater than min.
+          * @default 100
+         */
+        "max": number;
+        /**
+          * The minimum value of the progress bar. Must be a valid floating point number less than max.
+          * @default 0
+         */
+        "min": number;
+        /**
+          * Specifies how much of the task has been completed. Must be a valid floating point number between min and max. If there is no value attribute, the progress bar is indeterminate; this indicates that an activity is ongoing with no indication of how long it is expected to take.
+         */
+        "value"?: number;
     }
     interface PostRating {
         /**
@@ -1145,6 +1181,12 @@ declare global {
         prototype: HTMLPostPopovercontainerElement;
         new (): HTMLPostPopovercontainerElement;
     };
+    interface HTMLPostProgressbarElement extends Components.PostProgressbar, HTMLStencilElement {
+    }
+    var HTMLPostProgressbarElement: {
+        prototype: HTMLPostProgressbarElement;
+        new (): HTMLPostProgressbarElement;
+    };
     interface HTMLPostRatingElementEventMap {
         "postInput": { value: number };
         "postChange": { value: number };
@@ -1256,6 +1298,7 @@ declare global {
         "post-popover": HTMLPostPopoverElement;
         "post-popover-trigger": HTMLPostPopoverTriggerElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
+        "post-progressbar": HTMLPostProgressbarElement;
         "post-rating": HTMLPostRatingElement;
         "post-stepper": HTMLPostStepperElement;
         "post-stepper-item": HTMLPostStepperItemElement;
@@ -1334,10 +1377,6 @@ declare namespace LocalJSX {
           * Defines the users lastname.
          */
         "lastname"?: string;
-        /**
-          * Defines the company internal userId.<post-banner type="warning" data-size="sm"><p>Can only be used on post.ch domains!</p></post-banner>
-         */
-        "userid"?: string;
     }
     interface PostBackToTop {
         /**
@@ -1358,33 +1397,43 @@ declare namespace LocalJSX {
     }
     interface PostBreadcrumbItem {
         /**
-          * ARIA description for additional context, read after the breadcrumb item content or `label`.
+          * An accessible description for additional context, read after the content or `label`.
          */
         "description"?: string;
         /**
-          * ARIA label, screen readers will use this instead of the breadcrumb item content.
+          * An accessible label screen readers will use this instead of the breadcrumb item content.
          */
         "label"?: string;
         /**
-          * The optional URL to which the breadcrumb item will link.
+          * Indicates that the item represents the current page, applying appropriate styling.
+          * @default false
+         */
+        "selected"?: boolean;
+        /**
+          * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
          */
         "url"?: string | URL;
+        /**
+          * Controls how the item is rendered, either as a standard list item or within an overflow menu.
+          * @default 'listitem'
+         */
+        "variant"?: Variant;
     }
     interface PostBreadcrumbs {
         /**
-          * The URL for the home breadcrumb item.
+          * The URL for the root (home) breadcrumb item.
          */
         "homeUrl": string;
         /**
-          * The accessible label for the breadcrumb component.
+          * An accessible label for the breadcrumb navigation.
          */
         "textBreadcrumbs": string;
         /**
-          * The text label for the home breadcrumb item.
+          * An accessible label for the root (home) breadcrumb item.
          */
         "textHome": string;
         /**
-          * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
+          * An accessible label for the overflow menu that contains collapsed breadcrumb items.
          */
         "textMoreItems": string;
     }
@@ -1418,9 +1467,9 @@ declare namespace LocalJSX {
     }
     interface PostCollapsibleTrigger {
         /**
-          * Link the trigger to a post-collapsible with this id
+          * Link the trigger to a post-collapsible by its ID. If omitted, a post-collapsible nested directly inside this element is used instead.
          */
-        "for": string;
+        "for"?: string;
     }
     interface PostDatePicker {
         /**
@@ -1633,6 +1682,18 @@ declare namespace LocalJSX {
           * Emitted when the authentication state changes. The event payload is an object with an `authenticated` property: `true` when the user is logged in, `false` when the user is not logged in or the API request failed.
          */
         "onPostChange"?: (event: PostLoginWidgetCustomEvent<{ authenticated: boolean }>) => void;
+        /**
+          * Label for the "Current user is {user}" accessibility description. Use `{user}` as a placeholder — it will be replaced with the current user's name at runtime.
+         */
+        "textCurrentUser": string;
+        /**
+          * Accessible label for the dropdown menu
+         */
+        "textUserMenu": string;
+        /**
+          * Hidden label for the user menu trigger button, for accessibility purposes. It should describe the purpose of the button (e.g. "Access user links").
+         */
+        "textUserMenuTrigger": string;
     }
     interface PostLogo {
         /**
@@ -1805,6 +1866,22 @@ declare namespace LocalJSX {
          */
         "safeSpace"?: 'triangle' | 'trapezoid';
     }
+    interface PostProgressbar {
+        /**
+          * Describes how much work the task indicated by the progress element requires. Must be a valid floating point number greater than min.
+          * @default 100
+         */
+        "max"?: number;
+        /**
+          * The minimum value of the progress bar. Must be a valid floating point number less than max.
+          * @default 0
+         */
+        "min"?: number;
+        /**
+          * Specifies how much of the task has been completed. Must be a valid floating point number between min and max. If there is no value attribute, the progress bar is indeterminate; this indicates that an activity is ongoing with no indication of how long it is expected to take.
+         */
+        "value"?: number;
+    }
     interface PostRating {
         /**
           * Defines the rating that the component should show.
@@ -1943,7 +2020,6 @@ declare namespace LocalJSX {
     interface PostAvatarAttributes {
         "firstname": string;
         "lastname": string;
-        "userid": string;
         "email": string;
         "description": string;
     }
@@ -1957,6 +2033,8 @@ declare namespace LocalJSX {
         "url": string | URL;
         "label": string;
         "description": string;
+        "variant": Variant;
+        "selected": boolean;
     }
     interface PostBreadcrumbsAttributes {
         "homeUrl": string;
@@ -2027,6 +2105,11 @@ declare namespace LocalJSX {
         "selected": boolean;
         "highlighted": boolean;
     }
+    interface PostLoginWidgetAttributes {
+        "textCurrentUser": string;
+        "textUserMenu": string;
+        "textUserMenuTrigger": string;
+    }
     interface PostLogoAttributes {
         "url": string | URL;
     }
@@ -2073,6 +2156,11 @@ declare namespace LocalJSX {
         "offset": number;
         "arrow": boolean;
         "safeSpace": 'triangle' | 'trapezoid';
+    }
+    interface PostProgressbarAttributes {
+        "min": number;
+        "max": number;
+        "value": number;
     }
     interface PostRatingAttributes {
         "label": string;
@@ -2122,7 +2210,7 @@ declare namespace LocalJSX {
         "post-breadcrumbs": Omit<PostBreadcrumbs, keyof PostBreadcrumbsAttributes> & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes]?: PostBreadcrumbs[K] } & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes as `attr:${K}`]?: PostBreadcrumbsAttributes[K] } & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes as `prop:${K}`]?: PostBreadcrumbs[K] } & OneOf<"homeUrl", PostBreadcrumbs["homeUrl"], PostBreadcrumbsAttributes["homeUrl"]> & OneOf<"textHome", PostBreadcrumbs["textHome"], PostBreadcrumbsAttributes["textHome"]> & OneOf<"textBreadcrumbs", PostBreadcrumbs["textBreadcrumbs"], PostBreadcrumbsAttributes["textBreadcrumbs"]> & OneOf<"textMoreItems", PostBreadcrumbs["textMoreItems"], PostBreadcrumbsAttributes["textMoreItems"]>;
         "post-closebutton": Omit<PostClosebutton, keyof PostClosebuttonAttributes> & { [K in keyof PostClosebutton & keyof PostClosebuttonAttributes]?: PostClosebutton[K] } & { [K in keyof PostClosebutton & keyof PostClosebuttonAttributes as `attr:${K}`]?: PostClosebuttonAttributes[K] } & { [K in keyof PostClosebutton & keyof PostClosebuttonAttributes as `prop:${K}`]?: PostClosebutton[K] };
         "post-collapsible": Omit<PostCollapsible, keyof PostCollapsibleAttributes> & { [K in keyof PostCollapsible & keyof PostCollapsibleAttributes]?: PostCollapsible[K] } & { [K in keyof PostCollapsible & keyof PostCollapsibleAttributes as `attr:${K}`]?: PostCollapsibleAttributes[K] } & { [K in keyof PostCollapsible & keyof PostCollapsibleAttributes as `prop:${K}`]?: PostCollapsible[K] };
-        "post-collapsible-trigger": Omit<PostCollapsibleTrigger, keyof PostCollapsibleTriggerAttributes> & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes]?: PostCollapsibleTrigger[K] } & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes as `attr:${K}`]?: PostCollapsibleTriggerAttributes[K] } & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes as `prop:${K}`]?: PostCollapsibleTrigger[K] } & OneOf<"for", PostCollapsibleTrigger["for"], PostCollapsibleTriggerAttributes["for"]>;
+        "post-collapsible-trigger": Omit<PostCollapsibleTrigger, keyof PostCollapsibleTriggerAttributes> & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes]?: PostCollapsibleTrigger[K] } & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes as `attr:${K}`]?: PostCollapsibleTriggerAttributes[K] } & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes as `prop:${K}`]?: PostCollapsibleTrigger[K] };
         "post-date-picker": Omit<PostDatePicker, keyof PostDatePickerAttributes> & { [K in keyof PostDatePicker & keyof PostDatePickerAttributes]?: PostDatePicker[K] } & { [K in keyof PostDatePicker & keyof PostDatePickerAttributes as `attr:${K}`]?: PostDatePickerAttributes[K] } & { [K in keyof PostDatePicker & keyof PostDatePickerAttributes as `prop:${K}`]?: PostDatePicker[K] } & OneOf<"textNextMonth", PostDatePicker["textNextMonth"], PostDatePickerAttributes["textNextMonth"]> & OneOf<"textNextYear", PostDatePicker["textNextYear"], PostDatePickerAttributes["textNextYear"]> & OneOf<"textNextDecade", PostDatePicker["textNextDecade"], PostDatePickerAttributes["textNextDecade"]> & OneOf<"textPreviousMonth", PostDatePicker["textPreviousMonth"], PostDatePickerAttributes["textPreviousMonth"]> & OneOf<"textPreviousYear", PostDatePicker["textPreviousYear"], PostDatePickerAttributes["textPreviousYear"]> & OneOf<"textPreviousDecade", PostDatePicker["textPreviousDecade"], PostDatePickerAttributes["textPreviousDecade"]> & OneOf<"textSwitchYear", PostDatePicker["textSwitchYear"], PostDatePickerAttributes["textSwitchYear"]>;
         "post-footer": Omit<PostFooter, keyof PostFooterAttributes> & { [K in keyof PostFooter & keyof PostFooterAttributes]?: PostFooter[K] } & { [K in keyof PostFooter & keyof PostFooterAttributes as `attr:${K}`]?: PostFooterAttributes[K] } & { [K in keyof PostFooter & keyof PostFooterAttributes as `prop:${K}`]?: PostFooter[K] } & OneOf<"textFooter", PostFooter["textFooter"], PostFooterAttributes["textFooter"]>;
         "post-header": Omit<PostHeader, keyof PostHeaderAttributes> & { [K in keyof PostHeader & keyof PostHeaderAttributes]?: PostHeader[K] } & { [K in keyof PostHeader & keyof PostHeaderAttributes as `attr:${K}`]?: PostHeaderAttributes[K] } & { [K in keyof PostHeader & keyof PostHeaderAttributes as `prop:${K}`]?: PostHeader[K] } & OneOf<"textMenu", PostHeader["textMenu"], PostHeaderAttributes["textMenu"]>;
@@ -2132,7 +2220,7 @@ declare namespace LocalJSX {
         "post-linkarea": PostLinkarea;
         "post-listbox": PostListbox;
         "post-listbox-option": Omit<PostListboxOption, keyof PostListboxOptionAttributes> & { [K in keyof PostListboxOption & keyof PostListboxOptionAttributes]?: PostListboxOption[K] } & { [K in keyof PostListboxOption & keyof PostListboxOptionAttributes as `attr:${K}`]?: PostListboxOptionAttributes[K] } & { [K in keyof PostListboxOption & keyof PostListboxOptionAttributes as `prop:${K}`]?: PostListboxOption[K] } & OneOf<"value", PostListboxOption["value"], PostListboxOptionAttributes["value"]>;
-        "post-login-widget": PostLoginWidget;
+        "post-login-widget": Omit<PostLoginWidget, keyof PostLoginWidgetAttributes> & { [K in keyof PostLoginWidget & keyof PostLoginWidgetAttributes]?: PostLoginWidget[K] } & { [K in keyof PostLoginWidget & keyof PostLoginWidgetAttributes as `attr:${K}`]?: PostLoginWidgetAttributes[K] } & { [K in keyof PostLoginWidget & keyof PostLoginWidgetAttributes as `prop:${K}`]?: PostLoginWidget[K] } & OneOf<"textCurrentUser", PostLoginWidget["textCurrentUser"], PostLoginWidgetAttributes["textCurrentUser"]> & OneOf<"textUserMenu", PostLoginWidget["textUserMenu"], PostLoginWidgetAttributes["textUserMenu"]> & OneOf<"textUserMenuTrigger", PostLoginWidget["textUserMenuTrigger"], PostLoginWidgetAttributes["textUserMenuTrigger"]>;
         "post-logo": Omit<PostLogo, keyof PostLogoAttributes> & { [K in keyof PostLogo & keyof PostLogoAttributes]?: PostLogo[K] } & { [K in keyof PostLogo & keyof PostLogoAttributes as `attr:${K}`]?: PostLogoAttributes[K] } & { [K in keyof PostLogo & keyof PostLogoAttributes as `prop:${K}`]?: PostLogo[K] };
         "post-mainnavigation": Omit<PostMainnavigation, keyof PostMainnavigationAttributes> & { [K in keyof PostMainnavigation & keyof PostMainnavigationAttributes]?: PostMainnavigation[K] } & { [K in keyof PostMainnavigation & keyof PostMainnavigationAttributes as `attr:${K}`]?: PostMainnavigationAttributes[K] } & { [K in keyof PostMainnavigation & keyof PostMainnavigationAttributes as `prop:${K}`]?: PostMainnavigation[K] } & OneOf<"textMain", PostMainnavigation["textMain"], PostMainnavigationAttributes["textMain"]>;
         "post-megadropdown": Omit<PostMegadropdown, keyof PostMegadropdownAttributes> & { [K in keyof PostMegadropdown & keyof PostMegadropdownAttributes]?: PostMegadropdown[K] } & { [K in keyof PostMegadropdown & keyof PostMegadropdownAttributes as `attr:${K}`]?: PostMegadropdownAttributes[K] } & { [K in keyof PostMegadropdown & keyof PostMegadropdownAttributes as `prop:${K}`]?: PostMegadropdown[K] } & OneOf<"textClose", PostMegadropdown["textClose"], PostMegadropdownAttributes["textClose"]> & OneOf<"textBack", PostMegadropdown["textBack"], PostMegadropdownAttributes["textBack"]>;
@@ -2145,6 +2233,7 @@ declare namespace LocalJSX {
         "post-popover": Omit<PostPopover, keyof PostPopoverAttributes> & { [K in keyof PostPopover & keyof PostPopoverAttributes]?: PostPopover[K] } & { [K in keyof PostPopover & keyof PostPopoverAttributes as `attr:${K}`]?: PostPopoverAttributes[K] } & { [K in keyof PostPopover & keyof PostPopoverAttributes as `prop:${K}`]?: PostPopover[K] } & OneOf<"textClose", PostPopover["textClose"], PostPopoverAttributes["textClose"]>;
         "post-popover-trigger": Omit<PostPopoverTrigger, keyof PostPopoverTriggerAttributes> & { [K in keyof PostPopoverTrigger & keyof PostPopoverTriggerAttributes]?: PostPopoverTrigger[K] } & { [K in keyof PostPopoverTrigger & keyof PostPopoverTriggerAttributes as `attr:${K}`]?: PostPopoverTriggerAttributes[K] } & { [K in keyof PostPopoverTrigger & keyof PostPopoverTriggerAttributes as `prop:${K}`]?: PostPopoverTrigger[K] };
         "post-popovercontainer": Omit<PostPopovercontainer, keyof PostPopovercontainerAttributes> & { [K in keyof PostPopovercontainer & keyof PostPopovercontainerAttributes]?: PostPopovercontainer[K] } & { [K in keyof PostPopovercontainer & keyof PostPopovercontainerAttributes as `attr:${K}`]?: PostPopovercontainerAttributes[K] } & { [K in keyof PostPopovercontainer & keyof PostPopovercontainerAttributes as `prop:${K}`]?: PostPopovercontainer[K] };
+        "post-progressbar": Omit<PostProgressbar, keyof PostProgressbarAttributes> & { [K in keyof PostProgressbar & keyof PostProgressbarAttributes]?: PostProgressbar[K] } & { [K in keyof PostProgressbar & keyof PostProgressbarAttributes as `attr:${K}`]?: PostProgressbarAttributes[K] } & { [K in keyof PostProgressbar & keyof PostProgressbarAttributes as `prop:${K}`]?: PostProgressbar[K] };
         "post-rating": Omit<PostRating, keyof PostRatingAttributes> & { [K in keyof PostRating & keyof PostRatingAttributes]?: PostRating[K] } & { [K in keyof PostRating & keyof PostRatingAttributes as `attr:${K}`]?: PostRatingAttributes[K] } & { [K in keyof PostRating & keyof PostRatingAttributes as `prop:${K}`]?: PostRating[K] } & OneOf<"label", PostRating["label"], PostRatingAttributes["label"]>;
         "post-stepper": Omit<PostStepper, keyof PostStepperAttributes> & { [K in keyof PostStepper & keyof PostStepperAttributes]?: PostStepper[K] } & { [K in keyof PostStepper & keyof PostStepperAttributes as `attr:${K}`]?: PostStepperAttributes[K] } & { [K in keyof PostStepper & keyof PostStepperAttributes as `prop:${K}`]?: PostStepper[K] } & OneOf<"textCurrentStep", PostStepper["textCurrentStep"], PostStepperAttributes["textCurrentStep"]> & OneOf<"textCompletedStep", PostStepper["textCompletedStep"], PostStepperAttributes["textCompletedStep"]> & OneOf<"textStepNumber", PostStepper["textStepNumber"], PostStepperAttributes["textStepNumber"]>;
         "post-stepper-item": PostStepperItem;
@@ -2196,6 +2285,7 @@ declare module "@stencil/core" {
             "post-popover": LocalJSX.IntrinsicElements["post-popover"] & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popover-trigger": LocalJSX.IntrinsicElements["post-popover-trigger"] & JSXBase.HTMLAttributes<HTMLPostPopoverTriggerElement>;
             "post-popovercontainer": LocalJSX.IntrinsicElements["post-popovercontainer"] & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
+            "post-progressbar": LocalJSX.IntrinsicElements["post-progressbar"] & JSXBase.HTMLAttributes<HTMLPostProgressbarElement>;
             "post-rating": LocalJSX.IntrinsicElements["post-rating"] & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
             "post-stepper": LocalJSX.IntrinsicElements["post-stepper"] & JSXBase.HTMLAttributes<HTMLPostStepperElement>;
             "post-stepper-item": LocalJSX.IntrinsicElements["post-stepper-item"] & JSXBase.HTMLAttributes<HTMLPostStepperItemElement>;

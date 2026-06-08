@@ -1,8 +1,8 @@
+import { angularOutputTarget } from '@stencil/angular-output-target';
 import { Config } from '@stencil/core';
+import { reactOutputTarget } from '@stencil/react-output-target';
 import { sass } from '@stencil/sass';
 import postcss from 'rollup-plugin-postcss';
-import { reactOutputTarget } from '@stencil/react-output-target';
-import { angularOutputTarget } from '@stencil/angular-output-target';
 import { angularValueAccessorBindings } from './.config/bindings.angular';
 import { airDatepickerLocalePlugin } from './.config/rollup-plugin.air-datepicker-locale';
 
@@ -93,7 +93,7 @@ export const config: Config = {
       customElementsDir: 'react',
       outDir: '../components-react/src/stencil-generated',
       hydrateModule: '@swisspost/design-system-components/hydrate',
-      clientModule: '@swisspost/design-system-components-react',
+      clientModule: './components.js',
       serializeShadowRoot: 'declarative-shadow-dom',
     }),
     /**
@@ -107,7 +107,7 @@ export const config: Config = {
       customElementsDir: 'react',
       outDir: '../components-react/src/stencil-generated/standalone',
       hydrateModule: '@swisspost/design-system-components/hydrate',
-      clientModule: '@swisspost/design-system-components-react/standalone',
+      clientModule: './components.js',
       serializeShadowRoot: 'declarative-shadow-dom',
     }),
     /**
@@ -151,6 +151,7 @@ export const config: Config = {
     ],
   },
   testing: {
+    setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
     testPathIgnorePatterns: [
       '<rootDir>/dist/',
       '<rootDir>/loader/',

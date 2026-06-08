@@ -1,43 +1,45 @@
 import {
+  BUDDHIST_CALENDAR_LOCALES,
+  BUDDHIST_CALENDAR_YEAR_OFFSET,
+  DateValue,
+  FALLBACK_LANGUAGE_CODE,
+  getLocaleTextDirection,
+  IsoDate,
+  isValidLocale,
+  Required,
+  Type,
+  UNICODE_BIDI,
+} from '@/utils';
+import { version } from '@root/package.json';
+import {
   Build,
   Component,
   Element,
+  Event,
+  EventEmitter,
   h,
   Host,
-  Prop,
   Method,
+  Prop,
   State,
-  EventEmitter,
-  Event,
   Watch,
 } from '@stencil/core';
-import { version } from '@root/package.json';
 import AirDatepicker, {
   AirDatepickerOptions,
   AirDatepickerViews,
   AirDatepickerViewsSingle,
 } from 'air-datepicker';
+import type { InputMask } from 'imask';
+import IMask from 'imask';
 import { airDatepickerLocales } from './air-locales';
-import IMask, { InputMask } from 'imask';
 import {
-  checkEmptyOrDate,
-  checkRequiredAndType,
-  checkIsoDate,
-  getLocaleTextDirection,
-  isValidLocale,
-  BUDDHIST_CALENDAR_YEAR_OFFSET,
-  BUDDHIST_CALENDAR_LOCALES,
-  UNICODE_BIDI,
-  FALLBACK_LANGUAGE_CODE,
-} from '@/utils';
-import {
-  TEXT_DIRECTION_MARKERS_REGEX,
-  DATE_FORMAT_RANGE_SEPARATOR,
-  DATE_FORMAT_MAP,
   DATE_FORMAT_KEYS,
   DATE_FORMAT_KEYS_REGEX,
+  DATE_FORMAT_MAP,
+  DATE_FORMAT_RANGE_SEPARATOR,
   DATE_FORMAT_SEPARATOR_REGEX,
   DATE_FORMAT_STRING_OPTIONS,
+  TEXT_DIRECTION_MARKERS_REGEX,
 } from './constants';
 
 export interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDivElement> {
@@ -98,43 +100,35 @@ export class PostDatePicker {
    * The date picker's selected date. If in range mode, the selected start date.
    * Must be a valid date in ISO 8601 format (YYYY-MM-DD).
    */
-  @Prop({ mutable: true }) selectedStartDate?: string;
-  @Watch('selectedStartDate')
-  validateSelectedStartDate() {
-    checkEmptyOrDate(this, 'selectedStartDate');
-    checkIsoDate(this, 'selectedStartDate');
-  }
+  @Prop({ mutable: true })
+  @DateValue()
+  @IsoDate()
+  selectedStartDate?: string;
 
   /**
    * The date picker's selected end date (for range date picker only).
    * Must be a valid date in ISO 8601 format (YYYY-MM-DD).
    */
-  @Prop({ mutable: true }) selectedEndDate?: string;
-  @Watch('selectedEndDate')
-  validateSelectedEndDate() {
-    checkEmptyOrDate(this, 'selectedEndDate');
-    checkIsoDate(this, 'selectedEndDate');
-  }
+  @Prop({ mutable: true })
+  @DateValue()
+  @IsoDate()
+  selectedEndDate?: string;
 
   /**
    * Minimun possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
    */
-  @Prop() min?: string;
-  @Watch('min')
-  validateMin() {
-    checkEmptyOrDate(this, 'min');
-    checkIsoDate(this, 'min');
-  }
+  @Prop()
+  @DateValue()
+  @IsoDate()
+  min?: string;
 
   /**
    * Maximum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
    */
-  @Prop() max?: string;
-  @Watch('max')
-  validateMax() {
-    checkEmptyOrDate(this, 'max');
-    checkIsoDate(this, 'max');
-  }
+  @Prop()
+  @DateValue()
+  @IsoDate()
+  max?: string;
 
   /**
    * Used to extend the existing on render cell to disable dates.
@@ -155,77 +149,67 @@ export class PostDatePicker {
   /**
    * Label for "Next month" button.
    */
-  @Prop({ reflect: true }) textNextMonth!: string;
-  @Watch('textNextMonth')
-  validateTextNextMonth() {
-    checkRequiredAndType(this, 'textNextMonth', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textNextMonth!: string;
 
   /**
    * Label for "Next year" button.
    */
-  @Prop({ reflect: true }) textNextYear!: string;
-  @Watch('textNextYear')
-  validateTextNextYear() {
-    checkRequiredAndType(this, 'textNextYear', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textNextYear!: string;
 
   /**
    * Label for "Next decade" button.
    */
-  @Prop({ reflect: true }) textNextDecade!: string;
-  @Watch('textNextDecade')
-  validateTextNextDecade() {
-    checkRequiredAndType(this, 'textNextDecade', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textNextDecade!: string;
 
   /**
    * Label for "Previous month" button.
    */
-  @Prop({ reflect: true }) textPreviousMonth!: string;
-  @Watch('textPreviousMonth')
-  validateTextPreviousMonth() {
-    checkRequiredAndType(this, 'textPreviousMonth', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textPreviousMonth!: string;
 
   /**
    * Label for "Previous year" button.
    */
-  @Prop({ reflect: true }) textPreviousYear!: string;
-  @Watch('textPreviousYear')
-  validateTextPreviousYear() {
-    checkRequiredAndType(this, 'textPreviousYear', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textPreviousYear!: string;
 
   /**
    * Label for "Previous decade" button.
    */
-  @Prop({ reflect: true }) textPreviousDecade!: string;
-  @Watch('textPreviousDecade')
-  validateTextPreviousDecade() {
-    checkRequiredAndType(this, 'textPreviousDecade', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textPreviousDecade!: string;
 
   /**
    * Label for the "Switch to year view" title button.
    */
-  @Prop({ reflect: true }) textSwitchYear!: string;
-  @Watch('textSwitchYear')
-  validateTextSwitchYear() {
-    checkRequiredAndType(this, 'textSwitchYear', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textSwitchYear!: string;
 
   /**
    * Label for the toggle button that opens the calendar.
    * It is only needed when the calendar is connected to the input.
    */
-  @Prop() textToggleCalendar?: string;
-  @Watch('textToggleCalendar')
-  validateTextToggleCalendar() {
-    if (!this.inline) {
-      checkRequiredAndType(this, 'textToggleCalendar', 'string');
-    }
-  }
+  @Prop()
+  @Required({ when: 'inline', truthy: false })
+  @Type('string')
+  textToggleCalendar?: string;
 
   @State() inputDisabled = false;
   @State() today = new Date();
@@ -1156,18 +1140,6 @@ export class PostDatePicker {
     this.setupInputObserver();
 
     this.validateLocale();
-    this.validateSelectedStartDate();
-    this.validateSelectedEndDate();
-    this.validateMin();
-    this.validateMax();
-    this.validateTextToggleCalendar();
-    this.validateTextNextDecade();
-    this.validateTextNextMonth();
-    this.validateTextNextYear();
-    this.validateTextPreviousDecade();
-    this.validateTextPreviousMonth();
-    this.validateTextPreviousYear();
-    this.validateTextSwitchYear();
     this.validateInline();
 
     if (this.inline) {
@@ -1205,7 +1177,7 @@ export class PostDatePicker {
   render() {
     return (
       <Host data-version={version}>
-        {this.inline && <div class="datepicker-container"></div>}
+        {this.inline && <div class="datepicker-container" dir={this.textDirection}></div>}
         {!this.inline && (
           <div dir={this.textDirection}>
             <div

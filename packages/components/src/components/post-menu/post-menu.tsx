@@ -1,3 +1,7 @@
+import { PLACEMENT_TYPES } from '@/types';
+import { EventFrom, getFocusableChildren, getRoot, OneOf, Required, Type } from '@/utils';
+import type { Placement } from '@floating-ui/dom';
+import { version } from '@root/package.json';
 import {
   Component,
   Element,
@@ -8,13 +12,7 @@ import {
   Method,
   Prop,
   State,
-  Watch,
 } from '@stencil/core';
-import { Placement } from '@floating-ui/dom';
-import { PLACEMENT_TYPES } from '@/types';
-import { version } from '@root/package.json';
-import { getFocusableChildren } from '@/utils/get-focusable-children';
-import { getRoot, checkEmptyOrOneOf, checkRequiredAndType, EventFrom } from '@/utils';
 
 /**
  * @part post-menu - The container element that holds the list of menu items.
@@ -48,22 +46,17 @@ export class PostMenu {
    * Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
    * For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
    */
-  @Prop() readonly placement?: Placement = 'bottom';
-
-  @Watch('placement')
-  validatePlacement() {
-    checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
-  }
+  @Prop()
+  @OneOf(PLACEMENT_TYPES)
+  readonly placement?: Placement = 'bottom';
 
   /**
    * A descriptive label that clearly identifies the menu’s content so assistive technologies can convey its purpose.
    */
-  @Prop({ reflect: true }) readonly label!: string;
-
-  @Watch('label')
-  validateLabel() {
-    checkRequiredAndType(this, 'label', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  readonly label!: string;
 
   /**
    * Holds the current visibility state of the menu.
@@ -89,11 +82,6 @@ export class PostMenu {
   disconnectedCallback() {
     this.host.removeEventListener('keydown', this.handleKeyDown);
     this.host.removeEventListener('click', this.handleClick);
-  }
-
-  componentDidLoad() {
-    this.validatePlacement();
-    this.validateLabel();
   }
 
   /**
@@ -180,7 +168,6 @@ export class PostMenu {
     }
   }
 
-
   private readonly handleClick = (e: MouseEvent) => {
     const target = e.target as HTMLElement;
     if (['BUTTON', 'A', 'INPUT', 'SELECT', 'TEXTAREA'].includes(target.tagName)) {
@@ -209,6 +196,7 @@ export class PostMenu {
         currentIndex = (currentIndex + 1) % menuItems.length;
         break;
       case this.KEYCODES.HOME:
+        e.preventDefault();
         currentIndex = 0;
         break;
       case this.KEYCODES.END:
@@ -240,7 +228,10 @@ export class PostMenu {
         // If the element is a slot, get the assigned elements
         .flatMap(el => (el instanceof HTMLSlotElement ? el.assignedElements() : el))
         // For each menu item, get any focusable children (e.g., buttons, links)
-        .flatMap(el => Array.from(getFocusableChildren(el)))
+        .flatMap(el => [
+          ...getFocusableChildren(el),
+          ...(el.shadowRoot ? getFocusableChildren(el.shadowRoot) : []),
+        ])
     );
   }
 

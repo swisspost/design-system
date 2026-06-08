@@ -1,5 +1,38 @@
 # @swisspost/design-system-components-react
 
+## 10.0.0-next.71
+
+### Major Changes
+
+- Removed the `./standalone` export in the package.json, since it was only there for internal usage and is no longer needed. Projects can still import standalone components with `import { PostAccordion } from '@swisspost/design-system-components-react/post-accordion';` or `import { PostAccordion } from '@swisspost/design-system-components-react/server/post-accordion';`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7660](https://github.com/swisspost/design-system/pull/7660))
+
+### Minor Changes
+
+- Added the `node` export field for the default import paths (e.g. `@swisspost/design-system-components-react` or `@swisspost/design-system-components-react/post-accordion`), so it automatically imports our server components in a Next.js environment, while using client components in all other cases. This lets projects use the default export and allows us to provide custom icon wrapper components (e.g. `PostIconAdmin`, etc.), which automatically imports the correct component type, no matter where it is used (e.g. in a react browser app or a Next.js project).
+  We'll keep the `@swisspost/design-system-components-react/server` and `@swisspost/design-system-components-react/server/post-accordion` exports, as the explict server entries. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7660](https://github.com/swisspost/design-system/pull/7660))
+
+### Patch Changes
+
+- Added `sideEffects` field to the components and components-react package to improve tree-shaking. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7660](https://github.com/swisspost/design-system/pull/7660))
+
+- Removed the hydrate app from Next.js client bundle, without loosing the capability to render declarative shadow DOM during SSR, by importing our server components into Next.js client components. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7660](https://github.com/swisspost/design-system/pull/7660))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.71
+
+## 10.0.0-next.70
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.70
+
+## 10.0.0-next.69
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.69
+
 ## 10.0.0-next.68
 
 ### Minor Changes

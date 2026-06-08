@@ -1,11 +1,8 @@
-import {
-  compareRoutes,
-  compileScoreList,
-  getSimilarityScore,
-  markActiveRoute,
-} from './route.service';
 import * as testConfig from '@/assets/config/test-configuration.json';
-import { NavMainEntity } from '@/models/header.model';
+import { state } from '@/data/store';
+import { MainNavigationConfig } from '@/models/header.model';
+import { IconLinkConfig } from '@/models/shared.model';
+import { compareRoutes, getActiveLink, getSimilarityScore } from './route.service';
 
 describe('route.service.ts', () => {
   describe('getSimilarityScore', () => {
@@ -93,60 +90,172 @@ describe('route.service.ts', () => {
     });
   });
 
-  describe('compileScoreList', () => {
-    let config: NavMainEntity[];
-    const fullMatch = new URL('https://post.ch/de/briefe-versenden/briefe-inland');
-    const noMatch = new URL('https://post.ch/wherever123');
-    const upper = new URL('https://post.ch/de/Briefe-versenden/BRIEFE-INLAND');
-
+  describe('getActiveLink', () => {
     beforeEach(() => {
-      config = [...testConfig.de.header.navMain] as NavMainEntity[];
+      const config = [...testConfig.de.header.localHeader.mainNavigation] as MainNavigationConfig;
+      state.localizedConfig = {
+        header: {
+          ...testConfig.de.header,
+          localHeader: { ...testConfig.de.header.localHeader, mainNavigation: config },
+        },
+      };
     });
 
-    it('Returns a full match', () => {
-      const scorelist = compileScoreList(config, fullMatch, 'auto');
-      expect(scorelist[0].score).toBe(Infinity);
-      expect(scorelist[0].sub!.title).toBe('Briefe Inland');
-
-      const scorelistUpper = compileScoreList(config, upper, 'auto');
-      expect(scorelistUpper[0].score).toBe(Infinity);
+    afterEach(() => {
+      state.localizedConfig = null;
     });
 
-    it('Returns a full match and only one entry', () => {
-      const scorelist = compileScoreList(config, fullMatch, 'exact');
-      expect(scorelist[0].score).toBe(Infinity);
-      expect(scorelist.length).toBe(1);
+    it('Returns null when activeRouteProp is "none"', () => {
+      expect(getActiveLink('none')).toBeNull();
     });
 
-    it('Returns no match', () => {
-      const scorelist = compileScoreList(config, noMatch, 'auto');
-      expect(scorelist.length).toBe(0);
-    });
-  });
-
-  describe('markActiveRoute', () => {
-    let config: NavMainEntity[];
-
-    beforeEach(() => {
-      config = [...testConfig.de.header.navMain] as NavMainEntity[];
+    it('Returns the matching link for an exact match', () => {
+      const result = getActiveLink(`${document.location.origin}/letters`);
+      expect(result?.url).toBe('/letters');
     });
 
-    it('Correctly marks the active route', () => {
-      const markedConfig = markActiveRoute(
-        config,
-        'https://post.ch/de/briefe-versenden/briefe-inland',
-      );
-      expect(markedConfig[0].isActiveOverride).toBe(true);
-      expect(checkIsActiveOverride()).toBe(true);
+    it('Returns the matching link for an auto partial match', () => {
+      const result = getActiveLink(`${document.location.origin}/letters/sub-page`);
+      expect(result?.url).toBe('/letters');
+    });
 
-      function checkIsActiveOverride() {
-        if (markedConfig[0].flyout) {
-          return markedConfig[0].flyout[0].linkList[0].isActiveOverride;
-        } else {
-          console.warn('Flyout is undefined, skipping nested test.');
-          return true;
-        }
-      }
+    it('Returns null when no match is found', () => {
+      const result = getActiveLink(`${document.location.origin}/nonexistent-page`);
+      expect(result).toBeNull();
+    });
+
+    it('Returns null for an invalid URL', () => {
+      const result = getActiveLink('https://[invalid');
+      expect(result).toBeNull();
+    });
+
+    it('Returns null when localizedConfig is not set', () => {
+      state.localizedConfig = null;
+      expect(getActiveLink('auto')).toBeNull();
+    });
+
+    it('Returns portal-active link when activeRouteProp is "auto" and a link has active: true', () => {
+      const activeLink = { text: 'Active Link', url: '/active-link', active: true };
+      state.localizedConfig = {
+        header: {
+          ...testConfig.de.header,
+          globalHeader: {
+            ...testConfig.de.header.globalHeader,
+            audience: testConfig.de.header.globalHeader.audience.map(link => ({
+              ...link,
+              active: false,
+            })),
+            languages: testConfig.de.header.globalHeader.languages.map(language => ({
+              ...language,
+              active: false,
+            })),
+          },
+          localHeader: {
+            mainNavigation: [activeLink, { text: 'Other Link', url: '/other' }],
+          },
+        },
+      };
+      const result = getActiveLink('auto');
+      expect(result).toBe(activeLink);
+    });
+
+    it('Returns only one specific link object even when multiple links share the same URL', () => {
+      const link1 = { text: 'First', url: '/sch' };
+      const link2 = { text: 'Second', url: '/sch' };
+      state.localizedConfig = {
+        header: {
+          ...testConfig.de.header,
+          localHeader: {
+            mainNavigation: [link1, link2],
+          },
+        },
+      };
+      const result = getActiveLink(`${document.location.origin}/sch`);
+      expect(result).toBe(link1);
+      expect(result).not.toBe(link2);
+    });
+
+    it('Returns a match from localHeader.navigation', () => {
+      const localAction: IconLinkConfig = { text: 'Search', url: '/search', icon: 'search' };
+      state.localizedConfig = {
+        header: {
+          ...testConfig.de.header,
+          localHeader: {
+            ...testConfig.de.header.localHeader,
+            navigation: [localAction],
+          },
+        },
+      };
+
+      const result = getActiveLink(`${document.location.origin}/search`);
+      expect(result).toBe(localAction);
+    });
+
+    it('Returns a match from globalHeader.secondaryNavigation', () => {
+      const secondaryLink: IconLinkConfig = { text: 'Jobs', url: '/jobs', icon: 'jobs' };
+      state.localizedConfig = {
+        header: {
+          ...testConfig.de.header,
+          globalHeader: {
+            ...testConfig.de.header.globalHeader,
+            secondaryNavigation: [secondaryLink],
+          },
+        },
+      };
+
+      const result = getActiveLink(`${document.location.origin}/jobs`);
+      expect(result).toBe(secondaryLink);
+    });
+
+    it('Returns the first encountered link when duplicate URLs have the same score', () => {
+      const mainNavigationLink = { text: 'Main', url: '/shared' };
+      const secondaryLink: IconLinkConfig = { text: 'Secondary', url: '/shared', icon: 'jobs' };
+
+      state.localizedConfig = {
+        header: {
+          ...testConfig.de.header,
+          localHeader: {
+            ...testConfig.de.header.localHeader,
+            mainNavigation: [mainNavigationLink],
+          },
+          globalHeader: {
+            ...testConfig.de.header.globalHeader,
+            secondaryNavigation: [secondaryLink],
+          },
+        },
+      };
+
+      const result = getActiveLink(`${document.location.origin}/shared`);
+      expect(result).toBe(secondaryLink);
+      expect(result).not.toBe(mainNavigationLink);
+    });
+
+    it('Includes user-menu options in localHeader.navigation', () => {
+      const optionLink = { text: 'Profile', url: '/profile', icon: 'profile' };
+
+      state.localizedConfig = {
+        header: {
+          ...testConfig.de.header,
+          localHeader: {
+            ...testConfig.de.header.localHeader,
+            navigation: [
+              {
+                user: {
+                  id: '1',
+                  firstName: 'Jane',
+                  lastName: 'Doe',
+                  email: 'jane.doe@example.com',
+                  profilePicture: '/profile.jpg',
+                },
+                options: [optionLink],
+              },
+            ],
+          },
+        },
+      };
+
+      const result = getActiveLink(`${document.location.origin}/profile`);
+      expect(result).toBe(optionLink);
     });
   });
 });

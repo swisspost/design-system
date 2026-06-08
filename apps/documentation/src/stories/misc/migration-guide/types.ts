@@ -161,6 +161,11 @@ export interface V910Checks {
     card_control: boolean;
     tag: boolean;
   };
+  internet_header: {
+    update_package: boolean;
+    add_text_props: boolean;
+    remove_props: boolean;
+  };
 }
 
 export interface GlobalStateData {
