@@ -1,7 +1,5 @@
 @use '../../mixins/media';
 
-// Initial shape based on the current Figma design. Standalone hardcoded values,
-// no shared header mixins. Tokenisation and final polish land in the styling ticket.
 post-sidenavigation {
   --post-sidenavigation-indent: 1.5rem;
 
@@ -11,7 +9,6 @@ post-sidenavigation {
     padding-inline-start: 0;
   }
 
-  // Section headings.
   .post-sidenavigation-heading {
     margin: 0;
     padding: 0.5rem 1rem;
@@ -30,14 +27,11 @@ post-sidenavigation {
     color: rgb(255, 255, 255);
   }
 
-  // Top-level items are bold (matches the design).
   > ul > li > .post-sidenavigation-item {
     font-weight: 700;
   }
 
-  // Indent nested levels by counting list ancestors (1rem is the base inline
-  // padding of an item). This works for plain <ul> nesting and for nesting wrapped
-  // in <post-collapsible>, since the collapsible's <ul> still counts as a level.
+  // Indent nested levels by counting list ancestors
   ul ul .post-sidenavigation-item {
     padding-inline-start: calc(1rem + var(--post-sidenavigation-indent));
   }
@@ -51,9 +45,7 @@ post-sidenavigation {
   }
 
   // When a level has any item with a leading icon, reserve a matching space before
-  // the labels of the icon-less items so they line up. Done with a spacer, not
-  // padding, so indentation stays reserved for nesting depth. The spacer matches
-  // the leading icon's width.
+  // the labels of the icon-less items so they line up.
   ul:has(> li > :where(a, span, button) > post-icon:first-child)
     > li
     > :where(a, span, button):not(:has(> post-icon:first-child))::before {
@@ -102,7 +94,6 @@ post-sidenavigation {
     margin-inline-start: auto;
   }
 
-  // Trailing chevron (collapsible) is pushed to the end and rotates when expanded.
   > post-icon:last-child {
     transition: transform 0.2s ease;
   }
@@ -112,8 +103,6 @@ post-sidenavigation {
   }
 }
 
-// Collapsible-and-linked: a link fills the row and a separate toggle button forms
-// a divided click zone on the inline-end.
 .post-sidenavigation-item > a {
   flex: 1 1 auto;
   color: inherit;
