@@ -283,6 +283,29 @@ const COMPONENTS = {
     </li>
   </ul>`,
 
+  localNavInternalApplications: `<!-- Local navigation (Application) -->
+  <ul slot="local-nav">
+    <li>
+      <a href="#">
+        <span>Search</span>
+        <post-icon aria-hidden="true" name="search"></post-icon>
+      </a>
+    </li>
+    <li>
+      <!-- Language menu -->
+      <post-language-menu
+        text-change-language="Change the language"
+        text-current-language="The currently selected language is English."
+        name="language-menu-example"
+      >
+        <post-language-menu-item code="de" name="German">de</post-language-menu-item>
+        <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
+        <post-language-menu-item code="it" name="Italian">it</post-language-menu-item>
+        <post-language-menu-item active="true" code="en" name="English">en</post-language-menu-item>
+      </post-language-menu>
+    </li>
+  </ul>`,
+
   localLogin: `<li class="local-login">
       <a href="">
         <span>{{LOGIN_TEXT}}</span>
@@ -336,6 +359,12 @@ const COMPONENTS = {
 
 // Variant configurations
 const VARIANTS = {
+  'internal-applications': {
+    components: ['logo', 'title', 'localNavInternalApplications'],
+    replacements: {
+      '{{TITLE_TEXT}}': '[Application Title]',
+    },
+  },
   'onepager': {
     components: ['logo', 'languageMenu', 'title'],
     replacements: {

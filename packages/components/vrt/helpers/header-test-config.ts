@@ -48,7 +48,7 @@ export const STATE_HANDLERS: HandlerMap = {
     await openMegadropdown(page, 'letters');
   },
 
-  scrolled: async page => {
+  'scrolled': async page => {
     await page.evaluate(() => window.scrollTo(0, 200));
     await page.waitForTimeout(300);
   },
@@ -163,5 +163,6 @@ export const TEST_MATRIX: Record<string, VariantConfig> = {
   'microsite-loggedin': stateComposeHelper(LOGGED_IN),
   'jobs-loggedout': stateComposeHelper(SCROLLED_ONLY, BURGER_FLOW_NO_SECOND),
   'jobs-loggedin': stateComposeHelper(LOGGED_IN),
-  onepager: stateComposeHelper(SCROLLED_ONLY, LANGUAGE_AND_SCROLL),
+  'onepager': stateComposeHelper(SCROLLED_ONLY, LANGUAGE_AND_SCROLL),
+  'internal-applications': stateComposeHelper(SCROLLED_ONLY, LANGUAGE_AND_SCROLL),
 };
