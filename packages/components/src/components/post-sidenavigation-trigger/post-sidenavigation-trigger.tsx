@@ -44,6 +44,7 @@ export class PostSidenavigationTrigger {
   disconnectedCallback() {
     this.observer.disconnect();
     this.root.removeEventListener('postToggle', this.handlePostToggle);
+    this.trigger?.removeEventListener('click', this.toggleSidenavigation);
   }
 
   /**
