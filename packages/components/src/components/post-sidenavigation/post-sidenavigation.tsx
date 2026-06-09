@@ -1,21 +1,20 @@
 import {
   Component,
+  Element,
+  Event,
+  EventEmitter,
   h,
   Host,
   Method,
-  Element,
-  State,
-  EventEmitter,
-  Event,
   Prop,
+  State,
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
 import { getFocusableChildren, Required, Type } from '@/utils';
 
 /**
- * @slot default - Slot for the navigation content: a `<nav>` with a heading linked via
- * `aria-labelledby` and `<ul>`/`<li>` lists.
+ * @slot default - Slot for the navigation content.
  */
 @Component({
   tag: 'post-sidenavigation',
@@ -58,15 +57,8 @@ export class PostSidenavigation {
     this.host.removeEventListener('keydown', this.handleKeyDown);
   }
 
-  // ---------------------------------------------------------------------------
-  // Escape handling — works on both desktop (inline nav) and mobile (dialog)
-  // ---------------------------------------------------------------------------
-
   /**
-   * When Escape is pressed and focus is on a `post-collapsible-trigger` button,
-   * collapse that disclosure and keep focus on the trigger button.
-   * When focus is not inside a trigger, the event is not intercepted — on mobile
-   * this lets the native dialog `cancel` close the dialog.
+   * Collapses the active disclosure on Escape; lets the native dialog handle it otherwise.
    */
   private handleKeyDown = (e: KeyboardEvent) => {
     if (e.key !== 'Escape') return;
@@ -89,19 +81,13 @@ export class PostSidenavigation {
     trigger.querySelector<HTMLButtonElement>('button')?.focus();
   };
 
-  // ---------------------------------------------------------------------------
-  // Public API
-  // ---------------------------------------------------------------------------
-
   /**
    * Toggles the navigation programmatically.
    * No-op on desktop.
    */
   @Method()
   async toggle() {
-    if (this.device === 'desktop') {
-      return;
-    }
+    if (this.device === 'desktop') return;
 
     const dialog = this.getDialog();
 
@@ -118,14 +104,10 @@ export class PostSidenavigation {
    */
   @Method()
   async show() {
-    if (this.device === 'desktop') {
-      return;
-    }
+    if (this.device === 'desktop') return;
 
     this.getDialog()?.showModal();
-
     this.postToggle.emit(true);
-
     this.focusNav();
   }
 
@@ -135,16 +117,10 @@ export class PostSidenavigation {
    */
   @Method()
   async hide() {
-    if (this.device === 'desktop') {
-      return;
-    }
+    if (this.device === 'desktop') return;
 
     this.getDialog()?.close();
   }
-
-  // ---------------------------------------------------------------------------
-  // Helpers
-  // ---------------------------------------------------------------------------
 
   private getDialog(): HTMLDialogElement | null {
     const dialog = this.host.shadowRoot?.querySelector('dialog');
@@ -162,23 +138,13 @@ export class PostSidenavigation {
    */
   private focusNav() {
     const slot = this.host.shadowRoot?.querySelector('slot');
+    const nav = slot?.assignedElements({ flatten: true })[0] as HTMLElement | undefined;
 
-    const nav = slot?.assignedElements({ flatten: true })[0] as
-      | HTMLElement
-      | undefined;
-
-    if (!nav) {
-      return;
-    }
+    if (!nav) return;
 
     const [firstFocusable] = getFocusableChildren(nav);
-
     firstFocusable?.focus();
   }
-
-  // ---------------------------------------------------------------------------
-  // Rendering
-  // ---------------------------------------------------------------------------
 
   private renderNav() {
     return (
