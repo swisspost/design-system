@@ -223,6 +223,42 @@
 </div>
 
 <div class="my-24">
+  <h2>Side Navigation</h2>
+  <post-sidenavigation-trigger for="angular-sidenav">
+    <button class="btn btn-secondary">Menu</button>
+  </post-sidenavigation-trigger>
+
+  <post-sidenavigation id="angular-sidenav" text-close="Close">
+    <nav aria-labelledby="angular-sidenav-title">
+      <h2 id="angular-sidenav-title" class="post-sidenavigation-heading">Section title</h2>
+      <ul>
+        <li><a href="#" class="post-sidenavigation-item">Sidenav link</a></li>
+        <li>
+          <a href="#" class="post-sidenavigation-item">
+            <post-icon name="search" aria-hidden="true"></post-icon>
+            Sidenav link with icon
+          </a>
+        </li>
+        <li>
+          <post-collapsible-trigger for="angular-sidenav-collapsible">
+            <button class="post-sidenavigation-item">
+              Sidenav level 1
+              <post-icon name="chevrondown" aria-hidden="true"></post-icon>
+            </button>
+          </post-collapsible-trigger>
+          <post-collapsible id="angular-sidenav-collapsible">
+            <ul>
+              <li><a href="#" class="post-sidenavigation-item">Child link</a></li>
+              <li><a href="#" class="post-sidenavigation-item">Child link</a></li>
+            </ul>
+          </post-collapsible>
+        </li>
+      </ul>
+    </nav>
+  </post-sidenavigation>
+</div>
+
+<div class="my-24">
   <h2>Stepper</h2>
   <post-stepper
     textCompletedStep="Completed step"

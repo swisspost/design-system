@@ -13,6 +13,7 @@ import {
   PostCollapsible,
   PostCollapsibleTrigger,
   PostDatePicker,
+  PostIcon,
   PostLinkarea,
   PostListbox,
   PostListboxOption,
@@ -25,6 +26,8 @@ import {
   PostPopoverTrigger,
   PostProgressbar,
   PostRating,
+  PostSidenavigation,
+  PostSidenavigationTrigger,
   PostStepper,
   PostStepperItem,
   PostTabItem,
@@ -261,6 +264,40 @@ export default function Home() {
 
       <h2>Rating</h2>
       <PostRating label="Rating"></PostRating>
+
+      <h2>Side Navigation</h2>
+      <PostSidenavigationTrigger for="react-sidenav">
+        <button className="btn btn-secondary">Menu</button>
+      </PostSidenavigationTrigger>
+
+      <PostSidenavigation id="react-sidenav" textClose="Close">
+        <nav aria-labelledby="react-sidenav-title">
+          <h2 id="react-sidenav-title" className="post-sidenavigation-heading">Section title</h2>
+          <ul>
+            <li><a href="#" className="post-sidenavigation-item">Sidenav link</a></li>
+            <li>
+              <a href="#" className="post-sidenavigation-item">
+                <PostIcon name="search" aria-hidden="true"></PostIcon>
+                Sidenav link with icon
+              </a>
+            </li>
+            <li>
+              <PostCollapsibleTrigger for="react-sidenav-collapsible">
+                <button className="post-sidenavigation-item">
+                  Sidenav level 1
+                  <PostIcon name="chevrondown" aria-hidden="true"></PostIcon>
+                </button>
+              </PostCollapsibleTrigger>
+              <PostCollapsible id="react-sidenav-collapsible">
+                <ul>
+                  <li><a href="#" className="post-sidenavigation-item">Child link</a></li>
+                  <li><a href="#" className="post-sidenavigation-item">Child link</a></li>
+                </ul>
+              </PostCollapsible>
+            </li>
+          </ul>
+        </nav>
+      </PostSidenavigation>
 
       <h2>Stepper</h2>
       <PostStepper
