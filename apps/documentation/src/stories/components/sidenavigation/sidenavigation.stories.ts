@@ -187,19 +187,6 @@ function render(args: Args) {
   );
 }
 
-function getIframeParameters(iframeHeight: number) {
-  return {
-    parameters: {
-      docs: {
-        story: {
-          inline: false,
-          iframeHeight,
-        },
-      },
-    },
-  };
-}
-
 // STORIES
 
 type Story = StoryObj;
@@ -211,17 +198,14 @@ export const LinkOnly: Story = {
 };
 
 export const Nested: Story = {
-  ...getIframeParameters(270),
   render: (args: Args) => renderSidenav(nested, args),
 };
 
 export const CollapsibleNotLinked: Story = {
-  ...getIframeParameters(270),
   render: (args: Args) => renderSidenav(collapsibleNotLinked, args),
 };
 
 export const CollapsibleLinked: Story = {
-  ...getIframeParameters(270),
   render: (args: Args) => renderSidenav(collapsibleLinked, args),
 };
 
