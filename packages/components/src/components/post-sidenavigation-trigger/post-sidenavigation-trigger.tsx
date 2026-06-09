@@ -65,7 +65,11 @@ export class PostSidenavigationTrigger {
    */
   private setTrigger() {
     const trigger = this.host.querySelector('button');
-    if (!trigger || (this.trigger && trigger.isEqualNode(this.trigger))) return;
+    if (!trigger || trigger === this.trigger) return;
+
+    if (this.trigger) {
+      this.trigger.removeEventListener('click', this.toggleSidenavigation);
+    }
 
     this.trigger = trigger;
     this.trigger.addEventListener('click', this.toggleSidenavigation);

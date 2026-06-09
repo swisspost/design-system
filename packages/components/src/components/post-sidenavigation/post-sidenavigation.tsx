@@ -91,11 +91,7 @@ export class PostSidenavigation {
 
     const dialog = this.getDialog();
 
-    if (dialog?.open) {
-      await this.hide();
-    } else {
-      await this.show();
-    }
+    return dialog?.open ? this.hide() : this.show();
   }
 
   /**
