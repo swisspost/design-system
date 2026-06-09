@@ -38,8 +38,8 @@ runs:
           const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'))
 
           return {
-            node: pkg.engines?.node,
-            pnpm: pkg.packageManager
+            node: pkg.devEngines?.runtime?.version || pkg.engines?.node || 'lts/*',
+            pnpm: pkg.devEngines?.packageManager?.version || pkg.packageManager || 'latest'
           }
 
     - name: Install pnpm
@@ -47,10 +47,7 @@ runs:
       with:
         # If input.pnpm_version is NOT defined,
         # the action automatically uses the "packageManager" field from the package.json file
-        # If input.pnpm_version is defined, we need to point to another package.json file, without the "packageManager" field,
-        # so we do not end up with a "Multiple versions of pnpm specified" error
-        package_json_file: ${{ inputs.pnpm_version && 'packages/documentation/package.json' || 'package.json' }}
-        version: ${{ inputs.pnpm_version || null }}
+        version: ${{ inputs.pnpm_version || fromJSON(steps.wanted-versions.outputs.result).pnpm }}
 
     - name: Install node
       uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e
