@@ -98,6 +98,18 @@ see the [Heading elements documentation](https://developer.mozilla.org/en-US/doc
 
 <Canvas sourceState="shown" of={HeaderStories.OnePagerH1} inline="false" />
 
+### Internal Applications
+
+The Header for Internal applications is a consistently available interface element that provides a consistent navigation experience across the whole application.
+
+<Canvas of={HeaderStories.InternalApplications} inline="false" />
+
+#### Example with Language Menu
+
+In the Internal Applications header, if a language menu is required, it should be placed in the local navigation `slot="local-nav"`.
+
+<Canvas of={HeaderStories.InternalApplicationsWithLanguageMenu} inline="false" />
+
 ## User menu
 
 The user menu is part of the global header, it is a menu containing information and links linked to the currently logged-in user.
@@ -122,7 +134,7 @@ Each page must have **exactly one banner landmark** at the top level:
 
 ### Navigation Landmark
 
-The `<post-mainnavigation>` component inside the header creates a **navigation landmark**. 
+The `<post-mainnavigation>` component inside the header creates a **navigation landmark**.
 Use the `text-main` property to provide a descriptive label that helps screen reader users identify main navigation among other navigation regions on the page.
 
 **Why labeling matters:** If your page has multiple navigation regions (e.g., skip links, main navigation, breadcrumbs), descriptive labels help screen reader users quickly identify and navigate to the correct one.

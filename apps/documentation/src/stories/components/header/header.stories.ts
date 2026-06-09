@@ -36,6 +36,7 @@ const meta: MetaComponent = {
     isLoggedIn: false,
     jobs: false,
     fullWidth: false,
+    languageMenuPosition: 'global',
   },
   argTypes: {
     title: {
@@ -154,6 +155,18 @@ const meta: MetaComponent = {
       },
       table: { category: 'state' },
     },
+    languageMenuPosition: {
+      name: 'Language menu',
+      description:
+        'Where the language menu is displayed: in the global header, in the local header, or not at all.',
+      control: {
+        type: 'inline-radio',
+      },
+      options: ['global', 'local', 'none'],
+      table: {
+        category: 'Content',
+      },
+    },
   },
   decorators: [
     story =>
@@ -197,6 +210,21 @@ function getHeaderRenderer(
       </ul>
     `;
 
+    const languageMenu = html`
+      <post-language-menu
+        text-change-language="Change the language"
+        text-current-language="The currently selected language is #name."
+        name="language-menu-example"
+      >
+        <post-language-menu-item code="de" name="German">de</post-language-menu-item>
+        <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
+        <post-language-menu-item code="it" name="Italian">it</post-language-menu-item>
+        <post-language-menu-item active="true" code="en" name="English">en</post-language-menu-item>
+      </post-language-menu>
+    `;
+
+    const localLanguageMenuItem = args.languageMenuPosition === 'local' ? languageMenu : undefined;
+
     return html`
       <post-header text-menu="${args.textMenu}" full-width="${args.fullWidth || nothing}">
         <!-- Logo -->
@@ -206,21 +234,10 @@ function getHeaderRenderer(
         ${args.globalNavPrimary && !args.jobs ? globalControls : nothing}
         ${args.globalNavSecondary ? renderGlobalNavSecondary(args) : nothing}
 
-        <!-- Language menu -->
-        <post-language-menu
-          text-change-language="Change the language"
-          text-current-language="The currently selected language is #name."
-          name="language-menu-example"
-          slot="language-menu"
-        >
-          <post-language-menu-item code="de" name="German">de</post-language-menu-item>
-          <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
-          <post-language-menu-item code="it" name="Italian">it</post-language-menu-item>
-          <post-language-menu-item active="true" code="en" name="English"
-            >en</post-language-menu-item
-          >
-        </post-language-menu>
-
+        <!-- Language menu (global) -->
+        ${args.languageMenuPosition === 'global'
+          ? html`<span slot="language-menu">${languageMenu}</span>`
+          : nothing}
         ${!args.title && !args.jobs
           ? html`
               <!-- Global header login/user menu -->
@@ -228,7 +245,7 @@ function getHeaderRenderer(
             `
           : nothing}
         ${args.title !== '' ? title : nothing}
-        ${args.localNav ? renderMicrositeControls(args) : nothing}
+        ${args.localNav ? renderMicrositeControls({ ...args, localLanguageMenuItem }) : nothing}
         ${args.mainNav ? mainnavigation : nothing} ${args.jobs ? renderJobControls() : nothing}
       </post-header>
     `;
@@ -332,6 +349,34 @@ export const OnePagerH1: Story = {
     },
   ],
   render: renderTitle,
+};
+
+export const InternalApplications: Story = {
+  ...getIframeParameters(250),
+  args: {
+    title: '[Application Title]',
+    mainNav: false,
+    globalNavSecondary: false,
+    globalNavPrimary: false,
+    localNav: true,
+    languageMenuPosition: 'none',
+    postLogin: false,
+    targetGroup: false,
+  },
+};
+
+export const InternalApplicationsWithLanguageMenu: Story = {
+  ...getIframeParameters(250),
+  args: {
+    title: '[Application Title]',
+    mainNav: false,
+    globalNavSecondary: false,
+    globalNavPrimary: false,
+    localNav: true,
+    languageMenuPosition: 'local',
+    postLogin: false,
+    targetGroup: false,
+  },
 };
 
 // User is logged in
