@@ -94,7 +94,7 @@ describe('post-sidenavigation', () => {
       cy.get('@sidenavigation').then(([el]) => el.show());
       cy.focused().then($focused => {
         cy.get('@sidenavigation').then($nav => {
-          expect($nav[0].contains($focused[0])).to.be.true;
+          expect($nav[0].contains($focused[0])).to.equal(true);
         });
       });
     });
@@ -255,7 +255,7 @@ describe('post-sidenavigation-trigger', () => {
       cy.get('@sidenavigation').then($nav => {
         const trigger = document.createElement('post-sidenavigation-trigger');
         trigger.setAttribute('for', $nav.attr('id'));
-        $nav[0].parentElement.append(trigger);
+        $nav[0].parentElement.appendChild(trigger);
       });
       cy.get('@consoleWarn').should('be.called');
     });
