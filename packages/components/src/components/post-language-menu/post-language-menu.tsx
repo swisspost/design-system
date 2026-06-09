@@ -1,12 +1,6 @@
-import { Component, Element, Host, h, Prop, Watch, State, Listen } from '@stencil/core';
-import {
-  checkRequiredAndType,
-  checkRequiredAndPattern,
-  checkEmptyOrOneOf,
-  EventFrom,
-  nanoid,
-} from '@/utils';
+import { EventFrom, nanoid, OneOf, Pattern, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
+import { Component, Element, h, Host, Listen, Prop, State, Watch } from '@stencil/core';
 import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
 
 @Component({
@@ -29,31 +23,28 @@ export class PostLanguageMenu {
   /**
    * A title for the list of language options
    */
-  @Prop({ reflect: true }) textChangeLanguage!: string;
-
-  @Watch('textChangeLanguage')
-  validateTextChangeLanguage() {
-    checkRequiredAndType(this, 'textChangeLanguage', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textChangeLanguage!: string;
 
   /**
    * An accessible description text for the list of language options. The `#name` placeholder is dynamic and will be replaced with the active language name.
    */
-  @Prop({ reflect: true }) textCurrentLanguage!: string;
-
-  @Watch('textCurrentLanguage')
-  validateTextCurrentLanguage() {
-    checkRequiredAndPattern(this, 'textCurrentLanguage', /#name\b/);
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Pattern(/#name\b/)
+  textCurrentLanguage!: string;
 
   /**
    * Whether the component is rendered as a list or a menu
    */
-  @Prop({ reflect: true }) variant: SwitchVariant = 'menu';
+  @Prop({ reflect: true })
+  @OneOf(SWITCH_VARIANTS)
+  variant: SwitchVariant = 'menu';
 
   @Watch('variant')
-  validateVariant() {
-    checkEmptyOrOneOf(this, 'variant', SWITCH_VARIANTS);
+  handleVariantChange() {
     this.updateChildrenVariant();
   }
 
@@ -76,10 +67,6 @@ export class PostLanguageMenu {
   }
 
   componentDidLoad() {
-    this.validateTextChangeLanguage();
-    this.validateTextCurrentLanguage();
-    this.validateVariant();
-
     // Initially set variants and active language
     // Handles cases where the language-menu is rendered after the language-options have been rendered
     this.updateChildrenVariant();
