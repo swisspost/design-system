@@ -90,11 +90,6 @@ describe('post-sidenavigation', () => {
       cy.get('@sidenavigation').shadow().find('dialog').should('not.have.attr', 'open');
     });
 
-    // Escape on a non-collapsible-trigger element closes the dialog via the native
-    // <dialog> cancel event. This is browser-native behaviour that cannot be simulated
-    // through Cypress's DOM event API. The inverse case — Escape on a collapsible trigger
-    // intercepted by the component — is covered in the 'collapsible inside navigation' suite.
-
     it('should move focus into the navigation on open', () => {
       cy.get('@sidenavigation').then(([el]) => el.show());
       cy.focused().then($focused => {
