@@ -255,7 +255,7 @@ describe('post-sidenavigation-trigger', () => {
       cy.get('@sidenavigation').then($nav => {
         const trigger = document.createElement('post-sidenavigation-trigger');
         trigger.setAttribute('for', $nav.attr('id'));
-        $nav[0].parentElement.appendChild(trigger);
+        $nav[0].parentElement.append(trigger);
       });
       cy.get('@consoleWarn').should('be.called');
     });
