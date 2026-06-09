@@ -60,7 +60,7 @@ export function renderSidenav(navContent: TemplateResult, args: Args, navId?: st
   `;
 }
 
-export const defaultNavContent = html`
+export const DefaultNavContent = html`
   <li><a href="#" class="post-sidenavigation-item">Sidenav link</a></li>
   <li>
     <a href="#" class="post-sidenavigation-item">

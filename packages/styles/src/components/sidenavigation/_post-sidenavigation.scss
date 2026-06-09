@@ -35,17 +35,27 @@ post-sidenavigation {
     font-weight: 700;
   }
 
-  // Indent nested levels by counting list ancestors
+  // Indent nested levels using an inherited custom property that tracks depth.
+  // Each nested ul sets --_indent-level; the single item rule reads it — no
+  // deep compound selectors needed.
+  ul {
+    --_indent-level: 0;
+  }
+
+  ul ul {
+    --_indent-level: 1;
+  }
+
+  ul ul ul {
+    --_indent-level: 2;
+  }
+
+  ul ul ul ul {
+    --_indent-level: 3;
+  }
+
   ul ul .post-sidenavigation-item {
-    padding-inline-start: calc(1rem + var(--post-sidenavigation-indent));
-  }
-
-  ul ul ul .post-sidenavigation-item {
-    padding-inline-start: calc(1rem + 2 * var(--post-sidenavigation-indent));
-  }
-
-  ul ul ul ul .post-sidenavigation-item {
-    padding-inline-start: calc(1rem + 3 * var(--post-sidenavigation-indent));
+    padding-inline-start: calc(1rem + var(--_indent-level) * var(--post-sidenavigation-indent));
   }
 
   // When a level has any item with a leading icon, reserve a matching space before
