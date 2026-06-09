@@ -43,7 +43,10 @@ export function renderSidenav(navContent: TemplateResult, args: Args, navId?: st
 
   return html`
     <post-sidenavigation-trigger for="${resolvedId}">
-      <button>Menu</button>
+      <button>
+        <span>Menu</span>
+        <post-icon aria-hidden="true" name="burger"></post-icon>
+      </button>
     </post-sidenavigation-trigger>
 
     <post-sidenavigation id="${resolvedId}" text-close="${args.textClose}">
@@ -234,7 +237,10 @@ export const InHeader: Story = {
       <ul slot="local-nav">
         <li>
           <post-sidenavigation-trigger for="sidenav">
-            <button>Menu</button>
+            <button>
+              <span>Menu</span>
+              <post-icon aria-hidden="true" name="burger"></post-icon>
+            </button>
           </post-sidenavigation-trigger>
         </li>
       </ul>

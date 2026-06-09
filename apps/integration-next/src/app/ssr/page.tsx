@@ -267,7 +267,10 @@ export default function Home() {
 
       <h2>Side Navigation</h2>
       <PostSidenavigationTrigger for="react-sidenav">
-        <button className="btn btn-secondary">Menu</button>
+        <button>
+          <span>Menu</span>
+          <PostIcon aria-hidden="true" name="burger"></PostIcon>
+        </button>
       </PostSidenavigationTrigger>
 
       <PostSidenavigation id="react-sidenav" textClose="Close">

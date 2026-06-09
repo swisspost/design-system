@@ -225,10 +225,13 @@
 <div class="my-24">
   <h2>Side Navigation</h2>
   <post-sidenavigation-trigger for="angular-sidenav">
-    <button class="btn btn-secondary">Menu</button>
+    <button>
+      <span>Menu</span>
+      <post-icon aria-hidden="true" name="burger"></post-icon>
+    </button>
   </post-sidenavigation-trigger>
 
-  <post-sidenavigation textClose="Close" id="angular-sidenav" text-close="Close">
+  <post-sidenavigation id="angular-sidenav" text-close="Close">
     <nav aria-labelledby="angular-sidenav-title">
       <h2 id="angular-sidenav-title" class="post-sidenavigation-heading">Section title</h2>
       <ul>
