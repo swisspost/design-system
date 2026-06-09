@@ -1,4 +1,9 @@
 import {
+  PostIconExplosives,
+  PostIconLetter,
+  PostIconLetterSolid,
+} from '@swisspost/design-system-components-react/icons';
+import {
   PostAccordion,
   PostAccordionItem,
   PostAutocomplete,
@@ -18,21 +23,17 @@ import {
   PostPagination,
   PostPopover,
   PostPopoverTrigger,
+  PostProgressbar,
   PostRating,
-  PostTabs,
-  PostTabItem,
-  PostTabPanel,
-  PostTogglebutton,
-  PostTooltipTrigger,
-  PostTooltip,
   PostStepper,
   PostStepperItem,
+  PostTabItem,
+  PostTabPanel,
+  PostTabs,
+  PostTogglebutton,
+  PostTooltip,
+  PostTooltipTrigger,
 } from '@swisspost/design-system-components-react/server';
-import {
-  PostIconExplosives,
-  PostIconLetter,
-  PostIconLetterSolid,
-} from '@swisspost/design-system-components-react/icons';
 
 export default function Home() {
   return (
@@ -239,6 +240,24 @@ export default function Home() {
           possible.
         </p>
       </PostPopover>
+
+      <h2>Progressbar</h2>
+      <div className="progressbar">
+        <p
+          className="progressbar-label"
+          id="progressbar-label-a1b2c3d4-e5f6-7890-abcd-ef1234567890--default"
+        >
+          Loading packages
+        </p>
+        <p className="progressbar-value">11 of 17</p>
+        <PostProgressbar
+          value={11}
+          min={0}
+          max={17}
+          aria-valuetext="11 of 17"
+          aria-labelledby="progressbar-label-a1b2c3d4-e5f6-7890-abcd-ef1234567890--default"
+        ></PostProgressbar>
+      </div>
 
       <h2>Rating</h2>
       <PostRating label="Rating"></PostRating>

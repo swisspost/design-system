@@ -1,5 +1,12 @@
 # @swisspost/design-system-components-react
 
+## 10.0.0-next.72
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.72
+
 ## 10.0.0-next.71
 
 ### Major Changes

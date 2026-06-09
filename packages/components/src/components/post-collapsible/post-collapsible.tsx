@@ -78,12 +78,24 @@ export class PostCollapsible {
   }
 
   /**
-   * Update all post-collapsible-trigger elements referring to the collapsible
+   * Update all post-collapsible-trigger elements referring to or wrapping the collapsible
    */
   private updateTriggers() {
-    const triggers: NodeListOf<HTMLPostCollapsibleTriggerElement> = document.querySelectorAll(
-      `post-collapsible-trigger[for="${this.host.id}"]`,
+    const triggers = this.host.id
+      ? Array.from(
+        document.querySelectorAll<HTMLPostCollapsibleTriggerElement>(
+          `post-collapsible-trigger[for="${this.host.id}"]`,
+        ),
+      )
+      : [];
+
+    // also update an ancestor trigger when the collapsible is nested inside one
+    const nestedTrigger = this.host.closest<HTMLPostCollapsibleTriggerElement>(
+      'post-collapsible-trigger',
     );
+    if (nestedTrigger && !triggers.includes(nestedTrigger)) {
+      triggers.push(nestedTrigger);
+    }
 
     triggers.forEach(trigger => trigger.update());
   }
