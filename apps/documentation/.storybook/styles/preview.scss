@@ -319,9 +319,11 @@ $toolbar-icons: (
 
 #storybook-docs {
   overflow-x: hidden;
+  // Overrides Storybook's overflow-x: auto on the argstable wrapper, which on iOS Safari
+  // captures touch gestures and prevents taps from reaching the story canvas above it.
   div:has(> .docblock-argstable) {
     overflow-x: visible;
-    
+  
     @media (hover: hover) {
       overflow-x: auto;
     }
