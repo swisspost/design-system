@@ -119,7 +119,6 @@
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
   },
-  "packageManager": "pnpm@10.29.3",
   "devEngines": {
     "runtime": {
       "name": "node",
@@ -132,6 +131,7 @@
       "onFail": "error"
     }
   },
+  "packageManager": "pnpm@10.29.3",
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [],
