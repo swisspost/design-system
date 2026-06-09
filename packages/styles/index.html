@@ -35,7 +35,13 @@
     </aside>
 
     <main class="p-16">
-      <!-- Place your component markup here -->
+      <div class="progressbar progressbar-warning">
+        <p class="progressbar-label" id="file-transfer-label">File transfer</p>
+        <p class="progressbar-value">10%</p>
+        <progress value="10" max="100" aria-labelledby="file-transfer-label"></progress>
+        <p class="progressbar-message">Filename and type</p>
+        <p class="progressbar-status">Status message</p>
+      </div>
     </main>
   </body>
 </html>

@@ -1,5 +1,30 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.72
+
+### Minor Changes
+
+- Added a progressbar component used to indicate that the user's request has been received and the application is making progress toward completing the requested action. (by [@alizedebray](https://github.com/alizedebray) with [#7657](https://github.com/swisspost/design-system/pull/7657))
+
+### Patch Changes
+
+- Fix focus ring clipping on form elements inside form dialog body. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7622](https://github.com/swisspost/design-system/pull/7622))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.72
+
+## 10.0.0-next.71
+
+### Minor Changes
+
+- Added a bottom-sheet variant for the dialog component. (by [@JoaoSequeira489](https://github.com/JoaoSequeira489) with [#7546](https://github.com/swisspost/design-system/pull/7546))
+
+- Increased browser coverage by adding `baseline widely available` query to the browserslistrc. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7613](https://github.com/swisspost/design-system/pull/7613))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.71
+
 ## 10.0.0-next.70
 
 ### Minor Changes
