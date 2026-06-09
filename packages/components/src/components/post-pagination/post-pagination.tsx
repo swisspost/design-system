@@ -37,7 +37,7 @@ export class PostPagination {
   @Element() host: HTMLPostPaginationElement;
 
   @State() private paginationId: string;
-  @State() private maxVisiblePages: number;
+  @State() private maxVisiblePages: number = 3;
   @State() private items: PaginationItem[] = [];
 
   /**
@@ -47,7 +47,7 @@ export class PostPagination {
    */
   @Prop({ mutable: true })
   @Type('number')
-  page?: number;
+  page?: number = 1;
 
   /**
    * The number of items per page.
@@ -136,9 +136,6 @@ export class PostPagination {
   componentWillLoad() {
     this.paginationId = `pagination-${this.host.id || nanoid(6)}`;
 
-    this.page ??= 1;
-
-    this.maxVisiblePages = 3;
     this.updatePagesWithValidation();
   }
 
@@ -594,7 +591,7 @@ export class PostPagination {
    */
   private generatePages(totalPages: number) {
     const maxVisible = this.maxVisiblePages;
-    const currentPage = this.page || 1;
+    const currentPage = this.page;
 
     if (totalPages <= maxVisible) {
       this.items = this.buildAllPages(totalPages);
