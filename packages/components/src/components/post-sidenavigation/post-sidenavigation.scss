@@ -1,0 +1,19 @@
+@use '@swisspost/design-system-styles/mixins/media';
+
+:host {
+    max-width: 50ch;
+    display: flex;
+
+  & dialog {
+    overflow: visible;
+    bottom: auto;
+    right: auto;
+    height: 100%;
+    width: 600px;
+    border: none;
+
+    @include media.max(md) {
+        width: 350px;
+    }
+  }
+}

@@ -1,0 +1,94 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as SidenavigationStories from './sidenavigation.stories';
+import PackageTag from '@/shared/package-tag';
+import StylesPackageImport from '@/shared/styles-package-import';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+
+<Meta of={SidenavigationStories} />
+
+<div className="docs-title">
+  # Side Navigation
+  <link-design of={JSON.stringify(SidenavigationStories)}></link-design>
+</div>
+
+<PackageTag meta={meta} />
+
+<div className="lead">The side navigation is a container of navigation menu items that let the user navigate through different parts of a web application. It is a hierarchical structure that provides a maximum of 4 nested navigation levels which can be expanded or collapsed.</div>
+
+<Canvas sourceState="shown" of={SidenavigationStories.Default} />
+<Controls of={SidenavigationStories.Default} />
+
+<ComponentsPackageInstall component="<post-sidenavigation>" />
+
+<StylesPackageImport components={['sidenavigation', 'list']} />
+
+## Responsive behaviour
+
+`<post-sidenavigation>` adapts to the viewport:
+
+- On **desktop**, the navigation is rendered inline, directly in the page flow. No wrapper is added.
+- On **mobile and tablet**, the navigation is wrapped in a modal `<dialog>` that covers the page. It is opened with the `<post-sidenavigation-trigger>` button and closed with the close button, the `Esc` key or a click outside the dialog.
+
+Narrow the canvas (or use the viewport toolbar) to switch between the two layouts. When the viewport goes from mobile to desktop and back, the dialog reopens closed.
+
+## `<post-sidenavigation-trigger>`
+
+The trigger is a render-less component that wraps a regular `<button>`. Place it in the header and link it to the navigation with the `for` attribute, matching the `id` of the `<post-sidenavigation>`. It is hidden on desktop, where the navigation is always visible, and keeps its `aria-controls` and `aria-expanded` attributes in sync with the navigation state.
+
+## Usage in the header
+
+On mobile and tablet, place the trigger among the header's controls; the navigation itself lives in the page body.
+
+<Canvas sourceState="shown" of={SidenavigationStories.InHeader} inline="false" />
+
+## Navigation content
+
+The navigation content is authored by you and projected through the default slot. It must be a `<nav>` landmark, with a heading (`<h*>`, or a `<p>` if no heading level fits) linked via `aria-labelledby`, and `<ul>`/`<li>` lists for the items. Nested levels are nested `<ul>`s.
+
+## Variants
+
+Each item can optionally contain a `<post-icon>`. If at least one item on a level has an icon, the items without one are indented to align with it.
+
+### Link only
+
+<Canvas sourceState="shown" of={SidenavigationStories.LinkOnly} inline="false" />
+
+### Nested but not collapsible
+
+The children are always visible. The parent can be a link or a plain, non-clickable `<span>`.
+
+<Canvas sourceState="shown" of={SidenavigationStories.Nested} inline="false" />
+
+### Collapsible but not linked
+
+Toggle a sibling `<post-collapsible>` with a `<button>` inside `<post-collapsible-trigger>`, linked through `for`/`id`. See the Collapsible component documentation for details.
+
+<Canvas sourceState="shown" of={SidenavigationStories.CollapsibleNotLinked} inline="false" />
+
+### Collapsible and linked
+
+The parent is a link, and a separate button toggles the children. The button carries a visually hidden label.
+
+<Canvas sourceState="shown" of={SidenavigationStories.CollapsibleLinked} inline="false" />
+
+## Active item
+
+Mark the link of the current page with `aria-current="page"`. The component highlights it as the active item, and screen reader users hear it announced as the current page. Set it from your routing, not on click.
+
+<Canvas sourceState="shown" of={SidenavigationStories.ActiveNavigationItem} inline="false" />
+
+## Accessibility
+
+### Navigation landmark
+
+The navigation you project is a `<nav>` landmark. Link it to its heading with `aria-labelledby` (see the examples above) so screen reader users can identify it and jump to it with landmark shortcuts.
+
+**Why labeling matters:** if a page has several navigation regions (main navigation, breadcrumbs, this side navigation), a descriptive heading lets screen reader users tell them apart and move to the right one.
+
+### Links and disclosure buttons
+
+Use `<a>` for links and a `<button>` inside `<post-collapsible-trigger>` for collapsible sections. A link navigates, a button discloses; never nest one inside the other.
+
+### Focus management
+
+On mobile the navigation opens in a modal dialog: the rest of the page is inert, focus moves into the navigation on open and returns to the trigger on close.

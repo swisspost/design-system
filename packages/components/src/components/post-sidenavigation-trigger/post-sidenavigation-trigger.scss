@@ -1,0 +1,7 @@
+@use '@swisspost/design-system-styles/mixins/media';
+
+::slotted(button) {
+  @include media.min(desktop) {
+    display: none;
+  }
+}

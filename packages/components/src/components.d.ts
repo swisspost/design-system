@@ -665,11 +665,27 @@ export namespace Components {
     }
     interface PostSidenavigation {
         /**
-          * Triggers the subnavigation programmatically.
+          * Closes the navigation programmatically. No-op on desktop.
+         */
+        "hide": () => Promise<void>;
+        /**
+          * Opens the navigation programmatically. No-op on desktop.
+         */
+        "show": () => Promise<void>;
+        /**
+          * Accessible label for the close button shown in the mobile navigation dialog.
+         */
+        "textClose": string;
+        /**
+          * Toggles the navigation programmatically. No-op on desktop.
          */
         "toggle": () => Promise<void>;
     }
     interface PostSidenavigationTrigger {
+        /**
+          * Link the trigger to a `post-sidenavigation` with this id.
+         */
+        "for": string;
     }
     interface PostStepper {
         /**
@@ -829,6 +845,10 @@ export interface PostPopovercontainerCustomEvent<T> extends CustomEvent<T> {
 export interface PostRatingCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostRatingElement;
+}
+export interface PostSidenavigationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostSidenavigationElement;
 }
 export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1191,7 +1211,18 @@ declare global {
         prototype: HTMLPostRatingElement;
         new (): HTMLPostRatingElement;
     };
+    interface HTMLPostSidenavigationElementEventMap {
+        "postToggle": boolean;
+    }
     interface HTMLPostSidenavigationElement extends Components.PostSidenavigation, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostSidenavigationElementEventMap>(type: K, listener: (this: HTMLPostSidenavigationElement, ev: PostSidenavigationCustomEvent<HTMLPostSidenavigationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostSidenavigationElementEventMap>(type: K, listener: (this: HTMLPostSidenavigationElement, ev: PostSidenavigationCustomEvent<HTMLPostSidenavigationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostSidenavigationElement: {
         prototype: HTMLPostSidenavigationElement;
@@ -1895,8 +1926,20 @@ declare namespace LocalJSX {
         "stars"?: number;
     }
     interface PostSidenavigation {
+        /**
+          * An event emitted when the navigation is shown or hidden on mobile.  The payload is a boolean: - `true` when the navigation opens - `false` when the navigation closes
+         */
+        "onPostToggle"?: (event: PostSidenavigationCustomEvent<boolean>) => void;
+        /**
+          * Accessible label for the close button shown in the mobile navigation dialog.
+         */
+        "textClose": string;
     }
     interface PostSidenavigationTrigger {
+        /**
+          * Link the trigger to a `post-sidenavigation` with this id.
+         */
+        "for": string;
     }
     interface PostStepper {
         /**
@@ -2150,6 +2193,12 @@ declare namespace LocalJSX {
         "currentRating": number;
         "readonly": boolean;
     }
+    interface PostSidenavigationAttributes {
+        "textClose": string;
+    }
+    interface PostSidenavigationTriggerAttributes {
+        "for": string;
+    }
     interface PostStepperAttributes {
         "textCurrentStep": string;
         "textCompletedStep": string;
@@ -2216,8 +2265,8 @@ declare namespace LocalJSX {
         "post-popover-trigger": Omit<PostPopoverTrigger, keyof PostPopoverTriggerAttributes> & { [K in keyof PostPopoverTrigger & keyof PostPopoverTriggerAttributes]?: PostPopoverTrigger[K] } & { [K in keyof PostPopoverTrigger & keyof PostPopoverTriggerAttributes as `attr:${K}`]?: PostPopoverTriggerAttributes[K] } & { [K in keyof PostPopoverTrigger & keyof PostPopoverTriggerAttributes as `prop:${K}`]?: PostPopoverTrigger[K] };
         "post-popovercontainer": Omit<PostPopovercontainer, keyof PostPopovercontainerAttributes> & { [K in keyof PostPopovercontainer & keyof PostPopovercontainerAttributes]?: PostPopovercontainer[K] } & { [K in keyof PostPopovercontainer & keyof PostPopovercontainerAttributes as `attr:${K}`]?: PostPopovercontainerAttributes[K] } & { [K in keyof PostPopovercontainer & keyof PostPopovercontainerAttributes as `prop:${K}`]?: PostPopovercontainer[K] };
         "post-rating": Omit<PostRating, keyof PostRatingAttributes> & { [K in keyof PostRating & keyof PostRatingAttributes]?: PostRating[K] } & { [K in keyof PostRating & keyof PostRatingAttributes as `attr:${K}`]?: PostRatingAttributes[K] } & { [K in keyof PostRating & keyof PostRatingAttributes as `prop:${K}`]?: PostRating[K] } & OneOf<"label", PostRating["label"], PostRatingAttributes["label"]>;
-        "post-sidenavigation": PostSidenavigation;
-        "post-sidenavigation-trigger": PostSidenavigationTrigger;
+        "post-sidenavigation": Omit<PostSidenavigation, keyof PostSidenavigationAttributes> & { [K in keyof PostSidenavigation & keyof PostSidenavigationAttributes]?: PostSidenavigation[K] } & { [K in keyof PostSidenavigation & keyof PostSidenavigationAttributes as `attr:${K}`]?: PostSidenavigationAttributes[K] } & { [K in keyof PostSidenavigation & keyof PostSidenavigationAttributes as `prop:${K}`]?: PostSidenavigation[K] } & OneOf<"textClose", PostSidenavigation["textClose"], PostSidenavigationAttributes["textClose"]>;
+        "post-sidenavigation-trigger": Omit<PostSidenavigationTrigger, keyof PostSidenavigationTriggerAttributes> & { [K in keyof PostSidenavigationTrigger & keyof PostSidenavigationTriggerAttributes]?: PostSidenavigationTrigger[K] } & { [K in keyof PostSidenavigationTrigger & keyof PostSidenavigationTriggerAttributes as `attr:${K}`]?: PostSidenavigationTriggerAttributes[K] } & { [K in keyof PostSidenavigationTrigger & keyof PostSidenavigationTriggerAttributes as `prop:${K}`]?: PostSidenavigationTrigger[K] } & OneOf<"for", PostSidenavigationTrigger["for"], PostSidenavigationTriggerAttributes["for"]>;
         "post-stepper": Omit<PostStepper, keyof PostStepperAttributes> & { [K in keyof PostStepper & keyof PostStepperAttributes]?: PostStepper[K] } & { [K in keyof PostStepper & keyof PostStepperAttributes as `attr:${K}`]?: PostStepperAttributes[K] } & { [K in keyof PostStepper & keyof PostStepperAttributes as `prop:${K}`]?: PostStepper[K] } & OneOf<"textCurrentStep", PostStepper["textCurrentStep"], PostStepperAttributes["textCurrentStep"]> & OneOf<"textCompletedStep", PostStepper["textCompletedStep"], PostStepperAttributes["textCompletedStep"]> & OneOf<"textStepNumber", PostStepper["textStepNumber"], PostStepperAttributes["textStepNumber"]>;
         "post-stepper-item": PostStepperItem;
         "post-tab-item": Omit<PostTabItem, keyof PostTabItemAttributes> & { [K in keyof PostTabItem & keyof PostTabItemAttributes]?: PostTabItem[K] } & { [K in keyof PostTabItem & keyof PostTabItemAttributes as `attr:${K}`]?: PostTabItemAttributes[K] } & { [K in keyof PostTabItem & keyof PostTabItemAttributes as `prop:${K}`]?: PostTabItem[K] } & OneOf<"name", PostTabItem["name"], PostTabItemAttributes["name"]>;

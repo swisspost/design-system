@@ -173,19 +173,105 @@
       <option value="compact">Post compact</option>
     </select>
     <hr />
-    <post-sidenavigation-trigger>
-      <button id="open">Open the subnavigation</button>
-      <post-sidenavigation>
-        <li>
+    <post-sidenavigation-trigger for="sidenav">
+  <button>Menu</button>
+</post-sidenavigation-trigger>
+
+<post-sidenavigation id="sidenav" text-close="Close">
+  <nav aria-labelledby="sidenav-title">
+    <h2 id="sidenav-title" class="post-sidenavigation-heading">Section title</h2>
+    <ul>
+      <li><a href="#" class="post-sidenavigation-item">Sidenav link</a></li>
+      <li>
+        <a href="#" class="post-sidenavigation-item">
+          <post-icon name="search" aria-hidden="true"></post-icon>
+          Sidenav link with icon
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="post-sidenavigation-item">Sidenav link with children</a>
+        <ul>
+          <li><a href="#" class="post-sidenavigation-item">Child link</a></li>
+          <li><a href="#" class="post-sidenavigation-item">Child link</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <post-collapsible-trigger for="section-collapsible">
+          <button class="post-sidenavigation-item">
+            Sidenav level 1
+            <post-icon name="chevrondown" aria-hidden="true"></post-icon>
+          </button>
+        </post-collapsible-trigger>
+        <post-collapsible id="section-collapsible">
+          <ul>
+            <li><a href="#" class="post-sidenavigation-item">Child link</a></li>
+            <li><a href="#" class="post-sidenavigation-item">Child link</a></li>
+          </ul>
+        </post-collapsible>
+      </li>
+
+      <li>
+        <div class="post-sidenavigation-item">
           <a href="#">Sidenav link</a>
-        </li>
-        <li>
-          <a href="#">
-            <post-icon name="icon"></post-icon>
-            Sidenav link
-          </a>
-        </li>
-      </post-sidenavigation>
-    </post-sidenavigation-trigger>
+          <post-collapsible-trigger for="section-linked">
+            <button>
+              <span class="visually-hidden">Expand Sidenav link</span>
+              <post-icon name="chevrondown" aria-hidden="true"></post-icon>
+            </button>
+          </post-collapsible-trigger>
+        </div>
+        <post-collapsible id="section-linked">
+          <ul>
+            <li><a href="#" class="post-sidenavigation-item">Child link</a></li>
+            <li><a href="#" class="post-sidenavigation-item">Child link</a></li>
+          </ul>
+        </post-collapsible>
+      </li>
+
+      <li>
+        <post-collapsible-trigger for="deep-level-1">
+          <button class="post-sidenavigation-item">
+            Level 1
+            <post-icon name="chevrondown" aria-hidden="true"></post-icon>
+          </button>
+        </post-collapsible-trigger>
+        <post-collapsible id="deep-level-1">
+          <ul>
+            <li><a href="#" class="post-sidenavigation-item">Level 2 link</a></li>
+            <li><a href="#" class="post-sidenavigation-item">Level 2 link</a></li>
+            <li>
+              <post-collapsible-trigger for="deep-level-2">
+                <button class="post-sidenavigation-item">
+                  Level 2
+                  <post-icon name="chevrondown" aria-hidden="true"></post-icon>
+                </button>
+              </post-collapsible-trigger>
+              <post-collapsible id="deep-level-2">
+                <ul>
+                  <li><a href="#" class="post-sidenavigation-item">Level 3 link</a></li>
+                  <li>
+                    <post-collapsible-trigger for="deep-level-3">
+                      <button class="post-sidenavigation-item">
+                        Level 3
+                        <post-icon name="chevrondown" aria-hidden="true"></post-icon>
+                      </button>
+                    </post-collapsible-trigger>
+                    <post-collapsible id="deep-level-3">
+                      <ul>
+                        <li><a href="#" class="post-sidenavigation-item">Level 4 link</a></li>
+                      </ul>
+                    </post-collapsible>
+                  </li>
+                </ul>
+              </post-collapsible>
+            </li>
+          </ul>
+        </post-collapsible>
+      </li>
+    </ul>
+  </nav>
+</post-sidenavigation>
   </body>
 </html>
