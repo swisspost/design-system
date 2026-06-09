@@ -1,5 +1,47 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.73
+
+### Minor Changes
+
+- Added a progressbar component used to indicate that the user's request has been received and the application is making progress toward completing the requested action. (by [@alizedebray](https://github.com/alizedebray) with [#7657](https://github.com/swisspost/design-system/pull/7657))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.72
+  - @swisspost/design-system-styles@10.0.0-next.72
+  - @swisspost/internet-header@10.0.0-next.72
+  - @swisspost/design-system-components-react@10.0.0-next.72
+  - @swisspost/design-system-icons@10.0.0-next.72
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.72
+  - @swisspost/design-system-tokens@10.0.0-next.72
+
+## 6.0.0-next.72
+
+### Minor Changes
+
+- Added a bottom-sheet variant for the dialog component. (by [@JoaoSequeira489](https://github.com/JoaoSequeira489) with [#7546](https://github.com/swisspost/design-system/pull/7546))
+
+- Increased browser coverage by adding `baseline widely available` query to the browserslistrc. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7613](https://github.com/swisspost/design-system/pull/7613))
+
+### Patch Changes
+
+- Updated the `post-login-widget`:
+  - The slot `unauthenticated` has been renamed to `login-link`.
+  - The slot `authenticated` has been renamed to `user-links` and should now only contain the links to show in the user menu (list of `post-menu-item`) when the user is authenticated. The trigger of the user menu with the avatar and user name is now handled internally by the component and should not be implemented by the consumer anymore.
+  - Added three required props for labels: `textUserMenu`, `textUserMenuTrigger` and `textCurrentUser`. (by [@leagrdv](https://github.com/leagrdv) with [#7602](https://github.com/swisspost/design-system/pull/7602))
+
+- Removed the `userId` property from the `post-avatar` component as it is no longer working. (by [@leagrdv](https://github.com/leagrdv) with [#7626](https://github.com/swisspost/design-system/pull/7626))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.71
+  - @swisspost/design-system-components@10.0.0-next.71
+  - @swisspost/design-system-styles@10.0.0-next.71
+  - @swisspost/internet-header@10.0.0-next.71
+  - @swisspost/design-system-components-react@10.0.0-next.71
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.71
+  - @swisspost/design-system-tokens@10.0.0-next.71
+
 ## 6.0.0-next.71
 
 ### Minor Changes

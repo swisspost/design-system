@@ -1,6 +1,6 @@
-import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
+import { Url } from '@/utils';
 import { version } from '@root/package.json';
-import { checkEmptyOrUrl } from '@/utils';
+import { Component, Element, h, Host, Prop } from '@stencil/core';
 
 /**
  * @slot default - Slot for placing hidden descriptive text. If `url` is set, this text will serve as the accessible name of the link; otherwise, it will be used as the title of the SVG.
@@ -16,15 +16,11 @@ export class PostLogo {
   /**
    * The URL to which the user is redirected upon clicking the logo.
    */
-  @Prop() url?: string | URL;
-
-  @Watch('url')
-  validateUrl() {
-    checkEmptyOrUrl(this, 'url');
-  }
+  @Prop()
+  @Url()
+  url?: string | URL;
 
   componentDidLoad() {
-    this.validateUrl();
     this.checkDescription();
   }
 
