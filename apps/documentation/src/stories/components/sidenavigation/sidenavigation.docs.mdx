@@ -49,15 +49,11 @@ The navigation content is authored by you and projected through the default slot
 
 Each item can optionally contain a `<post-icon>`. If at least one item on a level has an icon, the items without one are indented to align with it.
 
+**Important:** for usability reasons, either all or none of the level-1 elements on a given level should have an icon. Never mix icon and non-icon items on the same level.
+
 ### Link only
 
 <Canvas sourceState="shown" of={SidenavigationStories.LinkOnly} inline="false" />
-
-### Nested but not collapsible
-
-The children are always visible. The parent can be a link or a plain, non-clickable `<span>`.
-
-<Canvas sourceState="shown" of={SidenavigationStories.Nested} inline="false" />
 
 ### Collapsible but not linked
 
@@ -70,6 +66,12 @@ Toggle a sibling `<post-collapsible>` with a `<button>` inside `<post-collapsibl
 The parent is a link, and a separate button toggles the children. The button carries a visually hidden label.
 
 <Canvas sourceState="shown" of={SidenavigationStories.CollapsibleLinked} inline="false" />
+
+### With icons
+
+All level-1 items have icons. The icon-less items on child levels are indented to align automatically.
+
+<Canvas sourceState="shown" of={SidenavigationStories.WithIcons} inline="false" />
 
 ## Active item
 

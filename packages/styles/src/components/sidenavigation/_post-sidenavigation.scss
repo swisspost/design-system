@@ -1,5 +1,10 @@
+@use '../../mixins/media';
+
 post-sidenavigation {
-  --post-sidenavigation-indent: 1.5rem;
+  // Level indentation: icon-size + gap + extra (16px desktop, 12px mobile).
+  // 1.25rem (icon) + 0.5rem (gap) + 1rem (extra) = 2.75rem desktop
+  --post-sidenavigation-indent: 2.75rem;
+  --post-sidenavigation-icon-size: 1.25rem; // 20px desktop
 
   :where(ul) {
     list-style: none;
@@ -55,17 +60,39 @@ post-sidenavigation {
   }
 
   ul ul .post-sidenavigation-item {
+    // icon-size (1.25rem) + gap (0.5rem) + extra indent (1rem desktop / 0.75rem mobile)
     padding-inline-start: calc(1rem + var(--_indent-level) * var(--post-sidenavigation-indent));
+
+    @include media.max(desktop) {
+      // icon (1rem mobile) + gap (0.5rem) + extra (0.75rem) = 2.25rem
+      padding-inline-start: calc(1rem + var(--_indent-level) * 2.25rem);
+    }
   }
 
   // When a level has any item with a leading icon, reserve a matching space before
   // the labels of the icon-less items so they line up.
-  ul:has(> li > :where(a, span, button) > post-icon:first-child)
+  // Only applies to the direct level — nested levels are indented via --_indent-level only.
+  // Handles three element types:
+  //   - a/span with direct icon: checked via > post-icon:first-child
+  //   - button (collapsible not linked): checked via > post-icon:first-child
+  //   - div (collapsible linked): icon lives inside the child <a>, checked via a > post-icon:first-child
+  :where(nav) > ul:has(> li > :where(a, span, post-collapsible-trigger > button, div > a) > post-icon:first-child)
     > li
-    > :where(a, span, button):not(:has(> post-icon:first-child))::before {
+    > :where(a, span):not(:has(> post-icon:first-child))::before,
+  :where(nav) > ul:has(> li > :where(a, span, post-collapsible-trigger > button, div > a) > post-icon:first-child)
+    > li
+    > post-collapsible-trigger
+    > button:not(:has(> post-icon:first-child))::before,
+  :where(nav) > ul:has(> li > :where(a, span, post-collapsible-trigger > button, div > a) > post-icon:first-child)
+    > li
+    > div:not(:has(> a > post-icon:first-child))::before {
     content: '';
     flex: none;
-    inline-size: var(--post-sidenavigation-indent);
+    inline-size: var(--post-sidenavigation-icon-size);
+
+    @include media.max(desktop) {
+      inline-size: 1rem; // 16px mobile
+    }
   }
 }
 
