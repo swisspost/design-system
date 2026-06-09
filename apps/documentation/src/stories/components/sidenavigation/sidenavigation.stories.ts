@@ -1,5 +1,5 @@
 import { Args, StoryObj } from '@storybook/web-components-vite';
-import { html, TemplateResult } from 'lit';
+import { html, TemplateResult, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
@@ -37,15 +37,21 @@ export default meta;
 // on mobile/tablet the trigger opens the dialog, on desktop it is hidden and the
 // navigation is shown inline. The navigation is authored by the consumer: a <nav> with a
 // heading linked via aria-labelledby, <ul>/<li> lists and the .post-sidenavigation-* classes.
-function renderSidenav(navContent: TemplateResult, args: Args) {
+export function renderSidenav(navContent: TemplateResult, args: Args, navId?: string, ariaLabel?: string) {
+  const resolvedId = navId ?? crypto.randomUUID();
+  const titleId = `${resolvedId}-title`;
+
   return html`
-    <post-sidenavigation-trigger for="sidenav">
+    <post-sidenavigation-trigger for="${resolvedId}">
       <button>Menu</button>
     </post-sidenavigation-trigger>
 
-    <post-sidenavigation id="sidenav" text-close="${args.textClose}">
-      <nav aria-labelledby="sidenav-title">
-        <h2 id="sidenav-title" class="post-sidenavigation-heading">Section title</h2>
+    <post-sidenavigation id="${resolvedId}" text-close="${args.textClose}">
+      <nav
+        aria-labelledby="${ariaLabel ? nothing : titleId}"
+        aria-label="${ariaLabel ?? nothing}"
+      >
+        <h2 id="${titleId}" class="post-sidenavigation-heading">Section title</h2>
         <ul>
           ${navContent}
         </ul>
@@ -53,6 +59,23 @@ function renderSidenav(navContent: TemplateResult, args: Args) {
     </post-sidenavigation>
   `;
 }
+
+export const defaultNavContent = html`
+  <li><a href="#" class="post-sidenavigation-item">Sidenav link</a></li>
+  <li>
+    <a href="#" class="post-sidenavigation-item">
+      <post-icon name="search" aria-hidden="true"></post-icon>
+      Sidenav link with icon
+    </a>
+  </li>
+  <li>
+    <a href="#" class="post-sidenavigation-item">Sidenav link with children</a>
+    <ul>
+      <li><a href="#" class="post-sidenavigation-item">Child link</a></li>
+      <li><a href="#" class="post-sidenavigation-item">Child link</a></li>
+    </ul>
+  </li>
+`;
 
 const linkOnly = html`
   <li><a href="#" class="post-sidenavigation-item">Sidenav link</a></li>
@@ -184,27 +207,25 @@ type Story = StoryObj;
 export const Default: Story = {};
 
 export const LinkOnly: Story = {
-  ...getIframeParameters(200),
   render: (args: Args) => renderSidenav(linkOnly, args),
 };
 
 export const Nested: Story = {
-  ...getIframeParameters(220),
+  ...getIframeParameters(270),
   render: (args: Args) => renderSidenav(nested, args),
 };
 
 export const CollapsibleNotLinked: Story = {
-  ...getIframeParameters(240),
+  ...getIframeParameters(270),
   render: (args: Args) => renderSidenav(collapsibleNotLinked, args),
 };
 
 export const CollapsibleLinked: Story = {
-  ...getIframeParameters(240),
+  ...getIframeParameters(270),
   render: (args: Args) => renderSidenav(collapsibleLinked, args),
 };
 
 export const ActiveNavigationItem: Story = {
-  ...getIframeParameters(200),
   render: (args: Args) =>
     renderSidenav(
       html`
@@ -221,7 +242,6 @@ export const ActiveNavigationItem: Story = {
 // Realistic integration: the trigger sits in the header on mobile/tablet,
 // while the navigation lives in the page body.
 export const InHeader: Story = {
-  ...getIframeParameters(500),
   render: (args: Args) => html`
     <post-header text-menu="Menu">
       <post-logo slot="post-logo" url="/">Homepage</post-logo>

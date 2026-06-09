@@ -13,6 +13,12 @@ post-sidenavigation {
     font-size: 1rem;
     font-weight: 700;
     color: rgba(0, 0, 0, 0.6);
+
+    // Temporary workaround: dark scheme override until the token value is added.
+    // Without this, the heading fails color-contrast in the accessibility tests.
+    [data-color-scheme='dark'] & {
+      color: rgba(255, 255, 255, 0.6);
+    }
   }
 
   > ul {

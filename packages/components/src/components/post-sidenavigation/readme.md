@@ -55,9 +55,9 @@ Type: `Promise<void>`
 
 ## Slots
 
-| Slot        | Description                                                                                                     |
-| ----------- | --------------------------------------------------------------------------------------------------------------- |
-| `"default"` | Slot for the navigation content: a `<nav>` with a heading linked via `aria-labelledby` and `<ul>`/`<li>` lists. |
+| Slot        | Description                      |
+| ----------- | -------------------------------- |
+| `"default"` | Slot for the navigation content. |
 
 
 ## Dependencies

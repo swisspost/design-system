@@ -41,7 +41,7 @@ export class PostSidenavigation {
    * - `true` when the navigation opens
    * - `false` when the navigation closes
    */
-  @Event() postToggle: EventEmitter<boolean>;
+  @Event({ bubbles: true, composed: true }) postToggle: EventEmitter<boolean>;
 
   private breakpointChange = (e: CustomEvent) => {
     this.device = e.detail;
@@ -92,9 +92,9 @@ export class PostSidenavigation {
     const dialog = this.getDialog();
 
     if (dialog?.open) {
-      this.hide();
+      await this.hide();
     } else {
-      this.show();
+      await this.show();
     }
   }
 
@@ -157,9 +157,10 @@ export class PostSidenavigation {
   private renderDialog() {
     return (
       <Host data-version={version}>
-        <dialog onClose={() => this.postToggle.emit(false)}>
+        <dialog onClose={() => {
+          this.postToggle.emit(false);
+        }}>
           <slot />
-
           <post-closebutton onClick={() => this.hide()}>
             {this.textClose}
           </post-closebutton>

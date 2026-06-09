@@ -86,7 +86,7 @@ export class PostSidenavigationTrigger {
   /**
    * Keep the trigger's `aria-expanded` in sync with the navigation state.
    */
-  @EventFrom('post-sidenavigation')
+  @EventFrom('post-sidenavigation', { ignoreNestedComponents: false })
   private handlePostToggle(e: CustomEvent) {
     this.trigger?.setAttribute('aria-expanded', `${e.detail}`);
   }
