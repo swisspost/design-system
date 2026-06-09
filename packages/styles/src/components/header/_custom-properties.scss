@@ -134,19 +134,19 @@ post-header:not(:has([slot='main-nav'])) {
 
   @include media.only(desktop) {
     --post-local-header-expanded-min-height: 4rem;
+    --post-logo-expanded-offset: 0.625rem;
+    --post-logo-reduced-offset: 0.625rem;
   }
   @include media.only(tablet) {
     --post-local-header-expanded-min-height: 3.5rem;
+    --post-logo-expanded-offset: 0.75rem;
+    --post-logo-reduced-offset: 0.75rem;
   }
   @include media.only(mobile) {
     --post-local-header-expanded-min-height: 3rem;
+    --post-logo-expanded-offset: 0.5rem;
+    --post-logo-reduced-offset: 0.5rem;
   }
-}
-
-post-header:not(:has(> [slot='audience'])):not(:has(> [slot='global-nav-primary'])):not(
-    :has(> [slot='global-nav-secondary'])
-  ):not(:has(> [slot='language-menu'])):not(:has(> [slot='post-login'])) {
-  --post-burger-button-display: none;
 }
 
 // ============================================================
