@@ -38,8 +38,8 @@ runs:
           const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'))
 
           return {
-            node: pkg.engines?.node || pkg.devEngines?.runtime?.version,
-            pnpm: pkg.packageManager
+            node: pkg.devEngines?.runtime?.version || pkg.engines?.node || 'lts/*',
+            pnpm: pkg.devEngines?.packageManager?.version || pkg.packageManager || 'latest'
           }
 
     - name: Install pnpm

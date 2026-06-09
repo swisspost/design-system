@@ -62,16 +62,18 @@ header,
     margin-inline-end: calc(1.25rem - var(--post-header-gap));
 
     // Offset the logo to ensure visual alignment with the local header content
-    $min-height: var(--post-global-header-reduced-height);
-    $max-height: var(--post-global-header-expanded-height);
+    $scroll-top: var(--post-header-scroll-top, 0px);
     $min-offset: var(--post-logo-expanded-offset);
     $max-offset: var(--post-logo-reduced-offset);
-    $scroll-top: var(--post-header-scroll-top, 0px);
+    $height-delta: calc(
+      var(--post-global-header-expanded-height) - var(--post-global-header-reduced-height)
+    );
+
     margin-inline-start: clamp(
       $min-offset,
       calc(
-        $min-offset + ($max-offset - $min-offset) * $scroll-top /
-          max(1px, $max-height - $min-height)
+        $min-offset + ($max-offset - $min-offset) * min($scroll-top, $height-delta) /
+          max(1px, $height-delta)
       ),
       $max-offset
     );
