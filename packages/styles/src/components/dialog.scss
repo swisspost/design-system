@@ -10,6 +10,7 @@
 
 @use '../functions/tokens';
 @use '../tokens/utilities';
+@use '../tokens/helpers';
 @use '../mixins/media';
 @use '../mixins/color-scheme';
 
@@ -190,6 +191,17 @@ dialog {
     grid-area: body;
     margin-bottom: 0;
     overflow: auto;
+
+    // prevent overflow: auto from clipping focus rings of child elements
+    $focus-space: calc(
+      #{tokens.get('focus-outline-offset', helpers.$post-focus)} +
+        #{tokens.get('focus-outline-width', helpers.$post-focus)}
+    );
+
+    padding: $focus-space;
+    margin-top: calc(-1 * #{$focus-space});
+    margin-left: calc(-1 * #{$focus-space});
+    margin-right: calc(-1 * #{$focus-space});
 
     > *:last-child {
       margin-bottom: 0;
