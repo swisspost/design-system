@@ -164,5 +164,5 @@ export const TEST_MATRIX: Record<string, VariantConfig> = {
   'jobs-loggedout': stateComposeHelper(SCROLLED_ONLY, BURGER_FLOW_NO_SECOND),
   'jobs-loggedin': stateComposeHelper(LOGGED_IN),
   'onepager': stateComposeHelper(SCROLLED_ONLY, LANGUAGE_AND_SCROLL),
-  'internal-applications': stateComposeHelper(SCROLLED_ONLY, LANGUAGE_AND_SCROLL),
+  'application': stateComposeHelper(SCROLLED_ONLY, LANGUAGE_AND_SCROLL),
 };
