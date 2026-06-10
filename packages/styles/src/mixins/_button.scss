@@ -49,12 +49,13 @@
   white-space: nowrap; // Long content should never break in buttons
   cursor: pointer;
 
-  &:hover {
+  &:not(:disabled):hover {
     text-decoration: none;
   }
 
   &:disabled {
     border-style: tokens.get('button-border-style-disabled', components.$post-button);
+    cursor: unset;
   }
 
   @include utilities.focus-style;
