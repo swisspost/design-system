@@ -257,16 +257,17 @@ export class PostInternetHeader {
               textUserMenu={this.textUserLinks}
               textUserMenuTrigger={this.textUserMenuTrigger}
             >
-              {globalHeader.login && 'url' in globalHeader.login && (
-                <Link slot="login-link" config={globalHeader.login} />
+              <Link slot="login-link" config={globalHeader.login} />
+
+              {globalHeader.userMenuLinks && (
+                <div slot="user-links">
+                  {globalHeader.userMenuLinks.map(link => (
+                    <post-menu-item key={link.url}>
+                      <Link config={link} />
+                    </post-menu-item>
+                  ))}
+                </div>
               )}
-              <div slot="user-links">
-                {globalHeader.userMenuLinks?.map(link => (
-                  <post-menu-item key={link.url}>
-                    <Link config={link} />
-                  </post-menu-item>
-                ))}
-              </div>
             </post-login-widget>
           )}
 
