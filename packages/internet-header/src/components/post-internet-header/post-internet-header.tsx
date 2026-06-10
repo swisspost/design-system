@@ -263,7 +263,7 @@ export class PostInternetHeader {
               <div slot="user-links">
                 {globalHeader.userMenuLinks?.map(link => (
                   <post-menu-item key={link.url}>
-                    <Link slot="login-link" config={link} />
+                    <Link config={link} />
                   </post-menu-item>
                 ))}
               </div>
