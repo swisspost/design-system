@@ -129,7 +129,7 @@ post-header:not(:has([slot='main-nav'])) {
   ):not(:has(post-header > [slot='global-nav-secondary'])):not(
     :has(post-header > [slot='language-menu'])
   ):not(:has(post-header > [slot='post-login'])) {
-  --post-global-header-expanded-height: 2rem;
+  --post-global-header-expanded-height: var(--_post-initial-global-header-height);
   --post-global-header-reduced-height: 2rem;
 
   @include media.only(desktop) {

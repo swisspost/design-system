@@ -98,17 +98,17 @@ see the [Heading elements documentation](https://developer.mozilla.org/en-US/doc
 
 <Canvas sourceState="shown" of={HeaderStories.OnePagerH1} inline="false" />
 
-### Internal Applications
+### Application
 
-The Header for Internal applications is a consistently available interface element that provides a consistent navigation experience across the whole application.
+The Application header is a header variant intended for internal applications. It uses the `appearance: compact` configuration and is distinguished by the absence of any content in its global (yellow) part except from the Logo.
 
-<Canvas of={HeaderStories.InternalApplications} inline="false" />
+<Canvas of={HeaderStories.Application} inline="false" />
 
 #### Example with Language Menu
 
-In the Internal Applications header, if a language menu is required, it should be placed in the local navigation `slot="local-nav"`.
+If a language menu is needed, it should be placed as a list item within the `slot="local-nav"`, alongside any other local controls such as search or login.
 
-<Canvas of={HeaderStories.InternalApplicationsWithLanguageMenu} inline="false" />
+<Canvas of={HeaderStories.ApplicationWithLanguageMenu} inline="false" />
 
 ## User menu
 
