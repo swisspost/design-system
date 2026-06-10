@@ -1,5 +1,17 @@
 # @swisspost/internet-header
 
+## 10.0.0-next.72
+
+### Minor Changes
+
+- Added the `post-internet-login-widget` component inside the `post-internet-header`, as well as the `userMenuLinks` property in the header configuration. (by [@leagrdv](https://github.com/leagrdv) with [#7681](https://github.com/swisspost/design-system/pull/7681))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.72
+  - @swisspost/design-system-styles@10.0.0-next.72
+
 ## 10.0.0-next.71
 
 ### Minor Changes
