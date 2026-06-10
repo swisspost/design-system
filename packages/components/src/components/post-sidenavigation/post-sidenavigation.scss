@@ -1,7 +1,8 @@
 @use '@swisspost/design-system-styles/mixins/media';
 
 :host {
-    max-width: 50ch;
+    width: 400px;
+    max-width: 400px;
     display: flex;
 
   & dialog {
@@ -9,7 +10,6 @@
     bottom: auto;
     right: auto;
     height: 100%;
-    width: 600px;
     border: none;
 
     @include media.max(md) {

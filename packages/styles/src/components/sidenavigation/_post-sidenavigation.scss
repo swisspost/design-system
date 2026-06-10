@@ -1,10 +1,13 @@
 @use '../../mixins/media';
 
 post-sidenavigation {
-  // Level indentation: icon-size + gap + extra (16px desktop, 12px mobile).
-  // 1.25rem (icon) + 0.5rem (gap) + 1rem (extra) = 2.75rem desktop
-  --post-sidenavigation-indent: 2.75rem;
-  --post-sidenavigation-icon-size: 1.25rem; // 20px desktop
+  --post-sidenavigation-indent: 2.5rem;
+  --post-sidenavigation-icon-size: 1.25rem;
+
+  nav {
+    width: 100%;
+    background-color: #F0EFED;
+  }
 
   :where(ul) {
     list-style: none;
@@ -19,30 +22,29 @@ post-sidenavigation {
     font-weight: 700;
     color: rgba(0, 0, 0, 0.6);
 
-    // Temporary workaround: dark scheme override until the token value is added.
-    // Without this, the heading fails color-contrast in the accessibility tests.
     [data-color-scheme='dark'] & {
       color: rgba(255, 255, 255, 0.6);
     }
   }
 
+  // Top-level list
   > ul {
     list-style: none;
-  }
-
-  .post-sidenavigation-item[aria-current='page'] {
-    font-weight: 700;
-    background-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
   }
 
   > ul > li > .post-sidenavigation-item {
     font-weight: 700;
   }
 
-  // Indent nested levels using an inherited custom property that tracks depth.
-  // Each nested ul sets --_indent-level; the single item rule reads it — no
-  // deep compound selectors needed.
+  // Active page indicator
+  .post-sidenavigation-item[aria-current='page'] {
+    font-weight: 700;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+  }
+
+  // Nesting depth tracking via custom property inheritance
+  // Each ul level sets --_indent-level for its children
   ul {
     --_indent-level: 0;
   }
@@ -59,31 +61,40 @@ post-sidenavigation {
     --_indent-level: 3;
   }
 
+  // Nested item indentation
   ul ul .post-sidenavigation-item {
-    // icon-size (1.25rem) + gap (0.5rem) + extra indent (1rem desktop / 0.75rem mobile)
     padding-inline-start: calc(1rem + var(--_indent-level) * var(--post-sidenavigation-indent));
 
     @include media.max(desktop) {
-      // icon (1rem mobile) + gap (0.5rem) + extra (0.75rem) = 2.25rem
       padding-inline-start: calc(1rem + var(--_indent-level) * 2.25rem);
     }
   }
 
-  // When a level has any item with a leading icon, reserve a matching space before
-  // the labels of the icon-less items so they line up.
-  // Only applies to the direct level — nested levels are indented via --_indent-level only.
-  // Handles three element types:
-  //   - a/span with direct icon: checked via > post-icon:first-child
-  //   - button (collapsible not linked): checked via > post-icon:first-child
-  //   - div (collapsible linked): icon lives inside the child <a>, checked via a > post-icon:first-child
-  :where(nav) > ul:has(> li > :where(a, span, post-collapsible-trigger > button, div > a) > post-icon:first-child)
+  // Icon alignment spacer for mixed icon/non-icon items
+  // Detects: a/span with icon, button with icon, div>a with icon
+  :where(nav)
+    > ul:has(
+      > li
+        > :where(a, span, post-collapsible-trigger > button, div > a)
+        > post-icon:first-child
+    )
     > li
     > :where(a, span):not(:has(> post-icon:first-child))::before,
-  :where(nav) > ul:has(> li > :where(a, span, post-collapsible-trigger > button, div > a) > post-icon:first-child)
+  :where(nav)
+    > ul:has(
+      > li
+        > :where(a, span, post-collapsible-trigger > button, div > a)
+        > post-icon:first-child
+    )
     > li
     > post-collapsible-trigger
     > button:not(:has(> post-icon:first-child))::before,
-  :where(nav) > ul:has(> li > :where(a, span, post-collapsible-trigger > button, div > a) > post-icon:first-child)
+  :where(nav)
+    > ul:has(
+      > li
+        > :where(a, span, post-collapsible-trigger > button, div > a)
+        > post-icon:first-child
+    )
     > li
     > div:not(:has(> a > post-icon:first-child))::before {
     content: '';
@@ -91,15 +102,13 @@ post-sidenavigation {
     inline-size: var(--post-sidenavigation-icon-size);
 
     @include media.max(desktop) {
-      inline-size: 1rem; // 16px mobile
+      inline-size: 1rem;
     }
   }
 }
 
-// A single navigation row: a link, a button, a non-clickable span, or a wrapper
-// holding a link plus its collapsible toggle.
+// Navigation item row (link, button, span, or collapsible wrapper)
 .post-sidenavigation-item {
-  box-sizing: border-box;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -107,9 +116,12 @@ post-sidenavigation {
   min-width: 0;
   margin: 0;
   padding: 0.75rem 1rem;
+  box-sizing: border-box;
+
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0;
+
   background-color: transparent;
   color: inherit;
   font: inherit;
@@ -126,7 +138,7 @@ post-sidenavigation {
     }
   }
 
-  // Leading icon keeps its size.
+  // Leading icon spacing
   > post-icon:first-child {
     flex: none;
   }
@@ -142,32 +154,33 @@ post-sidenavigation {
   &[aria-expanded='true'] > post-icon:last-child {
     transform: rotate(180deg);
   }
-}
 
-.post-sidenavigation-item > a {
-  flex: 1 1 auto;
-  color: inherit;
-  text-decoration: none;
-}
+  > a {
+    flex: 1 1 auto;
+    color: inherit;
+    text-decoration: none;
+  }
 
-.post-sidenavigation-item > post-collapsible-trigger {
-  margin-inline-start: auto;
+  > post-collapsible-trigger {
+    margin-inline-start: auto;
 
-  > button {
-    display: flex;
-    align-items: center;
-    padding-inline: 0.5rem;
-    border: 0;
-    border-inline-start: 1px solid rgba(0, 0, 0, 0.15);
-    background: transparent;
-    cursor: pointer;
+    > button {
+      display: flex;
+      align-items: center;
+      padding-inline: 0.5rem;
 
-    > post-icon {
-      transition: transform 0.2s ease;
-    }
+      border: 0;
+      border-inline-start: 1px solid rgba(0, 0, 0, 0.15);
+      background: transparent;
+      cursor: pointer;
 
-    &[aria-expanded='true'] > post-icon {
-      transform: rotate(180deg);
+      > post-icon {
+        transition: transform 0.2s ease;
+      }
+
+      &[aria-expanded='true'] > post-icon {
+        transform: rotate(180deg);
+      }
     }
   }
 }
