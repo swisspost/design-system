@@ -253,6 +253,7 @@ export class PostInternetHeader {
 
           {globalHeader.login && (
             <post-login-widget
+              slot="post-login"
               textCurrentUser={this.textCurrentUser}
               textUserMenu={this.textUserLinks}
               textUserMenuTrigger={this.textUserMenuTrigger}
