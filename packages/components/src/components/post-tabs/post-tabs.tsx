@@ -15,14 +15,6 @@ import { version } from '@root/package.json';
 import { fade } from '@/animations';
 import { componentOnReady, checkRequiredAndType } from '@/utils';
 
-// Extends the HTMLButtonElement interface to include ariaControlsElements, which is part of the
-// ARIA reflection API but not yet present in TypeScript's built-in DOM type definitions.
-declare global {
-  interface HTMLButtonElement {
-    ariaControlsElements: Element[];
-  }
-}
-
 /**
  * @slot default - Slot for placing tab items. Each tab item should be a <post-tab-item> element.
  * @slot panels - Slot for placing tab panels. Each tab panel should be a <post-tab-panel> element.
@@ -65,6 +57,16 @@ export class PostTabs {
       panel => panel.closest('post-tabs') === this.host,
     );
   }
+
+  /**
+   * Label for the "previous tab items" button.
+   */
+  @Prop({ reflect: true }) textPrevTabItems: string = 'Previous tab items';
+
+  /**
+   * Label for the "next tab items" button.
+   */
+  @Prop({ reflect: true }) textNextTabItems: string = 'Next tab items';
 
   /**
    * The name of the tab in the Content Tabs variant that is initially active.
@@ -163,12 +165,12 @@ export class PostTabs {
     };
 
     this.contentObserver = new MutationObserver(this.handleContentChange.bind(this));
-    this.contentObserver.observe(this.host, config);
+    this.contentObserver?.observe(this.host, config);
   }
 
   private setupResizeObserver() {
     this.resizeObserver = new ResizeObserver(this.updateScrollButtons);
-    this.resizeObserver.observe(this.tabsContainer);
+    this.resizeObserver?.observe(this.tabsContainer);
   }
 
   private handleContentChange(mutations: MutationRecord[]) {
@@ -438,6 +440,14 @@ export class PostTabs {
       this.tabsContainer.scrollWidth;
   };
 
+  private scrollTabs(direction: 'prev' | 'next') {
+    const sign = direction === 'prev' ? -1 : 1;
+    this.tabsContainer.scrollBy({
+      left: sign * this.tabsContainer.clientWidth,
+      behavior: 'smooth',
+    });
+  }
+
   private handleScrollButtons() {
     this.updateScrollButtons();
     this.tabsContainer.addEventListener('scroll', this.updateScrollButtons);
@@ -458,15 +468,10 @@ export class PostTabs {
             ref={el => (this.leftScrollButton = el!)}
             class="scroll-btn scroll-btn-left"
             type="button"
-            aria-label="Scroll button left"
+            aria-label={this.textPrevTabItems}
             tabindex={this.showLeftScrollButton ? 0 : -1}
             hidden={!this.showLeftScrollButton}
-            onClick={() =>
-              this.tabsContainer.scrollBy({
-                left: -this.tabsContainer.clientWidth,
-                behavior: 'smooth',
-              })
-            }
+            onClick={() => this.scrollTabs('prev')}
           >
             <post-icon name="chevronleft"></post-icon>
           </button>
@@ -487,15 +492,10 @@ export class PostTabs {
             ref={el => (this.rightScrollButton = el!)}
             class="scroll-btn scroll-btn-right"
             type="button"
-            aria-label="Scroll button right"
+            aria-label={this.textNextTabItems}
             tabindex={this.showRightScrollButton ? 0 : -1}
             hidden={!this.showRightScrollButton}
-            onClick={() =>
-              this.tabsContainer.scrollBy({
-                left: this.tabsContainer.clientWidth,
-                behavior: 'smooth',
-              })
-            }
+            onClick={() => this.scrollTabs('next')}
           >
             <post-icon name="chevronright"></post-icon>
           </button>

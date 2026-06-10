@@ -7,14 +7,16 @@
 
 :host {
   display: block;
-}
 
-.tabs {
-  // Hide scrollbar across browsers while keeping scroll functionality
-  scrollbar-width: none; // Firefox
+  .tabs-wrapper {
+    .tabs {
+      // Hide scrollbar across browsers while keeping scroll functionality
+      scrollbar-width: none; // Firefox
 
-  &::-webkit-scrollbar {
-    display: none; // Chrome, Safari, Edge
+      &::-webkit-scrollbar {
+        display: none; // Chrome, Safari, Edge
+      }
+    }
   }
 }
 

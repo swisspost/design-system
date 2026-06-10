@@ -718,6 +718,16 @@ export namespace Components {
           * Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
          */
         "show": (tabName: string) => Promise<void>;
+        /**
+          * Label for the "next tab items" button.
+          * @default 'Next tab items'
+         */
+        "textNextTabItems": string;
+        /**
+          * Label for the "previous tab items" button.
+          * @default 'Previous tab items'
+         */
+        "textPrevTabItems": string;
     }
     interface PostTogglebutton {
         /**
@@ -1927,6 +1937,16 @@ declare namespace LocalJSX {
           * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. Only emitted in Content Tabs variant.
          */
         "onPostChange"?: (event: PostTabsCustomEvent<string>) => void;
+        /**
+          * Label for the "next tab items" button.
+          * @default 'Next tab items'
+         */
+        "textNextTabItems"?: string;
+        /**
+          * Label for the "previous tab items" button.
+          * @default 'Previous tab items'
+         */
+        "textPrevTabItems"?: string;
     }
     interface PostTogglebutton {
         /**
@@ -2138,6 +2158,8 @@ declare namespace LocalJSX {
         "for": string;
     }
     interface PostTabsAttributes {
+        "textPrevTabItems": string;
+        "textNextTabItems": string;
         "activeTab": string;
         "fullWidth": boolean;
         "label": string;
