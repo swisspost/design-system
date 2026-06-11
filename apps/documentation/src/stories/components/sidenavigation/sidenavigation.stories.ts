@@ -38,6 +38,7 @@ const meta: MetaComponent = {
     },
   },
   render: getSidenavRenderer(),
+  decorators: [(story) => html`<div style="padding-bottom: 3rem">${story()}</div>`],
 };
 
 export default meta;
@@ -334,43 +335,35 @@ const collapsibleLinked = html`
   </li>
 `;
 
+// Active item — aria-current="page" marks the current page link.
+const activeItem = html`
+  <li><a href="#" class="post-sidenavigation-item">Level 1</a></li>
+  <li>
+    <!-- The active link must have aria-current="page" for correct accessibility and styling. -->
+    <a href="#" class="post-sidenavigation-item" aria-current="page">Level 1</a>
+  </li>
+  <li><a href="#" class="post-sidenavigation-item">Level 1</a></li>
+`;
+
 // STORIES
 
 type Story = StoryObj;
 
+// Wraps variant stories (non-fullscreen) with left padding to offset from the canvas edge.
+const withPadding = (story: () => unknown) => html`<div style="padding-left: 2rem">${story()}</div>`;
+
+// Shorthand for variant stories that share the same render + decorator pattern.
+function variantStory(content: TemplateResult): Story {
+  return {
+    render: (args: Args) => renderSidenav(content, args),
+    decorators: [withPadding],
+  };
+}
+
 export const Default: Story = {};
 
-// Link only — no children, no collapsible.
-export const LinkOnly: Story = {
-  render: (args: Args) => renderSidenav(linkOnly, args),
-};
-
-// Nested but not collapsible — children always visible.
-export const Nested: Story = {
-  render: (args: Args) => renderSidenav(nested, args),
-};
-
-// Collapsible but not linked — button only on level 1, no link.
-export const CollapsibleNotLinked: Story = {
-  render: (args: Args) => renderSidenav(collapsibleNotLinked, args),
-};
-
-// Collapsible and linked — link + separate expand button on level 1.
-export const CollapsibleLinked: Story = {
-  render: (args: Args) => renderSidenav(collapsibleLinked, args),
-};
-
-export const ActiveNavigationItem: Story = {
-  render: (args: Args) =>
-    renderSidenav(
-      html`
-        <li><a href="#" class="post-sidenavigation-item">Level 1</a></li>
-        <li>
-          <!-- The active link must have an aria-current="page" attribute to ensure correct accessibility and styling. -->
-          <a href="#" class="post-sidenavigation-item" aria-current="page">Level 1</a>
-        </li>
-        <li><a href="#" class="post-sidenavigation-item">Level 1</a></li>
-      `,
-      args,
-    ),
-};
+export const LinkOnly: Story = variantStory(linkOnly);
+export const Nested: Story = variantStory(nested);
+export const CollapsibleNotLinked: Story = variantStory(collapsibleNotLinked);
+export const CollapsibleLinked: Story = variantStory(collapsibleLinked);
+export const ActiveNavigationItem: Story = variantStory(activeItem);
