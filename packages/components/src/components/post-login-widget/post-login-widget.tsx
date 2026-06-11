@@ -1,18 +1,17 @@
+import { Required, Type } from '@/utils';
+import { version } from '@root/package.json';
 import {
   Build,
   Component,
+  Element,
   Event,
   EventEmitter,
-  Host,
   h,
+  Host,
   Method,
-  State,
   Prop,
-  Watch,
-  Element,
+  State,
 } from '@stencil/core';
-import { version } from '@root/package.json';
-import { checkRequiredAndType } from '@/utils';
 
 const SESSION_URL = 'https://n.account.post.ch/v1/session/subscribe';
 
@@ -39,42 +38,30 @@ export class PostLoginWidget {
    * Label for the "Current user is {user}" accessibility description.
    * Use `{user}` as a placeholder — it will be replaced with the current user's name at runtime.
    */
-  @Prop({ reflect: true }) textCurrentUser!: string;
-
-  @Watch('textCurrentUser')
-  validateTextCurrentUser() {
-    checkRequiredAndType(this, 'textCurrentUser', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textCurrentUser!: string;
 
   /**
    * Accessible label for the dropdown menu
    */
-  @Prop({ reflect: true }) textUserMenu!: string;
-
-  @Watch('textUserMenu')
-  validateTextUserMenu() {
-    checkRequiredAndType(this, 'textUserMenu', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textUserMenu!: string;
 
   /**
    * Hidden label for the user menu trigger button, for accessibility purposes. It should describe the purpose of the button (e.g. "Access user links").
    */
-  @Prop({ reflect: true }) textUserMenuTrigger!: string;
-
-  @Watch('textUserMenuTrigger')
-  validateTextUserMenuTrigger() {
-    checkRequiredAndType(this, 'textUserMenuTrigger', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textUserMenuTrigger!: string;
 
   @State() private authenticated: boolean | null = null;
 
   @State() private user: { name: string; surname: string; email: string } | null = null;
-
-  componentDidLoad() {
-    this.validateTextCurrentUser();
-    this.validateTextUserMenuTrigger();
-    this.validateTextUserMenu();
-  }
 
   async componentWillLoad() {
     if (Build.isBrowser) {

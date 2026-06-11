@@ -1,5 +1,5 @@
-import { Component, Element, h, Host } from '@stencil/core';
 import { version } from '@root/package.json';
+import { Component, Element, h, Host } from '@stencil/core';
 
 const INTERACTIVE_ELEMENTS = [
   'a',
