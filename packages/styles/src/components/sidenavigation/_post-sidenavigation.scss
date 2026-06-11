@@ -20,10 +20,6 @@ post-sidenavigation {
     font-size: 1rem;
     font-weight: 700;
     color: rgba(0, 0, 0, 0.6);
-
-    [data-color-scheme='dark'] & {
-      color: rgba(255, 255, 255, 0.6);
-    }
   }
 
   // Top-level list
