@@ -53,6 +53,6 @@ export const Default: Story = {};
 
 export const Concatenated: Story = {
   args: {
-    itemCount: 10,
+    itemCount: 15,
   },
 };
