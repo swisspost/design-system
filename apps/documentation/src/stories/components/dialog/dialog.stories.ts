@@ -3,11 +3,11 @@ import { html, nothing } from 'lit-html';
 
 const DIALOG_VARIANT_OPTIONS = {
   'default': {
-    allowedAnimations: ['pop-in', 'none'],
+    defaultAnimation: 'pop-in',
     widthOverrideAllowed: false,
   },
   'bottom-sheet': {
-    allowedAnimations: ['slide-in', 'none'],
+    defaultAnimation: 'slide-in',
     widthOverrideAllowed: true,
   },
 };
@@ -88,7 +88,7 @@ const meta: Meta = {
     animation: {
       name: 'Animation',
       description:
-        'Choose an animation effect for showing and hidding the dialog. The bottom-sheet variant defaults to slide-in.',
+        'Choose an animation effect for showing and hidding the dialog. The dialog defaults to pop-in, and the bottom-sheet variant to slide-in.',
       control: 'radio',
       options: ['pop-in', 'slide-in', 'none'],
       table: { category: 'Variant' },
@@ -191,9 +191,10 @@ const Template = {
   render: (args: Args) => {
     const postDialogCloseButton = args.closeButton ? getCloseButton() : nothing;
     const variant = args.variant as keyof typeof DIALOG_VARIANT_OPTIONS;
-    const animation = DIALOG_VARIANT_OPTIONS[variant].allowedAnimations.includes(args.animation)
-      ? args.animation
-      : nothing;
+    const animation =
+      args.animation !== DIALOG_VARIANT_OPTIONS[variant].defaultAnimation
+        ? args.animation
+        : nothing;
     const style =
       DIALOG_VARIANT_OPTIONS[variant].widthOverrideAllowed && args.width
         ? `--post-dialog-width: ${args.width}`
