@@ -90,6 +90,7 @@ export interface V910Checks {
   };
   ngbootstrap: {
     removed_components: boolean;
+    progressbar: boolean;
   };
   forms: {
     tooltip_validation: boolean;

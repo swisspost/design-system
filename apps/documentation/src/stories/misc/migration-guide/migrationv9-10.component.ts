@@ -1,8 +1,8 @@
 import { html, LitElement, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
+import { _restorePersistedState, MIGRATION_CHECKS_KEY_V9 } from './util/persist.util';
 import { V910Checks } from './types';
 import { _updateOnChange, _updatePersistedState } from './util/migration-checks.util';
-import { _restorePersistedState, MIGRATION_CHECKS_KEY_V9 } from './util/persist.util';
 
 @customElement('migration-version-9-10')
 export class MigrationV910Component extends LitElement {
@@ -17,6 +17,7 @@ export class MigrationV910Component extends LitElement {
     },
     ngbootstrap: {
       removed_components: false,
+      progressbar: false,
     },
     forms: {
       tooltip_validation: false,
@@ -327,10 +328,88 @@ export class MigrationV910Component extends LitElement {
                             >
                           </li>
                           <li>pagination → <i>coming soon</i></li>
-                          <li>progressbar → 
-                            <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs"
-                              >post-progressbar</a
-                            ></li>
+                          <li>
+                            <div class="form-check">
+                              <input
+                                id="ngbootstrap-progressbar"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.ngbootstrap.progressbar}"
+                              />
+                              <label class="form-check-label" for="ngbootstrap-progressbar">
+                                progressbar →
+                                <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs"
+                                  >post-progressbar</a
+                                >
+                                <span class="info">
+                                  <p>
+                                    The <code>NgbProgressbar</code> component has been replaced by the
+                                    <code>&lt;post-progressbar&gt;</code> web component, which provides an
+                                    accessible and framework-agnostic solution.
+                                  </p>
+                                  <p><strong>Before (v9 — NgbProgressbar)</strong></p>
+                                  <p>
+                                    The NgbProgressbar component was used with two-way binding and
+                                    properties like <code>type</code>, <code>striped</code>, and
+                                    <code>animated</code>:
+                                  </p>
+                                  <code-block
+                                    code=${`<!-- template.html -->\n<ngb-progressbar\n  type="primary"\n  [value]="65"\n  [striped]="true"\n  [animated]="true"\n>\n</ngb-progressbar>`}
+                                  ></code-block>
+                                  <p><strong>After (v10)</strong></p>
+                                  <p>
+                                    The new <code>&lt;post-progressbar&gt;</code> component uses standard HTML
+                                    <code>min</code>, <code>max</code>, and <code>value</code> attributes,
+                                    similar to the native <code>&lt;progress&gt;</code> element:
+                                  </p>
+                                  <code-block
+                                    code=${`<!-- template.html -->\n<post-progressbar\n  min="0"\n  max="100"\n  value="65"\n></post-progressbar>`}
+                                  ></code-block>
+                                  <p><strong>Key differences:</strong></p>
+                                  <ul>
+                                    <li>
+                                      <strong>Attributes instead of properties:</strong> Use standard HTML
+                                      attributes (<code>min</code>, <code>max</code>, <code>value</code>)
+                                      instead of ng-bootstrap directives.
+                                    </li>
+                                    <li>
+                                      <strong>No visual variants:</strong> The new component does not support
+                                      <code>type</code> (color variants), <code>striped</code>, or
+                                      <code>animated</code> properties. Style customization is done through
+                                      CSS custom properties and the component's public API.
+                                    </li>
+                                    <li>
+                                      <strong>Semantic HTML:</strong> Uses the native HTML role and ARIA
+                                      attributes for better accessibility (<code>role="progressbar"</code>,
+                                      <code>aria-valuemin</code>, <code>aria-valuemax</code>,
+                                      <code>aria-valuenow</code>).
+                                    </li>
+                                  </ul>
+                                  <p><strong>Handling dynamic updates:</strong></p>
+                                  <p>
+                                    To update the progress value dynamically in Angular, bind directly to the
+                                    <code>value</code> attribute:
+                                  </p>
+                                  <code-block
+                                    code=${`<!-- template.html -->\n<post-progressbar\n  [attr.value]="progressValue"\n  min="0"\n  max="100"\n></post-progressbar>`}
+                                  ></code-block>
+                                  <code-block
+                                    code=${`// component.ts\nexport class MyComponent implements OnInit {\n  progressValue = 0;\n\n  ngOnInit() {\n    const interval = setInterval(() => {\n      if (this.progressValue < 100) {\n        this.progressValue += 10;\n      } else {\n        clearInterval(interval);\n      }\n    }, 500);\n  }\n}`}
+                                  ></code-block>
+                                  <p><strong>Styling with labels and messages:</strong></p>
+                                  <p>
+                                    The new component supports wrapper elements for additional labels and
+                                    status information. See the
+                                    <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs"
+                                      >post-progressbar documentation</a
+                                    >
+                                    for complete examples including labels, helper messages, and state
+                                    indicators.
+                                  </p>
+                                </span>
+                              </label>
+                            </div>
+                          </li>
                           <li>timepicker → <i>coming soon</i></li>
                           <li>
                             typeahead →
