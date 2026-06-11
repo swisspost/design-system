@@ -71,7 +71,29 @@
           "text": "Login",
           "url": "#",
           "icon": "login"
-        }
+        },
+        "userMenuLinks": [
+          {
+            "text": "Mein Profil",
+            "url": "#",
+            "icon": "profile"
+          },
+          {
+            "text": "Nachrichten",
+            "url": "#",
+            "icon": "letter"
+          },
+          {
+            "text": "Einstellungen",
+            "url": "#",
+            "icon": "gear"
+          },
+          {
+            "text": "Abmelden",
+            "url": "#",
+            "icon": "logout"
+          }
+        ]
       },
       "localHeader": {
         "mainNavigation": [
@@ -421,7 +443,29 @@
           "text": "Connexion",
           "url": "#",
           "icon": "login"
-        }
+        },
+        "userMenuLinks": [
+          {
+            "text": "Mon profil",
+            "url": "#",
+            "icon": "profile"
+          },
+          {
+            "text": "Messages",
+            "url": "#",
+            "icon": "letter"
+          },
+          {
+            "text": "Param\u00e8tres",
+            "url": "#",
+            "icon": "gear"
+          },
+          {
+            "text": "D\u00e9connexion",
+            "url": "#",
+            "icon": "logout"
+          }
+        ]
       },
       "localHeader": {
         "mainNavigation": [
@@ -774,7 +818,29 @@
           "text": "Accesso",
           "url": "#",
           "icon": "login"
-        }
+        },
+        "userMenuLinks": [
+          {
+            "text": "Il mio profilo",
+            "url": "#",
+            "icon": "profile"
+          },
+          {
+            "text": "Messaggi",
+            "url": "#",
+            "icon": "letter"
+          },
+          {
+            "text": "Impostazioni",
+            "url": "#",
+            "icon": "gear"
+          },
+          {
+            "text": "Disconnetti",
+            "url": "#",
+            "icon": "logout"
+          }
+        ]
       },
       "localHeader": {
         "mainNavigation": [
@@ -1124,7 +1190,29 @@
           "text": "Login",
           "url": "#",
           "icon": "login"
-        }
+        },
+        "userMenuLinks": [
+          {
+            "text": "My Profile",
+            "url": "#",
+            "icon": "profile"
+          },
+          {
+            "text": "Messages",
+            "url": "#",
+            "icon": "letter"
+          },
+          {
+            "text": "Settings",
+            "url": "#",
+            "icon": "gear"
+          },
+          {
+            "text": "Logout",
+            "url": "#",
+            "icon": "logout"
+          }
+        ]
       },
       "localHeader": {
         "mainNavigation": [

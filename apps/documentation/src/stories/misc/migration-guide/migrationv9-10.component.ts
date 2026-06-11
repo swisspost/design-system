@@ -1,8 +1,8 @@
 import { html, LitElement, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { _restorePersistedState, MIGRATION_CHECKS_KEY_V9 } from './util/persist.util';
 import { V910Checks } from './types';
 import { _updateOnChange, _updatePersistedState } from './util/migration-checks.util';
+import { _restorePersistedState, MIGRATION_CHECKS_KEY_V9 } from './util/persist.util';
 
 @customElement('migration-version-9-10')
 export class MigrationV910Component extends LitElement {
@@ -88,11 +88,19 @@ export class MigrationV910Component extends LitElement {
       card_control: false,
       tag: false,
     },
+    internet_header: {
+      update_package: false,
+      add_text_props: false,
+      remove_props: false,
+    },
   };
 
   constructor() {
     super();
-    this.state = _restorePersistedState<V910Checks>(MIGRATION_CHECKS_KEY_V9) ?? this.state;
+    const restored = _restorePersistedState<V910Checks>(MIGRATION_CHECKS_KEY_V9);
+    if (restored) {
+      this.state = { ...restored, internet_header: restored.internet_header ?? this.state.internet_header };
+    }
     setTimeout(() => this._toggleAutoMigrationVisibility(), 0);
   }
 
@@ -319,7 +327,10 @@ export class MigrationV910Component extends LitElement {
                             >
                           </li>
                           <li>pagination → <i>coming soon</i></li>
-                          <li>progressbar → <i>coming soon</i></li>
+                          <li>progressbar → 
+                            <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs"
+                              >post-progressbar</a
+                            ></li>
                           <li>timepicker → <i>coming soon</i></li>
                           <li>
                             typeahead →
@@ -500,6 +511,77 @@ export class MigrationV910Component extends LitElement {
                   </li>
                 </ul>
               </section>
+
+              ${this.environment !== 'intranet'
+                ? html`
+                    <section>
+                      <h4>Internet Header (@swisspost/internet-header)</h4>
+                      <ul class="list-unstyled">
+                        <li class="mb-16">
+                          <div class="form-check">
+                            <input
+                              id="internet_header-update_package"
+                              class="form-check-input"
+                              type="checkbox"
+                              ?checked="${this.state.internet_header.update_package}"
+                            />
+                            <label class="form-check-label" for="internet_header-update_package">
+                              Update the <code>@swisspost/internet-header</code> package to version 10
+                              <code-block
+                                code=${'npm install @swisspost/internet-header@10'}
+                              ></code-block>
+                            </label>
+                          </div>
+                        </li>
+                        <li class="mb-16">
+                          <div class="form-check">
+                            <input
+                              id="internet_header-add_text_props"
+                              class="form-check-input"
+                              type="checkbox"
+                              ?checked="${this.state.internet_header.add_text_props}"
+                            />
+                            <label class="form-check-label" for="internet_header-add_text_props">
+                              Add the new required <code>text-*</code> props to your
+                              <code>swisspost-internet-header</code> element
+                              <span class="info">
+                                Version 10 requires these props for accessibility — they provide visually
+                                hidden labels for interactive elements. The component will throw an error if any are
+                                missing.
+                              </span>
+                              <code-block
+                                code=${'<swisspost-internet-header\n    project="your-service-id"\n    text-menu="Menu"\n    text-back="Back"\n    text-close="Close"\n    text-current-language="The currently selected language is #name."\n    text-change-language="Change the language"\n    text-main="Main navigation"\n    text-current-user="Current user is John Doe."\n    text-user-links="User links"\n  ></swisspost-internet-header>'}
+                              ></code-block>
+                            </label>
+                          </div>
+                        </li>
+                        <li class="mb-16">
+                          <div class="form-check">
+                            <input
+                              id="internet_header-remove_props"
+                              class="form-check-input"
+                              type="checkbox"
+                              ?checked="${this.state.internet_header.remove_props}"
+                            />
+                            <label class="form-check-label" for="internet_header-remove_props">
+                              Remove props and runtime assignments that no longer exist
+                              <span class="info">
+                                The following props have been removed and have no effect in v10:
+                                <code>stickyness</code>, <code>meta</code>, <code>login</code>,
+                                <code>search</code>, <code>skiplinks</code>, <code>config-proxy</code>,
+                                <code>language-cookie-key</code>, <code>language-local-storage-key</code>,
+                                <code>logout-url</code>, <code>self-admin-origin</code>,
+                                <code>os-flyout-overrides</code>, <code>custom-config</code>,
+                                <code>language-switch-overrides</code>. Only <code>language</code> and
+                                <code>active-route</code> remain reactive at runtime.
+                              </span>
+                            </label>
+                          </div>
+                        </li>
+                      </ul>
+                    </section>
+                  `
+                : nothing}
 
               <section>
                 <h4>Styles</h4>
