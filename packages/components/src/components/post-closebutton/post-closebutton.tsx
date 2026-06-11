@@ -1,7 +1,7 @@
-import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Prop, AttachInternals } from '@stencil/core';
 import { version } from '@root/package.json';
-import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { BUTTON_TYPES, ButtonType, Placement, PLACEMENT, SIZE, Size } from './types';
+import { Required, OneOf } from '@/utils';
 
 /**
  * @slot default - Slot for placing visually hidden label in the close button.
@@ -61,14 +61,25 @@ export class PostClosebutton {
   }
 
   private checkContent() {
-    if (!this.host.querySelector('.visually-hidden').textContent) {
+    const slot = this.visuallyHidden?.querySelector('slot') as HTMLSlotElement;
+    const hasContent = slot
+      ?.assignedNodes({ flatten: true })
+      .some(node => node.textContent?.trim());
+    if (!hasContent) {
       console.error(`The \`${this.host.localName}\` component requires content for accessibility.`);
     }
   }
 
   private handleClick() {
-    if (this.buttonType === 'submit') this.internals.form?.requestSubmit();
-    else if (this.buttonType === 'reset') this.internals.form?.reset();
+    if (this.buttonType === 'reset') this.internals.form?.reset();
+    else if (this.buttonType === 'button') {
+      this.host.closest('dialog')?.close();
+    } else if (this.buttonType === 'submit') {
+      console.warn(
+        'A close button with type="submit" is semantically incorrect. Use a regular `<button type="submit">` inside your form instead.',
+      );
+      this.host.closest('dialog')?.close();
+    }
   }
 
   render() {

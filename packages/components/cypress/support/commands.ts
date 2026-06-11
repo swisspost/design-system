@@ -26,6 +26,33 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
 
+const focusableSelector = `:where(${[
+  'button',
+  'input:not([type="hidden"])',
+  '[tabindex]',
+  'select',
+  'textarea',
+  '[contenteditable]',
+  'a[href]',
+  'iframe',
+  'audio[controls]',
+  'video[controls]',
+  'area[href]',
+  'details > summary:first-of-type',
+].join(',')})`;
+
+const focusDisablingSelector = `:where(${[
+  '[inert]',
+  '[inert] *',
+  ':disabled',
+  'dialog:not([open]) *',
+  '[popover]:not(:popover-open) *',
+  'details:not([open]) > *:not(details > summary:first-of-type)',
+  'details:not([open]) > *:not(details > summary:first-of-type) *',
+  '[tabindex^"-"]',
+  '[hidden]:not([hidden="false"])',
+].join(',')})`;
+
 export const isInViewport = function (_chai: Chai.ChaiStatic) {
   const assertIsInViewport = function (this: Chai.AssertionStatic) {
     const subject = this._obj;
@@ -95,33 +122,6 @@ Cypress.Commands.add(
   'getFocusableElements',
   { prevSubject: true },
   (subject: JQuery<HTMLElement>) => {
-    const focusableSelector = `:where(${[
-      'button',
-      'input:not([type="hidden"])',
-      '[tabindex]',
-      'select',
-      'textarea',
-      '[contenteditable]',
-      'a[href]',
-      'iframe',
-      'audio[controls]',
-      'video[controls]',
-      'area[href]',
-      'details > summary:first-of-type',
-    ].join(',')})`;
-
-    const focusDisablingSelector = `:where(${[
-      '[inert]',
-      '[inert] *',
-      ':disabled',
-      'dialog:not([open]) *',
-      '[popover]:not(:popover-open) *',
-      'details:not([open]) > *:not(details > summary:first-of-type)',
-      'details:not([open]) > *:not(details > summary:first-of-type) *',
-      '[tabindex^="-"]',
-      '[hidden]:not([hidden="false"])',
-    ].join(',')})`;
-
     const focusableElements = subject[0].querySelectorAll<HTMLElement>(
       `${focusableSelector}:not(${focusDisablingSelector})`,
     );
@@ -134,33 +134,6 @@ Cypress.Commands.add(
   'getDeepFocusableElements',
   { prevSubject: true },
   (subject: JQuery<HTMLElement>) => {
-    const focusableSelector = `:where(${[
-      'button',
-      'input:not([type="hidden"])',
-      '[tabindex]',
-      'select',
-      'textarea',
-      '[contenteditable]',
-      'a[href]',
-      'iframe',
-      'audio[controls]',
-      'video[controls]',
-      'area[href]',
-      'details > summary:first-of-type',
-    ].join(',')})`;
-
-    const focusDisablingSelector = `:where(${[
-      '[inert]',
-      '[inert] *',
-      ':disabled',
-      'dialog:not([open]) *',
-      '[popover]:not(:popover-open) *',
-      'details:not([open]) > *:not(details > summary:first-of-type)',
-      'details:not([open]) > *:not(details > summary:first-of-type) *',
-      '[tabindex^"-"]',
-      '[hidden]:not([hidden="false"])',
-    ].join(',')})`;
-
     function collect(root: ParentNode, result: HTMLElement[]) {
       root
         .querySelectorAll<HTMLElement>(`${focusableSelector}:not(${focusDisablingSelector})`)
