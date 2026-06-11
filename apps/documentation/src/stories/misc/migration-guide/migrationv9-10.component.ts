@@ -388,11 +388,22 @@ export class MigrationV910Component extends LitElement {
                                   ></code-block>
                                   <p><strong>Showing percentage values:</strong></p>
                                   <p>
-                                    Since <code>[showValue]</code> is no longer supported, create a separate element to display percentages:
+                                    The <code>[showValue]</code> property is not supported by <code>&lt;post-progressbar&gt;</code>. Unlike
+                                    <code>NgbProgressbar</code>, the percentage cannot be displayed inside the
+                                    progress bar.
+                                    To show the current progress percentage, use <code>.progressbar-value</code> together with a
+                                    <code>.progressbar-label</code>.
+                                    For implementation details and additional examples, refer to the
+                                    <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs">
+                                      post-progressbar documentation
+                                    </a>.
                                   </p>
-                                  <code-block
-                                    code=${`<!-- template.html -->\n<div class="progress-with-label">\n  <post-progressbar\n    [attr.value]="progressValue"\n    [attr.max]="100"\n  ></post-progressbar>\n  <span>{{ progressValue }}%</span>\n</div>`}
-                                  ></code-block>
+
+                                  <p>
+                                    Note that this is not a 1:1 replacement for
+                                    <code>[showValue]</code>, as the value is displayed separately from the
+                                    progress indicator.
+                                  </p>
                                 </span>
                               </label>
                             </div>
