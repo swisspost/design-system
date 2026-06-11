@@ -75,7 +75,7 @@ $tabs-outline-offset: calc(
       color: tokens.get('post-tabs-page-scroll-button-enabled-fg');
       background-color: tokens.get('post-tabs-page-scroll-button-enabled-bg');
       border: tokens.get('post-tabs-border-width') solid
-        tokens.get('post-tabs-page-scroll-button-enabled-border');
+        tokens.get('post-tabs-page-scroll-button-enabled-border-color');
       position: absolute;
       padding-block: 12px;
       z-index: 2;
@@ -84,7 +84,7 @@ $tabs-outline-offset: calc(
 
       // hovered
       &:hover {
-        border-color: tokens.get('post-tabs-page-scroll-button-hovered-border') !important;
+        border-color: tokens.get('post-tabs-page-scroll-button-hovered-border-color') !important;
         color: tokens.get('post-tabs-page-scroll-button-hovered-fg');
         background-color: tokens.get('post-tabs-page-scroll-button-hovered-bg');
       }
@@ -113,7 +113,7 @@ $tabs-outline-offset: calc(
       inset-inline-start: 0;
       width: 100%;
       height: tokens.get('post-tabs-border-width');
-      background-color: tokens.get('post-tabs-page-color-border');
+      background-color: tokens.get('post-tabs-page-border-color');
 
       @include utilities-mx.high-contrast-mode() {
         background-color: LinkText;
@@ -132,12 +132,12 @@ $tabs-outline-offset: calc(
   .tabs-wrapper {
     button.scroll-btn {
       flex-shrink: 0;
-      color: tokens.get('post-tabs-content-scroll-button-color-enabled-fg');
+      color: tokens.get('post-tabs-content-scroll-button-enabled-fg');
 
       // hovered
       &:hover {
-        // border-color: tokens.get('post-tabs-content-scroll-button-color-hovered-border') !important; missinh token???
-        color: tokens.get('post-tabs-content-scroll-button-color-hovered-fg');
+        border-color: yellow; // tokens.get('post-tabs-content-scroll-button-hovered-border-color') !important;
+        color: tokens.get('post-tabs-content-scroll-button-hovered-fg');
       }
     }
   }

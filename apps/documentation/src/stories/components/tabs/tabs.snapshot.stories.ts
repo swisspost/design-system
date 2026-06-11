@@ -16,28 +16,46 @@ export default {
 
 type Story = StoryObj<HTMLPostTabsElement>;
 
-export const Tabs: Story = {
+export const PageTabs: Story = {
   render: (_args: HTMLPostTabsElement, context: StoryContext<HTMLPostTabsElement>) => {
     return schemes(
       () => html`
-          ${['container', 'container-fluid', ''].map(
-            containerClass => html`
-              <div class="${containerClass}">
-                ${bombArgs({
-                  activePanel: [undefined, 'third'],
-                  fullWidth: [false, true],
-                })
-                  .filter(args => !(containerClass === '' && args.fullWidth === true))
-                  .map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
-              </div>
-            `,
-          )}
-        </div>
+        ${['container', 'container-fluid', ''].map(
+          containerClass => html`
+            <div class="${containerClass}">
+              ${bombArgs({
+                variant: ['Page Tabs'],
+                activeTabPanels: [undefined, 'third'],
+                fullWidth: [false, true],
+              })
+                .filter(args => !(containerClass === '' && args.fullWidth === true))
+                .map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
+            </div>
+          `,
+        )}
       `,
-      {
-        // dark mode is not yet designed/implemented
-        filter: scheme => scheme === 'light',
-      },
+    );
+  },
+};
+
+export const ContentTabs: Story = {
+  render: (_args: HTMLPostTabsElement, context: StoryContext<HTMLPostTabsElement>) => {
+    return schemes(
+      () => html`
+        ${['container', 'container-fluid', ''].map(
+          containerClass => html`
+            <div class="${containerClass}">
+              ${bombArgs({
+                variant: ['Content Tabs'],
+                activeTabPanels: [undefined, 'third'],
+                fullWidth: [false, true],
+              })
+                .filter(args => !(containerClass === '' && args.fullWidth === true))
+                .map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
+            </div>
+          `,
+        )}
+      `,
     );
   },
 };

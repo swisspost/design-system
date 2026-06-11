@@ -22,7 +22,7 @@ post-tab-item.nav-item a {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 700; // missing token?
+  font-weight: tokens.get('post-tabs-tab-font-weight');
 
   post-icon {
     @include utilities-mx.high-contrast-mode() {
@@ -42,18 +42,23 @@ post-tab-item.tab-title {
     background-color 100ms,
     border-color 100ms,
     color 100ms;
+
   border-block-end: tokens.get('post-tabs-border-width') solid transparent;
   color: tokens.get('post-tabs-content-tab-enabled-fg');
 
+  @include utilities-mx.focus-style() {
+    border-radius: 4px; // ensures focus outline follows the tab corner radius without affecting the indicator line
+  }
+
   // selected
   &[aria-selected='true'] {
-    border-color: tokens.get('post-tabs-content-tab-selected-border');
+    border-color: tokens.get('post-tabs-content-tab-selected-border-color');
     color: tokens.get('post-tabs-content-tab-selected-fg');
   }
 
   // hovered
   &:hover:not([disabled]) {
-    border-color: tokens.get('post-tabs-content-tab-hovered-border');
+    border-color: tokens.get('post-tabs-content-tab-hovered-border-color');
     color: tokens.get('post-tabs-content-tab-hovered-fg');
   }
 
@@ -100,7 +105,7 @@ post-tab-item.nav-item {
     border-inline-start: tokens.get('post-tabs-border-width') solid transparent;
     border-inline-end: tokens.get('post-tabs-border-width') solid transparent;
     background-color: tokens.get('post-tabs-page-tab-enabled-bg');
-    border-color: tokens.get('post-tabs-page-tab-enabled-border');
+    border-color: tokens.get('post-tabs-page-tab-enabled-border-color');
     color: tokens.get('post-tabs-page-tab-enabled-fg');
 
     // Dark background needs the inverted focus ring color
@@ -112,7 +117,7 @@ post-tab-item.nav-item {
     // hovered
     &:hover {
       background-color: tokens.get('post-tabs-page-tab-hovered-bg');
-      border-color: #504f4b; // tokens.get('post-tabs-page-tab-hovered-border'); // wrong value
+      border-color: tokens.get('post-tabs-page-tab-hovered-border-color');
       color: tokens.get('post-tabs-page-tab-hovered-fg');
     }
 
@@ -120,21 +125,21 @@ post-tab-item.nav-item {
     &[aria-current='page'] {
       background-color: tokens.get('post-tabs-page-tab-selected-bg');
       color: tokens.get('post-tabs-page-tab-selected-fg');
-      border-color: tokens.get('post-tabs-page-tab-selected-border');
+      border-color: tokens.get('post-tabs-page-tab-selected-border-color');
 
       // Light background reverts to the default focus ring color
       @include utilities-mx.focus-style-custom {
         outline-color: tokens.get('focus-outline-color', helpers.$post-focus) !important;
         outline-offset: $tabs-outline-offset !important;
+        border-radius: 4px; // ensures focus ring follows the tab corner radius
       }
 
       // selected — hovered
       &:hover {
-        color: #504f4b; // add selected hover token =  new: post.theme.color.palettes.default.nested.tabs.page.tab.selected.hovered.fg
+        color: purple; //tokens.get('post-tabs-page-tab-selected-hovered-fg'); // add selected hover token =  new: post.theme.color.palettes.default.nested.tabs.page.tab.selected.hovered.fg
         // post.scheme.color.palette.nested.fg.4
         background-color: tokens.get('post-tabs-page-tab-selected-bg');
-        border-color: #504f4b; //tokens.get('post-tabs-page-tab-hovered-border');// this has a wrong token value
-        // tokens.get('post-tabs-page-tab-hovered-border');
+        border-color: pink; //tokens.get('post-tabs-page-tab-selected-hovered-border-color');
       }
     }
 
@@ -169,7 +174,7 @@ post-tab-item.nav-item {
   // disabled
   &[disabled] a:not([aria-current='page']) {
     background-color: tokens.get('post-tabs-page-tab-disabled-bg');
-    border-color: tokens.get('post-tabs-page-tab-disabled-border');
+    border-color: tokens.get('post-tabs-page-tab-disabled-border-color');
     color: tokens.get('post-tabs-page-tab-disabled-fg');
     border-style: tokens.get('post-tabs-tab-disabled-border-style');
     pointer-events: none;
@@ -317,7 +322,7 @@ post-tabs[active-tab] {
   post-tab-item.tab-title.ssr {
     border-color: color-mix(
       in srgb,
-      tokens.get('post-tabs-content-tab-selected-border') calc(var(--active, 0) * 100%),
+      tokens.get('post-tabs-content-tab-selected-border-color') calc(var(--active, 0) * 100%),
       transparent
     );
     font-weight: calc(400 + var(--active, 0) * 300); // TOKEN HERE ALSO
@@ -383,8 +388,8 @@ post-tabs:not([active-tab]) {
 
   // Content Tabs: first item is active
   post-tab-item.tab-title.ssr:first-of-type {
-    border-color: tokens.get('post-tabs-content-tab-selected-border');
-    font-weight: 700; //same token as above
+    border-color: tokens.get('post-tabs-content-tab-selected-border-color');
+    font-weight: tokens.get('post-tabs-tab-font-weight');
     z-index: 1;
 
     @include utilities-mx.high-contrast-mode() {
@@ -398,7 +403,7 @@ post-tabs:not([active-tab]) {
     background-color: tokens.get('post-tabs-page-tab-selected-bg');
     color: tokens.get('post-tabs-page-tab-selected-fg');
     padding-block: tokens.get('post-tabs-page-large-tab-selected-padding-block');
-    font-weight: 700; //same token as above
+    font-weight: tokens.get('post-tabs-tab-font-weight');
     z-index: 1;
 
     @include utilities-mx.high-contrast-mode() {

@@ -218,9 +218,11 @@ function renderContentVariant(
   if (panelSlots) {
     return html`
       <post-tabs active-tab="${ifDefined(activeTab)}" full-width="${fullWidth ? true : nothing}">
-        <post-tab-item name="first">First tab</post-tab-item>
-        <post-tab-item name="second">Second tab</post-tab-item>
-        <post-tab-item name="third">Third tab</post-tab-item>
+        <post-tab-item name="first"><post-icon name="letter"></post-icon>First tab</post-tab-item>
+        <post-tab-item name="second"><post-icon name="letter"></post-icon>Second tab</post-tab-item>
+        <post-tab-item name="third" disabled
+          ><post-icon name="letter"></post-icon>Third tab</post-tab-item
+        >
 
         ${unsafeHTML(panelSlots)}
       </post-tabs>
@@ -229,9 +231,11 @@ function renderContentVariant(
 
   return html`
     <post-tabs active-tab="${ifDefined(activeTab)}" full-width="${fullWidth ? true : nothing}">
-      <post-tab-item name="first">First tab</post-tab-item>
-      <post-tab-item name="second">Second tab</post-tab-item>
-      <post-tab-item name="third">Third tab</post-tab-item>
+      <post-tab-item name="first"><post-icon name="letter"></post-icon>First tab</post-tab-item>
+      <post-tab-item name="second" disabled
+        ><post-icon name="letter"></post-icon>Second tab</post-tab-item
+      >
+      <post-tab-item name="third"><post-icon name="letter"></post-icon>Third tab</post-tab-item>
 
       <post-tab-panel for="first">
         This is the content of the first tab. By default it is shown initially.
