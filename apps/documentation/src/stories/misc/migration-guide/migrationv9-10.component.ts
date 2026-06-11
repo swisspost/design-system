@@ -1,8 +1,8 @@
 import { html, LitElement, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { _restorePersistedState, MIGRATION_CHECKS_KEY_V9 } from './util/persist.util';
 import { V910Checks } from './types';
 import { _updateOnChange, _updatePersistedState } from './util/migration-checks.util';
+import { _restorePersistedState, MIGRATION_CHECKS_KEY_V9 } from './util/persist.util';
 
 @customElement('migration-version-9-10')
 export class MigrationV910Component extends LitElement {
@@ -17,7 +17,6 @@ export class MigrationV910Component extends LitElement {
     },
     ngbootstrap: {
       removed_components: false,
-      progressbar: false,
     },
     forms: {
       tooltip_validation: false,
@@ -89,11 +88,19 @@ export class MigrationV910Component extends LitElement {
       card_control: false,
       tag: false,
     },
+    internet_header: {
+      update_package: false,
+      add_text_props: false,
+      remove_props: false,
+    },
   };
 
   constructor() {
     super();
-    this.state = _restorePersistedState<V910Checks>(MIGRATION_CHECKS_KEY_V9) ?? this.state;
+    const restored = _restorePersistedState<V910Checks>(MIGRATION_CHECKS_KEY_V9);
+    if (restored) {
+      this.state = { ...restored, internet_header: restored.internet_header ?? this.state.internet_header };
+    }
     setTimeout(() => this._toggleAutoMigrationVisibility(), 0);
   }
 
@@ -303,30 +310,10 @@ export class MigrationV910Component extends LitElement {
                         All Ng-Bootstrap components are no longer available:
                         <ul>
                           <li>carousel → <i>coming soon</i></li>
-                          <li>
-                            custom select & dropdown →
-                            <a href="/?path=/docs/bc251cd0-5173-463b-8729-586bb1bf1e1a--docs"
-                              >native select element</a
-                            >
-                            or
-                            <a href="/?path=/docs/8ca2bd70-56e6-4da9-b1fd-4e55388dca88--docs"
-                              >post-menu</a
-                            >
-                            <span class="info">Use native select for value selection, post-menu for action menus.</span>
-                          </li>
-                          <li>
-                            datatable → 
-                            <a href="https://www.ag-grid.com/">AG Grid</a>
-                            <span class="info">For interactive data tables, we recommend using AG Grid. For Swiss Post styling, use our 
-                              <a href="/?path=/docs/e1405db2-fe06-45c6-a7ed-1408f9bf4895--docs">@swisspost/design-system-theme-ag-grid</a> 
-                              package.</span>
-                          </li>
-                          <li>
-                            datepicker →
-                            <a href="/?path=/docs/eb77cd02-48b2-42e1-a3e4-cd8a973d431e--docs"
-                              >post-date-picker</a
-                            >
-                          </li>
+                          <li>custom select → <i>coming soon</i></li>
+                          <li>datatable → AG Grid <i>coming soon</i></li>
+                          <li>datepicker → <i>coming soon</i></li>
+                          <li>dropdown → <i>coming soon</i></li>
                           <li>
                             modal →
                             <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
@@ -339,29 +326,17 @@ export class MigrationV910Component extends LitElement {
                               >dialog</a
                             >
                           </li>
-                          <li>
-                            pagination →
-                            <a href="/?path=/docs/d6f8b5c7-4e2a-4f3a-9d3a-1a2b3c4d5e6f--docs"
-                              >post-pagination</a
-                            >
-                          </li>
-                          <li>
-                            progressbar → 
+                          <li>pagination → <i>coming soon</i></li>
+                          <li>progressbar → 
                             <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs"
                               >post-progressbar</a
-                            >
-                          </li>
-                          <li>
-                            timepicker →
-                            <a href="/?path=/docs/51471f0b-1bbb-4059-951b-f89aa7339f91--docs"
-                              >native input <code>type="time"</code></a
-                            >
-                          </li>
+                            ></li>
+                          <li>timepicker → <i>coming soon</i></li>
                           <li>
                             typeahead →
                             <a
                               href="/?path=/docs/2df77c32-5e33-402e-bd2e-54d54271ce19--docs#autocomplete"
-                              >native input with datalist</a
+                              >input with datalist</a
                             >
                           </li>
                         </ul>
@@ -536,6 +511,77 @@ export class MigrationV910Component extends LitElement {
                   </li>
                 </ul>
               </section>
+
+              ${this.environment !== 'intranet'
+                ? html`
+                    <section>
+                      <h4>Internet Header (@swisspost/internet-header)</h4>
+                      <ul class="list-unstyled">
+                        <li class="mb-16">
+                          <div class="form-check">
+                            <input
+                              id="internet_header-update_package"
+                              class="form-check-input"
+                              type="checkbox"
+                              ?checked="${this.state.internet_header.update_package}"
+                            />
+                            <label class="form-check-label" for="internet_header-update_package">
+                              Update the <code>@swisspost/internet-header</code> package to version 10
+                              <code-block
+                                code=${'npm install @swisspost/internet-header@10'}
+                              ></code-block>
+                            </label>
+                          </div>
+                        </li>
+                        <li class="mb-16">
+                          <div class="form-check">
+                            <input
+                              id="internet_header-add_text_props"
+                              class="form-check-input"
+                              type="checkbox"
+                              ?checked="${this.state.internet_header.add_text_props}"
+                            />
+                            <label class="form-check-label" for="internet_header-add_text_props">
+                              Add the new required <code>text-*</code> props to your
+                              <code>swisspost-internet-header</code> element
+                              <span class="info">
+                                Version 10 requires these props for accessibility — they provide visually
+                                hidden labels for interactive elements. The component will throw an error if any are
+                                missing.
+                              </span>
+                              <code-block
+                                code=${'<swisspost-internet-header\n    project="your-service-id"\n    text-menu="Menu"\n    text-back="Back"\n    text-close="Close"\n    text-current-language="The currently selected language is #name."\n    text-change-language="Change the language"\n    text-main="Main navigation"\n    text-current-user="Current user is John Doe."\n    text-user-links="User links"\n  ></swisspost-internet-header>'}
+                              ></code-block>
+                            </label>
+                          </div>
+                        </li>
+                        <li class="mb-16">
+                          <div class="form-check">
+                            <input
+                              id="internet_header-remove_props"
+                              class="form-check-input"
+                              type="checkbox"
+                              ?checked="${this.state.internet_header.remove_props}"
+                            />
+                            <label class="form-check-label" for="internet_header-remove_props">
+                              Remove props and runtime assignments that no longer exist
+                              <span class="info">
+                                The following props have been removed and have no effect in v10:
+                                <code>stickyness</code>, <code>meta</code>, <code>login</code>,
+                                <code>search</code>, <code>skiplinks</code>, <code>config-proxy</code>,
+                                <code>language-cookie-key</code>, <code>language-local-storage-key</code>,
+                                <code>logout-url</code>, <code>self-admin-origin</code>,
+                                <code>os-flyout-overrides</code>, <code>custom-config</code>,
+                                <code>language-switch-overrides</code>. Only <code>language</code> and
+                                <code>active-route</code> remain reactive at runtime.
+                              </span>
+                            </label>
+                          </div>
+                        </li>
+                      </ul>
+                    </section>
+                  `
+                : nothing}
 
               <section>
                 <h4>Styles</h4>
