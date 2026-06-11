@@ -1,5 +1,5 @@
 import { useArgs } from 'storybook/preview-api';
-import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
+import { StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { spreadArgs } from '@/utils';
 import { MetaComponent } from '@root/types';
@@ -11,7 +11,6 @@ const meta: MetaComponent<HTMLPostCollapsibleElement> = {
   tags: ['package:WebComponents', 'status:Stable'],
   component: 'post-collapsible',
   render: renderCollapsible,
-  decorators: [gap],
   parameters: {
     badges: [],
     controls: {
@@ -25,11 +24,6 @@ const meta: MetaComponent<HTMLPostCollapsibleElement> = {
 };
 
 export default meta;
-
-// DECORATORS
-function gap(story: StoryFn, context: StoryContext) {
-  return html` <div class="d-flex flex-column gap-16">${story(context.args, context)}</div> `;
-}
 
 //RENDERER
 let ignoreToggle = true;
@@ -53,7 +47,7 @@ function renderCollapsible(
 
   return html`
     <post-collapsible-trigger for=${context.id}>
-      <button class="btn btn-secondary">Toggle Collapsible</button>
+      <button class="btn btn-secondary mb-16">Toggle Collapsible</button>
     </post-collapsible-trigger>
 
     <post-collapsible id=${context.id} ${spreadArgs(args)} @postToggle="${handleToggle}">
@@ -69,4 +63,15 @@ export const Default: Story = {};
 
 export const InitiallyCollapsed: Story = {
   args: { collapsed: true },
+};
+
+export const WrappedCollapsible: Story = {
+  render: ({ innerHTML, ...args }: Partial<HTMLPostCollapsibleElement>) => html`
+    <post-collapsible-trigger>
+      <button class="btn btn-secondary mb-16">Toggle Collapsible</button>
+      <post-collapsible ${spreadArgs(args)}>
+        ${unsafeHTML(innerHTML)}
+      </post-collapsible>
+    </post-collapsible-trigger>
+  `,
 };

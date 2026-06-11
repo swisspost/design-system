@@ -1,5 +1,20 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.72
+
+### Minor Changes
+
+- Updated the `<post-collapsible-trigger>` component to support nesting without id references. A `<post-collapsible>` can now be placed directly inside `<post-collapsible-trigger>` instead of using the `for` attribute. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7727](https://github.com/swisspost/design-system/pull/7727))
+
+- Added a progressbar component used to indicate that the user's request has been received and the application is making progress toward completing the requested action. (by [@alizedebray](https://github.com/alizedebray) with [#7657](https://github.com/swisspost/design-system/pull/7657))
+
+### Patch Changes
+
+- Fixed missing `role` and `aria-labelledby` attributes on `post-autocomplete`. (by [@myrta2302](https://github.com/myrta2302) with [#7672](https://github.com/swisspost/design-system/pull/7672))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.72
+  - @swisspost/design-system-icons@10.0.0-next.72
+
 ## 10.0.0-next.71
 
 ### Major Changes
