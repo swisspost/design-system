@@ -47,6 +47,7 @@
 
   .popover-scroll {
     max-height: var(--post-popovercontainer-available-height, none);
+    overflow-x: clip;
     overflow-y: auto;
   }
 
