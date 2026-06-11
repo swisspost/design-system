@@ -380,7 +380,7 @@ export class MigrationV910Component extends LitElement {
                                 </li>
                                 <li>
                                   <strong>Dropdown styling:</strong> The suggestion popup is
-                                  rendered using the browser's native UI and can particially be styled with CSS but visual rendering may vary depending on browser.
+                                  rendered using the browser's native UI and can partially be styled with CSS but visual rendering may vary depending on browser.
                                 </li>
                                 <li>
                                   <strong>Object models:</strong> The
