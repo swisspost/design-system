@@ -14,7 +14,10 @@ import PackageTag from '@/shared/package-tag';
 
 <PackageTag meta={meta} />
 
-<div className="lead">Highlight a numerical characteristic or mark an item with a status.</div>
+<div className="lead">
+  A badge is a visual indicator that communicates notifications, counts, or status information
+  on/near an associated component. Badges can contain numbers or labels.
+</div>
 
 <Canvas sourceState="shown" of={badgeStories.Default} />
 <div className="hide-col-default">
@@ -24,12 +27,6 @@ import PackageTag from '@/shared/package-tag';
 <StylesPackageImport components={['badge']} />
 
 ## Examples
-
-### Colors
-
-You can change the badge color simply by applying a `.bg-*` class to it.
-
-<Canvas of={badgeStories.Colors} />
 
 ### Large number
 
