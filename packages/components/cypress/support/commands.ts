@@ -118,6 +118,13 @@ Cypress.Commands.add(
   },
 );
 
+/**
+ * @function getFocusableElements
+ * Returns all focusable elements within the subject element (flat DOM only, no shadow roots).
+ * Excludes elements that are disabled, hidden, inert, or otherwise unfocusable.
+ * @param subject The jQuery-wrapped element to search within.
+ * @returns A Cypress chainable wrapping an array of focusable HTMLElements.
+ */
 Cypress.Commands.add(
   'getFocusableElements',
   { prevSubject: true },
@@ -130,6 +137,13 @@ Cypress.Commands.add(
   },
 );
 
+/**
+ * @function getDeepFocusableElements
+ * Returns all focusable elements within the subject element, traversing into shadow roots recursively.
+ * Excludes elements that are disabled, hidden, inert, or otherwise unfocusable.
+ * @param subject The jQuery-wrapped element to search within, including its full shadow DOM tree.
+ * @returns A Cypress chainable wrapping a deduplicated array of focusable HTMLElements.
+ */
 Cypress.Commands.add(
   'getDeepFocusableElements',
   { prevSubject: true },
