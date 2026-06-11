@@ -313,13 +313,13 @@ export class MigrationV910Component extends LitElement {
                           <li>
                             custom select & dropdown →
                             <a href="/?path=/docs/bc251cd0-5173-463b-8729-586bb1bf1e1a--docs"
-                              >native select element (with custom styles)</a
+                              >native select element</a
                             >
                             or
                             <a href="/?path=/docs/8ca2bd70-56e6-4da9-b1fd-4e55388dca88--docs"
                               >post-menu</a
                             >
-                            <span class="info">Use native select for value selection, post-menu for action menus. See <a href="https://github.com/swisspost/design-system/issues/7721">#7721</a> for detailed migration guidance.</span>
+                            <span class="info">Use native select for value selection, post-menu for action menus.</span>
                           </li>
                           <li>
                             datatable → 
@@ -361,14 +361,14 @@ export class MigrationV910Component extends LitElement {
                           <li>
                             timepicker →
                             <a href="/?path=/docs/51471f0b-1bbb-4059-951b-f89aa7339f91--docs"
-                              >native input type="time" (with custom styles)</a
+                              >native input <code>type="time"</code></a
                             >
                           </li>
                           <li>
                             typeahead →
                             <a
                               href="/?path=/docs/2df77c32-5e33-402e-bd2e-54d54271ce19--docs#autocomplete"
-                              >input with datalist</a
+                              >native input with datalist</a
                             >
                           </li>
                         </ul>
