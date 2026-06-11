@@ -373,16 +373,9 @@ export class MigrationV910Component extends LitElement {
                                       instead of ng-bootstrap directives.
                                     </li>
                                     <li>
-                                      <strong>No visual variants:</strong> The new component does not support
-                                      <code>type</code> (color variants), <code>striped</code>, or
-                                      <code>animated</code> properties. Style customization is done through
-                                      CSS custom properties and the component's public API.
-                                    </li>
-                                    <li>
-                                      <strong>Semantic HTML:</strong> Uses the native HTML role and ARIA
-                                      attributes for better accessibility (<code>role="progressbar"</code>,
-                                      <code>aria-valuemin</code>, <code>aria-valuemax</code>,
-                                      <code>aria-valuenow</code>).
+                                      <strong>Striped and animated removed:</strong> The
+                                      <code>striped</code> and <code>animated</code> properties are no longer
+                                      supported.
                                     </li>
                                   </ul>
                                   <p><strong>Handling dynamic updates:</strong></p>
@@ -393,9 +386,6 @@ export class MigrationV910Component extends LitElement {
                                   <code-block
                                     code=${`<!-- template.html -->\n<post-progressbar\n  [attr.value]="progressValue"\n  min="0"\n  max="100"\n></post-progressbar>`}
                                   ></code-block>
-                                  <code-block
-                                    code=${`// component.ts\nexport class MyComponent implements OnInit {\n  progressValue = 0;\n\n  ngOnInit() {\n    const interval = setInterval(() => {\n      if (this.progressValue < 100) {\n        this.progressValue += 10;\n      } else {\n        clearInterval(interval);\n      }\n    }, 500);\n  }\n}`}
-                                  ></code-block>
                                   <p><strong>Showing percentage values:</strong></p>
                                   <p>
                                     Since <code>[showValue]</code> is no longer supported, create a separate element to display percentages:
@@ -403,16 +393,6 @@ export class MigrationV910Component extends LitElement {
                                   <code-block
                                     code=${`<!-- template.html -->\n<div class="progress-with-label">\n  <post-progressbar\n    [attr.value]="progressValue"\n    [attr.max]="100"\n  ></post-progressbar>\n  <span>{{ progressValue }}%</span>\n</div>`}
                                   ></code-block>
-                                  <p><strong>Styling with labels and messages:</strong></p>
-                                  <p>
-                                    The new component supports wrapper elements for additional labels and
-                                    status information. See the
-                                    <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs"
-                                      >post-progressbar documentation</a
-                                    >
-                                    for complete examples including labels, helper messages, and state
-                                    indicators.
-                                  </p>
                                 </span>
                               </label>
                             </div>
