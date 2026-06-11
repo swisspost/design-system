@@ -396,6 +396,13 @@ export class MigrationV910Component extends LitElement {
                                   <code-block
                                     code=${`// component.ts\nexport class MyComponent implements OnInit {\n  progressValue = 0;\n\n  ngOnInit() {\n    const interval = setInterval(() => {\n      if (this.progressValue < 100) {\n        this.progressValue += 10;\n      } else {\n        clearInterval(interval);\n      }\n    }, 500);\n  }\n}`}
                                   ></code-block>
+                                  <p><strong>Showing percentage values:</strong></p>
+                                  <p>
+                                    Since <code>[showValue]</code> is no longer supported, create a separate element to display percentages:
+                                  </p>
+                                  <code-block
+                                    code=${`<!-- template.html -->\n<div class="progress-with-label">\n  <post-progressbar\n    [attr.value]="progressValue"\n    [attr.max]="100"\n  ></post-progressbar>\n  <span>{{ progressValue }}%</span>\n</div>`}
+                                  ></code-block>
                                   <p><strong>Styling with labels and messages:</strong></p>
                                   <p>
                                     The new component supports wrapper elements for additional labels and
