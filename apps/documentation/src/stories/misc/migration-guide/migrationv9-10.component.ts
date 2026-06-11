@@ -17,7 +17,6 @@ export class MigrationV910Component extends LitElement {
     },
     ngbootstrap: {
       removed_components: false,
-      progressbar: false,
     },
     forms: {
       tooltip_validation: false,
