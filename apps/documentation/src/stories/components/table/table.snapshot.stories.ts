@@ -111,11 +111,11 @@ export const Table: Story = {
                     <td>
                       <button class="btn btn-secondary btn-icon btn-md">
                         <span class="visually-hidden">Edit</span>
-                        <i class="pi pi-2012"></i>
+                        <post-icon aria-hidden="true" name="document"></post-icon>
                       </button>
                       <button class="btn btn-primary btn-icon btn-md ms-8">
                         <span class="visually-hidden">Edit</span>
-                        <i class="pi pi-3193"></i>
+                        <post-icon aria-hidden="true" name="edit"></post-icon>
                       </button>
                     </td>
                   </tr>
@@ -126,11 +126,11 @@ export const Table: Story = {
                     <td>
                       <button class="btn btn-secondary btn-icon btn-md">
                         <span class="visually-hidden">Edit</span>
-                        <i class="pi pi-2012"></i>
+                        <post-icon aria-hidden="true" name="document"></post-icon>
                       </button>
                       <button class="btn btn-primary btn-icon btn-md ms-8">
                         <span class="visually-hidden">Edit</span>
-                        <i class="pi pi-3193"></i>
+                        <post-icon aria-hidden="true" name="edit"></post-icon>
                       </button>
                     </td>
                   </tr>
@@ -141,11 +141,11 @@ export const Table: Story = {
                     <td>
                       <button class="btn btn-secondary btn-icon btn-md">
                         <span class="visually-hidden">Edit</span>
-                        <i class="pi pi-2012"></i>
+                        <post-icon aria-hidden="true" name="document"></post-icon>
                       </button>
                       <button class="btn btn-primary btn-icon btn-md ms-8">
                         <span class="visually-hidden">Edit</span>
-                        <i class="pi pi-3193"></i>
+                        <post-icon aria-hidden="true" name="edit"></post-icon>
                       </button>
                     </td>
                   </tr>
@@ -153,13 +153,8 @@ export const Table: Story = {
               ],
               borderStyle: ['null', 'table-bordered', 'table-borderless'],
               alignment: ['align-top'],
-              variant: [
-                ['table-hover'],
-                ['table-sm'],
-                ['table-striped'],
-                ['table-mono'],
-                ['table-sm', 'table-striped'],
-              ],
+              variant: [['table-hover'], ['table-sm']],
+              style: ['', 'table-striped', 'table-mono'],
             }),
           ].map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
         </div>
