@@ -4,11 +4,14 @@
     width: 400px;
     max-width: 400px;
     display: flex;
+    background-color: #F0EFED;
 
   & dialog {
+    padding: 0;
     overflow: visible;
     bottom: auto;
     right: auto;
+    width: inherit;
     height: 100%;
     border: none;
 
