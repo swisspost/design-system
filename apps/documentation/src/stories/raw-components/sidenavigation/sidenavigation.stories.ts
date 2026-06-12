@@ -10,10 +10,11 @@ import {
 
 const meta: MetaComponent = {
   id: '8d15c75d-3cda-4793-9b85-81f11cabb81c',
-  title: 'Components/Side Navigation',
+  title: 'Raw Components/Side Navigation',
   tags: ['package:WebComponents', 'status:InProgress'],
   component: 'post-sidenavigation',
   parameters: {
+    layout: 'fullscreen',
     badges: [],
     design: {
       type: 'figma',
@@ -179,9 +180,9 @@ function renderSidenavigationWithHeader(navContent?: TemplateResult) {
     `;
 
     return html`
-      <post-header text-menu="Menu">
+    <post-header text-menu="Menu">
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
-
+        <p slot="title">[Application Title]</p>
         <ul slot="local-nav">
           <li>
             <post-sidenavigation-trigger for="${resolvedId}">
@@ -191,11 +192,20 @@ function renderSidenavigationWithHeader(navContent?: TemplateResult) {
               </button>
             </post-sidenavigation-trigger>
           </li>
+          <li>
+            <a href="#">
+              <span>Search</span>
+              <post-icon aria-hidden="true" name="search"></post-icon>
+            </a>
+          </li>
+          <li class="local-login">
+            <a href="">
+              <span>Login</span>
+              <post-icon name="login"></post-icon>
+            </a>
+          </li>
         </ul>
-
-        <p slot="title">Application title</p>
       </post-header>
-
       ${renderSidenavigation(content, args, resolvedId)}
     `;
   };
