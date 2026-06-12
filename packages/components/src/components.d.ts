@@ -698,10 +698,11 @@ export namespace Components {
         "toggle": () => Promise<void>;
     }
     interface PostSidenavigationTrigger {
-        /**
-          * Link the trigger to a `post-sidenavigation` with this id.
-         */
         "for": string;
+        /**
+          * Manually update the trigger's ARIA attributes.
+         */
+        "update": () => Promise<void>;
     }
     interface PostStepper {
         /**
@@ -1966,7 +1967,7 @@ declare namespace LocalJSX {
     }
     interface PostSidenavigation {
         /**
-          * An event emitted when the navigation is shown or hidden on mobile.  The payload is a boolean: - `true` when the navigation opens - `false` when the navigation closes
+          * An event emitted when the navigation is shown or hidden on mobile. The payload is a boolean: `true` when the navigation opens, `false` when it closes.
          */
         "onPostToggle"?: (event: PostSidenavigationCustomEvent<boolean>) => void;
         /**
@@ -1975,9 +1976,6 @@ declare namespace LocalJSX {
         "textClose": string;
     }
     interface PostSidenavigationTrigger {
-        /**
-          * Link the trigger to a `post-sidenavigation` with this id.
-         */
         "for": string;
     }
     interface PostStepper {

@@ -14,7 +14,7 @@ import { breakpoint, Device } from '@/utils/breakpoints';
 import { getFocusableChildren, Required, Type } from '@/utils';
 
 /**
- * @slot default - Slot for the navigation content.
+ * @slot default - Slot for the navigation content (must be a `<nav>` landmark with proper heading)
  */
 @Component({
   tag: 'post-sidenavigation',
@@ -36,10 +36,7 @@ export class PostSidenavigation {
 
   /**
    * An event emitted when the navigation is shown or hidden on mobile.
-   *
-   * The payload is a boolean:
-   * - `true` when the navigation opens
-   * - `false` when the navigation closes
+   * The payload is a boolean: `true` when the navigation opens, `false` when it closes.
    */
   @Event({ bubbles: true, composed: true }) postToggle: EventEmitter<boolean>;
 
@@ -69,9 +66,8 @@ export class PostSidenavigation {
 
     if (!trigger) return;
 
-    const collapsibleId = trigger.getAttribute('for');
-    const collapsible = this.host.querySelector<HTMLPostCollapsibleElement>(
-      `post-collapsible#${collapsibleId}`,
+    const collapsible = trigger.querySelector<HTMLPostCollapsibleElement>(
+      ':scope > post-collapsible',
     );
 
     if (!collapsible || collapsible.collapsed) return;
@@ -121,12 +117,11 @@ export class PostSidenavigation {
   private getDialog(): HTMLDialogElement | null {
     const dialog = this.host.shadowRoot?.querySelector('dialog');
 
-    if (!dialog) {
+    if (!dialog && this.device !== 'desktop') {
       console.warn('No dialog was found.');
-      return null;
     }
 
-    return dialog;
+    return dialog ?? null;
   }
 
   /**
@@ -142,6 +137,9 @@ export class PostSidenavigation {
     firstFocusable?.focus();
   }
 
+  /**
+   * Render inline navigation (desktop).
+   */
   private renderNav() {
     return (
       <Host data-version={version}>
@@ -150,6 +148,9 @@ export class PostSidenavigation {
     );
   }
 
+  /**
+   * Render modal navigation (mobile/tablet).
+   */
   private renderDialog() {
     return (
       <Host data-version={version}>

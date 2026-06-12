@@ -5,9 +5,22 @@
 
 ## Properties
 
-| Property           | Attribute | Description                                               | Type     | Default     |
-| ------------------ | --------- | --------------------------------------------------------- | -------- | ----------- |
-| `for` _(required)_ | `for`     | Link the trigger to a `post-sidenavigation` with this id. | `string` | `undefined` |
+| Property           | Attribute | Description | Type     | Default     |
+| ------------------ | --------- | ----------- | -------- | ----------- |
+| `for` _(required)_ | `for`     |             | `string` | `undefined` |
+
+
+## Methods
+
+### `update() => Promise<void>`
+
+Manually update the trigger's ARIA attributes.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
 
 
 ## Slots

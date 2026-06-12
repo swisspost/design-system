@@ -1,4 +1,4 @@
-import { Component, h, Host, Element, Prop } from '@stencil/core';
+import { Component, h, Host, Element, Prop, Method } from '@stencil/core';
 import { version } from '@root/package.json';
 import { EventFrom, getRoot, Required, Type } from '@/utils';
 
@@ -13,17 +13,14 @@ import { EventFrom, getRoot, Required, Type } from '@/utils';
 export class PostSidenavigationTrigger {
   @Element() host: HTMLPostSidenavigationTriggerElement;
 
-  private trigger?: HTMLButtonElement;
-  private root: Document | ShadowRoot;
-  private readonly observer = new MutationObserver(() => this.setTrigger());
-
-  /**
-   * Link the trigger to a `post-sidenavigation` with this id.
-   */
   @Prop({ reflect: true })
   @Required()
   @Type('string')
   for!: string;
+
+  private trigger?: HTMLButtonElement;
+  private root: Document | ShadowRoot;
+  private readonly observer = new MutationObserver(() => this.setTrigger());
 
   constructor() {
     this.toggleSidenavigation = this.toggleSidenavigation.bind(this);
@@ -65,7 +62,7 @@ export class PostSidenavigationTrigger {
    */
   private setTrigger() {
     const trigger = this.host.querySelector('button');
-    if (!trigger || trigger === this.trigger) return;
+    if (!trigger || (this.trigger && trigger.isEqualNode(this.trigger))) return;
 
     if (this.trigger) {
       this.trigger.removeEventListener('click', this.toggleSidenavigation);
@@ -94,6 +91,14 @@ export class PostSidenavigationTrigger {
   @EventFrom('post-sidenavigation', { ignoreNestedComponents: false })
   private handlePostToggle(e: CustomEvent) {
     this.trigger?.setAttribute('aria-expanded', `${e.detail}`);
+  }
+
+  /**
+   * Manually update the trigger's ARIA attributes.
+   */
+  @Method()
+  async update(): Promise<void> {
+    this.updateAriaAttributes();
   }
 
   private async toggleSidenavigation() {

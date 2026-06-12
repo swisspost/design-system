@@ -57,52 +57,38 @@ post-sidenavigation {
 
   // Nested item indentation
   ul ul .post-sidenavigation-item {
-    padding-inline-start: calc(
-      1rem + var(--_indent-level) * var(--post-sidenavigation-indent)
-    );
+    padding-inline-start: calc(1rem + var(--_indent-level) * var(--post-sidenavigation-indent));
 
     @include media.max(desktop) {
-      padding-inline-start: calc(
-        1rem + var(--_indent-level) * 2.25rem
-      );
+      padding-inline-start: calc(1rem + var(--_indent-level) * 2.25rem);
     }
   }
 
   // Icon alignment spacer for mixed icon/non-icon items
-  // Detects: a/span with icon, button with icon, div>a with icon
-  :where(nav)
-    > ul:has(
-      > li
-      > :where(a, span, post-collapsible-trigger > button, div > a)
-      > post-icon:first-child
-    )
-    > li
+  $has-icon: '> li > :where(a, span, post-collapsible-trigger > button, div > a) > post-icon:first-child';
+
+  :where(nav) > ul:has(#{$has-icon}) > li {
     > :where(a, span):not(:has(> post-icon:first-child))::before,
-
-  :where(nav)
-    > ul:has(
-      > li
-      > :where(a, span, post-collapsible-trigger > button, div > a)
-      > post-icon:first-child
-    )
-    > li
-    > post-collapsible-trigger
-    > button:not(:has(> post-icon:first-child))::before,
-
-  :where(nav)
-    > ul:has(
-      > li
-      > :where(a, span, post-collapsible-trigger > button, div > a)
-      > post-icon:first-child
-    )
-    > li
     > div:not(:has(> a > post-icon:first-child))::before {
-    content: '';
-    flex: none;
-    inline-size: var(--post-sidenavigation-icon-size);
+      content: '';
+      flex: none;
+      inline-size: var(--post-sidenavigation-icon-size);
 
-    @include media.max(desktop) {
-      inline-size: 1rem;
+      @include media.max(desktop) {
+        inline-size: 1rem;
+      }
+    }
+  }
+
+  :where(nav) > ul:has(#{$has-icon}) > li > post-collapsible-trigger {
+    > button:not(:has(> post-icon:first-child))::before {
+      content: '';
+      flex: none;
+      inline-size: var(--post-sidenavigation-icon-size);
+
+      @include media.max(desktop) {
+        inline-size: 1rem;
+      }
     }
   }
 }

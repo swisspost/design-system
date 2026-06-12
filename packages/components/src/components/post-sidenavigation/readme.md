@@ -12,9 +12,9 @@
 
 ## Events
 
-| Event        | Description                                                                                                                                                           | Type                   |
-| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
-| `postToggle` | An event emitted when the navigation is shown or hidden on mobile.  The payload is a boolean: - `true` when the navigation opens - `false` when the navigation closes | `CustomEvent<boolean>` |
+| Event        | Description                                                                                                                                            | Type                   |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------- |
+| `postToggle` | An event emitted when the navigation is shown or hidden on mobile. The payload is a boolean: `true` when the navigation opens, `false` when it closes. | `CustomEvent<boolean>` |
 
 
 ## Methods
@@ -55,9 +55,9 @@ Type: `Promise<void>`
 
 ## Slots
 
-| Slot        | Description                      |
-| ----------- | -------------------------------- |
-| `"default"` | Slot for the navigation content. |
+| Slot        | Description                                                                      |
+| ----------- | -------------------------------------------------------------------------------- |
+| `"default"` | Slot for the navigation content (must be a `<nav>` landmark with proper heading) |
 
 
 ## Dependencies
