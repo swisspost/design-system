@@ -102,6 +102,10 @@ post-sidenavigation {
   }
 }
 
+post-collapsible-trigger post-icon[name="chevrondown"] {
+  color: black;
+}
+
 // Navigation item row (link, button, span, or collapsible wrapper)
 .post-sidenavigation-item {
   display: flex;
