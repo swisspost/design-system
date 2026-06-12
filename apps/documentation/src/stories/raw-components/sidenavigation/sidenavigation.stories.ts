@@ -232,8 +232,8 @@ const linkOnly = html`
   </li>
   <li>
     <a href="#" class="post-sidenavigation-item">
-      <post-icon name="package" aria-hidden="true"></post-icon>
-      Packages
+      <post-icon name="onlineservice" aria-hidden="true"></post-icon>
+      Online service
     </a>
   </li>
   <li>
@@ -283,9 +283,7 @@ const collapsibleNotLinked = html`
   <li>
     <post-collapsible-trigger for="section-collapsible-2">
       <button class="post-sidenavigation-item">
-        <post-icon name="search" aria-hidden="true"></post-icon>
         Level 1
-        <post-icon name="chevrondown" aria-hidden="true"></post-icon>
       </button>
     </post-collapsible-trigger>
     <post-collapsible id="section-collapsible-2" collapsed>
@@ -301,35 +299,37 @@ const collapsibleNotLinked = html`
 const collapsibleLinked = html`
   <li>
     <div class="post-sidenavigation-item">
-      <a href="#">Level 1</a>
-      <post-collapsible-trigger for="section-linked-1">
+      <post-icon name="letterreceived" aria-hidden="true"></post-icon>
+      <a href="#">Sidenav link</a>
+      <post-collapsible-trigger for="section-linked">
         <button>
-          <span class="visually-hidden">Expand Level 1</span>
+          <span class="visually-hidden">Expand Sidenav link</span>
           <post-icon name="chevrondown" aria-hidden="true"></post-icon>
         </button>
       </post-collapsible-trigger>
     </div>
-    <post-collapsible id="section-linked-1">
+    <post-collapsible id="section-linked">
       <ul>
-        <li><a href="#" class="post-sidenavigation-item">Level 2</a></li>
-        <li><a href="#" class="post-sidenavigation-item">Level 2</a></li>
+        <li><a href="#" class="post-sidenavigation-item">Child link</a></li>
+        <li><a href="#" class="post-sidenavigation-item">Child link</a></li>
       </ul>
     </post-collapsible>
   </li>
   <li>
     <div class="post-sidenavigation-item">
-      <a href="#">Level 1</a>
+      <post-icon name="postoneweb" aria-hidden="true"></post-icon>
+      <a href="#">Sidenav link</a>
       <post-collapsible-trigger for="section-linked-2">
         <button>
-          <span class="visually-hidden">Expand Level 1</span>
+          <span class="visually-hidden">Expand Sidenav link</span>
           <post-icon name="chevrondown" aria-hidden="true"></post-icon>
         </button>
       </post-collapsible-trigger>
     </div>
-    <post-collapsible id="section-linked-2" collapsed>
+    <post-collapsible id="section-linked-2">
       <ul>
-        <li><a href="#" class="post-sidenavigation-item">Level 2</a></li>
-        <li><a href="#" class="post-sidenavigation-item">Level 2</a></li>
+        <li><a href="#" class="post-sidenavigation-item">Child link</a></li>
+        <li><a href="#" class="post-sidenavigation-item">Child link</a></li>
       </ul>
     </post-collapsible>
   </li>
