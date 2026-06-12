@@ -4,7 +4,7 @@ import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '8d15c75d-3cda-4793-9b85-81f11cabb81c',
-  title: 'Components/Side Navigation',
+  title: 'Raw Components/Side Navigation',
   tags: ['package:WebComponents', 'status:InProgress'],
   component: 'post-sidenavigation',
   parameters: {
