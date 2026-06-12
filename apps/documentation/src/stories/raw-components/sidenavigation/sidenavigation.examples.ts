@@ -1,4 +1,4 @@
-import { html } from "lit";
+import { html } from 'lit';
 
 export const linkOnly = html`
   <li>
@@ -40,7 +40,8 @@ export const nested = html`
   </li>
 `;
 
-// Expandable but not navigable — button only, no link on level 1.
+// Collapsible but not linked — button only, no link on level 1.
+// Collapsible is a child of the trigger (nested structure, no for/id).
 export const collapsibleNotLinked = html`
   <li>
     <post-collapsible-trigger>
@@ -56,7 +57,7 @@ export const collapsibleNotLinked = html`
       </post-collapsible>
     </post-collapsible-trigger>
   </li>
-   <li>
+  <li>
     <post-collapsible-trigger>
       <button class="post-sidenavigation-item">
         Level 1
@@ -72,7 +73,8 @@ export const collapsibleNotLinked = html`
   </li>
 `;
 
-// Expandable and navigable — link + separate chevron button on level 1.
+// Collapsible and linked — link + separate button inside trigger on level 1.
+// The link is part of a wrapper div with the button. Collapsible is a child of trigger.
 export const collapsibleLinked = html`
   <li>
     <post-collapsible-trigger>

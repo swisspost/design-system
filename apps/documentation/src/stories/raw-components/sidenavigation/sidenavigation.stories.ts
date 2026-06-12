@@ -107,42 +107,42 @@ function renderSidenavigationWithHeader(navContent?: TemplateResult) {
           </a>
         </li>
         <li>
-          <post-collapsible-trigger for="default-1">
+          <post-collapsible-trigger>
             <button class="post-sidenavigation-item">
               ${icon('bulkparcels')} Level 1
               <post-icon name="chevrondown" aria-hidden="true"></post-icon>
             </button>
+            <post-collapsible>
+              <ul>
+                <li>
+                  <post-collapsible-trigger>
+                    <button class="post-sidenavigation-item">
+                      Level 2
+                      <post-icon name="chevrondown" aria-hidden="true"></post-icon>
+                    </button>
+                    <post-collapsible>
+                      <ul>
+                        <li>
+                          <post-collapsible-trigger>
+                            <button class="post-sidenavigation-item">
+                              Level 3
+                              <post-icon name="chevrondown" aria-hidden="true"></post-icon>
+                            </button>
+                            <post-collapsible>
+                              <ul>
+                                <li><a href="#" class="post-sidenavigation-item">Level 4</a></li>
+                              </ul>
+                            </post-collapsible>
+                          </post-collapsible-trigger>
+                        </li>
+                      </ul>
+                    </post-collapsible>
+                  </post-collapsible-trigger>
+                </li>
+                <li><a href="#" class="post-sidenavigation-item">Level 2</a></li>
+              </ul>
+            </post-collapsible>
           </post-collapsible-trigger>
-          <post-collapsible id="default-1">
-            <ul>
-              <li>
-                <post-collapsible-trigger for="default-2">
-                  <button class="post-sidenavigation-item">
-                    Level 2
-                    <post-icon name="chevrondown" aria-hidden="true"></post-icon>
-                  </button>
-                </post-collapsible-trigger>
-                <post-collapsible id="default-2">
-                  <ul>
-                    <li>
-                      <post-collapsible-trigger for="default-3">
-                        <button class="post-sidenavigation-item">
-                          Level 3
-                          <post-icon name="chevrondown" aria-hidden="true"></post-icon>
-                        </button>
-                      </post-collapsible-trigger>
-                      <post-collapsible id="default-3">
-                        <ul>
-                          <li><a href="#" class="post-sidenavigation-item">Level 4</a></li>
-                        </ul>
-                      </post-collapsible>
-                    </li>
-                  </ul>
-                </post-collapsible>
-              </li>
-              <li><a href="#" class="post-sidenavigation-item">Level 2</a></li>
-            </ul>
-          </post-collapsible>
         </li>
       </ul>
 
@@ -154,18 +154,18 @@ function renderSidenavigationWithHeader(navContent?: TemplateResult) {
           </a>
         </li>
         <li>
-          <post-collapsible-trigger for="default-4">
+          <post-collapsible-trigger>
             <button class="post-sidenavigation-item">
               ${icon('login')} Level 1
               <post-icon name="chevrondown" aria-hidden="true"></post-icon>
             </button>
+            <post-collapsible collapsed>
+              <ul>
+                <li><a href="#" class="post-sidenavigation-item">Level 2</a></li>
+                <li><a href="#" class="post-sidenavigation-item">Level 2</a></li>
+              </ul>
+            </post-collapsible>
           </post-collapsible-trigger>
-          <post-collapsible id="default-4" collapsed>
-            <ul>
-              <li><a href="#" class="post-sidenavigation-item">Level 2</a></li>
-              <li><a href="#" class="post-sidenavigation-item">Level 2</a></li>
-            </ul>
-          </post-collapsible>
         </li>
       </ul>
 
@@ -177,18 +177,18 @@ function renderSidenavigationWithHeader(navContent?: TemplateResult) {
           </a>
         </li>
         <li>
-          <post-collapsible-trigger for="default-5">
+          <post-collapsible-trigger>
             <button class="post-sidenavigation-item">
               ${icon('profile')} Level 1
               <post-icon name="chevrondown" aria-hidden="true"></post-icon>
             </button>
+            <post-collapsible collapsed>
+              <ul>
+                <li><a href="#" class="post-sidenavigation-item">Level 2</a></li>
+                <li><a href="#" class="post-sidenavigation-item">Level 2</a></li>
+              </ul>
+            </post-collapsible>
           </post-collapsible-trigger>
-          <post-collapsible id="default-5" collapsed>
-            <ul>
-              <li><a href="#" class="post-sidenavigation-item">Level 2</a></li>
-              <li><a href="#" class="post-sidenavigation-item">Level 2</a></li>
-            </ul>
-          </post-collapsible>
         </li>
       </ul>
     `;

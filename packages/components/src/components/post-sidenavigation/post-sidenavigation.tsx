@@ -73,6 +73,7 @@ export class PostSidenavigation {
     if (!collapsible || collapsible.collapsed) return;
 
     e.preventDefault();
+    e.stopPropagation();
     collapsible.toggle(false);
     trigger.querySelector<HTMLButtonElement>('button')?.focus();
   };
@@ -154,9 +155,11 @@ export class PostSidenavigation {
   private renderDialog() {
     return (
       <Host data-version={version}>
-        <dialog onClose={() => {
-          this.postToggle.emit(false);
-        }}>
+        <dialog
+          onClose={() => {
+            this.postToggle.emit(false);
+          }}
+        >
           <slot />
           <post-closebutton onClick={() => this.hide()}>
             {this.textClose}
