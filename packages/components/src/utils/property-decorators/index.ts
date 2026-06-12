@@ -1,4 +1,5 @@
 export { ArrayOf } from './array-of';
+export { GreaterThan, LessThan } from './bound';
 export { DateValue } from './date';
 export { IsoDate } from './iso-date';
 export { OneOf } from './one-of';

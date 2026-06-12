@@ -22,6 +22,7 @@ const meta: MetaComponent = {
     captionPlacement: 'bottom',
     alignment: 'align-top',
     content: null,
+    style: '',
   },
   argTypes: {
     content: {
@@ -74,19 +75,33 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
+    style: {
+      name: 'Style',
+      description: 'Style options.',
+      control: {
+        type: 'radio',
+        labels: {
+          '': 'Default',
+          'table-striped': 'Striped',
+          'table-mono': 'Mono',
+        },
+      },
+      options: ['', 'table-striped', 'table-mono'],
+      table: {
+        category: 'General',
+      },
+    },
     variant: {
       name: 'Variants',
-      description: 'Stylistic table variants.',
+      description: 'Table variants.',
       control: {
         type: 'check',
         labels: {
           'table-sm': 'Small',
-          'table-striped': 'Striped',
-          'table-mono': 'Mono',
           'table-hover': 'Hover enabled',
         },
       },
-      options: ['table-sm', 'table-striped', 'table-mono', 'table-hover'],
+      options: ['table-sm', 'table-hover'],
       table: {
         category: 'General',
       },
@@ -124,6 +139,7 @@ function renderTable(args: Args) {
         table: true,
         [args.borderStyle]: args.borderStyle,
         [variants]: variants && variants !== '',
+        [args.style]: args.style !== '',
         [cationTop]: cationTop !== 'null',
         [args.alignment]: args.alignment,
       })}"
