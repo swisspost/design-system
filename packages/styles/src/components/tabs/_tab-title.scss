@@ -148,7 +148,6 @@ post-tab-item.nav-item {
       @include utilities-mx.focus-style-custom {
         outline-color: tokens.get('focus-outline-color', helpers.$post-focus) !important;
         outline-offset: $tabs-outline-offset !important;
-        border-radius: 8px; // ensures focus ring follows the tab corner radius
       }
 
       // selected — hovered
