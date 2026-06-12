@@ -39,7 +39,6 @@ post-sidenavigation {
   }
 
   // Nesting depth tracking via custom property inheritance
-  // Each ul level sets --_indent-level for its children
   ul {
     --_indent-level: 0;
   }
@@ -58,10 +57,14 @@ post-sidenavigation {
 
   // Nested item indentation
   ul ul .post-sidenavigation-item {
-    padding-inline-start: calc(1rem + var(--_indent-level) * var(--post-sidenavigation-indent));
+    padding-inline-start: calc(
+      1rem + var(--_indent-level) * var(--post-sidenavigation-indent)
+    );
 
     @include media.max(desktop) {
-      padding-inline-start: calc(1rem + var(--_indent-level) * 2.25rem);
+      padding-inline-start: calc(
+        1rem + var(--_indent-level) * 2.25rem
+      );
     }
   }
 
@@ -70,25 +73,27 @@ post-sidenavigation {
   :where(nav)
     > ul:has(
       > li
-        > :where(a, span, post-collapsible-trigger > button, div > a)
-        > post-icon:first-child
+      > :where(a, span, post-collapsible-trigger > button, div > a)
+      > post-icon:first-child
     )
     > li
     > :where(a, span):not(:has(> post-icon:first-child))::before,
+
   :where(nav)
     > ul:has(
       > li
-        > :where(a, span, post-collapsible-trigger > button, div > a)
-        > post-icon:first-child
+      > :where(a, span, post-collapsible-trigger > button, div > a)
+      > post-icon:first-child
     )
     > li
     > post-collapsible-trigger
     > button:not(:has(> post-icon:first-child))::before,
+
   :where(nav)
     > ul:has(
       > li
-        > :where(a, span, post-collapsible-trigger > button, div > a)
-        > post-icon:first-child
+      > :where(a, span, post-collapsible-trigger > button, div > a)
+      > post-icon:first-child
     )
     > li
     > div:not(:has(> a > post-icon:first-child))::before {
@@ -102,8 +107,8 @@ post-sidenavigation {
   }
 }
 
-post-collapsible-trigger post-icon[name="chevrondown"] {
-  color: black;
+post-collapsible-trigger post-icon[name='chevrondown'] {
+  color: rgb(0, 0, 0);
 }
 
 // Navigation item row (link, button, span, or collapsible wrapper)
@@ -122,7 +127,7 @@ post-collapsible-trigger post-icon[name="chevrondown"] {
   border-radius: 0;
 
   background-color: transparent;
-  color: black;
+  color: rgb(0, 0, 0);
   font: inherit;
   text-align: start;
   text-decoration: none;

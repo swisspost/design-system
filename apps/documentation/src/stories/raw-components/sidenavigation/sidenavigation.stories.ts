@@ -44,25 +44,37 @@ const meta: MetaComponent = {
     },
   },
   render: renderSidenavigationWithHeader(),
+  decorators: [(story) => html`<div style="padding-bottom: 3rem">${story()}</div>`],
 };
 
 export default meta;
 
 // RENDERERS
 
-// Core renderer: just the sidenavigation component without header
-// Used by snapshots and variant stories
-export function renderSidenavigation(navContent: TemplateResult, args: Args, navId?: string, ariaLabel?: string) {
+// Core renderer: just the sidenavigation component without header.
+// Used by snapshots and variant stories.
+// Set includeTrigger=false when a trigger is already provided externally (e.g. inside post-header).
+export function renderSidenavigation(
+  navContent: TemplateResult,
+  args: Args,
+  navId?: string,
+  ariaLabel?: string,
+  includeTrigger = true,
+) {
   const resolvedId = navId ?? crypto.randomUUID();
   const titleId = `${resolvedId}-title`;
 
   return html`
-    <post-sidenavigation-trigger for="${resolvedId}">
-      <button>
-        <span>Menu</span>
-        <post-icon aria-hidden="true" name="burger"></post-icon>
-      </button>
-    </post-sidenavigation-trigger>
+    ${includeTrigger
+      ? html`
+          <post-sidenavigation-trigger for="${resolvedId}">
+            <button>
+              <span>Menu</span>
+              <post-icon aria-hidden="true" name="burger"></post-icon>
+            </button>
+          </post-sidenavigation-trigger>
+        `
+      : nothing}
 
     <post-sidenavigation id="${resolvedId}" text-close="${args.textClose}">
       <nav
@@ -78,7 +90,9 @@ export function renderSidenavigation(navContent: TemplateResult, args: Args, nav
   `;
 }
 
-// Default story: wraps the core renderer with header
+// Default story renderer: wraps the core renderer with a post-header.
+// The trigger lives inside the header's local-nav slot, so includeTrigger=false
+// is passed to renderSidenavigation to avoid a duplicate trigger below the header.
 function renderSidenavigationWithHeader(navContent?: TemplateResult) {
   return (args: Args) => {
     const resolvedId = crypto.randomUUID();
@@ -180,7 +194,7 @@ function renderSidenavigationWithHeader(navContent?: TemplateResult) {
     `;
 
     return html`
-    <post-header text-menu="Menu">
+      <post-header text-menu="Menu">
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
         <p slot="title">[Application Title]</p>
         <ul slot="local-nav">
@@ -206,7 +220,7 @@ function renderSidenavigationWithHeader(navContent?: TemplateResult) {
           </li>
         </ul>
       </post-header>
-      ${renderSidenavigation(content, args, resolvedId)}
+      ${renderSidenavigation(content, args, resolvedId, undefined, false)}
     `;
   };
 }
