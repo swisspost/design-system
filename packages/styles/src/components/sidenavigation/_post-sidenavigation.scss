@@ -120,6 +120,25 @@ post-collapsible-trigger post-icon[name='chevrondown'] {
   appearance: none;
   line-height: 1.5;
 
+  button {
+      display: flex;
+      align-items: center;
+      padding-inline: 0.5rem;
+
+      border: 0;
+      border-inline-start: 1px solid rgba(0, 0, 0, 0.15);
+      background: transparent;
+      cursor: pointer;
+
+      > post-icon {
+        transition: transform 0.2s ease;
+      }
+
+      &[aria-expanded='true'] > post-icon {
+        transform: rotate(180deg);
+      }
+    }
+
   &:where(a, button) {
     cursor: pointer;
 
