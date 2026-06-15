@@ -1,4 +1,4 @@
-import { html, LitElement, nothing } from 'lit';
+﻿import { html, LitElement, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { V910Checks } from './types';
 import { _updateOnChange, _updatePersistedState } from './util/migration-checks.util';
@@ -16,7 +16,7 @@ export class MigrationV910Component extends LitElement {
       hide_automigration: false,
     },
     ngbootstrap: {
-      removed_components: false,
+      typeahead: false,
     },
     forms: {
       tooltip_validation: false,
@@ -299,56 +299,109 @@ export class MigrationV910Component extends LitElement {
                 <h4>Ng-Bootstrap</h4>
                 <ul class="list-unstyled">
                   <li>
-                    <div class="form-check">
-                      <input
-                        id="ngbootstrap-removed_components"
-                        class="form-check-input"
-                        type="checkbox"
-                        ?checked="${this.state.ngbootstrap.removed_components}"
-                      />
-                      <label class="form-check-label" for="ngbootstrap-removed_components">
-                        All Ng-Bootstrap components are no longer available:
-                        <ul>
-                          <li>carousel → <i>coming soon</i></li>
-                          <li>custom select → <i>coming soon</i></li>
-                          <li>datatable → AG Grid <i>coming soon</i></li>
-                          <li>datepicker → <i>coming soon</i></li>
-                          <li>dropdown → <i>coming soon</i></li>
-                          <li>
-                            modal →
-                            <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
-                              >dialog</a
-                            >
-                          </li>
-                          <li>
-                            notification overlay →
-                            <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
-                              >dialog</a
-                            >
-                          </li>
-                          <li>pagination → <i>coming soon</i></li>
-                          <li>progressbar → 
-                            <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs"
-                              >post-progressbar</a
-                            ></li>
-                          <li>timepicker → <i>coming soon</i></li>
-                          <li>
+                    All Ng-Bootstrap components are no longer available. Each removed Ng-Bootstrap component has (or will have) an equivalent in
+                      the Design System, shown in the following list. Migration to these new
+                      components is manual — you’ll need to update the affected components in
+                      your application to use the corresponding elements as described in their
+                      documentation.
+                    <ul>
+                      <li>carousel → <i>coming soon</i></li>
+                      <li>custom select → <i>coming soon</i></li>
+                      <li>datatable → AG Grid <i>coming soon</i></li>
+                      <li>datepicker → <i>coming soon</i></li>
+                      <li>dropdown → <i>coming soon</i></li>
+                      <li>
+                        modal →
+                        <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
+                          >dialog</a
+                        >
+                      </li>
+                      <li>
+                        notification overlay →
+                        <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
+                          >dialog</a
+                        >
+                      </li>
+                      <li>pagination → <i>coming soon</i></li>
+                      <li>progressbar → <i>coming soon</i></li>
+                      <li>timepicker → <i>coming soon</i></li>
+                      <li>
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-typeahead"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.typeahead}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-typeahead">
                             typeahead →
                             <a
                               href="/?path=/docs/2df77c32-5e33-402e-bd2e-54d54271ce19--docs#autocomplete"
                               >input with datalist</a
                             >
-                          </li>
-                        </ul>
-                        <span class="info"
-                          >Each removed Ng-Bootstrap component has (or will have) an equivalent in
-                          the Design System, shown in the list above. Migration to these new
-                          components is manual — you’ll need to update the affected components in
-                          your application to use the corresponding elements as described in their
-                          documentation.</span
-                        >
-                      </label>
-                    </div>
+                            <span class="info">
+                              <p>
+                                Replace the <code>[ngbTypeahead]</code> directive with a native
+                                <code>&lt;input&gt;</code> element paired with a
+                                <code>&lt;datalist&gt;</code>. The browser handles filtering
+                                automatically based on what the user types — no additional scripts
+                                required.
+                              </p>
+                              <p><strong>Before (v9 — NgbTypeahead)</strong></p>
+                              <p>
+                                Define a <code>search</code> function returning filtered results as
+                                an observable and bind it with the <code>[ngbTypeahead]</code>
+                                directive:
+                              </p>
+                              <code-block
+                                code=${`// component.ts\nsearch = (text$: Observable<string>) =>\n  text$.pipe(\n    debounceTime(200),\n    distinctUntilChanged(),\n    map(term =>\n      term.length < 2\n        ? []\n        : options.filter(v => v.toLowerCase().includes(term.toLowerCase()))\n    )\n  );`}
+                              ></code-block>
+                              <code-block
+                                code=${`<!-- template.html -->\n<input\n  type="text"\n  class="form-control"\n  [(ngModel)]="model"\n  [ngbTypeahead]="search"\n/>`}
+                              ></code-block>
+                              <p><strong>After (v10)</strong></p>
+                              <p>
+                                Declare the options in a <code>&lt;datalist&gt;</code> element and
+                                link it to the input via the <code>list</code> attribute:
+                              </p>
+                              <code-block
+                                code=${`<!-- template.html -->\n<input class="form-control" type="text" list="my-options" />\n<datalist id="my-options">\n  <option value="Option A"></option>\n  <option value="Option B"></option>\n  <option value="Option C"></option>\n</datalist>`}
+                              ></code-block>
+                              <p>
+                                <strong
+                                  >Limitations compared to <code>NgbTypeahead</code>:</strong
+                                >
+                              </p>
+                              <ul>
+                                <li>
+                                  <strong>Filtering behavior:</strong> All modern browsers filter
+                                  suggestions by matching anywhere in the string — there is no
+                                  browser API to change this behavior.
+                                </li>
+                                <li>
+                                  <strong>Dropdown styling:</strong> The suggestion popup is
+                                  rendered using the browser's native UI and can partially be styled with CSS but visual rendering may vary depending on browser.
+                                </li>
+                                <li>
+                                  <strong>Object models:</strong> The
+                                  <code>[ngbTypeahead]</code> directive supported returning objects
+                                  with <code>[inputFormatter]</code> and
+                                  <code>[resultFormatter]</code> to control how values are
+                                  displayed. The native <code>&lt;datalist&gt;</code> only supports
+                                  string values.
+                                </li>
+                                <li>
+                                  <strong>Custom result templates:</strong> The
+                                  <code>[resultTemplate]</code> input for rendering custom
+                                  ng-templates per suggestion has no native equivalent with
+                                  <code>&lt;datalist&gt;</code>.
+                                </li>
+                              </ul>
+                            </span>
+                          </label>
+                        </div>
+                      </li>
+                    </ul>
                   </li>
                 </ul>
               </section>
