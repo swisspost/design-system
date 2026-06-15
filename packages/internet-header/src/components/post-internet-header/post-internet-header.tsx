@@ -1,11 +1,12 @@
-import { Component, Event, EventEmitter, h, Host, Listen, Prop, Watch } from '@stencil/core';
-import { getLocalizedConfig, isValidProjectId } from '@/services/config.service';
-import { version } from '@root/package.json';
-import { ActiveRouteProp, Environment } from '@/models/general.model';
-import { dispose, state } from '@/data/store';
 import { Link, LinkProps, MegaDropdown, UserMenu } from '@/components/internal';
-import { LinkConfig } from '@/models/shared.model';
+import { dispose, state } from '@/data/store';
+import { ActiveRouteProp, Environment } from '@/models/general.model';
 import { UserMenuConfig } from '@/models/header.model';
+import { LinkConfig } from '@/models/shared.model';
+import { getLocalizedConfig, isValidProjectId } from '@/services/config.service';
+import { getActiveLink } from '@/services/route.service';
+import { version } from '@root/package.json';
+import { Component, Event, EventEmitter, h, Host, Listen, Prop, Watch } from '@stencil/core';
 import '@swisspost/design-system-components';
 
 @Component({
@@ -20,8 +21,8 @@ export class PostInternetHeader {
   @Prop() activeRoute: ActiveRouteProp = 'auto';
 
   @Watch('activeRoute')
-  async handleActiveRouteChange() {
-    await this.updateConfig();
+  handleActiveRouteChange() {
+    this.updateActiveUrl();
   }
 
   /**
@@ -86,6 +87,11 @@ export class PostInternetHeader {
   @Prop({ reflect: true }) readonly textMenu!: string;
 
   /**
+   * Visually hidden label for the login widget trigger button.
+   */
+  @Prop({ reflect: true }) readonly textUserMenuTrigger!: string;
+
+  /**
    * Visually hidden label for the user menu.
    */
   @Prop({ reflect: true }) readonly textUserLinks!: string;
@@ -144,6 +150,12 @@ export class PostInternetHeader {
       environment: this.environment,
       language: this.language,
     });
+
+    this.updateActiveUrl();
+  }
+
+  private updateActiveUrl() {
+    state.activeLink = getActiveLink(this.activeRoute);
   }
 
   private renderNavItem(config: LinkConfig | UserMenuConfig, props: LinkProps = {}): string {
@@ -238,7 +250,14 @@ export class PostInternetHeader {
             </post-language-menu>
           )}
 
-          {globalHeader.login && this.renderNavItem(globalHeader.login, { slot: 'post-login' })}
+          {globalHeader.login && (
+            <swisspost-internet-login-widget
+              slot="post-login"
+              textCurrentUser={this.textCurrentUser}
+              textUserMenu={this.textUserLinks}
+              textUserMenuTrigger={this.textUserMenuTrigger}
+            />
+          )}
 
           {localHeader.title && <p slot="title">{localHeader.title}</p>}
 

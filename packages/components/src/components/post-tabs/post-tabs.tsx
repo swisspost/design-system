@@ -1,3 +1,6 @@
+import { fade } from '@/animations';
+import { componentOnReady, Type } from '@/utils';
+import { version } from '@root/package.json';
 import {
   Component,
   Element,
@@ -11,9 +14,6 @@ import {
   Watch,
   Build,
 } from '@stencil/core';
-import { version } from '@root/package.json';
-import { fade } from '@/animations';
-import { componentOnReady, checkRequiredAndType } from '@/utils';
 
 /**
  * @slot default - Slot for placing tab items. Each tab item should be a <post-tab-item> element.
@@ -67,12 +67,17 @@ export class PostTabs {
   /**
    * The accessible label for the tabs component in navigation mode.
    */
-  @Prop({ reflect: true }) readonly label?: string;
+  @Prop({ reflect: true })
+  @Type('string')
+  readonly label?: string;
 
   @Watch('label')
   validateLabel() {
-    if (this.isNavigationMode) {
-      checkRequiredAndType(this, 'label', 'string');
+    if (this.isNavigationMode && !this.label) {
+      console.error(
+        `[${this.host.localName}] Property "label" is required in navigation mode. Received: ${JSON.stringify(this.label)}.`,
+        this.host,
+      );
     }
   }
 

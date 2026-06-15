@@ -1,9 +1,9 @@
-import { FunctionalComponent, h } from '@stencil/core';
 import { MegadropdownConfig } from '@/models/header.model';
 import { createIdFrom } from '@/utils/create-id-from';
 import { getText } from '@/utils/get-text';
-import { Title } from './Title';
+import { FunctionalComponent, h } from '@stencil/core';
 import { Link } from './Link';
+import { Title } from './Title';
 
 interface MegaDropdownProps {
   textClose: string;
@@ -21,7 +21,13 @@ export const MegaDropdown: FunctionalComponent<
     </post-megadropdown-trigger>,
 
     <post-megadropdown id={megaDropdownId} textClose={textClose} textBack={textBack}>
-      {config.overview && <Link config={config.overview} class="post-megadropdown-overview" />}
+      {config.overview && (
+        <Link
+          config={config.overview}
+          class="post-megadropdown-overview"
+          ariaCurrentWhenActive="page"
+        />
+      )}
       <div class="row row-cols-1 row-cols-sm-2">
         {config.sections.map(section => (
           <MegaDropdownSection config={section} />
@@ -43,7 +49,7 @@ const MegaDropdownSection: FunctionalComponent<{
       <ul class="post-megadropdown-list" aria-labelledby={titleId}>
         {config.items.map(item => (
           <li>
-            <Link config={item} />
+            <Link config={item} ariaCurrentWhenActive="page" />
           </li>
         ))}
       </ul>
