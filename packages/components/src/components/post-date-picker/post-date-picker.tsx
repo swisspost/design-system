@@ -24,6 +24,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
+import type { AirDatepickerDate } from 'air-datepicker';
 import AirDatepicker, {
   AirDatepickerOptions,
   AirDatepickerViews,
@@ -81,7 +82,7 @@ export class PostDatePicker {
       firstDay: locale.firstDay,
     });
 
-    this.updateMask();
+    this.updateMask({ recreate: true });
   }
 
   /**
@@ -92,8 +93,7 @@ export class PostDatePicker {
   @Watch('range')
   updateRange() {
     this.dpInstance?.update({ range: this.range });
-    this.handleSelectedDates();
-    this.updateMask();
+    this.handleSelectedDates({ recreateMask: true });
   }
 
   /**
@@ -104,6 +104,10 @@ export class PostDatePicker {
   @DateValue()
   @IsoDate()
   selectedStartDate?: string;
+  @Watch('selectedStartDate')
+  handleSelectedStartDateChange() {
+    this.handleSelectedDates();
+  }
 
   /**
    * The date picker's selected end date (for range date picker only).
@@ -113,6 +117,10 @@ export class PostDatePicker {
   @DateValue()
   @IsoDate()
   selectedEndDate?: string;
+  @Watch('selectedEndDate')
+  handleSelectedEndDateChange() {
+    this.handleSelectedDates();
+  }
 
   /**
    * Minimun possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
@@ -264,6 +272,23 @@ export class PostDatePicker {
   private gridObserver: MutationObserver;
   private navObserver: MutationObserver;
   private inputObserver: MutationObserver;
+
+  /**
+   * Get the selected dates as date objects, or return false if no valid start date is selected to update dpInstance with it.
+   */
+  private get selectedDates(): AirDatepickerDate[] | false {
+    const start = this.isoToDate(this.selectedStartDate ?? '');
+    const end = this.isoToDate(this.selectedEndDate ?? '');
+    const selectedDates = [start, end].filter(d => this.isValidDate(d));
+
+    // Air Date Picker can't set only the end date,
+    // therefore we can only return the selected dates if the start date is set
+    if (this.isValidDate(start) && selectedDates.length > 0) {
+      return this.range ? selectedDates : selectedDates.slice(0, 1);
+    }
+
+    return false;
+  }
 
   /**
    * Get the system locale (e.g.`en`, etc.) from the closest parent with a `lang` attribute,
@@ -420,7 +445,7 @@ export class PostDatePicker {
    * @param isoDateString An iso formatted, localtime date string.
    * @returns A localtime date object.
    */
-  private isoToDate(isoDateString: string): Date | null {
+  private isoToDate(isoDateString: string): Date {
     return new Date(`${this.padIsoDate(isoDateString)}T00:00`);
   }
 
@@ -828,10 +853,12 @@ export class PostDatePicker {
     this.inputMask = IMask(this.dpInput, this.range ? rangeMaskOptions : singleMaskOptions);
   }
 
-  private updateMask() {
+  private updateMask({ recreate = false } = {}) {
     if (!this.inline) {
-      this.inputMask.destroy();
-      this.setUpMask();
+      if (recreate) {
+        this.inputMask.destroy();
+        this.setUpMask();
+      }
 
       if (this.dpInstance.selectedDates.length > 0) {
         if (this.range) {
@@ -877,6 +904,7 @@ export class PostDatePicker {
         dateFormat: locale.dateFormat,
         firstDay: locale.firstDay,
         view: 'days',
+        selectedDates: this.selectedDates,
         onChangeView: view => {
           this.currentViewType = view;
           requestAnimationFrame(() => {
@@ -949,11 +977,10 @@ export class PostDatePicker {
 
       this.dpInstance = new AirDatepicker(this.dpContainer, options);
       this.reorderNavigation();
+      this.updateMask();
 
       this.prevBtn?.addEventListener('click', this.handlePrevNextClick);
       this.nextBtn?.addEventListener('click', this.handlePrevNextClick);
-
-      this.handleSelectedDates();
     }
   }
 
@@ -964,26 +991,16 @@ export class PostDatePicker {
     this.dpInput.dispatchEvent(new InputEvent('change', { bubbles: true }));
   }
 
-  private handleSelectedDates() {
-    if (this.range) {
-      if (
-        (this.selectedStartDate && !this.selectedEndDate) ||
-        (!this.selectedStartDate && this.selectedEndDate)
-      ) {
-        console.error(
-          'The range date picker expects either no selected dates or both of them defined.',
-        );
-      } else if (this.selectedStartDate && this.selectedEndDate) {
-        this.dpInstance.selectDate([
-          this.isoToDate(this.selectedStartDate),
-          this.isoToDate(this.selectedEndDate),
-        ]);
-      }
-    } else {
-      if (this.selectedStartDate && this.isoToDate(this.selectedStartDate)) {
-        this.dpInstance.selectDate(this.isoToDate(this.selectedStartDate));
+  private handleSelectedDates({ recreateMask = false }: { recreateMask?: boolean } = {}) {
+    if (this.selectedDates) {
+      if (this.range) {
+        this.dpInstance.selectDate(this.selectedDates);
+      } else {
+        this.dpInstance.selectDate(this.selectedDates[0]);
       }
     }
+
+    this.updateMask({ recreate: recreateMask });
   }
 
   private attachTitleBtnListener() {
@@ -1125,7 +1142,7 @@ export class PostDatePicker {
     this.selectedEndDate = undefined;
   }
 
-  private isValidDate(date: Date): boolean {
+  private isValidDate(date: Date): date is Date {
     return date instanceof Date && !Number.isNaN(date.getTime());
   }
 
