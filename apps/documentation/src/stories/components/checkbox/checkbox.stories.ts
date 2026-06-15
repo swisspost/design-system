@@ -9,7 +9,7 @@ import { getLabelText, getValidationMessages, VALIDATION_STATE_MAP } from '@/uti
 const meta: MetaComponent = {
   id: 'e6ecc86f-d148-413b-b796-614a89da54be',
   title: 'Components/Form Checkbox',
-  tags: ['package:Styles', 'status:Stable'],
+  tags: ['package:Styles'],
   render: renderCheckbox,
   parameters: {
     badges: [],
