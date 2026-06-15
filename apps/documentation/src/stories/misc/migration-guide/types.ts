@@ -89,7 +89,7 @@ export interface V910Checks {
     hide_automigration: boolean;
   };
   ngbootstrap: {
-    removed_components: boolean;
+    typeahead: boolean;
   };
   forms: {
     tooltip_validation: boolean;
