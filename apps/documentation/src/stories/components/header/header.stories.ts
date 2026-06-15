@@ -9,7 +9,7 @@ import { renderMicrositeControls } from '@/stories/components/header/renderers/m
 import { renderJobControls } from '@/stories/components/header/renderers/job-controls';
 import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
 import { renderTitle } from '@/stories/components/header/renderers/title';
-import { withCompactAppearance } from '../../../../.storybook/helpers';
+import { forceCompactAppearance } from '../../../../.storybook/helpers';
 
 const meta: MetaComponent = {
   id: '27a2e64d-55ba-492d-ab79-5f7c5e818498',
@@ -354,7 +354,7 @@ export const OnePagerH1: Story = {
 
 export const Application: Story = {
   ...getIframeParameters(250),
-  decorators: [withCompactAppearance],
+  decorators: [forceCompactAppearance],
   args: {
     title: '[Application Title]',
     mainNav: false,
@@ -369,7 +369,7 @@ export const Application: Story = {
 
 export const ApplicationWithLanguageMenu: Story = {
   ...getIframeParameters(250),
-  decorators: [withCompactAppearance],
+  decorators: [forceCompactAppearance],
   args: {
     title: '[Application Title]',
     mainNav: false,

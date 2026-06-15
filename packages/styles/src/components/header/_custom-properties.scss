@@ -133,17 +133,14 @@ post-header:not(:has([slot='main-nav'])) {
   --post-global-header-reduced-height: 2rem;
 
   @include media.only(desktop) {
-    --post-local-header-expanded-min-height: 4rem;
     --post-logo-expanded-offset: 0.625rem;
     --post-logo-reduced-offset: 0.625rem;
   }
   @include media.only(tablet) {
-    --post-local-header-expanded-min-height: 3.5rem;
     --post-logo-expanded-offset: 0.75rem;
     --post-logo-reduced-offset: 0.75rem;
   }
   @include media.only(mobile) {
-    --post-local-header-expanded-min-height: 3rem;
     --post-logo-expanded-offset: 0.5rem;
     --post-logo-reduced-offset: 0.5rem;
   }

@@ -23,8 +23,8 @@ The Header adapts to your needs and can contain a variety of sub-components depe
 
 It is divided into two sections:
 
-1. **Global Header** (Yellow Background): provides navigation links and information that are global to the entire organization.
-2. **Application Header** (White Background): displays navigation links and information specific to the current application.
+1. **Global navigation** (Yellow Background): provides navigation links and information that are global to the entire organization.
+2. **Local navigation** (White Background): displays navigation links and information specific to the current application.
 
 <div className="main-story">
   <Canvas sourceState="shown" of={HeaderStories.Default} />
@@ -100,7 +100,7 @@ see the [Heading elements documentation](https://developer.mozilla.org/en-US/doc
 
 ### Application
 
-The Application header is a header variant intended for internal applications. It uses the `appearance: compact` configuration and is distinguished by the absence of any content in its global (yellow) part except from the Logo.
+The Application header is a header variant intended for internal applications. It uses the `appearance: compact` styles bundle and is distinguished by the absence of any content in its global (yellow) part except from the Logo.
 
 <Canvas of={HeaderStories.Application} inline="false" />
 
