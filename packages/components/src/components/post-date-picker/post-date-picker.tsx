@@ -100,26 +100,42 @@ export class PostDatePicker {
    * The date picker's selected date. If in range mode, the selected start date.
    * Must be a valid date in ISO 8601 format (YYYY-MM-DD).
    */
-  @Prop({ mutable: true })
+  @Prop()
   @DateValue()
   @IsoDate()
   selectedStartDate?: string;
   @Watch('selectedStartDate')
   handleSelectedStartDateChange() {
-    this.handleSelectedDates();
+    const dpDates = this.inputDates || [];
+    const startDate = dpDates[0] || null;
+
+    if (this.datesChanged(dpDates)) {
+      this.dpInstance.clear({ silent: true });
+      this.dpInstance.selectDate(this.range ? dpDates : startDate);
+      this.dpInstance.setViewDate(startDate);
+      this.updateMask();
+    }
   }
 
   /**
    * The date picker's selected end date (for range date picker only).
    * Must be a valid date in ISO 8601 format (YYYY-MM-DD).
    */
-  @Prop({ mutable: true })
+  @Prop()
   @DateValue()
   @IsoDate()
   selectedEndDate?: string;
   @Watch('selectedEndDate')
   handleSelectedEndDateChange() {
-    this.handleSelectedDates();
+    const dpDates = this.inputDates || [];
+    const startDate = dpDates[0] || null;
+
+    if (this.range && this.datesChanged(dpDates)) {
+      this.dpInstance.clear({ silent: true });
+      this.dpInstance.selectDate(dpDates);
+      this.dpInstance.setViewDate(startDate);
+      this.updateMask();
+    }
   }
 
   /**
@@ -229,6 +245,14 @@ export class PostDatePicker {
   @Event() postUpdateDates: EventEmitter<string | string[]>;
 
   /**
+   * Returns the date packer current value (Date| Date[] | '').
+   */
+  @Method()
+  async value() {
+    return this.outputDates;
+  }
+
+  /**
    * Displays the popover calendar, focusing the first calendar item.
    */
   @Method()
@@ -276,7 +300,7 @@ export class PostDatePicker {
   /**
    * Get the selected dates as date objects, or return false if no valid start date is selected to update dpInstance with it.
    */
-  private get selectedDates(): AirDatepickerDate[] | false {
+  private get inputDates(): Date[] | false {
     const start = this.isoToDate(this.selectedStartDate ?? '');
     const end = this.isoToDate(this.selectedEndDate ?? '');
     const selectedDates = [start, end].filter(d => this.isValidDate(d));
@@ -285,9 +309,27 @@ export class PostDatePicker {
     // therefore we can only return the selected dates if the start date is set
     if (this.isValidDate(start) && selectedDates.length > 0) {
       return this.range ? selectedDates : selectedDates.slice(0, 1);
+    } else if (this.range && this.isValidDate(end) && !this.isValidDate(start)) {
+      console.warn(
+        'Post Date Picker: In range mode, the `selectedStartDate` must be set to have a valid selection. Please set a valid `selectedStartDate` or clear the `selectedEndDate`.',
+      );
     }
 
     return false;
+  }
+
+  private get outputDates(): string | string[] {
+    const selectedDates = ['', ''];
+
+    this.dpInstance.selectedDates.forEach((date, index) => {
+      selectedDates[index] = this.dateToIso(date);
+    });
+
+    if (this.range) {
+      return selectedDates;
+    } else {
+      return selectedDates[0];
+    }
   }
 
   /**
@@ -472,6 +514,13 @@ export class PostDatePicker {
     });
   }
 
+  private datesChanged(newDates: Date[]) {
+    return (
+      this.dpInstance.selectedDates.map(d => this.dateToIso(d)).join(',') !==
+      newDates.map(d => this.dateToIso(d)).join(',')
+    );
+  }
+
   /**
    * Get all the active cells of the calendar
    */
@@ -585,7 +634,7 @@ export class PostDatePicker {
     );
   }
 
-  private skipOnSelectCount = 0;
+  // private skipOnSelectCount = 0;
   private skipFocusOnNextRender = false;
 
   private handleInputBlur = () => {
@@ -594,20 +643,15 @@ export class PostDatePicker {
       const start = this.stringToDate(dates[0]);
       const end = this.stringToDate(dates[1]);
 
-      const startValid = this.isValidDate(start);
-      const endValid = this.isValidDate(end);
+      if (this.isValidDate(start)) {
+        const dpDates = [start];
+        if (this.isValidDate(end)) dpDates.push(end);
 
-      if (startValid && endValid) {
-        // Check if user entered dates in wrong order
-        const reversed = start > end;
-        this.skipOnSelectCount = reversed ? 0 : 2; // don't skip if reversed
-        this.dpInstance.selectDate([start, end]);
-        this.dpInstance.setViewDate(start);
-        this.postUpdateDates.emit([this.dateToIso(start), this.dateToIso(end)]);
-      } else if (startValid && !endValid) {
-        this.dpInstance.clear();
-        this.dpInstance.selectDate(start);
-        this.dpInstance.setViewDate(start);
+        if (this.datesChanged(dpDates)) {
+          this.dpInstance.clear({ silent: true });
+          this.dpInstance.selectDate(dpDates);
+          this.dpInstance.setViewDate(start);
+        }
       } else {
         this.resetSelection();
       }
@@ -615,10 +659,11 @@ export class PostDatePicker {
       const date = this.stringToDate(this.inputMask.value);
 
       if (this.isValidDate(date)) {
-        this.skipOnSelectCount = 1;
-        this.dpInstance.selectDate(date);
-        this.dpInstance.setViewDate(date);
-        this.postUpdateDates.emit(this.dateToIso(date));
+        if (this.datesChanged([date])) {
+          this.dpInstance.clear({ silent: true });
+          this.dpInstance.selectDate(date);
+          this.dpInstance.setViewDate(date);
+        }
       } else {
         this.resetSelection();
       }
@@ -790,10 +835,7 @@ export class PostDatePicker {
     body.removeEventListener('keydown', this.handleGridKeydown);
     body.addEventListener('keydown', this.handleGridKeydown);
 
-    this.setActiveCell(
-      (this.selectedStartDate && this.isoToDate(this.selectedStartDate)) || this.today,
-      focusOnDate,
-    );
+    this.setActiveCell(this.dpInstance.selectedDates[0] ?? this.today, focusOnDate);
   }
 
   /**
@@ -904,7 +946,7 @@ export class PostDatePicker {
         dateFormat: locale.dateFormat,
         firstDay: locale.firstDay,
         view: 'days',
-        selectedDates: this.selectedDates,
+        selectedDates: this.inputDates,
         onChangeView: view => {
           this.currentViewType = view;
           requestAnimationFrame(() => {
@@ -923,24 +965,7 @@ export class PostDatePicker {
             c.setAttribute('aria-selected', c.classList.contains('-selected-') ? 'true' : 'false');
           });
 
-          // If selected date is added dynamically after user has typed it in the input
-          if (this.skipOnSelectCount > 0) {
-            this.skipOnSelectCount--;
-            return;
-          }
-
-          // update props
-          if (Array.isArray(date) && date.length === 2) {
-            this.selectedStartDate = this.dateToIso(date[0]);
-            this.selectedEndDate = this.dateToIso(date[1]);
-          } else if (!Array.isArray(date)) {
-            this.selectedStartDate = this.dateToIso(date);
-            this.selectedEndDate = undefined;
-          }
-
-          this.postUpdateDates.emit(
-            Array.isArray(date) ? date.map(d => this.dateToIso(d)) : this.dateToIso(date),
-          );
+          this.postUpdateDates.emit(this.outputDates);
 
           // Assign value to the input, close the popover and focus on the input
           if (this.dpInput) {
@@ -992,11 +1017,11 @@ export class PostDatePicker {
   }
 
   private handleSelectedDates({ recreateMask = false }: { recreateMask?: boolean } = {}) {
-    if (this.selectedDates) {
+    if (this.inputDates) {
       if (this.range) {
-        this.dpInstance.selectDate(this.selectedDates);
+        this.dpInstance.selectDate(this.inputDates);
       } else {
-        this.dpInstance.selectDate(this.selectedDates[0]);
+        this.dpInstance.selectDate(this.inputDates[0]);
       }
     }
 
@@ -1135,11 +1160,10 @@ export class PostDatePicker {
   }
 
   private resetSelection() {
-    this.skipOnSelectCount = 0;
-    this.dpInstance.clear();
+    this.dpInstance.clear({ silent: true });
     this.dpInstance.setViewDate(this.today);
-    this.selectedStartDate = undefined;
-    this.selectedEndDate = undefined;
+    this.updateMask();
+    this.postUpdateDates.emit(this.outputDates);
   }
 
   private isValidDate(date: Date): date is Date {

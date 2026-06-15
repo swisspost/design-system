@@ -272,6 +272,10 @@ export namespace Components {
           * Label for the toggle button that opens the calendar. It is only needed when the calendar is connected to the input.
          */
         "textToggleCalendar"?: string;
+        /**
+          * Returns the date packer current value (Date| Date[] | '').
+         */
+        "value": () => Promise<string | string[]>;
     }
     interface PostFooter {
         /**
