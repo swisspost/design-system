@@ -1,5 +1,73 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.73
+
+### Patch Changes
+
+- Added horizontal scroll support to `post-banner` to prevent content from overflowing the banner's width. (by [@myrta2302](https://github.com/myrta2302) with [#7680](https://github.com/swisspost/design-system/pull/7680))
+
+- Added a slight horizontal offset to the header logo as it shrinks on scroll, ensuring consistent alignment with the rest of the header content. (by [@alizedebray](https://github.com/alizedebray) with [#7756](https://github.com/swisspost/design-system/pull/7756))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.73
+  - @swisspost/design-system-icons@10.0.0-next.73
+
+## 10.0.0-next.72
+
+### Minor Changes
+
+- Updated the `<post-collapsible-trigger>` component to support nesting without id references. A `<post-collapsible>` can now be placed directly inside `<post-collapsible-trigger>` instead of using the `for` attribute. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7727](https://github.com/swisspost/design-system/pull/7727))
+
+- Added a progressbar component used to indicate that the user's request has been received and the application is making progress toward completing the requested action. (by [@alizedebray](https://github.com/alizedebray) with [#7657](https://github.com/swisspost/design-system/pull/7657))
+
+### Patch Changes
+
+- Fixed missing `role` and `aria-labelledby` attributes on `post-autocomplete`. (by [@myrta2302](https://github.com/myrta2302) with [#7672](https://github.com/swisspost/design-system/pull/7672))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.72
+  - @swisspost/design-system-icons@10.0.0-next.72
+
+## 10.0.0-next.71
+
+### Major Changes
+
+- Updated the `post-login-widget`:
+  - The slot `unauthenticated` has been renamed to `login-link`.
+  - The slot `authenticated` has been renamed to `user-links` and should now only contain the links to show in the user menu (list of `post-menu-item`) when the user is authenticated. The trigger of the user menu with the avatar and user name is now handled internally by the component and should not be implemented by the consumer anymore.
+  - Added three required props for labels: `textUserMenu`, `textUserMenuTrigger` and `textCurrentUser`. (by [@leagrdv](https://github.com/leagrdv) with [#7602](https://github.com/swisspost/design-system/pull/7602))
+
+- Removed the `userId` property from the `post-avatar` component as it is no longer working. (by [@leagrdv](https://github.com/leagrdv) with [#7626](https://github.com/swisspost/design-system/pull/7626))
+
+### Minor Changes
+
+- Added a bottom-sheet variant for the dialog component. (by [@JoaoSequeira489](https://github.com/JoaoSequeira489) with [#7546](https://github.com/swisspost/design-system/pull/7546))
+
+- Increased browser coverage by adding `baseline widely available` query to the browserslistrc. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7613](https://github.com/swisspost/design-system/pull/7613))
+
+- Internalized `nanoid/non-secure` as a utility and removed the `nanoid` dependency, to get rid of `node:crypto` in the hydrate app. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7660](https://github.com/swisspost/design-system/pull/7660))
+
+- Updated the `post-datepicker` to be SSR compatible. (by [@myrta2302](https://github.com/myrta2302) with [#7434](https://github.com/swisspost/design-system/pull/7434))
+
+### Patch Changes
+
+- Removed the `language-tags` dependency used in the date-picker component to improve bundle size. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7660](https://github.com/swisspost/design-system/pull/7660))
+
+- Updated `post-popover`, `post-tooltip`, `post-menu`, `post-language-menu` and `post-autocomplete` components to constrain their height and enable vertical scrolling when the available viewport height is limited. (by [@myrta2302](https://github.com/myrta2302) with [#7679](https://github.com/swisspost/design-system/pull/7679))
+
+- Added `sideEffects` field to the components and components-react package to improve tree-shaking. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7660](https://github.com/swisspost/design-system/pull/7660))
+
+- Updated `post-breadcrumbs` to wrap when the last item's content overflows. (by [@myrta2302](https://github.com/myrta2302) with [#7670](https://github.com/swisspost/design-system/pull/7670))
+
+- Added missing RTL support for the inline datepicker. (by [@myrta2302](https://github.com/myrta2302) with [#7676](https://github.com/swisspost/design-system/pull/7676))
+
+- Fixed import-time side effects in `post-tooltip-trigger` by lazy-loading `ally.js` and `long-press-event`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7660](https://github.com/swisspost/design-system/pull/7660))
+
+- Updated the `post-breadcrumb-item` component to use the provided `url` directly as the `href`. Fixes an issue with incomplete URLs and aligns behavior with standard browser `href` handling. (by [@alizedebray](https://github.com/alizedebray) with [#7501](https://github.com/swisspost/design-system/pull/7501))
+
+- Removed the hydrate app from Next.js client bundle, without loosing the capability to render declarative shadow DOM during SSR, by importing our server components into Next.js client components. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7660](https://github.com/swisspost/design-system/pull/7660))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.71
+  - @swisspost/design-system-styles@10.0.0-next.71
+
 ## 10.0.0-next.70
 
 ### Major Changes
@@ -30,6 +98,7 @@
     </div>
   </post-megadropdown>
   ```
+
   (by [@myrta2302](https://github.com/myrta2302) with
   [#7479](https://github.com/swisspost/design-system/pull/7479))
 

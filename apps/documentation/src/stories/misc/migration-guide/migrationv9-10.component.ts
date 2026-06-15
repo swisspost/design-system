@@ -1,8 +1,8 @@
-import { html, LitElement, nothing } from 'lit';
+﻿import { html, LitElement, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { _restorePersistedState, MIGRATION_CHECKS_KEY_V9 } from './util/persist.util';
 import { V910Checks } from './types';
 import { _updateOnChange, _updatePersistedState } from './util/migration-checks.util';
+import { _restorePersistedState, MIGRATION_CHECKS_KEY_V9 } from './util/persist.util';
 
 @customElement('migration-version-9-10')
 export class MigrationV910Component extends LitElement {
@@ -16,7 +16,7 @@ export class MigrationV910Component extends LitElement {
       hide_automigration: false,
     },
     ngbootstrap: {
-      removed_components: false,
+      typeahead: false,
     },
     forms: {
       tooltip_validation: false,
@@ -88,11 +88,19 @@ export class MigrationV910Component extends LitElement {
       card_control: false,
       tag: false,
     },
+    internet_header: {
+      update_package: false,
+      add_text_props: false,
+      remove_props: false,
+    },
   };
 
   constructor() {
     super();
-    this.state = _restorePersistedState<V910Checks>(MIGRATION_CHECKS_KEY_V9) ?? this.state;
+    const restored = _restorePersistedState<V910Checks>(MIGRATION_CHECKS_KEY_V9);
+    if (restored) {
+      this.state = { ...restored, internet_header: restored.internet_header ?? this.state.internet_header };
+    }
     setTimeout(() => this._toggleAutoMigrationVisibility(), 0);
   }
 
@@ -291,53 +299,109 @@ export class MigrationV910Component extends LitElement {
                 <h4>Ng-Bootstrap</h4>
                 <ul class="list-unstyled">
                   <li>
-                    <div class="form-check">
-                      <input
-                        id="ngbootstrap-removed_components"
-                        class="form-check-input"
-                        type="checkbox"
-                        ?checked="${this.state.ngbootstrap.removed_components}"
-                      />
-                      <label class="form-check-label" for="ngbootstrap-removed_components">
-                        All Ng-Bootstrap components are no longer available:
-                        <ul>
-                          <li>carousel → <i>coming soon</i></li>
-                          <li>custom select → <i>coming soon</i></li>
-                          <li>datatable → AG Grid <i>coming soon</i></li>
-                          <li>datepicker → <i>coming soon</i></li>
-                          <li>dropdown → <i>coming soon</i></li>
-                          <li>
-                            modal →
-                            <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
-                              >dialog</a
-                            >
-                          </li>
-                          <li>
-                            notification overlay →
-                            <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
-                              >dialog</a
-                            >
-                          </li>
-                          <li>pagination → <i>coming soon</i></li>
-                          <li>progressbar → <i>coming soon</i></li>
-                          <li>timepicker → <i>coming soon</i></li>
-                          <li>
+                    All Ng-Bootstrap components are no longer available. Each removed Ng-Bootstrap component has (or will have) an equivalent in
+                      the Design System, shown in the following list. Migration to these new
+                      components is manual — you’ll need to update the affected components in
+                      your application to use the corresponding elements as described in their
+                      documentation.
+                    <ul>
+                      <li>carousel → <i>coming soon</i></li>
+                      <li>custom select → <i>coming soon</i></li>
+                      <li>datatable → AG Grid <i>coming soon</i></li>
+                      <li>datepicker → <i>coming soon</i></li>
+                      <li>dropdown → <i>coming soon</i></li>
+                      <li>
+                        modal →
+                        <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
+                          >dialog</a
+                        >
+                      </li>
+                      <li>
+                        notification overlay →
+                        <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
+                          >dialog</a
+                        >
+                      </li>
+                      <li>pagination → <i>coming soon</i></li>
+                      <li>progressbar → <i>coming soon</i></li>
+                      <li>timepicker → <i>coming soon</i></li>
+                      <li>
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-typeahead"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.typeahead}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-typeahead">
                             typeahead →
                             <a
                               href="/?path=/docs/2df77c32-5e33-402e-bd2e-54d54271ce19--docs#autocomplete"
                               >input with datalist</a
                             >
-                          </li>
-                        </ul>
-                        <span class="info"
-                          >Each removed Ng-Bootstrap component has (or will have) an equivalent in
-                          the Design System, shown in the list above. Migration to these new
-                          components is manual — you’ll need to update the affected components in
-                          your application to use the corresponding elements as described in their
-                          documentation.</span
-                        >
-                      </label>
-                    </div>
+                            <span class="info">
+                              <p>
+                                Replace the <code>[ngbTypeahead]</code> directive with a native
+                                <code>&lt;input&gt;</code> element paired with a
+                                <code>&lt;datalist&gt;</code>. The browser handles filtering
+                                automatically based on what the user types — no additional scripts
+                                required.
+                              </p>
+                              <p><strong>Before (v9 — NgbTypeahead)</strong></p>
+                              <p>
+                                Define a <code>search</code> function returning filtered results as
+                                an observable and bind it with the <code>[ngbTypeahead]</code>
+                                directive:
+                              </p>
+                              <code-block
+                                code=${`// component.ts\nsearch = (text$: Observable<string>) =>\n  text$.pipe(\n    debounceTime(200),\n    distinctUntilChanged(),\n    map(term =>\n      term.length < 2\n        ? []\n        : options.filter(v => v.toLowerCase().includes(term.toLowerCase()))\n    )\n  );`}
+                              ></code-block>
+                              <code-block
+                                code=${`<!-- template.html -->\n<input\n  type="text"\n  class="form-control"\n  [(ngModel)]="model"\n  [ngbTypeahead]="search"\n/>`}
+                              ></code-block>
+                              <p><strong>After (v10)</strong></p>
+                              <p>
+                                Declare the options in a <code>&lt;datalist&gt;</code> element and
+                                link it to the input via the <code>list</code> attribute:
+                              </p>
+                              <code-block
+                                code=${`<!-- template.html -->\n<input class="form-control" type="text" list="my-options" />\n<datalist id="my-options">\n  <option value="Option A"></option>\n  <option value="Option B"></option>\n  <option value="Option C"></option>\n</datalist>`}
+                              ></code-block>
+                              <p>
+                                <strong
+                                  >Limitations compared to <code>NgbTypeahead</code>:</strong
+                                >
+                              </p>
+                              <ul>
+                                <li>
+                                  <strong>Filtering behavior:</strong> All modern browsers filter
+                                  suggestions by matching anywhere in the string — there is no
+                                  browser API to change this behavior.
+                                </li>
+                                <li>
+                                  <strong>Dropdown styling:</strong> The suggestion popup is
+                                  rendered using the browser's native UI and can partially be styled with CSS but visual rendering may vary depending on browser.
+                                </li>
+                                <li>
+                                  <strong>Object models:</strong> The
+                                  <code>[ngbTypeahead]</code> directive supported returning objects
+                                  with <code>[inputFormatter]</code> and
+                                  <code>[resultFormatter]</code> to control how values are
+                                  displayed. The native <code>&lt;datalist&gt;</code> only supports
+                                  string values.
+                                </li>
+                                <li>
+                                  <strong>Custom result templates:</strong> The
+                                  <code>[resultTemplate]</code> input for rendering custom
+                                  ng-templates per suggestion has no native equivalent with
+                                  <code>&lt;datalist&gt;</code>.
+                                </li>
+                              </ul>
+                            </span>
+                          </label>
+                        </div>
+                      </li>
+                    </ul>
                   </li>
                 </ul>
               </section>
@@ -501,6 +565,77 @@ export class MigrationV910Component extends LitElement {
                 </ul>
               </section>
 
+              ${this.environment !== 'intranet'
+                ? html`
+                    <section>
+                      <h4>Internet Header (@swisspost/internet-header)</h4>
+                      <ul class="list-unstyled">
+                        <li class="mb-16">
+                          <div class="form-check">
+                            <input
+                              id="internet_header-update_package"
+                              class="form-check-input"
+                              type="checkbox"
+                              ?checked="${this.state.internet_header.update_package}"
+                            />
+                            <label class="form-check-label" for="internet_header-update_package">
+                              Update the <code>@swisspost/internet-header</code> package to version 10
+                              <code-block
+                                code=${'npm install @swisspost/internet-header@10'}
+                              ></code-block>
+                            </label>
+                          </div>
+                        </li>
+                        <li class="mb-16">
+                          <div class="form-check">
+                            <input
+                              id="internet_header-add_text_props"
+                              class="form-check-input"
+                              type="checkbox"
+                              ?checked="${this.state.internet_header.add_text_props}"
+                            />
+                            <label class="form-check-label" for="internet_header-add_text_props">
+                              Add the new required <code>text-*</code> props to your
+                              <code>swisspost-internet-header</code> element
+                              <span class="info">
+                                Version 10 requires these props for accessibility — they provide visually
+                                hidden labels for interactive elements. The component will throw an error if any are
+                                missing.
+                              </span>
+                              <code-block
+                                code=${'<swisspost-internet-header\n    project="your-service-id"\n    text-menu="Menu"\n    text-back="Back"\n    text-close="Close"\n    text-current-language="The currently selected language is #name."\n    text-change-language="Change the language"\n    text-main="Main navigation"\n    text-current-user="Current user is John Doe."\n    text-user-links="User links"\n  ></swisspost-internet-header>'}
+                              ></code-block>
+                            </label>
+                          </div>
+                        </li>
+                        <li class="mb-16">
+                          <div class="form-check">
+                            <input
+                              id="internet_header-remove_props"
+                              class="form-check-input"
+                              type="checkbox"
+                              ?checked="${this.state.internet_header.remove_props}"
+                            />
+                            <label class="form-check-label" for="internet_header-remove_props">
+                              Remove props and runtime assignments that no longer exist
+                              <span class="info">
+                                The following props have been removed and have no effect in v10:
+                                <code>stickyness</code>, <code>meta</code>, <code>login</code>,
+                                <code>search</code>, <code>skiplinks</code>, <code>config-proxy</code>,
+                                <code>language-cookie-key</code>, <code>language-local-storage-key</code>,
+                                <code>logout-url</code>, <code>self-admin-origin</code>,
+                                <code>os-flyout-overrides</code>, <code>custom-config</code>,
+                                <code>language-switch-overrides</code>. Only <code>language</code> and
+                                <code>active-route</code> remain reactive at runtime.
+                              </span>
+                            </label>
+                          </div>
+                        </li>
+                      </ul>
+                    </section>
+                  `
+                : nothing}
+
               <section>
                 <h4>Styles</h4>
 
@@ -627,22 +762,34 @@ export class MigrationV910Component extends LitElement {
                         ?checked="${this.state.grid.breakpoints}"
                       />
                       <label class="form-check-label" for="grid-breakpoints">
-                        <span data-info="automigration" class="tag tag-sm tag-info"
-                          >🪄 migration rule</span
+                        <span data-info="partial-automigration" class="tag tag-sm tag-warning"
+                          >⚠️ partial migration rule</span
                         >
                         Breakpoints updated
                         <ul>
                           <li>
-                            All classes containing <code>*-rg-*</code> are no longer effective
+                            All classes containing <code>*-xxl-*</code> are renamed to
+                            <code>*-xl-*</code> — <b>auto-migrated ✅</b>
                           </li>
                           <li>
-                            All classes containing <code>*-xxl-*</code> are no longer effective
+                            All classes containing <code>*-sm-*</code> are renamed to
+                            <code>*-xs-*</code> — <b>⚠️ manual migration required</b>
+                          </li>
+                          <li>
+                            All classes containing <code>*-rg-*</code> are renamed to
+                            <code>*-sm-*</code> — <b>⚠️ manual migration required</b>
                           </li>
                         </ul>
                         <span class="info">
                           <code>xs</code> now covers old <code>xs</code> and <code>sm</code>, while
                           <code>sm</code> covers old <code>rg</code>. <code>xl</code> covers old
                           <code>xl</code> and <code>xxl</code> breakpoints.
+                          <br /><br />
+                          ⚠️ <strong><code>*-sm-*</code> and <code>*-rg-*</code> classes cannot be auto-fixed.</strong>
+                          Renaming <code>rg</code> → <code>sm</code> would immediately be picked up
+                          by the <code>sm</code> → <code>xs</code> rule and renamed again to the
+                          wrong value. Search for <code>-sm-*</code> and <code>-rg-*</code> in your
+                          templates and rename them by hand.
                         </span>
                       </label>
                     </div>
@@ -656,22 +803,27 @@ export class MigrationV910Component extends LitElement {
                         ?checked="${this.state.grid.gutter}"
                       />
                       <label class="form-check-label" for="grid-gutter">
-                        <span data-info="automigration" class="tag tag-sm tag-info"
-                          >🪄 migration rule</span
+                        <span data-info="partial-automigration" class="tag tag-sm tag-warning"
+                          >⚠️ partial migration rule</span
                         >
                         Gutter classes (<code>.g-*</code>, <code>.gx-*</code>, <code>.gy-*</code>)
                         renamed
                         <ul>
-                          <li><code>*-1</code> is now <code>*-4</code></li>
+                          <li><code>*-1</code> is now <code>*-4</code> — <b>⚠️ manual migration required</b></li>
                           <li><code>*-2</code> is now <code>*-8</code></li>
                           <li><code>*-3</code> is now <code>*-16</code></li>
-                          <li><code>*-4</code> is now <code>*-24</code></li>
+                          <li><code>*-4</code> is now <code>*-24</code> — <b>⚠️ manual migration required</b></li>
                           <li><code>*-5</code> is now <code>*-48</code></li>
                         </ul>
 
                         <span class="info">
                           For instance, the old Bootstrap class <code>.g-1</code> (gutter of 4px) is
                           now <code>.g-4</code> for better coherance.
+                          <br /><br />
+                          ⚠️ <strong><code>*-1</code> and <code>*-4</code> classes cannot be auto-fixed.</strong>
+                          If <code>*-1</code> were auto-renamed to <code>*-4</code>, the
+                          <code>*-4</code> → <code>*-24</code> rule would fire on the next pass and
+                          produce the wrong result. Search for both classes and rename them by hand.
                         </span>
                       </label>
                     </div>
@@ -685,18 +837,24 @@ export class MigrationV910Component extends LitElement {
                         ?checked="${this.state.grid.gap}"
                       />
                       <label class="form-check-label" for="grid-gap">
-                        <span data-info="automigration" class="tag tag-sm tag-info"
-                          >🪄 migration rule</span
+                        <span data-info="partial-automigration" class="tag tag-sm tag-warning"
+                          >⚠️ partial migration rule</span
                         >
                         Gap classes (<code>.gap-*</code>, <code>.row-gap-*</code>,
                         <code>.column-gap-*</code>) renamed
                         <ul>
-                          <li><code>*-1</code> is now <code>*-4</code></li>
+                          <li><code>*-1</code> is now <code>*-4</code> — <b>⚠️ manual migration required</b></li>
                           <li><code>*-2</code> is now <code>*-8</code></li>
                           <li><code>*-3</code> is now <code>*-16</code></li>
-                          <li><code>*-4</code> is now <code>*-24</code></li>
+                          <li><code>*-4</code> is now <code>*-24</code> — <b>⚠️ manual migration required</b></li>
                           <li><code>*-5</code> is now <code>*-48</code></li>
                         </ul>
+                        <span class="info">
+                          ⚠️ <strong><code>*-1</code> and <code>*-4</code> classes cannot be auto-fixed.</strong>
+                          If <code>*-1</code> were auto-renamed to <code>*-4</code>, the
+                          <code>*-4</code> → <code>*-24</code> rule would fire on the next pass and
+                          produce the wrong result. Search for both classes and rename them by hand.
+                        </span>
                       </label>
                     </div>
                   </li>
@@ -876,16 +1034,16 @@ export class MigrationV910Component extends LitElement {
                         ?checked="${this.state.utilities.renamed_spacing}"
                       />
                       <label class="form-check-label" for="utilities-renamed_spacing">
-                        <span data-info="automigration" class="tag tag-sm tag-info"
-                          >🪄 migration rule</span
+                        <span data-info="partial-automigration" class="tag tag-sm tag-warning"
+                          >⚠️ partial migration rule</span
                         >
                         Margin and padding utilities classes (
                         <code>.{m/p}{x/y/s/e/t/b}-*</code>) renamed
                         <ul>
-                          <li><code>*-hair</code> is now <code>*-1</code></li>
+                          <li><code>*-hair</code> is now <code>*-1</code> — <b>⚠️ manual migration required</b></li>
                           <li><code>*-line</code> is now <code>*-2</code></li>
                           <li>
-                            <code>*-micro</code> and <code>*-1</code> are now <code>*-4</code>
+                            <code>*-micro</code> and <code>*-1</code> are now <code>*-4</code> — <b>⚠️ manual migration required</b>
                           </li>
                           <li><code>*-mini</code> and <code>*-2</code> are now <code>*-8</code></li>
                           <li><code>*-small-regular</code> is now <code>*-12</code></li>
@@ -893,7 +1051,7 @@ export class MigrationV910Component extends LitElement {
                             <code>*-regular</code> and <code>*-3</code> are now <code>*-16</code>
                           </li>
                           <li>
-                            <code>*-large</code> and <code>*-4</code> are now <code>*-24</code>
+                            <code>*-large</code> and <code>*-4</code> are now <code>*-24</code> — <b>⚠️ manual migration required</b>
                           </li>
                           <li><code>*-big</code> is now <code>*-32</code></li>
                           <li><code>*-bigger-big</code> is now <code>*-40</code></li>
@@ -904,6 +1062,15 @@ export class MigrationV910Component extends LitElement {
                           <li><code>*-small-giant</code> is now <code>*-78</code></li>
                           <li><code>*-giant</code> is now <code>*-80</code></li>
                         </ul>
+                        <span class="info">
+                          ⚠️ <strong><code>*-hair</code>, <code>*-micro</code>, <code>*-1</code>, <code>*-large</code>, and <code>*-4</code> classes cannot be auto-fixed.</strong>
+                          These values form rename chains that ESLint's fix loop would follow
+                          incorrectly: <code>*-hair</code> → <code>*-1</code> → <code>*-4</code> →
+                          <code>*-24</code>. Since <code>*-4</code> is the correct final value for
+                          <code>*-1</code>/<code>*-micro</code> but also a deprecated input for
+                          <code>*-large</code>, all steps in this chain must be done manually.
+                          Search for these classes and rename them by hand.
+                        </span>
                       </label>
                     </div>
                   </li>
@@ -1858,7 +2025,8 @@ export class MigrationV910Component extends LitElement {
     _updatePersistedState(MIGRATION_CHECKS_KEY_V9, this.state);
   }
 
-  // Toggle visibility of all lines that have the auto migration tag
+  // Toggle visibility of all lines that have the auto migration tag.
+  // Items with data-info="partial-automigration" are never hidden — they contain manual steps.
   private _toggleAutoMigrationVisibility() {
     document
       .querySelectorAll('[data-info="automigration"]')

@@ -1,7 +1,6 @@
-import { Component, Element, h, Host, Prop, State, Watch, Build } from '@stencil/core';
+import { nanoid, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { checkRequiredAndType } from '@/utils';
-import { nanoid } from 'nanoid';
+import { Component, Element, h, Host, Prop, State, Build } from '@stencil/core';
 
 /**
  * @slot default - Slot for the content of the tab item. Can contain text or an <a> element for Page Tabs variant.
@@ -23,12 +22,10 @@ export class PostTabItem {
   /**
    * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
    */
-  @Prop({ reflect: true }) readonly name!: string;
-
-  @Watch('name')
-  validateName() {
-    checkRequiredAndType(this, 'name', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  readonly name!: string;
 
   connectedCallback() {
     this.mutationObserver.observe(this.host, {

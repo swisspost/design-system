@@ -188,9 +188,9 @@ export namespace Components {
     }
     interface PostCollapsibleTrigger {
         /**
-          * Link the trigger to a post-collapsible with this id
+          * Link the trigger to a post-collapsible by its ID. If omitted, a post-collapsible nested directly inside this element is used instead.
          */
-        "for": string;
+        "for"?: string;
         /**
           * Update the "aria-controls" and "aria-expanded" attributes on the trigger button
          */
@@ -641,6 +641,22 @@ export namespace Components {
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<boolean>;
+    }
+    interface PostProgressbar {
+        /**
+          * Describes how much work the task indicated by the progress element requires. Must be a valid floating point number greater than min.
+          * @default 100
+         */
+        "max": number;
+        /**
+          * The minimum value of the progress bar. Must be a valid floating point number less than max.
+          * @default 0
+         */
+        "min": number;
+        /**
+          * Specifies how much of the task has been completed. Must be a valid floating point number between min and max. If there is no value attribute, the progress bar is indeterminate; this indicates that an activity is ongoing with no indication of how long it is expected to take.
+         */
+        "value"?: number;
     }
     interface PostRating {
         /**
@@ -1175,6 +1191,12 @@ declare global {
         prototype: HTMLPostPopovercontainerElement;
         new (): HTMLPostPopovercontainerElement;
     };
+    interface HTMLPostProgressbarElement extends Components.PostProgressbar, HTMLStencilElement {
+    }
+    var HTMLPostProgressbarElement: {
+        prototype: HTMLPostProgressbarElement;
+        new (): HTMLPostProgressbarElement;
+    };
     interface HTMLPostRatingElementEventMap {
         "postInput": { value: number };
         "postChange": { value: number };
@@ -1286,6 +1308,7 @@ declare global {
         "post-popover": HTMLPostPopoverElement;
         "post-popover-trigger": HTMLPostPopoverTriggerElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
+        "post-progressbar": HTMLPostProgressbarElement;
         "post-rating": HTMLPostRatingElement;
         "post-stepper": HTMLPostStepperElement;
         "post-stepper-item": HTMLPostStepperItemElement;
@@ -1454,9 +1477,9 @@ declare namespace LocalJSX {
     }
     interface PostCollapsibleTrigger {
         /**
-          * Link the trigger to a post-collapsible with this id
+          * Link the trigger to a post-collapsible by its ID. If omitted, a post-collapsible nested directly inside this element is used instead.
          */
-        "for": string;
+        "for"?: string;
     }
     interface PostDatePicker {
         /**
@@ -1853,6 +1876,22 @@ declare namespace LocalJSX {
          */
         "safeSpace"?: 'triangle' | 'trapezoid';
     }
+    interface PostProgressbar {
+        /**
+          * Describes how much work the task indicated by the progress element requires. Must be a valid floating point number greater than min.
+          * @default 100
+         */
+        "max"?: number;
+        /**
+          * The minimum value of the progress bar. Must be a valid floating point number less than max.
+          * @default 0
+         */
+        "min"?: number;
+        /**
+          * Specifies how much of the task has been completed. Must be a valid floating point number between min and max. If there is no value attribute, the progress bar is indeterminate; this indicates that an activity is ongoing with no indication of how long it is expected to take.
+         */
+        "value"?: number;
+    }
     interface PostRating {
         /**
           * Defines the rating that the component should show.
@@ -2138,6 +2177,11 @@ declare namespace LocalJSX {
         "arrow": boolean;
         "safeSpace": 'triangle' | 'trapezoid';
     }
+    interface PostProgressbarAttributes {
+        "min": number;
+        "max": number;
+        "value": number;
+    }
     interface PostRatingAttributes {
         "label": string;
         "stars": number;
@@ -2188,7 +2232,7 @@ declare namespace LocalJSX {
         "post-breadcrumbs": Omit<PostBreadcrumbs, keyof PostBreadcrumbsAttributes> & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes]?: PostBreadcrumbs[K] } & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes as `attr:${K}`]?: PostBreadcrumbsAttributes[K] } & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes as `prop:${K}`]?: PostBreadcrumbs[K] } & OneOf<"homeUrl", PostBreadcrumbs["homeUrl"], PostBreadcrumbsAttributes["homeUrl"]> & OneOf<"textHome", PostBreadcrumbs["textHome"], PostBreadcrumbsAttributes["textHome"]> & OneOf<"textBreadcrumbs", PostBreadcrumbs["textBreadcrumbs"], PostBreadcrumbsAttributes["textBreadcrumbs"]> & OneOf<"textMoreItems", PostBreadcrumbs["textMoreItems"], PostBreadcrumbsAttributes["textMoreItems"]>;
         "post-closebutton": Omit<PostClosebutton, keyof PostClosebuttonAttributes> & { [K in keyof PostClosebutton & keyof PostClosebuttonAttributes]?: PostClosebutton[K] } & { [K in keyof PostClosebutton & keyof PostClosebuttonAttributes as `attr:${K}`]?: PostClosebuttonAttributes[K] } & { [K in keyof PostClosebutton & keyof PostClosebuttonAttributes as `prop:${K}`]?: PostClosebutton[K] };
         "post-collapsible": Omit<PostCollapsible, keyof PostCollapsibleAttributes> & { [K in keyof PostCollapsible & keyof PostCollapsibleAttributes]?: PostCollapsible[K] } & { [K in keyof PostCollapsible & keyof PostCollapsibleAttributes as `attr:${K}`]?: PostCollapsibleAttributes[K] } & { [K in keyof PostCollapsible & keyof PostCollapsibleAttributes as `prop:${K}`]?: PostCollapsible[K] };
-        "post-collapsible-trigger": Omit<PostCollapsibleTrigger, keyof PostCollapsibleTriggerAttributes> & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes]?: PostCollapsibleTrigger[K] } & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes as `attr:${K}`]?: PostCollapsibleTriggerAttributes[K] } & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes as `prop:${K}`]?: PostCollapsibleTrigger[K] } & OneOf<"for", PostCollapsibleTrigger["for"], PostCollapsibleTriggerAttributes["for"]>;
+        "post-collapsible-trigger": Omit<PostCollapsibleTrigger, keyof PostCollapsibleTriggerAttributes> & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes]?: PostCollapsibleTrigger[K] } & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes as `attr:${K}`]?: PostCollapsibleTriggerAttributes[K] } & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes as `prop:${K}`]?: PostCollapsibleTrigger[K] };
         "post-date-picker": Omit<PostDatePicker, keyof PostDatePickerAttributes> & { [K in keyof PostDatePicker & keyof PostDatePickerAttributes]?: PostDatePicker[K] } & { [K in keyof PostDatePicker & keyof PostDatePickerAttributes as `attr:${K}`]?: PostDatePickerAttributes[K] } & { [K in keyof PostDatePicker & keyof PostDatePickerAttributes as `prop:${K}`]?: PostDatePicker[K] } & OneOf<"textNextMonth", PostDatePicker["textNextMonth"], PostDatePickerAttributes["textNextMonth"]> & OneOf<"textNextYear", PostDatePicker["textNextYear"], PostDatePickerAttributes["textNextYear"]> & OneOf<"textNextDecade", PostDatePicker["textNextDecade"], PostDatePickerAttributes["textNextDecade"]> & OneOf<"textPreviousMonth", PostDatePicker["textPreviousMonth"], PostDatePickerAttributes["textPreviousMonth"]> & OneOf<"textPreviousYear", PostDatePicker["textPreviousYear"], PostDatePickerAttributes["textPreviousYear"]> & OneOf<"textPreviousDecade", PostDatePicker["textPreviousDecade"], PostDatePickerAttributes["textPreviousDecade"]> & OneOf<"textSwitchYear", PostDatePicker["textSwitchYear"], PostDatePickerAttributes["textSwitchYear"]>;
         "post-footer": Omit<PostFooter, keyof PostFooterAttributes> & { [K in keyof PostFooter & keyof PostFooterAttributes]?: PostFooter[K] } & { [K in keyof PostFooter & keyof PostFooterAttributes as `attr:${K}`]?: PostFooterAttributes[K] } & { [K in keyof PostFooter & keyof PostFooterAttributes as `prop:${K}`]?: PostFooter[K] } & OneOf<"textFooter", PostFooter["textFooter"], PostFooterAttributes["textFooter"]>;
         "post-header": Omit<PostHeader, keyof PostHeaderAttributes> & { [K in keyof PostHeader & keyof PostHeaderAttributes]?: PostHeader[K] } & { [K in keyof PostHeader & keyof PostHeaderAttributes as `attr:${K}`]?: PostHeaderAttributes[K] } & { [K in keyof PostHeader & keyof PostHeaderAttributes as `prop:${K}`]?: PostHeader[K] } & OneOf<"textMenu", PostHeader["textMenu"], PostHeaderAttributes["textMenu"]>;
@@ -2211,6 +2255,7 @@ declare namespace LocalJSX {
         "post-popover": Omit<PostPopover, keyof PostPopoverAttributes> & { [K in keyof PostPopover & keyof PostPopoverAttributes]?: PostPopover[K] } & { [K in keyof PostPopover & keyof PostPopoverAttributes as `attr:${K}`]?: PostPopoverAttributes[K] } & { [K in keyof PostPopover & keyof PostPopoverAttributes as `prop:${K}`]?: PostPopover[K] } & OneOf<"textClose", PostPopover["textClose"], PostPopoverAttributes["textClose"]>;
         "post-popover-trigger": Omit<PostPopoverTrigger, keyof PostPopoverTriggerAttributes> & { [K in keyof PostPopoverTrigger & keyof PostPopoverTriggerAttributes]?: PostPopoverTrigger[K] } & { [K in keyof PostPopoverTrigger & keyof PostPopoverTriggerAttributes as `attr:${K}`]?: PostPopoverTriggerAttributes[K] } & { [K in keyof PostPopoverTrigger & keyof PostPopoverTriggerAttributes as `prop:${K}`]?: PostPopoverTrigger[K] };
         "post-popovercontainer": Omit<PostPopovercontainer, keyof PostPopovercontainerAttributes> & { [K in keyof PostPopovercontainer & keyof PostPopovercontainerAttributes]?: PostPopovercontainer[K] } & { [K in keyof PostPopovercontainer & keyof PostPopovercontainerAttributes as `attr:${K}`]?: PostPopovercontainerAttributes[K] } & { [K in keyof PostPopovercontainer & keyof PostPopovercontainerAttributes as `prop:${K}`]?: PostPopovercontainer[K] };
+        "post-progressbar": Omit<PostProgressbar, keyof PostProgressbarAttributes> & { [K in keyof PostProgressbar & keyof PostProgressbarAttributes]?: PostProgressbar[K] } & { [K in keyof PostProgressbar & keyof PostProgressbarAttributes as `attr:${K}`]?: PostProgressbarAttributes[K] } & { [K in keyof PostProgressbar & keyof PostProgressbarAttributes as `prop:${K}`]?: PostProgressbar[K] };
         "post-rating": Omit<PostRating, keyof PostRatingAttributes> & { [K in keyof PostRating & keyof PostRatingAttributes]?: PostRating[K] } & { [K in keyof PostRating & keyof PostRatingAttributes as `attr:${K}`]?: PostRatingAttributes[K] } & { [K in keyof PostRating & keyof PostRatingAttributes as `prop:${K}`]?: PostRating[K] } & OneOf<"label", PostRating["label"], PostRatingAttributes["label"]>;
         "post-stepper": Omit<PostStepper, keyof PostStepperAttributes> & { [K in keyof PostStepper & keyof PostStepperAttributes]?: PostStepper[K] } & { [K in keyof PostStepper & keyof PostStepperAttributes as `attr:${K}`]?: PostStepperAttributes[K] } & { [K in keyof PostStepper & keyof PostStepperAttributes as `prop:${K}`]?: PostStepper[K] } & OneOf<"textCurrentStep", PostStepper["textCurrentStep"], PostStepperAttributes["textCurrentStep"]> & OneOf<"textCompletedStep", PostStepper["textCompletedStep"], PostStepperAttributes["textCompletedStep"]> & OneOf<"textStepNumber", PostStepper["textStepNumber"], PostStepperAttributes["textStepNumber"]>;
         "post-stepper-item": PostStepperItem;
@@ -2262,6 +2307,7 @@ declare module "@stencil/core" {
             "post-popover": LocalJSX.IntrinsicElements["post-popover"] & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popover-trigger": LocalJSX.IntrinsicElements["post-popover-trigger"] & JSXBase.HTMLAttributes<HTMLPostPopoverTriggerElement>;
             "post-popovercontainer": LocalJSX.IntrinsicElements["post-popovercontainer"] & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
+            "post-progressbar": LocalJSX.IntrinsicElements["post-progressbar"] & JSXBase.HTMLAttributes<HTMLPostProgressbarElement>;
             "post-rating": LocalJSX.IntrinsicElements["post-rating"] & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
             "post-stepper": LocalJSX.IntrinsicElements["post-stepper"] & JSXBase.HTMLAttributes<HTMLPostStepperElement>;
             "post-stepper-item": LocalJSX.IntrinsicElements["post-stepper-item"] & JSXBase.HTMLAttributes<HTMLPostStepperItemElement>;

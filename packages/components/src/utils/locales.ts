@@ -1,5 +1,3 @@
-import { check } from 'language-tags';
-
 export const FALLBACK_LANGUAGE_CODE = 'en';
 export const FALLBACK_LOCALE_CODE = 'en-GB';
 
@@ -18,5 +16,12 @@ export function getLocaleTextDirection(locale: string) {
 }
 
 export function isValidLocale(locale: string | undefined): boolean {
-  return locale !== undefined && check(locale);
+  if (!locale) return false;
+
+  try {
+    return Intl.DateTimeFormat.supportedLocalesOf(locale).length > 0;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
 }
