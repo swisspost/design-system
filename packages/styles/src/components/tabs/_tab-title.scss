@@ -152,10 +152,9 @@ post-tab-item.nav-item {
 
       // selected — hovered
       &:hover {
-        color: purple; //tokens.get('post-tabs-page-tab-selected-hovered-fg'); // add selected hover token =  new: post.theme.color.palettes.default.nested.tabs.page.tab.selected.hovered.fg
-        // post.scheme.color.palette.nested.fg.4
+        color: tokens.get('post-tabs-page-tab-selected-hovered-fg');
         background-color: tokens.get('post-tabs-page-tab-selected-bg');
-        border-color: pink; //tokens.get('post-tabs-page-tab-selected-hovered-border-color');
+        border-color: tokens.get('post-tabs-page-tab-selected-hovered-border-color');
       }
     }
 

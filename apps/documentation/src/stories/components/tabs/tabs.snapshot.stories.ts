@@ -17,14 +17,18 @@ export default {
 
 type Story = StoryObj;
 
-function renderPageTabsInContainer(containerClass: string, context: StoryContext) {
+function renderPageTabsInContainer(
+  containerClass: string,
+  size: string | undefined,
+  context: StoryContext,
+) {
   return html`
     <div class="${containerClass}">
       ${bombArgs({ fullWidth: [false, true] })
         .filter(args => !(containerClass === '' && args.fullWidth === true))
         .map((args: Args) =>
           meta.render?.(
-            { ...context.args, ...args, variant: 'Page Tabs' } as never,
+            { ...context.args, ...args, variant: 'Page Tabs', size } as never,
             context as never,
           ),
         )}
@@ -36,8 +40,13 @@ function renderPageTabsInPalette(palette: string, scheme: string, context: Story
   return html`
     <div class="palette palette-${palette} p-32" id="page-tabs_${palette}_${scheme}">
       <p class="fw-bold" style="text-transform: capitalize">Palette: ${palette}</p>
-      ${['container', 'container-fluid', ''].map(containerClass =>
-        renderPageTabsInContainer(containerClass, context),
+      ${['large', 'small'].map(
+        size => html`
+          <p class="mt-16">Size: ${size}</p>
+          ${['container', 'container-fluid', ''].map(containerClass =>
+            renderPageTabsInContainer(containerClass, size, context),
+          )}
+        `,
       )}
     </div>
   `;
@@ -61,7 +70,11 @@ export const PageTabs: Story = {
   },
 };
 
-function renderContentTabsInContainer(containerClass: string, context: StoryContext) {
+function renderContentTabsInContainer(
+  containerClass: string,
+  size: string | undefined,
+  context: StoryContext,
+) {
   return html`
     <div class="${containerClass}">
       ${bombArgs({
@@ -71,7 +84,7 @@ function renderContentTabsInContainer(containerClass: string, context: StoryCont
       })
         .filter(args => !(containerClass === '' && args.fullWidth === true))
         .map((args: Args) =>
-          meta.render?.({ ...context.args, ...args } as never, context as never),
+          meta.render?.({ ...context.args, ...args, size } as never, context as never),
         )}
     </div>
   `;
@@ -81,8 +94,13 @@ export const ContentTabs: Story = {
   render: (_args: Args, context: StoryContext) => {
     return schemes(
       () => html`
-        ${['container', 'container-fluid', ''].map(containerClass =>
-          renderContentTabsInContainer(containerClass, context),
+        ${['large', 'small'].map(
+          size => html`
+            <p class="mt-16 fw-bold">Size: ${size}</p>
+            ${['container', 'container-fluid', ''].map(containerClass =>
+              renderContentTabsInContainer(containerClass, size, context),
+            )}
+          `,
         )}
       `,
     );

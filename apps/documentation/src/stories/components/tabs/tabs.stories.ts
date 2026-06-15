@@ -175,10 +175,15 @@ function renderPagesVariant(
   fullWidth: boolean | undefined,
   label: string | undefined,
   customSlots: string,
+  size: string | undefined,
 ): ReturnType<typeof html> {
   if (customSlots) {
     return html`
-      <post-tabs full-width="${fullWidth ? true : nothing}" label="${ifDefined(label)}">
+      <post-tabs
+        full-width="${fullWidth ? true : nothing}"
+        label="${ifDefined(label)}"
+        size="${ifDefined(size)}"
+      >
         ${unsafeHTML(customSlots)}
       </post-tabs>
     `;
@@ -186,7 +191,11 @@ function renderPagesVariant(
 
   // Default navigation example - first link is active
   return html`
-    <post-tabs full-width="${fullWidth ? true : nothing}" label="${ifDefined(label)}">
+    <post-tabs
+      full-width="${fullWidth ? true : nothing}"
+      label="${ifDefined(label)}"
+      size="${ifDefined(size)}"
+    >
       <post-tab-item name="first">
         <a href="/first" aria-current="page">First page</a>
       </post-tab-item>
@@ -206,10 +215,15 @@ function renderContentVariant(
   fullWidth: boolean | undefined,
   customSlots: string,
   panelSlots: string,
+  size: string | undefined,
 ): ReturnType<typeof html> {
   if (customSlots) {
     return html`
-      <post-tabs active-tab="${ifDefined(activeTab)}" full-width="${fullWidth ? true : nothing}">
+      <post-tabs
+        active-tab="${ifDefined(activeTab)}"
+        full-width="${fullWidth ? true : nothing}"
+        size="${ifDefined(size)}"
+      >
         ${unsafeHTML(customSlots)}
       </post-tabs>
     `;
@@ -217,7 +231,11 @@ function renderContentVariant(
 
   if (panelSlots) {
     return html`
-      <post-tabs active-tab="${ifDefined(activeTab)}" full-width="${fullWidth ? true : nothing}">
+      <post-tabs
+        active-tab="${ifDefined(activeTab)}"
+        full-width="${fullWidth ? true : nothing}"
+        size="${ifDefined(size)}"
+      >
         <post-tab-item name="first"><post-icon name="letter"></post-icon>First tab</post-tab-item>
         <post-tab-item name="second"><post-icon name="letter"></post-icon>Second tab</post-tab-item>
         <post-tab-item name="third" disabled
@@ -230,7 +248,11 @@ function renderContentVariant(
   }
 
   return html`
-    <post-tabs active-tab="${ifDefined(activeTab)}" full-width="${fullWidth ? true : nothing}">
+    <post-tabs
+      active-tab="${ifDefined(activeTab)}"
+      full-width="${fullWidth ? true : nothing}"
+      size="${ifDefined(size)}"
+    >
       <post-tab-item name="first"><post-icon name="letter"></post-icon>First tab</post-tab-item>
       <post-tab-item name="second" disabled
         ><post-icon name="letter"></post-icon>Second tab</post-tab-item
@@ -263,12 +285,13 @@ function renderTabs(
   const variant = args.variant || 'Content Tabs';
 
   return variant === 'Page Tabs'
-    ? renderPagesVariant(args.fullWidth, args.label, args['slots-default'] || '')
+    ? renderPagesVariant(args.fullWidth, args.label, args['slots-default'] || '', args.size)
     : renderContentVariant(
         args.activeTabPanels,
         args.fullWidth,
         args['slots-default'] || '',
         args['slots-panels'] || '',
+        args.size,
       );
 }
 

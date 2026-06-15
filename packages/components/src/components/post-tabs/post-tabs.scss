@@ -30,7 +30,6 @@ $tabs-outline-offset: calc(
         background-color 100ms,
         border-color 100ms,
         color 100ms;
-      padding-block: tokens.get('post-tabs-scroll-button-padding-block');
       cursor: pointer;
 
       post-icon {
@@ -77,7 +76,6 @@ $tabs-outline-offset: calc(
       border: tokens.get('post-tabs-border-width') solid
         tokens.get('post-tabs-page-scroll-button-enabled-border-color');
       position: absolute;
-      padding-block: 12px;
       z-index: 2;
       box-shadow: elevation.$elevation-200;
       border-radius: tokens.get('post-tabs-page-scroll-button-border-radius');
@@ -125,6 +123,14 @@ $tabs-outline-offset: calc(
       gap: tokens.get('post-tabs-page-gap-inline');
     }
   }
+}
+
+:host(.page-tabs[size='large']) button.scroll-btn {
+  top: 8px; //tokens.get('post-tabs-large-scroll-button-padding-block');
+}
+
+:host(.page-tabs[size='small']) button.scroll-btn {
+  top: 0px; //tokens.get('post-tabs-small-scroll-button-padding-block');
 }
 
 // Content Tabs variant
