@@ -126,11 +126,11 @@ $tabs-outline-offset: calc(
 }
 
 :host(.page-tabs[size='large']) button.scroll-btn {
-  top: 8px; //tokens.get('post-tabs-large-scroll-button-padding-block');
+  top: tokens.get('post-tabs-large-scroll-button-padding-block');
 }
 
 :host(.page-tabs[size='small']) button.scroll-btn {
-  top: 0px; //tokens.get('post-tabs-small-scroll-button-padding-block');
+  top: tokens.get('post-tabs-small-scroll-button-padding-block');
 }
 
 // Content Tabs variant
