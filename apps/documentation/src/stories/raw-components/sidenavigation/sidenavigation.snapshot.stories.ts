@@ -6,6 +6,7 @@ import {
   nested,
   collapsibleNotLinked,
   collapsibleLinked,
+  activeItem,
 } from './sidenavigation.examples';
 import { schemes } from '@/shared/snapshots/schemes';
 
@@ -18,29 +19,24 @@ export default {
 
 type Story = StoryObj;
 
-const args = { textClose: 'Close' };
+const args = { textClose: 'Close', showIcons: false };
+
+let schemeIndex = 0;
 
 export const PostSidenavigation: Story = {
   render: () => {
-    return schemes(() => html`
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 1rem;">
-        <div>
-          <h3>Link Only</h3>
-          ${renderSidenavigation(linkOnly, args)}
+    schemeIndex = 0;
+    return schemes(() => {
+      const base = ++schemeIndex * 10;
+      return html`
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 1rem;">
+          <div>${renderSidenavigation(linkOnly, args, undefined, `Link Only Navigation ${base}`)}</div>
+          <div>${renderSidenavigation(nested, args, undefined, `Nested Navigation ${base + 1}`)}</div>
+          <div>${renderSidenavigation(collapsibleNotLinked, args, undefined, `Collapsible Navigation ${base + 2}`)}</div>
+          <div>${renderSidenavigation(collapsibleLinked, args, undefined, `Collapsible Linked Navigation ${base + 3}`)}</div>
+          <div>${renderSidenavigation(activeItem, args, undefined, `Active Item Navigation ${base + 4}`)}</div>
         </div>
-        <div>
-          <h3>Nested</h3>
-          ${renderSidenavigation(nested, args)}
-        </div>
-        <div>
-          <h3>Collapsible Not Linked</h3>
-          ${renderSidenavigation(collapsibleNotLinked, args)}
-        </div>
-        <div>
-          <h3>Collapsible Linked</h3>
-          ${renderSidenavigation(collapsibleLinked, args)}
-        </div>
-      </div>
-    `);
+      `;
+    });
   },
 };
