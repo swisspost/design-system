@@ -25,14 +25,14 @@ export const linkOnly = html`
 // Parent can be a link or a non-clickable span.
 export const nested = html`
   <li>
-    <a href="#" class="post-sidenavigation-item">Sidenav link</a>
+    <a href="#" class="post-sidenavigation-item">Parent link</a>
     <ul>
       <li><a href="#" class="post-sidenavigation-item">Child link</a></li>
       <li><a href="#" class="post-sidenavigation-item">Child link</a></li>
     </ul>
   </li>
   <li>
-    <span class="post-sidenavigation-item">Not clickable level 1</span>
+    <span class="post-sidenavigation-item">Section title</span>
     <ul>
       <li><a href="#" class="post-sidenavigation-item">Child link</a></li>
       <li><a href="#" class="post-sidenavigation-item">Child link</a></li>
@@ -46,13 +46,13 @@ export const collapsibleNotLinked = html`
   <li>
     <post-collapsible-trigger>
       <button class="post-sidenavigation-item">
-        Level 1
+        Expandable section
         <post-icon name="chevrondown" aria-hidden="true"></post-icon>
       </button>
       <post-collapsible>
         <ul>
-          <li><a href="#" class="post-sidenavigation-item">Level 2</a></li>
-          <li><a href="#" class="post-sidenavigation-item">Level 2</a></li>
+          <li><a href="#" class="post-sidenavigation-item">Child link</a></li>
+          <li><a href="#" class="post-sidenavigation-item">Child link</a></li>
         </ul>
       </post-collapsible>
     </post-collapsible-trigger>
@@ -60,13 +60,13 @@ export const collapsibleNotLinked = html`
   <li>
     <post-collapsible-trigger>
       <button class="post-sidenavigation-item">
-        Level 1
+        Another expandable section
         <post-icon name="chevrondown" aria-hidden="true"></post-icon>
       </button>
       <post-collapsible>
         <ul>
-          <li><a href="#" class="post-sidenavigation-item">Level 2</a></li>
-          <li><a href="#" class="post-sidenavigation-item">Level 2</a></li>
+          <li><a href="#" class="post-sidenavigation-item">Child link</a></li>
+          <li><a href="#" class="post-sidenavigation-item">Child link</a></li>
         </ul>
       </post-collapsible>
     </post-collapsible-trigger>
@@ -79,10 +79,9 @@ export const collapsibleLinked = html`
   <li>
     <post-collapsible-trigger>
       <div class="post-sidenavigation-item">
-        <post-icon name="letterreceived" aria-hidden="true"></post-icon>
-        <a href="#">Sidenav link</a>
+        <a href="#">Link with expand</a>
         <button>
-          <span class="visually-hidden">Expand Sidenav link</span>
+          <span class="visually-hidden">Expand</span>
           <post-icon name="chevrondown" aria-hidden="true"></post-icon>
         </button>
       </div>
@@ -97,10 +96,9 @@ export const collapsibleLinked = html`
   <li>
     <post-collapsible-trigger>
       <div class="post-sidenavigation-item">
-        <post-icon name="postoneweb" aria-hidden="true"></post-icon>
-        <a href="#">Sidenav link</a>
+        <a href="#">Another link with expand</a>
         <button>
-          <span class="visually-hidden">Expand Sidenav link</span>
+          <span class="visually-hidden">Expand</span>
           <post-icon name="chevrondown" aria-hidden="true"></post-icon>
         </button>
       </div>
@@ -112,4 +110,14 @@ export const collapsibleLinked = html`
       </post-collapsible>
     </post-collapsible-trigger>
   </li>
+`;
+
+// Active item — aria-current="page" marks the current page link.
+export const activeItem = html`
+  <li><a href="#" class="post-sidenavigation-item">Sidenav item</a></li>
+  <li>
+    <!-- The active link must have aria-current="page" for correct accessibility and styling. -->
+    <a href="#" class="post-sidenavigation-item" aria-current="page">Current page</a>
+  </li>
+  <li><a href="#" class="post-sidenavigation-item">Another item</a></li>
 `;

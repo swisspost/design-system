@@ -6,6 +6,7 @@ import {
   nested,
   collapsibleNotLinked,
   collapsibleLinked,
+  activeItem,
 } from './sidenavigation.examples';
 
 const meta: MetaComponent = {
@@ -14,7 +15,6 @@ const meta: MetaComponent = {
   tags: ['package:WebComponents', 'status:InProgress'],
   component: 'post-sidenavigation',
   parameters: {
-    layout: 'fullscreen',
     badges: [],
     design: {
       type: 'figma',
@@ -44,7 +44,7 @@ const meta: MetaComponent = {
     },
   },
   render: renderSidenavigationWithHeader(),
-  decorators: [(story) => html`<div style="padding-bottom: 3rem">${story()}</div>`],
+  decorators: [(story) => html`<div style="padding-bottom: 1rem">${story()}</div>`],
 };
 
 export default meta;
@@ -225,35 +225,28 @@ function renderSidenavigationWithHeader(navContent?: TemplateResult) {
   };
 }
 
-// Active item — aria-current="page" marks the current page link.
-const activeItem = html`
-  <li><a href="#" class="post-sidenavigation-item">Level 1</a></li>
-  <li>
-    <!-- The active link must have aria-current="page" for correct accessibility and styling. -->
-    <a href="#" class="post-sidenavigation-item" aria-current="page">Level 1</a>
-  </li>
-  <li><a href="#" class="post-sidenavigation-item">Level 1</a></li>
-`;
-
 // STORIES
 
 type Story = StoryObj;
 
-// Wraps variant stories (non-fullscreen) with left padding to offset from the canvas edge.
-const withPadding = (story: () => unknown) => html`<div style="padding-left: 2rem">${story()}</div>`;
-
-// Shorthand for variant stories that share the same render + decorator pattern.
-function variantStory(content: TemplateResult): Story {
-  return {
-    render: (args: Args) => renderSidenavigation(content, args),
-    decorators: [withPadding],
-  };
-}
-
 export const Default: Story = {};
 
-export const LinkOnly: Story = variantStory(linkOnly);
-export const Nested: Story = variantStory(nested);
-export const CollapsibleNotLinked: Story = variantStory(collapsibleNotLinked);
-export const CollapsibleLinked: Story = variantStory(collapsibleLinked);
-export const ActiveNavigationItem: Story = variantStory(activeItem);
+export const LinkOnly: Story = {
+  render: (args: Args) => renderSidenavigation(linkOnly, args),
+};
+
+export const Nested: Story = {
+  render: (args: Args) => renderSidenavigation(nested, args),
+};
+
+export const CollapsibleNotLinked: Story = {
+  render: (args: Args) => renderSidenavigation(collapsibleNotLinked, args),
+};
+
+export const CollapsibleLinked: Story = {
+  render: (args: Args) => renderSidenavigation(collapsibleLinked, args),
+};
+
+export const ActiveNavigationItem: Story = {
+  render: (args: Args) => renderSidenavigation(activeItem, args),
+};
