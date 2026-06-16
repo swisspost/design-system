@@ -1,5 +1,16 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.73
+
+### Patch Changes
+
+- Added horizontal scroll support to `post-banner` to prevent content from overflowing the banner's width. (by [@myrta2302](https://github.com/myrta2302) with [#7680](https://github.com/swisspost/design-system/pull/7680))
+
+- Added a slight horizontal offset to the header logo as it shrinks on scroll, ensuring consistent alignment with the rest of the header content. (by [@alizedebray](https://github.com/alizedebray) with [#7756](https://github.com/swisspost/design-system/pull/7756))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.73
+  - @swisspost/design-system-icons@10.0.0-next.73
+
 ## 10.0.0-next.72
 
 ### Minor Changes
