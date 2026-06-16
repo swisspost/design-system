@@ -5,7 +5,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'a3f8b2c1-1d4e-4f6a-9b0c-2e7d8f3a5c6b',
   title: 'Components/Login Widget',
-  tags: ['package:WebComponents', 'status:InProgress'],
+  tags: ['package:WebComponents'],
   component: 'post-login-widget',
   render,
   parameters: {
