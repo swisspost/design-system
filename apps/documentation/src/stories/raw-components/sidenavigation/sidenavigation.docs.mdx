@@ -28,13 +28,16 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 The navigation content is authored by you and projected through the default slot. It must be a `<nav>` landmark, with a heading (`<h*>`, or a `<p>` if no heading level fits) linked via `aria-labelledby`, and `<ul>`/`<li>` lists for the items. Nested levels are nested `<ul>`s.
 
+### Icon usage
+
+Icons help users scan and recognize navigation categories using simple, meaningful icons with labels.
+
+**When using icons**:
+
+- **Level-1 only**: Never on deeper levels (2, 3, or 4)
+- **All or none**: Apply to all level-1 items or none, do not mix
+
 ## Concrete examples of application
-
-Each item can optionally contain a `<post-icon>`. If at least one item on a level has an icon, the items without one are indented to align with it.
-
-<post-banner>
-  Only level-1 navigation items can have icons. Either <strong>all or none</strong> — do not mix. Toggle icons on the Default story above using the <strong>Show icons</strong> control to preview both variants.
-</post-banner>
 
 ### Link only
 

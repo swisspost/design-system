@@ -37,7 +37,8 @@ const meta: MetaComponent = {
       name: 'Show icons',
       description:
         '<post-banner data-size="sm"><p>' +
-        'Only level-1 navigation items can have icons. Either <strong>all or none</strong> — do not mix.' +
+        'Only level-1 navigation items can have icons.<br>' +
+        'Either <strong>all or none</strong>, do not mix.' +
         '</p></post-banner>',
       control: { type: 'boolean' },
       table: { category: 'Content' },
