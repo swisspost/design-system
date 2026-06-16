@@ -1,8 +1,8 @@
 ﻿import { html, LitElement, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { _restorePersistedState, MIGRATION_CHECKS_KEY_V9 } from './util/persist.util';
 import { V910Checks } from './types';
 import { _updateOnChange, _updatePersistedState } from './util/migration-checks.util';
+import { _restorePersistedState, MIGRATION_CHECKS_KEY_V9 } from './util/persist.util';
 
 @customElement('migration-version-9-10')
 export class MigrationV910Component extends LitElement {
@@ -17,7 +17,6 @@ export class MigrationV910Component extends LitElement {
     },
     ngbootstrap: {
       typeahead: false,
-      progressbar: false,
     },
     forms: {
       tooltip_validation: false,
@@ -300,116 +299,120 @@ export class MigrationV910Component extends LitElement {
                 <h4>Ng-Bootstrap</h4>
                 <ul class="list-unstyled">
                   <li>
-                    <div class="form-check">
-                      <input
-                        id="ngbootstrap-removed_components"
-                        class="form-check-input"
-                        type="checkbox"
-                        ?checked="${this.state.ngbootstrap.removed_components}"
-                      />
-                      <label class="form-check-label" for="ngbootstrap-removed_components">
-                        All Ng-Bootstrap components are no longer available:
-                        <ul>
-                          <li>carousel → <i>coming soon</i></li>
-                          <li>custom select → <i>coming soon</i></li>
-                          <li>datatable → AG Grid <i>coming soon</i></li>
-                          <li>datepicker → <i>coming soon</i></li>
-                          <li>dropdown → <i>coming soon</i></li>
-                          <li>
-                            modal →
-                            <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
-                              >dialog</a
+                    All Ng-Bootstrap components are no longer available. Each removed Ng-Bootstrap component has (or will have) an equivalent in
+                      the Design System, shown in the following list. Migration to these new
+                      components is manual — you’ll need to update the affected components in
+                      your application to use the corresponding elements as described in their
+                      documentation.
+                    <ul>
+                      <li>carousel → <i>coming soon</i></li>
+                      <li>custom select → <i>coming soon</i></li>
+                      <li>datatable → AG Grid <i>coming soon</i></li>
+                      <li>datepicker → <i>coming soon</i></li>
+                      <li>dropdown → <i>coming soon</i></li>
+                      <li>
+                        modal →
+                        <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
+                          >dialog</a
+                        >
+                      </li>
+                      <li>
+                        notification overlay →
+                        <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
+                          >dialog</a
+                        >
+                      </li>
+                      <li>pagination → <i>coming soon</i></li>
+                      <li>
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-progressbar"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.progressbar}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-progressbar">
+                            progressbar →
+                            <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs"
+                              >post-progressbar</a
                             >
-                          </li>
-                          <li>
-                            notification overlay →
-                            <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
-                              >dialog</a
-                            >
-                          </li>
-                          <li>pagination → <i>coming soon</i></li>
-                          <li>
-                            <div class="form-check">
-                              <input
-                                id="ngbootstrap-progressbar"
-                                class="form-check-input"
-                                type="checkbox"
-                                ?checked="${this.state.ngbootstrap.progressbar}"
-                              />
-                              <label class="form-check-label" for="ngbootstrap-progressbar">
-                                progressbar →
-                                <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs"
-                                  >post-progressbar</a
-                                >
-                                <span class="info">
-                                  <p>
-                                    The <code>NgbProgressbar</code> component has been replaced by the
-                                    <code>&lt;post-progressbar&gt;</code> web component, which provides an
-                                    accessible and framework-agnostic solution.
-                                  </p>
-                                  <p><strong>Before (v9 — NgbProgressbar)</strong></p>
-                                  <p>
-                                    The NgbProgressbar component was used with two-way binding and
-                                    properties like <code>type</code>, <code>striped</code>, and
-                                    <code>animated</code>:
-                                  </p>
-                                  <code-block
-                                    code=${`<!-- template.html -->\n<ngb-progressbar\n  type="primary"\n  [value]="65"\n  [striped]="true"\n  [animated]="true"\n>\n</ngb-progressbar>`}
-                                  ></code-block>
-                                  <p><strong>After (v10)</strong></p>
-                                  <p>
-                                    The new <code>&lt;post-progressbar&gt;</code> component uses standard HTML
-                                    <code>min</code>, <code>max</code>, and <code>value</code> attributes,
-                                    similar to the native <code>&lt;progress&gt;</code> element:
-                                  </p>
-                                  <code-block
-                                    code=${`<!-- template.html -->\n<post-progressbar\n  min="0"\n  max="100"\n  value="65"\n></post-progressbar>`}
-                                  ></code-block>
-                                  <p><strong>Key differences:</strong></p>
-                                  <ul>
-                                    <li>
-                                      <strong>Attributes instead of properties:</strong> Use standard HTML
-                                      attributes (<code>min</code>, <code>max</code>, <code>value</code>)
-                                      instead of ng-bootstrap directives.
-                                    </li>
-                                    <li>
-                                      <strong>Striped and animated removed:</strong> The
-                                      <code>striped</code> and <code>animated</code> properties are no longer
-                                      supported.
-                                    </li>
-                                  </ul>
-                                  <p><strong>Handling dynamic updates:</strong></p>
-                                  <p>
-                                    To update the progress value dynamically in Angular, bind directly to the
-                                    <code>value</code> attribute:
-                                  </p>
-                                  <code-block
-                                    code=${`<!-- template.html -->\n<post-progressbar\n  [attr.value]="progressValue"\n  min="0"\n  max="100"\n></post-progressbar>`}
-                                  ></code-block>
-                                  <p><strong>Showing percentage values:</strong></p>
-                                  <p>
-                                    The <code>[showValue]</code> property is not supported by <code>&lt;post-progressbar&gt;</code>. Unlike
-                                    <code>NgbProgressbar</code>, the percentage cannot be displayed inside the
-                                    progress bar.
-                                    To show the current progress percentage, use <code>.progressbar-value</code> together with a
-                                    <code>.progressbar-label</code>.
-                                    For implementation details and additional examples, refer to the
-                                    <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs">
-                                      post-progressbar documentation
-                                    </a>.
-                                  </p>
+                            <span class="info">
+                              <p>
+                                The <code>NgbProgressbar</code> component has been replaced by the
+                                <code>&lt;post-progressbar&gt;</code> web component, which provides an
+                                accessible and framework-agnostic solution.
+                              </p>
+                              <p><strong>Before (v9 — NgbProgressbar)</strong></p>
+                              <p>
+                                The NgbProgressbar component was used with two-way binding and
+                                properties like <code>type</code>, <code>striped</code>, and
+                                <code>animated</code>:
+                              </p>
+                              <code-block
+                                code=${`<!-- template.html -->\n<ngb-progressbar\n  type="primary"\n  [value]="65"\n  [striped]="true"\n  [animated]="true"\n>\n</ngb-progressbar>`}
+                              ></code-block>
+                              <p><strong>After (v10)</strong></p>
+                              <p>
+                                The new <code>&lt;post-progressbar&gt;</code> component uses standard HTML
+                                <code>min</code>, <code>max</code>, and <code>value</code> attributes,
+                                similar to the native <code>&lt;progress&gt;</code> element:
+                              </p>
+                              <code-block
+                                code=${`<!-- template.html -->\n<post-progressbar\n  min="0"\n  max="100"\n  value="65"\n></post-progressbar>`}
+                              ></code-block>
+                              <p><strong>Key differences:</strong></p>
+                              <ul>
+                                <li>
+                                  <strong>Attributes instead of properties:</strong> Use standard HTML
+                                  attributes (<code>min</code>, <code>max</code>, <code>value</code>)
+                                  instead of ng-bootstrap directives.
+                                </li>
+                                <li>
+                                  <strong>Striped and animated removed:</strong> The
+                                  <code>striped</code> and <code>animated</code> properties are no longer
+                                  supported.
+                                </li>
+                              </ul>
+                              <p><strong>Handling dynamic updates:</strong></p>
+                              <p>
+                                To update the progress value dynamically in Angular, bind directly to the
+                                <code>value</code> attribute:
+                              </p>
+                              <code-block
+                                code=${`<!-- template.html -->\n<post-progressbar\n  [attr.value]="progressValue"\n  min="0"\n  max="100"\n></post-progressbar>`}
+                              ></code-block>
+                              <p><strong>Showing percentage values:</strong></p>
+                              <p>
+                                The <code>[showValue]</code> property is not supported by <code>&lt;post-progressbar&gt;</code>. Unlike
+                                <code>NgbProgressbar</code>, the percentage cannot be displayed inside the
+                                progress bar.
+                                To show the current progress percentage, use <code>.progressbar-value</code> together with a
+                                <code>.progressbar-label</code>.
+                                For implementation details and additional examples, refer to the
+                                <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs">
+                                  post-progressbar documentation
+                                </a>.
+                              </p>
 
-                                  <p>
-                                    Note that this is not a 1:1 replacement for
-                                    <code>[showValue]</code>, as the value is displayed separately from the
-                                    progress indicator.
-                                  </p>
-                                </span>
-                              </label>
-                            </div>
-                          </li>
-                          <li>timepicker → <i>coming soon</i></li>
-                          <li>
+                              <p>
+                                Note that this is not a 1:1 replacement for
+                                <code>[showValue]</code>, as the value is displayed separately from the
+                                progress indicator.
+                              </p>
+                            </span>
+                          </label>
+                        </div>
+                      </li>
+                      <li>timepicker → <i>coming soon</i></li>
+                      <li>
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-typeahead"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.typeahead}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-typeahead">
                             typeahead →
                             <a
                               href="/?path=/docs/2df77c32-5e33-402e-bd2e-54d54271ce19--docs#autocomplete"
