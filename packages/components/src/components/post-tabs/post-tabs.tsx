@@ -127,14 +127,14 @@ export class PostTabs {
       const activeTab = this.findActivePagesTab();
       if (activeTab) {
         this.activateTab(activeTab);
-        activeTab.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' });
+        this.scrollTabIntoView(activeTab);
       }
     } else {
       const tabToActivate = this.activeTab || this.tabs[0]?.name;
       if (tabToActivate) {
         void this.show(tabToActivate);
         const activeTab = this.tabs.find(t => t.name === tabToActivate);
-        activeTab?.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' });
+        if (activeTab) this.scrollTabIntoView(activeTab);
       }
     }
 
@@ -215,7 +215,7 @@ export class PostTabs {
     const activeTab = this.findActivePagesTab();
     if (activeTab && activeTab !== this.currentActiveTab) {
       this.activateTab(activeTab);
-      activeTab.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' });
+      this.scrollTabIntoView(activeTab, 'smooth');
     }
   }
 
@@ -234,7 +234,7 @@ export class PostTabs {
       const activeTab = this.findActivePagesTab();
       if (activeTab) {
         this.activateTab(activeTab);
-        activeTab.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' });
+        this.scrollTabIntoView(activeTab);
       }
     } else {
       const tabToActivate = this.activeTab || this.tabs[0]?.name;
@@ -290,7 +290,7 @@ export class PostTabs {
     );
 
     this.activateTab(newTab);
-    newTab.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' });
+    this.scrollTabIntoView(newTab, 'smooth');
     // if a panel is currently being displayed, remove it from the view and complete the associated animation
     if (this.showing) {
       this.showing.finish();
@@ -451,6 +451,20 @@ export class PostTabs {
       left: sign * this.tabsContainer.clientWidth,
       behavior: 'smooth',
     });
+  }
+
+  private scrollTabIntoView(tab: HTMLPostTabItemElement, behavior: ScrollBehavior = 'instant') {
+    const container = this.tabsContainer;
+    const tabLeft = tab.offsetLeft;
+    const tabRight = tabLeft + tab.offsetWidth;
+    const containerLeft = container.scrollLeft;
+    const containerRight = containerLeft + container.clientWidth;
+
+    if (tabLeft < containerLeft) {
+      container.scrollTo({ left: tabLeft, behavior });
+    } else if (tabRight > containerRight) {
+      container.scrollTo({ left: tabRight - container.clientWidth, behavior });
+    }
   }
 
   private handleScrollButtons() {
