@@ -96,7 +96,7 @@ export const Authenticated: Story = {
           );
         }
         return originalFetch(input, init);
-      }) as typeof fetch;
+      });
       return originalFetch;
     },
   ],
