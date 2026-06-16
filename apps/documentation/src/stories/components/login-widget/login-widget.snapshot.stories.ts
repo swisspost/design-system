@@ -1,5 +1,5 @@
 import type { StoryObj } from '@storybook/web-components-vite';
-import meta, { renderLoginLink, renderUserMenuLinks } from './post-login-widget.stories';
+import meta, { renderLoginLink, renderUserMenuLinks } from './login-widget.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 
