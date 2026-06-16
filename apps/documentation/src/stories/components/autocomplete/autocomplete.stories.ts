@@ -5,7 +5,7 @@ import { spreadArgs } from '@/utils';
 
 const meta: MetaComponent = {
   id: '5ef3cb45-86f6-4baf-bdbf-35bd2ddf0f3d',
-  title: 'Raw Components/Form Autocomplete',
+  title: 'Components/Form Autocomplete',
   component: 'post-autocomplete',
   tags: ['package:WebComponents'],
   render: createAutocompleteRenderer(),
