@@ -36,7 +36,7 @@ tokens.$default-map: utilities.$post-spacing;
 
     pre {
       margin: 0;
-      padding: tokens.get('utility-gap-16') tokens.get('utility-gap-24');
+      padding: tokens.get('utility-gap-16') tokens.get('utility-gap-16');
       overflow-x: auto;
       scrollbar-color: post.$gray-60 transparent;
       scrollbar-width: thin;
