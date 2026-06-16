@@ -91,8 +91,11 @@ export class PostTabs {
 
   @Watch('label')
   validateLabel() {
-    if (this.isPagesVariant) {
-      checkRequiredAndType(this, 'label', 'string');
+    if (this.isPagesVariant && !this.label) {
+      console.error(
+        `[${this.host.localName}] Property "label" is required in Pages variant. Received: ${JSON.stringify(this.label)}.`,
+        this.host,
+      );
     }
   }
 
