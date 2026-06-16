@@ -8,7 +8,7 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 const meta: MetaComponent<HTMLPostCollapsibleElement> = {
   id: '6a91848c-16ec-4a23-bc45-51c797b5b2c3',
   title: 'Components/Collapsible',
-  tags: ['package:WebComponents', 'status:Stable'],
+  tags: ['package:WebComponents'],
   component: 'post-collapsible',
   render: renderCollapsible,
   parameters: {
@@ -69,9 +69,7 @@ export const WrappedCollapsible: Story = {
   render: ({ innerHTML, ...args }: Partial<HTMLPostCollapsibleElement>) => html`
     <post-collapsible-trigger>
       <button class="btn btn-secondary mb-16">Toggle Collapsible</button>
-      <post-collapsible ${spreadArgs(args)}>
-        ${unsafeHTML(innerHTML)}
-      </post-collapsible>
+      <post-collapsible ${spreadArgs(args)}> ${unsafeHTML(innerHTML)} </post-collapsible>
     </post-collapsible-trigger>
   `,
 };
