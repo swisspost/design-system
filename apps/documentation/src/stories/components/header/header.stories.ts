@@ -37,7 +37,7 @@ const meta: MetaComponent = {
     isLoggedIn: false,
     jobs: false,
     fullWidth: false,
-    languageMenuPosition: 'global',
+    languageMenu: true,
   },
   argTypes: {
     title: {
@@ -100,6 +100,7 @@ const meta: MetaComponent = {
       control: {
         type: 'boolean',
       },
+      if: { arg: 'title', eq: '' },
       table: {
         category: 'Content',
       },
@@ -128,16 +129,12 @@ const meta: MetaComponent = {
     localNav: {
       name: 'Local controls',
       description:
-        'Whether or not application-specific controls are displayed ("search" and "login").',
+        'Whether or not application-specific controls are displayed ("search" and "login"). Requires either the main navigation or a title to be present.',
       control: {
         type: 'boolean',
       },
       table: {
         category: 'Content',
-      },
-      if: {
-        arg: 'jobs',
-        truthy: false,
       },
     },
     isLoggedIn: {
@@ -156,14 +153,12 @@ const meta: MetaComponent = {
       },
       table: { category: 'state' },
     },
-    languageMenuPosition: {
+    languageMenu: {
       name: 'Language menu',
-      description:
-        'Where the language menu is displayed: in the global header, in the local header, or not at all.',
+      description: 'Whether or not the language menu is displayed.',
       control: {
-        type: 'inline-radio',
+        type: 'boolean',
       },
-      options: ['global', 'local', 'none'],
       table: {
         category: 'Content',
       },
@@ -224,7 +219,10 @@ function getHeaderRenderer(
       </post-language-menu>
     `;
 
-    const localLanguageMenuItem = args.languageMenuPosition === 'local' ? languageMenu : undefined;
+    const isApplicationHeader =
+      !args.targetGroup && !args.globalNavPrimary && !args.globalNavSecondary && !args.postLogin;
+    const localLanguageMenuItem =
+      args.languageMenu && isApplicationHeader ? languageMenu : undefined;
 
     return html`
       <post-header text-menu="${args.textMenu}" full-width="${args.fullWidth || nothing}">
@@ -236,17 +234,19 @@ function getHeaderRenderer(
         ${args.globalNavSecondary ? renderGlobalNavSecondary(args) : nothing}
 
         <!-- Language menu (global) -->
-        ${args.languageMenuPosition === 'global'
+        ${args.languageMenu && !isApplicationHeader
           ? html`<span slot="language-menu">${languageMenu}</span>`
           : nothing}
-        ${!args.title && !args.jobs
+        ${!args.title && !args.jobs && args.postLogin
           ? html`
               <!-- Global header login/user menu -->
               ${globalLogin}
             `
           : nothing}
         ${args.title !== '' ? title : nothing}
-        ${args.localNav ? renderMicrositeControls({ ...args, localLanguageMenuItem }) : nothing}
+        ${args.localNav || localLanguageMenuItem
+          ? renderMicrositeControls({ ...args, localLanguageMenuItem })
+          : nothing}
         ${args.mainNav ? mainnavigation : nothing} ${args.jobs ? renderJobControls() : nothing}
       </post-header>
     `;
@@ -361,7 +361,6 @@ export const Application: Story = {
     globalNavSecondary: false,
     globalNavPrimary: false,
     localNav: true,
-    languageMenuPosition: 'none',
     postLogin: false,
     targetGroup: false,
   },
@@ -376,7 +375,7 @@ export const ApplicationWithLanguageMenu: Story = {
     globalNavSecondary: false,
     globalNavPrimary: false,
     localNav: true,
-    languageMenuPosition: 'local',
+    languageMenu: true,
     postLogin: false,
     targetGroup: false,
   },
