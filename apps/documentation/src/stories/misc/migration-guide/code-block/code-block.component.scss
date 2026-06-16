@@ -37,7 +37,6 @@ tokens.$default-map: utilities.$post-spacing;
     pre {
       margin: 0;
       padding: tokens.get('utility-gap-16') tokens.get('utility-gap-24');
-      padding-inline-end: calc(tokens.get('utility-gap-24') * 4); // leave room for Copy button
       overflow-x: auto;
       scrollbar-color: post.$gray-60 transparent;
       scrollbar-width: thin;
