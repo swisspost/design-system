@@ -5,7 +5,6 @@ import { MetaExtended } from '@root/types';
 const meta: MetaExtended = {
   id: 'b0154a21-1138-4a69-953a-c17c3cb7c538',
   title: 'Utilities/Flex',
-  tags: ['status:Stable'],
   decorators: [story => html`<div class="flex-story-container">${story()}</div>`],
 };
 
