@@ -28,9 +28,9 @@ textarea.form-control {
   @include forms-mx.textarea-resizer-svg(#050400);
 
   &.form-control-sm {
-    //TODO: Token min-height?
+    min-height: tokens.get('textarea-small-sizing-min-height');
     padding-block: tokens.get('textarea-non-floating-small-padding-block');
-    font-size: 16px; //TODO: Token
+    font-size: tokens.get('textarea-non-floating-small-font-size');
   }
 
   &[disabled] {
