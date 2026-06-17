@@ -10,11 +10,12 @@ import {
 } from './side-navigation.examples';
 
 const meta: MetaComponent = {
-  id: '8d15c75d-3cda-4793-9b85-81f11cabb81c',
+  id: '9f26d86e-7edb-5804-ac96-92g22f91c9d9',
   title: 'Raw Components/Side Navigation',
   tags: ['package:WebComponents', 'status:InProgress'],
   component: 'post-side-navigation',
   parameters: {
+    layout: 'fullscreen',
     badges: [],
     design: {
       type: 'figma',
@@ -45,7 +46,6 @@ const meta: MetaComponent = {
     },
   },
   render: renderSideNavigationWithHeader(),
-  decorators: [(story) => html`<div style="padding-bottom: 1rem">${story()}</div>`],
 };
 
 export default meta;
@@ -224,28 +224,50 @@ function renderSideNavigationWithHeader(navContent?: TemplateResult) {
   };
 }
 
+// HELPERS
+
+function getIframeParameters(iframeHeight: number) {
+  return {
+    parameters: {
+      docs: {
+        story: {
+          inline: false,
+          iframeHeight,
+        },
+      },
+    },
+  };
+}
+
 // STORIES
 
 type Story = StoryObj;
 
-export const Default: Story = {};
+export const Default: Story = {
+  ...getIframeParameters(700),
+};
 
 export const LinkOnly: Story = {
+  ...getIframeParameters(400),
   render: (args: Args) => renderSideNavigation(html`<ul>${linkOnly}</ul>`, args),
 };
 
 export const Nested: Story = {
+  ...getIframeParameters(400),
   render: (args: Args) => renderSideNavigation(html`<ul>${nested}</ul>`, args),
 };
 
 export const CollapsibleNotLinked: Story = {
+  ...getIframeParameters(400),
   render: (args: Args) => renderSideNavigation(html`<ul>${collapsibleNotLinked}</ul>`, args),
 };
 
 export const CollapsibleLinked: Story = {
+  ...getIframeParameters(400),
   render: (args: Args) => renderSideNavigation(html`<ul>${collapsibleLinked}</ul>`, args),
 };
 
 export const ActiveNavigationItem: Story = {
+  ...getIframeParameters(400),
   render: (args: Args) => renderSideNavigation(html`<ul>${activeItem}</ul>`, args),
 };
