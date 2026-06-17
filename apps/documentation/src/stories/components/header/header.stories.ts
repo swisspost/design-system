@@ -173,6 +173,10 @@ const meta: MetaComponent = {
   render: getHeaderRenderer(),
 };
 
+function showGlobalLogin(args: Args) {
+  return !args.title && !args.jobs && args.postLogin;
+}
+
 function getHeaderRenderer(
   subComponents: {
     mainnavigation?: TemplateResult;
@@ -220,7 +224,12 @@ function getHeaderRenderer(
     `;
 
     const isApplicationHeader =
-      !args.targetGroup && !args.globalNavPrimary && !args.globalNavSecondary && !args.postLogin;
+      args.localNav &&
+      !args.mainNav &&
+      !args.targetGroup &&
+      !args.globalNavPrimary &&
+      !args.globalNavSecondary &&
+      !args.postLogin;
     const localLanguageMenuItem =
       args.languageMenu && isApplicationHeader ? languageMenu : undefined;
 
@@ -237,7 +246,7 @@ function getHeaderRenderer(
         ${args.languageMenu && !isApplicationHeader
           ? html`<span slot="language-menu">${languageMenu}</span>`
           : nothing}
-        ${!args.title && !args.jobs && args.postLogin
+        ${showGlobalLogin(args)
           ? html`
               <!-- Global header login/user menu -->
               ${globalLogin}
@@ -361,6 +370,7 @@ export const Application: Story = {
     globalNavSecondary: false,
     globalNavPrimary: false,
     localNav: true,
+    languageMenu: false,
     postLogin: false,
     targetGroup: false,
   },
