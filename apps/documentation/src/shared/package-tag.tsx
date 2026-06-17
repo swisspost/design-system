@@ -1,20 +1,21 @@
 import { MetaComponent } from '@root/types';
 
-type PackageTagProps = {
-  meta: MetaComponent;
-};
+export default function PackageTag({ meta }: { meta: MetaComponent }) {
+  const tags = meta.tags.filter(tag => tag.startsWith('package:')).map(getTag);
+  return tags.length > 1 ? <div className="d-flex gap-8">{tags}</div> : tags;
+}
 
-export default function PackageTag({ meta }: PackageTagProps) {
-  let packageName = '';
-  let tagColor = '';
+function getTag(tag: string) {
+  let packageName: string = '';
 
-  if (meta.tags.includes('package:Styles')) {
-    packageName = '@swisspost/design-system-styles';
-  } else if (meta.tags.includes('package:WebComponents')) {
-    packageName = '@swisspost/design-system-components';
-    tagColor = 'yellow';
+  switch (tag) {
+    case 'package:Styles':
+      packageName = '@swisspost/design-system-styles';
+      break;
+    case 'package:WebComponents':
+      packageName = '@swisspost/design-system-components';
+      break;
   }
 
-  const tagClass = 'tag tag-sm mb-24' + (tagColor ? ' tag-' + tagColor : '');
-  return <div className={tagClass}>{packageName}</div>;
+  return packageName ? <p className="tag tag-sm mt-0 mb-24">{packageName}</p> : null;
 }

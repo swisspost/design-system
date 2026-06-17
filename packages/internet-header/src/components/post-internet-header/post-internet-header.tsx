@@ -11,6 +11,7 @@ import '@swisspost/design-system-components';
 
 @Component({
   tag: 'swisspost-internet-header',
+  styleUrl: 'post-internet-header.scss',
   shadow: false,
 })
 export class PostInternetHeader {
@@ -85,6 +86,11 @@ export class PostInternetHeader {
    * Visually hidden label for the burger menu button.
    */
   @Prop({ reflect: true }) readonly textMenu!: string;
+
+  /**
+   * Visually hidden label for the login widget trigger button.
+   */
+  @Prop({ reflect: true }) readonly textUserMenuTrigger!: string;
 
   /**
    * Visually hidden label for the user menu.
@@ -245,7 +251,26 @@ export class PostInternetHeader {
             </post-language-menu>
           )}
 
-          {globalHeader.login && this.renderNavItem(globalHeader.login, { slot: 'post-login' })}
+          {globalHeader.login && (
+            <post-login-widget
+              slot="post-login"
+              textCurrentUser={this.textCurrentUser}
+              textUserMenu={this.textUserLinks}
+              textUserMenuTrigger={this.textUserMenuTrigger}
+            >
+              <Link slot="login-link" config={globalHeader.login} />
+
+              {globalHeader.userMenuLinks && (
+                <div slot="user-links">
+                  {globalHeader.userMenuLinks.map(link => (
+                    <post-menu-item key={link.url}>
+                      <Link config={link} />
+                    </post-menu-item>
+                  ))}
+                </div>
+              )}
+            </post-login-widget>
+          )}
 
           {localHeader.title && <p slot="title">{localHeader.title}</p>}
 

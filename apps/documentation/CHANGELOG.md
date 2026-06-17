@@ -1,5 +1,36 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.74
+
+### Patch Changes
+
+- Fixed `<post-tooltip>`, `<post-popover>` and `<post-menu>` not responding to user interactions in the Storybook docs preview on iOS. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7699](https://github.com/swisspost/design-system/pull/7699))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.73
+  - @swisspost/design-system-styles@10.0.0-next.73
+  - @swisspost/design-system-components-react@10.0.0-next.73
+  - @swisspost/internet-header@10.0.0-next.73
+  - @swisspost/design-system-icons@10.0.0-next.73
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.73
+  - @swisspost/design-system-tokens@10.0.0-next.73
+
+## 6.0.0-next.73
+
+### Minor Changes
+
+- Added a progressbar component used to indicate that the user's request has been received and the application is making progress toward completing the requested action. (by [@alizedebray](https://github.com/alizedebray) with [#7657](https://github.com/swisspost/design-system/pull/7657))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.72
+  - @swisspost/design-system-styles@10.0.0-next.72
+  - @swisspost/internet-header@10.0.0-next.72
+  - @swisspost/design-system-components-react@10.0.0-next.72
+  - @swisspost/design-system-icons@10.0.0-next.72
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.72
+  - @swisspost/design-system-tokens@10.0.0-next.72
+
 ## 6.0.0-next.72
 
 ### Minor Changes

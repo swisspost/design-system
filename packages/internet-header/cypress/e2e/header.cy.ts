@@ -48,7 +48,8 @@ describe('header', () => {
     });
 
     it('should correctly show the login link', () => {
-      cy.get('[slot="post-login"]').invoke('prop', 'localName').should('eq', 'a');
+      cy.get('[slot="post-login"]').invoke('prop', 'localName').should('eq', 'post-login-widget');
+      cy.get('[slot="post-login"]').find('[slot="login-link"]').should('be.visible');
     });
 
     context('main navigation', () => {

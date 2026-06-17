@@ -87,15 +87,17 @@ export class PostBanner {
       <Host data-version={version} role="alert" data-color-scheme="light">
         <slot name="close-button" />
 
-        <slot name="heading" />
+        <div class="post-banner-content">
+          <slot name="heading" />
 
-        <slot />
+          <slot />
 
-        {this.hasActions && (
-          <div class="actions">
-            <slot name="actions" />
-          </div>
-        )}
+          {this.hasActions && (
+            <div class="actions">
+              <slot name="actions" />
+            </div>
+          )}
+        </div>
       </Host>
     );
   }

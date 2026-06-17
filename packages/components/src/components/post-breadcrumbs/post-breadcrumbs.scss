@@ -9,6 +9,7 @@
 tokens.$default-map: components.$post-breadcrumb;
 
 :host {
+  display: block;
   position: relative;
 }
 
