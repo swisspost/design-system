@@ -16,7 +16,7 @@ const BUTTON_ICONS = [
 const meta: MetaComponent = {
   id: '021d61aa-e039-4858-b4b9-b86a3e772811',
   title: 'Components/Button Group',
-  tags: ['package:Styles', 'status:Stable'],
+  tags: ['package:Styles'],
   render: renderButtonGroup,
   parameters: {
     badges: [],

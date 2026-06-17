@@ -8,13 +8,13 @@ const meta: MetaComponent = {
   id: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890',
   title: 'Components/Progressbar',
   component: 'post-progressbar',
-  tags: ['package:Styles', 'package:WebComponents', 'status:InProgress'],
+  tags: ['package:Styles', 'package:WebComponents'],
   render,
   parameters: {
     badges: [],
     design: {
       type: 'figma',
-      url: '',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=32332-158448',
     },
   },
   args: {
