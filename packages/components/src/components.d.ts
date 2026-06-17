@@ -422,28 +422,6 @@ export namespace Components {
          */
         "value": string;
     }
-    interface PostLoginWidget {
-        /**
-          * Returns the current authentication state: `null` when the component is still loading, `true` when authenticated, `false` when not.
-         */
-        "isAuthenticated": () => Promise<boolean | null>;
-        /**
-          * Re-fetches the authentication state from the session API and updates the component rendering accordingly.
-         */
-        "refresh": () => Promise<void>;
-        /**
-          * Label for the "Current user is {user}" accessibility description. Use `{user}` as a placeholder — it will be replaced with the current user's name at runtime.
-         */
-        "textCurrentUser": string;
-        /**
-          * Accessible label for the dropdown menu
-         */
-        "textUserMenu": string;
-        /**
-          * Hidden label for the user menu trigger button, for accessibility purposes. It should describe the purpose of the button (e.g. "Access user links").
-         */
-        "textUserMenuTrigger": string;
-    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -814,10 +792,6 @@ export interface PostListboxOptionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostListboxOptionElement;
 }
-export interface PostLoginWidgetCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLPostLoginWidgetElement;
-}
 export interface PostMegadropdownCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostMegadropdownElement;
@@ -1044,23 +1018,6 @@ declare global {
         prototype: HTMLPostListboxOptionElement;
         new (): HTMLPostListboxOptionElement;
     };
-    interface HTMLPostLoginWidgetElementEventMap {
-        "postChange": { authenticated: boolean };
-    }
-    interface HTMLPostLoginWidgetElement extends Components.PostLoginWidget, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostLoginWidgetElementEventMap>(type: K, listener: (this: HTMLPostLoginWidgetElement, ev: PostLoginWidgetCustomEvent<HTMLPostLoginWidgetElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostLoginWidgetElementEventMap>(type: K, listener: (this: HTMLPostLoginWidgetElement, ev: PostLoginWidgetCustomEvent<HTMLPostLoginWidgetElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLPostLoginWidgetElement: {
-        prototype: HTMLPostLoginWidgetElement;
-        new (): HTMLPostLoginWidgetElement;
-    };
     interface HTMLPostLogoElement extends Components.PostLogo, HTMLStencilElement {
     }
     var HTMLPostLogoElement: {
@@ -1285,7 +1242,6 @@ declare global {
         "post-linkarea": HTMLPostLinkareaElement;
         "post-listbox": HTMLPostListboxElement;
         "post-listbox-option": HTMLPostListboxOptionElement;
-        "post-login-widget": HTMLPostLoginWidgetElement;
         "post-logo": HTMLPostLogoElement;
         "post-mainnavigation": HTMLPostMainnavigationElement;
         "post-megadropdown": HTMLPostMegadropdownElement;
@@ -1676,24 +1632,6 @@ declare namespace LocalJSX {
           * A value string, similar to <option value="Value 1">Value 1 description</option>
          */
         "value": string;
-    }
-    interface PostLoginWidget {
-        /**
-          * Emitted when the authentication state changes. The event payload is an object with an `authenticated` property: `true` when the user is logged in, `false` when the user is not logged in or the API request failed.
-         */
-        "onPostChange"?: (event: PostLoginWidgetCustomEvent<{ authenticated: boolean }>) => void;
-        /**
-          * Label for the "Current user is {user}" accessibility description. Use `{user}` as a placeholder — it will be replaced with the current user's name at runtime.
-         */
-        "textCurrentUser": string;
-        /**
-          * Accessible label for the dropdown menu
-         */
-        "textUserMenu": string;
-        /**
-          * Hidden label for the user menu trigger button, for accessibility purposes. It should describe the purpose of the button (e.g. "Access user links").
-         */
-        "textUserMenuTrigger": string;
     }
     interface PostLogo {
         /**
@@ -2105,11 +2043,6 @@ declare namespace LocalJSX {
         "selected": boolean;
         "highlighted": boolean;
     }
-    interface PostLoginWidgetAttributes {
-        "textCurrentUser": string;
-        "textUserMenu": string;
-        "textUserMenuTrigger": string;
-    }
     interface PostLogoAttributes {
         "url": string | URL;
     }
@@ -2220,7 +2153,6 @@ declare namespace LocalJSX {
         "post-linkarea": PostLinkarea;
         "post-listbox": PostListbox;
         "post-listbox-option": Omit<PostListboxOption, keyof PostListboxOptionAttributes> & { [K in keyof PostListboxOption & keyof PostListboxOptionAttributes]?: PostListboxOption[K] } & { [K in keyof PostListboxOption & keyof PostListboxOptionAttributes as `attr:${K}`]?: PostListboxOptionAttributes[K] } & { [K in keyof PostListboxOption & keyof PostListboxOptionAttributes as `prop:${K}`]?: PostListboxOption[K] } & OneOf<"value", PostListboxOption["value"], PostListboxOptionAttributes["value"]>;
-        "post-login-widget": Omit<PostLoginWidget, keyof PostLoginWidgetAttributes> & { [K in keyof PostLoginWidget & keyof PostLoginWidgetAttributes]?: PostLoginWidget[K] } & { [K in keyof PostLoginWidget & keyof PostLoginWidgetAttributes as `attr:${K}`]?: PostLoginWidgetAttributes[K] } & { [K in keyof PostLoginWidget & keyof PostLoginWidgetAttributes as `prop:${K}`]?: PostLoginWidget[K] } & OneOf<"textCurrentUser", PostLoginWidget["textCurrentUser"], PostLoginWidgetAttributes["textCurrentUser"]> & OneOf<"textUserMenu", PostLoginWidget["textUserMenu"], PostLoginWidgetAttributes["textUserMenu"]> & OneOf<"textUserMenuTrigger", PostLoginWidget["textUserMenuTrigger"], PostLoginWidgetAttributes["textUserMenuTrigger"]>;
         "post-logo": Omit<PostLogo, keyof PostLogoAttributes> & { [K in keyof PostLogo & keyof PostLogoAttributes]?: PostLogo[K] } & { [K in keyof PostLogo & keyof PostLogoAttributes as `attr:${K}`]?: PostLogoAttributes[K] } & { [K in keyof PostLogo & keyof PostLogoAttributes as `prop:${K}`]?: PostLogo[K] };
         "post-mainnavigation": Omit<PostMainnavigation, keyof PostMainnavigationAttributes> & { [K in keyof PostMainnavigation & keyof PostMainnavigationAttributes]?: PostMainnavigation[K] } & { [K in keyof PostMainnavigation & keyof PostMainnavigationAttributes as `attr:${K}`]?: PostMainnavigationAttributes[K] } & { [K in keyof PostMainnavigation & keyof PostMainnavigationAttributes as `prop:${K}`]?: PostMainnavigation[K] } & OneOf<"textMain", PostMainnavigation["textMain"], PostMainnavigationAttributes["textMain"]>;
         "post-megadropdown": Omit<PostMegadropdown, keyof PostMegadropdownAttributes> & { [K in keyof PostMegadropdown & keyof PostMegadropdownAttributes]?: PostMegadropdown[K] } & { [K in keyof PostMegadropdown & keyof PostMegadropdownAttributes as `attr:${K}`]?: PostMegadropdownAttributes[K] } & { [K in keyof PostMegadropdown & keyof PostMegadropdownAttributes as `prop:${K}`]?: PostMegadropdown[K] } & OneOf<"textClose", PostMegadropdown["textClose"], PostMegadropdownAttributes["textClose"]> & OneOf<"textBack", PostMegadropdown["textBack"], PostMegadropdownAttributes["textBack"]>;
@@ -2272,7 +2204,6 @@ declare module "@stencil/core" {
             "post-linkarea": LocalJSX.IntrinsicElements["post-linkarea"] & JSXBase.HTMLAttributes<HTMLPostLinkareaElement>;
             "post-listbox": LocalJSX.IntrinsicElements["post-listbox"] & JSXBase.HTMLAttributes<HTMLPostListboxElement>;
             "post-listbox-option": LocalJSX.IntrinsicElements["post-listbox-option"] & JSXBase.HTMLAttributes<HTMLPostListboxOptionElement>;
-            "post-login-widget": LocalJSX.IntrinsicElements["post-login-widget"] & JSXBase.HTMLAttributes<HTMLPostLoginWidgetElement>;
             "post-logo": LocalJSX.IntrinsicElements["post-logo"] & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
             "post-mainnavigation": LocalJSX.IntrinsicElements["post-mainnavigation"] & JSXBase.HTMLAttributes<HTMLPostMainnavigationElement>;
             "post-megadropdown": LocalJSX.IntrinsicElements["post-megadropdown"] & JSXBase.HTMLAttributes<HTMLPostMegadropdownElement>;
