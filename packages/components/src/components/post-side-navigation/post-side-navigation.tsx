@@ -136,11 +136,7 @@ export class PostSideNavigation {
    * Render inline navigation (desktop).
    */
   private renderNav() {
-    return (
-      <Host data-version={version}>
-        <slot />
-      </Host>
-    );
+    return <slot />;
   }
 
   /**
@@ -148,22 +144,24 @@ export class PostSideNavigation {
    */
   private renderDialog() {
     return (
-      <Host data-version={version}>
-        <dialog
-          onClose={() => {
-            this.postToggle.emit(false);
-          }}
-        >
-          <slot />
-          <post-closebutton onClick={() => this.hide()}>
-            {this.textClose}
-          </post-closebutton>
-        </dialog>
-      </Host>
+      <dialog
+        onClose={() => {
+          this.postToggle.emit(false);
+        }}
+      >
+        <slot />
+        <post-closebutton onClick={() => this.hide()}>
+          {this.textClose}
+        </post-closebutton>
+      </dialog>
     );
   }
 
   render() {
-    return this.device === 'desktop' ? this.renderNav() : this.renderDialog();
+    return (
+      <Host data-version={version}>
+        {this.device === 'desktop' ? this.renderNav() : this.renderDialog()}
+      </Host>
+    );
   }
 }
