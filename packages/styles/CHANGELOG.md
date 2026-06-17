@@ -1,5 +1,31 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.73
+
+### Patch Changes
+
+- Updated the font size of navigation items in `post-header` megadropdown on desktop from 20px to 16px. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7729](https://github.com/swisspost/design-system/pull/7729))
+
+- Added a slight horizontal offset to the header logo as it shrinks on scroll, ensuring consistent alignment with the rest of the header content. (by [@alizedebray](https://github.com/alizedebray) with [#7756](https://github.com/swisspost/design-system/pull/7756))
+
+- Set the button's font-size to prevent it from being inherited from the user agent stylesheet. (by [@alizedebray](https://github.com/alizedebray) with [#7789](https://github.com/swisspost/design-system/pull/7789))
+
+- Improved contrast on striped table. (by [@leagrdv](https://github.com/leagrdv) with [#7784](https://github.com/swisspost/design-system/pull/7784))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.73
+
+## 10.0.0-next.72
+
+### Minor Changes
+
+- Added a progressbar component used to indicate that the user's request has been received and the application is making progress toward completing the requested action. (by [@alizedebray](https://github.com/alizedebray) with [#7657](https://github.com/swisspost/design-system/pull/7657))
+
+### Patch Changes
+
+- Fix focus ring clipping on form elements inside form dialog body. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7622](https://github.com/swisspost/design-system/pull/7622))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.72
+
 ## 10.0.0-next.71
 
 ### Minor Changes
