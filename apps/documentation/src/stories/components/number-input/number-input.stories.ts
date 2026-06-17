@@ -8,7 +8,7 @@ const meta: MetaComponent = {
   id: 'd5f43fa8-42ba-4cb9-98c7-9386d4c939bb',
   title: 'Components/Form Number Input',
   component: 'post-number-input',
-  tags: ['package:WebComponents', 'status:Experimental'],
+  tags: ['package:WebComponents'],
   parameters: {},
   render,
   args: {

@@ -6,7 +6,7 @@ import { getLabelText, getValidationMessages, VALIDATION_STATE_MAP } from '@/uti
 const meta: MetaComponent = {
   id: '2df77c32-5e33-402e-bd2e-54d54271ce19',
   title: 'Components/Form Input',
-  tags: ['package:Styles', 'status:Stable'],
+  tags: ['package:Styles'],
   render: render,
   parameters: {
     badges: [],
