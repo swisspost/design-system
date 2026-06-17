@@ -56,6 +56,16 @@ Type: `Promise<void>`
 
 
 
+### `value() => Promise<string | string[]>`
+
+Returns the date packer current value (Date| Date[] | '').
+
+#### Returns
+
+Type: `Promise<string | string[]>`
+
+
+
 
 ## Dependencies
 

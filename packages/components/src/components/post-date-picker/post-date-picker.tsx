@@ -24,7 +24,6 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import type { AirDatepickerDate } from 'air-datepicker';
 import AirDatepicker, {
   AirDatepickerOptions,
   AirDatepickerViews,
