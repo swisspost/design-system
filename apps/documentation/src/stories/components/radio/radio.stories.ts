@@ -8,7 +8,7 @@ import { getLabelText, getValidationMessages, VALIDATION_STATE_MAP } from '@/uti
 const meta: MetaComponent = {
   id: '151242aa-a074-4a55-a81c-db597c83cdad',
   title: 'Components/Form Radio Button',
-  tags: ['package:Styles', 'status:Stable'],
+  tags: ['package:Styles'],
   parameters: {
     badges: [],
     design: {
