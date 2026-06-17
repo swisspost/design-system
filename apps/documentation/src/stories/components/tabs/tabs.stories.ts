@@ -17,7 +17,7 @@ const meta: MetaComponent<
 > = {
   id: 'bb1291ca-4dbb-450c-a15f-596836d9f39e',
   title: 'Components/Tabs',
-  tags: ['package:WebComponents', 'status:InProgress'],
+  tags: ['package:WebComponents'],
   component: 'post-tabs',
   render: renderTabs,
   parameters: {
