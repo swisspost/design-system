@@ -8,7 +8,7 @@ import { getLabelText, getValidationMessages, VALIDATION_STATE_MAP } from '@/uti
 const meta: MetaComponent = {
   id: 'bc251cd0-5173-463b-8729-586bb1bf1e1a',
   title: 'Components/Form Select',
-  tags: ['package:Styles', 'status:Stable'],
+  tags: ['package:Styles'],
   parameters: {
     badges: [],
     design: {
