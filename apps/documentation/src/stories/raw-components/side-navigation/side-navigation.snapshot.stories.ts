@@ -1,5 +1,5 @@
 import type { StoryObj } from '@storybook/web-components-vite';
-import meta, { renderSidenavigation } from './side-navigation.stories';
+import meta, { renderSideNavigation } from './side-navigation.stories';
 import { html } from 'lit';
 import {
   linkOnly,
