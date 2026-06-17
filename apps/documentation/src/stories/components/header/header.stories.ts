@@ -13,7 +13,7 @@ import { renderTitle } from '@/stories/components/header/renderers/title';
 const meta: MetaComponent = {
   id: '27a2e64d-55ba-492d-ab79-5f7c5e818498',
   title: 'Components/Header',
-  tags: ['package:WebComponents', 'status:InProgress'],
+  tags: ['package:WebComponents'],
   component: 'post-header',
   parameters: {
     layout: 'fullscreen',
