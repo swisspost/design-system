@@ -57,7 +57,7 @@ export class PostLoginWidget {
   @Prop({ reflect: true })
   @Required()
   @Type('string')
-  textUserMenuTrigger!: string;
+  textAccessUserLinks!: string;
 
   @State() private authenticated: boolean | null = null;
 
@@ -129,7 +129,7 @@ export class PostLoginWidget {
                     `${this.user.name} ${this.user.surname}`,
                   )}
                 ></post-avatar>
-                <span class="visually-hidden">{this.textUserMenuTrigger}</span>
+                <span class="visually-hidden">{this.textAccessUserLinks}</span>
               </button>
             </post-menu-trigger>
             <post-menu label={this.textUserMenu} id="user-menu-default">

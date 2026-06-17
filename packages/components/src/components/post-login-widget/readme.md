@@ -1,7 +1,5 @@
 # post-login-widget
 
-
-
 <!-- Auto Generated Below -->
 
 
@@ -9,9 +7,9 @@
 
 | Property                           | Attribute                | Description                                                                                                                                                    | Type     | Default     |
 | ---------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `textAccessUserLinks` _(required)_ | `text-access-user-links` | Hidden label for the user menu trigger button, for accessibility purposes. It should describe the purpose of the button (e.g. "Access user links").            | `string` | `undefined` |
 | `textCurrentUser` _(required)_     | `text-current-user`      | Label for the "Current user is {user}" accessibility description. Use `{user}` as a placeholder — it will be replaced with the current user's name at runtime. | `string` | `undefined` |
 | `textUserMenu` _(required)_        | `text-user-menu`         | Accessible label for the dropdown menu                                                                                                                         | `string` | `undefined` |
-| `textUserMenuTrigger` _(required)_ | `text-user-menu-trigger` | Hidden label for the user menu trigger button, for accessibility purposes. It should describe the purpose of the button (e.g. "Access user links").            | `string` | `undefined` |
 
 
 ## Events
