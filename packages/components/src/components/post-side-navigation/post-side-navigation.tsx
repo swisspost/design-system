@@ -54,28 +54,32 @@ export class PostSideNavigation {
     this.host.removeEventListener('keydown', this.handleKeyDown);
   }
 
+  get dialog(): HTMLDialogElement {
+    return this.host.shadowRoot?.querySelector('dialog') as HTMLDialogElement;
+  }
+
+  private get collapsibleTrigger(): HTMLPostCollapsibleTriggerElement | null {
+    return document.activeElement?.closest('post-collapsible-trigger') ?? null;
+  }
+
+  private get collapsible(): HTMLPostCollapsibleElement | null {
+    return this.collapsibleTrigger?.querySelector(':scope > post-collapsible') ?? null;
+  }
+
   /**
    * Collapses the active disclosure on Escape; lets the native dialog handle it otherwise.
    */
   private handleKeyDown = (e: KeyboardEvent) => {
     if (e.key !== 'Escape') return;
 
-    const trigger = document.activeElement?.closest<HTMLPostCollapsibleTriggerElement>(
-      'post-collapsible-trigger',
-    );
-
-    if (!trigger) return;
-
-    const collapsible = trigger.querySelector<HTMLPostCollapsibleElement>(
-      ':scope > post-collapsible',
-    );
+    const collapsible = this.collapsible;
 
     if (!collapsible || collapsible.collapsed) return;
 
     e.preventDefault();
     e.stopPropagation();
     collapsible.toggle(false);
-    trigger.querySelector<HTMLButtonElement>('button')?.focus();
+    this.collapsibleTrigger?.querySelector<HTMLButtonElement>('button')?.focus();
   };
 
   /**
@@ -86,9 +90,7 @@ export class PostSideNavigation {
   async toggle() {
     if (this.device === 'desktop') return;
 
-    const dialog = this.dialog;
-
-    return dialog?.open ? this.hide() : this.show();
+    return this.dialog?.open ? this.hide() : this.show();
   }
 
   /**
@@ -113,10 +115,6 @@ export class PostSideNavigation {
     if (this.device === 'desktop') return;
 
     this.dialog.close();
-  }
-
-  get dialog(): HTMLDialogElement {
-    return this.host.shadowRoot?.querySelector('dialog') as HTMLDialogElement;
   }
 
   /**
