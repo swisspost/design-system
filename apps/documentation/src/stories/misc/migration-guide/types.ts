@@ -89,6 +89,7 @@ export interface V910Checks {
     hide_automigration: boolean;
   };
   ngbootstrap: {
+    modal: boolean;
     typeahead: boolean;
   };
   forms: {
