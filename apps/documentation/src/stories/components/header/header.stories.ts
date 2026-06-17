@@ -1,14 +1,15 @@
-import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
-import { MetaComponent } from '@root/types';
-import { html, nothing, TemplateResult } from 'lit';
-import { fakeContent } from '@/utils';
-import { renderMainnavigation } from '@/stories/components/header/renderers/main-navigation';
-import { renderGlobalNavSecondary } from '@/stories/components/header/renderers/global-nav-secondary';
 import { renderAudience } from '@/stories/components/header/renderers/audience';
-import { renderMicrositeControls } from '@/stories/components/header/renderers/microsite-controls';
+import { renderGlobalNavSecondary } from '@/stories/components/header/renderers/global-nav-secondary';
 import { renderJobControls } from '@/stories/components/header/renderers/job-controls';
-import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
+import { renderMainnavigation } from '@/stories/components/header/renderers/main-navigation';
+import { renderMicrositeControls } from '@/stories/components/header/renderers/microsite-controls';
 import { renderTitle } from '@/stories/components/header/renderers/title';
+import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
+import { fakeContent } from '@/utils';
+import { renderLoginLink } from '@root/src/stories/components/header/renderers/login-link';
+import { MetaComponent } from '@root/types';
+import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
+import { html, nothing, TemplateResult } from 'lit';
 
 const meta: MetaComponent = {
   id: '27a2e64d-55ba-492d-ab79-5f7c5e818498',
@@ -167,23 +168,18 @@ const meta: MetaComponent = {
 function getHeaderRenderer(
   subComponents: {
     mainnavigation?: TemplateResult;
+    loginLink?: TemplateResult;
     userMenu?: TemplateResult;
     title?: TemplateResult;
   } = {},
 ) {
   return (args: Args) => {
     const mainnavigation = subComponents.mainnavigation ?? renderMainnavigation();
+    const loginLink = subComponents.loginLink ?? renderLoginLink();
     const userMenu = subComponents.userMenu ?? renderUserMenu();
     const title = subComponents.title ?? renderTitle(args);
 
-    const globalLogin = args.isLoggedIn
-      ? html` <div slot="post-login">${userMenu}</div> `
-      : html`
-          <a href="" slot="post-login">
-            <span>Login</span>
-            <post-icon name="login"></post-icon>
-          </a>
-        `;
+    const globalLogin = args.isLoggedIn ? userMenu : loginLink;
 
     const globalControls = html`
       <!-- Global controls (Search) -->
@@ -221,13 +217,7 @@ function getHeaderRenderer(
           >
         </post-language-menu>
 
-        ${!args.title && !args.jobs
-          ? html`
-              <!-- Global header login/user menu -->
-              ${globalLogin}
-            `
-          : nothing}
-        ${args.title !== '' ? title : nothing}
+        ${!args.title && !args.jobs ? globalLogin : nothing} ${args.title !== '' ? title : nothing}
         ${args.localNav ? renderMicrositeControls(args) : nothing}
         ${args.mainNav ? mainnavigation : nothing} ${args.jobs ? renderJobControls() : nothing}
       </post-header>
@@ -264,20 +254,7 @@ export const ActiveNavigationItem: Story = {
       return renderHeader(context.args);
     },
   ],
-  render: () => html`
-    <post-mainnavigation slot="main-nav" text-main="Main">
-      <ul>
-        <li>
-          <a href="/letters">Letters</a>
-        </li>
-
-        <li>
-          <!-- The active link must have an aria-current="page" attribute to ensure correct accessibility and styling. -->
-          <a href="/packages" aria-current="page">Packages</a>
-        </li>
-      </ul>
-    </post-mainnavigation>
-  `,
+  render: () => renderMainnavigation({ showActiveLink: true, showMegadropdown: false }),
 };
 
 export const Portal: Story = {
@@ -344,6 +321,7 @@ export const LoggedIn: Story = {
     (story: StoryFn, context: StoryContext) => {
       const renderHeader = getHeaderRenderer({
         userMenu: html` ${story(context.args, context)} `,
+        mainnavigation: renderMainnavigation({ showMegadropdown: false }),
       });
       return renderHeader(context.args);
     },
@@ -357,4 +335,14 @@ export const LoggedOut: Story = {
   args: {
     isLoggedIn: false,
   },
+  decorators: [
+    (story: StoryFn, context: StoryContext) => {
+      const renderHeader = getHeaderRenderer({
+        loginLink: html` ${story(context.args, context)} `,
+        mainnavigation: renderMainnavigation({ showMegadropdown: false }),
+      });
+      return renderHeader(context.args);
+    },
+  ],
+  render: () => renderLoginLink(),
 };

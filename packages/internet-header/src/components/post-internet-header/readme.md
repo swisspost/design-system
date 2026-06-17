@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property                           | Attribute                | Description                                                                                                                                                                                                               | Type                                                                      | Default     |
@@ -11,6 +12,7 @@
 | `fullWidth`                        | `full-width`             | Makes the header content span the full width on screens larger than 1440px.                                                                                                                                               | `boolean`                                                                 | `false`     |
 | `language`                         | `language`               | Initial language to be used. Overrides automatic language detection.                                                                                                                                                      | `"de" \| "en" \| "fr" \| "it" \| undefined`                               | `undefined` |
 | `project` _(required)_             | `project`                | Your project id, previously passed as query string parameter serviceId.                                                                                                                                                   | `string`                                                                  | `undefined` |
+| `textAccessUserLinks` _(required)_ | `text-access-user-links` | Visually hidden label for the login widget trigger button.                                                                                                                                                                | `string`                                                                  | `undefined` |
 | `textBack` _(required)_            | `text-back`              | Visually hidden label for the back button.                                                                                                                                                                                | `string`                                                                  | `undefined` |
 | `textChangeLanguage` _(required)_  | `text-change-language`   | Visually hidden label for the language menu.                                                                                                                                                                              | `string`                                                                  | `undefined` |
 | `textClose` _(required)_           | `text-close`             | Visually hidden label for the close button.                                                                                                                                                                               | `string`                                                                  | `undefined` |
@@ -19,13 +21,14 @@
 | `textMain` _(required)_            | `text-main`              | Visually hidden label for the main navigation element.                                                                                                                                                                    | `string`                                                                  | `undefined` |
 | `textMenu` _(required)_            | `text-menu`              | Visually hidden label for the burger menu button.                                                                                                                                                                         | `string`                                                                  | `undefined` |
 | `textUserLinks` _(required)_       | `text-user-links`        | Visually hidden label for the user menu.                                                                                                                                                                                  | `string`                                                                  | `undefined` |
-| `textAccessUserLinks` _(required)_ | `text-user-menu-trigger` | Visually hidden label for the login widget trigger button.                                                                                                                                                                | `string`                                                                  | `undefined` |
+
 
 ## Events
 
 | Event          | Description                                          | Type                |
 | -------------- | ---------------------------------------------------- | ------------------- |
 | `headerLoaded` | Fires when the header has been rendered to the page. | `CustomEvent<void>` |
+
 
 ## Dependencies
 
@@ -38,7 +41,6 @@
 - post-mainnavigation
 
 ### Graph
-
 ```mermaid
 graph TD;
   swisspost-internet-header --> post-header
@@ -57,6 +59,6 @@ graph TD;
   style swisspost-internet-header fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*
