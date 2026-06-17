@@ -7,7 +7,7 @@ const meta: MetaComponent = {
   id: 'd6f8b5c7-4e2a-4f3a-9d3a-1a2b3c4d5e6f',
   title: 'Components/Pagination',
   component: 'post-pagination',
-  tags: ['package:WebComponents', 'status:Experimental'],
+  tags: ['package:WebComponents'],
   parameters: {
     badges: [],
     design: {
