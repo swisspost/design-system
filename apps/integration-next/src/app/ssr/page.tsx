@@ -26,8 +26,8 @@ import {
   PostPopoverTrigger,
   PostProgressbar,
   PostRating,
-  PostSidenavigation,
-  PostSidenavigationTrigger,
+  PostSideNavigation,
+  PostSideNavigationTrigger,
   PostStepper,
   PostStepperItem,
   PostTabItem,
@@ -266,14 +266,14 @@ export default function Home() {
       <PostRating label="Rating"></PostRating>
 
       <h2>Side Navigation</h2>
-      <PostSidenavigationTrigger for="react-sidenav">
+      <PostSideNavigationTrigger for="react-sidenav">
         <button>
           <span>Menu</span>
           <PostIcon aria-hidden="true" name="burger"></PostIcon>
         </button>
-      </PostSidenavigationTrigger>
+      </PostSideNavigationTrigger>
 
-      <PostSidenavigation id="react-sidenav" textClose="Close">
+      <PostSideNavigation id="react-sidenav" textClose="Close">
         <nav aria-labelledby="react-sidenav-title">
           <h2 id="react-sidenav-title" className="post-sidenavigation-heading">Section title</h2>
           <ul>
@@ -300,7 +300,7 @@ export default function Home() {
             </li>
           </ul>
         </nav>
-      </PostSidenavigation>
+      </PostSideNavigation>
 
       <h2>Stepper</h2>
       <PostStepper
