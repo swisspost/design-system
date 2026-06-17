@@ -6,12 +6,12 @@ post-side-navigation {
 
   nav {
     width: 100%;
-  }
 
-  :where(ul) {
-    list-style: none;
-    margin: 0;
-    padding-inline-start: 0;
+    ul {
+      list-style: none;
+      margin: 0;
+      padding-inline-start: 0;
+    }
   }
 
   .post-side-navigation-heading {
@@ -20,11 +20,6 @@ post-side-navigation {
     font-size: 1rem;
     font-weight: 700;
     color: rgba(0, 0, 0, 0.6);
-  }
-
-  // Top-level list
-  > ul {
-    list-style: none;
   }
 
   > ul > li > .post-side-navigation-item {
