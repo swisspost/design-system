@@ -5,7 +5,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent<HTMLPostLanguageMenuElement> = {
   id: 'decbb10c-2b39-4f47-b67d-337d8111a3ae',
   title: 'Raw Components/Language Menu',
-  tags: ['package:WebComponents', 'status:InProgress'],
+  tags: ['package:WebComponents'],
   component: 'post-language-menu',
   render: renderLanguageMenu,
   parameters: {
