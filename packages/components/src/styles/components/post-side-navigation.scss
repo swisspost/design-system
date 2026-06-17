@@ -1,5 +1,11 @@
 @use '@swisspost/design-system-styles/mixins/media';
 
+@include media.max(tablet) {
+  post-side-navigation:not([data-hydrated]) {
+    display: none !important;
+  }
+}
+
 post-side-navigation {
   --post-side-navigation-indent: 2.5rem;
   --post-side-navigation-icon-size: 1.25rem;
