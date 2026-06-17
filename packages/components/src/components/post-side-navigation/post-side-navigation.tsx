@@ -21,8 +21,8 @@ import { getFocusableChildren, Required, Type } from '@/utils';
   styleUrl: 'post-side-navigation.scss',
   shadow: true,
 })
-export class PostSidenavigation {
-  @Element() host: HTMLPostSidenavigationElement;
+export class PostSideNavigation {
+  @Element() host: HTMLPostSideNavigationElement;
 
   @State() device: Device = breakpoint.get('device');
 

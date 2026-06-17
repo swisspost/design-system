@@ -679,7 +679,7 @@ export namespace Components {
          */
         "stars": number;
     }
-    interface PostSidenavigation {
+    interface PostSideNavigation {
         /**
           * Closes the navigation programmatically. No-op on desktop.
          */
@@ -697,7 +697,7 @@ export namespace Components {
          */
         "toggle": () => Promise<void>;
     }
-    interface PostSidenavigationTrigger {
+    interface PostSideNavigationTrigger {
         "for": string;
         /**
           * Manually update the trigger's ARIA attributes.
@@ -863,9 +863,9 @@ export interface PostRatingCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostRatingElement;
 }
-export interface PostSidenavigationCustomEvent<T> extends CustomEvent<T> {
+export interface PostSideNavigationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLPostSidenavigationElement;
+    target: HTMLPostSideNavigationElement;
 }
 export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1234,28 +1234,28 @@ declare global {
         prototype: HTMLPostRatingElement;
         new (): HTMLPostRatingElement;
     };
-    interface HTMLPostSidenavigationElementEventMap {
+    interface HTMLPostSideNavigationElementEventMap {
         "postToggle": boolean;
     }
-    interface HTMLPostSidenavigationElement extends Components.PostSidenavigation, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostSidenavigationElementEventMap>(type: K, listener: (this: HTMLPostSidenavigationElement, ev: PostSidenavigationCustomEvent<HTMLPostSidenavigationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+    interface HTMLPostSideNavigationElement extends Components.PostSideNavigation, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostSideNavigationElementEventMap>(type: K, listener: (this: HTMLPostSideNavigationElement, ev: PostSideNavigationCustomEvent<HTMLPostSideNavigationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostSidenavigationElementEventMap>(type: K, listener: (this: HTMLPostSidenavigationElement, ev: PostSidenavigationCustomEvent<HTMLPostSidenavigationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostSideNavigationElementEventMap>(type: K, listener: (this: HTMLPostSideNavigationElement, ev: PostSideNavigationCustomEvent<HTMLPostSideNavigationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
-    var HTMLPostSidenavigationElement: {
-        prototype: HTMLPostSidenavigationElement;
-        new (): HTMLPostSidenavigationElement;
+    var HTMLPostSideNavigationElement: {
+        prototype: HTMLPostSideNavigationElement;
+        new (): HTMLPostSideNavigationElement;
     };
-    interface HTMLPostSidenavigationTriggerElement extends Components.PostSidenavigationTrigger, HTMLStencilElement {
+    interface HTMLPostSideNavigationTriggerElement extends Components.PostSideNavigationTrigger, HTMLStencilElement {
     }
-    var HTMLPostSidenavigationTriggerElement: {
-        prototype: HTMLPostSidenavigationTriggerElement;
-        new (): HTMLPostSidenavigationTriggerElement;
+    var HTMLPostSideNavigationTriggerElement: {
+        prototype: HTMLPostSideNavigationTriggerElement;
+        new (): HTMLPostSideNavigationTriggerElement;
     };
     interface HTMLPostStepperElement extends Components.PostStepper, HTMLStencilElement {
     }
@@ -1352,8 +1352,8 @@ declare global {
         "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-progressbar": HTMLPostProgressbarElement;
         "post-rating": HTMLPostRatingElement;
-        "post-sidenavigation": HTMLPostSidenavigationElement;
-        "post-sidenavigation-trigger": HTMLPostSidenavigationTriggerElement;
+        "post-side-navigation": HTMLPostSideNavigationElement;
+        "post-side-navigation-trigger": HTMLPostSideNavigationTriggerElement;
         "post-stepper": HTMLPostStepperElement;
         "post-stepper-item": HTMLPostStepperItemElement;
         "post-tab-item": HTMLPostTabItemElement;
@@ -1965,17 +1965,17 @@ declare namespace LocalJSX {
          */
         "stars"?: number;
     }
-    interface PostSidenavigation {
+    interface PostSideNavigation {
         /**
           * An event emitted when the navigation is shown or hidden on mobile. The payload is a boolean: `true` when the navigation opens, `false` when it closes.
          */
-        "onPostToggle"?: (event: PostSidenavigationCustomEvent<boolean>) => void;
+        "onPostToggle"?: (event: PostSideNavigationCustomEvent<boolean>) => void;
         /**
           * Accessible label for the close button shown in the mobile navigation dialog.
          */
         "textClose": string;
     }
-    interface PostSidenavigationTrigger {
+    interface PostSideNavigationTrigger {
         "for": string;
     }
     interface PostStepper {
@@ -2235,10 +2235,10 @@ declare namespace LocalJSX {
         "currentRating": number;
         "readonly": boolean;
     }
-    interface PostSidenavigationAttributes {
+    interface PostSideNavigationAttributes {
         "textClose": string;
     }
-    interface PostSidenavigationTriggerAttributes {
+    interface PostSideNavigationTriggerAttributes {
         "for": string;
     }
     interface PostStepperAttributes {
@@ -2308,8 +2308,8 @@ declare namespace LocalJSX {
         "post-popovercontainer": Omit<PostPopovercontainer, keyof PostPopovercontainerAttributes> & { [K in keyof PostPopovercontainer & keyof PostPopovercontainerAttributes]?: PostPopovercontainer[K] } & { [K in keyof PostPopovercontainer & keyof PostPopovercontainerAttributes as `attr:${K}`]?: PostPopovercontainerAttributes[K] } & { [K in keyof PostPopovercontainer & keyof PostPopovercontainerAttributes as `prop:${K}`]?: PostPopovercontainer[K] };
         "post-progressbar": Omit<PostProgressbar, keyof PostProgressbarAttributes> & { [K in keyof PostProgressbar & keyof PostProgressbarAttributes]?: PostProgressbar[K] } & { [K in keyof PostProgressbar & keyof PostProgressbarAttributes as `attr:${K}`]?: PostProgressbarAttributes[K] } & { [K in keyof PostProgressbar & keyof PostProgressbarAttributes as `prop:${K}`]?: PostProgressbar[K] };
         "post-rating": Omit<PostRating, keyof PostRatingAttributes> & { [K in keyof PostRating & keyof PostRatingAttributes]?: PostRating[K] } & { [K in keyof PostRating & keyof PostRatingAttributes as `attr:${K}`]?: PostRatingAttributes[K] } & { [K in keyof PostRating & keyof PostRatingAttributes as `prop:${K}`]?: PostRating[K] } & OneOf<"label", PostRating["label"], PostRatingAttributes["label"]>;
-        "post-sidenavigation": Omit<PostSidenavigation, keyof PostSidenavigationAttributes> & { [K in keyof PostSidenavigation & keyof PostSidenavigationAttributes]?: PostSidenavigation[K] } & { [K in keyof PostSidenavigation & keyof PostSidenavigationAttributes as `attr:${K}`]?: PostSidenavigationAttributes[K] } & { [K in keyof PostSidenavigation & keyof PostSidenavigationAttributes as `prop:${K}`]?: PostSidenavigation[K] } & OneOf<"textClose", PostSidenavigation["textClose"], PostSidenavigationAttributes["textClose"]>;
-        "post-sidenavigation-trigger": Omit<PostSidenavigationTrigger, keyof PostSidenavigationTriggerAttributes> & { [K in keyof PostSidenavigationTrigger & keyof PostSidenavigationTriggerAttributes]?: PostSidenavigationTrigger[K] } & { [K in keyof PostSidenavigationTrigger & keyof PostSidenavigationTriggerAttributes as `attr:${K}`]?: PostSidenavigationTriggerAttributes[K] } & { [K in keyof PostSidenavigationTrigger & keyof PostSidenavigationTriggerAttributes as `prop:${K}`]?: PostSidenavigationTrigger[K] } & OneOf<"for", PostSidenavigationTrigger["for"], PostSidenavigationTriggerAttributes["for"]>;
+        "post-side-navigation": Omit<PostSideNavigation, keyof PostSideNavigationAttributes> & { [K in keyof PostSideNavigation & keyof PostSideNavigationAttributes]?: PostSideNavigation[K] } & { [K in keyof PostSideNavigation & keyof PostSideNavigationAttributes as `attr:${K}`]?: PostSideNavigationAttributes[K] } & { [K in keyof PostSideNavigation & keyof PostSideNavigationAttributes as `prop:${K}`]?: PostSideNavigation[K] } & OneOf<"textClose", PostSideNavigation["textClose"], PostSideNavigationAttributes["textClose"]>;
+        "post-side-navigation-trigger": Omit<PostSideNavigationTrigger, keyof PostSideNavigationTriggerAttributes> & { [K in keyof PostSideNavigationTrigger & keyof PostSideNavigationTriggerAttributes]?: PostSideNavigationTrigger[K] } & { [K in keyof PostSideNavigationTrigger & keyof PostSideNavigationTriggerAttributes as `attr:${K}`]?: PostSideNavigationTriggerAttributes[K] } & { [K in keyof PostSideNavigationTrigger & keyof PostSideNavigationTriggerAttributes as `prop:${K}`]?: PostSideNavigationTrigger[K] } & OneOf<"for", PostSideNavigationTrigger["for"], PostSideNavigationTriggerAttributes["for"]>;
         "post-stepper": Omit<PostStepper, keyof PostStepperAttributes> & { [K in keyof PostStepper & keyof PostStepperAttributes]?: PostStepper[K] } & { [K in keyof PostStepper & keyof PostStepperAttributes as `attr:${K}`]?: PostStepperAttributes[K] } & { [K in keyof PostStepper & keyof PostStepperAttributes as `prop:${K}`]?: PostStepper[K] } & OneOf<"textCurrentStep", PostStepper["textCurrentStep"], PostStepperAttributes["textCurrentStep"]> & OneOf<"textCompletedStep", PostStepper["textCompletedStep"], PostStepperAttributes["textCompletedStep"]> & OneOf<"textStepNumber", PostStepper["textStepNumber"], PostStepperAttributes["textStepNumber"]>;
         "post-stepper-item": PostStepperItem;
         "post-tab-item": Omit<PostTabItem, keyof PostTabItemAttributes> & { [K in keyof PostTabItem & keyof PostTabItemAttributes]?: PostTabItem[K] } & { [K in keyof PostTabItem & keyof PostTabItemAttributes as `attr:${K}`]?: PostTabItemAttributes[K] } & { [K in keyof PostTabItem & keyof PostTabItemAttributes as `prop:${K}`]?: PostTabItem[K] } & OneOf<"name", PostTabItem["name"], PostTabItemAttributes["name"]>;
@@ -2362,8 +2362,8 @@ declare module "@stencil/core" {
             "post-popovercontainer": LocalJSX.IntrinsicElements["post-popovercontainer"] & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-progressbar": LocalJSX.IntrinsicElements["post-progressbar"] & JSXBase.HTMLAttributes<HTMLPostProgressbarElement>;
             "post-rating": LocalJSX.IntrinsicElements["post-rating"] & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
-            "post-sidenavigation": LocalJSX.IntrinsicElements["post-sidenavigation"] & JSXBase.HTMLAttributes<HTMLPostSidenavigationElement>;
-            "post-sidenavigation-trigger": LocalJSX.IntrinsicElements["post-sidenavigation-trigger"] & JSXBase.HTMLAttributes<HTMLPostSidenavigationTriggerElement>;
+            "post-side-navigation": LocalJSX.IntrinsicElements["post-side-navigation"] & JSXBase.HTMLAttributes<HTMLPostSideNavigationElement>;
+            "post-side-navigation-trigger": LocalJSX.IntrinsicElements["post-side-navigation-trigger"] & JSXBase.HTMLAttributes<HTMLPostSideNavigationTriggerElement>;
             "post-stepper": LocalJSX.IntrinsicElements["post-stepper"] & JSXBase.HTMLAttributes<HTMLPostStepperElement>;
             "post-stepper-item": LocalJSX.IntrinsicElements["post-stepper-item"] & JSXBase.HTMLAttributes<HTMLPostStepperItemElement>;
             "post-tab-item": LocalJSX.IntrinsicElements["post-tab-item"] & JSXBase.HTMLAttributes<HTMLPostTabItemElement>;

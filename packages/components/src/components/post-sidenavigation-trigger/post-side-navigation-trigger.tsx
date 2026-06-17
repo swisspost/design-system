@@ -10,8 +10,8 @@ import { EventFrom, getRoot, Required, Type } from '@/utils';
   styleUrl: 'post-side-navigation-trigger.scss',
   shadow: true,
 })
-export class PostSidenavigationTrigger {
-  @Element() host: HTMLPostSidenavigationTriggerElement;
+export class PostSideNavigationTrigger {
+  @Element() host: HTMLPostSideNavigationTriggerElement;
 
   @Prop({ reflect: true })
   @Required()
@@ -23,7 +23,7 @@ export class PostSidenavigationTrigger {
   private readonly observer = new MutationObserver(() => this.setTrigger());
 
   constructor() {
-    this.toggleSidenavigation = this.toggleSidenavigation.bind(this);
+    this.toggleSideNavigation = this.toggleSideNavigation.bind(this);
     this.handlePostToggle = this.handlePostToggle.bind(this);
   }
 
@@ -35,23 +35,23 @@ export class PostSidenavigationTrigger {
 
   componentDidLoad() {
     this.setTrigger();
-    if (!this.trigger) console.warn('The post-sidenavigation-trigger must contain a button.');
+    if (!this.trigger) console.warn('The post-side-navigation-trigger must contain a button.');
   }
 
   disconnectedCallback() {
     this.observer.disconnect();
     this.root.removeEventListener('postToggle', this.handlePostToggle);
-    this.trigger?.removeEventListener('click', this.toggleSidenavigation);
+    this.trigger?.removeEventListener('click', this.toggleSideNavigation);
   }
 
   /**
-   * Retrieve the post-sidenavigation controlled by the trigger.
+   * Retrieve the post-side-navigation controlled by the trigger.
    */
-  private get sideNavigation(): HTMLPostSidenavigationElement | null {
+  private get sideNavigation(): HTMLPostSideNavigationElement | null {
     const ref = this.root.getElementById(this.for);
 
-    if (ref && ref.localName === 'post-sidenavigation') {
-      return ref as HTMLPostSidenavigationElement;
+    if (ref && ref.localName === 'post-side-navigation') {
+      return ref as HTMLPostSideNavigationElement;
     }
 
     return null;
@@ -65,11 +65,11 @@ export class PostSidenavigationTrigger {
     if (!trigger || (this.trigger && trigger.isEqualNode(this.trigger))) return;
 
     if (this.trigger) {
-      this.trigger.removeEventListener('click', this.toggleSidenavigation);
+      this.trigger.removeEventListener('click', this.toggleSideNavigation);
     }
 
     this.trigger = trigger;
-    this.trigger.addEventListener('click', this.toggleSidenavigation);
+    this.trigger.addEventListener('click', this.toggleSideNavigation);
     this.updateAriaAttributes();
   }
 
@@ -88,7 +88,7 @@ export class PostSidenavigationTrigger {
   /**
    * Keep the trigger's `aria-expanded` in sync with the navigation state.
    */
-  @EventFrom('post-sidenavigation', { ignoreNestedComponents: false })
+  @EventFrom('post-side-navigation', { ignoreNestedComponents: false })
   private handlePostToggle(e: CustomEvent) {
     this.trigger?.setAttribute('aria-expanded', `${e.detail}`);
   }
@@ -101,7 +101,7 @@ export class PostSidenavigationTrigger {
     this.updateAriaAttributes();
   }
 
-  private async toggleSidenavigation() {
+  private async toggleSideNavigation() {
     await this.sideNavigation?.toggle();
   }
 

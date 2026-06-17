@@ -1,8 +1,8 @@
 @use '../../mixins/media';
 
-post-sidenavigation {
-  --post-sidenavigation-indent: 2.5rem;
-  --post-sidenavigation-icon-size: 1.25rem;
+post-side-navigation {
+  --post-side-navigation-indent: 2.5rem;
+  --post-side-navigation-icon-size: 1.25rem;
 
   nav {
     width: 100%;
@@ -14,7 +14,7 @@ post-sidenavigation {
     padding-inline-start: 0;
   }
 
-  .post-sidenavigation-heading {
+  .post-side-navigation-heading {
     margin: 0;
     padding: 0.5rem 1rem;
     font-size: 1rem;
@@ -27,12 +27,12 @@ post-sidenavigation {
     list-style: none;
   }
 
-  > ul > li > .post-sidenavigation-item {
+  > ul > li > .post-side-navigation-item {
     font-weight: 700;
   }
 
   // Active page indicator
-  .post-sidenavigation-item[aria-current='page'] {
+  .post-side-navigation-item[aria-current='page'] {
     font-weight: 700;
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
@@ -56,8 +56,8 @@ post-sidenavigation {
   }
 
   // Nested item indentation
-  ul ul .post-sidenavigation-item {
-    padding-inline-start: calc(1rem + var(--_indent-level) * var(--post-sidenavigation-indent));
+  ul ul .post-side-navigation-item {
+    padding-inline-start: calc(1rem + var(--_indent-level) * var(--post-side-navigation-indent));
 
     @include media.max(desktop) {
       padding-inline-start: calc(1rem + var(--_indent-level) * 2.25rem);
@@ -72,7 +72,7 @@ post-sidenavigation {
     > div:not(:has(> a > post-icon:first-child))::before {
       content: '';
       flex: none;
-      inline-size: var(--post-sidenavigation-icon-size);
+      inline-size: var(--post-side-navigation-icon-size);
 
       @include media.max(desktop) {
         inline-size: 1rem;
@@ -84,7 +84,7 @@ post-sidenavigation {
     > button:not(:has(> post-icon:first-child))::before {
       content: '';
       flex: none;
-      inline-size: var(--post-sidenavigation-icon-size);
+      inline-size: var(--post-side-navigation-icon-size);
 
       @include media.max(desktop) {
         inline-size: 1rem;
@@ -98,7 +98,7 @@ post-collapsible-trigger post-icon[name='chevrondown'] {
 }
 
 // Navigation item row (link, button, span, or collapsible wrapper)
-.post-sidenavigation-item {
+.post-side-navigation-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -121,23 +121,23 @@ post-collapsible-trigger post-icon[name='chevrondown'] {
   line-height: 1.5;
 
   button {
-      display: flex;
-      align-items: center;
-      padding-inline: 0.5rem;
+    display: flex;
+    align-items: center;
+    padding-inline: 0.5rem;
 
-      border: 0;
-      border-inline-start: 1px solid rgba(0, 0, 0, 0.15);
-      background: transparent;
-      cursor: pointer;
+    border: 0;
+    border-inline-start: 1px solid rgba(0, 0, 0, 0.15);
+    background: transparent;
+    cursor: pointer;
 
-      > post-icon {
-        transition: transform 0.2s ease;
-      }
-
-      &[aria-expanded='true'] > post-icon {
-        transform: rotate(180deg);
-      }
+    > post-icon {
+      transition: transform 0.2s ease;
     }
+
+    &[aria-expanded='true'] > post-icon {
+      transform: rotate(180deg);
+    }
+  }
 
   &:where(a, button) {
     cursor: pointer;
