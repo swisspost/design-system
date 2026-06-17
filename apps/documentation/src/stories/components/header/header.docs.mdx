@@ -1,11 +1,10 @@
-import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
-import PackageTag from '@/shared/package-tag';
-import StylesPackageImport from '@/shared/styles-package-import';
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
-import LandmarkCorrect from '../../../shared/samples/landmark-placement-example.sample.html?raw';
 import meta, * as HeaderStories from './header.stories';
 import './header.styles.scss';
-import SampleSessionSubscription from './session-subscription.sample?raw';
+import StylesPackageImport from '@/shared/styles-package-import';
+import PackageTag from '@/shared/package-tag';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import LandmarkCorrect from '../../../shared/samples/landmark-placement-example.sample.html?raw';
 
 <Meta of={HeaderStories} />
 
@@ -25,7 +24,7 @@ The Header adapts to your needs and can contain a variety of sub-components depe
 It is divided into two sections:
 
 1. **Global Header** (Yellow Background): provides navigation links and information that are global to the entire organization.
-2. **Local Header** (White Background): displays navigation links and information specific to the current application.
+2. **Application Header** (White Background): displays navigation links and information specific to the current application.
 
 <div className="main-story">
   <Canvas sourceState="shown" of={HeaderStories.Default} />
@@ -101,28 +100,14 @@ see the [Heading elements documentation](https://developer.mozilla.org/en-US/doc
 
 ## User menu
 
-The `post-login` slot in `<post-header>` holds either a login link when no user is authenticated, or the user menu when a user is authenticated.
-
-The authentication mechanism and conditional display are handled by each project individually.
-The Design System provides the UI components, while the application manages the authentication logic and decides which content to render in the `post-login` slot.
-
-### Fetching user data
-
-Projects can retrieve the current Post user session data via the following endpoint:
-
-<Source code={SampleSessionSubscription} language="typescript" />
-
-If the request fails or returns no `data`, the user is not authenticated and the login link can be displayed instead.
+The user menu is part of the global header, it is a menu containing information and links linked to the currently logged-in user.
+When no user is logged in, a login button is displayed instead.
 
 ### Logged out
-
-When no user is authenticated, a login link is slotted into `post-login`:
 
 <Canvas sourceState="hidden" of={HeaderStories.LoggedOut} />
 
 ### Logged in
-
-When a user is authenticated, the user menu is slotted into `post-login`. The session data can be used to populate the avatar and menu header:
 
 <Canvas sourceState="shown" of={HeaderStories.LoggedIn} />
 
@@ -137,7 +122,7 @@ Each page must have **exactly one banner landmark** at the top level:
 
 ### Navigation Landmark
 
-The `<post-mainnavigation>` component inside the header creates a **navigation landmark**.
+The `<post-mainnavigation>` component inside the header creates a **navigation landmark**. 
 Use the `text-main` property to provide a descriptive label that helps screen reader users identify main navigation among other navigation regions on the page.
 
 **Why labeling matters:** If your page has multiple navigation regions (e.g., skip links, main navigation, breadcrumbs), descriptive labels help screen reader users quickly identify and navigate to the correct one.

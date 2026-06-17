@@ -15,8 +15,8 @@
 
 // Import commands.js using ES2015 syntax:
 import '@percy/cypress';
-import 'cypress-axe';
 import './commands';
+import 'cypress-axe';
 
 // https://docs.cypress.io/api/events/catalog-of-events#Uncaught-Exceptions
 Cypress.on('uncaught:exception', err => {
