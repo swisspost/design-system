@@ -61,11 +61,6 @@
   @include utilities.focus-style;
 
   @include utilities.high-contrast-mode() {
-    &:is(a) {
-      color: LinkText;
-      border: unset;
-    }
-
     &:is(button) {
       background-color: ButtonFace !important;
       border: 1px solid ButtonBorder !important;
