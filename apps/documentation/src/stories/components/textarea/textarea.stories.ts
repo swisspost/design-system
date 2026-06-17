@@ -1,7 +1,6 @@
 import { MetaComponent } from '@root/types';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { mapClasses } from '@/utils';
 import { getLabelText, getValidationMessages, VALIDATION_STATE_MAP } from '@/utils/form-elements';
 
 const meta: MetaComponent = {
