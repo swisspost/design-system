@@ -83,9 +83,7 @@ export function renderSideNavigation(
         aria-label="${ariaLabel ?? nothing}"
       >
         <h2 id="${titleId}" class="post-side-navigation-heading">Section title</h2>
-        <ul>
           ${navContent}
-        </ul>
       </nav>
     </post-side-navigation>
   `;
