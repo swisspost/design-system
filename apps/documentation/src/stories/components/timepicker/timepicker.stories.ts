@@ -6,7 +6,7 @@ import { getLabelText, getValidationMessages, VALIDATION_STATE_MAP } from '@/uti
 const meta: MetaComponent = {
   id: '51471f0b-1bbb-4059-951b-f89aa7339f91',
   title: 'Components/Form Timepicker',
-  tags: ['package:Styles', 'status:Stable'],
+  tags: ['package:Styles'],
   render: render,
   parameters: {
     design: {

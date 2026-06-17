@@ -399,19 +399,16 @@ export class PostHeader {
 
   @Listen('focusin')
   @Listen('focusout')
-  onFocusChange(e: FocusEvent) {
-    const isHeaderFocused =
-      e.target === document.activeElement && this.host.matches(':focus-visible:focus-within');
+  onFocusChange() {
+    const isFocusVisible = document.activeElement?.matches(':focus-visible');
+    const isFocusedInHeader = this.host.matches(':focus-within');
 
-    const mustRemainCollapsedOnDesktop =
-      this.device === 'desktop' && this.host.querySelector('post-mainnavigation:focus-within');
+    const mustRemainCollapsed =
+      this.device === 'desktop'
+        ? !!this.host.querySelector('post-mainnavigation:focus-within')
+        : !!this.host.shadowRoot?.querySelector(':is(.global-header, .burger-menu):focus-within');
 
-    const mustRemainCollapsedOnNonDesktop =
-      this.device !== 'desktop' &&
-      this.host.shadowRoot?.querySelector(':is(.global-header, .burger-menu):focus-within');
-
-    const isHeaderExpanded =
-      isHeaderFocused && !mustRemainCollapsedOnDesktop && !mustRemainCollapsedOnNonDesktop;
+    const isHeaderExpanded = isFocusVisible && isFocusedInHeader && !mustRemainCollapsed;
 
     this.host.toggleAttribute('data-expanded', isHeaderExpanded);
   }
