@@ -83,9 +83,7 @@ export function renderSideNavigation(
         aria-label="${ariaLabel ?? nothing}"
       >
         <h2 id="${titleId}" class="post-side-navigation-heading">Section title</h2>
-        <ul>
-          ${navContent}
-        </ul>
+        ${navContent}
       </nav>
     </post-side-navigation>
   `;
@@ -93,7 +91,7 @@ export function renderSideNavigation(
 
 // Default story renderer: wraps the core renderer with a post-header.
 // The trigger lives inside the header's local-nav slot, so includeTrigger=false
-// is passed to renderSidenavigation to avoid a duplicate trigger below the header.
+// is passed to renderSideNavigation to avoid a duplicate trigger below the header.
 function renderSideNavigationWithHeader(navContent?: TemplateResult) {
   return (args: Args) => {
     const resolvedId = crypto.randomUUID();
@@ -233,21 +231,21 @@ type Story = StoryObj;
 export const Default: Story = {};
 
 export const LinkOnly: Story = {
-  render: (args: Args) => renderSideNavigation(linkOnly, args),
+  render: (args: Args) => renderSideNavigation(html`<ul>${linkOnly}</ul>`, args),
 };
 
 export const Nested: Story = {
-  render: (args: Args) => renderSideNavigation(nested, args),
+  render: (args: Args) => renderSideNavigation(html`<ul>${nested}</ul>`, args),
 };
 
 export const CollapsibleNotLinked: Story = {
-  render: (args: Args) => renderSideNavigation(collapsibleNotLinked, args),
+  render: (args: Args) => renderSideNavigation(html`<ul>${collapsibleNotLinked}</ul>`, args),
 };
 
 export const CollapsibleLinked: Story = {
-  render: (args: Args) => renderSideNavigation(collapsibleLinked, args),
+  render: (args: Args) => renderSideNavigation(html`<ul>${collapsibleLinked}</ul>`, args),
 };
 
 export const ActiveNavigationItem: Story = {
-  render: (args: Args) => renderSideNavigation(activeItem, args),
+  render: (args: Args) => renderSideNavigation(html`<ul>${activeItem}</ul>`, args),
 };
