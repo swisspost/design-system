@@ -25,7 +25,7 @@
 
  - [post-megadropdown](../post-megadropdown)
  - [post-popover](../post-popover)
- - [post-sidenavigation](../post-sidenavigation)
+ - [post-side-navigation](../post-side-navigation)
 
 ### Depends on
 
@@ -37,7 +37,7 @@ graph TD;
   post-closebutton --> post-icon
   post-megadropdown --> post-closebutton
   post-popover --> post-closebutton
-  post-sidenavigation --> post-closebutton
+  post-side-navigation --> post-closebutton
   style post-closebutton fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

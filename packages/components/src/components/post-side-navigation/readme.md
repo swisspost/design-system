@@ -69,9 +69,9 @@ Type: `Promise<void>`
 ### Graph
 ```mermaid
 graph TD;
-  post-sidenavigation --> post-closebutton
+  post-side-navigation --> post-closebutton
   post-closebutton --> post-icon
-  style post-sidenavigation fill:#f9f,stroke:#333,stroke-width:4px
+  style post-side-navigation fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------
