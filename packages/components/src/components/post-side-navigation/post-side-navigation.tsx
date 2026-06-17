@@ -86,7 +86,7 @@ export class PostSideNavigation {
   async toggle() {
     if (this.device === 'desktop') return;
 
-    const dialog = this.getDialog();
+    const dialog = this.dialog;
 
     return dialog?.open ? this.hide() : this.show();
   }
@@ -99,7 +99,7 @@ export class PostSideNavigation {
   async show() {
     if (this.device === 'desktop') return;
 
-    this.getDialog()?.showModal();
+    this.dialog.showModal();
     this.postToggle.emit(true);
     this.focusNav();
   }
@@ -112,17 +112,11 @@ export class PostSideNavigation {
   async hide() {
     if (this.device === 'desktop') return;
 
-    this.getDialog()?.close();
+    this.dialog.close();
   }
 
-  private getDialog(): HTMLDialogElement | null {
-    const dialog = this.host.shadowRoot?.querySelector('dialog');
-
-    if (!dialog && this.device !== 'desktop') {
-      console.warn('No dialog was found.');
-    }
-
-    return dialog ?? null;
+  get dialog(): HTMLDialogElement {
+    return this.host.shadowRoot?.querySelector('dialog') as HTMLDialogElement;
   }
 
   /**
