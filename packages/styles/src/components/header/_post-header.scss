@@ -24,7 +24,7 @@ post-header {
     display: block;
     height: var(--post-header-height);
 
-    @media (forced-colors: active) {
+    @include high-contrast-mode() {
       box-sizing: content-box;
       border-bottom: 1px solid;
     }

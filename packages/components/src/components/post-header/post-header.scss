@@ -40,7 +40,7 @@ header,
   z-index: commons.$zindex-header;
   box-shadow: elevation.$elevation-300;
 
-  @media (forced-colors: active) {
+  @include high-contrast-mode() {
     border-bottom: 1px solid;
   }
 }
