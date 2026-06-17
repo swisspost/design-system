@@ -38,7 +38,8 @@
 - post-logo
 - post-language-menu
 - post-language-menu-item
-- [swisspost-internet-login-widget](../post-internet-login-widget)
+- post-login-widget
+- post-menu-item
 - post-mainnavigation
 
 ### Graph
@@ -48,7 +49,8 @@ graph TD;
   swisspost-internet-header --> post-logo
   swisspost-internet-header --> post-language-menu
   swisspost-internet-header --> post-language-menu-item
-  swisspost-internet-header --> swisspost-internet-login-widget
+  swisspost-internet-header --> post-login-widget
+  swisspost-internet-header --> post-menu-item
   swisspost-internet-header --> post-mainnavigation
   post-header --> post-togglebutton
   post-header --> post-icon
@@ -57,9 +59,6 @@ graph TD;
   post-language-menu --> post-menu
   post-menu --> post-popovercontainer
   post-language-menu-item --> post-menu-item
-  swisspost-internet-login-widget --> post-login-widget
-  swisspost-internet-login-widget --> post-menu-item
-  swisspost-internet-login-widget --> post-icon
   post-login-widget --> post-menu-trigger
   post-login-widget --> post-avatar
   post-login-widget --> post-menu
