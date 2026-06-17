@@ -1,4 +1,4 @@
-# post-sidenavigation-trigger
+# post-side-navigation-trigger
 
 <!-- Auto Generated Below -->
 
