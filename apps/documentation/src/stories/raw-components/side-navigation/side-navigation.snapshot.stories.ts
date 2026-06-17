@@ -30,11 +30,11 @@ export const PostSideNavigation: Story = {
       const base = ++schemeIndex * 10;
       return html`
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 1rem;">
-          <div>${renderSidenavigation(linkOnly, args, undefined, `Link Only Navigation ${base}`)}</div>
-          <div>${renderSidenavigation(nested, args, undefined, `Nested Navigation ${base + 1}`)}</div>
-          <div>${renderSidenavigation(collapsibleNotLinked, args, undefined, `Collapsible Navigation ${base + 2}`)}</div>
-          <div>${renderSidenavigation(collapsibleLinked, args, undefined, `Collapsible Linked Navigation ${base + 3}`)}</div>
-          <div>${renderSidenavigation(activeItem, args, undefined, `Active Item Navigation ${base + 4}`)}</div>
+          <div>${renderSideNavigation(linkOnly, args, undefined, `Link Only Navigation ${base}`)}</div>
+          <div>${renderSideNavigation(nested, args, undefined, `Nested Navigation ${base + 1}`)}</div>
+          <div>${renderSideNavigation(collapsibleNotLinked, args, undefined, `Collapsible Navigation ${base + 2}`)}</div>
+          <div>${renderSideNavigation(collapsibleLinked, args, undefined, `Collapsible Linked Navigation ${base + 3}`)}</div>
+          <div>${renderSideNavigation(activeItem, args, undefined, `Active Item Navigation ${base + 4}`)}</div>
         </div>
       `;
     });

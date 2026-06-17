@@ -44,7 +44,7 @@ const meta: MetaComponent = {
       table: { category: 'Content' },
     },
   },
-  render: renderSidenavigationWithHeader(),
+  render: renderSideNavigationWithHeader(),
   decorators: [(story) => html`<div style="padding-bottom: 1rem">${story()}</div>`],
 };
 
@@ -55,7 +55,7 @@ export default meta;
 // Core renderer: just the side-navigation component without header.
 // Used by snapshots and variant stories.
 // Set includeTrigger=false when a trigger is already provided externally (e.g. inside post-header).
-export function renderSidenavigation(
+export function renderSideNavigation(
   navContent: TemplateResult,
   args: Args,
   navId?: string,
@@ -94,7 +94,7 @@ export function renderSidenavigation(
 // Default story renderer: wraps the core renderer with a post-header.
 // The trigger lives inside the header's local-nav slot, so includeTrigger=false
 // is passed to renderSidenavigation to avoid a duplicate trigger below the header.
-function renderSidenavigationWithHeader(navContent?: TemplateResult) {
+function renderSideNavigationWithHeader(navContent?: TemplateResult) {
   return (args: Args) => {
     const resolvedId = crypto.randomUUID();
     const icon = (name: string) =>
@@ -221,7 +221,7 @@ function renderSidenavigationWithHeader(navContent?: TemplateResult) {
           </li>
         </ul>
       </post-header>
-      ${renderSidenavigation(content, args, resolvedId, undefined, false)}
+      ${renderSideNavigation(content, args, resolvedId, undefined, false)}
     `;
   };
 }
@@ -233,21 +233,21 @@ type Story = StoryObj;
 export const Default: Story = {};
 
 export const LinkOnly: Story = {
-  render: (args: Args) => renderSidenavigation(linkOnly, args),
+  render: (args: Args) => renderSideNavigation(linkOnly, args),
 };
 
 export const Nested: Story = {
-  render: (args: Args) => renderSidenavigation(nested, args),
+  render: (args: Args) => renderSideNavigation(nested, args),
 };
 
 export const CollapsibleNotLinked: Story = {
-  render: (args: Args) => renderSidenavigation(collapsibleNotLinked, args),
+  render: (args: Args) => renderSideNavigation(collapsibleNotLinked, args),
 };
 
 export const CollapsibleLinked: Story = {
-  render: (args: Args) => renderSidenavigation(collapsibleLinked, args),
+  render: (args: Args) => renderSideNavigation(collapsibleLinked, args),
 };
 
 export const ActiveNavigationItem: Story = {
-  render: (args: Args) => renderSidenavigation(activeItem, args),
+  render: (args: Args) => renderSideNavigation(activeItem, args),
 };

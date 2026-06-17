@@ -114,7 +114,7 @@ export const collapsibleLinked = html`
 
 // Active item — aria-current="page" marks the current page link.
 export const activeItem = html`
-  <li><a href="#" class="post-side-navigation-item">Sidenav item</a></li>
+  <li><a href="#" class="post-side-navigation-item">SideNav item</a></li>
   <li>
     <!-- The active link must have aria-current="page" for correct accessibility and styling. -->
     <a href="#" class="post-side-navigation-item" aria-current="page">Current page</a>
