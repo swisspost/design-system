@@ -8,7 +8,7 @@ export type UserMenuProps = {
   slot?: string;
   textCurrentUser: string;
   textUserLinks: string;
-  textAccessUserLinks?: string;
+  textAccessUserLinks: string;
 };
 
 export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenuProps> = ({
@@ -28,7 +28,7 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
             user={config.user}
             description={textCurrentUser.replace('{user}', `${userFullname}`)}
           />
-          <span class="visually-hidden">{textAccessUserLinks ?? textUserLinks}</span>
+          <span class="visually-hidden">{textAccessUserLinks}</span>
         </button>
       </post-menu-trigger>
       <post-menu id={userMenuId} label={textUserLinks}>
