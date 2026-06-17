@@ -23,7 +23,6 @@ post-header {
   &:not([data-hydrated]) {
     display: block;
     height: var(--post-header-height);
-    border-bottom: 1px solid transparent;
   }
 
   // all header lists
