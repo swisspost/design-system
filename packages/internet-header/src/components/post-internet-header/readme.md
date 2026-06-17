@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property                           | Attribute                | Description                                                                                                                                                                                                               | Type                                                                      | Default     |
@@ -20,15 +19,13 @@
 | `textMain` _(required)_            | `text-main`              | Visually hidden label for the main navigation element.                                                                                                                                                                    | `string`                                                                  | `undefined` |
 | `textMenu` _(required)_            | `text-menu`              | Visually hidden label for the burger menu button.                                                                                                                                                                         | `string`                                                                  | `undefined` |
 | `textUserLinks` _(required)_       | `text-user-links`        | Visually hidden label for the user menu.                                                                                                                                                                                  | `string`                                                                  | `undefined` |
-| `textUserMenuTrigger` _(required)_ | `text-user-menu-trigger` | Visually hidden label for the login widget trigger button.                                                                                                                                                                | `string`                                                                  | `undefined` |
-
+| `textAccessUserLinks` _(required)_ | `text-user-menu-trigger` | Visually hidden label for the login widget trigger button.                                                                                                                                                                | `string`                                                                  | `undefined` |
 
 ## Events
 
 | Event          | Description                                          | Type                |
 | -------------- | ---------------------------------------------------- | ------------------- |
 | `headerLoaded` | Fires when the header has been rendered to the page. | `CustomEvent<void>` |
-
 
 ## Dependencies
 
@@ -38,19 +35,16 @@
 - post-logo
 - post-language-menu
 - post-language-menu-item
-- post-login-widget
-- post-menu-item
 - post-mainnavigation
 
 ### Graph
+
 ```mermaid
 graph TD;
   swisspost-internet-header --> post-header
   swisspost-internet-header --> post-logo
   swisspost-internet-header --> post-language-menu
   swisspost-internet-header --> post-language-menu-item
-  swisspost-internet-header --> post-login-widget
-  swisspost-internet-header --> post-menu-item
   swisspost-internet-header --> post-mainnavigation
   post-header --> post-togglebutton
   post-header --> post-icon
@@ -59,13 +53,10 @@ graph TD;
   post-language-menu --> post-menu
   post-menu --> post-popovercontainer
   post-language-menu-item --> post-menu-item
-  post-login-widget --> post-menu-trigger
-  post-login-widget --> post-avatar
-  post-login-widget --> post-menu
   post-mainnavigation --> post-icon
   style swisspost-internet-header fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

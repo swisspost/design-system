@@ -9,9 +9,10 @@ import { version } from '@root/package.json';
 import { Component, Event, EventEmitter, h, Host, Listen, Prop, Watch } from '@stencil/core';
 import '@swisspost/design-system-components';
 
+const SESSION_URL = 'https://n.account.post.ch/v1/session/subscribe';
+
 @Component({
   tag: 'swisspost-internet-header',
-  styleUrl: 'post-internet-header.scss',
   shadow: false,
 })
 export class PostInternetHeader {
@@ -90,7 +91,7 @@ export class PostInternetHeader {
   /**
    * Visually hidden label for the login widget trigger button.
    */
-  @Prop({ reflect: true }) readonly textUserMenuTrigger!: string;
+  @Prop({ reflect: true }) readonly textAccessUserLinks!: string;
 
   /**
    * Visually hidden label for the user menu.
@@ -111,16 +112,8 @@ export class PostInternetHeader {
   }
 
   async componentWillLoad() {
-    // Wait for the config to arrive, then render the header
-    try {
-      state.projectId = this.project;
-      state.environment = this.environment.toLocaleLowerCase() as Environment;
-      if (this.language !== undefined) state.currentLanguage = this.language;
-
-      await this.updateConfig();
-    } catch (error) {
-      console.error(error);
-    }
+    await this.fetchHeaderConfig();
+    await this.fetchUserData();
   }
 
   componentDidLoad() {
@@ -142,6 +135,34 @@ export class PostInternetHeader {
       event.detail !== this.language
     ) {
       void this.handleLanguageChange(event.detail);
+    }
+  }
+
+  private async fetchHeaderConfig() {
+    // Wait for the config to arrive, then render the header
+    try {
+      state.projectId = this.project;
+      state.environment = this.environment.toLocaleLowerCase() as Environment;
+      if (this.language !== undefined) state.currentLanguage = this.language;
+
+      await this.updateConfig();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  private async fetchUserData(): Promise<void> {
+    try {
+      const response = await fetch(SESSION_URL, {
+        credentials: 'include',
+      });
+
+      if (response.ok) {
+        const json = await response.json();
+        state.user = json?.data;
+      }
+    } catch {
+      // In case of an error, we assume the user is not logged in and do nothing
     }
   }
 
@@ -169,6 +190,7 @@ export class PostInternetHeader {
         slot={props.slot}
         config={config}
         textCurrentUser={this.textCurrentUser}
+        textAccessUserLinks={this.textAccessUserLinks}
         textUserLinks={this.textUserLinks}
       />
     );
@@ -251,26 +273,13 @@ export class PostInternetHeader {
             </post-language-menu>
           )}
 
-          {globalHeader.login && (
-            <post-login-widget
-              slot="post-login"
-              textCurrentUser={this.textCurrentUser}
-              textUserMenu={this.textUserLinks}
-              textUserMenuTrigger={this.textUserMenuTrigger}
-            >
-              <Link slot="login-link" config={globalHeader.login} />
-
-              {globalHeader.userMenuLinks && (
-                <div slot="user-links">
-                  {globalHeader.userMenuLinks.map(link => (
-                    <post-menu-item key={link.url}>
-                      <Link config={link} />
-                    </post-menu-item>
-                  ))}
-                </div>
-              )}
-            </post-login-widget>
-          )}
+          {globalHeader.postLogin &&
+            this.renderNavItem(
+              state.user
+                ? { user: state.user, options: globalHeader.postLogin.userLinks }
+                : globalHeader.postLogin.loginLink,
+              { slot: 'post-login' },
+            )}
 
           {localHeader.title && <p slot="title">{localHeader.title}</p>}
 
