@@ -28,7 +28,7 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 ## Navigation content
 
-The navigation content is authored by you and projected through the default slot. It must be a `<nav>` landmark, with a heading (`<h*>`, or a `<p>` if no heading level fits) linked via `aria-labelledby`, and `<ul>`/`<li>` lists for the items. Nested levels are nested `<ul>`s.
+The default slot holds the navigation content. It must be a `<nav>` landmark, with a heading (`<h*>`, or a `<p>` if no heading level fits) linked via `aria-labelledby`, and `<ul>`/`<li>` lists for the items. Nested levels are nested `<ul>`s.
 
 ### Icon usage
 
@@ -75,7 +75,7 @@ Mark the link of the current page with `aria-current="page"`. The component high
 
 ### Navigation landmark
 
-The navigation you project is a `<nav>` landmark. Link it to its heading with `aria-labelledby` (see the examples above) so screen reader users can identify it and jump to it with landmark shortcuts.
+The default slot's content forms a `<nav>` landmark. Link it to its heading with `aria-labelledby` (see the examples above) so screen reader users can identify it and jump to it with landmark shortcuts.
 
 **Why labeling matters:** if a page has several navigation regions (main navigation, breadcrumbs, this side navigation), a descriptive heading lets screen reader users tell them apart and move to the right one.
 
