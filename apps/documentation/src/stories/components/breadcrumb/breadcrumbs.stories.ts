@@ -6,7 +6,7 @@ const meta: MetaComponent = {
   id: 'b7db7391-f893-4b1e-a125-b30c6f0b028b',
   title: 'Components/Breadcrumbs',
   component: 'post-breadcrumbs',
-  tags: ['package:WebComponents', 'status:Experimental'],
+  tags: ['package:WebComponents'],
   render,
   parameters: {
     badges: [],
