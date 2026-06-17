@@ -638,36 +638,29 @@ export class PostDatePicker {
 
   private handleInputBlur = () => {
     if (this.range) {
-      const dates = this.inputMask.value.split(this.dateFormatRangeSeparator);
-      const start = this.stringToDate(dates[0]);
-      const end = this.stringToDate(dates[1]);
+      const [startDateString, endDateString] = this.inputMask.value.split(
+        this.dateFormatRangeSeparator,
+      );
+      const start = this.stringToDate(startDateString);
+      const end = this.stringToDate(endDateString);
 
-      if (this.isValidDate(start)) {
-        const dpDates = [start];
-        if (this.isValidDate(end)) dpDates.push(end);
-
-        if (this.datesChanged(dpDates)) {
-          this.dpInstance.clear({ silent: true });
-          this.dpInstance.selectDate(dpDates);
-          this.dpInstance.setViewDate(start);
-        }
-      } else {
-        this.resetSelection();
-      }
+      this.updateInstanceDates(this.isValidDate(end) ? [start, end] : [start]);
     } else {
-      const date = this.stringToDate(this.inputMask.value);
-
-      if (this.isValidDate(date)) {
-        if (this.datesChanged([date])) {
-          this.dpInstance.clear({ silent: true });
-          this.dpInstance.selectDate(date);
-          this.dpInstance.setViewDate(date);
-        }
-      } else {
-        this.resetSelection();
-      }
+      this.updateInstanceDates([this.stringToDate(this.inputMask.value)]);
     }
   };
+
+  private updateInstanceDates([start, end]: Date[]) {
+    if (this.isValidDate(start)) {
+      if (this.datesChanged([start, end])) {
+        this.dpInstance.clear({ silent: true });
+        this.dpInstance.selectDate(this.range ? [start, end] : start);
+        this.dpInstance.setViewDate(start);
+      }
+    } else {
+      this.resetSelection();
+    }
+  }
 
   private handlePrevNextClick = () => {
     this.skipFocusOnNextRender = true;
