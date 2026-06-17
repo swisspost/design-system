@@ -86,6 +86,7 @@ export class PostPopover {
         <post-popovercontainer
           arrow={this.arrow}
           placement={this.placement}
+          edgeGap={17}
           ref={e => (this.popoverRef = e)}
         >
           <div class="popover-container">
