@@ -142,7 +142,7 @@ $tabs-outline-offset: calc(
 
       // hovered
       &:hover {
-        border-color: yellow; // tokens.get('post-tabs-content-scroll-button-hovered-border-color') !important;
+        border-color: tokens.get('post-tabs-page-scroll-button-hovered-border-color') !important;
         color: tokens.get('post-tabs-content-scroll-button-hovered-fg');
       }
     }
@@ -177,7 +177,7 @@ $tabs-outline-offset: calc(
   .tabs-wrapper {
     button.scroll-btn {
       height: tokens.get('post-tabs-small-scroll-button-height');
-      width: tokens.get('post-tabs-small-scroll-button-height'); // to be replaced by width
+      width: tokens.get('post-tabs-small-scroll-button-width');
 
       // Left Scroll button
       &.scroll-btn-left {
