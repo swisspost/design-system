@@ -17,8 +17,8 @@ import { getFocusableChildren, Required, Type } from '@/utils';
  * @slot default - Slot for the navigation content (must be a `<nav>` landmark with proper heading)
  */
 @Component({
-  tag: 'post-sidenavigation',
-  styleUrl: 'post-sidenavigation.scss',
+  tag: 'post-side-navigation',
+  styleUrl: 'post-side-navigation.scss',
   shadow: true,
 })
 export class PostSidenavigation {

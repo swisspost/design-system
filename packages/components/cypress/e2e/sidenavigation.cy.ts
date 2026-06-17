@@ -1,43 +1,43 @@
 const SIDENAVIGATION_ID = '8d15c75d-3cda-4793-9b85-81f11cabb81c';
 
-describe('post-sidenavigation', () => {
+describe('post-side-navigation', () => {
   describe('desktop', () => {
     beforeEach(() => {
       cy.viewport(1280, 800);
       cy.getComponents(
         SIDENAVIGATION_ID,
         'default',
-        'post-sidenavigation',
-        'post-sidenavigation-trigger',
+        'post-side-navigation',
+        'post-side-navigation-trigger',
       );
-      cy.get('@sidenavigation-trigger').find('button').as('trigger');
+      cy.get('@side-navigation-trigger').find('button').as('trigger');
     });
 
     it('should render', () => {
-      cy.get('@sidenavigation').should('exist');
+      cy.get('@side-navigation').should('exist');
     });
 
     it('should render inline without a dialog', () => {
-      cy.get('@sidenavigation').shadow().find('dialog').should('not.exist');
+      cy.get('@side-navigation').shadow().find('dialog').should('not.exist');
     });
 
     it('should be visible', () => {
-      cy.get('@sidenavigation').should('be.visible');
+      cy.get('@side-navigation').should('be.visible');
     });
 
     it('should not respond to show()', () => {
-      cy.get('@sidenavigation').then(([el]) => el.show());
-      cy.get('@sidenavigation').shadow().find('dialog').should('not.exist');
+      cy.get('@side-navigation').then(([el]) => el.show());
+      cy.get('@side-navigation').shadow().find('dialog').should('not.exist');
     });
 
     it('should not respond to hide()', () => {
-      cy.get('@sidenavigation').then(([el]) => el.hide());
-      cy.get('@sidenavigation').should('be.visible');
+      cy.get('@side-navigation').then(([el]) => el.hide());
+      cy.get('@side-navigation').should('be.visible');
     });
 
     it('should not respond to toggle()', () => {
-      cy.get('@sidenavigation').then(([el]) => el.toggle());
-      cy.get('@sidenavigation').shadow().find('dialog').should('not.exist');
+      cy.get('@side-navigation').then(([el]) => el.toggle());
+      cy.get('@side-navigation').shadow().find('dialog').should('not.exist');
     });
   });
 
@@ -47,47 +47,47 @@ describe('post-sidenavigation', () => {
       cy.getComponents(
         SIDENAVIGATION_ID,
         'default',
-        'post-sidenavigation',
-        'post-sidenavigation-trigger',
+        'post-side-navigation',
+        'post-side-navigation-trigger',
       );
-      cy.get('@sidenavigation-trigger').find('button').as('trigger');
+      cy.get('@side-navigation-trigger').find('button').as('trigger');
     });
 
     it('should render', () => {
-      cy.get('@sidenavigation').should('exist');
+      cy.get('@side-navigation').should('exist');
     });
 
     it('should render inside a dialog', () => {
-      cy.get('@sidenavigation').shadow().find('dialog').should('exist');
+      cy.get('@side-navigation').shadow().find('dialog').should('exist');
     });
 
     it('should be hidden by default', () => {
-      cy.get('@sidenavigation').shadow().find('dialog').should('not.have.attr', 'open');
+      cy.get('@side-navigation').shadow().find('dialog').should('not.have.attr', 'open');
     });
 
     it('should open when show() is called', () => {
-      cy.get('@sidenavigation').then(([el]) => el.show());
-      cy.get('@sidenavigation').shadow().find('dialog').should('have.attr', 'open');
+      cy.get('@side-navigation').then(([el]) => el.show());
+      cy.get('@side-navigation').shadow().find('dialog').should('have.attr', 'open');
     });
 
     it('should close when hide() is called', () => {
-      cy.get('@sidenavigation').then(([el]) => el.show());
-      cy.get('@sidenavigation').then(([el]) => el.hide());
-      cy.get('@sidenavigation').shadow().find('dialog').should('not.have.attr', 'open');
+      cy.get('@side-navigation').then(([el]) => el.show());
+      cy.get('@side-navigation').then(([el]) => el.hide());
+      cy.get('@side-navigation').shadow().find('dialog').should('not.have.attr', 'open');
     });
 
     it('should open and close when toggle() is called', () => {
-      cy.get('@sidenavigation').then(([el]) => el.toggle());
-      cy.get('@sidenavigation').shadow().find('dialog').should('have.attr', 'open');
+      cy.get('@side-navigation').then(([el]) => el.toggle());
+      cy.get('@side-navigation').shadow().find('dialog').should('have.attr', 'open');
 
-      cy.get('@sidenavigation').then(([el]) => el.toggle());
-      cy.get('@sidenavigation').shadow().find('dialog').should('not.have.attr', 'open');
+      cy.get('@side-navigation').then(([el]) => el.toggle());
+      cy.get('@side-navigation').shadow().find('dialog').should('not.have.attr', 'open');
     });
 
     it('should close when the close button is clicked', () => {
-      cy.get('@sidenavigation').then(([el]) => el.show());
-      cy.get('@sidenavigation').shadow().find('post-closebutton').click();
-      cy.get('@sidenavigation').shadow().find('dialog').should('not.have.attr', 'open');
+      cy.get('@side-navigation').then(([el]) => el.show());
+      cy.get('@side-navigation').shadow().find('post-closebutton').click();
+      cy.get('@side-navigation').shadow().find('dialog').should('not.have.attr', 'open');
     });
 
     // Escape on a non-collapsible-trigger element closes the dialog via the native
@@ -96,9 +96,9 @@ describe('post-sidenavigation', () => {
     // intercepted by the component — is covered in the 'collapsible inside navigation' suite.
 
     it('should move focus into the navigation on open', () => {
-      cy.get('@sidenavigation').then(([el]) => el.show());
+      cy.get('@side-navigation').then(([el]) => el.show());
       cy.focused().then($focused => {
-        cy.get('@sidenavigation').then($nav => {
+        cy.get('@side-navigation').then($nav => {
           expect($nav[0].contains($focused[0])).to.equal(true);
         });
       });
@@ -106,7 +106,7 @@ describe('post-sidenavigation', () => {
 
     it('should emit postToggle with true when opened', () => {
       const spy = cy.spy().as('toggleSpy');
-      cy.get('@sidenavigation').then(([el]) => {
+      cy.get('@side-navigation').then(([el]) => {
         el.addEventListener('postToggle', spy);
         el.show();
       });
@@ -115,9 +115,9 @@ describe('post-sidenavigation', () => {
     });
 
     it('should emit postToggle with false when closed', () => {
-      cy.get('@sidenavigation').then(([el]) => el.show());
+      cy.get('@side-navigation').then(([el]) => el.show());
       const spy = cy.spy().as('toggleSpy');
-      cy.get('@sidenavigation').then(([el]) => {
+      cy.get('@side-navigation').then(([el]) => {
         el.addEventListener('postToggle', spy);
         el.hide();
       });
@@ -130,12 +130,12 @@ describe('post-sidenavigation', () => {
         cy.getComponents(
           SIDENAVIGATION_ID,
           'collapsible-not-linked',
-          'post-sidenavigation',
-          'post-sidenavigation-trigger',
+          'post-side-navigation',
+          'post-side-navigation-trigger',
         );
-        cy.get('@sidenavigation').then(([el]) => el.show());
-        cy.get('@sidenavigation').find('post-collapsible-trigger').first().find('button').as('collapsibleTrigger');
-        cy.get('@sidenavigation').find('post-collapsible').as('collapsible');
+        cy.get('@side-navigation').then(([el]) => el.show());
+        cy.get('@side-navigation').find('post-collapsible-trigger').first().find('button').as('collapsibleTrigger');
+        cy.get('@side-navigation').find('post-collapsible').as('collapsible');
       });
 
       it('should collapse the section on Escape when focus is on a collapsible trigger', () => {
@@ -154,31 +154,31 @@ describe('post-sidenavigation', () => {
       it('should not close the dialog when Escape collapses a section', () => {
         cy.get('@collapsibleTrigger').click();
         cy.get('@collapsibleTrigger').focus().trigger('keydown', { key: 'Escape' });
-        cy.get('@sidenavigation').shadow().find('dialog').should('have.attr', 'open');
+        cy.get('@side-navigation').shadow().find('dialog').should('have.attr', 'open');
       });
     });
   });
 });
 
-describe('post-sidenavigation-trigger', () => {
+describe('post-side-navigation-trigger', () => {
   describe('desktop', () => {
     beforeEach(() => {
       cy.viewport(1280, 800);
       cy.getComponents(
         SIDENAVIGATION_ID,
         'default',
-        'post-sidenavigation',
-        'post-sidenavigation-trigger',
+        'post-side-navigation',
+        'post-side-navigation-trigger',
       );
-      cy.get('@sidenavigation-trigger').find('button').as('trigger');
+      cy.get('@side-navigation-trigger').find('button').as('trigger');
     });
 
     it('should render', () => {
-      cy.get('@sidenavigation-trigger').should('exist');
+      cy.get('@side-navigation-trigger').should('exist');
     });
 
     it('should set aria-controls to the sidenavigation id', () => {
-      cy.get('@sidenavigation')
+      cy.get('@side-navigation')
         .invoke('attr', 'id')
         .then(sidenavId => {
           cy.get('@trigger').should('have.attr', 'aria-controls', sidenavId);
@@ -186,7 +186,7 @@ describe('post-sidenavigation-trigger', () => {
     });
 
     it('should set aria-expanded to false initially', () => {
-      cy.get('@sidenavigation-trigger').find('button').should('have.attr', 'aria-expanded', 'false');
+      cy.get('@side-navigation-trigger').find('button').should('have.attr', 'aria-expanded', 'false');
     });
 
     it('should hide the trigger button on desktop', () => {
@@ -200,18 +200,18 @@ describe('post-sidenavigation-trigger', () => {
       cy.getComponents(
         SIDENAVIGATION_ID,
         'default',
-        'post-sidenavigation',
-        'post-sidenavigation-trigger',
+        'post-side-navigation',
+        'post-side-navigation-trigger',
       );
-      cy.get('@sidenavigation-trigger').find('button').as('trigger');
+      cy.get('@side-navigation-trigger').find('button').as('trigger');
     });
 
     it('should render', () => {
-      cy.get('@sidenavigation-trigger').should('exist');
+      cy.get('@side-navigation-trigger').should('exist');
     });
 
     it('should set aria-controls to the sidenavigation id', () => {
-      cy.get('@sidenavigation')
+      cy.get('@side-navigation')
         .invoke('attr', 'id')
         .then(sidenavId => {
           cy.get('@trigger').should('have.attr', 'aria-controls', sidenavId);
@@ -219,37 +219,37 @@ describe('post-sidenavigation-trigger', () => {
     });
 
     it('should set aria-expanded to false initially', () => {
-      cy.get('@sidenavigation-trigger').find('button').should('have.attr', 'aria-expanded', 'false');
+      cy.get('@side-navigation-trigger').find('button').should('have.attr', 'aria-expanded', 'false');
     });
 
     it('should open the navigation on click', () => {
       cy.get('@trigger').click();
-      cy.get('@sidenavigation').shadow().find('dialog').should('have.attr', 'open');
+      cy.get('@side-navigation').shadow().find('dialog').should('have.attr', 'open');
     });
 
     it('should set aria-expanded to true when the navigation opens', () => {
-      cy.get('@sidenavigation').then(([el]) => el.show());
-      cy.get('@sidenavigation-trigger').find('button').should('have.attr', 'aria-expanded', 'true');
+      cy.get('@side-navigation').then(([el]) => el.show());
+      cy.get('@side-navigation-trigger').find('button').should('have.attr', 'aria-expanded', 'true');
     });
 
     it('should close the navigation on second click', () => {
       cy.get('@trigger').click();
       cy.get('@trigger').click({ force: true });
-      cy.get('@sidenavigation').shadow().find('dialog').should('not.have.attr', 'open');
+      cy.get('@side-navigation').shadow().find('dialog').should('not.have.attr', 'open');
     });
 
     it('should set aria-expanded to false when the navigation closes', () => {
-      cy.get('@sidenavigation').then(([el]) => el.show());
-      cy.get('@sidenavigation-trigger').find('button').should('have.attr', 'aria-expanded', 'true');
-      cy.get('@sidenavigation').then(([el]) => el.hide());
-      cy.get('@sidenavigation-trigger').find('button').should('have.attr', 'aria-expanded', 'false');
+      cy.get('@side-navigation').then(([el]) => el.show());
+      cy.get('@side-navigation-trigger').find('button').should('have.attr', 'aria-expanded', 'true');
+      cy.get('@side-navigation').then(([el]) => el.hide());
+      cy.get('@side-navigation-trigger').find('button').should('have.attr', 'aria-expanded', 'false');
     });
 
     it('should update aria-expanded when navigation is closed via the close button', () => {
-      cy.get('@sidenavigation').then(([el]) => el.show());
-      cy.get('@sidenavigation-trigger').find('button').should('have.attr', 'aria-expanded', 'true');
-      cy.get('@sidenavigation').shadow().find('post-closebutton').click();
-      cy.get('@sidenavigation-trigger').find('button').should('have.attr', 'aria-expanded', 'false');
+      cy.get('@side-navigation').then(([el]) => el.show());
+      cy.get('@side-navigation-trigger').find('button').should('have.attr', 'aria-expanded', 'true');
+      cy.get('@side-navigation').shadow().find('post-closebutton').click();
+      cy.get('@side-navigation-trigger').find('button').should('have.attr', 'aria-expanded', 'false');
     });
 
     it('should log a warning when mounted without a slotted button', () => {
@@ -257,8 +257,8 @@ describe('post-sidenavigation-trigger', () => {
         cy.spy(win.console, 'warn').as('consoleWarn');
       });
       // Inject a trigger with no button child — the warning fires in componentDidLoad
-      cy.get('@sidenavigation').then($nav => {
-        const trigger = document.createElement('post-sidenavigation-trigger');
+      cy.get('@side-navigation').then($nav => {
+        const trigger = document.createElement('post-side-navigation-trigger');
         trigger.setAttribute('for', $nav.attr('id'));
         $nav[0].parentElement.append(trigger);
       });
@@ -269,7 +269,7 @@ describe('post-sidenavigation-trigger', () => {
 
 describe('Accessibility', () => {
   it('has no detectable a11y violations on load for all variants', () => {
-    cy.getSnapshots('post-sidenavigation');
+    cy.getSnapshots('post-side-navigation');
     cy.checkA11y('#root-inner');
   });
 });

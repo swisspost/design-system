@@ -1,5 +1,5 @@
 import type { StoryObj } from '@storybook/web-components-vite';
-import meta, { renderSidenavigation } from './sidenavigation.stories';
+import meta, { renderSidenavigation } from './side-navigation.stories';
 import { html } from 'lit';
 import {
   linkOnly,
@@ -7,7 +7,7 @@ import {
   collapsibleNotLinked,
   collapsibleLinked,
   activeItem,
-} from './sidenavigation.examples';
+} from './side-navigation.examples';
 import { schemes } from '@/shared/snapshots/schemes';
 
 const { id, ...metaWithoutId } = meta;
@@ -23,7 +23,7 @@ const args = { textClose: 'Close', showIcons: false };
 
 let schemeIndex = 0;
 
-export const PostSidenavigation: Story = {
+export const PostSideNavigation: Story = {
   render: () => {
     schemeIndex = 0;
     return schemes(() => {

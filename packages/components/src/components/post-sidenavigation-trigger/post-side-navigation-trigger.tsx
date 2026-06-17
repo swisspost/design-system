@@ -6,8 +6,8 @@ import { EventFrom, getRoot, Required, Type } from '@/utils';
  * @slot default - Slot for the `<button>` that toggles the navigation.
  */
 @Component({
-  tag: 'post-sidenavigation-trigger',
-  styleUrl: 'post-sidenavigation-trigger.scss',
+  tag: 'post-side-navigation-trigger',
+  styleUrl: 'post-side-navigation-trigger.scss',
   shadow: true,
 })
 export class PostSidenavigationTrigger {
