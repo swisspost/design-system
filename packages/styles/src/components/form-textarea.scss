@@ -91,6 +91,9 @@ textarea.form-control {
       &.form-control-sm {
         background-size: tokens.get('textarea-small-sizing-icon')
           tokens.get('textarea-small-sizing-icon');
+        background-position: top
+          tokens.get('textarea-non-floating-small-position-block-start-validation') right
+          tokens.get('textarea-position-inline-end-validation');
       }
     }
   }
