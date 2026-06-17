@@ -23,6 +23,11 @@ post-header {
   &:not([data-hydrated]) {
     display: block;
     height: var(--post-header-height);
+
+    @media (forced-colors: active) {
+      box-sizing: content-box;
+      border-bottom: 1px solid;
+    }
   }
 
   // all header lists
