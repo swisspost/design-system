@@ -90,6 +90,7 @@ export interface V910Checks {
   };
   ngbootstrap: {
     modal: boolean;
+    pagination: boolean;
     typeahead: boolean;
   };
   forms: {

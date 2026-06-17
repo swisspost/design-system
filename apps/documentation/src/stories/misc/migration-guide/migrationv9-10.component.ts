@@ -17,6 +17,7 @@ export class MigrationV910Component extends LitElement {
     },
     ngbootstrap: {
       modal: false,
+      pagination: false,
       typeahead: false,
     },
     forms: {
@@ -411,7 +412,131 @@ export class MigrationV910Component extends LitElement {
                           </label>
                         </div>
                       </li>
-                      <li>pagination → <i>coming soon</i></li>
+                      <li>
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-pagination"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.pagination}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-pagination">
+                            pagination →
+                            <a href="/?path=/docs/d6f8b5c7-4e2a-4f3a-9d3a-1a2b3c4d5e6f--docs"
+                              >post-pagination</a
+                            >
+                            <span class="info">
+                              <p>
+                                <code>NgbPagination</code> is replaced by the <code>post-pagination</code>
+                                web component. The core inputs <code>page</code>,
+                                <code>pageSize</code>, and <code>collectionSize</code> carry over
+                                directly, but several outputs and configuration options have
+                                changed.
+                              </p>
+                              <p><strong>Before (v9 — NgbPagination)</strong></p>
+                              <code-block
+                                code=${`<!-- template -->
+<ngb-pagination
+  [collectionSize]="totalItems"
+  [pageSize]="pageSize"
+  [(page)]="currentPage"
+  [maxSize]="5"
+  [boundaryLinks]="true"
+  [rotate]="true"
+  (pageChange)="onPageChange($event)"
+></ngb-pagination>`}
+                              ></code-block>
+                              <code-block
+                                code=${`// component
+export class MyComponent {
+  currentPage = 1;
+  pageSize = 10;
+  totalItems = 100;
+
+  onPageChange(page: number) {
+    // load data for the new page
+  }
+}`}
+                              ></code-block>
+                              <p><strong>After (v10 — post-pagination)</strong></p>
+                              <p>
+                                All text labels are now required for accessibility. There is no
+                                two-way binding — update <code>currentPage</code> manually in the
+                                <code>(postChange)</code> handler. The event payload is a
+                                <code>CustomEvent&lt;number&gt;</code>, so read the page number
+                                from <code>$event.detail</code>:
+                              </p>
+                              <code-block
+                                code=${`<!-- template -->
+<post-pagination
+  [collectionSize]="totalItems"
+  [pageSize]="pageSize"
+  [page]="currentPage"
+  label="Pagination"
+  textPrevious="Previous page"
+  textNext="Next page"
+  textPage="Page"
+  textFirst="First page"
+  textLast="Last page"
+  (postChange)="onPageChange($event.detail)"
+></post-pagination>`}
+                              ></code-block>
+                              <code-block
+                                code=${`// component
+export class MyComponent {
+  currentPage = 1;
+  pageSize = 10;
+  totalItems = 100;
+
+  onPageChange(page: number) {
+    this.currentPage = page;
+    // load data for the new page
+  }
+}`}
+                              ></code-block>
+                              <p>
+                                <strong>Common migration patterns:</strong>
+                              </p>
+                              <ul>
+                                <li>
+                                  <strong><code>[(page)]</code> two-way binding:</strong> Removed.
+                                  Use <code>[page]="currentPage"</code> to set the current page and get the event from the <code>postChange</code> output to get the updated current page.
+                                </li>
+                                <li>
+                                  <strong
+                                    ><code>(pageChange)="fn($event)"</code>:</strong
+                                  >
+                                  Becomes <code>(postChange)="fn($event.detail)"</code> — the
+                                  event is a <code>CustomEvent&lt;number&gt;</code>, so the new
+                                  page number is in <code>$event.detail</code>.
+                                </li>
+                                <li>
+                                  <strong><code>[maxSize]</code>:</strong> No equivalent.
+                                  <code>post-pagination</code> automatically shows as many page
+                                  numbers as fit in the available space, with ellipsis where
+                                  needed.
+                                </li>
+                                <li>
+                                  <strong><code>[boundaryLinks]</code>:</strong> First and last
+                                  page buttons are always shown. Provide accessible labels via the
+                                  required <code>textFirst</code> and <code>textLast</code> props.
+                                </li>
+                                <li>
+                                  <strong
+                                    ><code>[rotate]</code> and
+                                    <code>[ellipses]</code>:</strong
+                                  >
+                                  No equivalent — both behaviors are built in automatically.
+                                </li>
+                                <li>
+                                  <strong><code>[disabled]</code>:</strong> No disabled state in
+                                  <code>post-pagination</code>.
+                                </li>
+                              </ul>
+                            </span>
+                          </label>
+                        </div>
+                      </li>
                       <li>progressbar → <i>coming soon</i></li>
                       <li>timepicker → <i>coming soon</i></li>
                       <li>
