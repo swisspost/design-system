@@ -12,6 +12,6 @@ export const Avatar: FunctionalComponent<AvatarProps> = ({ user, description }) 
     lastname={user.surname}
     email={user.email}
     description={description}
-    aria-hidden={!!description ? undefined : 'true'}
+    aria-hidden={description ? undefined : 'true'}
   ></post-avatar>
 );

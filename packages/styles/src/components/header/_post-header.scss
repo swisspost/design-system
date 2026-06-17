@@ -124,6 +124,15 @@ post-header {
     }
   }
 
+  // user menu trigger
+  [slot='post-login'],
+  .local-login {
+    > post-menu-trigger > button {
+      display: block;
+      border-radius: tokens.get('avatar-border-radius', components.$post-avatar);
+    }
+  }
+
   .local-login {
     margin-block: -0.25rem;
   }
