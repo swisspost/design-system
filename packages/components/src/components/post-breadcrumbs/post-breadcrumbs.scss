@@ -17,13 +17,13 @@ nav {
   max-width: 100%;
 
   &.invisible {
+    --post-breadcrumb-item-wrap: nowrap;
+
     visibility: hidden;
     overflow: hidden;
-  }
-
-  &:not(.invisible) {
     position: absolute;
     inset: 0;
+    padding-inline: 1px; // Detects overflow 2px sooner to favor menu layout.
   }
 }
 
@@ -38,16 +38,17 @@ nav {
 }
 
 .home {
+  $home-height: tokens.get('breadcrumb-icon-size');
+  $chevron-height: 16px;
+  $chevron-margin-block: tokens.get('breadcrumb-padding-block-icon-link');
+
+  padding-block: calc((#{$chevron-height} + 2 * #{$chevron-margin-block} - #{$home-height}) / 2);
+
   &::before {
     content: unset;
   }
 
   post-icon {
-    $home-height: tokens.get('breadcrumb-icon-size');
-    $chevron-height: 16px;
-    $chevron-margin-block: tokens.get('breadcrumb-padding-block-icon-link');
-
-    margin-block: calc((#{$chevron-height} + 2 * #{$chevron-margin-block} - #{$home-height}) / 2);
     font-size: $home-height;
 
     @include media.only(mobile) {

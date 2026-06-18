@@ -7,13 +7,11 @@
 @mixin breadcrumb-item {
   display: flex;
   align-items: flex-start;
-  max-width: 100%;
+  padding-block: tokens.get('breadcrumb-padding-block-text', components.$post-breadcrumb);
   gap: tokens.get('breadcrumb-gap-inline-inner', components.$post-breadcrumb);
 
   :is(button, a) {
     @include button.button-base;
-    flex: 0 0 auto;
-    white-space: normal;
     font: inherit;
     padding: unset;
     border: unset;
@@ -25,7 +23,7 @@
     );
 
     &:hover {
-      color: tokens.get('breadcrumb-hover-fg');
+      color: tokens.get('breadcrumb-hover-fg', components.$post-breadcrumb);
       text-decoration: tokens.get(
         'breadcrumb-link-hover-text-decoration',
         components.$post-breadcrumb
