@@ -85,12 +85,14 @@ export class PostTabs {
    * The size of the tabs, corresponding to the different designs in Figma.
    * Default is 'large'.
    */
-  @Prop() size: 'small' | 'large' = 'large';
+  @Prop({ reflect: true })
   @Required()
   @OneOf(['small', 'large'])
+  size: 'small' | 'large' = 'large';
 
   /**
    * The accessible label for the Content Tabs variant.
+   *
    */
   @Prop({ reflect: true })
   @Type('string')
@@ -100,7 +102,7 @@ export class PostTabs {
   validateLabel() {
     if (this.isPagesVariant && !this.label) {
       console.error(
-        `[${this.host.localName}] Property "label" is required in navigation mode. Received: ${JSON.stringify(this.label)}.`,
+        `[${this.host.localName}] Property "label" is required in pages variant. Received: ${JSON.stringify(this.label)}.`,
         this.host,
       );
     }
