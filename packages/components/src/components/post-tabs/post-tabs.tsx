@@ -301,12 +301,28 @@ export class PostTabs {
     if (previousTab && !this.showing && !this.hiding) this.hidePanel(previousTab.name);
 
     // wait for any hiding animation to complete before showing the selected tab
-    if (this.hiding) await this.hiding.finished;
+    if (this.hiding) {
+      try {
+        await this.hiding.finished;
+      } catch (e) {
+        // Animation was cancelled (e.g. component disconnected mid-transition) — abort show()
+        if (e instanceof DOMException && e.name === 'AbortError') return;
+        throw e;
+      }
+    }
 
     this.showSelectedPanel();
 
     // wait for any display animation to complete for the returned promise to fully resolve
-    if (this.showing) await this.showing.finished;
+    if (this.showing) {
+      try {
+        await this.showing.finished;
+      } catch (e) {
+        // Animation was cancelled (e.g. component disconnected mid-transition) — abort show()
+        if (e instanceof DOMException && e.name === 'AbortError') return;
+        throw e;
+      }
+    }
 
     if (this.isLoaded) this.postChange.emit(this.currentActiveTab.name);
   }
