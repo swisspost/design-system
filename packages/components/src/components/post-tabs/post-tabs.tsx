@@ -194,11 +194,6 @@ export class PostTabs {
 
   private setupResizeObserver() {
     this.resizeObserver = new ResizeObserver(this.updateScrollButtons);
-    this.resizeObserver?.observe(this.tabsContainer);
-  }
-
-  private setupResizeObserver() {
-    this.resizeObserver = new ResizeObserver(this.updateScrollButtons);
     this.resizeObserver.observe(this.tabsContainer);
   }
 
@@ -549,7 +544,8 @@ export class PostTabs {
             type="button"
             tabindex={this.showLeftScrollButton ? 0 : -1}
             hidden={!this.showLeftScrollButton}
-            onClick={() => this.scrollTabs('prev')}>
+            onClick={() => this.scrollTabs('prev')}
+          >
             <post-icon name="chevronleft"></post-icon>
           </button>
           <TabsContainer

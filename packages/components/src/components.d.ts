@@ -727,7 +727,7 @@ export namespace Components {
          */
         "fullWidth": boolean;
         /**
-          * The accessible label for the Content Tabs variant.
+          * The accessible label for the Content Tabs variant
          */
         "label"?: string;
         /**
@@ -739,6 +739,7 @@ export namespace Components {
           * @default 'large'
          */
         "size": 'small' | 'large';
+        /**
           * Label for the "next tab items" button.
           * @default 'Next tab items'
          */
@@ -1973,7 +1974,7 @@ declare namespace LocalJSX {
          */
         "fullWidth"?: boolean;
         /**
-          * The accessible label for the Content Tabs variant.
+          * The accessible label for the Content Tabs variant
          */
         "label"?: string;
         /**
@@ -1985,6 +1986,7 @@ declare namespace LocalJSX {
           * @default 'large'
          */
         "size"?: 'small' | 'large';
+        /**
           * Label for the "next tab items" button.
           * @default 'Next tab items'
          */
