@@ -291,6 +291,7 @@ export class PostTabs {
 
     this.activateTab(newTab);
     this.scrollTabIntoView(newTab, 'smooth');
+
     // if a panel is currently being displayed, remove it from the view and complete the associated animation
     if (this.showing) {
       this.showing.finish();
@@ -301,30 +302,27 @@ export class PostTabs {
     if (previousTab && !this.showing && !this.hiding) this.hidePanel(previousTab.name);
 
     // wait for any hiding animation to complete before showing the selected tab
-    if (this.hiding) {
-      try {
-        await this.hiding.finished;
-      } catch (e) {
-        // Animation was cancelled (e.g. component disconnected mid-transition) — abort show()
-        if (e instanceof DOMException && e.name === 'AbortError') return;
-        throw e;
-      }
-    }
+    if (await this.awaitAnimation(this.hiding)) return;
 
     this.showSelectedPanel();
 
     // wait for any display animation to complete for the returned promise to fully resolve
-    if (this.showing) {
-      try {
-        await this.showing.finished;
-      } catch (e) {
-        // Animation was cancelled (e.g. component disconnected mid-transition) — abort show()
-        if (e instanceof DOMException && e.name === 'AbortError') return;
-        throw e;
-      }
-    }
+    if (await this.awaitAnimation(this.showing)) return;
 
     if (this.isLoaded) this.postChange.emit(this.currentActiveTab.name);
+  }
+
+  // Awaits an animation and returns true if it was aborted (caller should bail out)
+  private async awaitAnimation(animation: Animation | null): Promise<boolean> {
+    if (!animation) return false;
+    try {
+      await animation.finished;
+      return false;
+    } catch (e) {
+      // Animation was cancelled (e.g. component disconnected mid-transition) — abort show()
+      if (e instanceof DOMException && e.name === 'AbortError') return true;
+      throw e;
+    }
   }
 
   private moveMisplacedTabs() {
