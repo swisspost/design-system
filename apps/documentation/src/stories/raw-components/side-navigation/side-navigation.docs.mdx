@@ -14,7 +14,7 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 <PackageTag meta={meta} />
 
 <div className="lead">
-  The side navigation is a container of navigation menu items that let the user navigate through different parts of a web application. It is a hierarchical structure that provides a maximum of 4 nested navigation levels which can be expanded or collapsed.
+  The side navigation is a container of navigation menu items that let the user navigate through different parts of a web application. It provides hierarchical structures with up to 4 nested levels that can be expanded or collapsed.
 </div>
 
 <Canvas sourceState="shown" of={SideNavigationStories.Default} />
@@ -39,31 +39,14 @@ Icons help users scan and recognize navigation categories using simple, meaningf
 - **Level-1 only**: Never on deeper levels (2, 3, or 4)
 - **All or none**: Apply to all level-1 items or none, do not mix
 
-## Concrete examples of application
+<Canvas of={SideNavigationStories.WithIcons} />
 
-### Link only
 
-Links that navigate to different pages without disclosure.
+## Nesting
+ 
+Navigation can nest up to 4 levels deep:
 
-<Canvas sourceState="hidden" of={SideNavigationStories.LinkOnly} />
-
-### Nested but not collapsible
-
-Nested children are always visible. The parent can be a link or a non-clickable `<span>`. Use this when you want to show all levels at once without hiding any sections.
-
-<Canvas sourceState="hidden" of={SideNavigationStories.Nested} />
-
-### Collapsible but not linked
-
-Use a button inside `<post-collapsible-trigger>` to toggle the visibility of child items. The collapsible element is a direct child of the trigger. Use this when the level-1 item should only disclose children, not navigate anywhere.
-
-<Canvas sourceState="hidden" of={SideNavigationStories.CollapsibleNotLinked} />
-
-### Collapsible and linked
-
-Both navigate and expand: the link takes you to a page, and the separate button toggles visibility of child items. The button carries a visually hidden label for accessibility. The collapsible is a direct child of the trigger.
-
-<Canvas sourceState="hidden" of={SideNavigationStories.CollapsibleLinked} />
+<Canvas sourceState="hidden" of={SideNavigationStories.DeepNesting} />
 
 ### Active item
 
