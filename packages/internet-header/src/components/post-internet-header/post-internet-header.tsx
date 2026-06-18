@@ -11,6 +11,7 @@ import '@swisspost/design-system-components';
 
 @Component({
   tag: 'swisspost-internet-header',
+  styleUrl: 'post-internet-header.scss',
   shadow: false,
 })
 export class PostInternetHeader {
@@ -251,12 +252,24 @@ export class PostInternetHeader {
           )}
 
           {globalHeader.login && (
-            <swisspost-internet-login-widget
+            <post-login-widget
               slot="post-login"
               textCurrentUser={this.textCurrentUser}
               textUserMenu={this.textUserLinks}
               textUserMenuTrigger={this.textUserMenuTrigger}
-            />
+            >
+              <Link slot="login-link" config={globalHeader.login} />
+
+              {globalHeader.userMenuLinks && (
+                <div slot="user-links">
+                  {globalHeader.userMenuLinks.map(link => (
+                    <post-menu-item key={link.url}>
+                      <Link config={link} />
+                    </post-menu-item>
+                  ))}
+                </div>
+              )}
+            </post-login-widget>
           )}
 
           {localHeader.title && <p slot="title">{localHeader.title}</p>}
