@@ -3,17 +3,17 @@
 @use '@swisspost/design-system-styles/tokens/helpers';
 @use '@swisspost/design-system-styles/mixins/button';
 @use '@swisspost/design-system-styles/mixins/icons';
-@use '@swisspost/design-system-styles/mixins/media';
 
 @mixin breadcrumb-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  max-width: 100%;
   gap: tokens.get('breadcrumb-gap-inline-inner', components.$post-breadcrumb);
 
   :is(button, a) {
     @include button.button-base;
-    display: flex;
-    align-self: start;
+    flex: 0 0 auto;
+    white-space: normal;
     font: inherit;
     padding: unset;
     border: unset;
@@ -35,12 +35,12 @@
 
   &::before {
     @include icons.mask-image('chevronright');
+    flex: 0 0 auto;
     content: '';
-    display: flex;
+    display: block;
     height: 16px;
     width: 16px;
     margin-block: tokens.get('breadcrumb-padding-block-icon-link', components.$post-breadcrumb);
     margin-inline: tokens.get('breadcrumb-padding-inline-icon-link', components.$post-breadcrumb);
-    flex-shrink: 0;
   }
 }

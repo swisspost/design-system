@@ -1,19 +1,12 @@
 @use '@swisspost/design-system-styles/elements/anchor';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
-@use '@swisspost/design-system-styles/mixins/media';
 @use './mixins';
 
 tokens.$default-map: components.$post-breadcrumb;
 
 :host(:not([variant='menuitem'])) {
   @include mixins.breadcrumb-item;
-}
-
-:host {
-  :is(a, span) {
-    margin-block: tokens.get('breadcrumb-padding-block-text');
-  }
 }
 
 :host([selected]:not([selected='false'])) {
@@ -23,14 +16,5 @@ tokens.$default-map: components.$post-breadcrumb;
     color: tokens.get('breadcrumb-selected-fg');
     font-weight: tokens.get('breadcrumb-selected-font-weight');
     text-decoration: tokens.get('breadcrumb-link-selected-text-decoration');
-  }
-}
-
-:host([selected]:not([selected='false']):not([data-measuring])) {
-  align-items: start;
-
-  :is(a, span) {
-    white-space: normal;
-    overflow-wrap: anywhere;
   }
 }

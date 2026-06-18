@@ -19,6 +19,9 @@ nav {
   &.invisible {
     visibility: hidden;
     overflow: hidden;
+  }
+
+  &:not(.invisible) {
     position: absolute;
     inset: 0;
   }
@@ -26,7 +29,7 @@ nav {
 
 [role='list'] {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   gap: tokens.get('breadcrumb-gap-inline-outer');
 }
 
@@ -40,7 +43,12 @@ nav {
   }
 
   post-icon {
-    font-size: tokens.get('breadcrumb-icon-size');
+    $home-height: tokens.get('breadcrumb-icon-size');
+    $chevron-height: 16px;
+    $chevron-margin-block: tokens.get('breadcrumb-padding-block-icon-link');
+
+    margin-block: calc((#{$chevron-height} + 2 * #{$chevron-margin-block} - #{$home-height}) / 2);
+    font-size: $home-height;
 
     @include media.only(mobile) {
       font-size: 20px;
