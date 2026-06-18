@@ -1,5 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Route, Router, RouterOutlet, RouterLink } from '@angular/router';
+import { Route, Router, RouterLink, RouterOutlet } from '@angular/router';
 import {
   PostBackToTop,
   PostBreadcrumbItem,
@@ -7,15 +8,13 @@ import {
   PostFooter,
   PostHeader,
   PostIcon,
-  PostLanguageMenuItem,
   PostLanguageMenu,
+  PostLanguageMenuItem,
   PostLogo,
-  PostLoginWidget,
   PostMainnavigation,
   PostMegadropdown,
   PostMegadropdownTrigger,
 } from 'components';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -35,7 +34,6 @@ import { CommonModule } from '@angular/common';
     PostLanguageMenuItem,
     PostLanguageMenu,
     PostLogo,
-    PostLoginWidget,
     PostMainnavigation,
     PostMegadropdown,
     PostMegadropdownTrigger,
