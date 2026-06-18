@@ -411,6 +411,9 @@ export class PostTabs {
     if (!previousPanel) return;
 
     this.hiding = fade(previousPanel, 'out');
+    this.hiding.finished.catch(() => {
+      /* animation aborted or component disconnected */
+    });
     this.hiding.onfinish = () => {
       previousPanel.style.display = 'none';
       this.hiding = null;
@@ -426,6 +429,9 @@ export class PostTabs {
     if (!this.isLoaded) return;
 
     this.showing = fade(panel, 'in');
+    this.showing.finished.catch(() => {
+      /* animation aborted or component disconnected */
+    });
     this.showing.onfinish = () => {
       this.showing = null;
     };
