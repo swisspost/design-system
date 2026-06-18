@@ -38,7 +38,10 @@
     display: block;
     height: 16px;
     width: 16px;
-    margin-block: tokens.get('breadcrumb-padding-block-icon-link', components.$post-breadcrumb);
+    margin-block: calc(
+      tokens.get('breadcrumb-padding-block-icon-link', components.$post-breadcrumb) - 1 *
+        tokens.get('breadcrumb-padding-block-text', components.$post-breadcrumb)
+    );
     margin-inline: tokens.get('breadcrumb-padding-inline-icon-link', components.$post-breadcrumb);
   }
 }

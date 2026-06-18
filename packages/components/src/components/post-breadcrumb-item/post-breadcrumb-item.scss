@@ -11,14 +11,14 @@ tokens.$default-map: components.$post-breadcrumb;
 
 :is(a, span) {
   white-space: var(--post-breadcrumb-item-wrap, normal) !important;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 :host([selected]:not([selected='false'])) {
   @include mixins.breadcrumb-item;
 
   :is(a, span) {
-    word-break: break-word;
-    hyphens: auto;
     color: tokens.get('breadcrumb-selected-fg');
     font-weight: tokens.get('breadcrumb-selected-font-weight');
     text-decoration: tokens.get('breadcrumb-link-selected-text-decoration');
