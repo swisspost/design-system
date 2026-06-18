@@ -739,6 +739,15 @@ export namespace Components {
           * @default 'large'
          */
         "size": 'small' | 'large';
+          * Label for the "next tab items" button.
+          * @default 'Next tab items'
+         */
+        "textNextTabItems": string;
+        /**
+          * Label for the "previous tab items" button.
+          * @default 'Previous tab items'
+         */
+        "textPrevTabItems": string;
     }
     interface PostTogglebutton {
         /**
@@ -1976,6 +1985,15 @@ declare namespace LocalJSX {
           * @default 'large'
          */
         "size"?: 'small' | 'large';
+          * Label for the "next tab items" button.
+          * @default 'Next tab items'
+         */
+        "textNextTabItems"?: string;
+        /**
+          * Label for the "previous tab items" button.
+          * @default 'Previous tab items'
+         */
+        "textPrevTabItems"?: string;
     }
     interface PostTogglebutton {
         /**
@@ -2192,6 +2210,8 @@ declare namespace LocalJSX {
         "for": string;
     }
     interface PostTabsAttributes {
+        "textPrevTabItems": string;
+        "textNextTabItems": string;
         "activeTab": string;
         "fullWidth": boolean;
         "size": 'small' | 'large';

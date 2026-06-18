@@ -121,6 +121,13 @@ $tabs-outline-offset: calc(
     .tabs {
       padding-inline-start: tokens.get('post-tabs-page-padding-inline');
       gap: tokens.get('post-tabs-page-gap-inline');
+     
+      // Hide scrollbar across browsers while keeping scroll functionality
+      scrollbar-width: none; // Firefox
+
+      &::-webkit-scrollbar {
+        display: none; // Chrome, Safari, Edge   
+      }
     }
   }
 }

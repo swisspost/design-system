@@ -68,6 +68,16 @@ export class PostTabs {
   }
 
   /**
+   * Label for the "previous tab items" button.
+   */
+  @Prop({ reflect: true }) textPrevTabItems: string = 'Previous tab items';
+
+  /**
+   * Label for the "next tab items" button.
+   */
+  @Prop({ reflect: true }) textNextTabItems: string = 'Next tab items';
+
+  /**
    * The name of the tab in the Content Tabs variant that is initially active.
    * Changing this value after initialization has no effect.
    * If not specified, defaults to the first tab.
@@ -91,8 +101,7 @@ export class PostTabs {
   size: 'small' | 'large' = 'large';
 
   /**
-   * The accessible label for the Content Tabs variant.
-   *
+   * The accessible label for the Content Tabs variant
    */
   @Prop({ reflect: true })
   @Type('string')
@@ -102,7 +111,7 @@ export class PostTabs {
   validateLabel() {
     if (this.isPagesVariant && !this.label) {
       console.error(
-        `[${this.host.localName}] Property "label" is required in pages variant. Received: ${JSON.stringify(this.label)}.`,
+        `[${this.host.localName}] Property "label" is required in Pages variant. Received: ${JSON.stringify(this.label)}.`,
         this.host,
       );
     }
@@ -137,14 +146,14 @@ export class PostTabs {
       const activeTab = this.findActivePagesTab();
       if (activeTab) {
         this.activateTab(activeTab);
-        activeTab.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' });
+        this.scrollTabIntoView(activeTab);
       }
     } else {
       const tabToActivate = this.activeTab || this.tabs[0]?.name;
       if (tabToActivate) {
         void this.show(tabToActivate);
         const activeTab = this.tabs.find(t => t.name === tabToActivate);
-        activeTab?.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' });
+        if (activeTab) this.scrollTabIntoView(activeTab);
       }
     }
 
@@ -180,7 +189,12 @@ export class PostTabs {
     };
 
     this.contentObserver = new MutationObserver(this.handleContentChange.bind(this));
-    this.contentObserver.observe(this.host, config);
+    this.contentObserver?.observe(this.host, config);
+  }
+
+  private setupResizeObserver() {
+    this.resizeObserver = new ResizeObserver(this.updateScrollButtons);
+    this.resizeObserver?.observe(this.tabsContainer);
   }
 
   private setupResizeObserver() {
@@ -225,7 +239,7 @@ export class PostTabs {
     const activeTab = this.findActivePagesTab();
     if (activeTab && activeTab !== this.currentActiveTab) {
       this.activateTab(activeTab);
-      activeTab.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' });
+      this.scrollTabIntoView(activeTab, 'smooth');
     }
   }
 
@@ -244,7 +258,7 @@ export class PostTabs {
       const activeTab = this.findActivePagesTab();
       if (activeTab) {
         this.activateTab(activeTab);
-        activeTab.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' });
+        this.scrollTabIntoView(activeTab);
       }
     } else {
       const tabToActivate = this.activeTab || this.tabs[0]?.name;
@@ -273,7 +287,7 @@ export class PostTabs {
 
     this.isPagesVariant = hasPages;
 
-    // // Removes variant related classes to reset the state and applies the newly detected variant
+    // Removes variant related classes to reset the state and applies the newly detected variant
     this.host.classList.remove('page-tabs', 'content-tabs');
     if (this.isPagesVariant) {
       this.host.classList.add('page-tabs');
@@ -308,7 +322,8 @@ export class PostTabs {
     );
 
     this.activateTab(newTab);
-    newTab.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' });
+    this.scrollTabIntoView(newTab, 'smooth');
+
     // if a panel is currently being displayed, remove it from the view and complete the associated animation
     if (this.showing) {
       this.showing.finish();
@@ -319,12 +334,28 @@ export class PostTabs {
     if (previousTab && !this.showing && !this.hiding) this.hidePanel(previousTab.name);
 
     // wait for any hiding animation to complete before showing the selected tab
-    if (this.hiding) await this.hiding.finished;
+    if (this.hiding) {
+      try {
+        await this.hiding.finished;
+      } catch (e) {
+        // Animation was cancelled (e.g. component disconnected mid-transition) — abort show()
+        if (e instanceof DOMException && e.name === 'AbortError') return;
+        throw e;
+      }
+    }
 
     this.showSelectedPanel();
 
     // wait for any display animation to complete for the returned promise to fully resolve
-    if (this.showing) await this.showing.finished;
+    if (this.showing) {
+      try {
+        await this.showing.finished;
+      } catch (e) {
+        // Animation was cancelled (e.g. component disconnected mid-transition) — abort show()
+        if (e instanceof DOMException && e.name === 'AbortError') return;
+        throw e;
+      }
+    }
 
     if (this.isLoaded) this.postChange.emit(this.currentActiveTab.name);
   }
@@ -474,6 +505,28 @@ export class PostTabs {
       this.tabsContainer.scrollWidth;
   };
 
+  private scrollTabs(direction: 'prev' | 'next') {
+    const sign = direction === 'prev' ? -1 : 1;
+    this.tabsContainer.scrollBy({
+      left: sign * this.tabsContainer.clientWidth,
+      behavior: 'smooth',
+    });
+  }
+
+  private scrollTabIntoView(tab: HTMLPostTabItemElement, behavior: ScrollBehavior = 'instant') {
+    const container = this.tabsContainer;
+    const tabLeft = tab.offsetLeft;
+    const tabRight = tabLeft + tab.offsetWidth;
+    const containerLeft = container.scrollLeft;
+    const containerRight = containerLeft + container.clientWidth;
+
+    if (tabLeft < containerLeft) {
+      container.scrollTo({ left: tabLeft, behavior });
+    } else if (tabRight > containerRight) {
+      container.scrollTo({ left: tabRight - container.clientWidth, behavior });
+    }
+  }
+
   private handleScrollButtons() {
     this.updateScrollButtons();
     this.tabsContainer.addEventListener('scroll', this.updateScrollButtons);
@@ -494,16 +547,9 @@ export class PostTabs {
             ref={el => (this.leftScrollButton = el!)}
             class="scroll-btn scroll-btn-left"
             type="button"
-            aria-label="Scroll button left"
             tabindex={this.showLeftScrollButton ? 0 : -1}
             hidden={!this.showLeftScrollButton}
-            onClick={() =>
-              this.tabsContainer.scrollBy({
-                left: -this.tabsContainer.clientWidth,
-                behavior: 'smooth',
-              })
-            }
-          >
+            onClick={() => this.scrollTabs('prev')}>
             <post-icon name="chevronleft"></post-icon>
           </button>
           <TabsContainer
@@ -523,15 +569,10 @@ export class PostTabs {
             ref={el => (this.rightScrollButton = el!)}
             class="scroll-btn scroll-btn-right"
             type="button"
-            aria-label="Scroll button right"
+            aria-label={this.textNextTabItems}
             tabindex={this.showRightScrollButton ? 0 : -1}
             hidden={!this.showRightScrollButton}
-            onClick={() =>
-              this.tabsContainer.scrollBy({
-                left: this.tabsContainer.clientWidth,
-                behavior: 'smooth',
-              })
-            }
+            onClick={() => this.scrollTabs('next')}
           >
             <post-icon name="chevronright"></post-icon>
           </button>
