@@ -4,6 +4,7 @@
 
 @use './mixins' as *;
 @use './placeholders' as *;
+@use '../../mixins/utilities';
 
 body:has(post-header) {
   scroll-padding-top: var(--post-header-height);
@@ -24,7 +25,7 @@ post-header {
     display: block;
     height: var(--post-header-height);
 
-    @include high-contrast-mode() {
+    @include utilities.high-contrast-mode() {
       box-sizing: content-box;
       border-bottom: 1px solid;
     }
