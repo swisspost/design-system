@@ -72,14 +72,7 @@ export class PostClosebutton {
 
   private handleClick() {
     if (this.buttonType === 'reset') this.internals.form?.reset();
-    else if (this.buttonType === 'button') {
-      this.host.closest('dialog')?.close();
-    } else if (this.buttonType === 'submit') {
-      console.warn(
-        'A close button with type="submit" is semantically incorrect. Use a regular `<button type="submit">` inside your form instead.',
-      );
-      this.host.closest('dialog')?.close();
-    }
+    this.host.closest('dialog')?.close();
   }
 
   render() {
