@@ -15,7 +15,7 @@ const DIALOG_VARIANT_OPTIONS = {
 const meta: Meta = {
   id: '562eac2b-6dc1-4007-ba8e-4e981cef0cbc',
   title: 'Components/Dialog',
-  tags: ['package:Styles', 'status:Experimental'],
+  tags: ['package:Styles'],
   parameters: {
     design: {
       type: 'figma',
@@ -74,6 +74,7 @@ const meta: Meta = {
       },
       options: ['small', 'medium', 'large'],
       table: { category: 'Variant' },
+      if: { arg: 'variant', neq: 'bottom-sheet' },
     },
     position: {
       name: 'Position',
@@ -84,6 +85,7 @@ const meta: Meta = {
       },
       options: ['top', 'center', 'bottom'],
       table: { category: 'Variant' },
+      if: { arg: 'variant', neq: 'bottom-sheet' },
     },
     animation: {
       name: 'Animation',

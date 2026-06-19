@@ -53,6 +53,7 @@ tokens.$default-map: components.$post-stepper;
 
 :host(.stepper-item-current:not(:first-of-type))::before,
 :host(.stepper-item-current:last-of-type)::after,
+:host(.stepper-item-completed)::before,
 :host(.stepper-item-completed)::after {
   background-color: tokens.get('stepper-connector-completed');
   z-index: 1;
