@@ -31,12 +31,11 @@ import {
   PostTogglebutton,
   PostTooltip,
   PostTooltipTrigger,
-} from 'components';
+} from '@swisspost/design-system-components-angular';
 
 @Component({
   selector: 'home-page',
-  templateUrl: './home.component.html',
-  standalone: true,
+  templateUrl: './home.html',
   imports: [
     PostAccordion,
     PostAccordionItem,
@@ -71,6 +70,6 @@ import {
     PostTooltipTrigger,
   ],
 })
-export class HomeComponent {
+export class Home {
   isCollapsed = false;
 }

@@ -1,8 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-  testDir: './projects/consumer-app/playwright/tests',
-  outputDir: './projects/consumer-app/playwright/results',
+  testDir: './playwright/tests',
+  outputDir: './playwright/results',
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   workers: process.env.CI ? 2 : undefined,

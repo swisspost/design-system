@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Route, Router, RouterOutlet, RouterLink } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { Route, Router, RouterLink, RouterOutlet } from '@angular/router';
 import {
   PostBackToTop,
   PostBreadcrumbItem,
@@ -7,23 +7,20 @@ import {
   PostFooter,
   PostHeader,
   PostIcon,
-  PostLanguageMenuItem,
   PostLanguageMenu,
-  PostLogo,
+  PostLanguageMenuItem,
   PostLoginWidget,
+  PostLogo,
   PostMainnavigation,
   PostMegadropdown,
   PostMegadropdownTrigger,
-} from 'components';
-import { CommonModule } from '@angular/common';
+} from '@swisspost/design-system-components-angular';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  standalone: true,
+  templateUrl: './app.html',
+  styleUrl: './app.scss',
   imports: [
-    CommonModule,
     RouterOutlet,
     RouterLink,
     PostBackToTop,
@@ -41,9 +38,10 @@ import { CommonModule } from '@angular/common';
     PostMegadropdownTrigger,
   ],
 })
-export class AppComponent implements OnInit {
-  title = 'consumer-app';
-  public navigationRoutes: Route[] = [];
+export class App implements OnInit {
+  private router = inject(Router);
+
+  navigationRoutes: Route[] = [];
 
   // Shared links for megadropdown sections (Header)
   private megadropdownLinks = {
@@ -151,8 +149,6 @@ export class AppComponent implements OnInit {
     },
     { text: 'Publication details', url: 'https://www.post.ch/en/pages/footer/publication-details' },
   ];
-
-  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.navigationRoutes = this.router.config.filter(r => r.title);

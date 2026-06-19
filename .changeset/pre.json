@@ -4,8 +4,8 @@
   "initialVersions": {
     "@swisspost/design-system-changelog-github": "1.0.2",
     "@swisspost/design-system-components": "9.0.0",
-    "@swisspost/design-system-components-angular-workspace": "1.1.28",
     "@swisspost/design-system-components-angular": "9.0.0",
+    "@swisspost/design-system-integration-angular": "0.0.0",
     "@swisspost/design-system-components-react": "9.0.0",
     "@swisspost/design-system-demo": "8.0.21",
     "@swisspost/design-system-documentation": "5.5.16",

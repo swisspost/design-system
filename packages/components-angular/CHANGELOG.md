@@ -1,4 +1,4 @@
-# @swisspost/design-system-components-angular-workspace
+# @swisspost/design-system-components-angular
 
 ## 10.0.0-next.73
 

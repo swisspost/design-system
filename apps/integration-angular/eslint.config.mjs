@@ -1,5 +1,3 @@
-// this config was created using https://eslint.org/blog/2024/04/eslint-config-inspector/
-
 import js from '@eslint/js';
 import ng from 'angular-eslint';
 import globals from 'globals';
@@ -9,7 +7,7 @@ import ts from 'typescript-eslint';
 export default ts.config(
   {
     name: 'post/global/ignores',
-    ignores: ['dist/*', '**/stencil-generated/*'],
+    ignores: ['dist/*'],
   },
   {
     name: 'post/defaults',
@@ -35,37 +33,8 @@ export default ts.config(
     },
     processor: ng.processInlineTemplates,
     rules: {
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          caughtErrors: 'none',
-          destructuredArrayIgnorePattern: '^_',
-          ignoreRestSiblings: true,
-        },
-      ],
-      '@angular-eslint/directive-selector': [
-        'error',
-        {
-          type: 'attribute',
-          prefix: 'post',
-          style: 'camelCase',
-        },
-      ],
-      '@angular-eslint/component-selector': [
-        'error',
-        {
-          type: 'element',
-          prefix: 'post',
-          style: 'kebab-case',
-        },
-      ],
-    },
-  },
-  {
-    name: 'post/ts/components/defaults',
-    files: ['src/**/*.{ts,mts,cts}'],
-    languageOptions: {
-      parserOptions: ['./tsconfig.json'],
+      '@angular-eslint/directive-selector': 'off',
+      '@angular-eslint/component-selector': 'off',
     },
   },
   {
@@ -78,6 +47,14 @@ export default ts.config(
       },
       ...ng.configs.tsRecommended,
     ],
+  },
+  {
+    name: 'post/ts/overrides',
+    files: ['**/*.{ts,mts,cts}'],
+    rules: {
+      '@angular-eslint/component-class-suffix': 'off',
+      '@angular-eslint/directive-class-suffix': 'off',
+    },
   },
   ...ng.configs.templateRecommended.map(config => ({
     ...config,
