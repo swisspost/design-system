@@ -280,9 +280,6 @@ export default function Home() {
         <PostTabItem name="unua">Unua langeto</PostTabItem>
         <PostTabItem name="dua">Dua langeto</PostTabItem>
         <PostTabItem name="tria">Tria langeto</PostTabItem>
-        <PostTabItem name="tess">Unua langeto</PostTabItem>
-        <PostTabItem name="pent">Dua langeto</PostTabItem>
-        <PostTabItem name="exi">Tria langeto</PostTabItem>
 
         <PostTabPanel for="unua">
           Jen la enhavo de la unua langeto. Defaŭlte ĝi montriĝas komence.
@@ -293,26 +290,17 @@ export default function Home() {
         <PostTabPanel for="tria">
           Jen la enhavo de la tria langeto. Defaŭlte ĝi ankaŭ estas kaŝita komence.
         </PostTabPanel>
-        <PostTabPanel for="tess">
-          Jen la enhavo de la unua langeto. Defaŭlte ĝi montriĝas komence.
-        </PostTabPanel>
-        <PostTabPanel for="pent">
-          Jen la enhavo de la dua langeto. Defaŭlte ĝi estas kaŝita komence.
-        </PostTabPanel>
-        <PostTabPanel for="exi">
-          Jen la enhavo de la tria langeto. Defaŭlte ĝi ankaŭ estas kaŝita komence.
-        </PostTabPanel>
       </PostTabs>
 
       <h2>Tabs - Navigation Variant</h2>
       <PostTabs label="Tabs navigation">
         <PostTabItem name="nav-first">
-          <a href="#first">First</a>
+          <a href="#first" aria-current="page">
+            First
+          </a>
         </PostTabItem>
         <PostTabItem name="nav-second">
-          <a href="#second" aria-current="page">
-            Second
-          </a>
+          <a href="#second">Second</a>
         </PostTabItem>
         <PostTabItem name="nav-third">
           <a href="#third">Third</a>

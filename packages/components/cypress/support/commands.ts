@@ -66,7 +66,7 @@ Cypress.Commands.add('getComponents', (id: string, story: string, ...components:
 Cypress.Commands.add('getSnapshots', (story: string, component = story) => {
   cy.visit(`/iframe.html?id=snapshots--${story}`);
 
-  const alias = component ?? story.replace(/^post-/, '');
+  const alias = (component ?? story).replace(/^post-/, '');
   cy.get(`post-${alias}[data-hydrated]`, { timeout: 30000 }).as(alias);
 
   cy.injectAxe();
