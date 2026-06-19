@@ -273,6 +273,8 @@ post-tabs[size='small'] post-tab-item {
 
   post-icon {
     margin-block: tokens.get('post-tabs-small-tab-icon-padding-block');
+    width: tokens.get('post-tabs-small-icon-size');
+    height: tokens.get('post-tabs-small-icon-size');
   }
 
   // content tabs
@@ -320,11 +322,6 @@ post-tabs[size='small'] post-tab-item {
       padding-block: tokens.get('post-tabs-page-small-tab-disabled-padding-block');
       height: tokens.get('post-tabs-page-small-tab-disabled-height');
     }
-  }
-
-  post-icon {
-    width: tokens.get('post-tabs-small-icon-size');
-    height: tokens.get('post-tabs-small-icon-size');
   }
 }
 
