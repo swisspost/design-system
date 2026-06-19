@@ -1,6 +1,7 @@
 import { Args, StoryObj } from '@storybook/web-components-vite';
-import { html, TemplateResult, nothing } from 'lit';
+import { html, TemplateResult } from 'lit';
 import { MetaComponent } from '@root/types';
+import { fakeContent } from '@/utils';
 import { deepNesting, withIcons, activeItem } from './side-navigation.examples';
 
 const meta: MetaComponent = {
@@ -28,46 +29,23 @@ const meta: MetaComponent = {
       },
     },
   },
+  decorators: [
+    story =>
+      html` <div class="side-nav-story-wrapper">
+        <div class="virtual-body">${story()}</div>
+      </div>`,
+  ],
 };
 
 export default meta;
 
 // RENDERERS
 
-export function renderSideNavigation(
+function renderWithHeaderAndLayout(
   navContent: TemplateResult,
   args: Args,
-  navId?: string,
-  ariaLabel?: string,
-  includeTrigger = true,
+  paragraphs = 4,
 ) {
-  const resolvedId = navId ?? crypto.randomUUID();
-  const titleId = `${resolvedId}-title`;
-
-  return html`
-    ${includeTrigger
-      ? html`
-          <post-side-navigation-trigger for="${resolvedId}">
-            <button>
-              <span>Menu</span>
-              <post-icon aria-hidden="true" name="burger"></post-icon>
-            </button>
-          </post-side-navigation-trigger>
-        `
-      : nothing}
-
-    <post-side-navigation id="${resolvedId}" text-close="${args.textClose}">
-      <nav
-        aria-labelledby="${ariaLabel ? nothing : titleId}"
-        aria-label="${ariaLabel ?? nothing}"
-      >
-        ${navContent}
-      </nav>
-    </post-side-navigation>
-  `;
-}
-
-function renderWithHeader(navContent: TemplateResult, args: Args) {
   const resolvedId = crypto.randomUUID();
 
   return html`
@@ -97,7 +75,18 @@ function renderWithHeader(navContent: TemplateResult, args: Args) {
         </li>
       </ul>
     </post-header>
-    ${renderSideNavigation(navContent, args, resolvedId, undefined, false)}
+
+    <div class="d-flex">
+      <post-side-navigation id="${resolvedId}" text-close="${args.textClose}" class="flex-shrink-0">
+        <nav aria-label="Main navigation">
+          ${navContent}
+        </nav>
+      </post-side-navigation>
+
+      <main class="flex-grow-1">
+        ${fakeContent(paragraphs)}
+      </main>
+    </div>
   `;
 }
 
@@ -122,9 +111,9 @@ type Story = StoryObj;
  * Default: Composed example showing all navigation patterns
  */
 export const Default: Story = {
-  ...getIframeParameters(900),
+  ...getIframeParameters(700),
   render: (args: Args) =>
-    renderWithHeader(
+    renderWithHeaderAndLayout(
       html`
         <!-- Link only: Simple links without nesting or disclosure controls -->
         <h2 class="post-side-navigation-heading">Section title</h2>
@@ -194,6 +183,7 @@ export const Default: Story = {
         </ul>
       `,
       args,
+      4,
     ),
 };
 
@@ -203,19 +193,23 @@ export const Default: Story = {
 export const DeepNesting: Story = {
   ...getIframeParameters(500),
   render: (args: Args) =>
-    renderWithHeader(html`${deepNesting}`, args),
+    renderWithHeaderAndLayout(html`${deepNesting}`, args, 2),
 };
 
 /**
  * With Icons: Navigation items with icons on level 1
  */
 export const WithIcons: Story = {
-  ...getIframeParameters(600),
+  ...getIframeParameters(500),
   render: (args: Args) =>
-    renderWithHeader(html`${withIcons}`, args),
+    renderWithHeaderAndLayout(html`${withIcons}`, args, 2),
 };
 
+/**
+ * Active Navigation Item: Shows aria-current="page" usage
+ */
 export const ActiveNavigationItem: Story = {
-  ...getIframeParameters(400),
-  render: (args: Args) => renderWithHeader(html`<ul>${activeItem}</ul>`, args),
+  ...getIframeParameters(350),
+  render: (args: Args) =>
+    renderWithHeaderAndLayout(html`<ul>${activeItem}</ul>`, args, 1),
 };
