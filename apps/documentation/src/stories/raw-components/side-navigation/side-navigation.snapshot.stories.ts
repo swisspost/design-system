@@ -3,7 +3,7 @@ import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import meta from './side-navigation.stories';
 import { schemes } from '@/shared/snapshots/schemes';
-import { defaultNav } from './side-navigation.examples';
+import { defaultNav } from './renderers/default-nav';
 
 const { id, ...metaWithoutId } = meta;
 

@@ -3,7 +3,10 @@ import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
 import { fakeContent } from '@/utils';
-import { activeItem, deepNesting, defaultNav, withIcons } from './side-navigation.examples';
+import { activeItem } from './renderers/active-item';
+import { deepNesting } from './renderers/deep-nesting';
+import { defaultNav } from './renderers/default-nav';
+import { withIcons } from './renderers/with-icons';
 
 // Shared ID so the decorator's trigger and the story's side-navigation stay in sync
 const navigationId = crypto.randomUUID();
