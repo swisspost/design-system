@@ -582,6 +582,44 @@ export class MyComponent {
                                   instead of ng-bootstrap directives.
                                 </li>
                                 <li>
+                                  <strong>Type replaced by CSS modifier class:</strong> The <code>type</code> property
+                                  is replaced by a CSS modifier class on the <code>.progressbar</code> wrapper element.
+                                  All other Bootstrap color variants have no equivalent and default to the neutral appearance.
+                                  <table class="table table-bordered">
+                                    <thead>
+                                      <tr>
+                                        <th>type (v9)</th>
+                                        <th>CSS class (v10)</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td><code>type="success"</code></td>
+                                        <td><code>class="progressbar progressbar-success"</code></td>
+                                      </tr>
+                                      <tr>
+                                        <td><code>type="danger"</code></td>
+                                        <td><code>class="progressbar progressbar-error"</code></td>
+                                      </tr>
+                                      <tr>
+                                        <td><code>type="warning"</code></td>
+                                        <td><code>class="progressbar progressbar-warning"</code></td>
+                                      </tr>
+                                      <tr>
+                                        <td>
+                                          <code>type="info"</code>, <code>type="primary"</code>,
+                                          <code>type="secondary"</code>,</br>
+                                          or any other Bootstrap color variant
+                                        </td>
+                                        <td>
+                                          No direct equivalent. Use <code>class="progressbar"</code></br> 
+                                          for the <code>neutral</code> appearance.
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </li>
+                                <li>
                                   <strong>Striped and animated removed:</strong> The
                                   <code>striped</code> and <code>animated</code> properties are no longer
                                   supported.
@@ -607,7 +645,6 @@ export class MyComponent {
                                   post-progressbar documentation
                                 </a>.
                               </p>
-
                               <p>
                                 Note that this is not a 1:1 replacement for
                                 <code>[showValue]</code>, as the value is displayed separately from the
