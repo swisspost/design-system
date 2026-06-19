@@ -312,9 +312,10 @@ export class PostTabs {
     }
 
     const previousTab = this.currentActiveTab;
-    const newTab: HTMLPostTabItemElement = this.host.querySelector(
-      `post-tab-item[name=${tabName}]`,
+    const newTab = this.host.querySelector<HTMLPostTabItemElement>(
+      `post-tab-item[name="${tabName}"]`,
     );
+    if (!newTab) return;
 
     this.activateTab(newTab);
     this.scrollTabIntoView(newTab, 'smooth');
