@@ -30,13 +30,11 @@ a {
     }
 
     &.btn {
-      border: 1px solid ButtonBorder !important;
       padding: 0.25rem 0.75rem;
     }
 
     &.btn.btn-tertiary.px-0 {
       border: 0 !important;
-      padding: 0 !important;
       text-decoration: underline;
     }
   }
