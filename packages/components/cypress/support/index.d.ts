@@ -3,7 +3,7 @@ declare global {
     interface Chainable {
       getComponent(component: string, id: string, story?: string): Chainable<JQuery<HTMLElement>>;
       getComponents(id: string, story: string, ...components: string[]): Chainable<void>;
-      getSnapshots(story: string): Chainable<JQuery<HTMLElement>>;
+      getSnapshots(story: string, component?: string): Chainable<void>;
       checkAriaExpanded(
         controlledElementSelector: string,
         isExpanded: 'true' | 'false',

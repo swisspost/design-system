@@ -527,9 +527,9 @@ export class PostTabs {
     const isSSR = Build.isServer;
     const tabStyle = activeName
       ? {
-        [`--post-tab-panel-${activeName}`]: 'block',
-        [`--post-tab-item-${activeName}`]: '1',
-      }
+          [`--post-tab-panel-${activeName}`]: 'block',
+          [`--post-tab-item-${activeName}`]: '1',
+        }
       : undefined;
     const style = isSSR && !this.isPagesVariant ? tabStyle : undefined;
     return (
@@ -539,6 +539,7 @@ export class PostTabs {
             ref={el => (this.leftScrollButton = el!)}
             class="scroll-btn scroll-btn-left"
             type="button"
+            aria-label={this.textPrevTabItems}
             tabindex={this.showLeftScrollButton ? 0 : -1}
             hidden={!this.showLeftScrollButton}
             onClick={() => this.scrollTabs('prev')}
