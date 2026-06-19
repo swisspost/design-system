@@ -727,13 +727,18 @@ export namespace Components {
          */
         "fullWidth": boolean;
         /**
-          * The accessible label for the Content Tabs variant.
+          * The accessible label for the Content Tabs variant
          */
         "label"?: string;
         /**
           * Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
          */
         "show": (tabName: string) => Promise<void>;
+        /**
+          * The size of the tabs, corresponding to the different designs in Figma. Default is 'large'.
+          * @default 'large'
+         */
+        "size": 'small' | 'large';
         /**
           * Label for the "next tab items" button.
           * @default 'Next tab items'
@@ -1969,13 +1974,18 @@ declare namespace LocalJSX {
          */
         "fullWidth"?: boolean;
         /**
-          * The accessible label for the Content Tabs variant.
+          * The accessible label for the Content Tabs variant
          */
         "label"?: string;
         /**
           * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. Only emitted in Content Tabs variant.
          */
         "onPostChange"?: (event: PostTabsCustomEvent<string>) => void;
+        /**
+          * The size of the tabs, corresponding to the different designs in Figma. Default is 'large'.
+          * @default 'large'
+         */
+        "size"?: 'small' | 'large';
         /**
           * Label for the "next tab items" button.
           * @default 'Next tab items'
@@ -2206,6 +2216,7 @@ declare namespace LocalJSX {
         "textNextTabItems": string;
         "activeTab": string;
         "fullWidth": boolean;
+        "size": 'small' | 'large';
         "label": string;
     }
     interface PostTogglebuttonAttributes {

@@ -1,6 +1,7 @@
 import { fade } from '@/animations';
-import { componentOnReady, Type } from '@/utils';
+import { componentOnReady, OneOf, Type, Required } from '@/utils';
 import { version } from '@root/package.json';
+
 import {
   Component,
   Element,
@@ -14,6 +15,14 @@ import {
   Watch,
   Build,
 } from '@stencil/core';
+
+// Extends the HTMLButtonElement interface to include ariaControlsElements, which is part of the
+// ARIA reflection API but not yet present in TypeScript's built-in DOM type definitions.
+declare global {
+  interface HTMLButtonElement {
+    ariaControlsElements: Element[];
+  }
+}
 
 /**
  * @slot default - Slot for placing tab items. Each tab item should be a <post-tab-item> element.
@@ -29,8 +38,8 @@ import {
 })
 export class PostTabs {
   private currentActiveTab: HTMLPostTabItemElement;
-  private showing: Animation;
-  private hiding: Animation;
+  private showing: Animation | null;
+  private hiding: Animation | null;
   private isLoaded = false;
   private contentObserver: MutationObserver;
   private resizeObserver: ResizeObserver;
@@ -83,7 +92,16 @@ export class PostTabs {
   @Prop({ reflect: true }) fullWidth: boolean = false;
 
   /**
-   * The accessible label for the Content Tabs variant.
+   * The size of the tabs, corresponding to the different designs in Figma.
+   * Default is 'large'.
+   */
+  @Prop({ reflect: true })
+  @Required()
+  @OneOf(['small', 'large'])
+  size: 'small' | 'large' = 'large';
+
+  /**
+   * The accessible label for the Content Tabs variant
    */
   @Prop({ reflect: true })
   @Type('string')
@@ -104,7 +122,8 @@ export class PostTabs {
    * The payload is the name of the newly active tab.
    * Only emitted in Content Tabs variant.
    */
-  @Event() postChange: EventEmitter<string>;
+  @Event()
+  postChange: EventEmitter<string>;
 
   componentWillRender() {
     this.detectVariant();
@@ -175,7 +194,7 @@ export class PostTabs {
 
   private setupResizeObserver() {
     this.resizeObserver = new ResizeObserver(this.updateScrollButtons);
-    this.resizeObserver?.observe(this.tabsContainer);
+    this.resizeObserver.observe(this.tabsContainer);
   }
 
   private handleContentChange(mutations: MutationRecord[]) {
@@ -262,6 +281,14 @@ export class PostTabs {
     }
 
     this.isPagesVariant = hasPages;
+
+    // Removes variant related classes to reset the state and applies the newly detected variant
+    this.host.classList.remove('page-tabs', 'content-tabs');
+    if (this.isPagesVariant) {
+      this.host.classList.add('page-tabs');
+    } else {
+      this.host.classList.add('content-tabs');
+    }
   }
 
   private findActivePagesTab(): HTMLPostTabItemElement | null {
@@ -300,26 +327,22 @@ export class PostTabs {
 
     // hide the currently visible panel only if no other animation is running
     if (previousTab && !this.showing && !this.hiding) this.hidePanel(previousTab.name);
-
-    // wait for any hiding animation to complete before showing the selected tab
     if (await this.awaitAnimation(this.hiding)) return;
 
     this.showSelectedPanel();
 
-    // wait for any display animation to complete for the returned promise to fully resolve
     if (await this.awaitAnimation(this.showing)) return;
 
     if (this.isLoaded) this.postChange.emit(this.currentActiveTab.name);
   }
 
-  // Awaits an animation and returns true if it was aborted (caller should bail out)
+  // Awaits an animation; returns true if it was aborted (caller should bail out).
   private async awaitAnimation(animation: Animation | null): Promise<boolean> {
     if (!animation) return false;
     try {
       await animation.finished;
       return false;
     } catch (e) {
-      // Animation was cancelled (e.g. component disconnected mid-transition) — abort show()
       if (e instanceof DOMException && e.name === 'AbortError') return true;
       throw e;
     }
@@ -374,6 +397,17 @@ export class PostTabs {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           void this.show(tab.name);
+        }
+        if (e.key !== 'Home' && e.key !== 'End') return;
+        e.preventDefault();
+
+        const enabledTabs = this.tabs.filter(t => !t.hasAttribute('disabled'));
+        if (enabledTabs.length === 0) return;
+
+        const targetTab = e.key === 'Home' ? enabledTabs[0] : enabledTabs.at(-1);
+        if (targetTab) {
+          targetTab?.focus();
+          void this.show(targetTab.name);
         }
       });
 
@@ -487,12 +521,15 @@ export class PostTabs {
   }
 
   render() {
+    const activeName = this.activeTab ?? this.tabs[0]?.name;
     const TabsContainer = this.isPagesVariant ? 'nav' : 'div';
     const isSSR = Build.isServer;
-    const tabStyle = {
-      [`--post-tab-panel-${this.activeTab}`]: 'block',
-      [`--post-tab-item-${this.activeTab}`]: '1',
-    };
+    const tabStyle = activeName
+      ? {
+          [`--post-tab-panel-${activeName}`]: 'block',
+          [`--post-tab-item-${activeName}`]: '1',
+        }
+      : undefined;
     const style = isSSR && !this.isPagesVariant ? tabStyle : undefined;
     return (
       <Host data-version={version} style={style}>
@@ -501,7 +538,6 @@ export class PostTabs {
             ref={el => (this.leftScrollButton = el!)}
             class="scroll-btn scroll-btn-left"
             type="button"
-            aria-label={this.textPrevTabItems}
             tabindex={this.showLeftScrollButton ? 0 : -1}
             hidden={!this.showLeftScrollButton}
             onClick={() => this.scrollTabs('prev')}
