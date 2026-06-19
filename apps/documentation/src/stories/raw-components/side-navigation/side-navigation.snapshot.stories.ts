@@ -1,26 +1,42 @@
 import type { StoryObj } from '@storybook/web-components-vite';
-import meta, * as SideNavigationStories from './side-navigation.stories';
+import { html } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import meta from './side-navigation.stories';
 import { schemes } from '@/shared/snapshots/schemes';
+import { defaultNav } from './side-navigation.examples';
 
 const { id, ...metaWithoutId } = meta;
 
 export default {
   ...metaWithoutId,
   title: 'Snapshots',
+  decorators: [],
 };
 
 type Story = StoryObj;
 
-/**
- * Snapshot: Uses the Default story from side-navigation.stories
- */
 export const PostSideNavigation: Story = {
   render: () => {
+    const snapshotId = crypto.randomUUID();
+    let schemeIndex = 0;
+
     return schemes(() => {
-      return SideNavigationStories.Default.render?.(
-        SideNavigationStories.Default.args || meta.args,
-        0, // no fake content in snapshots
-      );
+      const navLabel = `Main navigation ${++schemeIndex}`;
+
+      return html`
+        <post-side-navigation-trigger for="${snapshotId}">
+          <button>
+            <span>Menu</span>
+            <post-icon aria-hidden="true" name="burger"></post-icon>
+          </button>
+        </post-side-navigation-trigger>
+
+        <post-side-navigation id="${snapshotId}" text-close="Close">
+          <nav aria-label="${navLabel}">
+            ${unsafeHTML(defaultNav)}
+          </nav>
+        </post-side-navigation>
+      `;
     });
   },
 };

@@ -67,7 +67,7 @@ const meta: MetaComponent = {
             </li>
           </ul>
         </post-header>
-        <div class="d-flex virtual-body" style="align-items: stretch;">
+        <div class="d-flex virtual-body">
           ${story()}
         </div>
       </div>`,

@@ -124,7 +124,7 @@ describe('post-side-navigation', () => {
       beforeEach(() => {
         cy.getComponents(
           SIDENAVIGATION_ID,
-          'collapsible-not-linked',
+          'default',
           'post-side-navigation',
           'post-side-navigation-trigger',
         );
