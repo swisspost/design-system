@@ -89,6 +89,8 @@ export interface V910Checks {
     hide_automigration: boolean;
   };
   ngbootstrap: {
+    modal: boolean;
+    pagination: boolean;
     typeahead: boolean;
     progressbar: boolean;
   };

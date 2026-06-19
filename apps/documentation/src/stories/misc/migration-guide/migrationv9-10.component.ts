@@ -16,6 +16,8 @@ export class MigrationV910Component extends LitElement {
       hide_automigration: false,
     },
     ngbootstrap: {
+      modal: false,
+      pagination: false,
       typeahead: false,
     },
     forms: {
@@ -99,7 +101,10 @@ export class MigrationV910Component extends LitElement {
     super();
     const restored = _restorePersistedState<V910Checks>(MIGRATION_CHECKS_KEY_V9);
     if (restored) {
-      this.state = { ...restored, internet_header: restored.internet_header ?? this.state.internet_header };
+      this.state = {
+        ...restored,
+        internet_header: restored.internet_header ?? this.state.internet_header,
+      };
     }
     setTimeout(() => this._toggleAutoMigrationVisibility(), 0);
   }
@@ -311,98 +316,228 @@ export class MigrationV910Component extends LitElement {
                       <li>datepicker → <i>coming soon</i></li>
                       <li>dropdown → <i>coming soon</i></li>
                       <li>
-                        modal →
-                        <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
-                          >dialog</a
-                        >
-                      </li>
-                      <li>
-                        notification overlay →
-                        <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
-                          >dialog</a
-                        >
-                      </li>
-                      <li>pagination → <i>coming soon</i></li>
-                      <li>
                         <div class="form-check">
                           <input
-                            id="ngbootstrap-progressbar"
+                            id="ngbootstrap-modal"
                             class="form-check-input"
                             type="checkbox"
-                            ?checked="${this.state.ngbootstrap.progressbar}"
+                            ?checked="${this.state.ngbootstrap.modal}"
                           />
-                          <label class="form-check-label" for="ngbootstrap-progressbar">
-                            progressbar →
-                            <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs"
-                              >post-progressbar</a
+                          <label class="form-check-label" for="ngbootstrap-modal">
+                            modal / notification overlay →
+                            <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
+                              >dialog</a
                             >
                             <span class="info">
                               <p>
-                                The <code>NgbProgressbar</code> component has been replaced by the
-                                <code>&lt;post-progressbar&gt;</code> web component, which provides an
-                                accessible and framework-agnostic solution.
+                                Both the modal and the notification overlay were built on top of the
+                                same <code>NgbModal</code> service — they only differed visually.
+                                Both are replaced by the native HTML
+                                <code>dialog</code> element with the class <code>.post-dialog</code>.
                               </p>
-                              <p><strong>Before (v9 — NgbProgressbar)</strong></p>
+                              <p><strong>Before (v9 — NgbModal)</strong></p>
                               <p>
-                                The NgbProgressbar component was used with two-way binding and
-                                properties like <code>type</code>, <code>striped</code>, and
-                                <code>animated</code>:
+                                The modal content was a separate component injected with
+                                <code>NgbActiveModal</code> to close itself, and the host opened it
+                                via the <code>NgbModal</code> service:
                               </p>
                               <code-block
-                                code=${`<!-- template.html -->\n<ngb-progressbar\n  type="primary"\n  [value]="65"\n  [striped]="true"\n  [animated]="true"\n>\n</ngb-progressbar>`}
+                                code=${`// modal-content.component.ts\n@Component({\n  template: \`\n    <div class="modal-header">\n      <h4 class="modal-title">{{ title }}</h4>\n      <button type="button" class="btn-close" (click)="activeModal.dismiss()"></button>\n    </div>\n    <div class="modal-body">{{ message }}</div>\n    <div class="modal-footer">\n      <button class="btn btn-primary" (click)="activeModal.close('confirmed')">Confirm</button>\n      <button class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>\n    </div>\n  \`\n})\nexport class ModalContentComponent {\n  @Input() title = '';\n  @Input() message = '';\n  constructor(public activeModal: NgbActiveModal) {}\n}`}
                               ></code-block>
-                              <p><strong>After (v10)</strong></p>
+                              <code-block
+                                code=${`// host.component.ts\nexport class HostComponent {\n  constructor(private modalService: NgbModal) {}\n\n  openModal() {\n    const modalRef = this.modalService.open(ModalContentComponent);\n    modalRef.componentInstance.title = 'Confirm action';\n    modalRef.componentInstance.message = 'Are you sure?';\n\n    // Resolves when activeModal.close(result) is called\n    modalRef.closed.subscribe(result => console.log('Closed with:', result));\n\n    // Resolves when activeModal.dismiss(reason) is called, or ESC / backdrop click\n    modalRef.dismissed.subscribe(reason => console.log('Dismissed:', reason));\n  }\n}`}
+                              ></code-block>
+                              <p><strong>After (v10 — post-dialog)</strong></p>
                               <p>
-                                The new <code>&lt;post-progressbar&gt;</code> component uses standard HTML
-                                <code>min</code>, <code>max</code>, and <code>value</code> attributes,
-                                similar to the native <code>&lt;progress&gt;</code> element:
+                                The dialog content is declared directly in the component template.
+                                Use <code>&lt;form method="dialog"&gt;</code> inside the dialog so
+                                that submit buttons close it automatically and set
+                                <code>dialog.returnValue</code> to their <code>value</code>
+                                attribute:
                               </p>
                               <code-block
-                                code=${`<!-- template.html -->\n<post-progressbar\n  min="0"\n  max="100"\n  value="65"\n></post-progressbar>`}
+                                code=${`<!-- host.component.html -->\n<button class="btn btn-primary" (click)="confirmDialog.showModal()">Open</button>\n\n<dialog #confirmDialog class="post-dialog" aria-labelledby="dialog-title">\n  <form method="dialog" class="dialog-grid">\n    <h3 class="dialog-header" id="dialog-title">Confirm action</h3>\n    <div class="dialog-body">\n      <p>Are you sure?</p>\n    </div>\n    <div class="dialog-controls">\n      <button class="btn btn-primary" value="confirmed">Confirm</button>\n      <button class="btn btn-secondary" value="cancelled">Cancel</button>\n    </div>\n    <post-closebutton button-type="submit">Close</post-closebutton>\n  </form>\n</dialog>`}
                               ></code-block>
-                              <p><strong>Key differences:</strong></p>
+                              <p>
+                                Listen to the <code>close</code> event to react when the dialog is
+                                closed, and read <code>dialog.returnValue</code> to know which
+                                button was pressed:
+                              </p>
+                              <code-block
+                                code=${`// host.component.ts\n@Component({ ... })\nexport class HostComponent implements AfterViewInit {\n  @ViewChild('confirmDialog') dialogRef!: ElementRef<HTMLDialogElement>;\n\n  ngAfterViewInit() {\n    this.dialogRef.nativeElement.addEventListener('close', () => {\n      const result = this.dialogRef.nativeElement.returnValue;\n      if (result === 'confirmed') {\n        console.log('User confirmed');\n      }\n    });\n  }\n}`}
+                              ></code-block>
+                              <p>
+                                To pass data <strong>into</strong> the dialog, bind directly in the
+                                template — no <code>componentInstance</code> needed:
+                              </p>
+                              <code-block
+                                code=${`<!-- host.component.html -->\n<dialog #myDialog class="post-dialog">\n  <form method="dialog" class="dialog-grid">\n    <h3 class="dialog-header">{{ dialogTitle }}</h3>\n    <div class="dialog-body">{{ dialogMessage }}</div>\n    <div class="dialog-controls">\n      <button class="btn btn-primary" value="ok">OK</button>\n    </div>\n  </form>\n</dialog>`}
+                              ></code-block>
+                              <p>
+                                <strong>Common migration patterns:</strong>
+                              </p>
                               <ul>
                                 <li>
-                                  <strong>Attributes instead of properties:</strong> Use standard HTML
-                                  attributes (<code>min</code>, <code>max</code>, <code>value</code>)
-                                  instead of ng-bootstrap directives.
+                                  <strong
+                                    ><code>backdrop: 'static'</code> (prevent backdrop
+                                    close) and <code>keyboard: false</code> (disable ESC key):</strong
+                                  >
+                                    <ul>
+                                    <li>
+                                      <code>closedby="none"</code>: disables closing the modal with anything but the provided mechanisms within the modal
+                                    </li>
+                                    <li>
+                                      <code>closedby="closerequest"</code>: allows closing the modal with ESC key and provided mechanisms
+                                    </li>
+                                    <li>
+                                      <code>closedby="any"</code>: allows closing the modal with outside click, ESC key and provided mechanisms
+                                    </li>
+                                  </ul>
                                 </li>
                                 <li>
-                                  <strong>Striped and animated removed:</strong> The
-                                  <code>striped</code> and <code>animated</code> properties are no longer
-                                  supported.
+                                  <strong
+                                    ><code>beforeDismiss</code> callback (guard before
+                                    close):</strong
+                                  >
+                                  Listen to <code>cancel</code> for ESC and perform your guard
+                                  logic before calling <code>dialog.close()</code>.
+                                </li>
+                                <li>
+                                  <strong>Programmatic close with a result value:</strong>
+                                  Call <code>dialog.close('myValue')</code> anywhere — the value
+                                  becomes <code>dialog.returnValue</code>.
                                 </li>
                               </ul>
-                              <p><strong>Handling dynamic updates:</strong></p>
-                              <p>
-                                To update the progress value dynamically in Angular, bind directly to the
-                                <code>value</code> attribute:
-                              </p>
-                              <code-block
-                                code=${`<!-- template.html -->\n<post-progressbar\n  [attr.value]="progressValue"\n  min="0"\n  max="100"\n></post-progressbar>`}
-                              ></code-block>
-                              <p><strong>Showing percentage values:</strong></p>
-                              <p>
-                                The <code>[showValue]</code> property is not supported by <code>&lt;post-progressbar&gt;</code>. Unlike
-                                <code>NgbProgressbar</code>, the percentage cannot be displayed inside the
-                                progress bar.
-                                To show the current progress percentage, use <code>.progressbar-value</code> together with a
-                                <code>.progressbar-label</code>.
-                                For implementation details and additional examples, refer to the
-                                <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs">
-                                  post-progressbar documentation
-                                </a>.
-                              </p>
-
-                              <p>
-                                Note that this is not a 1:1 replacement for
-                                <code>[showValue]</code>, as the value is displayed separately from the
-                                progress indicator.
-                              </p>
                             </span>
                           </label>
                         </div>
                       </li>
+                      <li>
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-pagination"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.pagination}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-pagination">
+                            pagination →
+                            <a href="/?path=/docs/d6f8b5c7-4e2a-4f3a-9d3a-1a2b3c4d5e6f--docs"
+                              >post-pagination</a
+                            >
+                            <span class="info">
+                              <p>
+                                <code>NgbPagination</code> is replaced by the <code>post-pagination</code>
+                                web component. The core inputs <code>page</code>,
+                                <code>pageSize</code>, and <code>collectionSize</code> carry over
+                                directly, but several outputs and configuration options have
+                                changed.
+                              </p>
+                              <p><strong>Before (v9 — NgbPagination)</strong></p>
+                              <code-block
+                                code=${`<!-- template -->
+<ngb-pagination
+  [collectionSize]="totalItems"
+  [pageSize]="pageSize"
+  [(page)]="currentPage"
+  [maxSize]="5"
+  [boundaryLinks]="true"
+  [rotate]="true"
+  (pageChange)="onPageChange($event)"
+></ngb-pagination>`}
+                              ></code-block>
+                              <code-block
+                                code=${`// component
+export class MyComponent {
+  currentPage = 1;
+  pageSize = 10;
+  totalItems = 100;
+
+  onPageChange(page: number) {
+    // load data for the new page
+  }
+}`}
+                              ></code-block>
+                              <p><strong>After (v10 — post-pagination)</strong></p>
+                              <p>
+                                All text labels are now required for accessibility. There is no
+                                two-way binding — update <code>currentPage</code> manually in the
+                                <code>(postChange)</code> handler. The event payload is a
+                                <code>CustomEvent&lt;number&gt;</code>, so read the page number
+                                from <code>$event.detail</code>:
+                              </p>
+                              <code-block
+                                code=${`<!-- template -->
+<post-pagination
+  [collectionSize]="totalItems"
+  [pageSize]="pageSize"
+  [page]="currentPage"
+  label="Pagination"
+  textPrevious="Previous page"
+  textNext="Next page"
+  textPage="Page"
+  textFirst="First page"
+  textLast="Last page"
+  (postChange)="onPageChange($event.detail)"
+></post-pagination>`}
+                              ></code-block>
+                              <code-block
+                                code=${`// component
+export class MyComponent {
+  currentPage = 1;
+  pageSize = 10;
+  totalItems = 100;
+
+  onPageChange(page: number) {
+    this.currentPage = page;
+    // load data for the new page
+  }
+}`}
+                              ></code-block>
+                              <p>
+                                <strong>Common migration patterns:</strong>
+                              </p>
+                              <ul>
+                                <li>
+                                  <strong><code>[(page)]</code> two-way binding:</strong> Removed.
+                                  Use <code>[page]="currentPage"</code> to set the current page and get the event from the <code>postChange</code> output to get the updated current page.
+                                </li>
+                                <li>
+                                  <strong
+                                    ><code>(pageChange)="fn($event)"</code>:</strong
+                                  >
+                                  Becomes <code>(postChange)="fn($event.detail)"</code> — the
+                                  event is a <code>CustomEvent&lt;number&gt;</code>, so the new
+                                  page number is in <code>$event.detail</code>.
+                                </li>
+                                <li>
+                                  <strong><code>[maxSize]</code>:</strong> No equivalent.
+                                  <code>post-pagination</code> automatically shows as many page
+                                  numbers as fit in the available space, with ellipsis where
+                                  needed.
+                                </li>
+                                <li>
+                                  <strong><code>[boundaryLinks]</code>:</strong> First and last
+                                  page buttons are always shown. Provide accessible labels via the
+                                  required <code>textFirst</code> and <code>textLast</code> props.
+                                </li>
+                                <li>
+                                  <strong
+                                    ><code>[rotate]</code> and
+                                    <code>[ellipses]</code>:</strong
+                                  >
+                                  No equivalent — both behaviors are built in automatically.
+                                </li>
+                                <li>
+                                  <strong><code>[disabled]</code>:</strong> No disabled state in
+                                  <code>post-pagination</code>.
+                                </li>
+                              </ul>
+                            </span>
+                          </label>
+                        </div>
+                      </li>
+                      <li>progressbar → <i>coming soon</i></li>
                       <li>timepicker → <i>coming soon</i></li>
                       <li>
                         <div class="form-check">
