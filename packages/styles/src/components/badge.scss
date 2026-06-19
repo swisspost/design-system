@@ -1,38 +1,36 @@
-@use './../mixins/color' as color-mx;
-@use './../placeholders/badge' as badge-ph;
-@use './../variables/components/badge';
-@use './../variables/color';
+@use '../tokens/components';
+@use '../functions/tokens';
+
+tokens.$default-map: components.$post-badge;
 
 .badge {
-  --post-badge-height: #{badge.$badge-height};
-  --post-badge-padding-x: #{badge.$badge-padding-x};
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-sizing: content-box;
-  height: var(--post-badge-height);
-  min-width: calc(var(--post-badge-height) - 2 * var(--post-badge-padding-x));
-  padding-inline: var(--post-badge-padding-x);
-  border: badge.$badge-border;
-  border-radius: badge.$badge-border-radius;
-  font-size: badge.$badge-font-size;
-  background-color: badge.$badge-bg;
-  color: badge.$badge-color;
-
-  &:empty {
-    --post-badge-height: #{badge.$badge-height-empty};
-    --post-badge-padding-x: #{badge.$badge-padding-x-empty};
-  }
+  height: tokens.get('badge-large-height');
+  min-width: tokens.get('badge-large-height');
+  padding-inline: tokens.get('badge-large-padding-inline');
+  border-radius: tokens.get('badge-border-radius');
+  border: tokens.get('badge-large-border-width') solid tokens.get('badge-stroke');
+  font-size: tokens.get('badge-font-size');
+  font-weight: tokens.get('badge-font-weight');
+  background-color: tokens.get('badge-bg');
+  color: tokens.get('badge-fg');
 
   &.badge-sm {
-    @extend %badge-sm;
+    height: tokens.get('badge-small-height');
+    min-width: tokens.get('badge-small-height');
+    padding-inline: tokens.get('badge-small-padding-inline');
+    line-height: tokens.get('badge-small-line-height');
+    border-width: tokens.get('badge-small-border-width');
   }
 
-  // Add background options to the badge element only
-  @each $name, $color in color.$background-colors {
-    &.bg-#{$name} {
-      @include color-mx.colored-background($color);
-    }
+  // Dot variant
+  &:empty {
+    height: tokens.get('badge-dot-height');
+    width: tokens.get('badge-dot-height');
+    border-width: tokens.get('badge-dot-border-width');
+    min-width: unset;
+    padding-inline: unset;
   }
 }
