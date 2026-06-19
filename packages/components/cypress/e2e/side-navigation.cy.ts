@@ -1,4 +1,4 @@
-const SIDENAVIGATION_ID = '8d15c75d-3cda-4793-9b85-81f11cabb81c';
+const SIDENAVIGATION_ID = '9f26d86e-7edb-5804-ac96-92g22f91c9d9';
 
 describe('post-side-navigation', () => {
   describe('desktop', () => {
@@ -89,11 +89,6 @@ describe('post-side-navigation', () => {
       cy.get('@side-navigation').shadow().find('post-closebutton').click();
       cy.get('@side-navigation').shadow().find('dialog').should('not.have.attr', 'open');
     });
-
-    // Escape on a non-collapsible-trigger element closes the dialog via the native
-    // <dialog> cancel event. This is browser-native behaviour that cannot be simulated
-    // through Cypress's DOM event API. The inverse case — Escape on a collapsible trigger
-    // intercepted by the component — is covered in the 'collapsible inside navigation' suite.
 
     it('should move focus into the navigation on open', () => {
       cy.get('@side-navigation').then(([el]) => el.show());
@@ -256,7 +251,6 @@ describe('post-side-navigation-trigger', () => {
       cy.window().then(win => {
         cy.spy(win.console, 'warn').as('consoleWarn');
       });
-      // Inject a trigger with no button child — the warning fires in componentDidLoad
       cy.get('@side-navigation').then($nav => {
         const trigger = document.createElement('post-side-navigation-trigger');
         trigger.setAttribute('for', $nav.attr('id'));
