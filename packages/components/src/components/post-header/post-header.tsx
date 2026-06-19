@@ -1,24 +1,24 @@
+import { fade } from '@/animations';
+import { AnimationOptions } from '@/animations/types';
+import { SwitchVariant } from '@/components';
+import { Required, Type } from '@/utils';
+import { breakpoint, Device } from '@/utils/breakpoints';
+import { EventFrom } from '@/utils/event-from';
+import { getDeepFocusableChildren } from '@/utils/get-focusable-children';
+import { version } from '@root/package.json';
 import {
+  Build,
   Component,
+  Element,
   h,
   Host,
-  State,
-  Element,
-  Method,
-  Watch,
   Listen,
+  Method,
   Prop,
-  Build,
+  State,
+  Watch,
 } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
-import { version } from '@root/package.json';
-import { SwitchVariant } from '@/components';
-import { breakpoint, Device } from '@/utils/breakpoints';
-import { fade } from '@/animations';
-import { getDeepFocusableChildren } from '@/utils/get-focusable-children';
-import { EventFrom } from '@/utils/event-from';
-import { AnimationOptions } from '@/animations/types';
-import { checkRequiredAndType } from '@/utils';
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
@@ -92,22 +92,18 @@ export class PostHeader {
   /**
    * Makes the header content span the full width on screens larger than 1440px.
    */
-  @Prop({ reflect: true }) fullWidth = false;
-
-  @Watch('fullWidth')
-  validateFullWidth() {
-    checkRequiredAndType(this, 'fullWidth', 'boolean');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('boolean')
+  fullWidth = false;
 
   /**
    * The label of the burger menu button.
    */
-  @Prop({ reflect: true }) textMenu!: string;
-
-  @Watch('textMenu')
-  validateTextMenu() {
-    checkRequiredAndType(this, 'textMenu', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textMenu!: string;
 
   @Watch('device')
   @Watch('burgerMenuExtended')
@@ -176,8 +172,6 @@ export class PostHeader {
   }
 
   componentDidRender() {
-    this.validateTextMenu();
-    this.validateFullWidth();
     this.getFocusableElements();
     this.handleLocalHeaderResize();
 
@@ -405,19 +399,16 @@ export class PostHeader {
 
   @Listen('focusin')
   @Listen('focusout')
-  onFocusChange(e: FocusEvent) {
-    const isHeaderFocused =
-      e.target === document.activeElement && this.host.matches(':focus-visible:focus-within');
+  onFocusChange() {
+    const isFocusVisible = document.activeElement?.matches(':focus-visible');
+    const isFocusedInHeader = this.host.matches(':focus-within');
 
-    const mustRemainCollapsedOnDesktop =
-      this.device === 'desktop' && this.host.querySelector('post-mainnavigation:focus-within');
+    const mustRemainCollapsed =
+      this.device === 'desktop'
+        ? !!this.host.querySelector('post-mainnavigation:focus-within')
+        : !!this.host.shadowRoot?.querySelector(':is(.global-header, .burger-menu):focus-within');
 
-    const mustRemainCollapsedOnNonDesktop =
-      this.device !== 'desktop' &&
-      this.host.shadowRoot?.querySelector(':is(.global-header, .burger-menu):focus-within');
-
-    const isHeaderExpanded =
-      isHeaderFocused && !mustRemainCollapsedOnDesktop && !mustRemainCollapsedOnNonDesktop;
+    const isHeaderExpanded = isFocusVisible && isFocusedInHeader && !mustRemainCollapsed;
 
     this.host.toggleAttribute('data-expanded', isHeaderExpanded);
   }

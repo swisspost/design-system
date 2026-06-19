@@ -1,8 +1,8 @@
-import { html, LitElement, nothing } from 'lit';
+﻿import { html, LitElement, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { _restorePersistedState, MIGRATION_CHECKS_KEY_V9 } from './util/persist.util';
 import { V910Checks } from './types';
 import { _updateOnChange, _updatePersistedState } from './util/migration-checks.util';
+import { _restorePersistedState, MIGRATION_CHECKS_KEY_V9 } from './util/persist.util';
 
 @customElement('migration-version-9-10')
 export class MigrationV910Component extends LitElement {
@@ -16,7 +16,9 @@ export class MigrationV910Component extends LitElement {
       hide_automigration: false,
     },
     ngbootstrap: {
-      removed_components: false,
+      modal: false,
+      pagination: false,
+      typeahead: false,
     },
     forms: {
       tooltip_validation: false,
@@ -88,11 +90,22 @@ export class MigrationV910Component extends LitElement {
       card_control: false,
       tag: false,
     },
+    internet_header: {
+      update_package: false,
+      add_text_props: false,
+      remove_props: false,
+    },
   };
 
   constructor() {
     super();
-    this.state = _restorePersistedState<V910Checks>(MIGRATION_CHECKS_KEY_V9) ?? this.state;
+    const restored = _restorePersistedState<V910Checks>(MIGRATION_CHECKS_KEY_V9);
+    if (restored) {
+      this.state = {
+        ...restored,
+        internet_header: restored.internet_header ?? this.state.internet_header,
+      };
+    }
     setTimeout(() => this._toggleAutoMigrationVisibility(), 0);
   }
 
@@ -291,53 +304,318 @@ export class MigrationV910Component extends LitElement {
                 <h4>Ng-Bootstrap</h4>
                 <ul class="list-unstyled">
                   <li>
-                    <div class="form-check">
-                      <input
-                        id="ngbootstrap-removed_components"
-                        class="form-check-input"
-                        type="checkbox"
-                        ?checked="${this.state.ngbootstrap.removed_components}"
-                      />
-                      <label class="form-check-label" for="ngbootstrap-removed_components">
-                        All Ng-Bootstrap components are no longer available:
-                        <ul>
-                          <li>carousel → <i>coming soon</i></li>
-                          <li>custom select → <i>coming soon</i></li>
-                          <li>datatable → AG Grid <i>coming soon</i></li>
-                          <li>datepicker → <i>coming soon</i></li>
-                          <li>dropdown → <i>coming soon</i></li>
-                          <li>
-                            modal →
+                    All Ng-Bootstrap components are no longer available. Each removed Ng-Bootstrap component has (or will have) an equivalent in
+                      the Design System, shown in the following list. Migration to these new
+                      components is manual — you’ll need to update the affected components in
+                      your application to use the corresponding elements as described in their
+                      documentation.
+                    <ul>
+                      <li>carousel → <i>coming soon</i></li>
+                      <li>custom select → <i>coming soon</i></li>
+                      <li>datatable → AG Grid <i>coming soon</i></li>
+                      <li>datepicker → <i>coming soon</i></li>
+                      <li>dropdown → <i>coming soon</i></li>
+                      <li>
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-modal"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.modal}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-modal">
+                            modal / notification overlay →
                             <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
                               >dialog</a
                             >
-                          </li>
-                          <li>
-                            notification overlay →
-                            <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
-                              >dialog</a
+                            <span class="info">
+                              <p>
+                                Both the modal and the notification overlay were built on top of the
+                                same <code>NgbModal</code> service — they only differed visually.
+                                Both are replaced by the native HTML
+                                <code>dialog</code> element with the class <code>.post-dialog</code>.
+                              </p>
+                              <p><strong>Before (v9 — NgbModal)</strong></p>
+                              <p>
+                                The modal content was a separate component injected with
+                                <code>NgbActiveModal</code> to close itself, and the host opened it
+                                via the <code>NgbModal</code> service:
+                              </p>
+                              <code-block
+                                code=${`// modal-content.component.ts\n@Component({\n  template: \`\n    <div class="modal-header">\n      <h4 class="modal-title">{{ title }}</h4>\n      <button type="button" class="btn-close" (click)="activeModal.dismiss()"></button>\n    </div>\n    <div class="modal-body">{{ message }}</div>\n    <div class="modal-footer">\n      <button class="btn btn-primary" (click)="activeModal.close('confirmed')">Confirm</button>\n      <button class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>\n    </div>\n  \`\n})\nexport class ModalContentComponent {\n  @Input() title = '';\n  @Input() message = '';\n  constructor(public activeModal: NgbActiveModal) {}\n}`}
+                              ></code-block>
+                              <code-block
+                                code=${`// host.component.ts\nexport class HostComponent {\n  constructor(private modalService: NgbModal) {}\n\n  openModal() {\n    const modalRef = this.modalService.open(ModalContentComponent);\n    modalRef.componentInstance.title = 'Confirm action';\n    modalRef.componentInstance.message = 'Are you sure?';\n\n    // Resolves when activeModal.close(result) is called\n    modalRef.closed.subscribe(result => console.log('Closed with:', result));\n\n    // Resolves when activeModal.dismiss(reason) is called, or ESC / backdrop click\n    modalRef.dismissed.subscribe(reason => console.log('Dismissed:', reason));\n  }\n}`}
+                              ></code-block>
+                              <p><strong>After (v10 — post-dialog)</strong></p>
+                              <p>
+                                The dialog content is declared directly in the component template.
+                                Use <code>&lt;form method="dialog"&gt;</code> inside the dialog so
+                                that submit buttons close it automatically and set
+                                <code>dialog.returnValue</code> to their <code>value</code>
+                                attribute:
+                              </p>
+                              <code-block
+                                code=${`<!-- host.component.html -->\n<button class="btn btn-primary" (click)="confirmDialog.showModal()">Open</button>\n\n<dialog #confirmDialog class="post-dialog" aria-labelledby="dialog-title">\n  <form method="dialog" class="dialog-grid">\n    <h3 class="dialog-header" id="dialog-title">Confirm action</h3>\n    <div class="dialog-body">\n      <p>Are you sure?</p>\n    </div>\n    <div class="dialog-controls">\n      <button class="btn btn-primary" value="confirmed">Confirm</button>\n      <button class="btn btn-secondary" value="cancelled">Cancel</button>\n    </div>\n    <post-closebutton button-type="submit">Close</post-closebutton>\n  </form>\n</dialog>`}
+                              ></code-block>
+                              <p>
+                                Listen to the <code>close</code> event to react when the dialog is
+                                closed, and read <code>dialog.returnValue</code> to know which
+                                button was pressed:
+                              </p>
+                              <code-block
+                                code=${`// host.component.ts\n@Component({ ... })\nexport class HostComponent implements AfterViewInit {\n  @ViewChild('confirmDialog') dialogRef!: ElementRef<HTMLDialogElement>;\n\n  ngAfterViewInit() {\n    this.dialogRef.nativeElement.addEventListener('close', () => {\n      const result = this.dialogRef.nativeElement.returnValue;\n      if (result === 'confirmed') {\n        console.log('User confirmed');\n      }\n    });\n  }\n}`}
+                              ></code-block>
+                              <p>
+                                To pass data <strong>into</strong> the dialog, bind directly in the
+                                template — no <code>componentInstance</code> needed:
+                              </p>
+                              <code-block
+                                code=${`<!-- host.component.html -->\n<dialog #myDialog class="post-dialog">\n  <form method="dialog" class="dialog-grid">\n    <h3 class="dialog-header">{{ dialogTitle }}</h3>\n    <div class="dialog-body">{{ dialogMessage }}</div>\n    <div class="dialog-controls">\n      <button class="btn btn-primary" value="ok">OK</button>\n    </div>\n  </form>\n</dialog>`}
+                              ></code-block>
+                              <p>
+                                <strong>Common migration patterns:</strong>
+                              </p>
+                              <ul>
+                                <li>
+                                  <strong
+                                    ><code>backdrop: 'static'</code> (prevent backdrop
+                                    close) and <code>keyboard: false</code> (disable ESC key):</strong
+                                  >
+                                    <ul>
+                                    <li>
+                                      <code>closedby="none"</code>: disables closing the modal with anything but the provided mechanisms within the modal
+                                    </li>
+                                    <li>
+                                      <code>closedby="closerequest"</code>: allows closing the modal with ESC key and provided mechanisms
+                                    </li>
+                                    <li>
+                                      <code>closedby="any"</code>: allows closing the modal with outside click, ESC key and provided mechanisms
+                                    </li>
+                                  </ul>
+                                </li>
+                                <li>
+                                  <strong
+                                    ><code>beforeDismiss</code> callback (guard before
+                                    close):</strong
+                                  >
+                                  Listen to <code>cancel</code> for ESC and perform your guard
+                                  logic before calling <code>dialog.close()</code>.
+                                </li>
+                                <li>
+                                  <strong>Programmatic close with a result value:</strong>
+                                  Call <code>dialog.close('myValue')</code> anywhere — the value
+                                  becomes <code>dialog.returnValue</code>.
+                                </li>
+                              </ul>
+                            </span>
+                          </label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-pagination"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.pagination}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-pagination">
+                            pagination →
+                            <a href="/?path=/docs/d6f8b5c7-4e2a-4f3a-9d3a-1a2b3c4d5e6f--docs"
+                              >post-pagination</a
                             >
-                          </li>
-                          <li>pagination → <i>coming soon</i></li>
-                          <li>progressbar → <i>coming soon</i></li>
-                          <li>timepicker → <i>coming soon</i></li>
-                          <li>
+                            <span class="info">
+                              <p>
+                                <code>NgbPagination</code> is replaced by the <code>post-pagination</code>
+                                web component. The core inputs <code>page</code>,
+                                <code>pageSize</code>, and <code>collectionSize</code> carry over
+                                directly, but several outputs and configuration options have
+                                changed.
+                              </p>
+                              <p><strong>Before (v9 — NgbPagination)</strong></p>
+                              <code-block
+                                code=${`<!-- template -->
+<ngb-pagination
+  [collectionSize]="totalItems"
+  [pageSize]="pageSize"
+  [(page)]="currentPage"
+  [maxSize]="5"
+  [boundaryLinks]="true"
+  [rotate]="true"
+  (pageChange)="onPageChange($event)"
+></ngb-pagination>`}
+                              ></code-block>
+                              <code-block
+                                code=${`// component
+export class MyComponent {
+  currentPage = 1;
+  pageSize = 10;
+  totalItems = 100;
+
+  onPageChange(page: number) {
+    // load data for the new page
+  }
+}`}
+                              ></code-block>
+                              <p><strong>After (v10 — post-pagination)</strong></p>
+                              <p>
+                                All text labels are now required for accessibility. There is no
+                                two-way binding — update <code>currentPage</code> manually in the
+                                <code>(postChange)</code> handler. The event payload is a
+                                <code>CustomEvent&lt;number&gt;</code>, so read the page number
+                                from <code>$event.detail</code>:
+                              </p>
+                              <code-block
+                                code=${`<!-- template -->
+<post-pagination
+  [collectionSize]="totalItems"
+  [pageSize]="pageSize"
+  [page]="currentPage"
+  label="Pagination"
+  textPrevious="Previous page"
+  textNext="Next page"
+  textPage="Page"
+  textFirst="First page"
+  textLast="Last page"
+  (postChange)="onPageChange($event.detail)"
+></post-pagination>`}
+                              ></code-block>
+                              <code-block
+                                code=${`// component
+export class MyComponent {
+  currentPage = 1;
+  pageSize = 10;
+  totalItems = 100;
+
+  onPageChange(page: number) {
+    this.currentPage = page;
+    // load data for the new page
+  }
+}`}
+                              ></code-block>
+                              <p>
+                                <strong>Common migration patterns:</strong>
+                              </p>
+                              <ul>
+                                <li>
+                                  <strong><code>[(page)]</code> two-way binding:</strong> Removed.
+                                  Use <code>[page]="currentPage"</code> to set the current page and get the event from the <code>postChange</code> output to get the updated current page.
+                                </li>
+                                <li>
+                                  <strong
+                                    ><code>(pageChange)="fn($event)"</code>:</strong
+                                  >
+                                  Becomes <code>(postChange)="fn($event.detail)"</code> — the
+                                  event is a <code>CustomEvent&lt;number&gt;</code>, so the new
+                                  page number is in <code>$event.detail</code>.
+                                </li>
+                                <li>
+                                  <strong><code>[maxSize]</code>:</strong> No equivalent.
+                                  <code>post-pagination</code> automatically shows as many page
+                                  numbers as fit in the available space, with ellipsis where
+                                  needed.
+                                </li>
+                                <li>
+                                  <strong><code>[boundaryLinks]</code>:</strong> First and last
+                                  page buttons are always shown. Provide accessible labels via the
+                                  required <code>textFirst</code> and <code>textLast</code> props.
+                                </li>
+                                <li>
+                                  <strong
+                                    ><code>[rotate]</code> and
+                                    <code>[ellipses]</code>:</strong
+                                  >
+                                  No equivalent — both behaviors are built in automatically.
+                                </li>
+                                <li>
+                                  <strong><code>[disabled]</code>:</strong> No disabled state in
+                                  <code>post-pagination</code>.
+                                </li>
+                              </ul>
+                            </span>
+                          </label>
+                        </div>
+                      </li>
+                      <li>progressbar → <i>coming soon</i></li>
+                      <li>timepicker → <i>coming soon</i></li>
+                      <li>
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-typeahead"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.typeahead}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-typeahead">
                             typeahead →
                             <a
                               href="/?path=/docs/2df77c32-5e33-402e-bd2e-54d54271ce19--docs#autocomplete"
                               >input with datalist</a
                             >
-                          </li>
-                        </ul>
-                        <span class="info"
-                          >Each removed Ng-Bootstrap component has (or will have) an equivalent in
-                          the Design System, shown in the list above. Migration to these new
-                          components is manual — you’ll need to update the affected components in
-                          your application to use the corresponding elements as described in their
-                          documentation.</span
-                        >
-                      </label>
-                    </div>
+                            <span class="info">
+                              <p>
+                                Replace the <code>[ngbTypeahead]</code> directive with a native
+                                <code>&lt;input&gt;</code> element paired with a
+                                <code>&lt;datalist&gt;</code>. The browser handles filtering
+                                automatically based on what the user types — no additional scripts
+                                required.
+                              </p>
+                              <p><strong>Before (v9 — NgbTypeahead)</strong></p>
+                              <p>
+                                Define a <code>search</code> function returning filtered results as
+                                an observable and bind it with the <code>[ngbTypeahead]</code>
+                                directive:
+                              </p>
+                              <code-block
+                                code=${`// component.ts\nsearch = (text$: Observable<string>) =>\n  text$.pipe(\n    debounceTime(200),\n    distinctUntilChanged(),\n    map(term =>\n      term.length < 2\n        ? []\n        : options.filter(v => v.toLowerCase().includes(term.toLowerCase()))\n    )\n  );`}
+                              ></code-block>
+                              <code-block
+                                code=${`<!-- template.html -->\n<input\n  type="text"\n  class="form-control"\n  [(ngModel)]="model"\n  [ngbTypeahead]="search"\n/>`}
+                              ></code-block>
+                              <p><strong>After (v10)</strong></p>
+                              <p>
+                                Declare the options in a <code>&lt;datalist&gt;</code> element and
+                                link it to the input via the <code>list</code> attribute:
+                              </p>
+                              <code-block
+                                code=${`<!-- template.html -->\n<input class="form-control" type="text" list="my-options" />\n<datalist id="my-options">\n  <option value="Option A"></option>\n  <option value="Option B"></option>\n  <option value="Option C"></option>\n</datalist>`}
+                              ></code-block>
+                              <p>
+                                <strong
+                                  >Limitations compared to <code>NgbTypeahead</code>:</strong
+                                >
+                              </p>
+                              <ul>
+                                <li>
+                                  <strong>Filtering behavior:</strong> All modern browsers filter
+                                  suggestions by matching anywhere in the string — there is no
+                                  browser API to change this behavior.
+                                </li>
+                                <li>
+                                  <strong>Dropdown styling:</strong> The suggestion popup is
+                                  rendered using the browser's native UI and can partially be styled with CSS but visual rendering may vary depending on browser.
+                                </li>
+                                <li>
+                                  <strong>Object models:</strong> The
+                                  <code>[ngbTypeahead]</code> directive supported returning objects
+                                  with <code>[inputFormatter]</code> and
+                                  <code>[resultFormatter]</code> to control how values are
+                                  displayed. The native <code>&lt;datalist&gt;</code> only supports
+                                  string values.
+                                </li>
+                                <li>
+                                  <strong>Custom result templates:</strong> The
+                                  <code>[resultTemplate]</code> input for rendering custom
+                                  ng-templates per suggestion has no native equivalent with
+                                  <code>&lt;datalist&gt;</code>.
+                                </li>
+                              </ul>
+                            </span>
+                          </label>
+                        </div>
+                      </li>
+                    </ul>
                   </li>
                 </ul>
               </section>
@@ -500,6 +778,77 @@ export class MigrationV910Component extends LitElement {
                   </li>
                 </ul>
               </section>
+
+              ${this.environment !== 'intranet'
+                ? html`
+                    <section>
+                      <h4>Internet Header (@swisspost/internet-header)</h4>
+                      <ul class="list-unstyled">
+                        <li class="mb-16">
+                          <div class="form-check">
+                            <input
+                              id="internet_header-update_package"
+                              class="form-check-input"
+                              type="checkbox"
+                              ?checked="${this.state.internet_header.update_package}"
+                            />
+                            <label class="form-check-label" for="internet_header-update_package">
+                              Update the <code>@swisspost/internet-header</code> package to version 10
+                              <code-block
+                                code=${'npm install @swisspost/internet-header@10'}
+                              ></code-block>
+                            </label>
+                          </div>
+                        </li>
+                        <li class="mb-16">
+                          <div class="form-check">
+                            <input
+                              id="internet_header-add_text_props"
+                              class="form-check-input"
+                              type="checkbox"
+                              ?checked="${this.state.internet_header.add_text_props}"
+                            />
+                            <label class="form-check-label" for="internet_header-add_text_props">
+                              Add the new required <code>text-*</code> props to your
+                              <code>swisspost-internet-header</code> element
+                              <span class="info">
+                                Version 10 requires these props for accessibility — they provide visually
+                                hidden labels for interactive elements. The component will throw an error if any are
+                                missing.
+                              </span>
+                              <code-block
+                                code=${'<swisspost-internet-header\n    project="your-service-id"\n    text-menu="Menu"\n    text-back="Back"\n    text-close="Close"\n    text-current-language="The currently selected language is #name."\n    text-change-language="Change the language"\n    text-main="Main navigation"\n    text-current-user="Current user is John Doe."\n    text-user-links="User links"\n  ></swisspost-internet-header>'}
+                              ></code-block>
+                            </label>
+                          </div>
+                        </li>
+                        <li class="mb-16">
+                          <div class="form-check">
+                            <input
+                              id="internet_header-remove_props"
+                              class="form-check-input"
+                              type="checkbox"
+                              ?checked="${this.state.internet_header.remove_props}"
+                            />
+                            <label class="form-check-label" for="internet_header-remove_props">
+                              Remove props and runtime assignments that no longer exist
+                              <span class="info">
+                                The following props have been removed and have no effect in v10:
+                                <code>stickyness</code>, <code>meta</code>, <code>login</code>,
+                                <code>search</code>, <code>skiplinks</code>, <code>config-proxy</code>,
+                                <code>language-cookie-key</code>, <code>language-local-storage-key</code>,
+                                <code>logout-url</code>, <code>self-admin-origin</code>,
+                                <code>os-flyout-overrides</code>, <code>custom-config</code>,
+                                <code>language-switch-overrides</code>. Only <code>language</code> and
+                                <code>active-route</code> remain reactive at runtime.
+                              </span>
+                            </label>
+                          </div>
+                        </li>
+                      </ul>
+                    </section>
+                  `
+                : nothing}
 
               <section>
                 <h4>Styles</h4>

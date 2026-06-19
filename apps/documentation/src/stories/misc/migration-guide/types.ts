@@ -89,7 +89,9 @@ export interface V910Checks {
     hide_automigration: boolean;
   };
   ngbootstrap: {
-    removed_components: boolean;
+    modal: boolean;
+    pagination: boolean;
+    typeahead: boolean;
   };
   forms: {
     tooltip_validation: boolean;
@@ -160,6 +162,11 @@ export interface V910Checks {
     tabs_anchor_navigation: boolean;
     card_control: boolean;
     tag: boolean;
+  };
+  internet_header: {
+    update_package: boolean;
+    add_text_props: boolean;
+    remove_props: boolean;
   };
 }
 

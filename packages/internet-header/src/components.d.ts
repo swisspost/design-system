@@ -94,6 +94,10 @@ export namespace Components {
           * Visually hidden label for the user menu.
          */
         "textUserLinks": string;
+        /**
+          * Visually hidden label for the login widget trigger button.
+         */
+        "textUserMenuTrigger": string;
     }
 }
 export interface SwisspostInternetHeaderCustomEvent<T> extends CustomEvent<T> {
@@ -227,6 +231,10 @@ declare namespace LocalJSX {
           * Visually hidden label for the user menu.
          */
         "textUserLinks": string;
+        /**
+          * Visually hidden label for the login widget trigger button.
+         */
+        "textUserMenuTrigger": string;
     }
 
     interface SwisspostInternetBreadcrumbsAttributes {
@@ -252,13 +260,14 @@ declare namespace LocalJSX {
         "textCurrentUser": string;
         "textMain": string;
         "textMenu": string;
+        "textUserMenuTrigger": string;
         "textUserLinks": string;
     }
 
     interface IntrinsicElements {
         "swisspost-internet-breadcrumbs": Omit<SwisspostInternetBreadcrumbs, keyof SwisspostInternetBreadcrumbsAttributes> & { [K in keyof SwisspostInternetBreadcrumbs & keyof SwisspostInternetBreadcrumbsAttributes]?: SwisspostInternetBreadcrumbs[K] } & { [K in keyof SwisspostInternetBreadcrumbs & keyof SwisspostInternetBreadcrumbsAttributes as `attr:${K}`]?: SwisspostInternetBreadcrumbsAttributes[K] } & { [K in keyof SwisspostInternetBreadcrumbs & keyof SwisspostInternetBreadcrumbsAttributes as `prop:${K}`]?: SwisspostInternetBreadcrumbs[K] } & OneOf<"textHome", SwisspostInternetBreadcrumbs["textHome"], SwisspostInternetBreadcrumbsAttributes["textHome"]> & OneOf<"textBreadcrumbs", SwisspostInternetBreadcrumbs["textBreadcrumbs"], SwisspostInternetBreadcrumbsAttributes["textBreadcrumbs"]> & OneOf<"textMoreItems", SwisspostInternetBreadcrumbs["textMoreItems"], SwisspostInternetBreadcrumbsAttributes["textMoreItems"]>;
         "swisspost-internet-footer": Omit<SwisspostInternetFooter, keyof SwisspostInternetFooterAttributes> & { [K in keyof SwisspostInternetFooter & keyof SwisspostInternetFooterAttributes]?: SwisspostInternetFooter[K] } & { [K in keyof SwisspostInternetFooter & keyof SwisspostInternetFooterAttributes as `attr:${K}`]?: SwisspostInternetFooterAttributes[K] } & { [K in keyof SwisspostInternetFooter & keyof SwisspostInternetFooterAttributes as `prop:${K}`]?: SwisspostInternetFooter[K] } & OneOf<"textFooter", SwisspostInternetFooter["textFooter"], SwisspostInternetFooterAttributes["textFooter"]> & OneOf<"textCookieSettings", SwisspostInternetFooter["textCookieSettings"], SwisspostInternetFooterAttributes["textCookieSettings"]>;
-        "swisspost-internet-header": Omit<SwisspostInternetHeader, keyof SwisspostInternetHeaderAttributes> & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes]?: SwisspostInternetHeader[K] } & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes as `attr:${K}`]?: SwisspostInternetHeaderAttributes[K] } & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes as `prop:${K}`]?: SwisspostInternetHeader[K] } & OneOf<"project", SwisspostInternetHeader["project"], SwisspostInternetHeaderAttributes["project"]> & OneOf<"textBack", SwisspostInternetHeader["textBack"], SwisspostInternetHeaderAttributes["textBack"]> & OneOf<"textChangeLanguage", SwisspostInternetHeader["textChangeLanguage"], SwisspostInternetHeaderAttributes["textChangeLanguage"]> & OneOf<"textClose", SwisspostInternetHeader["textClose"], SwisspostInternetHeaderAttributes["textClose"]> & OneOf<"textCurrentLanguage", SwisspostInternetHeader["textCurrentLanguage"], SwisspostInternetHeaderAttributes["textCurrentLanguage"]> & OneOf<"textCurrentUser", SwisspostInternetHeader["textCurrentUser"], SwisspostInternetHeaderAttributes["textCurrentUser"]> & OneOf<"textMain", SwisspostInternetHeader["textMain"], SwisspostInternetHeaderAttributes["textMain"]> & OneOf<"textMenu", SwisspostInternetHeader["textMenu"], SwisspostInternetHeaderAttributes["textMenu"]> & OneOf<"textUserLinks", SwisspostInternetHeader["textUserLinks"], SwisspostInternetHeaderAttributes["textUserLinks"]>;
+        "swisspost-internet-header": Omit<SwisspostInternetHeader, keyof SwisspostInternetHeaderAttributes> & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes]?: SwisspostInternetHeader[K] } & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes as `attr:${K}`]?: SwisspostInternetHeaderAttributes[K] } & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes as `prop:${K}`]?: SwisspostInternetHeader[K] } & OneOf<"project", SwisspostInternetHeader["project"], SwisspostInternetHeaderAttributes["project"]> & OneOf<"textBack", SwisspostInternetHeader["textBack"], SwisspostInternetHeaderAttributes["textBack"]> & OneOf<"textChangeLanguage", SwisspostInternetHeader["textChangeLanguage"], SwisspostInternetHeaderAttributes["textChangeLanguage"]> & OneOf<"textClose", SwisspostInternetHeader["textClose"], SwisspostInternetHeaderAttributes["textClose"]> & OneOf<"textCurrentLanguage", SwisspostInternetHeader["textCurrentLanguage"], SwisspostInternetHeaderAttributes["textCurrentLanguage"]> & OneOf<"textCurrentUser", SwisspostInternetHeader["textCurrentUser"], SwisspostInternetHeaderAttributes["textCurrentUser"]> & OneOf<"textMain", SwisspostInternetHeader["textMain"], SwisspostInternetHeaderAttributes["textMain"]> & OneOf<"textMenu", SwisspostInternetHeader["textMenu"], SwisspostInternetHeaderAttributes["textMenu"]> & OneOf<"textUserMenuTrigger", SwisspostInternetHeader["textUserMenuTrigger"], SwisspostInternetHeaderAttributes["textUserMenuTrigger"]> & OneOf<"textUserLinks", SwisspostInternetHeader["textUserLinks"], SwisspostInternetHeaderAttributes["textUserLinks"]>;
     }
 }
 export { LocalJSX as JSX };

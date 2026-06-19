@@ -1,20 +1,20 @@
 import {
+  Build,
   Component,
   Element,
   Event,
   EventEmitter,
+  h,
   Host,
   Method,
   Prop,
-  h,
-  Watch,
   State,
-  Build,
 } from '@stencil/core';
 
-import { checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
+import { OneOf, Type } from '@/utils';
 import { version } from '@root/package.json';
 
+import { PLACEMENT_TYPES } from '@/types';
 import {
   arrow,
   autoUpdate,
@@ -27,11 +27,10 @@ import {
   shift,
   size,
 } from '@floating-ui/dom';
-import { PLACEMENT_TYPES } from '@/types';
 
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
-import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
 import { popIn } from '@/animations/pop-in';
+import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
 
 interface PopoverElement {
   showPopover: () => void;
@@ -121,12 +120,16 @@ export class PostPopovercontainer {
    * Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted
    * towards the viewport if they would overlap edge boundaries.
    */
-  @Prop() readonly placement?: Placement = 'top';
+  @Prop()
+  @OneOf(PLACEMENT_TYPES)
+  readonly placement?: Placement = 'top';
 
   /**
    * Gap between the edge of the page and the popovercontainer
    */
-  @Prop() readonly edgeGap?: number = 8;
+  @Prop()
+  @Type('number')
+  readonly edgeGap?: number = 8;
 
   /**
    * Offset for more precise placement
@@ -142,22 +145,9 @@ export class PostPopovercontainer {
   /**
    * Enables a safespace through which the cursor can be moved without the popover being disabled
    */
-  @Prop({ reflect: true }) readonly safeSpace?: 'triangle' | 'trapezoid';
-
-  @Watch('placement')
-  validatePlacement() {
-    checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
-  }
-
-  @Watch('edgeGap')
-  validateEdgeGap() {
-    checkEmptyOrType(this, 'edgeGap', 'number');
-  }
-
-  @Watch('safeSpace')
-  validateSafeSpace() {
-    checkEmptyOrOneOf(this, 'safeSpace', ['triangle', 'trapezoid']);
-  }
+  @Prop({ reflect: true })
+  @OneOf(['triangle', 'trapezoid'])
+  readonly safeSpace?: 'triangle' | 'trapezoid';
 
   /**
    * Animation style
@@ -183,9 +173,6 @@ export class PostPopovercontainer {
   }
 
   componentDidLoad() {
-    this.validatePlacement();
-    this.validateEdgeGap();
-    this.validateSafeSpace();
     this.host.addEventListener('beforetoggle', this.handleToggle.bind(this));
   }
 
@@ -391,7 +378,9 @@ export class PostPopovercontainer {
 
       const staticSide = PostPopovercontainer.STATIC_SIDES[currentPlacement];
 
+
       const arrowSizePx = this.arrowRef.offsetWidth;
+
 
       const halfSide = -0.5 * arrowSizePx;
 
@@ -433,12 +422,10 @@ export class PostPopovercontainer {
       // flip should come before shift. For non-aligned, shift before flip.
       ...(isAligned ? [flipMiddleware, shiftMiddleware] : [shiftMiddleware, flipMiddleware]),
       size({
-        apply({ availableWidth, availableHeight, elements }) {
-          elements.floating.style.maxWidth = `${availableWidth - gap * 2}px`;
-          elements.floating.style.setProperty(
-            '--post-popovercontainer-available-height',
-            `${availableHeight - gap * 2}px`,
-          );
+        apply({ availableWidth, elements }) {
+          Object.assign(elements.floating.style, {
+            maxWidth: `${availableWidth - gap * 2}px`,
+          });
         },
       }),
     ];
@@ -546,9 +533,7 @@ export class PostPopovercontainer {
           )}
           {/* exposed via ::part for consuming components to activate as a bleed mask */}
           <span part="post-popovercontainer-border-mask"></span>
-          <div class="popover-scroll">
-            <slot></slot>
-          </div>
+          <slot></slot>
         </div>
       </Host>
     );
