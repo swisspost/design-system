@@ -86,15 +86,17 @@ function storySource(navContent: string, iframeHeight = 500) {
       },
       source: {
         code: `
-<post-side-navigation text-close="Close" class="flex-shrink-0">
-  <nav aria-label="Main navigation">
+<div class="d-flex">
+  <post-side-navigation text-close="Close" class="flex-shrink-0">
+    <nav aria-label="Main navigation">
 ${navContent}
-  </nav>
-</post-side-navigation>
+    </nav>
+  </post-side-navigation>
 
-<main class="flex-grow-1">
-  <!-- The content of your page comes here -->
-</main>
+  <main class="flex-grow-1">
+    <!-- The content of your page comes here -->
+  </main>
+</div>
         `,
       },
     },
@@ -105,7 +107,7 @@ ${navContent}
 
 function renderWithLayout(navContent: string, args: Args, fakeContentCount = 6) {
   return html`
-    <post-side-navigation id="${navigationId}" text-close="${args.textClose}" class="flex-shrink-0">
+    <post-side-navigation id="${navigationId}" text-close="${args.textClose}">
       <nav aria-label="Main navigation">
         ${unsafeHTML(navContent)}
       </nav>
