@@ -38,8 +38,8 @@ declare global {
 })
 export class PostTabs {
   private currentActiveTab: HTMLPostTabItemElement;
-  private showing: Animation;
-  private hiding: Animation;
+  private showing: Animation | null;
+  private hiding: Animation | null;
   private isLoaded = false;
   private contentObserver: MutationObserver;
   private resizeObserver: ResizeObserver;
@@ -312,9 +312,10 @@ export class PostTabs {
     }
 
     const previousTab = this.currentActiveTab;
-    const newTab: HTMLPostTabItemElement = this.host.querySelector(
-      `post-tab-item[name=${tabName}]`,
+    const newTab = this.host.querySelector<HTMLPostTabItemElement>(
+      `post-tab-item[name="${tabName}"]`,
     );
+    if (!newTab) return;
 
     this.activateTab(newTab);
     this.scrollTabIntoView(newTab, 'smooth');
@@ -327,32 +328,25 @@ export class PostTabs {
 
     // hide the currently visible panel only if no other animation is running
     if (previousTab && !this.showing && !this.hiding) this.hidePanel(previousTab.name);
-
-    // wait for any hiding animation to complete before showing the selected tab
-    if (this.hiding) {
-      try {
-        await this.hiding.finished;
-      } catch (e) {
-        // Animation was cancelled (e.g. component disconnected mid-transition) — abort show()
-        if (e instanceof DOMException && e.name === 'AbortError') return;
-        throw e;
-      }
-    }
+    if (await this.awaitAnimation(this.hiding)) return;
 
     this.showSelectedPanel();
 
-    // wait for any display animation to complete for the returned promise to fully resolve
-    if (this.showing) {
-      try {
-        await this.showing.finished;
-      } catch (e) {
-        // Animation was cancelled (e.g. component disconnected mid-transition) — abort show()
-        if (e instanceof DOMException && e.name === 'AbortError') return;
-        throw e;
-      }
-    }
+    if (await this.awaitAnimation(this.showing)) return;
 
     if (this.isLoaded) this.postChange.emit(this.currentActiveTab.name);
+  }
+
+  // Awaits an animation; returns true if it was aborted (caller should bail out).
+  private async awaitAnimation(animation: Animation | null): Promise<boolean> {
+    if (!animation) return false;
+    try {
+      await animation.finished;
+      return false;
+    } catch (e) {
+      if (e instanceof DOMException && e.name === 'AbortError') return true;
+      throw e;
+    }
   }
 
   private moveMisplacedTabs() {
@@ -528,12 +522,15 @@ export class PostTabs {
   }
 
   render() {
+    const activeName = this.activeTab ?? this.tabs[0]?.name;
     const TabsContainer = this.isPagesVariant ? 'nav' : 'div';
     const isSSR = Build.isServer;
-    const tabStyle = {
-      [`--post-tab-panel-${this.activeTab}`]: 'block',
-      [`--post-tab-item-${this.activeTab}`]: '1',
-    };
+    const tabStyle = activeName
+      ? {
+        [`--post-tab-panel-${activeName}`]: 'block',
+        [`--post-tab-item-${activeName}`]: '1',
+      }
+      : undefined;
     const style = isSSR && !this.isPagesVariant ? tabStyle : undefined;
     return (
       <Host data-version={version} style={style}>
