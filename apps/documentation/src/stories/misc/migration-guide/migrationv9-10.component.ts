@@ -311,10 +311,30 @@ export class MigrationV910Component extends LitElement {
                       documentation.
                     <ul>
                       <li>carousel → <i>coming soon</i></li>
-                      <li>custom select → <i>coming soon</i></li>
-                      <li>datatable → AG Grid <i>coming soon</i></li>
-                      <li>datepicker → <i>coming soon</i></li>
-                      <li>dropdown → <i>coming soon</i></li>
+                      <li>
+                        custom select & dropdown →
+                        <a href="/?path=/docs/bc251cd0-5173-463b-8729-586bb1bf1e1a--docs"
+                          >native select element</a
+                        >
+                        or
+                        <a href="/?path=/docs/8ca2bd70-56e6-4da9-b1fd-4e55388dca88--docs"
+                          >post-menu</a
+                        >
+                        <span class="info">Use native select for value selection, post-menu for action menus.</span>
+                      </li>
+                      <li>
+                        datatable → 
+                        <a href="https://www.ag-grid.com/">AG Grid</a>
+                        <span class="info">For interactive data tables, we recommend using AG Grid. For Swiss Post styling, use our 
+                          <a href="/?path=/docs/e1405db2-fe06-45c6-a7ed-1408f9bf4895--docs">@swisspost/design-system-theme-ag-grid</a> 
+                          package.</span>
+                      </li>
+                      <li>
+                        datepicker →
+                        <a href="/?path=/docs/eb77cd02-48b2-42e1-a3e4-cd8a973d431e--docs"
+                          >post-date-picker</a
+                        >
+                      </li>
                       <li>
                         <div class="form-check">
                           <input
@@ -537,8 +557,18 @@ export class MyComponent {
                           </label>
                         </div>
                       </li>
-                      <li>progressbar → <i>coming soon</i></li>
-                      <li>timepicker → <i>coming soon</i></li>
+                      <li>
+                        progressbar → 
+                        <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs"
+                          >post-progressbar</a
+                        >
+                      </li>
+                      <li>
+                        timepicker →
+                        <a href="/?path=/docs/51471f0b-1bbb-4059-951b-f89aa7339f91--docs"
+                          >native input with type "time"</a
+                        >
+                      </li>
                       <li>
                         <div class="form-check">
                           <input
