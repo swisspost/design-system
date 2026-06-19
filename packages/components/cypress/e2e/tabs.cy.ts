@@ -1,225 +1,225 @@
 const TABS_ID = 'bb1291ca-4dbb-450c-a15f-596836d9f39e';
 
-// describe('tabs', () => {
-//   describe('default', () => {
-//     beforeEach(() => {
-//       cy.getComponent('tabs', TABS_ID);
-//       cy.get('post-tab-item').as('items');
-//     });
+describe('tabs', () => {
+  describe('default', () => {
+    beforeEach(() => {
+      cy.getComponent('tabs', TABS_ID);
+      cy.get('post-tab-item').as('items');
+    });
 
-//     it('should render', () => {
-//       cy.get('@tabs').should('exist');
-//     });
+    it('should render', () => {
+      cy.get('@tabs').should('exist');
+    });
 
-//     it('should show three tab items', () => {
-//       cy.get('@items').should('have.length', 3);
-//     });
+    it('should show three tab items', () => {
+      cy.get('@items').should('have.length', 3);
+    });
 
-//     it('should only show the first tab item as active', () => {
-//       cy.get('post-tab-item[aria-selected="true"').each(($item, index) => {
-//         cy.wrap($item).should(index === 0 ? 'exist' : 'not.exist');
-//       });
-//     });
+    it('should only show the first tab item as active', () => {
+      cy.get('post-tab-item[aria-selected="true"').each(($item, index) => {
+        cy.wrap($item).should(index === 0 ? 'exist' : 'not.exist');
+      });
+    });
 
-//     it('should only show the tab panel associated with the first tab item', () => {
-//       cy.get('post-tab-panel:visible').as('panel');
-//       cy.get('@panel').should('have.length', 1);
-//       cy.get('@items')
-//         .first()
-//         .invoke('attr', 'name')
-//         .then(tabName => {
-//           cy.get('@panel').invoke('attr', 'for').should('equal', tabName);
-//         });
-//     });
+    it('should only show the tab panel associated with the first tab item', () => {
+      cy.get('post-tab-panel:visible').as('panel');
+      cy.get('@panel').should('have.length', 1);
+      cy.get('@items')
+        .first()
+        .invoke('attr', 'name')
+        .then(tabName => {
+          cy.get('@panel').invoke('attr', 'for').should('equal', tabName);
+        });
+    });
 
-//     it('should activate a clicked tab item and deactivate the tab item that was previously activated', () => {
-//       cy.get('@items').last().click();
-//       cy.get('@items').first().should('have.attr', 'aria-selected', 'false');
-//       cy.get('@items').last().should('have.attr', 'aria-selected', 'true');
-//     });
+    it('should activate a clicked tab item and deactivate the tab item that was previously activated', () => {
+      cy.get('@items').last().click();
+      cy.get('@items').first().should('have.attr', 'aria-selected', 'false');
+      cy.get('@items').last().should('have.attr', 'aria-selected', 'true');
+    });
 
-//     it('should show the panel associated with a clicked tab item and hide the panel that was previously shown', () => {
-//       cy.get('@items').last().click();
+    it('should show the panel associated with a clicked tab item and hide the panel that was previously shown', () => {
+      cy.get('@items').last().click();
 
-//       // wait for the fade out animation to complete
-//       cy.wait(200);
+      // wait for the fade out animation to complete
+      cy.wait(200);
 
-//       cy.get('post-tab-panel:visible').as('panel');
-//       cy.get('@panel').should('have.length', 1);
-//       cy.get('@items')
-//         .last()
-//         .invoke('attr', 'name')
-//         .then(tabName => {
-//           cy.get('@panel').invoke('attr', 'for').should('equal', tabName);
-//         });
-//     });
-//   });
+      cy.get('post-tab-panel:visible').as('panel');
+      cy.get('@panel').should('have.length', 1);
+      cy.get('@items')
+        .last()
+        .invoke('attr', 'name')
+        .then(tabName => {
+          cy.get('@panel').invoke('attr', 'for').should('equal', tabName);
+        });
+    });
+  });
 
-//   describe('active tab', () => {
-//     beforeEach(() => {
-//       cy.getComponent('tabs', TABS_ID, 'active-tab');
-//       cy.get('post-tab-item').as('items');
-//       cy.get('post-tab-panel:visible').as('panel');
-//     });
+  describe('active tab', () => {
+    beforeEach(() => {
+      cy.getComponent('tabs', TABS_ID, 'active-tab');
+      cy.get('post-tab-item').as('items');
+      cy.get('post-tab-panel:visible').as('panel');
+    });
 
-//     it('should only show the requested active tab panel', () => {
-//       cy.get('@panel').should('have.length', 1);
-//       cy.get('@tabs')
-//         .invoke('attr', 'active-tab')
-//         .then(activeTab => {
-//           cy.get('@panel').invoke('attr', 'for').should('equal', activeTab);
-//         });
-//     });
+    it('should only show the requested active tab panel', () => {
+      cy.get('@panel').should('have.length', 1);
+      cy.get('@tabs')
+        .invoke('attr', 'active-tab')
+        .then(activeTab => {
+          cy.get('@panel').invoke('attr', 'for').should('equal', activeTab);
+        });
+    });
 
-//     it('should show as active only the tab item associated with the requested active tab', () => {
-//       cy.get('@tabs')
-//         .invoke('attr', 'active-tab')
-//         .then(activeTab => {
-//           cy.get('@items').each($item => {
-//             cy.wrap($item)
-//               .invoke('attr', 'name')
-//               .then(tabName => {
-//                 cy.wrap($item).should(
-//                   tabName === activeTab ? 'have.attr' : 'not.have.attr',
-//                   'aria-selected',
-//                   'true',
-//                 );
-//               });
-//           });
-//         });
-//     });
-//   });
+    it('should show as active only the tab item associated with the requested active tab', () => {
+      cy.get('@tabs')
+        .invoke('attr', 'active-tab')
+        .then(activeTab => {
+          cy.get('@items').each($item => {
+            cy.wrap($item)
+              .invoke('attr', 'name')
+              .then(tabName => {
+                cy.wrap($item).should(
+                  tabName === activeTab ? 'have.attr' : 'not.have.attr',
+                  'aria-selected',
+                  'true',
+                );
+              });
+          });
+        });
+    });
+  });
 
-//   describe('pages variant', () => {
-//     beforeEach(() => {
-//       cy.getComponent('tabs', TABS_ID, 'pages-variant');
-//       cy.get('post-tab-item').as('items');
-//     });
+  describe('pages variant', () => {
+    beforeEach(() => {
+      cy.getComponent('tabs', TABS_ID, 'pages-variant');
+      cy.get('post-tab-item').as('items');
+    });
 
-//     it('should render', () => {
-//       cy.get('@tabs').should('exist');
-//     });
+    it('should render', () => {
+      cy.get('@tabs').should('exist');
+    });
 
-//     it('should show three tab items', () => {
-//       cy.get('@items').should('have.length', 3);
-//     });
+    it('should show three tab items', () => {
+      cy.get('@items').should('have.length', 3);
+    });
 
-//     it('should not render content part in pages variant', () => {
-//       cy.get('@tabs').shadow().find('[part="post-tabs-content"]').should('not.exist');
-//     });
+    it('should not render content part in pages variant', () => {
+      cy.get('@tabs').shadow().find('[part="post-tabs-content"]').should('not.exist');
+    });
 
-//     it('should not render tab panels in pages variant', () => {
-//       cy.get('post-tab-panel').should('not.exist');
-//     });
+    it('should not render tab panels in pages variant', () => {
+      cy.get('post-tab-panel').should('not.exist');
+    });
 
-//     describe('semantic navigation markup', () => {
-//       it('should render the tabs container as nav element', () => {
-//         cy.get('@tabs').shadow().find('nav').should('exist');
-//       });
+    describe('semantic navigation markup', () => {
+      it('should render the tabs container as nav element', () => {
+        cy.get('@tabs').shadow().find('nav').should('exist');
+      });
 
-//       it('should have aria-label on nav element', () => {
-//         cy.get('@tabs').shadow().find('nav').should('have.attr', 'aria-label');
-//       });
+      it('should have aria-label on nav element', () => {
+        cy.get('@tabs').shadow().find('nav').should('have.attr', 'aria-label');
+      });
 
-//       it('should have label attribute on tabs component', () => {
-//         cy.get('@tabs').should('have.attr', 'label');
-//       });
+      it('should have label attribute on tabs component', () => {
+        cy.get('@tabs').should('have.attr', 'label');
+      });
 
-//       it('should contain anchor elements within tab items', () => {
-//         cy.get('@items').each($item => {
-//           cy.wrap($item).find('a').should('exist');
-//         });
-//       });
-//     });
+      it('should contain anchor elements within tab items', () => {
+        cy.get('@items').each($item => {
+          cy.wrap($item).find('a').should('exist');
+        });
+      });
+    });
 
-//     describe('tab item properties', () => {
-//       it('should have name property on each tab item', () => {
-//         cy.get('@items').each($item => {
-//           cy.wrap($item).should('have.attr', 'name');
-//         });
-//       });
+    describe('tab item properties', () => {
+      it('should have name property on each tab item', () => {
+        cy.get('@items').each($item => {
+          cy.wrap($item).should('have.attr', 'name');
+        });
+      });
 
-//       it('should not have role="tab" on tab items in pages variant', () => {
-//         cy.get('@items').each($item => {
-//           cy.wrap($item).should('not.have.attr', 'role', 'tab');
-//         });
-//       });
+      it('should not have role="tab" on tab items in pages variant', () => {
+        cy.get('@items').each($item => {
+          cy.wrap($item).should('not.have.attr', 'role', 'tab');
+        });
+      });
 
-//       it('should not have aria-selected on tab items in pages variant', () => {
-//         cy.get('@items').each($item => {
-//           cy.wrap($item).should('not.have.attr', 'aria-selected');
-//         });
-//       });
+      it('should not have aria-selected on tab items in pages variant', () => {
+        cy.get('@items').each($item => {
+          cy.wrap($item).should('not.have.attr', 'aria-selected');
+        });
+      });
 
-//       it('should not have tabindex on tab items in pages variant', () => {
-//         cy.get('@items').each($item => {
-//           cy.wrap($item).should('not.have.attr', 'tabindex');
-//         });
-//       });
-//     });
+      it('should not have tabindex on tab items in pages variant', () => {
+        cy.get('@items').each($item => {
+          cy.wrap($item).should('not.have.attr', 'tabindex');
+        });
+      });
+    });
 
-//     describe('anchor elements in light DOM', () => {
-//       it('should render anchor elements in light DOM for consumer routing integration', () => {
-//         cy.get('@items').each($item => {
-//           // Verify anchor is in light DOM (not in shadow DOM)
-//           cy.wrap($item).children('a').should('exist');
-//         });
-//       });
+    describe('anchor elements in light DOM', () => {
+      it('should render anchor elements in light DOM for consumer routing integration', () => {
+        cy.get('@items').each($item => {
+          // Verify anchor is in light DOM (not in shadow DOM)
+          cy.wrap($item).children('a').should('exist');
+        });
+      });
 
-//       it('should allow consumer routing via anchor href attributes', () => {
-//         cy.get('@items').first().find('a').should('have.attr', 'href');
-//       });
-//     });
+      it('should allow consumer routing via anchor href attributes', () => {
+        cy.get('@items').first().find('a').should('have.attr', 'href');
+      });
+    });
 
-//     describe('active state management', () => {
-//       it('should be controlled by aria-current attribute only', () => {
-//         // Verify there is one active tab which has aria-current="page" on its anchor
-//         cy.get('post-tab-item').find('a[aria-current="page"]').should('have.length', 1);
+    describe('active state management', () => {
+      it('should be controlled by aria-current attribute only', () => {
+        // Verify there is one active tab which has aria-current="page" on its anchor
+        cy.get('post-tab-item').find('a[aria-current="page"]').should('have.length', 1);
 
-//         // Verify that the rest of the tabs don't have aria-current="page"
-//         cy.get('post-tab-item').find('a:not([aria-current="page"])').should('have.length', 2);
-//       });
-//     });
+        // Verify that the rest of the tabs don't have aria-current="page"
+        cy.get('post-tab-item').find('a:not([aria-current="page"])').should('have.length', 2);
+      });
+    });
 
-//     describe('pages variant behavior', () => {
-//       it('should not prevent default link behavior', () => {
-//         // Anchors should have href attributes (routing framework will handle them)
-//         cy.get('@items').first().find('a').should('have.attr', 'href');
-//       });
+    describe('pages variant behavior', () => {
+      it('should not prevent default link behavior', () => {
+        // Anchors should have href attributes (routing framework will handle them)
+        cy.get('@items').first().find('a').should('have.attr', 'href');
+      });
 
-//       it('should have clickable anchor elements', () => {
-//         // Verify anchors are present and accessible
-//         cy.get('@items').each($item => {
-//           cy.wrap($item).find('a').should('be.visible');
-//         });
-//       });
+      it('should have clickable anchor elements', () => {
+        // Verify anchors are present and accessible
+        cy.get('@items').each($item => {
+          cy.wrap($item).find('a').should('be.visible');
+        });
+      });
 
-//       it('should not emit postChange event in pages variant', () => {
-//         // This is a limitation test - we can't easily test events NOT firing
-//         // without framework integration, but we document the expectation
-//         cy.get('@tabs').should('exist');
-//         // In a real integration test with a framework, you would verify
-//         // that postChange handlers are never called
-//       });
-//     });
-//   });
+      it('should not emit postChange event in pages variant', () => {
+        // This is a limitation test - we can't easily test events NOT firing
+        // without framework integration, but we document the expectation
+        cy.get('@tabs').should('exist');
+        // In a real integration test with a framework, you would verify
+        // that postChange handlers are never called
+      });
+    });
+  });
 
-//   describe('mode detection', () => {
-//     it('should detect content mode when no anchor elements are present', () => {
-//       cy.getComponent('tabs', TABS_ID, 'default');
-//       cy.get('post-tabs').should('exist');
-//       cy.get('post-tab-panel').should('exist');
-//       cy.get('post-tabs').shadow().find('[part="post-tabs-content"]').should('exist');
-//     });
+  describe('mode detection', () => {
+    it('should detect content mode when no anchor elements are present', () => {
+      cy.getComponent('tabs', TABS_ID, 'default');
+      cy.get('post-tabs').should('exist');
+      cy.get('post-tab-panel').should('exist');
+      cy.get('post-tabs').shadow().find('[part="post-tabs-content"]').should('exist');
+    });
 
-//     it('should detect Page Tabs variant when anchor elements are present', () => {
-//       cy.getComponent('tabs', TABS_ID, 'pages-variant');
-//       cy.get('post-tabs').should('exist');
-//       cy.get('post-tab-panel').should('not.exist');
-//       cy.get('post-tabs').shadow().find('nav').should('exist');
-//     });
-//   });
-// });
+    it('should detect Page Tabs variant when anchor elements are present', () => {
+      cy.getComponent('tabs', TABS_ID, 'pages-variant');
+      cy.get('post-tabs').should('exist');
+      cy.get('post-tab-panel').should('not.exist');
+      cy.get('post-tabs').shadow().find('nav').should('exist');
+    });
+  });
+});
 
 describe('Accessibility', () => {
   const variantStories: Record<string, string> = {
