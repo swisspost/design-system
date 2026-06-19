@@ -19,6 +19,7 @@ export const PostSideNavigation: Story = {
     return schemes(() => {
       return SideNavigationStories.Default.render?.(
         SideNavigationStories.Default.args || meta.args,
+        0, // no fake content in snapshots
       );
     });
   },
