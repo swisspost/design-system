@@ -146,14 +146,22 @@ function StylesSwitcher() {
   }, [stylesCodeBlocks, currentTheme, currentAppearance]);
 
   /**
-   * Sets the expected 'data-color-scheme' attribute on all story containers when the scheme changes
+   * Sets the 'data-color-scheme' attribute on all story containers and nested iframes
+   * (inline: false stories) when the scheme changes
    */
   useEffect(() => {
     if (!stories) return;
 
+    const scheme = currentScheme.toLowerCase();
+
     stories.forEach(story => {
-      story.setAttribute('data-color-scheme', currentScheme.toLowerCase());
+      story.setAttribute('data-color-scheme', scheme);
       story.querySelector('.docs-story')?.classList.add('palette', 'palette-default');
+      
+      // Update nested iframes (inline: false stories)
+      story
+        .querySelector('iframe')
+        ?.contentDocument?.documentElement?.setAttribute('data-color-scheme', scheme);
     });
   }, [stories, currentScheme]);
 
