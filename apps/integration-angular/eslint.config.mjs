@@ -1,10 +1,11 @@
 import js from '@eslint/js';
 import ng from 'angular-eslint';
+import { defineConfig } from 'eslint/config';
 import globals from 'globals';
 import ts from 'typescript-eslint';
 
 /** @type {import('eslint').Linter.Config[]} */
-export default ts.config(
+export default defineConfig(
   {
     name: 'post/global/ignores',
     ignores: ['dist/*'],
@@ -41,12 +42,12 @@ export default ts.config(
     files: ['**/*.{ts,mts,cts}'],
     extends: [
       ...ts.configs.recommended,
-      {
-        files: ['**/*.{js,mjs,cjs}'],
-        ...ts.configs.disableTypeChecked,
-      },
       ...ng.configs.tsRecommended,
     ],
+  },
+  {
+    files: ['**/*.{js,mjs,cjs}'],
+    extends: [ts.configs.disableTypeChecked],
   },
   {
     name: 'post/ts/overrides',
