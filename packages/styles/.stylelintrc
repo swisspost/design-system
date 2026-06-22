@@ -7,6 +7,18 @@
     "selector-max-id": 1,
     "selector-no-qualifying-type": [true, { "ignore": ["attribute", "class"] }],
     "function-url-quotes": null,
-    "scss/dollar-variable-colon-space-after": "always-single-line"
+    "scss/dollar-variable-colon-space-after": "always-single-line",
+    "property-no-vendor-prefix": [
+      true,
+      {
+        "ignoreProperties": [
+          "mask-size",
+          "mask-image",
+          "mask-repeat",
+          "mask-position",
+          "mask-composite"
+        ]
+      }
+    ]
   }
 }
