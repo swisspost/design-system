@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
 import { TableModule } from 'primeng/table';
 
 @Component({
   selector: 'primeng',
   templateUrl: './primeng.html',
-  imports: [TableModule],
+  imports: [TableModule, NgTemplateOutlet],
 })
 export class PrimeNg {
   data = [

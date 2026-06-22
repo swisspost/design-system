@@ -1,28 +1,27 @@
+<ng-template #sharedBody let-item>
+  <tr>
+    <td>{{ item.trackingId }}</td>
+    <td>{{ item.type }}</td>
+    <td>{{ item.weight }}</td>
+    <td>{{ item.destination }}</td>
+    <td>{{ item.status }}</td>
+    <td>{{ item.priority }}</td>
+  </tr>
+</ng-template>
+
 <p-table class="mb-32" [value]="data" [tableStyle]="{ 'min-width': '50rem' }">
   <ng-template #header>
     <tr>
-      <th pSortableColumn="trackingId" style="width: 20%">
-        <div class="flex items-center gap-2">
-          Tracking ID
-          <p-sortIcon field="trackingId" />
-        </div>
-      </th>
-      <th>Type</th>
-      <th>Weight (kg)</th>
-      <th>Destination</th>
-      <th>Status</th>
-      <th>Priority</th>
+      <th scope="col">Tracking ID</th>
+      <th scope="col">Type</th>
+      <th scope="col">Weight (kg)</th>
+      <th scope="col">Destination</th>
+      <th scope="col">Status</th>
+      <th scope="col">Priority</th>
     </tr>
   </ng-template>
   <ng-template #body let-item>
-    <tr>
-      <td>{{ item.trackingId }}</td>
-      <td>{{ item.type }}</td>
-      <td>{{ item.weight }}</td>
-      <td>{{ item.destination }}</td>
-      <td>{{ item.status }}</td>
-      <td>{{ item.priority }}</td>
-    </tr>
+    <ng-container [ngTemplateOutlet]="sharedBody" [ngTemplateOutletContext]="{ $implicit: item }" />
   </ng-template>
 </p-table>
 
@@ -35,27 +34,45 @@
 >
   <ng-template #header>
     <tr>
-      <th pSortableColumn="trackingId" style="width: 20%">
-        <div class="flex items-center gap-2">
+      <th scope="col" pSortableColumn="trackingId">
+        <div class="d-flex gap-12">
           Tracking ID
           <p-sortIcon field="trackingId" />
         </div>
       </th>
-      <th>Type</th>
-      <th>Weight (kg)</th>
-      <th>Destination</th>
-      <th>Status</th>
-      <th>Priority</th>
+      <th scope="col" pSortableColumn="type">
+        <div class="d-flex gap-12">
+          Type
+          <p-sortIcon field="type" />
+        </div>
+      </th>
+      <th scope="col" pSortableColumn="weight">
+        <div class="d-flex gap-12">
+          Weight (kg)
+          <p-sortIcon field="weight" />
+        </div>
+      </th>
+      <th scope="col" pSortableColumn="destination">
+        <div class="d-flex gap-12">
+          Destination
+          <p-sortIcon field="destination" />
+        </div>
+      </th>
+      <th scope="col" pSortableColumn="status">
+        <div class="d-flex gap-12">
+          Status
+          <p-sortIcon field="status" />
+        </div>
+      </th>
+      <th scope="col" pSortableColumn="priority">
+        <div class="d-flex gap-12">
+          Priority
+          <p-sortIcon field="priority" />
+        </div>
+      </th>
     </tr>
   </ng-template>
   <ng-template #body let-item>
-    <tr>
-      <td>{{ item.trackingId }}</td>
-      <td>{{ item.type }}</td>
-      <td>{{ item.weight }}</td>
-      <td>{{ item.destination }}</td>
-      <td>{{ item.status }}</td>
-      <td>{{ item.priority }}</td>
-    </tr>
+    <ng-container [ngTemplateOutlet]="sharedBody" [ngTemplateOutletContext]="{ $implicit: item }" />
   </ng-template>
 </p-table>
