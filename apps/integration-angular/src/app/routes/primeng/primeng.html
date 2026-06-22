@@ -1,0 +1,61 @@
+<p-table class="mb-32" [value]="data" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="trackingId" style="width: 20%">
+        <div class="flex items-center gap-2">
+          Tracking ID
+          <p-sortIcon field="trackingId" />
+        </div>
+      </th>
+      <th>Type</th>
+      <th>Weight (kg)</th>
+      <th>Destination</th>
+      <th>Status</th>
+      <th>Priority</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.trackingId }}</td>
+      <td>{{ item.type }}</td>
+      <td>{{ item.weight }}</td>
+      <td>{{ item.destination }}</td>
+      <td>{{ item.status }}</td>
+      <td>{{ item.priority }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-table
+  [value]="data"
+  stripedRows
+  [rows]="5"
+  [paginator]="true"
+  [tableStyle]="{ 'min-width': '50rem' }"
+>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="trackingId" style="width: 20%">
+        <div class="flex items-center gap-2">
+          Tracking ID
+          <p-sortIcon field="trackingId" />
+        </div>
+      </th>
+      <th>Type</th>
+      <th>Weight (kg)</th>
+      <th>Destination</th>
+      <th>Status</th>
+      <th>Priority</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.trackingId }}</td>
+      <td>{{ item.type }}</td>
+      <td>{{ item.weight }}</td>
+      <td>{{ item.destination }}</td>
+      <td>{{ item.status }}</td>
+      <td>{{ item.priority }}</td>
+    </tr>
+  </ng-template>
+</p-table>
