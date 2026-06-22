@@ -129,8 +129,16 @@ describe('post-side-navigation', () => {
           'post-side-navigation-trigger',
         );
         cy.get('@side-navigation').then(([el]) => el.show());
-        cy.get('@side-navigation').find('post-collapsible-trigger').first().find('button').as('collapsibleTrigger');
-        cy.get('@side-navigation').find('post-collapsible').as('collapsible');
+        cy.get('@side-navigation')
+          .find('post-collapsible-trigger')
+          .first()
+          .find('> button')
+          .as('collapsibleTrigger');
+        cy.get('@side-navigation')
+          .find('post-collapsible-trigger')
+          .first()
+          .find('> post-collapsible')
+          .as('collapsible');
       });
 
       it('should collapse the section on Escape when focus is on a collapsible trigger', () => {
