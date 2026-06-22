@@ -77,7 +77,11 @@ async function getGitHubInfo(repo: string, commit: string) {
  * Fetch co-authors from the squash merge commit's Co-authored-by trailers.
  * With squash merging, the merge commit contains all co-author information.
  */
-async function getCoAuthors(repo: string, commit: string, mainUser: string | null): Promise<string[]> {
+async function getCoAuthors(
+  repo: string,
+  commit: string,
+  mainUser: string | null,
+): Promise<string[]> {
   if (coAuthorsCache.has(commit)) {
     return coAuthorsCache.get(commit)!;
   }
@@ -105,9 +109,7 @@ async function getCoAuthors(repo: string, commit: string, mainUser: string | nul
     const users = new Set<string>();
 
     // Parse Co-authored-by trailers from the squash merge commit
-    const coAuthorMatches = commitData.commit.message.matchAll(
-      /^Co-authored-by:\s+.+<([^>]+)>/gm,
-    );
+    const coAuthorMatches = commitData.commit.message.matchAll(/^Co-authored-by:\s+.+<([^>]+)>/gm);
     for (const match of coAuthorMatches) {
       // GitHub noreply emails contain the username
       const noreplyMatch = match[1].match(/^(\d+\+)?([^@]+)@users\.noreply\.github\.com$/);
@@ -177,15 +179,16 @@ const changelogFunctions: ChangelogFunctions = {
     // Fetch co-authors from the squash merge commit
     let coAuthors: string[] = [];
     if (changeset.commit) {
-      const mainUser = links.user ? links.user.match(/@([\w-]+)/)?.[1] ?? null : null;
+      const mainUser = links.user ? (links.user.match(/@([\w-]+)/)?.[1] ?? null) : null;
       coAuthors = await getCoAuthors(options.repo, changeset.commit, mainUser);
     }
 
     const pullOrCommit = links.pull || links.commit || null;
     const allUsersList = [users, ...coAuthors].filter(Boolean) as string[];
-    const allUsers = allUsersList.length > 1
-      ? `${allUsersList.slice(0, -1).join(', ')} and ${allUsersList[allUsersList.length - 1]}`
-      : allUsersList.join('');
+    const allUsers =
+      allUsersList.length > 1
+        ? `${allUsersList.slice(0, -1).join(', ')} and ${allUsersList[allUsersList.length - 1]}`
+        : allUsersList.join('');
     const userString = allUsers ? `by ${allUsers}` : '';
     const pullString = pullOrCommit !== null ? `with ${pullOrCommit}` : '';
     const hasUserOrPull = userString && pullString;
