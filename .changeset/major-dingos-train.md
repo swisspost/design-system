@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-styles': minor
+'@swisspost/design-system-styles': patch
 ---
 
-Added icon support for older browsers (Chrome/Edge < 120, Safari < 15.4, and older chromium-based browsers).
+Added support for icons that are set using `mask-image` for older browsers (Chrome/Edge < 120, Safari < 15.4, and older chromium-based browsers).
