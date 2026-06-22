@@ -1,7 +1,7 @@
-import { Component, Element, h, Host, Prop, AttachInternals } from '@stencil/core';
+import { OneOf, Required } from '@/utils';
 import { version } from '@root/package.json';
+import { AttachInternals, Component, Element, h, Host, Prop } from '@stencil/core';
 import { BUTTON_TYPES, ButtonType, Placement, PLACEMENT, SIZE, Size } from './types';
-import { Required, OneOf } from '@/utils';
 
 /**
  * @slot default - Slot for placing visually hidden label in the close button.
