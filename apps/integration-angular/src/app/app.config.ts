@@ -2,7 +2,7 @@ import { ApplicationConfig } from '@angular/core';
 import { provideRouter, Routes } from '@angular/router';
 import { providePostComponents } from '@swisspost/design-system-components-angular';
 import { providePrimeNG } from 'primeng/config';
-import { swissPostPreset } from '../../../../packages/styles-primeng/dist';
+import { swissPostPreset } from '@swisspost/design-system-styles-primeng';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
