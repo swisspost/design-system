@@ -3,10 +3,7 @@ import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
 import { fakeContent } from '@/utils';
-import { activeItem } from './renderers/active-item';
-import { deepNesting } from './renderers/deep-nesting';
-import { defaultNav } from './renderers/default-nav';
-import { withIcons } from './renderers/with-icons';
+import { defaultNav } from './nav-content';
 
 // Shared ID so the decorator's trigger and the story's side-navigation stay in sync
 const navigationId = crypto.randomUUID();
@@ -19,11 +16,6 @@ const meta: MetaComponent = {
   parameters: {
     layout: 'fullscreen',
     badges: [],
-    docs: {
-      story: {
-        inline: false,
-      },
-    },
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=14478-28019',
@@ -31,6 +23,7 @@ const meta: MetaComponent = {
   },
   args: {
     textClose: 'Close',
+    showIcons: false,
   },
   argTypes: {
     textClose: {
@@ -38,6 +31,19 @@ const meta: MetaComponent = {
       description: 'Accessible label for the close button shown in the mobile navigation dialog.',
       table: {
         category: 'Props',
+      },
+    },
+    showIcons: {
+      name: 'Show icons',
+      description:
+        'Prepend an icon to every level-1 navigation item.' +
+        '<post-banner data-size="sm"><p>' +
+        '<strong>Level-1 only:</strong> never use icons on levels 2, 3, or 4.<br/>' +
+        '<strong>All or none:</strong> apply icons to all level-1 items or none, do not mix.' +
+        '</p></post-banner>',
+      control: { type: 'boolean' },
+      table: {
+        category: 'Content',
       },
     },
   },
@@ -79,81 +85,34 @@ const meta: MetaComponent = {
 
 export default meta;
 
-// HELPERS
+type Story = StoryObj;
 
-function storySource(navContent: string, iframeHeight = 500) {
-  return {
+export const Default: Story = {
+  parameters: {
     docs: {
-      story: {
-        iframeHeight,
-      },
       source: {
-        code: `
-<div class="d-flex">
-  <post-side-navigation text-close="Close" class="flex-shrink-0">
-    <nav aria-label="Main navigation">
-${navContent}
+        code: `<div class="d-flex">
+  <post-side-navigation text-close="Close">
+    <nav aria-label="Main navigation">${defaultNav(false)}
     </nav>
   </post-side-navigation>
 
   <main class="flex-grow-1">
-    <!-- The content of your page comes here -->
+    <!-- Page content -->
   </main>
-</div>
-        `,
+</div>`,
       },
     },
-  };
-}
-
-// RENDERERS
-
-function renderWithLayout(navContent: string, args: Args, fakeContentCount = 6) {
-  return html`
+  },
+  render: (args: Args) => html`
     <post-side-navigation id="${navigationId}" text-close="${args.textClose}">
       <nav aria-label="Main navigation">
-        ${unsafeHTML(navContent)}
+        ${unsafeHTML(defaultNav(args.showIcons))}
       </nav>
     </post-side-navigation>
 
     <main class="flex-grow-1">
-      ${fakeContent(fakeContentCount)}
+      ${fakeContent(4)}
     </main>
-  `;
-}
-
-// STORIES
-
-type Story = StoryObj;
-
-/**
- * Default: Composed example showing all navigation patterns
- */
-export const Default: Story = {
-  parameters: storySource(defaultNav, 800),
-  render: (args: Args) => renderWithLayout(defaultNav, args, 4),
-};
-
-/**
- * Deep Nesting: Shows navigation with maximum depth (4 levels)
- */
-export const DeepNesting: Story = {
-  parameters: storySource(deepNesting, 500),
-  render: (args: Args) => renderWithLayout(deepNesting, args, 3),
-};
-
-/**
- * With Icons: Navigation items with icons on level 1
- */
-export const WithIcons: Story = {
-  parameters: storySource(withIcons, 500),
-  render: (args: Args) => renderWithLayout(withIcons, args, 3),
-};
-
-/**
- * Active Navigation Item: Shows aria-current="page" usage
- */
-export const ActiveNavigationItem: Story = {
-  parameters: storySource(`<ul>${activeItem}</ul>`, 400),
-  render: (args: Args) => renderWithLayout(`<ul>${activeItem}</ul>`, args, 2),
+  `,
 };

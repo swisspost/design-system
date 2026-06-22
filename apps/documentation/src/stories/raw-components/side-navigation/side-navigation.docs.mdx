@@ -3,7 +3,6 @@ import meta, * as SideNavigationStories from './side-navigation.stories';
 import PackageTag from '@/shared/package-tag';
 import StylesPackageImport from '@/shared/styles-package-import';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
-import "./side-navigation.styles.scss";
 
 <Meta of={SideNavigationStories} />
 
@@ -26,47 +25,16 @@ import "./side-navigation.styles.scss";
 <ComponentsPackageInstall component="<post-side-navigation>" />
 
 <StylesPackageImport components={['side-navigation', 'list']} />
-
 ## Navigation content
-
-The default slot holds the navigation content. It must be a `<nav>` landmark, with a heading (`<h*>`, or a `<p>` if no heading level fits) linked via `aria-labelledby`, and `<ul>`/`<li>` lists for the items. Nested levels are nested `<ul>`s.
-
-### Icon usage
-
-Icons help users scan and recognize navigation categories using simple, meaningful icons with labels.
-
-**When using icons**:
-
-- **Level-1 only**: Never on deeper levels (2, 3, or 4)
-- **All or none**: Apply to all level-1 items or none, do not mix
-
-<Canvas of={SideNavigationStories.WithIcons} />
-
-
-## Nesting
  
-Navigation can nest up to 4 levels deep:
-
-<Canvas sourceState="hidden" of={SideNavigationStories.DeepNesting} />
-
-### Active item
-
-Mark the link of the current page with `aria-current="page"`. The component highlights it as the active item, and screen reader users hear it announced as the current page. Set it from your routing, not on click.
-
-<Canvas sourceState="hidden" of={SideNavigationStories.ActiveNavigationItem} />
-
+The default slot holds the navigation content. It must be a `<nav>` landmark with a descriptive `aria-label` and `<ul>`/`<li>` lists for the items. Nested levels are nested `<ul>`s. The section heading is optional.
+ 
 ## Accessibility
-
-### Navigation landmark
-
-The default slot's content forms a `<nav>` landmark. Link it to its heading with `aria-labelledby` (see the examples above) so screen reader users can identify it and jump to it with landmark shortcuts.
-
-**Why labeling matters:** if a page has several navigation regions (main navigation, breadcrumbs, this side navigation), a descriptive heading lets screen reader users tell them apart and move to the right one.
-
+ 
 ### Links and disclosure buttons
-
+ 
 Use `<a>` for links and a `<button>` inside `<post-collapsible-trigger>` for collapsible sections. A link navigates, a button discloses; never nest one inside the other.
-
+ 
 ### Focus management
-
-On mobile, focus moves into the navigation when the dialog opens and returns to the trigger button when it closes. The rest of the page is inert while the dialog is open.
+ 
+On mobile, focus moves into the navigation when the dialog opens and returns to the trigger when it closes. The rest of the page is inert while the dialog is open.
