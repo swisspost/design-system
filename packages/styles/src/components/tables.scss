@@ -14,7 +14,7 @@ tokens.$default-map: utilities.$post-spacing;
   --table-color-state: initial;
   --table-bg-state: initial;
   --table-color: var(--post-current-fg);
-  --table-border-color:  var(--post-current-fg);
+  --table-border-color: var(--post-current-fg);
   --table-accent-bg: transparent;
   --table-striped-color: #{color.$black};
   --table-striped-bg: #{color.$gray};
