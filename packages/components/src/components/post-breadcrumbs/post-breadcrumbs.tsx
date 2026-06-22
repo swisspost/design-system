@@ -109,9 +109,7 @@ export class PostBreadcrumbs {
     if (!originalSlot || !clonedSlot) return;
 
     originalSlot.assignedElements().forEach(element => {
-      const cloned = element.cloneNode(true) as HTMLElement;
-      cloned.dataset.measuring = 'true';
-      clonedSlot.before(cloned);
+      clonedSlot.insertAdjacentElement('beforebegin', element.cloneNode(true) as Element);
     });
 
     clonedSlot.remove();
