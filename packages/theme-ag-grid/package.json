@@ -35,7 +35,7 @@
     "frontend"
   ],
   "peerDependencies": {
-    "ag-grid-community": "^35.0.0"
+    "ag-grid-community": "^33.3.2"
   },
   "devDependencies": {
     "typescript": "catalog:typescript"

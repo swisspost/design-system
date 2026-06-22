@@ -12,11 +12,6 @@ const routes: Routes = [
     loadComponent: () => import('./routes/home/home').then(m => m.Home),
   },
   {
-    title: 'AG Grid',
-    path: 'ag-grid',
-    loadComponent: () => import('./routes/ag-grid/ag-grid').then(m => m.AgGrid),
-  },
-  {
     title: 'PrimeNg',
     path: 'primeng',
     loadComponent: () => import('./routes/primeng/primeng').then(m => m.PrimeNg),
