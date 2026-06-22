@@ -13,16 +13,17 @@ import { BUTTON_TYPES, ButtonType, Placement, PLACEMENT, SIZE, Size } from './ty
   formAssociated: true,
 })
 export class PostClosebutton {
-  @AttachInternals() internals: ElementInternals;
+  @AttachInternals() internals!: ElementInternals;
 
-  private mutationObserver: MutationObserver;
+  private mutationObserver?: MutationObserver;
 
-  private visuallyHidden: HTMLSpanElement;
+  private visuallyHidden!: HTMLSpanElement;
 
-  @Element() host: HTMLPostClosebuttonElement;
+  @Element() host!: HTMLPostClosebuttonElement;
 
   /**
    * The "type" attribute used for the close button
+  
    */
   @Prop()
   @OneOf(BUTTON_TYPES)
@@ -61,7 +62,7 @@ export class PostClosebutton {
   }
 
   private checkContent() {
-    const slot = this.visuallyHidden?.querySelector('slot') as HTMLSlotElement;
+    const slot = this.visuallyHidden.querySelector('slot') as HTMLSlotElement;
     const hasContent = slot
       ?.assignedNodes({ flatten: true })
       .some(node => node.textContent?.trim());
