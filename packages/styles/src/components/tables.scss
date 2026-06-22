@@ -13,8 +13,8 @@ tokens.$default-map: utilities.$post-spacing;
   --table-bg-type: initial;
   --table-color-state: initial;
   --table-bg-state: initial;
-  --table-color: #{color.$black};
-  --table-border-color: #{color.$gray-10};
+  --table-color: var(--post-current-fg);
+  --table-border-color:  var(--post-current-fg);
   --table-accent-bg: transparent;
   --table-striped-color: #{color.$black};
   --table-striped-bg: #{color.$gray};
@@ -36,7 +36,7 @@ tokens.$default-map: utilities.$post-spacing;
 
 .table > :not(caption) > * > * {
   padding: tokens.get('utility-margin-12') tokens.get('utility-margin-4');
-  color: var(--table-color-state, var(--table-color-type, var(--table-color)));
+  color: var(--post-current-fg);
   background-color: transparent;
   border-bottom-width: 1px;
   box-shadow: inset 0 0 0 9999px var(--table-bg-state, var(--table-bg-type, var(--table-accent-bg)));
