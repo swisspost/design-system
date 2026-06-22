@@ -1,7 +1,6 @@
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
-import backgroundColors from '@/shared/background-colors.module.scss';
 import chipMeta from '@/stories/components/chip/chip.stories';
 
 const meta: MetaComponent = {
@@ -19,12 +18,12 @@ const meta: MetaComponent = {
   args: {
     showNumber: true,
     number: 1,
-    size: 'large',
+    size: '',
   },
   argTypes: {
     showNumber: {
       name: 'Show Number',
-      description: 'If `true`, the badge contains a number otherwise it is empty.',
+      description: 'If `true`, the badge contains a number, otherwise it is empty.',
       control: {
         type: 'boolean',
       },
@@ -57,22 +56,11 @@ const meta: MetaComponent = {
       control: {
         type: 'radio',
         labels: {
-          'large': 'Large',
+          '': 'Large (default)',
           'badge-sm': 'Small',
         },
       },
-      options: ['large', 'badge-sm'],
-      table: {
-        category: 'General',
-      },
-    },
-    background: {
-      name: 'Background',
-      description: 'You can use the background classes to color the cards',
-      control: {
-        type: 'select',
-      },
-      options: Object.keys(backgroundColors),
+      options: ['', 'badge-sm'],
       table: {
         category: 'General',
       },
@@ -84,10 +72,9 @@ export default meta;
 
 // RENDERER
 function renderBadge(args: Args) {
-  const sizingClass = args.showNumber && args.size !== 'large' ? ` ${args.size}` : '';
-  const bgClass = args.background && args.background !== 'bg-danger' ? ` ${args.background}` : '';
+  const sizingClass = args.showNumber && args.size !== '' ? ` ${args.size}` : '';
   return html`
-    <div class=${`badge${sizingClass}${bgClass}`}>${args.showNumber ? args.number : nothing}</div>
+    <div class=${`badge${sizingClass}`}>${args.showNumber ? args.number : nothing}</div>
   `;
 }
 
@@ -95,15 +82,6 @@ function renderBadge(args: Args) {
 type Story = StoryObj;
 
 export const Default: Story = {};
-
-export const Colors: Story = {
-  render: args => html`
-    ${renderBadge({ ...args, background: 'bg-info' })}
-    ${renderBadge({ ...args, background: 'bg-success' })}
-    ${renderBadge({ ...args, background: 'bg-warning' })}
-    ${renderBadge({ ...args, background: 'bg-yellow' })}
-  `,
-};
 
 export const LargeNumber: Story = {
   render: args => html`
