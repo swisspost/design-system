@@ -112,7 +112,7 @@ export const Default: Story = {
     </post-side-navigation>
 
     <main class="flex-grow-1">
-      ${fakeContent(5)}
+      ${fakeContent(4)}
     </main>
   `,
 };
