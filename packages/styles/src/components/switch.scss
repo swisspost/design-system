@@ -52,11 +52,15 @@ $switch-handle-icon: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='htt
     }
 
     &::before {
+      -webkit-mask-image: $switch-handle-icon;
       mask-image: $switch-handle-icon;
       background-color: transparent;
       z-index: 1;
+      -webkit-mask-size: tokens.get('switch-element-handle');
       mask-size: tokens.get('switch-element-handle');
+      -webkit-mask-repeat: no-repeat;
       mask-repeat: no-repeat;
+      -webkit-mask-position: center;
       mask-position: center;
     }
 
@@ -150,8 +154,11 @@ $switch-handle-icon: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='htt
 
       &:checked::before {
         background-color: tokens.get('switch-icon-disabled');
+        -webkit-mask-image: $switch-handle-icon;
         mask-image: $switch-handle-icon;
+        -webkit-mask-repeat: no-repeat;
         mask-repeat: no-repeat;
+        -webkit-mask-position: center;
         mask-position: center;
       }
 
