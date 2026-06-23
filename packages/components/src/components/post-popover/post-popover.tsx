@@ -92,7 +92,7 @@ export class PostPopover {
             <div class="popover-content">
               <slot></slot>
             </div>
-            <post-closebutton onClick={() => this.hide()}>{this.textClose}</post-closebutton>
+            <post-closebutton>{this.textClose}</post-closebutton>
           </div>
         </post-popovercontainer>
       </Host>

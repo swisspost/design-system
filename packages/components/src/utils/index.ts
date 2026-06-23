@@ -2,6 +2,7 @@ export * from './property-decorators';
 
 export * from './attribute-observer';
 export * from './breakpoints';
+export * from './closable-target';
 export * from './component-on-ready';
 export * from './debounce';
 export * from './event-from';
