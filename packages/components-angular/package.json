@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components-angular",
-  "version": "10.0.0-next.73",
+  "version": "10.0.0-next.74",
   "description": "Swiss Post Design System - Angular Wrapper Components",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -29,7 +29,7 @@
     "lint:fix": "ng lint --fix"
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:10.0.0-next.73",
+    "@swisspost/design-system-components": "workspace:10.0.0-next.74",
     "tslib": "catalog:angular"
   },
   "peerDependencies": {
