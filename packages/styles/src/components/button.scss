@@ -34,14 +34,14 @@ tokens.$default-map: components.$post-button;
       box-shadow: tokens.get('button-elevation');
     }
 
-    @include button-mx.button-variant-def('enabled', $color);
+    @include button-mx.button-variant-def('enabled', $color, $variant);
 
     &:disabled {
-      @include button-mx.button-variant-def('disabled', $color);
+      @include button-mx.button-variant-def('disabled', $color, $variant);
     }
 
     @include utilities.not-disabled-hover() {
-      @include button-mx.button-variant-def('hover', $color);
+      @include button-mx.button-variant-def('hover', $color, $variant);
     }
   }
 }
