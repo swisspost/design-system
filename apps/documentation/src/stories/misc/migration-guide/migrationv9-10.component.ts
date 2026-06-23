@@ -217,7 +217,6 @@ export class MigrationV910Component extends LitElement {
             </p>
 
             <post-banner type="warning" class="mt-16">
-              <h4 slot="heading">This is an AI-assisted migration</h4>
               <p>
                 The skill relies on AI and on a set of predefined transformation rules. Keep the
                 following in mind before relying on it:
@@ -256,12 +255,6 @@ export class MigrationV910Component extends LitElement {
                 was applied correctly, then finish with the clean up.
               </li>
             </ol>
-
-            <p class="mt-16">
-    <span class="info">
-      Prefer to migrate by hand? Skip the skill and just follow the manual guide below.
-    </span>
-            </p>
           </li>
             </p>
           </li>
