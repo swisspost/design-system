@@ -16,14 +16,6 @@ import {
   Watch,
 } from '@stencil/core';
 
-// Extends the HTMLButtonElement interface to include ariaControlsElements, which is part of the
-// ARIA reflection API but not yet present in TypeScript's built-in DOM type definitions.
-declare global {
-  interface HTMLButtonElement {
-    ariaControlsElements: Element[];
-  }
-}
-
 /**
  * @slot default - Slot for placing tab items. Each tab item should be a <post-tab-item> element.
  * @slot panels - Slot for placing tab panels. Each tab panel should be a <post-tab-panel> element.
@@ -528,9 +520,9 @@ export class PostTabs {
     const isSSR = Build.isServer;
     const tabStyle = activeName
       ? {
-        [`--post-tab-panel-${activeName}`]: 'block',
-        [`--post-tab-item-${activeName}`]: '1',
-      }
+          [`--post-tab-panel-${activeName}`]: 'block',
+          [`--post-tab-item-${activeName}`]: '1',
+        }
       : undefined;
     const style = isSSR && !this.isPagesVariant ? tabStyle : undefined;
     return (
