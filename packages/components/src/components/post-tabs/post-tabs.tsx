@@ -3,6 +3,7 @@ import { componentOnReady, OneOf, Type, Required } from '@/utils';
 import { version } from '@root/package.json';
 
 import {
+  Build,
   Component,
   Element,
   Event,
@@ -13,16 +14,7 @@ import {
   Prop,
   State,
   Watch,
-  Build,
 } from '@stencil/core';
-
-// Extends the HTMLButtonElement interface to include ariaControlsElements, which is part of the
-// ARIA reflection API but not yet present in TypeScript's built-in DOM type definitions.
-declare global {
-  interface HTMLButtonElement {
-    ariaControlsElements: Element[];
-  }
-}
 
 /**
  * @slot default - Slot for placing tab items. Each tab item should be a <post-tab-item> element.
@@ -37,17 +29,17 @@ declare global {
   shadow: true,
 })
 export class PostTabs {
-  private currentActiveTab: HTMLPostTabItemElement;
-  private showing: Animation | null;
-  private hiding: Animation | null;
+  private currentActiveTab?: HTMLPostTabItemElement;
+  private showing: Animation | null = null;
+  private hiding: Animation | null = null;
   private isLoaded = false;
-  private contentObserver: MutationObserver;
-  private resizeObserver: ResizeObserver;
-  private tabsContainer: HTMLElement;
+  private contentObserver?: MutationObserver;
+  private resizeObserver?: ResizeObserver;
+  private tabsContainer!: HTMLElement;
+
+  @Element() host!: HTMLPostTabsElement;
 
   @State() isPagesVariant: boolean = false;
-
-  @Element() host: HTMLPostTabsElement;
 
   @State() private showLeftScrollButton = false;
   @State() private showRightScrollButton = false;
@@ -123,7 +115,7 @@ export class PostTabs {
    * Only emitted in Content Tabs variant.
    */
   @Event()
-  postChange: EventEmitter<string>;
+  postChange!: EventEmitter<string>;
 
   componentWillRender() {
     this.detectVariant();
@@ -334,7 +326,7 @@ export class PostTabs {
 
     if (await this.awaitAnimation(this.showing)) return;
 
-    if (this.isLoaded) this.postChange.emit(this.currentActiveTab.name);
+    if (this.isLoaded && this.currentActiveTab) this.postChange.emit(this.currentActiveTab.name);
   }
 
   // Awaits an animation; returns true if it was aborted (caller should bail out).
@@ -453,6 +445,7 @@ export class PostTabs {
   }
 
   private showSelectedPanel() {
+    if (!this.currentActiveTab) return;
     const panel = this.getPanel(this.currentActiveTab.name);
     if (!panel) return;
     panel.style.display = 'block';
@@ -466,7 +459,7 @@ export class PostTabs {
     };
   }
 
-  private getPanel(name: string): HTMLPostTabPanelElement {
+  private getPanel(name: string): HTMLPostTabPanelElement | null {
     return this.host.querySelector<HTMLPostTabPanelElement>(`post-tab-panel[for=${name}]`);
   }
 
