@@ -367,9 +367,6 @@ importers:
       imask:
         specifier: 7.6.1
         version: 7.6.1
-      long-press-event:
-        specifier: 2.5.2
-        version: 2.5.2
     devDependencies:
       '@eslint/compat':
         specifier: 1.2.5
@@ -8744,9 +8741,6 @@ packages:
   log4js@6.9.1:
     resolution: {integrity: sha512-1somDdy9sChrr9/f4UlzhdaGfDR2c/SaD2a4T7qEkG4jTS57/B3qmnjLYePwQ8cqWnUHZI0iAKxMBpCZICiZ2g==}
     engines: {node: '>=8.0'}
-
-  long-press-event@2.5.2:
-    resolution: {integrity: sha512-FV1xg5lbE5nFF+wCOAIhheVQQJZq9kC6Uh+kX7/W8m1lGpivKJLEaTahBb8oCmkWz8uZnqUoxSwG+9eksbP82Q==}
 
   longest-streak@3.1.0:
     resolution: {integrity: sha512-9Ri+o0JYgehTaVBBDoMqIl8GXtbWg711O3srftcHhZ0dqnETqLaoIK0x17fUw9rFSlK/0NlsKe0Ahhyl5pXE2g==}
@@ -21460,8 +21454,6 @@ snapshots:
       streamroller: 3.1.5
     transitivePeerDependencies:
       - supports-color
-
-  long-press-event@2.5.2: {}
 
   longest-streak@3.1.0: {}
 

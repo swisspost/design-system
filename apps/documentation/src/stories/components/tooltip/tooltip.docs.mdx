@@ -1,6 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as TooltipStories from './tooltip.stories';
 import * as TooltipTriggerStories from './tooltip-trigger.stories';
+import * as PopoverStories from '../popover/popover.stories';
 import PackageTag from '@/shared/package-tag';
 
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
@@ -17,6 +18,15 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 <div className="lead">For short, informative messages or explanations.</div>
 
 <Canvas sourceState="shown" of={TooltipStories.Default} />
+
+<post-banner type="warning">
+  **Limited accessibility on touch devices:** Tooltips currently have limited accessibility on
+  touch devices, because the long-press event used to trigger them conflicts with native gestures
+  in mobile browsers (such as text selection or the context menu). Touch users may therefore be
+  unable to reveal tooltip content reliably. If the information is essential, use the [accessible
+  alternative](#accessible-alternative-for-essential-content) below instead.
+</post-banner>
+
 <Controls of={TooltipStories.Default} />
 
 <ComponentsPackageInstall component="<post-tooltip>" />
@@ -27,6 +37,31 @@ The `<post-tooltip-trigger>` component enables you to show tooltips with customi
 
 <Canvas sourceState="shown" of={TooltipTriggerStories.Default} />
 <Controls of={TooltipTriggerStories.Default} />
+
+
+
+## Accessible alternative for essential content
+
+When the additional information is essential and must be available to every user, including on
+touch devices, use an information icon button that toggles a `<post-popover>` instead of a tooltip.
+Unlike a tooltip, the popover is opened by an explicit click or key press, so it works consistently
+across mouse, keyboard and touch input.
+
+<Canvas of={PopoverStories.InfoIcon} />
+
+```html
+<post-popover-trigger>
+  <button class="btn btn-link btn-icon">
+    <post-icon aria-hidden="true" name="info"></post-icon>
+    <span class="visually-hidden">See more information</span>
+  </button>
+  <post-popover class="palette palette-accent" placement="top" text-close="Close" arrow>
+    <p class="mb-0">
+      Follow your letter's journey with automatic updates at key delivery milestones.
+    </p>
+  </post-popover>
+</post-popover-trigger>
+```
 
 ## Installation
 
