@@ -538,6 +538,7 @@ export namespace Components {
         "label": string;
         /**
           * The current active page number.  **If not specified, defaults to the first page.**
+          * @default 1
          */
         "page"?: number;
         /**
@@ -1498,6 +1499,18 @@ declare namespace LocalJSX {
          */
         "buttonType"?: ButtonType;
         /**
+          * If `true`, the user cannot interact with the element.
+         */
+        "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
+          * The name of the element, used when submitting an HTML form.
+         */
+        "name"?: string;
+        /**
           * Defines whether the close button is positioned automatically by the component or left unpositioned for manual styling.
           * @default 'auto'
          */
@@ -1826,6 +1839,7 @@ declare namespace LocalJSX {
         "onPostChange"?: (event: PostPaginationCustomEvent<number>) => void;
         /**
           * The current active page number.  **If not specified, defaults to the first page.**
+          * @default 1
          */
         "page"?: number;
         /**
