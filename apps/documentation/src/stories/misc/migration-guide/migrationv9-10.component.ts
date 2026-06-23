@@ -19,6 +19,7 @@ export class MigrationV910Component extends LitElement {
       modal: false,
       pagination: false,
       typeahead: false,
+      progressbar: false,
     },
     forms: {
       tooltip_validation: false,
