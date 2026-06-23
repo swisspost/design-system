@@ -8,8 +8,13 @@ const meta: MetaComponent = {
   id: 'd5f43fa8-42ba-4cb9-98c7-9386d4c939bb',
   title: 'Components/Form Number Input',
   component: 'post-number-input',
-  tags: ['package:WebComponents', 'status:Experimental'],
-  parameters: {},
+  tags: ['package:WebComponents'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=32255-121266',
+    },
+  },
   render,
   args: {
     label: 'Quantity',

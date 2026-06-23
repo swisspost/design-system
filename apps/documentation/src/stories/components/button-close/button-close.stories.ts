@@ -9,7 +9,7 @@ const meta: MetaComponent = {
   title: 'Components/Button Close',
   component: 'post-closebutton',
   render: getCloseButtonRenderer(),
-  tags: ['package:WebComponents', 'status:Experimental'],
+  tags: ['package:WebComponents'],
   parameters: {
     badges: [],
     design: {
