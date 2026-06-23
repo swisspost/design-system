@@ -44,6 +44,7 @@
   background-color: transparent;
   box-shadow: none;
   font-family: inherit;
+  font-size: tokens.get('button-font-size', components.$post-button);
   font-weight: tokens.get('button-label-font-weight', components.$post-button);
   text-decoration: none;
   white-space: nowrap; // Long content should never break in buttons
