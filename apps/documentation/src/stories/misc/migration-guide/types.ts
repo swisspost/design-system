@@ -92,6 +92,7 @@ export interface V910Checks {
     modal: boolean;
     pagination: boolean;
     typeahead: boolean;
+    progressbar: boolean;
   };
   forms: {
     tooltip_validation: boolean;
