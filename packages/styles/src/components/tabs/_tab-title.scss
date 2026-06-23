@@ -17,15 +17,6 @@ $tabs-font-weight-interpolation: calc(
     (700 - tokens.get('post-tabs-tab-font-weight'))
 );
 
-@mixin page-tab-focus-state($padding-block-token, $height-token) {
-  &:focus,
-  &:focus-visible,
-  &:focus-within {
-    padding-block: tokens.get($padding-block-token);
-    height: tokens.get($height-token);
-  }
-}
-
 // Common for all variants
 post-tab-item.tab-title,
 post-tab-item.nav-item a {
@@ -272,10 +263,12 @@ post-tabs[size='large'] post-tab-item {
       }
 
       // focused
-      @include page-tab-focus-state(
-        'post-tabs-page-large-tab-focused-padding-block',
-        'post-tabs-page-large-tab-focused-height'
-      );
+      &:focus,
+      &:focus-visible,
+      &:focus-within {
+        padding-block: tokens.get('post-tabs-page-large-tab-focused-padding-block');
+        height: tokens.get('post-tabs-page-large-tab-focused-height');
+      }
     }
 
     // disabled
@@ -328,10 +321,12 @@ post-tabs[size='small'] post-tab-item {
       }
 
       // focused
-      @include page-tab-focus-state(
-        'post-tabs-page-small-tab-focused-padding-block',
-        'post-tabs-page-small-tab-focused-height'
-      );
+      &:focus,
+      &:focus-visible,
+      &:focus-within {
+        padding-block: tokens.get('post-tabs-page-small-tab-focused-padding-block');
+        height: tokens.get('post-tabs-page-small-tab-focused-height');
+      }
     }
 
     // disabled
