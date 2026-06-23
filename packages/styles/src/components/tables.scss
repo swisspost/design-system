@@ -14,14 +14,14 @@ tokens.$default-map: utilities.$post-spacing;
   --table-color-state: initial;
   --table-bg-state: initial;
   --table-color: var(--post-current-fg);
-  --table-border-color: var(--post-current-fg);
+  --table-border-color: color-mix(in srgb, var(--post-current-fg), transparent 80%);
   --table-accent-bg: transparent;
-  --table-striped-color: #{color.$black};
-  --table-striped-bg: #{color.$gray};
-  --table-active-color: #{color.$black};
+  --table-striped-color: var(--post-current-fg);
+  --table-striped-bg: color-mix(in srgb, var(--post-current-fg), transparent 90%);
+  --table-active-color: var(--post-current-fg);
   --table-active-bg: #{color.$yellow};
-  --table-hover-color: #{color.$black};
-  --table-hover-bg: #{color.$gray-10};
+  --table-hover-color: var(--post-current-fg);
+  --table-hover-bg: color-mix(in srgb, var(--post-current-fg), transparent 80%);
 
   width: 100%;
   margin-bottom: 1rem;
@@ -57,7 +57,7 @@ tokens.$default-map: utilities.$post-spacing;
 }
 
 .table-group-divider {
-  border-top: calc(1px * 2) solid #e6e6e6;
+  border-top: calc(1px * 2) solid color-mix(in srgb, var(--post-current-fg), transparent 80%);
 }
 
 .table-sm > :not(caption) > * > * {
@@ -112,7 +112,7 @@ tokens.$default-map: utilities.$post-spacing;
   > tfoot,
   > :is(thead, tbody, tfoot) > tr,
   > :is(thead, tbody, tfoot) > tr > :is(td, th) {
-    border-color: color.$white;
+    border-color: var(--post-current-fg);
     border-width: commons.$border-thick;
   }
 
@@ -148,6 +148,6 @@ tokens.$default-map: utilities.$post-spacing;
   }
 
   > tbody > tr {
-    background-color: color.$gray;
+    background-color: color-mix(in srgb, var(--post-current-fg), transparent 90%);
   }
 }
