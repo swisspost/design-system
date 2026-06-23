@@ -26,7 +26,6 @@
   },
   "dependencies": {
     "@angular/animations": "catalog:angular",
-    "@angular/cdk": "^20.2.0",
     "@angular/common": "catalog:angular",
     "@angular/compiler": "catalog:angular",
     "@angular/core": "catalog:angular",
@@ -38,7 +37,7 @@
     "@swisspost/design-system-icons": "workspace:10.0.0-next.73",
     "@swisspost/design-system-styles": "workspace:10.0.0-next.73",
     "@swisspost/design-system-styles-primeng": "workspace:10.0.0-next.73",
-    "primeng": "^20.4.0",
+    "primeng": "20.4.0",
     "rxjs": "catalog:angular",
     "tslib": "catalog:angular",
     "zone.js": "catalog:angular"

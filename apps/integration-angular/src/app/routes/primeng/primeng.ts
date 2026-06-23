@@ -1,61 +1,130 @@
 import { Component } from '@angular/core';
-import { NgTemplateOutlet } from '@angular/common';
+import { CommonModule, CurrencyPipe, DatePipe, LowerCasePipe } from '@angular/common';
 import { TableModule } from 'primeng/table';
+
+interface Product {
+  id: string;
+  code: string;
+  name: string;
+  description: string;
+  image: string;
+  price: number;
+  category: string;
+  quantity: number;
+  inventoryStatus: string;
+  rating: number;
+  date: Date;
+}
 
 @Component({
   selector: 'primeng',
   templateUrl: './primeng.html',
-  imports: [TableModule, NgTemplateOutlet],
+  imports: [TableModule, CurrencyPipe, DatePipe, LowerCasePipe, CommonModule],
 })
 export class PrimeNg {
-  data = [
+  private readonly products: Product[] = [
     {
-      trackingId: 'CH-99-123456-7',
-      type: 'Priority Letter',
-      weight: 0.05,
-      destination: 'Bern',
-      status: 'Delivered',
-      priority: true,
+      id: '1000',
+      code: 'f230fh0g3',
+      name: 'Bamboo Watch',
+      description: 'Product Description',
+      image: 'bamboo-watch.jpg',
+      price: 65,
+      category: 'Accessories',
+      quantity: 24,
+      inventoryStatus: 'INSTOCK',
+      rating: 5,
+      date: new Date('2025-06-30'),
     },
     {
-      trackingId: 'CH-99-234567-8',
-      type: 'Parcel',
-      weight: 2.4,
-      destination: 'Zurich',
-      status: 'In Transit',
-      priority: false,
+      id: '1001',
+      code: 'nvklal433',
+      name: 'Black Watch',
+      description: 'Product Description',
+      image: 'black-watch.jpg',
+      price: 72,
+      category: 'Accessories',
+      quantity: 61,
+      inventoryStatus: 'INSTOCK',
+      rating: 4,
+      date: new Date('2025-06-30'),
     },
     {
-      trackingId: 'CH-99-345678-9',
-      type: 'Express',
-      weight: 0.8,
-      destination: 'Geneva',
-      status: 'Out for Delivery',
-      priority: true,
+      id: '1002',
+      code: 'zz21cz3c1',
+      name: 'Blue Band',
+      description: 'Product Description',
+      image: 'blue-band.jpg',
+      price: 79,
+      category: 'Fitness',
+      quantity: 2,
+      inventoryStatus: 'LOWSTOCK',
+      rating: 3,
+      date: new Date('2025-06-30'),
     },
     {
-      trackingId: 'CH-99-456789-0',
-      type: 'Registered Letter',
-      weight: 0.12,
-      destination: 'Basel',
-      status: 'Processing',
-      priority: false,
+      id: '1003',
+      code: '244wgerg2',
+      name: 'Blue T-Shirt',
+      description: 'Product Description',
+      image: 'blue-t-shirt.jpg',
+      price: 29,
+      category: 'Clothing',
+      quantity: 25,
+      inventoryStatus: 'INSTOCK',
+      rating: 5,
+      date: new Date('2025-06-30'),
     },
     {
-      trackingId: 'CH-99-567890-1',
-      type: 'Large Parcel',
-      weight: 12.6,
-      destination: 'Lausanne',
-      status: 'In Transit',
-      priority: false,
-    },
-    {
-      trackingId: 'CH-99-678901-2',
-      type: 'Express',
-      weight: 1.1,
-      destination: 'Lucerne',
-      status: 'Delivered',
-      priority: true,
+      id: '1004',
+      code: 'h456wer53',
+      name: 'Bracelet',
+      description: 'Product Description',
+      image: 'bracelet.jpg',
+      price: 15,
+      category: 'Accessories',
+      quantity: 73,
+      inventoryStatus: 'INSTOCK',
+      rating: 4,
+      date: new Date('2025-06-30'),
     },
   ];
+
+  productsSortable = [...this.products];
+
+  productsFilterable = [
+    ...this.products,
+    {
+      id: '1005',
+      code: 'nfiu783m0',
+      name: 'Black Dress',
+      description: 'Product Description',
+      image: 'black-dress.jpg',
+      price: 53,
+      category: 'Clothing',
+      quantity: 67,
+      inventoryStatus: 'INSTOCK',
+      rating: 5,
+    },
+  ];
+
+  productsOrderable = [...this.products];
+  columnsOrderable = [
+    { field: 'code', header: 'Code' },
+    { field: 'name', header: 'Name' },
+    { field: 'category', header: 'Category' },
+    { field: 'quantity', header: 'Quantity' },
+  ];
+
+  productsCheckboxes = [...this.products];
+  selectedProductsCheckboxes?: Product;
+
+  productsRadioButtons = [...this.products];
+  selectedProductsRadioButtons?: Product;
+
+  productsSelectable = [...this.products];
+  selectedProductsSelectable = 'none';
+  setSelectedProductsSelectable(value: Product[]) {
+    this.selectedProductsSelectable = value.length ? value.map(p => p.name).join(', ') : 'none';
+  }
 }

@@ -3,7 +3,7 @@
 '@swisspost/design-system-documentation': patch
 ---
 
-Added back the `@swisspost/design-system-styles-primeng` package. It is no longer overriding the CSS styles behind the hood but now exports a preset to be used as the theme of PrimeNG.
+Updated the package output to fit with new PrimeNg API. It is no longer overriding the CSS styles behind the hood but now exports a preset to be used as the theme of PrimeNG.
 
 To migrate, update your `app.config.ts` with the new preset:
 
@@ -20,4 +20,10 @@ export const appConfig: ApplicationConfig = {
     }),
   ],
 };
+```
+
+And remove the following import from your `styles.scss`:
+
+```scss
+@use '@swisspost/design-system-styles-primeng/primeng-theme';
 ```

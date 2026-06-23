@@ -3,6 +3,7 @@ import { provideRouter, Routes } from '@angular/router';
 import { providePostComponents } from '@swisspost/design-system-components-angular';
 import { providePrimeNG } from 'primeng/config';
 import { swissPostPreset } from '@swisspost/design-system-styles-primeng';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -23,5 +24,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     providePostComponents(),
     providePrimeNG({ theme: { preset: swissPostPreset } }),
+    provideAnimations(),
   ],
 };

@@ -1,78 +1,197 @@
-<ng-template #sharedBody let-item>
-  <tr>
-    <td>{{ item.trackingId }}</td>
-    <td>{{ item.type }}</td>
-    <td>{{ item.weight }}</td>
-    <td>{{ item.destination }}</td>
-    <td>{{ item.status }}</td>
-    <td>{{ item.priority }}</td>
-  </tr>
-</ng-template>
+<h1 class="visually-hidden">PrimeNG data table showcase</h1>
 
-<p-table class="mb-32" [value]="data" [tableStyle]="{ 'min-width': '50rem' }">
-  <ng-template #header>
+<h2 class="h4">Sortable</h2>
+<p-table [value]="productsSortable" sortMode="multiple">
+  <ng-template pTemplate="header">
     <tr>
-      <th scope="col">Tracking ID</th>
-      <th scope="col">Type</th>
-      <th scope="col">Weight (kg)</th>
-      <th scope="col">Destination</th>
-      <th scope="col">Status</th>
-      <th scope="col">Priority</th>
+      <th scope="col" pSortableColumn="code" style="width: 20%">
+        Code <p-sortIcon field="code"></p-sortIcon>
+      </th>
+      <th scope="col" pSortableColumn="name" style="width: 20%">
+        Name <p-sortIcon field="name"></p-sortIcon>
+      </th>
+      <th scope="col" pSortableColumn="category" style="width: 20%">
+        Category <p-sortIcon field="category"></p-sortIcon>
+      </th>
+      <th scope="col" pSortableColumn="quantity" style="width: 20%">
+        Quantity <p-sortIcon field="quantity"></p-sortIcon>
+      </th>
+      <th scope="col" pSortableColumn="price" style="width: 20%">
+        Price <p-sortIcon field="price"></p-sortIcon>
+      </th>
     </tr>
   </ng-template>
-  <ng-template #body let-item>
-    <ng-container [ngTemplateOutlet]="sharedBody" [ngTemplateOutletContext]="{ $implicit: item }" />
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>{{ product.code }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.category }}</td>
+      <td>{{ product.quantity }}</td>
+      <td>{{ product.price | currency : 'USD' }}</td>
+    </tr>
   </ng-template>
 </p-table>
 
+<h2 class="h4">Filterable</h2>
 <p-table
-  [value]="data"
-  stripedRows
+  [value]="productsFilterable"
+  dataKey="id"
+  [stripedRows]="true"
   [rows]="5"
+  [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="[5, 10]"
   [paginator]="true"
-  [tableStyle]="{ 'min-width': '50rem' }"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [globalFilterFields]="['code', 'name', 'category']"
 >
-  <ng-template #header>
+  <ng-template pTemplate="header">
     <tr>
-      <th scope="col" pSortableColumn="trackingId">
-        <div class="d-flex gap-12">
-          Tracking ID
-          <p-sortIcon field="trackingId" />
+      <th scope="col" style="min-width: 15rem">
+        <div class="d-flex align-items-center">
+          Code
+          <p-columnFilter type="text" field="code" display="menu"></p-columnFilter>
         </div>
       </th>
-      <th scope="col" pSortableColumn="type">
-        <div class="d-flex gap-12">
-          Type
-          <p-sortIcon field="type" />
+      <th scope="col" style="min-width: 15rem">
+        <div class="d-flex align-items-center">
+          Name
+          <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
         </div>
       </th>
-      <th scope="col" pSortableColumn="weight">
-        <div class="d-flex gap-12">
-          Weight (kg)
-          <p-sortIcon field="weight" />
+      <th scope="col" style="min-width: 15rem">
+        <div class="d-flex align-items-center">
+          Category
+          <p-columnFilter type="text" field="category" display="menu"></p-columnFilter>
         </div>
       </th>
-      <th scope="col" pSortableColumn="destination">
-        <div class="d-flex gap-12">
-          Destination
-          <p-sortIcon field="destination" />
-        </div>
+      <th scope="col" style="min-width: 15rem">
+        <div class="flex align-items-center">Quantity</div>
       </th>
-      <th scope="col" pSortableColumn="status">
-        <div class="d-flex gap-12">
-          Status
-          <p-sortIcon field="status" />
-        </div>
+      <th scope="col" style="min-width: 10rem">
+        <div class="flex align-items-center">Price</div>
       </th>
-      <th scope="col" pSortableColumn="priority">
-        <div class="d-flex gap-12">
-          Priority
-          <p-sortIcon field="priority" />
+      <th scope="col" style="min-width: 10rem">
+        <div class="flex align-items-center">
+          Date
+          <p-columnFilter type="date" field="date" display="menu"></p-columnFilter>
         </div>
       </th>
     </tr>
   </ng-template>
-  <ng-template #body let-item>
-    <ng-container [ngTemplateOutlet]="sharedBody" [ngTemplateOutletContext]="{ $implicit: item }" />
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>{{ product.code }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.category }}</td>
+      <td>{{ product.quantity }}</td>
+      <td>{{ product.price | currency : 'USD' }}</td>
+      <td>{{ product.date | date : 'MM/dd/yyyy' }}</td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="5">No products found.</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<h2 class="h4">Orderable</h2>
+<p-table
+  [value]="productsOrderable"
+  [columns]="columnsOrderable"
+  [reorderableColumns]="true"
+  [stripedRows]="true"
+>
+  <ng-template #header let-columns>
+    <tr>
+      <th scope="col" style="width: 3rem"></th>
+      <th scope="col" *ngFor="let col of columns" pReorderableColumn>{{ col.header }}</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-rowData let-columns="columns" let-index="rowIndex">
+    <tr [pReorderableRow]="index">
+      <td>
+        <span pReorderableRowHandle></span>
+      </td>
+      <td *ngFor="let col of columns">{{ rowData[col.field] }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<h2 class="h4">Selectable</h2>
+<p-table
+  [value]="productsSelectable"
+  selectionMode="multiple"
+  dataKey="code"
+  [metaKeySelection]="true"
+  (selectionChange)="setSelectedProductsSelectable($event)"
+>
+  <ng-template #caption>Multiple Selection with MetaKey</ng-template>
+  <ng-template #header>
+    <tr>
+      <th scope="col">Code</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Quantity</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-product let-rowIndex="rowIndex">
+    <tr [pSelectableRow]="product" [pSelectableRowIndex]="rowIndex">
+      <td>{{ product.code }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.category }}</td>
+      <td>{{ product.quantity }}</td>
+    </tr>
+  </ng-template>
+  <ng-template #summary> Selected: {{ selectedProductsSelectable | lowercase }}. </ng-template>
+</p-table>
+
+<h2 class="h4">With Checkboxes</h2>
+<p-table [value]="productsCheckboxes" [(selection)]="selectedProductsCheckboxes" dataKey="code">
+  <ng-template #header>
+    <tr>
+      <th scope="col" style="width: 4rem">
+        <p-tableHeaderCheckbox />
+      </th>
+      <th scope="col">Code</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Quantity</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-product>
+    <tr>
+      <td>
+        <p-tableCheckbox [value]="product" />
+      </td>
+      <td>{{ product.code }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.category }}</td>
+      <td>{{ product.quantity }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<h2 class="h4">With Radio buttons</h2>
+<p-table [value]="productsRadioButtons" [(selection)]="selectedProductsRadioButtons" dataKey="code">
+  <ng-template #header>
+    <tr>
+      <th scope="col" style="width: 4rem"></th>
+      <th scope="col">Code</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Quantity</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-product>
+    <tr>
+      <td>
+        <p-tableRadioButton [value]="product" />
+      </td>
+      <td>{{ product.code }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.category }}</td>
+      <td>{{ product.quantity }}</td>
+    </tr>
   </ng-template>
 </p-table>
