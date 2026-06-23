@@ -60,28 +60,32 @@ export class PostTabs {
   }
 
   /**
-   * Label for the "previous tab items" button.
+   * An accessible label for the "previous tab items" button.
    */
-  @Prop({ reflect: true }) textPrevTabItems: string = 'Previous tab items';
+  @Prop({ reflect: true })
+  textPrevTabItems: string = 'Previous tab items';
 
   /**
-   * Label for the "next tab items" button.
+   * An accessible label for the "next tab items" button.
    */
-  @Prop({ reflect: true }) textNextTabItems: string = 'Next tab items';
+  @Prop({ reflect: true })
+  textNextTabItems: string = 'Next tab items';
 
   /**
    * The name of the tab in the Content Tabs variant that is initially active.
    * Changing this value after initialization has no effect.
    * If not specified, defaults to the first tab.
    */
-  @Prop() readonly activeTab?: string;
+  @Prop({ reflect: true })
+  readonly activeTab?: string;
 
   /**
    * When set to true, this property allows the tabs container to span the
    * Changing this value after initialization has no effect.
    * full width of the screen, from edge to edge.
    */
-  @Prop({ reflect: true }) fullWidth: boolean = false;
+  @Prop({ reflect: true })
+  fullWidth: boolean = false;
 
   /**
    * The size of the tabs, corresponding to the different designs in Figma.
@@ -93,7 +97,7 @@ export class PostTabs {
   size: 'small' | 'large' = 'large';
 
   /**
-   * The accessible label for the Content Tabs variant
+   * An accessible label for the Pages Tabs variant
    */
   @Prop({ reflect: true })
   @Type('string')
@@ -520,9 +524,9 @@ export class PostTabs {
     const isSSR = Build.isServer;
     const tabStyle = activeName
       ? {
-        [`--post-tab-panel-${activeName}`]: 'block',
-        [`--post-tab-item-${activeName}`]: '1',
-      }
+          [`--post-tab-panel-${activeName}`]: 'block',
+          [`--post-tab-item-${activeName}`]: '1',
+        }
       : undefined;
     const style = isSSR && !this.isPagesVariant ? tabStyle : undefined;
     return (

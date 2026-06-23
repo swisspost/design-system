@@ -230,6 +230,7 @@ describe('Accessibility', () => {
   (['content-tabs', 'page-tabs'] as const).forEach(variant => {
     it(`Has no detectable a11y violations on load (${variant})`, () => {
       cy.getComponent('tabs', TABS_ID, variantStories[variant]);
+      cy.get('post-tabs').should('exist');
       cy.checkA11y('post-tabs');
     });
 

@@ -7,7 +7,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent<
   HTMLPostTabsElement & {
     'variant': string;
-    'activeTabPanels'?: string;
+    'activeTab'?: string;
     'postChange': string;
     'post-tabs-content'?: string;
     'post-tabs'?: string;
@@ -42,47 +42,15 @@ const meta: MetaComponent<
         defaultValue: { summary: 'Content Tabs' },
       },
     },
-    'activeTabPanels': {
-      name: 'active-tab',
-      description:
-        'The name of the tab that is initially active. If not specified, it defaults to the first tab.\n\n**Changing this value after initialization has no effect.**',
-      control: 'select',
-      options: ['first', 'second', 'third'],
-      if: { arg: 'variant', eq: 'Content Tabs' },
-      table: {
-        category: 'Props',
-        type: { summary: 'string' },
-      },
-    },
     'activeTab': {
+      control: false,
       table: {
-        disable: true,
-      },
-    },
-    'fullWidth': {
-      name: 'full-width',
-      description:
-        'When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.\n\n**Changing this value after initialization has no effect.**',
-      control: 'boolean',
-      table: {
-        category: 'Props',
-      },
-    },
-    'label': {
-      name: 'label',
-      description: 'The accessible label for the tabs component in navigation mode.',
-      control: 'text',
-      if: { arg: 'variant', eq: 'Page Tabs' },
-      table: {
-        category: 'Props',
-      },
-      type: {
-        name: 'string',
-        required: true,
+        type: { summary: 'string' },
       },
     },
     'postChange': {
       name: 'postChange ',
+      control: false,
       description:
         'An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab.',
       if: { arg: 'variant', eq: 'Content Tabs' },
@@ -94,9 +62,9 @@ const meta: MetaComponent<
       },
     },
     'post-tabs-content': {
-      name: 'post-tabs-content ', // trailing space is intentional to avoid conflict with auto-generated part
-      description: 'The container element that displays the content of the currently active tab.',
+      name: 'post-tabs-content ',
       control: false,
+      description: 'The container element that displays the content of the currently active tab.',
       if: { arg: 'variant', eq: 'Content Tabs' },
       table: {
         category: 'CSS Shadow Parts',
@@ -106,9 +74,9 @@ const meta: MetaComponent<
       },
     },
     'post-tabs': {
-      name: 'post-tabs ', // trailing space is intentional to avoid conflict with auto-generated part
-      description: 'The container element that holds the set of tabs.',
+      name: 'post-tabs ',
       control: false,
+      description: 'The container element that holds the set of tabs.',
       table: {
         category: 'CSS Shadow Parts',
         type: {
@@ -118,6 +86,7 @@ const meta: MetaComponent<
     },
     'show': {
       name: 'show ',
+      control: false,
       description:
         'Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.',
       if: { arg: 'variant', eq: 'Content Tabs' },
@@ -157,13 +126,39 @@ const meta: MetaComponent<
         },
       },
     },
+    'textPrevTabItems': {
+      name: 'text-prev-tab-items',
+
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    'textNextTabItems': {
+      name: 'text-next-tab-items',
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    'label': {
+      name: 'label',
+      description: 'ARIA label for the Page tabs.',
+      control: 'text',
+      if: { arg: 'variant', eq: 'Page Tabs' },
+      table: {
+        type: { summary: 'string' },
+      },
+    },
   },
   args: {
     'variant': 'Content Tabs',
-    'postChange': 'postChange',
-    'post-tabs-content': 'post-tabs-content',
-    'activeTabPanels': undefined,
-    'label': 'Tabs navigation',
+    'activeTab': undefined,
+    'label': 'Page Tabs',
+    'fullWidth': false,
+    'size': 'large',
+    'textPrevTabItems': 'Previous tab items',
+    'textNextTabItems': 'Next tab items',
     'slots-default': '',
     'slots-panels': '',
   },
@@ -189,7 +184,7 @@ function renderPagesVariant(
     `;
   }
 
-  // Default navigation example - first link is active
+  // Default page tabs example - first link is active
   return html`
     <post-tabs
       full-width="${fullWidth ? true : nothing}"
@@ -238,9 +233,7 @@ function renderContentVariant(
       >
         <post-tab-item name="first"><post-icon name="letter"></post-icon>First tab</post-tab-item>
         <post-tab-item name="second"><post-icon name="letter"></post-icon>Second tab</post-tab-item>
-        <post-tab-item name="third" disabled
-          ><post-icon name="letter"></post-icon>Third tab</post-tab-item
-        >
+        <post-tab-item name="third"><post-icon name="letter"></post-icon>Third tab</post-tab-item>
 
         ${unsafeHTML(panelSlots)}
       </post-tabs>
@@ -254,9 +247,7 @@ function renderContentVariant(
       size="${ifDefined(size)}"
     >
       <post-tab-item name="first"><post-icon name="letter"></post-icon>First tab</post-tab-item>
-      <post-tab-item name="second" disabled
-        ><post-icon name="letter"></post-icon>Second tab</post-tab-item
-      >
+      <post-tab-item name="second"><post-icon name="letter"></post-icon>Second tab</post-tab-item>
       <post-tab-item name="third"><post-icon name="letter"></post-icon>Third tab</post-tab-item>
 
       <post-tab-panel for="first">
@@ -276,7 +267,7 @@ function renderTabs(
   args: Partial<
     HTMLPostTabsElement & {
       'variant': string;
-      'activeTabPanels'?: string;
+      'activeTab'?: string;
       'slots-default'?: string;
       'slots-panels'?: string;
     }
@@ -287,7 +278,7 @@ function renderTabs(
   return variant === 'Page Tabs'
     ? renderPagesVariant(args.fullWidth, args.label, args['slots-default'] || '', args.size)
     : renderContentVariant(
-        args.activeTabPanels,
+        args.activeTab,
         args.fullWidth,
         args['slots-default'] || '',
         args['slots-panels'] || '',
@@ -299,7 +290,7 @@ function renderTabs(
 type Story = StoryObj<
   HTMLPostTabsElement & {
     'variant': string;
-    'activeTabPanels'?: string;
+    'activeTab'?: string;
     'slots-default'?: string;
     'slots-panels'?: string;
   }
@@ -331,7 +322,7 @@ export const ActiveTab: Story = {
   },
   args: {
     variant: 'Content Tabs',
-    activeTabPanels: 'second',
+    activeTab: 'second',
   },
 };
 

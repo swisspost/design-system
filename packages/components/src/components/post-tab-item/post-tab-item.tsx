@@ -11,11 +11,11 @@ import { Component, Element, h, Host, Prop, State, Build } from '@stencil/core';
   shadow: true,
 })
 export class PostTabItem {
-  private mutationObserver = new MutationObserver(this.checkPagesVariant.bind(this));
+  private readonly mutationObserver = new MutationObserver(this.checkPagesVariant.bind(this));
 
-  @Element() host: HTMLPostTabItemElement;
+  @Element() host!: HTMLPostTabItemElement;
 
-  @State() tabId: string;
+  @State() tabId!: string;
   @State() isPagesVariant = false;
 
   /**
@@ -25,6 +25,12 @@ export class PostTabItem {
   @Required()
   @Type('string')
   readonly name!: string;
+
+  /**
+   * Whether the tab item is disabled.
+   */
+  @Prop({ reflect: true })
+  disabled: boolean = false;
 
   connectedCallback() {
     this.mutationObserver.observe(this.host, {
@@ -54,12 +60,13 @@ export class PostTabItem {
     return (
       <Host
         id={this.tabId}
-        role={!this.isPagesVariant ? 'tab' : undefined}
+        role={this.isPagesVariant ? undefined : 'tab'}
         data-version={version}
         data-pages-variant={this.isPagesVariant.toString()}
-        aria-selected={!this.isPagesVariant ? 'false' : undefined}
-        tabindex={!this.isPagesVariant ? '-1' : undefined}
-        class={`${!this.isPagesVariant ? 'tab-title' : 'nav-item'}${isSSR && !this.isPagesVariant ? ' ssr' : ''}`}
+        aria-selected={this.isPagesVariant ? undefined : 'false'}
+        aria-disabled={this.disabled ? 'true' : undefined}
+        tabindex={this.isPagesVariant ? undefined : '-1'}
+        class={`${this.isPagesVariant ? 'nav-item' : 'tab-title'}${isSSR && !this.isPagesVariant ? ' ssr' : ''}`}
         style={
           isSSR && !this.isPagesVariant
             ? { '--active': `var(--post-tab-item-${this.name}, 0)` }

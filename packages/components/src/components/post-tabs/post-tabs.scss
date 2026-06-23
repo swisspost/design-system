@@ -1,6 +1,7 @@
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
 @use '@swisspost/design-system-styles/mixins/button' as button-mx;
+@use '@swisspost/design-system-styles/mixins/media' as media;
 @use '@swisspost/design-system-styles/variables/elevation';
 @use '@swisspost/design-system-styles/tokens/components' as components;
 @use '@swisspost/design-system-styles/tokens/helpers';
@@ -11,6 +12,8 @@ $tabs-outline-offset: calc(
   tokens.get('focus-outline-offset2', helpers.$post-focus) + -1 *
     (tokens.get('post-tabs-border-width'))
 );
+
+$gird-container-padding: tokens.get('post-grid-container-padding-inline', components.$post-grid);
 
 :host {
   display: block;
@@ -121,12 +124,12 @@ $tabs-outline-offset: calc(
     .tabs {
       padding-inline-start: tokens.get('post-tabs-page-padding-inline');
       gap: tokens.get('post-tabs-page-gap-inline');
-     
+
       // Hide scrollbar across browsers while keeping scroll functionality
       scrollbar-width: none; // Firefox
 
       &::-webkit-scrollbar {
-        display: none; // Chrome, Safari, Edge   
+        display: none; // Chrome, Safari, Edge
       }
     }
   }
@@ -219,10 +222,10 @@ $tabs-outline-offset: calc(
 
 :host(.page-tabs[full-width]) {
   .tabs-wrapper {
-    margin-inline: calc(-1 * (var(--post-container-offset) + 40px));
+    margin-inline: calc(-1 * (var(--post-container-offset) + #{$gird-container-padding}));
 
     .tabs {
-      padding-inline: calc(var(--post-container-offset) + 40px);
+      padding-inline: calc(var(--post-container-offset) + #{$gird-container-padding});
     }
   }
 }

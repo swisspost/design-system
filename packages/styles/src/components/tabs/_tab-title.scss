@@ -12,6 +12,20 @@ $tabs-outline-offset: calc(
     (tokens.get('post-tabs-border-width'))
 );
 
+$tabs-font-weight-interpolation: calc(
+  tokens.get('post-tabs-tab-font-weight') + var(--active, 0) *
+    (700 - tokens.get('post-tabs-tab-font-weight'))
+);
+
+@mixin page-tab-focus-state($padding-block-token, $height-token) {
+  &:focus,
+  &:focus-visible,
+  &:focus-within {
+    padding-block: tokens.get($padding-block-token);
+    height: tokens.get($height-token);
+  }
+}
+
 // Common for all variants
 post-tab-item.tab-title,
 post-tab-item.nav-item a {
@@ -107,7 +121,6 @@ post-tab-item.tab-title {
 post-tab-item.nav-item {
   a {
     // enabled
-    cursor: default;
     text-decoration: none;
     width: 100%;
     height: 100%;
@@ -126,9 +139,11 @@ post-tab-item.nav-item {
     color: tokens.get('post-tabs-page-tab-enabled-fg');
 
     // Dark background needs the inverted focus ring color
-    @include utilities-mx.focus-style-custom {
-      outline-color: tokens.get('focus-outline-color-inverted', helpers.$post-focus) !important;
-      outline-offset: $tabs-outline-offset !important;
+    &:not([aria-current='page']) {
+      @include utilities-mx.focus-style-custom {
+        outline-color: tokens.get('focus-outline-color-inverted', helpers.$post-focus) !important;
+        outline-offset: $tabs-outline-offset !important;
+      }
     }
 
     // hovered
@@ -144,9 +159,8 @@ post-tab-item.nav-item {
       color: tokens.get('post-tabs-page-tab-selected-fg');
       border-color: tokens.get('post-tabs-page-tab-selected-border-color');
 
-      // Light background reverts to the default focus ring color
       @include utilities-mx.focus-style-custom {
-        outline-color: tokens.get('focus-outline-color', helpers.$post-focus) !important;
+        outline-color: tokens.get('post-tabs-page-tab-selected-fg') !important;
         outline-offset: $tabs-outline-offset !important;
       }
 
@@ -195,6 +209,12 @@ post-tab-item.nav-item {
     pointer-events: none;
     border-block-end: none;
 
+    // Disabled tabs are still keyboard-focusable, so keep focus ring visible.
+    @include utilities-mx.focus-style-custom {
+      outline-color: tokens.get('post-tabs-page-tab-selected-fg') !important;
+      outline-offset: $tabs-outline-offset !important;
+    }
+
     @include utilities-mx.high-contrast-mode() {
       color: GrayText;
       border-color: GrayText;
@@ -206,6 +226,7 @@ post-tab-item.nav-item {
 post-tab-item.tab-title[aria-selected='true'],
 post-tab-item.nav-item a[aria-current='page'] {
   z-index: 1;
+  cursor: default;
 }
 
 // Large variant (default)
@@ -251,12 +272,10 @@ post-tabs[size='large'] post-tab-item {
       }
 
       // focused
-      &:focus,
-      &:focus-visible,
-      &:focus-within {
-        height: tokens.get('post-tabs-page-large-tab-focused-height');
-        padding-block: tokens.get('post-tabs-page-large-tab-focused-padding-block');
-      }
+      @include page-tab-focus-state(
+        'post-tabs-page-large-tab-focused-padding-block',
+        'post-tabs-page-large-tab-focused-height'
+      );
     }
 
     // disabled
@@ -309,12 +328,10 @@ post-tabs[size='small'] post-tab-item {
       }
 
       // focused
-      &:focus,
-      &:focus-visible,
-      &:focus-within {
-        padding-block: tokens.get('post-tabs-page-small-tab-focused-padding-block');
-        height: tokens.get('post-tabs-page-small-tab-focused-height');
-      }
+      @include page-tab-focus-state(
+        'post-tabs-page-small-tab-focused-padding-block',
+        'post-tabs-page-small-tab-focused-height'
+      );
     }
 
     // disabled
@@ -338,7 +355,7 @@ post-tabs[active-tab] {
         transparent
       );
     }
-    font-weight: calc(400 + var(--active, 0) * 300); // TOKEN HERE ALSO
+    font-weight: $tabs-font-weight-interpolation;
     z-index: calc(var(--active, 0) * 1);
 
     @include utilities-mx.high-contrast-mode() {
@@ -371,7 +388,7 @@ post-tabs[active-tab] {
             )
         )
     );
-    font-weight: calc(400 + var(--active, 0) * 300);
+    font-weight: $tabs-font-weight-interpolation;
     z-index: calc(var(--active, 0) * 1);
 
     @include utilities-mx.high-contrast-mode() {
