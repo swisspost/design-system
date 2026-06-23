@@ -11,7 +11,7 @@ const BASE_TEMPLATE = `<!DOCTYPE html>
     <meta name="design-system-settings" data-post-icon-base="/assets/icons" />
     <title>Post Header - {{VARIANT_NAME}}</title>
     <link rel="stylesheet" href="/build/post-components.css" />
-    <link rel="stylesheet" href="/assets/css/post-default.css" />
+    <link rel="stylesheet" href="/assets/css/{{STYLESHEET}}" />
     <script type="module" src="/build/post-components.esm.js"></script>
     <style>
       /* Fake content for scroll testing */
@@ -283,6 +283,29 @@ const COMPONENTS = {
     </li>
   </ul>`,
 
+  localNavApplication: `<!-- Local navigation (Application) -->
+  <ul slot="local-nav">
+    <li>
+      <a href="#">
+        <span>Search</span>
+        <post-icon aria-hidden="true" name="search"></post-icon>
+      </a>
+    </li>
+    <li>
+      <!-- Language menu -->
+      <post-language-menu
+        text-change-language="Change the language"
+        text-current-language="The currently selected language is English."
+        name="language-menu-example"
+      >
+        <post-language-menu-item code="de" name="German">de</post-language-menu-item>
+        <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
+        <post-language-menu-item code="it" name="Italian">it</post-language-menu-item>
+        <post-language-menu-item active="true" code="en" name="English">en</post-language-menu-item>
+      </post-language-menu>
+    </li>
+  </ul>`,
+
   localLogin: `<li class="local-login">
       <a href="">
         <span>{{LOGIN_TEXT}}</span>
@@ -336,6 +359,13 @@ const COMPONENTS = {
 
 // Variant configurations
 const VARIANTS = {
+  'application': {
+    components: ['logo', 'title', 'localNavApplication'],
+    stylesheet: 'post-compact.css',
+    replacements: {
+      '{{TITLE_TEXT}}': '[Application Title]',
+    },
+  },
   'onepager': {
     components: ['logo', 'languageMenu', 'title'],
     replacements: {
@@ -444,10 +474,9 @@ function generateVariantHTML(variantName, config) {
     .join('\n  ');
 
   // Start with base template
-  let html = BASE_TEMPLATE.replace('{{VARIANT_NAME}}', variantName).replace(
-    '{{HEADER_CONTENT}}',
-    headerContent,
-  );
+  let html = BASE_TEMPLATE.replace('{{VARIANT_NAME}}', variantName)
+    .replace('{{STYLESHEET}}', config.stylesheet ?? 'post-default.css')
+    .replace('{{HEADER_CONTENT}}', headerContent);
 
   // Apply variant-specific replacements
   Object.entries(config.replacements || {}).forEach(([placeholder, value]) => {

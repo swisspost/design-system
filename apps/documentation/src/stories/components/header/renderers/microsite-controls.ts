@@ -1,5 +1,5 @@
 import { Args } from '@storybook/web-components-vite';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
 
 export function renderMicrositeControls(args: Args) {
@@ -13,6 +13,7 @@ export function renderMicrositeControls(args: Args) {
   return html`
     <!-- Custom controls (optional) -->
     <ul slot="local-nav">
+      ${args.localLanguageMenuItem ? html`<li>${args.localLanguageMenuItem}</li>` : nothing}
       <li>
         <a href="#">
           <span>Search</span>
