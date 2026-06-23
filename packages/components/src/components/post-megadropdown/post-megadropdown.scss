@@ -53,13 +53,13 @@
   }
 
   @include media.max(desktop) {
-    padding-block: 1.5rem;
     display: flex;
     flex-direction: column;
     height: calc(
       min(var(--post-header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
     );
     padding-inline: var(--post-burger-menu-padding-inline);
+    padding-block: 1.5rem;
   }
 }
 
