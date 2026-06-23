@@ -1,5 +1,22 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.74
+
+### Patch Changes
+
+- Fixed a regression where the `post-header` no longer remained expanded when a hidden control received focus. (by [@alizedebray](https://github.com/alizedebray) with [#7787](https://github.com/swisspost/design-system/pull/7787))
+
+- Fixed `<post-stepper>` completed step connectors displaying with incorrect coloring. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7831](https://github.com/swisspost/design-system/pull/7831))
+
+- Fixed an issue in Firefox and Safari where the `post-breadcrumbs` items were always showing a menu even when the available space could fit all items inline. (by [@alizedebray](https://github.com/alizedebray) with [#7785](https://github.com/swisspost/design-system/pull/7785))
+
+- Added a background color to the `post-menu` for it to always be white, even when used on a dark color-schemed palette. (by [@alizedebray](https://github.com/alizedebray) with [#7834](https://github.com/swisspost/design-system/pull/7834))
+
+- Fixed `post-datepicker` input button color on dark mode. (by [@leagrdv](https://github.com/leagrdv) with [#7783](https://github.com/swisspost/design-system/pull/7783))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.74
+  - @swisspost/design-system-styles@10.0.0-next.74
+
 ## 10.0.0-next.73
 
 ### Patch Changes
