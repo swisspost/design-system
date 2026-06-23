@@ -538,6 +538,7 @@ export namespace Components {
         "label": string;
         /**
           * The current active page number.  **If not specified, defaults to the first page.**
+          * @default 1
          */
         "page"?: number;
         /**
@@ -1784,6 +1785,7 @@ declare namespace LocalJSX {
         "onPostChange"?: (event: PostPaginationCustomEvent<number>) => void;
         /**
           * The current active page number.  **If not specified, defaults to the first page.**
+          * @default 1
          */
         "page"?: number;
         /**
