@@ -1445,6 +1445,18 @@ declare namespace LocalJSX {
          */
         "buttonType"?: ButtonType;
         /**
+          * If `true`, the user cannot interact with the element.
+         */
+        "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
+          * The name of the element, used when submitting an HTML form.
+         */
+        "name"?: string;
+        /**
           * Defines whether the close button is positioned automatically by the component or left unpositioned for manual styling.
           * @default 'auto'
          */
