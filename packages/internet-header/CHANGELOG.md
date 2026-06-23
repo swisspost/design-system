@@ -1,5 +1,17 @@
 # @swisspost/internet-header
 
+## 10.0.0-next.74
+
+### Major Changes
+
+- Removed export for the `swisspost-internet-login-widget` as it should only be used as part of the `swisspost-internet-header`. (by [@alizedebray](https://github.com/alizedebray) with [#7791](https://github.com/swisspost/design-system/pull/7791))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.74
+  - @swisspost/design-system-components@10.0.0-next.74
+
 ## 10.0.0-next.73
 
 ### Patch Changes
