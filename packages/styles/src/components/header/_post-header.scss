@@ -4,7 +4,6 @@
 
 @use './mixins' as *;
 @use './placeholders' as *;
-@use '../../mixins/utilities';
 
 body:has(post-header) {
   scroll-padding-top: var(--post-header-height);
@@ -24,11 +23,6 @@ post-header {
   &:not([data-hydrated]) {
     display: block;
     height: var(--post-header-height);
-
-    @include utilities.high-contrast-mode() {
-      box-sizing: content-box;
-      border-bottom: 1px solid;
-    }
   }
 
   // all header lists
