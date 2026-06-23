@@ -225,7 +225,7 @@ export class MigrationV910Component extends LitElement {
                   (NgbModal → native dialog, stepper, other ng-bootstrap components) often still
                   need manual adjustments.
                 </li>
-                <li>It does <b>not replace a human review</b> always read the generated diff, never merge blind.</li>
+                <li>It does <b>not replace a human review</b>. Always read the generated difference and never merge blindly.</li>
                 <li>Work on a dedicated branch and commit often so you can roll back easily.</li>
                 <li>Project-specific code may be missed or misinterpreted by the AI.</li>
               </ul>
