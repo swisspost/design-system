@@ -205,7 +205,7 @@ export class MigrationV910Component extends LitElement {
                   : nothing
               }
           <li>
-            <h3>AI-assisted migration 🤖 <span class="tag tag-sm tag-info">optional</span></h3>
+            <h3 class="d-flex align-items-center gap-8">AI-assisted migration 🤖 <span class="tag tag-sm tag-info">optional</span></h3>
             <p>
               There are <b>two ways</b> to handle this migration: do it
               <b>manually</b> by following the steps below, or let the
