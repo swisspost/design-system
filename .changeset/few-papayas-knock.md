@@ -4,4 +4,4 @@
 '@swisspost/design-system-components': major
 ---
 
-Removes the `post-card-control` web component. The component is now provided only as an HTML/CSS `.card-control` implementation.
+Removed the `post-card-control` web component. The component is now provided only as an HTML/CSS `.card-control` implementation.

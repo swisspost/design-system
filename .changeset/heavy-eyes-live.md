@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Fixed the used `headingLevel` in the `post-accordion-item` component. The component now uses the value from its closest `post-accordion` parent component, if this is specified and falls back to `h2` if not specified.
+The `post-accordion-item` heading level is now inherited from the parent `post-accordion` component, falling back to `h2` by default.

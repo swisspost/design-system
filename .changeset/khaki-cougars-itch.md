@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': minor
 ---
 
-Added Cargo theme styles.
+Added styles for the Cargo theme.
