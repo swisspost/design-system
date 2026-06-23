@@ -2,7 +2,7 @@ import { PLACEMENT_TYPES } from '@/types';
 import { getDeepFocusableChildren, OneOf, Required, Type } from '@/utils';
 import { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
-import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Method, Prop, State } from '@stencil/core';
 
 /**
  * @slot default - Slot for placing content inside the popover.
@@ -15,8 +15,11 @@ import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 })
 export class PostPopover {
   private popoverRef: HTMLPostPopovercontainerElement;
+  private resizeObserver: ResizeObserver;
 
   @Element() host: HTMLPostPopoverElement;
+
+  @State() private edgeGap?: number;
 
   /**
    * Defines the position of the popover relative to its trigger.
@@ -69,6 +72,26 @@ export class PostPopover {
     if (isOpen) this.focusFirstEl();
   }
 
+  componentDidLoad() {
+    this.updateEdgeGap();
+    this.resizeObserver = new ResizeObserver(() => this.updateEdgeGap());
+    this.resizeObserver.observe(document.documentElement);
+  }
+
+  disconnectedCallback() {
+    this.resizeObserver?.disconnect();
+  }
+
+  // Dynamically update edge gap based on the post-closebutton icon's width
+  private updateEdgeGap() {
+    const rawValue = getComputedStyle(this.host).getPropertyValue('--post-close-small-size').trim();
+    if (!rawValue) return;
+
+    const num = Number.parseFloat(rawValue);
+    if (Number.isNaN(num)) return;
+    this.edgeGap = num / 2;
+  }
+
   private focusFirstEl() {
     const focusableChildren = getDeepFocusableChildren(this.host);
 
@@ -86,7 +109,7 @@ export class PostPopover {
         <post-popovercontainer
           arrow={this.arrow}
           placement={this.placement}
-          edgeGap={17}
+          edgeGap={this.edgeGap}
           ref={e => (this.popoverRef = e)}
         >
           <div class="popover-container">
