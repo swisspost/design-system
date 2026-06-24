@@ -1,5 +1,19 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.74
+
+### Major Changes
+
+- Updated the badge component to the new design and removed its `.bg-*` classes options as badges don't have color variants anymore. (by [@leagrdv](https://github.com/leagrdv) with [#7805](https://github.com/swisspost/design-system/pull/7805))
+
+### Patch Changes
+
+- Fixed form search input buttons color on dark mode. (by [@leagrdv](https://github.com/leagrdv) with [#7836](https://github.com/swisspost/design-system/pull/7836))
+
+- Fixed the `dialog` component scheme in dark mode. (by [@leagrdv](https://github.com/leagrdv) with [#7829](https://github.com/swisspost/design-system/pull/7829))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.74
+
 ## 10.0.0-next.73
 
 ### Patch Changes
