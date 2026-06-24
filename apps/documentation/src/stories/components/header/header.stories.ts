@@ -34,6 +34,7 @@ const meta: MetaComponent = {
     targetGroup: true,
     postLogin: true,
     localNav: false,
+    sideNav: false,
     isLoggedIn: false,
     jobs: false,
     fullWidth: false,
@@ -130,6 +131,17 @@ const meta: MetaComponent = {
       name: 'Local controls',
       description:
         'Whether or not application-specific controls are displayed ("search" and "login"). Requires either the main navigation or a title to be present.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content',
+      },
+    },
+    sideNav: {
+      name: 'Side navigation trigger',
+      description:
+        'Whether or not a `<post-side-navigation-trigger>` is displayed in the `slot="side-nav"`. Only relevant for the application header variant.',
       control: {
         type: 'boolean',
       },
@@ -253,6 +265,16 @@ function getHeaderRenderer(
             `
           : nothing}
         ${args.title !== '' ? title : nothing}
+        ${args.sideNav
+          ? html`
+              <post-side-navigation-trigger slot="side-nav" for="header-sidenav">
+                <button>
+                  <span>Menu</span>
+                  <post-icon aria-hidden="true" name="burger"></post-icon>
+                </button>
+              </post-side-navigation-trigger>
+            `
+          : nothing}
         ${args.localNav || localLanguageMenuItem
           ? renderMicrositeControls({ ...args, localLanguageMenuItem })
           : nothing}
@@ -370,6 +392,7 @@ export const Application: Story = {
     globalNavSecondary: false,
     globalNavPrimary: false,
     localNav: true,
+    sideNav: false,
     languageMenu: false,
     postLogin: false,
     targetGroup: false,
@@ -385,6 +408,7 @@ export const ApplicationWithLanguageMenu: Story = {
     globalNavSecondary: false,
     globalNavPrimary: false,
     localNav: true,
+    sideNav: false,
     languageMenu: true,
     postLogin: false,
     targetGroup: false,

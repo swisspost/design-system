@@ -25,6 +25,7 @@ import { throttle } from 'throttle-debounce';
  * @slot global-nav-primary - Holds search button in the global header.
  * @slot global-nav-secondary - Holds an `<ul>` with meta navigation links.
  * @slot language-menu - Should be used with the `<post-language-switch>` component.
+ * @slot side-nav - Should be used with the `<post-side-navigation-trigger>` component.
  * @slot title - Holds the application title.
  * @slot main-nav - Has a default slot because it's only meant to be used in the `<post-header>`.
  * @slot audience - Holds the list of buttons to choose the audience.
@@ -175,9 +176,6 @@ export class PostHeader {
     this.getFocusableElements();
     this.handleLocalHeaderResize();
 
-    // When a megadropdown is open on desktop and the user resizes to mobile, we set
-    // burgerMenuExtended = true but burgerMenuButton doesn't exist yet — it only renders
-    // on mobile/tablet. Syncing here ensures it gets the correct toggled state on resize.
     if (this.burgerMenuButton && this.burgerMenuButton.toggled !== this.burgerMenuExtended) {
       this.burgerMenuButton.toggled = this.burgerMenuExtended;
     }
@@ -188,7 +186,6 @@ export class PostHeader {
     this.host.shadowRoot.addEventListener('click', this.handleLinkClick);
   }
 
-  // Clean up possible side effects when post-header is disconnected
   disconnectedCallback() {
     const scrollParent = this.scrollParent;
 
@@ -233,7 +230,6 @@ export class PostHeader {
   async toggleBurgerMenu(nextExtendedState = !this.burgerMenuExtended) {
     if (this.device === 'desktop') return;
 
-    // If already in the desired state, do nothing (prevents double-toggle)
     if (nextExtendedState === this.burgerMenuExtended) {
       return;
     }
@@ -242,13 +238,11 @@ export class PostHeader {
       ? fade(this.burgerMenu, 'out', this.animationOptions)
       : fade(this.burgerMenu, 'in', this.animationOptions);
 
-    // Update the state of the toggle button
     if (this.burgerMenuButton && this.burgerMenuButton.toggled !== nextExtendedState) {
       this.burgerMenuButton.toggled = nextExtendedState;
     }
 
     if (this.burgerMenuExtended) {
-      // Wait for the close animation to finish before hiding megadropdowns
       await this.burgerMenuAnimation.finished;
       this.burgerMenuExtended = nextExtendedState;
 
@@ -258,7 +252,6 @@ export class PostHeader {
       }
     } else {
       this.burgerMenuExtended = nextExtendedState;
-      // If opening, close any open megadropdowns immediately
       if (this.megadropdownOpen) {
         this.closeAllMegadropdowns();
       }
@@ -270,7 +263,6 @@ export class PostHeader {
     this.megadropdownOpen = event.detail.isVisible;
   }
 
-  // Get all the focusable elements in the post-header burger menu
   private getFocusableElements() {
     if (!this.burgerMenu) return;
 
@@ -291,11 +283,9 @@ export class PostHeader {
     const activeElement = this.host.shadowRoot.activeElement || document.activeElement;
 
     if (e.shiftKey && activeElement === this.firstFocusableEl) {
-      // If back tab (Tab + Shift) and first element is focused, focus goes to the last element of the megadropdown
       e.preventDefault();
       this.lastFocusableEl.focus();
     } else if (!e.shiftKey && activeElement === this.lastFocusableEl) {
-      // If Tab and last element is focused, focus goes back to the first element of the megadropdown
       e.preventDefault();
       this.firstFocusableEl.focus();
     }
@@ -493,6 +483,7 @@ export class PostHeader {
             class={{ 'local-header': true, 'megadropdown-open': this.megadropdownOpen }}
           >
             <div class="section">
+              <slot name="side-nav"></slot>
               <slot name="title"></slot>
               {this.hasTitle && <slot name="local-nav"></slot>}
               {onDesktop && <slot name="main-nav"></slot>}
