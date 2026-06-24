@@ -182,7 +182,7 @@ tokens.$default-map: components.$post-datepicker;
             }
 
             /* Day: Hovered */
-            &:hover:not(.-disabled-, .-other-month-, .-in-range-):not(:empty) {
+            &:hover:not(.-disabled-, .-other-month-, .-in-range-, .-range-from-, .-range-to-):not(:empty) {
               color: tokens.get('post-datepicker-grid-day-cell-element-color-hovered-fg');
 
               &:not(.-current-) {

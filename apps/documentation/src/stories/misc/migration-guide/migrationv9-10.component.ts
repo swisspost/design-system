@@ -16,9 +16,15 @@ export class MigrationV910Component extends LitElement {
       hide_automigration: false,
     },
     ngbootstrap: {
+      carousel: false,
+      custom_select: false,
+      datatable: false,
+      datepicker: false,
       modal: false,
       pagination: false,
+      timepicker: false,
       typeahead: false,
+      progressbar: false,
     },
     forms: {
       tooltip_validation: false,
@@ -139,7 +145,7 @@ export class MigrationV910Component extends LitElement {
               changes, all for good reason.
             </p>
             <p>
-              We’ve completely refreshed the design and reworked how components are built.
+              We've completely refreshed the design and reworked how components are built.
               <b>Bootstrap</b> and <b>Ng-Bootstrap</b> have been replaced by
               <b>Web Standards</b> compliant components, which means the Design System works across
               <b>any framework</b> (<a
@@ -151,7 +157,7 @@ export class MigrationV910Component extends LitElement {
             <p>
               We've reworked utility classes to be
               <b>pixel-based and more intuitive</b> — for example, <code>.p-16</code> now clearly
-              means "16px padding", instead of guessing what <code>.p-3</code> stood for. We’ve also
+              means "16px padding", instead of guessing what <code>.p-3</code> stood for. We've also
               simplified things overall: fewer breakpoints, fewer font-size classes, and a more
               consistent color palette (no more purple or coral buttons 🎨).
             </p>
@@ -171,7 +177,7 @@ export class MigrationV910Component extends LitElement {
               and switch to dark mode or the Cargo theme.
             </p>
             <p>
-              Oh, and yes — there’s a
+              Oh, and yes — there's a
               <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs"
                 >brand-new icon set</a
               >
@@ -311,10 +317,60 @@ export class MigrationV910Component extends LitElement {
                       documentation.
                     <ul>
                       <li>carousel → <i>coming soon</i></li>
-                      <li>custom select → <i>coming soon</i></li>
-                      <li>datatable → AG Grid <i>coming soon</i></li>
-                      <li>datepicker → <i>coming soon</i></li>
-                      <li>dropdown → <i>coming soon</i></li>
+                      <li>
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-custom_select"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.custom_select}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-custom_select">
+                            custom select &amp; dropdown →
+                            <a href="/?path=/docs/bc251cd0-5173-463b-8729-586bb1bf1e1a--docs"
+                              >native select element</a
+                            >
+                            or
+                            <a href="/?path=/docs/8ca2bd70-56e6-4da9-b1fd-4e55388dca88--docs"
+                              >post-menu</a
+                            >
+                            <span class="info">Use native select for value selection, post-menu for action menus.</span>
+                          </label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-datatable"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.datatable}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-datatable">
+                            datatable →
+                            <a href="https://www.ag-grid.com/">AG Grid</a>
+                            <span class="info">For interactive data tables, we recommend using AG Grid. For Swiss Post styling, use our
+                              <a href="/?path=/docs/e1405db2-fe06-45c6-a7ed-1408f9bf4895--docs">@swisspost/design-system-theme-ag-grid</a>
+                              package.</span>
+                          </label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-datepicker"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.datepicker}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-datepicker">
+                            datepicker →
+                            <a href="/?path=/docs/eb77cd02-48b2-42e1-a3e4-cd8a973d431e--docs"
+                              >post-date-picker</a
+                            >
+                          </label>
+                        </div>
+                      </li>
                       <li>
                         <div class="form-check">
                           <input
@@ -537,8 +593,139 @@ export class MyComponent {
                           </label>
                         </div>
                       </li>
-                      <li>progressbar → <i>coming soon</i></li>
-                      <li>timepicker → <i>coming soon</i></li>
+                      <li>
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-progressbar"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.progressbar}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-progressbar">
+                            progressbar →
+                            <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs"
+                              >post-progressbar</a
+                            >
+                            <span class="info">
+                              <p>
+                                The <code>NgbProgressbar</code> component has been replaced by the
+                                <code>&lt;post-progressbar&gt;</code> web component, which provides an
+                                accessible and framework-agnostic solution.
+                              </p>
+                              <p><strong>Before (v9 — NgbProgressbar)</strong></p>
+                              <p>
+                                The NgbProgressbar component was used with two-way binding and
+                                properties like <code>type</code>, <code>striped</code>, and
+                                <code>animated</code>:
+                              </p>
+                              <code-block
+                                code=${`<!-- template.html -->\n<ngb-progressbar\n  type="primary"\n  [value]="65"\n  [striped]="true"\n  [animated]="true"\n>\n</ngb-progressbar>`}
+                              ></code-block>
+                              <p><strong>After (v10)</strong></p>
+                              <p>
+                                The new <code>&lt;post-progressbar&gt;</code> component uses standard HTML
+                                <code>min</code>, <code>max</code>, and <code>value</code> attributes,
+                                similar to the native <code>&lt;progress&gt;</code> element:
+                              </p>
+                              <code-block
+                                code=${`<!-- template.html -->\n<post-progressbar\n  min="0"\n  max="100"\n  value="65"\n></post-progressbar>`}
+                              ></code-block>
+                              <p><strong>Key differences:</strong></p>
+                              <ul>
+                                <li>
+                                  <strong>Attributes instead of properties:</strong> Use standard HTML
+                                  attributes (<code>min</code>, <code>max</code>, <code>value</code>)
+                                  instead of ng-bootstrap directives.
+                                </li>
+                                <li>
+                                  <strong>Type replaced by CSS modifier class:</strong> The <code>type</code> property
+                                  is replaced by a CSS modifier class on the <code>.progressbar</code> wrapper element.
+                                  All other Bootstrap color variants have no equivalent and default to the neutral appearance.
+                                  <table class="table table-bordered">
+                                    <thead>
+                                      <tr>
+                                        <th>type (v9)</th>
+                                        <th>CSS class (v10)</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td><code>type="success"</code></td>
+                                        <td><code>class="progressbar progressbar-success"</code></td>
+                                      </tr>
+                                      <tr>
+                                        <td><code>type="danger"</code></td>
+                                        <td><code>class="progressbar progressbar-error"</code></td>
+                                      </tr>
+                                      <tr>
+                                        <td><code>type="warning"</code></td>
+                                        <td><code>class="progressbar progressbar-warning"</code></td>
+                                      </tr>
+                                      <tr>
+                                        <td>
+                                          <code>type="info"</code>, <code>type="primary"</code>,
+                                          <code>type="secondary"</code>,</br>
+                                          or any other Bootstrap color variant
+                                        </td>
+                                        <td>
+                                          No direct equivalent. Use <code>class="progressbar"</code></br> 
+                                          for the <code>neutral</code> appearance.
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </li>
+                                <li>
+                                  <strong>Striped and animated removed:</strong> The
+                                  <code>striped</code> and <code>animated</code> properties are no longer
+                                  supported.
+                                </li>
+                              </ul>
+                              <p><strong>Handling dynamic updates:</strong></p>
+                              <p>
+                                To update the progress value dynamically in Angular, bind directly to the
+                                <code>value</code> attribute:
+                              </p>
+                              <code-block
+                                code=${`<!-- template.html -->\n<post-progressbar\n  [attr.value]="progressValue"\n  min="0"\n  max="100"\n></post-progressbar>`}
+                              ></code-block>
+                              <p><strong>Showing percentage values:</strong></p>
+                              <p>
+                                The <code>[showValue]</code> property is not supported by <code>&lt;post-progressbar&gt;</code>. Unlike
+                                <code>NgbProgressbar</code>, the percentage cannot be displayed inside the
+                                progress bar.
+                                To show the current progress percentage, use <code>.progressbar-value</code> together with a
+                                <code>.progressbar-label</code>.
+                                For implementation details and additional examples, refer to the
+                                <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs">
+                                  post-progressbar documentation
+                                </a>.
+                              </p>
+                              <p>
+                                Note that this is not a 1:1 replacement for
+                                <code>[showValue]</code>, as the value is displayed separately from the
+                                progress indicator.
+                              </p>
+                            </span>
+                          </label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-timepicker"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.timepicker}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-timepicker">
+                            timepicker →
+                            <a href="/?path=/docs/51471f0b-1bbb-4059-951b-f89aa7339f91--docs"
+                              >native input with type "time"</a
+                            >
+                          </label>
+                        </div>
+                      </li>
                       <li>
                         <div class="form-check">
                           <input
@@ -551,7 +738,7 @@ export class MyComponent {
                             typeahead →
                             <a
                               href="/?path=/docs/2df77c32-5e33-402e-bd2e-54d54271ce19--docs#autocomplete"
-                              >input with datalist</a
+                              >native input with datalist</a
                             >
                             <span class="info">
                               <p>

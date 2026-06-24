@@ -1,0 +1,198 @@
+@use '@swisspost/design-system-styles/mixins/media';
+
+@include media.max(tablet) {
+  post-side-navigation:not([data-hydrated]) {
+    display: none !important;
+  }
+}
+
+post-side-navigation {
+  --post-side-navigation-indent: 2.5rem;
+  --post-side-navigation-icon-size: 1.25rem;
+
+  nav {
+    width: 100%;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding-inline-start: 0;
+    }
+  }
+
+  .post-side-navigation-heading {
+    margin: 0;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  }
+
+  > ul > li > .post-side-navigation-item {
+    font-weight: 700;
+  }
+
+  // Active page indicator
+  .post-side-navigation-item[aria-current='page'] {
+    font-weight: 700;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    min-width: 350px;
+  }
+
+  // Nesting depth tracking via custom property inheritance
+  ul {
+    --_indent-level: 0;
+  }
+
+  ul ul {
+    --_indent-level: 1;
+  }
+
+  ul ul ul {
+    --_indent-level: 2;
+  }
+
+  ul ul ul ul {
+    --_indent-level: 3;
+  }
+
+  // Nested item indentation
+  ul ul .post-side-navigation-item {
+    padding-inline-start: calc(1rem + var(--_indent-level) * var(--post-side-navigation-indent));
+
+    @include media.max(desktop) {
+      padding-inline-start: calc(1rem + var(--_indent-level) * 2.25rem);
+    }
+  }
+
+  // Icon alignment spacer for mixed icon/non-icon items
+  $has-icon: '> li > :where(a, span, post-collapsible-trigger > button, div > a) > post-icon:first-child';
+
+  :where(nav) > ul:has(#{$has-icon}) > li {
+    > :where(a, span):not(:has(> post-icon:first-child))::before,
+    > div:not(:has(> a > post-icon:first-child))::before {
+      content: '';
+      flex: none;
+      inline-size: var(--post-side-navigation-icon-size);
+
+      @include media.max(desktop) {
+        inline-size: 1rem;
+      }
+    }
+  }
+
+  :where(nav) > ul:has(#{$has-icon}) > li > post-collapsible-trigger {
+    > button:not(:has(> post-icon:first-child))::before {
+      content: '';
+      flex: none;
+      inline-size: var(--post-side-navigation-icon-size);
+
+      @include media.max(desktop) {
+        inline-size: 1rem;
+      }
+    }
+  }
+}
+
+post-collapsible-trigger post-icon[name='chevrondown'] {
+  color: rgb(0, 0, 0);
+}
+
+// Navigation item row (link, button, span, or collapsible wrapper)
+.post-side-navigation-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  box-sizing: border-box;
+
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0;
+
+  background-color: transparent;
+  color: rgb(0, 0, 0);
+  font: inherit;
+  text-align: start;
+  text-decoration: none;
+  appearance: none;
+  line-height: 1.5;
+
+  button {
+    display: flex;
+    align-items: center;
+    padding-inline: 0.5rem;
+
+    border: 0;
+    border-inline-start: 1px solid rgba(0, 0, 0, 0.15);
+    background: transparent;
+    cursor: pointer;
+
+    > post-icon {
+      transition: transform 0.2s ease;
+    }
+
+    &[aria-expanded='true'] > post-icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  &:where(a, button) {
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.06);
+    }
+  }
+
+  // Leading icon spacing
+  > post-icon:first-child {
+    flex: none;
+  }
+
+  > post-icon[name='chevrondown'] {
+    margin-inline-start: auto;
+  }
+
+  > post-icon:last-child {
+    transition: transform 0.2s ease;
+  }
+
+  &[aria-expanded='true'] > post-icon:last-child {
+    transform: rotate(180deg);
+  }
+
+  > a {
+    flex: 1 1 auto;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  > post-collapsible-trigger {
+    margin-inline-start: auto;
+
+    > button {
+      display: flex;
+      align-items: center;
+      padding-inline: 0.5rem;
+
+      border: 0;
+      border-inline-start: 1px solid rgba(0, 0, 0, 0.15);
+      background: transparent;
+      cursor: pointer;
+
+      > post-icon {
+        transition: transform 0.2s ease;
+      }
+
+      &[aria-expanded='true'] > post-icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
