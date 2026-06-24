@@ -103,7 +103,7 @@ post-tab-item.tab-title {
       &::after {
         background-color: Highlight;
       }
-      color: HighlightText;
+      color: Highlight !important;
     }
   }
 }
@@ -173,19 +173,19 @@ post-tab-item.nav-item {
         height 200ms; // No color transition in HCM
 
       &:hover {
-        background-color: Highlight;
-        border-color: HighlightText;
-        color: HighlightText;
+        border-color: Highlight;
+        background-color: white;
+        color: HighlightText !important;
       }
 
       &[aria-current='page'] {
         background-color: Highlight;
         border-color: Highlight;
-        color: HighlightText;
+        color: HighlightText !important;
 
         &:hover {
-          border-color: HighlightText;
-          color: HighlightText;
+          border-color: Highlight;
+          color: HighlightText !important;
         }
       }
     }
@@ -217,7 +217,6 @@ post-tab-item.nav-item {
 post-tab-item.tab-title[aria-selected='true'],
 post-tab-item.nav-item a[aria-current='page'] {
   z-index: 1;
-  cursor: default;
 }
 
 // Large variant (default)
