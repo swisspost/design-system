@@ -422,7 +422,6 @@ export const ApplicationWithLanguageMenu: Story = {
   },
 };
 
-
 // User is logged in
 export const LoggedIn: Story = {
   ...getIframeParameters(400),
