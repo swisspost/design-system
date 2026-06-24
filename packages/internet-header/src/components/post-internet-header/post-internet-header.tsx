@@ -70,11 +70,13 @@ export class PostInternetHeader {
 
   /**
    * Visually hidden label for the current language.
+   * The placeholder `{name}` will be replaced with the name of the currently selected language.
    */
   @Prop({ reflect: true }) readonly textCurrentLanguage!: string;
 
   /**
    * Visually hidden label for the current user.
+   * The placeholder `{user}` will be replaced with the full name of the currently logged-in user.
    */
   @Prop({ reflect: true }) readonly textCurrentUser!: string;
 
@@ -112,8 +114,7 @@ export class PostInternetHeader {
   }
 
   async componentWillLoad() {
-    await this.fetchHeaderConfig();
-    await this.fetchUserData();
+    await Promise.all([this.fetchHeaderConfig(), this.fetchUserData()]);
   }
 
   componentDidLoad() {
