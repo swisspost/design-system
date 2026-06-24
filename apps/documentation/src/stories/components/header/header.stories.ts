@@ -189,6 +189,28 @@ function showGlobalLogin(args: Args) {
   return !args.title && !args.jobs && args.postLogin;
 }
 
+function isApplicationHeader(args: Args) {
+  return (
+    args.localNav &&
+    !args.mainNav &&
+    !args.targetGroup &&
+    !args.globalNavPrimary &&
+    !args.globalNavSecondary &&
+    !args.postLogin
+  );
+}
+
+function renderSideNavTrigger() {
+  return html`
+    <post-side-navigation-trigger slot="side-nav" for="header-sidenav">
+      <button>
+        <span>Menu</span>
+        <post-icon aria-hidden="true" name="burger"></post-icon>
+      </button>
+    </post-side-navigation-trigger>
+  `;
+}
+
 function getHeaderRenderer(
   subComponents: {
     mainnavigation?: TemplateResult;
@@ -235,15 +257,9 @@ function getHeaderRenderer(
       </post-language-menu>
     `;
 
-    const isApplicationHeader =
-      args.localNav &&
-      !args.mainNav &&
-      !args.targetGroup &&
-      !args.globalNavPrimary &&
-      !args.globalNavSecondary &&
-      !args.postLogin;
+    const isAppHeader = isApplicationHeader(args);
     const localLanguageMenuItem =
-      args.languageMenu && isApplicationHeader ? languageMenu : undefined;
+      args.languageMenu && isAppHeader ? languageMenu : undefined;
 
     return html`
       <post-header text-menu="${args.textMenu}" full-width="${args.fullWidth || nothing}">
@@ -255,7 +271,7 @@ function getHeaderRenderer(
         ${args.globalNavSecondary ? renderGlobalNavSecondary(args) : nothing}
 
         <!-- Language menu (global) -->
-        ${args.languageMenu && !isApplicationHeader
+        ${args.languageMenu && !isAppHeader
           ? html`<span slot="language-menu">${languageMenu}</span>`
           : nothing}
         ${showGlobalLogin(args)
@@ -265,16 +281,7 @@ function getHeaderRenderer(
             `
           : nothing}
         ${args.title !== '' ? title : nothing}
-        ${args.sideNav
-          ? html`
-              <post-side-navigation-trigger slot="side-nav" for="header-sidenav">
-                <button>
-                  <span>Menu</span>
-                  <post-icon aria-hidden="true" name="burger"></post-icon>
-                </button>
-              </post-side-navigation-trigger>
-            `
-          : nothing}
+        ${args.sideNav ? renderSideNavTrigger() : nothing}
         ${args.localNav || localLanguageMenuItem
           ? renderMicrositeControls({ ...args, localLanguageMenuItem })
           : nothing}
@@ -414,6 +421,7 @@ export const ApplicationWithLanguageMenu: Story = {
     targetGroup: false,
   },
 };
+
 
 // User is logged in
 export const LoggedIn: Story = {
