@@ -120,6 +120,32 @@ post-header:not(:has([slot='main-nav'])) {
   }
 }
 
+// ===========================================================
+// Application header: logo only, no global nav slots
+// ============================================================
+
+:root:has(post-header):not(:has(post-header > [slot='audience'])):not(
+    :has(post-header > [slot='global-nav-primary'])
+  ):not(:has(post-header > [slot='global-nav-secondary'])):not(
+    :has(post-header > [slot='language-menu'])
+  ):not(:has(post-header > [slot='post-login'])) {
+  --post-global-header-expanded-height: var(--_post-initial-global-header-height);
+  --post-global-header-reduced-height: 2rem;
+
+  @include media.only(desktop) {
+    --post-logo-expanded-offset: 0.625rem;
+    --post-logo-reduced-offset: 0.625rem;
+  }
+  @include media.only(tablet) {
+    --post-logo-expanded-offset: 0.75rem;
+    --post-logo-reduced-offset: 0.75rem;
+  }
+  @include media.only(mobile) {
+    --post-logo-expanded-offset: 0.5rem;
+    --post-logo-reduced-offset: 0.5rem;
+  }
+}
+
 // ============================================================
 // Shared / base custom properties
 // ============================================================
