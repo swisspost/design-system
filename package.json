@@ -107,8 +107,8 @@
     "tokens:lint": "pnpm --filter design-system-tokens lint",
     "tokens:lint:fix": "pnpm --filter design-system-tokens lint:fix",
     "tokens:usage": "node ./utilities/token-checker.cjs",
-    "changeset:publish": "pnpm changeset publish",
-    "changeset:version": "pnpm changeset version && pnpm install --lockfile-only",
+    "changeset:publish": "pnpm exec changeset publish",
+    "changeset:version": "pnpm exec changeset version && pnpm install --lockfile-only",
     "theme-ag-grid:build": "pnpm --filter design-system-theme-ag-grid build"
   },
   "devDependencies": {
@@ -128,7 +128,7 @@
     "packageManager": {
       "name": "pnpm",
       "version": "10.29.3+sha512.498e1fb4cca5aa06c1dcf2611e6fafc50972ffe7189998c409e90de74566444298ffe43e6cd2acdc775ba1aa7cc5e092a8b7054c811ba8c5770f84693d33d2dc",
-      "onFail": "error"
+      "onFail": "warn"
     }
   },
   "packageManager": "pnpm@10.29.3",
