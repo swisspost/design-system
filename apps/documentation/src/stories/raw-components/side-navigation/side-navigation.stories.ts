@@ -4,6 +4,7 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
 import { fakeContent } from '@/utils';
 import { defaultNav } from './nav-content';
+import { forceCompactAppearance } from '../../../../.storybook/helpers';
 
 // Shared ID so the decorator's trigger and the story's side-navigation stay in sync
 const navigationId = crypto.randomUUID();
@@ -48,8 +49,9 @@ const meta: MetaComponent = {
     },
   },
   decorators: [
-    story =>
-      html`<div class="side-nav-story-wrapper">
+    forceCompactAppearance,
+    story => html`
+      <div class="side-nav-story-wrapper">
         <post-header text-menu="Menu">
           <post-logo slot="post-logo" url="/">Homepage</post-logo>
           <p slot="title">[Application Title]</p>
@@ -79,7 +81,8 @@ const meta: MetaComponent = {
         <div class="d-flex virtual-body">
           ${story()}
         </div>
-      </div>`,
+      </div>
+    `,
   ],
 };
 
@@ -93,7 +96,8 @@ export const Default: Story = {
       source: {
         code: `<div class="d-flex">
   <post-side-navigation text-close="Close">
-    <nav aria-label="Main navigation">${defaultNav(false)}
+    <nav aria-label="Main navigation">
+      ${defaultNav(false)}
     </nav>
   </post-side-navigation>
 
