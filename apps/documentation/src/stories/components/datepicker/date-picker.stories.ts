@@ -1,7 +1,7 @@
-import { Args, StoryObj, StoryContext, StoryFn } from '@storybook/web-components-vite';
-import { html } from 'lit';
-import { MetaComponent } from '@root/types';
 import { spreadArgs } from '@/utils';
+import { MetaComponent } from '@root/types';
+import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
+import { html, nothing } from 'lit';
 
 const meta: MetaComponent = {
   id: 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e',
@@ -83,13 +83,14 @@ const meta: MetaComponent = {
     max: {
       control: 'text',
     },
-    selectedStartDate: {
-      control: 'text',
-    },
-    selectedEndDate: {
-      control: 'text',
-      if: {
-        arg: 'range',
+    value: {
+      name: 'Value',
+      description: 'The date or date range used as a value for the input.',
+      type: {
+        name: 'string',
+      },
+      table: {
+        category: 'Input',
       },
     },
   },
@@ -98,18 +99,11 @@ export default meta;
 
 // Setting different instances of the post-date-picker forces the rerender of the component and make sure it updates when args change
 function render(args: Args) {
-  return args.inline ? renderInline(args) : renderPopup(args);
-}
-
-function renderInline(args: Args) {
-  return html` <post-date-picker ${spreadArgs(args)}> </post-date-picker>`;
-}
-
-function renderPopup(args: Args) {
   return html`
     <post-date-picker ${spreadArgs(args)}>
-      <input class="form-control" type="text"></input>
-    </post-date-picker>`;
+      <input class=${args.inline ? nothing : 'form-control'} value=${args.value ?? nothing} />
+    </post-date-picker>
+  `;
 }
 
 type Story = StoryObj;

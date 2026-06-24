@@ -229,14 +229,6 @@ export namespace Components {
          */
         "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
         /**
-          * The date picker's selected end date (for range date picker only). Must be a valid date in ISO 8601 format (YYYY-MM-DD).
-         */
-        "selectedEndDate"?: string;
-        /**
-          * The date picker's selected date. If in range mode, the selected start date. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
-         */
-        "selectedStartDate"?: string;
-        /**
           * Displays the popover calendar, focusing the first calendar item.
          */
         "show": () => Promise<void>;
@@ -1571,14 +1563,6 @@ declare namespace LocalJSX {
          */
         "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
         /**
-          * The date picker's selected end date (for range date picker only). Must be a valid date in ISO 8601 format (YYYY-MM-DD).
-         */
-        "selectedEndDate"?: string;
-        /**
-          * The date picker's selected date. If in range mode, the selected start date. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
-         */
-        "selectedStartDate"?: string;
-        /**
           * Label for "Next decade" button.
          */
         "textNextDecade": string;
@@ -2137,8 +2121,6 @@ declare namespace LocalJSX {
     interface PostDatePickerAttributes {
         "locale": string;
         "range": boolean;
-        "selectedStartDate": string;
-        "selectedEndDate": string;
         "min": string;
         "max": string;
         "inline": boolean;

@@ -102,27 +102,9 @@ export class PostDatePicker {
   @Watch('range')
   updateRange() {
     this.dpInstance?.update({ range: this.range });
-    this.handleSelectedDates();
+    this.syncInputToDp();
     this.updateMask();
   }
-
-  /**
-   * The date picker's selected date. If in range mode, the selected start date.
-   * Must be a valid date in ISO 8601 format (YYYY-MM-DD).
-   */
-  @Prop({ mutable: true })
-  @DateValue()
-  @IsoDate()
-  selectedStartDate?: string;
-
-  /**
-   * The date picker's selected end date (for range date picker only).
-   * Must be a valid date in ISO 8601 format (YYYY-MM-DD).
-   */
-  @Prop({ mutable: true })
-  @DateValue()
-  @IsoDate()
-  selectedEndDate?: string;
 
   /**
    * Minimun possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
@@ -151,8 +133,8 @@ export class PostDatePicker {
   @Prop() inline = false;
   @Watch('inline')
   validateInline() {
-    if (!this.inline && !this.dpInput) {
-      console.error('A non-inline date picker should contain one input');
+    if (!this.dpInput) {
+      console.error('The date picker must contain one input element');
     }
   }
 
@@ -511,13 +493,11 @@ export class PostDatePicker {
         this.skipOnSelectCount = reversed ? 0 : 2; // don't skip if reversed
         this.dpInstance.selectDate([start, end]);
         this.dpInstance.setViewDate(start);
-        this.updateSelectionProps([start, end]);
         this.emitSelection([start, end]);
       } else if (startValid && !endValid) {
         this.dpInstance.clear();
         this.dpInstance.selectDate(start);
         this.dpInstance.setViewDate(start);
-        this.updateSelectionProps([start]);
         this.emitSelection([start]);
       } else {
         this.resetSelection();
@@ -530,7 +510,6 @@ export class PostDatePicker {
         this.skipOnSelectCount = 1;
         this.dpInstance.selectDate(date);
         this.dpInstance.setViewDate(date);
-        this.updateSelectionProps([date]);
         this.emitSelection([date]);
       } else {
         this.resetSelection();
@@ -706,10 +685,10 @@ export class PostDatePicker {
     body.removeEventListener('keydown', this.handleGridKeydown);
     body.addEventListener('keydown', this.handleGridKeydown);
 
-    this.setActiveCell(
-      (this.selectedStartDate && isoToDate(this.selectedStartDate)) || this.today,
-      focusOnDate,
-    );
+    const isoValue = this.getInputIsoValue();
+    const firstIso = isoValue ? isoValue.split(ISO_VALUE_SEPARATOR)[0] : '';
+    const selectedDate = firstIso ? isoToDate(firstIso) : null;
+    this.setActiveCell(selectedDate || this.today, focusOnDate);
   }
 
   /**
@@ -838,7 +817,6 @@ export class PostDatePicker {
       if (dates.length === 0) {
         this.inputMask.value = '';
         this.dpInstance?.clear();
-        this.updateSelectionProps([]);
         return;
       }
 
@@ -847,8 +825,6 @@ export class PostDatePicker {
       this.dpInstance?.clear();
       this.dpInstance?.selectDate(this.range ? dates : dates[0]);
       this.dpInstance?.setViewDate(dates[0]);
-
-      this.updateSelectionProps(dates);
     } finally {
       this._isInternalUpdate = false;
     }
@@ -857,20 +833,25 @@ export class PostDatePicker {
   private async configDatePicker() {
     const locale = await this.airLocale();
 
-    if (!this.inline) {
-      this.dpInput = this.host.querySelector('input');
+    this.dpInput = this.host.querySelector('input');
 
-      // Capture and clear initial value before mask setup, since iMask would
-      // interpret an ISO string as locale-formatted text and garble it
-      const initialValue = this.dpInput.value;
-      this.dpInput.value = '';
+    if (!this.dpInput) {
+      console.error('The post-date-picker component requires a slotted <input> element.');
+      return;
+    }
 
-      this.setUpMask();
-      this.setupValueOverride();
+    this.dpInput.type = this.inline ? 'hidden' : 'text';
 
-      if (initialValue) {
-        this.setInputIsoValue(initialValue);
-      }
+    // Capture and clear initial value before mask setup, since iMask would
+    // interpret an ISO string as locale-formatted text and garble it
+    const initialValue = this.dpInput.value;
+    this.dpInput.value = '';
+
+    this.setUpMask();
+    this.setupValueOverride();
+
+    if (initialValue) {
+      this.setInputIsoValue(initialValue);
     }
 
     this.dpContainer = this.host.shadowRoot.querySelector('.datepicker-container');
@@ -927,21 +908,18 @@ export class PostDatePicker {
           const dates = Array.isArray(date) ? date : [date];
           const isPartialRange = this.range && dates.length === 1;
 
-          if (!isPartialRange) {
-            this.updateSelectionProps(dates);
-          }
           this.emitSelection(dates);
 
-          // Assign value to the input, close the popover and focus on the input
-          if (this.dpInput) {
-            this.inputMask.value = this.formatDatesForMask(dates);
-            this.emitInputEvents();
+          // Update the input mask value and emit events
+          this.inputMask.value = this.formatDatesForMask(dates);
+          this.emitInputEvents();
 
-            // If range & only one date has been selected, user should stay in the DP
-            if (isPartialRange) {
-              return;
-            }
+          // If range & only one date has been selected, user should stay in the DP
+          if (isPartialRange) {
+            return;
+          }
 
+          if (!this.inline) {
             this.popoverRef?.hide();
             requestAnimationFrame(() => this.dpTrigger.focus());
           }
@@ -963,7 +941,7 @@ export class PostDatePicker {
       this.prevBtn?.addEventListener('click', this.handlePrevNextClick);
       this.nextBtn?.addEventListener('click', this.handlePrevNextClick);
 
-      this.handleSelectedDates();
+      this.syncInputToDp();
     }
   }
 
@@ -1002,11 +980,6 @@ export class PostDatePicker {
     return this.dateToString(dates[0]);
   }
 
-  private updateSelectionProps(dates: Date[]) {
-    this.selectedStartDate = dates[0] ? dateToIso(dates[0]) : undefined;
-    this.selectedEndDate = dates[1] ? dateToIso(dates[1]) : undefined;
-  }
-
   private emitSelection(dates: Date[]) {
     if (this.range) {
       this.postChange.emit(dates.map(d => dateToIso(d)).join(ISO_VALUE_SEPARATOR));
@@ -1015,25 +988,19 @@ export class PostDatePicker {
     }
   }
 
-  private handleSelectedDates() {
-    if (this.range) {
-      if (
-        (this.selectedStartDate && !this.selectedEndDate) ||
-        (!this.selectedStartDate && this.selectedEndDate)
-      ) {
-        console.error(
-          'The range date picker expects either no selected dates or both of them defined.',
-        );
-      } else if (this.selectedStartDate && this.selectedEndDate) {
-        this.dpInstance.selectDate([
-          isoToDate(this.selectedStartDate),
-          isoToDate(this.selectedEndDate),
-        ]);
-      }
-    } else {
-      if (this.selectedStartDate && isoToDate(this.selectedStartDate)) {
-        this.dpInstance.selectDate(isoToDate(this.selectedStartDate));
-      }
+  private syncInputToDp() {
+    const isoValue = this.getInputIsoValue();
+    if (!isoValue) return;
+
+    const dates = isoValue
+      .split(ISO_VALUE_SEPARATOR)
+      .filter(Boolean)
+      .map(iso => isoToDate(iso))
+      .filter(d => d && isValidDate(d)) as Date[];
+
+    if (dates.length > 0) {
+      this.dpInstance.selectDate(this.range ? dates : dates[0]);
+      this.dpInstance.setViewDate(dates[0]);
     }
   }
 
@@ -1106,7 +1073,9 @@ export class PostDatePicker {
 
   private addInputListener() {
     this._lastInputValue = this.getInputIsoValue();
-    this.dpInput.addEventListener('blur', this.handleInputBlur);
+    if (!this.inline) {
+      this.dpInput.addEventListener('blur', this.handleInputBlur);
+    }
     this.dpInput.addEventListener('input', this.handleInputEvent);
   }
 
@@ -1114,7 +1083,6 @@ export class PostDatePicker {
     this.skipOnSelectCount = 0;
     this.dpInstance.clear();
     this.dpInstance.setViewDate(this.today);
-    this.updateSelectionProps([]);
   }
 
   private syncDatePickerState() {
@@ -1130,14 +1098,11 @@ export class PostDatePicker {
     this.validateLocale();
     this.validateInline();
 
+    this.addInputListener();
+    this.syncDatePickerState();
+
     if (this.inline) {
       requestAnimationFrame(() => this.enhanceAccessibility(false));
-    } else {
-      this.addInputListener();
-
-      requestAnimationFrame(() => {
-        this.syncDatePickerState();
-      });
     }
   }
 
@@ -1166,7 +1131,12 @@ export class PostDatePicker {
   render() {
     return (
       <Host data-version={version}>
-        {this.inline && <div class="datepicker-container" dir={this.textDirection}></div>}
+        {this.inline && (
+          <div dir={this.textDirection}>
+            <slot></slot>
+            <div class="datepicker-container"></div>
+          </div>
+        )}
         {!this.inline && (
           <div dir={this.textDirection}>
             <div
