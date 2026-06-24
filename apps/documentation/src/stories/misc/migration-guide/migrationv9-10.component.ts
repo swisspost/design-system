@@ -110,12 +110,6 @@ export class MigrationV910Component extends LitElement {
       this.state = {
         ...restored,
         internet_header: restored.internet_header ?? this.state.internet_header,
-        // Spread defaults first so new fields are initialised even for users
-        // who have an older persisted state that predates these keys.
-        ngbootstrap: {
-          ...this.state.ngbootstrap,
-          ...restored.ngbootstrap,
-        },
       };
     }
     setTimeout(() => this._toggleAutoMigrationVisibility(), 0);
