@@ -19,6 +19,7 @@ export class MigrationV910Component extends LitElement {
       modal: false,
       pagination: false,
       typeahead: false,
+      progressbar: false,
     },
     forms: {
       tooltip_validation: false,
@@ -553,7 +554,123 @@ export class MyComponent {
                           </label>
                         </div>
                       </li>
-                      <li>progressbar → <i>coming soon</i></li>
+                      <li>
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-progressbar"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.progressbar}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-progressbar">
+                            progressbar →
+                            <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs"
+                              >post-progressbar</a
+                            >
+                            <span class="info">
+                              <p>
+                                The <code>NgbProgressbar</code> component has been replaced by the
+                                <code>&lt;post-progressbar&gt;</code> web component, which provides an
+                                accessible and framework-agnostic solution.
+                              </p>
+                              <p><strong>Before (v9 — NgbProgressbar)</strong></p>
+                              <p>
+                                The NgbProgressbar component was used with two-way binding and
+                                properties like <code>type</code>, <code>striped</code>, and
+                                <code>animated</code>:
+                              </p>
+                              <code-block
+                                code=${`<!-- template.html -->\n<ngb-progressbar\n  type="primary"\n  [value]="65"\n  [striped]="true"\n  [animated]="true"\n>\n</ngb-progressbar>`}
+                              ></code-block>
+                              <p><strong>After (v10)</strong></p>
+                              <p>
+                                The new <code>&lt;post-progressbar&gt;</code> component uses standard HTML
+                                <code>min</code>, <code>max</code>, and <code>value</code> attributes,
+                                similar to the native <code>&lt;progress&gt;</code> element:
+                              </p>
+                              <code-block
+                                code=${`<!-- template.html -->\n<post-progressbar\n  min="0"\n  max="100"\n  value="65"\n></post-progressbar>`}
+                              ></code-block>
+                              <p><strong>Key differences:</strong></p>
+                              <ul>
+                                <li>
+                                  <strong>Attributes instead of properties:</strong> Use standard HTML
+                                  attributes (<code>min</code>, <code>max</code>, <code>value</code>)
+                                  instead of ng-bootstrap directives.
+                                </li>
+                                <li>
+                                  <strong>Type replaced by CSS modifier class:</strong> The <code>type</code> property
+                                  is replaced by a CSS modifier class on the <code>.progressbar</code> wrapper element.
+                                  All other Bootstrap color variants have no equivalent and default to the neutral appearance.
+                                  <table class="table table-bordered">
+                                    <thead>
+                                      <tr>
+                                        <th>type (v9)</th>
+                                        <th>CSS class (v10)</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td><code>type="success"</code></td>
+                                        <td><code>class="progressbar progressbar-success"</code></td>
+                                      </tr>
+                                      <tr>
+                                        <td><code>type="danger"</code></td>
+                                        <td><code>class="progressbar progressbar-error"</code></td>
+                                      </tr>
+                                      <tr>
+                                        <td><code>type="warning"</code></td>
+                                        <td><code>class="progressbar progressbar-warning"</code></td>
+                                      </tr>
+                                      <tr>
+                                        <td>
+                                          <code>type="info"</code>, <code>type="primary"</code>,
+                                          <code>type="secondary"</code>,</br>
+                                          or any other Bootstrap color variant
+                                        </td>
+                                        <td>
+                                          No direct equivalent. Use <code>class="progressbar"</code></br> 
+                                          for the <code>neutral</code> appearance.
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </li>
+                                <li>
+                                  <strong>Striped and animated removed:</strong> The
+                                  <code>striped</code> and <code>animated</code> properties are no longer
+                                  supported.
+                                </li>
+                              </ul>
+                              <p><strong>Handling dynamic updates:</strong></p>
+                              <p>
+                                To update the progress value dynamically in Angular, bind directly to the
+                                <code>value</code> attribute:
+                              </p>
+                              <code-block
+                                code=${`<!-- template.html -->\n<post-progressbar\n  [attr.value]="progressValue"\n  min="0"\n  max="100"\n></post-progressbar>`}
+                              ></code-block>
+                              <p><strong>Showing percentage values:</strong></p>
+                              <p>
+                                The <code>[showValue]</code> property is not supported by <code>&lt;post-progressbar&gt;</code>. Unlike
+                                <code>NgbProgressbar</code>, the percentage cannot be displayed inside the
+                                progress bar.
+                                To show the current progress percentage, use <code>.progressbar-value</code> together with a
+                                <code>.progressbar-label</code>.
+                                For implementation details and additional examples, refer to the
+                                <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs">
+                                  post-progressbar documentation
+                                </a>.
+                              </p>
+                              <p>
+                                Note that this is not a 1:1 replacement for
+                                <code>[showValue]</code>, as the value is displayed separately from the
+                                progress indicator.
+                              </p>
+                            </span>
+                          </label>
+                        </div>
+                      </li>
                       <li>timepicker → <i>coming soon</i></li>
                       <li>
                         <div class="form-check">
