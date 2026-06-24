@@ -223,6 +223,22 @@ export class MigrationV910Component extends LitElement {
             </p>
           </li>
           <li>
+            <h3>Removed unused CSS entry files</h3>
+            <p>
+              The top-level entry files <code>fonts.css</code> and <code>elements.css</code> have been removed from the <code>@swisspost/design-system-styles</code> package.
+            </p>
+            <ul>
+              <li>
+                <strong>fonts.css</strong>: Use the fonts component file instead.
+                <code-block code=${"@use '@swisspost/design-system-styles/components/fonts';"}></code-block>
+              </li>
+              <li>
+                <strong>elements.css</strong>: Import elements styles directly from the elements directory.
+                <code-block code=${"@use '@swisspost/design-system-styles/elements';"}></code-block>
+              </li>
+            </ul>
+          </li>
+          <li>
             <h3>Run Automigration Scripts 🪄</h3>
             <p>
               Many breaking changes can be fixed automatically using the
