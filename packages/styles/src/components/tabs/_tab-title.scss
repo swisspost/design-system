@@ -358,7 +358,7 @@ post-tabs[active-tab] {
       &::after {
         background-color: color-mix(in srgb, Highlight calc(var(--active, 0) * 100%), Canvas);
       }
-      color: color-mix(in srgb, HighlightText calc(var(--active, 0) * 100%), ButtonText);
+      color: color-mix(in srgb, Highlight calc(var(--active, 0) * 100%), ButtonText);
     }
   }
 
@@ -424,7 +424,7 @@ post-tabs:not([active-tab]) {
       &::after {
         background-color: Highlight;
       }
-      color: HighlightText;
+      color: Highlight;
     }
   }
 
