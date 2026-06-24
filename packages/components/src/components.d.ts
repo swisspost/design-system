@@ -220,7 +220,7 @@ export namespace Components {
          */
         "max"?: string;
         /**
-          * Minimun possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
+          * Minimum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "min"?: string;
         /**
@@ -1535,7 +1535,7 @@ declare namespace LocalJSX {
          */
         "max"?: string;
         /**
-          * Minimun possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
+          * Minimum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "min"?: string;
         /**

@@ -20,14 +20,7 @@
 | `textPreviousMonth` _(required)_  | `text-previous-month`  | Label for "Previous month" button.                                                                                                                                                                                                                                                                       | `string`                                                                                  | `undefined`         |
 | `textPreviousYear` _(required)_   | `text-previous-year`   | Label for "Previous year" button.                                                                                                                                                                                                                                                                        | `string`                                                                                  | `undefined`         |
 | `textSwitchYear` _(required)_     | `text-switch-year`     | Label for the "Switch to year view" title button.                                                                                                                                                                                                                                                        | `string`                                                                                  | `undefined`         |
-| `textToggleCalendar`              | `text-toggle-calendar` | Label for the toggle button that opens the calendar. It is only needed when the calendar is connected to the input.                                                                                                                                                                                      | `string`                                                                                  | `undefined`         |
-
-
-## Events
-
-| Event        | Description                                                          | Type                  |
-| ------------ | -------------------------------------------------------------------- | --------------------- |
-| `postChange` | An event emitted when a date or a range of dates have been selected. | `CustomEvent<string>` |
+| `textToggleCalendar`              | `text-toggle-calendar` | Label for the toggle button that opens the calendar. It is only needed when the calendar is not inline.                                                                                                                                                                                                  | `string`                                                                                  | `undefined`         |
 
 
 ## Methods
