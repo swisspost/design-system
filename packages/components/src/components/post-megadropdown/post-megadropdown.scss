@@ -59,11 +59,12 @@
       min(var(--post-header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
     );
     padding-inline: var(--post-burger-menu-padding-inline);
+    padding-block-start: 1.5rem;
   }
 
   .megadropdown-content {
     @include media.max(desktop) {
-      padding-block: 1.5rem;
+      padding-block-end: 1.5rem;
     }
   }
 }
