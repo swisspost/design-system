@@ -74,6 +74,7 @@ const meta: Meta = {
       },
       options: ['small', 'medium', 'large'],
       table: { category: 'Variant' },
+      if: { arg: 'variant', neq: 'bottom-sheet' },
     },
     position: {
       name: 'Position',
@@ -84,6 +85,7 @@ const meta: Meta = {
       },
       options: ['top', 'center', 'bottom'],
       table: { category: 'Variant' },
+      if: { arg: 'variant', neq: 'bottom-sheet' },
     },
     animation: {
       name: 'Animation',

@@ -17,16 +17,19 @@ nav {
   max-width: 100%;
 
   &.invisible {
+    --post-breadcrumb-item-wrap: nowrap;
+
     visibility: hidden;
     overflow: hidden;
     position: absolute;
     inset: 0;
+    padding-inline: 1px; // Detects overflow 2px sooner to favor menu layout.
   }
 }
 
 [role='list'] {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   gap: tokens.get('breadcrumb-gap-inline-outer');
 }
 
@@ -35,12 +38,18 @@ nav {
 }
 
 .home {
+  $home-height: tokens.get('breadcrumb-icon-size');
+  $chevron-height: 16px;
+  $chevron-margin-block: tokens.get('breadcrumb-padding-block-icon-link');
+
+  padding-block: calc((#{$chevron-height} + 2 * #{$chevron-margin-block} - #{$home-height}) / 2);
+
   &::before {
     content: unset;
   }
 
   post-icon {
-    font-size: tokens.get('breadcrumb-icon-size');
+    font-size: $home-height;
 
     @include media.only(mobile) {
       font-size: 20px;
