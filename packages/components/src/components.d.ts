@@ -261,7 +261,7 @@ export namespace Components {
          */
         "textSwitchYear": string;
         /**
-          * Label for the toggle button that opens the calendar. It is only needed when the calendar is connected to the input.
+          * Label for the toggle button that opens the calendar. It is only needed when the calendar is not inline.
          */
         "textToggleCalendar"?: string;
     }
@@ -816,10 +816,6 @@ export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
 }
-export interface PostDatePickerCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLPostDatePickerElement;
-}
 export interface PostLanguageMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostLanguageMenuItemElement;
@@ -964,18 +960,7 @@ declare global {
         prototype: HTMLPostCollapsibleTriggerElement;
         new (): HTMLPostCollapsibleTriggerElement;
     };
-    interface HTMLPostDatePickerElementEventMap {
-        "postChange": string;
-    }
     interface HTMLPostDatePickerElement extends Components.PostDatePicker, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostDatePickerElementEventMap>(type: K, listener: (this: HTMLPostDatePickerElement, ev: PostDatePickerCustomEvent<HTMLPostDatePickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostDatePickerElementEventMap>(type: K, listener: (this: HTMLPostDatePickerElement, ev: PostDatePickerCustomEvent<HTMLPostDatePickerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostDatePickerElement: {
         prototype: HTMLPostDatePickerElement;
@@ -1554,10 +1539,6 @@ declare namespace LocalJSX {
          */
         "min"?: string;
         /**
-          * An event emitted when a date or a range of dates have been selected.
-         */
-        "onPostChange"?: (event: PostDatePickerCustomEvent<string>) => void;
-        /**
           * Whether the date picker expects a range selection or a single date selection.
           * @default false
          */
@@ -1591,7 +1572,7 @@ declare namespace LocalJSX {
          */
         "textSwitchYear": string;
         /**
-          * Label for the toggle button that opens the calendar. It is only needed when the calendar is connected to the input.
+          * Label for the toggle button that opens the calendar. It is only needed when the calendar is not inline.
          */
         "textToggleCalendar"?: string;
     }

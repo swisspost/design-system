@@ -14,19 +14,7 @@ import {
   UNICODE_BIDI,
 } from '@/utils';
 import { version } from '@root/package.json';
-import {
-  Build,
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Method,
-  Prop,
-  State,
-  Watch,
-} from '@stencil/core';
+import { Build, Component, Element, h, Host, Method, Prop, State, Watch } from '@stencil/core';
 import AirDatepicker, { AirDatepickerOptions, AirDatepickerViews } from 'air-datepicker';
 import type { InputMask } from 'imask';
 import IMask from 'imask';
@@ -198,7 +186,7 @@ export class PostDatePicker {
 
   /**
    * Label for the toggle button that opens the calendar.
-   * It is only needed when the calendar is connected to the input.
+   * It is only needed when the calendar is not inline.
    */
   @Prop()
   @Required({ when: 'inline', truthy: false })
@@ -208,11 +196,6 @@ export class PostDatePicker {
   @State() inputDisabled = false;
   @State() today = new Date();
   @State() startDate = new Date();
-
-  /**
-   * An event emitted when a date or a range of dates have been selected.
-   */
-  @Event() postChange: EventEmitter<string>;
 
   /**
    * Displays the popover calendar, focusing the first calendar item.
@@ -495,15 +478,12 @@ export class PostDatePicker {
         this.skipOnSelectCount = reversed ? 0 : 2; // don't skip if reversed
         this.dpInstance.selectDate([start, end]);
         this.dpInstance.setViewDate(start);
-        this.emitSelection([start, end]);
       } else if (startValid && !endValid) {
         this.dpInstance.clear();
         this.dpInstance.selectDate(start);
         this.dpInstance.setViewDate(start);
-        this.emitSelection([start]);
       } else {
         this.resetSelection();
-        this.emitSelection([]);
       }
     } else {
       const date = this.stringToDate(this.inputMask.value);
@@ -512,10 +492,8 @@ export class PostDatePicker {
         this.skipOnSelectCount = 1;
         this.dpInstance.selectDate(date);
         this.dpInstance.setViewDate(date);
-        this.emitSelection([date]);
       } else {
         this.resetSelection();
-        this.emitSelection([]);
       }
     }
 
@@ -910,8 +888,6 @@ export class PostDatePicker {
           const dates = Array.isArray(date) ? date : [date];
           const isPartialRange = this.range && dates.length === 1;
 
-          this.emitSelection(dates);
-
           // Update the input mask value and emit events
           this.inputMask.value = this.formatDatesForMask(dates);
           this.emitInputEvents();
@@ -980,14 +956,6 @@ export class PostDatePicker {
       return dates.map(d => this.dateToString(d)).join(this.dateFormatRangeSeparator);
     }
     return this.dateToString(dates[0]);
-  }
-
-  private emitSelection(dates: Date[]) {
-    if (this.range) {
-      this.postChange.emit(dates.map(d => dateToIso(d)).join(ISO_VALUE_SEPARATOR));
-    } else {
-      this.postChange.emit(dates[0] ? dateToIso(dates[0]) : '');
-    }
   }
 
   private syncInputToDp() {
