@@ -675,7 +675,12 @@ export class MyComponent {
                           </label>
                         </div>
                       </li>
-                      <li>timepicker → <i>coming soon</i></li>
+                      <li>
+                        timepicker →
+                        <a href="/?path=/docs/51471f0b-1bbb-4059-951b-f89aa7339f91--docs"
+                          >native input with type "time"</a
+                        >
+                      </li>
                       <li>
                         <div class="form-check">
                           <input
