@@ -32,7 +32,11 @@ import type { InputMask } from 'imask';
 import IMask from 'imask';
 import { mergeRenderCellResults, renderCellAccessibility } from './accessibility-utils';
 import { airDatepickerLocales } from './air-locales';
-import { DATE_FORMAT_MAP, DATE_FORMAT_RANGE_SEPARATOR } from './constants';
+import {
+  DATE_FORMAT_MAP,
+  DATE_FORMAT_RANGE_SEPARATOR,
+  DATE_FORMAT_SEPARATOR_REGEX,
+} from './constants';
 import {
   dateToIso,
   dateToString,
@@ -698,7 +702,7 @@ export class PostDatePicker {
   private setUpMask() {
     // WARNING: using the DATE_FORMAT_SEPARATOR_REGEX is mandatory here,
     // because `this.dateFormat` can possibly contain unicode bidi characters!
-    const maskPattern = this.dateFormat; //.replace(DATE_FORMAT_SEPARATOR_REGEX, m => `${m}\``);
+    const maskPattern = this.dateFormat.replace(DATE_FORMAT_SEPARATOR_REGEX, m => `${m}\``);
 
     const baseMaskOptions = {
       mask: Date,
@@ -728,6 +732,8 @@ export class PostDatePicker {
       },
       min: this.min ? new Date(`${padIsoDate(this.min)}T00:00`) : null,
       max: this.max ? new Date(`${padIsoDate(this.max)}T00:00`) : null,
+      autofix: true,
+      eager: true,
     };
 
     const singleMaskOptions = {
@@ -737,7 +743,7 @@ export class PostDatePicker {
     };
 
     const rangeMaskOptions = {
-      mask: `from${this.dateFormatRangeSeparator}to`,
+      mask: `from\`${this.dateFormatRangeSeparator}to`,
       blocks: {
         from: { ...baseMaskOptions },
         to: { ...baseMaskOptions },
