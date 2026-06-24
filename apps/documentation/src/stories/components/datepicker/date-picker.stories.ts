@@ -16,7 +16,7 @@ const meta: MetaComponent = {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=21044-101376&t=FNgdl36MZPMbc1Bs-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=32786-277036',
     },
   },
   args: {
