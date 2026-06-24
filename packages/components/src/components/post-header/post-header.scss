@@ -4,6 +4,7 @@
 @use '@swisspost/design-system-styles/mixins/media' as media-mx;
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 @use './custom-properties';
+@use '@swisspost/design-system-styles/mixins/utilities';
 
 *,
 ::before,
@@ -39,6 +40,10 @@ header,
   inset-block-start: var(--post-header-top);
   z-index: commons.$zindex-header;
   box-shadow: elevation.$elevation-300;
+
+  @include utilities.high-contrast-mode() {
+    border-bottom: 1px solid;
+  }
 }
 
 .global-header {
