@@ -17,15 +17,16 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <div className="lead">For short, informative messages or explanations.</div>
 
-<Canvas sourceState="shown" of={TooltipStories.Default} />
-
 <post-banner type="warning">
   **Limited accessibility on touch devices:** Tooltips currently have limited accessibility on
   touch devices, because the long-press event used to trigger them conflicts with native gestures
   in mobile browsers (such as text selection or the context menu). Touch users may therefore be
   unable to reveal tooltip content reliably. If the information is essential, use the [accessible
-  alternative](#accessible-alternative-for-essential-content) below instead.
+  alternative](/?path=/docs/cd684d90-e7a7-41a9-8923-b1b72ad9b384--docs#accessible-alternative-for-essential-content)
+  below instead.
 </post-banner>
+
+<Canvas sourceState="shown" of={TooltipStories.Default} />
 
 <Controls of={TooltipStories.Default} />
 
@@ -47,21 +48,12 @@ touch devices, use an information icon button that toggles a `<post-popover>` in
 Unlike a tooltip, the popover is opened by an explicit click or key press, so it works consistently
 across mouse, keyboard and touch input.
 
-<Canvas of={PopoverStories.InfoIcon} />
+Keep in mind that this approach only works for elements that do not trigger an action of their own.
+The information icon button is a separate interactive element, so it cannot be nested inside another
+interactive element such as a button or link. If you need to add essential information to an element
+that already triggers an action, place the information icon button next to it instead of inside it.
 
-```html
-<post-popover-trigger>
-  <button class="btn btn-link btn-icon">
-    <post-icon aria-hidden="true" name="info"></post-icon>
-    <span class="visually-hidden">See more information</span>
-  </button>
-  <post-popover class="palette palette-accent" placement="top" text-close="Close" arrow>
-    <p class="mb-0">
-      Follow your letter's journey with automatic updates at key delivery milestones.
-    </p>
-  </post-popover>
-</post-popover-trigger>
-```
+<Canvas sourceState="shown" of={PopoverStories.InfoIcon} />
 
 ## Installation
 
