@@ -27,11 +27,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import AirDatepicker, {
-  AirDatepickerOptions,
-  AirDatepickerViews,
-  AirDatepickerViewsSingle,
-} from 'air-datepicker';
+import AirDatepicker, { AirDatepickerOptions, AirDatepickerViews } from 'air-datepicker';
 import type { InputMask } from 'imask';
 import IMask from 'imask';
 import { mergeRenderCellResults, renderCellAccessibility } from './accessibility-utils';
@@ -52,14 +48,20 @@ import {
   stringToDate,
 } from './date-utils';
 
-export interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDivElement> {
-  onShow?: (isAnimationComplete: boolean) => void;
-  onRenderCell?: (data: {
-    date: Date;
-    cellType: AirDatepickerViewsSingle;
-    datepicker: AirDatepicker<HTMLDivElement>;
-  }) => void;
-}
+/** The granularity of the calendar cell being rendered. */
+export type DatePickerCellType = 'day' | 'month' | 'year';
+
+/** The result returned from the cellConfig callback. */
+export type DatePickerCellConfig = {
+  disabled?: boolean;
+  classes?: string;
+};
+
+/** Callback to customize individual calendar cells (disable them, add classes). */
+export type DatePickerCellConfigFn = (params: {
+  date: Date;
+  cellType: DatePickerCellType;
+}) => DatePickerCellConfig | void;
 
 @Component({
   tag: 'post-date-picker',
@@ -123,9 +125,9 @@ export class PostDatePicker {
   max?: string;
 
   /**
-   * Used to extend the existing on render cell to disable dates.
+   * A callback to customize individual calendar cells, e.g. to disable specific dates or add CSS classes.
    */
-  @Prop() renderCellCallback?: AirDatepickerCustomOptions['onRenderCell'];
+  @Prop() cellConfig?: DatePickerCellConfigFn;
 
   /**
    * Whether the calendar is inline in the page (not showing in a popover when input clicked).
@@ -808,7 +810,7 @@ export class PostDatePicker {
     this._isInternalUpdate = true;
 
     try {
-      const isoValues = Array.isArray(val) ? val : (val ? val.split(',').map(s => s.trim()) : []);
+      const isoValues = Array.isArray(val) ? val : val ? val.split(',').map(s => s.trim()) : [];
       const dates = isoValues
         .filter(Boolean)
         .map(iso => isoToDate(iso))
@@ -857,7 +859,7 @@ export class PostDatePicker {
     this.dpContainer = this.host.shadowRoot.querySelector('.datepicker-container');
 
     if (this.dpContainer) {
-      const options: AirDatepickerCustomOptions = {
+      const options: AirDatepickerOptions<HTMLDivElement> = {
         navTitles: {
           days: `<button aria-label="${this.textSwitchYear}"><strong>MMMM yyyy</strong><post-icon name="chevrondown"></post-icon></button>`,
           months: `<button aria-label="${this.textSwitchYear}"><strong>yyyy</strong><post-icon name="chevrondown"></post-icon></button>`,
@@ -929,7 +931,7 @@ export class PostDatePicker {
         },
         onRenderCell: data => {
           const internal = renderCellAccessibility(data, this.localeCode);
-          const custom = this.renderCellCallback?.(data);
+          const custom = this.cellConfig?.(data);
 
           return mergeRenderCellResults(internal, custom);
         },

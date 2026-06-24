@@ -9,7 +9,7 @@ import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
 import { Variant } from "./components/post-breadcrumb-item/variants";
 import { ButtonType, Placement, Size } from "./components/post-closebutton/types";
-import { AirDatepickerCustomOptions } from "./components/post-date-picker/post-date-picker";
+import { DatePickerCellConfigFn } from "./components/post-date-picker/post-date-picker";
 import { PostIconAnimation } from "./types/icon-animations";
 import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement as Placement1 } from "@floating-ui/dom";
@@ -17,7 +17,7 @@ export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { Variant } from "./components/post-breadcrumb-item/variants";
 export { ButtonType, Placement, Size } from "./components/post-closebutton/types";
-export { AirDatepickerCustomOptions } from "./components/post-date-picker/post-date-picker";
+export { DatePickerCellConfigFn } from "./components/post-date-picker/post-date-picker";
 export { PostIconAnimation } from "./types/icon-animations";
 export { SwitchVariant } from "./components/post-language-menu/switch-variants";
 export { Placement as Placement1 } from "@floating-ui/dom";
@@ -198,6 +198,10 @@ export namespace Components {
     }
     interface PostDatePicker {
         /**
+          * A callback to customize individual calendar cells, e.g. to disable specific dates or add CSS classes.
+         */
+        "cellConfig"?: DatePickerCellConfigFn;
+        /**
           * Hides the popover calendar.
          */
         "hide": () => Promise<void>;
@@ -224,10 +228,6 @@ export namespace Components {
           * @default false
          */
         "range"?: boolean;
-        /**
-          * Used to extend the existing on render cell to disable dates.
-         */
-        "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
         /**
           * Displays the popover calendar, focusing the first calendar item.
          */
@@ -1532,6 +1532,10 @@ declare namespace LocalJSX {
     }
     interface PostDatePicker {
         /**
+          * A callback to customize individual calendar cells, e.g. to disable specific dates or add CSS classes.
+         */
+        "cellConfig"?: DatePickerCellConfigFn;
+        /**
           * Whether the calendar is inline in the page (not showing in a popover when input clicked).
           * @default false
          */
@@ -1558,10 +1562,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "range"?: boolean;
-        /**
-          * Used to extend the existing on render cell to disable dates.
-         */
-        "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
         /**
           * Label for "Next decade" button.
          */

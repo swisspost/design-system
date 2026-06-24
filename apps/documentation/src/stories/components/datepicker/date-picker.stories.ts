@@ -141,7 +141,7 @@ export const DisabledDates: Story = {
         <script>
           window.addEventListener('DOMContentLoaded', () => {
             const dp = document.querySelector('post-date-picker#disabled-dates');
-            dp.renderCellCallback = ({ date, cellType }) => {
+            dp.cellConfig = ({ date, cellType }) => {
               if (cellType === 'day' && date.getDay() === 0) {
                 return { disabled: true, classes: 'is-sunday' };
               }
