@@ -16,6 +16,10 @@ export const TEXT_DIRECTION_MARKERS_REGEX = new RegExp(`[${TEXT_DIRECTION_MARKER
  */
 export const DATE_FORMAT_RANGE_SEPARATOR = ' - ';
 /**
+ * The separator used to join/split ISO date values in the input value string (e.g. "2026-06-12, 2026-06-18").
+ */
+export const ISO_VALUE_SEPARATOR = ', ';
+/**
  * A map of date format keys to their corresponding date format values.
  * The keys are used in this.dateFormat string and to specify the mask,
  * while the values are used to determine the order of the date parts in the localized date string.

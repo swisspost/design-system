@@ -1,4 +1,8 @@
 import {
+  getNativeValue,
+  NativeInputMaskElement,
+} from '@/components/post-date-picker/native-mask-element';
+import {
   BUDDHIST_CALENDAR_LOCALES,
   DateValue,
   FALLBACK_LANGUAGE_CODE,
@@ -36,6 +40,7 @@ import {
   DATE_FORMAT_MAP,
   DATE_FORMAT_RANGE_SEPARATOR,
   DATE_FORMAT_SEPARATOR_REGEX,
+  ISO_VALUE_SEPARATOR,
 } from './constants';
 import {
   dateToIso,
@@ -223,7 +228,7 @@ export class PostDatePicker {
   /**
    * An event emitted when a date or a range of dates have been selected.
    */
-  @Event() postChange: EventEmitter<string | string[]>;
+  @Event() postChange: EventEmitter<string>;
 
   /**
    * Displays the popover calendar, focusing the first calendar item.
@@ -265,6 +270,9 @@ export class PostDatePicker {
   private dpContainer: HTMLDivElement;
 
   private inputMask: InputMask;
+  private maskElement: NativeInputMaskElement;
+  private _isInternalUpdate = false;
+  private _lastInputValue: string | null = null;
 
   private gridObserver: MutationObserver;
   private navObserver: MutationObserver;
@@ -490,9 +498,9 @@ export class PostDatePicker {
 
   private handleInputBlur = () => {
     if (this.range) {
-      const dates = this.inputMask.value.split(this.dateFormatRangeSeparator);
-      const start = this.stringToDate(dates[0]);
-      const end = this.stringToDate(dates[1]);
+      const parts = this.inputMask.value.split(this.dateFormatRangeSeparator);
+      const start = this.stringToDate(parts[0]);
+      const end = this.stringToDate(parts[1]);
 
       const startValid = isValidDate(start);
       const endValid = isValidDate(end);
@@ -503,13 +511,17 @@ export class PostDatePicker {
         this.skipOnSelectCount = reversed ? 0 : 2; // don't skip if reversed
         this.dpInstance.selectDate([start, end]);
         this.dpInstance.setViewDate(start);
-        this.postChange.emit([dateToIso(start), dateToIso(end)]);
+        this.updateSelectionProps([start, end]);
+        this.emitSelection([start, end]);
       } else if (startValid && !endValid) {
         this.dpInstance.clear();
         this.dpInstance.selectDate(start);
         this.dpInstance.setViewDate(start);
+        this.updateSelectionProps([start]);
+        this.emitSelection([start]);
       } else {
         this.resetSelection();
+        this.emitSelection([]);
       }
     } else {
       const date = this.stringToDate(this.inputMask.value);
@@ -518,11 +530,15 @@ export class PostDatePicker {
         this.skipOnSelectCount = 1;
         this.dpInstance.selectDate(date);
         this.dpInstance.setViewDate(date);
-        this.postChange.emit(dateToIso(date));
+        this.updateSelectionProps([date]);
+        this.emitSelection([date]);
       } else {
         this.resetSelection();
+        this.emitSelection([]);
       }
     }
+
+    this.emitInputEvents();
   };
 
   private handlePrevNextClick = () => {
@@ -752,23 +768,89 @@ export class PostDatePicker {
       overwrite: true,
     };
 
-    this.inputMask = IMask(this.dpInput, this.range ? rangeMaskOptions : singleMaskOptions);
+    this.maskElement = new NativeInputMaskElement(this.dpInput);
+    this.inputMask = IMask(this.maskElement, this.range ? rangeMaskOptions : singleMaskOptions);
   }
 
   private updateMask() {
     if (!this.inline) {
       this.inputMask.destroy();
       this.setUpMask();
+      this.setupValueOverride();
 
       if (this.dpInstance.selectedDates.length > 0) {
-        if (this.range) {
-          this.inputMask.value = this.dpInstance.selectedDates
-            .map(d => this.dateToString(d))
-            .join(this.dateFormatRangeSeparator);
-        } else {
-          this.inputMask.value = this.dateToString(this.dpInstance.selectedDates[0]);
-        }
+        this.inputMask.value = this.formatDatesForMask(this.dpInstance.selectedDates);
       }
+    }
+  }
+
+  // Override input.value so external consumers get ISO strings
+  // while iMask continues to work with locale-formatted display text via NativeInputMaskElement
+  private setupValueOverride() {
+    if (!this.dpInput) return;
+
+    Object.defineProperty(this.dpInput, 'value', {
+      get: this.getInputIsoValue.bind(this),
+      set: this.setInputIsoValue.bind(this),
+      configurable: true,
+      enumerable: true,
+    });
+  }
+
+  private getInputIsoValue(): string {
+    const nativeVal = getNativeValue(this.dpInput);
+    const DIGITS_PER_DATE = 8; // dd(2) + mm(2) + yyyy(4)
+
+    if (!this.range) {
+      const digits = nativeVal?.replaceAll(/[^0-9]/g, '') ?? '';
+      if (digits.length < DIGITS_PER_DATE) return '';
+
+      const date = this.stringToDate(nativeVal);
+      return date && isValidDate(date) ? dateToIso(date) : '';
+    }
+
+    const parts = nativeVal?.split(this.dateFormatRangeSeparator) ?? [];
+    const startDigits = parts[0]?.replaceAll(/[^0-9]/g, '') ?? '';
+    const endDigits = parts[1]?.replaceAll(/[^0-9]/g, '') ?? '';
+
+    const start = startDigits.length >= DIGITS_PER_DATE ? this.stringToDate(parts[0]) : null;
+    const end = endDigits.length >= DIGITS_PER_DATE ? this.stringToDate(parts[1]) : null;
+
+    return [
+      start && isValidDate(start) ? dateToIso(start) : '',
+      end && isValidDate(end) ? dateToIso(end) : '',
+    ]
+      .filter(Boolean)
+      .join(ISO_VALUE_SEPARATOR);
+  }
+
+  private setInputIsoValue(val: string | string[]) {
+    if (this._isInternalUpdate) return;
+    this._isInternalUpdate = true;
+
+    try {
+      const isoValues = Array.isArray(val) ? val : (val ? val.split(',').map(s => s.trim()) : []);
+      const dates = isoValues
+        .filter(Boolean)
+        .map(iso => isoToDate(iso))
+        .filter(d => d && isValidDate(d)) as Date[];
+
+      if (dates.length === 0) {
+        this.inputMask.value = '';
+        this.dpInstance?.clear();
+        this.updateSelectionProps([]);
+        return;
+      }
+
+      this.inputMask.value = this.formatDatesForMask(dates);
+
+      this.dpInstance?.clear();
+      this.dpInstance?.selectDate(this.range ? dates : dates[0]);
+      this.dpInstance?.setViewDate(dates[0]);
+
+      this.updateSelectionProps(dates);
+    } finally {
+      this._isInternalUpdate = false;
     }
   }
 
@@ -777,7 +859,18 @@ export class PostDatePicker {
 
     if (!this.inline) {
       this.dpInput = this.host.querySelector('input');
+
+      // Capture and clear initial value before mask setup, since iMask would
+      // interpret an ISO string as locale-formatted text and garble it
+      const initialValue = this.dpInput.value;
+      this.dpInput.value = '';
+
       this.setUpMask();
+      this.setupValueOverride();
+
+      if (initialValue) {
+        this.setInputIsoValue(initialValue);
+      }
     }
 
     this.dpContainer = this.host.shadowRoot.querySelector('.datepicker-container');
@@ -828,32 +921,24 @@ export class PostDatePicker {
             return;
           }
 
-          // update props
-          if (Array.isArray(date) && date.length === 2) {
-            this.selectedStartDate = dateToIso(date[0]);
-            this.selectedEndDate = dateToIso(date[1]);
-          } else if (!Array.isArray(date)) {
-            this.selectedStartDate = dateToIso(date);
-            this.selectedEndDate = undefined;
-          }
+          // If this selection was triggered by the value setter, don't re-emit
+          if (this._isInternalUpdate) return;
 
-          this.postChange.emit(Array.isArray(date) ? date.map(d => dateToIso(d)) : dateToIso(date));
+          const dates = Array.isArray(date) ? date : [date];
+          const isPartialRange = this.range && dates.length === 1;
+
+          if (!isPartialRange) {
+            this.updateSelectionProps(dates);
+          }
+          this.emitSelection(dates);
 
           // Assign value to the input, close the popover and focus on the input
           if (this.dpInput) {
-            if (Array.isArray(date)) {
-              this.inputMask.value = date
-                .map(d => this.dateToString(d))
-                .join(this.dateFormatRangeSeparator);
-              this.updateInputValue();
-            } else if (date) {
-              // If there is a date, set it to the input. No date = same date as before
-              this.inputMask.value = this.dateToString(date);
-              this.updateInputValue();
-            }
+            this.inputMask.value = this.formatDatesForMask(dates);
+            this.emitInputEvents();
 
             // If range & only one date has been selected, user should stay in the DP
-            if (this.range && Array.isArray(date) && date.length === 1) {
+            if (isPartialRange) {
               return;
             }
 
@@ -882,11 +967,52 @@ export class PostDatePicker {
     }
   }
 
-  private updateInputValue() {
+  private emitInputEvents() {
     this.inputMask.updateValue();
-    // Emit the native input and change events
+
+    const currentValue = this.getInputIsoValue();
+    if (currentValue === this._lastInputValue) {
+      return;
+    }
+    this._lastInputValue = currentValue;
+
+    this.maskElement.allowEvents = true;
     this.dpInput.dispatchEvent(new InputEvent('input', { bubbles: true }));
     this.dpInput.dispatchEvent(new InputEvent('change', { bubbles: true }));
+    this.maskElement.allowEvents = false;
+  }
+
+  // Suppress native input events fired while typing when the ISO value hasn't actually changed
+  private handleInputEvent = (e: Event) => {
+    if (this.maskElement.allowEvents) return;
+
+    const currentValue = this.getInputIsoValue();
+    if (currentValue === this._lastInputValue) {
+      e.stopImmediatePropagation();
+      return;
+    }
+    this._lastInputValue = currentValue;
+  };
+
+  private formatDatesForMask(dates: Date[]): string {
+    if (dates.length === 0) return '';
+    if (this.range) {
+      return dates.map(d => this.dateToString(d)).join(this.dateFormatRangeSeparator);
+    }
+    return this.dateToString(dates[0]);
+  }
+
+  private updateSelectionProps(dates: Date[]) {
+    this.selectedStartDate = dates[0] ? dateToIso(dates[0]) : undefined;
+    this.selectedEndDate = dates[1] ? dateToIso(dates[1]) : undefined;
+  }
+
+  private emitSelection(dates: Date[]) {
+    if (this.range) {
+      this.postChange.emit(dates.map(d => dateToIso(d)).join(ISO_VALUE_SEPARATOR));
+    } else {
+      this.postChange.emit(dates[0] ? dateToIso(dates[0]) : '');
+    }
   }
 
   private handleSelectedDates() {
@@ -979,15 +1105,16 @@ export class PostDatePicker {
   }
 
   private addInputListener() {
+    this._lastInputValue = this.getInputIsoValue();
     this.dpInput.addEventListener('blur', this.handleInputBlur);
+    this.dpInput.addEventListener('input', this.handleInputEvent);
   }
 
   private resetSelection() {
     this.skipOnSelectCount = 0;
     this.dpInstance.clear();
     this.dpInstance.setViewDate(this.today);
-    this.selectedStartDate = undefined;
-    this.selectedEndDate = undefined;
+    this.updateSelectionProps([]);
   }
 
   private syncDatePickerState() {
@@ -1024,6 +1151,7 @@ export class PostDatePicker {
     this.prevBtn?.removeEventListener('click', this.handlePrevNextClick);
     this.nextBtn?.removeEventListener('click', this.handlePrevNextClick);
     this.dpInput?.removeEventListener('blur', this.handleInputBlur);
+    this.dpInput?.removeEventListener('input', this.handleInputEvent);
 
     this.gridObserver?.disconnect();
     this.navObserver?.disconnect();

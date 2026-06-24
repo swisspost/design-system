@@ -973,7 +973,7 @@ declare global {
         new (): HTMLPostCollapsibleTriggerElement;
     };
     interface HTMLPostDatePickerElementEventMap {
-        "postChange": string | string[];
+        "postChange": string;
     }
     interface HTMLPostDatePickerElement extends Components.PostDatePicker, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostDatePickerElementEventMap>(type: K, listener: (this: HTMLPostDatePickerElement, ev: PostDatePickerCustomEvent<HTMLPostDatePickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1560,7 +1560,7 @@ declare namespace LocalJSX {
         /**
           * An event emitted when a date or a range of dates have been selected.
          */
-        "onPostChange"?: (event: PostDatePickerCustomEvent<string | string[]>) => void;
+        "onPostChange"?: (event: PostDatePickerCustomEvent<string>) => void;
         /**
           * Whether the date picker expects a range selection or a single date selection.
           * @default false
