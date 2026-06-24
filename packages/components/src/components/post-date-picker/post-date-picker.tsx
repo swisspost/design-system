@@ -1,6 +1,5 @@
 import {
   BUDDHIST_CALENDAR_LOCALES,
-  BUDDHIST_CALENDAR_YEAR_OFFSET,
   DateValue,
   FALLBACK_LANGUAGE_CODE,
   getLocaleTextDirection,
@@ -31,16 +30,18 @@ import AirDatepicker, {
 } from 'air-datepicker';
 import type { InputMask } from 'imask';
 import IMask from 'imask';
+import { mergeRenderCellResults, renderCellAccessibility } from './accessibility-utils';
 import { airDatepickerLocales } from './air-locales';
+import { DATE_FORMAT_MAP, DATE_FORMAT_RANGE_SEPARATOR } from './constants';
 import {
-  DATE_FORMAT_KEYS,
-  DATE_FORMAT_KEYS_REGEX,
-  DATE_FORMAT_MAP,
-  DATE_FORMAT_RANGE_SEPARATOR,
-  DATE_FORMAT_SEPARATOR_REGEX,
-  DATE_FORMAT_STRING_OPTIONS,
-  TEXT_DIRECTION_MARKERS_REGEX,
-} from './constants';
+  dateToIso,
+  dateToString,
+  getDateFormat,
+  isoToDate,
+  isValidDate,
+  padIsoDate,
+  stringToDate,
+} from './date-utils';
 
 export interface AirDatepickerCustomOptions extends AirDatepickerOptions<HTMLDivElement> {
   onShow?: (isAnimationComplete: boolean) => void;
@@ -294,22 +295,7 @@ export class PostDatePicker {
    * with format keys (y, m, d). For example, it will return "dd.mm.yyyy" for "de-CH" locale and "mm/dd/yyyy" for "en-US" locale.
    */
   get dateFormat() {
-    const date = new Date(Object.values(DATE_FORMAT_MAP).join('-'));
-    // get the locale date format e.g. `22.11.3333` for `de-CH` or `11/22/3333` for `en-US`
-    let localeDateString = date.toLocaleDateString(this.localeCode, DATE_FORMAT_STRING_OPTIONS);
-
-    // replace the date parts (3333, 11, 22) with the corresponding format keys (y, m, d)
-    for (const [key, value] of Object.entries(DATE_FORMAT_MAP)) {
-      // for Thai locale, the year is in Buddhist calendar which is 543 years ahead of Gregorian calendar, so we need to adjust the year value accordingly
-      localeDateString = localeDateString.replace(
-        this.isBuddhistCalendar && value.length === 4
-          ? (Number(value) + BUDDHIST_CALENDAR_YEAR_OFFSET).toString()
-          : value,
-        key,
-      );
-    }
-
-    return localeDateString;
+    return getDateFormat(this.localeCode, this.isBuddhistCalendar);
   }
 
   /**
@@ -351,82 +337,17 @@ export class PostDatePicker {
   }
 
   /**
-   * Convert a date object to a localized date string and vice versa.
-   * @param date A localtime date object.
-   * @returns A localized date string, depending on the given `localeCode` and the given `options`.
+   * Convert a date object to a localized date string, bound to the current locale.
    */
   private dateToString(date: Date) {
-    const dateString = date.toLocaleDateString(this.localeCode, DATE_FORMAT_STRING_OPTIONS);
-    const yearString = date.getFullYear().toString();
-
-    if (yearString.length < 4) {
-      return dateString.replace(yearString, yearString.padStart(4, '0'));
-    }
-
-    return dateString;
+    return dateToString(date, this.localeCode);
   }
 
   /**
-   * Convert a localized date string to a date object.
-   * The date string should be in the same format as the date picker's `dateFormat`, which depends on the given `localeCode`.
-   * @param localeDateString A localized date string.
-   * @returns A localtime date object.
+   * Convert a localized date string to a date object, bound to the current locale and format.
    */
   private stringToDate(localeDateString: string) {
-    // Match the separator chars in the date format (e.g. "." for "dd.mm.yyyy", etc.).
-    const dateSeparator = this.dateFormat.match(DATE_FORMAT_SEPARATOR_REGEX)[0];
-    // Remove the text direction markers, split the date string into its parts (e.g. ["31", "01", "2026"], etc.)
-    // and make sure its values only contains digits (e.g. for "bg-BG", etc.).
-    const dateParts: string[] = localeDateString
-      .replace(TEXT_DIRECTION_MARKERS_REGEX, '')
-      .split(dateSeparator)
-      .map(p => p.replaceAll(/[^\d]/g, ''));
-    // Split the dateFormat into its parts to get the year, month, day order (e.g. ["d", "m", "y"], etc.).
-    // Removing everything else but the DATE_FORMAT_KEYS is necessary to support date formats with additional chars (e.g. "d.m.y г.", etc.).
-    const formatParts: string[] = this.dateFormat.replace(DATE_FORMAT_KEYS_REGEX, '').split('');
-
-    // Map the datePart values to their corresponding keys (e.g. y, m, d),
-    // to construct an ISO date string (e.g. "2026-01-31") that can be parsed by the Date constructor.
-    // This is necessary because different locale date formats may have different orders (e.g. "ymd", "dmy", "mdy", etc.).
-    const { y, m, d } = DATE_FORMAT_KEYS.reduce(
-      (parts, key) => ({
-        ...parts,
-        [key]: dateParts[formatParts.indexOf(key)],
-      }),
-      {} as Record<string, string>,
-    );
-
-    // Adjust for Thai Buddhist calendar
-    const year = this.isBuddhistCalendar
-      ? (Number(y) - BUDDHIST_CALENDAR_YEAR_OFFSET).toString()
-      : y;
-
-    return this.isoToDate([year, m, d].join('-'));
-  }
-
-  /**
-   * Convert a date object to an ISO 8601 formatted date string (YYYY-MM-DD) and vice versa.
-   * @param date A localtime date object.
-   * @returns An iso formatted, localtime date string.
-   */
-  private dateToIso(date: Date): string {
-    // The swedish locale (`sv`) happens to format the date in the exact ISO format (YYYY-MM-DD),
-    // so we can use it as a shortcut instead of manually constructing the string from the date parts.
-    return date.toLocaleDateString('sv', DATE_FORMAT_STRING_OPTIONS);
-  }
-
-  /**
-   * Convert an ISO 8601 formatted date string (YYYY-MM-DD) to a localtime date object.
-   * @param isoDateString An iso formatted, localtime date string.
-   * @returns A localtime date object.
-   */
-  private isoToDate(isoDateString: string): Date | null {
-    return new Date(`${this.padIsoDate(isoDateString)}T00:00`);
-  }
-
-  private padIsoDate(isoDateString: string): string {
-    const valueParts = isoDateString.split('-');
-    return `${valueParts[0].padStart(4, '0')}-${valueParts[1]}-${valueParts[2]}`;
+    return stringToDate(localeDateString, this.dateFormat, this.isBuddhistCalendar);
   }
 
   private setupInputObserver() {
@@ -569,8 +490,8 @@ export class PostDatePicker {
       const start = this.stringToDate(dates[0]);
       const end = this.stringToDate(dates[1]);
 
-      const startValid = this.isValidDate(start);
-      const endValid = this.isValidDate(end);
+      const startValid = isValidDate(start);
+      const endValid = isValidDate(end);
 
       if (startValid && endValid) {
         // Check if user entered dates in wrong order
@@ -578,7 +499,7 @@ export class PostDatePicker {
         this.skipOnSelectCount = reversed ? 0 : 2; // don't skip if reversed
         this.dpInstance.selectDate([start, end]);
         this.dpInstance.setViewDate(start);
-        this.postUpdateDates.emit([this.dateToIso(start), this.dateToIso(end)]);
+        this.postUpdateDates.emit([dateToIso(start), dateToIso(end)]);
       } else if (startValid && !endValid) {
         this.dpInstance.clear();
         this.dpInstance.selectDate(start);
@@ -589,11 +510,11 @@ export class PostDatePicker {
     } else {
       const date = this.stringToDate(this.inputMask.value);
 
-      if (this.isValidDate(date)) {
+      if (isValidDate(date)) {
         this.skipOnSelectCount = 1;
         this.dpInstance.selectDate(date);
         this.dpInstance.setViewDate(date);
-        this.postUpdateDates.emit(this.dateToIso(date));
+        this.postUpdateDates.emit(dateToIso(date));
       } else {
         this.resetSelection();
       }
@@ -766,7 +687,7 @@ export class PostDatePicker {
     body.addEventListener('keydown', this.handleGridKeydown);
 
     this.setActiveCell(
-      (this.selectedStartDate && this.isoToDate(this.selectedStartDate)) || this.today,
+      (this.selectedStartDate && isoToDate(this.selectedStartDate)) || this.today,
       focusOnDate,
     );
   }
@@ -805,8 +726,8 @@ export class PostDatePicker {
           placeholderChar: Object.keys(DATE_FORMAT_MAP)[2],
         },
       },
-      min: this.min ? new Date(`${this.padIsoDate(this.min)}T00:00`) : null,
-      max: this.max ? new Date(`${this.padIsoDate(this.max)}T00:00`) : null,
+      min: this.min ? new Date(`${padIsoDate(this.min)}T00:00`) : null,
+      max: this.max ? new Date(`${padIsoDate(this.max)}T00:00`) : null,
     };
 
     const singleMaskOptions = {
@@ -903,15 +824,15 @@ export class PostDatePicker {
 
           // update props
           if (Array.isArray(date) && date.length === 2) {
-            this.selectedStartDate = this.dateToIso(date[0]);
-            this.selectedEndDate = this.dateToIso(date[1]);
+            this.selectedStartDate = dateToIso(date[0]);
+            this.selectedEndDate = dateToIso(date[1]);
           } else if (!Array.isArray(date)) {
-            this.selectedStartDate = this.dateToIso(date);
+            this.selectedStartDate = dateToIso(date);
             this.selectedEndDate = undefined;
           }
 
           this.postUpdateDates.emit(
-            Array.isArray(date) ? date.map(d => this.dateToIso(d)) : this.dateToIso(date),
+            Array.isArray(date) ? date.map(d => dateToIso(d)) : dateToIso(date),
           );
 
           // Assign value to the input, close the popover and focus on the input
@@ -940,10 +861,10 @@ export class PostDatePicker {
           this.enhanceAccessibility();
         },
         onRenderCell: data => {
-          const internal = this.internalOnRenderCell(data);
+          const internal = renderCellAccessibility(data, this.localeCode);
           const custom = this.renderCellCallback?.(data);
 
-          return this.mergeRenderCellResults(internal, custom);
+          return mergeRenderCellResults(internal, custom);
         },
       };
 
@@ -975,13 +896,13 @@ export class PostDatePicker {
         );
       } else if (this.selectedStartDate && this.selectedEndDate) {
         this.dpInstance.selectDate([
-          this.isoToDate(this.selectedStartDate),
-          this.isoToDate(this.selectedEndDate),
+          isoToDate(this.selectedStartDate),
+          isoToDate(this.selectedEndDate),
         ]);
       }
     } else {
-      if (this.selectedStartDate && this.isoToDate(this.selectedStartDate)) {
-        this.dpInstance.selectDate(this.isoToDate(this.selectedStartDate));
+      if (this.selectedStartDate && isoToDate(this.selectedStartDate)) {
+        this.dpInstance.selectDate(isoToDate(this.selectedStartDate));
       }
     }
   }
@@ -1002,66 +923,6 @@ export class PostDatePicker {
       this.dpInstance.setCurrentView('years');
     }
   };
-
-  /**
-   * Add role and aria-label to each grid cell
-   */
-  private internalOnRenderCell({ date, cellType }) {
-    if (cellType === 'day') {
-      return {
-        attrs: {
-          'role': 'gridcell',
-          'aria-label': date.toLocaleDateString(this.localeCode, {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          }),
-        },
-      };
-    } else if (cellType === 'month') {
-      return {
-        attrs: {
-          'role': 'gridcell',
-          'aria-label': date.toLocaleDateString(this.localeCode, {
-            year: 'numeric',
-            month: 'long',
-          }),
-        },
-      };
-    } else if (cellType === 'year') {
-      return {
-        attrs: {
-          'role': 'gridcell',
-          'aria-label': date.toLocaleDateString(this.localeCode, {
-            year: 'numeric',
-          }),
-        },
-      };
-    }
-  }
-
-  /**
-   * Merge the internal render cell (adding of role + aria-label attributes) and the user's render cell (disabling dates, etc.)
-   * @param base Internal render cell
-   * @param custom User render cell
-   * @returns Merged render cell
-   */
-  private mergeRenderCellResults(base, custom) {
-    if (!base) return custom;
-    if (!custom) return base;
-
-    return {
-      ...base,
-      ...custom,
-      attrs: {
-        ...(base.attrs ?? {}),
-        ...(custom.attrs ?? {}),
-      },
-      classes: [base.classes, custom.classes].filter(Boolean).join(' '),
-      disabled: base.disabled || custom.disabled,
-    };
-  }
 
   private setupNavObserver() {
     if (typeof MutationObserver === 'undefined') return;
@@ -1123,10 +984,6 @@ export class PostDatePicker {
     this.dpInstance.setViewDate(this.today);
     this.selectedStartDate = undefined;
     this.selectedEndDate = undefined;
-  }
-
-  private isValidDate(date: Date): boolean {
-    return date instanceof Date && !Number.isNaN(date.getTime());
   }
 
   private syncDatePickerState() {
