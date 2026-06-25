@@ -1,0 +1,41 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as SideNavigationStories from './side-navigation.stories';
+import PackageTag from '@/shared/package-tag';
+import StylesPackageImport from '@/shared/styles-package-import';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import './side-navigation.styles.scss';
+
+<Meta of={SideNavigationStories} />
+
+<div className="docs-title">
+  # Side Navigation
+  <link-design of={JSON.stringify(SideNavigationStories)}></link-design>
+</div>
+
+<PackageTag meta={meta} />
+
+<div className="lead">
+  The side navigation is a container of navigation menu items that let the user navigate through different parts of a web application. It provides hierarchical structures with up to 4 nested levels that can be expanded or collapsed.
+</div>
+
+<Canvas sourceState="shown" of={SideNavigationStories.Default} />
+<div className="hide-col-default">
+  <Controls of={SideNavigationStories.Default} />
+</div>
+
+<ComponentsPackageInstall component="<post-side-navigation>" />
+
+<StylesPackageImport components={['side-navigation', 'list']} />
+## Navigation content
+ 
+The default slot holds the navigation content. It must be a `<nav>` landmark with a descriptive `aria-label` and `<ul>`/`<li>` lists for the items. Nested levels are nested `<ul>`s. The section heading is optional.
+ 
+## Accessibility
+ 
+### Links and disclosure buttons
+ 
+Use `<a>` for links and a `<button>` inside `<post-collapsible-trigger>` for collapsible sections. A link navigates, a button discloses; never nest one inside the other.
+ 
+### Focus management
+ 
+On mobile, focus moves into the navigation when the dialog opens and returns to the trigger when it closes. The rest of the page is inert while the dialog is open.
