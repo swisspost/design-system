@@ -32,7 +32,6 @@
     "@angular/forms": "catalog:angular",
     "@angular/platform-browser": "catalog:angular",
     "@angular/router": "catalog:angular",
-    "@primeuix/themes": "1.2.5",
     "@swisspost/design-system-components-angular": "workspace:10.0.0-next.75",
     "@swisspost/design-system-icons": "workspace:10.0.0-next.75",
     "@swisspost/design-system-styles": "workspace:10.0.0-next.75",
