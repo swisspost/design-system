@@ -62,11 +62,11 @@ export class PostLanguageMenu {
         `post-language-menu-item[code="${this.activeLang}"]`,
       );
 
-    return activeLanguage
-      ? this.textCurrentLanguage
-          .replaceAll('{name}', activeLanguage.name)
-          .replaceAll('#name', activeLanguage.name)
-      : undefined;
+    if (!activeLanguage) return;
+
+    return this.textCurrentLanguage
+      .replaceAll('{name}', activeLanguage.name)
+      .replaceAll('#name', activeLanguage.name);
   }
 
   componentDidLoad() {
