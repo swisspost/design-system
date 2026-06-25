@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': major
 ---
 
-Renamed the `List Group` component to `List Interactive`.
+Renamed the `List Group` component to `List Interactive`, and their classes respectively from `.list-group` to `.list-interactive`.

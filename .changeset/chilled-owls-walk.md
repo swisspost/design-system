@@ -3,4 +3,4 @@
 '@swisspost/design-system-components': minor
 ---
 
-Added the `post-togglebutton` component.
+Added the `<post-togglebutton>` component.
