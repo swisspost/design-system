@@ -62,7 +62,7 @@ const meta: MetaComponent<
       },
     },
     'post-tabs-content': {
-      name: 'post-tabs-content ',
+      name: 'post-tabs-content ', // trailing space is intentional to avoid conflict with auto-generated part
       control: false,
       description: 'The container element that displays the content of the currently active tab.',
       if: { arg: 'variant', eq: 'Content Tabs' },

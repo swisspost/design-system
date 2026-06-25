@@ -79,7 +79,7 @@ function renderContentTabsInContainer(
     <div class="${containerClass}">
       ${bombArgs({
         variant: ['Content Tabs'],
-        activeTabPanels: [undefined, 'third'],
+        activeTab: [undefined, 'third'],
         fullWidth: [false, true],
       })
         .filter(args => !(containerClass === '' && args.fullWidth === true))

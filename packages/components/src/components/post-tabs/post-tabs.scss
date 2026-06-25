@@ -37,6 +37,16 @@ $gird-container-padding: tokens.get('post-grid-container-padding-inline', compon
 
       post-icon {
         color: currentColor;
+
+        @include utilities-mx.high-contrast-mode() {
+          color: Highlight;
+        }
+      }
+
+      &:hover post-icon {
+        @include utilities-mx.high-contrast-mode() {
+          color: canvas;
+        }
       }
 
       &[hidden] {
@@ -56,6 +66,7 @@ $gird-container-padding: tokens.get('post-grid-container-padding-inline', compon
         }
       }
     }
+
     .tabs {
       overflow-x: hidden;
       background-color: transparent !important;
@@ -104,6 +115,13 @@ $gird-container-padding: tokens.get('post-grid-container-padding-inline', compon
         border-inline-end: none;
         border-radius: tokens.get('post-tabs-page-scroll-button-border-radius') 0 0
           tokens.get('post-tabs-page-scroll-button-border-radius');
+      }
+
+      &.scroll-btn {
+        @include utilities-mx.high-contrast-mode() {
+          background-color: Highlight;
+          color: HighlightText;
+        }
       }
     }
 
@@ -154,6 +172,10 @@ $gird-container-padding: tokens.get('post-grid-container-padding-inline', compon
       &:hover {
         border-color: tokens.get('post-tabs-page-scroll-button-hovered-border-color') !important;
         color: tokens.get('post-tabs-content-scroll-button-hovered-fg');
+
+        @include utilities-mx.high-contrast-mode() {
+          color: HighlightText;
+        }
       }
     }
   }
