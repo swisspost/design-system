@@ -80,9 +80,7 @@ function renderContentTabsInContainer(
       ${bombArgs({
         variant: ['Content Tabs'],
         activeTab: [undefined, 'third'],
-        fullWidth: [false, true],
       })
-        .filter(args => !(containerClass === '' && args.fullWidth === true))
         .map((args: Args) =>
           meta.render?.({ ...context.args, ...args, size } as never, context as never),
         )}
