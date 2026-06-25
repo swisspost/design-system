@@ -132,25 +132,25 @@ importers:
   apps/documentation:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../../packages/components
       '@swisspost/design-system-components-react':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../../packages/components-react
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../../packages/icons
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../../packages/styles/dist
       '@swisspost/design-system-theme-ag-grid':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../../packages/theme-ag-grid
       '@swisspost/design-system-tokens':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../../packages/tokens/dist
       '@swisspost/internet-header':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../../packages/internet-header
       ag-charts-community:
         specifier: 13.2.1
@@ -190,7 +190,7 @@ importers:
         specifier: 9.0.18
         version: 9.0.18(lit@3.3.2)(storybook@9.1.19(@testing-library/dom@10.4.0)(prettier@3.6.2)(vite@7.3.5(@types/node@25.9.3)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.32.0)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.48.0)(yaml@2.8.3)))(vite@7.3.5(@types/node@25.9.3)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.32.0)(sass-embedded@1.78.0)(sass@1.90.0)(terser@5.48.0)(yaml@2.8.3))
       '@swisspost/design-system-components-angular':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../../packages/components-angular/dist
       '@types/css-modules':
         specifier: 1.0.5
@@ -301,13 +301,13 @@ importers:
         specifier: catalog:angular
         version: 20.3.19(@angular/common@20.3.19(@angular/core@20.3.19(@angular/compiler@20.3.19)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@20.3.19(@angular/compiler@20.3.19)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@20.3.19(@angular/animations@20.3.19(@angular/core@20.3.19(@angular/compiler@20.3.19)(rxjs@7.8.2)(zone.js@0.16.1)))(@angular/common@20.3.19(@angular/core@20.3.19(@angular/compiler@20.3.19)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@20.3.19(@angular/compiler@20.3.19)(rxjs@7.8.2)(zone.js@0.16.1)))(rxjs@7.8.2)
       '@swisspost/design-system-components-angular':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../../packages/components-angular/dist
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../../packages/icons
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../../packages/styles/dist
       rxjs:
         specifier: catalog:angular
@@ -356,10 +356,10 @@ importers:
   apps/integration-next:
     dependencies:
       '@swisspost/design-system-components-react':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../../packages/components-react
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../../packages/styles/dist
       next:
         specifier: 16.2.6
@@ -381,7 +381,7 @@ importers:
         specifier: 'catalog:'
         version: 1.60.0
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../../packages/components
       '@tailwindcss/postcss':
         specifier: 4.1.18
@@ -475,10 +475,10 @@ importers:
         specifier: 4.43.3
         version: 4.43.3
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../styles/dist
       air-datepicker:
         specifier: 3.6.0
@@ -521,7 +521,7 @@ importers:
         specifier: 3.0.12
         version: 3.0.12(@stencil/core@4.43.3)
       '@swisspost/design-system-eslint':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../eslint
       '@types/jest':
         specifier: catalog:stencil/jest
@@ -602,7 +602,7 @@ importers:
   packages/components-angular:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../components
       tslib:
         specifier: catalog:angular
@@ -673,14 +673,14 @@ importers:
         specifier: 0.3.0
         version: 0.3.0(next@16.2.6(@playwright/test@1.60.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.90.0))(vite@8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@24.0.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.90.0)(terser@5.48.0)(yaml@2.8.3))(webpack@5.106.2(esbuild@0.28.0))
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../components
     devDependencies:
       '@eslint/js':
         specifier: 9.18.0
         version: 9.18.0
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../icons
       '@types/node':
         specifier: catalog:node
@@ -861,10 +861,10 @@ importers:
   packages/internet-header:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../components
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../styles/dist
       body-scroll-lock:
         specifier: 4.0.0-beta.0
@@ -1003,14 +1003,14 @@ importers:
         specifier: 2.11.8
         version: 2.11.8
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../icons
       gulp-sourcemaps:
         specifier: 3.0.0
         version: 3.0.0
     devDependencies:
       '@swisspost/design-system-tokens':
-        specifier: workspace:10.0.0-next.74
+        specifier: workspace:10.0.0-next.75
         version: link:../tokens/dist
       '@types/node':
         specifier: catalog:node
@@ -2662,6 +2662,14 @@ packages:
     peerDependenciesMeta:
       '@types/node':
         optional: true
+
+  '@isaacs/balanced-match@4.0.1':
+    resolution: {integrity: sha512-yzMTt9lEb8Gv7zRioUilSglI0c0smZ9k5D65677DLWLtWJaXIS3CqcGyUFByYKlnUj6TkjLVs54fBl6+TiGQDQ==}
+    engines: {node: 20 || >=22}
+
+  '@isaacs/brace-expansion@5.0.0':
+    resolution: {integrity: sha512-ZT55BDLV0yv0RBm2czMiZ+SqCGO7AvmOM3G/w2xhVPH+te0aKgFjmBvGlL1dH+ql2tgGO3MVrbb3jCKyvpgnxA==}
+    engines: {node: 20 || >=22}
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -7683,6 +7691,10 @@ packages:
   isstream@0.1.2:
     resolution: {integrity: sha512-Yljz7ffyPbrLpLngrMtZ7NduUgVvi6wG9RJ9IUcyCd59YQ911PBJphODUcbOVbqYfxe1wuYf/LJ8PauMRwsM/g==}
 
+  istanbul-lib-coverage@3.2.0:
+    resolution: {integrity: sha512-eOeJ5BHCmHYvQK7xt9GkdHuzuCGS1Y6g9Gvnx3Ym33fz/HpLRYxiS0wHNr+m/MBC8B647Xt608vCDEvhl9c6Mw==}
+    engines: {node: '>=8'}
+
   istanbul-lib-coverage@3.2.2:
     resolution: {integrity: sha512-O8dpsF+r0WV/8MNRKfnmrtCWhuKjxrq2w+jpzBL5UZKTi2LeVWnWOmWRxFlesJONmc+wLAGvKQZEOanko0LFTg==}
     engines: {node: '>=8'}
@@ -8743,6 +8755,10 @@ packages:
     resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==}
     engines: {node: '>=4'}
 
+  minimatch@10.1.1:
+    resolution: {integrity: sha512-enIvLvRAFZYXJzkCYG5RKmPfrFArdLv+R+lbQ53BmIMLIry74bjKzX6iHAm8WYamJkhSSEabrWN5D97XnKObjQ==}
+    engines: {node: 20 || >=22}
+
   minimatch@10.2.5:
     resolution: {integrity: sha512-MULkVLfKGYDFYejP07QOurDLLQpcjk7Fw+7jXS2R2czRQzR56yHRveU5NDJEOviH+hETZKSkIk5c+T23GjFUMg==}
     engines: {node: 18 || 20 || >=22}
@@ -9279,6 +9295,10 @@ packages:
   path-scurry@1.11.1:
     resolution: {integrity: sha512-Xa4Nw17FS9ApQFJ9umLiJS4orGjm7ZzwUrwamcGQuHSzDyth9boKDaycYdDcZDuqYATXw4HFXgaqWTctW/v1HA==}
     engines: {node: '>=16 || 14 >=14.18'}
+
+  path-scurry@2.0.1:
+    resolution: {integrity: sha512-oWyT4gICAu+kaA7QWk/jvCHWarMKNs6pXOGWKDTr7cw4IGcUbW+PeTfbaQiLGheFRpjo6O9J0PmyMfQPjH71oA==}
+    engines: {node: 20 || >=22}
 
   path-scurry@2.0.2:
     resolution: {integrity: sha512-3O/iVVsJAPsOnpwWIeD+d6z/7PmqApyQePUtCndjatj/9I5LylHvt5qluFaBT3I5h3r1ejfR056c+FCv+NnNXg==}
@@ -13664,6 +13684,12 @@ snapshots:
   '@inquirer/type@3.0.10(@types/node@25.9.3)':
     optionalDependencies:
       '@types/node': 25.9.3
+
+  '@isaacs/balanced-match@4.0.1': {}
+
+  '@isaacs/brace-expansion@5.0.0':
+    dependencies:
+      '@isaacs/balanced-match': 4.0.1
 
   '@isaacs/cliui@8.0.2':
     dependencies:
@@ -18727,10 +18753,10 @@ snapshots:
     dependencies:
       foreground-child: 3.3.1
       jackspeak: 4.1.1
-      minimatch: 10.2.5
+      minimatch: 10.1.1
       minipass: 7.1.3
       package-json-from-dist: 1.0.1
-      path-scurry: 2.0.2
+      path-scurry: 2.0.1
 
   glob@13.0.6:
     dependencies:
@@ -19492,6 +19518,8 @@ snapshots:
 
   isstream@0.1.2: {}
 
+  istanbul-lib-coverage@3.2.0: {}
+
   istanbul-lib-coverage@3.2.2: {}
 
   istanbul-lib-instrument@5.2.1:
@@ -19523,7 +19551,7 @@ snapshots:
   istanbul-lib-source-maps@4.0.1:
     dependencies:
       debug: 4.4.3(supports-color@5.5.0)
-      istanbul-lib-coverage: 3.2.2
+      istanbul-lib-coverage: 3.2.0
       source-map: 0.6.1
     transitivePeerDependencies:
       - supports-color
@@ -21405,6 +21433,10 @@ snapshots:
 
   min-indent@1.0.1: {}
 
+  minimatch@10.1.1:
+    dependencies:
+      '@isaacs/brace-expansion': 5.0.0
+
   minimatch@10.2.5:
     dependencies:
       brace-expansion: 5.0.5
@@ -22069,6 +22101,11 @@ snapshots:
   path-scurry@1.11.1:
     dependencies:
       lru-cache: 10.4.3
+      minipass: 7.1.3
+
+  path-scurry@2.0.1:
+    dependencies:
+      lru-cache: 11.5.1
       minipass: 7.1.3
 
   path-scurry@2.0.2:
