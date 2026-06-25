@@ -4,55 +4,97 @@
 :host {
   @include mixins.code-element(false);
 
+  code {
+    display: block;
+    top: 0;
+    margin: 0;
+  }
+
+  post-icon {
+    display: block;
+  }
+
   dl {
+    --post-icons-migration-map-areas: 'oldName newNames oldIcon newIcons';
+    --post-icons-migration-map-columns: repeat(3, min-content) auto;
+    --post-icons-migration-map-gap: 1rem;
+    --post-icons-migration-map-separator: '→';
+    --post-icons-migration-map-separator-gap: var(--post-icons-migration-map-gap);
+
     display: grid;
-    grid-auto-flow: row;
-    grid-template-columns: max-content auto;
+    grid-template-areas: var(--post-icons-migration-map-areas);
+    grid-template-columns: var(--post-icons-migration-map-columns);
+
+    > dt {
+      grid-column: oldName / newNames;
+    }
+
+    > dd {
+      grid-column: oldIcon / newIcons;
+    }
 
     > dt,
     > dd {
       display: grid;
-      grid-template-areas: 'old new';
-      grid-template-columns: max-content max-content max-content;
-      grid-auto-flow: row;
-      grid-row-gap: 0.25rem;
+      grid-template-columns: subgrid;
+      column-gap: var(--post-icons-migration-map-gap);
       margin: 0;
       padding: 0.5rem;
       width: auto;
-      align-items: start;
-
-      > :first-child {
-        grid-column: old;
-
-        &::after {
-          display: inline-block;
-          content: '→';
-          margin-inline: 1rem;
-          opacity: 0.35;
-          line-height: 1;
-          vertical-align: text-top;
-        }
-
-        ~ * {
-          grid-column: new;
-
-          &:has(+ *) {
-            &::after {
-              display: inline-block;
-              content: 'or';
-              margin-inline-start: 0.5rem;
-              line-height: 1;
-            }
-          }
-        }
-      }
 
       &:nth-of-type(odd) {
         background-color: post.$black-alpha-10;
       }
 
-      post-icon {
-        font-size: 1.25rem;
+      > div {
+        display: flex;
+        align-items: center;
+        gap: var(--post-icons-migration-map-separator-gap);
+
+        &:first-child {
+          // oldName or oldIcon (depends on the subgrid)
+          grid-column: 1;
+
+          &::after {
+            display: block;
+            content: var(--post-icons-migration-map-separator);
+            margin: var(--post-icons-migration-map-separator-margin);
+            opacity: 0.35;
+          }
+
+          ~ div {
+            // oldIcons or newIcons (depends on the subgrid)
+            grid-column: 2;
+
+            &:has(+ *) {
+              margin-block-end: 0.25rem;
+
+              &::after {
+                display: block;
+                content: 'or';
+                margin: var(--post-icons-migration-map-separator-margin);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @include post.max(tablet) {
+      --post-icons-migration-map-areas: 'oldName newNames' 'oldIcon newIcons';
+      --post-icons-migration-map-columns: min-content auto;
+
+      > dd {
+        padding-block-start: 0;
+      }
+
+      > dt,
+      > dd {
+        > div {
+          &:first-child {
+            justify-content: space-between;
+          }
+        }
       }
     }
   }

@@ -62,7 +62,7 @@
     },
     {
       "old": 1025,
-      "new": "Bill"
+      "new": "Bill-Line"
     },
     {
       "old": 1027,
@@ -106,7 +106,7 @@
     },
     {
       "old": 2001,
-      "new": "Wifi"
+      "new": "WifiOn"
     },
     {
       "old": 2002,
@@ -178,7 +178,7 @@
     },
     {
       "old": 2031,
-      "new": "Flag"
+      "new": "Flag-Line"
     },
     {
       "old": 2032,
@@ -214,7 +214,7 @@
     },
     {
       "old": 2040,
-      "new": ["Plus", "Plus Wide"]
+      "new": ["Plus", "PlusWide"]
     },
     {
       "old": 2041,
@@ -462,7 +462,7 @@
     },
     {
       "old": 3157,
-      "new": "Bill"
+      "new": "Bill-Line"
     },
     {
       "old": 3158,
@@ -634,7 +634,7 @@
     },
     {
       "old": 3228,
-      "new": ["BottleGlas", "AlcoholicGoods"]
+      "new": ["BottleGlass", "AlcoholicGoods"]
     },
     {
       "old": 3229,
@@ -710,7 +710,7 @@
     },
     {
       "old": 3249,
-      "new": "Bill"
+      "new": "Bill-Line"
     },
     {
       "old": 3250,
@@ -978,7 +978,7 @@
     },
     {
       "old": 2211,
-      "new": "FavouriteAdd"
+      "new": "FavoriteAdd"
     },
     {
       "old": 2214,
@@ -1270,7 +1270,7 @@
     },
     {
       "old": 2530,
-      "new": "AdressGeodata"
+      "new": "AddressGeodata"
     },
     {
       "old": 2531,

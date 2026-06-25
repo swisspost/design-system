@@ -2397,20 +2397,17 @@ export class MyComponent {
           </li>
           <li>
             <h3>Icons Migration 🖼️</h3>
-            <p>
-              As mentioned above, there is a brand new
-              UI Icon Set (with either <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uilight">line icons</a> or <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uisolid">solid icons</a>). You
-              can use it exactly the same way as the previous <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=post">Post Icon Set</a>. Instead of an icon number, you
-              only need the name of the icon. Below, we show you which of the previous icons you can
-              replace with a corresponding new icon.
-            </p>
+            <p>Beside the <strong><a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=post">Post Icon Set</a></strong>, there is now a brand new
+              <strong>UI Icon Set</strong>, available as <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uilight">line</a> or <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uisolid">solid</a> icons.</p>
+            <p>Using the new icons is as easy as using the previous ones, simply exchange the icon number with an icon name and you're done.</p>
+            <p>Below, we show you which of the previous icons you can replace with a corresponding new icon.</p>
 
-            <post-banner variant="info"
-              >Not all previous icons are (or will be) available in the new UI Icon Set.
-              Instead, we produce icons on request. For this reason, it is still allowed to use
-              icons of the Post Icons Set. However, we recommend switching to the new UI Icon Set
-              whenever possible.</post-banner
-            >
+            <post-banner variant="info">
+              <p>Not all previous icons are (or will be) available in the new Icon Set. Instead, we produce icons on request.</p>
+              <p>For this reason, the previous Icon Set stays available and it's allowed to use
+              icons from there, if there is no equivalent in the new Icon Set. However, we strongly recommend switching to the new <strong>UI Icon Set</strong>
+              whenever possible!</p>
+            </post-banner>
 
             <h4>Icon Mapping</h4>
 
