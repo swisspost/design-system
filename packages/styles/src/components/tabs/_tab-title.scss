@@ -12,6 +12,10 @@ $tabs-outline-offset: calc(
     (tokens.get('post-tabs-border-width'))
 );
 
+$adjusted-border-radius: calc(
+  tokens.get('focus-border-radius', helpers.$post-focus) - $tabs-outline-offset
+);
+
 // Common for all variants
 post-tab-item.tab-title,
 post-tab-item.nav-item a {
@@ -41,12 +45,8 @@ post-tab-item.tab-title {
   transition:
     background-color 100ms,
     color 100ms;
-
+  border-radius: $adjusted-border-radius;
   color: tokens.get('post-tabs-content-tab-enabled-fg');
-
-  @include utilities-mx.focus-style-custom() {
-    border-radius: 4px;
-  }
 
   // Indicator line as pseudo-element so border-radius on focus doesn't affect it
   &::after {
