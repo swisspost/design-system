@@ -179,7 +179,7 @@ export class MigrationV910Component extends LitElement {
             </p>
             <p>
               Oh, and yes — there's a
-              <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs"
+              <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uilight">
                 >brand-new icon set</a
               >
               too 🖼️.
@@ -2399,16 +2399,16 @@ export class MyComponent {
             <h3>Icons Migration 🖼️</h3>
             <p>
               As mentioned above, there is a brand new
-              <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs">UI Icon Set</a>. You
-              can use it exactly the same way as the previous icons. Instead of an icon number, you
+              UI Icon Set (with either <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uilight">line icons</a> or <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uisolid">solid icons</a>). You
+              can use it exactly the same way as the previous <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=post">Post Icon Set</a>. Instead of an icon number, you
               only need the name of the icon. Below, we show you which of the previous icons you can
               replace with a corresponding new icon.
             </p>
 
             <post-banner variant="info"
-              >Not all existing Post Icons are (or will be) available in the new UI Icon Set.
+              >Not all previous icons are (or will be) available in the new UI Icon Set.
               Instead, we produce icons on request. For this reason, it is still allowed to use
-              icons from the previous icon set. However, we recommend switching to the new icons
+              icons of the Post Icons Set. However, we recommend switching to the new UI Icon Set
               whenever possible.</post-banner
             >
 

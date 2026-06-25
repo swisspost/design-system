@@ -85,6 +85,50 @@ export class Search extends React.Component {
     },
   };
 
+  componentDidMount() {
+    this.applyDeeplinkFromLocation();
+  }
+
+  private getSearchParam(params: URLSearchParams, key: string) {
+    const wanted = key.toLowerCase();
+
+    for (const [currentKey, value] of params.entries()) {
+      if (!value) continue;
+      if (currentKey.toLowerCase() === wanted) return value;
+    }
+
+    return null;
+  }
+
+  private normalizeSetName(value: string | null): keyof IconSets | null {
+    const normalized = value?.trim().toLowerCase();
+
+    switch (normalized) {
+      case 'post':
+        return 'post';
+      case 'uilight':
+        return 'uiLight';
+      case 'uisolid':
+        return 'uiSolid';
+      default:
+        return null;
+    }
+  }
+
+  private applyDeeplinkFromLocation() {
+    const params = new URLSearchParams(window.parent?.location.search ?? window.location.search);
+    const setName = this.normalizeSetName(this.getSearchParam(params, 'spds-iconset'));
+    const query = this.getSearchParam(params, 'spds-query');
+
+    if (setName) this.form.set.current = setName;
+
+    if (query) {
+      this.search(query);
+    } else if (setName) {
+      this.updateResults();
+    }
+  }
+
   search(value: string) {
     this.form.text = value;
     this.setState(this.form);
