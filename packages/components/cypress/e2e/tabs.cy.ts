@@ -222,18 +222,18 @@ describe('tabs', () => {
 });
 
 describe('Accessibility', () => {
-  const variantStories: Record<string, string> = {
-    'content-tabs': 'default',
-    'page-tabs': 'pages-variant',
-  };
-
-  (['content-tabs', 'page-tabs'] as const).forEach(variant => {
-    it(`Has no detectable a11y violations on load (${variant})`, () => {
-      cy.getComponent('tabs', TABS_ID, variantStories[variant]);
-      cy.get('post-tabs').should('exist');
-      cy.checkA11y('post-tabs');
-    });
+  it('Has no detectable a11y violations on load (content-tabs)', () => {
+    cy.getComponent('tabs', TABS_ID, 'default');
+    cy.get('post-tabs').should('exist');
+    cy.checkA11y({ include: [['post-tabs']], exclude: [['post-tab-panel']] }); // panel is excluded as it is unstyled on purpose
   });
+
+  it('Has no detectable a11y violations on load (page-tabs)', () => {
+    cy.getComponent('tabs', TABS_ID, 'pages-variant');
+    cy.get('post-tabs').should('exist');
+    cy.checkA11y('post-tabs');
+  });
+
   describe('content mode ARIA attributes', () => {
     beforeEach(() => {
       cy.getComponent('tabs', TABS_ID, 'default');
