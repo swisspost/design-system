@@ -1,5 +1,41 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.75
+
+### Major Changes
+
+- Removed unused CSS entry files `fonts.css` and `elements.css`. Use `/components/fonts.css` and direct imports from `/elements/...` instead. (by [@gfellerph](https://github.com/gfellerph) with [#7895](https://github.com/swisspost/design-system/pull/7895))
+
+- Removed the CSS layer wrapping the style tokens in the `*-tokens-*.scss` entry files. Projects are now free to use layers as they need. (by [@alizedebray](https://github.com/alizedebray) with [#7908](https://github.com/swisspost/design-system/pull/7908))
+
+### Minor Changes
+
+- Added the small variant `.form-control-sm` to the textarea. (by [@leagrdv](https://github.com/leagrdv) with [#7876](https://github.com/swisspost/design-system/pull/7876))
+
+### Patch Changes
+
+- Added support for icons that are set using `mask-image` for older browsers (Chrome/Edge < 120, Safari < 15.4, and older chromium-based browsers). (by [@alizedebray](https://github.com/alizedebray) with [#7909](https://github.com/swisspost/design-system/pull/7909))
+
+- Corrected disabled and link button styles. (by [@leagrdv](https://github.com/leagrdv) with [#7790](https://github.com/swisspost/design-system/pull/7790))
+
+- Fixed `list-interactive-switch` not stretching to full width. Removed outdated text from the documentation. (by [@myrta2302](https://github.com/myrta2302) with [#7900](https://github.com/swisspost/design-system/pull/7900))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.75
+
+## 10.0.0-next.74
+
+### Major Changes
+
+- Updated the badge component to the new design and removed its `.bg-*` classes options as badges don't have color variants anymore. (by [@leagrdv](https://github.com/leagrdv) with [#7805](https://github.com/swisspost/design-system/pull/7805))
+
+### Patch Changes
+
+- Fixed form search input buttons color on dark mode. (by [@leagrdv](https://github.com/leagrdv) with [#7836](https://github.com/swisspost/design-system/pull/7836))
+
+- Fixed the `dialog` component scheme in dark mode. (by [@leagrdv](https://github.com/leagrdv) with [#7829](https://github.com/swisspost/design-system/pull/7829))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.74
+
 ## 10.0.0-next.73
 
 ### Patch Changes

@@ -50,18 +50,18 @@ jobs:
         run: pnpm e2e:angular:ci
 
       - name: Build consumer app
-        run: pnpm --filter design-system-components-angular-workspace exec ng build consumer-app
+        run: pnpm --filter design-system-integration-angular exec ng build
 
       - name: Install Playwright browsers
-        run: pnpm --filter design-system-components-angular-workspace playwright:install
+        run: pnpm --filter design-system-integration-angular playwright:install
 
       - name: Run tests
-        run: pnpm --filter design-system-components-angular-workspace e2e:ci
+        run: pnpm --filter design-system-integration-angular e2e:ci
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: playwright-results-angular
-          path: packages/components-angular/projects/consumer-app/playwright/results
+          path: apps/integration-angular/playwright/results
           retention-days: 14

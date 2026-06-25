@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-components-angular-workspace': minor
+'@swisspost/design-system-integration-angular': minor
 '@swisspost/internet-header': minor
 '@swisspost/design-system-components': minor
 '@swisspost/design-system-documentation': minor
