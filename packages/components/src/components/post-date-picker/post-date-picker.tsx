@@ -202,6 +202,7 @@ export class PostDatePicker {
   @Method()
   async show() {
     if (this.popoverRef) {
+      this.dpInstance?.setCurrentView('days');
       await this.popoverRef.show(this.dpInput);
       this.enhanceAccessibility();
       this.host.shadowRoot.removeEventListener('keydown', this.handleTab, true); // remove before adding
@@ -884,7 +885,13 @@ export class PostDatePicker {
           this.updateNavigationButtonLabels();
         },
         onSelect: ({ date }) => {
-          if (!date || (Array.isArray(date) && date.length === 0)) return;
+          // Handle deselection (clicking the same date again)
+          if (!date || (Array.isArray(date) && date.length === 0)) {
+            if (this._isInternalUpdate) return;
+            this.inputMask.value = '';
+            this.emitInputEvents();
+            return;
+          }
 
           this.getCells().forEach(c => {
             c.setAttribute('aria-selected', c.classList.contains('-selected-') ? 'true' : 'false');
