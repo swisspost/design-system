@@ -141,7 +141,7 @@ const meta: MetaComponent = {
     sideNav: {
       name: 'Side navigation trigger',
       description:
-        'Whether or not a `<post-side-navigation-trigger>` is displayed in the `slot="side-nav"`. Only relevant for the application header variant.',
+        'Whether or not the side navigation is displayed. Only relevant for the application header variant.',
       control: {
         type: 'boolean',
       },

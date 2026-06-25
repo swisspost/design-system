@@ -133,7 +133,7 @@ post-header {
       display: none;
     }
 
-    @include interactive-elements {
+    > button {
       @include nav-item-base;
 
       @include media.only(mobile) {
