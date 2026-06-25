@@ -500,12 +500,11 @@ export namespace Components {
          */
         "placement"?: Placement1;
         /**
-          * Displays the popover menu, focusing the first menu item.
-          * @param target - The HTML element relative to which the popover menu should be displayed.
+          * Displays the popover menu, focusing the first menu item, `target` is the HTML element the menu is anchored to.
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
-          * Toggles the menu visibility based on its current state.
+          * Toggles the menu visibility based on its current state, `target` is the HTML element the menu is anchored to.
          */
         "toggle": (target: HTMLElement) => Promise<void>;
     }
@@ -574,8 +573,7 @@ export namespace Components {
          */
         "placement"?: Placement1;
         /**
-          * Programmatically display the popover
-          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
+          * Programmatically display the popover, `target` is the HTML element the menu is anchored to.
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
@@ -583,9 +581,7 @@ export namespace Components {
          */
         "textClose": string;
         /**
-          * Toggle popover display
-          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
-          * @param force Pass true to always show or false to always hide
+          * Toggle popover display, `target` is the HTML element the menu is anchored to.
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
     }
@@ -625,12 +621,12 @@ export namespace Components {
         "safeSpace"?: 'triangle' | 'trapezoid';
         /**
           * Programmatically display the popovercontainer
-          * @param target A focusable element inside the trigger component that controls the popover
+          * @param target The element that invokes the popover and to which it is visually anchored.
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
           * Toggle popovercontainer display
-          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
+          * @param target The element that invokes the popover and to which it is visually anchored.
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<boolean>;
@@ -781,14 +777,11 @@ export namespace Components {
          */
         "placement"?: Placement1;
         /**
-          * Programmatically display the tooltip.
-          * @param target An element where the tooltip should be shown
+          * Programmatically display the tooltip, `target` is the HTML element the menu is anchored to.
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
-          * Toggle tooltip display.
-          * @param target An element where the tooltip should be shown
-          * @param force Pass true to always show or false to always hide
+          * Toggle tooltip display, `target` is the HTML element the menu is anchored to.
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
     }
