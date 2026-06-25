@@ -1,5 +1,103 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.75
+
+### Minor Changes
+
+- Added icons:
+  - `bluetoothmenu` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `bluetoothoff` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `bluetoothtwodots` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `chevrontripledown` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `chevrontripleup` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `floor` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `moneyno` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `rollboxempty` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `sale` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `signatureno` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7922](https://github.com/swisspost/design-system/pull/7922))
+
+## 10.0.0-next.74
+
+### Minor Changes
+
+- Added icons:
+  - `amp` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `accidentcar` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `advertisingonline` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `allocate` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `arrowforewardbackward` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `arrowtabulatordown` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `arrowtabulatorleft` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `arrowtabulatorup` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `arrowupdown` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `bookopen` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `book` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `calendardurationai` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `calendarend` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `calendarstart` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `carbreaks` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `collapseleft` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `collapseright` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `customercontact` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `depositmypost24` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `depositnot` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `depositsecure` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `deposit` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `depot` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `digitaloutofhome` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `directmailing` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `dispoboxcoop` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `dispoboxfood` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `dispoboxmigros` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `dispoboxtemperature` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `dispobox` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `documentexcel` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `documentreleasenote` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `drag` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `europalette` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `labelcheck` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `letterdigital` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `letterlocation` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `mailboxprivatenofit` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `morehorizontal` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `motor` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `navigate` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `nodelivery` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `nothome` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `oilchange` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `paragraph` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `powerbank` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `printhistory` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `progressindicator` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `promonothing` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `promotoomuch` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `rearviewmirror` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `rollbox` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `statuscompleted` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `statusedit` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `statusinsurance` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `statusopen` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `statuspaused` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `targetbullseye` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `targetcenter` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `timewindowprio1` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `timewindowprio2` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `transporternotavailable` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `transporterwarning` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `userswitch` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `vehiclelights` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7865](https://github.com/swisspost/design-system/pull/7865))
+
+- Added icons:
+  - `tyre` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7872](https://github.com/swisspost/design-system/pull/7872))
+
+### Patch Changes
+
+- Updated icons:
+  - `drawer` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7865](https://github.com/swisspost/design-system/pull/7865))
+
+- Updated icons:
+  - `calendarduration` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#7872](https://github.com/swisspost/design-system/pull/7872))
+
 ## 10.0.0-next.73
 
 ## 10.0.0-next.72
