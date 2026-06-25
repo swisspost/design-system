@@ -91,8 +91,15 @@ export class PostDatePicker {
   @Watch('range')
   updateRange() {
     this.dpInstance?.update({ range: this.range });
-    this.syncInputToDp();
     this.updateMask();
+
+    if (this.range && this.dpInstance?.selectedDates.length > 0) {
+      const startDate = this.dpInstance.selectedDates[0];
+      this.dpInstance.clear();
+      this.dpInstance.selectDate(startDate);
+    } else {
+      this.syncInputToDp();
+    }
   }
 
   /**
@@ -251,7 +258,8 @@ export class PostDatePicker {
    */
   private get systemLocale() {
     if (Build.isServer) return FALLBACK_LANGUAGE_CODE;
-    return this.host.closest('[lang]')?.getAttribute('lang') ?? FALLBACK_LANGUAGE_CODE;
+    const closestLang = this.host.closest('[lang]')?.getAttribute('lang');
+    return closestLang ?? navigator.language ?? FALLBACK_LANGUAGE_CODE;
   }
 
   /**

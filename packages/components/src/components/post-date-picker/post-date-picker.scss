@@ -682,7 +682,9 @@ tokens.$default-map: components.$post-datepicker;
       }
 
       // Hide range preview when the mouse is outside the days grid
-      &:not(:hover) .air-datepicker-cell {
+      // Correct: "does not have both A and B"
+      &:not(:has(.-selected-.-range-from-):has(.-selected-.-range-to-)):not(:hover)
+        .air-datepicker-cell {
         &:is(.-in-range-, .-range-from-, .-range-to-) {
           &::before,
           &:not(.-selected-)::after {
