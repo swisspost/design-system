@@ -3,6 +3,7 @@ import { customElement, property, state } from 'lit/decorators.js';
 import { V910Checks } from './types';
 import { _updateOnChange, _updatePersistedState } from './util/migration-checks.util';
 import { _restorePersistedState, MIGRATION_CHECKS_KEY_V9 } from './util/persist.util';
+import './migration-v9-10/icons-migration-map-block/icons-migration-map.component';
 
 @customElement('migration-version-9-10')
 export class MigrationV910Component extends LitElement {
@@ -2395,7 +2396,28 @@ export class MyComponent {
             </div>
           </li>
           <li>
-            <h3>🧹 Clean up</h3>
+            <h3>Icons Migration 🖼️</h3>
+            <p>
+              As mentioned above, there is a brand new
+              <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs">UI Icon Set</a>. You
+              can use it exactly the same way as the previous icons. Instead of an icon number, you
+              only need the name of the icon. Below, we show you which of the previous icons you can
+              replace with a corresponding new icon.
+            </p>
+
+            <post-banner variant="info"
+              >Not all existing Post Icons are (or will be) available in the new UI Icon Set.
+              Instead, we produce icons on request. For this reason, it is still allowed to use
+              icons from the previous icon set. However, we recommend switching to the new icons
+              whenever possible.</post-banner
+            >
+
+            <h4>Icon Mapping</h4>
+
+            <icons-migration-map></icons-migration-map>
+          </li>
+          <li>
+            <h3>Clean up 🧹</h3>
             <p>
               You're almost done! After completing the migration steps above, you can now remove all
               remaining references to
