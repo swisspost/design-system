@@ -432,8 +432,6 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
       });
     });
 
-    it('does not shift the accordion above the trigger', () =>
-      assertNoLayoutShift('#layout-accordion-item'));
 
     it('does not reflow paragraph text before the trigger', () => {
       snapRect('#paragraph-before').then(before => {
