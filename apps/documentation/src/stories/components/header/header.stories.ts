@@ -209,7 +209,7 @@ function getHeaderRenderer(
     const languageMenu = html`
       <post-language-menu
         text-change-language="Change the language"
-        text-current-language="The currently selected language is #name."
+        text-current-language="The currently selected language is {name}."
         name="language-menu-example"
       >
         <post-language-menu-item code="de" name="German">de</post-language-menu-item>
