@@ -196,6 +196,57 @@ function showGlobalLogin(args: Args) {
   return !args.title && !args.jobs && args.postLogin;
 }
 
+function buildLanguageMenu() {
+  return html`
+    <post-language-menu
+      text-change-language="Change the language"
+      text-current-language="The currently selected language is {name}."
+      name="language-menu-example"
+    >
+      <post-language-menu-item code="de" name="German">de</post-language-menu-item>
+      <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
+      <post-language-menu-item code="it" name="Italian">it</post-language-menu-item>
+      <post-language-menu-item active="true" code="en" name="English">en</post-language-menu-item>
+    </post-language-menu>
+  `;
+}
+
+function buildGlobalControls() {
+  return html`
+    <!-- Global controls (Search) -->
+    <ul slot="global-nav-primary">
+      <li>
+        <a href="">
+          <span>Search</span>
+          <post-icon aria-hidden="true" name="search"></post-icon>
+        </a>
+      </li>
+    </ul>
+  `;
+}
+
+function buildGlobalLogin(args: Args, userMenu: TemplateResult) {
+  return args.isLoggedIn
+    ? html` <div slot="post-login">${userMenu}</div> `
+    : html`
+        <a href="" slot="post-login">
+          <span>Login</span>
+          <post-icon name="login"></post-icon>
+        </a>
+      `;
+}
+
+function isApplicationHeader(args: Args) {
+  return (
+    args.localNav &&
+    !args.mainNav &&
+    !args.targetGroup &&
+    !args.globalNavPrimary &&
+    !args.globalNavSecondary &&
+    !args.postLogin
+  );
+}
+
 function getHeaderRenderer(
   subComponents: {
     mainnavigation?: TemplateResult;
@@ -208,75 +259,47 @@ function getHeaderRenderer(
     const userMenu = subComponents.userMenu ?? renderUserMenu();
     const title = subComponents.title ?? renderTitle(args);
 
-    const globalLogin = args.isLoggedIn
-      ? html` <div slot="post-login">${userMenu}</div> `
-      : html`
-          <a href="" slot="post-login">
-            <span>Login</span>
-            <post-icon name="login"></post-icon>
-          </a>
-        `;
+    const languageMenu = buildLanguageMenu();
+    const globalControls = buildGlobalControls();
+    const globalLogin = buildGlobalLogin(args, userMenu);
+    const appHeader = isApplicationHeader(args);
+    const localLanguageMenuItem = args.languageMenu && appHeader ? languageMenu : undefined;
 
-    const globalControls = html`
-      <!-- Global controls (Search) -->
-      <ul slot="global-nav-primary">
-        <li>
-          <a href="">
-            <span>Search</span>
-            <post-icon aria-hidden="true" name="search"></post-icon>
-          </a>
-        </li>
-      </ul>
-    `;
-
-    const languageMenu = html`
-      <post-language-menu
-        text-change-language="Change the language"
-        text-current-language="The currently selected language is {name}."
-        name="language-menu-example"
-      >
-        <post-language-menu-item code="de" name="German">de</post-language-menu-item>
-        <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
-        <post-language-menu-item code="it" name="Italian">it</post-language-menu-item>
-        <post-language-menu-item active="true" code="en" name="English">en</post-language-menu-item>
-      </post-language-menu>
-    `;
-
-    const isApplicationHeader =
-      args.localNav &&
-      !args.mainNav &&
-      !args.targetGroup &&
-      !args.globalNavPrimary &&
-      !args.globalNavSecondary &&
-      !args.postLogin;
-    const localLanguageMenuItem =
-      args.languageMenu && isApplicationHeader ? languageMenu : undefined;
+    // Pre-resolve all conditional slots to keep the template flat
+    const audienceSlot = args.targetGroup ? renderAudience(args) : nothing;
+    const globalControlsSlot = args.globalNavPrimary && !args.jobs ? globalControls : nothing;
+    const globalNavSecondarySlot = args.globalNavSecondary ? renderGlobalNavSecondary(args) : nothing;
+    const globalLanguageMenuSlot = args.languageMenu && !appHeader
+      ? html`<span slot="language-menu">${languageMenu}</span>`
+      : nothing;
+    const globalLoginSlot = showGlobalLogin(args)
+      ? html`<!-- Global header login/user menu -->${globalLogin}`
+      : nothing;
+    const titleSlot = args.title !== '' ? title : nothing;
+    const sideNavTriggerSlot = args.sideNav && args.title !== '' ? renderSideNavTrigger() : nothing;
+    const micrositeControlsSlot = args.localNav || localLanguageMenuItem
+      ? renderMicrositeControls({ ...args, localLanguageMenuItem })
+      : nothing;
+    const mainNavSlot = args.mainNav ? mainnavigation : nothing;
+    const jobControlsSlot = args.jobs ? renderJobControls() : nothing;
 
     return html`
       <post-header text-menu="${args.textMenu}" full-width="${args.fullWidth || nothing}">
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
-        ${args.targetGroup ? renderAudience(args) : nothing}
-        ${args.globalNavPrimary && !args.jobs ? globalControls : nothing}
-        ${args.globalNavSecondary ? renderGlobalNavSecondary(args) : nothing}
+        ${audienceSlot}
+        ${globalControlsSlot}
+        ${globalNavSecondarySlot}
 
         <!-- Language menu (global) -->
-        ${args.languageMenu && !isApplicationHeader
-          ? html`<span slot="language-menu">${languageMenu}</span>`
-          : nothing}
-        ${showGlobalLogin(args)
-          ? html`
-              <!-- Global header login/user menu -->
-              ${globalLogin}
-            `
-          : nothing}
-        ${args.title !== '' ? title : nothing}
-        ${args.sideNav && args.title !== '' ? renderSideNavTrigger() : nothing}
-        ${args.localNav || localLanguageMenuItem
-          ? renderMicrositeControls({ ...args, localLanguageMenuItem })
-          : nothing}
-        ${args.mainNav ? mainnavigation : nothing} ${args.jobs ? renderJobControls() : nothing}
+        ${globalLanguageMenuSlot}
+        ${globalLoginSlot}
+        ${titleSlot}
+        ${sideNavTriggerSlot}
+        ${micrositeControlsSlot}
+        ${mainNavSlot}
+        ${jobControlsSlot}
       </post-header>
     `;
   };
