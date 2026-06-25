@@ -42,7 +42,7 @@ Type: `Promise<void>`
 | `"main-nav"`             | Has a default slot because it's only meant to be used in the `<post-header>`. |
 | `"post-login"`           | Holds the user menu or login button in the global header.                     |
 | `"post-logo"`            | Should be used together with the `<post-logo>` component.                     |
-| `"side-nav"`             | Should be used with the `<post-side-navigation-trigger>` component.           |
+| `"side-nav"`             | Should be used with the `<post-side-navigation>` component.                   |
 | `"title"`                | Holds the application title.                                                  |
 
 

@@ -25,7 +25,7 @@ import { throttle } from 'throttle-debounce';
  * @slot global-nav-primary - Holds search button in the global header.
  * @slot global-nav-secondary - Holds an `<ul>` with meta navigation links.
  * @slot language-menu - Should be used with the `<post-language-menu>` component.
- * @slot side-nav - Should be used with the `<post-side-navigation-trigger>` component.
+ * @slot side-nav - Should be used with the `<post-side-navigation>` component.
  * @slot title - Holds the application title.
  * @slot main-nav - Has a default slot because it's only meant to be used in the `<post-header>`.
  * @slot audience - Holds the list of buttons to choose the audience.

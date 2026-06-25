@@ -9,6 +9,7 @@ import { renderMicrositeControls } from '@/stories/components/header/renderers/m
 import { renderJobControls } from '@/stories/components/header/renderers/job-controls';
 import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
 import { renderTitle } from '@/stories/components/header/renderers/title';
+import { renderSideNavTrigger, renderSideNavigation } from '@/stories/components/header/renderers/side-navigation';
 import { forceCompactAppearance } from '../../../../.storybook/helpers';
 
 const meta: MetaComponent = {
@@ -139,9 +140,9 @@ const meta: MetaComponent = {
       },
     },
     sideNav: {
-      name: 'Side navigation trigger',
+      name: 'Side navigation',
       description:
-        'Whether or not the side navigation is displayed. Only relevant for the application header variant.',
+        'Whether or not the side navigation is displayed. Requires a title to be present. Only relevant for the Application header.',
       control: {
         type: 'boolean',
       },
@@ -177,9 +178,15 @@ const meta: MetaComponent = {
     },
   },
   decorators: [
-    story =>
-      html` <div class="header-story-wrapper">
-        <div class="virtual-body">${story()} ${fakeContent()}</div>
+    (story, context) =>
+      html`<div class="header-story-wrapper">
+        <div class="virtual-body">
+          ${story()}
+          <div class="d-flex">
+            ${context.args.sideNav && context.args.title !== '' ? renderSideNavigation() : nothing}
+            <div class="flex-grow-1">${fakeContent()}</div>
+          </div>
+        </div>
       </div>`,
   ],
   render: getHeaderRenderer(),
@@ -187,28 +194,6 @@ const meta: MetaComponent = {
 
 function showGlobalLogin(args: Args) {
   return !args.title && !args.jobs && args.postLogin;
-}
-
-function isApplicationHeader(args: Args) {
-  return (
-    args.localNav &&
-    !args.mainNav &&
-    !args.targetGroup &&
-    !args.globalNavPrimary &&
-    !args.globalNavSecondary &&
-    !args.postLogin
-  );
-}
-
-function renderSideNavTrigger() {
-  return html`
-    <post-side-navigation-trigger slot="side-nav" for="header-sidenav">
-      <button>
-        <span>Menu</span>
-        <post-icon aria-hidden="true" name="burger"></post-icon>
-      </button>
-    </post-side-navigation-trigger>
-  `;
 }
 
 function getHeaderRenderer(
@@ -257,9 +242,15 @@ function getHeaderRenderer(
       </post-language-menu>
     `;
 
-    const isAppHeader = isApplicationHeader(args);
+    const isApplicationHeader =
+      args.localNav &&
+      !args.mainNav &&
+      !args.targetGroup &&
+      !args.globalNavPrimary &&
+      !args.globalNavSecondary &&
+      !args.postLogin;
     const localLanguageMenuItem =
-      args.languageMenu && isAppHeader ? languageMenu : undefined;
+      args.languageMenu && isApplicationHeader ? languageMenu : undefined;
 
     return html`
       <post-header text-menu="${args.textMenu}" full-width="${args.fullWidth || nothing}">
@@ -271,7 +262,7 @@ function getHeaderRenderer(
         ${args.globalNavSecondary ? renderGlobalNavSecondary(args) : nothing}
 
         <!-- Language menu (global) -->
-        ${args.languageMenu && !isAppHeader
+        ${args.languageMenu && !isApplicationHeader
           ? html`<span slot="language-menu">${languageMenu}</span>`
           : nothing}
         ${showGlobalLogin(args)
@@ -281,7 +272,7 @@ function getHeaderRenderer(
             `
           : nothing}
         ${args.title !== '' ? title : nothing}
-        ${args.sideNav ? renderSideNavTrigger() : nothing}
+        ${args.sideNav && args.title !== '' ? renderSideNavTrigger() : nothing}
         ${args.localNav || localLanguageMenuItem
           ? renderMicrositeControls({ ...args, localLanguageMenuItem })
           : nothing}
@@ -399,7 +390,6 @@ export const Application: Story = {
     globalNavSecondary: false,
     globalNavPrimary: false,
     localNav: true,
-    sideNav: false,
     languageMenu: false,
     postLogin: false,
     targetGroup: false,
@@ -415,7 +405,6 @@ export const ApplicationWithLanguageMenu: Story = {
     globalNavSecondary: false,
     globalNavPrimary: false,
     localNav: true,
-    sideNav: false,
     languageMenu: true,
     postLogin: false,
     targetGroup: false,
