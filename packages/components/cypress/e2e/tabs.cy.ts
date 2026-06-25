@@ -233,67 +233,66 @@ describe('Accessibility', () => {
       cy.get('post-tabs').should('exist');
       cy.checkA11y('post-tabs');
     });
-
-    describe('content mode ARIA attributes', () => {
-      beforeEach(() => {
-        cy.getComponent('tabs', TABS_ID, 'default');
-      });
-
-      it('should have proper ARIA attributes for content mode', () => {
-        cy.get('post-tabs').shadow().find('[role="tablist"]').should('exist');
-        cy.get('post-tab-item').should('have.attr', 'role', 'tab');
-        cy.get('post-tab-item').should('have.attr', 'aria-selected');
-        cy.get('post-tab-item').first().should('have.attr', 'aria-selected', 'true');
-        cy.get('post-tab-item').not(':first').should('have.attr', 'aria-selected', 'false');
-      });
-
-      it('should link tabs to panels with aria-controls and aria-labelledby', () => {
-        cy.get('post-tab-item')
-          .first()
-          .then($tab => {
-            const tabId = $tab.attr('id');
-            const ariaControls = $tab.attr('aria-controls');
-
-            if (ariaControls) {
-              cy.get(`post-tab-panel[id="${ariaControls}"]`).should('exist');
-              cy.get(`post-tab-panel[id="${ariaControls}"]`).should(
-                'have.attr',
-                'aria-labelledby',
-                tabId,
-              );
-            }
-          });
-      });
-
-      it('should manage tabindex properly', () => {
-        cy.get('post-tab-item').first().should('have.attr', 'tabindex', '0');
-        cy.get('post-tab-item').not(':first').should('have.attr', 'tabindex', '-1');
-
-        cy.get('post-tab-item').last().click();
-        cy.get('post-tab-item').last().should('have.attr', 'tabindex', '0');
-        cy.get('post-tab-item').not(':last').should('have.attr', 'tabindex', '-1');
-      });
+  });
+  describe('content mode ARIA attributes', () => {
+    beforeEach(() => {
+      cy.getComponent('tabs', TABS_ID, 'default');
     });
 
-    describe('pages variant ARIA attributes', () => {
-      beforeEach(() => {
-        cy.getComponent('tabs', TABS_ID, 'pages-variant');
-      });
+    it('should have proper ARIA attributes for content mode', () => {
+      cy.get('post-tabs').shadow().find('[role="tablist"]').should('exist');
+      cy.get('post-tab-item').should('have.attr', 'role', 'tab');
+      cy.get('post-tab-item').should('have.attr', 'aria-selected');
+      cy.get('post-tab-item').first().should('have.attr', 'aria-selected', 'true');
+      cy.get('post-tab-item').not(':first').should('have.attr', 'aria-selected', 'false');
+    });
 
-      it('should have proper ARIA attributes for pages variant', () => {
-        cy.get('post-tabs').shadow().find('nav').should('have.attr', 'aria-label');
-        cy.get('post-tab-item').should('not.have.attr', 'role');
-        cy.get('post-tab-item').should('not.have.attr', 'tabindex');
-        cy.get('post-tab-item').should('not.have.attr', 'aria-selected');
-      });
+    it('should link tabs to panels with aria-controls and aria-labelledby', () => {
+      cy.get('post-tab-item')
+        .first()
+        .then($tab => {
+          const tabId = $tab.attr('id');
+          const ariaControls = $tab.attr('aria-controls');
 
-      it('should not have tablist role in pages variant', () => {
-        cy.get('post-tabs').shadow().find('[role="tablist"]').should('not.exist');
-      });
+          if (ariaControls) {
+            cy.get(`post-tab-panel[id="${ariaControls}"]`).should('exist');
+            cy.get(`post-tab-panel[id="${ariaControls}"]`).should(
+              'have.attr',
+              'aria-labelledby',
+              tabId,
+            );
+          }
+        });
+    });
 
-      it('should use aria-current for active state indication', () => {
-        cy.get('post-tab-item').find('a[aria-current="page"]').should('have.length', 1);
-      });
+    it('should manage tabindex properly', () => {
+      cy.get('post-tab-item').first().should('have.attr', 'tabindex', '0');
+      cy.get('post-tab-item').not(':first').should('have.attr', 'tabindex', '-1');
+
+      cy.get('post-tab-item').last().click();
+      cy.get('post-tab-item').last().should('have.attr', 'tabindex', '0');
+      cy.get('post-tab-item').not(':last').should('have.attr', 'tabindex', '-1');
+    });
+  });
+
+  describe('pages variant ARIA attributes', () => {
+    beforeEach(() => {
+      cy.getComponent('tabs', TABS_ID, 'pages-variant');
+    });
+
+    it('should have proper ARIA attributes for pages variant', () => {
+      cy.get('post-tabs').shadow().find('nav').should('have.attr', 'aria-label');
+      cy.get('post-tab-item').should('not.have.attr', 'role');
+      cy.get('post-tab-item').should('not.have.attr', 'tabindex');
+      cy.get('post-tab-item').should('not.have.attr', 'aria-selected');
+    });
+
+    it('should not have tablist role in pages variant', () => {
+      cy.get('post-tabs').shadow().find('[role="tablist"]').should('not.exist');
+    });
+
+    it('should use aria-current for active state indication', () => {
+      cy.get('post-tab-item').find('a[aria-current="page"]').should('have.length', 1);
     });
   });
 });
