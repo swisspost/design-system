@@ -79,11 +79,11 @@ export namespace Components {
          */
         "textClose": string;
         /**
-          * Visually hidden label for the current language.
+          * Visually hidden label for the current language. The placeholder `{name}` will be replaced with the name of the currently selected language.
          */
         "textCurrentLanguage": string;
         /**
-          * Visually hidden label for the current user.
+          * Visually hidden label for the current user. The placeholder `{user}` will be replaced with the full name of the currently logged-in user.
          */
         "textCurrentUser": string;
         /**
@@ -216,11 +216,11 @@ declare namespace LocalJSX {
          */
         "textClose": string;
         /**
-          * Visually hidden label for the current language.
+          * Visually hidden label for the current language. The placeholder `{name}` will be replaced with the name of the currently selected language.
          */
         "textCurrentLanguage": string;
         /**
-          * Visually hidden label for the current user.
+          * Visually hidden label for the current user. The placeholder `{user}` will be replaced with the full name of the currently logged-in user.
          */
         "textCurrentUser": string;
         /**
