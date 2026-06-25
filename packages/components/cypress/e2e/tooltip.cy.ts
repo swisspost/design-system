@@ -367,21 +367,9 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
   });
 
   describe('page layout', () => {
-    const waitForLayoutFixtureReady = () => {
-      cy.window().then(win =>
-        Promise.all([
-          win.customElements.whenDefined('post-tabs'),
-          win.customElements.whenDefined('post-tab-panel'),
-        ]),
-      );
-      cy.get('#layout-tabs').should('exist');
-      cy.get('#layout-tabs post-tab-panel:visible').should('have.length', 1);
-    };
-
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-tooltip.test.html');
       cy.get('#tooltip-layout').find('post-popovercontainer[popover]').as('layoutTooltip');
-      waitForLayoutFixtureReady();
     });
 
     const showLayoutTooltip = (triggerId = '#layout-trigger') => {
