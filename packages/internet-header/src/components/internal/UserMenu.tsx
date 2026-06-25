@@ -34,7 +34,8 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
       <post-menu id={userMenuId} label={textUserLinks}>
         <div slot="header">
           <Avatar user={config.user} />
-          {userFullname}
+          {config.user.company && <p>{config.user.company}</p>}
+          <p>{userFullname}</p>
         </div>
         {config.options.map(optionConfig => (
           <post-menu-item>
