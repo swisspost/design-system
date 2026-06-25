@@ -23,8 +23,8 @@ The Header adapts to your needs and can contain a variety of sub-components depe
 
 It is divided into two sections:
 
-1. **Global Header** (Yellow Background): provides navigation links and information that are global to the entire organization.
-2. **Application Header** (White Background): displays navigation links and information specific to the current application.
+1. **Global navigation** (Yellow Background): provides navigation links and information that are global to the entire organization.
+2. **Local navigation** (White Background): displays navigation links and information specific to the current application.
 
 <div className="main-story">
   <Canvas sourceState="shown" of={HeaderStories.Default} />
@@ -98,6 +98,18 @@ see the [Heading elements documentation](https://developer.mozilla.org/en-US/doc
 
 <Canvas sourceState="shown" of={HeaderStories.OnePagerH1} inline="false" />
 
+### Application
+
+The Application header is a header variant intended for internal applications. It uses the `appearance: compact` styles bundle and is distinguished by the absence of any content in its global (yellow) part except from the Logo.
+
+<Canvas of={HeaderStories.Application} inline="false" />
+
+#### Example with Language Menu
+
+If a language menu is needed, it should be placed as a list item within the `slot="local-nav"`, alongside any other local controls such as search or login.
+
+<Canvas of={HeaderStories.ApplicationWithLanguageMenu} inline="false" />
+
 ## User menu
 
 The user menu is part of the global header, it is a menu containing information and links linked to the currently logged-in user.
@@ -122,7 +134,7 @@ Each page must have **exactly one banner landmark** at the top level:
 
 ### Navigation Landmark
 
-The `<post-mainnavigation>` component inside the header creates a **navigation landmark**. 
+The `<post-mainnavigation>` component inside the header creates a **navigation landmark**.
 Use the `text-main` property to provide a descriptive label that helps screen reader users identify main navigation among other navigation regions on the page.
 
 **Why labeling matters:** If your page has multiple navigation regions (e.g., skip links, main navigation, breadcrumbs), descriptive labels help screen reader users quickly identify and navigate to the correct one.

@@ -26,13 +26,14 @@ Type: `Promise<void>`
 
 ### `show(target: HTMLElement) => Promise<void>`
 
-Programmatically display the tooltip.
+Programmatically display the tooltip,
+`target` is the HTML element the menu is anchored to.
 
 #### Parameters
 
-| Name     | Type          | Description                                  |
-| -------- | ------------- | -------------------------------------------- |
-| `target` | `HTMLElement` | An element where the tooltip should be shown |
+| Name     | Type          | Description |
+| -------- | ------------- | ----------- |
+| `target` | `HTMLElement` |             |
 
 #### Returns
 
@@ -42,14 +43,15 @@ Type: `Promise<void>`
 
 ### `toggle(target: HTMLElement, force?: boolean) => Promise<void>`
 
-Toggle tooltip display.
+Toggle tooltip display,
+`target` is the HTML element the menu is anchored to.
 
 #### Parameters
 
-| Name     | Type          | Description                                      |
-| -------- | ------------- | ------------------------------------------------ |
-| `target` | `HTMLElement` | An element where the tooltip should be shown     |
-| `force`  | `boolean`     | Pass true to always show or false to always hide |
+| Name     | Type          | Description |
+| -------- | ------------- | ----------- |
+| `target` | `HTMLElement` |             |
+| `force`  | `boolean`     |             |
 
 #### Returns
 
