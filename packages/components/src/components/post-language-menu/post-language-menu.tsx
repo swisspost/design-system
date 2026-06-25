@@ -62,7 +62,7 @@ export class PostLanguageMenu {
         `post-language-menu-item[code="${this.activeLang}"]`,
       );
 
-    if (!activeLanguage) return;
+    if (!activeLanguage) return undefined;
 
     return this.textCurrentLanguage
       .replaceAll('{name}', activeLanguage.name)
