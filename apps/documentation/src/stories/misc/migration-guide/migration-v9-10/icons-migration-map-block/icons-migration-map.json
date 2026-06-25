@@ -1,0 +1,1432 @@
+{
+  "iconMap": [
+    {
+      "old": 1001,
+      "new": "Letter"
+    },
+    {
+      "old": 1002,
+      "new": "PostCardCreator"
+    },
+    {
+      "old": 1004,
+      "new": "LetterAndParcel"
+    },
+    {
+      "old": 1005,
+      "new": "Parcel"
+    },
+    {
+      "old": 1006,
+      "new": "MyPost24"
+    },
+    {
+      "old": 1007,
+      "new": "ParcelLetterDelivery"
+    },
+    {
+      "old": 1010,
+      "new": "SearchConsignment"
+    },
+    {
+      "old": 1011,
+      "new": ["LocationPackage", "LocationLetter"]
+    },
+    {
+      "old": 1012,
+      "new": "PickAtHome"
+    },
+    {
+      "old": 1013,
+      "new": "Retour"
+    },
+    {
+      "old": 1015,
+      "new": ["Retour", "ReDirectMail"]
+    },
+    {
+      "old": 1018,
+      "new": "SecureMail"
+    },
+    {
+      "old": 1019,
+      "new": ["Drawer", "Archive"]
+    },
+    {
+      "old": 1020,
+      "new": "DigitalLetterSend"
+    },
+    {
+      "old": 1022,
+      "new": "StampAPost"
+    },
+    {
+      "old": 1025,
+      "new": "Bill"
+    },
+    {
+      "old": 1027,
+      "new": "Moon"
+    },
+    {
+      "old": 1028,
+      "new": "DayNight"
+    },
+    {
+      "old": 1029,
+      "new": "Branch"
+    },
+    {
+      "old": 1030,
+      "new": "PoBox"
+    },
+    {
+      "old": 1031,
+      "new": "AddDate"
+    },
+    {
+      "old": 1039,
+      "new": "UserSwitch"
+    },
+    {
+      "old": 1040,
+      "new": "Network"
+    },
+    {
+      "old": 1043,
+      "new": "Drawer"
+    },
+    {
+      "old": 1045,
+      "new": ["Group", "UsersMultiple"]
+    },
+    {
+      "old": 1046,
+      "new": "MailCarrier"
+    },
+    {
+      "old": 2001,
+      "new": "Wifi"
+    },
+    {
+      "old": 2002,
+      "new": "WifiNo"
+    },
+    {
+      "old": 2004,
+      "new": "Mail"
+    },
+    {
+      "old": 2006,
+      "new": "LetterDigital"
+    },
+    {
+      "old": 2005,
+      "new": "DocumentEmail"
+    },
+    {
+      "old": 2013,
+      "new": ["TurnDocumentRight", "TurnDocumentLeft"]
+    },
+    {
+      "old": 2015,
+      "new": "Trash"
+    },
+    {
+      "old": 2016,
+      "new": "Print"
+    },
+    {
+      "old": 2017,
+      "new": "EtiquettePrinter"
+    },
+    {
+      "old": 2018,
+      "new": "Folder"
+    },
+    {
+      "old": 2020,
+      "new": "Archive"
+    },
+    {
+      "old": 2023,
+      "new": "Gear"
+    },
+    {
+      "old": 2025,
+      "new": "Send"
+    },
+    {
+      "old": 2026,
+      "new": "Shop"
+    },
+    {
+      "old": 2027,
+      "new": "ShopOnline"
+    },
+    {
+      "old": 2028,
+      "new": "Filter"
+    },
+    {
+      "old": 2029,
+      "new": "Target"
+    },
+    {
+      "old": 2030,
+      "new": ["SortUp", "SortDown"]
+    },
+    {
+      "old": 2031,
+      "new": "Flag"
+    },
+    {
+      "old": 2032,
+      "new": "Picture"
+    },
+    {
+      "old": 2033,
+      "new": ["DocumentScan", "ScaningQRCode"]
+    },
+    {
+      "old": 2034,
+      "new": "LockClosed"
+    },
+    {
+      "old": 2035,
+      "new": "Home"
+    },
+    {
+      "old": 2036,
+      "new": "SoMediaShare"
+    },
+    {
+      "old": 2037,
+      "new": "Link"
+    },
+    {
+      "old": 2038,
+      "new": "LinkExternal"
+    },
+    {
+      "old": 2039,
+      "new": ["Minus", "MinusWide"]
+    },
+    {
+      "old": 2040,
+      "new": ["Plus", "Plus Wide"]
+    },
+    {
+      "old": 2041,
+      "new": "ReloadRight"
+    },
+    {
+      "old": 2042,
+      "new": "ReloadLeft"
+    },
+    {
+      "old": 2043,
+      "new": ["CloseX", "CloseXWide"]
+    },
+    {
+      "old": 2044,
+      "new": "Pause"
+    },
+    {
+      "old": 2045,
+      "new": "Play"
+    },
+    {
+      "old": 2049,
+      "new": ["ChevronLeft", "ChevronLeftWide"]
+    },
+    {
+      "old": 2050,
+      "new": ["ChevronRight", "ChevronRightWide"]
+    },
+    {
+      "old": 2051,
+      "new": ["ChevronUp", "ChevronUpWide"]
+    },
+    {
+      "old": 2052,
+      "new": ["ChevronDown", "ChevronDownWide"]
+    },
+    {
+      "old": 2057,
+      "new": "SoundOn"
+    },
+    {
+      "old": 2058,
+      "new": "SoundOff"
+    },
+    {
+      "old": 2059,
+      "new": "Save"
+    },
+    {
+      "old": 2060,
+      "new": "Filter"
+    },
+    {
+      "old": 2061,
+      "new": "Attachment"
+    },
+    {
+      "old": 2062,
+      "new": "FavoriteStar"
+    },
+    {
+      "old": 2063,
+      "new": "Heart"
+    },
+    {
+      "old": 2064,
+      "new": "Login"
+    },
+    {
+      "old": 2065,
+      "new": "Logout"
+    },
+    {
+      "old": 2066,
+      "new": "Download"
+    },
+    {
+      "old": 2067,
+      "new": "Upload"
+    },
+    {
+      "old": 2068,
+      "new": "Import"
+    },
+    {
+      "old": 2069,
+      "new": "Search"
+    },
+    {
+      "old": 2070,
+      "new": "Burger"
+    },
+    {
+      "old": 2071,
+      "new": "More"
+    },
+    {
+      "old": 2073,
+      "new": "DashMenu"
+    },
+    {
+      "old": 2076,
+      "new": "QRCode"
+    },
+    {
+      "old": 2077,
+      "new": "Mobile"
+    },
+    {
+      "old": 2078,
+      "new": "Tablet"
+    },
+    {
+      "old": 2083,
+      "new": "Laptop"
+    },
+    {
+      "old": 2084,
+      "new": "Screen"
+    },
+    {
+      "old": 2089,
+      "new": "Desktop"
+    },
+    {
+      "old": 2098,
+      "new": "Cloud"
+    },
+    {
+      "old": 2099,
+      "new": "AMP"
+    },
+    {
+      "old": 2101,
+      "new": "Speechbubble"
+    },
+    {
+      "old": 2103,
+      "new": "Help"
+    },
+    {
+      "old": 2104,
+      "new": "Error"
+    },
+    {
+      "old": 2105,
+      "new": "Checkmark"
+    },
+    {
+      "old": 2106,
+      "new": ["Info", "InfoNoCircle"]
+    },
+    {
+      "old": 3020,
+      "new": "ArrowRight"
+    },
+    {
+      "old": 3021,
+      "new": "ArrowBottomRight"
+    },
+    {
+      "old": 3022,
+      "new": "ArrowDown"
+    },
+    {
+      "old": 3023,
+      "new": "ArrowBottomLeft"
+    },
+    {
+      "old": 3024,
+      "new": "ArrowLeft"
+    },
+    {
+      "old": 3025,
+      "new": "ArrowTopLeft"
+    },
+    {
+      "old": 3026,
+      "new": "ArrowUp"
+    },
+    {
+      "old": 3027,
+      "new": "ArrowTopRight"
+    },
+    {
+      "old": 3028,
+      "new": "ArrowReturn"
+    },
+    {
+      "old": 3030,
+      "new": "ArrowUpRight"
+    },
+    {
+      "old": 3031,
+      "new": "ArrowUpLeft"
+    },
+    {
+      "old": 3075,
+      "new": ["EuroPalette", "Bulkygoods"]
+    },
+    {
+      "old": 3097,
+      "new": "Camera"
+    },
+    {
+      "old": 3109,
+      "new": "Truck"
+    },
+    {
+      "old": 3120,
+      "new": "Logistics"
+    },
+    {
+      "old": 3134,
+      "new": "Alarm"
+    },
+    {
+      "old": 3135,
+      "new": "GlobeMeridian"
+    },
+    {
+      "old": 3136,
+      "new": "Switzerland"
+    },
+    {
+      "old": 3137,
+      "new": "SwitzerlandLocation"
+    },
+    {
+      "old": 3138,
+      "new": "LocationPin"
+    },
+    {
+      "old": 3140,
+      "new": "Calculator"
+    },
+    {
+      "old": 3141,
+      "new": "Jobs"
+    },
+    {
+      "old": 3142,
+      "new": "Company"
+    },
+    {
+      "old": 3157,
+      "new": "Bill"
+    },
+    {
+      "old": 3158,
+      "new": "CreditCard"
+    },
+    {
+      "old": 3159,
+      "new": "Wallet"
+    },
+    {
+      "old": 3161,
+      "new": "Piggybank"
+    },
+    {
+      "old": 3163,
+      "new": "Newspaper"
+    },
+    {
+      "old": 3164,
+      "new": "Time"
+    },
+    {
+      "old": 3166,
+      "new": "HandPoint"
+    },
+    {
+      "old": 3169,
+      "new": "Document"
+    },
+    {
+      "old": 3172,
+      "new": "Signature"
+    },
+    {
+      "old": 3175,
+      "new": "Etiquette"
+    },
+    {
+      "old": 3184,
+      "new": "Present"
+    },
+    {
+      "old": 3185,
+      "new": "Tag"
+    },
+    {
+      "old": 3190,
+      "new": "Law"
+    },
+    {
+      "old": 3191,
+      "new": "Compass"
+    },
+    {
+      "old": 3192,
+      "new": "Pin"
+    },
+    {
+      "old": 3193,
+      "new": "Edit"
+    },
+    {
+      "old": 3194,
+      "new": "HandShake"
+    },
+    {
+      "old": 3202,
+      "new": "Europe"
+    },
+    {
+      "old": 3203,
+      "new": "Calendar"
+    },
+    {
+      "old": 3206,
+      "new": "DocumentMedical"
+    },
+    {
+      "old": 3212,
+      "new": "CustomerCenter"
+    },
+    {
+      "old": 3213,
+      "new": "Group"
+    },
+    {
+      "old": 3216,
+      "new": "UsersMultiple"
+    },
+    {
+      "old": 3217,
+      "new": "Profile"
+    },
+    {
+      "old": 3218,
+      "new": "MeetingTeams"
+    },
+    {
+      "old": 1048,
+      "new": "Receiving"
+    },
+    {
+      "old": 1047,
+      "new": "Sending"
+    },
+    {
+      "old": 3221,
+      "new": "LocationFavorite"
+    },
+    {
+      "old": 3222,
+      "new": "LocationLetter"
+    },
+    {
+      "old": 3223,
+      "new": "LocationPackage"
+    },
+    {
+      "old": 2111,
+      "new": "ChevronRight"
+    },
+    {
+      "old": 2112,
+      "new": "ChevronUp"
+    },
+    {
+      "old": 2113,
+      "new": "ChevronDown"
+    },
+    {
+      "old": 2114,
+      "new": "Eye"
+    },
+    {
+      "old": 2115,
+      "new": "EyeClosed"
+    },
+    {
+      "old": 2117,
+      "new": "ArrowTabulatorRight"
+    },
+    {
+      "old": 3224,
+      "new": "AccessRestricted"
+    },
+    {
+      "old": 3225,
+      "new": "AccessOpen"
+    },
+    {
+      "old": 3226,
+      "new": "Drone"
+    },
+    {
+      "old": 8012,
+      "new": "DocumentWord"
+    },
+    {
+      "old": 8014,
+      "new": "DocumentPowerpoint"
+    },
+    {
+      "old": 8015,
+      "new": "DocumentOneNote"
+    },
+    {
+      "old": 8016,
+      "new": "DocumentPDF"
+    },
+    {
+      "old": 3228,
+      "new": ["BottleGlas", "AlcoholicGoods"]
+    },
+    {
+      "old": 3229,
+      "new": "Glasses"
+    },
+    {
+      "old": 3230,
+      "new": "Customs"
+    },
+    {
+      "old": 8017,
+      "new": "Snapchat"
+    },
+    {
+      "old": 2119,
+      "new": "BarCode"
+    },
+    {
+      "old": 2120,
+      "new": "HearingImpaired"
+    },
+    {
+      "old": 2121,
+      "new": "Hearing"
+    },
+    {
+      "old": 3233,
+      "new": ["MedicalPersonnel", "MedicalPersonnelDoctor", "MedicalPersonnelNurse"]
+    },
+    {
+      "old": 3234,
+      "new": "Pill"
+    },
+    {
+      "old": 3235,
+      "new": "SIMCard"
+    },
+    {
+      "old": 2122,
+      "new": "Database"
+    },
+    {
+      "old": 3236,
+      "new": "Headphones"
+    },
+    {
+      "old": 2124,
+      "new": "Chatbot"
+    },
+    {
+      "old": 2125,
+      "new": "EmoteSmiley"
+    },
+    {
+      "old": 3240,
+      "new": "HeartPulse"
+    },
+    {
+      "old": 3208,
+      "new": "Hospital"
+    },
+    {
+      "old": 3245,
+      "new": "GenderNonBinary"
+    },
+    {
+      "old": 2126,
+      "new": "EmoteFrowny"
+    },
+    {
+      "old": 3248,
+      "new": "Bulb"
+    },
+    {
+      "old": 3249,
+      "new": "Bill"
+    },
+    {
+      "old": 3250,
+      "new": "Book"
+    },
+    {
+      "old": 3253,
+      "new": "Fuel"
+    },
+    {
+      "old": 3254,
+      "new": "GasCylinder"
+    },
+    {
+      "old": 3257,
+      "new": "Train"
+    },
+    {
+      "old": 2129,
+      "new": "Bookmark"
+    },
+    {
+      "old": 2130,
+      "new": "Keyboard"
+    },
+    {
+      "old": 2133,
+      "new": "BulkMailing"
+    },
+    {
+      "old": 2135,
+      "new": "LockOpen"
+    },
+    {
+      "old": 2136,
+      "new": "Accessibility"
+    },
+    {
+      "old": 2139,
+      "new": "Battery"
+    },
+    {
+      "old": 3260,
+      "new": "EmoteNeutry"
+    },
+    {
+      "old": 2141,
+      "new": "UserExperience"
+    },
+    {
+      "old": 2143,
+      "new": "SmallConsigment"
+    },
+    {
+      "old": 2144,
+      "new": "Education"
+    },
+    {
+      "old": 2147,
+      "new": "PromotionalMailing"
+    },
+    {
+      "old": 2146,
+      "new": "Retour"
+    },
+    {
+      "old": 2149,
+      "new": "Winter"
+    },
+    {
+      "old": 2151,
+      "new": ["Summer", "Sun"]
+    },
+    {
+      "old": 2150,
+      "new": "Autum"
+    },
+    {
+      "old": 2148,
+      "new": "Spring"
+    },
+    {
+      "old": 2190,
+      "new": "BulkMailing"
+    },
+    {
+      "old": 2161,
+      "new": "Certificate"
+    },
+    {
+      "old": 2164,
+      "new": "LetterSorting"
+    },
+    {
+      "old": 2165,
+      "new": "Brain"
+    },
+    {
+      "old": 2166,
+      "new": "MailboxPublic"
+    },
+    {
+      "old": 2167,
+      "new": "MailboxPrivate"
+    },
+    {
+      "old": 2169,
+      "new": "Agile"
+    },
+    {
+      "old": 2171,
+      "new": "Diamond"
+    },
+    {
+      "old": 2172,
+      "new": "DocumentProtocol"
+    },
+    {
+      "old": 2174,
+      "new": "ArrowForewardBackward"
+    },
+    {
+      "old": 2175,
+      "new": "BottlePET"
+    },
+    {
+      "old": 2189,
+      "new": "RollingBelt"
+    },
+    {
+      "old": 2110,
+      "new": "ChevronLeft"
+    },
+    {
+      "old": 3076,
+      "new": "Weight"
+    },
+    {
+      "old": 8019,
+      "new": "WhatsApp"
+    },
+    {
+      "old": 2196,
+      "new": "APIRest"
+    },
+    {
+      "old": 3038,
+      "new": "Wheelchair"
+    },
+    {
+      "old": 3043,
+      "new": "Elevator"
+    },
+    {
+      "old": 3045,
+      "new": "DisabledWalking"
+    },
+    {
+      "old": 3046,
+      "new": "DisabledBlind"
+    },
+    {
+      "old": 2198,
+      "new": "Palette"
+    },
+    {
+      "old": 2197,
+      "new": "Microphone"
+    },
+    {
+      "old": 3068,
+      "new": "Coffee"
+    },
+    {
+      "old": 3073,
+      "new": "Call"
+    },
+    {
+      "old": 3074,
+      "new": ["EuroPalette", "BulkyGoods"]
+    },
+    {
+      "old": 3089,
+      "new": "Plane"
+    },
+    {
+      "old": 3090,
+      "new": "Bed"
+    },
+    {
+      "old": 3102,
+      "new": "TimeReverse"
+    },
+    {
+      "old": 2199,
+      "new": "Bug"
+    },
+    {
+      "old": 2200,
+      "new": "Tractor"
+    },
+    {
+      "old": 2201,
+      "new": "Cookies"
+    },
+    {
+      "old": 2203,
+      "new": "DirectionArrow"
+    },
+    {
+      "old": 3103,
+      "new": "ArrowUpDown"
+    },
+    {
+      "old": 3107,
+      "new": "PostAuto"
+    },
+    {
+      "old": 3108,
+      "new": "Transporter"
+    },
+    {
+      "old": 3110,
+      "new": "Garage"
+    },
+    {
+      "old": 3119,
+      "new": "AccidentCar"
+    },
+    {
+      "old": 3121,
+      "new": "ElectricChargingStation"
+    },
+    {
+      "old": 3122,
+      "new": "FuelStation"
+    },
+    {
+      "old": 3123,
+      "new": "Tyre"
+    },
+    {
+      "old": 3126,
+      "new": "Bicycle"
+    },
+    {
+      "old": 3133,
+      "new": "Tools"
+    },
+    {
+      "old": 3199,
+      "new": "Battery"
+    },
+    {
+      "old": 2204,
+      "new": "HomeService"
+    },
+    {
+      "old": 2206,
+      "new": "Advertisement"
+    },
+    {
+      "old": 2210,
+      "new": "FavoriteOverview"
+    },
+    {
+      "old": 2211,
+      "new": "FavouriteAdd"
+    },
+    {
+      "old": 2214,
+      "new": "Listview"
+    },
+    {
+      "old": 2216,
+      "new": "LoadingTransporter"
+    },
+    {
+      "old": 2220,
+      "new": "Government"
+    },
+    {
+      "old": 2227,
+      "new": "RegisteredMail"
+    },
+    {
+      "old": 2229,
+      "new": "Umbrella"
+    },
+    {
+      "old": 2231,
+      "new": "Virus"
+    },
+    {
+      "old": 2240,
+      "new": "WithholdMail"
+    },
+    {
+      "old": 2243,
+      "new": "Moon"
+    },
+    {
+      "old": 2242,
+      "new": "CalendarDuration"
+    },
+    {
+      "old": 2245,
+      "new": "StampChecked"
+    },
+    {
+      "old": 2249,
+      "new": "BranchPartner"
+    },
+    {
+      "old": 2250,
+      "new": "BranchAccesspoint"
+    },
+    {
+      "old": 2251,
+      "new": "DragAll"
+    },
+    {
+      "old": 2252,
+      "new": "DragUpDown"
+    },
+    {
+      "old": 2253,
+      "new": "DragLeftRight"
+    },
+    {
+      "old": 2277,
+      "new": "JournalSubmission"
+    },
+    {
+      "old": 2276,
+      "new": "ReusableContainers"
+    },
+    {
+      "old": 2258,
+      "new": "Syringe"
+    },
+    {
+      "old": 2260,
+      "new": "Depot"
+    },
+    {
+      "old": 2262,
+      "new": "ForewardMessage"
+    },
+    {
+      "old": 2285,
+      "new": "Translate"
+    },
+    {
+      "old": 2286,
+      "new": "Like"
+    },
+    {
+      "old": 2287,
+      "new": "Dislike"
+    },
+    {
+      "old": 2290,
+      "new": "BranchSelfService"
+    },
+    {
+      "old": 2295,
+      "new": "Carbattery"
+    },
+    {
+      "old": 2306,
+      "new": "Dispobox"
+    },
+    {
+      "old": 2308,
+      "new": "Rollbox"
+    },
+    {
+      "old": 2140,
+      "new": "ShipmentBroken"
+    },
+    {
+      "old": 2309,
+      "new": "Pocketlight"
+    },
+    {
+      "old": 2321,
+      "new": "MyPost24NotAvailable"
+    },
+    {
+      "old": 2323,
+      "new": "MyPost24Mobile"
+    },
+    {
+      "old": 2324,
+      "new": "Bluetooth"
+    },
+    {
+      "old": 2325,
+      "new": "BranchHandover"
+    },
+    {
+      "old": 2328,
+      "new": "ReceiverService"
+    },
+    {
+      "old": 2331,
+      "new": "DepositMyPost24"
+    },
+    {
+      "old": 2332,
+      "new": "ShipmentFragile"
+    },
+    {
+      "old": 2340,
+      "new": "JournalSubmission"
+    },
+    {
+      "old": 2341,
+      "new": "Preferences"
+    },
+    {
+      "old": 2345,
+      "new": "DigitalOutofHome"
+    },
+    {
+      "old": 2346,
+      "new": "SwissInnightExpress"
+    },
+    {
+      "old": 2347,
+      "new": "FreightLetter"
+    },
+    {
+      "old": 2348,
+      "new": "SeaAirfreight"
+    },
+    {
+      "old": 2360,
+      "new": "Designsystem"
+    },
+    {
+      "old": 2364,
+      "new": "TShirt"
+    },
+    {
+      "old": 2381,
+      "new": "TargetArea"
+    },
+    {
+      "old": 2383,
+      "new": "Rocket"
+    },
+    {
+      "old": 2384,
+      "new": "CashRegister"
+    },
+    {
+      "old": 2385,
+      "new": "Scooter"
+    },
+    {
+      "old": 2387,
+      "new": "NewspaperPost"
+    },
+    {
+      "old": 2392,
+      "new": "Tacho"
+    },
+    {
+      "old": 2393,
+      "new": "MedicalPersonnelDoctor"
+    },
+    {
+      "old": 2397,
+      "new": "Danger"
+    },
+    {
+      "old": 2407,
+      "new": "EuroPalette"
+    },
+    {
+      "old": 2408,
+      "new": "BulkyGoods"
+    },
+    {
+      "old": 2410,
+      "new": "SortOCR"
+    },
+    {
+      "old": 2425,
+      "new": "ReturnTransport"
+    },
+    {
+      "old": 2443,
+      "new": "Holiday"
+    },
+    {
+      "old": 2444,
+      "new": "OpenSource"
+    },
+    {
+      "old": 2448,
+      "new": "TourList"
+    },
+    {
+      "old": 2449,
+      "new": "StampAPost"
+    },
+    {
+      "old": 2450,
+      "new": "StampBPost"
+    },
+    {
+      "old": 2451,
+      "new": "StampAandBPost"
+    },
+    {
+      "old": 2452,
+      "new": "LetterIn"
+    },
+    {
+      "old": 2453,
+      "new": "LetterOut"
+    },
+    {
+      "old": 2454,
+      "new": "ParcelOut"
+    },
+    {
+      "old": 2455,
+      "new": "ParcelIn"
+    },
+    {
+      "old": 2456,
+      "new": "Etiquette"
+    },
+    {
+      "old": 2463,
+      "new": "UserExperience"
+    },
+    {
+      "old": 2465,
+      "new": "Paragraph"
+    },
+    {
+      "old": 2501,
+      "new": "Layers"
+    },
+    {
+      "old": 2520,
+      "new": "Scrolling"
+    },
+    {
+      "old": 2522,
+      "new": "VoiceControl"
+    },
+    {
+      "old": 2530,
+      "new": "AdressGeodata"
+    },
+    {
+      "old": 2531,
+      "new": "LetterAdvanceNotice"
+    },
+    {
+      "old": 2534,
+      "new": "AdressSubadress"
+    },
+    {
+      "old": 2539,
+      "new": "StreetviewSatellite"
+    },
+    {
+      "old": 2540,
+      "new": "StreetviewStreet"
+    },
+    {
+      "old": 2541,
+      "new": "StreetviewTerrain"
+    },
+    {
+      "old": 2543,
+      "new": "Scissors"
+    },
+    {
+      "old": 2544,
+      "new": "LinkUnlinked"
+    },
+    {
+      "old": 2570,
+      "new": "PowerBank"
+    },
+    {
+      "old": 2576,
+      "new": "MicrophoneOff"
+    },
+    {
+      "old": 2577,
+      "new": "Crypto"
+    },
+    {
+      "old": 2579,
+      "new": "Moon"
+    },
+    {
+      "old": 2587,
+      "new": "TrailerTransporter"
+    },
+    {
+      "old": 2588,
+      "new": "TrailerScooter"
+    },
+    {
+      "old": 2629,
+      "new": "Smartwatch"
+    },
+    {
+      "old": 2630,
+      "new": "Router"
+    },
+    {
+      "old": 2646,
+      "new": "MarketPlace"
+    },
+    {
+      "old": 2647,
+      "new": "ContactlessPayment"
+    },
+    {
+      "old": 2648,
+      "new": "ParcelOpen"
+    },
+    {
+      "old": 2694,
+      "new": "CloudDownload"
+    },
+    {
+      "old": 2760,
+      "new": "Container"
+    },
+    {
+      "old": 2761,
+      "new": "GenderFemale"
+    },
+    {
+      "old": 2762,
+      "new": "GenderMale"
+    },
+    {
+      "old": 2763,
+      "new": "GenderNonBinary"
+    },
+    {
+      "old": 2765,
+      "new": "UnknownAdress"
+    },
+    {
+      "old": 2766,
+      "new": "DocumentCarnetATA"
+    },
+    {
+      "old": 2769,
+      "new": "CogwheelRailway"
+    },
+    {
+      "old": 2767,
+      "new": "BusStop"
+    },
+    {
+      "old": 2770,
+      "new": "WalkSlow"
+    },
+    {
+      "old": 2772,
+      "new": "MountainRailway"
+    },
+    {
+      "old": 2774,
+      "new": "Ship"
+    },
+    {
+      "old": 2775,
+      "new": "Train"
+    },
+    {
+      "old": 2733,
+      "new": "Tooth"
+    },
+    {
+      "old": 2734,
+      "new": "Grave"
+    },
+    {
+      "old": 2776,
+      "new": "Component"
+    },
+    {
+      "old": 2777,
+      "new": "LocationUnknown"
+    },
+    {
+      "old": 2781,
+      "new": "Italy"
+    },
+    {
+      "old": 2782,
+      "new": "France"
+    },
+    {
+      "old": 2783,
+      "new": "Germany"
+    },
+    {
+      "old": 2784,
+      "new": "Adressbook"
+    }
+  ]
+}

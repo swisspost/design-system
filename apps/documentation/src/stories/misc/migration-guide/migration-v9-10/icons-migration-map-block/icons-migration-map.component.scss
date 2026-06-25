@@ -1,0 +1,59 @@
+@use '@swisspost/design-system-styles/core' as post;
+@use '../../../../../../.storybook/styles/mixins';
+
+:host {
+  @include mixins.code-element(false);
+
+  dl {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: max-content auto;
+
+    > dt,
+    > dd {
+      display: grid;
+      grid-template-areas: 'old new';
+      grid-template-columns: max-content max-content max-content;
+      grid-auto-flow: row;
+      grid-row-gap: 0.25rem;
+      margin: 0;
+      padding: 0.5rem;
+      width: auto;
+      align-items: start;
+
+      > :first-child {
+        grid-column: old;
+
+        &::after {
+          display: inline-block;
+          content: '→';
+          margin-inline: 1rem;
+          opacity: 0.35;
+          line-height: 1;
+          vertical-align: text-top;
+        }
+
+        ~ * {
+          grid-column: new;
+
+          &:has(+ *) {
+            &::after {
+              display: inline-block;
+              content: 'or';
+              margin-inline-start: 0.5rem;
+              line-height: 1;
+            }
+          }
+        }
+      }
+
+      &:nth-of-type(odd) {
+        background-color: post.$black-alpha-10;
+      }
+
+      post-icon {
+        font-size: 1.25rem;
+      }
+    }
+  }
+}
