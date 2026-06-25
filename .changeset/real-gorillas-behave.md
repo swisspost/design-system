@@ -3,4 +3,4 @@
 '@swisspost/design-system-components': minor
 ---
 
-Added the `post-breadcrumb` component to provide a standalone breadcrumb navigation solution.
+Added the `<post-breadcrumb>` component to provide a standalone breadcrumb navigation solution.

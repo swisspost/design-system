@@ -3,6 +3,6 @@
 ---
 
 Refactored the icon mixins so that icons no longer need to be included separately, imports are now handled automatically.
-The `custom-property` mixin as therefore be removed entirely.
+The `@mixin custom-property` has therefore been removed entirely.
 
-The `icon` mixin arguments have also been updated: `$height` and `$width` have been replaced with a single `$size` since all icons are square.
+The `@mixin icon` arguments have also been updated: `$height` and `$width` have been replaced with a single `$size` since all icons are square.

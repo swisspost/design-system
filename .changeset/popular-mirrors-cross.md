@@ -4,4 +4,4 @@
 '@swisspost/design-system-components-react': minor
 ---
 
-Added the `post-header` component.
+Added the `<post-header>` component.
