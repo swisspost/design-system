@@ -24,7 +24,6 @@ import {
   DATE_FORMAT_MAP,
   DATE_FORMAT_RANGE_SEPARATOR,
   DATE_FORMAT_SEPARATOR_REGEX,
-  ISO_VALUE_SEPARATOR,
 } from './constants';
 import {
   dateToIso,
@@ -665,9 +664,8 @@ export class PostDatePicker {
     body.removeEventListener('keydown', this.handleGridKeydown);
     body.addEventListener('keydown', this.handleGridKeydown);
 
-    const isoValue = this.getInputIsoValue();
-    const firstIso = isoValue ? isoValue.split(ISO_VALUE_SEPARATOR)[0] : '';
-    const selectedDate = firstIso ? isoToDate(firstIso) : null;
+    const dates = this.getIsoDates();
+    const selectedDate = dates[0] ? isoToDate(dates[0]) : null;
     this.setActiveCell(selectedDate || this.today, focusOnDate);
   }
 
@@ -756,16 +754,16 @@ export class PostDatePicker {
     });
   }
 
-  private getInputIsoValue(): string {
+  private getIsoDates(): string[] {
     const nativeVal = getNativeValue(this.dpInput);
     const DIGITS_PER_DATE = 8; // dd(2) + mm(2) + yyyy(4)
 
     if (!this.range) {
       const digits = nativeVal?.replaceAll(/\D/g, '') ?? '';
-      if (digits.length < DIGITS_PER_DATE) return '';
+      if (digits.length < DIGITS_PER_DATE) return [];
 
       const date = this.stringToDate(nativeVal);
-      return date && isValidDate(date) ? dateToIso(date) : '';
+      return date && isValidDate(date) ? [dateToIso(date)] : [];
     }
 
     const parts = nativeVal?.split(this.dateFormatRangeSeparator) ?? [];
@@ -775,12 +773,22 @@ export class PostDatePicker {
     const start = startDigits.length >= DIGITS_PER_DATE ? this.stringToDate(parts[0]) : null;
     const end = endDigits.length >= DIGITS_PER_DATE ? this.stringToDate(parts[1]) : null;
 
-    return [
-      start && isValidDate(start) ? dateToIso(start) : '',
-      end && isValidDate(end) ? dateToIso(end) : '',
-    ]
-      .filter(Boolean)
-      .join(ISO_VALUE_SEPARATOR);
+    const result: string[] = [];
+    if (start && isValidDate(start)) result.push(dateToIso(start));
+    if (end && isValidDate(end)) result.push(dateToIso(end));
+    return result;
+  }
+
+  private getInputIsoValue(): string | string[] {
+    const dates = this.getIsoDates();
+    if (!this.range) {
+      return dates[0] ?? '';
+    }
+    return dates;
+  }
+
+  private serializeIsoValue(): string {
+    return JSON.stringify(this.getIsoDates());
   }
 
   private setInputIsoValue(val: string | string[]) {
@@ -932,7 +940,7 @@ export class PostDatePicker {
   private emitInputEvents() {
     this.inputMask.updateValue();
 
-    const currentValue = this.getInputIsoValue();
+    const currentValue = this.serializeIsoValue();
     if (currentValue === this._lastInputValue) {
       return;
     }
@@ -948,7 +956,7 @@ export class PostDatePicker {
   private handleInputEvent = (e: Event) => {
     if (this.maskElement.allowEvents) return;
 
-    const currentValue = this.getInputIsoValue();
+    const currentValue = this.serializeIsoValue();
     if (currentValue === this._lastInputValue) {
       e.stopImmediatePropagation();
       return;
@@ -965,14 +973,10 @@ export class PostDatePicker {
   }
 
   private syncInputToDp() {
-    const isoValue = this.getInputIsoValue();
-    if (!isoValue) return;
+    const isoDates = this.getIsoDates();
+    if (isoDates.length === 0) return;
 
-    const dates = isoValue
-      .split(ISO_VALUE_SEPARATOR)
-      .filter(Boolean)
-      .map(iso => isoToDate(iso))
-      .filter(d => d && isValidDate(d)) as Date[];
+    const dates = isoDates.map(iso => isoToDate(iso)).filter(d => d && isValidDate(d)) as Date[];
 
     if (dates.length > 0) {
       this.dpInstance.selectDate(this.range ? dates : dates[0]);
@@ -1048,7 +1052,7 @@ export class PostDatePicker {
   }
 
   private addInputListener() {
-    this._lastInputValue = this.getInputIsoValue();
+    this._lastInputValue = this.serializeIsoValue();
     if (!this.inline) {
       this.dpInput.addEventListener('blur', this.handleInputBlur);
     }
