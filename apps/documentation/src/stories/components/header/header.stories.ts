@@ -6,6 +6,7 @@ import { renderMicrositeControls } from '@/stories/components/header/renderers/m
 import { renderTitle } from '@/stories/components/header/renderers/title';
 import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
 import { fakeContent } from '@/utils';
+import { renderLoginLink } from '@root/src/stories/components/header/renderers/login-link';
 import { MetaComponent } from '@root/types';
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing, TemplateResult } from 'lit';
@@ -180,23 +181,18 @@ function showGlobalLogin(args: Args) {
 function getHeaderRenderer(
   subComponents: {
     mainnavigation?: TemplateResult;
+    loginLink?: TemplateResult;
     userMenu?: TemplateResult;
     title?: TemplateResult;
   } = {},
 ) {
   return (args: Args) => {
     const mainnavigation = subComponents.mainnavigation ?? renderMainnavigation();
+    const loginLink = subComponents.loginLink ?? renderLoginLink();
     const userMenu = subComponents.userMenu ?? renderUserMenu();
     const title = subComponents.title ?? renderTitle(args);
 
-    const globalLogin = args.isLoggedIn
-      ? html` <div slot="post-login">${userMenu}</div> `
-      : html`
-          <a href="" slot="post-login">
-            <span>Login</span>
-            <post-icon name="login"></post-icon>
-          </a>
-        `;
+    const globalLogin = args.isLoggedIn ? userMenu : loginLink;
 
     const globalControls = html`
       <!-- Global controls (Search) -->
@@ -291,20 +287,7 @@ export const ActiveNavigationItem: Story = {
       return renderHeader(context.args);
     },
   ],
-  render: () => html`
-    <post-mainnavigation slot="main-nav" text-main="Main">
-      <ul>
-        <li>
-          <a href="/letters">Letters</a>
-        </li>
-
-        <li>
-          <!-- The active link must have an aria-current="page" attribute to ensure correct accessibility and styling. -->
-          <a href="/packages" aria-current="page">Packages</a>
-        </li>
-      </ul>
-    </post-mainnavigation>
-  `,
+  render: () => renderMainnavigation({ showActiveLink: true, showMegadropdown: false }),
 };
 
 export const Portal: Story = {
@@ -401,6 +384,7 @@ export const LoggedIn: Story = {
     (story: StoryFn, context: StoryContext) => {
       const renderHeader = getHeaderRenderer({
         userMenu: html` ${story(context.args, context)} `,
+        mainnavigation: renderMainnavigation({ showMegadropdown: false }),
       });
       return renderHeader(context.args);
     },
@@ -414,4 +398,14 @@ export const LoggedOut: Story = {
   args: {
     isLoggedIn: false,
   },
+  decorators: [
+    (story: StoryFn, context: StoryContext) => {
+      const renderHeader = getHeaderRenderer({
+        loginLink: html` ${story(context.args, context)} `,
+        mainnavigation: renderMainnavigation({ showMegadropdown: false }),
+      });
+      return renderHeader(context.args);
+    },
+  ],
+  render: () => renderLoginLink(),
 };
