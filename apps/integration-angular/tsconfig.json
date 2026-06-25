@@ -2,30 +2,26 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "outDir": "./out-tsc/lib",
+    "outDir": "./dist/out-tsc",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "noImplicitOverride": false,
+    "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
-    "inlineSources": true,
+    "declaration": false,
     "moduleResolution": "bundler",
     "importHelpers": true,
     "module": "esnext",
     "target": "es2022",
-    "lib": ["es2022", "dom"],
-    "types": []
+    "lib": ["es2022", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  },
-  "exclude": ["**/*.spec.ts"]
+  }
 }
