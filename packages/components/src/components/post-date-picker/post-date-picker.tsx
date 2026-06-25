@@ -761,7 +761,7 @@ export class PostDatePicker {
     const DIGITS_PER_DATE = 8; // dd(2) + mm(2) + yyyy(4)
 
     if (!this.range) {
-      const digits = nativeVal?.replaceAll(/[^0-9]/g, '') ?? '';
+      const digits = nativeVal?.replaceAll(/\D/g, '') ?? '';
       if (digits.length < DIGITS_PER_DATE) return '';
 
       const date = this.stringToDate(nativeVal);
@@ -769,8 +769,8 @@ export class PostDatePicker {
     }
 
     const parts = nativeVal?.split(this.dateFormatRangeSeparator) ?? [];
-    const startDigits = parts[0]?.replaceAll(/[^0-9]/g, '') ?? '';
-    const endDigits = parts[1]?.replaceAll(/[^0-9]/g, '') ?? '';
+    const startDigits = parts[0]?.replaceAll(/\D/g, '') ?? '';
+    const endDigits = parts[1]?.replaceAll(/\D/g, '') ?? '';
 
     const start = startDigits.length >= DIGITS_PER_DATE ? this.stringToDate(parts[0]) : null;
     const end = endDigits.length >= DIGITS_PER_DATE ? this.stringToDate(parts[1]) : null;
@@ -788,7 +788,13 @@ export class PostDatePicker {
     this._isInternalUpdate = true;
 
     try {
-      const isoValues = Array.isArray(val) ? val : val ? val.split(',').map(s => s.trim()) : [];
+      let isoValues: string[];
+      if (Array.isArray(val)) {
+        isoValues = val;
+      } else {
+        isoValues = val ? val.split(',').map(s => s.trim()) : [];
+      }
+
       const dates = isoValues
         .filter(Boolean)
         .map(iso => isoToDate(iso))
