@@ -15,7 +15,7 @@ export function renderUserMenu() {
     <post-menu id="user-menu" label="User links">
       <div slot="header">
         <post-avatar firstname="John" lastname="Doe" aria-hidden="true"></post-avatar>
-        John Doe
+        <p>John Doe</p>
       </div>
       <post-menu-item>
         <a href="">
