@@ -124,7 +124,7 @@ post-header {
     }
   }
 
-  // side-nav (e.g. side navigation trigger in application header)
+  // side navigation trigger
   > [slot='side-nav'] {
     grid-area: side-nav;
     flex-shrink: 0;
