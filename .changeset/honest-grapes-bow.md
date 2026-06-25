@@ -1,6 +1,5 @@
 ---
 '@swisspost/design-system-styles': major
-'@swisspost/design-system-documentation': patch
 ---
 
 Added the `data-type` attribute to the dialog component.

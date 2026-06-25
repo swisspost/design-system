@@ -1,6 +1,5 @@
 ---
 '@swisspost/internet-header': patch
-'@swisspost/design-system-documentation': patch
 '@swisspost/design-system-components': patch
 ---
 

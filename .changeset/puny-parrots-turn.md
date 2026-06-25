@@ -4,4 +4,4 @@
 '@swisspost/design-system-components-angular': patch
 ---
 
-Removed the `post-tag` component. The `tag` component can be used instead.
+Removed the `<post-tag>` component. The `.tag` class can be used instead.

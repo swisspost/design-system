@@ -3,4 +3,4 @@
 '@swisspost/design-system-components': minor
 ---
 
-Published `post-date-picker` web component.
+Published `<post-date-picker>` web component.
