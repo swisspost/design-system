@@ -1,14 +1,14 @@
-import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
-import { MetaComponent } from '@root/types';
-import { html, nothing, TemplateResult } from 'lit';
-import { fakeContent } from '@/utils';
-import { renderMainnavigation } from '@/stories/components/header/renderers/main-navigation';
-import { renderGlobalNavSecondary } from '@/stories/components/header/renderers/global-nav-secondary';
 import { renderAudience } from '@/stories/components/header/renderers/audience';
-import { renderMicrositeControls } from '@/stories/components/header/renderers/microsite-controls';
+import { renderGlobalNavSecondary } from '@/stories/components/header/renderers/global-nav-secondary';
 import { renderJobControls } from '@/stories/components/header/renderers/job-controls';
-import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
+import { renderMainnavigation } from '@/stories/components/header/renderers/main-navigation';
+import { renderMicrositeControls } from '@/stories/components/header/renderers/microsite-controls';
 import { renderTitle } from '@/stories/components/header/renderers/title';
+import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
+import { fakeContent } from '@/utils';
+import { MetaComponent } from '@root/types';
+import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
+import { html, nothing, TemplateResult } from 'lit';
 import { renderSideNavTrigger, renderSideNavigation } from '@/stories/components/header/renderers/side-navigation';
 import { forceCompactAppearance } from '../../../../.storybook/helpers';
 
@@ -232,7 +232,7 @@ function getHeaderRenderer(
     const languageMenu = html`
       <post-language-menu
         text-change-language="Change the language"
-        text-current-language="The currently selected language is #name."
+        text-current-language="The currently selected language is {name}."
         name="language-menu-example"
       >
         <post-language-menu-item code="de" name="German">de</post-language-menu-item>

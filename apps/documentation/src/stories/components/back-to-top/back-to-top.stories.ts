@@ -1,7 +1,7 @@
-import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
-import { MetaComponent } from '@root/types';
-import { html } from 'lit';
 import { fakeContent } from '@/utils';
+import { MetaComponent } from '@root/types';
+import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
+import { html } from 'lit';
 
 const meta: MetaComponent = {
   id: '1a1b4cab-d0a8-4b01-bd85-b70e18668cb5',
@@ -34,7 +34,7 @@ const meta: MetaComponent = {
         <!-- Language menu -->
         <post-language-menu
           text-change-language="Change the language"
-          text-current-language="The currently selected language is #name."
+          text-current-language="The currently selected language is {name}."
           name="language-menu-example"
           slot="language-menu"
         >

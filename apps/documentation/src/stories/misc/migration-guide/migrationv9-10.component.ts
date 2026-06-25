@@ -1022,7 +1022,7 @@ export class MyComponent {
                                   will throw an error if any are missing.
                                 </span>
                                 <code-block
-                                  code=${'<swisspost-internet-header\n    project="your-service-id"\n    text-menu="Menu"\n    text-back="Back"\n    text-close="Close"\n    text-current-language="The currently selected language is #name."\n    text-change-language="Change the language"\n    text-main="Main navigation"\n    text-current-user="Current user is John Doe."\n    text-user-links="User links"\n  ></swisspost-internet-header>'}
+                                  code=${'<swisspost-internet-header\n    project="your-service-id"\n    text-menu="Menu"\n    text-back="Back"\n    text-close="Close"\n    text-current-language="The currently selected language is {name}."\n    text-change-language="Change the language"\n    text-main="Main navigation"\n    text-current-user="Current user is {user}."\n    text-user-links="User links"\n  ></swisspost-internet-header>'}
                                 ></code-block>
                               </label>
                             </div>
