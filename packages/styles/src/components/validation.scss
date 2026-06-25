@@ -15,8 +15,12 @@ Default feedback message classes
   margin: 0;
   font-size: tokens.get('post-validation-font-size');
 
-  .form-control-sm + & {
+  input.form-control-sm + & {
     font-size: tokens.get('input-small-assist-font-size', components.$post-text-input);
+  }
+
+  textarea.form-control-sm + & {
+    font-size: tokens.get('textarea-small-assist-font-size', components.$post-text-area);
   }
 
   .form-select-sm + & {
@@ -72,7 +76,7 @@ post-number-input {
 }
 
 post-number-input.number-input-sm,
-input.form-control-sm,
+.form-control-sm,
 select.form-select-sm {
   + .invalid-feedback,
   + .valid-feedback {
@@ -100,8 +104,11 @@ input[type='radio'],
     margin-inline-end: tokens.get('validation-group-gap-inline');
     content: '';
     flex-shrink: 0;
+    -webkit-mask-size: contain;
     mask-size: contain;
+    -webkit-mask-position: center;
     mask-position: center;
+    -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
   }
 

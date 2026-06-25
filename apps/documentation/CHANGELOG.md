@@ -1,5 +1,43 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.76
+
+### Minor Changes
+
+- Added Header variant for Internal Applications. (by [@myrta2302](https://github.com/myrta2302) and [@alizedebray](https://github.com/alizedebray) with [#7758](https://github.com/swisspost/design-system/pull/7758))
+
+### Patch Changes
+
+- Removed the "Form Autocomplete" documentation page because the component is not ready for use. (by [@alizedebray](https://github.com/alizedebray) with [#7950](https://github.com/swisspost/design-system/pull/7950))
+
+- Fixed `list-interactive-switch` not stretching to full width. Removed outdated text from the documentation. (by [@myrta2302](https://github.com/myrta2302) with [#7900](https://github.com/swisspost/design-system/pull/7900))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.75
+  - @swisspost/design-system-styles@10.0.0-next.75
+  - @swisspost/design-system-components@10.0.0-next.75
+  - @swisspost/design-system-components-react@10.0.0-next.75
+  - @swisspost/internet-header@10.0.0-next.75
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.75
+  - @swisspost/design-system-tokens@10.0.0-next.75
+
+## 6.0.0-next.75
+
+### Patch Changes
+
+- Removed all status tags. Components will no longer be tagged for status because it confused more than it helped. (by [@gfellerph](https://github.com/gfellerph) with [#7841](https://github.com/swisspost/design-system/pull/7841))
+
+- Fixed dark mode toggle for nested story previews. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7864](https://github.com/swisspost/design-system/pull/7864))
+
+- Fixed the story actions "View full screen" and "Copy deep link" in the header documentation page. Deleted the "Open in Codepen" action from all stories. (by [@alizedebray](https://github.com/alizedebray) with [#7856](https://github.com/swisspost/design-system/pull/7856))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.74
+  - @swisspost/design-system-styles@10.0.0-next.74
+  - @swisspost/internet-header@10.0.0-next.74
+  - @swisspost/design-system-components@10.0.0-next.74
+  - @swisspost/design-system-components-react@10.0.0-next.74
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.74
+  - @swisspost/design-system-tokens@10.0.0-next.74
+
 ## 6.0.0-next.74
 
 ### Patch Changes
