@@ -90,6 +90,15 @@
         <post-tab-panel for="tab-two">Content of tab two</post-tab-panel>
         <post-tab-panel for="tab-three">Content of tab three</post-tab-panel>
       </post-tabs>
+
+      <!-- accordion directly above the trigger — must not shift vertically -->
+      <post-accordion heading-level="3" class="tooltip-layout-spacing">
+        <post-accordion-item id="layout-accordion-item">
+          <span slot="header">Accordion above trigger</span>
+          <p id="accordion-body-text">Accordion body content.</p>
+        </post-accordion-item>
+      </post-accordion>
+
       <!-- paragraph directly above trigger — must not reflow -->
       <p id="paragraph-before">
         Paragraph before trigger — must not reflow.
