@@ -85,7 +85,6 @@ Type: `Promise<void>`
 
  - [post-breadcrumbs](../post-breadcrumbs)
  - [post-language-menu](../post-language-menu)
- - [post-login-widget](../post-login-widget)
 
 ### Depends on
 
@@ -97,7 +96,6 @@ graph TD;
   post-menu --> post-popovercontainer
   post-breadcrumbs --> post-menu
   post-language-menu --> post-menu
-  post-login-widget --> post-menu
   style post-menu fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
