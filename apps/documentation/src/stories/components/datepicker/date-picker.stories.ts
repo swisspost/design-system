@@ -1,4 +1,3 @@
-import { spreadArgs } from '@/utils';
 import { MetaComponent } from '@root/types';
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
@@ -21,9 +20,11 @@ const meta: MetaComponent = {
   },
   args: {
     id: 'main',
-    locale: '',
     inline: false,
     range: false,
+    min: '',
+    max: '',
+    locale: '',
     textToggleCalendar: 'Open calendar',
     textNextDecade: 'Next decade',
     textNextMonth: 'Next month',
@@ -83,6 +84,9 @@ const meta: MetaComponent = {
     max: {
       control: 'text',
     },
+    cellConfig: {
+      control: false,
+    },
     value: {
       name: 'Value',
       description: 'The date or date range used as a value for the input.',
@@ -100,7 +104,22 @@ export default meta;
 // Setting different instances of the post-date-picker forces the rerender of the component and make sure it updates when args change
 function render(args: Args) {
   return html`
-    <post-date-picker ${spreadArgs(args)}>
+    <post-date-picker
+      id=${args.id}
+      ?range="${args.range}"
+      ?inline="${args.inline}"
+      min=${args.min || nothing}
+      max=${args.max || nothing}
+      locale=${args.locale || nothing}
+      text-toggle-calendar=${args.textToggleCalendar}
+      text-next-decade=${args.textNextDecade}
+      text-next-month=${args.textNextMonth}
+      text-next-year=${args.textNextYear}
+      text-previous-decade=${args.textPreviousDecade}
+      text-previous-month=${args.textPreviousMonth}
+      text-previous-year=${args.textPreviousYear}
+      text-switch-year=${args.textSwitchYear}
+    >
       <input class=${args.inline ? nothing : 'form-control'} value=${args.value ?? nothing} />
     </post-date-picker>
   `;
