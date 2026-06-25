@@ -12,11 +12,6 @@ $tabs-outline-offset: calc(
     (tokens.get('post-tabs-border-width'))
 );
 
-$tabs-font-weight-interpolation: calc(
-  tokens.get('post-tabs-tab-font-weight') + var(--active, 0) *
-    (700 - tokens.get('post-tabs-tab-font-weight'))
-);
-
 // Common for all variants
 post-tab-item.tab-title,
 post-tab-item.nav-item a {
@@ -348,7 +343,7 @@ post-tabs[active-tab] {
         transparent
       );
     }
-    font-weight: $tabs-font-weight-interpolation;
+
     z-index: calc(var(--active, 0) * 1);
 
     @include utilities-mx.high-contrast-mode() {
@@ -381,7 +376,6 @@ post-tabs[active-tab] {
             )
         )
     );
-    font-weight: $tabs-font-weight-interpolation;
     z-index: calc(var(--active, 0) * 1);
 
     @include utilities-mx.high-contrast-mode() {
@@ -416,7 +410,6 @@ post-tabs:not([active-tab]) {
     &::after {
       background-color: tokens.get('post-tabs-content-tab-selected-border-color');
     }
-    font-weight: tokens.get('post-tabs-tab-font-weight');
     z-index: 1;
 
     @include utilities-mx.high-contrast-mode() {
@@ -432,7 +425,6 @@ post-tabs:not([active-tab]) {
     background-color: tokens.get('post-tabs-page-tab-selected-bg');
     color: tokens.get('post-tabs-page-tab-selected-fg');
     padding-block: tokens.get('post-tabs-page-large-tab-selected-padding-block');
-    font-weight: tokens.get('post-tabs-tab-font-weight');
     z-index: 1;
 
     @include utilities-mx.high-contrast-mode() {
