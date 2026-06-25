@@ -7,7 +7,6 @@ import {
   PostIcon,
   PostLanguageMenu,
   PostLanguageMenuItem,
-  PostLoginWidget,
   PostLogo,
   PostMainnavigation,
   PostMegadropdown,
@@ -84,17 +83,10 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </PostLanguageMenu>
 
         {/* Global header login/user menu */}
-        <PostLoginWidget
-          slot="post-login"
-          text-current-user="Current user is {user}."
-          text-user-menu-trigger="Access user links"
-          text-user-menu="User links"
-        >
-          <a href="#login" slot="login-link">
-            <span>Login</span>
-            <PostIcon aria-hidden="true" name="login" />
-          </a>
-        </PostLoginWidget>
+        <a href="" slot="post-login">
+          <span>Login</span>
+          <PostIcon name="login" />
+        </a>
         {/* Main navigation */}
         <PostMainnavigation slot="main-nav" text-main="Main">
           <ul>
