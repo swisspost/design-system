@@ -81,13 +81,16 @@
       </post-button-group>
 
       <!-- tabs directly above the trigger row — must not shift vertically -->
-      <post-tabs id="layout-tabs" class="tooltip-layout-spacing">
-        <post-tab-item name="tab-one">Tab one</post-tab-item>
-        <post-tab-item name="tab-two">Tab two</post-tab-item>
-        <post-tab-item name="tab-three">Tab three</post-tab-item>
-        <post-tab-panel for="tab-one">Content of tab one</post-tab-panel>
-        <post-tab-panel for="tab-two">Content of tab two</post-tab-panel>
-        <post-tab-panel for="tab-three">Content of tab three</post-tab-panel>
+      <post-tabs id="layout-tabs" class="tooltip-layout-spacing" label="Tabs navigation">
+        <post-tab-item name="first">
+          <a href="/first" aria-current="page">First page</a>
+        </post-tab-item>
+        <post-tab-item name="second">
+          <a href="/second">Second page</a>
+        </post-tab-item>
+        <post-tab-item name="third">
+          <a href="/third">Third page</a>
+        </post-tab-item>
       </post-tabs>
 
       <!-- accordion directly above the trigger — must not shift vertically -->
