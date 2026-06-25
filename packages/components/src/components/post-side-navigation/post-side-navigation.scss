@@ -1,0 +1,22 @@
+@use '@swisspost/design-system-styles/mixins/media';
+
+:host {
+  display: flex;
+  background-color: #f0efed;
+
+  & dialog {
+    overflow-y: auto;
+    bottom: auto;
+    right: auto;
+    border: none;
+    padding-inline: 0;
+    padding-block: 40px;
+    height: 100vh;
+    background-color: #f0efed;
+  }
+
+  @include media.min(desktop) {
+    max-width: 35ch;
+    width: 35ch;
+  }
+}

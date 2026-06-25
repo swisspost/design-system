@@ -1,0 +1,327 @@
+<div class="my-24">
+  <h2>Accordion</h2>
+  <post-accordion [headingLevel]="3">
+    <post-accordion-item>
+      <span slot="header">Titulum 1</span>
+      <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+    </post-accordion-item>
+
+    <post-accordion-item>
+      <span slot="header">Titulum 2</span>
+      <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+    </post-accordion-item>
+
+    <post-accordion-item>
+      <span slot="header">Titulum 3</span>
+      <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+    </post-accordion-item>
+  </post-accordion>
+</div>
+
+<div class="my-24">
+  <h2>Avatar</h2>
+  <post-avatar firstname="Firstname"></post-avatar>
+</div>
+
+<div class="my-24">
+  <h2>Banner</h2>
+  <post-banner><p>Contentus momentus vero siteos et accusam iretea et justo.</p></post-banner>
+</div>
+
+<div class="my-24">
+  <h2>Close Button</h2>
+  <div class="position-relative w-16 h-16">
+    <post-closebutton> Close </post-closebutton>
+  </div>
+</div>
+
+<div class="my-24">
+  <h2>Collapsible</h2>
+  <post-collapsible-trigger for="angular-collapsible">
+    <button class="btn btn-secondary mb-8">Toggle</button>
+  </post-collapsible-trigger>
+  <post-collapsible id="angular-collapsible">
+    <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+  </post-collapsible>
+</div>
+
+<div class="my-24">
+  <h2>Post Datepicker</h2>
+  <post-date-picker
+    textToggleCalendar="Open calendar"
+    textNextDecade="Next decade"
+    textNextMonth="Next month"
+    textNextYear="Next year"
+    textPreviousDecade="Previous decade"
+    textPreviousMonth="Previous month"
+    textPreviousYear="Previous year"
+    textSwitchYear="Switch to year view"
+  >
+    <input class="form-control" type="text" aria-label="Date input" />
+    <p class="form-hint">Format: DD.MM.YYYY</p>
+  </post-date-picker>
+</div>
+
+<div class="my-24">
+  <h2>Autocomplete</h2>
+  <post-autocomplete clearable textAvailableSuggestions="{count} suggestions available">
+    <div class="form-floating">
+      <input
+        type="text"
+        id="autocomplete-country"
+        class="form-control"
+        placeholder="Search for a country"
+      />
+      <label for="autocomplete-country">Country</label>
+    </div>
+    <post-listbox>
+      <post-listbox-option value="Switzerland"></post-listbox-option>
+      <post-listbox-option value="Germany"></post-listbox-option>
+      <post-listbox-option value="France"></post-listbox-option>
+      <post-listbox-option value="Italy"></post-listbox-option>
+    </post-listbox>
+  </post-autocomplete>
+</div>
+
+<div class="my-24">
+  <h2>Icons</h2>
+  <div class="d-flex gap-16 flex-wrap">
+    <figure>
+      <post-icon name="letter" class="fs-2"></post-icon>
+      <figcaption>Line Icon</figcaption>
+    </figure>
+    <figure>
+      <post-icon name="letter-solid" class="fs-2"></post-icon>
+      <figcaption>Solid Icon</figcaption>
+    </figure>
+    <figure>
+      <post-icon name="letter" style="color: red" class="fs-2"></post-icon>
+      <figcaption>Colored Icon</figcaption>
+    </figure>
+    <figure>
+      <post-icon name="letter" class="fs-3"></post-icon>
+      <figcaption>Sized Icon</figcaption>
+    </figure>
+    <figure>
+      <post-icon name="explosives" [flipH]="true" class="fs-2"></post-icon>
+      <figcaption>Flipped Horizontally</figcaption>
+    </figure>
+    <figure>
+      <post-icon name="explosives" class="fs-2" [flipV]="true"></post-icon>
+      <figcaption>Flipped Vertically</figcaption>
+    </figure>
+    <figure>
+      <post-icon name="letter" class="fs-2" [rotate]="90"></post-icon>
+      <figcaption>Rotated</figcaption>
+    </figure>
+    <figure>
+      <post-icon name="letter" class="fs-2" [scale]="1.5"></post-icon>
+      <figcaption>Scaled</figcaption>
+    </figure>
+    <figure>
+      <post-icon name="letter" class="fs-2" animation="spin"></post-icon>
+      <figcaption>Spinning</figcaption>
+    </figure>
+  </div>
+</div>
+
+<div class="my-24">
+  <h2>Linkarea</h2>
+  <post-linkarea class="card">
+    <div class="card-body">
+      <h5>Titulum</h5>
+      <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+      <a class="card-link" href="#test"> Ligilo teksto </a>
+    </div>
+  </post-linkarea>
+</div>
+
+<div class="my-24">
+  <h2>Menu</h2>
+  <post-menu-trigger for="menu-one">
+    <button class="btn btn-primary">Menu button</button>
+  </post-menu-trigger>
+  <post-menu id="menu-one" label="Menu">
+    <post-menu-item>
+      <button>Example 1</button>
+    </post-menu-item>
+    <post-menu-item>
+      <a href="#test">Example 2</a>
+      <post-menu-item>
+        <div>Example 3</div>
+      </post-menu-item>
+    </post-menu-item>
+  </post-menu>
+</div>
+
+<div class="my-24">
+  <h2>Number Input</h2>
+  <post-number-input class="form-floating">
+    <input type="number" id="quantity" class="form-control" placeholder="" />
+    <label for="quantity">Quantity</label>
+  </post-number-input>
+</div>
+
+<div class="my-24">
+  <h2>Pagination</h2>
+  <post-pagination
+    page="1"
+    pageSize="10"
+    collectionSize="100"
+    label="Pagination"
+    textPrevious="Previous page"
+    textNext="Next page"
+    textPage="Page"
+    textFirst="First page"
+    textLast="Last page"
+  ></post-pagination>
+</div>
+
+<div class="my-24">
+  <h2>Popover</h2>
+  <post-popover-trigger for="popover-one">
+    <button type="button" class="btn btn-secondary">Popover Trigger</button>
+  </post-popover-trigger>
+  <post-popover class="palette palette-accent" id="popover-one" placement="top" textClose="Close">
+    <div id="popoverContent">
+      <h2 class="h6">Optional title</h2>
+      <p class="mb-0">
+        A longer message that needs more time to read. <a href="#">Links</a> are also possible.
+      </p>
+    </div>
+  </post-popover>
+</div>
+
+<div class="my-24">
+  <h2>Popovercontainer</h2>
+  <post-popovercontainer></post-popovercontainer>
+</div>
+
+<div class="my-24">
+  <h2>Progressbar</h2>
+  <div class="progressbar">
+    <p
+      class="progressbar-label"
+      id="progressbar-label-a1b2c3d4-e5f6-7890-abcd-ef1234567890--default"
+    >
+      Loading packages
+    </p>
+    <p class="progressbar-value">11 of 17</p>
+    <post-progressbar
+      [value]="11"
+      [min]="0"
+      [max]="17"
+      aria-valuetext="11 of 17"
+      aria-labelledby="progressbar-label-a1b2c3d4-e5f6-7890-abcd-ef1234567890--default"
+    ></post-progressbar>
+  </div>
+</div>
+
+<div class="my-24">
+  <h2>Rating</h2>
+  <post-rating label="Rating"></post-rating>
+</div>
+
+<div class="my-24">
+  <h2>Side Navigation</h2>
+  <post-side-navigation-trigger for="angular-side-nav">
+    <button>
+      <span>Menu</span>
+      <post-icon aria-hidden="true" name="burger"></post-icon>
+    </button>
+  </post-side-navigation-trigger>
+
+  <post-side-navigation textClose="Close" id="angular-side-nav" text-close="Close">
+    <nav aria-labelledby="angular-side-nav-title">
+      <h2 id="angular-side-nav-title" class="post-side-navigation-heading">Section title</h2>
+      <ul>
+        <li><a href="#" class="post-side-navigation-item">Sidenav link</a></li>
+        <li>
+          <a href="#" class="post-side-navigation-item">
+            <post-icon name="search" aria-hidden="true"></post-icon>
+            Sidenav link with icon
+          </a>
+        </li>
+        <li>
+          <post-collapsible-trigger for="angular-side-nav-collapsible">
+            <button class="post-side-navigation-item">
+              Sidenav level 1
+              <post-icon name="chevrondown" aria-hidden="true"></post-icon>
+            </button>
+          </post-collapsible-trigger>
+          <post-collapsible id="angular-side-nav-collapsible">
+            <ul>
+              <li><a href="#" class="post-side-navigation-item">Child link</a></li>
+              <li><a href="#" class="post-side-navigation-item">Child link</a></li>
+            </ul>
+          </post-collapsible>
+        </li>
+      </ul>
+    </nav>
+  </post-side-navigation>
+</div>
+
+<div class="my-24">
+  <h2>Stepper</h2>
+  <post-stepper
+    textCompletedStep="Completed step"
+    textCurrentStep="Current step"
+    textStepNumber="Step {number}:"
+    [currentIndex]="1"
+  >
+    <post-stepper-item> Step 1 </post-stepper-item>
+    <post-stepper-item> Step 2 </post-stepper-item>
+    <post-stepper-item> Step 3 </post-stepper-item>
+    <post-stepper-item> Step 4 </post-stepper-item>
+  </post-stepper>
+</div>
+
+<div class="my-24">
+  <h2>Tabs - Panel Variant</h2>
+  <post-tabs>
+    <post-tab-item name="unua">Unua langeto</post-tab-item>
+    <post-tab-item name="dua">Dua langeto</post-tab-item>
+    <post-tab-item name="tria">Tria langeto</post-tab-item>
+
+    <post-tab-panel for="unua">
+      Jen la enhavo de la unua langeto. Defaŭlte ĝi montriĝas komence.
+    </post-tab-panel>
+    <post-tab-panel for="dua">
+      Jen la enhavo de la dua langeto. Defaŭlte ĝi estas kaŝita komence.
+    </post-tab-panel>
+    <post-tab-panel for="tria">
+      Jen la enhavo de la tria langeto. Defaŭlte ĝi ankaŭ estas kaŝita komence.
+    </post-tab-panel>
+  </post-tabs>
+
+  <h2>Tabs - Navigation Variant</h2>
+  <post-tabs label="Tabs navigation">
+    <post-tab-item name="nav-first">
+      <a href="#first">First</a>
+    </post-tab-item>
+    <post-tab-item name="nav-second">
+      <a href="#second">Second</a>
+    </post-tab-item>
+    <post-tab-item name="nav-third">
+      <a href="#third" aria-current="page">Third</a>
+    </post-tab-item>
+  </post-tabs>
+</div>
+
+<div class="my-24">
+  <h2>Togglebutton</h2>
+  <post-togglebutton class="btn btn-primary">
+    <span data-showwhen="untoggled">Untoggled</span>
+    <span data-showwhen="toggled">Toggled</span>
+  </post-togglebutton>
+</div>
+
+<div class="my-24">
+  <h2>Tooltip</h2>
+  <post-tooltip-trigger for="tooltip-one">
+    <button class="btn btn-secondary btn-large" aria-describedby="tooltip-one">Button</button>
+  </post-tooltip-trigger>
+  <post-tooltip id="tooltip-one" class="palette palette-accent" placement="top">
+    Hi there 👋
+  </post-tooltip>
+</div>
