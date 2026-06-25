@@ -1,19 +1,19 @@
-import Image from 'next/image';
 import {
   PostBackToTop,
-  PostBreadcrumbs,
   PostBreadcrumbItem,
+  PostBreadcrumbs,
   PostFooter,
   PostHeader,
   PostIcon,
-  PostLanguageMenuItem,
   PostLanguageMenu,
-  PostLogo,
+  PostLanguageMenuItem,
   PostLoginWidget,
+  PostLogo,
   PostMainnavigation,
   PostMegadropdown,
   PostMegadropdownTrigger,
 } from '@swisspost/design-system-components-react/server';
+import Image from 'next/image';
 
 export default function Layout({ children }: { readonly children: React.ReactNode }) {
   return (
@@ -66,7 +66,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         {/* Language switch */}
         <PostLanguageMenu
           text-change-language="Change the language"
-          text-current-language="The currently selected language is #name."
+          text-current-language="The currently selected language is {name}."
           slot="language-menu"
         >
           <PostLanguageMenuItem code="de" name="German">
