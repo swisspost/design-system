@@ -87,10 +87,7 @@ tokens.$default-map: utilities.$post-spacing;
         position: absolute;
         top: tokens.get('utility-gap-8');
         right: tokens.get('utility-gap-8');
-
-        button {
-          color: color-mix(in srgb, var(--post-current-fg) 60%, transparent);
-        }
+        color: color-mix(in srgb, var(--post-current-fg) 60%, transparent);
       }
     }
   }

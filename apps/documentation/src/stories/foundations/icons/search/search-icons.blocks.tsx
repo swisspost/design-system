@@ -425,9 +425,7 @@ export class Search extends React.Component {
                 <span className="visually-hidden">{icon.keywords}</span>
                 {icon.migration ? (
                   <post-tooltip-trigger for="tooltip-migration-hint" class="tooltip-migration-hint">
-                    <button className="btn btn-tertiary p-0 w-auto h-auto btn-icon">
-                      <post-icon name="info"></post-icon>
-                    </button>
+                    <post-icon name="info"></post-icon>
                   </post-tooltip-trigger>
                 ) : null}
               </button>
