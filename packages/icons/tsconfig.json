@@ -5,9 +5,11 @@
     "files": true
   },
   "compilerOptions": {
-    "rootDir": "src",
-    "resolveJsonModule": true
+    "rootDir": ".",
+    "resolveJsonModule": true,
+    "types": ["node", "jest"],
+    "isolatedModules": true
   },
-  "include": ["src"],
+  "include": ["src", "tests"],
   "exclude": ["node_modules", "public"]
 }
