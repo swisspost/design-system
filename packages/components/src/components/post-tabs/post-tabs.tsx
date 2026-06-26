@@ -302,35 +302,40 @@ export class PostTabs {
    */
   @Method()
   async show(tabName: string) {
-    // do nothing if the tab is already active
-    if (tabName === this.currentActiveTab?.name) {
-      return;
+    try {
+      // do nothing if the tab is already active
+      if (tabName === this.currentActiveTab?.name) {
+        return;
+      }
+
+      const previousTab = this.currentActiveTab;
+      const newTab = this.host.querySelector<HTMLPostTabItemElement>(
+        `post-tab-item[name="${tabName}"]`,
+      );
+      if (!newTab) return;
+
+      this.activateTab(newTab);
+      this.scrollTabIntoView(newTab, 'smooth');
+
+      // if a panel is currently being displayed, remove it from the view and complete the associated animation
+      if (this.showing) {
+        this.showing.finish();
+        this.showing = null;
+      }
+
+      // hide the currently visible panel only if no other animation is running
+      if (previousTab && !this.showing && !this.hiding) this.hidePanel(previousTab.name);
+      if (await this.awaitAnimation(this.hiding)) return;
+
+      this.showSelectedPanel();
+
+      if (await this.awaitAnimation(this.showing)) return;
+
+      if (this.isLoaded && this.currentActiveTab) this.postChange.emit(this.currentActiveTab.name);
+    } catch (e) {
+      if (e instanceof Error && e.name === 'AbortError') return;
+      throw e;
     }
-
-    const previousTab = this.currentActiveTab;
-    const newTab = this.host.querySelector<HTMLPostTabItemElement>(
-      `post-tab-item[name="${tabName}"]`,
-    );
-    if (!newTab) return;
-
-    this.activateTab(newTab);
-    this.scrollTabIntoView(newTab, 'smooth');
-
-    // if a panel is currently being displayed, remove it from the view and complete the associated animation
-    if (this.showing) {
-      this.showing.finish();
-      this.showing = null;
-    }
-
-    // hide the currently visible panel only if no other animation is running
-    if (previousTab && !this.showing && !this.hiding) this.hidePanel(previousTab.name);
-    if (await this.awaitAnimation(this.hiding)) return;
-
-    this.showSelectedPanel();
-
-    if (await this.awaitAnimation(this.showing)) return;
-
-    if (this.isLoaded && this.currentActiveTab) this.postChange.emit(this.currentActiveTab.name);
   }
 
   // Awaits an animation; returns true if it was aborted (caller should bail out).
