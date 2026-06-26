@@ -5,13 +5,13 @@
 
 ## Properties
 
-| Property           | Attribute             | Description                                                                                                                                                                    | Type      | Default                |
-| ------------------ | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- | ---------------------- |
-| `activeTab`        | `active-tab`          | The name of the tab in the Content Tabs variant that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab. | `string`  | `undefined`            |
-| `fullWidth`        | `full-width`          | When set to true, this property allows the tabs container to span the Changing this value after initialization has no effect. full width of the screen, from edge to edge.     | `boolean` | `false`                |
-| `label`            | `label`               | The accessible label for the Content Tabs variant.                                                                                                                             | `string`  | `undefined`            |
-| `textNextTabItems` | `text-next-tab-items` | Label for the "next tab items" button.                                                                                                                                         | `string`  | `'Next tab items'`     |
-| `textPrevTabItems` | `text-prev-tab-items` | Label for the "previous tab items" button.                                                                                                                                     | `string`  | `'Previous tab items'` |
+| Property           | Attribute             | Description                                                                                                                                                                    | Type                 | Default                |
+| ------------------ | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------- | ---------------------- |
+| `activeTab`        | `active-tab`          | The name of the tab in the Content Tabs variant that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab. | `string`             | `undefined`            |
+| `label`            | `label`               | An accessible label for the Pages Tabs variant                                                                                                                                 | `string`             | `undefined`            |
+| `size`             | `size`                | The size of the tabs, corresponding to the different designs in Figma. Default is 'large'.                                                                                     | `"large" \| "small"` | `'large'`              |
+| `textNextTabItems` | `text-next-tab-items` | An accessible label for the "next tab items" button.                                                                                                                           | `string`             | `'Next tab items'`     |
+| `textPrevTabItems` | `text-prev-tab-items` | An accessible label for the "previous tab items" button.                                                                                                                       | `string`             | `'Previous tab items'` |
 
 
 ## Events

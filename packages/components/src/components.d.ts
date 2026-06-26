@@ -706,6 +706,11 @@ export namespace Components {
     }
     interface PostTabItem {
         /**
+          * Whether the tab item is disabled.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
           * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */
         "name": string;
@@ -722,12 +727,7 @@ export namespace Components {
          */
         "activeTab"?: string;
         /**
-          * When set to true, this property allows the tabs container to span the Changing this value after initialization has no effect. full width of the screen, from edge to edge.
-          * @default false
-         */
-        "fullWidth": boolean;
-        /**
-          * The accessible label for the Content Tabs variant
+          * An accessible label for the Pages Tabs variant
          */
         "label"?: string;
         /**
@@ -740,12 +740,12 @@ export namespace Components {
          */
         "size": 'small' | 'large';
         /**
-          * Label for the "next tab items" button.
+          * An accessible label for the "next tab items" button.
           * @default 'Next tab items'
          */
         "textNextTabItems": string;
         /**
-          * Label for the "previous tab items" button.
+          * An accessible label for the "previous tab items" button.
           * @default 'Previous tab items'
          */
         "textPrevTabItems": string;
@@ -1965,6 +1965,11 @@ declare namespace LocalJSX {
     }
     interface PostTabItem {
         /**
+          * Whether the tab item is disabled.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
           * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */
         "name": string;
@@ -1981,12 +1986,7 @@ declare namespace LocalJSX {
          */
         "activeTab"?: string;
         /**
-          * When set to true, this property allows the tabs container to span the Changing this value after initialization has no effect. full width of the screen, from edge to edge.
-          * @default false
-         */
-        "fullWidth"?: boolean;
-        /**
-          * The accessible label for the Content Tabs variant
+          * An accessible label for the Pages Tabs variant
          */
         "label"?: string;
         /**
@@ -1999,12 +1999,12 @@ declare namespace LocalJSX {
          */
         "size"?: 'small' | 'large';
         /**
-          * Label for the "next tab items" button.
+          * An accessible label for the "next tab items" button.
           * @default 'Next tab items'
          */
         "textNextTabItems"?: string;
         /**
-          * Label for the "previous tab items" button.
+          * An accessible label for the "previous tab items" button.
           * @default 'Previous tab items'
          */
         "textPrevTabItems"?: string;
@@ -2220,6 +2220,7 @@ declare namespace LocalJSX {
     }
     interface PostTabItemAttributes {
         "name": string;
+        "disabled": boolean;
     }
     interface PostTabPanelAttributes {
         "for": string;
@@ -2228,7 +2229,6 @@ declare namespace LocalJSX {
         "textPrevTabItems": string;
         "textNextTabItems": string;
         "activeTab": string;
-        "fullWidth": boolean;
         "size": 'small' | 'large';
         "label": string;
     }

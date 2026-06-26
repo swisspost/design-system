@@ -1,5 +1,5 @@
 import { fade } from '@/animations';
-import { componentOnReady, OneOf, Type, Required } from '@/utils';
+import { componentOnReady, OneOf, Type } from '@/utils';
 import { version } from '@root/package.json';
 
 import {
@@ -60,40 +60,35 @@ export class PostTabs {
   }
 
   /**
-   * Label for the "previous tab items" button.
+   * An accessible label for the "previous tab items" button.
    */
-  @Prop({ reflect: true }) textPrevTabItems: string = 'Previous tab items';
+  @Prop({ reflect: true })
+  textPrevTabItems: string = 'Previous tab items';
 
   /**
-   * Label for the "next tab items" button.
+   * An accessible label for the "next tab items" button.
    */
-  @Prop({ reflect: true }) textNextTabItems: string = 'Next tab items';
+  @Prop({ reflect: true })
+  textNextTabItems: string = 'Next tab items';
 
   /**
    * The name of the tab in the Content Tabs variant that is initially active.
    * Changing this value after initialization has no effect.
    * If not specified, defaults to the first tab.
    */
-  @Prop() readonly activeTab?: string;
-
-  /**
-   * When set to true, this property allows the tabs container to span the
-   * Changing this value after initialization has no effect.
-   * full width of the screen, from edge to edge.
-   */
-  @Prop({ reflect: true }) fullWidth: boolean = false;
+  @Prop({ reflect: true })
+  readonly activeTab?: string;
 
   /**
    * The size of the tabs, corresponding to the different designs in Figma.
    * Default is 'large'.
    */
   @Prop({ reflect: true })
-  @Required()
   @OneOf(['small', 'large'])
   size: 'small' | 'large' = 'large';
 
   /**
-   * The accessible label for the Content Tabs variant
+   * An accessible label for the Pages Tabs variant
    */
   @Prop({ reflect: true })
   @Type('string')
@@ -298,35 +293,40 @@ export class PostTabs {
    */
   @Method()
   async show(tabName: string) {
-    // do nothing if the tab is already active
-    if (tabName === this.currentActiveTab?.name) {
-      return;
+    try {
+      // do nothing if the tab is already active
+      if (tabName === this.currentActiveTab?.name) {
+        return;
+      }
+
+      const previousTab = this.currentActiveTab;
+      const newTab = this.host.querySelector<HTMLPostTabItemElement>(
+        `post-tab-item[name="${tabName}"]`,
+      );
+      if (!newTab) return;
+
+      this.activateTab(newTab);
+      this.scrollTabIntoView(newTab, 'smooth');
+
+      // if a panel is currently being displayed, remove it from the view and complete the associated animation
+      if (this.showing) {
+        this.showing.finish();
+        this.showing = null;
+      }
+
+      // hide the currently visible panel only if no other animation is running
+      if (previousTab && !this.showing && !this.hiding) this.hidePanel(previousTab.name);
+      if (await this.awaitAnimation(this.hiding)) return;
+
+      this.showSelectedPanel();
+
+      if (await this.awaitAnimation(this.showing)) return;
+
+      if (this.isLoaded && this.currentActiveTab) this.postChange.emit(this.currentActiveTab.name);
+    } catch (e) {
+      if (e instanceof Error && e.name === 'AbortError') return;
+      throw e;
     }
-
-    const previousTab = this.currentActiveTab;
-    const newTab = this.host.querySelector<HTMLPostTabItemElement>(
-      `post-tab-item[name="${tabName}"]`,
-    );
-    if (!newTab) return;
-
-    this.activateTab(newTab);
-    this.scrollTabIntoView(newTab, 'smooth');
-
-    // if a panel is currently being displayed, remove it from the view and complete the associated animation
-    if (this.showing) {
-      this.showing.finish();
-      this.showing = null;
-    }
-
-    // hide the currently visible panel only if no other animation is running
-    if (previousTab && !this.showing && !this.hiding) this.hidePanel(previousTab.name);
-    if (await this.awaitAnimation(this.hiding)) return;
-
-    this.showSelectedPanel();
-
-    if (await this.awaitAnimation(this.showing)) return;
-
-    if (this.isLoaded && this.currentActiveTab) this.postChange.emit(this.currentActiveTab.name);
   }
 
   // Awaits an animation; returns true if it was aborted (caller should bail out).
@@ -481,31 +481,41 @@ export class PostTabs {
   // Handles the visibility of scroll buttons based on the scroll position of the tabs container
   private readonly updateScrollButtons = () => {
     if (!this.tabsContainer) return;
+    const style = getComputedStyle(this.tabsContainer);
+    const paddingStart = Number.parseFloat(style.paddingInlineStart) || 0;
+    const paddingEnd = Number.parseFloat(style.paddingInlineEnd) || 0;
+    const contentWidth = this.tabsContainer.clientWidth - paddingStart - paddingEnd;
+    const scrollableWidth = this.tabsContainer.scrollWidth - paddingStart - paddingEnd;
     this.showLeftScrollButton = this.tabsContainer.scrollLeft > 0;
-    this.showRightScrollButton =
-      this.tabsContainer.scrollLeft + this.tabsContainer.clientWidth <
-      this.tabsContainer.scrollWidth;
+    this.showRightScrollButton = this.tabsContainer.scrollLeft + contentWidth < scrollableWidth;
   };
 
   private scrollTabs(direction: 'prev' | 'next') {
     const sign = direction === 'prev' ? -1 : 1;
+    const style = getComputedStyle(this.tabsContainer);
+    const paddingStart = Number.parseFloat(style.paddingInlineStart) || 0;
+    const paddingEnd = Number.parseFloat(style.paddingInlineEnd) || 0;
+    const contentWidth = this.tabsContainer.clientWidth - paddingStart - paddingEnd;
     this.tabsContainer.scrollBy({
-      left: sign * this.tabsContainer.clientWidth,
+      left: sign * contentWidth,
       behavior: 'smooth',
     });
   }
 
   private scrollTabIntoView(tab: HTMLPostTabItemElement, behavior: ScrollBehavior = 'instant') {
     const container = this.tabsContainer;
+    const style = getComputedStyle(container);
+    const paddingStart = Number.parseFloat(style.paddingInlineStart) || 0;
+    const paddingEnd = Number.parseFloat(style.paddingInlineEnd) || 0;
     const tabLeft = tab.offsetLeft;
     const tabRight = tabLeft + tab.offsetWidth;
-    const containerLeft = container.scrollLeft;
-    const containerRight = containerLeft + container.clientWidth;
+    const containerLeft = container.scrollLeft + paddingStart;
+    const containerRight = containerLeft + container.clientWidth - paddingStart - paddingEnd;
 
     if (tabLeft < containerLeft) {
-      container.scrollTo({ left: tabLeft, behavior });
+      container.scrollTo({ left: tabLeft - paddingStart, behavior });
     } else if (tabRight > containerRight) {
-      container.scrollTo({ left: tabRight - container.clientWidth, behavior });
+      container.scrollTo({ left: tabRight - container.clientWidth + paddingEnd, behavior });
     }
   }
 
@@ -532,6 +542,7 @@ export class PostTabs {
             ref={el => (this.leftScrollButton = el!)}
             class="scroll-btn scroll-btn-left"
             type="button"
+            aria-label={this.textPrevTabItems}
             tabindex={this.showLeftScrollButton ? 0 : -1}
             hidden={!this.showLeftScrollButton}
             onClick={() => this.scrollTabs('prev')}

@@ -12,9 +12,9 @@ import { Component, Element, h, Host, Prop, State, Build } from '@stencil/core';
   shadow: true,
 })
 export class PostTabPanel {
-  @Element() host: HTMLPostTabPanelElement;
+  @Element() host!: HTMLPostTabPanelElement;
 
-  @State() panelId: string;
+  @State() panelId?: string;
 
   /**
    * The name of the tab that this panel is associated with.
