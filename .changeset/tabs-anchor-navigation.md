@@ -6,10 +6,10 @@
 
 Refactored `<post-tabs>` component:
 
-- Renamed `post-tab-header` component to `post-tab-item`
-- Renamed `panel` property to `name` in `post-tab-item` component
-- Renamed `name` property to `for` in `post-tab-panel` component
-- Renamed `activePanel` property to `activeTab` in `post-tabs` component
+- Renamed `<post-tab-header>` component to `<post-tab-item>`
+- Renamed `panel` property to `name` in `<post-tab-item>` component
+- Renamed `name` property to `for` in `<post-tab-panel>` component
+- Renamed `activePanel` property to `activeTab` in `<post-tabs>` component
 
 BEFORE:
 

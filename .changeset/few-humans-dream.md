@@ -3,7 +3,6 @@
 '@swisspost/design-system-components-react': major
 '@swisspost/design-system-components': major
 '@swisspost/design-system-styles': major
-'@swisspost/design-system-documentation': patch
 ---
 
 Simplified the banner and toast components:

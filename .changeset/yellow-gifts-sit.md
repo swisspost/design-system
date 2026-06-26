@@ -3,4 +3,4 @@
 '@swisspost/design-system-components': minor
 ---
 
-Added the `post-language-switch` component that enables users to change the language of a page.
+Added the `<post-language-menu>` component that enables users to change the language of a page.

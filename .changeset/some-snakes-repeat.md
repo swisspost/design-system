@@ -1,16 +1,23 @@
 ---
 '@swisspost/design-system-styles': major
 '@swisspost/design-system-documentation': major
+'@swisspost/design-system-components': major
 ---
 
-Removed the Standard HTML Banner component (`.banner`, `.banner-*`) in favor of the `post-banner` web component.
+Changed web component `<post-alert>` to `<post-banner>`, and removed the HTML/CSS `.alert` version. Additionally, the classes `.{toast|alert}-primary`, `.{toast|alert}-gray` and `.toast-notification` have been removed.
 
 BEFORE:
 
 ```html
-<div role="alert" class="banner banner-success">
+<div role="alert" class="alert alert-success">
   <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
 </div>
+```
+
+```html
+<post-alert type="success">
+  <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+</post-alert>
 ```
 
 AFTER:
