@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CommonModule, CurrencyPipe, DatePipe, LowerCasePipe } from '@angular/common';
+import { CurrencyPipe, DatePipe, LowerCasePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TableModule } from 'primeng/table';
 
 interface Product {
@@ -19,7 +19,8 @@ interface Product {
 @Component({
   selector: 'primeng',
   templateUrl: './primeng.html',
-  imports: [TableModule, CurrencyPipe, DatePipe, LowerCasePipe, CommonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [TableModule, CurrencyPipe, DatePipe, LowerCasePipe],
 })
 export class PrimeNg {
   private readonly products: Product[] = [

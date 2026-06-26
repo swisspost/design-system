@@ -5,6 +5,7 @@
     "files": true
   },
   "compilerOptions": {
+    "rootDir": "src",
     "resolveJsonModule": true
   },
   "include": ["src"],
