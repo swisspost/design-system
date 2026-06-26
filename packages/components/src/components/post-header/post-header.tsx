@@ -24,7 +24,8 @@ import { throttle } from 'throttle-debounce';
  * @slot post-logo - Should be used together with the `<post-logo>` component.
  * @slot global-nav-primary - Holds search button in the global header.
  * @slot global-nav-secondary - Holds an `<ul>` with meta navigation links.
- * @slot language-menu - Should be used with the `<post-language-switch>` component.
+ * @slot language-menu - Should be used with the `<post-language-menu>` component.
+ * @slot side-nav - Should be used with the `<post-side-navigation>` component.
  * @slot title - Holds the application title.
  * @slot main-nav - Has a default slot because it's only meant to be used in the `<post-header>`.
  * @slot audience - Holds the list of buttons to choose the audience.
@@ -493,6 +494,7 @@ export class PostHeader {
             class={{ 'local-header': true, 'megadropdown-open': this.megadropdownOpen }}
           >
             <div class="section">
+              <slot name="side-nav"></slot>
               <slot name="title"></slot>
               {this.hasTitle && <slot name="local-nav"></slot>}
               {onDesktop && <slot name="main-nav"></slot>}
