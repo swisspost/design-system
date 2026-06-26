@@ -72,15 +72,15 @@
     "nextjs:start": "pnpm --filter design-system-nextjs-integration dev",
     "nextjs:build": "pnpm --filter design-system-nextjs-integration build",
     "nextjs:lint": "pnpm --filter design-system-nextjs-integration lint",
-    "changeset:publish": "pnpm changeset publish",
-    "changeset:version": "pnpm changeset version && pnpm install --lockfile-only",
     "tokens:build": "pnpm --filter design-system-tokens build",
     "primeng": "pnpm primeng:start",
     "primeng:start": "pnpm --filter design-system-styles-primeng-workspace start",
     "primeng:build": "pnpm --filter design-system-styles-primeng-workspace build",
     "primeng:lint": "pnpm --filter design-system-styles-primeng-workspace lint",
     "primeng:lint:fix": "pnpm --filter design-system-styles-primeng-workspace lint:fix",
-    "theme-ag-grid:build": "pnpm --filter design-system-theme-ag-grid build"
+    "theme-ag-grid:build": "pnpm --filter design-system-theme-ag-grid build",
+    "changeset:publish": "pnpm exec changeset publish --tag version-9",
+    "changeset:version": "pnpm exec changeset version && pnpm install --lockfile-only"
   },
   "devDependencies": {
     "@changesets/cli": "2.27.7",
