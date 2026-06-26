@@ -27,13 +27,14 @@ post-side-navigation {
   --post-side-navigation-item-hovered-fg: #ffffff;
   --post-side-navigation-item-hovered-bg: #504f4b;
 
-  --post-side-navigation-heading-fg: #504f4b;
+  --post-side-navigation-heading-fg: #696864;
 
-  --post-side-navigation-padding-block-start: 34px;
   --post-side-navigation-padding-block-end: 16px;
   --post-side-navigation-height: 100vh;
 
   // Large
+  --post-side-navigation-padding-block-start: 28px;
+
   --post-side-navigation-heading-padding-block-start: 15px;
   --post-side-navigation-heading-padding-block-end: 4px;
   --post-side-navigation-heading-padding-inline: 16px;
@@ -41,24 +42,28 @@ post-side-navigation {
 
   --post-side-navigation-item-padding-inline: 16px;
   --post-side-navigation-item-height: 40px;
-  --post-side-navigation-item-gap: 16px;
+  --post-side-navigation-item-gap: 12px;
   --post-side-navigation-item-interval: 16px;
-  --post-side-navigation-icon-size: 20px;
+  --post-side-navigation-icon-size: 16px;
   --post-side-navigation-item-font-size: 14px;
   --post-side-navigation-item-line-height: 1.5;
   --post-side-navigation-item-divider-padding-block: 9px;
 
   @include media.min(tablet) {
+    --post-side-navigation-padding-block-start: 34px;
     --post-side-navigation-item-font-size: 16px;
     --post-side-navigation-heading-padding-block-start: 12px;
     --post-side-navigation-heading-font-size: 16px;
     --post-side-navigation-item-divider-padding-block: 7.5px;
+    --post-side-navigation-item-gap: 16px;
+    --post-side-navigation-icon-size: 20px;
   }
 
   @include media.min(desktop) {
     position: fixed;
     top: var(--post-header-height);
     width: var(--post-side-navigation-width);
+    --post-side-navigation-padding-block-start: 16px;
     --post-side-navigation-item-font-size: 20px;
     --post-side-navigation-height: calc(100vh - var(--post-header-height));
     --post-side-navigation-heading-padding-block-start: 20px;
@@ -142,14 +147,25 @@ post-side-navigation {
     --_indent-level: 3;
   }
 
-  // Nested item indentation
+  // Nested item indentation with icons on first level
   ul ul .post-side-navigation-item:not(:has(a):has(button)),
   ul ul .post-side-navigation-item:has(a):has(button) a {
     padding-inline-start: calc(
-      var(--post-side-navigation-item-padding-inline) + var(--post-side-navigation-icon-size) +
-        var(--post-side-navigation-item-gap) + var(--_indent-level) *
+      var(--post-side-navigation-item-padding-inline) + var(--_indent-level) *
         var(--post-side-navigation-item-interval)
     );
+  }
+
+  // Nested item without icons on first level
+  ul > li:has(post-icon:not([name='chevrondown'])) {
+    ul .post-side-navigation-item:not(:has(a):has(button)),
+    ul .post-side-navigation-item:has(a):has(button) a {
+      padding-inline-start: calc(
+        var(--post-side-navigation-item-padding-inline) + var(--post-side-navigation-icon-size) +
+          var(--post-side-navigation-item-gap) + var(--_indent-level) *
+          var(--post-side-navigation-item-interval)
+      );
+    }
   }
 
   // Icon alignment spacer for mixed icon/non-icon items

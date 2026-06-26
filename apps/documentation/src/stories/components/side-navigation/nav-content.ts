@@ -25,7 +25,13 @@ const smallExpanded = `<ul>
               <a href="#" class="post-side-navigation-item">Level 2</a>
               <ul>
                 <li><a href="#" class="post-side-navigation-item">Level 3</a></li>
-                <li><a href="#" class="post-side-navigation-item">Level 3</a></li>
+                <li>
+                  <a href="#" class="post-side-navigation-item">Level 3</a>
+                  <ul>
+                    <li><a href="#" class="post-side-navigation-item">Level 4</a></li>
+                    <li><a href="#" class="post-side-navigation-item">Level 4</a></li>
+                  </ul>
+                </li>
               </ul>
             </li>
           </ul>
