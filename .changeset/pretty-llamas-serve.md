@@ -1,6 +1,5 @@
 ---
 '@swisspost/design-system-styles': major
-'@swisspost/design-system-documentation': patch
 ---
 
 Removed the `index.scss` and `intranet.scss` files. The following entrypoints need to be used instead:

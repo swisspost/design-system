@@ -1,7 +1,7 @@
-import { Args, StoryObj } from '@storybook/web-components-vite';
-import { html, nothing } from 'lit';
 import { fakeContent } from '@/utils';
 import { MetaComponent } from '@root/types';
+import { Args, StoryObj } from '@storybook/web-components-vite';
+import { html, nothing } from 'lit';
 
 const defaultArgs: Args = {
   project: 'test',
@@ -12,8 +12,8 @@ const defaultArgs: Args = {
   textMain: 'Main',
   textMenu: 'Menu',
   textChangeLanguage: 'Change the language',
-  textCurrentLanguage: 'The currently selected language is #name.',
-  textCurrentUser: 'Current user is John Doe.',
+  textCurrentLanguage: 'The currently selected language is {name}.',
+  textCurrentUser: 'Current user is {user}.',
   textUserLinks: 'User links',
   textClose: 'Close',
   textBack: 'Back',

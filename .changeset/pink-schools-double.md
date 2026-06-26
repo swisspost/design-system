@@ -1,6 +1,5 @@
 ---
 '@swisspost/design-system-styles': major
-'@swisspost/design-system-documentation': minor
 ---
 
 Removed deprecated classes and SCSS variables for the spinner:

@@ -16,8 +16,13 @@ export class MigrationV910Component extends LitElement {
       hide_automigration: false,
     },
     ngbootstrap: {
+      carousel: false,
+      custom_select: false,
+      datatable: false,
+      datepicker: false,
       modal: false,
       pagination: false,
+      timepicker: false,
       typeahead: false,
       progressbar: false,
     },
@@ -140,7 +145,7 @@ export class MigrationV910Component extends LitElement {
               changes, all for good reason.
             </p>
             <p>
-              We’ve completely refreshed the design and reworked how components are built.
+              We've completely refreshed the design and reworked how components are built.
               <b>Bootstrap</b> and <b>Ng-Bootstrap</b> have been replaced by
               <b>Web Standards</b> compliant components, which means the Design System works across
               <b>any framework</b> (<a
@@ -152,7 +157,7 @@ export class MigrationV910Component extends LitElement {
             <p>
               We've reworked utility classes to be
               <b>pixel-based and more intuitive</b> — for example, <code>.p-16</code> now clearly
-              means "16px padding", instead of guessing what <code>.p-3</code> stood for. We’ve also
+              means "16px padding", instead of guessing what <code>.p-3</code> stood for. We've also
               simplified things overall: fewer breakpoints, fewer font-size classes, and a more
               consistent color palette (no more purple or coral buttons 🎨).
             </p>
@@ -172,7 +177,7 @@ export class MigrationV910Component extends LitElement {
               and switch to dark mode or the Cargo theme.
             </p>
             <p>
-              Oh, and yes — there’s a
+              Oh, and yes — there's a
               <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs"
                 >brand-new icon set</a
               >
@@ -265,6 +270,22 @@ export class MigrationV910Component extends LitElement {
               On your application, locate the <code>@use '@swisspost/design-system-styles/${this.environment === 'intranet' ? 'intranet' : 'index'}(.scss)';</code> import and rename it to:
               <code-block code=${this.environment === 'intranet' ? "@use '@swisspost/design-system-styles/post-compact.scss';" : "@use '@swisspost/design-system-styles/post-default.scss';"}></code>
             </p>
+          </li>
+          <li>
+            <h3>Removed unused CSS entry files</h3>
+            <p>
+              The top-level entry files <code>fonts.css</code> and <code>elements.css</code> have been removed from the <code>@swisspost/design-system-styles</code> package.
+            </p>
+            <ul>
+              <li>
+                <strong>fonts.css</strong>: Use the fonts component file instead.
+                <code-block code=${"@use '@swisspost/design-system-styles/components/fonts';"}></code-block>
+              </li>
+              <li>
+                <strong>elements.css</strong>: Import elements styles directly from the elements directory.
+                <code-block code=${"@use '@swisspost/design-system-styles/elements';"}></code-block>
+              </li>
+            </ul>
           </li>
           <li>
             <h3>Run Automigration Scripts 🪄</h3>
@@ -361,10 +382,60 @@ export class MigrationV910Component extends LitElement {
                       documentation.
                     <ul>
                       <li>carousel → <i>coming soon</i></li>
-                      <li>custom select → <i>coming soon</i></li>
-                      <li>datatable → AG Grid <i>coming soon</i></li>
-                      <li>datepicker → <i>coming soon</i></li>
-                      <li>dropdown → <i>coming soon</i></li>
+                      <li>
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-custom_select"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.custom_select}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-custom_select">
+                            custom select &amp; dropdown →
+                            <a href="/?path=/docs/bc251cd0-5173-463b-8729-586bb1bf1e1a--docs"
+                              >native select element</a
+                            >
+                            or
+                            <a href="/?path=/docs/8ca2bd70-56e6-4da9-b1fd-4e55388dca88--docs"
+                              >post-menu</a
+                            >
+                            <span class="info">Use native select for value selection, post-menu for action menus.</span>
+                          </label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-datatable"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.datatable}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-datatable">
+                            datatable →
+                            <a href="https://www.ag-grid.com/">AG Grid</a>
+                            <span class="info">For interactive data tables, we recommend using AG Grid. For Swiss Post styling, use our
+                              <a href="/?path=/docs/e1405db2-fe06-45c6-a7ed-1408f9bf4895--docs">@swisspost/design-system-theme-ag-grid</a>
+                              package.</span>
+                          </label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-datepicker"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.datepicker}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-datepicker">
+                            datepicker →
+                            <a href="/?path=/docs/eb77cd02-48b2-42e1-a3e4-cd8a973d431e--docs"
+                              >post-date-picker</a
+                            >
+                          </label>
+                        </div>
+                      </li>
                       <li>
                         <div class="form-check">
                           <input
@@ -704,7 +775,22 @@ export class MyComponent {
                           </label>
                         </div>
                       </li>
-                      <li>timepicker → <i>coming soon</i></li>
+                      <li>
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-timepicker"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.timepicker}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-timepicker">
+                            timepicker →
+                            <a href="/?path=/docs/51471f0b-1bbb-4059-951b-f89aa7339f91--docs"
+                              >native input with type "time"</a
+                            >
+                          </label>
+                        </div>
+                      </li>
                       <li>
                         <div class="form-check">
                           <input
@@ -717,7 +803,7 @@ export class MyComponent {
                             typeahead →
                             <a
                               href="/?path=/docs/2df77c32-5e33-402e-bd2e-54d54271ce19--docs#autocomplete"
-                              >input with datalist</a
+                              >native input with datalist</a
                             >
                             <span class="info">
                               <p>
@@ -985,7 +1071,7 @@ export class MyComponent {
                                   will throw an error if any are missing.
                                 </span>
                                 <code-block
-                                  code=${'<swisspost-internet-header\n    project="your-service-id"\n    text-menu="Menu"\n    text-back="Back"\n    text-close="Close"\n    text-current-language="The currently selected language is #name."\n    text-change-language="Change the language"\n    text-main="Main navigation"\n    text-current-user="Current user is John Doe."\n    text-user-links="User links"\n  ></swisspost-internet-header>'}
+                                  code=${'<swisspost-internet-header\n    project="your-service-id"\n    text-menu="Menu"\n    text-back="Back"\n    text-close="Close"\n    text-current-language="The currently selected language is {name}."\n    text-change-language="Change the language"\n    text-main="Main navigation"\n    text-current-user="Current user is {user}."\n    text-user-links="User links"\n  ></swisspost-internet-header>'}
                                 ></code-block>
                               </label>
                             </div>
