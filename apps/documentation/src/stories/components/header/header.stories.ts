@@ -178,14 +178,11 @@ const meta: MetaComponent = {
     },
   },
   decorators: [
-    (story, context) =>
+    (story, _context) =>
       html`<div class="header-story-wrapper">
         <div class="virtual-body">
           ${story()}
-          <div class="d-flex">
-            ${context.args.sideNav && context.args.title !== '' ? renderSideNavigation() : nothing}
-            <div class="flex-grow-1">${fakeContent()}</div>
-          </div>
+          <div class="flex-grow-1">${fakeContent()}</div>
         </div>
       </div>`,
   ],
@@ -269,19 +266,23 @@ function getHeaderRenderer(
     const audienceSlot = args.targetGroup ? renderAudience(args) : nothing;
     const globalControlsSlot = args.globalNavPrimary && !args.jobs ? globalControls : nothing;
     const globalNavSecondarySlot = args.globalNavSecondary ? renderGlobalNavSecondary(args) : nothing;
-    const globalLanguageMenuSlot = args.languageMenu && !appHeader
-      ? html`<span slot="language-menu">${languageMenu}</span>`
-      : nothing;
+    const globalLanguageMenuSlot =
+      args.languageMenu && !appHeader
+        ? html`<span slot="language-menu">${languageMenu}</span>`
+        : nothing;
     const globalLoginSlot = showGlobalLogin(args)
       ? html`<!-- Global header login/user menu -->${globalLogin}`
       : nothing;
     const titleSlot = args.title !== '' ? title : nothing;
     const sideNavTriggerSlot = args.sideNav && args.title !== '' ? renderSideNavTrigger() : nothing;
-    const micrositeControlsSlot = args.localNav || localLanguageMenuItem
-      ? renderMicrositeControls({ ...args, localLanguageMenuItem })
-      : nothing;
+    const micrositeControlsSlot =
+      args.localNav || localLanguageMenuItem
+        ? renderMicrositeControls({ ...args, localLanguageMenuItem })
+        : nothing;
     const mainNavSlot = args.mainNav ? mainnavigation : nothing;
     const jobControlsSlot = args.jobs ? renderJobControls() : nothing;
+
+    const showSideNav = args.sideNav && args.title !== '';
 
     return html`
       <post-header text-menu="${args.textMenu}" full-width="${args.fullWidth || nothing}">
@@ -301,6 +302,8 @@ function getHeaderRenderer(
         ${mainNavSlot}
         ${jobControlsSlot}
       </post-header>
+
+      ${showSideNav ? html`<div class="d-flex">${renderSideNavigation()}</div>` : nothing}
     `;
   };
 }
