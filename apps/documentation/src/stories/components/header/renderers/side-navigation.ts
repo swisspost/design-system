@@ -4,6 +4,7 @@ const sideNavId = 'header-sidenav';
 
 export function renderSideNavTrigger() {
   return html`
+    <!-- Side navigation trigger -->
     <post-side-navigation-trigger slot="side-nav" for="${sideNavId}">
       <button>
         <span>Menu</span>
@@ -15,6 +16,7 @@ export function renderSideNavTrigger() {
 
 export function renderSideNavigation() {
   return html`
+    <!-- Side navigation -->
     <post-side-navigation id="${sideNavId}" text-close="Close">
       <nav aria-label="Main navigation">
         <h2 class="post-side-navigation-heading">Section title (optional)</h2>

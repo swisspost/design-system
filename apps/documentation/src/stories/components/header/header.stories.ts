@@ -182,28 +182,21 @@ const meta: MetaComponent = {
     (story, context) => {
       const showSideNav = context.args.sideNav && context.args.title !== '';
 
-      if (showSideNav) {
-        // .virtual-body--side-nav (defined in header.styles.scss):
-        //   display: flex; flex-wrap: wrap; align-items: stretch (default)
-        //   post-header { flex: 0 0 100% }  → own row
-        //   post-side-navigation             → row 2 left, stretches to full height
-        //   main.flex-grow-1                 → row 2 right, fills remaining width
-        //
-        // fakeContent stays in the decorator so it is excluded from the code snippet.
-        return html`<div class="header-story-wrapper">
-          <div class="virtual-body virtual-body--side-nav">
-            ${story()}
-            <main class="flex-grow-1">${fakeContent()}</main>
-          </div>
-        </div>`;
-      }
+      const wrapperClass = showSideNav
+        ? 'virtual-body virtual-body--side-nav'
+        : 'virtual-body';
 
-      return html`<div class="header-story-wrapper">
-        <div class="virtual-body">
-          ${story()}
-          <div class="flex-grow-1">${fakeContent()}</div>
+      return html`
+        <div class="header-story-wrapper">
+          <div class="${wrapperClass}">
+            ${story()}
+
+            ${showSideNav
+              ? html`<main class="flex-grow-1">${fakeContent()}</main>`
+              : html`<div class="flex-grow-1">${fakeContent()}</div>`}
+          </div>
         </div>
-      </div>`;
+      `;
     },
   ],
   render: getHeaderRenderer(),
