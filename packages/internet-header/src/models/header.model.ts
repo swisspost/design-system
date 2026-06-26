@@ -1,3 +1,4 @@
+import { UserConfig } from '@/models/user.model';
 import {
   AccessibleTextConfig,
   IconLinkConfig,
@@ -16,8 +17,7 @@ export interface HeaderConfig {
     primaryNavigation?: Array<IconLinkConfig>; // Primary navigation items: remain visible in the header on tablet and mobile.
     secondaryNavigation?: Array<IconLinkConfig>; // Secondary navigation items: move to the footer of the burger menu on tablet and mobile.
     languages?: Array<LanguageLinkConfig>; // Language menu options.
-    login?: IconLinkConfig; // Login link or authenticated user menu.
-    userMenuLinks?: Array<IconLinkConfig>; // Links shown in the user menu when authenticated (used by post-internet-login-widget).
+    postLogin?: PostLoginConfig;
   };
 
   /**
@@ -30,6 +30,14 @@ export interface HeaderConfig {
     mainNavigation?: MainNavigationConfig; // Main navigation for the current application.
     navigation?: Array<IconLinkConfig | UserMenuConfig>; // Optional application-specific actions (e.g. user menu, extra links).
   };
+}
+
+/**
+ * Configuration for the post-login widget.
+ */
+export interface PostLoginConfig {
+  loginLink: IconLinkConfig; // Login link when the user is not authenticated.
+  userLinks: Array<IconLinkConfig>; // Actions available when the user is authenticated (e.g. "Profile", "Settings", "Logout").
 }
 
 /**
@@ -51,19 +59,8 @@ export interface MegadropdownConfig {
  * Menu displayed when a user is authenticated.
  */
 export interface UserMenuConfig {
-  user: UserConfig;
+  user: UserConfig; // Logged-in user's profile information.
   options: Array<IconLinkConfig>; // Actions available to the user (e.g. "Profile", "Settings", "Logout").
-}
-
-/**
- * Logged-in user's profile information.
- */
-export interface UserConfig {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  profilePicture: string;
 }
 
 /**
