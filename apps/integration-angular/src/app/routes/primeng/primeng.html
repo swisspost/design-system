@@ -5,19 +5,19 @@
   <ng-template pTemplate="header">
     <tr>
       <th scope="col" pSortableColumn="code" style="width: 20%">
-        Code <p-sortIcon field="code"></p-sortIcon>
+        Code <p-sortIcon field="code" />
       </th>
       <th scope="col" pSortableColumn="name" style="width: 20%">
-        Name <p-sortIcon field="name"></p-sortIcon>
+        Name <p-sortIcon field="name" />
       </th>
       <th scope="col" pSortableColumn="category" style="width: 20%">
-        Category <p-sortIcon field="category"></p-sortIcon>
+        Category <p-sortIcon field="category" />
       </th>
       <th scope="col" pSortableColumn="quantity" style="width: 20%">
-        Quantity <p-sortIcon field="quantity"></p-sortIcon>
+        Quantity <p-sortIcon field="quantity" />
       </th>
       <th scope="col" pSortableColumn="price" style="width: 20%">
-        Price <p-sortIcon field="price"></p-sortIcon>
+        Price <p-sortIcon field="price" />
       </th>
     </tr>
   </ng-template>
@@ -49,19 +49,19 @@
       <th scope="col" style="min-width: 15rem">
         <div class="d-flex align-items-center">
           Code
-          <p-columnFilter type="text" field="code" display="menu"></p-columnFilter>
+          <p-columnFilter type="text" field="code" display="menu" />
         </div>
       </th>
       <th scope="col" style="min-width: 15rem">
         <div class="d-flex align-items-center">
           Name
-          <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+          <p-columnFilter type="text" field="name" display="menu" />
         </div>
       </th>
       <th scope="col" style="min-width: 15rem">
         <div class="d-flex align-items-center">
           Category
-          <p-columnFilter type="text" field="category" display="menu"></p-columnFilter>
+          <p-columnFilter type="text" field="category" display="menu" />
         </div>
       </th>
       <th scope="col" style="min-width: 15rem">
@@ -73,7 +73,7 @@
       <th scope="col" style="min-width: 10rem">
         <div class="flex align-items-center">
           Date
-          <p-columnFilter type="date" field="date" display="menu"></p-columnFilter>
+          <p-columnFilter type="date" field="date" display="menu" />
         </div>
       </th>
     </tr>
@@ -105,7 +105,9 @@
   <ng-template #header let-columns>
     <tr>
       <th scope="col" style="width: 3rem"></th>
-      <th scope="col" *ngFor="let col of columns" pReorderableColumn>{{ col.header }}</th>
+      @for(col of columns; track $index) {
+      <th scope="col" pReorderableColumn>{{ col.header }}</th>
+      }
     </tr>
   </ng-template>
   <ng-template #body let-rowData let-columns="columns" let-index="rowIndex">
@@ -113,7 +115,9 @@
       <td>
         <span pReorderableRowHandle></span>
       </td>
-      <td *ngFor="let col of columns">{{ rowData[col.field] }}</td>
+      @for(col of columns; track $index) {
+      <td>{{ rowData[col.field] }}</td>
+      }
     </tr>
   </ng-template>
 </p-table>
