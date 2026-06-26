@@ -35,6 +35,12 @@ export class PostSideNavigation {
   textClose!: string;
 
   /**
+   * Whether the sidenavigation should be small or not.
+   * Choose the "small" version for deep and long navigation, and "large" (default) for a flat and short navigation.
+   */
+  @Prop() isSmall?: boolean = false;
+
+  /**
    * An event emitted when the navigation is shown or hidden on mobile.
    * The payload is a boolean: `true` when the navigation opens, `false` when it closes.
    */
@@ -47,6 +53,10 @@ export class PostSideNavigation {
   connectedCallback() {
     globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
     this.host.addEventListener('keydown', this.handleKeyDown);
+
+    if (this.isSmall) {
+      this.host.classList.add('post-side-navigation-small');
+    }
   }
 
   disconnectedCallback() {
@@ -148,9 +158,7 @@ export class PostSideNavigation {
         }}
       >
         <slot />
-        <post-closebutton onClick={() => this.hide()}>
-          {this.textClose}
-        </post-closebutton>
+        <post-closebutton onClick={() => this.hide()}>{this.textClose}</post-closebutton>
       </dialog>
     );
   }

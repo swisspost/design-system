@@ -5,9 +5,10 @@
 
 ## Properties
 
-| Property                 | Attribute    | Description                                                                  | Type     | Default     |
-| ------------------------ | ------------ | ---------------------------------------------------------------------------- | -------- | ----------- |
-| `textClose` _(required)_ | `text-close` | Accessible label for the close button shown in the mobile navigation dialog. | `string` | `undefined` |
+| Property                 | Attribute    | Description                                                                                                                                                        | Type      | Default     |
+| ------------------------ | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- | ----------- |
+| `isSmall`                | `is-small`   | Whether the sidenavigation should be small or not. Choose the "small" version for deep and long navigation, and "large" (default) for a flat and short navigation. | `boolean` | `false`     |
+| `textClose` _(required)_ | `text-close` | Accessible label for the close button shown in the mobile navigation dialog.                                                                                       | `string`  | `undefined` |
 
 
 ## Events

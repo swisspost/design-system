@@ -660,6 +660,11 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
+          * Whether the sidenavigation should be small or not. Choose the "small" version for deep and long navigation, and "large" (default) for a flat and short navigation.
+          * @default false
+         */
+        "isSmall"?: boolean;
+        /**
           * Opens the navigation programmatically. No-op on desktop.
          */
         "show": () => Promise<void>;
@@ -1912,6 +1917,11 @@ declare namespace LocalJSX {
     }
     interface PostSideNavigation {
         /**
+          * Whether the sidenavigation should be small or not. Choose the "small" version for deep and long navigation, and "large" (default) for a flat and short navigation.
+          * @default false
+         */
+        "isSmall"?: boolean;
+        /**
           * An event emitted when the navigation is shown or hidden on mobile. The payload is a boolean: `true` when the navigation opens, `false` when it closes.
          */
         "onPostToggle"?: (event: PostSideNavigationCustomEvent<boolean>) => void;
@@ -2177,6 +2187,7 @@ declare namespace LocalJSX {
     }
     interface PostSideNavigationAttributes {
         "textClose": string;
+        "isSmall": boolean;
     }
     interface PostSideNavigationTriggerAttributes {
         "for": string;

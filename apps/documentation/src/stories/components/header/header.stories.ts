@@ -6,7 +6,7 @@ import { renderMicrositeControls } from '@/stories/components/header/renderers/m
 import { renderTitle } from '@/stories/components/header/renderers/title';
 import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
 import { fakeContent } from '@/utils';
-import { renderLoginLink } from '@root/src/stories/components/header/renderers/login-link';
+import { renderLoginLink } from '@/stories/components/header/renderers/login-link';
 import { MetaComponent } from '@root/types';
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing, TemplateResult } from 'lit';
