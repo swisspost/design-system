@@ -1,5 +1,26 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.75
+
+### Minor Changes
+
+- Updated `post-closebutton` component to be SSR compatible. (by [@myrta2302](https://github.com/myrta2302) with [#7674](https://github.com/swisspost/design-system/pull/7674))
+
+- Added Header variant for Internal Applications. (by [@myrta2302](https://github.com/myrta2302) and [@alizedebray](https://github.com/alizedebray) with [#7758](https://github.com/swisspost/design-system/pull/7758))
+
+### Patch Changes
+
+- Fixed issue where step numbers in `<post-stepper>` component fail to increment on iOS. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7893](https://github.com/swisspost/design-system/pull/7893))
+
+- Updated `post-pagination` component to support Server Side Rendering. (by [@myrta2302](https://github.com/myrta2302) with [#7682](https://github.com/swisspost/design-system/pull/7682))
+
+- Fixed missing header border in High Contrast Mode. (by [@myrta2302](https://github.com/myrta2302) with [#7866](https://github.com/swisspost/design-system/pull/7866))
+
+- Fixed current day text becoming invisible when hovering over it in range mode of the `post-date-picker` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7927](https://github.com/swisspost/design-system/pull/7927))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.75
+  - @swisspost/design-system-styles@10.0.0-next.75
+
 ## 10.0.0-next.74
 
 ### Patch Changes
