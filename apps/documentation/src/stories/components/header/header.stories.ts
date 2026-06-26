@@ -253,17 +253,23 @@ type SubComponents = {
   title?: TemplateResult;
 };
 
-function buildHeaderSlots(args: Args, subComponents: SubComponents) {
+function resolveSubComponents(args: Args, subComponents: SubComponents) {
   const mainnavigation = subComponents.mainnavigation ?? renderMainnavigation();
   const loginLink = subComponents.loginLink ?? renderLoginLink();
   const userMenu = subComponents.userMenu ?? renderUserMenu();
   const title = subComponents.title ?? renderTitle(args);
-
   const languageMenu = buildLanguageMenu();
   const globalControls = buildGlobalControls();
   const globalLogin = args.isLoggedIn ? userMenu : loginLink;
   const appHeader = isApplicationHeader(args);
   const localLanguageMenuItem = args.languageMenu && appHeader ? languageMenu : undefined;
+
+  return { mainnavigation, title, languageMenu, globalControls, globalLogin, appHeader, localLanguageMenuItem };
+}
+
+function buildHeaderSlots(args: Args, subComponents: SubComponents) {
+  const resolved = resolveSubComponents(args, subComponents);
+  const { mainnavigation, title, languageMenu, globalControls, globalLogin, appHeader, localLanguageMenuItem } = resolved;
 
   return {
     audienceSlot: args.targetGroup ? renderAudience(args) : nothing,
