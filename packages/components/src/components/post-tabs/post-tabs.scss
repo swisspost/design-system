@@ -159,7 +159,7 @@ $grid-container-padding: tokens.get('post-grid-container-padding-inline', compon
   }
 }
 
-:host(.page-tabs[size='large']) button.scroll-btn {
+:host(.page-tabs:not([size='small'])) button.scroll-btn {
   top: tokens.get('post-tabs-large-scroll-button-padding-block');
 }
 
@@ -187,9 +187,8 @@ $grid-container-padding: tokens.get('post-grid-container-padding-inline', compon
   }
 }
 
-// Large variant
-:host([size='large']),
-:host {
+// Large/Default variant
+:host(.page-tabs:not([size='small'])) {
   .tabs-wrapper {
     button.scroll-btn {
       height: tokens.get('post-tabs-large-scroll-button-height');
