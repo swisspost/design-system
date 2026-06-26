@@ -249,8 +249,8 @@ function isApplicationHeader(args: Args) {
 function getHeaderRenderer(
   subComponents: {
     mainnavigation?: TemplateResult;
-    userMenu?: TemplateResult;
     loginLink?: TemplateResult;
+    userMenu?: TemplateResult;
     title?: TemplateResult;
   } = {},
 ) {
