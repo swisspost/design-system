@@ -1,5 +1,5 @@
 import { StoryObj } from '@storybook/web-components-vite';
-import { html, nothing } from 'lit';
+import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
@@ -156,7 +156,6 @@ const meta: MetaComponent<
     'variant': 'Content Tabs',
     'activeTab': undefined,
     'label': 'Page Tabs',
-    'fullWidth': false,
     'size': 'large',
     'textPrevTabItems': 'Previous tab items',
     'textNextTabItems': 'Next tab items',
@@ -168,18 +167,13 @@ const meta: MetaComponent<
 export default meta;
 
 function renderPagesVariant(
-  fullWidth: boolean | undefined,
   label: string | undefined,
   customSlots: string,
   size: string | undefined,
 ): ReturnType<typeof html> {
   if (customSlots) {
     return html`
-      <post-tabs
-        full-width="${fullWidth ? true : nothing}"
-        label="${ifDefined(label)}"
-        size="${ifDefined(size)}"
-      >
+      <post-tabs label="${ifDefined(label)}" size="${ifDefined(size)}">
         ${unsafeHTML(customSlots)}
       </post-tabs>
     `;
@@ -187,11 +181,7 @@ function renderPagesVariant(
 
   // Default page tabs example - first link is active
   return html`
-    <post-tabs
-      full-width="${fullWidth ? true : nothing}"
-      label="${ifDefined(label)}"
-      size="${ifDefined(size)}"
-    >
+    <post-tabs label="${ifDefined(label)}" size="${ifDefined(size)}">
       <post-tab-item name="first">
         <a href="/first" aria-current="page"><post-icon name="letter"></post-icon>First page</a>
       </post-tab-item>
@@ -208,18 +198,13 @@ function renderPagesVariant(
 // Helper function to render tabs variant
 function renderContentVariant(
   activeTab: string | undefined,
-  fullWidth: boolean | undefined,
   customSlots: string,
   panelSlots: string,
   size: string | undefined,
 ): ReturnType<typeof html> {
   if (customSlots) {
     return html`
-      <post-tabs
-        active-tab="${ifDefined(activeTab)}"
-        full-width="${fullWidth ? true : nothing}"
-        size="${ifDefined(size)}"
-      >
+      <post-tabs active-tab="${ifDefined(activeTab)}" size="${ifDefined(size)}">
         ${unsafeHTML(customSlots)}
       </post-tabs>
     `;
@@ -227,11 +212,7 @@ function renderContentVariant(
 
   if (panelSlots) {
     return html`
-      <post-tabs
-        active-tab="${ifDefined(activeTab)}"
-        full-width="${fullWidth ? true : nothing}"
-        size="${ifDefined(size)}"
-      >
+      <post-tabs active-tab="${ifDefined(activeTab)}" size="${ifDefined(size)}">
         <post-tab-item name="first"><post-icon name="letter"></post-icon>First tab</post-tab-item>
         <post-tab-item name="second"><post-icon name="letter"></post-icon>Second tab</post-tab-item>
         <post-tab-item name="third"><post-icon name="letter"></post-icon>Third tab</post-tab-item>
@@ -242,11 +223,7 @@ function renderContentVariant(
   }
 
   return html`
-    <post-tabs
-      active-tab="${ifDefined(activeTab)}"
-      full-width="${fullWidth ? true : nothing}"
-      size="${ifDefined(size)}"
-    >
+    <post-tabs active-tab="${ifDefined(activeTab)}" size="${ifDefined(size)}">
       <post-tab-item name="first"><post-icon name="letter"></post-icon>First tab</post-tab-item>
       <post-tab-item name="second"><post-icon name="letter"></post-icon>Second tab</post-tab-item>
       <post-tab-item name="third"><post-icon name="letter"></post-icon>Third tab</post-tab-item>
@@ -277,10 +254,9 @@ function renderTabs(
   const variant = args.variant || 'Content Tabs';
 
   return variant === 'Page Tabs'
-    ? renderPagesVariant(args.fullWidth, args.label, args['slots-default'] || '', args.size)
+    ? renderPagesVariant(args.label, args['slots-default'] || '', args.size)
     : renderContentVariant(
         args.activeTab,
-        args.fullWidth,
         args['slots-default'] || '',
         args['slots-panels'] || '',
         args.size,
@@ -325,28 +301,6 @@ export const ActiveTab: Story = {
     variant: 'Content Tabs',
     activeTab: 'second',
   },
-};
-
-export const FullWidth: Story = {
-  parameters: {
-    layout: 'fullscreen',
-  },
-  args: {
-    fullWidth: true,
-    variant: 'Content Tabs',
-  },
-  decorators: [story => html`<div class="container">${story()}</div>`],
-};
-
-export const PagesFullWidth: Story = {
-  parameters: {
-    layout: 'fullscreen',
-  },
-  args: {
-    fullWidth: true,
-    variant: 'Page Tabs',
-  },
-  decorators: [story => html`<div class="container">${story()}</div>`],
 };
 
 export const PagesVariant: Story = {

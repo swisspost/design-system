@@ -24,21 +24,16 @@ function renderPageTabsInContainer(
 ) {
   return html`
     <div class="${containerClass}">
-      ${bombArgs({ fullWidth: [false, true] })
-        .filter(args => !(containerClass === '' && args.fullWidth === true))
-        .map((args: Args) =>
-          meta.render?.(
-            { ...context.args, ...args, variant: 'Page Tabs', size } as never,
-            context as never,
-          ),
-        )}
+      <p class="mt-8">Container: ${containerClass || 'none'}</p>
+      ${meta.render?.({ ...context.args, variant: 'Page Tabs', size, label: context.args.label ?? 'Page navigation' } as never, context as never)}
+      <p>The quick brown fox jumps over the lazy dog.</p>
     </div>
   `;
 }
 
 function renderPageTabsInPalette(palette: string, scheme: string, context: StoryContext) {
   return html`
-    <div class="palette palette-${palette} p-32" id="page-tabs_${palette}_${scheme}">
+    <div class="palette palette-${palette}" id="page-tabs_${palette}_${scheme}">
       <p class="fw-bold" style="text-transform: capitalize">Palette: ${palette}</p>
       ${['large', 'small'].map(
         size => html`
@@ -54,19 +49,13 @@ function renderPageTabsInPalette(palette: string, scheme: string, context: Story
 
 export const PageTabs: Story = {
   render: (_args: Args, context: StoryContext) => {
-    return html`
-      <div class="row row-cols-2 g-0">
-        ${schemes(
-          scheme => html`
-            <div class="px-8">
-              ${PALETTE_TEST_PALETTE_TYPES.map(palette =>
-                renderPageTabsInPalette(palette, scheme, context),
-              )}
-            </div>
-          `,
+    return schemes(
+      scheme => html`
+        ${PALETTE_TEST_PALETTE_TYPES.map(palette =>
+          renderPageTabsInPalette(palette, scheme, context),
         )}
-      </div>
-    `;
+      `,
+    );
   },
 };
 
@@ -77,13 +66,14 @@ function renderContentTabsInContainer(
 ) {
   return html`
     <div class="${containerClass}">
+      <p class="mt-8">Container: ${containerClass || 'none'}</p>
       ${bombArgs({
         variant: ['Content Tabs'],
         activeTab: [undefined, 'third'],
-      })
-        .map((args: Args) =>
-          meta.render?.({ ...context.args, ...args, size } as never, context as never),
-        )}
+      }).map((args: Args) =>
+        meta.render?.({ ...context.args, ...args, size } as never, context as never),
+      )}
+      <p>The quick brown fox jumps over the lazy dog.</p>
     </div>
   `;
 }

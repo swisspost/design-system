@@ -749,11 +749,6 @@ export namespace Components {
          */
         "activeTab"?: string;
         /**
-          * When set to true, this property allows the tabs container to span the Changing this value after initialization has no effect. full width of the screen, from edge to edge.
-          * @default false
-         */
-        "fullWidth": boolean;
-        /**
           * An accessible label for the Pages Tabs variant
          */
         "label"?: string;
@@ -2053,11 +2048,6 @@ declare namespace LocalJSX {
          */
         "activeTab"?: string;
         /**
-          * When set to true, this property allows the tabs container to span the Changing this value after initialization has no effect. full width of the screen, from edge to edge.
-          * @default false
-         */
-        "fullWidth"?: boolean;
-        /**
           * An accessible label for the Pages Tabs variant
          */
         "label"?: string;
@@ -2306,7 +2296,6 @@ declare namespace LocalJSX {
         "textPrevTabItems": string;
         "textNextTabItems": string;
         "activeTab": string;
-        "fullWidth": boolean;
         "size": 'small' | 'large';
         "label": string;
     }

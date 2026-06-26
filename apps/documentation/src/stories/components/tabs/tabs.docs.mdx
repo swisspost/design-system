@@ -55,27 +55,3 @@ Use the `postChange` event to run a function anytime a new tab gets activated.
 To trigger a tab change, use the `show()` method specifying the name of the tab to activate and show its content.
 
 <Source code={SampleCustomTrigger} language="typescript" />
-
-## Full-width Tabs
-
-Setting the `full-width` property to `true` allows the tabs container to stretch across the full width of the screen. The tabs and their content remain aligned with the main page content. This property works with both variants.
-
-<div className="d-flex gap-8">
-  <a
-    className="btn btn-primary"
-    target="_blank"
-    href={`?path=%2Fstory%2Fbb1291ca-4dbb-450c-a15f-596836d9f39e--pages-full-width&full=true`}
-    rel="noreferrer"
-  >
-    Full-width Page Tabs example
-  </a>
-
-  <a
-    className="btn btn-primary"
-    target="_blank"
-    href={`?path=%2Fstory%2Fbb1291ca-4dbb-450c-a15f-596836d9f39e--full-width&full=true`}
-    rel="noreferrer"
-  >
-    Full-width Content Tabs example
-  </a>
-</div>

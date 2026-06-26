@@ -1,5 +1,5 @@
 import { fade } from '@/animations';
-import { componentOnReady, OneOf, Type, Required } from '@/utils';
+import { componentOnReady, OneOf, Type } from '@/utils';
 import { version } from '@root/package.json';
 
 import {
@@ -80,19 +80,10 @@ export class PostTabs {
   readonly activeTab?: string;
 
   /**
-   * When set to true, this property allows the tabs container to span the
-   * Changing this value after initialization has no effect.
-   * full width of the screen, from edge to edge.
-   */
-  @Prop({ reflect: true })
-  fullWidth: boolean = false;
-
-  /**
    * The size of the tabs, corresponding to the different designs in Figma.
    * Default is 'large'.
    */
   @Prop({ reflect: true })
-  @Required()
   @OneOf(['small', 'large'])
   size: 'small' | 'large' = 'large';
 
@@ -490,31 +481,41 @@ export class PostTabs {
   // Handles the visibility of scroll buttons based on the scroll position of the tabs container
   private readonly updateScrollButtons = () => {
     if (!this.tabsContainer) return;
+    const style = getComputedStyle(this.tabsContainer);
+    const paddingStart = Number.parseFloat(style.paddingInlineStart) || 0;
+    const paddingEnd = Number.parseFloat(style.paddingInlineEnd) || 0;
+    const contentWidth = this.tabsContainer.clientWidth - paddingStart - paddingEnd;
+    const scrollableWidth = this.tabsContainer.scrollWidth - paddingStart - paddingEnd;
     this.showLeftScrollButton = this.tabsContainer.scrollLeft > 0;
-    this.showRightScrollButton =
-      this.tabsContainer.scrollLeft + this.tabsContainer.clientWidth <
-      this.tabsContainer.scrollWidth;
+    this.showRightScrollButton = this.tabsContainer.scrollLeft + contentWidth < scrollableWidth;
   };
 
   private scrollTabs(direction: 'prev' | 'next') {
     const sign = direction === 'prev' ? -1 : 1;
+    const style = getComputedStyle(this.tabsContainer);
+    const paddingStart = Number.parseFloat(style.paddingInlineStart) || 0;
+    const paddingEnd = Number.parseFloat(style.paddingInlineEnd) || 0;
+    const contentWidth = this.tabsContainer.clientWidth - paddingStart - paddingEnd;
     this.tabsContainer.scrollBy({
-      left: sign * this.tabsContainer.clientWidth,
+      left: sign * contentWidth,
       behavior: 'smooth',
     });
   }
 
   private scrollTabIntoView(tab: HTMLPostTabItemElement, behavior: ScrollBehavior = 'instant') {
     const container = this.tabsContainer;
+    const style = getComputedStyle(container);
+    const paddingStart = Number.parseFloat(style.paddingInlineStart) || 0;
+    const paddingEnd = Number.parseFloat(style.paddingInlineEnd) || 0;
     const tabLeft = tab.offsetLeft;
     const tabRight = tabLeft + tab.offsetWidth;
-    const containerLeft = container.scrollLeft;
-    const containerRight = containerLeft + container.clientWidth;
+    const containerLeft = container.scrollLeft + paddingStart;
+    const containerRight = containerLeft + container.clientWidth - paddingStart - paddingEnd;
 
     if (tabLeft < containerLeft) {
-      container.scrollTo({ left: tabLeft, behavior });
+      container.scrollTo({ left: tabLeft - paddingStart, behavior });
     } else if (tabRight > containerRight) {
-      container.scrollTo({ left: tabRight - container.clientWidth, behavior });
+      container.scrollTo({ left: tabRight - container.clientWidth + paddingEnd, behavior });
     }
   }
 

@@ -13,7 +13,7 @@ $tabs-outline-offset: calc(
     (tokens.get('post-tabs-border-width'))
 );
 
-$gird-container-padding: tokens.get('post-grid-container-padding-inline', components.$post-grid);
+$grid-container-padding: tokens.get('post-grid-container-padding-inline', components.$post-grid);
 
 :host {
   display: block;
@@ -83,7 +83,12 @@ $gird-container-padding: tokens.get('post-grid-container-padding-inline', compon
 
 // Page Tabs variant
 :host(.page-tabs) {
+  overflow: visible !important;
+
   .tabs-wrapper {
+    // These styles are required to stretch the bottom line to the edges of the container
+    margin-inline: calc(-1 * (var(--post-container-offset) + #{$grid-container-padding}));
+
     button.scroll-btn {
       color: tokens.get('post-tabs-page-scroll-button-enabled-fg');
       background-color: tokens.get('post-tabs-page-scroll-button-enabled-bg');
@@ -103,7 +108,7 @@ $gird-container-padding: tokens.get('post-grid-container-padding-inline', compon
 
       // Left Scroll button
       &.scroll-btn-left {
-        inset-inline-start: 0;
+        inset-inline-start: calc(var(--post-container-offset) + #{$grid-container-padding});
         border-inline-start: none;
         border-radius: 0 tokens.get('post-tabs-page-scroll-button-border-radius')
           tokens.get('post-tabs-page-scroll-button-border-radius') 0;
@@ -111,7 +116,7 @@ $gird-container-padding: tokens.get('post-grid-container-padding-inline', compon
 
       // Right Scroll button
       &.scroll-btn-right {
-        inset-inline-end: 0;
+        inset-inline-end: calc(var(--post-container-offset) + #{$grid-container-padding});
         border-inline-end: none;
         border-radius: tokens.get('post-tabs-page-scroll-button-border-radius') 0 0
           tokens.get('post-tabs-page-scroll-button-border-radius');
@@ -140,7 +145,8 @@ $gird-container-padding: tokens.get('post-grid-container-padding-inline', compon
     }
 
     .tabs {
-      padding-inline-start: tokens.get('post-tabs-page-padding-inline');
+      // These styles are required to stretch the bottom line to the edges of the container
+      padding-inline: calc(var(--post-container-offset) + #{$grid-container-padding});
       gap: tokens.get('post-tabs-page-gap-inline');
 
       // Hide scrollbar across browsers while keeping scroll functionality
@@ -227,27 +233,6 @@ $gird-container-padding: tokens.get('post-grid-container-padding-inline', compon
         height: tokens.get('post-tabs-small-icon-size');
         width: tokens.get('post-tabs-small-icon-size');
       }
-    }
-  }
-}
-
-// Full width
-:host(.content-tabs[full-width]) {
-  .tabs-wrapper {
-    margin-inline: calc(-1 * var(--post-container-offset));
-
-    .tabs {
-      padding-inline: var(--post-container-offset);
-    }
-  }
-}
-
-:host(.page-tabs[full-width]) {
-  .tabs-wrapper {
-    margin-inline: calc(-1 * (var(--post-container-offset) + #{$gird-container-padding}));
-
-    .tabs {
-      padding-inline: calc(var(--post-container-offset) + #{$gird-container-padding});
     }
   }
 }
