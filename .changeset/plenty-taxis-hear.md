@@ -1,6 +1,5 @@
 ---
 '@swisspost/design-system-styles': major
-'@swisspost/design-system-documentation': patch
 ---
 
 Removed the `rg` and `xxl` grid breakpoints, reducing the grid to 5 breakpoints instead of the previous 7. This change affects all CSS classes tied to specific breakpoints (e.g., `col-rg-2`, `m-xxl-4`).

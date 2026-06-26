@@ -1,6 +1,5 @@
 ---
 '@swisspost/design-system-styles': minor
-'@swisspost/design-system-documentation': patch
 ---
 
 Updated the button group component (HTML/CSS) to match the latest design and introduced a vertical layout variant.
