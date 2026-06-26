@@ -1,11 +1,13 @@
 import React from 'react';
 import report from '@swisspost/design-system-icons/public/report.min.json';
+import migrationMap from '@/shared/icons-migration-map.json';
 import { ReportIcon, ReportSourceIcon } from '@swisspost/design-system-icons/src/models/icon.model';
 import './search-icons.styles.scss';
 
 interface Icon {
   set: string;
   name: string;
+  migration: string[] | null;
   keywords: string;
   searchKeywords: string[];
   sources: ReportSourceIcon[];
@@ -21,8 +23,12 @@ const ICON_SETS: IconSets = report.icons.reduce(
   (sets: IconSets, icon: ReportIcon) => {
     let typeOfSet = icon.stats.set;
     const basename = icon.name.replace(/.svg$/, '');
+    let migration: Icon['migration'] = null;
 
-    if (typeOfSet === 'ui') {
+    if (typeOfSet === 'post') {
+      const migrationRecord = migrationMap.icons.find(m => m.old.toString() === basename)?.new;
+      migration = migrationRecord ? [migrationRecord].flat() : null;
+    } else if (typeOfSet === 'ui') {
       if (basename.endsWith('-solid')) {
         typeOfSet += 'Solid';
       } else {
@@ -34,6 +40,7 @@ const ICON_SETS: IconSets = report.icons.reduce(
       set: typeOfSet,
       sources: icon.stats.sources,
       name: basename,
+      migration,
       keywords: icon.keys.join(', '),
       searchKeywords: [basename, ...icon.keys].map(word =>
         word
@@ -265,7 +272,7 @@ export class Search extends React.Component {
               </div>
             </div>
             <dl>
-              <dt>Set</dt>
+              <dt>Icon Set</dt>
               <dd className="text-capitalize">{this.activeIcon?.set}</dd>
               <dt>Name</dt>
               <dd>{this.activeIcon?.name}</dd>
@@ -288,6 +295,41 @@ export class Search extends React.Component {
                   );
                 })}
               </dd>
+              {this.activeIcon?.migration && (
+                <>
+                  <dt>
+                    {this.activeIcon.migration?.length > 1
+                      ? 'Migrate to one of the following UI Icons'
+                      : 'Migrate to the following UI Icon'}
+                  </dt>
+                  <dd>
+                    <div className="row migration-icons">
+                      {this.activeIcon.migration?.map(icon => (
+                        <React.Fragment key={`migration-${icon}`}>
+                          <div className="col-auto">
+                            <post-icon name={icon}></post-icon>
+                          </div>
+                          <div className="col">
+                            <code>{icon}</code>
+                          </div>
+                          <div className="w-full mb-4"></div>
+                        </React.Fragment>
+                      ))}
+                      {this.activeIcon.migration?.map(icon => (
+                        <React.Fragment key={`migration-${icon}`}>
+                          <div className="col-auto">
+                            <post-icon name={`${icon}-Solid`}></post-icon>
+                          </div>
+                          <div className="col">
+                            <code>{`${icon}-Solid`}</code>
+                          </div>
+                          <div className="w-full mb-4"></div>
+                        </React.Fragment>
+                      ))}
+                    </div>
+                  </dd>
+                </>
+              )}
             </dl>
           </div>
           <post-closebutton size="small" placement="manual" onClick={() => popover.hidePopover()}>
@@ -381,6 +423,13 @@ export class Search extends React.Component {
                 </span>
                 <span className="name">{icon.name}</span>
                 <span className="visually-hidden">{icon.keywords}</span>
+                {icon.migration ? (
+                  <post-tooltip-trigger for="tooltip-migration-hint" class="tooltip-migration-hint">
+                    <button className="btn btn-tertiary p-0 w-auto h-auto btn-icon">
+                      <post-icon name="info"></post-icon>
+                    </button>
+                  </post-tooltip-trigger>
+                ) : null}
               </button>
             </li>
           );
@@ -441,7 +490,7 @@ export class Search extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container" data-iconset={this.form.set.current}>
         <div className="search-form">{this.searchForm()}</div>
         <div className="search-results">
           <a href="#results-top" aria-hidden="true" tabindex="-1"></a>
@@ -450,6 +499,9 @@ export class Search extends React.Component {
           {this.paging()}
           {this.iconDetailPanel()}
         </div>
+        <post-tooltip id="tooltip-migration-hint" placement="top-end" arrow>
+          Click me for migration instructions
+        </post-tooltip>
       </div>
     );
   }
