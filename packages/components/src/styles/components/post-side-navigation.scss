@@ -248,6 +248,7 @@ post-side-navigation {
   &:has(a):has(button) button {
     cursor: pointer;
     position: relative;
+    color: var(--post-side-navigation-item-enabled-fg);
 
     // Custom inner focus
     &::after {
