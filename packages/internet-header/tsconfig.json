@@ -6,7 +6,6 @@
     "experimentalDecorators": true,
     "lib": ["dom", "DOM.Iterable", "es2022"],
     "moduleResolution": "bundler",
-    "ignoreDeprecations": "6.0",
     "module": "esnext",
     "target": "es2022",
     "noUnusedLocals": true,
@@ -17,7 +16,6 @@
     "strictNullChecks": true,
     "skipLibCheck": true,
     "types": ["node", "jest"],
-    "isolatedModules": true,
     "paths": {
       "@/*": ["./src/*"],
       "@root/*": ["./*"]
