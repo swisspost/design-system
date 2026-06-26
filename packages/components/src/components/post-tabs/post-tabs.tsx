@@ -324,7 +324,7 @@ export class PostTabs {
 
       if (this.isLoaded && this.currentActiveTab) this.postChange.emit(this.currentActiveTab.name);
     } catch (e) {
-      if (e instanceof Error && e.name === 'AbortError') return;
+      if (this.isAbortError(e)) return;
       throw e;
     }
   }
@@ -336,9 +336,13 @@ export class PostTabs {
       await animation.finished;
       return false;
     } catch (e) {
-      if (e instanceof DOMException && e.name === 'AbortError') return true;
+      if (this.isAbortError(e)) return true;
       throw e;
     }
+  }
+
+  private isAbortError(error: unknown): boolean {
+    return (error instanceof DOMException || error instanceof Error) && error.name === 'AbortError';
   }
 
   private moveMisplacedTabs() {
@@ -530,9 +534,9 @@ export class PostTabs {
     const isSSR = Build.isServer;
     const tabStyle = activeName
       ? {
-        [`--post-tab-panel-${activeName}`]: 'block',
-        [`--post-tab-item-${activeName}`]: '1',
-      }
+          [`--post-tab-panel-${activeName}`]: 'block',
+          [`--post-tab-item-${activeName}`]: '1',
+        }
       : undefined;
     const style = isSSR && !this.isPagesVariant ? tabStyle : undefined;
     return (
