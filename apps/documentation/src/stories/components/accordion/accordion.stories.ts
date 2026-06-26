@@ -1,8 +1,8 @@
+import { MetaComponent } from '@root/types';
 import type { StoryObj } from '@storybook/web-components-vite';
+import type { HeadingLevel } from '@swisspost/design-system-components';
 import { html, nothing, TemplateResult } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { MetaComponent } from '@root/types';
-import type { HeadingLevel } from '@swisspost/design-system-components';
 
 const meta: MetaComponent<HTMLPostAccordionElement & HTMLPostCollapsibleElementEventMap> = {
   id: '4d1b4185-e04d-494a-ab38-2b56c1778b0b',
@@ -23,17 +23,8 @@ const meta: MetaComponent<HTMLPostAccordionElement & HTMLPostCollapsibleElementE
     logoSrc: '',
   },
   argTypes: {
-    postToggle: {
-      description: `
-<p>An event emitted when a <code>post-accordion-item</code> is opened or closed, before the transition.</p>
-<p>The event payload is a <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent">CustomEvent</a> whose target is the toggled <code>post-accordion-item</code> and whose detail is a boolean: <code>true</code> if the item was opened, <code>false</code> if it was closed.</p>`,
-      control: null,
-      table: {
-        category: 'Events',
-        type: { summary: 'CustomEvent<boolean>' },
-      },
-    },
     logoSrc: {
+      name: 'Logo URL',
       control: 'text',
       description:
         'Define an image `src` to insert a custom image.<post-banner data-size="sm"><p>Do you need an example? Try our logo <strong>/assets/images/logo-swisspost.svg</strong>.</p></post-banner>',
