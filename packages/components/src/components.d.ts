@@ -54,11 +54,6 @@ export namespace Components {
          */
         "collapsed"?: boolean;
         /**
-          * Defines the hierarchical level of the accordion item header within the headings structure.
-          * @deprecated set the `heading-level` property on the parent `post-accordion` instead.
-         */
-        "headingLevel"?: HeadingLevel;
-        /**
           * Triggers the collapse programmatically.
          */
         "toggle": (force?: boolean) => Promise<boolean>;
@@ -1341,11 +1336,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "collapsed"?: boolean;
-        /**
-          * Defines the hierarchical level of the accordion item header within the headings structure.
-          * @deprecated set the `heading-level` property on the parent `post-accordion` instead.
-         */
-        "headingLevel"?: HeadingLevel;
     }
     interface PostAutocomplete {
         /**
@@ -2033,7 +2023,6 @@ declare namespace LocalJSX {
     }
     interface PostAccordionItemAttributes {
         "collapsed": boolean;
-        "headingLevel": HeadingLevel;
     }
     interface PostAutocompleteAttributes {
         "filterThreshold": number;
