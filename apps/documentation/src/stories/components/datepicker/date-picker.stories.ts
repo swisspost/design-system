@@ -1,7 +1,7 @@
-import { Args, StoryObj, StoryContext, StoryFn } from '@storybook/web-components-vite';
-import { html } from 'lit';
 import { MetaComponent } from '@root/types';
-import { spreadArgs } from '@/utils';
+import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
+import { html, nothing } from 'lit';
+import { keyed } from 'lit/directives/keyed.js';
 
 const meta: MetaComponent = {
   id: 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e',
@@ -21,9 +21,11 @@ const meta: MetaComponent = {
   },
   args: {
     id: 'main',
-    locale: '',
     inline: false,
     range: false,
+    min: '',
+    max: '',
+    locale: '',
     textToggleCalendar: 'Open calendar',
     textNextDecade: 'Next decade',
     textNextMonth: 'Next month',
@@ -83,13 +85,17 @@ const meta: MetaComponent = {
     max: {
       control: 'text',
     },
-    selectedStartDate: {
-      control: 'text',
+    cellConfig: {
+      control: false,
     },
-    selectedEndDate: {
-      control: 'text',
-      if: {
-        arg: 'range',
+    value: {
+      name: 'Value',
+      description: 'The date or date range used as a value for the input.',
+      type: {
+        name: 'string',
+      },
+      table: {
+        category: 'Input',
       },
     },
   },
@@ -98,18 +104,34 @@ export default meta;
 
 // Setting different instances of the post-date-picker forces the rerender of the component and make sure it updates when args change
 function render(args: Args) {
-  return args.inline ? renderInline(args) : renderPopup(args);
-}
-
-function renderInline(args: Args) {
-  return html` <post-date-picker ${spreadArgs(args)}> </post-date-picker>`;
-}
-
-function renderPopup(args: Args) {
-  return html`
-    <post-date-picker ${spreadArgs(args)}>
-      <input class="form-control" type="text"></input>
-    </post-date-picker>`;
+  const isoStringPattern = /^\d{4}-\d{2}-\d{2}$/;
+  return keyed(
+    `${args.id}-${args.inline}`,
+    html`
+      <post-date-picker
+        id=${args.id}
+        ?range="${args.range}"
+        ?inline="${args.inline}"
+        min=${isoStringPattern.test(args.min) ? args.min : nothing}
+        max=${isoStringPattern.test(args.max) ? args.max : nothing}
+        locale=${args.locale || nothing}
+        text-toggle-calendar=${args.textToggleCalendar}
+        text-next-decade=${args.textNextDecade}
+        text-next-month=${args.textNextMonth}
+        text-next-year=${args.textNextYear}
+        text-previous-decade=${args.textPreviousDecade}
+        text-previous-month=${args.textPreviousMonth}
+        text-previous-year=${args.textPreviousYear}
+        text-switch-year=${args.textSwitchYear}
+      >
+        <input
+          type=${args.inline ? 'hidden' : 'text'}
+          class=${args.inline ? nothing : 'form-control'}
+          value=${args.value ?? nothing}
+        />
+      </post-date-picker>
+    `,
+  );
 }
 
 type Story = StoryObj;
@@ -147,7 +169,7 @@ export const DisabledDates: Story = {
         <script>
           window.addEventListener('DOMContentLoaded', () => {
             const dp = document.querySelector('post-date-picker#disabled-dates');
-            dp.renderCellCallback = ({ date, cellType }) => {
+            dp.cellConfig = (date, cellType) => {
               if (cellType === 'day' && date.getDay() === 0) {
                 return { disabled: true, classes: 'is-sunday' };
               }

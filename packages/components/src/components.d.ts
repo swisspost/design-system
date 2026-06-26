@@ -9,7 +9,6 @@ import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
 import { Variant } from "./components/post-breadcrumb-item/variants";
 import { ButtonType, Placement, Size } from "./components/post-closebutton/types";
-import { AirDatepickerCustomOptions } from "./components/post-date-picker/post-date-picker";
 import { PostIconAnimation } from "./types/icon-animations";
 import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement as Placement1 } from "@floating-ui/dom";
@@ -17,7 +16,6 @@ export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { Variant } from "./components/post-breadcrumb-item/variants";
 export { ButtonType, Placement, Size } from "./components/post-closebutton/types";
-export { AirDatepickerCustomOptions } from "./components/post-date-picker/post-date-picker";
 export { PostIconAnimation } from "./types/icon-animations";
 export { SwitchVariant } from "./components/post-language-menu/switch-variants";
 export { Placement as Placement1 } from "@floating-ui/dom";
@@ -193,6 +191,13 @@ export namespace Components {
     }
     interface PostDatePicker {
         /**
+          * A callback to customize individual calendar cells, e.g. to disable specific dates or add CSS classes.
+         */
+        "cellConfig"?: (
+    date: Date,
+    cellType: 'day' | 'month' | 'year',
+  ) => { disabled?: boolean; classes?: string } | void;
+        /**
           * Hides the popover calendar.
          */
         "hide": () => Promise<void>;
@@ -211,7 +216,7 @@ export namespace Components {
          */
         "max"?: string;
         /**
-          * Minimun possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
+          * Minimum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "min"?: string;
         /**
@@ -219,18 +224,6 @@ export namespace Components {
           * @default false
          */
         "range"?: boolean;
-        /**
-          * Used to extend the existing on render cell to disable dates.
-         */
-        "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
-        /**
-          * The date picker's selected end date (for range date picker only). Must be a valid date in ISO 8601 format (YYYY-MM-DD).
-         */
-        "selectedEndDate"?: string;
-        /**
-          * The date picker's selected date. If in range mode, the selected start date. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
-         */
-        "selectedStartDate"?: string;
         /**
           * Displays the popover calendar, focusing the first calendar item.
          */
@@ -264,7 +257,7 @@ export namespace Components {
          */
         "textSwitchYear": string;
         /**
-          * Label for the toggle button that opens the calendar. It is only needed when the calendar is connected to the input.
+          * Label for the toggle button that opens the calendar. It is only needed when the calendar is not inline.
          */
         "textToggleCalendar"?: string;
     }
@@ -790,10 +783,6 @@ export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
 }
-export interface PostDatePickerCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLPostDatePickerElement;
-}
 export interface PostLanguageMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostLanguageMenuItemElement;
@@ -934,18 +923,7 @@ declare global {
         prototype: HTMLPostCollapsibleTriggerElement;
         new (): HTMLPostCollapsibleTriggerElement;
     };
-    interface HTMLPostDatePickerElementEventMap {
-        "postUpdateDates": string | string[];
-    }
     interface HTMLPostDatePickerElement extends Components.PostDatePicker, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostDatePickerElementEventMap>(type: K, listener: (this: HTMLPostDatePickerElement, ev: PostDatePickerCustomEvent<HTMLPostDatePickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostDatePickerElementEventMap>(type: K, listener: (this: HTMLPostDatePickerElement, ev: PostDatePickerCustomEvent<HTMLPostDatePickerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostDatePickerElement: {
         prototype: HTMLPostDatePickerElement;
@@ -1479,6 +1457,13 @@ declare namespace LocalJSX {
     }
     interface PostDatePicker {
         /**
+          * A callback to customize individual calendar cells, e.g. to disable specific dates or add CSS classes.
+         */
+        "cellConfig"?: (
+    date: Date,
+    cellType: 'day' | 'month' | 'year',
+  ) => { disabled?: boolean; classes?: string } | void;
+        /**
           * Whether the calendar is inline in the page (not showing in a popover when input clicked).
           * @default false
          */
@@ -1493,30 +1478,14 @@ declare namespace LocalJSX {
          */
         "max"?: string;
         /**
-          * Minimun possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
+          * Minimum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "min"?: string;
-        /**
-          * An event emitted when a date or a range of dates have been selected.
-         */
-        "onPostUpdateDates"?: (event: PostDatePickerCustomEvent<string | string[]>) => void;
         /**
           * Whether the date picker expects a range selection or a single date selection.
           * @default false
          */
         "range"?: boolean;
-        /**
-          * Used to extend the existing on render cell to disable dates.
-         */
-        "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
-        /**
-          * The date picker's selected end date (for range date picker only). Must be a valid date in ISO 8601 format (YYYY-MM-DD).
-         */
-        "selectedEndDate"?: string;
-        /**
-          * The date picker's selected date. If in range mode, the selected start date. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
-         */
-        "selectedStartDate"?: string;
         /**
           * Label for "Next decade" button.
          */
@@ -1546,7 +1515,7 @@ declare namespace LocalJSX {
          */
         "textSwitchYear": string;
         /**
-          * Label for the toggle button that opens the calendar. It is only needed when the calendar is connected to the input.
+          * Label for the toggle button that opens the calendar. It is only needed when the calendar is not inline.
          */
         "textToggleCalendar"?: string;
     }
@@ -2057,8 +2026,6 @@ declare namespace LocalJSX {
     interface PostDatePickerAttributes {
         "locale": string;
         "range": boolean;
-        "selectedStartDate": string;
-        "selectedEndDate": string;
         "min": string;
         "max": string;
         "inline": boolean;
