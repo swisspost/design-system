@@ -534,9 +534,9 @@ export class PostTabs {
     const isSSR = Build.isServer;
     const tabStyle = activeName
       ? {
-          [`--post-tab-panel-${activeName}`]: 'block',
-          [`--post-tab-item-${activeName}`]: '1',
-        }
+        [`--post-tab-panel-${activeName}`]: 'block',
+        [`--post-tab-item-${activeName}`]: '1',
+      }
       : undefined;
     const style = isSSR && !this.isPagesVariant ? tabStyle : undefined;
     return (
