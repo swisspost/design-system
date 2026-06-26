@@ -24,21 +24,21 @@ catalogs:
     'jest-cli': 29.7.0
     'ts-jest': 29.4.9
   'typescript':
-    'typescript': 5.9.3
-    'typescript-eslint': 8.59.2
+    'typescript': 6.0.3
+    'typescript-eslint': 8.62.0
   angular:
-    '@angular/animations': 20.3.19
-    '@angular/build': 20.3.25
-    '@angular/cli': 20.3.25
-    '@angular/common': 20.3.19
-    '@angular/compiler': 20.3.19
-    '@angular/compiler-cli': 20.3.19
-    '@angular/core': 20.3.19
-    '@angular/forms': 20.3.19
-    '@angular/platform-browser': 20.3.19
-    '@angular/router': 20.3.19
-    'angular-eslint': 19.8.1
-    'ng-packagr': 20.1.0
+    '@angular/animations': 22.0.0
+    '@angular/build': 22.0.4
+    '@angular/cli': 22.0.4
+    '@angular/common': 22.0.0
+    '@angular/compiler': 22.0.0
+    '@angular/compiler-cli': 22.0.0
+    '@angular/core': 22.0.0
+    '@angular/forms': 22.0.0
+    '@angular/platform-browser': 22.0.0
+    '@angular/router': 22.0.0
+    'angular-eslint': 22.0.0
+    'ng-packagr': 22.0.0
     'rxjs': 7.8.2
     'tslib': 2.8.1
     'zone.js': 0.16.1
