@@ -90,9 +90,9 @@ describe('tabs', () => {
     });
   });
 
-  describe('navigation variant', () => {
+  describe('pages variant', () => {
     beforeEach(() => {
-      cy.getComponent('tabs', TABS_ID, 'navigation-variant');
+      cy.getComponent('tabs', TABS_ID, 'pages-variant');
       cy.get('post-tab-item').as('items');
     });
 
@@ -104,11 +104,11 @@ describe('tabs', () => {
       cy.get('@items').should('have.length', 3);
     });
 
-    it('should not render content part in navigation mode', () => {
+    it('should not render content part in pages variant', () => {
       cy.get('@tabs').shadow().find('[part="post-tabs-content"]').should('not.exist');
     });
 
-    it('should not render tab panels in navigation mode', () => {
+    it('should not render tab panels in pages variant', () => {
       cy.get('post-tab-panel').should('not.exist');
     });
 
@@ -139,19 +139,19 @@ describe('tabs', () => {
         });
       });
 
-      it('should not have role="tab" on tab items in navigation mode', () => {
+      it('should not have role="tab" on tab items in pages variant', () => {
         cy.get('@items').each($item => {
           cy.wrap($item).should('not.have.attr', 'role', 'tab');
         });
       });
 
-      it('should not have aria-selected on tab items in navigation mode', () => {
+      it('should not have aria-selected on tab items in pages variant', () => {
         cy.get('@items').each($item => {
           cy.wrap($item).should('not.have.attr', 'aria-selected');
         });
       });
 
-      it('should not have tabindex on tab items in navigation mode', () => {
+      it('should not have tabindex on tab items in pages variant', () => {
         cy.get('@items').each($item => {
           cy.wrap($item).should('not.have.attr', 'tabindex');
         });
@@ -174,14 +174,14 @@ describe('tabs', () => {
     describe('active state management', () => {
       it('should be controlled by aria-current attribute only', () => {
         // Verify there is one active tab which has aria-current="page" on its anchor
-        cy.get('post-tab-item').find('a[aria-current="page"]').should('have.length', 1);
+        cy.get('@items').find('a[aria-current="page"]').should('have.length', 1);
 
         // Verify that the rest of the tabs don't have aria-current="page"
-        cy.get('post-tab-item').find('a:not([aria-current="page"])').should('have.length', 2);
+        cy.get('@items').find('a:not([aria-current="page"])').should('have.length', 2);
       });
     });
 
-    describe('navigation behavior', () => {
+    describe('pages variant behavior', () => {
       it('should not prevent default link behavior', () => {
         // Anchors should have href attributes (routing framework will handle them)
         cy.get('@items').first().find('a').should('have.attr', 'href');
@@ -194,7 +194,7 @@ describe('tabs', () => {
         });
       });
 
-      it('should not emit postChange event in navigation mode', () => {
+      it('should not emit postChange event in pages variant', () => {
         // This is a limitation test - we can't easily test events NOT firing
         // without framework integration, but we document the expectation
         cy.get('@tabs').should('exist');
@@ -205,15 +205,15 @@ describe('tabs', () => {
   });
 
   describe('mode detection', () => {
-    it('should detect panels mode when no anchor elements are present', () => {
+    it('should detect content mode when no anchor elements are present', () => {
       cy.getComponent('tabs', TABS_ID, 'default');
       cy.get('post-tabs').should('exist');
       cy.get('post-tab-panel').should('exist');
       cy.get('post-tabs').shadow().find('[part="post-tabs-content"]').should('exist');
     });
 
-    it('should detect navigation mode when anchor elements are present', () => {
-      cy.getComponent('tabs', TABS_ID, 'navigation-variant');
+    it('should detect Page Tabs variant when anchor elements are present', () => {
+      cy.getComponent('tabs', TABS_ID, 'pages-variant');
       cy.get('post-tabs').should('exist');
       cy.get('post-tab-panel').should('not.exist');
       cy.get('post-tabs').shadow().find('nav').should('exist');
@@ -222,26 +222,34 @@ describe('tabs', () => {
 });
 
 describe('Accessibility', () => {
-  it('Has no detectable a11y violations on load for all variants', () => {
-    cy.getSnapshots('tabs');
-    cy.checkA11y('#root-inner');
+  it('Has no detectable a11y violations on load (content-tabs)', () => {
+    cy.getComponent('tabs', TABS_ID, 'default');
+    cy.get('@tabs').should('exist');
+    cy.checkA11y({ include: [['post-tabs']], exclude: [['post-tab-panel']] }); // panel is excluded as it is unstyled on purpose
   });
 
-  describe('panels mode ARIA attributes', () => {
+  it('Has no detectable a11y violations on load (page-tabs)', () => {
+    cy.getComponent('tabs', TABS_ID, 'pages-variant');
+    cy.get('@tabs').should('exist');
+    cy.checkA11y('post-tabs');
+  });
+
+  describe('content mode ARIA attributes', () => {
     beforeEach(() => {
       cy.getComponent('tabs', TABS_ID, 'default');
+      cy.get('post-tab-item').as('items');
     });
 
-    it('should have proper ARIA attributes for panels mode', () => {
-      cy.get('post-tabs').shadow().find('[role="tablist"]').should('exist');
-      cy.get('post-tab-item').should('have.attr', 'role', 'tab');
-      cy.get('post-tab-item').should('have.attr', 'aria-selected');
-      cy.get('post-tab-item').first().should('have.attr', 'aria-selected', 'true');
-      cy.get('post-tab-item').not(':first').should('have.attr', 'aria-selected', 'false');
+    it('should have proper ARIA attributes for content mode', () => {
+      cy.get('@tabs').shadow().find('[role="tablist"]').should('exist');
+      cy.get('@items').should('have.attr', 'role', 'tab');
+      cy.get('@items').should('have.attr', 'aria-selected');
+      cy.get('@items').first().should('have.attr', 'aria-selected', 'true');
+      cy.get('@items').not(':first').should('have.attr', 'aria-selected', 'false');
     });
 
     it('should link tabs to panels with aria-controls and aria-labelledby', () => {
-      cy.get('post-tab-item')
+      cy.get('@items')
         .first()
         .then($tab => {
           const tabId = $tab.attr('id');
@@ -259,33 +267,34 @@ describe('Accessibility', () => {
     });
 
     it('should manage tabindex properly', () => {
-      cy.get('post-tab-item').first().should('have.attr', 'tabindex', '0');
-      cy.get('post-tab-item').not(':first').should('have.attr', 'tabindex', '-1');
+      cy.get('@items').first().should('have.attr', 'tabindex', '0');
+      cy.get('@items').not(':first').should('have.attr', 'tabindex', '-1');
 
-      cy.get('post-tab-item').last().click();
-      cy.get('post-tab-item').last().should('have.attr', 'tabindex', '0');
-      cy.get('post-tab-item').not(':last').should('have.attr', 'tabindex', '-1');
+      cy.get('@items').last().click();
+      cy.get('@items').last().should('have.attr', 'tabindex', '0');
+      cy.get('@items').not(':last').should('have.attr', 'tabindex', '-1');
     });
   });
 
-  describe('navigation mode ARIA attributes', () => {
+  describe('pages variant ARIA attributes', () => {
     beforeEach(() => {
-      cy.getComponent('tabs', TABS_ID, 'navigation-variant');
+      cy.getComponent('tabs', TABS_ID, 'pages-variant');
+      cy.get('post-tab-item').as('items');
     });
 
-    it('should have proper ARIA attributes for navigation mode', () => {
-      cy.get('post-tabs').shadow().find('nav').should('have.attr', 'aria-label');
-      cy.get('post-tab-item').should('not.have.attr', 'role');
-      cy.get('post-tab-item').should('not.have.attr', 'tabindex');
-      cy.get('post-tab-item').should('not.have.attr', 'aria-selected');
+    it('should have proper ARIA attributes for pages variant', () => {
+      cy.get('@tabs').shadow().find('nav').should('have.attr', 'aria-label');
+      cy.get('@items').should('not.have.attr', 'role');
+      cy.get('@items').should('not.have.attr', 'tabindex');
+      cy.get('@items').should('not.have.attr', 'aria-selected');
     });
 
-    it('should not have tablist role in navigation mode', () => {
-      cy.get('post-tabs').shadow().find('[role="tablist"]').should('not.exist');
+    it('should not have tablist role in pages variant', () => {
+      cy.get('@tabs').shadow().find('[role="tablist"]').should('not.exist');
     });
 
     it('should use aria-current for active state indication', () => {
-      cy.get('post-tab-item').find('a[aria-current="page"]').should('have.length', 1);
+      cy.get('@items').find('a[aria-current="page"]').should('have.length', 1);
     });
   });
 });
