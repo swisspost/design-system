@@ -47,6 +47,25 @@ export const PostSideNavigation: Story = {
         <nav aria-label="Main navigation">${unsafeHTML(defaultNav)}</nav>
       </post-side-navigation>
       <main class="main-container">
+        <div class="form-check form-switch">
+          <input
+            type="checkbox"
+            role="switch"
+            id="7fb639f8-86f6-4937-999c-4ee15f81643b--default"
+            class="form-check-input"
+            @change=${(e: Event) => {
+              const nav = document.getElementById('sidenavigation');
+              if (!nav) return;
+              nav.classList.toggle(
+                'post-side-navigation-small',
+                (e.target as HTMLInputElement).checked,
+              );
+            }}
+          />
+          <label class="form-check-label" for="7fb639f8-86f6-4937-999c-4ee15f81643b--default"
+            >Is small</label
+          >
+        </div>
         <div class="d-flex virtual-body"></div>
       </main>
     `;
