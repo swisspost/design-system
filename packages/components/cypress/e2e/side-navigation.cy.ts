@@ -45,7 +45,7 @@ describe('post-side-navigation', () => {
     });
   });
 
-  describe('isSmall prop', () => {
+  describe('size prop', () => {
     beforeEach(() => {
       cy.viewport(1280, 800);
       cy.getComponents(
@@ -56,7 +56,7 @@ describe('post-side-navigation', () => {
       );
     });
 
-    it('should add the small class when isSmall is true', () => {
+    it('should add the small class when size is "small"', () => {
       cy.get('@side-navigation').should('have.class', 'post-side-navigation-small');
     });
   });

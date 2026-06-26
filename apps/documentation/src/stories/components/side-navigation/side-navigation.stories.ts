@@ -28,15 +28,12 @@ const meta: MetaComponent = {
   args: {
     textClose: 'Close',
     showIcons: false,
-    isSmall: false,
+    size: 'large',
   },
   argTypes: {
     textClose: {
       name: 'text-close',
       description: 'Accessible label for the close button shown in the mobile navigation dialog.',
-      table: {
-        category: 'Props',
-      },
     },
     showIcons: {
       name: 'Show icons',
@@ -51,12 +48,13 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
-    isSmall: {
-      name: 'is-small',
+    size: {
+      name: 'size',
       description:
-        'Whether the sidenavigation should be small or not. Choose the "small" version for deep and long navigation, and "large" (default) for a flat and short navigation.',
-      table: {
-        category: 'Props',
+        'Controls the size of the navigation items. Choose "small" for deep and long navigation, and "large" (default) for a flat and short navigation.',
+
+      control: {
+        type: 'radio',
       },
     },
   },
@@ -120,11 +118,7 @@ export const Default: Story = {
     },
   },
   render: (args: Args) => html`
-    <post-side-navigation
-      ?is-small=${args.isSmall}
-      id="sidenavigation"
-      text-close="${args.textClose}"
-    >
+    <post-side-navigation ?size="${args.size}" id="sidenavigation" text-close="${args.textClose}">
       <nav aria-label="Main navigation">${unsafeHTML(defaultNav)}</nav>
     </post-side-navigation>
 
@@ -134,7 +128,7 @@ export const Default: Story = {
 
 export const Small: Story = {
   render: (args: Args) => html`
-    <post-side-navigation is-small id="sidenavigation" text-close="${args.textClose}">
+    <post-side-navigation size="small" id="sidenavigation" text-close="${args.textClose}">
       <nav aria-label="Main navigation">${unsafeHTML(smallNav)}</nav>
     </post-side-navigation>
 
@@ -144,7 +138,7 @@ export const Small: Story = {
 
 export const Large: Story = {
   render: (args: Args) => html`
-    <post-side-navigation is-small id="sidenavigation" text-close="${args.textClose}">
+    <post-side-navigation id="sidenavigation" text-close="${args.textClose}">
       <nav aria-label="Main navigation">${unsafeHTML(largeNav)}</nav>
     </post-side-navigation>
 

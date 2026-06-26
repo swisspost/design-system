@@ -13,6 +13,7 @@ import { AirDatepickerCustomOptions } from "./components/post-date-picker/post-d
 import { PostIconAnimation } from "./types/icon-animations";
 import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement as Placement1 } from "@floating-ui/dom";
+import { SideNavigationSize } from "./components/post-side-navigation/side-navigation-styles";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { Variant } from "./components/post-breadcrumb-item/variants";
@@ -21,6 +22,7 @@ export { AirDatepickerCustomOptions } from "./components/post-date-picker/post-d
 export { PostIconAnimation } from "./types/icon-animations";
 export { SwitchVariant } from "./components/post-language-menu/switch-variants";
 export { Placement as Placement1 } from "@floating-ui/dom";
+export { SideNavigationSize } from "./components/post-side-navigation/side-navigation-styles";
 export namespace Components {
     interface PostAccordion {
         /**
@@ -660,14 +662,14 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
-          * Whether the sidenavigation should be small or not. Choose the "small" version for deep and long navigation, and "large" (default) for a flat and short navigation.
-          * @default false
-         */
-        "isSmall"?: boolean;
-        /**
           * Opens the navigation programmatically. No-op on desktop.
          */
         "show": () => Promise<void>;
+        /**
+          * Controls the size of the navigation items. Choose "small" for deep and long navigation, and "large" (default) for a flat and short navigation.
+          * @default 'large'
+         */
+        "size"?: SideNavigationSize;
         /**
           * Accessible label for the close button shown in the mobile navigation dialog.
          */
@@ -1917,14 +1919,14 @@ declare namespace LocalJSX {
     }
     interface PostSideNavigation {
         /**
-          * Whether the sidenavigation should be small or not. Choose the "small" version for deep and long navigation, and "large" (default) for a flat and short navigation.
-          * @default false
-         */
-        "isSmall"?: boolean;
-        /**
           * An event emitted when the navigation is shown or hidden on mobile. The payload is a boolean: `true` when the navigation opens, `false` when it closes.
          */
         "onPostToggle"?: (event: PostSideNavigationCustomEvent<boolean>) => void;
+        /**
+          * Controls the size of the navigation items. Choose "small" for deep and long navigation, and "large" (default) for a flat and short navigation.
+          * @default 'large'
+         */
+        "size"?: SideNavigationSize;
         /**
           * Accessible label for the close button shown in the mobile navigation dialog.
          */
@@ -2187,7 +2189,7 @@ declare namespace LocalJSX {
     }
     interface PostSideNavigationAttributes {
         "textClose": string;
-        "isSmall": boolean;
+        "size": SideNavigationSize;
     }
     interface PostSideNavigationTriggerAttributes {
         "for": string;

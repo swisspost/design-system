@@ -264,6 +264,9 @@ post-side-navigation {
     cursor: pointer;
     position: relative;
     color: var(--post-side-navigation-item-enabled-fg);
+    transition:
+      background-color 250ms,
+      color 250ms;
 
     // Custom inner focus
     &::after {
@@ -346,16 +349,14 @@ post-side-navigation {
   }
 }
 
-// First level specific
 nav > ul > li {
+  // First level specific
   & > .post-side-navigation-item,
   & > post-collapsible-trigger > .post-side-navigation-item {
     font-weight: 700;
   }
-}
 
-// Border color mechanism to always have the outer borders of a level 1 darker
-nav > ul > li {
+  // Border color mechanism to always have the outer borders of a level 1 darker
   & .post-side-navigation-item:has(+ ul),
   & li:has(+ li) .post-side-navigation-item,
   .post-side-navigation-item[aria-expanded='true'] {

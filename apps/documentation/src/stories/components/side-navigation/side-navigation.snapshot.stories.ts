@@ -63,7 +63,7 @@ export const PostSideNavigation: Story = {
             }}
           />
           <label class="form-check-label" for="7fb639f8-86f6-4937-999c-4ee15f81643b--default"
-            >Is small</label
+            >Small size</label
           >
         </div>
         <div class="d-flex virtual-body"></div>

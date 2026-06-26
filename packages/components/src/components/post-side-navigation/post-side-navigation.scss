@@ -21,8 +21,7 @@ tokens.$default-map: utilities.$post-elevation;
     right: auto;
     border: none;
     padding: 0;
-    height: 100vh;
-    max-height: 100vh;
+    max-height: 100dvh;
     background-color: var(--post-side-navigation-bg);
     border-inline-end: 1px solid var(--post-side-navigation-stroke);
 

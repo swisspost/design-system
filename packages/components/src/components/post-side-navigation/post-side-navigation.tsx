@@ -11,7 +11,8 @@ import {
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
-import { getFocusableChildren, Required, Type } from '@/utils';
+import { getFocusableChildren, OneOf, Required, Type } from '@/utils';
+import { SIDE_NAVIGATION_SIZES, SideNavigationSize } from './side-navigation-styles';
 
 /**
  * @slot default - Slot for the navigation content (must be a `<nav>` landmark with proper heading)
@@ -35,10 +36,12 @@ export class PostSideNavigation {
   textClose!: string;
 
   /**
-   * Whether the sidenavigation should be small or not.
-   * Choose the "small" version for deep and long navigation, and "large" (default) for a flat and short navigation.
+   * Controls the size of the navigation items.
+   * Choose "small" for deep and long navigation, and "large" (default) for a flat and short navigation.
    */
-  @Prop() isSmall?: boolean = false;
+  @OneOf(SIDE_NAVIGATION_SIZES)
+  @Prop()
+  size?: SideNavigationSize = 'large';
 
   /**
    * An event emitted when the navigation is shown or hidden on mobile.
@@ -54,7 +57,7 @@ export class PostSideNavigation {
     globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
     this.host.addEventListener('keydown', this.handleKeyDown);
 
-    if (this.isSmall) {
+    if (this.size === 'small') {
       this.host.classList.add('post-side-navigation-small');
     }
   }
