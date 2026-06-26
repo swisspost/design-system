@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': minor
 ---
 
-Added Swiss Post Sans as the new default font
+Added Swiss Post Sans as the new default font.

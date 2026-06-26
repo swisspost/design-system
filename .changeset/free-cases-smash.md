@@ -3,4 +3,4 @@
 '@swisspost/design-system-components': minor
 ---
 
-Added the `post-number-input` web component.
+Added the `<post-number-input>` web component.
