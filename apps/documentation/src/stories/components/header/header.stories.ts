@@ -246,68 +246,72 @@ function isApplicationHeader(args: Args) {
   );
 }
 
-function getHeaderRenderer(
-  subComponents: {
-    mainnavigation?: TemplateResult;
-    loginLink?: TemplateResult;
-    userMenu?: TemplateResult;
-    title?: TemplateResult;
-  } = {},
-) {
-  return (args: Args) => {
-    const mainnavigation = subComponents.mainnavigation ?? renderMainnavigation();
-    const loginLink = subComponents.loginLink ?? renderLoginLink();
-    const userMenu = subComponents.userMenu ?? renderUserMenu();
-    const title = subComponents.title ?? renderTitle(args);
+type SubComponents = {
+  mainnavigation?: TemplateResult;
+  loginLink?: TemplateResult;
+  userMenu?: TemplateResult;
+  title?: TemplateResult;
+};
 
-    const languageMenu = buildLanguageMenu();
-    const globalControls = buildGlobalControls();
-    const globalLogin = args.isLoggedIn ? userMenu : loginLink;
-    const appHeader = isApplicationHeader(args);
-    const localLanguageMenuItem = args.languageMenu && appHeader ? languageMenu : undefined;
+function buildHeaderSlots(args: Args, subComponents: SubComponents) {
+  const mainnavigation = subComponents.mainnavigation ?? renderMainnavigation();
+  const loginLink = subComponents.loginLink ?? renderLoginLink();
+  const userMenu = subComponents.userMenu ?? renderUserMenu();
+  const title = subComponents.title ?? renderTitle(args);
 
-    // Pre-resolve all conditional slots to keep the template flat
-    const audienceSlot = args.targetGroup ? renderAudience(args) : nothing;
-    const globalControlsSlot = args.globalNavPrimary && !args.jobs ? globalControls : nothing;
-    const globalNavSecondarySlot = args.globalNavSecondary ? renderGlobalNavSecondary(args) : nothing;
-    const globalLanguageMenuSlot =
+  const languageMenu = buildLanguageMenu();
+  const globalControls = buildGlobalControls();
+  const globalLogin = args.isLoggedIn ? userMenu : loginLink;
+  const appHeader = isApplicationHeader(args);
+  const localLanguageMenuItem = args.languageMenu && appHeader ? languageMenu : undefined;
+
+  return {
+    audienceSlot: args.targetGroup ? renderAudience(args) : nothing,
+    globalControlsSlot: args.globalNavPrimary && !args.jobs ? globalControls : nothing,
+    globalNavSecondarySlot: args.globalNavSecondary ? renderGlobalNavSecondary(args) : nothing,
+    globalLanguageMenuSlot:
       args.languageMenu && !appHeader
         ? html`<span slot="language-menu">${languageMenu}</span>`
-        : nothing;
-    const globalLoginSlot = showGlobalLogin(args)
+        : nothing,
+    globalLoginSlot: showGlobalLogin(args)
       ? html`<!-- Global header login/user menu -->${globalLogin}`
-      : nothing;
-    const titleSlot = args.title !== '' ? title : nothing;
-    const sideNavTriggerSlot = args.sideNav && args.title !== '' ? renderSideNavTrigger() : nothing;
-    const micrositeControlsSlot =
+      : nothing,
+    titleSlot: args.title !== '' ? title : nothing,
+    sideNavTriggerSlot: args.sideNav && args.title !== '' ? renderSideNavTrigger() : nothing,
+    micrositeControlsSlot:
       args.localNav || localLanguageMenuItem
         ? renderMicrositeControls({ ...args, localLanguageMenuItem })
-        : nothing;
-    const mainNavSlot = args.mainNav ? mainnavigation : nothing;
-    const jobControlsSlot = args.jobs ? renderJobControls() : nothing;
+        : nothing,
+    mainNavSlot: args.mainNav ? mainnavigation : nothing,
+    jobControlsSlot: args.jobs ? renderJobControls() : nothing,
+    showSideNav: args.sideNav && args.title !== '',
+  };
+}
 
-    const showSideNav = args.sideNav && args.title !== '';
+function getHeaderRenderer(subComponents: SubComponents = {}) {
+  return (args: Args) => {
+    const slots = buildHeaderSlots(args, subComponents);
 
     return html`
       <post-header text-menu="${args.textMenu}" full-width="${args.fullWidth || nothing}">
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
-        ${audienceSlot}
-        ${globalControlsSlot}
-        ${globalNavSecondarySlot}
+        ${slots.audienceSlot}
+        ${slots.globalControlsSlot}
+        ${slots.globalNavSecondarySlot}
 
         <!-- Language menu (global) -->
-        ${globalLanguageMenuSlot}
-        ${globalLoginSlot}
-        ${titleSlot}
-        ${sideNavTriggerSlot}
-        ${micrositeControlsSlot}
-        ${mainNavSlot}
-        ${jobControlsSlot}
+        ${slots.globalLanguageMenuSlot}
+        ${slots.globalLoginSlot}
+        ${slots.titleSlot}
+        ${slots.sideNavTriggerSlot}
+        ${slots.micrositeControlsSlot}
+        ${slots.mainNavSlot}
+        ${slots.jobControlsSlot}
       </post-header>
 
-      ${showSideNav ? renderSideNavigation() : nothing}
+      ${slots.showSideNav ? renderSideNavigation() : nothing}
     `;
   };
 }
