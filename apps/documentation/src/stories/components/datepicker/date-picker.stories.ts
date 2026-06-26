@@ -1,6 +1,7 @@
 import { MetaComponent } from '@root/types';
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
+import { keyed } from 'lit/directives/keyed.js';
 
 const meta: MetaComponent = {
   id: 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e',
@@ -103,26 +104,34 @@ export default meta;
 
 // Setting different instances of the post-date-picker forces the rerender of the component and make sure it updates when args change
 function render(args: Args) {
-  return html`
-    <post-date-picker
-      id=${args.id}
-      ?range="${args.range}"
-      ?inline="${args.inline}"
-      min=${args.min || nothing}
-      max=${args.max || nothing}
-      locale=${args.locale || nothing}
-      text-toggle-calendar=${args.textToggleCalendar}
-      text-next-decade=${args.textNextDecade}
-      text-next-month=${args.textNextMonth}
-      text-next-year=${args.textNextYear}
-      text-previous-decade=${args.textPreviousDecade}
-      text-previous-month=${args.textPreviousMonth}
-      text-previous-year=${args.textPreviousYear}
-      text-switch-year=${args.textSwitchYear}
-    >
-      <input class=${args.inline ? nothing : 'form-control'} value=${args.value ?? nothing} />
-    </post-date-picker>
-  `;
+  const isoStringPattern = /^\d{4}-\d{2}-\d{2}$/;
+  return keyed(
+    `${args.id}-${args.inline}`,
+    html`
+      <post-date-picker
+        id=${args.id}
+        ?range="${args.range}"
+        ?inline="${args.inline}"
+        min=${isoStringPattern.test(args.min) ? args.min : nothing}
+        max=${isoStringPattern.test(args.max) ? args.max : nothing}
+        locale=${args.locale || nothing}
+        text-toggle-calendar=${args.textToggleCalendar}
+        text-next-decade=${args.textNextDecade}
+        text-next-month=${args.textNextMonth}
+        text-next-year=${args.textNextYear}
+        text-previous-decade=${args.textPreviousDecade}
+        text-previous-month=${args.textPreviousMonth}
+        text-previous-year=${args.textPreviousYear}
+        text-switch-year=${args.textSwitchYear}
+      >
+        <input
+          type=${args.inline ? 'hidden' : 'text'}
+          class=${args.inline ? nothing : 'form-control'}
+          value=${args.value ?? nothing}
+        />
+      </post-date-picker>
+    `,
+  );
 }
 
 type Story = StoryObj;
@@ -160,7 +169,7 @@ export const DisabledDates: Story = {
         <script>
           window.addEventListener('DOMContentLoaded', () => {
             const dp = document.querySelector('post-date-picker#disabled-dates');
-            dp.cellConfig = ({ date, cellType }) => {
+            dp.cellConfig = (date, cellType) => {
               if (cellType === 'day' && date.getDay() === 0) {
                 return { disabled: true, classes: 'is-sunday' };
               }

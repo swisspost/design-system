@@ -9,7 +9,6 @@ import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
 import { Variant } from "./components/post-breadcrumb-item/variants";
 import { ButtonType, Placement, Size } from "./components/post-closebutton/types";
-import { DatePickerCellConfigFn } from "./components/post-date-picker/post-date-picker";
 import { PostIconAnimation } from "./types/icon-animations";
 import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement as Placement1 } from "@floating-ui/dom";
@@ -17,7 +16,6 @@ export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { Variant } from "./components/post-breadcrumb-item/variants";
 export { ButtonType, Placement, Size } from "./components/post-closebutton/types";
-export { DatePickerCellConfigFn } from "./components/post-date-picker/post-date-picker";
 export { PostIconAnimation } from "./types/icon-animations";
 export { SwitchVariant } from "./components/post-language-menu/switch-variants";
 export { Placement as Placement1 } from "@floating-ui/dom";
@@ -200,7 +198,10 @@ export namespace Components {
         /**
           * A callback to customize individual calendar cells, e.g. to disable specific dates or add CSS classes.
          */
-        "cellConfig"?: DatePickerCellConfigFn;
+        "cellConfig"?: (
+    date: Date,
+    cellType: 'day' | 'month' | 'year',
+  ) => { disabled?: boolean; classes?: string } | void;
         /**
           * Hides the popover calendar.
          */
@@ -1468,7 +1469,10 @@ declare namespace LocalJSX {
         /**
           * A callback to customize individual calendar cells, e.g. to disable specific dates or add CSS classes.
          */
-        "cellConfig"?: DatePickerCellConfigFn;
+        "cellConfig"?: (
+    date: Date,
+    cellType: 'day' | 'month' | 'year',
+  ) => { disabled?: boolean; classes?: string } | void;
         /**
           * Whether the calendar is inline in the page (not showing in a popover when input clicked).
           * @default false

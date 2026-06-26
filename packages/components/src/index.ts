@@ -9,8 +9,3 @@
  */
 
 export type * from './components.d.ts';
-export type {
-  DatePickerCellConfig,
-  DatePickerCellConfigFn,
-  DatePickerCellType,
-} from './components/post-date-picker/post-date-picker';

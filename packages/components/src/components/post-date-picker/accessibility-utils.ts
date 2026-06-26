@@ -1,3 +1,9 @@
+import { AirDatepickerOptions } from 'air-datepicker';
+
+type AirDatepickerRenderCellFn = NonNullable<AirDatepickerOptions<HTMLDivElement>['onRenderCell']>;
+type AirDatepickerCellData = Parameters<AirDatepickerRenderCellFn>[0];
+type AirDatepickerCellConfig = ReturnType<AirDatepickerRenderCellFn>;
+
 /**
  * Add role and aria-label to each grid cell based on its type.
  * @param data The render cell data from AirDatepicker.
@@ -5,9 +11,9 @@
  * @returns An object with `attrs` to apply to the cell element.
  */
 export function renderCellAccessibility(
-  { date, cellType }: { date: Date; cellType: string },
+  { date, cellType }: AirDatepickerCellData,
   localeCode: string,
-) {
+): AirDatepickerCellConfig | undefined {
   if (cellType === 'day') {
     return {
       attrs: {
@@ -48,18 +54,16 @@ export function renderCellAccessibility(
  * @param custom User render cell
  * @returns Merged render cell
  */
-export function mergeRenderCellResults(base, custom) {
+export function mergeRenderCellResults(
+  base?: AirDatepickerCellConfig,
+  custom?: AirDatepickerCellConfig,
+): AirDatepickerCellConfig {
   if (!base) return custom;
   if (!custom) return base;
 
   return {
     ...base,
-    ...custom,
-    attrs: {
-      ...(base.attrs ?? {}),
-      ...(custom.attrs ?? {}),
-    },
     classes: [base.classes, custom.classes].filter(Boolean).join(' '),
-    disabled: base.disabled || custom.disabled,
+    disabled: custom.disabled || base.disabled,
   };
 }

@@ -35,21 +35,6 @@ import {
   stringToDate,
 } from './date-utils';
 
-/** The granularity of the calendar cell being rendered. */
-export type DatePickerCellType = 'day' | 'month' | 'year';
-
-/** The result returned from the cellConfig callback. */
-export type DatePickerCellConfig = {
-  disabled?: boolean;
-  classes?: string;
-};
-
-/** Callback to customize individual calendar cells (disable them, add classes). */
-export type DatePickerCellConfigFn = (params: {
-  date: Date;
-  cellType: DatePickerCellType;
-}) => DatePickerCellConfig | void;
-
 @Component({
   tag: 'post-date-picker',
   styleUrl: 'post-date-picker.scss',
@@ -109,6 +94,10 @@ export class PostDatePicker {
   @DateValue()
   @IsoDate()
   min?: string;
+  @Watch('min')
+  updateMin() {
+    this.dpInstance?.update({ minDate: this.min ? isoToDate(this.min)! : false });
+  }
 
   /**
    * Maximum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
@@ -117,11 +106,18 @@ export class PostDatePicker {
   @DateValue()
   @IsoDate()
   max?: string;
+  @Watch('max')
+  updateMax() {
+    this.dpInstance?.update({ maxDate: this.max ? isoToDate(this.max)! : false });
+  }
 
   /**
    * A callback to customize individual calendar cells, e.g. to disable specific dates or add CSS classes.
    */
-  @Prop() cellConfig?: DatePickerCellConfigFn;
+  @Prop() cellConfig?: (
+    date: Date,
+    cellType: 'day' | 'month' | 'year',
+  ) => { disabled?: boolean; classes?: string } | void;
 
   /**
    * Whether the calendar is inline in the page (not showing in a popover when input clicked).
@@ -694,7 +690,7 @@ export class PostDatePicker {
       blocks: {
         y: {
           mask: IMask.MaskedRange,
-          from: 101, // dates from 0100-01-31 and earlier are causing issues in air-datepicker
+          from: 1000,
           to: 9999,
           maxLength: 4,
           placeholderChar: Object.keys(DATE_FORMAT_MAP)[0],
@@ -875,8 +871,8 @@ export class PostDatePicker {
         showOtherMonths: false,
         moveToOtherMonthsOnSelect: true,
         startDate: this.startDate,
-        minDate: this.min,
-        maxDate: this.max,
+        minDate: this.min ? isoToDate(this.min)! : undefined,
+        maxDate: this.max ? isoToDate(this.max)! : undefined,
         locale: locale,
         dateFormat: locale.dateFormat,
         firstDay: locale.firstDay,
@@ -936,7 +932,7 @@ export class PostDatePicker {
         },
         onRenderCell: data => {
           const internal = renderCellAccessibility(data, this.localeCode);
-          const custom = this.cellConfig?.(data);
+          const custom = this.cellConfig?.(data.date, data.cellType);
 
           return mergeRenderCellResults(internal, custom);
         },

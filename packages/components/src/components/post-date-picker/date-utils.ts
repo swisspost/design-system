@@ -129,5 +129,5 @@ export function getDateFormat(localeCode: string, isBuddhistCalendar: boolean): 
  * @returns `true` if the value is a valid Date, `false` otherwise.
  */
 export function isValidDate(date: Date): boolean {
-  return date instanceof Date && !Number.isNaN(date.getTime());
+  return date instanceof Date && !Number.isNaN(date.getTime()) && date.getFullYear() >= 1000;
 }
