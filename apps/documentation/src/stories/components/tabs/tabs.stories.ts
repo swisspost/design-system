@@ -192,13 +192,13 @@ function renderPagesVariant(
       label="${ifDefined(label)}"
       size="${ifDefined(size)}"
     >
-      <post-tab-item name="first">
+      <post-tab-item name="first"><post-icon name="letter"></post-icon>
         <a href="/first" aria-current="page">First page</a>
       </post-tab-item>
-      <post-tab-item name="second">
+      <post-tab-item name="second"><post-icon name="letter"></post-icon>
         <a href="/second">Second page</a>
       </post-tab-item>
-      <post-tab-item name="third">
+      <post-tab-item name="third"><post-icon name="letter"></post-icon>
         <a href="/third">Third page</a>
       </post-tab-item>
     </post-tabs>
