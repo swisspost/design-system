@@ -6,4 +6,5 @@
 :root,
 [data-color-scheme] {
   @include tokens.from(appearance.$post-compact);
+  --_post-initial-global-header-height: 2rem;
 }

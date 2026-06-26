@@ -67,33 +67,35 @@
             "active": true
           }
         ],
-        "login": {
-          "text": "Login",
-          "url": "#",
-          "icon": "login"
-        },
-        "userMenuLinks": [
-          {
-            "text": "Mein Profil",
+        "postLogin": {
+          "loginLink": {
+            "text": "Login",
             "url": "#",
-            "icon": "profile"
+            "icon": "login"
           },
-          {
-            "text": "Nachrichten",
-            "url": "#",
-            "icon": "letter"
-          },
-          {
-            "text": "Einstellungen",
-            "url": "#",
-            "icon": "gear"
-          },
-          {
-            "text": "Abmelden",
-            "url": "#",
-            "icon": "logout"
-          }
-        ]
+          "userLinks": [
+            {
+              "text": "Mein Profil",
+              "url": "#",
+              "icon": "profile"
+            },
+            {
+              "text": "Nachrichten",
+              "url": "#",
+              "icon": "letter"
+            },
+            {
+              "text": "Einstellungen",
+              "url": "#",
+              "icon": "gear"
+            },
+            {
+              "text": "Abmelden",
+              "url": "#",
+              "icon": "logout"
+            }
+          ]
+        }
       },
       "localHeader": {
         "mainNavigation": [
@@ -239,9 +241,9 @@
       "prefooter": {
         "title": "Dienstname",
         "items": [
-            { "text": "Dienstlink 1", "url": "#" },
-            { "text": "Dienstlink 2", "url": "#" },
-            { "text": "Dienstlink 3", "url": "#" }
+          { "text": "Dienstlink 1", "url": "#" },
+          { "text": "Dienstlink 2", "url": "#" },
+          { "text": "Dienstlink 3", "url": "#" }
         ]
       },
       "sections": [
@@ -439,33 +441,35 @@
             "active": true
           }
         ],
-        "login": {
-          "text": "Connexion",
-          "url": "#",
-          "icon": "login"
-        },
-        "userMenuLinks": [
-          {
-            "text": "Mon profil",
+        "postLogin": {
+          "loginLink": {
+            "text": "Connexion",
             "url": "#",
-            "icon": "profile"
+            "icon": "login"
           },
-          {
-            "text": "Messages",
-            "url": "#",
-            "icon": "letter"
-          },
-          {
-            "text": "Param\u00e8tres",
-            "url": "#",
-            "icon": "gear"
-          },
-          {
-            "text": "D\u00e9connexion",
-            "url": "#",
-            "icon": "logout"
-          }
-        ]
+          "userLinks": [
+            {
+              "text": "Mon profil",
+              "url": "#",
+              "icon": "profile"
+            },
+            {
+              "text": "Messages",
+              "url": "#",
+              "icon": "letter"
+            },
+            {
+              "text": "Param\u00e8tres",
+              "url": "#",
+              "icon": "gear"
+            },
+            {
+              "text": "D\u00e9connexion",
+              "url": "#",
+              "icon": "logout"
+            }
+          ]
+        }
       },
       "localHeader": {
         "mainNavigation": [
@@ -611,9 +615,9 @@
       "prefooter": {
         "title": "Nom du service",
         "items": [
-            { "text": "Lien du service 1", "url": "#" },
-            { "text": "Lien du service 2", "url": "#" },
-            { "text": "Lien du service 3", "url": "#" }
+          { "text": "Lien du service 1", "url": "#" },
+          { "text": "Lien du service 2", "url": "#" },
+          { "text": "Lien du service 3", "url": "#" }
         ]
       },
       "sections": [
@@ -814,33 +818,35 @@
             "active": true
           }
         ],
-        "login": {
-          "text": "Accesso",
-          "url": "#",
-          "icon": "login"
-        },
-        "userMenuLinks": [
-          {
-            "text": "Il mio profilo",
+        "postLogin": {
+          "loginLink": {
+            "text": "Accesso",
             "url": "#",
-            "icon": "profile"
+            "icon": "login"
           },
-          {
-            "text": "Messaggi",
-            "url": "#",
-            "icon": "letter"
-          },
-          {
-            "text": "Impostazioni",
-            "url": "#",
-            "icon": "gear"
-          },
-          {
-            "text": "Disconnetti",
-            "url": "#",
-            "icon": "logout"
-          }
-        ]
+          "userLinks": [
+            {
+              "text": "Il mio profilo",
+              "url": "#",
+              "icon": "profile"
+            },
+            {
+              "text": "Messaggi",
+              "url": "#",
+              "icon": "letter"
+            },
+            {
+              "text": "Impostazioni",
+              "url": "#",
+              "icon": "gear"
+            },
+            {
+              "text": "Disconnetti",
+              "url": "#",
+              "icon": "logout"
+            }
+          ]
+        }
       },
       "localHeader": {
         "mainNavigation": [
@@ -986,9 +992,9 @@
       "prefooter": {
         "title": "Nome del servizio",
         "items": [
-            { "text": "Link al servizio 1", "url": "#" },
-            { "text": "Link al servizio 2", "url": "#" },
-            { "text": "Link al servizio 3", "url": "#" }
+          { "text": "Link al servizio 1", "url": "#" },
+          { "text": "Link al servizio 2", "url": "#" },
+          { "text": "Link al servizio 3", "url": "#" }
         ]
       },
       "sections": [
@@ -1186,33 +1192,35 @@
             "active": true
           }
         ],
-        "login": {
-          "text": "Login",
-          "url": "#",
-          "icon": "login"
-        },
-        "userMenuLinks": [
-          {
-            "text": "My Profile",
+        "postLogin": {
+          "loginLink": {
+            "text": "Login",
             "url": "#",
-            "icon": "profile"
+            "icon": "login"
           },
-          {
-            "text": "Messages",
-            "url": "#",
-            "icon": "letter"
-          },
-          {
-            "text": "Settings",
-            "url": "#",
-            "icon": "gear"
-          },
-          {
-            "text": "Logout",
-            "url": "#",
-            "icon": "logout"
-          }
-        ]
+          "userLinks": [
+            {
+              "text": "My Profile",
+              "url": "#",
+              "icon": "profile"
+            },
+            {
+              "text": "Messages",
+              "url": "#",
+              "icon": "letter"
+            },
+            {
+              "text": "Settings",
+              "url": "#",
+              "icon": "gear"
+            },
+            {
+              "text": "Logout",
+              "url": "#",
+              "icon": "logout"
+            }
+          ]
+        }
       },
       "localHeader": {
         "mainNavigation": [
@@ -1358,9 +1366,9 @@
       "prefooter": {
         "title": "Service name",
         "items": [
-            { "text": "Service link 1", "url": "#" },
-            { "text": "Service link 2", "url": "#" },
-            { "text": "Service link 3", "url": "#" }
+          { "text": "Service link 1", "url": "#" },
+          { "text": "Service link 2", "url": "#" },
+          { "text": "Service link 3", "url": "#" }
         ]
       },
       "sections": [

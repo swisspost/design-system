@@ -1,14 +1,16 @@
-import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
-import { MetaComponent } from '@root/types';
-import { html, nothing, TemplateResult } from 'lit';
-import { fakeContent } from '@/utils';
-import { renderMainnavigation } from '@/stories/components/header/renderers/main-navigation';
-import { renderGlobalNavSecondary } from '@/stories/components/header/renderers/global-nav-secondary';
 import { renderAudience } from '@/stories/components/header/renderers/audience';
-import { renderMicrositeControls } from '@/stories/components/header/renderers/microsite-controls';
+import { renderGlobalNavSecondary } from '@/stories/components/header/renderers/global-nav-secondary';
 import { renderJobControls } from '@/stories/components/header/renderers/job-controls';
-import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
+import { renderMainnavigation } from '@/stories/components/header/renderers/main-navigation';
+import { renderMicrositeControls } from '@/stories/components/header/renderers/microsite-controls';
 import { renderTitle } from '@/stories/components/header/renderers/title';
+import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
+import { fakeContent } from '@/utils';
+import { renderLoginLink } from '@root/src/stories/components/header/renderers/login-link';
+import { MetaComponent } from '@root/types';
+import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
+import { html, nothing, TemplateResult } from 'lit';
+import { forceCompactAppearance } from '../../../../.storybook/helpers';
 
 const meta: MetaComponent = {
   id: '27a2e64d-55ba-492d-ab79-5f7c5e818498',
@@ -36,6 +38,7 @@ const meta: MetaComponent = {
     isLoggedIn: false,
     jobs: false,
     fullWidth: false,
+    languageMenu: true,
   },
   argTypes: {
     title: {
@@ -98,6 +101,7 @@ const meta: MetaComponent = {
       control: {
         type: 'boolean',
       },
+      if: { arg: 'title', eq: '' },
       table: {
         category: 'Content',
       },
@@ -126,16 +130,12 @@ const meta: MetaComponent = {
     localNav: {
       name: 'Local controls',
       description:
-        'Whether or not application-specific controls are displayed ("search" and "login").',
+        'Whether or not application-specific controls are displayed ("search" and "login"). Requires either the main navigation or a title to be present.',
       control: {
         type: 'boolean',
       },
       table: {
         category: 'Content',
-      },
-      if: {
-        arg: 'jobs',
-        truthy: false,
       },
     },
     isLoggedIn: {
@@ -154,6 +154,16 @@ const meta: MetaComponent = {
       },
       table: { category: 'state' },
     },
+    languageMenu: {
+      name: 'Language menu',
+      description: 'Whether or not the language menu is displayed.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content',
+      },
+    },
   },
   decorators: [
     story =>
@@ -164,26 +174,25 @@ const meta: MetaComponent = {
   render: getHeaderRenderer(),
 };
 
+function showGlobalLogin(args: Args) {
+  return !args.title && !args.jobs && args.postLogin;
+}
+
 function getHeaderRenderer(
   subComponents: {
     mainnavigation?: TemplateResult;
+    loginLink?: TemplateResult;
     userMenu?: TemplateResult;
     title?: TemplateResult;
   } = {},
 ) {
   return (args: Args) => {
     const mainnavigation = subComponents.mainnavigation ?? renderMainnavigation();
+    const loginLink = subComponents.loginLink ?? renderLoginLink();
     const userMenu = subComponents.userMenu ?? renderUserMenu();
     const title = subComponents.title ?? renderTitle(args);
 
-    const globalLogin = args.isLoggedIn
-      ? html` <div slot="post-login">${userMenu}</div> `
-      : html`
-          <a href="" slot="post-login">
-            <span>Login</span>
-            <post-icon name="login"></post-icon>
-          </a>
-        `;
+    const globalLogin = args.isLoggedIn ? userMenu : loginLink;
 
     const globalControls = html`
       <!-- Global controls (Search) -->
@@ -197,6 +206,29 @@ function getHeaderRenderer(
       </ul>
     `;
 
+    const languageMenu = html`
+      <post-language-menu
+        text-change-language="Change the language"
+        text-current-language="The currently selected language is {name}."
+        name="language-menu-example"
+      >
+        <post-language-menu-item code="de" name="German">de</post-language-menu-item>
+        <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
+        <post-language-menu-item code="it" name="Italian">it</post-language-menu-item>
+        <post-language-menu-item active="true" code="en" name="English">en</post-language-menu-item>
+      </post-language-menu>
+    `;
+
+    const isApplicationHeader =
+      args.localNav &&
+      !args.mainNav &&
+      !args.targetGroup &&
+      !args.globalNavPrimary &&
+      !args.globalNavSecondary &&
+      !args.postLogin;
+    const localLanguageMenuItem =
+      args.languageMenu && isApplicationHeader ? languageMenu : undefined;
+
     return html`
       <post-header text-menu="${args.textMenu}" full-width="${args.fullWidth || nothing}">
         <!-- Logo -->
@@ -206,29 +238,20 @@ function getHeaderRenderer(
         ${args.globalNavPrimary && !args.jobs ? globalControls : nothing}
         ${args.globalNavSecondary ? renderGlobalNavSecondary(args) : nothing}
 
-        <!-- Language menu -->
-        <post-language-menu
-          text-change-language="Change the language"
-          text-current-language="The currently selected language is #name."
-          name="language-menu-example"
-          slot="language-menu"
-        >
-          <post-language-menu-item code="de" name="German">de</post-language-menu-item>
-          <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
-          <post-language-menu-item code="it" name="Italian">it</post-language-menu-item>
-          <post-language-menu-item active="true" code="en" name="English"
-            >en</post-language-menu-item
-          >
-        </post-language-menu>
-
-        ${!args.title && !args.jobs
+        <!-- Language menu (global) -->
+        ${args.languageMenu && !isApplicationHeader
+          ? html`<span slot="language-menu">${languageMenu}</span>`
+          : nothing}
+        ${showGlobalLogin(args)
           ? html`
               <!-- Global header login/user menu -->
               ${globalLogin}
             `
           : nothing}
         ${args.title !== '' ? title : nothing}
-        ${args.localNav ? renderMicrositeControls(args) : nothing}
+        ${args.localNav || localLanguageMenuItem
+          ? renderMicrositeControls({ ...args, localLanguageMenuItem })
+          : nothing}
         ${args.mainNav ? mainnavigation : nothing} ${args.jobs ? renderJobControls() : nothing}
       </post-header>
     `;
@@ -264,20 +287,7 @@ export const ActiveNavigationItem: Story = {
       return renderHeader(context.args);
     },
   ],
-  render: () => html`
-    <post-mainnavigation slot="main-nav" text-main="Main">
-      <ul>
-        <li>
-          <a href="/letters">Letters</a>
-        </li>
-
-        <li>
-          <!-- The active link must have an aria-current="page" attribute to ensure correct accessibility and styling. -->
-          <a href="/packages" aria-current="page">Packages</a>
-        </li>
-      </ul>
-    </post-mainnavigation>
-  `,
+  render: () => renderMainnavigation({ showActiveLink: true, showMegadropdown: false }),
 };
 
 export const Portal: Story = {
@@ -334,6 +344,36 @@ export const OnePagerH1: Story = {
   render: renderTitle,
 };
 
+export const Application: Story = {
+  ...getIframeParameters(250),
+  decorators: [forceCompactAppearance],
+  args: {
+    title: '[Application Title]',
+    mainNav: false,
+    globalNavSecondary: false,
+    globalNavPrimary: false,
+    localNav: true,
+    languageMenu: false,
+    postLogin: false,
+    targetGroup: false,
+  },
+};
+
+export const ApplicationWithLanguageMenu: Story = {
+  ...getIframeParameters(250),
+  decorators: [forceCompactAppearance],
+  args: {
+    title: '[Application Title]',
+    mainNav: false,
+    globalNavSecondary: false,
+    globalNavPrimary: false,
+    localNav: true,
+    languageMenu: true,
+    postLogin: false,
+    targetGroup: false,
+  },
+};
+
 // User is logged in
 export const LoggedIn: Story = {
   ...getIframeParameters(400),
@@ -344,6 +384,7 @@ export const LoggedIn: Story = {
     (story: StoryFn, context: StoryContext) => {
       const renderHeader = getHeaderRenderer({
         userMenu: html` ${story(context.args, context)} `,
+        mainnavigation: renderMainnavigation({ showMegadropdown: false }),
       });
       return renderHeader(context.args);
     },
@@ -357,4 +398,14 @@ export const LoggedOut: Story = {
   args: {
     isLoggedIn: false,
   },
+  decorators: [
+    (story: StoryFn, context: StoryContext) => {
+      const renderHeader = getHeaderRenderer({
+        loginLink: html` ${story(context.args, context)} `,
+        mainnavigation: renderMainnavigation({ showMegadropdown: false }),
+      });
+      return renderHeader(context.args);
+    },
+  ],
+  render: () => renderLoginLink(),
 };

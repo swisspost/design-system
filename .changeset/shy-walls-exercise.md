@@ -4,4 +4,4 @@
 '@swisspost/design-system-styles': minor
 ---
 
-Added close button web component.
+Added the `<post-closebutton>` web component.
