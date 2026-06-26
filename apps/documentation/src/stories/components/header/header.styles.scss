@@ -17,3 +17,18 @@
     }
   }
 }
+
+// Side navigation layout: header full-width on row 1, side nav + content on row 2.
+// Used when the sideNav arg is active. fakeContent lives in the decorator (excluded
+// from the code snippet), so only the flex-wrap + header pinning is needed here.
+.header-story-wrapper {
+  .virtual-body--side-nav {
+    display: flex;
+    flex-wrap: wrap;
+    // align-items defaults to stretch → side nav grows to full content height
+
+    post-header {
+      flex: 0 0 100%; // forces header onto its own row
+    }
+  }
+}
