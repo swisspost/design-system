@@ -212,6 +212,55 @@ export class MigrationV910Component extends LitElement {
                     `
                   : nothing
               }
+          <li>
+            <h3 class="d-flex align-items-center gap-8">AI-assisted migration 🤖 <span class="tag tag-sm tag-info">optional</span></h3>
+            <p>
+              There are <b>two ways</b> to handle this migration: do it
+              <b>manually</b> by skipping this AI-assisted migration part and following the steps below, or let the
+              <b>AI skill</b> do most of the work for you. Either way, you should still go through
+              the checklist below and verify every step yourself.
+            </p>
+
+            <post-banner type="warning" class="mt-16">
+              <p>
+                The skill relies on AI and on a set of predefined transformation rules. Keep the
+                following in mind before relying on it:
+              </p>
+              <ul>
+                <li>
+                  <b>The result is not guaranteed to be perfect.</b> Some transformations
+                  (NgbModal → native dialog, stepper, other ng-bootstrap components) often still
+                  need manual adjustments.
+                </li>
+                <li>It does <b>not replace a human review</b>. Always read the generated difference and never merge blindly.</li>
+                <li>Work on a dedicated branch and commit often so you can roll back easily.</li>
+                <li>Project-specific code may be missed or misinterpreted by the AI.</li>
+              </ul>
+            </post-banner>
+
+            <h5 class="pt-16">How to use it</h5>
+            <ol>
+              <li>
+                Follow the setup tutorial in the
+                <a href="https://github.com/postch/post-skills">post-skills repository</a>
+                to add the marketplace.
+              </li>
+              <li>
+                Install the developer skills plugin:
+                <code-block code=${'/plugin install software-developement@post-marketplace'}></code-block>
+              </li>
+              <li>
+                Once installed, ask Copilot to run the skill:
+                <code-block
+                  code=${'do this skill please swisspost-v10-migration'}
+                ></code-block>
+              </li>
+              <li>
+                Whichever option you picked, <b>review every step below</b> to confirm each change
+                was applied correctly, then finish with the clean up.
+              </li>
+            </ol>
+          </li>
             </p>
           </li>
           <li>
@@ -684,7 +733,7 @@ export class MyComponent {
                                           or any other Bootstrap color variant
                                         </td>
                                         <td>
-                                          No direct equivalent. Use <code>class="progressbar"</code></br> 
+                                          No direct equivalent. Use <code>class="progressbar"</code></br>
                                           for the <code>neutral</code> appearance.
                                         </td>
                                       </tr>
@@ -1611,7 +1660,7 @@ export class MyComponent {
                           to add spacing between elements and the
                           <code>.visually-hidden</code> class to hide content.</span
                         >
-                      </label>
+                      </label>J'
                     </div>
                   </li>
                   <li class="mb-16">
