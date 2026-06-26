@@ -2,7 +2,6 @@ import type { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import meta from './side-navigation.stories';
-import { schemes } from '@/shared/snapshots/schemes';
 import { defaultNav } from './nav-content';
 
 const { id, ...metaWithoutId } = meta;

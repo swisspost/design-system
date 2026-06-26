@@ -256,7 +256,6 @@ post-side-navigation {
       content: '';
       position: absolute;
       pointer-events: none;
-      position: absolute;
       border: 2px solid transparent;
       border-radius: 4px;
       width: calc(100% - var(--_offset) * 2);

@@ -6,9 +6,6 @@ import { fakeContent } from '@/utils';
 import { defaultNav, largeNav, smallNav } from './nav-content';
 import { forceCompactAppearance } from '../../../../.storybook/helpers';
 
-// Shared ID so the decorator's trigger and the story's side-navigation stay in sync
-const navigationId = crypto.randomUUID();
-
 const meta: MetaComponent = {
   id: '9f26d86e-7edb-5804-ac96-92g22f91c9d9',
   title: 'Components/Side Navigation',
@@ -71,7 +68,7 @@ const meta: MetaComponent = {
         <p slot="title">[Application Title]</p>
         <ul slot="local-nav">
           <li>
-            <post-side-navigation-trigger for="${navigationId}">
+            <post-side-navigation-trigger for="sidenavigation">
               <button>
                 <span>Menu</span>
                 <post-icon aria-hidden="true" name="burger"></post-icon>
@@ -125,7 +122,7 @@ export const Default: Story = {
   render: (args: Args) => html`
     <post-side-navigation
       ?is-small=${args.isSmall}
-      id="${navigationId}"
+      id="sidenavigation"
       text-close="${args.textClose}"
     >
       <nav aria-label="Main navigation">${unsafeHTML(defaultNav)}</nav>
@@ -137,7 +134,7 @@ export const Default: Story = {
 
 export const Small: Story = {
   render: (args: Args) => html`
-    <post-side-navigation is-small id="${navigationId}" text-close="${args.textClose}">
+    <post-side-navigation is-small id="sidenavigation" text-close="${args.textClose}">
       <nav aria-label="Main navigation">${unsafeHTML(smallNav)}</nav>
     </post-side-navigation>
 
@@ -147,7 +144,7 @@ export const Small: Story = {
 
 export const Large: Story = {
   render: (args: Args) => html`
-    <post-side-navigation is-small id="${navigationId}" text-close="${args.textClose}">
+    <post-side-navigation is-small id="sidenavigation" text-close="${args.textClose}">
       <nav aria-label="Main navigation">${unsafeHTML(largeNav)}</nav>
     </post-side-navigation>
 
