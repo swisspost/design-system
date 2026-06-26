@@ -33,10 +33,10 @@
     "tslib": "catalog:angular"
   },
   "peerDependencies": {
-    "@angular/common": ">=19.0.0 <21.0.0",
-    "@angular/core": ">=19.0.0 <21.0.0",
-    "@angular/forms": ">=19.0.0 <21.0.0",
-    "rxjs": ">=7.0.0"
+    "@angular/common": "^22.0.0",
+    "@angular/core": "^22.0.0",
+    "@angular/forms": "^22.0.0",
+    "rxjs": "~7.8.0"
   },
   "devDependencies": {
     "@angular/build": "catalog:angular",
