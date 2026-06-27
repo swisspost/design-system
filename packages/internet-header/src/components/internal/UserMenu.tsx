@@ -21,7 +21,7 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
   const canSeeAccountSwitch = 
   config.user.changeUserAndProfile === 'userAndProfile' ||
   config.user.changeUserAndProfile === 'profile' ||
-  (config.user.userType === 'B2B' && config.user.canChangeCompany === true)
+  (config.user.userType === 'B2B' && config.user.canChangeCompany === true);
 
   const userFullname = [config.user.name, config.user.surname].join(' ');
   const userMenuId = createIdFrom(userFullname);
