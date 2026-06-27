@@ -5,5 +5,5 @@ export interface UserConfig {
   company?: string;
   userType?: string;
   canChangeCompany?: boolean;
-  changeUserAndProfile?: string;
+  changeUserAndProfile?: 'userAndProfile' | 'profile';
 }
