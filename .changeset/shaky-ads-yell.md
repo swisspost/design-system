@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-components-angular-workspace': patch
+'@swisspost/design-system-integration-angular': patch
 '@swisspost/design-system-components': patch
 ---
 
