@@ -12,6 +12,7 @@ import { ButtonType, Placement, Size } from "./components/post-closebutton/types
 import { PostIconAnimation } from "./types/icon-animations";
 import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement as Placement1 } from "@floating-ui/dom";
+import { SideNavigationSize } from "./components/post-side-navigation/side-navigation-styles";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { Variant } from "./components/post-breadcrumb-item/variants";
@@ -19,6 +20,7 @@ export { ButtonType, Placement, Size } from "./components/post-closebutton/types
 export { PostIconAnimation } from "./types/icon-animations";
 export { SwitchVariant } from "./components/post-language-menu/switch-variants";
 export { Placement as Placement1 } from "@floating-ui/dom";
+export { SideNavigationSize } from "./components/post-side-navigation/side-navigation-styles";
 export namespace Components {
     interface PostAccordion {
         /**
@@ -651,6 +653,11 @@ export namespace Components {
           * Opens the navigation programmatically. No-op on desktop.
          */
         "show": () => Promise<void>;
+        /**
+          * Controls the size of the navigation items. Choose "small" for deep and long navigation, and "large" (default) for a flat and short navigation.
+          * @default 'large'
+         */
+        "size"?: SideNavigationSize;
         /**
           * Accessible label for the close button shown in the mobile navigation dialog.
          */
@@ -1890,6 +1897,11 @@ declare namespace LocalJSX {
          */
         "onPostToggle"?: (event: PostSideNavigationCustomEvent<boolean>) => void;
         /**
+          * Controls the size of the navigation items. Choose "small" for deep and long navigation, and "large" (default) for a flat and short navigation.
+          * @default 'large'
+         */
+        "size"?: SideNavigationSize;
+        /**
           * Accessible label for the close button shown in the mobile navigation dialog.
          */
         "textClose": string;
@@ -2163,6 +2175,7 @@ declare namespace LocalJSX {
     }
     interface PostSideNavigationAttributes {
         "textClose": string;
+        "size": SideNavigationSize;
     }
     interface PostSideNavigationTriggerAttributes {
         "for": string;
