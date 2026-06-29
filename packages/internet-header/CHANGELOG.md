@@ -1,5 +1,16 @@
 # @swisspost/internet-header
 
+## 1.17.0
+
+### Minor Changes
+
+- Increased browser coverage by adding `baseline widely available` query to the browserslistrc. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7611](https://github.com/swisspost/design-system/pull/7611))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.13.0
+
 ## 1.16.5
 
 ### Patch Changes

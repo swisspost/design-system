@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 9.13.0
+
+### Minor Changes
+
+- Increased browser coverage by adding `baseline widely available` query to the browserslistrc. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7611](https://github.com/swisspost/design-system/pull/7611))
+
 ## 9.12.0
 
 ## 9.11.0
