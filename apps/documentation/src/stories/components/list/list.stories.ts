@@ -10,7 +10,7 @@ const meta: MetaExtended = {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-V2?t=IqETCr7AcZnhLkoB-0',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-V2?node-id=21-170',
     },
   },
 };
