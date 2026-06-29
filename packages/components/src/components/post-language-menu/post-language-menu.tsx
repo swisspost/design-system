@@ -29,11 +29,12 @@ export class PostLanguageMenu {
   textChangeLanguage!: string;
 
   /**
-   * An accessible description text for the list of language options. The `#name` placeholder is dynamic and will be replaced with the active language name.
+   * An accessible description text for the list of language options.
+   * The `{name}` placeholder is dynamic and will be replaced with the active language name.
    */
   @Prop({ reflect: true })
   @Required()
-  @Pattern(/#name\b/)
+  @Pattern(/(\{name\}|#name)/)
   textCurrentLanguage!: string;
 
   /**
@@ -61,9 +62,11 @@ export class PostLanguageMenu {
         `post-language-menu-item[code="${this.activeLang}"]`,
       );
 
-    return activeLanguage
-      ? this.textCurrentLanguage.replaceAll('#name', activeLanguage.name)
-      : undefined;
+    if (!activeLanguage) return undefined;
+
+    return this.textCurrentLanguage
+      .replaceAll('{name}', activeLanguage.name)
+      .replaceAll('#name', activeLanguage.name);
   }
 
   componentDidLoad() {

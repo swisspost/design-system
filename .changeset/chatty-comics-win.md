@@ -1,6 +1,5 @@
 ---
-'@swisspost/design-system-components': minor
+'@swisspost/design-system-components': patch
 ---
 
-Updated `post-menu` component to support Server-Side Rendering. 
-Fixed 'Cannot read properties of undefined (reading 'removeEventListener')' error in `post-popover` component.
+Fixed 'Cannot read properties of undefined (reading 'removeEventListener')' error in `<post-popover>` component.

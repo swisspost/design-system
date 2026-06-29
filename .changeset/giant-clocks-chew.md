@@ -3,7 +3,7 @@
 '@swisspost/design-system-icons': major
 ---
 
-The `post-icon` mixin has been renamed to `icon` and now requires icons to be preloaded using the `custom-property` mixin at the top of the file.
+The `@mixin post-icon` has been renamed to `@mixin icon` and now requires icons to be preloaded using the `@mixin custom-property` at the top of the file.
 
 BEFORE:
 

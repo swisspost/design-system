@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': minor
 ---
 
-Created the `search-input` component.
+Created the `.search-input` component.

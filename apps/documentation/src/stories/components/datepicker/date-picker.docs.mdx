@@ -1,7 +1,7 @@
-import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
-import meta, * as DatePickerStories from './date-picker.stories';
 import PackageTag from '@/shared/package-tag';
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import DatePickerDisableSample from './date-picker-disable.sample?raw';
+import meta, * as DatePickerStories from './date-picker.stories';
 
 <Meta of={DatePickerStories} />
 
@@ -30,7 +30,8 @@ It is built on top of the AirDatepicker library and provides full keyboard navig
 
 ### Inline calendar
 
-Inline calendars are rendered directly in the page content, rather than being attached to an input. They are useful for dashboards, forms, or any context where a persistent calendar view is needed.
+Inline calendars render directly in the page flow instead of a popup.
+They work well in dashboards, forms, and any context that benefits from a persistent calendar view.
 
 <Canvas sourceState="hidden" of={DatePickerStories.Inline} />
 
@@ -42,9 +43,8 @@ Range input calendars allow users to select a start and end date. These are idea
 
 ## Disabling dates
 
-The Date Picker provides a `renderCellCallback` property, which is triggered for each calendar cell when rendering. It allows you to dynamically modify the state of individual cells, including disabling certain dates or applying custom classes. This callback essentially acts as an event that fires during cell render, giving full control over accessibility and visual presentation.
-
-For more details, you can refer to the [AirDatepicker `onRenderCell` documentation](https://air-datepicker.com/docs?scrollTo=onRenderCell).
+The Date Picker provides a `cellConfig` property, which is triggered for each calendar cell when rendering.
+It allows you to dynamically modify the state of individual cells, including disabling certain dates or applying custom classes.
 
 The following example shows a calendar where all Sundays are disabled:
 

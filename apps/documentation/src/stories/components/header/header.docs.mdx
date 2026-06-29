@@ -1,10 +1,11 @@
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import PackageTag from '@/shared/package-tag';
+import StylesPackageImport from '@/shared/styles-package-import';
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import LandmarkCorrect from '../../../shared/samples/landmark-placement-example.sample.html?raw';
 import meta, * as HeaderStories from './header.stories';
 import './header.styles.scss';
-import StylesPackageImport from '@/shared/styles-package-import';
-import PackageTag from '@/shared/package-tag';
-import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
-import LandmarkCorrect from '../../../shared/samples/landmark-placement-example.sample.html?raw';
+import SampleSessionSubscription from './session-subscription.sample?raw';
 
 <Meta of={HeaderStories} />
 
@@ -100,7 +101,7 @@ see the [Heading elements documentation](https://developer.mozilla.org/en-US/doc
 
 ### Application
 
-The Application header is a header variant intended for internal applications. It uses the `appearance: compact` styles bundle and is distinguished by the absence of any content in its global (yellow) part except from the Logo.
+The Application header is a header variant intended for internal applications. It uses the [compact styles bundle](/?path=/docs/e53e2de8-0bbf-4f70-babc-074c5466f700--docs&devModeEnabled=true#available-bundles) and is distinguished by the absence of any content in its global (yellow) part except from the Logo. For applications that require in-app navigation, the Application header supports [Side Navigation](/?path=/docs/9f26d86e-7edb-5804-ac96-92g22f91c9d9--docs).
 
 <Canvas of={HeaderStories.Application} inline="false" />
 
@@ -112,14 +113,29 @@ If a language menu is needed, it should be placed as a list item within the `slo
 
 ## User menu
 
-The user menu is part of the global header, it is a menu containing information and links linked to the currently logged-in user.
-When no user is logged in, a login button is displayed instead.
+The `post-login` slot in `<post-header>` holds either a login link when no user is authenticated, or the user menu when a user is authenticated.
+
+The authentication mechanism and conditional display are handled by each project individually.
+The Design System provides the UI components, while the application manages the authentication logic and decides which content to render in the `post-login` slot.
+
+### Fetching user data
+
+One method to retrieve the current Post user session data is via the session subscription endpoint.
+The URL shown below is for the **production** environment, adapt it to match your target environment (e.g. int, test).
+
+<Source code={SampleSessionSubscription} language="typescript" />
+
+If the request fails or returns no valid `userdata`, the user is not authenticated and the login link can be displayed instead.
 
 ### Logged out
+
+When no user is authenticated, a login link is slotted into `post-login`:
 
 <Canvas sourceState="hidden" of={HeaderStories.LoggedOut} />
 
 ### Logged in
+
+When a user is authenticated, the user menu is slotted into `post-login`. The session data can be used to populate the avatar and menu header:
 
 <Canvas sourceState="shown" of={HeaderStories.LoggedIn} />
 
