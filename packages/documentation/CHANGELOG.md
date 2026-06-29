@@ -1,5 +1,22 @@
 # @swisspost/design-system-documentation
 
+## 5.11.0
+
+### Minor Changes
+
+- Increased browser coverage by adding `baseline widely available` query to the browserslistrc. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7611](https://github.com/swisspost/design-system/pull/7611))
+
+### Patch Changes
+
+- Removed deprecation notice for `@swisspost/design-system-styles-primeng` as the package will continue to be maintained. (by [@leagrdv](https://github.com/leagrdv) with [#7920](https://github.com/swisspost/design-system/pull/7920))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.13.0
+  - @swisspost/internet-header@1.17.0
+  - @swisspost/design-system-components@9.13.0
+  - @swisspost/design-system-styles@9.13.0
+  - @swisspost/design-system-components-react@9.13.0
+  - @swisspost/design-system-theme-ag-grid@9.13.0
+
 ## 5.10.2
 
 ### Patch Changes
