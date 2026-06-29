@@ -71,7 +71,7 @@ post-side-navigation {
   }
 
   // Small
-  &.post-side-navigation-small {
+  &[size='small'] {
     --post-side-navigation-heading-padding-inline: 12px;
     --post-side-navigation-item-padding-inline: 12px;
     --post-side-navigation-item-height: 40px;

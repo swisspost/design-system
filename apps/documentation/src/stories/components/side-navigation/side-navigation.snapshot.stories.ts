@@ -56,10 +56,11 @@ export const PostSideNavigation: Story = {
             @change=${(e: Event) => {
               const nav = document.getElementById('sidenavigation');
               if (!nav) return;
-              nav.classList.toggle(
-                'post-side-navigation-small',
-                (e.target as HTMLInputElement).checked,
-              );
+              if ((e.target as HTMLInputElement).checked) {
+                nav.setAttribute('size', 'small');
+              } else {
+                nav.removeAttribute('size');
+              }
             }}
           />
           <label class="form-check-label" for="7fb639f8-86f6-4937-999c-4ee15f81643b--default"

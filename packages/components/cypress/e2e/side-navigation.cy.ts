@@ -39,26 +39,6 @@ describe('post-side-navigation', () => {
       cy.get('@side-navigation').then(([el]) => el.toggle());
       cy.get('@side-navigation').shadow().find('dialog').should('not.exist');
     });
-
-    it('should not have the small class by default', () => {
-      cy.get('@side-navigation').should('not.have.class', 'post-side-navigation-small');
-    });
-  });
-
-  describe('size prop', () => {
-    beforeEach(() => {
-      cy.viewport(1280, 800);
-      cy.getComponents(
-        SIDENAVIGATION_ID,
-        'small',
-        'post-side-navigation',
-        'post-side-navigation-trigger',
-      );
-    });
-
-    it('should add the small class when size is "small"', () => {
-      cy.get('@side-navigation').should('have.class', 'post-side-navigation-small');
-    });
   });
 
   describe('mobile', () => {

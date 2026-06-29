@@ -56,10 +56,6 @@ export class PostSideNavigation {
   connectedCallback() {
     globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
     this.host.addEventListener('keydown', this.handleKeyDown);
-
-    if (this.size === 'small') {
-      this.host.classList.add('post-side-navigation-small');
-    }
   }
 
   disconnectedCallback() {
