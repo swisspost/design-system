@@ -701,6 +701,11 @@ export namespace Components {
     }
     interface PostTabItem {
         /**
+          * Whether the tab item is disabled.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
           * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */
         "name": string;
@@ -713,22 +718,32 @@ export namespace Components {
     }
     interface PostTabs {
         /**
-          * The name of the tab in the panel mode that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
+          * The name of the tab in the Content Tabs variant that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
          */
         "activeTab"?: string;
         /**
-          * When set to true, this property allows the tabs container to span the Changing this value after initialization has no effect. full width of the screen, from edge to edge.
-          * @default false
-         */
-        "fullWidth": boolean;
-        /**
-          * The accessible label for the tabs component in navigation mode.
+          * An accessible label for the Pages Tabs variant
          */
         "label"?: string;
         /**
           * Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
          */
         "show": (tabName: string) => Promise<void>;
+        /**
+          * The size of the tabs, corresponding to the different designs in Figma. Default is 'large'.
+          * @default 'large'
+         */
+        "size": 'small' | 'large';
+        /**
+          * An accessible label for the "next tab items" button.
+          * @default 'Next tab items'
+         */
+        "textNextTabItems": string;
+        /**
+          * An accessible label for the "previous tab items" button.
+          * @default 'Previous tab items'
+         */
+        "textPrevTabItems": string;
     }
     interface PostTogglebutton {
         /**
@@ -1921,6 +1936,11 @@ declare namespace LocalJSX {
     }
     interface PostTabItem {
         /**
+          * Whether the tab item is disabled.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
           * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */
         "name": string;
@@ -1933,22 +1953,32 @@ declare namespace LocalJSX {
     }
     interface PostTabs {
         /**
-          * The name of the tab in the panel mode that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
+          * The name of the tab in the Content Tabs variant that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
          */
         "activeTab"?: string;
         /**
-          * When set to true, this property allows the tabs container to span the Changing this value after initialization has no effect. full width of the screen, from edge to edge.
-          * @default false
-         */
-        "fullWidth"?: boolean;
-        /**
-          * The accessible label for the tabs component in navigation mode.
+          * An accessible label for the Pages Tabs variant
          */
         "label"?: string;
         /**
-          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. Only emitted in panel mode.
+          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. Only emitted in Content Tabs variant.
          */
         "onPostChange"?: (event: PostTabsCustomEvent<string>) => void;
+        /**
+          * The size of the tabs, corresponding to the different designs in Figma. Default is 'large'.
+          * @default 'large'
+         */
+        "size"?: 'small' | 'large';
+        /**
+          * An accessible label for the "next tab items" button.
+          * @default 'Next tab items'
+         */
+        "textNextTabItems"?: string;
+        /**
+          * An accessible label for the "previous tab items" button.
+          * @default 'Previous tab items'
+         */
+        "textPrevTabItems"?: string;
     }
     interface PostTogglebutton {
         /**
@@ -2159,13 +2189,16 @@ declare namespace LocalJSX {
     }
     interface PostTabItemAttributes {
         "name": string;
+        "disabled": boolean;
     }
     interface PostTabPanelAttributes {
         "for": string;
     }
     interface PostTabsAttributes {
+        "textPrevTabItems": string;
+        "textNextTabItems": string;
         "activeTab": string;
-        "fullWidth": boolean;
+        "size": 'small' | 'large';
         "label": string;
     }
     interface PostTogglebuttonAttributes {

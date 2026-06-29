@@ -6,28 +6,8 @@
 
 :host {
   display: inline-block;
-  outline-offset: tokens.get('focus-outline-offset', helpers.$post-focus) !important;
-  outline: tokens.get('focus-outline-color', helpers.$post-focus) none
-    tokens.get('focus-outline-width', helpers.$post-focus) !important;
 
   @include media.min(desktop) {
     display: none;
-  }
-}
-
-:host(:focus-within) {
-  @include utilities.focus-style();
-  @include utilities.high-contrast-mode {
-    outline-color: Highlight !important;
-  }
-}
-
-::slotted(button) {
-  @include header-mx.nav-item-base;
-  outline: none;
-
-  @include media.only(mobile) {
-    @include header-mx.nav-item-icon-only;
-    padding: 0.625rem;
   }
 }

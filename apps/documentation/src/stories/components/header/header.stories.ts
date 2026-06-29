@@ -10,6 +10,7 @@ import { renderLoginLink } from '@/stories/components/header/renderers/login-lin
 import { MetaComponent } from '@root/types';
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing, TemplateResult } from 'lit';
+import { renderSideNavTrigger, renderSideNavigation } from '@/stories/components/header/renderers/side-navigation';
 import { forceCompactAppearance } from '../../../../.storybook/helpers';
 
 const meta: MetaComponent = {
@@ -35,6 +36,7 @@ const meta: MetaComponent = {
     targetGroup: true,
     postLogin: true,
     localNav: false,
+    sideNav: false,
     isLoggedIn: false,
     jobs: false,
     fullWidth: false,
@@ -138,6 +140,17 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
+    sideNav: {
+      name: 'Side navigation',
+      description:
+        'Whether or not the side navigation is displayed. Requires a title to be present. Only relevant for the Application header.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content',
+      },
+    },
     isLoggedIn: {
       name: 'Is logged in',
       description: 'Whether the user is logged in or not.',
@@ -166,10 +179,25 @@ const meta: MetaComponent = {
     },
   },
   decorators: [
-    story =>
-      html` <div class="header-story-wrapper">
-        <div class="virtual-body">${story()} ${fakeContent()}</div>
-      </div>`,
+    (story, context) => {
+      const showSideNav = context.args.sideNav && context.args.title !== '';
+
+      const wrapperClass = showSideNav
+        ? 'virtual-body virtual-body--side-nav'
+        : 'virtual-body';
+
+      return html`
+        <div class="header-story-wrapper">
+          <div class="${wrapperClass}">
+            ${story()}
+
+            ${showSideNav
+              ? html`<main class="main-container flex-grow-1">${fakeContent()}</main>`
+              : html`<div class="flex-grow-1">${fakeContent()}</div>`}
+          </div>
+        </div>
+      `;
+    },
   ],
   render: getHeaderRenderer(),
 };
@@ -178,82 +206,118 @@ function showGlobalLogin(args: Args) {
   return !args.title && !args.jobs && args.postLogin;
 }
 
-function getHeaderRenderer(
-  subComponents: {
-    mainnavigation?: TemplateResult;
-    loginLink?: TemplateResult;
-    userMenu?: TemplateResult;
-    title?: TemplateResult;
-  } = {},
-) {
+function buildLanguageMenu() {
+  return html`
+    <post-language-menu
+      text-change-language="Change the language"
+      text-current-language="The currently selected language is {name}."
+      name="language-menu-example"
+    >
+      <post-language-menu-item code="de" name="German">de</post-language-menu-item>
+      <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
+      <post-language-menu-item code="it" name="Italian">it</post-language-menu-item>
+      <post-language-menu-item active="true" code="en" name="English">en</post-language-menu-item>
+    </post-language-menu>
+  `;
+}
+
+function buildGlobalControls() {
+  return html`
+    <!-- Global controls (Search) -->
+    <ul slot="global-nav-primary">
+      <li>
+        <a href="">
+          <span>Search</span>
+          <post-icon aria-hidden="true" name="search"></post-icon>
+        </a>
+      </li>
+    </ul>
+  `;
+}
+
+function isApplicationHeader(args: Args) {
+  return (
+    args.localNav &&
+    !args.mainNav &&
+    !args.targetGroup &&
+    !args.globalNavPrimary &&
+    !args.globalNavSecondary &&
+    !args.postLogin
+  );
+}
+
+type SubComponents = {
+  mainnavigation?: TemplateResult;
+  loginLink?: TemplateResult;
+  userMenu?: TemplateResult;
+  title?: TemplateResult;
+};
+
+function resolveSubComponents(args: Args, subComponents: SubComponents) {
+  const mainnavigation = subComponents.mainnavigation ?? renderMainnavigation();
+  const loginLink = subComponents.loginLink ?? renderLoginLink();
+  const userMenu = subComponents.userMenu ?? renderUserMenu();
+  const title = subComponents.title ?? renderTitle(args);
+  const languageMenu = buildLanguageMenu();
+  const globalControls = buildGlobalControls();
+  const globalLogin = args.isLoggedIn ? userMenu : loginLink;
+  const appHeader = isApplicationHeader(args);
+  const localLanguageMenuItem = args.languageMenu && appHeader ? languageMenu : undefined;
+
+  return { mainnavigation, title, languageMenu, globalControls, globalLogin, appHeader, localLanguageMenuItem };
+}
+
+function buildHeaderSlots(args: Args, subComponents: SubComponents) {
+  const resolved = resolveSubComponents(args, subComponents);
+  const { mainnavigation, title, languageMenu, globalControls, globalLogin, appHeader, localLanguageMenuItem } = resolved;
+
+  return {
+    audienceSlot: args.targetGroup ? renderAudience(args) : nothing,
+    globalControlsSlot: args.globalNavPrimary && !args.jobs ? globalControls : nothing,
+    globalNavSecondarySlot: args.globalNavSecondary ? renderGlobalNavSecondary(args) : nothing,
+    globalLanguageMenuSlot:
+      args.languageMenu && !appHeader
+        ? html`<span slot="language-menu">${languageMenu}</span>`
+        : nothing,
+    globalLoginSlot: showGlobalLogin(args)
+      ? html`<!-- Global header login/user menu -->${globalLogin}`
+      : nothing,
+    titleSlot: args.title !== '' ? title : nothing,
+    sideNavTriggerSlot: args.sideNav && args.title !== '' ? renderSideNavTrigger() : nothing,
+    micrositeControlsSlot:
+      args.localNav || localLanguageMenuItem
+        ? renderMicrositeControls({ ...args, localLanguageMenuItem })
+        : nothing,
+    mainNavSlot: args.mainNav ? mainnavigation : nothing,
+    jobControlsSlot: args.jobs ? renderJobControls() : nothing,
+    showSideNav: args.sideNav && args.title !== '',
+  };
+}
+
+function getHeaderRenderer(subComponents: SubComponents = {}) {
   return (args: Args) => {
-    const mainnavigation = subComponents.mainnavigation ?? renderMainnavigation();
-    const loginLink = subComponents.loginLink ?? renderLoginLink();
-    const userMenu = subComponents.userMenu ?? renderUserMenu();
-    const title = subComponents.title ?? renderTitle(args);
-
-    const globalLogin = args.isLoggedIn ? userMenu : loginLink;
-
-    const globalControls = html`
-      <!-- Global controls (Search) -->
-      <ul slot="global-nav-primary">
-        <li>
-          <a href="">
-            <span>Search</span>
-            <post-icon aria-hidden="true" name="search"></post-icon>
-          </a>
-        </li>
-      </ul>
-    `;
-
-    const languageMenu = html`
-      <post-language-menu
-        text-change-language="Change the language"
-        text-current-language="The currently selected language is {name}."
-        name="language-menu-example"
-      >
-        <post-language-menu-item code="de" name="German">de</post-language-menu-item>
-        <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
-        <post-language-menu-item code="it" name="Italian">it</post-language-menu-item>
-        <post-language-menu-item active="true" code="en" name="English">en</post-language-menu-item>
-      </post-language-menu>
-    `;
-
-    const isApplicationHeader =
-      args.localNav &&
-      !args.mainNav &&
-      !args.targetGroup &&
-      !args.globalNavPrimary &&
-      !args.globalNavSecondary &&
-      !args.postLogin;
-    const localLanguageMenuItem =
-      args.languageMenu && isApplicationHeader ? languageMenu : undefined;
+    const slots = buildHeaderSlots(args, subComponents);
 
     return html`
       <post-header text-menu="${args.textMenu}" full-width="${args.fullWidth || nothing}">
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
-        ${args.targetGroup ? renderAudience(args) : nothing}
-        ${args.globalNavPrimary && !args.jobs ? globalControls : nothing}
-        ${args.globalNavSecondary ? renderGlobalNavSecondary(args) : nothing}
+        ${slots.audienceSlot}
+        ${slots.globalControlsSlot}
+        ${slots.globalNavSecondarySlot}
 
         <!-- Language menu (global) -->
-        ${args.languageMenu && !isApplicationHeader
-          ? html`<span slot="language-menu">${languageMenu}</span>`
-          : nothing}
-        ${showGlobalLogin(args)
-          ? html`
-              <!-- Global header login/user menu -->
-              ${globalLogin}
-            `
-          : nothing}
-        ${args.title !== '' ? title : nothing}
-        ${args.localNav || localLanguageMenuItem
-          ? renderMicrositeControls({ ...args, localLanguageMenuItem })
-          : nothing}
-        ${args.mainNav ? mainnavigation : nothing} ${args.jobs ? renderJobControls() : nothing}
+        ${slots.globalLanguageMenuSlot}
+        ${slots.globalLoginSlot}
+        ${slots.titleSlot}
+        ${slots.sideNavTriggerSlot}
+        ${slots.micrositeControlsSlot}
+        ${slots.mainNavSlot}
+        ${slots.jobControlsSlot}
       </post-header>
+
+      ${slots.showSideNav ? renderSideNavigation() : nothing}
     `;
   };
 }

@@ -63,29 +63,13 @@ const meta: MetaComponent = {
     story => html`
       <post-header text-menu="Menu">
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
+        <post-side-navigation-trigger slot="side-nav" for="sidenavigation">
+          <button>
+            <span>Menu</span>
+            <post-icon aria-hidden="true" name="burger"></post-icon>
+          </button>
+        </post-side-navigation-trigger>
         <p slot="title">[Application Title]</p>
-        <ul slot="local-nav">
-          <li>
-            <post-side-navigation-trigger for="sidenavigation">
-              <button>
-                <span>Menu</span>
-                <post-icon aria-hidden="true" name="burger"></post-icon>
-              </button>
-            </post-side-navigation-trigger>
-          </li>
-          <li>
-            <a href="#">
-              <span>Search</span>
-              <post-icon aria-hidden="true" name="search"></post-icon>
-            </a>
-          </li>
-          <li class="local-login">
-            <a href="">
-              <span>Login</span>
-              <post-icon name="login"></post-icon>
-            </a>
-          </li>
-        </ul>
       </post-header>
       ${story()}
       <main class="main-container">
