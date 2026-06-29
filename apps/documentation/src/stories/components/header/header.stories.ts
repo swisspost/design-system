@@ -192,7 +192,7 @@ const meta: MetaComponent = {
             ${story()}
 
             ${showSideNav
-              ? html`<main class="flex-grow-1">${fakeContent()}</main>`
+              ? html`<main class="main-container flex-grow-1">${fakeContent()}</main>`
               : html`<div class="flex-grow-1">${fakeContent()}</div>`}
           </div>
         </div>

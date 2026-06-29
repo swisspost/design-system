@@ -1,22 +1,36 @@
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/tokens/utilities';
+@use '@swisspost/design-system-styles/functions/tokens';
+
+tokens.$default-map: utilities.$post-elevation;
 
 :host {
+  --post-side-navigation-padding-block-start: 34px;
+  --post-side-navigation-padding-block-end: 16px;
+  --post-side-navigation-bg: #f0efed;
+  --post-side-navigation-stroke: #b4b3af;
+
   display: flex;
-  background-color: #f0efed;
+  background-color: var(--post-side-navigation-bg);
+  border-inline-end: 1px solid var(--post-side-navigation-stroke);
 
   & dialog {
-    overflow-y: auto;
+    overflow: visible;
+    width: var(--post-side-navigation-width);
     bottom: auto;
     right: auto;
     border: none;
-    padding-inline: 0;
-    padding-block: 40px;
-    height: 100vh;
-    background-color: #f0efed;
+    padding: 0;
+    max-height: 100dvh;
+    background-color: var(--post-side-navigation-bg);
+    border-inline-end: 1px solid var(--post-side-navigation-stroke);
+
+    @include media.max(desktop) {
+      box-shadow: tokens.get('utility-elevation-300');
+    }
   }
 
-  @include media.min(desktop) {
-    max-width: 35ch;
-    width: 35ch;
+  post-closebutton {
+    transform: translate(50%, 0);
   }
 }
