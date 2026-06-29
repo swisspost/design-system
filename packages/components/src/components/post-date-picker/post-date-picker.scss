@@ -184,7 +184,9 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
             }
 
             /* Day: Hovered */
-            &:hover:not(.-disabled-, .-other-month-, .-in-range-, .-range-from-, .-range-to-):not(:empty) {
+            &:hover:not(.-disabled-, .-other-month-, .-in-range-, .-range-from-, .-range-to-):not(
+                :empty
+              ) {
               color: tokens.get('post-datepicker-grid-day-cell-element-color-hovered-fg');
 
               &:not(.-current-) {
@@ -682,6 +684,18 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
           &.-range-to-.-range-from-:hover::before {
             background: none;
             border: none;
+          }
+        }
+      }
+
+      // Hide range preview when the mouse is outside the days grid
+      // Correct: "does not have both A and B"
+      &:not(:has(.-selected-.-range-from-):has(.-selected-.-range-to-)):not(:hover)
+        .air-datepicker-cell {
+        &:is(.-in-range-, .-range-from-, .-range-to-) {
+          &::before,
+          &:not(.-selected-)::after {
+            content: unset;
           }
         }
       }

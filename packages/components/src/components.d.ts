@@ -9,7 +9,6 @@ import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
 import { Variant } from "./components/post-breadcrumb-item/variants";
 import { ButtonType, Placement, Size } from "./components/post-closebutton/types";
-import { AirDatepickerCustomOptions } from "./components/post-date-picker/post-date-picker";
 import { PostIconAnimation } from "./types/icon-animations";
 import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement as Placement1 } from "@floating-ui/dom";
@@ -17,7 +16,6 @@ export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { Variant } from "./components/post-breadcrumb-item/variants";
 export { ButtonType, Placement, Size } from "./components/post-closebutton/types";
-export { AirDatepickerCustomOptions } from "./components/post-date-picker/post-date-picker";
 export { PostIconAnimation } from "./types/icon-animations";
 export { SwitchVariant } from "./components/post-language-menu/switch-variants";
 export { Placement as Placement1 } from "@floating-ui/dom";
@@ -193,6 +191,13 @@ export namespace Components {
     }
     interface PostDatePicker {
         /**
+          * A callback to customize individual calendar cells, e.g. to disable specific dates or add CSS classes.
+         */
+        "cellConfig"?: (
+    date: Date,
+    cellType: 'day' | 'month' | 'year',
+  ) => { disabled?: boolean; classes?: string } | void;
+        /**
           * Hides the popover calendar.
          */
         "hide": () => Promise<void>;
@@ -211,7 +216,7 @@ export namespace Components {
          */
         "max"?: string;
         /**
-          * Minimun possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
+          * Minimum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "min"?: string;
         /**
@@ -219,18 +224,6 @@ export namespace Components {
           * @default false
          */
         "range"?: boolean;
-        /**
-          * Used to extend the existing on render cell to disable dates.
-         */
-        "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
-        /**
-          * The date picker's selected end date (for range date picker only). Must be a valid date in ISO 8601 format (YYYY-MM-DD).
-         */
-        "selectedEndDate"?: string;
-        /**
-          * The date picker's selected date. If in range mode, the selected start date. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
-         */
-        "selectedStartDate"?: string;
         /**
           * Displays the popover calendar, focusing the first calendar item.
          */
@@ -264,7 +257,7 @@ export namespace Components {
          */
         "textSwitchYear": string;
         /**
-          * Label for the toggle button that opens the calendar. It is only needed when the calendar is connected to the input.
+          * Label for the toggle button that opens the calendar. It is only needed when the calendar is not inline.
          */
         "textToggleCalendar"?: string;
     }
@@ -701,6 +694,11 @@ export namespace Components {
     }
     interface PostTabItem {
         /**
+          * Whether the tab item is disabled.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
           * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */
         "name": string;
@@ -713,22 +711,32 @@ export namespace Components {
     }
     interface PostTabs {
         /**
-          * The name of the tab in the panel mode that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
+          * The name of the tab in the Content Tabs variant that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
          */
         "activeTab"?: string;
         /**
-          * When set to true, this property allows the tabs container to span the Changing this value after initialization has no effect. full width of the screen, from edge to edge.
-          * @default false
-         */
-        "fullWidth": boolean;
-        /**
-          * The accessible label for the tabs component in navigation mode.
+          * An accessible label for the Pages Tabs variant
          */
         "label"?: string;
         /**
           * Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
          */
         "show": (tabName: string) => Promise<void>;
+        /**
+          * The size of the tabs, corresponding to the different designs in Figma. Default is 'large'.
+          * @default 'large'
+         */
+        "size": 'small' | 'large';
+        /**
+          * An accessible label for the "next tab items" button.
+          * @default 'Next tab items'
+         */
+        "textNextTabItems": string;
+        /**
+          * An accessible label for the "previous tab items" button.
+          * @default 'Previous tab items'
+         */
+        "textPrevTabItems": string;
     }
     interface PostTogglebutton {
         /**
@@ -789,10 +797,6 @@ export interface PostBannerCustomEvent<T> extends CustomEvent<T> {
 export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
-}
-export interface PostDatePickerCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLPostDatePickerElement;
 }
 export interface PostLanguageMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -934,18 +938,7 @@ declare global {
         prototype: HTMLPostCollapsibleTriggerElement;
         new (): HTMLPostCollapsibleTriggerElement;
     };
-    interface HTMLPostDatePickerElementEventMap {
-        "postUpdateDates": string | string[];
-    }
     interface HTMLPostDatePickerElement extends Components.PostDatePicker, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostDatePickerElementEventMap>(type: K, listener: (this: HTMLPostDatePickerElement, ev: PostDatePickerCustomEvent<HTMLPostDatePickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostDatePickerElementEventMap>(type: K, listener: (this: HTMLPostDatePickerElement, ev: PostDatePickerCustomEvent<HTMLPostDatePickerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostDatePickerElement: {
         prototype: HTMLPostDatePickerElement;
@@ -1479,6 +1472,13 @@ declare namespace LocalJSX {
     }
     interface PostDatePicker {
         /**
+          * A callback to customize individual calendar cells, e.g. to disable specific dates or add CSS classes.
+         */
+        "cellConfig"?: (
+    date: Date,
+    cellType: 'day' | 'month' | 'year',
+  ) => { disabled?: boolean; classes?: string } | void;
+        /**
           * Whether the calendar is inline in the page (not showing in a popover when input clicked).
           * @default false
          */
@@ -1493,30 +1493,14 @@ declare namespace LocalJSX {
          */
         "max"?: string;
         /**
-          * Minimun possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
+          * Minimum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "min"?: string;
-        /**
-          * An event emitted when a date or a range of dates have been selected.
-         */
-        "onPostUpdateDates"?: (event: PostDatePickerCustomEvent<string | string[]>) => void;
         /**
           * Whether the date picker expects a range selection or a single date selection.
           * @default false
          */
         "range"?: boolean;
-        /**
-          * Used to extend the existing on render cell to disable dates.
-         */
-        "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
-        /**
-          * The date picker's selected end date (for range date picker only). Must be a valid date in ISO 8601 format (YYYY-MM-DD).
-         */
-        "selectedEndDate"?: string;
-        /**
-          * The date picker's selected date. If in range mode, the selected start date. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
-         */
-        "selectedStartDate"?: string;
         /**
           * Label for "Next decade" button.
          */
@@ -1546,7 +1530,7 @@ declare namespace LocalJSX {
          */
         "textSwitchYear": string;
         /**
-          * Label for the toggle button that opens the calendar. It is only needed when the calendar is connected to the input.
+          * Label for the toggle button that opens the calendar. It is only needed when the calendar is not inline.
          */
         "textToggleCalendar"?: string;
     }
@@ -1940,6 +1924,11 @@ declare namespace LocalJSX {
     }
     interface PostTabItem {
         /**
+          * Whether the tab item is disabled.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
           * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */
         "name": string;
@@ -1952,22 +1941,32 @@ declare namespace LocalJSX {
     }
     interface PostTabs {
         /**
-          * The name of the tab in the panel mode that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
+          * The name of the tab in the Content Tabs variant that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
          */
         "activeTab"?: string;
         /**
-          * When set to true, this property allows the tabs container to span the Changing this value after initialization has no effect. full width of the screen, from edge to edge.
-          * @default false
-         */
-        "fullWidth"?: boolean;
-        /**
-          * The accessible label for the tabs component in navigation mode.
+          * An accessible label for the Pages Tabs variant
          */
         "label"?: string;
         /**
-          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. Only emitted in panel mode.
+          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. Only emitted in Content Tabs variant.
          */
         "onPostChange"?: (event: PostTabsCustomEvent<string>) => void;
+        /**
+          * The size of the tabs, corresponding to the different designs in Figma. Default is 'large'.
+          * @default 'large'
+         */
+        "size"?: 'small' | 'large';
+        /**
+          * An accessible label for the "next tab items" button.
+          * @default 'Next tab items'
+         */
+        "textNextTabItems"?: string;
+        /**
+          * An accessible label for the "previous tab items" button.
+          * @default 'Previous tab items'
+         */
+        "textPrevTabItems"?: string;
     }
     interface PostTogglebutton {
         /**
@@ -2057,8 +2056,6 @@ declare namespace LocalJSX {
     interface PostDatePickerAttributes {
         "locale": string;
         "range": boolean;
-        "selectedStartDate": string;
-        "selectedEndDate": string;
         "min": string;
         "max": string;
         "inline": boolean;
@@ -2179,13 +2176,16 @@ declare namespace LocalJSX {
     }
     interface PostTabItemAttributes {
         "name": string;
+        "disabled": boolean;
     }
     interface PostTabPanelAttributes {
         "for": string;
     }
     interface PostTabsAttributes {
+        "textPrevTabItems": string;
+        "textNextTabItems": string;
         "activeTab": string;
-        "fullWidth": boolean;
+        "size": 'small' | 'large';
         "label": string;
     }
     interface PostTogglebuttonAttributes {
