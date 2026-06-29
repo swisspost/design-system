@@ -182,7 +182,9 @@ tokens.$default-map: components.$post-datepicker;
             }
 
             /* Day: Hovered */
-            &:hover:not(.-disabled-, .-other-month-, .-in-range-):not(:empty) {
+            &:hover:not(.-disabled-, .-other-month-, .-in-range-, .-range-from-, .-range-to-):not(
+                :empty
+              ) {
               color: tokens.get('post-datepicker-grid-day-cell-element-color-hovered-fg');
 
               &:not(.-current-) {
@@ -678,6 +680,18 @@ tokens.$default-map: components.$post-datepicker;
           }
         }
       }
+
+      // Hide range preview when the mouse is outside the days grid
+      // Correct: "does not have both A and B"
+      &:not(:has(.-selected-.-range-from-):has(.-selected-.-range-to-)):not(:hover)
+        .air-datepicker-cell {
+        &:is(.-in-range-, .-range-from-, .-range-to-) {
+          &::before,
+          &:not(.-selected-)::after {
+            content: unset;
+          }
+        }
+      }
     }
   }
 }
@@ -693,7 +707,7 @@ tokens.$default-map: components.$post-datepicker;
     // Safari applies its system accent color to buttons; reset it explicitly
     -webkit-appearance: none;
     appearance: none;
-    color: tokens.get('post-datepicker-grid-day-cell-element-color-enabled-fg');
+    color: tokens.get('input-color-enabled-fg', components.$post-text-input);
     outline-offset: 4px;
     right: tokens.get('search-position-inline-end-icon', components.$post-search-input);
 

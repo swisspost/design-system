@@ -1,11 +1,11 @@
+import { MetaComponent } from '@root/types';
 import type { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent<HTMLPostLanguageMenuElement> = {
   id: 'decbb10c-2b39-4f47-b67d-337d8111a3ae',
   title: 'Raw Components/Language Menu',
-  tags: ['package:WebComponents', 'status:InProgress'],
+  tags: ['package:WebComponents'],
   component: 'post-language-menu',
   render: renderLanguageMenu,
   parameters: {
@@ -18,7 +18,7 @@ const meta: MetaComponent<HTMLPostLanguageMenuElement> = {
     variant: 'list',
     type: 'language',
     textChangeLanguage: 'Change the language',
-    textCurrentLanguage: 'The currently selected language is #name.',
+    textCurrentLanguage: 'The currently selected language is {name}.',
   },
 };
 

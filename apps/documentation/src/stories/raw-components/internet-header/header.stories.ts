@@ -1,7 +1,7 @@
-import { Args, StoryObj } from '@storybook/web-components-vite';
-import { html, nothing } from 'lit';
 import { fakeContent } from '@/utils';
 import { MetaComponent } from '@root/types';
+import { Args, StoryObj } from '@storybook/web-components-vite';
+import { html, nothing } from 'lit';
 
 const defaultArgs: Args = {
   project: 'test',
@@ -12,8 +12,8 @@ const defaultArgs: Args = {
   textMain: 'Main',
   textMenu: 'Menu',
   textChangeLanguage: 'Change the language',
-  textCurrentLanguage: 'The currently selected language is #name.',
-  textCurrentUser: 'Current user is John Doe.',
+  textCurrentLanguage: 'The currently selected language is {name}.',
+  textCurrentUser: 'Current user is {user}.',
   textUserLinks: 'User links',
   textClose: 'Close',
   textBack: 'Back',
@@ -22,7 +22,7 @@ const defaultArgs: Args = {
 const meta: MetaComponent = {
   id: 'ebb11274-091b-4cb7-9a3f-3e0451c9a865',
   title: 'Raw Components/Internet Header',
-  tags: ['package:InternetHeader', 'status:Deprecated', 'devOnly'],
+  tags: ['package:InternetHeader', 'devOnly'],
   component: 'swisspost-internet-header',
   parameters: {
     badges: [],

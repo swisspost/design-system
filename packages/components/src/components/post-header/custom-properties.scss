@@ -58,7 +58,7 @@
 }
 
 :host(:not([full-width])),
-:host([full-width="false"]) {
+:host([full-width='false']) {
   --post-header-content-max-width: 1440px;
 }
 
@@ -68,5 +68,5 @@
   --post-header-top: 0;
   --post-global-header-top: -0.001px; // Fixes a Firefox rendering engine (Gecko) glitch related to position sticky, causing the header to be positioned incorrectly.
   --post-global-controls-top: 0;
-  --post-logo-height: var(--post-global-header-expanded-height);
+  --post-global-header-reduced-height: var(--post-global-header-expanded-height);
 }

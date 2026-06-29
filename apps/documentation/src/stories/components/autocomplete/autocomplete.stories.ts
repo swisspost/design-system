@@ -1,7 +1,7 @@
+import { spreadArgs } from '@/utils';
+import { MetaComponent } from '@root/types';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, TemplateResult } from 'lit';
-import { MetaComponent } from '@root/types';
-import { spreadArgs } from '@/utils';
 
 const meta: MetaComponent = {
   id: '5ef3cb45-86f6-4baf-bdbf-35bd2ddf0f3d',

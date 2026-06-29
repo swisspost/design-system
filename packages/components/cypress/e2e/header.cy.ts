@@ -227,7 +227,7 @@ describe('header', () => {
         cy.get('@close-btn').should('be.visible');
 
         cy.get('@megadropdown-container')
-          .getFocusableElements()
+          .getDeepFocusableElements()
           .then(focusableElements => {
             cy.get('@close-btn')
               .find('button')

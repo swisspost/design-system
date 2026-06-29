@@ -1,7 +1,7 @@
 {
   "name": "@swisspost/design-system-eslint",
   "private": false,
-  "version": "10.0.0-next.73",
+  "version": "10.0.0-next.75",
   "description": "A set of custom ESLint rules to help keeping projects using the Swiss Post Design System up-to-date.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -47,7 +47,7 @@
     "@types/eslint-scope": "3.7.7",
     "@types/jest": "catalog:jest",
     "@typescript-eslint/rule-tester": "8.49.0",
-    "concurrently": "9.2.1",
+    "concurrently": "10.0.3",
     "domhandler": "5.0.3",
     "eslint": "9.26.0",
     "globals": "17.3.0",
