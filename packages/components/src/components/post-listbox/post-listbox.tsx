@@ -17,7 +17,7 @@ export class PostListbox {
   /**
    *  Emitted option id for the active option
    */
-  @Event() postOptionActive: EventEmitter<string | null>;
+  @Event() postFocusin: EventEmitter<string | null>;
 
   private get options() {
     return Array.from(this.host.querySelectorAll('post-listbox-option'));
@@ -50,7 +50,7 @@ export class PostListbox {
 
   private readonly clearActive = () => {
     this.highlightedIndex = -1;
-    this.postOptionActive.emit(null);
+    this.postFocusin.emit(null);
   };
 
   /** Opens the listbox */
@@ -131,7 +131,7 @@ export class PostListbox {
     const activeOption = this.visibleOptions[this.highlightedIndex];
     activeOption.scrollIntoView({ behavior: 'smooth', block: 'end' });
     activeOption.highlighted = true;
-    this.postOptionActive.emit(activeOption.id);
+    this.postFocusin.emit(activeOption.id);
   }
 
   /**
@@ -143,12 +143,12 @@ export class PostListbox {
       const activeOption = this.visibleOptions[this.highlightedIndex];
       this.updateSelection(activeOption.value);
       this.host.dispatchEvent(
-        new CustomEvent('postOptionSelected', { bubbles: true, detail: activeOption.value }),
+        new CustomEvent('postChange', { bubbles: true, detail: activeOption.value }),
       );
     }
   }
 
-  @Listen('postOptionSelected')
+  @Listen('postChange')
   @EventFrom('post-listbox-option')
   optionClicked(event: CustomEvent<string>) {
     this.updateSelection(event.detail);

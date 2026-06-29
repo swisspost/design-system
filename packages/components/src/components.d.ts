@@ -852,7 +852,7 @@ declare global {
         new (): HTMLPostAccordionItemElement;
     };
     interface HTMLPostAutocompleteElementEventMap {
-        "postFilteringEvent": string;
+        "postFilter": string;
     }
     interface HTMLPostAutocompleteElement extends Components.PostAutocomplete, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostAutocompleteElementEventMap>(type: K, listener: (this: HTMLPostAutocompleteElement, ev: PostAutocompleteCustomEvent<HTMLPostAutocompleteElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -881,7 +881,7 @@ declare global {
         new (): HTMLPostBackToTopElement;
     };
     interface HTMLPostBannerElementEventMap {
-        "postDismissed": void;
+        "postDismiss": void;
     }
     interface HTMLPostBannerElement extends Components.PostBanner, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostBannerElementEventMap>(type: K, listener: (this: HTMLPostBannerElement, ev: PostBannerCustomEvent<HTMLPostBannerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -973,7 +973,6 @@ declare global {
     };
     interface HTMLPostLanguageMenuItemElementEventMap {
         "postChange": string;
-        "postLanguageMenuItemInitiallyActive": string;
     }
     interface HTMLPostLanguageMenuItemElement extends Components.PostLanguageMenuItem, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostLanguageMenuItemElementEventMap>(type: K, listener: (this: HTMLPostLanguageMenuItemElement, ev: PostLanguageMenuItemCustomEvent<HTMLPostLanguageMenuItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -996,7 +995,7 @@ declare global {
         new (): HTMLPostLinkareaElement;
     };
     interface HTMLPostListboxElementEventMap {
-        "postOptionActive": string | null;
+        "postFocusin": string | null;
     }
     interface HTMLPostListboxElement extends Components.PostListbox, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostListboxElementEventMap>(type: K, listener: (this: HTMLPostListboxElement, ev: PostListboxCustomEvent<HTMLPostListboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1013,7 +1012,7 @@ declare global {
         new (): HTMLPostListboxElement;
     };
     interface HTMLPostListboxOptionElementEventMap {
-        "postOptionSelected": string;
+        "postChange": string;
     }
     interface HTMLPostListboxOptionElement extends Components.PostListboxOption, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostListboxOptionElementEventMap>(type: K, listener: (this: HTMLPostListboxOptionElement, ev: PostListboxOptionCustomEvent<HTMLPostListboxOptionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1042,7 +1041,7 @@ declare global {
         new (): HTMLPostMainnavigationElement;
     };
     interface HTMLPostMegadropdownElementEventMap {
-        "postToggleMegadropdown": { isVisible: boolean; focusParent?: boolean };
+        "postToggle": { isVisible: boolean; focusParent?: boolean };
     }
     interface HTMLPostMegadropdownElement extends Components.PostMegadropdown, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostMegadropdownElementEventMap>(type: K, listener: (this: HTMLPostMegadropdownElement, ev: PostMegadropdownCustomEvent<HTMLPostMegadropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1065,7 +1064,7 @@ declare global {
         new (): HTMLPostMegadropdownTriggerElement;
     };
     interface HTMLPostMenuElementEventMap {
-        "toggleMenu": boolean;
+        "postToggle": boolean;
     }
     interface HTMLPostMenuElement extends Components.PostMenu, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostMenuElementEventMap>(type: K, listener: (this: HTMLPostMenuElement, ev: PostMenuCustomEvent<HTMLPostMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1341,7 +1340,7 @@ declare namespace LocalJSX {
         /**
           * Cancelable event emitted when the input value is to be filtered
          */
-        "onPostFilteringEvent"?: (event: PostAutocompleteCustomEvent<string>) => void;
+        "onPostFilter"?: (event: PostAutocompleteCustomEvent<string>) => void;
         /**
           * Announcement template for screen readers when the suggestion list updates. Use {count} as placeholder for the number of available suggestions, e.g. "{count} suggestions available"
          */
@@ -1375,7 +1374,7 @@ declare namespace LocalJSX {
         /**
           * An event emitted when the banner element is dismissed, after the transition. It has no payload and only relevant for dismissible banners.
          */
-        "onPostDismissed"?: (event: PostBannerCustomEvent<void>) => void;
+        "onPostDismiss"?: (event: PostBannerCustomEvent<void>) => void;
         /**
           * The type of the banner.
           * @default 'info'
@@ -1627,10 +1626,6 @@ declare namespace LocalJSX {
          */
         "onPostChange"?: (event: PostLanguageMenuItemCustomEvent<string>) => void;
         /**
-          * An event emitted when the language option is initially active. The payload is the ISO 639 code of the language.
-         */
-        "onPostLanguageMenuItemInitiallyActive"?: (event: PostLanguageMenuItemCustomEvent<string>) => void;
-        /**
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
         "url"?: string;
@@ -1645,7 +1640,7 @@ declare namespace LocalJSX {
         /**
           * Emitted option id for the active option
          */
-        "onPostOptionActive"?: (event: PostListboxCustomEvent<string | null>) => void;
+        "onPostFocusin"?: (event: PostListboxCustomEvent<string | null>) => void;
     }
     interface PostListboxOption {
         /**
@@ -1656,7 +1651,7 @@ declare namespace LocalJSX {
         /**
           * Fires when this option was selected. Bubbles up.
          */
-        "onPostOptionSelected"?: (event: PostListboxOptionCustomEvent<string>) => void;
+        "onPostChange"?: (event: PostListboxOptionCustomEvent<string>) => void;
         /**
           * Represents option is selected .
           * @default false
@@ -1683,7 +1678,7 @@ declare namespace LocalJSX {
         /**
           * Emits when the dropdown is shown or hidden. The event payload is an object. `isVisible` is true when the dropdown gets opened and false when it gets closed `focusParent` determines whether after the closing of the mega dropdown, the focus should go back to the trigger parent or naturally go to the next focusable element in the page
          */
-        "onPostToggleMegadropdown"?: (event: PostMegadropdownCustomEvent<{ isVisible: boolean; focusParent?: boolean }>) => void;
+        "onPostToggle"?: (event: PostMegadropdownCustomEvent<{ isVisible: boolean; focusParent?: boolean }>) => void;
         /**
           * A label for the back button visible on tablet and mobile
          */
@@ -1712,7 +1707,7 @@ declare namespace LocalJSX {
         /**
           * Emits when the menu is shown or hidden. The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
          */
-        "onToggleMenu"?: (event: PostMenuCustomEvent<boolean>) => void;
+        "onPostToggle"?: (event: PostMenuCustomEvent<boolean>) => void;
         /**
           * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
           * @default 'bottom'

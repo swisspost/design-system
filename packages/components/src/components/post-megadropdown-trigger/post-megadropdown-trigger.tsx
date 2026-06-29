@@ -37,7 +37,7 @@ export class PostMegadropdownTrigger {
     if (this.mutationObserver) this.mutationObserver.disconnect();
   }
 
-  @Listen('postToggleMegadropdown', { target: 'document' })
+  @Listen('postToggle', { target: 'document' })
   @EventFrom('post-megadropdown', { ignoreNestedComponents: false })
   onMegadropdownToggled(event: CustomEvent<{ isVisible: boolean; focusParent: boolean }>) {
     if ((event.target as HTMLPostMegadropdownElement).id === this.for) {

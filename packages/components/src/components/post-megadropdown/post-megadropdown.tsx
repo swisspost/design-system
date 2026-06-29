@@ -85,7 +85,7 @@ export class PostMegadropdown {
    * `isVisible` is true when the dropdown gets opened and false when it gets closed
    * `focusParent` determines whether after the closing of the mega dropdown, the focus should go back to the trigger parent or naturally go to the next focusable element in the page
    **/
-  @Event() postToggleMegadropdown: EventEmitter<{ isVisible: boolean; focusParent?: boolean }>;
+  @Event() postToggle: EventEmitter<{ isVisible: boolean; focusParent?: boolean }>;
 
   constructor() {
     this.keyboardHandler = this.keyboardHandler.bind(this);
@@ -156,7 +156,7 @@ export class PostMegadropdown {
     PostMegadropdown.activeDropdown = this;
 
     // Update trigger state
-    this.postToggleMegadropdown.emit({ isVisible: true });
+    this.postToggle.emit({ isVisible: true });
 
     if (switching) {
       // When switching between megadropdowns, skip entry animation
@@ -173,7 +173,7 @@ export class PostMegadropdown {
         this.removeListeners();
         this.isVisible = false;
         if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
-        this.postToggleMegadropdown.emit({ isVisible: false, focusParent: true });
+        this.postToggle.emit({ isVisible: false, focusParent: true });
       }
     }
   }
@@ -189,7 +189,7 @@ export class PostMegadropdown {
     }
 
     // Update trigger state
-    this.postToggleMegadropdown.emit({ isVisible: false, focusParent: focusParent });
+    this.postToggle.emit({ isVisible: false, focusParent: focusParent });
 
     try {
       await this.animate('out');
@@ -203,7 +203,7 @@ export class PostMegadropdown {
       PostMegadropdown.activeDropdown = this;
       this.addListeners();
       this.isVisible = true;
-      this.postToggleMegadropdown.emit({ isVisible: true, focusParent: false });
+      this.postToggle.emit({ isVisible: true, focusParent: false });
     }
   }
 
@@ -220,7 +220,7 @@ export class PostMegadropdown {
    */
   private forceClose() {
     this.removeListeners();
-    this.postToggleMegadropdown.emit({ isVisible: false, focusParent: false });
+    this.postToggle.emit({ isVisible: false, focusParent: false });
     this.isVisible = false;
     if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
   }

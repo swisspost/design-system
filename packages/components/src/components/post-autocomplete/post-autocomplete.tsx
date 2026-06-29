@@ -41,7 +41,7 @@ export class PostAutocomplete {
   @State() inputValue: string = '';
 
   /** Cancelable event emitted when the input value is to be filtered */
-  @Event({ cancelable: true }) postFilteringEvent: EventEmitter<string>;
+  @Event({ cancelable: true }) postFilter: EventEmitter<string>;
 
   private get inputElement() {
     return this.host.querySelector('input');
@@ -103,15 +103,15 @@ export class PostAutocomplete {
 
   private attachListboxListeners() {
     if (this.listBoxElement) {
-      this.listBoxElement.addEventListener('postOptionSelected', this.handleOptionSelected);
-      this.listBoxElement.addEventListener('postOptionActive', this.handleOptionActive);
+      this.listBoxElement.addEventListener('postChange', this.handleOptionSelected);
+      this.listBoxElement.addEventListener('postFocusin', this.handleOptionActive);
     }
   }
 
   private detachListboxListeners() {
     if (this.listBoxElement) {
-      this.listBoxElement.removeEventListener('postOptionSelected', this.handleOptionSelected);
-      this.listBoxElement.removeEventListener('postOptionActive', this.handleOptionActive);
+      this.listBoxElement.removeEventListener('postChange', this.handleOptionSelected);
+      this.listBoxElement.removeEventListener('postFocusin', this.handleOptionActive);
     }
   }
 
@@ -139,7 +139,7 @@ export class PostAutocomplete {
     const value = (event.target as HTMLInputElement).value.trim();
     const query = value.length >= this.filterThreshold ? value : '';
     // Allow for consuming parent to handle filtering (e.g. for async data) and prevent default filtering behavior
-    const { defaultPrevented } = this.postFilteringEvent.emit(
+    const { defaultPrevented } = this.postFilter.emit(
       query && query.length >= this.filterThreshold ? query : '',
     );
     if (defaultPrevented) return;

@@ -18,7 +18,7 @@ export class PostListboxOption {
   @Prop({ reflect: true }) readonly highlighted: boolean = false;
 
   /** Fires when this option was selected. Bubbles up. */
-  @Event() postOptionSelected: EventEmitter<string>;
+  @Event() postChange: EventEmitter<string>;
 
   render() {
     return (
@@ -29,7 +29,7 @@ export class PostListboxOption {
         data-active={this.highlighted ? 'true' : null}
         /* Prevent focus change from triggering onblur event in post-autocomplete */
         onPointerDown={(e: PointerEvent) => e.preventDefault()}
-        onClick={() => this.postOptionSelected.emit(this.value)}
+        onClick={() => this.postChange.emit(this.value)}
         id={`post-listbox-option-${this.optionId}`}
       >
         <span class="option-content">

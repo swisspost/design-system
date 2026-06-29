@@ -69,7 +69,7 @@ export class PostMenu {
    * Emits when the menu is shown or hidden.
    * The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
    **/
-  @Event() toggleMenu: EventEmitter<boolean>;
+  @Event() postToggle: EventEmitter<boolean>;
 
   private root?: Document | ShadowRoot | null;
 
@@ -154,7 +154,7 @@ export class PostMenu {
   @EventFrom('post-popovercontainer')
   private handlePostBeforeToggle(event: CustomEvent<{ willOpen: boolean }>) {
     this.isVisible = event.detail.willOpen;
-    this.toggleMenu.emit(this.isVisible);
+    this.postToggle.emit(this.isVisible);
     if (this.isVisible) {
       this.lastFocusedElement = this.root?.activeElement as HTMLElement;
       requestAnimationFrame(() => {

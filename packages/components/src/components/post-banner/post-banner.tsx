@@ -45,7 +45,7 @@ export class PostBanner {
    * An event emitted when the banner element is dismissed, after the transition.
    * It has no payload and only relevant for dismissible banners.
    */
-  @Event() postDismissed: EventEmitter<void>;
+  @Event() postDismiss: EventEmitter<void>;
 
   connectedCallback() {
     this.mutationObserver.observe(this.host, { childList: true });
@@ -68,7 +68,7 @@ export class PostBanner {
 
     await dismissal.finished;
 
-    this.postDismissed.emit();
+    this.postDismiss.emit();
     this.host.remove();
   }
 

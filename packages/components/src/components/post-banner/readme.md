@@ -12,9 +12,9 @@
 
 ## Events
 
-| Event           | Description                                                                                                                               | Type                |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
-| `postDismissed` | An event emitted when the banner element is dismissed, after the transition. It has no payload and only relevant for dismissible banners. | `CustomEvent<void>` |
+| Event         | Description                                                                                                                               | Type                |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
+| `postDismiss` | An event emitted when the banner element is dismissed, after the transition. It has no payload and only relevant for dismissible banners. | `CustomEvent<void>` |
 
 
 ## Methods
