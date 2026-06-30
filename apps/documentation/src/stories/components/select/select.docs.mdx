@@ -15,10 +15,12 @@ import PackageTag from '@/shared/package-tag';
 <PackageTag meta={meta} />
 
 <div className="lead">
-  Customize the native `<select>` with CSS that changes the element’s initial appearance.
+  Select is a trigger element that opens a list of options the user can choose from.
 </div>
 
-Custom `<select>` menus need only the class `.form-select` to trigger the custom styles. Custom styles are limited to the `<select>`’s initial appearance and cannot modify the `<option>` elements due to browser limitations.
+Our component customizes the native `<select>` with CSS that overrides its initial appearance.
+
+Custom `<select>` menus need only the class `.form-select` to apply the custom styles. Due to browser limitations, these styles only affect the `<select>` element itself and cannot be extended to the `<option>` elements.
 
 <Canvas sourceState="shown" of={SelectStories.Default} />
 <div className="hide-col-default">
