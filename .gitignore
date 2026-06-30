@@ -8,6 +8,7 @@ yarn.lock
 
 # Log files
 .pnpm-debug.log
+changelog-timeouts.log
 
 # System Files
 .DS_Store

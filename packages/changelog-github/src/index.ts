@@ -6,8 +6,25 @@
 import { ChangelogFunctions } from '@changesets/types';
 import { config } from 'dotenv';
 import { getInfo } from '@changesets/get-github-info';
+import { appendFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 
 config();
+
+// Append a line to a timeout logfile at the repository root for every request
+// that times out, so recurring offenders can be identified across runs.
+const TIMEOUT_LOG_FILE = resolve(process.cwd(), 'changelog-timeouts.log');
+
+function logTimeout(entry: Record<string, unknown>) {
+  try {
+    appendFileSync(
+      TIMEOUT_LOG_FILE,
+      `${JSON.stringify({ timestamp: new Date().toISOString(), ...entry })}\n`,
+    );
+  } catch {
+    // Never let logging failures break changelog generation.
+  }
+}
 
 // Cache GitHub info lookups by commit hash to avoid duplicate API calls
 const commitInfoCache = new Map<
@@ -78,6 +95,7 @@ async function githubFetch(
   url: string,
   token: string,
   init: GithubFetchInit = {},
+  context: { label?: string; commits?: string[] } = {},
 ): Promise<Response> {
   for (let attempt = 0; ; attempt++) {
     const controller = new AbortController();
@@ -112,6 +130,16 @@ async function githubFetch(
       return response;
     } catch (error) {
       const isTimeout = error instanceof Error && error.name === 'AbortError';
+      if (isTimeout) {
+        logTimeout({
+          label: context.label ?? 'github-request',
+          url,
+          attempt,
+          timeoutMs: REQUEST_TIMEOUT_MS,
+          willRetry: attempt < MAX_RETRIES,
+          commits: context.commits,
+        });
+      }
       if (attempt < MAX_RETRIES) {
         const waitMs = 2 ** attempt * 1000;
         process.stderr.write(
@@ -201,11 +229,16 @@ async function flushMessageBatch(batch: PendingMessage[]) {
     const query = buildCommitMessageQuery(repoOrder, reposToCommits);
 
     try {
-      const response = await githubFetch(GITHUB_GRAPHQL_URL, token, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query }),
-      });
+      const response = await githubFetch(
+        GITHUB_GRAPHQL_URL,
+        token,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query }),
+        },
+        { label: 'co-author-batch', commits: chunk.map(c => c.commit) },
+      );
 
       if (!response.ok) {
         process.stderr.write(
