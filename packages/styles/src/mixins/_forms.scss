@@ -58,9 +58,9 @@
     background-size: 100%;
 
     @media (pointer: coarse) {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='4 4 25 25'%3E%3Cpath d='M6.5 18H9.5V21H6.5V18Z' fill='#{$clean-color}'/%3E%3Cpath d='M12.5 18H15.5V21H12.5V18Z' fill='#{$clean-color}'/%3E%3Cpath d='M12.5 12H15.5V15H12.5V12Z' fill='#{$clean-color}'/%3E%3Cpath d='M18.5 12H21.5V15H18.5V12Z' fill='#{$clean-color}'/%3E%3Cpath d='M18.5 6H21.5V9H18.5V6Z' fill='#{$clean-color}'/%3E%3Cpath d='M18.5 18H21.5V21H18.5V18Z' fill='#{$clean-color}'/%3E%3C/svg%3E");
-    }
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none"%3E%3Cpath d="M18 0L0 18" stroke="#{$clean-color}" stroke-width="2" stroke-linecap="square"/%3E%3Cpath d="M18 6L6 18" stroke="#{$clean-color}" stroke-width="2" stroke-linecap="square"/%3E%3Cpath d="M18 12L12 18" stroke="#{$clean-color}" stroke-width="2" stroke-linecap="square"/%3E%3C/svg%3E');
   }
+}
 }
 
 @mixin checkbox($custom-hover-selector: null) {
