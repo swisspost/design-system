@@ -1,7 +1,7 @@
-import { StoryObj } from '@storybook/web-components-vite';
-import { html, nothing } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
+import { StoryObj } from '@storybook/web-components-vite';
+import { html, nothing } from 'lit';
 import { useArgs } from 'storybook/preview-api';
 import bannerMeta from './banner.stories';
 
@@ -60,7 +60,7 @@ export const Banner: Story = {
             return html`
               <post-banner
                 type=${bannerArgs.type}
-                @postDismissed=${() => {
+                @postDismiss=${() => {
                   if (bannerArgs.dismissible) {
                     updateArgs({
                       dismissedBanners: {

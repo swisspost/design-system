@@ -73,6 +73,7 @@ export class PostLanguageMenu {
     // Initially set variants and active language
     // Handles cases where the language-menu is rendered after the language-options have been rendered
     this.updateChildrenVariant();
+    this.syncActiveLang();
   }
 
   /**
@@ -104,20 +105,16 @@ export class PostLanguageMenu {
     if (this.menu) this.menu.hide();
   }
 
-  /**
-   * Handles cases where the language menu is being rendered before options are available
-   * @param event Initially emitted by <post-language-menu-item>
-   */
-  @Listen('postLanguageMenuItemInitiallyActive')
-  handleInitiallyActive(event: CustomEvent<string>) {
-    this.activeLang = event.detail;
-  }
-
   // Update post-language-menu-item variant to have the correct style
   private updateChildrenVariant() {
     this.languageOptions.forEach(el => {
       el.setAttribute('variant', this.variant);
     });
+  }
+
+  private syncActiveLang() {
+    const activeOption = this.languageOptions.find(el => el.hasAttribute('active'));
+    if (activeOption) this.activeLang = activeOption.code;
   }
 
   private renderList() {

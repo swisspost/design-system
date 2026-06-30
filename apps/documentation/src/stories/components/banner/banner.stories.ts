@@ -1,6 +1,6 @@
+import { MetaComponent } from '@root/types';
 import { StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '@root/types';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { useArgs } from 'storybook/preview-api';
 
@@ -80,7 +80,7 @@ function renderBanner({ innerHTML, dismissible, dismissed, type }: PostBannerCon
   return html`
     <post-banner
       type=${type === 'info' ? nothing : type}
-      @postDismissed=${() => updateArgs({ dismissed: true })}
+      @postDismiss=${() => updateArgs({ dismissed: true })}
     >
       ${dismissible
         ? html` <post-closebutton slot="close-button"> Close </post-closebutton> `

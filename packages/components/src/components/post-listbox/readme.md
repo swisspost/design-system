@@ -5,9 +5,9 @@
 
 ## Events
 
-| Event              | Description                             | Type                  |
-| ------------------ | --------------------------------------- | --------------------- |
-| `postOptionActive` | Emitted option id for the active option | `CustomEvent<string>` |
+| Event         | Description                             | Type                  |
+| ------------- | --------------------------------------- | --------------------- |
+| `postFocusin` | Emitted option id for the active option | `CustomEvent<string>` |
 
 
 ## Methods

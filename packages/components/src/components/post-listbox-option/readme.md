@@ -14,9 +14,9 @@
 
 ## Events
 
-| Event                | Description                                      | Type                  |
-| -------------------- | ------------------------------------------------ | --------------------- |
-| `postOptionSelected` | Fires when this option was selected. Bubbles up. | `CustomEvent<string>` |
+| Event        | Description                                      | Type                  |
+| ------------ | ------------------------------------------------ | --------------------- |
+| `postChange` | Fires when this option was selected. Bubbles up. | `CustomEvent<string>` |
 
 
 ## Dependencies
