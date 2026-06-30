@@ -48,7 +48,7 @@ jobs:
 
       - name: Install Playwright browsers
         working-directory: packages/components
-        run: npx playwright install --with-deps
+        run: pnpm exec playwright install --with-deps
 
       - name: Determine baseline branch
         id: baseline
