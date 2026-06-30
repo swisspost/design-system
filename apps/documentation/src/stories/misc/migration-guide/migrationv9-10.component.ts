@@ -2572,7 +2572,7 @@ export class MyComponent {
             <h3>Icons Migration 🖼️</h3>
             <p>Beside the <strong><a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=post">Post Icon Set</a></strong>, there is now a brand new
               <strong>UI Icon Set</strong>, available as <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uilight">line</a> or <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uisolid">solid</a> icons.</p>
-            <p>Using the new icons is as easy as using the previous ones, simply exchange the icon number with an icon name and you're done.</p>
+            <p>Using the new icons is as easy as before, simply replace the icon number with the icon name, and you're done.</p>
             <p>Below, we show you which of the previous icons you can replace with a corresponding new icon.</p>
 
             <post-banner variant="info">
