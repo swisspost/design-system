@@ -1,0 +1,71 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as SideNavigationStories from './side-navigation.stories';
+import PackageTag from '@/shared/package-tag';
+import StylesPackageImport from '@/shared/styles-package-import';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import './side-navigation.styles.scss';
+
+<Meta of={SideNavigationStories} />
+
+<div className="docs-title">
+  # Side Navigation
+  <link-design of={JSON.stringify(SideNavigationStories)}></link-design>
+</div>
+
+<PackageTag meta={meta} />
+
+<div className="lead">
+  The side navigation is a container of navigation menu items that lets the user navigate through
+  different parts of a web application. It provides hierarchical structures with up to 4 nested
+  levels that can be expanded or collapsed.
+</div>
+
+<Canvas sourceState="shown" of={SideNavigationStories.Default} />
+<post-banner type="info" className="my-16">
+  Due to `<iframe>` restrictions, the controls below will not update the side-navigation shown above. Use the table as a reference for the component API. The demo intentionally mixes different types of links (icons, collapsible, combined link and collapsible) to demonstrate what's possible. In a project, choose the link type that is most appropriate for your information architecture and use it consistently.
+</post-banner>
+
+<div className="hide-col-default">
+  <Controls of={SideNavigationStories.Default} />
+</div>
+
+<ComponentsPackageInstall component="<post-side-navigation>" />
+
+<StylesPackageImport components={['side-navigation', 'list']} />
+
+## Page structure
+
+In order for your page content to not be partially hidden by the side navigation on desktop, the `.main-container` class needs to be added on the outside wrapper of your page's content.
+
+## Navigation content
+
+The default slot holds the navigation content. It must be a `<nav>` landmark with a descriptive `aria-label` and `<ul>`/`<li>` lists for the items. Nested levels are nested `<ul>`s. The section heading is optional.
+
+**Icons should only be set on the first level elements.** For usability reasons, all or none of the level 1 elements should have an icon.
+
+Expandable elements can either always be `post-collapsible` elements, or never be `post-collapsible` elements - in which case they're always expanded by default.
+
+## Examples
+
+The side navigation comes with two size variants:
+
+- Large (default): for a flat and short navigation
+- Small: for deep and long navigation (set adding the `is-small` property on the `<post-side-navigation>`)
+
+### Small navigation with no icons, always expanded
+
+<Canvas of={SideNavigationStories.Small} />
+
+### Large (default) navigation with icons, collapsible elements
+
+<Canvas of={SideNavigationStories.Large} />
+
+## Accessibility
+
+### Links and disclosure buttons
+
+Use `<a>` for links and a `<button>` inside `<post-collapsible-trigger>` for collapsible sections. A link navigates, a button discloses; never nest one inside the other.
+
+### Focus management
+
+On mobile, focus moves into the navigation when the dialog opens and returns to the trigger when it closes. The rest of the page is inert while the dialog is open.

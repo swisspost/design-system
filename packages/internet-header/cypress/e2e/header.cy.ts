@@ -47,11 +47,6 @@ describe('header', () => {
       );
     });
 
-    it('should correctly show the login link', () => {
-      cy.get('[slot="post-login"]').invoke('prop', 'localName').should('eq', 'post-login-widget');
-      cy.get('[slot="post-login"]').find('[slot="login-link"]').should('be.visible');
-    });
-
     context('main navigation', () => {
       const mainNavigationConfig = headerConfig.localHeader.mainNavigation;
 
@@ -154,6 +149,52 @@ describe('header', () => {
         cy.get('[aria-current="page"], [aria-current="location"]')
           .should('have.length', 1)
           .and('have.attr', 'href', '/letters');
+      });
+    });
+  });
+
+  describe('post login', () => {
+    const postLoginConfig = testConfiguration[language].header.globalHeader.postLogin;
+
+    context('logged out', () => {
+      beforeEach(() => {
+        prepare(HEADER, 'Default');
+        cy.changeArg('language', language);
+      });
+
+      it('should show the login link', () => {
+        cy.get('[slot="post-login"]')
+          .should('be.visible')
+          .invoke('prop', 'localName')
+          .should('eq', 'a');
+      });
+
+      it('should not show the user menu', () => {
+        cy.get('[slot="post-login"] post-menu').should('not.exist');
+      });
+    });
+
+    context('logged in', () => {
+      beforeEach(() => {
+        prepare(HEADER, 'Default', { loggedIn: true });
+        cy.changeArg('language', language);
+      });
+
+      it('should not show the login link', () => {
+        cy.get('[slot="post-login"]').invoke('prop', 'localName').should('not.eq', 'a');
+      });
+
+      it('should show the user menu trigger with an avatar', () => {
+        cy.get('[slot="post-login"] post-menu-trigger').should('be.visible');
+        cy.get('[slot="post-login"] post-avatar').should('be.visible');
+      });
+
+      it('should show the user menu with the correct user links', () => {
+        cy.get('[slot="post-login"] post-menu-trigger button').click();
+        cy.get('[slot="post-login"] post-menu')
+          .find('post-menu-item')
+          .should('be.visible')
+          .should('have.length', postLoginConfig.userLinks.length);
       });
     });
   });

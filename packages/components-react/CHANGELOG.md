@@ -1,5 +1,117 @@
 # @swisspost/design-system-components-react
 
+## 10.0.0
+
+### Major Changes
+
+- Simplified the banner and toast components:
+  - Removed the `icon` property; icons are no longer configurable
+  - Removed the `neutral` variant; the default is now `info`
+  - Renamed the `danger` variant to `error` (by [@alizedebray](https://github.com/alizedebray) with [#6063](https://github.com/swisspost/design-system/pull/6063))
+
+- Added the styles responsible for preventing fouc (flashes of unstyled content) for web-, angular- and react-components in the respective component packages:
+  - `@swisspost/design-system-components/post-components/post-components.css`
+  - `@swisspost/design-system-components-angular/post-components.css`
+  - `@swisspost/design-system-components-react/post-components.css` (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5165](https://github.com/swisspost/design-system/pull/5165))
+
+- Removed the `./standalone` export in the package.json, since it was only there for internal usage and is no longer needed. Projects can still import standalone components with `import { PostAccordion } from '@swisspost/design-system-components-react/post-accordion';` or `import { PostAccordion } from '@swisspost/design-system-components-react/server/post-accordion';`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7660](https://github.com/swisspost/design-system/pull/7660))
+
+- Refactored `<post-tabs>` component:
+  - Renamed `<post-tab-header>` component to `<post-tab-item>`
+  - Renamed `panel` property to `name` in `<post-tab-item>` component
+  - Renamed `name` property to `for` in `<post-tab-panel>` component
+  - Renamed `activePanel` property to `activeTab` in `<post-tabs>` component
+
+  BEFORE:
+
+  ```html
+  <post-tabs active-panel="first">
+    <post-tab-header panel="first">First tab</post-tab-header>
+    <post-tab-header panel="second">Second tab</post-tab-header>
+    <post-tab-header panel="third">Third tab</post-tab-header>
+
+    <post-tab-panel name="first"> This is the content of the first tab. </post-tab-panel>
+    <post-tab-panel name="second"> This is the content of the second tab. </post-tab-panel>
+    <post-tab-panel name="third"> This is the content of the third tab. </post-tab-panel>
+  </post-tabs>
+  ```
+
+  AFTER:
+
+  ````html
+  <post-tabs active-tab="first">
+    <post-tab-item name="first">First tab</post-tab-item>
+    <post-tab-item name="second">Second tab</post-tab-item>
+    <post-tab-item name="third">Third tab</post-tab-item>
+
+    <post-tab-panel for="first"> This is the content of the first tab. </post-tab-panel>
+    <post-tab-panel for="second"> This is the content of the second tab. </post-tab-panel>
+    <post-tab-panel for="third"> This is the content of the third tab. </post-tab-panel>
+  </post-tabs>
+  ``` (by [@alionazherdetska](https://github.com/alionazherdetska) and
+  [@alizedebray](https://github.com/alizedebray) with
+  [#6350](https://github.com/swisspost/design-system/pull/6350))
+  ````
+
+### Minor Changes
+
+- Add generated React Server Component icon exports built from @swisspost/design-system-icons. It's now possible to import react- and SSR-ready icons directly like `import { PostIconLetter } from @swisspost/design-system-components-react/icons` and use it like `<PostIconLetter size="1.5em"></PostIconLetter`>. With this change, it's no longer necessary to list the `@swisspost/design-system-icons` as a dependency of the project. (by [@gfellerph](https://github.com/gfellerph) with [#7011](https://github.com/swisspost/design-system/pull/7011))
+
+- Added standalone entry points for the components-react package, to provide fine grained import options. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7559](https://github.com/swisspost/design-system/pull/7559))
+
+- Added the `<post-header>` component. (by [@gfellerph](https://github.com/gfellerph) and [@alizedebray](https://github.com/alizedebray) with [#3837](https://github.com/swisspost/design-system/pull/3837))
+
+- Added the `node` export field for the default import paths (e.g. `@swisspost/design-system-components-react` or `@swisspost/design-system-components-react/post-accordion`), so it automatically imports our server components in a Next.js environment, while using client components in all other cases. This lets projects use the default export and allows us to provide custom icon wrapper components (e.g. `PostIconAdmin`, etc.), which automatically imports the correct component type, no matter where it is used (e.g. in a react browser app or a Next.js project).
+  `@swisspost/design-system-components-react/server` and `@swisspost/design-system-components-react/server/post-accordion` exports, are kept as the explicit server entries. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7660](https://github.com/swisspost/design-system/pull/7660))
+
+### Patch Changes
+
+- Added file extensions in relative import/export statements to make them browser conform. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6082](https://github.com/swisspost/design-system/pull/6082))
+
+- Fixed path to types file, errors like "Could not find a declaration file for module X" should now be gone. (by [@gfellerph](https://github.com/gfellerph) with [#5358](https://github.com/swisspost/design-system/pull/5358))
+
+- Added peer dependencies for `react` and `react-dom`. (by [@myrta2302](https://github.com/myrta2302) with [#5836](https://github.com/swisspost/design-system/pull/5836))
+
+- Removed the usage of StencilJS [build conditionals](https://stenciljs.com/docs/guides/build-conditionals) in utility modules and updated the generated react icon components imports, to avoid unwanted side-effects in Next.js projects. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7559](https://github.com/swisspost/design-system/pull/7559))
+
+- Added `sideEffects` field to the components and components-react package to improve tree-shaking. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7660](https://github.com/swisspost/design-system/pull/7660))
+
+- Initial release! (by [@gfellerph](https://github.com/gfellerph) with [#3718](https://github.com/swisspost/design-system/pull/3718))
+
+- Improved URL handling in `<post-icon>` component:
+  - Enhanced URL construction to properly handle both absolute and relative URLs
+  - Fixed slug detection to correctly identify root paths ("/") as valid slugs
+  - Maintained priority order for URL sources: base property > base tag > data-post-icon-base meta attribute (by [@schaertim](https://github.com/schaertim) with [#5109](https://github.com/swisspost/design-system/pull/5109))
+
+- Removed the hydrate app from Next.js client bundle, without loosing the capability to render declarative shadow DOM during SSR, by importing our server components into Next.js client components. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7660](https://github.com/swisspost/design-system/pull/7660))
+
+- Fixed an issue with property validation where some checks were run before the framework had the chance to add computed properties (for example Angular bindings like `[for]="$id"`). The checks are now delayed to work around this issue. (by [@gfellerph](https://github.com/gfellerph) with [#3775](https://github.com/swisspost/design-system/pull/3775))
+
+- Fixed export paths for the react icons to improve tree-shakeability. Icons are no longer exported as default. (by [@gfellerph](https://github.com/gfellerph) with [#7149](https://github.com/swisspost/design-system/pull/7149))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0
+
+## 10.0.0-next.76
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.76
+
+## 10.0.0-next.75
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.75
+
+## 10.0.0-next.74
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.74
+
 ## 10.0.0-next.73
 
 ### Patch Changes

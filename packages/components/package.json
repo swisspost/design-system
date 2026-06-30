@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components",
-  "version": "10.0.0-next.73",
+  "version": "10.0.0",
   "description": "A collection of web components built with Stencil JS for the Swiss Post Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -22,9 +22,9 @@
     "hydrate/"
   ],
   "sideEffects": [
-    "./dist/esm/post-components.js",
+    "./dist/esm/*.js",
     "./dist/cjs/post-components.cjs.js",
-    "./dist/components/index.js",
+    "./dist/components/*.js",
     "./dist/loader/index.js",
     "./dist/loader/index.cjs.js",
     "./cypress/**",
@@ -82,7 +82,7 @@
     "prebuild": "pnpm clean && pnpm prebuild:script",
     "build": "stencil build --docs-readme",
     "postbuild": "pnpm copy:hydrate-stub & pnpm copy:component-names & pnpm copy:styles:components-react & pnpm copy:styles:components-angular",
-    "clean": "rimraf --glob dist hydrate loader loaders www src/styles/generated src/_generated ../components-react/**/stencil-generated/ ../components-angular/projects/components/src/lib/stencil-generated/",
+    "clean": "rimraf --glob dist hydrate loader loaders www src/styles/generated src/_generated ../components-react/**/stencil-generated/ ../components-angular/**/stencil-generated/",
     "unit": "stencil test --spec",
     "unit:watch": "stencil test --spec --watchAll --silent",
     "unit:updatesnapshot": "stencil test --spec --updateSnapshot",
@@ -102,18 +102,17 @@
     "copy:hydrate-stub": "copyfiles -f src/hydrate-stub/* hydrate/",
     "copy:component-names": "copyfiles -f src/_generated/component-names.json dist/",
     "copy:styles:components-react": "copyfiles -f www/build/post-components.css ../components-react/src/stencil-generated/",
-    "copy:styles:components-angular": "copyfiles -f www/build/post-components.css ../components-angular/projects/components/src/lib/stencil-generated/"
+    "copy:styles:components-angular": "copyfiles -f www/build/post-components.css ../components-angular/src/stencil-generated/"
   },
   "dependencies": {
     "@floating-ui/dom": "1.7.6",
     "@oddbird/popover-polyfill": "0.6.0",
     "@stencil/core": "4.43.3",
-    "@swisspost/design-system-icons": "workspace:10.0.0-next.73",
-    "@swisspost/design-system-styles": "workspace:10.0.0-next.73",
+    "@swisspost/design-system-icons": "workspace:10.0.0",
+    "@swisspost/design-system-styles": "workspace:10.0.0",
     "air-datepicker": "3.6.0",
     "ally.js": "1.4.1",
-    "imask": "7.6.1",
-    "long-press-event": "2.5.2"
+    "imask": "7.6.1"
   },
   "devDependencies": {
     "@eslint/compat": "1.2.5",
@@ -125,7 +124,7 @@
     "@stencil/angular-output-target": "1.1.1",
     "@stencil/react-output-target": "1.2.0",
     "@stencil/sass": "3.0.12",
-    "@swisspost/design-system-eslint": "workspace:10.0.0-next.73",
+    "@swisspost/design-system-eslint": "workspace:10.0.0",
     "@types/jest": "catalog:stencil/jest",
     "@types/node": "catalog:node",
     "@typescript-eslint/parser": "7.18.0",

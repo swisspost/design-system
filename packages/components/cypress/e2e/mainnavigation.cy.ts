@@ -253,7 +253,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
         cy.get('@rightScroll').should('be.visible');
         cy.get('@leftScroll').should('not.be.visible');
 
-        cy.viewport(1600, 600);
+        cy.viewport(1920, 600);
         cy.get('@rightScroll').should('not.be.visible');
         cy.get('@leftScroll').should('not.be.visible');
 

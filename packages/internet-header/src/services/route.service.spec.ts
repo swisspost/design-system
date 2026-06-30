@@ -241,11 +241,9 @@ describe('route.service.ts', () => {
             navigation: [
               {
                 user: {
-                  id: '1',
-                  firstName: 'Jane',
-                  lastName: 'Doe',
+                  name: 'Jane',
+                  surname: 'Doe',
                   email: 'jane.doe@example.com',
-                  profilePicture: '/profile.jpg',
                 },
                 options: [optionLink],
               },

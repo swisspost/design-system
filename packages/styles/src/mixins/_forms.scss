@@ -106,8 +106,11 @@
     content: '';
     width: 100%;
     height: 100%;
+    -webkit-mask-size: tokens.get('checkbox-icon-size', components.$post-checkbox);
     mask-size: tokens.get('checkbox-icon-size', components.$post-checkbox);
+    -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
+    -webkit-mask-position: center;
     mask-position: center;
   }
 
@@ -138,12 +141,14 @@
 
   &:checked {
     &::after {
+      -webkit-mask-image: $checkbox-icon-checked;
       mask-image: $checkbox-icon-checked;
     }
   }
 
   &:indeterminate {
     &::after {
+      -webkit-mask-image: $checkbox-icon-indeterminate;
       mask-image: $checkbox-icon-indeterminate;
     }
   }

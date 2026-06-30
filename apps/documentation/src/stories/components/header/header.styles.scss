@@ -4,6 +4,16 @@
       height: 550px;
       overflow-y: auto;
     }
+
+    // Override for the default Story layout when sidenav is enabled
+    .virtual-body--side-nav {
+      display: flex;
+      flex-wrap: wrap;
+
+      post-header {
+        flex: 0 0 100%;
+      }
+    }
   }
 
   .docs-story {

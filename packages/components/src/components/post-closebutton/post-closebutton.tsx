@@ -1,6 +1,6 @@
 import { OneOf, Required } from '@/utils';
 import { version } from '@root/package.json';
-import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { AttachInternals, Component, Element, h, Host, Prop } from '@stencil/core';
 import { BUTTON_TYPES, ButtonType, Placement, PLACEMENT, SIZE, Size } from './types';
 
 /**
@@ -9,15 +9,21 @@ import { BUTTON_TYPES, ButtonType, Placement, PLACEMENT, SIZE, Size } from './ty
 @Component({
   tag: 'post-closebutton',
   styleUrl: 'post-closebutton.scss',
-  shadow: false,
+  shadow: true,
+  formAssociated: true,
 })
 export class PostClosebutton {
-  private mutationObserver = new MutationObserver(this.checkContent.bind(this));
+  @AttachInternals() internals!: ElementInternals;
 
-  @Element() host: HTMLPostClosebuttonElement;
+  private mutationObserver?: MutationObserver;
+
+  private visuallyHidden!: HTMLSpanElement;
+
+  @Element() host!: HTMLPostClosebuttonElement;
 
   /**
    * The "type" attribute used for the close button
+  
    */
   @Prop()
   @OneOf(BUTTON_TYPES)
@@ -40,15 +46,13 @@ export class PostClosebutton {
   size: Size = 'default';
 
   componentDidLoad() {
+    if (globalThis.MutationObserver) {
+      this.mutationObserver = new MutationObserver(this.checkContent.bind(this));
+      this.mutationObserver.observe(this.host, {
+        childList: true,
+      });
+    }
     this.checkContent();
-  }
-
-  connectedCallback() {
-    this.mutationObserver.observe(this.host, {
-      childList: true,
-      characterData: true,
-      subtree: true,
-    });
   }
 
   disconnectedCallback() {
@@ -58,17 +62,30 @@ export class PostClosebutton {
   }
 
   private checkContent() {
-    if (!this.host.querySelector('.visually-hidden').textContent) {
+    const slot = this.visuallyHidden.querySelector('slot') as HTMLSlotElement;
+    const hasContent = slot
+      ?.assignedNodes({ flatten: true })
+      .some(node => node.textContent?.trim());
+    if (!hasContent) {
       console.error(`The \`${this.host.localName}\` component requires content for accessibility.`);
     }
+  }
+
+  private handleClick() {
+    if (this.buttonType === 'reset') this.internals.form?.reset();
+    this.host.closest('dialog')?.close();
   }
 
   render() {
     return (
       <Host data-version={version}>
-        <button type={this.buttonType} class="btn btn-icon btn-secondary btn-sm">
+        <button
+          type={this.buttonType}
+          class="btn btn-icon btn-secondary btn-sm"
+          onClick={() => this.handleClick()}
+        >
           <post-icon aria-hidden="true" name="closex"></post-icon>
-          <span class="visually-hidden">
+          <span ref={el => (this.visuallyHidden = el as HTMLSpanElement)} class="visually-hidden">
             <slot></slot>
           </span>
         </button>

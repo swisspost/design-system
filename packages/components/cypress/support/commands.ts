@@ -26,6 +26,33 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
 
+const focusableSelector = `:where(${[
+  'button',
+  'input:not([type="hidden"])',
+  '[tabindex]',
+  'select',
+  'textarea',
+  '[contenteditable]',
+  'a[href]',
+  'iframe',
+  'audio[controls]',
+  'video[controls]',
+  'area[href]',
+  'details > summary:first-of-type',
+].join(',')})`;
+
+const focusDisablingSelector = `:where(${[
+  '[inert]',
+  '[inert] *',
+  ':disabled',
+  'dialog:not([open]) *',
+  '[popover]:not(:popover-open) *',
+  'details:not([open]) > *:not(details > summary:first-of-type)',
+  'details:not([open]) > *:not(details > summary:first-of-type) *',
+  '[tabindex^"-"]',
+  '[hidden]:not([hidden="false"])',
+].join(',')})`;
+
 export const isInViewport = function (_chai: Chai.ChaiStatic) {
   const assertIsInViewport = function (this: Chai.AssertionStatic) {
     const subject = this._obj;
@@ -63,10 +90,10 @@ Cypress.Commands.add('getComponents', (id: string, story: string, ...components:
   cy.injectAxe();
 });
 
-Cypress.Commands.add('getSnapshots', (story: string) => {
+Cypress.Commands.add('getSnapshots', (story: string, component = story) => {
   cy.visit(`/iframe.html?id=snapshots--${story}`);
 
-  const alias = story.replace(/^post-/, '');
+  const alias = (component ?? story).replace(/^post-/, '');
   cy.get(`post-${alias}[data-hydrated]`, { timeout: 30000 }).as(alias);
 
   cy.injectAxe();
@@ -91,41 +118,51 @@ Cypress.Commands.add(
   },
 );
 
+/**
+ * @function getFocusableElements
+ * Returns all focusable elements within the subject element (flat DOM only, no shadow roots).
+ * Excludes elements that are disabled, hidden, inert, or otherwise unfocusable.
+ * @param subject The jQuery-wrapped element to search within.
+ * @returns A Cypress chainable wrapping an array of focusable HTMLElements.
+ */
 Cypress.Commands.add(
   'getFocusableElements',
   { prevSubject: true },
   (subject: JQuery<HTMLElement>) => {
-    const focusableSelector = `:where(${[
-      'button',
-      'input:not([type="hidden"])',
-      '[tabindex]',
-      'select',
-      'textarea',
-      '[contenteditable]',
-      'a[href]',
-      'iframe',
-      'audio[controls]',
-      'video[controls]',
-      'area[href]',
-      'details > summary:first-of-type',
-    ].join(',')})`;
-
-    const focusDisablingSelector = `:where(${[
-      '[inert]',
-      '[inert] *',
-      ':disabled',
-      'dialog:not([open]) *',
-      '[popover]:not(:popover-open) *',
-      'details:not([open]) > *:not(details > summary:first-of-type)',
-      'details:not([open]) > *:not(details > summary:first-of-type) *',
-      '[tabindex^="-"]',
-      '[hidden]:not([hidden="false"])',
-    ].join(',')})`;
-
     const focusableElements = subject[0].querySelectorAll<HTMLElement>(
       `${focusableSelector}:not(${focusDisablingSelector})`,
     );
 
     return cy.wrap(Array.from(focusableElements));
+  },
+);
+
+/**
+ * @function getDeepFocusableElements
+ * Returns all focusable elements within the subject element, traversing into shadow roots recursively.
+ * Excludes elements that are disabled, hidden, inert, or otherwise unfocusable.
+ * @param subject The jQuery-wrapped element to search within, including its full shadow DOM tree.
+ * @returns A Cypress chainable wrapping a deduplicated array of focusable HTMLElements.
+ */
+Cypress.Commands.add(
+  'getDeepFocusableElements',
+  { prevSubject: true },
+  (subject: JQuery<HTMLElement>) => {
+    function collect(root: ParentNode, result: HTMLElement[]) {
+      root
+        .querySelectorAll<HTMLElement>(`${focusableSelector}:not(${focusDisablingSelector})`)
+        .forEach(el => result.push(el));
+
+      root.querySelectorAll<HTMLElement>('*').forEach(el => {
+        if (el.shadowRoot) {
+          collect(el.shadowRoot, result);
+        }
+      });
+    }
+
+    const result: HTMLElement[] = [];
+    collect(subject[0], result);
+
+    return cy.wrap([...new Set(result)]);
   },
 );
