@@ -1,5 +1,17 @@
 # @swisspost/design-system-components-angular
 
+## 10.0.0-next.76
+
+### Major Changes
+
+- Updated the library to be compatible with Angular 22. The peer dependencies were updated and v10 can no longer be used with lower Angular versions. (by [@alizedebray](https://github.com/alizedebray) with [#7928](https://github.com/swisspost/design-system/pull/7928))
+
+### Patch Changes
+
+- Updated the `post-number-input` to emit an input event when the value is changed via the plus and minus buttons. This fixes an issue in Angular where the changes were not detected by the form control assigned to the input element. (by [@alizedebray](https://github.com/alizedebray) with [#7946](https://github.com/swisspost/design-system/pull/7946))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.76
+
 ## 10.0.0-next.75
 
 ### Patch Changes
