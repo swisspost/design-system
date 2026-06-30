@@ -1,5 +1,25 @@
 # @swisspost/design-system-eslint
 
+## 10.0.0
+
+### Minor Changes
+
+- Added support for Angular dynamic class bindings in class replacement migration rule, supporting [class.foo], [ngClass], and [class] attributes. (by [@myrta2302](https://github.com/myrta2302) with [#6979](https://github.com/swisspost/design-system/pull/6979))
+
+- Added the automigration rule to update the HTML class `.h-visibilityhidden` to `.visibility-hidden`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6141](https://github.com/swisspost/design-system/pull/6141))
+
+- Added a migration rule that deletes all deprecated CSS classes from the code and removes the class attribute entirely if it becomes empty. (by [@myrta2302](https://github.com/myrta2302) and [@alizedebray](https://github.com/alizedebray) with [#6893](https://github.com/swisspost/design-system/pull/6893))
+
+- Added the automigration rule to update the HTML class `h-clearfix` to `clearfix`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#6141](https://github.com/swisspost/design-system/pull/6141))
+
+### Patch Changes
+
+- Added a migration rule for the updated 'rounded' utility classes. (by [@leagrdv](https://github.com/leagrdv) with [#4907](https://github.com/swisspost/design-system/pull/4907))
+
+- Fixed serialization issues in automigration rules that caused attribute names to be lowercased and valueless attributes to get `=""` appended. (by [@myrta2302](https://github.com/myrta2302) with [#7510](https://github.com/swisspost/design-system/pull/7510))
+
+- Added a migration rule to replace deprecated `form-text` class with the updated `form-hint` class. (by [@myrta2302](https://github.com/myrta2302) and [@alizedebray](https://github.com/alizedebray) with [#6142](https://github.com/swisspost/design-system/pull/6142))
+
 ## 10.0.0-next.76
 
 ## 10.0.0-next.75
