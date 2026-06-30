@@ -35,7 +35,7 @@ catalogs:
     '@angular/compiler-cli': 22.0.0
     '@angular/core': 22.0.0
     '@angular/forms': 22.0.0
-    '@angular/platform-browser': 22.0.0
+    '@angular/platform-browser': 22.0.4
     '@angular/router': 22.0.0
     'angular-eslint': 22.0.0
     'ng-packagr': 22.0.0
