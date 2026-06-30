@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-documentation': patch
+'@swisspost/design-system-documentation': minor
 ---
 
-Added the `components-react` package to the Getting started guide for developers.
+Added the new `components-react` package to the Getting started guide for developers.

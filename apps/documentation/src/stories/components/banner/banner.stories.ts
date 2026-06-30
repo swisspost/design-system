@@ -20,7 +20,7 @@ const meta: MetaComponent<PostBannerControls> = {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=1447-8848',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-V2?node-id=33070-74194',
     },
     controls: {
       exclude: ['dismissed'],

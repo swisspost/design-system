@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../../node_modules/@swisspost/design-system-styles/elements.css" />
+    <link
+      rel="stylesheet"
+      href="../../node_modules/@swisspost/design-system-styles/post-default.css"
+    />
     <link
       rel="stylesheet"
       href="../../node_modules/@swisspost/design-system-styles/components/header/index.css"
@@ -12,7 +15,7 @@
     <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
   </head>
   <body>
-    <post-header text-menu="Menu">
+    <post-header text-menu="Menu" full-width>
       <!-- Logo -->
       <post-logo slot="post-logo">Homepage</post-logo>
 
@@ -35,7 +38,7 @@
       <!-- Language switch -->
       <post-language-menu
         text-change-language="Change the language"
-        text-current-language="The currently selected language is #name."
+        text-current-language="The currently selected language is {name}."
         name="language-menu-example"
         slot="language-menu"
       >

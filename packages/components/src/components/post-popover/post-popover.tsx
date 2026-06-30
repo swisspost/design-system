@@ -44,8 +44,8 @@ export class PostPopover {
   @Prop() readonly arrow?: boolean = true;
 
   /**
-   * Programmatically display the popover
-   * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
+   * Programmatically display the popover,
+   * `target` is the HTML element the menu is anchored to.
    */
   @Method()
   async show(target: HTMLElement) {
@@ -62,9 +62,8 @@ export class PostPopover {
   }
 
   /**
-   * Toggle popover display
-   * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
-   * @param force Pass true to always show or false to always hide
+   * Toggle popover display,
+   * `target` is the HTML element the menu is anchored to.
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean) {
