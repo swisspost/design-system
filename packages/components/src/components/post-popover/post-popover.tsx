@@ -14,10 +14,9 @@ import { Component, Element, h, Host, Method, Prop, State } from '@stencil/core'
   shadow: true,
 })
 export class PostPopover {
-  private popoverRef: HTMLPostPopovercontainerElement;
-  private resizeObserver: ResizeObserver;
+  private popoverRef!: HTMLPostPopovercontainerElement;
 
-  @Element() host: HTMLPostPopoverElement;
+  @Element() host!: HTMLPostPopoverElement;
 
   @State() private edgeGap?: number;
 
@@ -71,24 +70,33 @@ export class PostPopover {
     if (isOpen) this.focusFirstEl();
   }
 
+  private readonly breakpointChange = () => {
+    requestAnimationFrame(() => this.updateEdgeGap());
+  };
+
+  connectedCallback() {
+    globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
+  }
+
   componentDidLoad() {
-    this.updateEdgeGap();
-    this.resizeObserver = new ResizeObserver(() => this.updateEdgeGap());
-    this.resizeObserver.observe(document.documentElement);
+    requestAnimationFrame(() => this.updateEdgeGap());
   }
 
   disconnectedCallback() {
-    this.resizeObserver?.disconnect();
+    globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange);
   }
 
-  // Dynamically update edge gap based on the post-closebutton icon's width
+  // Use rendered close button size to define edge gap
   private updateEdgeGap() {
-    const rawValue = getComputedStyle(this.host).getPropertyValue('--post-close-small-size').trim();
-    if (!rawValue) return;
+    const closeButton = this.host.shadowRoot?.querySelector(
+      'post-closebutton',
+    ) as HTMLElement | null;
+    if (!closeButton) return;
 
-    const num = Number.parseFloat(rawValue);
-    if (Number.isNaN(num)) return;
-    this.edgeGap = num / 2;
+    const width = closeButton.getBoundingClientRect().width;
+    if (!width || Number.isNaN(width)) return;
+
+    this.edgeGap = width / 2;
   }
 
   private focusFirstEl() {
@@ -109,7 +117,9 @@ export class PostPopover {
           arrow={this.arrow}
           placement={this.placement}
           edgeGap={this.edgeGap}
-          ref={e => (this.popoverRef = e)}
+          ref={e => {
+            if (e) this.popoverRef = e;
+          }}
         >
           <div class="popover-container">
             <div class="popover-content">

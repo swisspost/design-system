@@ -1,9 +1,5 @@
 @use '@swisspost/design-system-styles/core' as post;
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
-@use '@swisspost/design-system-styles/functions/tokens';
-@use '@swisspost/design-system-styles/tokens/components';
-
-tokens.$default-map: components.$post-close;
 
 * {
   box-sizing: border-box;
@@ -11,7 +7,6 @@ tokens.$default-map: components.$post-close;
 
 :host {
   display: contents;
-  --post-close-small-size: #{tokens.get('close-small-size')};
 }
 
 .visually-hidden {
