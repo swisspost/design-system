@@ -22,7 +22,7 @@ import {
 export function createMockIconSet(overrides?: Partial<IconSet>): IconSet {
   return {
     name: 'test',
-    apiUrl: 'http://test.com',
+    apiUrl: 'https://test.com',
     downloadDirectory: '/test/download',
     expectedSourcesPerIcon: 1,
     ...overrides,
@@ -42,7 +42,7 @@ export function createMockSourceIcon(
     type: Type.PicturePictogram,
     typeFilter: TypeFilter.Pictograms,
     meta: {
-      downloadLink: `http://test.com/${id}.svg`,
+      downloadLink: `https://test.com/${id}.svg`,
       businessfield: Businessfield.Kommunikation,
       keywords: ['test', 'icon'],
       year: '2024',
@@ -79,7 +79,7 @@ export function createMockSourceIconWithSize(
         size: { width: size, dpi: 72, height: size },
       },
       meta: {
-        downloadLink: `http://test.com/${baseName}.svg`,
+        downloadLink: `https://test.com/${baseName}.svg`,
         businessfield: Businessfield.Kommunikation,
         keywords: ['test', 'icon'],
         year: '2024',
@@ -254,7 +254,7 @@ export function createMockSourceIconList(): SourceIcon[] {
     createMockSourceIcon(
       {
         meta: {
-          downloadLink: 'http://test.com/1002.svg',
+          downloadLink: 'https://test.com/1002.svg',
           businessfield: Businessfield.Kommunikation,
           keywords: [],
           year: '2024',
