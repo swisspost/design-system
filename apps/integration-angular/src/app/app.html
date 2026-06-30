@@ -148,8 +148,8 @@
 
 <div class="main-container">
   <header class="palette palette-alternate mb-24">
-    <nav class="container py-12">
-      <p class="mb-12"><strong>Component Showcase Routes:</strong></p>
+    <nav aria-labelledby="nav-title" class="container py-12">
+      <p id="nav-title" class="mb-12"><strong>Component Showcase Routes:</strong></p>
       <ul class="d-flex flex-wrap row-gap-4 column-gap-16 m-0 list-unstyled">
         @for (route of navigationRoutes; track route.path) {
         <li>
