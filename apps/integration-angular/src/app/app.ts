@@ -4,6 +4,8 @@ import {
   PostBackToTop,
   PostBreadcrumbItem,
   PostBreadcrumbs,
+  PostCollapsible,
+  PostCollapsibleTrigger,
   PostFooter,
   PostHeader,
   PostIcon,
@@ -13,6 +15,8 @@ import {
   PostMainnavigation,
   PostMegadropdown,
   PostMegadropdownTrigger,
+  PostSideNavigation,
+  PostSideNavigationTrigger,
 } from '@swisspost/design-system-components-angular';
 
 @Component({
@@ -25,6 +29,8 @@ import {
     PostBackToTop,
     PostBreadcrumbItem,
     PostBreadcrumbs,
+    PostCollapsible,
+    PostCollapsibleTrigger,
     PostFooter,
     PostHeader,
     PostIcon,
@@ -34,6 +40,8 @@ import {
     PostMainnavigation,
     PostMegadropdown,
     PostMegadropdownTrigger,
+    PostSideNavigation,
+    PostSideNavigationTrigger,
   ],
 })
 export class App implements OnInit {
