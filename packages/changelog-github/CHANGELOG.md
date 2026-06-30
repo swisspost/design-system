@@ -1,5 +1,13 @@
 # @swisspost/design-system-changelog-github
 
+## 10.0.0
+
+### Minor Changes
+
+- Updated dependencies, co-contributors are now mentioned in changelogs and added a delay when making GitHub API calls to enable exiting pre-mode with 900+ changesets. (by [@gfellerph](https://github.com/gfellerph) with [#7923](https://github.com/swisspost/design-system/pull/7923))
+
+## 10.0.0-next.76
+
 ## 10.0.0-next.75
 
 ### Minor Changes

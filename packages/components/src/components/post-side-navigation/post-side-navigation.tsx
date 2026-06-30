@@ -11,7 +11,8 @@ import {
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
-import { getFocusableChildren, Required, Type } from '@/utils';
+import { getFocusableChildren, OneOf, Required, Type } from '@/utils';
+import { SIDE_NAVIGATION_SIZES, SideNavigationSize } from './side-navigation-styles';
 
 /**
  * @slot default - Slot for the navigation content (must be a `<nav>` landmark with proper heading)
@@ -33,6 +34,14 @@ export class PostSideNavigation {
   @Required()
   @Type('string')
   textClose!: string;
+
+  /**
+   * Controls the size of the navigation items.
+   * Choose "small" for deep and long navigation, and "large" (default) for a flat and short navigation.
+   */
+  @OneOf(SIDE_NAVIGATION_SIZES)
+  @Prop()
+  size?: SideNavigationSize = 'large';
 
   /**
    * An event emitted when the navigation is shown or hidden on mobile.
@@ -148,9 +157,7 @@ export class PostSideNavigation {
         }}
       >
         <slot />
-        <post-closebutton onClick={() => this.hide()}>
-          {this.textClose}
-        </post-closebutton>
+        <post-closebutton onClick={() => this.hide()}>{this.textClose}</post-closebutton>
       </dialog>
     );
   }
