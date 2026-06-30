@@ -1,5 +1,126 @@
 # @swisspost/design-system-components-angular
 
+## 10.0.0
+
+### Major Changes
+
+- Simplified the banner and toast components:
+  - Removed the `icon` property; icons are no longer configurable
+  - Removed the `neutral` variant; the default is now `info`
+  - Renamed the `danger` variant to `error` (by [@alizedebray](https://github.com/alizedebray) with [#6063](https://github.com/swisspost/design-system/pull/6063))
+
+- Removed the `<post-card-control>` web component. The component is now provided only as an HTML/CSS `Selection Card` implementation:
+  - `.card-control` is now `.selection-card`
+  - `.card-control--description` is now `.selection-card--description`
+  - `.card-control--icon` is now `.selection-card--icon` (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7026](https://github.com/swisspost/design-system/pull/7026))
+
+- Updated the library to be compatible with Angular 22. The peer dependencies were updated and v10 can no longer be used with lower Angular versions. (by [@alizedebray](https://github.com/alizedebray) with [#7928](https://github.com/swisspost/design-system/pull/7928))
+
+- Added the styles responsible for preventing fouc (flashes of unstyled content) for web-, angular- and react-components in the respective component packages:
+  - `@swisspost/design-system-components/post-components/post-components.css`
+  - `@swisspost/design-system-components-angular/post-components.css`
+  - `@swisspost/design-system-components-react/post-components.css` (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5165](https://github.com/swisspost/design-system/pull/5165))
+
+- Refactored `<post-tabs>` component:
+  - Renamed `<post-tab-header>` component to `<post-tab-item>`
+  - Renamed `panel` property to `name` in `<post-tab-item>` component
+  - Renamed `name` property to `for` in `<post-tab-panel>` component
+  - Renamed `activePanel` property to `activeTab` in `<post-tabs>` component
+
+  BEFORE:
+
+  ```html
+  <post-tabs active-panel="first">
+    <post-tab-header panel="first">First tab</post-tab-header>
+    <post-tab-header panel="second">Second tab</post-tab-header>
+    <post-tab-header panel="third">Third tab</post-tab-header>
+
+    <post-tab-panel name="first"> This is the content of the first tab. </post-tab-panel>
+    <post-tab-panel name="second"> This is the content of the second tab. </post-tab-panel>
+    <post-tab-panel name="third"> This is the content of the third tab. </post-tab-panel>
+  </post-tabs>
+  ```
+
+  AFTER:
+
+  ````html
+  <post-tabs active-tab="first">
+    <post-tab-item name="first">First tab</post-tab-item>
+    <post-tab-item name="second">Second tab</post-tab-item>
+    <post-tab-item name="third">Third tab</post-tab-item>
+
+    <post-tab-panel for="first"> This is the content of the first tab. </post-tab-panel>
+    <post-tab-panel for="second"> This is the content of the second tab. </post-tab-panel>
+    <post-tab-panel for="third"> This is the content of the third tab. </post-tab-panel>
+  </post-tabs>
+  ``` (by [@alionazherdetska](https://github.com/alionazherdetska) and
+  [@alizedebray](https://github.com/alizedebray) with
+  [#6350](https://github.com/swisspost/design-system/pull/6350))
+  ````
+
+- Updated Angular components to output as standalone components to align with Angular 20's default approach where components are standalone by default, eliminating the need to declare them within NgModules. Developers using our components should replace `PostComponentsModule` imports with `providePostComponents()` in their app providers and import individual components (e.g., `import { PostIcon, PostButton } from '@swisspost/design-system-components-angular'`) for standalone use.  
+  BEFORE:
+
+  ```typescript
+  // app.module.ts
+  @NgModule({
+    imports: [
+      PostComponentsModule,
+    ],
+  })
+  ```
+
+  AFTER:
+
+  ````typescript
+  //app.module.ts
+  @NgModule({
+    providers: [
+      providePostComponents(),
+    ],
+  })
+  ``` (by [@alionazherdetska](https://github.com/alionazherdetska) and [@alizedebray](https://github.com/alizedebray) with [#5968](https://github.com/swisspost/design-system/pull/5968))
+  ````
+
+### Minor Changes
+
+- Added component `<post-avatar>` to show an avatar, based on different possible input data (gravatar by email, initials by first- and/or lastname, fallback). (by [@oliverschuerch](https://github.com/oliverschuerch), [@alizedebray](https://github.com/alizedebray) and [@gfellerph](https://github.com/gfellerph) with [#3352](https://github.com/swisspost/design-system/pull/3352))
+
+- Added the `<post-header>` component. (by [@gfellerph](https://github.com/gfellerph) and [@alizedebray](https://github.com/alizedebray) with [#3837](https://github.com/swisspost/design-system/pull/3837))
+
+### Patch Changes
+
+- Updated peer dependencies `@angular/core`, `@angular/common` and `@angular/forms` of the package. (by [@myrta2302](https://github.com/myrta2302) with [#5836](https://github.com/swisspost/design-system/pull/5836))
+
+- Removed the `<post-tag>` component. The `.tag` class can be used instead. (by [@schaertim](https://github.com/schaertim) with [#5764](https://github.com/swisspost/design-system/pull/5764))
+
+- Updated the `post-number-input` to emit an input event when the value is changed via the plus and minus buttons. This fixes an issue in Angular where the changes were not detected by the form control assigned to the input element. (by [@alizedebray](https://github.com/alizedebray) with [#7946](https://github.com/swisspost/design-system/pull/7946))
+
+- Updated the project to use Angular version 19. (by [@alizedebray](https://github.com/alizedebray) with [#4853](https://github.com/swisspost/design-system/pull/4853))
+
+- Improved URL handling in `<post-icon>` component:
+  - Enhanced URL construction to properly handle both absolute and relative URLs
+  - Fixed slug detection to correctly identify root paths ("/") as valid slugs
+  - Maintained priority order for URL sources: base property > base tag > data-post-icon-base meta attribute (by [@schaertim](https://github.com/schaertim) with [#5109](https://github.com/swisspost/design-system/pull/5109))
+
+- Fixed an issue with dependency management around `@stencil/core`. This package no longer has to be installed as a dependency by projects using the Design System Components or Components Angular packages as it's now declared a dependency of the components package (was a devDependency before). (by [@gfellerph](https://github.com/gfellerph) with [#6554](https://github.com/swisspost/design-system/pull/6554))
+
+- Fixed an issue with property validation where some checks were run before the framework had the chance to add computed properties (for example Angular bindings like `[for]="$id"`). The checks are now delayed to work around this issue. (by [@gfellerph](https://github.com/gfellerph) with [#3775](https://github.com/swisspost/design-system/pull/3775))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0
+
+## 10.0.0-next.76
+
+### Major Changes
+
+- Updated the library to be compatible with Angular 22. The peer dependencies were updated and v10 can no longer be used with lower Angular versions. (by [@alizedebray](https://github.com/alizedebray) with [#7928](https://github.com/swisspost/design-system/pull/7928))
+
+### Patch Changes
+
+- Updated the `post-number-input` to emit an input event when the value is changed via the plus and minus buttons. This fixes an issue in Angular where the changes were not detected by the form control assigned to the input element. (by [@alizedebray](https://github.com/alizedebray) with [#7946](https://github.com/swisspost/design-system/pull/7946))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.76
+
 ## 10.0.0-next.75
 
 ### Patch Changes

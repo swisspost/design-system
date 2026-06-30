@@ -1,4 +1,15 @@
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/utilities';
+
+:root {
+  --post-side-navigation-width: 296px;
+}
+
+@include media.min(desktop) {
+  .main-container {
+    margin-inline-start: var(--post-side-navigation-width);
+  }
+}
 
 @include media.max(tablet) {
   post-side-navigation:not([data-hydrated]) {
@@ -7,11 +18,86 @@
 }
 
 post-side-navigation {
-  --post-side-navigation-indent: 2.5rem;
-  --post-side-navigation-icon-size: 1.25rem;
+  --post-side-navigation-item-enabled-fg: #050400;
+  --post-side-navigation-item-enabled-stroke-inactive: #b4b3af;
+  --post-side-navigation-item-enabled-stroke-active: #050400;
+  --post-side-navigation-item-selected-fg: #ffffff;
+  --post-side-navigation-item-selected-bg: #050400;
+  --post-side-navigation-item-selected-stroke: #ffffff;
+  --post-side-navigation-item-hovered-fg: #ffffff;
+  --post-side-navigation-item-hovered-bg: #504f4b;
+
+  --post-side-navigation-heading-fg: #696864;
+
+  --post-side-navigation-padding-block-end: 16px;
+  --post-side-navigation-height: 100vh;
+
+  // Large
+  --post-side-navigation-padding-block-start: 28px;
+
+  --post-side-navigation-heading-padding-block-start: 15px;
+  --post-side-navigation-heading-padding-block-end: 4px;
+  --post-side-navigation-heading-padding-inline: 16px;
+  --post-side-navigation-heading-font-size: 14px;
+
+  --post-side-navigation-item-padding-inline: 16px;
+  --post-side-navigation-item-height: 40px;
+  --post-side-navigation-item-gap: 12px;
+  --post-side-navigation-item-interval: 16px;
+  --post-side-navigation-icon-size: 16px;
+  --post-side-navigation-item-font-size: 14px;
+  --post-side-navigation-item-line-height: 1.5;
+  --post-side-navigation-item-divider-padding-block: 9px;
+
+  @include media.min(tablet) {
+    --post-side-navigation-padding-block-start: 34px;
+    --post-side-navigation-item-font-size: 16px;
+    --post-side-navigation-heading-padding-block-start: 12px;
+    --post-side-navigation-heading-font-size: 16px;
+    --post-side-navigation-item-divider-padding-block: 7.5px;
+    --post-side-navigation-item-gap: 16px;
+    --post-side-navigation-icon-size: 20px;
+  }
+
+  @include media.min(desktop) {
+    position: fixed;
+    top: var(--post-header-height);
+    width: var(--post-side-navigation-width);
+    --post-side-navigation-padding-block-start: 16px;
+    --post-side-navigation-item-font-size: 20px;
+    --post-side-navigation-height: calc(100vh - var(--post-header-height));
+    --post-side-navigation-heading-padding-block-start: 20px;
+    --post-side-navigation-item-height: 48px;
+  }
+
+  // Small
+  &[size='small'] {
+    --post-side-navigation-heading-padding-inline: 12px;
+    --post-side-navigation-item-padding-inline: 12px;
+    --post-side-navigation-item-height: 40px;
+    --post-side-navigation-item-gap: 8px;
+    --post-side-navigation-item-interval: 12px;
+    --post-side-navigation-icon-size: 16px;
+
+    @include media.min(tablet) {
+      --post-side-navigation-heading-padding-block-start: 15px;
+      --post-side-navigation-item-font-size: 14px;
+      --post-side-navigation-heading-font-size: 14px;
+    }
+
+    @include media.min(desktop) {
+      --post-side-navigation-heading-padding-block-start: 15px;
+      --post-side-navigation-item-font-size: 16px;
+      --post-side-navigation-heading-font-size: 14px;
+    }
+  }
 
   nav {
     width: 100%;
+    padding-block: var(--post-side-navigation-padding-block-start)
+      var(--post-side-navigation-padding-block-end);
+    height: var(--post-side-navigation-height);
+    overflow-y: auto;
 
     ul {
       list-style: none;
@@ -22,11 +108,13 @@ post-side-navigation {
 
   .post-side-navigation-heading {
     margin: 0;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
+    padding: var(--post-side-navigation-heading-padding-block-start)
+      var(--post-side-navigation-heading-padding-inline)
+      var(--post-side-navigation-heading-padding-block-end);
+    font-size: var(--post-side-navigation-heading-font-size);
     font-weight: 700;
-    color: rgba(0, 0, 0, 0.6);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    line-height: 1.5;
+    color: var(--post-side-navigation-heading-fg);
   }
 
   > ul > li > .post-side-navigation-item {
@@ -34,11 +122,11 @@ post-side-navigation {
   }
 
   // Active page indicator
-  .post-side-navigation-item[aria-current='page'] {
-    font-weight: 700;
-    background-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
-    min-width: 350px;
+  .post-side-navigation-item[aria-current='page'],
+  .post-side-navigation-item a[aria-current='page'] {
+    background-color: var(--post-side-navigation-item-selected-bg);
+    color: var(--post-side-navigation-item-selected-fg);
+    border-color: var(--post-side-navigation-item-selected-stroke);
   }
 
   // Nesting depth tracking via custom property inheritance
@@ -58,12 +146,24 @@ post-side-navigation {
     --_indent-level: 3;
   }
 
-  // Nested item indentation
-  ul ul .post-side-navigation-item {
-    padding-inline-start: calc(1rem + var(--_indent-level) * var(--post-side-navigation-indent));
+  // Nested item indentation with icons on first level
+  ul ul .post-side-navigation-item:not(:has(a):has(button)),
+  ul ul .post-side-navigation-item:has(a):has(button) a {
+    padding-inline-start: calc(
+      var(--post-side-navigation-item-padding-inline) + var(--_indent-level) *
+        var(--post-side-navigation-item-interval)
+    );
+  }
 
-    @include media.max(desktop) {
-      padding-inline-start: calc(1rem + var(--_indent-level) * 2.25rem);
+  // Nested item without icons on first level
+  ul > li:has(post-icon:not([name='chevrondown'])) {
+    ul .post-side-navigation-item:not(:has(a):has(button)),
+    ul .post-side-navigation-item:has(a):has(button) a {
+      padding-inline-start: calc(
+        var(--post-side-navigation-item-padding-inline) + var(--post-side-navigation-icon-size) +
+          var(--post-side-navigation-item-gap) + var(--_indent-level) *
+          var(--post-side-navigation-item-interval)
+      );
     }
   }
 
@@ -96,103 +196,174 @@ post-side-navigation {
   }
 }
 
-post-collapsible-trigger post-icon[name='chevrondown'] {
-  color: rgb(0, 0, 0);
-}
-
 // Navigation item row (link, button, span, or collapsible wrapper)
 .post-side-navigation-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--post-side-navigation-item-gap);
   width: 100%;
   min-width: 0;
   margin: 0;
-  padding: 0.75rem 1rem;
+  padding-inline: var(--post-side-navigation-item-padding-inline);
+  min-height: var(--post-side-navigation-item-height);
+  font-size: var(--post-side-navigation-item-font-size);
+  line-height: var(--post-side-navigation-item-line-height);
   box-sizing: border-box;
-
   border: 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  border-block-end: 1px solid var(--post-side-navigation-item-enabled-stroke-active);
   border-radius: 0;
-
   background-color: transparent;
-  color: rgb(0, 0, 0);
-  font: inherit;
+  color: var(--post-side-navigation-item-enabled-fg);
   text-align: start;
   text-decoration: none;
   appearance: none;
-  line-height: 1.5;
 
-  button {
-    display: flex;
-    align-items: center;
-    padding-inline: 0.5rem;
+  // Split link and button
+  &:has(a):has(button) {
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    gap: 0;
+    align-items: stretch;
 
-    border: 0;
-    border-inline-start: 1px solid rgba(0, 0, 0, 0.15);
-    background: transparent;
-    cursor: pointer;
-
-    > post-icon {
-      transition: transform 0.2s ease;
+    a {
+      flex: 1 1 auto;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      min-height: var(--post-side-navigation-item-height);
+      gap: var(--post-side-navigation-item-gap);
+      border-radius: 0;
+      padding-inline-end: var(--post-side-navigation-item-padding-inline);
     }
 
-    &[aria-expanded='true'] > post-icon {
-      transform: rotate(180deg);
+    button {
+      padding-inline: var(--post-side-navigation-item-padding-inline);
+      display: flex;
+      align-items: center;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      position: relative;
+      margin-left: 1px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: var(--post-side-navigation-item-divider-padding-block);
+        height: calc(100% - var(--post-side-navigation-item-divider-padding-block) * 2);
+        width: 1px;
+        background: var(--post-side-navigation-item-enabled-stroke-inactive);
+        left: -1px;
+      }
+    }
+  }
+
+  &:where(a, button),
+  &:has(a):has(button) a,
+  &:has(a):has(button) button {
+    cursor: pointer;
+    position: relative;
+    color: var(--post-side-navigation-item-enabled-fg);
+    transition:
+      background-color 250ms,
+      color 250ms;
+
+    // Custom inner focus
+    &::after {
+      --_offset: 3px;
+
+      content: '';
+      position: absolute;
+      pointer-events: none;
+      border: 2px solid transparent;
+      border-radius: 4px;
+      width: calc(100% - var(--_offset) * 2);
+      height: calc(100% - var(--_offset) * 2);
+      top: var(--_offset);
+      left: var(--_offset);
+    }
+
+    &:hover {
+      background-color: var(--post-side-navigation-item-hovered-bg);
+      color: var(--post-side-navigation-item-hovered-fg);
     }
   }
 
   &:where(a, button) {
-    cursor: pointer;
+    @include utilities.focus-style-custom('::after') {
+      border-color: var(--post-side-navigation-item-enabled-stroke-active);
+    }
 
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.06);
+    @include utilities.focus-style-custom("[aria-current='page']::after") {
+      border-color: var(--post-side-navigation-item-selected-stroke);
+    }
+
+    @include utilities.focus-style-custom() {
+      @include utilities.focus-style-none;
     }
   }
 
-  // Leading icon spacing
-  > post-icon:first-child {
-    flex: none;
+  &:has(a):has(button) a {
+    @include utilities.focus-style-custom('::after') {
+      border-color: var(--post-side-navigation-item-enabled-stroke-active);
+    }
+
+    @include utilities.focus-style-custom("[aria-current='page']::after") {
+      border-color: var(--post-side-navigation-item-selected-stroke);
+    }
+
+    @include utilities.focus-style-custom() {
+      @include utilities.focus-style-none;
+    }
   }
 
-  > post-icon[name='chevrondown'] {
+  &:has(a):has(button) button {
+    @include utilities.focus-style-custom('::after') {
+      border-color: var(--post-side-navigation-item-enabled-stroke-active);
+    }
+
+    @include utilities.focus-style-custom("[aria-current='page']::after") {
+      border-color: var(--post-side-navigation-item-selected-stroke);
+    }
+
+    @include utilities.focus-style-custom() {
+      @include utilities.focus-style-none;
+    }
+  }
+
+  post-icon {
+    flex: none;
+    width: var(--post-side-navigation-icon-size);
+    height: var(--post-side-navigation-icon-size);
+    color: inherit;
+  }
+
+  post-icon[name='chevrondown'] {
+    transition: transform 0.2s ease;
     margin-inline-start: auto;
   }
 
-  > post-icon:last-child {
-    transition: transform 0.2s ease;
-  }
-
-  &[aria-expanded='true'] > post-icon:last-child {
+  &[aria-expanded='true'] post-icon[name='chevrondown'],
+  [aria-expanded='true'] post-icon[name='chevrondown'] {
     transform: rotate(180deg);
   }
+}
 
-  > a {
-    flex: 1 1 auto;
-    color: inherit;
-    text-decoration: none;
+nav > ul > li {
+  // First level specific
+  & > .post-side-navigation-item,
+  & > post-collapsible-trigger > .post-side-navigation-item {
+    font-weight: 700;
   }
 
-  > post-collapsible-trigger {
-    margin-inline-start: auto;
+  // Border color mechanism to always have the outer borders of a level 1 darker
+  & .post-side-navigation-item:has(+ ul),
+  & li:has(+ li) .post-side-navigation-item,
+  .post-side-navigation-item[aria-expanded='true'] {
+    border-color: var(--post-side-navigation-item-enabled-stroke-inactive);
+  }
 
-    > button {
-      display: flex;
-      align-items: center;
-      padding-inline: 0.5rem;
-
-      border: 0;
-      border-inline-start: 1px solid rgba(0, 0, 0, 0.15);
-      background: transparent;
-      cursor: pointer;
-
-      > post-icon {
-        transition: transform 0.2s ease;
-      }
-
-      &[aria-expanded='true'] > post-icon {
-        transform: rotate(180deg);
-      }
-    }
+  &:first-child .post-side-navigation-item {
+    border-block-start: 1px solid var(--post-side-navigation-item-enabled-stroke-active);
   }
 }

@@ -41,17 +41,16 @@ $spacer: 1.5rem;
   }
 }
 
-@each $name, $color, $icon, $border-color, $icon-color,
-  $scheme in notification.$notification-variants
-{
+@each $variant in notification.$notification-variants {
+  $name: list.nth($variant, 1);
   .toast-#{$name} {
-    @include notification-mx.notification-variant(
-      $color,
-      $icon,
-      $border-color,
-      $icon-color,
-      $scheme
-    );
+    background-color: tokens.get('toast-color-#{$name}-bg', components.$post-toast);
+    border-color: tokens.get('toast-color-#{$name}-stroke', components.$post-toast);
+    --post-current-fg: #{tokens.get('toast-color-#{$name}-fg', components.$post-toast)};
+
+    &::before {
+      background-image: var(--post-signal-icon-#{$name});
+    }
   }
 }
 

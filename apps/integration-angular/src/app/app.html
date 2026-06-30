@@ -17,7 +17,7 @@
     <li>
       <a href="">
         <span>Search</span>
-        <post-icon aria-hidden="true" name="search"></post-icon>
+        <post-icon aria-hidden="true" name="search" />
       </a>
     </li>
   </ul>
@@ -27,13 +27,13 @@
     <li>
       <a href="">
         Career
-        <post-icon name="rocket" aria-hidden="true"></post-icon>
+        <post-icon name="rocket" aria-hidden="true" />
       </a>
     </li>
     <li>
       <a href="">
         Create Account
-        <post-icon name="adduser" aria-hidden="true"></post-icon>
+        <post-icon name="adduser" aria-hidden="true" />
       </a>
     </li>
   </ul>
@@ -55,7 +55,7 @@
 
   <a href="" slot="post-login">
     <span>Login</span>
-    <post-icon name="login"></post-icon>
+    <post-icon name="login" />
   </a>
 
   <!-- Main navigation -->
@@ -71,41 +71,36 @@
 
       <!-- Level 1 with megadropdown -->
       @for (dropdown of megadropdowns; track dropdown.id) {
-        <li>
-          <post-megadropdown-trigger [for]="dropdown.id">{{
-            dropdown.trigger
-          }}</post-megadropdown-trigger>
-          <post-megadropdown [id]="dropdown.id" textClose="Close" textBack="Back">
-            <a class="post-megadropdown-overview" [href]="dropdown.overviewLink"
-              >Overview {{ dropdown.trigger }}</a
-            >
-            <div class="post-megadropdown-grid">
-              @for (section of dropdown.sections; track section.title) {
-                <div>
-                  @if (section.titleLink) {
-                    <a
-                      class="post-megadropdown-list-title"
-                      [id]="section.id"
-                      [href]="section.titleLink"
-                      >{{ section.title }}</a
-                    >
-                  } @else {
-                    <p class="post-megadropdown-list-title" [id]="section.id">
-                      {{ section.title }}
-                    </p>
-                  }
-                  <ul class="post-megadropdown-list" [attr.aria-labelledby]="section.id">
-                    @for (link of section.links; track link.text) {
-                      <li>
-                        <a [href]="link.url">{{ link.text }}</a>
-                      </li>
-                    }
-                  </ul>
-                </div>
+      <li>
+        <post-megadropdown-trigger [for]="dropdown.id"
+          >{{ dropdown.trigger }}</post-megadropdown-trigger
+        >
+        <post-megadropdown [id]="dropdown.id" textClose="Close" textBack="Back">
+          <a class="post-megadropdown-overview" [href]="dropdown.overviewLink"
+            >Overview {{ dropdown.trigger }}</a
+          >
+          <div class="post-megadropdown-grid">
+            @for (section of dropdown.sections; track section.title) {
+            <div>
+              @if (section.titleLink) {
+              <a class="post-megadropdown-list-title" [id]="section.id" [href]="section.titleLink"
+                >{{ section.title }}</a
+              >
+              } @else {
+              <p class="post-megadropdown-list-title" [id]="section.id">{{ section.title }}</p>
               }
+              <ul class="post-megadropdown-list" [attr.aria-labelledby]="section.id">
+                @for (link of section.links; track link.text) {
+                <li>
+                  <a [href]="link.url">{{ link.text }}</a>
+                </li>
+                }
+              </ul>
             </div>
-          </post-megadropdown>
-        </li>
+            }
+          </div>
+        </post-megadropdown>
+      </li>
       }
     </ul>
   </post-mainnavigation>
@@ -116,9 +111,9 @@
     <p class="mb-12"><strong>Component Showcase Routes:</strong></p>
     <ul class="d-flex flex-wrap row-gap-4 column-gap-16 m-0 list-unstyled">
       @for (route of navigationRoutes; track route.path) {
-        <li>
-          <a [routerLink]="route.path">{{ route.title }}</a>
-        </li>
+      <li>
+        <a [routerLink]="route.path">{{ route.title }}</a>
+      </li>
       }
     </ul>
   </nav>
@@ -139,10 +134,10 @@
 
 <main class="container my-16">
   <h1>Hurray, it works!</h1>
-  <router-outlet></router-outlet>
+  <router-outlet />
 </main>
 
-<post-back-to-top textBackToTop="Back to top"></post-back-to-top>
+<post-back-to-top textBackToTop="Back to top" />
 
 <post-footer textFooter="Footer">
   <div slot="prefooter">
@@ -161,28 +156,26 @@
   </div>
 
   @for (grid of footerGrids; track grid.slot) {
-    <span [attr.id]="grid.slot + '-title'" [attr.slot]="grid.slot + '-title'">{{
-      grid.title
-    }}</span>
-    <ul [attr.slot]="grid.slot" [attr.aria-labelledby]="grid.slot + '-title'">
-      @for (link of footerLinks.slice(0, grid.linkCount); track link.text) {
-        <li>
-          <a [href]="link.url">{{ link.text }}</a>
-        </li>
-      }
-    </ul>
+  <span [attr.id]="grid.slot + '-title'" [attr.slot]="grid.slot + '-title'">{{ grid.title }}</span>
+  <ul [attr.slot]="grid.slot" [attr.aria-labelledby]="grid.slot + '-title'">
+    @for (link of footerLinks.slice(0, grid.linkCount); track link.text) {
+    <li>
+      <a [href]="link.url">{{ link.text }}</a>
+    </li>
+    }
+  </ul>
   }
 
   <div slot="socialmedia">
     <h3 id="socialmedia">Follow us</h3>
     <ul aria-labelledby="socialmedia">
       @for (social of socialMediaLinks; track social.name) {
-        <li>
-          <a [href]="social.url" class="btn btn-primary btn-icon">
-            <post-icon aria-hidden="true" [name]="social.icon"></post-icon>
-            <span class="visually-hidden">{{ social.name }}</span>
-          </a>
-        </li>
+      <li>
+        <a [href]="social.url" class="btn btn-primary btn-icon">
+          <post-icon aria-hidden="true" [name]="social.icon" />
+          <span class="visually-hidden">{{ social.name }}</span>
+        </a>
+      </li>
       }
     </ul>
   </div>
@@ -233,9 +226,9 @@
   <div slot="meta">
     <ul aria-label="Meta">
       @for (meta of metaLinks; track meta.text) {
-        <li>
-          <a [href]="meta.url">{{ meta.text }}</a>
-        </li>
+      <li>
+        <a [href]="meta.url">{{ meta.text }}</a>
+      </li>
       }
       <li>
         <button

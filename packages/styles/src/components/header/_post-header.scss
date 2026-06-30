@@ -124,6 +124,25 @@ post-header {
     }
   }
 
+  // side navigation trigger
+  > [slot='side-nav'] {
+    grid-area: side-nav;
+    flex-shrink: 0;
+
+    @include media.only(desktop) {
+      display: none;
+    }
+
+    > button {
+      @include nav-item-base;
+
+      @include media.only(mobile) {
+        @include nav-item-icon-only;
+        padding: 0.625rem;
+      }
+    }
+  }
+
   .local-login {
     margin-block: -0.25rem;
   }

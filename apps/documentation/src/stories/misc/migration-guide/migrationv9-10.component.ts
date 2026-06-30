@@ -213,6 +213,55 @@ export class MigrationV910Component extends LitElement {
                     `
                   : nothing
               }
+          <li>
+            <h3 class="d-flex align-items-center gap-8">AI-assisted migration 🤖 <span class="tag tag-sm tag-info">optional</span></h3>
+            <p>
+              There are <b>two ways</b> to handle this migration: do it
+              <b>manually</b> by skipping this AI-assisted migration part and following the steps below, or let the
+              <b>AI skill</b> do most of the work for you. Either way, you should still go through
+              the checklist below and verify every step yourself.
+            </p>
+
+            <post-banner type="warning" class="mt-16">
+              <p>
+                The skill relies on AI and on a set of predefined transformation rules. Keep the
+                following in mind before relying on it:
+              </p>
+              <ul>
+                <li>
+                  <b>The result is not guaranteed to be perfect.</b> Some transformations
+                  (NgbModal → native dialog, stepper, other ng-bootstrap components) often still
+                  need manual adjustments.
+                </li>
+                <li>It does <b>not replace a human review</b>. Always read the generated difference and never merge blindly.</li>
+                <li>Work on a dedicated branch and commit often so you can roll back easily.</li>
+                <li>Project-specific code may be missed or misinterpreted by the AI.</li>
+              </ul>
+            </post-banner>
+
+            <h5 class="pt-16">How to use it</h5>
+            <ol>
+              <li>
+                Follow the setup tutorial in the
+                <a href="https://github.com/postch/post-skills">post-skills repository</a>
+                to add the marketplace.
+              </li>
+              <li>
+                Install the developer skills plugin:
+                <code-block code=${'/plugin install software-developement@post-marketplace'}></code-block>
+              </li>
+              <li>
+                Once installed, ask Copilot to run the skill:
+                <code-block
+                  code=${'do this skill please swisspost-v10-migration'}
+                ></code-block>
+              </li>
+              <li>
+                Whichever option you picked, <b>review every step below</b> to confirm each change
+                was applied correctly, then finish with the clean up.
+              </li>
+            </ol>
+          </li>
             </p>
           </li>
           <li>
@@ -332,9 +381,15 @@ export class MigrationV910Component extends LitElement {
                       components is manual — you’ll need to update the affected components in
                       your application to use the corresponding elements as described in their
                       documentation.
-                    <ul>
-                      <li>carousel → <i>coming soon</i></li>
-                      <li>
+                    <ul class="list-unstyled mt-16">
+                      <li class="mb-16">
+                        <div class="form-check">
+                          <input type="checkbox" id="ngbootstrap-carousel" disabled />
+                          <label for="ngbootstrap-carousel">carousel → <span data-info="partial-automigration" class="tag tag-sm tag-warning">not available in v10</span>
+                          </label>
+                        </div>
+                      </li>
+                      <li class="mb-16">
                         <div class="form-check">
                           <input
                             id="ngbootstrap-custom_select"
@@ -351,11 +406,129 @@ export class MigrationV910Component extends LitElement {
                             <a href="/?path=/docs/8ca2bd70-56e6-4da9-b1fd-4e55388dca88--docs"
                               >post-menu</a
                             >
-                            <span class="info">Use native select for value selection, post-menu for action menus.</span>
+                            <span class="info">
+                              <p>
+                                How to decide which component to migrate to?
+                                For <strong>value selection</strong>, choose the native
+                                <code>&lt;select&gt;</code>, for <strong>action menus</strong>
+                                use the <code>&lt;post-menu&gt;</code> instead.
+                              </p>
+
+                              <p><strong>Before (v9 — custom select / NgbDropdown)</strong></p>
+                              <code-block
+                                code=${`<!-- v9 custom-select example (wrapper around NgbDropdown) -->\n<label for="customSelectButton" class="form-label">Shipping method</label>\n<div ngbDropdown>\n  <input [ngModel]="selectedShippingMethod?.value" name="shippingMethod" type="hidden" />\n\n  <button\n    #toggle\n    id="customSelectButton"\n    class="form-select text-start no-toggle-arrow"\n    ngbDropdownToggle\n    type="button"\n    aria-haspopup="listbox"\n    (keydown)="setFocus($event)"\n  >\n    <span [class.visually-hidden]="selectedShippingMethod">Choose shipping method</span>\n    <span *ngIf="selectedShippingMethod" aria-hidden="true">{{ selectedShippingMethod.label }}</span>\n  </button>\n\n  <div\n    ngbDropdownMenu\n    role="listbox"\n    class="w-100 mw-100"\n    aria-labelledby="customSelectButton"\n  >\n    <button\n      *ngFor="let option of shippingOptions"\n      ngbDropdownItem\n      role="option"\n      class="d-flex align-items-center"\n      [class.active]="selectedShippingMethod?.value === option.value"\n      [attr.aria-selected]="selectedShippingMethod?.value === option.value"\n      (focus)="selectedShippingMethod = option"\n      (click)="toggle.focus()"\n      #option\n      type="button"\n    >\n      <span>{{ option.label }}</span>\n    </button>\n  </div>\n</div>`}
+                              ></code-block>
+
+                              <p><strong>Before (v9 — NgbDropdown action menu)</strong></p>
+                              <code-block
+                                code=${`<!-- v9 dropdown example -->\n<div ngbDropdown class="me-2">\n  <button id="dropdownBasic1" class="btn btn-secondary" ngbDropdownToggle type="button">\n    Actions\n  </button>\n\n  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">\n    <button ngbDropdownItem type="button" (click)="editItem()">Edit</button>\n    <button ngbDropdownItem type="button" (click)="duplicateItem()">Duplicate</button>\n    <button ngbDropdownItem type="button" (click)="deleteItem()">Delete</button>\n  </div>\n</div>`}
+                              ></code-block>
+
+                              <p><strong>After (v10 — selection control)</strong></p>
+                              <p>
+                                For selecting a value in a form, replace with a native
+                                <code>&lt;select&gt;</code>.
+                              </p>
+                              <code-block
+                                code=${`<!-- template -->\n<label for="shipping-method" class="form-label">Shipping method</label>\n<select\n  id="shipping-method"\n  class="form-select"\n  [(ngModel)]="shippingMethod"\n>\n  <option value="standard">Standard</option>\n  <option value="priority">Priority</option>\n</select>`}
+                              ></code-block>
+                              <p>
+                                <strong>Important:</strong> when migrating to native
+                                <code>&lt;select&gt;</code>, option rendering falls back to the
+                                browser default UI. Custom option layouts, icons, and advanced
+                                per-option styling from the old custom-select/dropdown pattern are
+                                not preserved.
+                              </p>
+                              <p>
+                                Also note that <code>NgbDropdown</code> API methods and behaviors
+                                (for example programmatic open/close flows and related config)
+                                are not available on native <code>&lt;select&gt;</code>. If your
+                                feature relied on them, you need to implement that logic manually.
+                              </p>
+
+                              <p><strong>After (v10 — action menu)</strong></p>
+                              <p>
+                                For triggering actions (not storing a selected value), replace
+                                with <code>post-menu</code>.
+                              </p>
+                              <code-block
+                                code=${`<!-- template -->\n<post-menu-trigger for="row-actions-menu">\n  <button class="btn btn-secondary" type="button">Actions</button>\n</post-menu-trigger>\n\n<post-menu id="row-actions-menu" label="Row actions">\n  <post-menu-item><button type="button" (click)="editItem()">Edit</button></post-menu-item>\n  <post-menu-item><button type="button" (click)="duplicateItem()">Duplicate</button></post-menu-item>\n  <post-menu-item><button type="button" (click)="deleteItem()">Delete</button></post-menu-item>\n</post-menu>`}
+                              ></code-block>
+
+                              <p><strong>API mapping (NgbDropdown → post-menu)</strong></p>
+                              <table class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th>NgbDropdown (v9)</th>
+                                    <th>post-menu (v10)</th>
+                                    <th>Notes</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td><code>ngbDropdown</code></td>
+                                    <td><code>post-menu</code></td>
+                                    <td>Main container for menu content.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>ngbDropdownToggle</code></td>
+                                    <td><code>post-menu-trigger</code> with <code>for="menu-id"</code></td>
+                                    <td>Trigger is an explicit companion element.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>ngbDropdownMenu</code></td>
+                                    <td>default slot content inside <code>post-menu</code></td>
+                                    <td>Menu body is slotted content.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>ngbDropdownItem</code></td>
+                                    <td><code>post-menu-item</code></td>
+                                    <td>Put a native <code>button</code> or <code>a</code> inside each menu item.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>placement</code></td>
+                                    <td><code>placement</code></td>
+                                    <td>Concept is equivalent; values follow Floating UI placements.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>open()</code> / <code>close()</code> / <code>toggle()</code></td>
+                                    <td><code>show(target)</code> / <code>hide()</code> / <code>toggle(target)</code></td>
+                                    <td>Programmatic API for custom toggling of the dropdown menu.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>openChange</code> / <code>isOpen()</code></td>
+                                    <td><code>toggleMenu</code> event</td>
+                                    <td>Use emitted boolean state; no direct public <code>isOpen()</code> API.</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+
+                              <p><strong>Important differences (no direct 1:1 mapping)</strong></p>
+                              <ul>
+                                <li>
+                                  <code>autoClose</code> options from <code>NgbDropdown</code>
+                                  have no dedicated equivalent on <code>post-menu</code>.
+                                </li>
+                                <li>
+                                  <code>container</code>, <code>display</code>, and
+                                  <code>dropdownClass</code> options do not map directly.
+                                </li>
+                                <li>
+                                  If your old dropdown primarily selected a value, migrate to
+                                  native <code>&lt;select&gt;</code> instead of
+                                  <code>post-menu</code>.
+                                </li>
+                                <li>
+                                  Native <code>&lt;select&gt;</code> does not expose
+                                  <code>NgbDropdown</code> methods. Any such behavior must be
+                                  implemented manually in your application code.
+                                </li>
+                              </ul>
+                            </span>
                           </label>
                         </div>
                       </li>
-                      <li>
+                      <li class="mb-16">
                         <div class="form-check">
                           <input
                             id="ngbootstrap-datatable"
@@ -372,7 +545,7 @@ export class MigrationV910Component extends LitElement {
                           </label>
                         </div>
                       </li>
-                      <li>
+                      <li class="mb-16">
                         <div class="form-check">
                           <input
                             id="ngbootstrap-datepicker"
@@ -485,7 +658,7 @@ export class MigrationV910Component extends LitElement {
                           </label>
                         </div>
                       </li>
-                      <li>
+                      <li class="mb-16">
                         <div class="form-check">
                           <input
                             id="ngbootstrap-pagination"
@@ -610,7 +783,7 @@ export class MyComponent {
                           </label>
                         </div>
                       </li>
-                      <li>
+                      <li class="mb-16">
                         <div class="form-check">
                           <input
                             id="ngbootstrap-progressbar"
@@ -685,7 +858,7 @@ export class MyComponent {
                                           or any other Bootstrap color variant
                                         </td>
                                         <td>
-                                          No direct equivalent. Use <code>class="progressbar"</code></br> 
+                                          No direct equivalent. Use <code>class="progressbar"</code></br>
                                           for the <code>neutral</code> appearance.
                                         </td>
                                       </tr>
@@ -727,7 +900,7 @@ export class MyComponent {
                           </label>
                         </div>
                       </li>
-                      <li>
+                      <li class="mb-16">
                         <div class="form-check">
                           <input
                             id="ngbootstrap-timepicker"
