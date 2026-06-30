@@ -380,9 +380,15 @@ export class MigrationV910Component extends LitElement {
                       components is manual — you’ll need to update the affected components in
                       your application to use the corresponding elements as described in their
                       documentation.
-                    <ul>
-                      <li>carousel → <i>coming soon</i></li>
-                      <li>
+                    <ul class="list-unstyled mt-16">
+                      <li class="mb-16">
+                        <div class="form-check">
+                          <input type="checkbox" id="ngbootstrap-carousel" disabled />
+                          <label for="ngbootstrap-carousel">carousel → <span data-info="partial-automigration" class="tag tag-sm tag-warning">not available in v10</span>
+                          </label>
+                        </div>
+                      </li>
+                      <li class="mb-16">
                         <div class="form-check">
                           <input
                             id="ngbootstrap-custom_select"
@@ -521,7 +527,7 @@ export class MigrationV910Component extends LitElement {
                           </label>
                         </div>
                       </li>
-                      <li>
+                      <li class="mb-16">
                         <div class="form-check">
                           <input
                             id="ngbootstrap-datatable"
@@ -538,7 +544,7 @@ export class MigrationV910Component extends LitElement {
                           </label>
                         </div>
                       </li>
-                      <li>
+                      <li class="mb-16">
                         <div class="form-check">
                           <input
                             id="ngbootstrap-datepicker"
@@ -651,7 +657,7 @@ export class MigrationV910Component extends LitElement {
                           </label>
                         </div>
                       </li>
-                      <li>
+                      <li class="mb-16">
                         <div class="form-check">
                           <input
                             id="ngbootstrap-pagination"
@@ -776,7 +782,7 @@ export class MyComponent {
                           </label>
                         </div>
                       </li>
-                      <li>
+                      <li class="mb-16">
                         <div class="form-check">
                           <input
                             id="ngbootstrap-progressbar"
@@ -893,7 +899,7 @@ export class MyComponent {
                           </label>
                         </div>
                       </li>
-                      <li>
+                      <li class="mb-16">
                         <div class="form-check">
                           <input
                             id="ngbootstrap-timepicker"
@@ -1778,7 +1784,7 @@ export class MyComponent {
                           to add spacing between elements and the
                           <code>.visually-hidden</code> class to hide content.</span
                         >
-                      </label>J'
+                      </label>
                     </div>
                   </li>
                   <li class="mb-16">

@@ -1,5 +1,20 @@
 # @swisspost/design-system-tokens
 
+## 10.0.0
+
+### Minor Changes
+
+- Added a new output that includes utility tokens as Sass maps, enabling direct iteration to generate utility classes. (by [@alizedebray](https://github.com/alizedebray) with [#4613](https://github.com/swisspost/design-system/pull/4613))
+
+- Export new SASS maps for Post and Cargo palettes, directly linking to the raw color values for both light and dark color schemes. (by [@alizedebray](https://github.com/alizedebray) with [#3992](https://github.com/swisspost/design-system/pull/3992))
+
+### Patch Changes
+
+- Added a function to transform font sizes from px to rem. (by [@leagrdv](https://github.com/leagrdv) with [#5321](https://github.com/swisspost/design-system/pull/5321))
+
+- Added a transform function to avoid unitless zero values for specific token types (like `dimension`, etc.), which allows us to use these tokens also in css `calc()` functions. Because `<number-token>`s are always interpreted as `<number>`s or `<integer>`s, "unitless 0" `<length>`s aren’t supported in calc().
+  Source: https://drafts.csswg.org/css-values-3/#calc-type-checking (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4534](https://github.com/swisspost/design-system/pull/4534))
+
 ## 10.0.0-next.76
 
 ## 10.0.0-next.75
