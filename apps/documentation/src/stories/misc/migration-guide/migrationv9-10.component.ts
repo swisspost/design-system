@@ -2404,8 +2404,7 @@ export class MyComponent {
 
             <post-banner variant="info">
               <p>Not all previous icons are (or will be) available in the new Icon Set. Instead, we produce icons on request.</p>
-              <p>For this reason, the previous Icon Set stays available and it's allowed to use
-              icons from there, if there is no equivalent in the new Icon Set. However, we strongly recommend switching to the new <strong>UI Icon Set</strong>
+              <p>For this reason, the previous Icon Set stays available and you can continue using icons from it if no equivalent exists in the new Icon Set. However, we strongly recommend switching to the new <strong>UI Icon Set</strong>
               whenever possible!</p>
             </post-banner>
 
