@@ -1,5 +1,11 @@
 # @swisspost/design-system-documentation
 
+## 6.0.1
+
+### Patch Changes
+
+- Release v10.0.0 docs (by [@oliverschuerch](https://github.com/oliverschuerch) with [#8014](https://github.com/swisspost/design-system/pull/8014))
+
 ## 6.0.0
 
 ### Major Changes
