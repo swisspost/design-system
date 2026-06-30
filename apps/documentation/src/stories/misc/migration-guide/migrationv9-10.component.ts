@@ -384,7 +384,7 @@ export class MigrationV910Component extends LitElement {
                       <li class="mb-16">
                         <div class="form-check">
                           <input type="checkbox" id="ngbootstrap-carousel" disabled />
-                          <label for="ngbootstrap-carousel">carousel → <span data-info="partial-automigration" class="tag tag-sm tag-warning">coming in a later release</span>
+                          <label for="ngbootstrap-carousel">carousel → <span data-info="partial-automigration" class="tag tag-sm tag-warning">not available in v10</span>
                           </label>
                         </div>
                       </li>
