@@ -5,25 +5,31 @@
 
 import { ChangelogFunctions } from '@changesets/types';
 import { config } from 'dotenv';
-import { appendFileSync } from 'node:fs';
-import { resolve } from 'node:path';
-ä;
+
 config();
 
-// Append a line to a timeout logfile at the repository root for every request
-// that times out, so recurring offenders can be identified across runs.
-const TIMEOUT_LOG_FILE = resolve(process.cwd(), 'changelog-timeouts.log');
+// ---------------------------------------------------------------------------
+// Configuration (override via environment variables)
+// ---------------------------------------------------------------------------
 
-function logTimeout(entry: Record<string, unknown>) {
-  try {
-    appendFileSync(
-      TIMEOUT_LOG_FILE,
-      `${JSON.stringify({ timestamp: new Date().toISOString(), ...entry })}\n`,
-    );
-  } catch {
-    // Never let logging failures break changelog generation.
-  }
-}
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_GRAPHQL_URL = process.env.GITHUB_GRAPHQL_URL || 'https://api.github.com/graphql';
+const GITHUB_SERVER_URL = process.env.GITHUB_SERVER_URL || 'https://github.com';
+
+// Abort a single GitHub request if it stalls, then retry on timeouts or
+// secondary rate limits.
+const REQUEST_TIMEOUT_MS = Number(process.env.CHANGELOG_REQUEST_TIMEOUT_MS) || 30_000;
+const MAX_RETRIES = Number(process.env.CHANGELOG_MAX_RETRIES) || 1;
+
+// Max commits to request per batched GraphQL call. Smaller batches keep each
+// query cheap and fast so it is far less likely to time out.
+const COMMIT_BATCH_SIZE = Number(process.env.CHANGELOG_COMMIT_BATCH_SIZE) || 25;
+
+// Minimum delay between the start of any two GitHub requests, to avoid bursts
+// that trigger GitHub's secondary rate limiting.
+const MIN_REQUEST_INTERVAL_MS = Number(process.env.CHANGELOG_MIN_REQUEST_INTERVAL_MS) || 100;
+
+// ---------------------------------------------------------------------------
 
 // Resolved information for a single commit: PR/user links and co-authors, all
 // derived from one batched GraphQL lookup.
@@ -45,22 +51,6 @@ const EMPTY_COMMIT_INFO: CommitInfo = {
 // Cache commit info by commit hash to avoid duplicate API calls
 const commitInfoCache = new Map<string, Promise<CommitInfo>>();
 
-// Abort a single GitHub request if it stalls, and retry a few times on
-// timeouts or secondary rate limits. The batched GraphQL query resolves up to
-// COAUTHOR_BATCH_SIZE commits at once, which can be slow on GitHub's side, so
-// the timeout is generous and configurable.
-const REQUEST_TIMEOUT_MS = Number(process.env.CHANGELOG_REQUEST_TIMEOUT_MS) || 30_000;
-const MAX_RETRIES = 1;
-
-const GITHUB_GRAPHQL_URL = process.env.GITHUB_GRAPHQL_URL || 'https://api.github.com/graphql';
-
-// Max commits to request per batched GraphQL call. Smaller batches keep each
-// query cheap and fast so it is far less likely to time out.
-const COAUTHOR_BATCH_SIZE = Number(process.env.CHANGELOG_COAUTHOR_BATCH_SIZE) || 25;
-
-// Throttle outgoing GitHub requests so no two start less than this many ms
-// apart. This prevents bursts that trigger GitHub's secondary rate limiting.
-const MIN_REQUEST_INTERVAL_MS = Number(process.env.CHANGELOG_MIN_REQUEST_INTERVAL_MS) || 100;
 let throttleChain: Promise<void> = Promise.resolve();
 let lastRequestStartedAt = 0;
 
@@ -81,10 +71,6 @@ function throttleRequest(): Promise<void> {
   return throttleChain;
 }
 
-// Progress tracking
-let processedCount = 0;
-let cacheHits = 0;
-
 /**
  * Fetch a GitHub endpoint with a request timeout and retry/backoff that
  * honors the `Retry-After` header on secondary rate limit responses.
@@ -99,7 +85,6 @@ async function githubFetch(
   url: string,
   token: string,
   init: GithubFetchInit = {},
-  context: { label?: string; commits?: string[] } = {},
 ): Promise<Response> {
   for (let attempt = 0; ; attempt++) {
     const controller = new AbortController();
@@ -137,16 +122,6 @@ async function githubFetch(
       return response;
     } catch (error) {
       const isTimeout = error instanceof Error && error.name === 'AbortError';
-      if (isTimeout) {
-        logTimeout({
-          label: context.label ?? 'github-request',
-          url,
-          attempt,
-          timeoutMs: REQUEST_TIMEOUT_MS,
-          willRetry: attempt < MAX_RETRIES,
-          commits: context.commits,
-        });
-      }
       if (attempt < MAX_RETRIES) {
         const waitMs = 2 ** attempt * 1000;
         process.stderr.write(
@@ -235,10 +210,8 @@ function buildCommitInfoQuery(repoOrder: string[], reposToCommits: Map<string, S
 
 /** Parse Co-authored-by trailers from a squash merge commit message. */
 function parseCoAuthors(message: string, mainUserLogin: string | null): string[] {
-  const serverUrl = process.env.GITHUB_SERVER_URL || 'https://github.com';
   const users = new Set<string>();
 
-  // Parse Co-authored-by trailers from the squash merge commit
   const coAuthorMatches = message.matchAll(/^Co-authored-by:\s+.+<([^>]+)>/gm);
   for (const match of coAuthorMatches) {
     // GitHub noreply emails contain the username
@@ -256,25 +229,22 @@ function parseCoAuthors(message: string, mainUserLogin: string | null): string[]
     }
   }
 
-  return [...users].map(login => `[@${login}](${serverUrl}/${login})`);
+  return [...users].map(login => `[@${login}](${GITHUB_SERVER_URL}/${login})`);
 }
 
 /** Derive links + co-authors from a commit node, mirroring getInfo's logic. */
 function deriveCommitInfo(commit: string, node: CommitGraphqlNode): CommitInfo {
   if (!node) return EMPTY_COMMIT_INFO;
 
-  let user = node.author && node.author.user ? node.author.user : null;
+  let user = node.author?.user ?? null;
 
+  // Pick the earliest-merged associated PR (unmerged PRs rank last), matching
+  // getInfo's behavior.
   const prNodes = node.associatedPullRequests?.nodes ?? [];
+  const mergedRank = (pr: { mergedAt: string | null }) =>
+    pr.mergedAt ? new Date(pr.mergedAt).getTime() : Infinity;
   const associatedPullRequest = prNodes.length
-    ? [...prNodes].sort((a, b) => {
-        if (a.mergedAt === null && b.mergedAt === null) return 0;
-        if (a.mergedAt === null) return 1;
-        if (b.mergedAt === null) return -1;
-        const da = new Date(a.mergedAt).getTime();
-        const db = new Date(b.mergedAt).getTime();
-        return da > db ? 1 : da < db ? -1 : 0;
-      })[0]
+    ? prNodes.reduce((best, pr) => (mergedRank(pr) < mergedRank(best) ? pr : best))
     : null;
 
   // Prefer the PR author over the commit author, matching getInfo's behavior.
@@ -298,8 +268,7 @@ function deriveCommitInfo(commit: string, node: CommitGraphqlNode): CommitInfo {
 async function flushCommitBatch(batch: PendingCommit[]) {
   if (batch.length === 0) return;
 
-  const token = process.env.GITHUB_TOKEN;
-  if (!token) {
+  if (!GITHUB_TOKEN) {
     process.stderr.write(`\n⚠️ Changelog: GITHUB_TOKEN is not set, skipping GitHub info lookup\n`);
     for (const item of batch) item.resolve(EMPTY_COMMIT_INFO);
     return;
@@ -307,8 +276,8 @@ async function flushCommitBatch(batch: PendingCommit[]) {
 
   // Process in chunks so a single GraphQL request never gets too large. Chunks
   // run sequentially to stay gentle on the API.
-  for (let start = 0; start < batch.length; start += COAUTHOR_BATCH_SIZE) {
-    const chunk = batch.slice(start, start + COAUTHOR_BATCH_SIZE);
+  for (let start = 0; start < batch.length; start += COMMIT_BATCH_SIZE) {
+    const chunk = batch.slice(start, start + COMMIT_BATCH_SIZE);
 
     const reposToCommits = new Map<string, Set<string>>();
     for (const { repo, commit } of chunk) {
@@ -319,16 +288,11 @@ async function flushCommitBatch(batch: PendingCommit[]) {
     const query = buildCommitInfoQuery(repoOrder, reposToCommits);
 
     try {
-      const response = await githubFetch(
-        GITHUB_GRAPHQL_URL,
-        token,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ query }),
-        },
-        { label: 'commit-info-batch', commits: chunk.map(c => c.commit) },
-      );
+      const response = await githubFetch(GITHUB_GRAPHQL_URL, GITHUB_TOKEN, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query }),
+      });
 
       if (!response.ok) {
         process.stderr.write(
@@ -373,12 +337,8 @@ async function flushCommitBatch(batch: PendingCommit[]) {
  * single GraphQL request per tick and cached by commit hash.
  */
 function loadCommitInfo(repo: string, commit: string): Promise<CommitInfo> {
-  if (commitInfoCache.has(commit)) {
-    cacheHits++;
-    processedCount++;
-    process.stderr.write(`\r🔗 Changelog: ${processedCount} processed (${cacheHits} cached)`);
-    return commitInfoCache.get(commit)!;
-  }
+  const cached = commitInfoCache.get(commit);
+  if (cached) return cached;
 
   const promise = new Promise<CommitInfo>((resolve, reject) => {
     pendingCommits.push({ repo, commit, resolve, reject });
@@ -390,8 +350,6 @@ function loadCommitInfo(repo: string, commit: string): Promise<CommitInfo> {
   promise.catch(() => commitInfoCache.delete(commit));
 
   commitInfoCache.set(commit, promise);
-  processedCount++;
-  process.stderr.write(`\r🔗 Changelog: ${processedCount} processed (${cacheHits} cached)`);
   return promise;
 }
 
