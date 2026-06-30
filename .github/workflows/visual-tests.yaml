@@ -73,21 +73,21 @@ jobs:
         id: should-update
         run: |
           UPDATE=false
-          
+
           if [[ "${{ github.event_name }}" == "push" ]] && [[ ("${{ github.ref_name }}" == "main" || "${{ github.ref_name }}" =~ ^release/) ]]; then
             UPDATE=true
           fi
-          
+
           if [[ "${{ github.event.inputs.update-snapshots }}" == "true" ]]; then
             UPDATE=true
           fi
-          
+
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]] && [[ "${{ steps.snapshot-cache.outputs.cache-hit }}" != "true" ]]; then
             if [[ "${{ github.ref_name }}" == "main" ]] || [[ "${{ github.ref_name }}" =~ ^release/ ]]; then
               UPDATE=true
             fi
           fi
-          
+
           echo "update=$UPDATE" >> $GITHUB_OUTPUT
 
       - name: Generate baseline snapshots
@@ -99,12 +99,12 @@ jobs:
         if: steps.should-update.outputs.update == 'true'
         run: |
           SCREENSHOT_COUNT=$(find packages/components/vrt/__screenshots__ -name "*.png" | wc -l)
-          
+
           if [ "$SCREENSHOT_COUNT" -eq 0 ]; then
             echo "Error: No screenshots generated"
             exit 1
           fi
-          
+
           if [ "$SCREENSHOT_COUNT" -lt 50 ]; then
             echo "Warning: Only $SCREENSHOT_COUNT screenshots generated (expected ~180)"
           fi
@@ -114,7 +114,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          
+
           if [[ -n $(git status --porcelain packages/components/vrt/__screenshots__) ]]; then
             git add packages/components/vrt/__screenshots__
             git commit -m "chore(vrt): update baseline screenshots [skip ci]"
@@ -139,7 +139,7 @@ jobs:
               repo: context.repo.repo,
               pull_number: context.issue.number
             });
-            
+
             const body = pr.body || '';
             const vrtApproved = /- \[x\] .*Visual changes detected and approved/i.test(body);
             core.setOutput('approved', vrtApproved);
@@ -185,16 +185,16 @@ jobs:
               repo: context.repo.repo,
               issue_number: context.issue.number,
               body: `## Visual Regression Test Results
-            
+
             Visual changes detected. Review the [test artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}).
-            
+
             **Action Required:**
             1. Review the visual differences in the [test artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
             2. If changes are **intentional**: Check the "Visual changes detected and approved" checkbox in the PR description, then re-run this workflow or push a new commit
             3. If changes are **unintentional**: Update your code to match the baseline
-            
+
             **Note:** After merging this PR, the new screenshots will automatically become the new baseline in the \`${{ steps.baseline.outputs.branch }}\` branch.
-            
+
             [View detailed report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})`
             });
 
@@ -205,7 +205,7 @@ jobs:
           echo "- **Event:** ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Baseline updated:** ${{ steps.should-update.outputs.update }}" >> $GITHUB_STEP_SUMMARY
-          
+
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
             echo "- **Target:** ${{ github.base_ref }}" >> $GITHUB_STEP_SUMMARY
             if [[ "${{ steps.vrt-test.outcome }}" == "failure" ]]; then

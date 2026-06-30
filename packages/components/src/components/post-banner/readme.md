@@ -2,20 +2,17 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property | Attribute | Description             | Type                                          | Default  |
 | -------- | --------- | ----------------------- | --------------------------------------------- | -------- |
 | `type`   | `type`    | The type of the banner. | `"error" \| "info" \| "success" \| "warning"` | `'info'` |
 
-
 ## Events
 
 | Event           | Description                                                                                                                               | Type                |
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
 | `postDismissed` | An event emitted when the banner element is dismissed, after the transition. It has no payload and only relevant for dismissible banners. | `CustomEvent<void>` |
-
 
 ## Methods
 
@@ -27,9 +24,6 @@ Triggers banner dismissal programmatically (same as clicking on the close button
 
 Type: `Promise<void>`
 
-
-
-
 ## Slots
 
 | Slot             | Description                                                                     |
@@ -39,7 +33,6 @@ Type: `Promise<void>`
 | `"default"`      | Slot for placing the main content/message of the banner.                        |
 | `"heading"`      | Slot for placing custom content within the banner's heading.                    |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

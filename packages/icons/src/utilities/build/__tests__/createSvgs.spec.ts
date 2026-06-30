@@ -1,22 +1,20 @@
 import { createSvgs } from './../createSvgs';
 import fs from 'fs';
 import path from 'path';
-import {
-  createMockIconSetGroupsReportTest,
-} from '../../../../tests/helpers/test-mocks';
+import { createMockIconSetGroupsReportTest } from '../../../../tests/helpers/test-mocks';
 
 jest.mock('fs');
 
 describe('createSvgs', () => {
   const mockIconOutputDirectory = '/test/output/icons';
-  
+
   const mockIconSetGroups = createMockIconSetGroupsReportTest();
 
   beforeEach(() => {
     jest.clearAllMocks();
-    
+
     // Mock file reading for SVG content
-    jest.spyOn(fs, 'readFileSync').mockImplementation((filePath) => {
+    jest.spyOn(fs, 'readFileSync').mockImplementation(filePath => {
       if (typeof filePath === 'string') {
         if (filePath.includes('1000.svg')) {
           return '<svg viewBox="0 0 32 32"><path d="M10 10h12v12H10z"/></svg>';
@@ -36,7 +34,7 @@ describe('createSvgs', () => {
 
     expect(fs.writeFileSync).toHaveBeenCalledWith(
       path.join(mockIconOutputDirectory, '1000.svg'),
-      expect.stringContaining('<svg')
+      expect.stringContaining('<svg'),
     );
   });
 
@@ -45,7 +43,7 @@ describe('createSvgs', () => {
 
     expect(fs.writeFileSync).toHaveBeenCalledWith(
       path.join(mockIconOutputDirectory, '2000.svg'),
-      expect.stringContaining('<svg')
+      expect.stringContaining('<svg'),
     );
   });
 
@@ -53,7 +51,7 @@ describe('createSvgs', () => {
     createSvgs(mockIconOutputDirectory, mockIconSetGroups);
 
     const postIconCall = (fs.writeFileSync as jest.Mock).mock.calls.find(call =>
-      call[0].includes('1000.svg')
+      call[0].includes('1000.svg'),
     );
     expect(postIconCall[1]).toContain('id="i-1000"');
   });
@@ -68,9 +66,9 @@ describe('createSvgs', () => {
     createSvgs(mockIconOutputDirectory, mockIconSetGroups);
 
     const postIconCall = (fs.writeFileSync as jest.Mock).mock.calls.find(call =>
-      call[0].includes('1000.svg')
+      call[0].includes('1000.svg'),
     );
-    
+
     expect(postIconCall[1]).toContain('<svg');
     expect(postIconCall[1]).toContain('</svg>');
     expect(postIconCall[1]).toContain('<defs>');
@@ -91,7 +89,7 @@ describe('createSvgs', () => {
 
     expect(fs.writeFileSync).toHaveBeenCalledWith(
       expect.stringContaining(path.normalize(mockIconOutputDirectory)),
-      expect.any(String)
+      expect.any(String),
     );
   });
 });
