@@ -36,6 +36,7 @@ let processedCount = 0;
 let cacheHits = 0;
 
 async function getGitHubInfo(repo: string, commit: string) {
+  console.log(`\n🔗 Changelog: fetching GitHub info for commit ${commit} in ${repo}`);
   if (commitInfoCache.has(commit)) {
     cacheHits++;
     processedCount++;
