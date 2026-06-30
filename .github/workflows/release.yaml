@@ -27,7 +27,7 @@ jobs:
       # Trusted publishing requires npm 11.5.1 or later.
       - name: Update NPM for trusted publishing
         run: |
-          npm update -g npm
+          npm install -g npm@11.18.0
           echo "npm: $(npm -v)"
 
       - name: Install & build Dependencies
