@@ -330,7 +330,7 @@ importers:
     devDependencies:
       '@angular/build':
         specifier: catalog:angular
-        version: 22.0.4(4ceefe839317effd1148cff6cb689c6c)
+        version: 22.0.4(87cc1344b8bb4af58ea601e998a54b91)
       '@angular/cli':
         specifier: catalog:angular
         version: 22.0.4(@types/node@25.9.3)(chokidar@5.0.0)
@@ -616,7 +616,7 @@ importers:
     devDependencies:
       '@angular/build':
         specifier: catalog:angular
-        version: 22.0.4(87cc1344b8bb4af58ea601e998a54b91)
+        version: 22.0.4(4ceefe839317effd1148cff6cb689c6c)
       '@angular/cli':
         specifier: catalog:angular
         version: 22.0.4(@types/node@25.9.3)(chokidar@5.0.0)
