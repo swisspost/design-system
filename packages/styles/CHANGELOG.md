@@ -1,5 +1,23 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.76
+
+### Minor Changes
+
+- Added scroll buttons to `post-tabs` to allow navigating overflowing tab items. When the tabs container overflows horizontally, previous and next buttons appear to scroll through the available tabs. The buttons are labelled via the required `text-prev-tab-items` and `text-next-tab-items` props, which default to `"Previous tab items"` and `"Next tab items"` respectively. (by [@myrta2302](https://github.com/myrta2302) with [#7494](https://github.com/swisspost/design-system/pull/7494))
+
+### Patch Changes
+
+- Updated `post-tabs` component to the new Post Design. The `full-width` property has been removed as it is now enforced by design. (by [@myrta2302](https://github.com/myrta2302) with [#7494](https://github.com/swisspost/design-system/pull/7494))
+
+- Updated Toast styles for dark mode. (by [@myrta2302](https://github.com/myrta2302) with [#7911](https://github.com/swisspost/design-system/pull/7911))
+
+- Added styles for an optional company name in the header user menu. (by [@alizedebray](https://github.com/alizedebray) with [#7884](https://github.com/swisspost/design-system/pull/7884))
+
+- Fixed text and border colors for tables in dark mode. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7916](https://github.com/swisspost/design-system/pull/7916))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.76
+
 ## 10.0.0-next.75
 
 ### Major Changes
