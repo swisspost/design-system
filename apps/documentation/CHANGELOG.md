@@ -1,5 +1,60 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.77
+
+### Major Changes
+
+- Removed the `post-login-widget` component. The user menu can be built using the `post-menu` component by following the "Logged in" section in the header documentation. (by [@alizedebray](https://github.com/alizedebray) with [#7883](https://github.com/swisspost/design-system/pull/7883))
+
+### Minor Changes
+
+- Added scroll buttons to `post-tabs` to allow navigating overflowing tab items. When the tabs container overflows horizontally, previous and next buttons appear to scroll through the available tabs. The buttons are labelled via the required `text-prev-tab-items` and `text-next-tab-items` props, which default to `"Previous tab items"` and `"Next tab items"` respectively. (by [@myrta2302](https://github.com/myrta2302) with [#7494](https://github.com/swisspost/design-system/pull/7494))
+
+- Added the `post-side-navigation` component. (by [@leagrdv](https://github.com/leagrdv) and [@gfellerph](https://github.com/gfellerph) with [#7972](https://github.com/swisspost/design-system/pull/7972))
+
+### Patch Changes
+
+- Updated `post-tabs` component to the new Post Design. The `full-width` property has been removed as it is now enforced by design. (by [@myrta2302](https://github.com/myrta2302) with [#7494](https://github.com/swisspost/design-system/pull/7494))
+
+- Added more information on how to retrieve user data in order to build the user menu in the self-managed `post-header`. (by [@alizedebray](https://github.com/alizedebray) and [@alionazherdetska](https://github.com/alionazherdetska) with [#7885](https://github.com/swisspost/design-system/pull/7885))
+
+- Updated the package output to fit with new PrimeNg API. It is no longer overriding the CSS styles behind the hood but now exports a preset to be used as the theme of PrimeNG.  
+  To migrate, update your `app.config.ts` with the new preset:
+
+  ```typescript
+  import { providePrimeNG } from 'primeng/config';
+  import SwissPostPreset from '@swisspost/design-system-styles-primeng';
+
+  export const appConfig: ApplicationConfig = {
+    providers: [
+      providePrimeNG({
+        theme: {
+          preset: SwissPostPreset,
+        },
+      }),
+    ],
+  };
+  ```
+
+  And remove the following import from your `styles.scss`:
+
+  ````scss
+  @use '@swisspost/design-system-styles-primeng/primeng-theme';
+  ``` (by [@leagrdv](https://github.com/leagrdv) with [#7919](https://github.com/swisspost/design-system/pull/7919))
+
+  ````
+
+- Added a `side-nav` slot to the `<post-header>` component, enabling support for side navigation in the Application header. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7958](https://github.com/swisspost/design-system/pull/7958))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.76
+  - @swisspost/design-system-components@10.0.0-next.76
+  - @swisspost/design-system-styles@10.0.0-next.76
+  - @swisspost/design-system-styles-primeng@10.0.0-next.76
+  - @swisspost/design-system-components-react@10.0.0-next.76
+  - @swisspost/internet-header@10.0.0-next.76
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.76
+  - @swisspost/design-system-tokens@10.0.0-next.76
+
 ## 6.0.0-next.76
 
 ### Minor Changes
