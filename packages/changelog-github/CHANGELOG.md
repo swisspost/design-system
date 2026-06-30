@@ -1,5 +1,7 @@
 # @swisspost/design-system-changelog-github
 
+## 10.0.0-next.76
+
 ## 10.0.0-next.75
 
 ### Minor Changes
