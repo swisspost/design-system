@@ -22,34 +22,28 @@ Hey Copilot! Here’s how to play nice with our setup:
 
 ## CSS
 
-- Create styles for HTML/CSS components under the `/packages/styles` directory.
-- Use Sass for styling components.
-- Use simple selectors and avoid deep nesting.
-- Use the existing tokens from the Swiss Post Design System for colors, typography, spacing, etc., suggest new tokens for new components when necessary.
+- Create styles for HTML/CSS components under the `/packages/styles` directory, authored in Sass.
+- Never hard-code color, spacing, or typography values — use design tokens. If no token fits, propose a new token rather than a raw value.
 
 ## Web components
 
-- Create web components under the `/packages/components` directory.
-- Use web components for encapsulating complex UI elements that require interactivity.
+- Create web components under the `/packages/components` directory, following Stencil best practices.
 - Use the `post-` prefix for all custom elements to avoid naming collisions.
-- Use shadow dom for encapsulation of styles and markup wherever possible.
-- Use stencil best practices for authoring web components.
+- Prefer shadow DOM, but use light DOM when slotting form-associated controls or when consumers need to style internals.
+- JSX here is Stencil, not React: use `class` (not `className`), the `@Prop()`/`@State()`/`@Event()` decorators, and no React hooks or `useState`.
 
 ## Testing
 
-- Write and maintain tests for all components and utilities.
+- Add or update tests when fixing bugs or adding features.
 - Use **Cypress** for end-to-end and visual regression testing, following the patterns in the `/cypress` directories.
-- Use **Storybook** stories for interactive and visual documentation; ensure stories cover all component states and accessibility scenarios.
-- Prefer **unit tests** for logic-heavy utilities and helpers, using the existing test setup in each package (e.g., Jest or similar tools).
-- Run tests locally before submitting changes, and ensure all tests pass in CI.
-- Add new tests or update existing ones when fixing bugs or adding features.
+- Use **Storybook** stories for interactive and visual documentation; cover component states and accessibility scenarios.
+- Prefer **unit tests** for logic-heavy utilities and helpers, using each package's existing test setup.
+- This is a Turbo + pnpm monorepo: build and test only the affected package (e.g. `pnpm --filter <package> test`), never the whole workspace unless asked. Prefer the `/packages/styles/index.html` playground over full builds for quick checks.
 
 ## Documentation
 
-- Document all components under the `/apps/documentation` directory.
-- Document all components thoroughly, including usage examples, API references, and accessibility considerations with storybook stories.
-- Use standard HTML or lit to create documentation pages for components when necessary, avoid creating react components for documentation.
-- Write easy to understand documentation using simple language and clear examples.
+- Document components under the `/apps/documentation` directory with Storybook stories, including usage examples, API references, and accessibility considerations.
+- Use standard HTML or lit for documentation pages when needed; don't create React components for documentation.
 
 ## Process
 
