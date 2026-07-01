@@ -118,9 +118,11 @@ export function createAutocompleteRenderer({ detached = false }: { detached?: bo
         ${detached ? null : html`<post-listbox>${getListboxOptions()}</post-listbox>`}
       </post-autocomplete>
 
-      ${detached
-        ? html`<post-listbox id="${listboxId}">${getListboxOptions()}</post-listbox>`
-        : null}
+      ${
+        detached
+          ? html`<post-listbox id="${listboxId}">${getListboxOptions()}</post-listbox>`
+          : null
+      }
     `;
   };
 }
