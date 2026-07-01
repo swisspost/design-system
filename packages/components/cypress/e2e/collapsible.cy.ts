@@ -79,7 +79,12 @@ describe('collapsible', () => {
 
   describe('wrapped collapsible', () => {
     beforeEach(() => {
-      cy.getComponents(COLLAPSIBLE_ID, 'wrapped-collapsible', 'post-collapsible', 'post-collapsible-trigger');
+      cy.getComponents(
+        COLLAPSIBLE_ID,
+        'wrapped-collapsible',
+        'post-collapsible',
+        'post-collapsible-trigger',
+      );
       cy.get('@collapsible-trigger').find('.btn').as('trigger');
     });
 
@@ -130,9 +135,7 @@ describe('collapsible', () => {
       cy.visit(FIXTURE_PATH);
 
       cy.get('#nested-inner-button').as('section');
-      cy.get('@section')
-        .find('post-collapsible[data-hydrated]')
-        .as('collapsible');
+      cy.get('@section').find('post-collapsible[data-hydrated]').as('collapsible');
 
       cy.get('[data-testid="real-trigger"]').as('trigger');
     });
@@ -148,10 +151,7 @@ describe('collapsible', () => {
     it('does not toggle when the inner button is clicked', () => {
       cy.get('@collapsible').should('be.visible');
 
-      cy.get('@collapsible')
-        .find('button')
-        .contains('Button inside the panel')
-        .click();
+      cy.get('@collapsible').find('button').contains('Button inside the panel').click();
 
       cy.get('@collapsible').should('be.visible');
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'true');

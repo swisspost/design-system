@@ -2,14 +2,12 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property | Attribute | Description                                                                                   | Type     | Default     |
 | -------- | --------- | --------------------------------------------------------------------------------------------- | -------- | ----------- |
 | `for`    | `for`     | ID of the popover element that this trigger is linked to. Used to open and close the popover. | `string` | `undefined` |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

@@ -1,8 +1,6 @@
 import { Page, ConsoleMessage } from '@playwright/test';
 
-const IGNORE_ERROR_PATTERNS = [
-  /has been blocked by cors policy/i,
-];
+const IGNORE_ERROR_PATTERNS = [/has been blocked by cors policy/i];
 
 type CapturedError = {
   message: string;
