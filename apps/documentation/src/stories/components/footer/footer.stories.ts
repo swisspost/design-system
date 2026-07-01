@@ -43,24 +43,26 @@ type Story = StoryObj;
 
 function render(args: Args) {
   return html`<post-footer text-footer=${args.textFooter}>
-    ${args.prefooter
-      ? html`
-          <div slot="prefooter">
-            <h3 id="prefooter">Service name</h3>
-            <ul aria-labelledby="prefooter">
-              <li>
-                <a href="#" class="btn btn-link">Pre-Footer Link 1</a>
-              </li>
-              <li>
-                <a href="#" class="btn btn-link">Pre-Footer Link 2</a>
-              </li>
-              <li>
-                <a href="#" class="btn btn-link">Pre-Footer Link 3</a>
-              </li>
-            </ul>
-          </div>
-        `
-      : nothing}
+    ${
+      args.prefooter
+        ? html`
+            <div slot="prefooter">
+              <h3 id="prefooter">Service name</h3>
+              <ul aria-labelledby="prefooter">
+                <li>
+                  <a href="#" class="btn btn-link">Pre-Footer Link 1</a>
+                </li>
+                <li>
+                  <a href="#" class="btn btn-link">Pre-Footer Link 2</a>
+                </li>
+                <li>
+                  <a href="#" class="btn btn-link">Pre-Footer Link 3</a>
+                </li>
+              </ul>
+            </div>
+          `
+        : nothing
+    }
     ${GRID_CELLS.map(
       cell => html`
         <span id="grid-${cell}-title" slot="grid-${cell}-title">Title ${cell}</span>

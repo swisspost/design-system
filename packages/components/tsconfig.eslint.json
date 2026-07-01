@@ -3,5 +3,14 @@
   "compilerOptions": {
     "noEmit": true
   },
-  "include": ["prebuild.ts", "prebuild.spec.ts", ".config/*", "cypress", "src", "types", "playwright.config.ts", "vrt"]
+  "include": [
+    "prebuild.ts",
+    "prebuild.spec.ts",
+    ".config/*",
+    "cypress",
+    "src",
+    "types",
+    "playwright.config.ts",
+    "vrt"
+  ]
 }

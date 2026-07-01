@@ -1,2 +1,5 @@
 CODEOWNERS
 pnpm-lock.yaml
+dist
+*.min.*
+*.d.ts

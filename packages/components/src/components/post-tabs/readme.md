@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property           | Attribute             | Description                                                                                                                                                                    | Type                 | Default                |
@@ -13,13 +12,11 @@
 | `textNextTabItems` | `text-next-tab-items` | An accessible label for the "next tab items" button.                                                                                                                           | `string`             | `'Next tab items'`     |
 | `textPrevTabItems` | `text-prev-tab-items` | An accessible label for the "previous tab items" button.                                                                                                                       | `string`             | `'Previous tab items'` |
 
-
 ## Events
 
 | Event        | Description                                                                                                                                                                                            | Type                  |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------- |
 | `postChange` | An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. Only emitted in Content Tabs variant. | `CustomEvent<string>` |
-
 
 ## Methods
 
@@ -38,16 +35,12 @@ Any other panel that was previously shown becomes hidden and its associated tab 
 
 Type: `Promise<void>`
 
-
-
-
 ## Slots
 
 | Slot        | Description                                                                       |
 | ----------- | --------------------------------------------------------------------------------- |
 | `"default"` | Slot for placing tab items. Each tab item should be a <post-tab-item> element.    |
 | `"panels"`  | Slot for placing tab panels. Each tab panel should be a <post-tab-panel> element. |
-
 
 ## Shadow Parts
 
@@ -56,7 +49,6 @@ Type: `Promise<void>`
 | `"post-tabs"`         | The container element that holds the set of tabs.                                                               |
 | `"post-tabs-content"` | The container element that displays the content of the currently active tab. Only available in Content variant. |
 
-
 ## Dependencies
 
 ### Depends on
@@ -64,12 +56,13 @@ Type: `Promise<void>`
 - [post-icon](../post-icon)
 
 ### Graph
+
 ```mermaid
 graph TD;
   post-tabs --> post-icon
   style post-tabs fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_
