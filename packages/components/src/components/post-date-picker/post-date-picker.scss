@@ -2,6 +2,7 @@
 @use '@swisspost/design-system-styles/mixins/form-input.scss' as form-input-mx;
 @use '@swisspost/design-system-styles/mixins/button' as button-mx;
 @use '@swisspost/design-system-styles/tokens/components' as components;
+@use '@swisspost/design-system-styles/tokens/helpers' as helpers;
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/variables/elevation';
 @use '@swisspost/design-system-styles/mixins/utilities';
@@ -711,11 +712,18 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
 
   button {
     @include form-input-mx.input-btn();
+
+    &:focus-visible {
+      outline-offset: 4px !important;
+      outline-style: solid !important;
+      outline-width: tokens.get('focus-outline-width', helpers.$post-focus) !important;
+      outline-color: tokens.get('focus-outline-color', helpers.$post-focus) !important;
+    }
+
     // Safari applies its system accent color to buttons; reset it explicitly
     -webkit-appearance: none;
     appearance: none;
     color: tokens.get('input-color-enabled-fg', components.$post-text-input);
-    outline-offset: 4px;
     right: tokens.get('search-position-inline-end-icon', components.$post-search-input);
 
     &[disabled] {
