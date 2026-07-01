@@ -4,6 +4,9 @@
 post-menu-item {
   button {
     @include button.reset-button;
+    // Form controls don't fill their container by default like <a> does with display: flex,
+    // so this is required to make the button match the width of the <a> items.
+    width: 100%;
   }
 
   a {
