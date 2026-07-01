@@ -22,7 +22,6 @@
       display: block;
       content: '';
       box-sizing: content-box;
-      float: inline-start;
       margin-block-start: calc(
         (#{tokens.get('body-line-height', elements.$post-body)} * 0.5em) -
           (#{tokens.get('list-bullet-item-icon-bullet-size', elements.$post-listbullet)} * 0.5)
@@ -36,6 +35,14 @@
       height: tokens.get('list-bullet-item-icon-bullet-size', elements.$post-listbullet);
       background-color: currentColor;
       border-radius: 50%;
+
+      @supports (float: inline-start) {
+        float: inline-start;
+      }
+
+      @supports not (float: inline-start) {
+        float: left;
+      }
     }
   }
 }
