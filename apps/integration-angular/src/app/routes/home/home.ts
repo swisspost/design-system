@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   PostAccordion,
   PostAccordionItem,
@@ -72,8 +73,16 @@ import {
     PostTogglebutton,
     PostTooltip,
     PostTooltipTrigger,
+    ReactiveFormsModule,
+    FormsModule,
   ],
 })
 export class Home {
   isCollapsed = false;
+
+  formControl = new FormControl('France');
+
+  log(something: unknown) {
+    console.log(something);
+  }
 }

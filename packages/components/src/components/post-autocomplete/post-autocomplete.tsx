@@ -87,21 +87,37 @@ export class PostAutocomplete {
   }
 
   componentDidLoad() {
-    if (!this.inputElement) return;
+    if (!this.inputElement || !this.listBoxElement) return;
 
-    // If the input already has a value (e.g. set by a form directive), it takes precedence
-    if (this.inputElement.value) {
-      this.inputValue = this.inputElement.value;
+    const selectedOption = this.listBoxElement.querySelector(
+      'post-listbox-option[selected]',
+    ) as HTMLPostListboxOptionElement | null;
+    const attributeValue = this.inputElement.getAttribute('value');
+
+    // Priority: form directive (programmatic) > selected attribute > value attribute
+    // A programmatic value is detected when input.value differs from its HTML value attribute
+    const isProgrammatic =
+      this.inputElement.value && this.inputElement.value !== (attributeValue ?? '');
+
+    let value: string;
+    if (isProgrammatic) {
+      value = this.inputElement.value;
+    } else if (selectedOption) {
+      value = selectedOption.value;
+    } else if (attributeValue) {
+      value = attributeValue;
+    } else {
       return;
     }
 
-    // Otherwise, sync from a declaratively selected option (like native <option selected>)
-    const selectedOption = this.listBoxElement?.querySelector('post-listbox-option[selected]');
-    if (selectedOption) {
-      const value = (selectedOption as HTMLPostListboxOptionElement).value;
-      this.inputElement.value = value;
-      this.inputValue = value;
-    }
+    // Sync input and listbox selection
+    this.inputElement.value = value;
+    this.inputValue = value;
+    this.listBoxElement
+      .querySelectorAll('post-listbox-option')
+      .forEach((option: HTMLPostListboxOptionElement) => {
+        option.selected = option.value === value;
+      });
   }
 
   disconnectedCallback() {
