@@ -1,5 +1,6 @@
 import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
@@ -88,7 +89,7 @@ function render(args: Args) {
       text-current-step="${args.textCurrentStep}"
       text-step-number="${args.textStepNumber}"
       current-index="${args.currentIndex}"
-      selected-index="${args.selectedIndex}"
+      selected-index="${ifDefined(args.selectedIndex)}"
     >
       ${Array.from({ length: args.stepsAmount }).map(
         (a, i) => html` <post-stepper-item> Step ${i + 1} label</post-stepper-item> `,
