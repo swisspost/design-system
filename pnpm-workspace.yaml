@@ -2,6 +2,21 @@ packages:
   - 'apps/*'
   - 'packages/*'
 
+peerDependencyRules:
+  ignoreMissing: []
+  allowedVersions:
+    '@typescript-eslint/eslint-plugin': '>=7'
+    '@typescript-eslint/parser': '>=7'
+    'zone.js': '>=0.14'
+
+overrides:
+  browserslist: '>=4.27.0'
+  'form-data@>=4.0.0 <4.0.4': 4.0.5
+  parse5: 'npm:parse5-case-sensitive@7.1.2-0'
+
+onlyBuiltDependencies:
+  - cypress
+
 catalog:
   '@playwright/test': 1.60.0
 
