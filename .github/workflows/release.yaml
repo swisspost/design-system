@@ -7,6 +7,12 @@ on:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
+# Least-privilege default for the GITHUB_TOKEN.
+# Jobs that need more (e.g. changeset-magic) override this at the job level.
+# Jobs that push use the SWISSPOSTDEVS_ACCESS_TOKEN PAT, so contents: read is sufficient here.
+permissions:
+  contents: read
+
 jobs:
   changeset-magic:
     name: Set up Changeset PR or Release Packages
