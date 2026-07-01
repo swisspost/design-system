@@ -13,7 +13,7 @@ jest.mock('fs');
 jest.mock('../../../iconsets.config', () => [
   {
     name: 'test-iconset',
-    apiUrl: 'http://test.com',
+    apiUrl: 'https://test.com',
     downloadDirectory: '/test/icons',
     expectedSourcesPerIcon: 2,
   },
