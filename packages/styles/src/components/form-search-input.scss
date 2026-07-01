@@ -41,6 +41,10 @@ tokens.$default-map: components.$post-search-input;
   .delete-button,
   .search-button {
     @include form-input-mx.input-btn();
+    // Safari applies its system accent color to buttons; reset it explicitly
+    -webkit-appearance: none;
+    appearance: none;
+    color: inherit;
   }
 
   .search-button {
