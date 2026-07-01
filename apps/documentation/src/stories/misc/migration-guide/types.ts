@@ -96,7 +96,7 @@ export interface V910Checks {
     pagination: boolean;
     typeahead: boolean;
     progressbar: boolean;
-    timepicker: boolean,
+    timepicker: boolean;
   };
   forms: {
     tooltip_validation: boolean;

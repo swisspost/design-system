@@ -4,7 +4,6 @@ some content
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property            | Attribute   | Description                                                                                                               | Type      | Default     |
@@ -18,29 +17,29 @@ some content
 | `scale`             | `scale`     | The number for the css scale transformation.                                                                              | `number`  | `undefined` |
 | `url`               | `url`       | A full URL to the icon file. When set, this property has the highest priority.                                            | `string`  | `undefined` |
 
-
 ## Dependencies
 
 ### Used by
 
- - [post-accordion-item](../post-accordion-item)
- - [post-autocomplete](../post-autocomplete)
- - [post-back-to-top](../post-back-to-top)
- - [post-breadcrumbs](../post-breadcrumbs)
- - [post-closebutton](../post-closebutton)
- - [post-date-picker](../post-date-picker)
- - [post-header](../post-header)
- - [post-language-menu](../post-language-menu)
- - [post-listbox-option](../post-listbox-option)
- - [post-mainnavigation](../post-mainnavigation)
- - [post-megadropdown](../post-megadropdown)
- - [post-megadropdown-trigger](../post-megadropdown-trigger)
- - [post-number-input](../post-number-input)
- - [post-pagination](../post-pagination)
- - [post-rating](../post-rating)
- - [post-tabs](../post-tabs)
+- [post-accordion-item](../post-accordion-item)
+- [post-autocomplete](../post-autocomplete)
+- [post-back-to-top](../post-back-to-top)
+- [post-breadcrumbs](../post-breadcrumbs)
+- [post-closebutton](../post-closebutton)
+- [post-date-picker](../post-date-picker)
+- [post-header](../post-header)
+- [post-language-menu](../post-language-menu)
+- [post-listbox-option](../post-listbox-option)
+- [post-mainnavigation](../post-mainnavigation)
+- [post-megadropdown](../post-megadropdown)
+- [post-megadropdown-trigger](../post-megadropdown-trigger)
+- [post-number-input](../post-number-input)
+- [post-pagination](../post-pagination)
+- [post-rating](../post-rating)
+- [post-tabs](../post-tabs)
 
 ### Graph
+
 ```mermaid
 graph TD;
   post-accordion-item --> post-icon
@@ -62,6 +61,6 @@ graph TD;
   style post-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

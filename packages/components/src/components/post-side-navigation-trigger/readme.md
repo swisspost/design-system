@@ -2,13 +2,11 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property           | Attribute | Description | Type     | Default     |
 | ------------------ | --------- | ----------- | -------- | ----------- |
 | `for` _(required)_ | `for`     |             | `string` | `undefined` |
-
 
 ## Methods
 
@@ -20,16 +18,12 @@ Manually update the trigger's ARIA attributes.
 
 Type: `Promise<void>`
 
-
-
-
 ## Slots
 
 | Slot        | Description                                          |
 | ----------- | ---------------------------------------------------- |
 | `"default"` | Slot for the `<button>` that toggles the navigation. |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_
