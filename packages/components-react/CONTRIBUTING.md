@@ -15,31 +15,31 @@ Additionally, the package exports **icon components** as standalone React wrappe
 ## Exports map (`exports` in package.json)
 
 Each entry in the `exports` field serves a specific purpose
+
 > **Note:** In your project, replace `.` with `@swisspost/design-system-components-react` in the following export paths.
 
-| Export path | Purpose |
-|:-|:-|
-| `./post-components.css` | Allows consumers to import the component stylesheet directly. |
-| `.` | Barrel export for all components.<br>Check expected export resolution below. |
-| `./*` | Individual component exports (e.g. `@swisspost/design-system-components-react/post-accordion`).<br>Check expected export resolution below. |
-| `./server` | Explicit server, barrel export for all components.
-| `./server/*` | Explicit server, individual component exports (e.g. `@swisspost/design-system-components-react/server/post-accordion`). |
-| `./icons` | Barrel export for all icon wrapper components (e.g. `import { PostIconArrowleft } from @swisspost/design-system-components-react/icon`).<br>Check expected export resolution below.  |
-| `./icons/*` | Individual icon component exports (e.g. `import { PostIconSearch } from @swisspost/design-system-components-react/icons/PostIconSearch`).<br>Check expected export resolution below.  |
+| Export path             | Purpose                                                                                                                                                                              |
+| :---------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `./post-components.css` | Allows consumers to import the component stylesheet directly.                                                                                                                        |
+| `.`                     | Barrel export for all components.<br>Check expected export resolution below.                                                                                                         |
+| `./*`                   | Individual component exports (e.g. `@swisspost/design-system-components-react/post-accordion`).<br>Check expected export resolution below.                                           |
+| `./server`              | Explicit server, barrel export for all components.                                                                                                                                   |
+| `./server/*`            | Explicit server, individual component exports (e.g. `@swisspost/design-system-components-react/server/post-accordion`).                                                              |
+| `./icons`               | Barrel export for all icon wrapper components (e.g. `import { PostIconArrowleft } from @swisspost/design-system-components-react/icon`).<br>Check expected export resolution below.  |
+| `./icons/*`             | Individual icon component exports (e.g. `import { PostIconSearch } from @swisspost/design-system-components-react/icons/PostIconSearch`).<br>Check expected export resolution below. |
 
 ### Expected Export Resolution
 
-| Environment | Hit | Returned Components |
-|:-|:-|:-|
-| **Next.js Server Component** | `node` | `server` |
-| **Next.js Client Component (SSR pass)** | `node` | `server` |
-| **Next.js Client Component (CSR/hydration)** | `default` | `client` |
-| **React client-only (Vite, CRA)** | `default` | `client` |
+| Environment                                  | Hit       | Returned Components |
+| :------------------------------------------- | :-------- | :------------------ |
+| **Next.js Server Component**                 | `node`    | `server`            |
+| **Next.js Client Component (SSR pass)**      | `node`    | `server`            |
+| **Next.js Client Component (CSR/hydration)** | `default` | `client`            |
+| **React client-only (Vite, CRA)**            | `default` | `client`            |
 
 The **`node`** export is the sole discriminator. Any Node.js execution context (server components, SSR of client components) resolves to the server entry point. Browser bundles (CSR, hydration, client-only apps) fall through to `default` → the client entry point.
 
 Notably, there's no `react-server` condition defined in the exports, as this would exclusively export our server components for Next.js server components, while Next.js client components would receive the client entry points during SSR.
-
 
 ## Maintaining the `sideEffects` array
 

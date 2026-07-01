@@ -40,10 +40,7 @@ export default defineConfig(
   },
   {
     files: ['**/*.{ts,mts,cts}'],
-    extends: [
-      ...ts.configs.recommended,
-      ...ng.configs.tsRecommended,
-    ],
+    extends: [...ts.configs.recommended, ...ng.configs.tsRecommended],
   },
   {
     files: ['**/*.{js,mjs,cjs}'],

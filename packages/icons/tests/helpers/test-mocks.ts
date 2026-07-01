@@ -121,9 +121,7 @@ export function createMockSourceReport(
 /**
  * Create mock IconSetGroups (for build tests)
  */
-export function createMockIconSetGroups(
-  overrides?: Partial<IconSetGroups>,
-): IconSetGroups {
+export function createMockIconSetGroups(overrides?: Partial<IconSetGroups>): IconSetGroups {
   const defaultIcon = createMockSourceIcon({}, 1000);
 
   return {
@@ -277,7 +275,7 @@ export function createMockSourceIconList(): SourceIcon[] {
 export function createMockSourceReportMultiple(): {
   post: SourceReport;
   ui: SourceReport;
-  } {
+} {
   const postIcon = createMockSourceIcon({}, 1000);
   const uiIcon = createMockSourceIconWithSize(2000, 24);
 

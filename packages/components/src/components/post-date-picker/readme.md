@@ -1,9 +1,6 @@
 # post-datepicker
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -24,7 +21,6 @@
 | `textSwitchYear` _(required)_     | `text-switch-year`     | Label for the "Switch to year view" title button.                                                                                                                                                                                                                                                        | `string`                                                                                                  | `undefined`         |
 | `textToggleCalendar`              | `text-toggle-calendar` | Label for the toggle button that opens the calendar. It is only needed when the calendar is not inline.                                                                                                                                                                                                  | `string`                                                                                                  | `undefined`         |
 
-
 ## Methods
 
 ### `hide() => Promise<void>`
@@ -35,8 +31,6 @@ Hides the popover calendar.
 
 Type: `Promise<void>`
 
-
-
 ### `show() => Promise<void>`
 
 Displays the popover calendar, focusing the first calendar item.
@@ -44,9 +38,6 @@ Displays the popover calendar, focusing the first calendar item.
 #### Returns
 
 Type: `Promise<void>`
-
-
-
 
 ## Dependencies
 
@@ -56,6 +47,7 @@ Type: `Promise<void>`
 - [post-popovercontainer](../post-popovercontainer)
 
 ### Graph
+
 ```mermaid
 graph TD;
   post-date-picker --> post-icon
@@ -63,6 +55,6 @@ graph TD;
   style post-date-picker fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_
