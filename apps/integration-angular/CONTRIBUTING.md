@@ -68,7 +68,7 @@ To update the Angular version used by this app:
 
    Replace `<previousVersion>` and `<targetVersion>` with the appropriate Angular major versions (e.g. `--from=21 --to=22`).
 
-   > **Note:** The `-r` flag runs the migration schematics for **all** packages that have `@angular/core` as a dependency. If you only need to update this integration app, use:
+   > **Note:** The `-r` flag runs the migration schematics recursively across **all** workspace packages that define a `ng` script in their `package.json`. If you only need to update this integration app, use:
    >
    > ```bash
    > pnpm apps-angular:ng update @angular/core --migrate-only --from=<previousVersion> --to=<targetVersion>
