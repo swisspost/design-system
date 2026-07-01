@@ -1,5 +1,11 @@
 # @swisspost/design-system-documentation
 
+## 6.0.2
+
+### Patch Changes
+
+- Added `NgbDropdown` and custom select migration information on the migration guide. (by [@leagrdv](https://github.com/leagrdv) with [#8016](https://github.com/swisspost/design-system/pull/8016))
+
 ## 6.0.1
 
 ### Patch Changes
