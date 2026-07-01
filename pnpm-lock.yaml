@@ -22,8 +22,8 @@ catalogs:
       specifier: 22.0.0
       version: 22.0.0
     '@angular/compiler-cli':
-      specifier: 22.0.0
-      version: 22.0.0
+      specifier: 22.0.4
+      version: 22.0.4
     '@angular/core':
       specifier: 22.0.0
       version: 22.0.0
@@ -330,13 +330,13 @@ importers:
     devDependencies:
       '@angular/build':
         specifier: catalog:angular
-        version: 22.0.4(87cc1344b8bb4af58ea601e998a54b91)
+        version: 22.0.4(2d3e5c5996a69a36f1c861fb6e55e414)
       '@angular/cli':
         specifier: catalog:angular
         version: 22.0.4(@types/node@25.9.3)(chokidar@5.0.0)
       '@angular/compiler-cli':
         specifier: catalog:angular
-        version: 22.0.0(@angular/compiler@22.0.0)(typescript@6.0.3)
+        version: 22.0.4(@angular/compiler@22.0.0)(typescript@6.0.3)
       '@eslint/js':
         specifier: 9.18.0
         version: 9.18.0
@@ -594,7 +594,7 @@ importers:
         version: 5.0.2
       ts-jest:
         specifier: catalog:stencil/jest
-        version: 29.4.9(@babel/core@7.29.6)(@jest/transform@30.3.0)(@jest/types@30.3.0)(babel-jest@30.3.0(@babel/core@7.29.6))(jest-util@30.3.0)(jest@29.7.0(@types/node@24.0.0)(ts-node@10.9.2(@types/node@24.0.0)(typescript@6.0.3)))(typescript@6.0.3)
+        version: 29.4.9(@babel/core@7.29.7)(@jest/transform@30.3.0)(@jest/types@30.3.0)(babel-jest@30.3.0(@babel/core@7.29.7))(jest-util@30.3.0)(jest@29.7.0(@types/node@24.0.0)(ts-node@10.9.2(@types/node@24.0.0)(typescript@6.0.3)))(typescript@6.0.3)
       ts-node:
         specifier: catalog:node
         version: 10.9.2(@types/node@24.0.0)(typescript@6.0.3)
@@ -616,7 +616,7 @@ importers:
     devDependencies:
       '@angular/build':
         specifier: catalog:angular
-        version: 22.0.4(4ceefe839317effd1148cff6cb689c6c)
+        version: 22.0.4(47626c5667fee6750e928732e803151d)
       '@angular/cli':
         specifier: catalog:angular
         version: 22.0.4(@types/node@25.9.3)(chokidar@5.0.0)
@@ -628,7 +628,7 @@ importers:
         version: 22.0.0
       '@angular/compiler-cli':
         specifier: catalog:angular
-        version: 22.0.0(@angular/compiler@22.0.0)(typescript@6.0.3)
+        version: 22.0.4(@angular/compiler@22.0.0)(typescript@6.0.3)
       '@angular/core':
         specifier: catalog:angular
         version: 22.0.0(@angular/compiler@22.0.0)(rxjs@7.8.2)(zone.js@0.16.1)
@@ -652,7 +652,7 @@ importers:
         version: 17.3.0
       ng-packagr:
         specifier: catalog:angular
-        version: 22.0.0(@angular/compiler-cli@22.0.0(@angular/compiler@22.0.0)(typescript@6.0.3))(tailwindcss@4.3.1)(tslib@2.8.1)(typescript@6.0.3)
+        version: 22.0.0(@angular/compiler-cli@22.0.4(@angular/compiler@22.0.0)(typescript@6.0.3))(tailwindcss@4.3.1)(tslib@2.8.1)(typescript@6.0.3)
       rimraf:
         specifier: 6.0.1
         version: 6.0.1
@@ -1346,12 +1346,12 @@ packages:
       '@angular/core': 22.0.0
       rxjs: ^6.5.3 || ^7.4.0
 
-  '@angular/compiler-cli@22.0.0':
-    resolution: {integrity: sha512-7r4ufQ8CUhlRBol/N8a6psg40kOu/Y3H6iuUGwq9cs6Gs/fII7mVB6QgPi0bCiNDjaQB7xGq6NZ0iT6CPBH8Sw==}
+  '@angular/compiler-cli@22.0.4':
+    resolution: {integrity: sha512-UmZRpw3pStRmH3ZOLg3BfyGaTxu/aqL00U1eoE3yfsUea25zJLU+gC4vx3NYtHzYKQu84wX3gTZXhLuuYYTa8w==}
     engines: {node: ^22.22.3 || ^24.15.0 || >=26.0.0}
     hasBin: true
     peerDependencies:
-      '@angular/compiler': 22.0.0
+      '@angular/compiler': 22.0.4
       typescript: '>=6.0 <6.1'
     peerDependenciesMeta:
       typescript:
@@ -12062,12 +12062,12 @@ snapshots:
       '@angular/core': 22.0.0(@angular/compiler@22.0.0)(rxjs@7.8.2)(zone.js@0.16.1)
       tslib: 2.8.1
 
-  '@angular/build@22.0.4(4ceefe839317effd1148cff6cb689c6c)':
+  '@angular/build@22.0.4(2d3e5c5996a69a36f1c861fb6e55e414)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.2200.4(chokidar@5.0.0)
       '@angular/compiler': 22.0.0
-      '@angular/compiler-cli': 22.0.0(@angular/compiler@22.0.0)(typescript@6.0.3)
+      '@angular/compiler-cli': 22.0.4(@angular/compiler@22.0.0)(typescript@6.0.3)
       '@babel/core': 7.29.0
       '@babel/helper-annotate-as-pure': 7.27.3
       '@babel/helper-split-export-declaration': 7.24.7
@@ -12100,10 +12100,10 @@ snapshots:
       karma: 6.4.4
       less: 4.3.0
       lmdb: 3.5.4
-      ng-packagr: 22.0.0(@angular/compiler-cli@22.0.0(@angular/compiler@22.0.0)(typescript@6.0.3))(tailwindcss@4.3.1)(tslib@2.8.1)(typescript@6.0.3)
-      postcss: 8.5.15
+      ng-packagr: 22.0.0(@angular/compiler-cli@22.0.4(@angular/compiler@22.0.0)(typescript@6.0.3))(tailwindcss@4.3.1)(tslib@2.8.1)(typescript@6.0.3)
+      postcss: 8.5.13
       tailwindcss: 4.3.1
-      vitest: 4.1.7(@types/node@25.9.3)(jsdom@25.0.1)(vite@8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.9.3)(esbuild@0.28.1)(jiti@2.6.1)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.99.0)(terser@5.48.0)(yaml@2.8.3))
+      vitest: 4.1.7(@types/node@25.9.3)(jsdom@25.0.1)(vite@7.3.5(@types/node@25.9.3)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.32.0)(sass-embedded@1.89.2)(sass@1.99.0)(terser@5.48.0)(yaml@2.8.3))
     transitivePeerDependencies:
       - '@types/node'
       - chokidar
@@ -12117,12 +12117,12 @@ snapshots:
       - tsx
       - yaml
 
-  '@angular/build@22.0.4(87cc1344b8bb4af58ea601e998a54b91)':
+  '@angular/build@22.0.4(47626c5667fee6750e928732e803151d)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.2200.4(chokidar@5.0.0)
       '@angular/compiler': 22.0.0
-      '@angular/compiler-cli': 22.0.0(@angular/compiler@22.0.0)(typescript@6.0.3)
+      '@angular/compiler-cli': 22.0.4(@angular/compiler@22.0.0)(typescript@6.0.3)
       '@babel/core': 7.29.0
       '@babel/helper-annotate-as-pure': 7.27.3
       '@babel/helper-split-export-declaration': 7.24.7
@@ -12155,10 +12155,10 @@ snapshots:
       karma: 6.4.4
       less: 4.3.0
       lmdb: 3.5.4
-      ng-packagr: 22.0.0(@angular/compiler-cli@22.0.0(@angular/compiler@22.0.0)(typescript@6.0.3))(tailwindcss@4.3.1)(tslib@2.8.1)(typescript@6.0.3)
-      postcss: 8.5.13
+      ng-packagr: 22.0.0(@angular/compiler-cli@22.0.4(@angular/compiler@22.0.0)(typescript@6.0.3))(tailwindcss@4.3.1)(tslib@2.8.1)(typescript@6.0.3)
+      postcss: 8.5.15
       tailwindcss: 4.3.1
-      vitest: 4.1.7(@types/node@25.9.3)(jsdom@25.0.1)(vite@7.3.5(@types/node@25.9.3)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.32.0)(sass-embedded@1.89.2)(sass@1.99.0)(terser@5.48.0)(yaml@2.8.3))
+      vitest: 4.1.7(@types/node@25.9.3)(jsdom@25.0.1)(vite@8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.9.3)(esbuild@0.28.1)(jiti@2.6.1)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.99.0)(terser@5.48.0)(yaml@2.8.3))
     transitivePeerDependencies:
       - '@types/node'
       - chokidar
@@ -12212,10 +12212,10 @@ snapshots:
       rxjs: 7.8.2
       tslib: 2.8.1
 
-  '@angular/compiler-cli@22.0.0(@angular/compiler@22.0.0)(typescript@6.0.3)':
+  '@angular/compiler-cli@22.0.4(@angular/compiler@22.0.0)(typescript@6.0.3)':
     dependencies:
       '@angular/compiler': 22.0.0
-      '@babel/core': 7.29.0
+      '@babel/core': 7.29.7
       '@jridgewell/sourcemap-codec': 1.5.5
       chokidar: 5.0.0
       convert-source-map: 1.9.0
@@ -12361,7 +12361,6 @@ snapshots:
       semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
-    optional: true
 
   '@babel/generator@7.29.7':
     dependencies:
@@ -12427,7 +12426,6 @@ snapshots:
       '@babel/traverse': 7.29.7
     transitivePeerDependencies:
       - supports-color
-    optional: true
 
   '@babel/helper-plugin-utils@7.28.6': {}
 
@@ -14485,10 +14483,7 @@ snapshots:
     dependencies:
       '@percy/cli-command': 1.31.13(typescript@6.0.3)
     transitivePeerDependencies:
-      - bufferutil
-      - supports-color
       - typescript
-      - utf-8-validate
 
   '@percy/cli-command@1.31.13(typescript@6.0.3)':
     dependencies:
@@ -14505,10 +14500,7 @@ snapshots:
     dependencies:
       '@percy/cli-command': 1.31.13(typescript@6.0.3)
     transitivePeerDependencies:
-      - bufferutil
-      - supports-color
       - typescript
-      - utf-8-validate
 
   '@percy/cli-doctor@1.31.13(typescript@6.0.3)':
     dependencies:
@@ -14544,10 +14536,7 @@ snapshots:
       '@percy/cli-command': 1.31.13(typescript@6.0.3)
       yaml: 2.8.3
     transitivePeerDependencies:
-      - bufferutil
-      - supports-color
       - typescript
-      - utf-8-validate
 
   '@percy/cli-upload@1.31.13(typescript@6.0.3)':
     dependencies:
@@ -14555,10 +14544,7 @@ snapshots:
       fast-glob: 3.3.3
       image-size: 1.2.0
     transitivePeerDependencies:
-      - bufferutil
-      - supports-color
       - typescript
-      - utf-8-validate
 
   '@percy/cli@1.31.13(typescript@6.0.3)':
     dependencies:
@@ -21426,10 +21412,10 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
-  ng-packagr@22.0.0(@angular/compiler-cli@22.0.0(@angular/compiler@22.0.0)(typescript@6.0.3))(tailwindcss@4.3.1)(tslib@2.8.1)(typescript@6.0.3):
+  ng-packagr@22.0.0(@angular/compiler-cli@22.0.4(@angular/compiler@22.0.0)(typescript@6.0.3))(tailwindcss@4.3.1)(tslib@2.8.1)(typescript@6.0.3):
     dependencies:
       '@ampproject/remapping': 2.3.0
-      '@angular/compiler-cli': 22.0.0(@angular/compiler@22.0.0)(typescript@6.0.3)
+      '@angular/compiler-cli': 22.0.4(@angular/compiler@22.0.0)(typescript@6.0.3)
       '@rollup/plugin-json': 6.1.0(rollup@4.60.2)
       '@rollup/wasm-node': 4.60.2
       ajv: 8.20.0
@@ -23965,26 +23951,6 @@ snapshots:
       esbuild: 0.28.1
       jest-util: 30.3.0
 
-  ts-jest@29.4.9(@babel/core@7.29.6)(@jest/transform@30.3.0)(@jest/types@30.3.0)(babel-jest@30.3.0(@babel/core@7.29.6))(jest-util@30.3.0)(jest@29.7.0(@types/node@24.0.0)(ts-node@10.9.2(@types/node@24.0.0)(typescript@6.0.3)))(typescript@6.0.3):
-    dependencies:
-      bs-logger: 0.2.6
-      fast-json-stable-stringify: 2.1.0
-      handlebars: 4.7.9
-      jest: 29.7.0(@types/node@24.0.0)(ts-node@10.9.2(@types/node@24.0.0)(typescript@6.0.3))
-      json5: 2.2.3
-      lodash.memoize: 4.1.2
-      make-error: 1.3.6
-      semver: 7.8.4
-      type-fest: 4.41.0
-      typescript: 6.0.3
-      yargs-parser: 21.1.1
-    optionalDependencies:
-      '@babel/core': 7.29.6
-      '@jest/transform': 30.3.0
-      '@jest/types': 30.3.0
-      babel-jest: 30.3.0(@babel/core@7.29.6)
-      jest-util: 30.3.0
-
   ts-jest@29.4.9(@babel/core@7.29.7)(@jest/transform@30.3.0)(@jest/types@30.3.0)(babel-jest@30.3.0(@babel/core@7.29.7))(esbuild@0.28.1)(jest-util@30.3.0)(jest@30.3.0(@types/node@24.0.0)(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@24.0.0)(typescript@6.0.3)))(typescript@6.0.3):
     dependencies:
       bs-logger: 0.2.6
@@ -24025,6 +23991,26 @@ snapshots:
       '@jest/types': 30.3.0
       babel-jest: 30.3.0(@babel/core@7.29.7)
       esbuild: 0.28.1
+      jest-util: 30.3.0
+
+  ts-jest@29.4.9(@babel/core@7.29.7)(@jest/transform@30.3.0)(@jest/types@30.3.0)(babel-jest@30.3.0(@babel/core@7.29.7))(jest-util@30.3.0)(jest@29.7.0(@types/node@24.0.0)(ts-node@10.9.2(@types/node@24.0.0)(typescript@6.0.3)))(typescript@6.0.3):
+    dependencies:
+      bs-logger: 0.2.6
+      fast-json-stable-stringify: 2.1.0
+      handlebars: 4.7.9
+      jest: 29.7.0(@types/node@24.0.0)(ts-node@10.9.2(@types/node@24.0.0)(typescript@6.0.3))
+      json5: 2.2.3
+      lodash.memoize: 4.1.2
+      make-error: 1.3.6
+      semver: 7.8.4
+      type-fest: 4.41.0
+      typescript: 6.0.3
+      yargs-parser: 21.1.1
+    optionalDependencies:
+      '@babel/core': 7.29.7
+      '@jest/transform': 30.3.0
+      '@jest/types': 30.3.0
+      babel-jest: 30.3.0(@babel/core@7.29.7)
       jest-util: 30.3.0
 
   ts-morph@22.0.0:
