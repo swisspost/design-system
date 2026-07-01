@@ -912,6 +912,70 @@ export class MyComponent {
                             <a href="/?path=/docs/51471f0b-1bbb-4059-951b-f89aa7339f91--docs"
                               >native input with type "time"</a
                             >
+                            <span class="info">
+                              <p>
+                                Replace <code>NgbTimepicker</code> with a native
+                                <code>&lt;input type="time"&gt;</code>. This covers the core
+                                time selection use case and works without ng-bootstrap.
+                              </p>
+
+                              <p><strong>Before (v9 — NgbTimepicker)</strong></p>
+                              <code-block
+                                code=${`<!-- template.html -->\n<ngb-timepicker\n  [(ngModel)]="appointmentTime"\n  [seconds]="true"\n  [spinners]="true"\n  [meridian]="false"\n  [hourStep]="1"\n  [minuteStep]="5"\n  [secondStep]="10"\n  [readonlyInputs]="false"\n></ngb-timepicker>`}
+                              ></code-block>
+                              <code-block
+                                code=${`// component.ts\nimport { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';\n\nappointmentTime: NgbTimeStruct = { hour: 9, minute: 30, second: 0 };`}
+                              ></code-block>
+
+                              <p><strong>After (v10 — native time input)</strong></p>
+                              <code-block
+                                code=${`<!-- template.html -->\n<label for="appointment-time" class="form-label">Appointment time</label>\n<input\n  id="appointment-time"\n  class="form-control"\n  type="time"\n  [step]="5"\n  [(ngModel)]="appointmentTimeValue"\n/>`}
+                              ></code-block>
+                              <code-block
+                                code=${`// component.ts\n// Native time inputs usually bind to a string (HH:mm or HH:mm:ss).\nappointmentTimeValue = '09:30';`}
+                              ></code-block>
+                              <p>
+                                For <code>input type="time"</code>, <code>step</code> is measured in
+                                seconds. A value of <code>5</code> allows selection in 5-second
+                                increments.
+                              </p>
+
+                              <p><strong>Common migration scenarios:</strong></p>
+                              <ul>
+                                <li>
+                                  <strong>NgbTimeStruct model:</strong> Convert to
+                                  <code>HH:mm</code> or <code>HH:mm:ss</code> string values.
+                                </li>
+                                <li>
+                                  <strong>Step behavior (<code>hourStep</code>,
+                                  <code>minuteStep</code>, <code>secondStep</code>):</strong>
+                                  use <code>step</code> (in seconds) and custom validation where
+                                  necessary.
+                                </li>
+                                <li>
+                                  <strong>Readonly/disabled:</strong> map to native
+                                  <code>readonly</code> and <code>disabled</code> attributes.
+                                </li>
+                                <li>
+                                  <strong>Custom formatting/adapters:</strong>
+                                  <code>NgbTimeAdapter</code>/<code>NgbTimepickerI18n</code>
+                                  logic must be moved to app-level parsing/formatting utilities.
+                                </li>
+                              </ul>
+
+                              <p><strong>API differences</strong></p>
+                              <p>
+                                Native <code>&lt;input type="time"&gt;</code> has no
+                                equivalent for <code>NgbTimepicker</code> methods such as
+                                <code>changeHour</code>, <code>changeMinute</code>,
+                                <code>changeSecond</code>, <code>updateHour</code>,
+                                <code>updateMinute</code>, and <code>updateSecond</code>.
+                                Spinner UI, meridian toggling behavior, and ng-bootstrap
+                                configuration services are not available as direct APIs.
+                                If your feature depends on these APIs/behaviors, implement them
+                                manually in your application logic.
+                              </p>
+                            </span>
                           </label>
                         </div>
                       </li>
