@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property                       | Attribute          | Description                                                                                                                        | Type                                  | Default     |
@@ -12,7 +11,6 @@
 | `textHome` _(required)_        | `text-home`        | Label for the home link.                                                                                                           | `string`                              | `undefined` |
 | `textMoreItems` _(required)_   | `text-more-items`  | Label for the overflow menu button.                                                                                                | `string`                              | `undefined` |
 
-
 ## Dependencies
 
 ### Depends on
@@ -21,6 +19,7 @@
 - post-breadcrumb-item
 
 ### Graph
+
 ```mermaid
 graph TD;
   swisspost-internet-breadcrumbs --> post-breadcrumbs
@@ -33,6 +32,6 @@ graph TD;
   style swisspost-internet-breadcrumbs fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

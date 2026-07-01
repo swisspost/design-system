@@ -2,14 +2,12 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property                | Attribute    | Description                                                                 | Type      | Default     |
 | ----------------------- | ------------ | --------------------------------------------------------------------------- | --------- | ----------- |
 | `fullWidth`             | `full-width` | Makes the header content span the full width on screens larger than 1440px. | `boolean` | `false`     |
 | `textMenu` _(required)_ | `text-menu`  | The label of the burger menu button.                                        | `string`  | `undefined` |
-
 
 ## Methods
 
@@ -27,9 +25,6 @@ Toggles the burger navigation menu.
 
 Type: `Promise<void>`
 
-
-
-
 ## Slots
 
 | Slot                     | Description                                                                   |
@@ -45,7 +40,6 @@ Type: `Promise<void>`
 | `"side-nav"`             | Should be used with the `<post-side-navigation>` component.                   |
 | `"title"`                | Holds the application title.                                                  |
 
-
 ## Dependencies
 
 ### Depends on
@@ -54,6 +48,7 @@ Type: `Promise<void>`
 - [post-icon](../post-icon)
 
 ### Graph
+
 ```mermaid
 graph TD;
   post-header --> post-togglebutton
@@ -61,6 +56,6 @@ graph TD;
   style post-header fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

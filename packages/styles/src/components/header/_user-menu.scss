@@ -37,6 +37,7 @@ post-header {
         }
       }
 
+      /* stylelint-disable-next-line selector-max-compound-selectors */
       > post-menu-item > a > post-icon {
         order: -1;
       }

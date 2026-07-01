@@ -23,9 +23,9 @@ export const Borders: Story = {
       }).map((bombargs: Args) => {
         return html`
           <div
-            class="${bombargs.borderSide} ${bombargs.removeBorders !== 'none'
-              ? '' + bombargs.removeBorders
-              : ''} ${bombargs.borderWidth !== 'none' ? `border-${bombargs.borderWidth} ` : ''}"
+            class="${bombargs.borderSide} ${
+              bombargs.removeBorders !== 'none' ? '' + bombargs.removeBorders : ''
+            } ${bombargs.borderWidth !== 'none' ? `border-${bombargs.borderWidth} ` : ''}"
           >
             Sample Text
           </div>
