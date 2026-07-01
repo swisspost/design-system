@@ -2,7 +2,7 @@ import { PLACEMENT_TYPES } from '@/types';
 import { getDeepFocusableChildren, OneOf, Required, Type } from '@/utils';
 import { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
-import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Method, Prop, State } from '@stencil/core';
 
 /**
  * @slot default - Slot for placing content inside the popover.
@@ -14,9 +14,11 @@ import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
   shadow: true,
 })
 export class PostPopover {
-  private popoverRef: HTMLPostPopovercontainerElement;
+  private popoverRef!: HTMLPostPopovercontainerElement;
 
-  @Element() host: HTMLPostPopoverElement;
+  @Element() host!: HTMLPostPopoverElement;
+
+  @State() private edgeGap?: number;
 
   /**
    * Defines the position of the popover relative to its trigger.
@@ -68,6 +70,35 @@ export class PostPopover {
     if (isOpen) this.focusFirstEl();
   }
 
+  private readonly breakpointChange = () => {
+    requestAnimationFrame(() => this.updateEdgeGap());
+  };
+
+  connectedCallback() {
+    globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
+  }
+
+  componentDidLoad() {
+    requestAnimationFrame(() => this.updateEdgeGap());
+  }
+
+  disconnectedCallback() {
+    globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange);
+  }
+
+  // Use rendered close button size to define edge gap
+  private updateEdgeGap() {
+    const closeButton = this.host.shadowRoot?.querySelector(
+      'post-closebutton',
+    ) as HTMLElement | null;
+    if (!closeButton) return;
+
+    const width = closeButton.getBoundingClientRect().width;
+    if (!width || Number.isNaN(width)) return;
+
+    this.edgeGap = width / 2;
+  }
+
   private focusFirstEl() {
     const focusableChildren = getDeepFocusableChildren(this.host);
 
@@ -85,7 +116,10 @@ export class PostPopover {
         <post-popovercontainer
           arrow={this.arrow}
           placement={this.placement}
-          ref={e => (this.popoverRef = e)}
+          edgeGap={this.edgeGap}
+          ref={e => {
+            if (e) this.popoverRef = e;
+          }}
         >
           <div class="popover-container">
             <div class="popover-content">
