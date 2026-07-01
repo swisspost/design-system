@@ -17,7 +17,6 @@
     opacity 0.2s ease,
     visibility 0.2s ease,
     fill 0.2s ease;
-  color: tokens.get('input-color-enabled-fg', components.$post-text-input);
   right: tokens.get('post-search-position-inline-end-icon', components.$post-search-input);
   top: calc(#{tokens.get('input-sizing-height', components.$post-text-input)} / 2);
 
