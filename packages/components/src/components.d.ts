@@ -63,7 +63,7 @@ export namespace Components {
          */
         "clearable": boolean;
         /**
-          * Number of characters to type before filtering methods are called
+          * Minimum number of characters the user must type before filtering is triggered. Useful when options are loaded asynchronously to avoid unnecessary requests on every keystroke. The `postFilteringEvent` will only fire once the input length meets this threshold.
           * @default 0
          */
         "filterThreshold": number;
@@ -1337,7 +1337,7 @@ declare namespace LocalJSX {
          */
         "clearable"?: boolean;
         /**
-          * Number of characters to type before filtering methods are called
+          * Minimum number of characters the user must type before filtering is triggered. Useful when options are loaded asynchronously to avoid unnecessary requests on every keystroke. The `postFilteringEvent` will only fire once the input length meets this threshold.
           * @default 0
          */
         "filterThreshold"?: number;
@@ -1346,7 +1346,7 @@ declare namespace LocalJSX {
          */
         "listbox"?: string;
         /**
-          * Cancelable event emitted when the input value is to be filtered
+          * Cancelable event emitted when the input value meets the `filterThreshold` and filtering should occur. Call `event.preventDefault()` to suppress the built-in filtering and handle it yourself, e.g. to fetch options asynchronously based on the query string in `event.detail`.
          */
         "onPostFilteringEvent"?: (event: PostAutocompleteCustomEvent<string>) => void;
         /**

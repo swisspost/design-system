@@ -19,7 +19,11 @@ export class PostAutocomplete {
 
   @Element() host: HTMLPostAutocompleteElement;
 
-  /** Number of characters to type before filtering methods are called */
+  /**
+   * Minimum number of characters the user must type before filtering is triggered.
+   * Useful when options are loaded asynchronously to avoid unnecessary requests on every keystroke.
+   * The `postFilteringEvent` will only fire once the input length meets this threshold.
+   */
   @Prop({ reflect: true }) readonly filterThreshold: number = 0;
 
   /** Show or hide the clear button */
@@ -40,7 +44,11 @@ export class PostAutocomplete {
 
   @State() inputValue: string = '';
 
-  /** Cancelable event emitted when the input value is to be filtered */
+  /**
+   * Cancelable event emitted when the input value meets the `filterThreshold` and filtering should occur.
+   * Call `event.preventDefault()` to suppress the built-in filtering and handle it yourself,
+   * e.g. to fetch options asynchronously based on the query string in `event.detail`.
+   */
   @Event({ cancelable: true }) postFilteringEvent: EventEmitter<string>;
 
   private get inputElement() {
@@ -76,6 +84,24 @@ export class PostAutocomplete {
     this.inputElement.autocomplete = 'off';
     this.attachInputListeners();
     this.attachListboxListeners();
+  }
+
+  componentDidLoad() {
+    if (!this.inputElement) return;
+
+    // If the input already has a value (e.g. set by a form directive), it takes precedence
+    if (this.inputElement.value) {
+      this.inputValue = this.inputElement.value;
+      return;
+    }
+
+    // Otherwise, sync from a declaratively selected option (like native <option selected>)
+    const selectedOption = this.listBoxElement?.querySelector('post-listbox-option[selected]');
+    if (selectedOption) {
+      const value = (selectedOption as HTMLPostListboxOptionElement).value;
+      this.inputElement.value = value;
+      this.inputValue = value;
+    }
   }
 
   disconnectedCallback() {
@@ -137,22 +163,21 @@ export class PostAutocomplete {
   private readonly handleInput = async (event: Event) => {
     if (!this.listBoxElement) return;
     const value = (event.target as HTMLInputElement).value.trim();
-    const query = value.length >= this.filterThreshold ? value : '';
-    // Allow for consuming parent to handle filtering (e.g. for async data) and prevent default filtering behavior
-    const { defaultPrevented } = this.postFilteringEvent.emit(
-      query && query.length >= this.filterThreshold ? query : '',
-    );
-    if (defaultPrevented) return;
 
-    await this.listBoxElement.filter(query);
-
-    if (query) {
-      this.showListBox();
-      this.announceCount();
-    } else {
+    if (value.length < this.filterThreshold) {
+      await this.listBoxElement.filter('');
       this.inputValue = '';
       this.clearAnnouncement();
+      return;
     }
+
+    // Allow for consuming parent to handle filtering (e.g. for async data) and prevent default filtering behavior
+    const { defaultPrevented } = this.postFilteringEvent.emit(value);
+    if (defaultPrevented) return;
+
+    await this.listBoxElement.filter(value);
+    this.showListBox();
+    this.announceCount();
   };
 
   private readonly handleKeyDown = (event: KeyboardEvent) => {
@@ -197,6 +222,7 @@ export class PostAutocomplete {
     const value = e.detail;
     this.inputElement.value = value;
     this.inputValue = value;
+    this.inputElement.dispatchEvent(new globalThis.Event('input', { bubbles: true }));
     this.hideListBox();
   };
 
@@ -242,7 +268,7 @@ export class PostAutocomplete {
             <post-icon aria-hidden="true" name="closex"></post-icon>
           </button>
         )}
-        <post-icon aria-hidden="true" class="autocomplete-icon" name="chevronDown"></post-icon>
+        <post-icon aria-hidden="true" class="autocomplete-icon" name="chevrondown"></post-icon>
         <output class="visually-hidden" ref={el => (this.outputElement = el)}></output>
       </Host>
     );

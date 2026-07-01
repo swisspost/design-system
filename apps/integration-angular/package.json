@@ -14,7 +14,7 @@
     "url": "https://github.com/swisspost/design-system/issues"
   },
   "scripts": {
-    "start": "ng serve --port 9210",
+    "start": "ng serve --port 9210 --open",
     "build": "ng build",
     "clean": "rimraf dist .angular",
     "e2e": "playwright test",

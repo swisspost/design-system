@@ -1,6 +1,16 @@
 import { EventFrom } from '@/utils';
 import { version } from '@root/package.json';
-import { Component, Element, Event, EventEmitter, h, Host, Listen, Method } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Method,
+  State,
+} from '@stencil/core';
 
 @Component({
   tag: 'post-listbox',
@@ -8,11 +18,13 @@ import { Component, Element, Event, EventEmitter, h, Host, Listen, Method } from
   shadow: true,
 })
 export class PostListbox {
+  @Element() host: HTMLPostListboxElement;
+
   private highlightedIndex: number = -1;
-  private visibleOptions: HTMLPostListboxOptionElement[] = [];
   private readonly diacriticPattern = /[\u0300-\u036F]/u;
   private popoverContainer?: HTMLPostPopovercontainerElement;
-  @Element() host: HTMLPostListboxElement;
+
+  @State() private visibleOptions: HTMLPostListboxOptionElement[] = [];
 
   /**
    *  Emitted option id for the active option
