@@ -2,14 +2,12 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property                          | Attribute              | Description                             | Type     | Default     |
 | --------------------------------- | ---------------------- | --------------------------------------- | -------- | ----------- |
 | `textCookieSettings` _(required)_ | `text-cookie-settings` | Label for the "Cookie Settings" button. | `string` | `undefined` |
 | `textFooter` _(required)_         | `text-footer`          | Visually hidden label for the footer.   | `string` | `undefined` |
-
 
 ## Dependencies
 
@@ -18,6 +16,7 @@
 - post-footer
 
 ### Graph
+
 ```mermaid
 graph TD;
   swisspost-internet-footer --> post-footer
@@ -29,6 +28,6 @@ graph TD;
   style swisspost-internet-footer fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

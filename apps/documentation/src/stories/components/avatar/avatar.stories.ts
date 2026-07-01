@@ -64,12 +64,14 @@ export const Default: Story = {
       lastname="${args.lastname || nothing}"
       email="${args.email || nothing}"
       description="${args.description || nothing}"
-      >${args.imageSrc
-        ? html`<img
-            src="${args.imageSrc}"
-            alt="${[args.firstname, args.lastname].filter(n => n).join(' ')}"
-          />`
-        : nothing}</post-avatar
+      >${
+        args.imageSrc
+          ? html`<img
+              src="${args.imageSrc}"
+              alt="${[args.firstname, args.lastname].filter(n => n).join(' ')}"
+            />`
+          : nothing
+      }</post-avatar
     >`;
   },
 };

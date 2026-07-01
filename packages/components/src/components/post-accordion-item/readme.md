@@ -2,13 +2,11 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property    | Attribute   | Description                                                    | Type      | Default |
 | ----------- | ----------- | -------------------------------------------------------------- | --------- | ------- |
 | `collapsed` | `collapsed` | If `true`, the element is collapsed otherwise it is displayed. | `boolean` | `false` |
-
 
 ## Methods
 
@@ -26,9 +24,6 @@ Triggers the collapse programmatically.
 
 Type: `Promise<boolean>`
 
-
-
-
 ## Slots
 
 | Slot        | Description                                                                 |
@@ -37,7 +32,6 @@ Type: `Promise<boolean>`
 | `"header"`  | Slot for placing custom content within the accordion item's header.         |
 | `"logo"`    | Slot for placing a logo in the accordion item’s header, before the content. |
 
-
 ## Shadow Parts
 
 | Part                      | Description                                                  |
@@ -45,12 +39,11 @@ Type: `Promise<boolean>`
 | `"post-accordion-body"`   | The element that holds the accordion item's content.         |
 | `"post-accordion-button"` | The element that toggles the accordion item (header button). |
 
-
 ## Dependencies
 
 ### Used by
 
- - [post-footer](../post-footer)
+- [post-footer](../post-footer)
 
 ### Depends on
 
@@ -59,6 +52,7 @@ Type: `Promise<boolean>`
 - [post-collapsible](../post-collapsible)
 
 ### Graph
+
 ```mermaid
 graph TD;
   post-accordion-item --> post-collapsible-trigger
@@ -68,6 +62,6 @@ graph TD;
   style post-accordion-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_
