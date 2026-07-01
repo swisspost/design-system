@@ -352,7 +352,10 @@ input.form-control {
     position: absolute;
     top: calc(#{tokens.get('input-sizing-height')} / 2);
     transform: translateY(-50%);
-    right: tokens.get('input-validation-icon-position-inline-end');
+    right: var(
+      --post-form-floating-validation-icon-right,
+      #{tokens.get('input-validation-icon-position-inline-end')}
+    );
     z-index: 2;
     pointer-events: none;
     background-image: var(--post-signal-icon-success);
@@ -364,7 +367,10 @@ input.form-control {
     position: absolute;
     top: calc(#{tokens.get('input-sizing-height')} / 2);
     transform: translateY(-50%);
-    right: tokens.get('input-validation-icon-position-inline-end');
+    right: var(
+      --post-form-floating-validation-icon-right,
+      #{tokens.get('input-validation-icon-position-inline-end')}
+    );
     z-index: 1;
     pointer-events: none;
     background-image: var(--post-signal-icon-error);
