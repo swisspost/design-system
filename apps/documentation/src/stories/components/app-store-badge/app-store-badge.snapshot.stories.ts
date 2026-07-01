@@ -16,17 +16,19 @@ export const AppStoreBadge: Story = {
   render: () => {
     return schemes(
       scheme => html`
-        ${scheme === 'light'
-          ? RenderBadge('apple-store')
-          : html`
-              <a class="app-store-badge" href="#">
-                <img
-                  src="/assets/images/apple-store-badge-white.svg"
-                  alt="Apple App Store badge (white)"
-                />
-                <span class="visually-hidden">Download the App on the Apple Store</span>
-              </a>
-            `}
+        ${
+          scheme === 'light'
+            ? RenderBadge('apple-store')
+            : html`
+                <a class="app-store-badge" href="#">
+                  <img
+                    src="/assets/images/apple-store-badge-white.svg"
+                    alt="Apple App Store badge (white)"
+                  />
+                  <span class="visually-hidden">Download the App on the Apple Store</span>
+                </a>
+              `
+        }
         ${RenderBadge('google-play')}
       `,
     );

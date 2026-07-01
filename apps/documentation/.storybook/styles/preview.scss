@@ -323,7 +323,7 @@ $toolbar-icons: (
   // captures touch gestures and prevents taps from reaching the story canvas above it.
   div:has(> .docblock-argstable) {
     overflow-x: visible;
-  
+
     @media (hover: hover) {
       overflow-x: auto;
     }

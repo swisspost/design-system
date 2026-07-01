@@ -47,13 +47,11 @@ const meta: MetaExtended = {
   render: (args: Args) => {
     return html`
       <div
-        class="my-container ${args.overflow && args.overflow !== 'unset'
-          ? 'overflow-' + args.overflow
-          : ''}${args.overflowX && args.overflowX !== 'unset'
-          ? ' overflow-x-' + args.overflowX
-          : ''}${args.overflowY && args.overflowY !== 'unset'
-          ? ' overflow-y-' + args.overflowY
-          : ''}"
+        class="my-container ${
+          args.overflow && args.overflow !== 'unset' ? 'overflow-' + args.overflow : ''
+        }${args.overflowX && args.overflowX !== 'unset' ? ' overflow-x-' + args.overflowX : ''}${
+          args.overflowY && args.overflowY !== 'unset' ? ' overflow-y-' + args.overflowY : ''
+        }"
       >
         <div class="content">
           This is a long text content that demonstrates how the overflow property works. This
