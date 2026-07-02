@@ -350,7 +350,10 @@ input.form-control {
   &:has(> input.form-control:-webkit-autofill.is-valid)::after {
     content: '';
     position: absolute;
-    top: calc(#{tokens.get('input-sizing-height')} / 2);
+    top: var(
+      --post-form-floating-validation-icon-top,
+      calc(#{tokens.get('input-sizing-height')} / 2)
+    );
     transform: translateY(-50%);
     right: var(
       --post-form-floating-validation-icon-right,
@@ -365,7 +368,10 @@ input.form-control {
   &:has(> input.form-control:-webkit-autofill.is-invalid)::after {
     content: '';
     position: absolute;
-    top: calc(#{tokens.get('input-sizing-height')} / 2);
+    top: var(
+      --post-form-floating-validation-icon-top,
+      calc(#{tokens.get('input-sizing-height')} / 2)
+    );
     transform: translateY(-50%);
     right: var(
       --post-form-floating-validation-icon-right,

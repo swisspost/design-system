@@ -181,16 +181,15 @@ function render(args: Args, context: StoryContext) {
   />`;
 
   const label = html`<label for="${args.id}-input">${getLabelText(args)}</label>`;
-  const labelAndInput = args.floatingLabel
-    ? html`<div class="form-floating">${input}${label}${validationMessages}</div>`
-    : nothing;
-  const outerLabel = args.floatingLabel ? nothing : label;
+
+  const nonFloatingLabel = args.floatingLabel ? nothing : label;
 
   return keyed(
     `${args.id}-${args.inline}-${args.floatingLabel}-${args.validation}`,
-    html`${outerLabel}
+    html`${nonFloatingLabel}
       <post-date-picker
         id=${args.id}
+        class=${args.floatingLabel ? 'form-floating' : ''}
         ?range="${args.range}"
         ?inline="${args.inline}"
         min=${isoStringPattern.test(args.min) ? args.min : nothing}
@@ -205,7 +204,7 @@ function render(args: Args, context: StoryContext) {
         text-previous-year=${args.textPreviousYear}
         text-switch-year=${args.textSwitchYear}
         >${args.floatingLabel && !args.inline
-          ? html`${labelAndInput}`
+          ? html`${input} ${label} ${validationMessages}`
           : html`${input}${args.validation !== 'null' ? validationMessages : nothing}`}
       </post-date-picker> `,
   );
