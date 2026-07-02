@@ -248,6 +248,19 @@ export class PostDatePicker {
   private navObserver: MutationObserver;
   private inputObserver: MutationObserver;
 
+  private singleMaskOptions!: {
+    lazy: boolean;
+    overwrite: boolean;
+    mask: typeof Date;
+    [key: string]: unknown;
+  };
+  private rangeMaskOptions!: {
+    lazy: boolean;
+    overwrite: boolean;
+    mask: string;
+    [key: string]: unknown;
+  };
+
   /**
    * Get the system locale (e.g.`en`, etc.) from the closest parent with a `lang` attribute,
    * or fallback to a default language code if not found or in server environment.
@@ -502,9 +515,22 @@ export class PostDatePicker {
     }
 
     this.emitInputEvents();
+    console.log(this.hasFloatingLabel());
+    if (this.hasFloatingLabel()) this.setMaskLazy(true); // Hides the mask only for the floating label
   };
 
-  private handlePrevNextClick = () => {
+  private readonly handleInputFocus = () => {
+    console.log(this.hasFloatingLabel());
+    if (this.hasFloatingLabel()) this.setMaskLazy(false); // Shows the mask only  for the floating label
+  };
+
+  private hasFloatingLabel(): boolean {
+    console.log(this.host);
+    console.log(this.host.classList.contains('form-floating'));
+    return !!this.host.classList.contains('form-floating');
+  }
+
+  private readonly handlePrevNextClick = () => {
     this.skipFocusOnNextRender = true;
   };
 
@@ -680,7 +706,7 @@ export class PostDatePicker {
   private setUpMask() {
     // WARNING: using the DATE_FORMAT_SEPARATOR_REGEX is mandatory here,
     // because `this.dateFormat` can possibly contain unicode bidi characters!
-    const maskPattern = this.dateFormat.replace(DATE_FORMAT_SEPARATOR_REGEX, m => `${m}\``);
+    const maskPattern = this.dateFormat?.replace(DATE_FORMAT_SEPARATOR_REGEX, m => `${m}\``);
 
     const baseMaskOptions = {
       mask: Date,
@@ -714,24 +740,34 @@ export class PostDatePicker {
       eager: true,
     };
 
-    const singleMaskOptions = {
+    this.singleMaskOptions = {
       ...baseMaskOptions,
-      lazy: false,
+      lazy: this.hasFloatingLabel(),
       overwrite: true,
     };
 
-    const rangeMaskOptions = {
+    this.rangeMaskOptions = {
       mask: `from\`${this.dateFormatRangeSeparator}to`,
       blocks: {
         from: { ...baseMaskOptions },
         to: { ...baseMaskOptions },
       },
-      lazy: false,
+      lazy: this.hasFloatingLabel(),
       overwrite: true,
     };
 
     this.maskElement = new NativeInputMaskElement(this.dpInput);
-    this.inputMask = IMask(this.maskElement, this.range ? rangeMaskOptions : singleMaskOptions);
+    this.inputMask = IMask(
+      this.maskElement,
+      this.range ? this.rangeMaskOptions : this.singleMaskOptions,
+    );
+  }
+
+  private setMaskLazy(lazy: boolean): void {
+    const baseOpts = this.range ? this.rangeMaskOptions : this.singleMaskOptions;
+    (this.inputMask as InputMask & { updateOptions(opts: { lazy: boolean }): void })?.updateOptions(
+      { ...(baseOpts as object), lazy },
+    );
   }
 
   private updateMask() {
@@ -840,6 +876,10 @@ export class PostDatePicker {
     }
 
     this.dpInput.type = this.inline ? 'hidden' : 'text';
+
+    if (!this.inline && !this.dpInput.hasAttribute('placeholder')) {
+      this.dpInput.placeholder = ' ';
+    }
 
     // Capture and clear initial value before mask setup, since iMask would
     // interpret an ISO string as locale-formatted text and garble it
@@ -1066,6 +1106,7 @@ export class PostDatePicker {
     this._lastInputValue = this.serializeIsoValue();
     if (!this.inline) {
       this.dpInput.addEventListener('blur', this.handleInputBlur);
+      this.dpInput.addEventListener('focus', this.handleInputFocus);
     }
     this.dpInput.addEventListener('input', this.handleInputEvent);
   }
@@ -1106,6 +1147,7 @@ export class PostDatePicker {
 
     this.prevBtn?.removeEventListener('click', this.handlePrevNextClick);
     this.nextBtn?.removeEventListener('click', this.handlePrevNextClick);
+    this.dpInput?.removeEventListener('focus', this.handleInputFocus);
     this.dpInput?.removeEventListener('blur', this.handleInputBlur);
     this.dpInput?.removeEventListener('input', this.handleInputEvent);
 
