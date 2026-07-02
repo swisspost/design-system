@@ -10,6 +10,7 @@ Flags all deprecated responsive spacing utility classes and replaces them with t
 Classes using the values `1`, `4`, `hair`, or `micro` **cannot be auto-fixed**.
 
 These values form rename chains that ESLint's `--fix` loop would follow incorrectly:
+
 - `*-hair` → renames to `*-1`, which then chains `*-1` → `*-4` → `*-24`
 - `*-micro` → renames to `*-4`, which then chains `*-4` → `*-24`
 - `*-1` → renames to `*-4`, but `*-4` is itself deprecated → would chain to `*-24`

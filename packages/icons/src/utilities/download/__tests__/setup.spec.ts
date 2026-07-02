@@ -83,10 +83,10 @@ describe('download/setup', () => {
       existsCallCount++;
       return existsCallCount % 2 === 1; // odd -> exists (rm), even -> not exists (mkdir)
     });
-    jest.spyOn(fs, 'rmSync').mockImplementation((p) => {
+    jest.spyOn(fs, 'rmSync').mockImplementation(p => {
       calls.push(`rm:${p.toString()}`);
     });
-    jest.spyOn(fs, 'mkdirSync').mockImplementation((p) => {
+    jest.spyOn(fs, 'mkdirSync').mockImplementation(p => {
       calls.push(`mkdir:${p.toString()}`);
       return undefined;
     });
