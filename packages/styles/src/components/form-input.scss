@@ -108,8 +108,8 @@ input.form-control {
       margin-inline: 0;
       height: auto;
       background-color: inherit;
-      border-inline-end: 0 none;
-      border-inline-start: inherit;
+      border-right: 0 none;
+      border-left: inherit;
     }
 
     // Fix Safari cutoff when change the initial position of the selector button.

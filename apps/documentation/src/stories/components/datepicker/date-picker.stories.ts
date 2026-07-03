@@ -182,13 +182,12 @@ function render(args: Args, context: StoryContext) {
   const isoStringPattern = /^\d{4}-\d{2}-\d{2}$/;
   const validationMessages = getValidationMessages(args, context, !args.inline);
 
-  const dir = args.locale
-    ? new Date()
-        .toLocaleDateString(args.locale, { day: '2-digit', month: '2-digit', year: 'numeric' })
-        .includes('\u200F')
-      ? 'rtl'
-      : 'ltr'
-    : nothing;
+  const isRtl = new Date()
+    .toLocaleDateString(args.locale, { day: '2-digit', month: '2-digit', year: 'numeric' })
+    .includes('\u200F')
+    ? 'rtl'
+    : 'ltr';
+  const dir = args.locale ? isRtl : nothing;
 
   const validation = args.validation && args.validation !== 'null' ? ` ${args.validation}` : '';
 
