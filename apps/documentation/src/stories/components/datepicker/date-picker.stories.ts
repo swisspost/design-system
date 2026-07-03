@@ -185,9 +185,10 @@ function getLocaleDir(locale: string): 'rtl' | 'ltr' {
     : 'ltr';
 }
 
+const isoStringPattern = /^\d{4}-\d{2}-\d{2}$/;
+
 // Setting different instances of the post-date-picker forces the rerender of the component and make sure it updates when args change
 function render(args: Args, context: StoryContext) {
-  const isoStringPattern = /^\d{4}-\d{2}-\d{2}$/;
   const validationMessages = getValidationMessages(args, context, !args.inline);
 
   const dir = args.locale ? getLocaleDir(args.locale) : nothing;
@@ -216,6 +217,8 @@ function render(args: Args, context: StoryContext) {
     >${getLabelText(args)}</label
   >`;
 
+  const elements = args.floatingLabel && !args.inline ? html`${input} ${label}` : html`${input}`;
+
   return keyed(
     `${args.id}-${args.inline}-${args.floatingLabel}-${args.validation}`,
     html`<div dir=${dir}>
@@ -236,11 +239,8 @@ function render(args: Args, context: StoryContext) {
         text-previous-month=${args.textPreviousMonth}
         text-previous-year=${args.textPreviousYear}
         text-switch-year=${args.textSwitchYear}
-        >${args.floatingLabel && !args.inline
-          ? html`${input} ${label}`
-          : html`${input}`}</post-date-picker
-      >
-      ${validationMessages}
+      ></post-date-picker
+      >${elements} ${validationMessages}
     </div>`,
   );
 }
