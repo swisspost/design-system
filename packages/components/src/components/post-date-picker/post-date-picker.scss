@@ -766,8 +766,8 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
     .calendar-input,
     .calendar-input-range {
       button {
-        inset-inline-end: auto;
-        inset-inline-start: tokens.get(
+        inset-inline-start: auto;
+        inset-inline-end: tokens.get(
           'search-position-inline-end-icon',
           components.$post-search-input
         );
