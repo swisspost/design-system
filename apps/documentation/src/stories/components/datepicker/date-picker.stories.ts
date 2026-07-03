@@ -200,8 +200,7 @@ function render(args: Args, context: StoryContext) {
     args.validation !== 'null' ? `${args.validation}-id-${context.id}` : '',
   ].filter(Boolean);
 
-  const ariaDescribedBy =
-    args.hint || args.validation !== 'null' ? ariaDescribedByParts.join(' ') : nothing;
+  const ariaDescribedBy = ariaDescribedByParts.join(' ') || nothing;
 
   const input = html`<input
     id="${args.id}-input"
@@ -216,8 +215,6 @@ function render(args: Args, context: StoryContext) {
   const label = html`<label class="form-label" for="${args.id}-input"
     >${getLabelText(args)}</label
   >`;
-
-  const elements = args.floatingLabel && !args.inline ? html`${input} ${label}` : html`${input}`;
 
   return keyed(
     `${args.id}-${args.inline}-${args.floatingLabel}-${args.validation}`,
@@ -239,8 +236,11 @@ function render(args: Args, context: StoryContext) {
         text-previous-month=${args.textPreviousMonth}
         text-previous-year=${args.textPreviousYear}
         text-switch-year=${args.textSwitchYear}
-      ></post-date-picker
-      >${elements} ${validationMessages}
+        >${args.floatingLabel && !args.inline
+          ? html`${input} ${label}`
+          : html`${input}`}</post-date-picker
+      >
+      ${validationMessages}
     </div>`,
   );
 }
