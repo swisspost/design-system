@@ -713,22 +713,21 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
   button {
     @include form-input-mx.input-btn();
 
-    &:focus-visible {
-      outline-offset: 4px !important;
-      outline-style: solid !important;
-      outline-width: tokens.get('focus-outline-width', helpers.$post-focus) !important;
-      outline-color: tokens.get('focus-outline-color', helpers.$post-focus) !important;
-    }
-
     // Safari applies its system accent color to buttons; reset it explicitly
     -webkit-appearance: none;
     appearance: none;
-
     color: tokens.get('input-color-enabled-fg', components.$post-text-input);
     right: tokens.get('search-position-inline-end-icon', components.$post-search-input);
 
     &[disabled] {
       color: tokens.get('post-datepicker-grid-day-cell-element-color-disabled-fg');
+    }
+
+    &:focus-visible {
+      outline-offset: 4px !important;
+      outline-style: solid !important;
+      outline-width: tokens.get('focus-outline-width', helpers.$post-focus) !important;
+      outline-color: tokens.get('focus-outline-color', helpers.$post-focus) !important;
     }
   }
 
@@ -742,6 +741,9 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
 }
 
 :host {
+  display: block;
+  width: 100%;
+
   --post-form-floating-validation-icon-right: calc(
     #{tokens.get('search-position-inline-end-icon', components.$post-search-input)} +
       #{tokens.get('select-sizing-icon', components.$post-select)} +
@@ -778,5 +780,35 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
         }
       }
     }
+  }
+}
+
+:host(.form-floating) {
+  &:has(> input.form-control.is-valid:not(:disabled))::after,
+  &:has(> input.form-control:-webkit-autofill.is-valid)::after {
+    content: '';
+    position: absolute;
+    top: var(--post-form-floating-validation-icon-top);
+    transform: translateY(-50%);
+    right: var(--post-form-floating-validation-icon-right);
+    z-index: 2;
+    pointer-events: none;
+    background-image: var(--post-signal-icon-success);
+    width: #{tokens.get('input-sizing-icon', components.$post-text-input)};
+    height: #{tokens.get('input-sizing-icon', components.$post-text-input)};
+  }
+
+  &:has(> input.form-control.is-invalid:not(:disabled))::after,
+  &:has(> input.form-control:-webkit-autofill.is-invalid)::after {
+    content: '';
+    position: absolute;
+    top: var(--post-form-floating-validation-icon-top);
+    transform: translateY(-50%);
+    right: var(--post-form-floating-validation-icon-right);
+    z-index: 1;
+    pointer-events: none;
+    background-image: var(--post-signal-icon-error);
+    width: #{tokens.get('input-sizing-icon', components.$post-text-input)};
+    height: #{tokens.get('input-sizing-icon', components.$post-text-input)};
   }
 }
