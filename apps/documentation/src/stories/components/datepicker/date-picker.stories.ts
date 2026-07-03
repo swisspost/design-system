@@ -169,12 +169,12 @@ function render(args: Args, context: StoryContext) {
   const isoStringPattern = /^\d{4}-\d{2}-\d{2}$/;
   const validationMessages = getValidationMessages(args, context, false);
 
+  const validation = args.validation && args.validation !== 'null' ? ` ${args.validation}` : '';
+
   const input = html`<input
     id="${args.id}-input"
     type=${args.inline ? 'hidden' : 'text'}
-    class=${args.inline
-      ? nothing
-      : `form-control${args.validation && args.validation !== 'null' ? ` ${args.validation}` : ''}`}
+    class=${args.inline ? nothing : `form-control${validation}`}
     value=${args.value ?? nothing}
     ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
     ?required="${args.requiredOptional === 'required'}"
@@ -182,11 +182,9 @@ function render(args: Args, context: StoryContext) {
 
   const label = html`<label for="${args.id}-input">${getLabelText(args)}</label>`;
 
-  const nonFloatingLabel = args.floatingLabel ? nothing : label;
-
   return keyed(
     `${args.id}-${args.inline}-${args.floatingLabel}-${args.validation}`,
-    html`${nonFloatingLabel}
+    html`${args.floatingLabel ? nothing : label}
       <post-date-picker
         id=${args.id}
         class=${args.floatingLabel ? 'form-floating' : ''}
@@ -204,9 +202,10 @@ function render(args: Args, context: StoryContext) {
         text-previous-year=${args.textPreviousYear}
         text-switch-year=${args.textSwitchYear}
         >${args.floatingLabel && !args.inline
-          ? html`${input} ${label} ${validationMessages}`
-          : html`${input}${args.validation !== 'null' ? validationMessages : nothing}`}
-      </post-date-picker> `,
+          ? html`${input} ${label}`
+          : html`${input}`}</post-date-picker
+      >
+      ${validationMessages} `,
   );
 }
 
