@@ -177,17 +177,20 @@ const meta: MetaComponent = {
 };
 export default meta;
 
+function getLocaleDir(locale: string): 'rtl' | 'ltr' {
+  return new Date()
+    .toLocaleDateString(locale, { day: '2-digit', month: '2-digit', year: 'numeric' })
+    .includes('\u200F')
+    ? 'rtl'
+    : 'ltr';
+}
+
 // Setting different instances of the post-date-picker forces the rerender of the component and make sure it updates when args change
 function render(args: Args, context: StoryContext) {
   const isoStringPattern = /^\d{4}-\d{2}-\d{2}$/;
   const validationMessages = getValidationMessages(args, context, !args.inline);
 
-  const isRtl = new Date()
-    .toLocaleDateString(args.locale, { day: '2-digit', month: '2-digit', year: 'numeric' })
-    .includes('\u200F')
-    ? 'rtl'
-    : 'ltr';
-  const dir = args.locale ? isRtl : nothing;
+  const dir = args.locale ? getLocaleDir(args.locale) : nothing;
 
   const validation = args.validation && args.validation !== 'null' ? ` ${args.validation}` : '';
 
@@ -219,7 +222,7 @@ function render(args: Args, context: StoryContext) {
       ${args.floatingLabel ? nothing : label}
       <post-date-picker
         id=${args.id}
-        class=${args.floatingLabel ? 'form-floating' : ''}
+        class=${args.floatingLabel && !args.inline ? 'form-floating' : ''}
         ?range="${args.range}"
         ?inline="${args.inline}"
         min=${isoStringPattern.test(args.min) ? args.min : nothing}
