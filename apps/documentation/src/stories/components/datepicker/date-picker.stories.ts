@@ -39,6 +39,7 @@ const meta: MetaComponent = {
     floatingLabel: true,
     validation: 'null',
     requiredOptional: 'null',
+    hint: 'This is helpful text that provides guidance or additional information to assist the user in filling out this field correctly.',
   },
   argTypes: {
     locale: {
@@ -162,6 +163,16 @@ const meta: MetaComponent = {
         category: 'States',
       },
     },
+    hint: {
+      name: 'Helper Text',
+      description: 'Text to place in the help text area of the component.',
+      control: {
+        type: 'text',
+      },
+      table: {
+        category: 'General',
+      },
+    },
   },
 };
 export default meta;
@@ -169,20 +180,31 @@ export default meta;
 // Setting different instances of the post-date-picker forces the rerender of the component and make sure it updates when args change
 function render(args: Args, context: StoryContext) {
   const isoStringPattern = /^\d{4}-\d{2}-\d{2}$/;
-  const validationMessages = getValidationMessages(args, context, false);
+  const validationMessages = getValidationMessages(args, context, !args.inline);
 
   const validation = args.validation && args.validation !== 'null' ? ` ${args.validation}` : '';
+
+  const ariaDescribedByParts = [
+    args.hint ? `form-hint-${context.id}` : '',
+    args.validation !== 'null' ? `${args.validation}-id-${context.id}` : '',
+  ].filter(Boolean);
+
+  const ariaDescribedBy =
+    args.hint || args.validation !== 'null' ? ariaDescribedByParts.join(' ') : nothing;
 
   const input = html`<input
     id="${args.id}-input"
     type=${args.inline ? 'hidden' : 'text'}
     class=${args.inline ? nothing : `form-control${validation}`}
     value=${args.value ?? nothing}
+    aria-describedby=${args.inline ? nothing : ariaDescribedBy}
     ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
     ?required="${args.requiredOptional === 'required'}"
   />`;
 
-  const label = html`<label for="${args.id}-input">${getLabelText(args)}</label>`;
+  const label = html`<label class="form-label" for="${args.id}-input"
+    >${getLabelText(args)}</label
+  >`;
 
   return keyed(
     `${args.id}-${args.inline}-${args.floatingLabel}-${args.validation}`,
