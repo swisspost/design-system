@@ -182,6 +182,14 @@ function render(args: Args, context: StoryContext) {
   const isoStringPattern = /^\d{4}-\d{2}-\d{2}$/;
   const validationMessages = getValidationMessages(args, context, !args.inline);
 
+  const dir = args.locale
+    ? new Date()
+        .toLocaleDateString(args.locale, { day: '2-digit', month: '2-digit', year: 'numeric' })
+        .includes('\u200F')
+      ? 'rtl'
+      : 'ltr'
+    : nothing;
+
   const validation = args.validation && args.validation !== 'null' ? ` ${args.validation}` : '';
 
   const ariaDescribedByParts = [
@@ -208,7 +216,8 @@ function render(args: Args, context: StoryContext) {
 
   return keyed(
     `${args.id}-${args.inline}-${args.floatingLabel}-${args.validation}`,
-    html`${args.floatingLabel ? nothing : label}
+    html`<div dir=${dir}>
+      ${args.floatingLabel ? nothing : label}
       <post-date-picker
         id=${args.id}
         class=${args.floatingLabel ? 'form-floating' : ''}
@@ -229,7 +238,8 @@ function render(args: Args, context: StoryContext) {
           ? html`${input} ${label}`
           : html`${input}`}</post-date-picker
       >
-      ${validationMessages} `,
+      ${validationMessages}
+    </div>`,
   );
 }
 

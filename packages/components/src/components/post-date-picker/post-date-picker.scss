@@ -717,7 +717,7 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
     -webkit-appearance: none;
     appearance: none;
     color: tokens.get('input-color-enabled-fg', components.$post-text-input);
-    right: tokens.get('search-position-inline-end-icon', components.$post-search-input);
+    inset-inline-end: tokens.get('search-position-inline-end-icon', components.$post-search-input);
 
     &[disabled] {
       color: tokens.get('post-datepicker-grid-day-cell-element-color-disabled-fg');
@@ -744,17 +744,17 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
   display: block;
   width: 100%;
 
-  --post-form-floating-validation-icon-right: calc(
+  --post-form-floating-validation-icon-inline-end: calc(
     #{tokens.get('search-position-inline-end-icon', components.$post-search-input)} +
       #{tokens.get('select-sizing-icon', components.$post-select)} +
       #{tokens.get('post-datepicker-input-icons-gap-inline')}
   );
-  --post-form-floating-validation-icon-top: calc(
+  --post-form-floating-validation-icon-block-start: calc(
     #{tokens.get('input-sizing-height', components.$post-text-input)} / 2
   );
 
   ::slotted(input.form-control:is(.is-invalid, .is-valid):not(:disabled)) {
-    background-position: top 50% right
+    background-position: inset-block-start 50% inset-inline-end
       calc(
         #{tokens.get('search-position-inline-end-icon', components.$post-search-input)} +
           #{tokens.get('post-datepicker-input-icons-gap-inline')} +
@@ -766,8 +766,11 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
     .calendar-input,
     .calendar-input-range {
       button {
-        right: auto;
-        left: tokens.get('search-position-inline-end-icon', components.$post-search-input);
+        inset-inline-end: auto;
+        inset-inline-start: tokens.get(
+          'search-position-inline-end-icon',
+          components.$post-search-input
+        );
       }
     }
 
@@ -788,9 +791,9 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
   &:has(> input.form-control:-webkit-autofill.is-valid)::after {
     content: '';
     position: absolute;
-    top: var(--post-form-floating-validation-icon-top);
+    inset-block-start: var(--post-form-floating-validation-icon-block-start);
     transform: translateY(-50%);
-    right: var(--post-form-floating-validation-icon-right);
+    inset-inline-end: var(--post-form-floating-validation-icon-inline-end);
     z-index: 2;
     pointer-events: none;
     background-image: var(--post-signal-icon-success);
@@ -802,9 +805,9 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
   &:has(> input.form-control:-webkit-autofill.is-invalid)::after {
     content: '';
     position: absolute;
-    top: var(--post-form-floating-validation-icon-top);
+    inset-block-start: var(--post-form-floating-validation-icon-block-start);
     transform: translateY(-50%);
-    right: var(--post-form-floating-validation-icon-right);
+    inset-inline-end: var(--post-form-floating-validation-icon-inline-end);
     z-index: 1;
     pointer-events: none;
     background-image: var(--post-signal-icon-error);
