@@ -37,6 +37,8 @@ const meta: MetaComponent = {
     textSwitchYear: 'Switch to year view',
     label: 'Date',
     floatingLabel: true,
+    validation: 'null',
+    requiredOptional: 'null',
   },
   argTypes: {
     locale: {
