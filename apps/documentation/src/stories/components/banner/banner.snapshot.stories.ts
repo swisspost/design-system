@@ -71,22 +71,26 @@ export const Banner: Story = {
                   }
                 }}
               >
-                ${bannerArgs.dismissible
-                  ? html` <post-closebutton slot="close-button">Close</post-closebutton> `
-                  : nothing}
+                ${
+                  bannerArgs.dismissible
+                    ? html` <post-closebutton slot="close-button">Close</post-closebutton> `
+                    : nothing
+                }
 
                 <h4 slot="heading">Heading</h4>
                 <p>
                   Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis temporibus
                   blanditiis expedita inventore atque. Numquam velit aut eveniet cumque non?
                 </p>
-                ${bannerArgs.hasButtons
-                  ? html` <button class="btn btn-primary" slot="actions">
-                        <span>Akcepti</span></button
-                      ><button class="btn btn-secondary" slot="actions">
-                        <span>Aborti</span>
-                      </button>`
-                  : ''}
+                ${
+                  bannerArgs.hasButtons
+                    ? html` <button class="btn btn-primary" slot="actions">
+                          <span>Akcepti</span></button
+                        ><button class="btn btn-secondary" slot="actions">
+                          <span>Aborti</span>
+                        </button>`
+                    : ''
+                }
               </post-banner>
             `;
           })}

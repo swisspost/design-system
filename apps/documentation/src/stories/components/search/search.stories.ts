@@ -81,24 +81,28 @@ function render(args: Args, context: StoryContext) {
         value="${args.value}"
       />
       <label class="form-label" for="${id}">Label</label>
-      ${args.showDeleteButton
-        ? html`
-            <button
-              class="delete-button"
-              aria-label="Clear search"
-              onclick="this.closest('.search-input').querySelector('input').value = ''"
-            >
-              <post-icon name="closex"></post-icon>
-            </button>
-          `
-        : nothing}
-      ${args.showSearchButton
-        ? html`
-            <button class="search-button" aria-label="Start search">
-              <post-icon name="search"></post-icon>
-            </button>
-          `
-        : nothing}
+      ${
+        args.showDeleteButton
+          ? html`
+              <button
+                class="delete-button"
+                aria-label="Clear search"
+                onclick="this.closest('.search-input').querySelector('input').value = ''"
+              >
+                <post-icon name="closex"></post-icon>
+              </button>
+            `
+          : nothing
+      }
+      ${
+        args.showSearchButton
+          ? html`
+              <button class="search-button" aria-label="Start search">
+                <post-icon name="search"></post-icon>
+              </button>
+            `
+          : nothing
+      }
     </div>
   `;
 }

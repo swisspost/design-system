@@ -1,5 +1,0 @@
----
-'@swisspost/design-system-components': patch
----
-
-Fixed an issue where components were sometimes not correctly rendered on load because of an incorrect breakpoint found.
