@@ -1,22 +1,237 @@
-@use 'sass:map';
-@use '@swisspost/design-system-styles/components/tabs/tabs-wrapper';
-@use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/functions/tokens';
-@use '@swisspost/design-system-styles/variables/breakpoints';
-@use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
+@use '@swisspost/design-system-styles/mixins/button' as button-mx;
+@use '@swisspost/design-system-styles/mixins/media' as media;
+@use '@swisspost/design-system-styles/variables/elevation';
+@use '@swisspost/design-system-styles/tokens/components' as components;
+@use '@swisspost/design-system-styles/tokens/helpers';
+
+tokens.$default-map: components.$post-tabs;
+
+$tabs-outline-offset: calc(
+  tokens.get('focus-outline-offset2', helpers.$post-focus) + -1 *
+    (tokens.get('post-tabs-border-width'))
+);
+
+$grid-container-padding: tokens.get('post-grid-container-padding-inline', components.$post-grid);
 
 :host {
   display: block;
+
+  .tabs-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    // Scroll buttons
+    button.scroll-btn {
+      @include button-mx.reset-button;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition:
+        background-color 100ms,
+        border-color 100ms,
+        color 100ms;
+      cursor: pointer;
+
+      post-icon {
+        color: currentColor;
+
+        @include utilities-mx.high-contrast-mode() {
+          color: Highlight;
+        }
+      }
+
+      &:hover post-icon {
+        @include utilities-mx.high-contrast-mode() {
+          color: canvas;
+        }
+      }
+
+      &[hidden] {
+        display: none;
+      }
+
+      @include utilities-mx.focus-style() {
+        outline-offset: $tabs-outline-offset !important;
+
+        @include utilities-mx.high-contrast-mode() {
+          transition: none;
+
+          &:hover {
+            color: HighlightText;
+            border-color: HighlightText;
+          }
+        }
+      }
+    }
+
+    .tabs {
+      overflow-x: hidden;
+      background-color: transparent !important;
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: end;
+      overscroll-behavior-x: contain;
+      white-space: nowrap;
+
+      @include utilities-mx.reset-list;
+    }
+  }
 }
 
-:host([full-width='true']) {
-  .tabs-wrapper {
-    // Negative margin to make the tabs-wrapper fullwidth
-    margin-inline: calc(-1 * var(--post-container-offset));
+// Page Tabs variant
+:host(.page-tabs) {
+  overflow: visible !important;
 
-    //Internal padding to align the tabs content to the container
+  .tabs-wrapper {
+    // These styles are required to stretch the bottom line to the edges of the container
+    margin-inline: calc(-1 * (var(--post-container-offset) + #{$grid-container-padding}));
+
+    button.scroll-btn {
+      color: tokens.get('post-tabs-page-scroll-button-enabled-fg');
+      background-color: tokens.get('post-tabs-page-scroll-button-enabled-bg');
+      border: tokens.get('post-tabs-border-width') solid
+        tokens.get('post-tabs-page-scroll-button-enabled-border-color');
+      position: absolute;
+      z-index: 2;
+      box-shadow: elevation.$elevation-200;
+      border-radius: tokens.get('post-tabs-page-scroll-button-border-radius');
+
+      // hovered
+      &:hover {
+        border-color: tokens.get('post-tabs-page-scroll-button-hovered-border-color') !important;
+        color: tokens.get('post-tabs-page-scroll-button-hovered-fg');
+        background-color: tokens.get('post-tabs-page-scroll-button-hovered-bg');
+      }
+
+      // Left Scroll button
+      &.scroll-btn-left {
+        inset-inline-start: calc(var(--post-container-offset) + #{$grid-container-padding});
+        border-inline-start: none;
+        border-radius: 0 tokens.get('post-tabs-page-scroll-button-border-radius')
+          tokens.get('post-tabs-page-scroll-button-border-radius') 0;
+      }
+
+      // Right Scroll button
+      &.scroll-btn-right {
+        inset-inline-end: calc(var(--post-container-offset) + #{$grid-container-padding});
+        border-inline-end: none;
+        border-radius: tokens.get('post-tabs-page-scroll-button-border-radius') 0 0
+          tokens.get('post-tabs-page-scroll-button-border-radius');
+      }
+
+      &.scroll-btn {
+        @include utilities-mx.high-contrast-mode() {
+          background-color: Highlight;
+          color: HighlightText;
+        }
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset-block-end: 0;
+      inset-inline-start: 0;
+      width: 100%;
+      height: tokens.get('post-tabs-border-width');
+      background-color: tokens.get('post-tabs-page-border-color');
+
+      @include utilities-mx.high-contrast-mode() {
+        background-color: LinkText;
+      }
+    }
+
     .tabs {
-      padding-inline: var(--post-container-offset);
+      // These styles are required to stretch the bottom line to the edges of the container
+      padding-inline: calc(var(--post-container-offset) + #{$grid-container-padding});
+      gap: tokens.get('post-tabs-page-gap-inline');
+
+      // Hide scrollbar across browsers while keeping scroll functionality
+      scrollbar-width: none; // Firefox
+
+      &::-webkit-scrollbar {
+        display: none; // Chrome, Safari, Edge
+      }
+    }
+  }
+}
+
+:host(.page-tabs:not([size='small'])) button.scroll-btn {
+  top: tokens.get('post-tabs-large-scroll-button-padding-block');
+}
+
+:host(.page-tabs[size='small']) button.scroll-btn {
+  top: tokens.get('post-tabs-small-scroll-button-padding-block');
+}
+
+// Content Tabs variant
+:host(.content-tabs) {
+  .tabs-wrapper {
+    button.scroll-btn {
+      flex-shrink: 0;
+      color: tokens.get('post-tabs-content-scroll-button-enabled-fg');
+
+      // hovered
+      &:hover {
+        border-color: tokens.get('post-tabs-page-scroll-button-hovered-border-color') !important;
+        color: tokens.get('post-tabs-content-scroll-button-hovered-fg');
+
+        @include utilities-mx.high-contrast-mode() {
+          color: HighlightText;
+        }
+      }
+    }
+  }
+}
+
+// Large/Default variant
+:host(.page-tabs:not([size='small'])) {
+  .tabs-wrapper {
+    button.scroll-btn {
+      height: tokens.get('post-tabs-large-scroll-button-height');
+      width: tokens.get('post-tabs-large-scroll-button-width');
+
+      // Left Scroll button
+      &.scroll-btn-left {
+        padding-inline: tokens.get('post-tabs-large-scroll-button-left-padding-inline-start')
+          tokens.get('post-tabs-large-scroll-button-left-padding-inline-end');
+      }
+
+      // Right Scroll button
+      &.scroll-btn-right {
+        padding-inline: tokens.get('post-tabs-large-scroll-button-right-padding-inline-start')
+          tokens.get('post-tabs-large-scroll-button-right-padding-inline-end');
+      }
+    }
+  }
+}
+
+// Small variant
+:host([size='small']) {
+  .tabs-wrapper {
+    button.scroll-btn {
+      height: tokens.get('post-tabs-small-scroll-button-height');
+      width: tokens.get('post-tabs-small-scroll-button-width');
+
+      // Left Scroll button
+      &.scroll-btn-left {
+        padding-inline: tokens.get('post-tabs-small-scroll-button-left-padding-inline-start')
+          tokens.get('post-tabs-small-scroll-button-left-padding-inline-end');
+      }
+
+      // Right Scroll button
+      &.scroll-btn-right {
+        padding-inline: tokens.get('post-tabs-small-scroll-button-right-padding-inline-start')
+          tokens.get('post-tabs-small-scroll-button-right-padding-inline-end');
+      }
+
+      post-icon {
+        height: tokens.get('post-tabs-small-icon-size');
+        width: tokens.get('post-tabs-small-icon-size');
+      }
     }
   }
 }

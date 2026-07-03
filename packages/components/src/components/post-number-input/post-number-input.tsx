@@ -104,6 +104,8 @@ export class PostNumberInput {
         stepFn.call(this.input);
       }
 
+      this.input.dispatchEvent(new Event('input', { bubbles: true }));
+
       this.updateStepButtonState();
     });
   }

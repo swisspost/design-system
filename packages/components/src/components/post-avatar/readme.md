@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property                 | Attribute     | Description                                                                    | Type     | Default     |
@@ -12,27 +11,12 @@
 | `firstname` _(required)_ | `firstname`   | Defines the users firstname.                                                   | `string` | `undefined` |
 | `lastname`               | `lastname`    | Defines the users lastname.                                                    | `string` | `undefined` |
 
-
 ## Slots
 
 | Slot        | Description                                  |
 | ----------- | -------------------------------------------- |
 | `"default"` | Slot for inserting a custom image as avatar. |
 
+---
 
-## Dependencies
-
-### Used by
-
- - [post-login-widget](../post-login-widget)
-
-### Graph
-```mermaid
-graph TD;
-  post-login-widget --> post-avatar
-  style post-avatar fill:#f9f,stroke:#333,stroke-width:4px
-```
-
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

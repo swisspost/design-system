@@ -1,4 +1,3 @@
-import { HeadingLevel } from '@/types';
 import { EventFrom, nanoid } from '@/utils';
 import { version } from '@root/package.json';
 import { Component, Element, h, Host, Listen, Method, Prop, State } from '@stencil/core';
@@ -21,24 +20,12 @@ export class PostAccordionItem {
 
   @Element() host: HTMLPostAccordionItemElement;
 
-  @State() id: string;
-
   @State() slottedLogo: HTMLElement;
 
   /**
    * If `true`, the element is collapsed otherwise it is displayed.
    */
   @Prop({ mutable: true, reflect: true }) collapsed?: boolean = false;
-
-  /**
-   * Defines the hierarchical level of the accordion item header within the headings structure.
-   * @deprecated set the `heading-level` property on the parent `post-accordion` instead.
-   */
-  @Prop() readonly headingLevel?: HeadingLevel;
-
-  componentWillLoad() {
-    this.id = this.host.id || `p${nanoid(6)}`;
-  }
 
   // Capture to make sure the "collapsed" property is updated before the event is consumed
   @Listen('postToggle', { capture: true })
@@ -64,13 +51,15 @@ export class PostAccordionItem {
   }
 
   render() {
+    const collapsibleId = `c${nanoid(6)}`;
+
     const headingLevel = this.host.closest('post-accordion')?.getAttribute('heading-level');
-    const HeadingTag = `h${headingLevel ?? this.headingLevel ?? 2}`;
+    const HeadingTag = `h${headingLevel ?? 2}`;
 
     return (
-      <Host id={this.id} data-version={version}>
-        <post-collapsible-trigger for={`${this.id}--collapse`}>
-          <HeadingTag class="accordion-header" id={`${this.id}--header`}>
+      <Host data-version={version}>
+        <post-collapsible-trigger for={collapsibleId}>
+          <HeadingTag class="accordion-header">
             <button
               type="button"
               class={`accordion-button${this.collapsed ? ' collapsed' : ''}`}
@@ -91,7 +80,7 @@ export class PostAccordionItem {
         </post-collapsible-trigger>
 
         <post-collapsible
-          id={`${this.id}--collapse`}
+          id={collapsibleId}
           collapsed={this.collapsed}
           ref={el => (this.collapsible = el)}
         >

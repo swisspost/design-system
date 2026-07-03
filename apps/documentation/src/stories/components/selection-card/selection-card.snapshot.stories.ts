@@ -11,12 +11,11 @@ export default {
   title: 'Snapshots',
 };
 
-const PALETTE_TEST_COMPONENT_TYPES = ['radio', 'checkbox'];
-const PALETTE_TEST_PALETTE_TYPES = ['default', 'alternate', 'accent', 'brand'];
-const PALETTE_TEST_ARGS = {
-  description: 'Description',
-  icon: 'component',
-};
+import {
+  PALETTE_TEST_COMPONENT_TYPES,
+  PALETTE_TEST_PALETTE_TYPES,
+  PALETTE_TEST_ARGS,
+} from '@/shared/snapshots/palettes';
 
 const bombedArgs = bombArgs({
   customIcon: [null, 'svg', 'img'],

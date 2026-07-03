@@ -34,14 +34,14 @@ tokens.$default-map: components.$post-button;
       box-shadow: tokens.get('button-elevation');
     }
 
-    @include button-mx.button-variant-def('enabled', $color);
+    @include button-mx.button-variant-def('enabled', $color, $variant);
 
     &:disabled {
-      @include button-mx.button-variant-def('disabled', $color);
+      @include button-mx.button-variant-def('disabled', $color, $variant);
     }
 
     @include utilities.not-disabled-hover() {
-      @include button-mx.button-variant-def('hover', $color);
+      @include button-mx.button-variant-def('hover', $color, $variant);
     }
   }
 }
@@ -56,11 +56,15 @@ tokens.$default-map: components.$post-button;
 .btn-link {
   text-decoration: tokens.get('link-decoration', elements.$post-link);
   border: 0 none;
-  border-radius: tokens.get('link-border-radius', elements.$post-link);
+  border-radius: 0;
   min-height: 0;
   font-size: inherit;
   font-weight: inherit;
   padding: 0;
+
+  @include utilities.focus-style-custom() {
+    border-radius: tokens.get('link-border-radius', elements.$post-link);
+  }
 
   &:hover {
     color: tokens.get('link-hover-fg', elements.$post-link);

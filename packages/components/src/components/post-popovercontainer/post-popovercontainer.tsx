@@ -185,11 +185,12 @@ export class PostPopovercontainer {
 
   /**
    * Programmatically display the popovercontainer
-   * @param target A focusable element inside the trigger component that controls the popover
+   * @param target The element that invokes the popover and to which it is visually anchored.
    */
   @Method()
   async show(target: HTMLElement) {
-    if (this.toggleTimeoutId) return;
+    if (this.toggleTimeoutId || !target) return;
+
     this.eventTarget = target;
     this.calculatePosition();
     this.host.showPopover();
@@ -209,11 +210,16 @@ export class PostPopovercontainer {
 
   /**
    * Toggle popovercontainer display
-   * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
+   * @param target The element that invokes the popover and to which it is visually anchored.
    * @param force Pass true to always show or false to always hide
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
+    const isOpen = this.host.matches(':where(:popover-open, .popover-open)');
+    const willOpen = force === true || (force === undefined && !isOpen);
+
+    if (willOpen && !target) return isOpen;
+
     this.eventTarget = target;
 
     // Prevent instant double toggle
@@ -378,9 +384,7 @@ export class PostPopovercontainer {
 
       const staticSide = PostPopovercontainer.STATIC_SIDES[currentPlacement];
 
-
       const arrowSizePx = this.arrowRef.offsetWidth;
-
 
       const halfSide = -0.5 * arrowSizePx;
 

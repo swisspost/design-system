@@ -1,11 +1,11 @@
+import { spreadArgs } from '@/utils';
+import { MetaComponent } from '@root/types';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, TemplateResult } from 'lit';
-import { MetaComponent } from '@root/types';
-import { spreadArgs } from '@/utils';
 
 const meta: MetaComponent = {
   id: '5ef3cb45-86f6-4baf-bdbf-35bd2ddf0f3d',
-  title: 'Components/Form Autocomplete',
+  title: 'Raw Components/Form Autocomplete',
   component: 'post-autocomplete',
   tags: ['package:WebComponents'],
   render: createAutocompleteRenderer(),
@@ -118,9 +118,11 @@ export function createAutocompleteRenderer({ detached = false }: { detached?: bo
         ${detached ? null : html`<post-listbox>${getListboxOptions()}</post-listbox>`}
       </post-autocomplete>
 
-      ${detached
-        ? html`<post-listbox id="${listboxId}">${getListboxOptions()}</post-listbox>`
-        : null}
+      ${
+        detached
+          ? html`<post-listbox id="${listboxId}">${getListboxOptions()}</post-listbox>`
+          : null
+      }
     `;
   };
 }

@@ -110,8 +110,7 @@ tokens.$default-map: components.$post-stepper;
 
 // step indicator
 .stepper-item-content::before {
-  counter-increment: step-index;
-  content: counter(step-index);
+  content: var(--step-number, '?');
   display: flex;
   align-items: center;
   justify-content: center;

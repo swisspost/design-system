@@ -1,6 +1,6 @@
 import { nanoid, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State, Build } from '@stencil/core';
 
 /**
  * @slot default - Slot for placing the content of the tab panel.
@@ -12,9 +12,9 @@ import { Component, Element, h, Host, Prop, State } from '@stencil/core';
   shadow: true,
 })
 export class PostTabPanel {
-  @Element() host: HTMLPostTabPanelElement;
+  @Element() host!: HTMLPostTabPanelElement;
 
-  @State() panelId: string;
+  @State() panelId?: string;
 
   /**
    * The name of the tab that this panel is associated with.
@@ -30,8 +30,15 @@ export class PostTabPanel {
   }
 
   render() {
+    const isSSR = Build.isServer;
     return (
-      <Host data-version={version} id={this.panelId} role="tabpanel" slot="panels">
+      <Host
+        data-version={version}
+        id={this.panelId}
+        role="tabpanel"
+        slot="panels"
+        style={isSSR ? { display: `var(--post-tab-panel-${this.for}, none)` } : undefined}
+      >
         <slot />
       </Host>
     );

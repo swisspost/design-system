@@ -1,7 +1,6 @@
 import { MetaComponent } from '@root/types';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { mapClasses } from '@/utils';
 import { getLabelText, getValidationMessages, VALIDATION_STATE_MAP } from '@/utils/form-elements';
 
 const meta: MetaComponent = {
@@ -25,6 +24,7 @@ const meta: MetaComponent = {
     disabled: false,
     validation: 'null',
     requiredOptional: 'null',
+    size: 'null',
   },
   argTypes: {
     label: {
@@ -43,6 +43,26 @@ const meta: MetaComponent = {
       control: {
         type: 'boolean',
       },
+      table: {
+        category: 'General',
+      },
+    },
+    size: {
+      name: 'Size',
+      description:
+        'Defines the size of the textarea. A small textarea cannot have a floating label.',
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          small: 'Small',
+        },
+      },
+      if: {
+        arg: 'floatingLabel',
+        truthy: false,
+      },
+      options: ['null', 'small'],
       table: {
         category: 'General',
       },
@@ -119,6 +139,10 @@ const meta: MetaComponent = {
           'is-invalid': 'Invalid',
         },
       },
+      if: {
+        arg: 'disabled',
+        truthy: false,
+      },
       options: ['null', 'is-valid', 'is-invalid'],
       table: {
         category: 'States',
@@ -148,10 +172,9 @@ export default meta;
 type Story = StoryObj;
 
 function renderTextarea(args: Args, context: StoryContext) {
-  const classes = mapClasses({
-    'form-control': true,
-    [args.validation]: args.validation,
-  });
+  const classes = ['form-control', args.validation, args.size === 'small' && 'form-control-sm']
+    .filter(c => c && c !== 'null')
+    .join(' ');
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
 
   const label = !useAriaLabel
@@ -181,8 +204,7 @@ function renderTextarea(args: Args, context: StoryContext) {
       style=${args.resize ?? nothing}
       ?required="${args.requiredOptional === 'required'}"
     >
-${args.textInside ?? nothing}</textarea
-    >
+${args.textInside ?? nothing}</textarea>
   `;
   if (args.floatingLabel) {
     return html`
@@ -197,5 +219,12 @@ export const FloatingLabel: Story = {
   args: {
     floatingLabel: true,
     hint: '',
+  },
+};
+
+export const Small: Story = {
+  args: {
+    floatingLabel: false,
+    size: 'small',
   },
 };

@@ -1,9 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="connect-src 'self' *.coveo.com *.post.ch" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="connect-src 'self' https://int.post.ch https://www.post.ch https://n.account.post.ch"
+    />
     <title>Common Web Frontend Internet Header</title>
 
     <link rel="stylesheet" href="/build/swisspost-internet-header.css" />
@@ -18,10 +21,10 @@
       text-main="Main"
       text-menu="Menu"
       text-change-language="Change the language"
-      text-current-language="The currently selected language is #name."
-      text-current-user="Current user is John Doe."
+      text-current-language="The currently selected language is {name}."
+      text-current-user="Current user is {user}."
       text-user-links="User links"
-      text-user-menu-trigger="Access user links"
+      text-access-user-links="Access user links"
       text-close="Close"
       text-back="Back"
     ></swisspost-internet-header>
@@ -104,33 +107,35 @@
                 "active": true
               }
             ],
-            "login": {
-              "text": "Login",
-              "url": "#",
-              "icon": "login"
-            },
-            "userMenuLinks": [
-              {
-                "text": "Mein Profil",
+            "postLogin": {
+              "loginLink": {
+                "text": "Login",
                 "url": "#",
-                "icon": "profile"
+                "icon": "login"
               },
-              {
-                "text": "Nachrichten",
-                "url": "#",
-                "icon": "letter"
-              },
-              {
-                "text": "Einstellungen",
-                "url": "#",
-                "icon": "gear"
-              },
-              {
-                "text": "Abmelden",
-                "url": "#",
-                "icon": "logout"
-              }
-            ]
+              "userLinks": [
+                {
+                  "text": "Mein Profil",
+                  "url": "#",
+                  "icon": "profile"
+                },
+                {
+                  "text": "Nachrichten",
+                  "url": "#",
+                  "icon": "letter"
+                },
+                {
+                  "text": "Einstellungen",
+                  "url": "#",
+                  "icon": "gear"
+                },
+                {
+                  "text": "Abmelden",
+                  "url": "#",
+                  "icon": "logout"
+                }
+              ]
+            }
           },
           "localHeader": {
             "mainNavigation": [

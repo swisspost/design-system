@@ -33,40 +33,44 @@ export class MigrationV78Component extends LitElement {
           <li>
             <h3>Package Update 🩺</h3>
             <ol>
-              ${this.angular
-                ? html`
-                    <li>
-                      <p>
-                        Use
-                        <a href="https://update.angular.io/">Angular Update Guide</a>
-                        to update Angular to version 18
-                      </p>
-                    </li>
-                  `
-                : nothing}
-              ${this.angular
-                ? html`
-                    <li>
-                      <div>
-                        Update ng-bootstrap to version 17.x.x:
-                        <code-block
-                          code=${'npm install @ng-bootstrap/ng-bootstrap@17'}
-                        ></code-block>
-                      </div>
-                      <div class="mt-2">
-                        See the
-                        <a
-                          href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1700-2024-xx-xx"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          ng-bootstrap 17.x.x changelog
-                        </a>
-                        for more details.
-                      </div>
-                    </li>
-                  `
-                : nothing}
+              ${
+                this.angular
+                  ? html`
+                      <li>
+                        <p>
+                          Use
+                          <a href="https://update.angular.io/">Angular Update Guide</a>
+                          to update Angular to version 18
+                        </p>
+                      </li>
+                    `
+                  : nothing
+              }
+              ${
+                this.angular
+                  ? html`
+                      <li>
+                        <div>
+                          Update ng-bootstrap to version 17.x.x:
+                          <code-block
+                            code=${'npm install @ng-bootstrap/ng-bootstrap@17'}
+                          ></code-block>
+                        </div>
+                        <div class="mt-2">
+                          See the
+                          <a
+                            href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1700-2024-xx-xx"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            ng-bootstrap 17.x.x changelog
+                          </a>
+                          for more details.
+                        </div>
+                      </li>
+                    `
+                  : nothing
+              }
 
               <li>
                 <p>
