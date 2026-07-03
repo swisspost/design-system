@@ -10,7 +10,10 @@ import { renderLoginLink } from '@/stories/components/header/renderers/login-lin
 import { MetaComponent } from '@root/types';
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing, TemplateResult } from 'lit';
-import { renderSideNavTrigger, renderSideNavigation } from '@/stories/components/header/renderers/side-navigation';
+import {
+  renderSideNavTrigger,
+  renderSideNavigation,
+} from '@/stories/components/header/renderers/side-navigation';
 import { forceCompactAppearance } from '../../../../.storybook/helpers';
 
 const meta: MetaComponent = {
@@ -182,18 +185,17 @@ const meta: MetaComponent = {
     (story, context) => {
       const showSideNav = context.args.sideNav && context.args.title !== '';
 
-      const wrapperClass = showSideNav
-        ? 'virtual-body virtual-body--side-nav'
-        : 'virtual-body';
+      const wrapperClass = showSideNav ? 'virtual-body virtual-body--side-nav' : 'virtual-body';
 
       return html`
         <div class="header-story-wrapper">
           <div class="${wrapperClass}">
             ${story()}
-
-            ${showSideNav
-              ? html`<main class="main-container flex-grow-1">${fakeContent()}</main>`
-              : html`<div class="flex-grow-1">${fakeContent()}</div>`}
+            ${
+              showSideNav
+                ? html`<main class="main-container flex-grow-1">${fakeContent()}</main>`
+                : html`<div class="flex-grow-1">${fakeContent()}</div>`
+            }
           </div>
         </div>
       `;
@@ -264,12 +266,28 @@ function resolveSubComponents(args: Args, subComponents: SubComponents) {
   const appHeader = isApplicationHeader(args);
   const localLanguageMenuItem = args.languageMenu && appHeader ? languageMenu : undefined;
 
-  return { mainnavigation, title, languageMenu, globalControls, globalLogin, appHeader, localLanguageMenuItem };
+  return {
+    mainnavigation,
+    title,
+    languageMenu,
+    globalControls,
+    globalLogin,
+    appHeader,
+    localLanguageMenuItem,
+  };
 }
 
 function buildHeaderSlots(args: Args, subComponents: SubComponents) {
   const resolved = resolveSubComponents(args, subComponents);
-  const { mainnavigation, title, languageMenu, globalControls, globalLogin, appHeader, localLanguageMenuItem } = resolved;
+  const {
+    mainnavigation,
+    title,
+    languageMenu,
+    globalControls,
+    globalLogin,
+    appHeader,
+    localLanguageMenuItem,
+  } = resolved;
 
   return {
     audienceSlot: args.targetGroup ? renderAudience(args) : nothing,
@@ -303,17 +321,11 @@ function getHeaderRenderer(subComponents: SubComponents = {}) {
         <!-- Logo -->
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
-        ${slots.audienceSlot}
-        ${slots.globalControlsSlot}
-        ${slots.globalNavSecondarySlot}
+        ${slots.audienceSlot} ${slots.globalControlsSlot} ${slots.globalNavSecondarySlot}
 
         <!-- Language menu (global) -->
-        ${slots.globalLanguageMenuSlot}
-        ${slots.globalLoginSlot}
-        ${slots.titleSlot}
-        ${slots.sideNavTriggerSlot}
-        ${slots.micrositeControlsSlot}
-        ${slots.mainNavSlot}
+        ${slots.globalLanguageMenuSlot} ${slots.globalLoginSlot} ${slots.titleSlot}
+        ${slots.sideNavTriggerSlot} ${slots.micrositeControlsSlot} ${slots.mainNavSlot}
         ${slots.jobControlsSlot}
       </post-header>
 
