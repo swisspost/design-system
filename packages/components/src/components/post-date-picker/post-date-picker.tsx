@@ -515,18 +515,14 @@ export class PostDatePicker {
     }
 
     this.emitInputEvents();
-    console.log(this.hasFloatingLabel());
     if (this.hasFloatingLabel()) this.setMaskLazy(true); // Hides the mask only for the floating label
   };
 
   private readonly handleInputFocus = () => {
-    console.log(this.hasFloatingLabel());
-    if (this.hasFloatingLabel()) this.setMaskLazy(false); // Shows the mask only  for the floating label
+    if (this.hasFloatingLabel()) this.setMaskLazy(false); // Shows the mask only for the floating label
   };
 
   private hasFloatingLabel(): boolean {
-    console.log(this.host);
-    console.log(this.host.classList.contains('form-floating'));
     return !!this.host.classList.contains('form-floating');
   }
 
@@ -772,12 +768,18 @@ export class PostDatePicker {
 
   private updateMask() {
     if (!this.inline) {
+      const wasFocused = document.activeElement === this.dpInput;
       this.inputMask.destroy();
       this.setUpMask();
       this.setupValueOverride();
 
       if (this.dpInstance.selectedDates.length > 0) {
         this.inputMask.value = this.formatDatesForMask(this.dpInstance.selectedDates);
+      }
+
+      // If the input was focused when the mask was recreated, keep the mask visible
+      if (wasFocused && this.hasFloatingLabel()) {
+        this.setMaskLazy(false);
       }
     }
   }
