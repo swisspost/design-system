@@ -36,12 +36,10 @@
       background-color: currentColor;
       border-radius: 50%;
 
+      float: left;
+
       @supports (float: inline-start) {
         float: inline-start;
-      }
-
-      @supports not (float: inline-start) {
-        float: left;
       }
     }
   }
