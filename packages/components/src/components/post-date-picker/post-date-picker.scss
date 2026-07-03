@@ -718,6 +718,7 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
     appearance: none;
     color: tokens.get('input-color-enabled-fg', components.$post-text-input);
     inset-inline-end: tokens.get('search-position-inline-end-icon', components.$post-search-input);
+    inset-inline-start: auto;
 
     &[disabled] {
       color: tokens.get('post-datepicker-grid-day-cell-element-color-disabled-fg');
@@ -763,17 +764,6 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
   }
 
   [dir='rtl'] {
-    .calendar-input,
-    .calendar-input-range {
-      button {
-        inset-inline-start: auto;
-        inset-inline-end: tokens.get(
-          'search-position-inline-end-icon',
-          components.$post-search-input
-        );
-      }
-    }
-
     .air-datepicker {
       .air-datepicker--navigation {
         .air-datepicker-nav {
