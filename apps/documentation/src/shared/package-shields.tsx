@@ -8,7 +8,6 @@ interface PackageShieldsProps {
 
 export const PackageShields: React.FC<PackageShieldsProps> = ({ packageName = '' }) => {
   const [loading, setLoading] = useState<boolean>(true);
-  const [currentVersion, setCurrentVersion] = useState<Version | null>(null);
   const [packageVersion, setPackageVersion] = useState<string | null>(null);
   const [peerDependencies, setPeerDependencies] = useState<string[]>([]);
   const [distTag, setDistTag] = useState<string>('');
@@ -18,18 +17,15 @@ export const PackageShields: React.FC<PackageShieldsProps> = ({ packageName = ''
 
     Promise.all([getCurrentVersion(), getDistTag()])
       .then(([currentVersion, distTag]) => {
-        setCurrentVersion(currentVersion);
-        setDistTag(distTag);
-
         if (packageName && currentVersion) {
-          const packageVersion = currentVersion?.dependencies?.[packageName] ?? null;
+          const packageVersion = currentVersion.dependencies?.[packageName] ?? null;
           setPackageVersion(packageVersion);
 
-          const peers = currentVersion?.peerDependencies?.[packageName] ?? {};
-          if (Object.keys(peers).length > 0) {
-            setPeerDependencies(Object.keys(peers));
-          }
+          const peers = currentVersion.peerDependencies?.[packageName] ?? {};
+          if (Object.keys(peers).length > 0) setPeerDependencies(Object.keys(peers));
         }
+
+        if (distTag) setDistTag(distTag);
       })
       .finally(() => {
         setLoading(false);

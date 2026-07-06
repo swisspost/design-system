@@ -1,13 +1,12 @@
 import { IconButton, WithTooltip } from 'storybook/internal/components';
-import React, { useEffect, useState, version } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getVersion } from '../../../src/utils/version';
-import type { Versions, Version } from '../../helpers/get-versions-json';
+import type { Versions } from '../../helpers/get-versions-json';
 import { getVersions, getCurrentVersion } from '../../helpers/get-versions-json';
 
 function VersionSwitcher() {
   const [loading, setLoading] = useState<boolean>(true);
   const [versions, setVersions] = useState<Versions>([]);
-  const [currentVersion, setCurrentVersion] = useState<Version | null>(null);
   const [currentMajorVersion, setCurrentMajorVersion] = useState<string>('');
 
   useEffect(() => {
@@ -15,9 +14,9 @@ function VersionSwitcher() {
 
     Promise.all([getVersions(), getCurrentVersion()])
       .then(([versions, currentVersion]) => {
-        setVersions(versions);
-        setCurrentVersion(currentVersion);
-        setCurrentMajorVersion(getVersion(currentVersion?.version ?? '', 'major') ?? '');
+        if (versions) setVersions(versions);
+        if (currentVersion)
+          setCurrentMajorVersion(getVersion(currentVersion.version, 'major') ?? '');
       })
       .finally(() => {
         setLoading(false);
