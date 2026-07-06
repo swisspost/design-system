@@ -3,6 +3,7 @@ import { customElement, property, state } from 'lit/decorators.js';
 import { V910Checks } from './types';
 import { _updateOnChange, _updatePersistedState } from './util/migration-checks.util';
 import { _restorePersistedState, MIGRATION_CHECKS_KEY_V9 } from './util/persist.util';
+import './migration-v9-10/icons-migration-map-block/icons-migration-map.component';
 
 @customElement('migration-version-9-10')
 export class MigrationV910Component extends LitElement {
@@ -178,7 +179,7 @@ export class MigrationV910Component extends LitElement {
             </p>
             <p>
               Oh, and yes — there's a
-              <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs"
+              <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uilight">
                 >brand-new icon set</a
               >
               too 🖼️.
@@ -2568,7 +2569,24 @@ export class MyComponent {
             </div>
           </li>
           <li>
-            <h3>🧹 Clean up</h3>
+            <h3>Icons Migration 🖼️</h3>
+            <p>Beside the <strong><a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=post">Post Icon Set</a></strong>, there is now a brand new
+              <strong>UI Icon Set</strong>, available as <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uilight">line</a> or <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uisolid">solid</a> icons.</p>
+            <p>Using the new icons is as easy as before, simply replace the icon number with the icon name, and you're done.</p>
+            <p>Below, we show you which of the previous icons you can replace with a corresponding new icon.</p>
+
+            <post-banner variant="info">
+              <p>Not all previous icons are (or will be) available in the new Icon Set. Instead, we produce icons on request.</p>
+              <p>For this reason, the previous Icon Set stays available and you can continue using icons from it if no equivalent exists in the new Icon Set. However, we strongly recommend switching to the new <strong>UI Icon Set</strong>
+              whenever possible!</p>
+            </post-banner>
+
+            <h4>Icon Mapping</h4>
+
+            <icons-migration-map></icons-migration-map>
+          </li>
+          <li>
+            <h3>Clean up 🧹</h3>
             <p>
               You're almost done! After completing the migration steps above, you can now remove all
               remaining references to
