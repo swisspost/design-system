@@ -30,5 +30,7 @@ tokens.$default-map: components.$post-button;
 }
 
 .post-language-menu-list {
+  display: flex;
+  gap: 0.5rem;
   margin-top: 1rem;
 }
