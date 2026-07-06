@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import type { Version } from '@root/.storybook/helpers/get-versions-json';
 import { getCurrentVersion, getDistTag } from '@root/.storybook/helpers/get-versions-json';
 
 interface PackageShieldsProps {
