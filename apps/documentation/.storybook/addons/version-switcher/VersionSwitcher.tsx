@@ -1,46 +1,36 @@
 import { IconButton, WithTooltip } from 'storybook/internal/components';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, version } from 'react';
 import { getVersion } from '../../../src/utils/version';
-import * as packageJson from '../../../package.json';
-
-const VERSIONS_URL = 'https://design-system.post.ch/assets/versions.json';
-const STYLES_VERSION = packageJson.dependencies['@swisspost/design-system-styles'] ?? '';
-const CURRENT_VERSION = getVersion(STYLES_VERSION, 'majorminorpatch') ?? '';
-const CURRENT_MINOR_VERSION = getVersion(STYLES_VERSION, 'majorminor') ?? '';
-const CURRENT_MAJOR_VERSION = getVersion(STYLES_VERSION, 'major') ?? '';
-
-interface Version {
-  title: string;
-  version?: string;
-  description: string;
-  url: string;
-  dependencies?: {
-    ['@angular/core']: string;
-    ['@ng-bootstrap/ng-bootstrap']: string;
-    ['@swisspost/design-system-styles']: string;
-    bootstrap: string;
-  };
-}
+import type { Versions, Version } from '../../helpers/get-versions-json';
+import { getVersions, getCurrentVersion } from '../../helpers/get-versions-json';
 
 function VersionSwitcher() {
-  const [versions, setVersions] = useState<Version[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [versions, setVersions] = useState<Versions>(null);
+  const [currentVersion, setCurrentVersion] = useState<Version | null>(null);
+  const [currentMajorVersion, setCurrentMajorVersion] = useState<string>('');
 
   useEffect(() => {
-    async function fetchVersions() {
-      try {
-        const response = await fetch(VERSIONS_URL);
-        const versionsJSON = await response.json();
-        setVersions(versionsJSON);
+    setLoading(true);
+
+    Promise.all([getVersions(), getCurrentVersion()])
+      .then(([versions, currentVersion]) => {
+        setVersions(versions);
+        setCurrentVersion(currentVersion);
+        setCurrentMajorVersion(getVersion(currentVersion?.version ?? '', 'major') ?? '');
+      })
+      .finally(() => {
         setLoading(false);
-      } catch (error) {
-        console.log(`Failed to fetch versions file. Errormessage: ${error}`);
-      }
-    }
-    void fetchVersions();
+      });
   }, []);
 
-  if (loading) return <div className="version-switcher__loading">Loading...</div>;
+  if (loading) {
+    return (
+      <div role="status" aria-live="polite" className="spinner spinner-12">
+        <span className="visually-hidden">Loading…</span>
+      </div>
+    );
+  }
 
   return (
     <WithTooltip
@@ -50,12 +40,10 @@ function VersionSwitcher() {
       tooltip={() => (
         <>
           <div className="addon-dropdown version-switcher__dropdown">
-            {versions.map(version => {
+            {versions?.map(v => {
               const isActive =
-                getVersion(version.version ?? '', 'major') === CURRENT_MAJOR_VERSION
-                  ? 'active'
-                  : '';
-              const deps = Object.entries(version.dependencies || [])
+                getVersion(v.version ?? '', 'major') === currentMajorVersion ? 'active' : '';
+              const deps = Object.entries(v.dependencies || [])
                 .filter(([k]) => !/^@swisspost\//.test(k))
                 .map(([k, v]) => ({
                   key: k,
@@ -66,12 +54,10 @@ function VersionSwitcher() {
               return (
                 <a
                   className={['addon-dropdown__item', isActive].filter(c => c).join(' ')}
-                  key={version.title}
-                  href={version.url}
+                  key={v.title}
+                  href={v.url}
                 >
-                  <span className="item__title">
-                    v{isActive ? CURRENT_VERSION : version.version}
-                  </span>
+                  <span className="item__title">v{getVersion(v.version, 'major')}</span>
                   <span className="item__deps">
                     {deps.map(d => (
                       <span key={d.key} className="deps_dep" title={d.key}>
@@ -95,14 +81,14 @@ function VersionSwitcher() {
             className="version_switcher__sizing_placeholder"
             aria-hidden="true"
           >
-            v{CURRENT_MINOR_VERSION}
+            {`v${currentMajorVersion}`}
             <post-icon name="chevrondown"></post-icon>
           </IconButton>
         </>
       )}
     >
       <IconButton placeholder="Versions" className="addon-label">
-        v{CURRENT_MINOR_VERSION}
+        {`v${currentMajorVersion}`}
         <post-icon name="chevrondown"></post-icon>
       </IconButton>
     </WithTooltip>
