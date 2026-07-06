@@ -6,7 +6,7 @@ import { getVersions, getCurrentVersion } from '../../helpers/get-versions-json'
 
 function VersionSwitcher() {
   const [loading, setLoading] = useState<boolean>(true);
-  const [versions, setVersions] = useState<Versions>(null);
+  const [versions, setVersions] = useState<Versions>([]);
   const [currentVersion, setCurrentVersion] = useState<Version | null>(null);
   const [currentMajorVersion, setCurrentMajorVersion] = useState<string>('');
 

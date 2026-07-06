@@ -18,7 +18,7 @@ export interface Version {
   };
 }
 
-export type Versions = Version[] | null;
+export type Versions = Version[];
 
 interface VersionsStore {
   cache: Versions;
@@ -46,7 +46,7 @@ function getVersionsStore(): VersionsStore {
   const target = host as { __postDesignSystemVersions__?: VersionsStore };
 
   if (!target.__postDesignSystemVersions__) {
-    target.__postDesignSystemVersions__ = { cache: null, promise: null };
+    target.__postDesignSystemVersions__ = { cache: [], promise: null };
   }
 
   return target.__postDesignSystemVersions__;
@@ -59,7 +59,7 @@ function loadVersionsJson(url: string = VERSIONS_URL): Promise<Versions> {
   const store = getVersionsStore();
 
   // Already loaded: reuse the cached data.
-  if (store.cache) return Promise.resolve(store.cache);
+  if (store.cache.length > 0) return Promise.resolve(store.cache);
 
   // Already loading: reuse the in-flight request instead of fetching again.
   if (store.promise !== null) return store.promise;
@@ -75,8 +75,8 @@ function loadVersionsJson(url: string = VERSIONS_URL): Promise<Versions> {
     })
     .catch(error => {
       console.error('Error loading versions.json:', error);
-      store.cache = null;
-      return null;
+      store.cache = [];
+      return [];
     })
     .finally(() => {
       // Clear the in-flight marker so a failed load can be retried later.
