@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property      | Attribute     | Description                                                                                            | Type                       | Default      |
@@ -12,11 +13,13 @@
 | `url`         | `url`         | The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text. | `URL \| string`            | `undefined`  |
 | `variant`     | `variant`     | Controls how the item is rendered, either as a standard list item or within an overflow menu.          | `"listitem" \| "menuitem"` | `'listitem'` |
 
+
 ## Slots
 
 | Slot        | Description                                       |
 | ----------- | ------------------------------------------------- |
 | `"default"` | The content displayed inside the breadcrumb item. |
+
 
 ## Dependencies
 
@@ -25,13 +28,12 @@
 - [post-menu-item](../post-menu-item)
 
 ### Graph
-
 ```mermaid
 graph TD;
   post-breadcrumb-item --> post-menu-item
   style post-breadcrumb-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*
