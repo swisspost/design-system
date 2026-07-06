@@ -1,0 +1,347 @@
+---
+'@swisspost/design-system-icons': major
+---
+
+Deleted icons:
+
+- `aivoicetovoice` (line & solid): 16, 24, 48 and 64px
+- `apirest` (line & solid): 16, 40 and 64px
+- `accessblocked` (line & solid): 16, 40 and 64px
+- `accessepr` (line & solid): 16, 32, 40, 48 and 64px
+- `accessopen` (line & solid): 32, 48 and 64px
+- `accessrestricted` (line & solid): 24, 32, 48 and 64px
+- `accessibility` (line & solid): 16, 40, 48 and 64px
+- `accountmanagement` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `adddate` (line & solid): 24, 32, 40, 48 and 64px
+- `adduser` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `adresschange` (line & solid): 32, 48 and 64px
+- `adressmanagement` (solid): 64px
+- `adressbook` (line & solid): 32, 40, 48 and 64px
+- `alarm` (line & solid): 16, 24, 32, 40 and 64px
+- `alcoholicgoods` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `alert` (line & solid): 16, 24, 40, 48 and 64px
+- `allocate` (line & solid): 16, 24, 48 and 64px
+- `ambulance` (line & solid): 16, 24, 32 and 64px
+- `archive` (line & solid): 16, 24, 32, 40 and 48px
+- `arrowbottomleft` (solid): 48px
+- `arrowbottomright` (line & solid): 24, 32 and 64px
+- `arrowdownright` (line & solid): 16, 24, 32, 40 and 64px
+- `arrowleftdown` (line & solid): 24, 32, 48 and 64px
+- `arrowleft` (line & solid): 16, 24, 32 and 48px
+- `arrowrightdown` (line & solid): 24, 40 and 48px
+- `arrowright` (line & solid): 16, 24, 32, 40 and 48px
+- `arrowtabulatordown` (line & solid): 24, 32, 48 and 64px
+- `arrowtabulatorleft` (line & solid): 16, 32 and 40px
+- `arrowtabulatorright` (line & solid): 16, 24, 40, 48 and 64px
+- `arrowtabulatorup` (line & solid): 16, 24, 32, 48 and 64px
+- `arrowtopleft` (line & solid): 16, 32 and 64px
+- `arrowtopright` (line & solid): 16, 32, 40, 48 and 64px
+- `artificialintelligence` (line & solid): 16, 32, 40, 48 and 64px
+- `audiofile` (line & solid): 16, 24, 32, 48 and 64px
+- `authorization` (line & solid): 16, 24, 32 and 48px
+- `backoffice` (line & solid): 16, 24 and 64px
+- `bank` (line & solid): 32, 48 and 64px
+- `barcodeno` (line & solid): 24, 32 and 64px
+- `bed` (line & solid): 16, 24, 32, 40 and 48px
+- `bicycle` (line & solid): 24, 32, 40, 48 and 64px
+- `bikebattery` (line & solid): 16, 24, 40, 48 and 64px
+- `biohazard` (line & solid): 16, 32, 40, 48 and 64px
+- `blueprint` (line & solid): 16, 24, 40, 48 and 64px
+- `bluetoothmenu` (line & solid): 16, 32, 40, 48 and 64px
+- `bluetoothoff` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `bluetoothtwodots` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `bottleglass` (line & solid): 16, 32, 40, 48 and 64px
+- `bottlepet` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `brain` (line & solid): 16, 24, 40 and 64px
+- `branchpartner` (line & solid): 24, 32, 40, 48 and 64px
+- `branchtakeout` (line & solid): 16, 24, 32, 48 and 64px
+- `branch` (solid): 64px
+- `bulb` (line & solid): 24, 40, 48 and 64px
+- `bulkygoods` (line & solid): 24, 32, 40 and 64px
+- `co2reduction` (solid): 40px
+- `co2` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `calculator` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `callconsultation` (line & solid): 16, 24, 32 and 40px
+- `candle` (line & solid): 16, 32 and 64px
+- `carcheck` (line & solid): 16, 24, 32, 48 and 64px
+- `certificate` (line & solid): 16, 24, 32, 40 and 64px
+- `chevronend` (line & solid): 16, 32, 48 and 64px
+- `chevronstartwide` (line & solid): 16, 24, 32 and 40px
+- `chevronstart` (line & solid): 16, 24, 32 and 64px
+- `chevrontripledown` (line & solid): 16, 24 and 48px
+- `chevrontripleup` (solid): 40px
+- `clouddownload` (line & solid): 32, 40 and 48px
+- `code` (line & solid): 16, 32, 40 and 48px
+- `consulting` (line & solid): 16, 24, 32, 40 and 64px
+- `contactlesspayment` (line & solid): 16, 24, 32, 48 and 64px
+- `coordination` (line & solid): 16, 24, 32, 48 and 64px
+- `copy` (line & solid): 16, 24, 40 and 64px
+- `crypto` (line & solid): 16, 24, 32, 40 and 64px
+- `crystal` (line & solid): 24, 32, 40, 48 and 64px
+- `currency` (line & solid): 16, 24, 32, 40 and 48px
+- `customs` (line & solid): 16, 24, 32, 48 and 64px
+- `dashmenu` (line & solid): 16, 32, 40, 48 and 64px
+- `daynight` (line & solid): 24, 32 and 64px
+- `depositnot` (line & solid): 24, 32, 48 and 64px
+- `depositsecure` (line & solid): 24, 32, 40 and 64px
+- `deposit` (line & solid): 16, 24, 32, 48 and 64px
+- `depot` (line & solid): 40, 48 and 64px
+- `designsystem` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `despatchpublication` (line & solid): 16, 24, 48 and 64px
+- `diamond` (line & solid): 16, 24, 40, 48 and 64px
+- `digitaltransformation` (line & solid): 16, 32, 40, 48 and 64px
+- `disabledblind` (line & solid): 24, 32, 40, 48 and 64px
+- `disabledwalking` (line & solid): 16, 24, 40, 48 and 64px
+- `dispoboxcoop` (line & solid): 16, 32, 40 and 48px
+- `dispoboxfood` (line & solid): 16, 32, 40, 48 and 64px
+- `dispoboxmigros` (line & solid): 24, 32, 40 and 48px
+- `dispoboxtemperature` (line & solid): 24, 32, 40, 48 and 64px
+- `dispobox` (line & solid): 16, 24, 40 and 64px
+- `documentauditrecordrepository` (line & solid): 24, 32, 48 and 64px
+- `documentcarnetata` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `documentexcel` (line & solid): 16, 24, 32, 40 and 48px
+- `documentofficial` (line & solid): 16, 24 and 48px
+- `documentonenote` (solid): 40 and 48px
+- `documentpdf` (line & solid): 24, 32, 48 and 64px
+- `documentpowerpoint` (line & solid): 16, 24, 40 and 64px
+- `documentprotocol` (line & solid): 24, 32, 40, 48 and 64px
+- `documentreleasenote` (line & solid): 16, 24, 32, 40 and 48px
+- `documentscan` (line & solid): 16, 24, 32 and 64px
+- `documentselected` (line & solid): 16, 24, 32 and 48px
+- `documentupdate` (line & solid): 16, 24, 40 and 48px
+- `documentword` (line & solid): 24, 32, 40 and 48px
+- `doormailbox` (line & solid): 16, 24 and 32px
+- `door` (line & solid): 24, 32, 40, 48 and 64px
+- `download` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `dragall` (line & solid): 16, 24, 40 and 64px
+- `dragleftright` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `dragupdown` (line & solid): 16, 24, 32, 40 and 48px
+- `drag` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `drawer` (line): 16 and 24px
+- `drone` (line & solid): 24, 32, 40 and 64px
+- `e` (line & solid): 24 and 40px
+- `education` (line & solid): 16, 24, 32, 48 and 64px
+- `elevator` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `emergencyaccess` (line & solid): 16, 24, 32, 40 and 48px
+- `emergency` (line & solid): 24, 32, 40 and 64px
+- `etiquetteprinter` (line & solid): 24, 32, 40, 48 and 64px
+- `etiquette` (line & solid): 16, 24, 40 and 48px
+- `europe` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `express` (line & solid): 16, 32, 40, 48 and 64px
+- `facebook` (solid): 16, 24, 32, 40 and 64px
+- `favoriteadd` (line & solid): 24, 32 and 40px
+- `favoritedelete` (line & solid): 16, 24, 32, 48 and 64px
+- `favoriteoverview` (line & solid): 16, 24, 32 and 48px
+- `favoritestar` (line & solid): 16, 24 and 64px
+- `feedback` (line & solid): 16, 24, 32, 40 and 64px
+- `filter` (line & solid): 16, 24, 40, 48 and 64px
+- `fingerprint` (line & solid): 16, 24, 40, 48 and 64px
+- `fireworks` (line & solid): 24, 40 and 64px
+- `flag` (line & solid): 16, 24, 40 and 64px
+- `flashoff` (line & solid): 16, 24, 32 and 64px
+- `flash` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `flipdocumenthorizontally` (line & solid): 24, 40, 48 and 64px
+- `flipdocumentvertically` (line & solid): 16, 24, 48 and 64px
+- `floor` (line & solid): 16, 40, 48 and 64px
+- `folder` (line & solid): 16, 32, 40 and 64px
+- `foreward` (line & solid): 24, 32 and 48px
+- `freightletter` (line & solid): 16, 32, 48 and 64px
+- `fulfilmentletter` (line & solid): 24, 32, 40, 48 and 64px
+- `fulfilmentparcel` (line & solid): 16, 24, 32 and 40px
+- `gaslabelnobarcode` (line): 64px
+- `gamecontroller` (line & solid): 24, 40, 48 and 64px
+- `gascylinder` (line & solid): 16, 32, 40, 48 and 64px
+- `gear` (line): 32px
+- `genderfemale` (line & solid): 24, 32, 48 and 64px
+- `gendermale` (line & solid): 16, 24 and 32px
+- `gendernonbinary` (line & solid): 16, 24, 32 and 40px
+- `globecontinents` (line & solid): 16, 32, 40, 48 and 64px
+- `globemeridian` (line & solid): 16, 40, 48 and 64px
+- `grave` (line & solid): 24, 32, 40, 48 and 64px
+- `handblood` (line & solid): 16, 24, 32, 40 and 48px
+- `handleft` (line & solid): 32, 40 and 48px
+- `handpoint` (line & solid): 16, 32, 48 and 64px
+- `handright` (line & solid): 16, 32, 40 and 48px
+- `handsignlanguage` (line & solid): 16, 24, 32, 40 and 48px
+- `handstop` (line & solid): 24, 32, 40, 48 and 64px
+- `handvictory` (line & solid): 16, 32, 40, 48 and 64px
+- `hardware` (line & solid): 16, 32, 40, 48 and 64px
+- `headphones` (line & solid): 16, 24, 40, 48 and 64px
+- `hearingimpaired` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `hearing` (line & solid): 16, 24, 32, 40 and 48px
+- `heartpulse` (line & solid): 16, 32, 40, 48 and 64px
+- `heart` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `help` (line & solid): 16, 24 and 64px
+- `holiday` (line & solid): 24, 32, 48 and 64px
+- `home` (line): 16px
+- `honeypot` (line & solid): 16, 24, 48 and 64px
+- `horseshoe` (line): 32px
+- `hourglass` (line & solid): 16, 24, 32, 48 and 64px
+- `icondesign` (line & solid): 16, 24, 32, 40 and 48px
+- `inhousenavigation` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `infonocircle` (line & solid): 16, 24, 40, 48 and 64px
+- `journalsubmission` (line & solid): 24, 40, 48 and 64px
+- `labexperiment` (line & solid): 24, 32, 40 and 64px
+- `labtubes` (line & solid): 16, 24, 32, 40 and 48px
+- `labelcheck` (line & solid): 16, 24, 32, 40 and 48px
+- `language` (line & solid): 32, 40, 48 and 64px
+- `laptop` (line & solid): 32, 40, 48 and 64px
+- `letteradvancenotice` (line & solid): 24, 32, 40, 48 and 64px
+- `letterbig` (line & solid): 16, 24, 40, 48 and 64px
+- `letterin` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `letteropen` (line & solid): 24, 40 and 48px
+- `letterout` (line & solid): 16, 32, 40, 48 and 64px
+- `letterreceived` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `lettersorting` (line & solid): 16, 24, 40, 48 and 64px
+- `letter` (line & solid): 16, 32, 40, 48 and 64px
+- `like` (line & solid): 16, 24 and 48px
+- `lithiumbatteryleak` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `lithiumbattery` (line): 24 and 40px
+- `locationsearch` (line & solid): 24, 32, 48 and 64px
+- `locationunknown` (line & solid): 24, 48 and 64px
+- `lockclosed` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `lockopen` (line & solid): 16, 24, 40 and 48px
+- `login` (line & solid): 16, 32, 40, 48 and 64px
+- `logisticsfigures` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `logistics` (line & solid): 16, 40, 48 and 64px
+- `logout` (line & solid): 16, 24, 32 and 40px
+- `magicwand` (line & solid): 16, 24, 40, 48 and 64px
+- `mail` (line & solid): 16, 24, 32, 40 and 64px
+- `mailboxprivate` (line & solid): 16, 24, 32, 40 and 48px
+- `mailboxpublic` (line & solid): 16, 24 and 48px
+- `meetinghybrid` (line & solid): 16, 24, 32 and 40px
+- `meetingonsite` (line & solid): 24, 32 and 64px
+- `meetingteams` (line & solid): 16, 24, 32 and 64px
+- `messurement` (line & solid): 16, 24, 32, 40 and 64px
+- `microphoneoff` (line & solid): 24, 40 and 48px
+- `microphone` (line & solid): 16, 24, 48 and 64px
+- `minuswide` (line & solid): 16, 24, 32, 48 and 64px
+- `minus` (line & solid): 16, 24, 32, 40 and 64px
+- `mobilechat` (line & solid): 16, 40, 48 and 64px
+- `mobileout` (line & solid): 16, 24, 32, 48 and 64px
+- `mobile` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `moneyno` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `money` (line): 16, 24 and 32px
+- `morehorizontal` (line & solid): 16, 24, 32 and 40px
+- `motorbike` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `music` (line & solid): 32, 40, 48 and 64px
+- `mypost24display` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `mypost24mobile` (line & solid): 16, 24, 32, 40 and 48px
+- `namechange` (line & solid): 24, 48 and 64px
+- `navigate` (line & solid): 16, 32, 40, 48 and 64px
+- `network` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `newspaperpost` (line & solid): 16, 40 and 48px
+- `newspaper` (line): 24, 32, 48 and 64px
+- `outofswitzerland` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `paintroll` (line & solid): 16, 24, 40 and 48px
+- `paintthinner` (line & solid): 24, 40, 48 and 64px
+- `parcelin` (line & solid): 16, 32, 48 and 64px
+- `parcelletterdelivery` (line & solid): 24, 40 and 48px
+- `parcelout` (line & solid): 24, 32, 48 and 64px
+- `parcelsorting` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `payment` (line & solid): 16, 24, 40 and 64px
+- `perfume` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `photoproof` (line & solid): 16, 24, 32, 40 and 64px
+- `physiotherapy` (line & solid): 16, 24, 32, 48 and 64px
+- `pickathome` (line): 16, 24, 32 and 48px
+- `pindeselected` (line & solid): 24, 32, 40, 48 and 64px
+- `pocketlight` (line & solid): 16, 32, 40, 48 and 64px
+- `portal` (line & solid): 16, 24, 32 and 48px
+- `postauto` (line & solid): 16, 40, 48 and 64px
+- `postcardcreator` (line & solid): 24, 40 and 64px
+- `postomat` (line & solid): 24, 32, 48 and 64px
+- `powerbank` (line & solid): 16, 24, 32, 48 and 64px
+- `preferences` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `present` (line & solid): 16, 24, 32, 40 and 64px
+- `print` (line & solid): 16, 24, 40, 48 and 64px
+- `profile` (line & solid): 16, 24, 32, 40 and 64px
+- `prognosisletter` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `prognosisparcel` (line & solid): 24, 32, 40 and 48px
+- `progressindicator` (line & solid): 16, 24, 40, 48 and 64px
+- `project` (line & solid): 16, 24, 40, 48 and 64px
+- `promonothing` (line & solid): 16, 24 and 32px
+- `promotionalmailing` (line & solid): 16, 40, 48 and 64px
+- `qrcode` (line & solid): 16, 24 and 40px
+- `radioactive` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `ramp` (line): 16, 24 and 40px
+- `recallproofmailing` (line & solid): 24, 32, 40, 48 and 64px
+- `receiving` (line & solid): 16, 24, 32 and 48px
+- `reloadright` (line): 16, 24 and 32px
+- `relocation` (line & solid): 16, 32, 40, 48 and 64px
+- `retail` (line & solid): 16, 32, 40 and 64px
+- `returntransport` (line & solid): 16, 24, 40, 48 and 64px
+- `rocket` (line & solid): 24, 40 and 64px
+- `rollbox` (line & solid): 16, 24, 32, 48 and 64px
+- `rollingbelt` (line): 16, 32, 40 and 48px
+- `route` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `router` (line & solid): 24, 32 and 64px
+- `sale` (line & solid): 32, 40 and 64px
+- `scissors` (line & solid): 24, 32, 40 and 64px
+- `scratchtowin` (line): 16, 24 and 32px
+- `sculpture` (line & solid): 24, 32 and 48px
+- `seaairfreight` (line & solid): 24, 32, 48 and 64px
+- `searchconsignment` (line & solid): 16, 32, 40, 48 and 64px
+- `searchmenu` (solid): 40px
+- `securemail` (line & solid): 32, 40 and 48px
+- `send` (line & solid): 24, 32, 40, 48 and 64px
+- `sending` (line & solid): 16, 32, 40 and 48px
+- `server` (line): 16, 24, 32 and 40px
+- `share` (line & solid): 16, 32, 48 and 64px
+- `shipmentbroken` (line & solid): 16, 24, 40, 48 and 64px
+- `shipmentfragile` (solid): 16, 32, 40, 48 and 64px
+- `shoponline` (line & solid): 16, 24, 48 and 64px
+- `shop` (line & solid): 16, 24, 32, 40 and 64px
+- `signatureno` (line & solid): 16, 24, 32, 40 and 48px
+- `smartwatchpulse` (line & solid): 16, 32, 40, 48 and 64px
+- `smartwatch` (line & solid): 24, 40, 48 and 64px
+- `snapchat` (line & solid): 16, 24, 32, 48 and 64px
+- `somediashare` (line & solid): 16, 24, 40, 48 and 64px
+- `solar` (line & solid): 16, 32, 40 and 48px
+- `sortdown` (line & solid): 24, 32, 48 and 64px
+- `sortocr` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `sortup` (line & solid): 16, 24, 48 and 64px
+- `soundlow` (solid): 40, 48 and 64px
+- `soundmid` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `soundoff` (line & solid): 16, 24, 32, 48 and 64px
+- `soundon` (line & solid): 16, 24, 48 and 64px
+- `speechbubble` (line & solid): 24, 32, 40 and 64px
+- `speechtotext` (line & solid): 16, 32, 40, 48 and 64px
+- `spraycan` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `stairs` (line & solid): 16, 24, 32, 48 and 64px
+- `stakeholdermanagement` (line & solid): 16, 24, 40 and 48px
+- `stampapostplus` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `stampapost` (line): 16, 24 and 32px
+- `stampaandbpost` (line & solid): 32, 40, 48 and 64px
+- `stampchecked` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `subdepartment` (line & solid): 16, 32, 48 and 64px
+- `swissinnightexpress` (solid): 40 and 64px
+- `switzerlandlocation` (line & solid): 24, 32, 40, 48 and 64px
+- `syringe` (line & solid): 24, 40 and 64px
+- `tablet` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `tag` (line & solid): 16, 24, 40, 48 and 64px
+- `targetarea` (line & solid): 16, 24, 48 and 64px
+- `targetbullseye` (line & solid): 40, 48 and 64px
+- `targetcenter` (line): 24 and 32px
+- `target` (line & solid): 16, 24, 40 and 48px
+- `task` (line & solid): 24, 32, 48 and 64px
+- `technicalproblem` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `test` (line & solid): 16, 24, 32, 48 and 64px
+- `timereverse` (line & solid): 16, 24, 32, 40 and 48px
+- `time` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `toothcontrol` (line & solid): 24, 32, 48 and 64px
+- `tooth` (line & solid): 24, 32, 40 and 48px
+- `tractor` (line & solid): 16, 24, 32, 48 and 64px
+- `usb` (solid): 40 and 64px
+- `unknownadress` (line & solid): 40, 48 and 64px
+- `unknowncompany` (line & solid): 16, 32, 40 and 64px
+- `unknownmovedaway` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `unknownperson` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `uploadautomated` (line & solid): 40, 48 and 64px
+- `userblocked` (line & solid): 24 and 48px
+- `userexperience` (line & solid): 16, 24, 32, 48 and 64px
+- `userswitch` (line & solid): 16, 32, 40 and 64px
+- `walkfast` (line & solid): 16, 32, 40 and 48px
+- `walkslow` (line & solid): 16, 24, 32, 40 and 64px
+- `washingmachine` (line & solid): 16, 24, 32, 40 and 48px
+- `width` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `kununu` (solid): 48 and 64px
