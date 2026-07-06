@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   PostAccordion,
   PostAccordionItem,
@@ -36,6 +36,7 @@ import {
 @Component({
   selector: 'home-page',
   templateUrl: './home.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     PostAccordion,
     PostAccordionItem,

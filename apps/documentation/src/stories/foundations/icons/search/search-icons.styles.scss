@@ -59,6 +59,7 @@ tokens.$default-map: utilities.$post-spacing;
       border-radius: post.$border-radius;
 
       > button {
+        position: relative;
         padding: tokens.get('utility-gap-16') 0.5rem 0.5rem;
         width: 100%;
         background-color: transparent;
@@ -79,6 +80,14 @@ tokens.$default-map: utilities.$post-spacing;
         font-size: 0.875rem;
         text-align: center;
         hyphens: auto;
+      }
+
+      .tooltip-migration-hint {
+        display: block;
+        position: absolute;
+        top: tokens.get('utility-gap-8');
+        right: tokens.get('utility-gap-8');
+        color: color-mix(in srgb, var(--post-current-fg) 60%, transparent);
       }
     }
   }
@@ -114,7 +123,17 @@ tokens.$default-map: utilities.$post-spacing;
   .resizer-container {
     width: 100px;
     height: 100px;
-    margin: 0 auto 1rem;
+    margin: 0 auto 1rem 0;
+
+    .resizer {
+      width: 100px;
+    }
+  }
+
+  .migration-icons {
+    post-icon {
+      font-size: 1.4rem;
+    }
   }
 
   dl {
@@ -128,5 +147,11 @@ tokens.$default-map: utilities.$post-spacing;
     dt {
       font-weight: 700;
     }
+  }
+}
+
+[data-iconset='post'] {
+  .resizer {
+    resize: none;
   }
 }

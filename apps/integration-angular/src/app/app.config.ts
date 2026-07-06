@@ -3,8 +3,8 @@ import { provideRouter, Routes } from '@angular/router';
 import { providePostComponents } from '@swisspost/design-system-components-angular';
 import { providePrimeNG } from 'primeng/config';
 import { swissPostPreset } from '@swisspost/design-system-styles-primeng';
+
 // Remove once PrimeNG migrates away from AnimationBuilder (Angular v23 removal)
-// eslint-disable-next-line @typescript-eslint/no-deprecated
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 const routes: Routes = [
@@ -26,7 +26,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     providePostComponents(),
     providePrimeNG({ theme: { preset: swissPostPreset } }),
-    // eslint-disable-next-line @typescript-eslint/no-deprecated
     provideAnimationsAsync(),
   ],
 };
