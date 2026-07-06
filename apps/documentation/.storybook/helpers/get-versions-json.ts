@@ -2,7 +2,9 @@ import { DEPENDENCIES, getVersion } from '../../src/utils/version';
 const currentMajorVersion =
   getVersion(DEPENDENCIES['@swisspost/design-system-styles'], 'major') ?? '';
 
-const VERSIONS_URL = 'https://design-system.post.ch/assets/versions.json';
+const VERSIONS_URL = globalThis.location.href.includes('http://localhost')
+  ? '/assets/versions.json'
+  : 'https://design-system.post.ch/assets/versions.json';
 const PRE_FLAG_REGEX = /-(alpha|beta|rc|pre|next|canary|snapshot)/i;
 
 export interface Version {

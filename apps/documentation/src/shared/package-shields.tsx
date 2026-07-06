@@ -38,8 +38,8 @@ export const PackageShields: React.FC<PackageShieldsProps> = ({ packageName = ''
 
   return (
     <React.Fragment>
-      <div className="d-flex flex-wrap justify-content-between gap-32">
-        <p className="m-0">
+      <div className="row">
+        <p className="col-sm-6 m-0">
           <strong>Package</strong>
           <span
             className="d-flex flex-wrap gap-4 align-items-center"
@@ -59,6 +59,14 @@ export const PackageShields: React.FC<PackageShieldsProps> = ({ packageName = ''
                   />
                 </a>
                 <img
+                  alt={`${packageName} NPM Last Update`}
+                  src={`https://img.shields.io/npm/last-update/${packageName}/${distTag}?style=flat`}
+                />
+                <img
+                  alt={`${packageName} NPM License`}
+                  src={`https://img.shields.io/npm/l/${packageName}?style=flat`}
+                />
+                <img
                   alt={`${packageName} weekly downloads`}
                   src={`https://img.shields.io/npm/dw/${packageName}?style=flat&color=%23ccc`}
                 />
@@ -68,9 +76,9 @@ export const PackageShields: React.FC<PackageShieldsProps> = ({ packageName = ''
         </p>
 
         {!loading && peerDependencies.length > 0 && (
-          <p className="m-0 text-end">
+          <p className="col-sm-6 m-0 text-sm-end">
             <strong>Peer Dependencies</strong>
-            <span className="d-flex flex-wrap gap-4 justify-content-end align-items-center">
+            <span className="d-flex flex-wrap gap-4 justify-content-sm-end align-items-center">
               {peerDependencies.map((peerDependency: string) => (
                 <img
                   key={peerDependency}
