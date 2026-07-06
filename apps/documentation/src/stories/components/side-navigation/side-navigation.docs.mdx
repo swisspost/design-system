@@ -1,6 +1,6 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as SideNavigationStories from './side-navigation.stories';
-import PackageTag from '@/shared/package-tag';
+import ComponentTags from '@/shared/component-tags';
 import StylesPackageImport from '@/shared/styles-package-import';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 import './side-navigation.styles.scss';
@@ -12,7 +12,7 @@ import './side-navigation.styles.scss';
   <link-design of={JSON.stringify(SideNavigationStories)}></link-design>
 </div>
 
-<PackageTag meta={meta} />
+<ComponentTags meta={meta} />
 
 <div className="lead">
   The side navigation is a container of navigation menu items that lets the user navigate through

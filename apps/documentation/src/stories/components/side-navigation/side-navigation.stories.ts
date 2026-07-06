@@ -9,7 +9,7 @@ import { forceCompactAppearance } from '../../../../.storybook/helpers';
 const meta: MetaComponent = {
   id: '9f26d86e-7edb-5804-ac96-92g22f91c9d9',
   title: 'Components/Side Navigation',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:New'],
   component: 'post-side-navigation',
   parameters: {
     layout: 'fullscreen',

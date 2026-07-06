@@ -2,7 +2,7 @@ import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as TooltipStories from './tooltip.stories';
 import * as TooltipTriggerStories from './tooltip-trigger.stories';
 import * as PopoverStories from '../popover/popover.stories';
-import PackageTag from '@/shared/package-tag';
+import ComponentTags from '@/shared/component-tags';
 
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
@@ -13,7 +13,7 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
   <link-design of={JSON.stringify(TooltipStories)}></link-design>
 </div>
 
-<PackageTag meta={meta} />
+<ComponentTags meta={meta} />
 
 <div className="lead">For short, informative messages or explanations.</div>
 

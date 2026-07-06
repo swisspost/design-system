@@ -1,7 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as languageMenuStories from './language-menu.stories';
 import { PostBanner } from '@swisspost/design-system-components-react';
-import PackageTag from '@/shared/package-tag';
+import ComponentTags from '@/shared/component-tags';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={languageMenuStories} />
@@ -13,7 +13,7 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 </div>
 
-<PackageTag meta={meta} />
+<ComponentTags meta={meta} />
 
 <p className="lead">
   The language menu is a web component which enables users to select their preferred language.

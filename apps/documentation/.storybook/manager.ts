@@ -53,12 +53,17 @@ const renderLabel = (item: API_HashEntry) => {
 
   const tags = item.tags || [];
 
+  // Show "New" icon if component is new
+  const newIcon = tags.some(tag => tag === 'status:New')
+    ? React.createElement('span', { title: 'New in v10' }, '🆕')
+    : null;
+
   // Logic to get the package
   const packageTags = tags.filter(tag => tag.startsWith('package:'));
 
   // Production Mode: just show name
   if (document.documentElement.getAttribute('data-env') !== 'development') {
-    return item.name;
+    return React.createElement('span', null, item.name, newIcon);
   }
 
   // Development Mode: show optional package icons
@@ -80,11 +85,12 @@ const renderLabel = (item: API_HashEntry) => {
         { className: 'label-with-icon' },
         React.createElement('span', null, item.name),
         ...icons,
+        newIcon,
       );
     }
   }
   // Fallback where there is no package icon
-  return item.name;
+  return React.createElement('span', null, item.name, newIcon);
 };
 
 // Function to update filters in the Storybook sidebar configuration
