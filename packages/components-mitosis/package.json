@@ -1,0 +1,42 @@
+{
+  "name": "@swisspost/design-system-components-mitosis",
+  "version": "10.0.0",
+  "description": "Mitosis component sources for the Swiss Post Design System, compiled to multiple frameworks.",
+  "author": "Swiss Post <design-system@post.ch>",
+  "license": "Apache-2.0",
+  "private": true,
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git"
+  },
+  "homepage": "https://design-system.post.ch",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
+  "scripts": {
+    "start": "mitosis build --c mitosis.config.cjs --watch",
+    "build": "pnpm clean && mitosis build --c mitosis.config.cjs",
+    "clean": "rimraf dist",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix"
+  },
+  "devDependencies": {
+    "@builder.io/eslint-plugin-mitosis": "0.0.15",
+    "@builder.io/mitosis": "0.13.2",
+    "@builder.io/mitosis-cli": "0.13.2",
+    "@types/node": "catalog:node",
+    "@typescript-eslint/parser": "8.62.0",
+    "eslint": "8.57.1",
+    "rimraf": "6.0.1",
+    "typescript": "catalog:typescript"
+  },
+  "keywords": [
+    "mitosis",
+    "components",
+    "web-components",
+    "design-system",
+    "ui",
+    "frontend"
+  ]
+}

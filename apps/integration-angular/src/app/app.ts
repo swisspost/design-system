@@ -14,6 +14,7 @@ import {
   PostMegadropdown,
   PostMegadropdownTrigger,
 } from '@swisspost/design-system-components-angular';
+import { PostButtonComponent } from './post-button';
 
 @Component({
   selector: 'app-root',
@@ -35,6 +36,7 @@ import {
     PostMainnavigation,
     PostMegadropdown,
     PostMegadropdownTrigger,
+    PostButtonComponent,
   ],
 })
 export class App implements OnInit {

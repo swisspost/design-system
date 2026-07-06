@@ -115,7 +115,11 @@
     "changeset:publish": "pnpm exec changeset publish",
     "changeset:version": "pnpm exec changeset version && pnpm install --lockfile-only",
     "theme-ag-grid:build": "pnpm --filter design-system-theme-ag-grid build",
-    "styles-primeng:build": "pnpm --filter design-system-styles-primeng build"
+    "styles-primeng:build": "pnpm --filter design-system-styles-primeng build",
+    "components-mitosis:build": "pnpm --filter design-system-components-mitosis build",
+    "components-mitosis:start": "pnpm --filter design-system-components-mitosis start",
+    "components-mitosis:lint": "pnpm --filter design-system-components-mitosis lint",
+    "components-mitosis:lint:fix": "pnpm --filter design-system-components-mitosis lint:fix"
   },
   "devDependencies": {
     "@changesets/cli": "2.31.0",

@@ -2,6 +2,20 @@ packages:
   - 'apps/*'
   - 'packages/*'
 
+allowBuilds:
+  '@parcel/watcher': set this to true or false
+  '@percy/core': set this to true or false
+  core-js-pure: set this to true or false
+  cypress: set this to true or false
+  es5-ext: set this to true or false
+  esbuild: set this to true or false
+  iframe-resizer: set this to true or false
+  lmdb: set this to true or false
+  msgpackr-extract: set this to true or false
+  sharp: set this to true or false
+  svelte-preprocess: set this to true or false
+  unrs-resolver: set this to true or false
+
 catalog:
   '@playwright/test': 1.60.0
 

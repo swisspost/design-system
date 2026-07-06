@@ -37,11 +37,18 @@ import {
   PostTooltip,
   PostTooltipTrigger,
 } from '@swisspost/design-system-components-react/server';
+import { PostButton } from './post-button';
 
 export default function Home() {
   return (
     <>
       <h1>Design System Components</h1>
+      <PostButton disabled={true} iconRight="help">
+        Close
+      </PostButton>
+      <PostButton iconOnly="adduser">
+        <span id="imhere">Add user</span>
+      </PostButton>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea debitis ex rem minus! Ut
         mollitia deserunt iure impedit. Enim, officia. Fugiat, cupiditate repellat? Excepturi est
