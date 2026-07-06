@@ -142,7 +142,7 @@ jobs:
               .reduce((packages, pkg) => ({ ...packages, [pkg.name]: updatedVersions[pkg.name] ?? pkg.version }), { ...(styles.peerDependencies ?? {}) })
 
             const peerDependencies = monorepo
-              .filter(pkg => pkg.name !== undefined && pkg.peerDependencies !== undefined)
+              .filter(pkg => pkg.name !== undefined && pkg.path !== undefined)
               .reduce((acc, pkg) => {
                 try {
                   const pkgJson = JSON.parse(fs.readFileSync(`${pkg.path}/package.json`, 'utf8'))
@@ -228,7 +228,7 @@ jobs:
                 .reduce((packages, pkg) => ({ ...packages, [pkg.name]: pkg.version }), { ...(styles.peerDependencies ?? {}) })
 
               releaseData.old.peerDependencies = monorepo
-                .filter(pkg => pkg.name !== undefined && pkg.peerDependencies !== undefined)
+                .filter(pkg => pkg.name !== undefined && pkg.path !== undefined)
                 .reduce((acc, pkg) => {
                   try {
                     const pkgJson = JSON.parse(fs.readFileSync(`${pkg.path}/package.json`, 'utf8'))
@@ -277,17 +277,19 @@ jobs:
     needs: collect-release-data
     if: github.ref_name == 'main' && needs.collect-release-data.outputs.changeset-branch-exists == 'true' && fromJSON(needs.collect-release-data.outputs.release-data) != null
     steps:
-      # Checkout the changeset Branch
+      # Checkout the changeset Branch which holds the versions.json to update.
+      # fetch-depth: 0 makes every release/v* branch available for git worktrees.
       - name: Checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
         with:
           token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           ref: changeset-release/main
+          fetch-depth: 0
 
       - name: Setup Node & pnpm
         uses: ./.github/actions/setup-pnpm
         with:
-          use_cache: false # do not use the pnpm cache if you do not install any dependencies
+          use_cache: false # only `pnpm m ls` is used, no dependency install is required
 
       # Only run this Step if a major release was detected
       - name: Update or create Documentation _redirects
@@ -346,6 +348,105 @@ jobs:
             }
 
             fs.writeFileSync(versionsPath, JSON.stringify(versions, null, 2) + '\n')
+
+      # Refreshes the dependencies/peerDependencies of every *past* major version
+      # entry in versions.json. For each entry it reads the workspace state of the
+      # matching release/v* branch (the same `pnpm m ls` data used in
+      # "collect-release-data"). The current major entry is maintained by the
+      # "Update Documentation versions.json" step above, so it is skipped here.
+      - name: Update Documentation versions.json for past majors
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        with:
+          script: |
+            const fs = require('fs')
+            const path = require('path')
+            const { execSync } = require('child_process')
+
+            const versionsPath = './apps/documentation/public/assets/versions.json'
+            const versions = JSON.parse(fs.readFileSync(versionsPath, 'utf8'))
+
+            // The current major is released from "main" and its versions.json entry is
+            // maintained by the "Update Documentation versions.json" step, so skip it here.
+            const currentMajor = JSON.parse(fs.readFileSync('./packages/styles/package.json', 'utf8')).version.split('.')[0]
+
+            const branchExists = ref => {
+              try {
+                execSync(`git rev-parse --verify --quiet ${ref}`, { stdio: 'ignore' })
+                return true
+              } catch {
+                return false
+              }
+            }
+
+            // Build the { version, dependencies, peerDependencies } for a checked-out
+            // worktree, mirroring the logic used in the "collect-release-data" job.
+            const collectDependencies = worktree => {
+              const monorepo = JSON.parse(
+                execSync('pnpm m ls --depth=0 --json', { cwd: worktree, encoding: 'utf8' }),
+              )
+              const styles = JSON.parse(
+                fs.readFileSync(path.join(worktree, 'packages/styles/package.json'), 'utf8'),
+              )
+
+              const dependencies = monorepo
+                .filter(pkg => pkg.version !== undefined && pkg.version !== null)
+                .reduce((packages, pkg) => ({ ...packages, [pkg.name]: pkg.version }), { ...(styles.peerDependencies ?? {}) })
+
+              const peerDependencies = monorepo
+                .filter(pkg => pkg.name !== undefined && pkg.path !== undefined)
+                .reduce((acc, pkg) => {
+                  try {
+                    const pkgJson = JSON.parse(fs.readFileSync(path.join(pkg.path, 'package.json'), 'utf8'))
+                    return pkgJson.peerDependencies ? { ...acc, [pkgJson.name]: { ...pkgJson.peerDependencies } } : acc
+                  } catch {
+                    return acc
+                  }
+                }, {})
+
+              return { version: styles.version, dependencies, peerDependencies }
+            }
+
+            const updated = []
+
+            for (const entry of versions) {
+              const major = entry.version.split('.')[0]
+
+              // Skip the current major (handled by "Update Documentation versions.json") ...
+              if (major === currentMajor) continue
+
+              // ... and any major whose release/v* branch no longer exists.
+              const branch = `origin/release/v${major}`
+              if (!branchExists(branch)) {
+                core.info(`Skipping v${major}: branch "${branch}" does not exist.`)
+                continue
+              }
+
+              const worktree = path.join(process.env.RUNNER_TEMP, `release-v${major}`)
+              try {
+                execSync(`git worktree add --force --detach "${worktree}" ${branch}`, { stdio: 'ignore' })
+
+                const { version, dependencies, peerDependencies } = collectDependencies(worktree)
+                entry.version = version
+                entry.dependencies = dependencies
+
+                if (Object.keys(peerDependencies).length > 0) {
+                  entry.peerDependencies = peerDependencies
+                } else {
+                  delete entry.peerDependencies
+                }
+
+                updated.push(`v${major}`)
+              } finally {
+                execSync(`git worktree remove --force "${worktree}"`, { stdio: 'ignore' })
+              }
+            }
+
+            fs.writeFileSync(versionsPath, JSON.stringify(versions, null, 2) + '\n')
+
+            await core.summary
+              .addHeading('versions.json dependency refresh')
+              .addRaw(updated.length > 0 ? `Refreshed dependency lists for: ${updated.map(v => `\`${v}\``).join(', ')}` : 'No past major version entries needed an update.')
+              .write()
 
       - name: Remove Status Files
         run: rm -f monorepo.json
