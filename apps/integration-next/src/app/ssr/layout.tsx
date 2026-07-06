@@ -219,7 +219,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           </button>
         </PostSideNavigationTrigger>
 
-        <p slot="title">Angular integration</p>
+        <p slot="title">Next integration</p>
       </PostHeader>
 
       <PostSideNavigation id="header-side-nav" textClose="Close">
@@ -265,20 +265,18 @@ export default function Layout({ children }: { readonly children: React.ReactNod
       </PostSideNavigation>
 
       <div className="main-container">
-        <main style={{ paddingBlock: '3rem' }}>
-          <div className="container">
-            <PostBreadcrumbs
-              home-url="/"
-              text-home="Home"
-              text-breadcrumbs="Breadcrumbs"
-              text-more-items="More items"
-            >
-              <PostBreadcrumbItem url="/section1">Section 1</PostBreadcrumbItem>
-              <PostBreadcrumbItem url="/section2">Section 2</PostBreadcrumbItem>
-              <PostBreadcrumbItem url="/section3">Section 3</PostBreadcrumbItem>
-            </PostBreadcrumbs>
-            {children}
-          </div>
+        <main className="py-48 px-16 px-md-40">
+          <PostBreadcrumbs
+            home-url="/"
+            text-home="Home"
+            text-breadcrumbs="Breadcrumbs"
+            text-more-items="More items"
+          >
+            <PostBreadcrumbItem url="/section1">Section 1</PostBreadcrumbItem>
+            <PostBreadcrumbItem url="/section2">Section 2</PostBreadcrumbItem>
+            <PostBreadcrumbItem url="/section3">Section 3</PostBreadcrumbItem>
+          </PostBreadcrumbs>
+          {children}
         </main>
 
         <PostFooter text-footer="Footer">
