@@ -20,6 +20,28 @@
       "@swisspost/design-system-styles-primeng": "10.0.0",
       "@swisspost/design-system-theme-ag-grid": "10.0.0",
       "@swisspost/design-system-tokens": "10.0.0"
+    },
+    "peerDependencies": {
+      "@swisspost/design-system-components-angular": {
+        "@angular/common": "^22.0.0",
+        "@angular/core": "^22.0.0",
+        "@angular/forms": "^22.0.0",
+        "rxjs": "~7.8.0"
+      },
+      "@swisspost/design-system-components-react": {
+        "react": ">=18.0.0 <20.0.0",
+        "react-dom": ">=18.0.0 <20.0.0"
+      },
+      "@swisspost/design-system-eslint": {
+        "eslint": ">=9.0.0",
+        "typescript": ">=5.0.0"
+      },
+      "@swisspost/design-system-styles-primeng": {
+        "primeng": "^21.0.0"
+      },
+      "@swisspost/design-system-theme-ag-grid": {
+        "ag-grid-community": "^33.3.2"
+      }
     }
   },
   {
