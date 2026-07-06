@@ -5,15 +5,13 @@ import AngularAppComponentSample from './angular-app-component.sample.html?raw';
 import SampleCssGlobal from './angular-app-css-global.sample.css?raw';
 import AngularAppModuleSample from './angular-app-module.sample.ts?raw';
 import * as PackageStories from './components-angular.stories';
+import { PackageShields } from '@root/src/shared/package-shields';
 
 <Meta of={PackageStories} />
 
 # @swisspost/design-system-components-angular
 
-<div className="npm-package-link">
-  [![npm
-  version](https://badge.fury.io/js/@swisspost%2Fdesign-system-components-angular.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-components-angular)
-</div>
+<PackageShields packageName="@swisspost/design-system-components-angular" />
 
 <div className="lead">
   The Design System Angular Components, ready for use in your Angular project.
