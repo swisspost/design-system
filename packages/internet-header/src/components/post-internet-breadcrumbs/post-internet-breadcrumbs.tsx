@@ -57,8 +57,7 @@ export class PostInternetBreadcrumbs {
       return null;
     }
 
-    // There is no breadcrumb config
-
+    // There is no breadcrumb config     
     if (!state.localizedConfig.breadcrumbs) {
       console.warn(
         `Internet Header: Current project "${state.projectId}" does not include a breadcrumb config. The breadcrumbs will not be rendered. Remove `,
