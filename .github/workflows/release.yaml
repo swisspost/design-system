@@ -141,19 +141,32 @@ jobs:
               .filter(pkg => pkg.version !== undefined)
               .reduce((packages, pkg) => ({ ...packages, [pkg.name]: updatedVersions[pkg.name] ?? pkg.version }), { ...(styles.peerDependencies ?? {}) })
 
+            const peerDependencies = monorepo
+              .filter(pkg => pkg.name !== undefined && pkg.peerDependencies !== undefined)
+              .reduce((acc, pkg) => {
+                try {
+                  const pkgJson = JSON.parse(fs.readFileSync(`${pkg.path}/package.json`, 'utf8'))
+                  return pkgJson.peerDependencies ? { ...acc, [pkgJson.name]: { ...pkgJson.peerDependencies } } : acc
+                } catch {
+                  return acc
+                }
+              }, {})
+
             return {
               isMajor: release.type === 'major' && newMajor !== oldMajor,
               old: {
                 version: release.oldVersion,
                 major: oldMajor,
                 siteUrl: `swisspost-design-system-version-${oldMajor}`,
-                dependencies: {}
+                dependencies: {},
+                peerDependencies: {}
               },
               new: {
                 version: release.newVersion,
                 major: newMajor,
                 siteUrl: 'design-system',
-                dependencies
+                dependencies,
+                peerDependencies
               },
               branchName: `release/v${oldMajor}`,
               tagName: `@swisspost/design-system-styles@${release.oldVersion}`,
@@ -213,6 +226,17 @@ jobs:
               releaseData.old.dependencies = monorepo
                 .filter(pkg => pkg.version !== undefined)
                 .reduce((packages, pkg) => ({ ...packages, [pkg.name]: pkg.version }), { ...(styles.peerDependencies ?? {}) })
+
+              releaseData.old.peerDependencies = monorepo
+                .filter(pkg => pkg.name !== undefined && pkg.peerDependencies !== undefined)
+                .reduce((acc, pkg) => {
+                  try {
+                    const pkgJson = JSON.parse(fs.readFileSync(`${pkg.path}/package.json`, 'utf8'))
+                    return pkgJson.peerDependencies ? { ...acc, [pkgJson.name]: { ...pkgJson.peerDependencies } } : acc
+                  } catch {
+                    return acc
+                  }
+                }, {})
             }
 
             return releaseData
@@ -303,18 +327,21 @@ jobs:
             const currentVersion = versions.find(version => version.version.startsWith(release.old.major))
             currentVersion.version = release.new.version
             currentVersion.dependencies = release.new.dependencies
+            currentVersion.peerDependencies = release.new.peerDependencies
 
             if (release.isMajor) {
               currentVersion.version = release.old.version
               currentVersion.url = `https://${release.old.siteUrl}.netlify.app`
               currentVersion.dependencies = release.old.dependencies
+              currentVersion.peerDependencies = release.old.peerDependencies
 
               versions.unshift({
                 title: `Version ${release.new.major}`,
                 version: release.new.version,
                 description: 'Pattern documentation, code snippets and implementation guidelines for the Design System Styles.',
                 url: `https://${release.new.siteUrl}.post.ch`,
-                dependencies: release.new.dependencies
+                dependencies: release.new.dependencies,
+                peerDependencies: release.new.peerDependencies
               })
             }
 
