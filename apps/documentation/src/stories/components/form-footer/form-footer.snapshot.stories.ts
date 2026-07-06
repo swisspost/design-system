@@ -37,24 +37,28 @@ export const FormFooter: Story = {
 
             return html`
               <div class="form-footer">
-                ${args.showPrimaryButton || args.showSecondaryButton
-                  ? html`
-                      <div class="form-footer-primary-actions">
-                        ${primaryButton} ${secondaryButton}
-                      </div>
-                    `
-                  : null}
-                ${args.showTertiaryButton
-                  ? html`
-                      <button class="btn btn-tertiary">
-                        <post-icon
-                          aria-hidden="true"
-                          name="${FooterArgs.tertiaryButtonIcon}"
-                        ></post-icon
-                        >${FooterArgs.tertiaryButtonText}
-                      </button>
-                    `
-                  : null}
+                ${
+                  args.showPrimaryButton || args.showSecondaryButton
+                    ? html`
+                        <div class="form-footer-primary-actions">
+                          ${primaryButton} ${secondaryButton}
+                        </div>
+                      `
+                    : null
+                }
+                ${
+                  args.showTertiaryButton
+                    ? html`
+                        <button class="btn btn-tertiary">
+                          <post-icon
+                            aria-hidden="true"
+                            name="${FooterArgs.tertiaryButtonIcon}"
+                          ></post-icon
+                          >${FooterArgs.tertiaryButtonText}
+                        </button>
+                      `
+                    : null
+                }
               </div>
             `;
           })}

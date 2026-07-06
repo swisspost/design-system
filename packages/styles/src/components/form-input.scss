@@ -189,6 +189,10 @@ input.form-control {
         #{tokens.get('input-sizing-icon')}
     );
 
+    &::-webkit-date-and-time-value {
+      text-align: start; // force iOS to align the text on the left
+    }
+
     &::-webkit-calendar-picker-indicator {
       @include time-icon-position;
       background: transparent;
