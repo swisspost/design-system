@@ -1,7 +1,7 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import meta, * as AvatarPictureStories from './avatar.stories';
 import AvatarSample from './avatar.sample.scss?raw';
-import ComponentTags from '@/shared/component-tags';
+import StoryTags from '@/shared/story-tags';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={AvatarPictureStories} />
@@ -13,7 +13,7 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 </div>
 
-<ComponentTags meta={meta} />
+<StoryTags meta={meta} />
 
 <div className="lead">
   Display a user's profile picture or their initials if the picture is unavailable.

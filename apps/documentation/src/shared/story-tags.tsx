@@ -1,7 +1,7 @@
 import { MetaComponent } from '@root/types';
 import { PostTooltip, PostTooltipTrigger } from '@swisspost/design-system-components-react';
 
-export default function ComponentTags({ meta }: { meta: MetaComponent }) {
+export default function StoryTags({ meta }: { meta: MetaComponent }) {
   const newTag = meta.tags.some(tag => tag === 'status:New') ? (
     <PostTooltipTrigger for="new-badge">
       <button className="tag tag-sm">🆕 New</button>
