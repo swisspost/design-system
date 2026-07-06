@@ -14,8 +14,8 @@ Styles for the Swiss Post web platform.
 <br>
 <details>
   <summary>Prerequisites</summary>
-  
-  In order to be able to use `npm` commands, [node.js](https://nodejs.org/en/) needs to be installed on your machine.
+
+In order to be able to use `npm` commands, [node.js](https://nodejs.org/en/) needs to be installed on your machine.
 
 The `scss` files in our styling package make use of the latest features of Sass. If you are planning to compile the .scss files in your project, be sure to use an up to date version of the latest Sass implementation ([dart-sass](https://sass-lang.com/dart-sass), `npm i sass@latest`). LibSass or Ruby Sass are not supported. If you can not meet this prerequisite, you can still use the precompiled CSS files included in the styling package.
 

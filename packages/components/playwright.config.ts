@@ -8,7 +8,7 @@ export default defineConfig({
     toHaveScreenshot: {
       threshold: 0.3,
       maxDiffPixelRatio: 0.05,
-    }
+    },
   },
 
   fullyParallel: true,
@@ -16,10 +16,7 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 8 : undefined,
 
-  reporter: [
-    ['html', { outputFolder: 'test-results/html-report' }],
-    ['list']
-  ],
+  reporter: [['html', { outputFolder: 'test-results/html-report' }], ['list']],
 
   snapshotPathTemplate: '{testDir}/__screenshots__/{projectName}/{testFilePath}/{arg}{ext}',
 

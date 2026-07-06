@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property                 | Attribute     | Description                                                                    | Type     | Default     |
@@ -12,14 +11,12 @@
 | `firstname` _(required)_ | `firstname`   | Defines the users firstname.                                                   | `string` | `undefined` |
 | `lastname`               | `lastname`    | Defines the users lastname.                                                    | `string` | `undefined` |
 
-
 ## Slots
 
 | Slot        | Description                                  |
 | ----------- | -------------------------------------------- |
 | `"default"` | Slot for inserting a custom image as avatar. |
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_
