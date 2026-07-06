@@ -1,6 +1,7 @@
+import { fakeParagraphs } from '@root/src/utils/fake-content';
+import { MetaExtended } from '@root/types';
 import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { StoryContext, StoryFn } from '@storybook/web-components-vite';
-import { MetaExtended } from '@root/types';
 import { html } from 'lit';
 import './containers.styles.scss';
 
@@ -10,7 +11,19 @@ const meta: MetaExtended = {
   tags: ['package:Styles'],
   render: (args: Args) => html`
     <div class=${args.containerClass}>
-      <!-- Content goes here -->
+      <post-tabs label="Page Tabs" size="large">
+        <post-tab-item name="letters">
+          <a href="/letters">Letters</a>
+        </post-tab-item>
+        <post-tab-item name="packages">
+          <!-- The active link must have an aria-current="page" attribute to ensure correct accessibility and styling. -->
+          <a href="/packages" aria-current="page">Packages</a>
+        </post-tab-item>
+        <post-tab-item name="logistics">
+          <a href="/logistics">Logistics</a>
+        </post-tab-item>
+      </post-tabs>
+      ${fakeParagraphs(12)}
     </div>
   `,
   decorators: [
