@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property                                | Attribute                    | Description                                                                                                                                                                         | Type      | Default     |
@@ -11,17 +12,20 @@
 | `listbox`                               | `listbox`                    | Optional idref to connect the autocomplete with the options dropdown if not nested                                                                                                  | `string`  | `undefined` |
 | `textAvailableSuggestions` _(required)_ | `text-available-suggestions` | Announcement template for screen readers when the suggestion list updates. Use {count} as placeholder for the number of available suggestions, e.g. "{count} suggestions available" | `string`  | `undefined` |
 
+
 ## Events
 
 | Event                | Description                                                     | Type                  |
 | -------------------- | --------------------------------------------------------------- | --------------------- |
 | `postFilteringEvent` | Cancelable event emitted when the input value is to be filtered | `CustomEvent<string>` |
 
+
 ## Slots
 
 | Slot        | Description                                         |
 | ----------- | --------------------------------------------------- |
 | `"default"` | Slot for placing post-autocomplete-item components. |
+
 
 ## Dependencies
 
@@ -30,13 +34,12 @@
 - [post-icon](../post-icon)
 
 ### Graph
-
 ```mermaid
 graph TD;
   post-autocomplete --> post-icon
   style post-autocomplete fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*
