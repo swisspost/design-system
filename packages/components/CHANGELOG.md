@@ -1,5 +1,20 @@
 # @swisspost/design-system-components
 
+## 10.0.1
+
+### Patch Changes
+
+- Increased gap between navigation items in the `post-header` to avoid focus ring to collide with active items. (by [@leagrdv](https://github.com/leagrdv) with [#8058](https://github.com/swisspost/design-system/pull/8058))
+
+- Fixed `post-menu-item` buttons not spanning the full width of the item, causing their hover and focus styles to appear cut off. (by [@alionazherdetska](https://github.com/alionazherdetska) and [@Copilot](https://github.com/Copilot) with [#8035](https://github.com/swisspost/design-system/pull/8035))
+
+- Aligned the height of the `post-language-menu` trigger to the other buttons of the `post-header`. (by [@leagrdv](https://github.com/leagrdv) with [#8045](https://github.com/swisspost/design-system/pull/8045))
+
+- Added `inputmode="numeric"` to the date picker input on touch devices, so the correct keyboard is displayed. (by [@alizedebray](https://github.com/alizedebray) with [#8034](https://github.com/swisspost/design-system/pull/8034))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.1
+  - @swisspost/design-system-icons@10.0.1
+
 ## 10.0.0
 
 ### Major Changes
