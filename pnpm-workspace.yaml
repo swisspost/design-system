@@ -16,12 +16,12 @@ catalogs:
     'ts-node': 10.9.2
   jest:
     '@types/jest': 30.0.0
-    'jest': 30.4.2
+    'jest': 30.3.0
     'ts-jest': 29.4.9
   stencil/jest:
-    '@types/jest': 30.0.0
-    'jest': 30.4.2
-    'jest-cli': 30.4.2
+    '@types/jest': 29.5.14
+    'jest': 29.7.0
+    'jest-cli': 29.7.0
     'ts-jest': 29.4.9
   'typescript':
     'typescript': 6.0.3
