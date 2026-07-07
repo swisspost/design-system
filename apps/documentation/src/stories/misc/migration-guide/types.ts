@@ -90,9 +90,13 @@ export interface V910Checks {
   };
   ngbootstrap: {
     modal: boolean;
+    custom_select: boolean;
+    datatable: boolean;
+    datepicker: boolean;
     pagination: boolean;
     typeahead: boolean;
     progressbar: boolean;
+    timepicker: boolean;
   };
   forms: {
     tooltip_validation: boolean;

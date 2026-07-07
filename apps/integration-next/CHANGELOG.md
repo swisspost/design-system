@@ -1,5 +1,34 @@
 # @swisspost/design-system-integration-next
 
+## 10.0.0
+
+### Major Changes
+
+- Renamed package from `@swisspost/design-system-nextjs-integration` to `@swisspost/design-system-integration-next`. (by [@alizedebray](https://github.com/alizedebray) with [#7464](https://github.com/swisspost/design-system/pull/7464))
+
+### Patch Changes
+
+- Added new react icon demo cases. (by [@gfellerph](https://github.com/gfellerph) with [#7011](https://github.com/swisspost/design-system/pull/7011))
+- Updated dependencies:
+  - @swisspost/design-system-components-react@10.0.0
+  - @swisspost/design-system-styles@10.0.0
+
+## 10.0.0-next.76
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.76
+  - @swisspost/design-system-components-react@10.0.0-next.76
+
+## 10.0.0-next.75
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.75
+  - @swisspost/design-system-components-react@10.0.0-next.75
+
 ## 10.0.0-next.74
 
 ### Patch Changes

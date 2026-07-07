@@ -1,9 +1,9 @@
 // this config was created using https://eslint.org/blog/2024/04/eslint-config-inspector/
 
 import js from '@eslint/js';
-import ts from 'typescript-eslint';
 import ng from 'angular-eslint';
 import globals from 'globals';
+import ts from 'typescript-eslint';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default ts.config(
@@ -63,26 +63,9 @@ export default ts.config(
   },
   {
     name: 'post/ts/components/defaults',
-    files: ['projects/components/**/*.{ts,mts,cts}'],
+    files: ['src/**/*.{ts,mts,cts}'],
     languageOptions: {
-      parserOptions: [
-        './projects/components/tsconfig.lib.json',
-        './projects/components/tsconfig.spec.json',
-      ],
-    },
-  },
-  {
-    name: 'post/ts/consumer-app/defaults',
-    files: ['projects/consumer-app/**/*.{ts,mts,cts}'],
-    languageOptions: {
-      parserOptions: [
-        './projects/consumer-app/tsconfig.app.json',
-        './projects/consumer-app/tsconfig.spec.json',
-      ],
-    },
-    rules: {
-      '@angular-eslint/directive-selector': 'off',
-      '@angular-eslint/component-selector': 'off',
+      parserOptions: ['./tsconfig.json'],
     },
   },
   {

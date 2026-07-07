@@ -110,13 +110,23 @@ post-header:not(:has([slot='main-nav'])) {
   }
 
   // One-pager without local-nav
-  &:has([slot='title']):not(:has([slot='local-nav'])) {
+  &:has([slot='title']):not(:has([slot='local-nav'])):not(:has([slot='side-nav'])) {
     --post-local-header-grid-template: 'title' 1fr / 1fr;
   }
 
   // One-pager with local-nav
-  &:has([slot='title']):has([slot='local-nav']) {
+  &:has([slot='title']):has([slot='local-nav']):not(:has([slot='side-nav'])) {
     --post-local-header-grid-template: 'title local-nav' 1fr / minmax(0, 1fr) auto;
+  }
+
+  // Application header with side-nav, without local-nav
+  &:has([slot='title']):has([slot='side-nav']):not(:has([slot='local-nav'])) {
+    --post-local-header-grid-template: 'side-nav title' 1fr / auto minmax(0, 1fr);
+  }
+
+  // Application header with side-nav and local-nav
+  &:has([slot='title']):has([slot='side-nav']):has([slot='local-nav']) {
+    --post-local-header-grid-template: 'side-nav title local-nav' 1fr / auto minmax(0, 1fr) auto;
   }
 }
 

@@ -16,6 +16,7 @@
   box-shadow: elevation.$elevation-300;
 
   @include media.only(desktop) {
+    max-height: calc(100vh - var(--post-header-height) - 3rem);
     background-color: #f0efed;
     z-index: -1;
     inset-block-start: 100%;
@@ -48,7 +49,6 @@
   position: relative;
 
   @include media.only(desktop) {
-    max-height: calc(100vh - var(--post-header-height) - 3rem);
     padding: 3rem 2.5rem 2.5rem;
   }
 
@@ -59,7 +59,13 @@
       min(var(--post-header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
     );
     padding-inline: var(--post-burger-menu-padding-inline);
-    padding-block: 1.5rem;
+    padding-block-start: 1.5rem;
+  }
+
+  .megadropdown-content {
+    @include media.max(desktop) {
+      padding-block-end: 1.5rem;
+    }
   }
 }
 

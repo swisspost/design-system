@@ -3,6 +3,7 @@ import { customElement, property, state } from 'lit/decorators.js';
 import { V910Checks } from './types';
 import { _updateOnChange, _updatePersistedState } from './util/migration-checks.util';
 import { _restorePersistedState, MIGRATION_CHECKS_KEY_V9 } from './util/persist.util';
+import './migration-v9-10/icons-migration-map-block/icons-migration-map.component';
 
 @customElement('migration-version-9-10')
 export class MigrationV910Component extends LitElement {
@@ -16,8 +17,13 @@ export class MigrationV910Component extends LitElement {
       hide_automigration: false,
     },
     ngbootstrap: {
+      carousel: false,
+      custom_select: false,
+      datatable: false,
+      datepicker: false,
       modal: false,
       pagination: false,
+      timepicker: false,
       typeahead: false,
       progressbar: false,
     },
@@ -140,7 +146,7 @@ export class MigrationV910Component extends LitElement {
               changes, all for good reason.
             </p>
             <p>
-              We’ve completely refreshed the design and reworked how components are built.
+              We've completely refreshed the design and reworked how components are built.
               <b>Bootstrap</b> and <b>Ng-Bootstrap</b> have been replaced by
               <b>Web Standards</b> compliant components, which means the Design System works across
               <b>any framework</b> (<a
@@ -152,7 +158,7 @@ export class MigrationV910Component extends LitElement {
             <p>
               We've reworked utility classes to be
               <b>pixel-based and more intuitive</b> — for example, <code>.p-16</code> now clearly
-              means "16px padding", instead of guessing what <code>.p-3</code> stood for. We’ve also
+              means "16px padding", instead of guessing what <code>.p-3</code> stood for. We've also
               simplified things overall: fewer breakpoints, fewer font-size classes, and a more
               consistent color palette (no more purple or coral buttons 🎨).
             </p>
@@ -172,8 +178,8 @@ export class MigrationV910Component extends LitElement {
               and switch to dark mode or the Cargo theme.
             </p>
             <p>
-              Oh, and yes — there’s a
-              <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs"
+              Oh, and yes — there's a
+              <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uilight">
                 >brand-new icon set</a
               >
               too 🖼️.
@@ -207,6 +213,55 @@ export class MigrationV910Component extends LitElement {
                     `
                   : nothing
               }
+          <li>
+            <h3 class="d-flex align-items-center gap-8">AI-assisted migration 🤖 <span class="tag tag-sm tag-info">optional</span></h3>
+            <p>
+              There are <b>two ways</b> to handle this migration: do it
+              <b>manually</b> by skipping this AI-assisted migration part and following the steps below, or let the
+              <b>AI skill</b> do most of the work for you. Either way, you should still go through
+              the checklist below and verify every step yourself.
+            </p>
+
+            <post-banner type="warning" class="mt-16">
+              <p>
+                The skill relies on AI and on a set of predefined transformation rules. Keep the
+                following in mind before relying on it:
+              </p>
+              <ul>
+                <li>
+                  <b>The result is not guaranteed to be perfect.</b> Some transformations
+                  (NgbModal → native dialog, stepper, other ng-bootstrap components) often still
+                  need manual adjustments.
+                </li>
+                <li>It does <b>not replace a human review</b>. Always read the generated difference and never merge blindly.</li>
+                <li>Work on a dedicated branch and commit often so you can roll back easily.</li>
+                <li>Project-specific code may be missed or misinterpreted by the AI.</li>
+              </ul>
+            </post-banner>
+
+            <h5 class="pt-16">How to use it</h5>
+            <ol>
+              <li>
+                Follow the setup tutorial in the
+                <a href="https://github.com/postch/post-skills">post-skills repository</a>
+                to add the marketplace.
+              </li>
+              <li>
+                Install the developer skills plugin:
+                <code-block code=${'/plugin install software-developement@post-marketplace'}></code-block>
+              </li>
+              <li>
+                Once installed, ask Copilot to run the skill:
+                <code-block
+                  code=${'do this skill please swisspost-v10-migration'}
+                ></code-block>
+              </li>
+              <li>
+                Whichever option you picked, <b>review every step below</b> to confirm each change
+                was applied correctly, then finish with the clean up.
+              </li>
+            </ol>
+          </li>
             </p>
           </li>
           <li>
@@ -216,6 +271,22 @@ export class MigrationV910Component extends LitElement {
               On your application, locate the <code>@use '@swisspost/design-system-styles/${this.environment === 'intranet' ? 'intranet' : 'index'}(.scss)';</code> import and rename it to:
               <code-block code=${this.environment === 'intranet' ? "@use '@swisspost/design-system-styles/post-compact.scss';" : "@use '@swisspost/design-system-styles/post-default.scss';"}></code>
             </p>
+          </li>
+          <li>
+            <h3>Removed unused CSS entry files</h3>
+            <p>
+              The top-level entry files <code>fonts.css</code> and <code>elements.css</code> have been removed from the <code>@swisspost/design-system-styles</code> package.
+            </p>
+            <ul>
+              <li>
+                <strong>fonts.css</strong>: Use the fonts component file instead.
+                <code-block code=${"@use '@swisspost/design-system-styles/components/fonts';"}></code-block>
+              </li>
+              <li>
+                <strong>elements.css</strong>: Import elements styles directly from the elements directory.
+                <code-block code=${"@use '@swisspost/design-system-styles/elements';"}></code-block>
+              </li>
+            </ul>
           </li>
           <li>
             <h3>Run Automigration Scripts 🪄</h3>
@@ -310,12 +381,186 @@ export class MigrationV910Component extends LitElement {
                       components is manual — you’ll need to update the affected components in
                       your application to use the corresponding elements as described in their
                       documentation.
-                    <ul>
-                      <li>carousel → <i>coming soon</i></li>
-                      <li>custom select → <i>coming soon</i></li>
-                      <li>datatable → AG Grid <i>coming soon</i></li>
-                      <li>datepicker → <i>coming soon</i></li>
-                      <li>dropdown → <i>coming soon</i></li>
+                    <ul class="list-unstyled mt-16">
+                      <li class="mb-16">
+                        <div class="form-check">
+                          <input type="checkbox" id="ngbootstrap-carousel" disabled />
+                          <label for="ngbootstrap-carousel">carousel → <span data-info="partial-automigration" class="tag tag-sm tag-warning">not available in v10</span>
+                          </label>
+                        </div>
+                      </li>
+                      <li class="mb-16">
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-custom_select"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.custom_select}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-custom_select">
+                            custom select &amp; dropdown →
+                            <a href="/?path=/docs/bc251cd0-5173-463b-8729-586bb1bf1e1a--docs"
+                              >native select element</a
+                            >
+                            or
+                            <a href="/?path=/docs/8ca2bd70-56e6-4da9-b1fd-4e55388dca88--docs"
+                              >post-menu</a
+                            >
+                            <span class="info">
+                              <p>
+                                How to decide which component to migrate to?
+                                For <strong>value selection</strong>, choose the native
+                                <code>&lt;select&gt;</code>, for <strong>action menus</strong>
+                                use the <code>&lt;post-menu&gt;</code> instead.
+                              </p>
+
+                              <p><strong>Before (v9 — custom select / NgbDropdown)</strong></p>
+                              <code-block
+                                code=${`<!-- v9 custom-select example (wrapper around NgbDropdown) -->\n<label for="customSelectButton" class="form-label">Shipping method</label>\n<div ngbDropdown>\n  <input [ngModel]="selectedShippingMethod?.value" name="shippingMethod" type="hidden" />\n\n  <button\n    #toggle\n    id="customSelectButton"\n    class="form-select text-start no-toggle-arrow"\n    ngbDropdownToggle\n    type="button"\n    aria-haspopup="listbox"\n    (keydown)="setFocus($event)"\n  >\n    <span [class.visually-hidden]="selectedShippingMethod">Choose shipping method</span>\n    <span *ngIf="selectedShippingMethod" aria-hidden="true">{{ selectedShippingMethod.label }}</span>\n  </button>\n\n  <div\n    ngbDropdownMenu\n    role="listbox"\n    class="w-100 mw-100"\n    aria-labelledby="customSelectButton"\n  >\n    <button\n      *ngFor="let option of shippingOptions"\n      ngbDropdownItem\n      role="option"\n      class="d-flex align-items-center"\n      [class.active]="selectedShippingMethod?.value === option.value"\n      [attr.aria-selected]="selectedShippingMethod?.value === option.value"\n      (focus)="selectedShippingMethod = option"\n      (click)="toggle.focus()"\n      #option\n      type="button"\n    >\n      <span>{{ option.label }}</span>\n    </button>\n  </div>\n</div>`}
+                              ></code-block>
+
+                              <p><strong>Before (v9 — NgbDropdown action menu)</strong></p>
+                              <code-block
+                                code=${`<!-- v9 dropdown example -->\n<div ngbDropdown class="me-2">\n  <button id="dropdownBasic1" class="btn btn-secondary" ngbDropdownToggle type="button">\n    Actions\n  </button>\n\n  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">\n    <button ngbDropdownItem type="button" (click)="editItem()">Edit</button>\n    <button ngbDropdownItem type="button" (click)="duplicateItem()">Duplicate</button>\n    <button ngbDropdownItem type="button" (click)="deleteItem()">Delete</button>\n  </div>\n</div>`}
+                              ></code-block>
+
+                              <p><strong>After (v10 — selection control)</strong></p>
+                              <p>
+                                For selecting a value in a form, replace with a native
+                                <code>&lt;select&gt;</code>.
+                              </p>
+                              <code-block
+                                code=${`<!-- template -->\n<label for="shipping-method" class="form-label">Shipping method</label>\n<select\n  id="shipping-method"\n  class="form-select"\n  [(ngModel)]="shippingMethod"\n>\n  <option value="standard">Standard</option>\n  <option value="priority">Priority</option>\n</select>`}
+                              ></code-block>
+                              <p>
+                                <strong>Important:</strong> when migrating to native
+                                <code>&lt;select&gt;</code>, option rendering falls back to the
+                                browser default UI. Custom option layouts, icons, and advanced
+                                per-option styling from the old custom-select/dropdown pattern are
+                                not preserved.
+                              </p>
+                              <p>
+                                Also note that <code>NgbDropdown</code> API methods and behaviors
+                                (for example programmatic open/close flows and related config)
+                                are not available on native <code>&lt;select&gt;</code>. If your
+                                feature relied on them, you need to implement that logic manually.
+                              </p>
+
+                              <p><strong>After (v10 — action menu)</strong></p>
+                              <p>
+                                For triggering actions (not storing a selected value), replace
+                                with <code>post-menu</code>.
+                              </p>
+                              <code-block
+                                code=${`<!-- template -->\n<post-menu-trigger for="row-actions-menu">\n  <button class="btn btn-secondary" type="button">Actions</button>\n</post-menu-trigger>\n\n<post-menu id="row-actions-menu" label="Row actions">\n  <post-menu-item><button type="button" (click)="editItem()">Edit</button></post-menu-item>\n  <post-menu-item><button type="button" (click)="duplicateItem()">Duplicate</button></post-menu-item>\n  <post-menu-item><button type="button" (click)="deleteItem()">Delete</button></post-menu-item>\n</post-menu>`}
+                              ></code-block>
+
+                              <p><strong>API mapping (NgbDropdown → post-menu)</strong></p>
+                              <table class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th>NgbDropdown (v9)</th>
+                                    <th>post-menu (v10)</th>
+                                    <th>Notes</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td><code>ngbDropdown</code></td>
+                                    <td><code>post-menu</code></td>
+                                    <td>Main container for menu content.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>ngbDropdownToggle</code></td>
+                                    <td><code>post-menu-trigger</code> with <code>for="menu-id"</code></td>
+                                    <td>Trigger is an explicit companion element.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>ngbDropdownMenu</code></td>
+                                    <td>default slot content inside <code>post-menu</code></td>
+                                    <td>Menu body is slotted content.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>ngbDropdownItem</code></td>
+                                    <td><code>post-menu-item</code></td>
+                                    <td>Put a native <code>button</code> or <code>a</code> inside each menu item.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>placement</code></td>
+                                    <td><code>placement</code></td>
+                                    <td>Concept is equivalent; values follow Floating UI placements.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>open()</code> / <code>close()</code> / <code>toggle()</code></td>
+                                    <td><code>show(target)</code> / <code>hide()</code> / <code>toggle(target)</code></td>
+                                    <td>Programmatic API for custom toggling of the dropdown menu.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>openChange</code> / <code>isOpen()</code></td>
+                                    <td><code>toggleMenu</code> event</td>
+                                    <td>Use emitted boolean state; no direct public <code>isOpen()</code> API.</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+
+                              <p><strong>Important differences (no direct 1:1 mapping)</strong></p>
+                              <ul>
+                                <li>
+                                  <code>autoClose</code> options from <code>NgbDropdown</code>
+                                  have no dedicated equivalent on <code>post-menu</code>.
+                                </li>
+                                <li>
+                                  <code>container</code>, <code>display</code>, and
+                                  <code>dropdownClass</code> options do not map directly.
+                                </li>
+                                <li>
+                                  If your old dropdown primarily selected a value, migrate to
+                                  native <code>&lt;select&gt;</code> instead of
+                                  <code>post-menu</code>.
+                                </li>
+                                <li>
+                                  Native <code>&lt;select&gt;</code> does not expose
+                                  <code>NgbDropdown</code> methods. Any such behavior must be
+                                  implemented manually in your application code.
+                                </li>
+                              </ul>
+                            </span>
+                          </label>
+                        </div>
+                      </li>
+                      <li class="mb-16">
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-datatable"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.datatable}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-datatable">
+                            datatable →
+                            <a href="https://www.ag-grid.com/">AG Grid</a>
+                            <span class="info">For interactive data tables, we recommend using AG Grid. For Swiss Post styling, use our
+                              <a href="/?path=/docs/e1405db2-fe06-45c6-a7ed-1408f9bf4895--docs">@swisspost/design-system-theme-ag-grid</a>
+                              package.</span>
+                          </label>
+                        </div>
+                      </li>
+                      <li class="mb-16">
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-datepicker"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.datepicker}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-datepicker">
+                            datepicker →
+                            <a href="/?path=/docs/eb77cd02-48b2-42e1-a3e4-cd8a973d431e--docs"
+                              >post-date-picker</a
+                            >
+                          </label>
+                        </div>
+                      </li>
                       <li>
                         <div class="form-check">
                           <input
@@ -413,7 +658,7 @@ export class MigrationV910Component extends LitElement {
                           </label>
                         </div>
                       </li>
-                      <li>
+                      <li class="mb-16">
                         <div class="form-check">
                           <input
                             id="ngbootstrap-pagination"
@@ -538,7 +783,7 @@ export class MyComponent {
                           </label>
                         </div>
                       </li>
-                      <li>
+                      <li class="mb-16">
                         <div class="form-check">
                           <input
                             id="ngbootstrap-progressbar"
@@ -613,7 +858,7 @@ export class MyComponent {
                                           or any other Bootstrap color variant
                                         </td>
                                         <td>
-                                          No direct equivalent. Use <code>class="progressbar"</code></br> 
+                                          No direct equivalent. Use <code>class="progressbar"</code></br>
                                           for the <code>neutral</code> appearance.
                                         </td>
                                       </tr>
@@ -655,7 +900,22 @@ export class MyComponent {
                           </label>
                         </div>
                       </li>
-                      <li>timepicker → <i>coming soon</i></li>
+                      <li class="mb-16">
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-timepicker"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.timepicker}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-timepicker">
+                            timepicker →
+                            <a href="/?path=/docs/51471f0b-1bbb-4059-951b-f89aa7339f91--docs"
+                              >native input with type "time"</a
+                            >
+                          </label>
+                        </div>
+                      </li>
                       <li>
                         <div class="form-check">
                           <input
@@ -668,7 +928,7 @@ export class MyComponent {
                             typeahead →
                             <a
                               href="/?path=/docs/2df77c32-5e33-402e-bd2e-54d54271ce19--docs#autocomplete"
-                              >input with datalist</a
+                              >native input with datalist</a
                             >
                             <span class="info">
                               <p>
@@ -896,76 +1156,81 @@ export class MyComponent {
                 </ul>
               </section>
 
-              ${this.environment !== 'intranet'
-                ? html`
-                    <section>
-                      <h4>Internet Header (@swisspost/internet-header)</h4>
-                      <ul class="list-unstyled">
-                        <li class="mb-16">
-                          <div class="form-check">
-                            <input
-                              id="internet_header-update_package"
-                              class="form-check-input"
-                              type="checkbox"
-                              ?checked="${this.state.internet_header.update_package}"
-                            />
-                            <label class="form-check-label" for="internet_header-update_package">
-                              Update the <code>@swisspost/internet-header</code> package to version 10
-                              <code-block
-                                code=${'npm install @swisspost/internet-header@10'}
-                              ></code-block>
-                            </label>
-                          </div>
-                        </li>
-                        <li class="mb-16">
-                          <div class="form-check">
-                            <input
-                              id="internet_header-add_text_props"
-                              class="form-check-input"
-                              type="checkbox"
-                              ?checked="${this.state.internet_header.add_text_props}"
-                            />
-                            <label class="form-check-label" for="internet_header-add_text_props">
-                              Add the new required <code>text-*</code> props to your
-                              <code>swisspost-internet-header</code> element
-                              <span class="info">
-                                Version 10 requires these props for accessibility — they provide visually
-                                hidden labels for interactive elements. The component will throw an error if any are
-                                missing.
-                              </span>
-                              <code-block
-                                code=${'<swisspost-internet-header\n    project="your-service-id"\n    text-menu="Menu"\n    text-back="Back"\n    text-close="Close"\n    text-current-language="The currently selected language is #name."\n    text-change-language="Change the language"\n    text-main="Main navigation"\n    text-current-user="Current user is John Doe."\n    text-user-links="User links"\n  ></swisspost-internet-header>'}
-                              ></code-block>
-                            </label>
-                          </div>
-                        </li>
-                        <li class="mb-16">
-                          <div class="form-check">
-                            <input
-                              id="internet_header-remove_props"
-                              class="form-check-input"
-                              type="checkbox"
-                              ?checked="${this.state.internet_header.remove_props}"
-                            />
-                            <label class="form-check-label" for="internet_header-remove_props">
-                              Remove props and runtime assignments that no longer exist
-                              <span class="info">
-                                The following props have been removed and have no effect in v10:
-                                <code>stickyness</code>, <code>meta</code>, <code>login</code>,
-                                <code>search</code>, <code>skiplinks</code>, <code>config-proxy</code>,
-                                <code>language-cookie-key</code>, <code>language-local-storage-key</code>,
-                                <code>logout-url</code>, <code>self-admin-origin</code>,
-                                <code>os-flyout-overrides</code>, <code>custom-config</code>,
-                                <code>language-switch-overrides</code>. Only <code>language</code> and
-                                <code>active-route</code> remain reactive at runtime.
-                              </span>
-                            </label>
-                          </div>
-                        </li>
-                      </ul>
-                    </section>
-                  `
-                : nothing}
+              ${
+                this.environment !== 'intranet'
+                  ? html`
+                      <section>
+                        <h4>Internet Header (@swisspost/internet-header)</h4>
+                        <ul class="list-unstyled">
+                          <li class="mb-16">
+                            <div class="form-check">
+                              <input
+                                id="internet_header-update_package"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.internet_header.update_package}"
+                              />
+                              <label class="form-check-label" for="internet_header-update_package">
+                                Update the <code>@swisspost/internet-header</code> package to
+                                version 10
+                                <code-block
+                                  code=${'npm install @swisspost/internet-header@10'}
+                                ></code-block>
+                              </label>
+                            </div>
+                          </li>
+                          <li class="mb-16">
+                            <div class="form-check">
+                              <input
+                                id="internet_header-add_text_props"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.internet_header.add_text_props}"
+                              />
+                              <label class="form-check-label" for="internet_header-add_text_props">
+                                Add the new required <code>text-*</code> props to your
+                                <code>swisspost-internet-header</code> element
+                                <span class="info">
+                                  Version 10 requires these props for accessibility — they provide
+                                  visually hidden labels for interactive elements. The component
+                                  will throw an error if any are missing.
+                                </span>
+                                <code-block
+                                  code=${'<swisspost-internet-header\n    project="your-service-id"\n    text-menu="Menu"\n    text-back="Back"\n    text-close="Close"\n    text-current-language="The currently selected language is {name}."\n    text-change-language="Change the language"\n    text-main="Main navigation"\n    text-current-user="Current user is {user}."\n    text-user-links="User links"\n  ></swisspost-internet-header>'}
+                                ></code-block>
+                              </label>
+                            </div>
+                          </li>
+                          <li class="mb-16">
+                            <div class="form-check">
+                              <input
+                                id="internet_header-remove_props"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.internet_header.remove_props}"
+                              />
+                              <label class="form-check-label" for="internet_header-remove_props">
+                                Remove props and runtime assignments that no longer exist
+                                <span class="info">
+                                  The following props have been removed and have no effect in v10:
+                                  <code>stickyness</code>, <code>meta</code>, <code>login</code>,
+                                  <code>search</code>, <code>skiplinks</code>,
+                                  <code>config-proxy</code>, <code>language-cookie-key</code>,
+                                  <code>language-local-storage-key</code>, <code>logout-url</code>,
+                                  <code>self-admin-origin</code>, <code>os-flyout-overrides</code>,
+                                  <code>custom-config</code>,
+                                  <code>language-switch-overrides</code>. Only
+                                  <code>language</code> and <code>active-route</code> remain
+                                  reactive at runtime.
+                                </span>
+                              </label>
+                            </div>
+                          </li>
+                        </ul>
+                      </section>
+                    `
+                  : nothing
+              }
 
               <section>
                 <h4>Styles</h4>
@@ -2304,7 +2569,24 @@ export class MyComponent {
             </div>
           </li>
           <li>
-            <h3>🧹 Clean up</h3>
+            <h3>Icons Migration 🖼️</h3>
+            <p>Beside the <strong><a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=post">Post Icon Set</a></strong>, there is now a brand new
+              <strong>UI Icon Set</strong>, available as <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uilight">line</a> or <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uisolid">solid</a> icons.</p>
+            <p>Using the new icons is as easy as before, simply replace the icon number with the icon name, and you're done.</p>
+            <p>Below, we show you which of the previous icons you can replace with a corresponding new icon.</p>
+
+            <post-banner variant="info">
+              <p>Not all previous icons are (or will be) available in the new Icon Set. Instead, we produce icons on request.</p>
+              <p>For this reason, the previous Icon Set stays available and you can continue using icons from it if no equivalent exists in the new Icon Set. However, we strongly recommend switching to the new <strong>UI Icon Set</strong>
+              whenever possible!</p>
+            </post-banner>
+
+            <h4>Icon Mapping</h4>
+
+            <icons-migration-map></icons-migration-map>
+          </li>
+          <li>
+            <h3>Clean up 🧹</h3>
             <p>
               You're almost done! After completing the migration steps above, you can now remove all
               remaining references to
