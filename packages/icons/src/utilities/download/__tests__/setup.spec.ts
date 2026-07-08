@@ -6,13 +6,13 @@ jest.mock('fs');
 jest.mock('../../../iconsets.config', () => [
   {
     name: 'post',
-    apiUrl: 'http://test.com/post',
+    apiUrl: 'https://test.com/post',
     downloadDirectory: '/test/download/post',
     expectedSourcesPerIcon: 1,
   },
   {
     name: 'ui',
-    apiUrl: 'http://test.com/ui',
+    apiUrl: 'https://test.com/ui',
     downloadDirectory: '/test/download/ui',
     expectedSourcesPerIcon: 6,
   },
@@ -83,10 +83,10 @@ describe('download/setup', () => {
       existsCallCount++;
       return existsCallCount % 2 === 1; // odd -> exists (rm), even -> not exists (mkdir)
     });
-    jest.spyOn(fs, 'rmSync').mockImplementation((p) => {
+    jest.spyOn(fs, 'rmSync').mockImplementation(p => {
       calls.push(`rm:${p.toString()}`);
     });
-    jest.spyOn(fs, 'mkdirSync').mockImplementation((p) => {
+    jest.spyOn(fs, 'mkdirSync').mockImplementation(p => {
       calls.push(`mkdir:${p.toString()}`);
       return undefined;
     });

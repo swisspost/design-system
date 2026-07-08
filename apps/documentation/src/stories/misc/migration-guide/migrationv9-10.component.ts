@@ -3,6 +3,7 @@ import { customElement, property, state } from 'lit/decorators.js';
 import { V910Checks } from './types';
 import { _updateOnChange, _updatePersistedState } from './util/migration-checks.util';
 import { _restorePersistedState, MIGRATION_CHECKS_KEY_V9 } from './util/persist.util';
+import './migration-v9-10/icons-migration-map-block/icons-migration-map.component';
 
 @customElement('migration-version-9-10')
 export class MigrationV910Component extends LitElement {
@@ -178,7 +179,7 @@ export class MigrationV910Component extends LitElement {
             </p>
             <p>
               Oh, and yes — there's a
-              <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs"
+              <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uilight">
                 >brand-new icon set</a
               >
               too 🖼️.
@@ -405,7 +406,125 @@ export class MigrationV910Component extends LitElement {
                             <a href="/?path=/docs/8ca2bd70-56e6-4da9-b1fd-4e55388dca88--docs"
                               >post-menu</a
                             >
-                            <span class="info">Use native select for value selection, post-menu for action menus.</span>
+                            <span class="info">
+                              <p>
+                                How to decide which component to migrate to?
+                                For <strong>value selection</strong>, choose the native
+                                <code>&lt;select&gt;</code>, for <strong>action menus</strong>
+                                use the <code>&lt;post-menu&gt;</code> instead.
+                              </p>
+
+                              <p><strong>Before (v9 — custom select / NgbDropdown)</strong></p>
+                              <code-block
+                                code=${`<!-- v9 custom-select example (wrapper around NgbDropdown) -->\n<label for="customSelectButton" class="form-label">Shipping method</label>\n<div ngbDropdown>\n  <input [ngModel]="selectedShippingMethod?.value" name="shippingMethod" type="hidden" />\n\n  <button\n    #toggle\n    id="customSelectButton"\n    class="form-select text-start no-toggle-arrow"\n    ngbDropdownToggle\n    type="button"\n    aria-haspopup="listbox"\n    (keydown)="setFocus($event)"\n  >\n    <span [class.visually-hidden]="selectedShippingMethod">Choose shipping method</span>\n    <span *ngIf="selectedShippingMethod" aria-hidden="true">{{ selectedShippingMethod.label }}</span>\n  </button>\n\n  <div\n    ngbDropdownMenu\n    role="listbox"\n    class="w-100 mw-100"\n    aria-labelledby="customSelectButton"\n  >\n    <button\n      *ngFor="let option of shippingOptions"\n      ngbDropdownItem\n      role="option"\n      class="d-flex align-items-center"\n      [class.active]="selectedShippingMethod?.value === option.value"\n      [attr.aria-selected]="selectedShippingMethod?.value === option.value"\n      (focus)="selectedShippingMethod = option"\n      (click)="toggle.focus()"\n      #option\n      type="button"\n    >\n      <span>{{ option.label }}</span>\n    </button>\n  </div>\n</div>`}
+                              ></code-block>
+
+                              <p><strong>Before (v9 — NgbDropdown action menu)</strong></p>
+                              <code-block
+                                code=${`<!-- v9 dropdown example -->\n<div ngbDropdown class="me-2">\n  <button id="dropdownBasic1" class="btn btn-secondary" ngbDropdownToggle type="button">\n    Actions\n  </button>\n\n  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">\n    <button ngbDropdownItem type="button" (click)="editItem()">Edit</button>\n    <button ngbDropdownItem type="button" (click)="duplicateItem()">Duplicate</button>\n    <button ngbDropdownItem type="button" (click)="deleteItem()">Delete</button>\n  </div>\n</div>`}
+                              ></code-block>
+
+                              <p><strong>After (v10 — selection control)</strong></p>
+                              <p>
+                                For selecting a value in a form, replace with a native
+                                <code>&lt;select&gt;</code>.
+                              </p>
+                              <code-block
+                                code=${`<!-- template -->\n<label for="shipping-method" class="form-label">Shipping method</label>\n<select\n  id="shipping-method"\n  class="form-select"\n  [(ngModel)]="shippingMethod"\n>\n  <option value="standard">Standard</option>\n  <option value="priority">Priority</option>\n</select>`}
+                              ></code-block>
+                              <p>
+                                <strong>Important:</strong> when migrating to native
+                                <code>&lt;select&gt;</code>, option rendering falls back to the
+                                browser default UI. Custom option layouts, icons, and advanced
+                                per-option styling from the old custom-select/dropdown pattern are
+                                not preserved.
+                              </p>
+                              <p>
+                                Also note that <code>NgbDropdown</code> API methods and behaviors
+                                (for example programmatic open/close flows and related config)
+                                are not available on native <code>&lt;select&gt;</code>. If your
+                                feature relied on them, you need to implement that logic manually.
+                              </p>
+
+                              <p><strong>After (v10 — action menu)</strong></p>
+                              <p>
+                                For triggering actions (not storing a selected value), replace
+                                with <code>post-menu</code>.
+                              </p>
+                              <code-block
+                                code=${`<!-- template -->\n<post-menu-trigger for="row-actions-menu">\n  <button class="btn btn-secondary" type="button">Actions</button>\n</post-menu-trigger>\n\n<post-menu id="row-actions-menu" label="Row actions">\n  <post-menu-item><button type="button" (click)="editItem()">Edit</button></post-menu-item>\n  <post-menu-item><button type="button" (click)="duplicateItem()">Duplicate</button></post-menu-item>\n  <post-menu-item><button type="button" (click)="deleteItem()">Delete</button></post-menu-item>\n</post-menu>`}
+                              ></code-block>
+
+                              <p><strong>API mapping (NgbDropdown → post-menu)</strong></p>
+                              <table class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th>NgbDropdown (v9)</th>
+                                    <th>post-menu (v10)</th>
+                                    <th>Notes</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td><code>ngbDropdown</code></td>
+                                    <td><code>post-menu</code></td>
+                                    <td>Main container for menu content.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>ngbDropdownToggle</code></td>
+                                    <td><code>post-menu-trigger</code> with <code>for="menu-id"</code></td>
+                                    <td>Trigger is an explicit companion element.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>ngbDropdownMenu</code></td>
+                                    <td>default slot content inside <code>post-menu</code></td>
+                                    <td>Menu body is slotted content.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>ngbDropdownItem</code></td>
+                                    <td><code>post-menu-item</code></td>
+                                    <td>Put a native <code>button</code> or <code>a</code> inside each menu item.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>placement</code></td>
+                                    <td><code>placement</code></td>
+                                    <td>Concept is equivalent; values follow Floating UI placements.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>open()</code> / <code>close()</code> / <code>toggle()</code></td>
+                                    <td><code>show(target)</code> / <code>hide()</code> / <code>toggle(target)</code></td>
+                                    <td>Programmatic API for custom toggling of the dropdown menu.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>openChange</code> / <code>isOpen()</code></td>
+                                    <td><code>toggleMenu</code> event</td>
+                                    <td>Use emitted boolean state; no direct public <code>isOpen()</code> API.</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+
+                              <p><strong>Important differences (no direct 1:1 mapping)</strong></p>
+                              <ul>
+                                <li>
+                                  <code>autoClose</code> options from <code>NgbDropdown</code>
+                                  have no dedicated equivalent on <code>post-menu</code>.
+                                </li>
+                                <li>
+                                  <code>container</code>, <code>display</code>, and
+                                  <code>dropdownClass</code> options do not map directly.
+                                </li>
+                                <li>
+                                  If your old dropdown primarily selected a value, migrate to
+                                  native <code>&lt;select&gt;</code> instead of
+                                  <code>post-menu</code>.
+                                </li>
+                                <li>
+                                  Native <code>&lt;select&gt;</code> does not expose
+                                  <code>NgbDropdown</code> methods. Any such behavior must be
+                                  implemented manually in your application code.
+                                </li>
+                              </ul>
+                            </span>
                           </label>
                         </div>
                       </li>
@@ -794,6 +913,70 @@ export class MyComponent {
                             <a href="/?path=/docs/51471f0b-1bbb-4059-951b-f89aa7339f91--docs"
                               >native input with type "time"</a
                             >
+                            <span class="info">
+                              <p>
+                                Replace <code>NgbTimepicker</code> with a native
+                                <code>&lt;input type="time"&gt;</code>. This covers the core
+                                time selection use case and works without ng-bootstrap.
+                              </p>
+
+                              <p><strong>Before (v9 — NgbTimepicker)</strong></p>
+                              <code-block
+                                code=${`<!-- template.html -->\n<ngb-timepicker\n  [(ngModel)]="appointmentTime"\n  [seconds]="true"\n  [spinners]="true"\n  [meridian]="false"\n  [hourStep]="1"\n  [minuteStep]="5"\n  [secondStep]="10"\n  [readonlyInputs]="false"\n></ngb-timepicker>`}
+                              ></code-block>
+                              <code-block
+                                code=${`// component.ts\nimport { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';\n\nappointmentTime: NgbTimeStruct = { hour: 9, minute: 30, second: 0 };`}
+                              ></code-block>
+
+                              <p><strong>After (v10 — native time input)</strong></p>
+                              <code-block
+                                code=${`<!-- template.html -->\n<label for="appointment-time" class="form-label">Appointment time</label>\n<input\n  id="appointment-time"\n  class="form-control"\n  type="time"\n  [step]="5"\n  [(ngModel)]="appointmentTimeValue"\n/>`}
+                              ></code-block>
+                              <code-block
+                                code=${`// component.ts\n// Native time inputs usually bind to a string (HH:mm or HH:mm:ss).\nappointmentTimeValue = '09:30';`}
+                              ></code-block>
+                              <p>
+                                For <code>input type="time"</code>, <code>step</code> is measured in
+                                seconds. A value of <code>5</code> allows selection in 5-second
+                                increments.
+                              </p>
+
+                              <p><strong>Common migration scenarios:</strong></p>
+                              <ul>
+                                <li>
+                                  <strong>NgbTimeStruct model:</strong> Convert to
+                                  <code>HH:mm</code> or <code>HH:mm:ss</code> string values.
+                                </li>
+                                <li>
+                                  <strong>Step behavior (<code>hourStep</code>,
+                                  <code>minuteStep</code>, <code>secondStep</code>):</strong>
+                                  use <code>step</code> (in seconds) and custom validation where
+                                  necessary.
+                                </li>
+                                <li>
+                                  <strong>Readonly/disabled:</strong> map to native
+                                  <code>readonly</code> and <code>disabled</code> attributes.
+                                </li>
+                                <li>
+                                  <strong>Custom formatting/adapters:</strong>
+                                  <code>NgbTimeAdapter</code>/<code>NgbTimepickerI18n</code>
+                                  logic must be moved to app-level parsing/formatting utilities.
+                                </li>
+                              </ul>
+
+                              <p><strong>API differences</strong></p>
+                              <p>
+                                Native <code>&lt;input type="time"&gt;</code> has no
+                                equivalent for <code>NgbTimepicker</code> methods such as
+                                <code>changeHour</code>, <code>changeMinute</code>,
+                                <code>changeSecond</code>, <code>updateHour</code>,
+                                <code>updateMinute</code>, and <code>updateSecond</code>.
+                                Spinner UI, meridian toggling behavior, and ng-bootstrap
+                                configuration services are not available as direct APIs.
+                                If your feature depends on these APIs/behaviors, implement them
+                                manually in your application logic.
+                              </p>
+                            </span>
                           </label>
                         </div>
                       </li>
@@ -2450,7 +2633,24 @@ export class MyComponent {
             </div>
           </li>
           <li>
-            <h3>🧹 Clean up</h3>
+            <h3>Icons Migration 🖼️</h3>
+            <p>Beside the <strong><a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=post">Post Icon Set</a></strong>, there is now a brand new
+              <strong>UI Icon Set</strong>, available as <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uilight">line</a> or <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uisolid">solid</a> icons.</p>
+            <p>Using the new icons is as easy as before, simply replace the icon number with the icon name, and you're done.</p>
+            <p>Below, we show you which of the previous icons you can replace with a corresponding new icon.</p>
+
+            <post-banner variant="info">
+              <p>Not all previous icons are (or will be) available in the new Icon Set. Instead, we produce icons on request.</p>
+              <p>For this reason, the previous Icon Set stays available and you can continue using icons from it if no equivalent exists in the new Icon Set. However, we strongly recommend switching to the new <strong>UI Icon Set</strong>
+              whenever possible!</p>
+            </post-banner>
+
+            <h4>Icon Mapping</h4>
+
+            <icons-migration-map></icons-migration-map>
+          </li>
+          <li>
+            <h3>Clean up 🧹</h3>
             <p>
               You're almost done! After completing the migration steps above, you can now remove all
               remaining references to

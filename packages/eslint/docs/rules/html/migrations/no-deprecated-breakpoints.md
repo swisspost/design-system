@@ -12,9 +12,9 @@ Classes using the `rg` or `sm` breakpoints **cannot be auto-fixed**. They are fl
 Both form a chain collision: renaming `*-rg-*` → `*-sm-*` would immediately be picked up by the `*-sm-*` → `*-xs-*` rule and renamed to the wrong final value. Since the two renames are interdependent, both must be done manually.
 
 | Old breakpoint | New breakpoint |
-|---|---|
-| `-rg-` | `-sm-` |
-| `-sm-` | `-xs-` |
+| -------------- | -------------- |
+| `-rg-`         | `-sm-`         |
+| `-sm-`         | `-xs-`         |
 
 ## Class list
 
