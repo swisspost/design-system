@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property                           | Attribute                | Description                                                                                                                                                                                                               | Type                                                                      | Default     |
@@ -21,11 +22,13 @@
 | `textMenu` _(required)_            | `text-menu`              | Visually hidden label for the burger menu button.                                                                                                                                                                         | `string`                                                                  | `undefined` |
 | `textUserLinks` _(required)_       | `text-user-links`        | Visually hidden label for the user menu.                                                                                                                                                                                  | `string`                                                                  | `undefined` |
 
+
 ## Events
 
 | Event          | Description                                          | Type                |
 | -------------- | ---------------------------------------------------- | ------------------- |
 | `headerLoaded` | Fires when the header has been rendered to the page. | `CustomEvent<void>` |
+
 
 ## Dependencies
 
@@ -38,7 +41,6 @@
 - post-mainnavigation
 
 ### Graph
-
 ```mermaid
 graph TD;
   swisspost-internet-header --> post-header
@@ -57,6 +59,6 @@ graph TD;
   style swisspost-internet-header fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

@@ -1,5 +1,17 @@
 # @swisspost/design-system-styles
 
+## 10.0.1
+
+### Patch Changes
+
+- Removed visible border on button links on Safari. (by [@leagrdv](https://github.com/leagrdv) with [#8052](https://github.com/swisspost/design-system/pull/8052))
+
+- Fixed anchor button styling in HCM. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7879](https://github.com/swisspost/design-system/pull/7879))
+
+- Fixed `time` input text alignment in ios. (by [@myrta2302](https://github.com/myrta2302) with [#7899](https://github.com/swisspost/design-system/pull/7899))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.1
+
 ## 10.0.0
 
 ### Major Changes
