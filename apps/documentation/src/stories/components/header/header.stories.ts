@@ -144,12 +144,10 @@ const meta: MetaComponent = {
       },
     },
     sideNav: {
-      name: 'Side navigation',
+      name: 'Side navigation trigger',
       description:
-        'Whether or not the side navigation is displayed. Requires a title to be present. Only relevant for the Application header.',
-      control: {
-        type: 'boolean',
-      },
+        'Whether or not the side navigation trigger is displayed. Requires a title to be present. Only relevant for the Application header. See [Side Navigation](/docs/components-side-navigation-primary--docs) for more information on how to implement it.',
+      control: false,
       table: {
         category: 'Content',
       },
@@ -191,11 +189,9 @@ const meta: MetaComponent = {
         <div class="header-story-wrapper">
           <div class="${wrapperClass}">
             ${story()}
-            ${
-              showSideNav
-                ? html`<main class="main-container flex-grow-1">${fakeContent()}</main>`
-                : html`<div class="flex-grow-1">${fakeContent()}</div>`
-            }
+            ${showSideNav
+              ? html`<main class="main-container flex-grow-1">${fakeContent()}</main>`
+              : html`<div class="flex-grow-1">${fakeContent()}</div>`}
           </div>
         </div>
       `;
@@ -447,6 +443,53 @@ export const ApplicationWithLanguageMenu: Story = {
     languageMenu: true,
     postLogin: false,
     targetGroup: false,
+  },
+};
+
+export const ApplicationWithSideNavigation: Story = {
+  args: {
+    title: '[Application Title]',
+    mainNav: false,
+    globalNavSecondary: false,
+    globalNavPrimary: false,
+    localNav: true,
+    languageMenu: false,
+    sideNav: true,
+    postLogin: false,
+    targetGroup: false,
+  },
+  decorators: [forceCompactAppearance],
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      story: {
+        inline: false,
+        iframeHeight: 600,
+      },
+      source: {
+        code: `
+<post-header text-menu="Menu">
+  <post-logo slot="post-logo" url="/">Homepage</post-logo>
+  <post-side-navigation-trigger slot="side-nav" for="sidenav">
+    <button>
+      <post-icon aria-hidden="true" name="burger"></post-icon>
+    </button>
+  </post-side-navigation-trigger>
+  <p slot="title">[Application Title]</p>
+</post-header>
+
+<post-side-navigation id="sidenav" text-close="Close">
+  <nav aria-label="Main navigation">
+    <!-- Navigation items -->
+  </nav>
+</post-side-navigation>
+
+<main class="main-container">
+  <!-- Page content -->
+</main>
+`,
+      },
+    },
   },
 };
 

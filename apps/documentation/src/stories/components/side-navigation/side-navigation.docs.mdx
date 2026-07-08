@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import meta, * as SideNavigationStories from './side-navigation.stories';
 import PackageTag from '@/shared/package-tag';
 import StylesPackageImport from '@/shared/styles-package-import';
@@ -32,6 +32,13 @@ import './side-navigation.styles.scss';
 <ComponentsPackageInstall component="<post-side-navigation>" />
 
 <StylesPackageImport components={['side-navigation', 'list']} />
+
+## Adding the trigger to the header
+
+The side navigation is always displayed on desktop. For smaller screen, a trigger needs to be added in order to let users open it manually.
+To integrate the side navigation with the header, add the `<post-side-navigation-trigger>` component to the `slot="side-nav"` of the header, which will place it on the left of your application title.
+
+<Source of={SideNavigationStories.HeaderTrigger} />
 
 ## Page structure
 
