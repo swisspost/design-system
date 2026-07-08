@@ -18,10 +18,9 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
   textUserLinks,
   textAccessUserLinks,
 }) => {
-  const canSeeAccountSwitch = 
-  config.user.changeUserAndProfile === 'userAndProfile' ||
-  config.user.changeUserAndProfile === 'profile' ||
-  (config.user.userType === 'B2B' && config.user.canChangeCompany === true);
+  const canSeeAccountSwitch =
+    config.user.changeUserAndProfile === 'userAndProfile' ||
+    (config.user.canChangeCompany === true && config.user.company !== '');
 
   const userFullname = [config.user.name, config.user.surname].join(' ');
   const userMenuId = createIdFrom(userFullname);
@@ -43,8 +42,8 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
           {config.user.company && <p>{config.user.company}</p>}
           <p>{userFullname}</p>
         </div>
-        {config.accountSwitch && canSeeAccountSwitch && 
-        <post-menu-item>
+        {config.accountSwitch && canSeeAccountSwitch && (
+          <post-menu-item>
             <Link
               config={{
                 text: config.accountSwitch.text,
@@ -52,8 +51,8 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
                 icon: config.accountSwitch.icon,
               }}
             />
-        </post-menu-item>
-        }
+          </post-menu-item>
+        )}
         {config.options.map(optionConfig => (
           <post-menu-item>
             <Link config={optionConfig} />

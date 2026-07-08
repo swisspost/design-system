@@ -3,7 +3,7 @@ export interface UserConfig {
   surname: string;
   email: string;
   company?: string;
-  userType?: string;
+  userType: string;
   canChangeCompany?: boolean;
-  changeUserAndProfile?: 'userAndProfile' | 'profile';
+  changeUserAndProfile: 'notAvailable' | 'profile' | 'userAndProfile';
 }
