@@ -1,6 +1,5 @@
 import { Args, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
-import { ifDefined } from 'lit/directives/if-defined.js';
+import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
