@@ -265,7 +265,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
       </PostSideNavigation>
 
       <div className="main-container">
-        <main className="py-48 px-16 px-md-40">
+        <main className="container">
           <PostBreadcrumbs
             home-url="/"
             text-home="Home"
