@@ -11,12 +11,6 @@
   }
 }
 
-@include media.max(tablet) {
-  post-side-navigation:not([data-hydrated]) {
-    display: none !important;
-  }
-}
-
 post-side-navigation {
   --post-side-navigation-item-enabled-fg: #050400;
   --post-side-navigation-item-enabled-stroke-inactive: #b4b3af;
