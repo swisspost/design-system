@@ -50,7 +50,12 @@ export class PostPopover {
   async show(target: HTMLElement) {
     await this.popoverRef.show(target);
     this.focusFirstEl();
-  }
+@Method()
+async show(target: HTMLElement) {
+  await this.popoverRef.show(target);
+  this.updateEdgeGap();
+  this.focusFirstEl();
+}
 
   /**
    * Programmatically hide this popover
