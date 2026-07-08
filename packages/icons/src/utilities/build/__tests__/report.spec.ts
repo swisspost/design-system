@@ -31,7 +31,7 @@ describe('build/report', () => {
     createMockSourceIcon(
       {
         meta: {
-          downloadLink: 'http://test.com/1000.svg',
+          downloadLink: 'https://test.com/1000.svg',
           businessfield: Businessfield.Kommunikation,
           keywords: ['test', 'icon', 'sample'],
           year: '2024',
@@ -41,7 +41,7 @@ describe('build/report', () => {
     ),
     createMockSourceIconWithSize(1001, 24, {
       meta: {
-        downloadLink: 'http://test.com/1001.svg',
+        downloadLink: 'https://test.com/1001.svg',
         businessfield: Businessfield.Kommunikation,
         keywords: ['ui', 'button'],
         year: '2024',
