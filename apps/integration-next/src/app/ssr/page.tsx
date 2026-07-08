@@ -13,7 +13,6 @@ import {
   PostCollapsible,
   PostCollapsibleTrigger,
   PostDatePicker,
-  PostIcon,
   PostLinkarea,
   PostListbox,
   PostListboxOption,
@@ -26,8 +25,6 @@ import {
   PostPopoverTrigger,
   PostProgressbar,
   PostRating,
-  PostSideNavigation,
-  PostSideNavigationTrigger,
   PostStepper,
   PostStepperItem,
   PostTabItem,
@@ -264,56 +261,6 @@ export default function Home() {
 
       <h2>Rating</h2>
       <PostRating label="Rating"></PostRating>
-
-      <h2>Side Navigation</h2>
-      <PostSideNavigationTrigger for="react-side-nav">
-        <button>
-          <span>Menu</span>
-          <PostIcon aria-hidden="true" name="burger"></PostIcon>
-        </button>
-      </PostSideNavigationTrigger>
-
-      <PostSideNavigation id="react-side-nav" textClose="Close">
-        <nav aria-labelledby="react-side-nav-title">
-          <h2 id="react-side-nav-title" className="post-side-navigation-heading">
-            Section title
-          </h2>
-          <ul>
-            <li>
-              <a href="#" className="post-side-navigation-item">
-                Sidenav link
-              </a>
-            </li>
-            <li>
-              <a href="#" className="post-side-navigation-item">
-                <PostIcon name="search" aria-hidden="true"></PostIcon>
-                Sidenav link with icon
-              </a>
-            </li>
-            <li>
-              <PostCollapsibleTrigger for="react-side-nav-collapsible">
-                <button className="post-side-navigation-item">
-                  Sidenav level 1<PostIcon name="chevrondown" aria-hidden="true"></PostIcon>
-                </button>
-              </PostCollapsibleTrigger>
-              <PostCollapsible id="react-side-nav-collapsible">
-                <ul>
-                  <li>
-                    <a href="#" className="post-side-navigation-item">
-                      Child link
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="post-side-navigation-item">
-                      Child link
-                    </a>
-                  </li>
-                </ul>
-              </PostCollapsible>
-            </li>
-          </ul>
-        </nav>
-      </PostSideNavigation>
 
       <h2>Stepper</h2>
       <PostStepper
