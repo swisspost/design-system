@@ -50,12 +50,8 @@ export class PostPopover {
   async show(target: HTMLElement) {
     await this.popoverRef.show(target);
     this.focusFirstEl();
-@Method()
-async show(target: HTMLElement) {
-  await this.popoverRef.show(target);
-  this.updateEdgeGap();
-  this.focusFirstEl();
-}
+    this.updateEdgeGap();
+  }
 
   /**
    * Programmatically hide this popover
@@ -72,7 +68,10 @@ async show(target: HTMLElement) {
   @Method()
   async toggle(target: HTMLElement, force?: boolean) {
     const isOpen = await this.popoverRef.toggle(target, force);
-    if (isOpen) this.focusFirstEl();
+    if (isOpen) {
+      this.updateEdgeGap();
+      this.focusFirstEl();
+    }
   }
 
   private readonly breakpointChange = () => {
@@ -81,10 +80,6 @@ async show(target: HTMLElement) {
 
   connectedCallback() {
     globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
-  }
-
-  componentDidLoad() {
-    requestAnimationFrame(() => this.updateEdgeGap());
   }
 
   disconnectedCallback() {
