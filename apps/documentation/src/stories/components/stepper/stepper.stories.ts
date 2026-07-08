@@ -89,7 +89,7 @@ function render(args: Args) {
       text-current-step="${args.textCurrentStep}"
       text-step-number="${args.textStepNumber}"
       current-index="${args.currentIndex}"
-      selected-index="${ifDefined(args.selectedIndex)}"
+      selected-index="${args.selectedIndex && args.selectedIndex !== args.currentIndex ? args.selectedIndex : nothing}"
     >
       ${Array.from({ length: args.stepsAmount }).map(
         (a, i) => html` <post-stepper-item> Step ${i + 1} label</post-stepper-item> `,
