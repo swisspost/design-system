@@ -129,31 +129,13 @@
     "runtime": {
       "name": "node",
       "version": "^24.0.0",
-      "onFail": "error"
+      "onFail": "warn"
     },
     "packageManager": {
       "name": "pnpm",
-      "version": "10.29.3+sha512.498e1fb4cca5aa06c1dcf2611e6fafc50972ffe7189998c409e90de74566444298ffe43e6cd2acdc775ba1aa7cc5e092a8b7054c811ba8c5770f84693d33d2dc",
+      "version": "11.9.0+sha512.bd682d5d03fe525ef7c9fd6780c6884d1e756ac4c9c9fe00c538782824310dcf90e3ddc4f53835f06dfaebd5085e41855e0bcbb3b60de2ac5bbab89e5036f03b",
       "onFail": "warn"
     }
   },
-  "packageManager": "pnpm@10.29.3",
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [],
-      "allowedVersions": {
-        "@typescript-eslint/eslint-plugin": ">=7",
-        "@typescript-eslint/parser": ">=7",
-        "zone.js": ">=0.14"
-      }
-    },
-    "overrides": {
-      "browserslist": ">=4.27.0",
-      "form-data@>=4.0.0 <4.0.4": "4.0.5",
-      "parse5": "npm:parse5-case-sensitive@7.1.2-0"
-    },
-    "onlyBuiltDependencies": [
-      "cypress"
-    ]
-  }
+  "packageManager": "pnpm@11.9.0"
 }
