@@ -51,7 +51,7 @@ const versionFilterMap: IVersionFilterMap = {
   Mmp: 'majorminorpatch',
 };
 
-export function getVersion(version: string, filter = '') {
+export function getVersion(version: string, filter = ''): string | null {
   const cleanVersion = version.replace(/^[^\d]+/, '');
 
   if (filter) {

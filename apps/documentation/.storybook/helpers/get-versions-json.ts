@@ -112,18 +112,22 @@ export function getCurrentVersion(): Promise<Version> {
   });
 }
 
-export function getDistTag(): Promise<string> {
-  return Promise.all([getVersions(), getCurrentVersion()]).then(([versions, currentVersion]) => {
-    const currentPreFlag = PRE_FLAG_REGEX.exec(currentVersion.version ?? '')?.[1]?.toLowerCase();
+export function getCurrentDistTag(): Promise<string> {
+  return getCurrentVersion().then(currentVersion => getDistTag(currentVersion));
+}
+
+export function getDistTag(version: Version): Promise<string> {
+  return getVersions().then(versions => {
+    const currentPreFlag = PRE_FLAG_REGEX.exec(version.version ?? '')?.[1]?.toLowerCase();
 
     if (currentPreFlag) return currentPreFlag;
 
-    const currentIndex = versions?.indexOf(currentVersion) ?? -1;
+    const currentIndex = versions?.indexOf(version) ?? -1;
     const previousVersion = versions?.[currentIndex - 1];
     const previousHasPreFlag = previousVersion && PRE_FLAG_REGEX.test(previousVersion.version);
 
     if (currentIndex !== 0 && !previousHasPreFlag) {
-      const major = currentVersion.version.split('.')[0];
+      const major = version.version.split('.')[0];
       return `version-${major}`;
     }
 
