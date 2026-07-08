@@ -1,5 +1,7 @@
 # @swisspost/design-system-eslint
 
+## 10.0.1
+
 ## 10.0.0
 
 ### Minor Changes
