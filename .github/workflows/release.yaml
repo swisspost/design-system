@@ -350,9 +350,12 @@ jobs:
             fs.writeFileSync(versionsPath, JSON.stringify(versions, null, 2) + '\n')
 
       # Refreshes the dependencies/peerDependencies of every *past* major version
-      # entry in versions.json. For each entry it reads the workspace state of the
-      # matching release/v* branch (the same `pnpm m ls` data used in
-      # "collect-release-data"). The current major entry is maintained by the
+      # entry in versions.json from the packages actually published to npm under the
+      # major's `version-<major>` dist-tag. Package names are enumerated from the
+      # matching release/v* branch, but every version and peerDependencies value is
+      # resolved from npm so the docs reflect what consumers can actually install
+      # (branch working-tree versions can drift, be privated retroactively, or hold
+      # unpublished bumps). The current major entry is maintained by the
       # "Update Documentation versions.json" step above, so it is skipped here.
       - name: Update Documentation versions.json for past majors
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
@@ -364,6 +367,8 @@ jobs:
 
             const versionsPath = './apps/documentation/public/assets/versions.json'
             const versions = JSON.parse(fs.readFileSync(versionsPath, 'utf8'))
+
+            const stylesPkg = '@swisspost/design-system-styles'
 
             // The current major is released from "main" and its versions.json entry is
             // maintained by the "Update Documentation versions.json" step, so skip it here.
@@ -378,32 +383,32 @@ jobs:
               }
             }
 
-            // Build the { version, dependencies, peerDependencies } for a checked-out
-            // worktree, mirroring the logic used in the "collect-release-data" job.
-            const collectDependencies = worktree => {
+            // Resolve the version + peerDependencies a package publishes under a given
+            // dist-tag. Returns null when the package has no such dist-tag (i.e. it was
+            // never published on that major line), so it can be omitted from the docs.
+            const npmView = ref => {
+              try {
+                const out = execSync(`npm view ${ref} version peerDependencies --json`, {
+                  encoding: 'utf8',
+                  stdio: ['ignore', 'pipe', 'ignore'],
+                })
+                const data = JSON.parse(out)
+                return {
+                  version: typeof data === 'string' ? data : data.version,
+                  peerDependencies:
+                    data && typeof data === 'object' && data.peerDependencies ? data.peerDependencies : {},
+                }
+              } catch {
+                return null
+              }
+            }
+
+            // Enumerate the workspace package names that exist on a release/v* branch.
+            const packageNames = worktree => {
               const monorepo = JSON.parse(
                 execSync('pnpm m ls --depth=0 --json', { cwd: worktree, encoding: 'utf8' }),
               )
-              const styles = JSON.parse(
-                fs.readFileSync(path.join(worktree, 'packages/styles/package.json'), 'utf8'),
-              )
-
-              const dependencies = monorepo
-                .filter(pkg => pkg.version !== undefined && pkg.version !== null)
-                .reduce((packages, pkg) => ({ ...packages, [pkg.name]: pkg.version }), { ...(styles.peerDependencies ?? {}) })
-
-              const peerDependencies = monorepo
-                .filter(pkg => pkg.name !== undefined && pkg.path !== undefined)
-                .reduce((acc, pkg) => {
-                  try {
-                    const pkgJson = JSON.parse(fs.readFileSync(path.join(pkg.path, 'package.json'), 'utf8'))
-                    return pkgJson.peerDependencies ? { ...acc, [pkgJson.name]: { ...pkgJson.peerDependencies } } : acc
-                  } catch {
-                    return acc
-                  }
-                }, {})
-
-              return { version: styles.version, dependencies, peerDependencies }
+              return monorepo.map(pkg => pkg.name).filter(Boolean)
             }
 
             const updated = []
@@ -421,12 +426,36 @@ jobs:
                 continue
               }
 
+              const distTag = `version-${major}`
+
+              // Anchor the entry on the styles package published under the major's
+              // dist-tag. Without it the npm data can't be trusted, so leave the entry as-is.
+              const styles = npmView(`${stylesPkg}@${distTag}`)
+              if (!styles) {
+                core.info(`Skipping v${major}: "${stylesPkg}@${distTag}" is not published on npm.`)
+                continue
+              }
+
               const worktree = path.join(process.env.RUNNER_TEMP, `release-v${major}`)
               try {
                 execSync(`git worktree add --force --detach "${worktree}" ${branch}`, { stdio: 'ignore' })
 
-                const { version, dependencies, peerDependencies } = collectDependencies(worktree)
-                entry.version = version
+                // Seed the dependency list with the styles peer dependencies (bootstrap, ...).
+                const dependencies = { ...(styles.peerDependencies ?? {}) }
+                const peerDependencies = {}
+
+                for (const name of packageNames(worktree)) {
+                  const published = npmView(`${name}@${distTag}`)
+                  if (!published) continue // not published under this major -> omit
+
+                  dependencies[name] = published.version
+
+                  if (Object.keys(published.peerDependencies).length > 0) {
+                    peerDependencies[name] = published.peerDependencies
+                  }
+                }
+
+                entry.version = styles.version
                 entry.dependencies = dependencies
 
                 if (Object.keys(peerDependencies).length > 0) {
