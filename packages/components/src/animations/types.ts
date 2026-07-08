@@ -22,12 +22,7 @@ export const PRESET_MAP: Record<PresetEasing | 'headerEase', CurveEasing | Prese
 };
 
 export type PresetEasing =
-  | 'linear'
-  | 'ease'
-  | 'ease-in'
-  | 'ease-out'
-  | 'ease-in-out'
-  | 'headerEase';
+  'linear' | 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out' | 'headerEase';
 
 export interface AnimationOptions {
   duration: number;

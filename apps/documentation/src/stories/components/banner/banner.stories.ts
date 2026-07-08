@@ -82,9 +82,11 @@ function renderBanner({ innerHTML, dismissible, dismissed, type }: PostBannerCon
       type=${type === 'info' ? nothing : type}
       @postDismissed=${() => updateArgs({ dismissed: true })}
     >
-      ${dismissible
-        ? html` <post-closebutton slot="close-button"> Close </post-closebutton> `
-        : nothing}
+      ${
+        dismissible
+          ? html` <post-closebutton slot="close-button"> Close </post-closebutton> `
+          : nothing
+      }
       ${unsafeHTML(innerHTML ?? '')}
     </post-banner>
   `;
