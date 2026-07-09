@@ -54,6 +54,7 @@
     "components:vrt:chrome": "pnpm --filter design-system-components build && pnpm --filter design-system-components vrt:chrome",
     "components:vrt:firefox": "pnpm --filter design-system-components build && pnpm --filter design-system-components vrt:firefox",
     "components:vrt:safari": "pnpm --filter design-system-components build && pnpm --filter design-system-components vrt:safari",
+    "components-angular:ng": "pnpm --filter design-system-components-angular ng",
     "components-angular:build": "pnpm --filter design-system-components-angular build",
     "components-angular:lint": "pnpm --filter design-system-components-angular lint",
     "components-angular:lint:fix": "pnpm --filter design-system-components-angular lint:fix",
@@ -87,6 +88,7 @@
     "eslint:unit:watch": "pnpm --filter design-system-eslint unit:watch",
     "eslint:inspect": "pnpm --filter design-system-eslint inspect",
     "apps-angular": "pnpm apps-angular:start",
+    "apps-angular:ng": "pnpm --filter design-system-integration-angular ng",
     "apps-angular:start": "pnpm --filter design-system-integration-angular start",
     "apps-angular:build": "pnpm --filter design-system-integration-angular build",
     "apps-angular:e2e": "pnpm --filter design-system-integration-angular e2e",
@@ -131,7 +133,7 @@
     },
     "packageManager": {
       "name": "pnpm",
-      "version": "10.29.3+sha512.498e1fb4cca5aa06c1dcf2611e6fafc50972ffe7189998c409e90de74566444298ffe43e6cd2acdc775ba1aa7cc5e092a8b7054c811ba8c5770f84693d33d2dc",
+      "version": "10.29.3",
       "onFail": "warn"
     }
   },

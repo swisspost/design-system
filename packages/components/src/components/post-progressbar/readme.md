@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property | Attribute | Description                                                                                                                                                                                                                                                                        | Type     | Default     |
@@ -10,6 +11,7 @@
 | `min`    | `min`     | The minimum value of the progress bar. Must be a valid floating point number less than max.                                                                                                                                                                                        | `number` | `0`         |
 | `value`  | `value`   | Specifies how much of the task has been completed. Must be a valid floating point number between min and max. If there is no value attribute, the progress bar is indeterminate; this indicates that an activity is ongoing with no indication of how long it is expected to take. | `number` | `undefined` |
 
----
 
-_Built with [StencilJS](https://stenciljs.com/)_
+----------------------------------------------
+
+*Built with [StencilJS](https://stenciljs.com/)*

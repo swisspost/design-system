@@ -24,7 +24,7 @@ const meta: MetaComponent<
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=19714-14521&mode=design&t=PR2ZnqAacaK7UiXP-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-V2?node-id=33280-33494',
     },
     controls: {
       exclude: ['postChange', 'show', 'post-tabs-content', 'post-tabs'],
