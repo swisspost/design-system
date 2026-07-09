@@ -32,5 +32,9 @@ function getPackageTag(tag: string) {
       break;
   }
 
-  return packageName ? <p className="tag tag-sm mt-0 mb-24">{packageName}</p> : null;
+  return packageName ? (
+    <p key={tag} className="tag tag-sm mt-0 mb-24">
+      {packageName}
+    </p>
+  ) : null;
 }
