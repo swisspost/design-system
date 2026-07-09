@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   PostAccordion,
   PostAccordionItem,
@@ -23,8 +23,6 @@ import {
   PostPopoverTrigger,
   PostProgressbar,
   PostRating,
-  PostSideNavigation,
-  PostSideNavigationTrigger,
   PostStepper,
   PostStepperItem,
   PostTabItem,
@@ -38,6 +36,7 @@ import {
 @Component({
   selector: 'home-page',
   templateUrl: './home.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     PostAccordion,
     PostAccordionItem,
@@ -62,8 +61,6 @@ import {
     PostPopoverTrigger,
     PostProgressbar,
     PostRating,
-    PostSideNavigation,
-    PostSideNavigationTrigger,
     PostStepper,
     PostStepperItem,
     PostTabItem,

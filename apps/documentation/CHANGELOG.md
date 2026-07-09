@@ -1,5 +1,26 @@
 # @swisspost/design-system-documentation
 
+## 6.1.0
+
+### Minor Changes
+
+- Added information about how to migrate the `Post Icon Set` icons to the `UI Icon Sets` icons, in the `v9` to `v10` migration guide. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7960](https://github.com/swisspost/design-system/pull/7960))
+
+### Patch Changes
+
+- Added `NgbTimepicker` migration information on the migration guide. (by [@leagrdv](https://github.com/leagrdv) with [#8028](https://github.com/swisspost/design-system/pull/8028))
+
+- Added `NgbDropdown` and custom select migration information on the migration guide. (by [@leagrdv](https://github.com/leagrdv) with [#8016](https://github.com/swisspost/design-system/pull/8016))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.1
+  - @swisspost/design-system-styles@10.0.1
+  - @swisspost/design-system-components-react@10.0.1
+  - @swisspost/internet-header@10.0.1
+  - @swisspost/design-system-styles-primeng@10.0.1
+  - @swisspost/design-system-icons@10.0.1
+  - @swisspost/design-system-theme-ag-grid@10.0.1
+  - @swisspost/design-system-tokens@10.0.1
+
 ## 6.0.1
 
 ### Patch Changes
