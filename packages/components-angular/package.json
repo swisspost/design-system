@@ -1,10 +1,9 @@
 {
-  "name": "@swisspost/design-system-components-angular-workspace",
-  "version": "10.0.0-next.74",
-  "description": "Wrapper arround @swisspost/design-system-components for angular",
+  "name": "@swisspost/design-system-components-angular",
+  "version": "10.0.1",
+  "description": "Swiss Post Design System - Angular Wrapper Components",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
-  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git"
@@ -13,54 +12,52 @@
   "bugs": {
     "url": "https://github.com/swisspost/design-system/issues"
   },
+  "publishConfig": {
+    "directory": "./dist",
+    "access": "public",
+    "linkDirectory": true
+  },
+  "exports": {
+    "./post-components.css": "./post-components.css"
+  },
+  "sideEffects": false,
   "scripts": {
-    "start": "ng serve --port 9210",
+    "ng": "ng",
     "build": "pnpm clean && ng build components",
-    "postbuild": "pnpm copy:styles:dist",
+    "postbuild": "copyfiles -f src/stencil-generated/post-components.css dist/",
     "clean": "rimraf dist .angular",
-    "e2e": "playwright test",
-    "e2e:ci": "playwright test",
-    "e2e:watch": "playwright test --ui",
-    "unit": "echo 'No unit tests for components-angular'",
-    "playwright:install": "playwright install --with-deps chromium",
     "lint": "ng lint",
-    "lint:fix": "ng lint --fix",
-    "copy:styles:dist": "copyfiles -f projects/components/src/lib/stencil-generated/post-components.css dist/components/"
+    "lint:fix": "ng lint --fix"
   },
   "dependencies": {
-    "@angular/animations": "20.3.19",
-    "@angular/common": "20.3.19",
-    "@angular/compiler": "20.3.19",
-    "@angular/core": "20.3.19",
-    "@angular/forms": "20.3.19",
-    "@angular/platform-browser": "20.3.19",
-    "@angular/router": "20.3.19",
-    "@swisspost/design-system-components": "workspace:10.0.0-next.74",
-    "@swisspost/design-system-styles": "workspace:10.0.0-next.74",
-    "rxjs": "7.8.2",
-    "tslib": "2.8.1",
-    "zone.js": "0.16.1"
+    "@swisspost/design-system-components": "workspace:10.0.1",
+    "tslib": "catalog:angular"
+  },
+  "peerDependencies": {
+    "@angular/common": "^22.0.0",
+    "@angular/core": "^22.0.0",
+    "@angular/forms": "^22.0.0",
+    "rxjs": "~7.8.0"
   },
   "devDependencies": {
-    "@angular/build": "20.3.25",
-    "@angular/cli": "20.3.25",
-    "@angular/compiler-cli": "20.3.19",
+    "@angular/build": "catalog:angular",
+    "@angular/cli": "catalog:angular",
+    "@angular/common": "catalog:angular",
+    "@angular/compiler": "catalog:angular",
+    "@angular/compiler-cli": "catalog:angular",
+    "@angular/core": "catalog:angular",
+    "@angular/forms": "catalog:angular",
     "@eslint/js": "9.18.0",
-    "@swisspost/design-system-components-angular": "workspace:10.0.0-next.74",
-    "@playwright/test": "catalog:",
-    "angular-eslint": "19.8.1",
+    "angular-eslint": "catalog:angular",
     "copyfiles": "2.4.1",
     "eslint": "9.26.0",
     "globals": "17.3.0",
-    "karma": "6.4.4",
-    "karma-chrome-launcher": "3.2.0",
-    "karma-coverage": "2.2.1",
-    "karma-jasmine": "5.1.0",
-    "karma-jasmine-html-reporter": "2.1.0",
-    "ng-packagr": "20.1.0",
+    "ng-packagr": "catalog:angular",
     "rimraf": "6.0.1",
+    "rxjs": "catalog:angular",
     "typescript": "catalog:typescript",
-    "typescript-eslint": "catalog:typescript"
+    "typescript-eslint": "catalog:typescript",
+    "zone.js": "catalog:angular"
   },
   "keywords": [
     "angular",

@@ -1,10 +1,10 @@
-import { getPopoverOpenSelector } from './helper/popovercontainer';
 import {
   DATE_FORMAT_RANGE_SEPARATOR,
   DATE_FORMAT_STRING_OPTIONS,
 } from '../../src/components/post-date-picker/constants';
 import { UNICODE_BIDI } from '../../src/utils/locales';
 import { LOCALES_MAP } from './helper/date-picker';
+import { getPopoverOpenSelector } from './helper/popovercontainer';
 
 const DATEPICKER_ID = 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e';
 
@@ -136,6 +136,16 @@ describe('date-picker', { includeShadowDom: true }, () => {
       });
 
       LOCALES_MAP.forEach(i18n => {
+        function haveDisplayValue(expected: string) {
+          return ($el: JQuery<HTMLElement>) => {
+            const nativeValue = Object.getOwnPropertyDescriptor(
+              HTMLInputElement.prototype,
+              'value',
+            )!.get!.call($el[0]);
+            expect(nativeValue).to.equal(expected);
+          };
+        }
+
         describe(`Locales: ${i18n.locales.join(', ')}`, () => {
           it('should apply correct mask & date format based on the "locale" property', () => {
             const expectedStartDate = s.toLocaleDateString(i18n.locale, DATE_FORMAT_STRING_OPTIONS);
@@ -143,18 +153,17 @@ describe('date-picker', { includeShadowDom: true }, () => {
             const separator = i18n.dir === 'rtl' ? rtlSeparator : ltrSeparator;
 
             cy.get('@date-picker').invoke('attr', 'locale', i18n.locale);
-            cy.get('@input').should('have.value', i18n.mask);
+            cy.get('@input').should(haveDisplayValue(i18n.mask));
 
             cy.get('@toggle').click().wait(200);
             cy.get('@container').find(`[data-date="${START_DAY}"]`).first().click();
-            cy.get('@input').should('have.value', expectedStartDate);
+            cy.get('@input').should(haveDisplayValue(expectedStartDate));
 
             cy.get('@date-picker').invoke('attr', 'range', true);
             cy.get('@toggle').click().wait(200);
             cy.get('@container').find(`[data-date="${END_DAY}"]`).first().click();
             cy.get('@input').should(
-              'have.value',
-              `${expectedStartDate}${separator}${expectedEndDate}`,
+              haveDisplayValue(`${expectedStartDate}${separator}${expectedEndDate}`),
             );
           });
         });

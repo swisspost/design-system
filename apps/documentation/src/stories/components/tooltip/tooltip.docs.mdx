@@ -1,6 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as TooltipStories from './tooltip.stories';
 import * as TooltipTriggerStories from './tooltip-trigger.stories';
+import * as PopoverStories from '../popover/popover.stories';
 import PackageTag from '@/shared/package-tag';
 
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
@@ -16,7 +17,17 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <div className="lead">For short, informative messages or explanations.</div>
 
+<post-banner type="warning" className="my-16">
+  **Limited accessibility on touch devices:** Tooltips currently have limited accessibility on touch
+  devices, because the long-press event used to trigger them conflicts with native gestures in
+  mobile browsers (such as text selection or the context menu). Touch users may therefore be unable
+  to reveal tooltip content reliably. If the information is essential, use the [accessible
+  alternative](/?path=/docs/cd684d90-e7a7-41a9-8923-b1b72ad9b384--docs#accessible-alternative-for-essential-content)
+  below instead.
+</post-banner>
+
 <Canvas sourceState="shown" of={TooltipStories.Default} />
+
 <Controls of={TooltipStories.Default} />
 
 <ComponentsPackageInstall component="<post-tooltip>" />
@@ -27,6 +38,20 @@ The `<post-tooltip-trigger>` component enables you to show tooltips with customi
 
 <Canvas sourceState="shown" of={TooltipTriggerStories.Default} />
 <Controls of={TooltipTriggerStories.Default} />
+
+## Accessible alternative for essential content
+
+When the additional information is essential and must be available to every user, including on
+touch devices, use an information icon button that toggles a `<post-popover>` instead of a tooltip.
+Unlike a tooltip, the popover is opened by an explicit click or key press, so it works consistently
+across mouse, keyboard and touch input.
+
+Keep in mind that this approach only works for elements that do not trigger an action of their own.
+The information icon button is a separate interactive element, so it cannot be nested inside another
+interactive element such as a button or link. If you need to add essential information to an element
+that already triggers an action, place the information icon button next to it instead of inside it.
+
+<Canvas sourceState="shown" of={PopoverStories.InfoIcon} />
 
 ## Installation
 

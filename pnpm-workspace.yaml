@@ -1,7 +1,6 @@
 packages:
   - 'apps/*'
   - 'packages/*'
-  - 'packages/components-angular/projects/*'
 
 catalog:
   '@playwright/test': 1.60.0
@@ -25,5 +24,21 @@ catalogs:
     'jest-cli': 29.7.0
     'ts-jest': 29.4.9
   'typescript':
-    'typescript': 5.9.3
-    'typescript-eslint': 8.59.2
+    'typescript': 6.0.3
+    'typescript-eslint': 8.62.0
+  angular:
+    '@angular/animations': 22.0.5
+    '@angular/build': 22.0.5
+    '@angular/cli': 22.0.5
+    '@angular/common': 22.0.5
+    '@angular/compiler': 22.0.5
+    '@angular/compiler-cli': 22.0.5
+    '@angular/core': 22.0.5
+    '@angular/forms': 22.0.5
+    '@angular/platform-browser': 22.0.5
+    '@angular/router': 22.0.5
+    'angular-eslint': 22.0.0
+    'ng-packagr': 22.0.1
+    'rxjs': 7.8.2
+    'tslib': 2.8.1
+    'zone.js': 0.16.1

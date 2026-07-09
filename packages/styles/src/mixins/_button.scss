@@ -50,22 +50,18 @@
   white-space: nowrap; // Long content should never break in buttons
   cursor: pointer;
 
-  &:hover {
+  &:not(:disabled):hover {
     text-decoration: none;
   }
 
   &:disabled {
     border-style: tokens.get('button-border-style-disabled', components.$post-button);
+    cursor: unset;
   }
 
   @include utilities.focus-style;
 
   @include utilities.high-contrast-mode() {
-    &:is(a) {
-      color: LinkText;
-      border: unset;
-    }
-
     &:is(button) {
       background-color: ButtonFace !important;
       border: 1px solid ButtonBorder !important;
@@ -94,8 +90,11 @@
   }
 }
 
-@mixin button-variant-def($type, $color) {
+@mixin button-variant-def($type, $color, $variant: '') {
   border-color: tokens.get('button-#{$color}-#{$type}-stroke', components.$post-button);
-  background-color: tokens.get('button-#{$color}-#{$type}-bg', components.$post-button);
   color: tokens.get('button-#{$color}-#{$type}-fg', components.$post-button);
+
+  @if ($variant != 'link') {
+    background-color: tokens.get('button-#{$color}-#{$type}-bg', components.$post-button);
+  }
 }

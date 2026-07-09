@@ -203,9 +203,9 @@ function renderCheckbox(args: Args, context: StoryContext) {
         type="checkbox"
         aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
         aria-label="${ifDefined(args.hiddenLabel ? args.label : undefined)}"
-        aria-describedby="${args.validation != 'null'
-          ? `${args.validation}-id-${context.id}`
-          : nothing}"
+        aria-describedby="${
+          args.validation != 'null' ? `${args.validation}-id-${context.id}` : nothing
+        }"
         ?disabled="${args.disabled}"
         .checked="${CHECKED_STATE_MAP[args.checked]}"
         @change="${handleChange}"

@@ -1,0 +1,58 @@
+{
+  "name": "@swisspost/design-system-integration-angular",
+  "version": "10.0.1",
+  "description": "Angular integration test app for the Swiss Post Design System",
+  "author": "Swiss Post <design-system@post.ch>",
+  "license": "Apache-2.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git"
+  },
+  "homepage": "https://design-system.post.ch",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve --port 9210",
+    "build": "ng build",
+    "clean": "rimraf dist .angular",
+    "e2e": "playwright test",
+    "e2e:ci": "playwright test",
+    "e2e:watch": "playwright test --ui",
+    "playwright:install": "playwright install --with-deps chromium",
+    "lint": "ng lint",
+    "lint:fix": "ng lint --fix"
+  },
+  "dependencies": {
+    "@angular/animations": "catalog:angular",
+    "@angular/common": "catalog:angular",
+    "@angular/compiler": "catalog:angular",
+    "@angular/core": "catalog:angular",
+    "@angular/forms": "catalog:angular",
+    "@angular/platform-browser": "catalog:angular",
+    "@angular/router": "catalog:angular",
+    "@swisspost/design-system-components-angular": "workspace:10.0.1",
+    "@swisspost/design-system-icons": "workspace:10.0.1",
+    "@swisspost/design-system-styles": "workspace:10.0.1",
+    "@swisspost/design-system-styles-primeng": "workspace:10.0.1",
+    "primeng": "21.1.9",
+    "rxjs": "catalog:angular",
+    "tslib": "catalog:angular",
+    "zone.js": "catalog:angular"
+  },
+  "devDependencies": {
+    "@angular/build": "catalog:angular",
+    "@angular/cli": "catalog:angular",
+    "@angular/compiler-cli": "catalog:angular",
+    "@eslint/js": "9.18.0",
+    "@playwright/test": "catalog:",
+    "angular-eslint": "catalog:angular",
+    "eslint": "9.26.0",
+    "globals": "17.3.0",
+    "rimraf": "6.0.1",
+    "typescript": "catalog:typescript",
+    "typescript-eslint": "catalog:typescript"
+  }
+}

@@ -1,9 +1,9 @@
-import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
-import meta, * as accordionStories from './accordion.stories';
-import * as accordionItemStories from './accordion-item.stories';
-import SampleCustomTrigger from './accordion-custom-trigger.sample?raw';
-import PackageTag from '@/shared/package-tag';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import PackageTag from '@/shared/package-tag';
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import SampleCustomTrigger from './accordion-custom-trigger.sample?raw';
+import * as accordionItemStories from './accordion-item.stories';
+import meta, * as accordionStories from './accordion.stories';
 
 <Meta of={accordionStories} />
 
@@ -70,5 +70,10 @@ The `<post-accordion>` offers several methods to expand or collapse the `<post-a
 
 Expand or collapse all elements at once using `.expandAll()` and `.collapseAll()` respectively,
 or toggle just one using `.toggle()` specifying the id of the element you want to act on.
+
+<Source
+  code={`<post-accordion-item id="my-item">...</post-accordion-item>`}
+  language="typescript"
+/>
 
 <Source code={SampleCustomTrigger} language="typescript" />

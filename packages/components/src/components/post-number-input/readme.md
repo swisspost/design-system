@@ -1,7 +1,5 @@
 # post-number-input
 
-
-
 <!-- Auto Generated Below -->
 
 
