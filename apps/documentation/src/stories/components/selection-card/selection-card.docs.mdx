@@ -11,7 +11,10 @@ import StylesPackageImport from '@/shared/styles-package-import';
 
 </div>
 
-<p className="lead">For a more specialized visualization of checkbox and radio elements.</p>
+<div className="lead">
+  The selection card lets users select an option from a group of options, each represented 
+  in a card.
+</p>
 
 <Canvas sourceState="shown" of={SelectionCardStories.Default} />
 <div className="hide-col-default">
@@ -22,12 +25,9 @@ import StylesPackageImport from '@/shared/styles-package-import';
 
 ### Custom icon
 
-<p className="lead">
-  The selection card lets users select an option from a group of options, each represented in a
-  card.
-</p>
-
-It's a more specialized visualization of checkbox and radio elements.
+You can use our built-in icons by using our `post-icon` component.
+If this is not sufficient, you can also use a custom icon by providing a `<svg>` or `<img>` element.
+See how this can be achieved in the following example.
 
 <Canvas of={SelectionCardStories.CustomIcon} />
 <div className="hide-col-default">
