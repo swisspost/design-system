@@ -18,9 +18,11 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
   textUserLinks,
   textAccessUserLinks,
 }) => {
-  const canSeeAccountSwitch =
-    config.user.changeUserAndProfile === 'userAndProfile' ||
-    (config.user.canChangeCompany === true && config.user.company !== '');
+  const isB2C = config.user.userType === 'B2C';
+  const isB2B = config.user.userType === 'B2B';
+  const canChangeUserAndProfile = (isB2C || isB2B) && config.user.changeUserAndProfile === 'userAndProfile';
+  const canChangeCompany = isB2B && !!config.user.canChangeCompany && !!config.user.company;
+  const canSeeAccountSwitch = canChangeUserAndProfile || canChangeCompany;
 
   const userFullname = [config.user.name, config.user.surname].join(' ');
   const userMenuId = createIdFrom(userFullname);
