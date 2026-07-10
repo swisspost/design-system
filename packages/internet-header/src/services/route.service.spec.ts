@@ -244,6 +244,8 @@ describe('route.service.ts', () => {
                   name: 'Jane',
                   surname: 'Doe',
                   email: 'jane.doe@example.com',
+                  userType: 'B2C',
+                  changeUserAndProfile: 'notAvailable',
                 },
                 options: [optionLink],
               },
