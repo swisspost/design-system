@@ -4,7 +4,10 @@ import { PostTooltip, PostTooltipTrigger } from '@swisspost/design-system-compon
 export default function StoryTags({ meta }: { meta: MetaComponent }) {
   const newTag = meta.tags.some(tag => tag === 'status:New') ? (
     <PostTooltipTrigger for="new-badge">
-      <span className="tag tag-sm">🆕 New</span>
+      <span className="tag tag-sm">
+        <span aria-hidden>🆕 New</span>
+        <span className="visually-hidden">New component in v10</span>
+      </span>
       <PostTooltip id="new-badge" placement="bottom">
         <p>
           This component has been added to the Design System recently. If you experience any bugs or
