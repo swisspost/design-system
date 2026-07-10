@@ -19,7 +19,7 @@ import { forceCompactAppearance } from '../../../../.storybook/helpers';
 const meta: MetaComponent = {
   id: '27a2e64d-55ba-492d-ab79-5f7c5e818498',
   title: 'Components/Header',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:New'],
   component: 'post-header',
   parameters: {
     layout: 'fullscreen',
@@ -191,11 +191,9 @@ const meta: MetaComponent = {
         <div class="header-story-wrapper">
           <div class="${wrapperClass}">
             ${story()}
-            ${
-              showSideNav
-                ? html`<main class="main-container flex-grow-1">${fakeContent()}</main>`
-                : html`<div class="flex-grow-1">${fakeContent()}</div>`
-            }
+            ${showSideNav
+              ? html`<main class="main-container flex-grow-1">${fakeContent()}</main>`
+              : html`<div class="flex-grow-1">${fakeContent()}</div>`}
           </div>
         </div>
       `;
