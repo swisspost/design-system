@@ -55,7 +55,7 @@ const renderLabel = (item: API_HashEntry) => {
 
   // Show "New" icon if component is new
   const newIcon = tags.some(tag => tag === 'status:New')
-    ? React.createElement('span', { title: 'New in v10' }, '🆕')
+    ? React.createElement('span', { title: 'New component in v10' }, '🆕')
     : null;
 
   // Logic to get the package
