@@ -145,9 +145,6 @@ const meta: MetaComponent = {
     },
     sideNav: {
       name: 'Side navigation trigger',
-      description:
-        'Whether or not the side navigation trigger is displayed. Requires a title to be present. Only relevant for the Application header. See [Side Navigation](/docs/components-side-navigation-primary--docs) for more information on how to implement it.',
-      control: false,
       table: {
         disable: true,
       },
@@ -183,15 +180,13 @@ const meta: MetaComponent = {
     (story, context) => {
       const showSideNav = context.args.sideNav && context.args.title !== '';
 
-      const wrapperClass = showSideNav ? 'virtual-body virtual-body--side-nav' : 'virtual-body';
-
       return html`
         <div class="header-story-wrapper">
-          <div class="${wrapperClass}">
+          <div class="virtual-body">
             ${story()}
             ${showSideNav
-              ? html`<main class="main-container flex-grow-1">${fakeContent()}</main>`
-              : html`<div class="flex-grow-1">${fakeContent()}</div>`}
+              ? html`<main class="main-container">${fakeContent()}</main>`
+              : html`<div>${fakeContent()}</div>`}
           </div>
         </div>
       `;
