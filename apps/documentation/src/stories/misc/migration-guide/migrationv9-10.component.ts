@@ -1076,10 +1076,14 @@ export class MyComponent {
                             ><code>post-header</code></a
                           >
                           component and compose content through slots. For intranet applications,
-                          this means using the application header variant. If you were also using a
-                          sidebar, migrate it to the
+                          this means using the
+                          <a
+                            href="/?path=/docs/27a2e64d-55ba-492d-ab79-5f7c5e818498--docs#application"
+                            >application header</a
+                          >
+                          variant. If you were also using a sidebar, migrate it to the
                           <a href="/?path=/docs/9f26d86e-7edb-5804-ac96-92g22f91c9d9--docs"
-                            ><code>post-side-navigation</code></a
+                            >post-side-navigation</a
                           >
                           component.
                         </p>
