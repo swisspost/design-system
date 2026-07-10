@@ -163,16 +163,16 @@ function getAST($: CheerioAPI, node: AnyNode = $.root()[0]): HtmlNode {
   return astNode as HtmlNode;
 }
 
-import { parse, parseFragment } from 'parse5-case-sensitive';
+import { parse, parseFragment, type Htmlparser2TreeAdapterMap } from 'parse5-case-sensitive';
 import { adapter as htmlparser2Adapter } from 'parse5-htmlparser2-tree-adapter';
 
 function loadCaseSensitive(code: string, isFragment = true) {
   const dom = isFragment
-    ? parseFragment(code, {
+    ? parseFragment<Htmlparser2TreeAdapterMap>(code, {
         treeAdapter: htmlparser2Adapter,
         sourceCodeLocationInfo: true,
       })
-    : parse(code, {
+    : parse<Htmlparser2TreeAdapterMap>(code, {
         treeAdapter: htmlparser2Adapter,
         sourceCodeLocationInfo: true,
       });
