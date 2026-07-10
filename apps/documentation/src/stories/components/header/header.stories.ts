@@ -149,7 +149,7 @@ const meta: MetaComponent = {
         'Whether or not the side navigation trigger is displayed. Requires a title to be present. Only relevant for the Application header. See [Side Navigation](/docs/components-side-navigation-primary--docs) for more information on how to implement it.',
       control: false,
       table: {
-        category: 'Content',
+        disable: true,
       },
     },
     isLoggedIn: {
