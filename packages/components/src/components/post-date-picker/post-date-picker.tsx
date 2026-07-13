@@ -675,7 +675,7 @@ export class PostDatePicker {
       row.classList.add('a11y-row');
       body.insertBefore(row, cells[i]);
       for (let j = i; j < i + columns && j < cells.length; j++) {
-        row.appendChild(cells[j]);
+        row.append(cells[j]);
       }
     }
 
