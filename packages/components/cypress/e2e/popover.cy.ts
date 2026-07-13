@@ -1,8 +1,8 @@
-import { isPopoverSupported } from './popovercontainer.cy';
+import { getPopoverOpenSelector } from './helper/popovercontainer';
 
 describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
   describe('default', () => {
-    const selector = isPopoverSupported() ? ':popover-open' : '.\\:popover-open';
+    const selector = getPopoverOpenSelector();
 
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-popover.test.html');
@@ -39,7 +39,7 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('@triggerButton')
         .invoke('replaceWith', '')
         .then($children => {
-          if ($children.length == 0) {
+          if ($children.length === 0) {
             cy.get('@consoleError').should(
               'be.calledWith',
               'No content found in the post-popover-trigger slot. Please insert a focusable element or content that can receive focus.',

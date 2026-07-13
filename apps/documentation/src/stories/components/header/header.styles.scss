@@ -1,0 +1,29 @@
+#storybook-docs {
+  .header-story-wrapper {
+    .virtual-body {
+      height: 550px;
+      overflow-y: auto;
+    }
+
+    // Override for the default Story layout when sidenav is enabled
+    .virtual-body--side-nav {
+      display: flex;
+      flex-wrap: wrap;
+
+      post-header {
+        flex: 0 0 100%;
+      }
+    }
+  }
+
+  .docs-story {
+    &:not(:where(.main-story *)) > :first-child {
+      overflow: hidden;
+    }
+
+    &:where(.main-story *) + div {
+      height: 550px;
+      resize: vertical;
+    }
+  }
+}

@@ -1,9 +1,10 @@
-import { Component, Element, h, Host, Prop, Watch, State } from '@stencil/core';
+import { OneOf, Required, Type, Url } from '@/utils';
 import { version } from '@root/package.json';
-import { checkEmptyOrUrl } from '@/utils';
+import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { Variant, VARIANTS } from './variants';
 
 /**
- * @slot default - Slot for placing the text inside the breadcrumb item.
+ * @slot default - The content displayed inside the breadcrumb item.
  */
 @Component({
   tag: 'post-breadcrumb-item',
@@ -14,64 +15,65 @@ export class PostBreadcrumbItem {
   @Element() host: HTMLPostBreadcrumbItemElement;
 
   /**
-   * The optional URL to which the breadcrumb item will link.
+   * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
    */
-  @Prop() url?: string | URL;
-
-  private validUrl?: string;
+  @Prop({ reflect: true })
+  @Url()
+  url?: string | URL;
 
   /**
-   * The full path URL to validate.
+   * An accessible label screen readers will use this instead of the breadcrumb item content.
    */
-  @State() fullUrl: string | undefined;
+  @Prop({ reflect: true })
+  @Type('string')
+  label?: string;
 
-  @Watch('url')
-  validateUrl() {
-    try {
-      this.validUrl = this.constructUrl(this.url);
-    } catch (error) {
-      this.validUrl = undefined;
-    }
-  }
+  /**
+   * An accessible description for additional context, read after the content or `label`.
+   */
+  @Prop({ reflect: true })
+  @Type('string')
+  description?: string;
 
-  // Helper to construct a valid URL string or return undefined
-  private constructUrl(value: unknown): string | undefined {
-    const hasBaseURL = /^https?:\/\//.test(String(this.url));
-    if (typeof value === 'string') {
-      this.fullUrl = hasBaseURL ? value : `${window.location.origin}${value}`;
-      checkEmptyOrUrl(this, 'fullUrl');
-      return this.fullUrl;
-    }
-    return undefined;
-  }
+  /**
+   * Controls how the item is rendered, either as a standard list item or within an overflow menu.
+   */
+  @Prop({ reflect: true })
+  @OneOf(VARIANTS)
+  variant: Variant = 'listitem';
 
-  connectedCallback() {
-    this.validateUrl();
-  }
-
-  private handleKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Enter' || event.key === ' ') {
-      const linkElement = this.host.shadowRoot?.querySelector('a');
-      if (linkElement) {
-        event.preventDefault();
-        (linkElement as HTMLElement).click();
-      }
-    }
-  }
+  /**
+   * Indicates that the item represents the current page, applying appropriate styling.
+   */
+  @Prop({ reflect: true })
+  @Required()
+  @Type('boolean')
+  selected = false;
 
   render() {
-    const BreadcrumbTag = this.validUrl ? 'a' : 'span';
+    const href = this.url instanceof URL ? this.url.href : this.url;
+    const content = href ? (
+      <a
+        href={href}
+        aria-current={this.selected ? 'page' : undefined}
+        aria-label={this.label}
+        aria-description={this.description}
+      >
+        <slot></slot>
+      </a>
+    ) : (
+      <span>
+        <slot></slot>
+      </span>
+    );
 
-    return (
+    return this.variant === 'listitem' || this.selected ? (
+      <Host data-version={version} role="listitem" slot={this.selected ? 'selected' : undefined}>
+        {content}
+      </Host>
+    ) : (
       <Host data-version={version}>
-        <post-icon name="chevronright" class="breadcrumb-item-icon" />
-        <BreadcrumbTag
-          class="breadcrumb-item"
-          {...(this.validUrl ? { href: this.validUrl } : {})}
-          onKeyDown={event => this.handleKeyDown(event)}
-        >
-          <slot></slot>
-        </BreadcrumbTag>
+        <post-menu-item>{content}</post-menu-item>
       </Host>
     );
   }

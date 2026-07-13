@@ -1,0 +1,25 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+
+# Node
+/node_modules
+
+# IDEs and editors
+.vscode/
+.idea/
+
+# Miscellaneous
+/.angular/cache
+
+# Playwright
+/playwright/results/
+/playwright-report/
+/playwright/.cache/
+
+# System files
+.DS_Store
+Thumbs.db

@@ -1,8 +1,8 @@
-import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core';
-import { Placement } from '@floating-ui/dom';
 import { PLACEMENT_TYPES } from '@/types';
+import { getDeepFocusableChildren, OneOf, Required, Type } from '@/utils';
+import { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
-import { checkRequiredAndType, checkEmptyOrOneOf, getDeepFocusableChildren } from '@/utils';
+import { Component, Element, h, Host, Method, Prop, State } from '@stencil/core';
 
 /**
  * @slot default - Slot for placing content inside the popover.
@@ -14,50 +14,43 @@ import { checkRequiredAndType, checkEmptyOrOneOf, getDeepFocusableChildren } fro
   shadow: true,
 })
 export class PostPopover {
-  private popoverRef: HTMLPostPopovercontainerElement;
+  private popoverRef!: HTMLPostPopovercontainerElement;
 
-  @Element() host: HTMLPostPopoverElement;
+  @Element() host!: HTMLPostPopoverElement;
+
+  @State() private edgeGap?: number;
 
   /**
    * Defines the position of the popover relative to its trigger.
    * Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
    * For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
    */
-  @Prop() readonly placement?: Placement = 'top';
-
-  @Watch('placement')
-  validatePlacement() {
-    checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
-  }
+  @Prop()
+  @OneOf(PLACEMENT_TYPES)
+  readonly placement?: Placement = 'top';
 
   /**
    * Define the text of the close button for assistive technology
    */
-  @Prop({ reflect: true }) readonly textClose!: string;
-
-  @Watch('textClose')
-  validateTextClose() {
-    checkRequiredAndType(this, 'textClose', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  readonly textClose!: string;
   /**
    * Show a little indicator arrow
    */
   // eslint-disable-next-line @stencil-community/ban-default-true
   @Prop() readonly arrow?: boolean = true;
 
-  componentDidLoad() {
-    this.validatePlacement();
-    this.validateTextClose();
-  }
-
   /**
-   * Programmatically display the popover
-   * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
+   * Programmatically display the popover,
+   * `target` is the HTML element the menu is anchored to.
    */
   @Method()
   async show(target: HTMLElement) {
     await this.popoverRef.show(target);
     this.focusFirstEl();
+    this.updateEdgeGap();
   }
 
   /**
@@ -69,14 +62,41 @@ export class PostPopover {
   }
 
   /**
-   * Toggle popover display
-   * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
-   * @param force Pass true to always show or false to always hide
+   * Toggle popover display,
+   * `target` is the HTML element the menu is anchored to.
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean) {
     const isOpen = await this.popoverRef.toggle(target, force);
-    if (isOpen) this.focusFirstEl();
+    if (isOpen) {
+      this.updateEdgeGap();
+      this.focusFirstEl();
+    }
+  }
+
+  private readonly breakpointChange = () => {
+    requestAnimationFrame(() => this.updateEdgeGap());
+  };
+
+  connectedCallback() {
+    globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
+  }
+
+  disconnectedCallback() {
+    globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange);
+  }
+
+  // Use rendered close button size to define edge gap
+  private updateEdgeGap() {
+    const closeButton = this.host.shadowRoot?.querySelector(
+      'post-closebutton',
+    ) as HTMLElement | null;
+    if (!closeButton) return;
+
+    const width = closeButton.getBoundingClientRect().width;
+    if (!width || Number.isNaN(width)) return;
+
+    this.edgeGap = width / 2;
   }
 
   private focusFirstEl() {
@@ -96,7 +116,10 @@ export class PostPopover {
         <post-popovercontainer
           arrow={this.arrow}
           placement={this.placement}
-          ref={e => (this.popoverRef = e)}
+          edgeGap={this.edgeGap}
+          ref={e => {
+            if (e) this.popoverRef = e;
+          }}
         >
           <div class="popover-container">
             <div class="popover-content">

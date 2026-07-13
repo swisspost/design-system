@@ -48,6 +48,11 @@ export const data: TwoPhasesData = setUpClassesMutations(
   arrayToMap(classNames),
   classValuesMap,
   'deprecatedSpacingUtilities',
+  // These values form chain collisions and are reported but not auto-fixed:
+  //   '1'    → '4' → '24'
+  //   'hair' → '1' → '4' → '24'
+  //   'micro'→ '4' → '24'
+  new Set(['1', '4', 'hair', 'micro']),
 );
 
 export const rules = createTwoPhasesClassUpdateRule({

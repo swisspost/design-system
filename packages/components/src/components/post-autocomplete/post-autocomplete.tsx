@@ -1,6 +1,6 @@
-import { Component, h, Host, Prop, Element, State, Event, EventEmitter } from '@stencil/core';
+import { debounce, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { debounce } from '@/utils';
+import { Component, Element, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core';
 
 /**
  * @slot default - Slot for placing post-autocomplete-item components.
@@ -12,7 +12,11 @@ import { debounce } from '@/utils';
   shadow: true,
 })
 export class PostAutocomplete {
-  private readonly debouncedHandleInput = debounce((event: Event) => this.handleInput(event), 250);
+  private readonly debouncedHandleInput = debounce((event: Event) => {
+    void this.handleInput(event);
+  }, 250);
+  private outputElement?: HTMLOutputElement;
+
   @Element() host: HTMLPostAutocompleteElement;
 
   /** Number of characters to type before filtering methods are called */
@@ -23,6 +27,16 @@ export class PostAutocomplete {
 
   /** Optional idref to connect the autocomplete with the options dropdown if not nested */
   @Prop({ reflect: true }) readonly listbox?: string;
+
+  /**
+   * Announcement template for screen readers when the suggestion list updates.
+   * Use {count} as placeholder for the number of available suggestions,
+   * e.g. "{count} suggestions available"
+   */
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  readonly textAvailableSuggestions!: string;
 
   @State() inputValue: string = '';
 
@@ -51,6 +65,13 @@ export class PostAutocomplete {
     if (!this.listBoxElement.id) this.listBoxElement.id = crypto.randomUUID();
     this.inputElement.setAttribute('aria-controls', this.listBoxElement.id);
     this.inputElement.setAttribute('aria-expanded', 'false');
+
+    const inputLabel = this.inputElement.labels?.[0];
+    if (inputLabel) {
+      if (!inputLabel.id) inputLabel.id = crypto.randomUUID();
+      this.listBoxElement.setAttribute('aria-labelledby', inputLabel.id);
+    }
+
     // Because we're handling that and the browser would show a duplicate native autocomplete dropdown
     this.inputElement.autocomplete = 'off';
     this.attachInputListeners();
@@ -94,13 +115,26 @@ export class PostAutocomplete {
     }
   }
 
+  private clearAnnouncement() {
+    if (this.outputElement) this.outputElement.textContent = '';
+  }
+
+  private announceCount() {
+    if (!this.outputElement || !this.listBoxElement) return;
+    const count = this.listBoxElement.querySelectorAll('post-listbox-option:not([hidden])').length;
+    this.outputElement.textContent = this.textAvailableSuggestions.replace(
+      '{count}',
+      String(count),
+    );
+  }
+
   private readonly handleOnBlur = () => {
     this.inputElement.value = this.inputValue;
     this.listBoxElement.filter('');
     this.hideListBox();
   };
 
-  private readonly handleInput = (event: Event) => {
+  private readonly handleInput = async (event: Event) => {
     if (!this.listBoxElement) return;
     const value = (event.target as HTMLInputElement).value.trim();
     const query = value.length >= this.filterThreshold ? value : '';
@@ -110,12 +144,14 @@ export class PostAutocomplete {
     );
     if (defaultPrevented) return;
 
-    this.listBoxElement.filter(query);
+    await this.listBoxElement.filter(query);
 
     if (query) {
       this.showListBox();
+      this.announceCount();
     } else {
       this.inputValue = '';
+      this.clearAnnouncement();
     }
   };
 
@@ -174,16 +210,18 @@ export class PostAutocomplete {
   };
 
   private readonly hideListBox = () => {
+    this.clearAnnouncement();
     this.listBoxElement.hide();
     this.inputElement.ariaExpanded = 'false';
     this.host.removeAttribute('open');
     this.inputElement.removeAttribute('aria-activedescendant');
   };
 
-  private readonly showListBox = () => {
-    this.listBoxElement.show();
+  private readonly showListBox = async () => {
+    await this.listBoxElement.show();
     this.inputElement.ariaExpanded = 'true';
     this.host.setAttribute('open', '');
+    this.announceCount();
   };
 
   private readonly clearInput = () => {
@@ -200,11 +238,12 @@ export class PostAutocomplete {
       <Host data-version={version}>
         <slot />
         {this.clearable && this.inputValue && (
-          <button type="button" class=" autocomplete-clear" onClick={this.clearInput}>
+          <button type="button" class="autocomplete-clear" onClick={this.clearInput}>
             <post-icon aria-hidden="true" name="closex"></post-icon>
           </button>
         )}
         <post-icon aria-hidden="true" class="autocomplete-icon" name="chevronDown"></post-icon>
+        <output class="visually-hidden" ref={el => (this.outputElement = el)}></output>
       </Host>
     );
   }

@@ -1,5 +1,143 @@
 # @swisspost/internet-header
 
+## 10.0.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.1
+  - @swisspost/design-system-styles@10.0.1
+
+## 10.0.0
+
+### Major Changes
+
+- Added two required properties for the `swisspost-internet-footer` component:
+  - `textFooter` a visually hidden label for the footer.
+  - `textCookieSettings` a label for the "Cookie Settings" button. (by [@alizedebray](https://github.com/alizedebray) with [#7239](https://github.com/swisspost/design-system/pull/7239))
+
+- Updated the design and configuration of the `swisspost-internet-footer` component. (by [@alizedebray](https://github.com/alizedebray) with [#7239](https://github.com/swisspost/design-system/pull/7239))
+
+- Updated the `swisspost-internet-breadcrumbs` to the new config and removed the `hide-buttons` prop as well as the `toggleOverlayById` method. (by [@leagrdv](https://github.com/leagrdv) with [#7271](https://github.com/swisspost/design-system/pull/7271))
+
+- Aligned version number with the rest of the Design System packages to indicate the dependency on the `@swisspost/design-system-components` package in the future. (by [@gfellerph](https://github.com/gfellerph) with [#5905](https://github.com/swisspost/design-system/pull/5905))
+
+- Updated the `swisspost-internet-header` with a new design and a new configuration object. (by [@alizedebray](https://github.com/alizedebray) with [#7470](https://github.com/swisspost/design-system/pull/7470))
+
+- Switched stencil hydrated flag from class (`hydrated`) to attribute (`data-hydrated`). This flag indicates when a component finished rendering on the page. If your tests relied on the class being present, please rewrite the selector to use the new attribute selector. (by [@oliverschuerch](https://github.com/oliverschuerch) and [@gfellerph](https://github.com/gfellerph) with [#3783](https://github.com/swisspost/design-system/pull/3783))
+
+### Minor Changes
+
+- Increased browser coverage by adding `baseline widely available` query to the browserslistrc. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7613](https://github.com/swisspost/design-system/pull/7613))
+
+### Patch Changes
+
+- Added cypress eslint plugin to enable linting for all cypress folders and files. (by [@schaertim](https://github.com/schaertim) with [#5102](https://github.com/swisspost/design-system/pull/5102))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0
+  - @swisspost/design-system-components@10.0.0
+
+## 10.0.0-next.76
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.76
+  - @swisspost/design-system-styles@10.0.0-next.76
+
+## 10.0.0-next.75
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.75
+  - @swisspost/design-system-components@10.0.0-next.75
+
+## 10.0.0-next.74
+
+### Major Changes
+
+- Removed export for the `swisspost-internet-login-widget` as it should only be used as part of the `swisspost-internet-header`. (by [@alizedebray](https://github.com/alizedebray) with [#7791](https://github.com/swisspost/design-system/pull/7791))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.74
+  - @swisspost/design-system-components@10.0.0-next.74
+
+## 10.0.0-next.73
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.73
+  - @swisspost/design-system-styles@10.0.0-next.73
+
+## 10.0.0-next.72
+
+### Minor Changes
+
+- Added the `post-internet-login-widget` component inside the `post-internet-header`, as well as the `userMenuLinks` property in the header configuration. (by [@leagrdv](https://github.com/leagrdv) with [#7681](https://github.com/swisspost/design-system/pull/7681))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.72
+  - @swisspost/design-system-styles@10.0.0-next.72
+
+## 10.0.0-next.71
+
+### Minor Changes
+
+- Increased browser coverage by adding `baseline widely available` query to the browserslistrc. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7613](https://github.com/swisspost/design-system/pull/7613))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.71
+  - @swisspost/design-system-styles@10.0.0-next.71
+
+## 10.0.0-next.70
+
+### Minor Changes
+
+- Added an optional prefooter section to the `post-footer` component. (by [@leagrdv](https://github.com/leagrdv) with [#7630](https://github.com/swisspost/design-system/pull/7630))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.70
+  - @swisspost/design-system-styles@10.0.0-next.70
+
+## 10.0.0-next.69
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.69
+  - @swisspost/design-system-styles@10.0.0-next.69
+
+## 10.0.0-next.68
+
+### Major Changes
+
+- Updated the `swisspost-internet-breadcrumbs` to the new config and removed the `hide-buttons` prop as well as the `toggleOverlayById` method. (by [@leagrdv](https://github.com/leagrdv) with [#7271](https://github.com/swisspost/design-system/pull/7271))
+
+- Updated the `swisspost-internet-header` with a new design and a new configuration object. (by [@alizedebray](https://github.com/alizedebray) with [#7470](https://github.com/swisspost/design-system/pull/7470))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.68
+  - @swisspost/design-system-styles@10.0.0-next.68
+
+## 10.0.0-next.67
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.67
+
 ## 10.0.0-next.66
 
 ### Patch Changes

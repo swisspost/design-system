@@ -30,17 +30,17 @@ describe('accordion', () => {
     });
 
     it('should propagate "postToggle" event from post-accordion-item on post-accordion', () => {
-      const EventHandlerMock = cy.spy();
+      const eventHandlerMock = cy.spy();
 
       cy.get('@accordion').then($el => {
-        Cypress.$($el.get(0)).on('postToggle', EventHandlerMock);
+        Cypress.$($el.get(0)).on('postToggle', eventHandlerMock);
       });
 
       cy.get('@collapsibles')
         .last()
         .click()
         .then(() => {
-          cy.wrap(EventHandlerMock).should('have.been.calledTwice');
+          cy.wrap(eventHandlerMock).should('have.been.calledTwice');
         });
     });
 
@@ -120,6 +120,105 @@ describe('accordion', () => {
     });
   });
 
+  describe('methods', () => {
+    beforeEach(() => {
+      cy.getComponent('accordion', ACCORDION_ID, 'multiple-open-panels');
+      cy.get('@accordion').find('post-accordion-item').as('collapsibles');
+    });
+
+    it('post-accordion-item.toggle(force) expands the item and resolves true', () => {
+      cy.get('@collapsibles')
+        .last()
+        .then($item => {
+          const el = $item.get(0) as HTMLPostAccordionItemElement;
+          return el.toggle(true).then((result: boolean) => {
+            expect(result).to.equal(true);
+          });
+        })
+        .then(() => {
+          cy.get('@collapsibles').last().shadow().find('post-collapsible').should('be.visible');
+        });
+    });
+
+    it('post-collapsible.toggle(shouldExpand) toggles visibility and returns boolean', () => {
+      cy.get('@collapsibles')
+        .first()
+        .then($item => {
+          const itemEl = $item.get(0) as HTMLPostAccordionItemElement;
+          return itemEl.toggle(false).then(() => $item);
+        })
+        .then($item => {
+          cy.wrap($item)
+            .shadow()
+            .find('post-collapsible')
+            .then($coll => {
+              const collEl = $coll.get(0) as HTMLPostCollapsibleElement;
+              return collEl.toggle(true).then((res: boolean) => {
+                expect(res).to.equal(true);
+              });
+            })
+            .then(() => {
+              cy.get('@collapsibles')
+                .first()
+                .shadow()
+                .find('post-collapsible')
+                .should('be.visible');
+            });
+        });
+    });
+
+    it('post-accordion.toggle(id) toggles the given item and emits postToggle', () => {
+      cy.get('@collapsibles')
+        .last()
+        .then($item => {
+          const accordionItem = $item.get(0) as HTMLPostAccordionItemElement;
+          const itemId = 'accordion-item-toggle-target';
+          accordionItem.id = itemId;
+          return accordionItem.toggle(false).then(() => itemId);
+        })
+        .then(itemId => {
+          const eventHandlerMock = cy.spy();
+
+          cy.get('@accordion')
+            .then($acc => {
+              const accordion = $acc.get(0) as HTMLPostAccordionElement;
+              Cypress.$(accordion).on('postToggle', eventHandlerMock);
+              return accordion.toggle(itemId);
+            })
+            .then(() => {
+              cy.get('@collapsibles').last().shadow().find('post-collapsible').should('be.visible');
+              cy.wrap(eventHandlerMock).should('have.been.called');
+            });
+        });
+    });
+
+    it('post-accordion.expandAll() expands every item', () => {
+      cy.get('@accordion')
+        .then($acc => {
+          const accordion = $acc.get(0) as HTMLPostAccordionElement;
+          return accordion.expandAll();
+        })
+        .then(() => {
+          cy.get('@collapsibles').each($item => {
+            cy.wrap($item).shadow().find('post-collapsible').should('be.visible');
+          });
+        });
+    });
+
+    it('post-accordion.collapseAll() collapses every item', () => {
+      cy.get('@accordion')
+        .then($acc => {
+          const accordion = $acc.get(0) as HTMLPostAccordionElement;
+          return accordion.expandAll().then(() => accordion.collapseAll());
+        })
+        .then(() => {
+          cy.get('@collapsibles').each($item => {
+            cy.wrap($item).shadow().find('post-collapsible').should('be.hidden');
+          });
+        });
+    });
+  });
+
   describe('nested', () => {
     beforeEach(() => {
       cy.getComponent('accordion', ACCORDION_ID, 'nested');
@@ -154,14 +253,16 @@ describe('accordion', () => {
 
     it('should propagate "postToggle" event from nested post-accordion', () => {
       cy.document().then(document => {
-        const EventHandlerMock = cy.spy();
-        Cypress.$(document.querySelector('post-accordion')).on('postToggle', EventHandlerMock);
+        const eventHandlerMock = cy.spy();
+        const accordionElement = document.querySelector('post-accordion');
+        expect(accordionElement).to.not.equal(null);
+        Cypress.$(accordionElement as HTMLPostAccordionElement).on('postToggle', eventHandlerMock);
 
         cy.get('@collapsibles')
           .eq(3)
           .click()
           .then(() => {
-            cy.wrap(EventHandlerMock).should('have.been.called');
+            cy.wrap(eventHandlerMock).should('have.been.called');
           });
       });
     });

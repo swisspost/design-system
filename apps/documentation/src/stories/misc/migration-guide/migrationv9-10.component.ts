@@ -1,0 +1,2945 @@
+﻿import { html, LitElement, nothing } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
+import { V910Checks } from './types';
+import { _updateOnChange, _updatePersistedState } from './util/migration-checks.util';
+import { _restorePersistedState, MIGRATION_CHECKS_KEY_V9 } from './util/persist.util';
+import './migration-v9-10/icons-migration-map-block/icons-migration-map.component';
+
+@customElement('migration-version-9-10')
+export class MigrationV910Component extends LitElement {
+  @property({ type: Number }) currentVersion?: number;
+  @property({ type: String }) environment?: string;
+  @property({ type: Boolean }) angular?: boolean;
+
+  @state()
+  private state: V910Checks = {
+    general: {
+      hide_automigration: false,
+    },
+    ngbootstrap: {
+      carousel: false,
+      custom_select: false,
+      datatable: false,
+      datepicker: false,
+      modal: false,
+      pagination: false,
+      timepicker: false,
+      typeahead: false,
+      progressbar: false,
+    },
+    forms: {
+      tooltip_validation: false,
+      input_sizes: false,
+      select_empty: false,
+      form_text: false,
+      card_control: false,
+    },
+    grid: {
+      breakpoints: false,
+      gutter: false,
+      gap: false,
+    },
+    utilities: {
+      percentage_sizing: false,
+      removed_pixel_sizing: false,
+      renamed_pixel_sizing: false,
+      max_size: false,
+      shadow: false,
+      elevation: false,
+      removed_spacing: false,
+      renamed_spacing: false,
+      responsive_spacing: false,
+      background: false,
+      renamed_various_utilities: false,
+      removed_various_utilities: false,
+      border_radius: false,
+      position_helper: false,
+      text_color: false,
+    },
+    typography: {
+      font_sizes_variables: false,
+      font_sizes_classes: false,
+      font_curves_classes: false,
+      font_curves_variables: false,
+      line_height_variables: false,
+      weight_light: false,
+      font_weight: false,
+      monospace: false,
+    },
+    others: {
+      card: false,
+      card_group: false,
+      button_regular: false,
+      button_animated: false,
+      icon_pi: false,
+      breadcrumb_item: false,
+      alert_fixed_bottom: false,
+      topic_teaser: false,
+      chip: false,
+      accent_colors: false,
+      spinner_sizes: false,
+      standard_html_alert: false,
+      spinner: false,
+      stepper: false,
+      dialog_icon: false,
+      subnavigation: false,
+      tag: false,
+      product_card: false,
+      button_group: false,
+    },
+    components: {
+      alert: false,
+      accordion_heading: false,
+      hydrated_flag: false,
+      accordion_item_part: false,
+      popover_trigger: false,
+      tabs_anchor_navigation: false,
+      card_control: false,
+      tag: false,
+    },
+    internet_header: {
+      update_package: false,
+      add_text_props: false,
+      remove_props: false,
+    },
+    intranet_header: {
+      migration: false,
+    },
+  };
+
+  constructor() {
+    super();
+    const restored = _restorePersistedState<V910Checks>(MIGRATION_CHECKS_KEY_V9);
+    if (restored) {
+      this.state = {
+        ...restored,
+        internet_header: restored.internet_header ?? this.state.internet_header,
+        intranet_header: restored.intranet_header ?? this.state.intranet_header,
+      };
+    }
+    setTimeout(() => this._toggleAutoMigrationVisibility(), 0);
+  }
+
+  createRenderRoot() {
+    /**
+     * Render template without shadow DOM.
+     */
+    return this;
+  }
+
+  render() {
+    if (!this.currentVersion || this.currentVersion > 9) return nothing;
+    return html`
+      <h2 id="migration-from-v9-to-v10" class="docs-autolink">
+        Migration from v9 to v10
+        <a
+          aria-hidden="true"
+          tabindex="-1"
+          href="/?path=/docs/c23b1d0b-76b3-4e38-aa76-b10c29bb873f--docs#migration-from-v9-to-v10"
+        >
+          <post-icon name="link"></post-icon>
+        </a>
+      </h2>
+
+      <section>
+        <ol class="bubble-tea">
+          <li>
+            <h3>Introduction</h3>
+            <p>
+              Version 10 comes with a <b>new look and cleaner codebase</b> — and yes, a few breaking
+              changes, all for good reason.
+            </p>
+            <p>
+              We've completely refreshed the design and reworked how components are built.
+              <b>Bootstrap</b> and <b>Ng-Bootstrap</b> have been replaced by
+              <b>Web Standards</b> compliant components, which means the Design System works across
+              <b>any framework</b> (<a
+                href="/?path=/docs/833ef689-a573-40f5-a6a6-30a999b94733--docs"
+                >Angular</a
+              >, <a href="/?path=/docs/13b9c7f1-993d-4348-a3b7-a7ceb92fd5c7--docs">React</a>, or
+              <a href="/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs">plain HTML</a>).
+            </p>
+            <p>
+              We've reworked utility classes to be
+              <b>pixel-based and more intuitive</b> — for example, <code>.p-16</code> now clearly
+              means "16px padding", instead of guessing what <code>.p-3</code> stood for. We've also
+              simplified things overall: fewer breakpoints, fewer font-size classes, and a more
+              consistent color palette (no more purple or coral buttons 🎨).
+            </p>
+            <p>
+              Components are now <b>tokenized</b>, so you can implement
+              <span data-color-scheme="dark"
+                ><span
+                  style="display: inline-block; padding: 2px 0.25em; border-radius: 3px"
+                  class="palette palette-default"
+                  >dark mode</span
+                ></span
+              >
+              and easily adjust themes without rewriting CSS. Want to see this in action? Check the
+              <a href="/?path=/docs/43481535-5b39-40b5-a273-478b07dc3b31--docs"
+                >Palette documentation</a
+              >
+              and switch to dark mode or the Cargo theme.
+            </p>
+            <p>
+              Oh, and yes — there's a
+              <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uilight">
+                >brand-new icon set</a
+              >
+              too 🖼️.
+            </p>
+          </li>
+          <li>
+            <h3>Package Update 🩺</h3>
+            <p>
+              Update Design System styles and components packages to version 10 by running these two
+              commands in your project root:
+              <code-block code=${'npm install @swisspost/design-system-styles@10'}></code-block>
+              <code-block
+                code=${
+                  this.angular
+                    ? 'npm install @swisspost/design-system-components-angular@10'
+                    : 'npm install @swisspost/design-system-components@10'
+                }
+              ></code-block>
+              ${
+                !this.angular
+                  ? html`
+                      <p class="mt-8">
+                        Are you using React? V10 of the design system comes with a
+                        <code>@swisspost/design-system-components-react</code> package. Go check out
+                        the
+                        <a href="/?path=/docs/13b9c7f1-993d-4348-a3b7-a7ceb92fd5c7--docs"
+                          >React package documentation</a
+                        >
+                        for more informations.
+                      </p>
+                    `
+                  : nothing
+              }
+          <li>
+            <h3 class="d-flex align-items-center gap-8">AI-assisted migration 🤖 <span class="tag tag-sm tag-info">optional</span></h3>
+            <p>
+              There are <b>two ways</b> to handle this migration: do it
+              <b>manually</b> by skipping this AI-assisted migration part and following the steps below, or let the
+              <b>AI skill</b> do most of the work for you. Either way, you should still go through
+              the checklist below and verify every step yourself.
+            </p>
+
+            <post-banner type="warning" class="mt-16">
+              <p>
+                The skill relies on AI and on a set of predefined transformation rules. Keep the
+                following in mind before relying on it:
+              </p>
+              <ul>
+                <li>
+                  <b>The result is not guaranteed to be perfect.</b> Some transformations
+                  (NgbModal → native dialog, stepper, other ng-bootstrap components) often still
+                  need manual adjustments.
+                </li>
+                <li>It does <b>not replace a human review</b>. Always read the generated difference and never merge blindly.</li>
+                <li>Work on a dedicated branch and commit often so you can roll back easily.</li>
+                <li>Project-specific code may be missed or misinterpreted by the AI.</li>
+              </ul>
+            </post-banner>
+
+            <h5 class="pt-16">How to use it</h5>
+            <ol>
+              <li>
+                Follow the setup tutorial in the
+                <a href="https://github.com/postch/post-skills">post-skills repository</a>
+                to add the marketplace.
+              </li>
+              <li>
+                Install the developer skills plugin:
+                <code-block code=${'/plugin install software-developement@post-marketplace'}></code-block>
+              </li>
+              <li>
+                Once installed, ask Copilot to run the skill:
+                <code-block
+                  code=${'do this skill please swisspost-v10-migration'}
+                ></code-block>
+              </li>
+              <li>
+                Whichever option you picked, <b>review every step below</b> to confirm each change
+                was applied correctly, then finish with the clean up.
+              </li>
+            </ol>
+          </li>
+            </p>
+          </li>
+          <li>
+            <h3>Styles entrypoint</h3>
+            <p>
+              The main styles entrypoint has been renamed.
+              On your application, locate the <code>@use '@swisspost/design-system-styles/${this.environment === 'intranet' ? 'intranet' : 'index'}(.scss)';</code> import and rename it to:
+              <code-block code=${this.environment === 'intranet' ? "@use '@swisspost/design-system-styles/post-compact.scss';" : "@use '@swisspost/design-system-styles/post-default.scss';"}></code>
+            </p>
+          </li>
+          <li>
+            <h3>Removed unused CSS entry files</h3>
+            <p>
+              The top-level entry files <code>fonts.css</code> and <code>elements.css</code> have been removed from the <code>@swisspost/design-system-styles</code> package.
+            </p>
+            <ul>
+              <li>
+                <strong>fonts.css</strong>: Use the fonts component file instead.
+                <code-block code=${"@use '@swisspost/design-system-styles/components/fonts';"}></code-block>
+              </li>
+              <li>
+                <strong>elements.css</strong>: Import elements styles directly from the elements directory.
+                <code-block code=${"@use '@swisspost/design-system-styles/elements';"}></code-block>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h3>Run Automigration Scripts 🪄</h3>
+            <p>
+              Many breaking changes can be fixed automatically using the
+              <code>@swisspost/design-system-eslint</code> package. Our very own, custom migration
+              rules scan your HTML and TypeScript files and apply fixes where possible. Each item
+              marked with <span class="tag tag-sm tag-info">🪄 migration rule</span> in the
+              checklist below is covered by one of them.
+            </p>
+            <ol>
+              <li>
+                Install the Design System ESLint package as a dev dependency:
+                <code-block
+                  code=${'npm install @swisspost/design-system-eslint --save-dev'}
+                ></code-block>
+              </li>
+              <li>
+                Run the migration rules using the official ESLint runner with the --fix flag at the
+                root of your project:
+                <code-block
+                  code=${'npx eslint --config node_modules/@swisspost/design-system-eslint/dist/migrations.js --fix'}
+                ></code-block>
+                <span class="info">
+                  💡 This command applies migration rules using the official ESLint package without
+                  installing it as a project dependency or modifying your existing ESLint
+                  configuration.
+                </span>
+              </li>
+              <li>
+                Review the changes applied by the script and make sure every automatic
+                <span class="tag tag-sm tag-info">🪄 migration rule</span> was applied correctly.
+              </li>
+            </ol>
+          </li>
+          <li>
+            <h3>Component Migration 🤓</h3>
+            <div class="my-16">
+              <div class="form-check">
+                <input
+                  id="general-hide_automigration"
+                  type="checkbox"
+                  class="form-check-input"
+                  name="general-hide_automigration"
+                  value="true"
+                  @change="${this._onAutoMigrationChange}"
+                  ?checked="${this.state.general.hide_automigration}"
+                />
+                <label for="general-hide_automigration" class="form-check-label">
+                  Hide changes covered by the automatic
+                  <span class="tag tag-sm tag-info">🪄 migration rules</span>
+                </label>
+              </div>
+            </div>
+            <post-banner type="warning" class="mt-24">
+              <h4 slot="heading">Notice: Bootstrap & Ng-Bootstrap removed</h4>
+              <p>
+                As part of the latest migration, Bootstrap and Ng-Bootstrap have been fully removed
+                from the design system. This means that any variables, classes, mixins, or utilities
+                originating from Bootstrap and all components from Ng-Bootstrap are no longer
+                available.
+              </p>
+              <h5 class="h6 pt-8">✅ Good news:</h5>
+              <p>
+                Common Bootstrap features — such as the grid system (columns) and most utility
+                classes — have been internalized into the design system. You can continue using them
+                through the design system without needing Bootstrap.<br />
+              </p>
+              <p>
+                If you encounter any broken styles or issues after upgrading, you have two options:
+              </p>
+              <ul>
+                <li>Recreate the needed mixin or utility inside your app.</li>
+                <li>
+                  Or report an issue in the
+                  <a href="https://github.com/swisspost/design-system/issues"
+                    >Swiss Post Design System GitHub repository</a
+                  >
+                </li>
+              </ul>
+              <p>Please review your components and styles to ensure compatibility.</p>
+              <br />
+            </post-banner>
+
+            <div @change="${this._onChange}">
+              <section>
+                <h4>Ng-Bootstrap</h4>
+                <ul class="list-unstyled">
+                  <li>
+                    All Ng-Bootstrap components are no longer available. Each removed Ng-Bootstrap component has (or will have) an equivalent in
+                      the Design System, shown in the following list. Migration to these new
+                      components is manual — you’ll need to update the affected components in
+                      your application to use the corresponding elements as described in their
+                      documentation.
+                    <ul class="list-unstyled mt-16">
+                      <li class="mb-16">
+                        <div class="form-check">
+                          <input type="checkbox" id="ngbootstrap-carousel" disabled />
+                          <label for="ngbootstrap-carousel">carousel → <span data-info="partial-automigration" class="tag tag-sm tag-warning">not available in v10</span>
+                          </label>
+                        </div>
+                      </li>
+                      <li class="mb-16">
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-custom_select"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.custom_select}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-custom_select">
+                            custom select &amp; dropdown →
+                            <a href="/?path=/docs/bc251cd0-5173-463b-8729-586bb1bf1e1a--docs"
+                              >native select element</a
+                            >
+                            or
+                            <a href="/?path=/docs/8ca2bd70-56e6-4da9-b1fd-4e55388dca88--docs"
+                              >post-menu</a
+                            >
+                            <span class="info">
+                              <p>
+                                How to decide which component to migrate to?
+                                For <strong>value selection</strong>, choose the native
+                                <code>&lt;select&gt;</code>, for <strong>action menus</strong>
+                                use the <code>&lt;post-menu&gt;</code> instead.
+                              </p>
+
+                              <p><strong>Before (v9 — custom select / NgbDropdown)</strong></p>
+                              <code-block
+                                code=${`<!-- v9 custom-select example (wrapper around NgbDropdown) -->\n<label for="customSelectButton" class="form-label">Shipping method</label>\n<div ngbDropdown>\n  <input [ngModel]="selectedShippingMethod?.value" name="shippingMethod" type="hidden" />\n\n  <button\n    #toggle\n    id="customSelectButton"\n    class="form-select text-start no-toggle-arrow"\n    ngbDropdownToggle\n    type="button"\n    aria-haspopup="listbox"\n    (keydown)="setFocus($event)"\n  >\n    <span [class.visually-hidden]="selectedShippingMethod">Choose shipping method</span>\n    <span *ngIf="selectedShippingMethod" aria-hidden="true">{{ selectedShippingMethod.label }}</span>\n  </button>\n\n  <div\n    ngbDropdownMenu\n    role="listbox"\n    class="w-100 mw-100"\n    aria-labelledby="customSelectButton"\n  >\n    <button\n      *ngFor="let option of shippingOptions"\n      ngbDropdownItem\n      role="option"\n      class="d-flex align-items-center"\n      [class.active]="selectedShippingMethod?.value === option.value"\n      [attr.aria-selected]="selectedShippingMethod?.value === option.value"\n      (focus)="selectedShippingMethod = option"\n      (click)="toggle.focus()"\n      #option\n      type="button"\n    >\n      <span>{{ option.label }}</span>\n    </button>\n  </div>\n</div>`}
+                              ></code-block>
+
+                              <p><strong>Before (v9 — NgbDropdown action menu)</strong></p>
+                              <code-block
+                                code=${`<!-- v9 dropdown example -->\n<div ngbDropdown class="me-2">\n  <button id="dropdownBasic1" class="btn btn-secondary" ngbDropdownToggle type="button">\n    Actions\n  </button>\n\n  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">\n    <button ngbDropdownItem type="button" (click)="editItem()">Edit</button>\n    <button ngbDropdownItem type="button" (click)="duplicateItem()">Duplicate</button>\n    <button ngbDropdownItem type="button" (click)="deleteItem()">Delete</button>\n  </div>\n</div>`}
+                              ></code-block>
+
+                              <p><strong>After (v10 — selection control)</strong></p>
+                              <p>
+                                For selecting a value in a form, replace with a native
+                                <code>&lt;select&gt;</code>.
+                              </p>
+                              <code-block
+                                code=${`<!-- template -->\n<label for="shipping-method" class="form-label">Shipping method</label>\n<select\n  id="shipping-method"\n  class="form-select"\n  [(ngModel)]="shippingMethod"\n>\n  <option value="standard">Standard</option>\n  <option value="priority">Priority</option>\n</select>`}
+                              ></code-block>
+                              <p>
+                                <strong>Important:</strong> when migrating to native
+                                <code>&lt;select&gt;</code>, option rendering falls back to the
+                                browser default UI. Custom option layouts, icons, and advanced
+                                per-option styling from the old custom-select/dropdown pattern are
+                                not preserved.
+                              </p>
+                              <p>
+                                Also note that <code>NgbDropdown</code> API methods and behaviors
+                                (for example programmatic open/close flows and related config)
+                                are not available on native <code>&lt;select&gt;</code>. If your
+                                feature relied on them, you need to implement that logic manually.
+                              </p>
+
+                              <p><strong>After (v10 — action menu)</strong></p>
+                              <p>
+                                For triggering actions (not storing a selected value), replace
+                                with <code>post-menu</code>.
+                              </p>
+                              <code-block
+                                code=${`<!-- template -->\n<post-menu-trigger for="row-actions-menu">\n  <button class="btn btn-secondary" type="button">Actions</button>\n</post-menu-trigger>\n\n<post-menu id="row-actions-menu" label="Row actions">\n  <post-menu-item><button type="button" (click)="editItem()">Edit</button></post-menu-item>\n  <post-menu-item><button type="button" (click)="duplicateItem()">Duplicate</button></post-menu-item>\n  <post-menu-item><button type="button" (click)="deleteItem()">Delete</button></post-menu-item>\n</post-menu>`}
+                              ></code-block>
+
+                              <p><strong>API mapping (NgbDropdown → post-menu)</strong></p>
+                              <table class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th>NgbDropdown (v9)</th>
+                                    <th>post-menu (v10)</th>
+                                    <th>Notes</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td><code>ngbDropdown</code></td>
+                                    <td><code>post-menu</code></td>
+                                    <td>Main container for menu content.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>ngbDropdownToggle</code></td>
+                                    <td><code>post-menu-trigger</code> with <code>for="menu-id"</code></td>
+                                    <td>Trigger is an explicit companion element.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>ngbDropdownMenu</code></td>
+                                    <td>default slot content inside <code>post-menu</code></td>
+                                    <td>Menu body is slotted content.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>ngbDropdownItem</code></td>
+                                    <td><code>post-menu-item</code></td>
+                                    <td>Put a native <code>button</code> or <code>a</code> inside each menu item.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>placement</code></td>
+                                    <td><code>placement</code></td>
+                                    <td>Concept is equivalent; values follow Floating UI placements.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>open()</code> / <code>close()</code> / <code>toggle()</code></td>
+                                    <td><code>show(target)</code> / <code>hide()</code> / <code>toggle(target)</code></td>
+                                    <td>Programmatic API for custom toggling of the dropdown menu.</td>
+                                  </tr>
+                                  <tr>
+                                    <td><code>openChange</code> / <code>isOpen()</code></td>
+                                    <td><code>toggleMenu</code> event</td>
+                                    <td>Use emitted boolean state; no direct public <code>isOpen()</code> API.</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+
+                              <p><strong>Important differences (no direct 1:1 mapping)</strong></p>
+                              <ul>
+                                <li>
+                                  <code>autoClose</code> options from <code>NgbDropdown</code>
+                                  have no dedicated equivalent on <code>post-menu</code>.
+                                </li>
+                                <li>
+                                  <code>container</code>, <code>display</code>, and
+                                  <code>dropdownClass</code> options do not map directly.
+                                </li>
+                                <li>
+                                  If your old dropdown primarily selected a value, migrate to
+                                  native <code>&lt;select&gt;</code> instead of
+                                  <code>post-menu</code>.
+                                </li>
+                                <li>
+                                  Native <code>&lt;select&gt;</code> does not expose
+                                  <code>NgbDropdown</code> methods. Any such behavior must be
+                                  implemented manually in your application code.
+                                </li>
+                              </ul>
+                            </span>
+                          </label>
+                        </div>
+                      </li>
+                      <li class="mb-16">
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-datatable"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.datatable}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-datatable">
+                            datatable →
+                            <a href="https://www.ag-grid.com/">AG Grid</a>
+                            <span class="info">For interactive data tables, we recommend using AG Grid. For Swiss Post styling, use our
+                              <a href="/?path=/docs/e1405db2-fe06-45c6-a7ed-1408f9bf4895--docs">@swisspost/design-system-theme-ag-grid</a>
+                              package.</span>
+                          </label>
+                        </div>
+                      </li>
+                      <li class="mb-16">
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-datepicker"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.datepicker}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-datepicker">
+                            datepicker →
+                            <a href="/?path=/docs/eb77cd02-48b2-42e1-a3e4-cd8a973d431e--docs"
+                              >post-date-picker</a
+                            >
+                          </label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-modal"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.modal}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-modal">
+                            modal / notification overlay →
+                            <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
+                              >dialog</a
+                            >
+                            <span class="info">
+                              <p>
+                                Both the modal and the notification overlay were built on top of the
+                                same <code>NgbModal</code> service — they only differed visually.
+                                Both are replaced by the native HTML
+                                <code>dialog</code> element with the class <code>.post-dialog</code>.
+                              </p>
+                              <p><strong>Before (v9 — NgbModal)</strong></p>
+                              <p>
+                                The modal content was a separate component injected with
+                                <code>NgbActiveModal</code> to close itself, and the host opened it
+                                via the <code>NgbModal</code> service:
+                              </p>
+                              <code-block
+                                code=${`// modal-content.component.ts\n@Component({\n  template: \`\n    <div class="modal-header">\n      <h4 class="modal-title">{{ title }}</h4>\n      <button type="button" class="btn-close" (click)="activeModal.dismiss()"></button>\n    </div>\n    <div class="modal-body">{{ message }}</div>\n    <div class="modal-footer">\n      <button class="btn btn-primary" (click)="activeModal.close('confirmed')">Confirm</button>\n      <button class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>\n    </div>\n  \`\n})\nexport class ModalContentComponent {\n  @Input() title = '';\n  @Input() message = '';\n  constructor(public activeModal: NgbActiveModal) {}\n}`}
+                              ></code-block>
+                              <code-block
+                                code=${`// host.component.ts\nexport class HostComponent {\n  constructor(private modalService: NgbModal) {}\n\n  openModal() {\n    const modalRef = this.modalService.open(ModalContentComponent);\n    modalRef.componentInstance.title = 'Confirm action';\n    modalRef.componentInstance.message = 'Are you sure?';\n\n    // Resolves when activeModal.close(result) is called\n    modalRef.closed.subscribe(result => console.log('Closed with:', result));\n\n    // Resolves when activeModal.dismiss(reason) is called, or ESC / backdrop click\n    modalRef.dismissed.subscribe(reason => console.log('Dismissed:', reason));\n  }\n}`}
+                              ></code-block>
+                              <p><strong>After (v10 — post-dialog)</strong></p>
+                              <p>
+                                The dialog content is declared directly in the component template.
+                                Use <code>&lt;form method="dialog"&gt;</code> inside the dialog so
+                                that submit buttons close it automatically and set
+                                <code>dialog.returnValue</code> to their <code>value</code>
+                                attribute:
+                              </p>
+                              <code-block
+                                code=${`<!-- host.component.html -->\n<button class="btn btn-primary" (click)="confirmDialog.showModal()">Open</button>\n\n<dialog #confirmDialog class="post-dialog" aria-labelledby="dialog-title">\n  <form method="dialog" class="dialog-grid">\n    <h3 class="dialog-header" id="dialog-title">Confirm action</h3>\n    <div class="dialog-body">\n      <p>Are you sure?</p>\n    </div>\n    <div class="dialog-controls">\n      <button class="btn btn-primary" value="confirmed">Confirm</button>\n      <button class="btn btn-secondary" value="cancelled">Cancel</button>\n    </div>\n    <post-closebutton button-type="submit">Close</post-closebutton>\n  </form>\n</dialog>`}
+                              ></code-block>
+                              <p>
+                                Listen to the <code>close</code> event to react when the dialog is
+                                closed, and read <code>dialog.returnValue</code> to know which
+                                button was pressed:
+                              </p>
+                              <code-block
+                                code=${`// host.component.ts\n@Component({ ... })\nexport class HostComponent implements AfterViewInit {\n  @ViewChild('confirmDialog') dialogRef!: ElementRef<HTMLDialogElement>;\n\n  ngAfterViewInit() {\n    this.dialogRef.nativeElement.addEventListener('close', () => {\n      const result = this.dialogRef.nativeElement.returnValue;\n      if (result === 'confirmed') {\n        console.log('User confirmed');\n      }\n    });\n  }\n}`}
+                              ></code-block>
+                              <p>
+                                To pass data <strong>into</strong> the dialog, bind directly in the
+                                template — no <code>componentInstance</code> needed:
+                              </p>
+                              <code-block
+                                code=${`<!-- host.component.html -->\n<dialog #myDialog class="post-dialog">\n  <form method="dialog" class="dialog-grid">\n    <h3 class="dialog-header">{{ dialogTitle }}</h3>\n    <div class="dialog-body">{{ dialogMessage }}</div>\n    <div class="dialog-controls">\n      <button class="btn btn-primary" value="ok">OK</button>\n    </div>\n  </form>\n</dialog>`}
+                              ></code-block>
+                              <p>
+                                <strong>Common migration patterns:</strong>
+                              </p>
+                              <ul>
+                                <li>
+                                  <strong
+                                    ><code>backdrop: 'static'</code> (prevent backdrop
+                                    close) and <code>keyboard: false</code> (disable ESC key):</strong
+                                  >
+                                    <ul>
+                                    <li>
+                                      <code>closedby="none"</code>: disables closing the modal with anything but the provided mechanisms within the modal
+                                    </li>
+                                    <li>
+                                      <code>closedby="closerequest"</code>: allows closing the modal with ESC key and provided mechanisms
+                                    </li>
+                                    <li>
+                                      <code>closedby="any"</code>: allows closing the modal with outside click, ESC key and provided mechanisms
+                                    </li>
+                                  </ul>
+                                </li>
+                                <li>
+                                  <strong
+                                    ><code>beforeDismiss</code> callback (guard before
+                                    close):</strong
+                                  >
+                                  Listen to <code>cancel</code> for ESC and perform your guard
+                                  logic before calling <code>dialog.close()</code>.
+                                </li>
+                                <li>
+                                  <strong>Programmatic close with a result value:</strong>
+                                  Call <code>dialog.close('myValue')</code> anywhere — the value
+                                  becomes <code>dialog.returnValue</code>.
+                                </li>
+                              </ul>
+                            </span>
+                          </label>
+                        </div>
+                      </li>
+                      <li class="mb-16">
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-pagination"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.pagination}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-pagination">
+                            pagination →
+                            <a href="/?path=/docs/d6f8b5c7-4e2a-4f3a-9d3a-1a2b3c4d5e6f--docs"
+                              >post-pagination</a
+                            >
+                            <span class="info">
+                              <p>
+                                <code>NgbPagination</code> is replaced by the <code>post-pagination</code>
+                                web component. The core inputs <code>page</code>,
+                                <code>pageSize</code>, and <code>collectionSize</code> carry over
+                                directly, but several outputs and configuration options have
+                                changed.
+                              </p>
+                              <p><strong>Before (v9 — NgbPagination)</strong></p>
+                              <code-block
+                                code=${`<!-- template -->
+<ngb-pagination
+  [collectionSize]="totalItems"
+  [pageSize]="pageSize"
+  [(page)]="currentPage"
+  [maxSize]="5"
+  [boundaryLinks]="true"
+  [rotate]="true"
+  (pageChange)="onPageChange($event)"
+></ngb-pagination>`}
+                              ></code-block>
+                              <code-block
+                                code=${`// component
+export class MyComponent {
+  currentPage = 1;
+  pageSize = 10;
+  totalItems = 100;
+
+  onPageChange(page: number) {
+    // load data for the new page
+  }
+}`}
+                              ></code-block>
+                              <p><strong>After (v10 — post-pagination)</strong></p>
+                              <p>
+                                All text labels are now required for accessibility. There is no
+                                two-way binding — update <code>currentPage</code> manually in the
+                                <code>(postChange)</code> handler. The event payload is a
+                                <code>CustomEvent&lt;number&gt;</code>, so read the page number
+                                from <code>$event.detail</code>:
+                              </p>
+                              <code-block
+                                code=${`<!-- template -->
+<post-pagination
+  [collectionSize]="totalItems"
+  [pageSize]="pageSize"
+  [page]="currentPage"
+  label="Pagination"
+  textPrevious="Previous page"
+  textNext="Next page"
+  textPage="Page"
+  textFirst="First page"
+  textLast="Last page"
+  (postChange)="onPageChange($event.detail)"
+></post-pagination>`}
+                              ></code-block>
+                              <code-block
+                                code=${`// component
+export class MyComponent {
+  currentPage = 1;
+  pageSize = 10;
+  totalItems = 100;
+
+  onPageChange(page: number) {
+    this.currentPage = page;
+    // load data for the new page
+  }
+}`}
+                              ></code-block>
+                              <p>
+                                <strong>Common migration patterns:</strong>
+                              </p>
+                              <ul>
+                                <li>
+                                  <strong><code>[(page)]</code> two-way binding:</strong> Removed.
+                                  Use <code>[page]="currentPage"</code> to set the current page and get the event from the <code>postChange</code> output to get the updated current page.
+                                </li>
+                                <li>
+                                  <strong
+                                    ><code>(pageChange)="fn($event)"</code>:</strong
+                                  >
+                                  Becomes <code>(postChange)="fn($event.detail)"</code> — the
+                                  event is a <code>CustomEvent&lt;number&gt;</code>, so the new
+                                  page number is in <code>$event.detail</code>.
+                                </li>
+                                <li>
+                                  <strong><code>[maxSize]</code>:</strong> No equivalent.
+                                  <code>post-pagination</code> automatically shows as many page
+                                  numbers as fit in the available space, with ellipsis where
+                                  needed.
+                                </li>
+                                <li>
+                                  <strong><code>[boundaryLinks]</code>:</strong> First and last
+                                  page buttons are always shown. Provide accessible labels via the
+                                  required <code>textFirst</code> and <code>textLast</code> props.
+                                </li>
+                                <li>
+                                  <strong
+                                    ><code>[rotate]</code> and
+                                    <code>[ellipses]</code>:</strong
+                                  >
+                                  No equivalent — both behaviors are built in automatically.
+                                </li>
+                                <li>
+                                  <strong><code>[disabled]</code>:</strong> No disabled state in
+                                  <code>post-pagination</code>.
+                                </li>
+                              </ul>
+                            </span>
+                          </label>
+                        </div>
+                      </li>
+                      <li class="mb-16">
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-progressbar"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.progressbar}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-progressbar">
+                            progressbar →
+                            <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs"
+                              >post-progressbar</a
+                            >
+                            <span class="info">
+                              <p>
+                                The <code>NgbProgressbar</code> component has been replaced by the
+                                <code>&lt;post-progressbar&gt;</code> web component, which provides an
+                                accessible and framework-agnostic solution.
+                              </p>
+                              <p><strong>Before (v9 — NgbProgressbar)</strong></p>
+                              <p>
+                                The NgbProgressbar component was used with two-way binding and
+                                properties like <code>type</code>, <code>striped</code>, and
+                                <code>animated</code>:
+                              </p>
+                              <code-block
+                                code=${`<!-- template.html -->\n<ngb-progressbar\n  type="primary"\n  [value]="65"\n  [striped]="true"\n  [animated]="true"\n>\n</ngb-progressbar>`}
+                              ></code-block>
+                              <p><strong>After (v10)</strong></p>
+                              <p>
+                                The new <code>&lt;post-progressbar&gt;</code> component uses standard HTML
+                                <code>min</code>, <code>max</code>, and <code>value</code> attributes,
+                                similar to the native <code>&lt;progress&gt;</code> element:
+                              </p>
+                              <code-block
+                                code=${`<!-- template.html -->\n<post-progressbar\n  min="0"\n  max="100"\n  value="65"\n></post-progressbar>`}
+                              ></code-block>
+                              <p><strong>Key differences:</strong></p>
+                              <ul>
+                                <li>
+                                  <strong>Attributes instead of properties:</strong> Use standard HTML
+                                  attributes (<code>min</code>, <code>max</code>, <code>value</code>)
+                                  instead of ng-bootstrap directives.
+                                </li>
+                                <li>
+                                  <strong>Type replaced by CSS modifier class:</strong> The <code>type</code> property
+                                  is replaced by a CSS modifier class on the <code>.progressbar</code> wrapper element.
+                                  All other Bootstrap color variants have no equivalent and default to the neutral appearance.
+                                  <table class="table table-bordered">
+                                    <thead>
+                                      <tr>
+                                        <th>type (v9)</th>
+                                        <th>CSS class (v10)</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td><code>type="success"</code></td>
+                                        <td><code>class="progressbar progressbar-success"</code></td>
+                                      </tr>
+                                      <tr>
+                                        <td><code>type="danger"</code></td>
+                                        <td><code>class="progressbar progressbar-error"</code></td>
+                                      </tr>
+                                      <tr>
+                                        <td><code>type="warning"</code></td>
+                                        <td><code>class="progressbar progressbar-warning"</code></td>
+                                      </tr>
+                                      <tr>
+                                        <td>
+                                          <code>type="info"</code>, <code>type="primary"</code>,
+                                          <code>type="secondary"</code>,</br>
+                                          or any other Bootstrap color variant
+                                        </td>
+                                        <td>
+                                          No direct equivalent. Use <code>class="progressbar"</code></br>
+                                          for the <code>neutral</code> appearance.
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </li>
+                                <li>
+                                  <strong>Striped and animated removed:</strong> The
+                                  <code>striped</code> and <code>animated</code> properties are no longer
+                                  supported.
+                                </li>
+                              </ul>
+                              <p><strong>Handling dynamic updates:</strong></p>
+                              <p>
+                                To update the progress value dynamically in Angular, bind directly to the
+                                <code>value</code> attribute:
+                              </p>
+                              <code-block
+                                code=${`<!-- template.html -->\n<post-progressbar\n  [attr.value]="progressValue"\n  min="0"\n  max="100"\n></post-progressbar>`}
+                              ></code-block>
+                              <p><strong>Showing percentage values:</strong></p>
+                              <p>
+                                The <code>[showValue]</code> property is not supported by <code>&lt;post-progressbar&gt;</code>. Unlike
+                                <code>NgbProgressbar</code>, the percentage cannot be displayed inside the
+                                progress bar.
+                                To show the current progress percentage, use <code>.progressbar-value</code> together with a
+                                <code>.progressbar-label</code>.
+                                For implementation details and additional examples, refer to the
+                                <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs">
+                                  post-progressbar documentation
+                                </a>.
+                              </p>
+                              <p>
+                                Note that this is not a 1:1 replacement for
+                                <code>[showValue]</code>, as the value is displayed separately from the
+                                progress indicator.
+                              </p>
+                            </span>
+                          </label>
+                        </div>
+                      </li>
+                      <li class="mb-16">
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-timepicker"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.timepicker}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-timepicker">
+                            timepicker →
+                            <a href="/?path=/docs/51471f0b-1bbb-4059-951b-f89aa7339f91--docs"
+                              >native input with type "time"</a
+                            >
+                            <span class="info">
+                              <p>
+                                Replace <code>NgbTimepicker</code> with a native
+                                <code>&lt;input type="time"&gt;</code>. This covers the core
+                                time selection use case and works without ng-bootstrap.
+                              </p>
+
+                              <p><strong>Before (v9 — NgbTimepicker)</strong></p>
+                              <code-block
+                                code=${`<!-- template.html -->\n<ngb-timepicker\n  [(ngModel)]="appointmentTime"\n  [seconds]="true"\n  [spinners]="true"\n  [meridian]="false"\n  [hourStep]="1"\n  [minuteStep]="5"\n  [secondStep]="10"\n  [readonlyInputs]="false"\n></ngb-timepicker>`}
+                              ></code-block>
+                              <code-block
+                                code=${`// component.ts\nimport { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';\n\nappointmentTime: NgbTimeStruct = { hour: 9, minute: 30, second: 0 };`}
+                              ></code-block>
+
+                              <p><strong>After (v10 — native time input)</strong></p>
+                              <code-block
+                                code=${`<!-- template.html -->\n<label for="appointment-time" class="form-label">Appointment time</label>\n<input\n  id="appointment-time"\n  class="form-control"\n  type="time"\n  [step]="5"\n  [(ngModel)]="appointmentTimeValue"\n/>`}
+                              ></code-block>
+                              <code-block
+                                code=${`// component.ts\n// Native time inputs usually bind to a string (HH:mm or HH:mm:ss).\nappointmentTimeValue = '09:30';`}
+                              ></code-block>
+                              <p>
+                                For <code>input type="time"</code>, <code>step</code> is measured in
+                                seconds. A value of <code>5</code> allows selection in 5-second
+                                increments.
+                              </p>
+
+                              <p><strong>Common migration scenarios:</strong></p>
+                              <ul>
+                                <li>
+                                  <strong>NgbTimeStruct model:</strong> Convert to
+                                  <code>HH:mm</code> or <code>HH:mm:ss</code> string values.
+                                </li>
+                                <li>
+                                  <strong>Step behavior (<code>hourStep</code>,
+                                  <code>minuteStep</code>, <code>secondStep</code>):</strong>
+                                  use <code>step</code> (in seconds) and custom validation where
+                                  necessary.
+                                </li>
+                                <li>
+                                  <strong>Readonly/disabled:</strong> map to native
+                                  <code>readonly</code> and <code>disabled</code> attributes.
+                                </li>
+                                <li>
+                                  <strong>Custom formatting/adapters:</strong>
+                                  <code>NgbTimeAdapter</code>/<code>NgbTimepickerI18n</code>
+                                  logic must be moved to app-level parsing/formatting utilities.
+                                </li>
+                              </ul>
+
+                              <p><strong>API differences</strong></p>
+                              <p>
+                                Native <code>&lt;input type="time"&gt;</code> has no
+                                equivalent for <code>NgbTimepicker</code> methods such as
+                                <code>changeHour</code>, <code>changeMinute</code>,
+                                <code>changeSecond</code>, <code>updateHour</code>,
+                                <code>updateMinute</code>, and <code>updateSecond</code>.
+                                Spinner UI, meridian toggling behavior, and ng-bootstrap
+                                configuration services are not available as direct APIs.
+                                If your feature depends on these APIs/behaviors, implement them
+                                manually in your application logic.
+                              </p>
+                            </span>
+                          </label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="form-check">
+                          <input
+                            id="ngbootstrap-typeahead"
+                            class="form-check-input"
+                            type="checkbox"
+                            ?checked="${this.state.ngbootstrap.typeahead}"
+                          />
+                          <label class="form-check-label" for="ngbootstrap-typeahead">
+                            typeahead →
+                            <a
+                              href="/?path=/docs/2df77c32-5e33-402e-bd2e-54d54271ce19--docs#autocomplete"
+                              >native input with datalist</a
+                            >
+                            <span class="info">
+                              <p>
+                                Replace the <code>[ngbTypeahead]</code> directive with a native
+                                <code>&lt;input&gt;</code> element paired with a
+                                <code>&lt;datalist&gt;</code>. The browser handles filtering
+                                automatically based on what the user types — no additional scripts
+                                required.
+                              </p>
+                              <p><strong>Before (v9 — NgbTypeahead)</strong></p>
+                              <p>
+                                Define a <code>search</code> function returning filtered results as
+                                an observable and bind it with the <code>[ngbTypeahead]</code>
+                                directive:
+                              </p>
+                              <code-block
+                                code=${`// component.ts\nsearch = (text$: Observable<string>) =>\n  text$.pipe(\n    debounceTime(200),\n    distinctUntilChanged(),\n    map(term =>\n      term.length < 2\n        ? []\n        : options.filter(v => v.toLowerCase().includes(term.toLowerCase()))\n    )\n  );`}
+                              ></code-block>
+                              <code-block
+                                code=${`<!-- template.html -->\n<input\n  type="text"\n  class="form-control"\n  [(ngModel)]="model"\n  [ngbTypeahead]="search"\n/>`}
+                              ></code-block>
+                              <p><strong>After (v10)</strong></p>
+                              <p>
+                                Declare the options in a <code>&lt;datalist&gt;</code> element and
+                                link it to the input via the <code>list</code> attribute:
+                              </p>
+                              <code-block
+                                code=${`<!-- template.html -->\n<input class="form-control" type="text" list="my-options" />\n<datalist id="my-options">\n  <option value="Option A"></option>\n  <option value="Option B"></option>\n  <option value="Option C"></option>\n</datalist>`}
+                              ></code-block>
+                              <p>
+                                <strong
+                                  >Limitations compared to <code>NgbTypeahead</code>:</strong
+                                >
+                              </p>
+                              <ul>
+                                <li>
+                                  <strong>Filtering behavior:</strong> All modern browsers filter
+                                  suggestions by matching anywhere in the string — there is no
+                                  browser API to change this behavior.
+                                </li>
+                                <li>
+                                  <strong>Dropdown styling:</strong> The suggestion popup is
+                                  rendered using the browser's native UI and can partially be styled with CSS but visual rendering may vary depending on browser.
+                                </li>
+                                <li>
+                                  <strong>Object models:</strong> The
+                                  <code>[ngbTypeahead]</code> directive supported returning objects
+                                  with <code>[inputFormatter]</code> and
+                                  <code>[resultFormatter]</code> to control how values are
+                                  displayed. The native <code>&lt;datalist&gt;</code> only supports
+                                  string values.
+                                </li>
+                                <li>
+                                  <strong>Custom result templates:</strong> The
+                                  <code>[resultTemplate]</code> input for rendering custom
+                                  ng-templates per suggestion has no native equivalent with
+                                  <code>&lt;datalist&gt;</code>.
+                                </li>
+                              </ul>
+                            </span>
+                          </label>
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </section>
+              ${
+                this.environment === 'intranet'
+                  ? html`
+                      <section>
+                        <h4>Intranet header</h4>
+                        <p>
+                          The <code>sp-intranet-header</code> no longer exists. In this new version,
+                          both internet and intranet use the same
+                          <a href="/?path=/docs/27a2e64d-55ba-492d-ab79-5f7c5e818498--docs"
+                            ><code>post-header</code></a
+                          >
+                          component and compose content through slots. For intranet applications,
+                          this means using the
+                          <a
+                            href="/?path=/docs/27a2e64d-55ba-492d-ab79-5f7c5e818498--docs#application"
+                            >application header</a
+                          >
+                          variant. If you were also using a sidebar, migrate it to the
+                          <a href="/?path=/docs/9f26d86e-7edb-5804-ac96-92g22f91c9d9--docs"
+                            >post-side-navigation</a
+                          >
+                          component.
+                        </p>
+
+                        <ul class="list-unstyled">
+                          <li class="mb-16">
+                            <div class="form-check">
+                              <input
+                                id="intranet_header-migration"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.intranet_header.migration}"
+                              />
+                              <label class="form-check-label" for="intranet_header-migration">
+                                Migrate old intranet header properties to the new
+                                <code>post-header</code> structure
+                                <span class="info">
+                                  <p><strong>Migration mapping:</strong></p>
+                                  <ul>
+                                    <li>
+                                      <code>siteTitle</code> → move to the
+                                      <code>slot="title"</code>.
+                                    </li>
+                                    <li>
+                                      <code>showIntranetSearch</code> → there is no longer a search
+                                      within the header itself, you can add a link to your search
+                                      page on the <code>slot="local-nav"</code>.
+                                    </li>
+                                    <li>
+                                      <code>languages</code> and <code>lang</code> → use
+                                      <code>post-language-menu</code> in
+                                      <code>slot="local-nav"</code>. The <code>lang</code> is
+                                      replaced with setting <code>active="true"</code> on the
+                                      currently active language entry. Keep language switching and
+                                      persistence logic in your application code.
+                                    </li>
+                                    <li>
+                                      <code>currentUserId</code> and <code>displayName</code> → map
+                                      to your authenticated user state and render user UI in
+                                      <code>slot="post-login"</code>. When no user is authenticated,
+                                      render a login link in the same slot.
+                                    </li>
+                                    <li>
+                                      <code>additionalInfo</code> and
+                                      <code>optionDropdownContent</code> → move content into the
+                                      user <code>post-menu</code>..
+                                    </li>
+                                    <li>
+                                      <code>optionHeaderContent</code> → no longer available. If
+                                      needed on the header, the content can be manually appended to
+                                      the title area.
+                                    </li>
+                                    <li>
+                                      <code>navigation</code> → move links to
+                                      <code>slot="local-nav"</code>. If there are many, or if
+                                      nesting/dropdowns are needed, migrate to
+                                      <code>post-side-navigation</code>. If you need two different
+                                      navigations (navigation links + side navigation), you can move
+                                      those links into the <code>post-mainnavigation</code>.
+                                    </li>
+                                    <li>
+                                      <code>logoUrl</code> → set URL directly on
+                                      <code>post-logo</code> in <code>slot="post-logo"</code>.
+                                    </li>
+                                  </ul>
+                                  <p>
+                                    <strong>Accessibility reminders</strong>: set
+                                    <code>aria-current="page"</code> on active navigation links.
+                                  </p>
+                                </span>
+                                <code-block
+                                  code=${`<post-header>
+  <div slot="title">
+    My Application <!-- Previous siteTitle -->
+    <small class="d-block">INT / v10.0.0</small> <!-- Previous optionHeaderContent -->
+  </div>
+  <a slot="post-logo" href="/">
+    <post-logo url="/home"></post-logo> <!-- Previous logoUrl → url prop -->
+  </a>
+
+  <ul slot="local-nav" class="d-flex align-items-center gap-8">
+    <li><a href="/search">Search</a></li> <!-- Previous showIntranetSearch → Link to search page -->
+    <li><a href="/dashboard" aria-current="page">Dashboard</a></li>
+    <li>
+      <!-- Previous languages and lang → Implement language menu component -->
+      <post-language-menu
+        text-change-language="Change the language"
+        text-current-language="The currently selected language is {name}."
+        name="header-language"
+      >
+        <post-language-menu-item code="de" name="German" active="true">de</post-language-menu-item>
+        <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
+        <post-language-menu-item code="it" name="Italian">it</post-language-menu-item>
+        <post-language-menu-item code="en" name="English">en</post-language-menu-item>
+      </post-language-menu>
+    </li>
+  </ul>
+
+  <div slot="post-login">
+    <post-menu-trigger for="user-menu">
+      <button class="btn btn-link" type="button">
+        <!-- currentUserId → Render user UI in post-avatar -->
+        <post-avatar
+          firstname="Jane"
+          lastname="Doe"
+          description="Current user is Jane Doe."
+        ></post-avatar>
+        <span class="visually-hidden">Access user links.</span>
+      </button>
+    </post-menu-trigger>
+    <post-menu id="user-menu" label="User links">
+      <div slot="header">
+        <post-avatar firstname="Jane" lastname="Doe" aria-hidden="true"></post-avatar>
+        <p>Jane Doe</p> <!-- displayName -->
+      </div>
+      <!-- Previous optionDropdownContent and additionalInfo -->
+      <post-menu-item>
+        <a href="/profile">
+          <post-icon aria-hidden="true" name="profile"></post-icon>
+          My Profile
+        </a>
+      </post-menu-item>
+      ...
+      <post-menu-item>
+        <button type="button">
+          <post-icon aria-hidden="true" name="logout"></post-icon>
+          Logout
+        </button>
+      </post-menu-item>
+    </post-menu>
+  </div>
+</post-header>`}
+                                ></code-block>
+                                <span class="info">
+                                  <p>
+                                    <strong
+                                      >Sidebar migration example (.sidebar →
+                                      post-side-navigation)</strong
+                                    >
+                                  </p>
+                                </span>
+                                <code-block
+                                  code=${`<!-- v9 -->
+<nav class="col-md-3 col-lg-2 d-md-flex bg-light sidebar p-md-3" id="sidebar">
+  ...
+</nav>
+
+<!-- v10 -->
+<post-side-navigation text-close="Close navigation">
+  <nav aria-label="Side navigation">
+    <h2 class="post-side-navigation-heading">Section title (optional)</h2>
+    <ul>
+      <li>
+        <a href="/" class="post-side-navigation-item">
+          <post-icon name="letter" aria-hidden="true"></post-icon>
+          Home
+        </a>
+      </li>
+      <li>
+        <post-collapsible-trigger>
+          <button class="post-side-navigation-item">
+            <post-icon name="letter" aria-hidden="true"></post-icon>
+            Menu Text
+            <post-icon name="chevrondown" aria-hidden="true"></post-icon>
+          </button>
+          <post-collapsible>
+            <ul>
+              <li>
+                <a href="#" class="post-side-navigation-item" aria-current="page"
+                  >Link 1 (active)</a
+                >
+              </li>
+              <li><a href="#" class="post-side-navigation-item">Link 2</a></li>
+              <li><a href="#" class="post-side-navigation-item">Link 3</a></li>
+              <li><a href="#" class="post-side-navigation-item">Link 4</a></li>
+              <li><a href="#" class="post-side-navigation-item">Link 5</a></li>
+            </ul>
+          </post-collapsible>
+        </post-collapsible-trigger>
+      </li>
+    </ul>
+  </nav>
+</post-side-navigation>
+
+<main class="main-container">
+  <!-- page content -->
+</main>`}
+                                ></code-block>
+                              </label>
+                            </div>
+                          </li>
+                        </ul>
+                      </section>
+                    `
+                  : nothing
+              }
+              <section>
+                <h4>Components</h4>
+
+                <ul class="list-unstyled">
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="components-alert"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.components.alert}"
+                      />
+                      <label class="form-check-label" for="components-alert">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        <code>post-alert</code> renamed to <code>post-banner</code>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="components-accordion_heading"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.components.accordion_heading}"
+                      />
+                      <label class="form-check-label" for="components-accordion_heading">
+                        <code>heading-level</code> property on <code>post-accordion</code> is now
+                        required
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="components-hydrated_flag"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.components.hydrated_flag}"
+                      />
+                      <label class="form-check-label" for="components-hydrated_flag">
+                        The stencil hydrated flag has switched from the
+                        <code>.hydrated</code> class to to the <code>data-hydrated</code> attribute
+                        <span class="info">
+                          If your tests relied on the class being present, please rewrite the
+                          selector to use the new attribute selector.
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="components-accordion_item_part"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.components.accordion_item_part}"
+                      />
+                      <label class="form-check-label" for="components-accordion_item_part">
+                        <code>accordion-item</code> shadow part removed from the
+                        <code>post-accordion-item</code> component and two new shadow parts
+                        introduced: <code>button</code> and <code>body</code>
+                        <span class="info">
+                          If you were styling the component using the
+                          <code>::part(accordion-item)</code> selector, this will no longer work.
+                          Update your styles to use <code>::part(button)</code> for the header
+                          trigger and <code>::part(body)</code> for the content area instead.
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="components-popover_trigger"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.components.popover_trigger}"
+                      />
+                      <label class="form-check-label" for="components-popover_trigger">
+                        The <code>post-popover</code> now uses its own
+                        <code>post-popover-trigger</code> component instead of an element with a
+                        <code>data-popover-target</code> attribute.
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="components-tabs_anchor_navigation"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.components.tabs_anchor_navigation}"
+                      />
+                      <label class="form-check-label" for="components-tabs_anchor_navigation">
+                        <div>The markup of the <code>post-tabs</code> component has changed.</div>
+                        <span class="info">
+                          If you were using this component, you should:
+                          <ul>
+                            <li>
+                              Rename <code>post-tab-header</code> component to
+                              <code>post-tab-item</code>
+                            </li>
+                            <li>
+                              Rename <code>panel</code> property to <code>name</code> in
+                              <code>post-tab-item</code> component
+                            </li>
+                            <li>
+                              Rename <code>name</code> property to <code>for</code> in
+                              <code>post-tab-panel</code> component
+                            </li>
+                            <li>
+                              Rename <code>activePanel</code> property to <code>activeTab</code> in
+                              <code>post-tabs</code> component
+                            </li>
+                          </ul>
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="components-card_control"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.components.card_control}"
+                      />
+                      <label class="form-check-label" for="components-card_control">
+                        <code>post-card-control</code> component removed
+                        <span class="info"> Replace by the selection card. </span>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="components-tag"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.components.tag}"
+                      />
+                      <label class="form-check-label" for="components-tag">
+                        <code>post-tag</code> component removed
+                        <span class="info">Replaced by the <code>.tag</code> CSS class</span>
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </section>
+
+              ${
+                this.environment !== 'intranet'
+                  ? html`
+                      <section>
+                        <h4>Internet Header (@swisspost/internet-header)</h4>
+                        <ul class="list-unstyled">
+                          <li class="mb-16">
+                            <div class="form-check">
+                              <input
+                                id="internet_header-update_package"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.internet_header.update_package}"
+                              />
+                              <label class="form-check-label" for="internet_header-update_package">
+                                Update the <code>@swisspost/internet-header</code> package to
+                                version 10
+                                <code-block
+                                  code=${'npm install @swisspost/internet-header@10'}
+                                ></code-block>
+                              </label>
+                            </div>
+                          </li>
+                          <li class="mb-16">
+                            <div class="form-check">
+                              <input
+                                id="internet_header-add_text_props"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.internet_header.add_text_props}"
+                              />
+                              <label class="form-check-label" for="internet_header-add_text_props">
+                                Add the new required <code>text-*</code> props to your
+                                <code>swisspost-internet-header</code> element
+                                <span class="info">
+                                  Version 10 requires these props for accessibility — they provide
+                                  visually hidden labels for interactive elements. The component
+                                  will throw an error if any are missing.
+                                </span>
+                                <code-block
+                                  code=${'<swisspost-internet-header\n    project="your-service-id"\n    text-menu="Menu"\n    text-back="Back"\n    text-close="Close"\n    text-current-language="The currently selected language is {name}."\n    text-change-language="Change the language"\n    text-main="Main navigation"\n    text-current-user="Current user is {user}."\n    text-user-links="User links"\n  ></swisspost-internet-header>'}
+                                ></code-block>
+                              </label>
+                            </div>
+                          </li>
+                          <li class="mb-16">
+                            <div class="form-check">
+                              <input
+                                id="internet_header-remove_props"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.internet_header.remove_props}"
+                              />
+                              <label class="form-check-label" for="internet_header-remove_props">
+                                Remove props and runtime assignments that no longer exist
+                                <span class="info">
+                                  The following props have been removed and have no effect in v10:
+                                  <code>stickyness</code>, <code>meta</code>, <code>login</code>,
+                                  <code>search</code>, <code>skiplinks</code>,
+                                  <code>config-proxy</code>, <code>language-cookie-key</code>,
+                                  <code>language-local-storage-key</code>, <code>logout-url</code>,
+                                  <code>self-admin-origin</code>, <code>os-flyout-overrides</code>,
+                                  <code>custom-config</code>,
+                                  <code>language-switch-overrides</code>. Only
+                                  <code>language</code> and <code>active-route</code> remain
+                                  reactive at runtime.
+                                </span>
+                              </label>
+                            </div>
+                          </li>
+                        </ul>
+                      </section>
+                    `
+                  : nothing
+              }
+
+              <section>
+                <h4>Styles</h4>
+
+                <h5>✍️ Forms</h5>
+                <ul class="list-unstyled">
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="forms-tooltip_validation"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.forms.tooltip_validation}"
+                      />
+                      <label class="form-check-label" for="forms-tooltip_validation"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Tooltip validation classes removed
+                        <ul>
+                          <li><code>.valid-tooltip</code></li>
+                          <li><code>.invalid-tooltip</code></li>
+                        </ul>
+                        <span class="info">
+                          Instead, use classes <code>.valid-feedback</code> and
+                          <code>.invalid-feedback</code>. <br />More informations on the
+                          <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs"
+                            >form validation docs</a
+                          >.
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="forms-input_sizes"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.forms.input_sizes}"
+                      />
+                      <label class="form-check-label" for="forms-input_sizes"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Form field size classes removed
+                        <ul>
+                          <li><code>.form-control-rg</code></li>
+                          <li><code>.form-control-lg</code></li>
+                          <li><code>.form-select-rg</code></li>
+                          <li><code>.form-select-lg</code></li>
+                        </ul>
+                        <span class="info"
+                          >These classes can safely be removed. All form inputs will now have the
+                          same height.</span
+                        >
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="forms-select_empty"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.forms.select_empty}"
+                      />
+                      <label class="form-check-label" for="forms-select_empty">
+                        <code>.form-select-empty</code> class deprecated
+                        <span class="info">
+                          This class has been replaced by a modern CSS selector, which detects the
+                          presence of an empty option.
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="forms-form_text"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.forms.form_text}"
+                      />
+                      <label class="form-check-label" for="forms-form_text">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        <code>.form-text</code> class has been renamed to
+                        <code>.form-hint</code>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="forms-card_control"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.forms.card_control}"
+                      />
+                      <label class="form-check-label" for="forms-card_control">
+                        CSS classes for Standard HTML <code>card-control</code> component renamed
+                        <span class="info">
+                          Replace <code>.checkbox-button-card</code> and
+                          <code>.radio-button-card</code> with
+                          <code>.selection-card</code> component.
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+
+                <h5>📐 Grid system</h5>
+                <ul class="list-unstyled">
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="grid-breakpoints"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.grid.breakpoints}"
+                      />
+                      <label class="form-check-label" for="grid-breakpoints">
+                        <span data-info="partial-automigration" class="tag tag-sm tag-warning"
+                          >⚠️ partial migration rule</span
+                        >
+                        Breakpoints updated
+                        <ul>
+                          <li>
+                            All classes containing <code>*-xxl-*</code> are renamed to
+                            <code>*-xl-*</code> — <b>auto-migrated ✅</b>
+                          </li>
+                          <li>
+                            All classes containing <code>*-sm-*</code> are renamed to
+                            <code>*-xs-*</code> — <b>⚠️ manual migration required</b>
+                          </li>
+                          <li>
+                            All classes containing <code>*-rg-*</code> are renamed to
+                            <code>*-sm-*</code> — <b>⚠️ manual migration required</b>
+                          </li>
+                        </ul>
+                        <span class="info">
+                          <code>xs</code> now covers old <code>xs</code> and <code>sm</code>, while
+                          <code>sm</code> covers old <code>rg</code>. <code>xl</code> covers old
+                          <code>xl</code> and <code>xxl</code> breakpoints.
+                          <br /><br />
+                          ⚠️ <strong><code>*-sm-*</code> and <code>*-rg-*</code> classes cannot be auto-fixed.</strong>
+                          Renaming <code>rg</code> → <code>sm</code> would immediately be picked up
+                          by the <code>sm</code> → <code>xs</code> rule and renamed again to the
+                          wrong value. Search for <code>-sm-*</code> and <code>-rg-*</code> in your
+                          templates and rename them by hand.
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="grid-gutter"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.grid.gutter}"
+                      />
+                      <label class="form-check-label" for="grid-gutter">
+                        <span data-info="partial-automigration" class="tag tag-sm tag-warning"
+                          >⚠️ partial migration rule</span
+                        >
+                        Gutter classes (<code>.g-*</code>, <code>.gx-*</code>, <code>.gy-*</code>)
+                        renamed
+                        <ul>
+                          <li><code>*-1</code> is now <code>*-4</code> — <b>⚠️ manual migration required</b></li>
+                          <li><code>*-2</code> is now <code>*-8</code></li>
+                          <li><code>*-3</code> is now <code>*-16</code></li>
+                          <li><code>*-4</code> is now <code>*-24</code> — <b>⚠️ manual migration required</b></li>
+                          <li><code>*-5</code> is now <code>*-48</code></li>
+                        </ul>
+
+                        <span class="info">
+                          For instance, the old Bootstrap class <code>.g-1</code> (gutter of 4px) is
+                          now <code>.g-4</code> for better coherance.
+                          <br /><br />
+                          ⚠️ <strong><code>*-1</code> and <code>*-4</code> classes cannot be auto-fixed.</strong>
+                          If <code>*-1</code> were auto-renamed to <code>*-4</code>, the
+                          <code>*-4</code> → <code>*-24</code> rule would fire on the next pass and
+                          produce the wrong result. Search for both classes and rename them by hand.
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="grid-gap"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.grid.gap}"
+                      />
+                      <label class="form-check-label" for="grid-gap">
+                        <span data-info="partial-automigration" class="tag tag-sm tag-warning"
+                          >⚠️ partial migration rule</span
+                        >
+                        Gap classes (<code>.gap-*</code>, <code>.row-gap-*</code>,
+                        <code>.column-gap-*</code>) renamed
+                        <ul>
+                          <li><code>*-1</code> is now <code>*-4</code> — <b>⚠️ manual migration required</b></li>
+                          <li><code>*-2</code> is now <code>*-8</code></li>
+                          <li><code>*-3</code> is now <code>*-16</code></li>
+                          <li><code>*-4</code> is now <code>*-24</code> — <b>⚠️ manual migration required</b></li>
+                          <li><code>*-5</code> is now <code>*-48</code></li>
+                        </ul>
+                        <span class="info">
+                          ⚠️ <strong><code>*-1</code> and <code>*-4</code> classes cannot be auto-fixed.</strong>
+                          If <code>*-1</code> were auto-renamed to <code>*-4</code>, the
+                          <code>*-4</code> → <code>*-24</code> rule would fire on the next pass and
+                          produce the wrong result. Search for both classes and rename them by hand.
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+
+                <h5>🧰 Utilities</h5>
+                <ul class="list-unstyled">
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="utilities-percentage_sizing"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.utilities.percentage_sizing}"
+                      />
+                      <label class="form-check-label" for="utilities-percentage_sizing">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Percentage sizing utility classes (<code>.w-*</code>,
+                        <code>.h-*</code>, <code>.mh-*</code>, <code>.mw-*</code>) renamed
+                        <ul>
+                          <li><code>*-25</code> is now <code>*-quarter</code></li>
+                          <li><code>*-50</code> is now <code>*-half</code></li>
+                          <li><code>*-75</code> is now <code>*-three-quarters</code></li>
+                          <li><code>*-100</code> is now <code>*-full</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="utilities-removed_pixel_sizing"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.utilities.removed_pixel_sizing}"
+                      />
+                      <label class="form-check-label" for="utilities-removed_pixel_sizing">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Some pixel sizing utility classes (<code>.w-*</code>,
+                        <code>.h-*</code>, <code>.mh-*</code>, <code>.mw-*</code>) removed
+                        <ul>
+                          <li><code>*-small-large</code></li>
+                          <li><code>*-bigger-giant</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="utilities-renamed_pixel_sizing"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.utilities.renamed_pixel_sizing}"
+                      />
+                      <label class="form-check-label" for="utilities-renamed_pixel_sizing">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Pixel sizing utility classes (<code>.w-*</code>,
+                        <code>.h-*</code>, <code>.mh-*</code>, <code>.mw-*</code>) renamed
+                        <ul>
+                          <li><code>*-hair</code> is now <code>*-1</code></li>
+                          <li><code>*-line</code> is now <code>*-2</code></li>
+                          <li><code>*-micro</code> is now <code>*-4</code></li>
+                          <li><code>*-mini</code> is now <code>*-8</code></li>
+                          <li><code>*-small-regular</code> is now <code>*-12</code></li>
+                          <li><code>*-regular</code> is now <code>*-16</code></li>
+                          <li><code>*-large</code> is now <code>*-24</code></li>
+                          <li><code>*-big</code> is now <code>*-32</code></li>
+                          <li><code>*-bigger-big</code> is now <code>*-40</code></li>
+                          <li><code>*-small-huge</code> is now <code>*-48</code></li>
+                          <li><code>*-huge</code> is now <code>*-56</code></li>
+                          <li><code>*-small-giant</code> is now <code>*-78</code></li>
+                          <li><code>*-giant</code> is now <code>*-80</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="utilities-max_size"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.utilities.max_size}"
+                      />
+                      <label class="form-check-label" for="utilities-max_size">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Sizing utility classes max-height and max-width renamed
+                        <ul>
+                          <li><code>.mh-*</code> is now <code>.max-h-*</code></li>
+                          <li><code>.mw-*</code> is now <code>.max-w-*</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="utilities-shadow"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.utilities.shadow}"
+                      />
+                      <label class="form-check-label" for="utilities-shadow">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Shadow utility classes replaced with elevations
+                        <ul>
+                          <li><code>.shadow-none</code> is now <code>.elevation-none</code></li>
+                          <li><code>.shadow-sm</code> is now <code>.elevation-200</code></li>
+                          <li><code>.shadow</code> is now <code>.elevation-400</code></li>
+                          <li><code>.shadow-lg</code> is now <code>.elevation-500</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="utilities-elevation"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.utilities.elevation}"
+                      />
+                      <label class="form-check-label" for="utilities-elevation">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Elevation utility classes renamed
+                        <ul>
+                          <li><code>.elevation-1</code> is now <code>.elevation-100</code></li>
+                          <li><code>.elevation-2</code> is now <code>.elevation-200</code></li>
+                          <li><code>.elevation-3</code> is now <code>.elevation-300</code></li>
+                          <li><code>.elevation-4</code> is now <code>.elevation-400</code></li>
+                          <li><code>.elevation-5</code> is now <code>.elevation-500</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="utilities-removed_spacing"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.utilities.removed_spacing}"
+                      />
+                      <label class="form-check-label" for="utilities-removed_spacing">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Some margin and padding utilities classes (
+                        <code>.{m/p}{x/y/s/e/t/b}-*</code>) were removed
+                        <ul>
+                          <li><code>*-small-large</code></li>
+                          <li><code>*-bigger-giant</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="utilities-renamed_spacing"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.utilities.renamed_spacing}"
+                      />
+                      <label class="form-check-label" for="utilities-renamed_spacing">
+                        <span data-info="partial-automigration" class="tag tag-sm tag-warning"
+                          >⚠️ partial migration rule</span
+                        >
+                        Margin and padding utilities classes (
+                        <code>.{m/p}{x/y/s/e/t/b}-*</code>) renamed
+                        <ul>
+                          <li><code>*-hair</code> is now <code>*-1</code> — <b>⚠️ manual migration required</b></li>
+                          <li><code>*-line</code> is now <code>*-2</code></li>
+                          <li>
+                            <code>*-micro</code> and <code>*-1</code> are now <code>*-4</code> — <b>⚠️ manual migration required</b>
+                          </li>
+                          <li><code>*-mini</code> and <code>*-2</code> are now <code>*-8</code></li>
+                          <li><code>*-small-regular</code> is now <code>*-12</code></li>
+                          <li>
+                            <code>*-regular</code> and <code>*-3</code> are now <code>*-16</code>
+                          </li>
+                          <li>
+                            <code>*-large</code> and <code>*-4</code> are now <code>*-24</code> — <b>⚠️ manual migration required</b>
+                          </li>
+                          <li><code>*-big</code> is now <code>*-32</code></li>
+                          <li><code>*-bigger-big</code> is now <code>*-40</code></li>
+                          <li>
+                            <code>*-small-huge</code> and <code>*-5</code> are now <code>*-48</code>
+                          </li>
+                          <li><code>*-huge</code> is now <code>*-56</code></li>
+                          <li><code>*-small-giant</code> is now <code>*-78</code></li>
+                          <li><code>*-giant</code> is now <code>*-80</code></li>
+                        </ul>
+                        <span class="info">
+                          ⚠️ <strong><code>*-hair</code>, <code>*-micro</code>, <code>*-1</code>, <code>*-large</code>, and <code>*-4</code> classes cannot be auto-fixed.</strong>
+                          These values form rename chains that ESLint's fix loop would follow
+                          incorrectly: <code>*-hair</code> → <code>*-1</code> → <code>*-4</code> →
+                          <code>*-24</code>. Since <code>*-4</code> is the correct final value for
+                          <code>*-1</code>/<code>*-micro</code> but also a deprecated input for
+                          <code>*-large</code>, all steps in this chain must be done manually.
+                          Search for these classes and rename them by hand.
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="utilities-responsive_spacing"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.utilities.responsive_spacing}"
+                      />
+                      <label class="form-check-label" for="utilities-responsive_spacing">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Responsive margin, padding and gap utility classes renamed
+                        <ul>
+                          <li><code>*-tiny-r</code> is now <code>*-12 *-md-16</code></li>
+                          <li><code>*-small-r</code> is now <code>*-12 *-sm-16</code></li>
+                          <li><code>*-regular-r</code> is now <code>*-16 *-md-24</code></li>
+                          <li>
+                            <strong><code>*-large-r</code></strong> is now
+                            <strong><code>*-16 *-md-24 *-lg-32</code></strong>
+                          </li>
+                          <li>
+                            <strong><code>*-big-r</code></strong> is now
+                            <strong><code>*-24 *-md-32 *-lg-40</code></strong>
+                          </li>
+                          <li><code>*-bigger-big-r</code> is now <code>*-24 *-md-48</code></li>
+                          <li>
+                            <strong><code>*-huge-r</code></strong> is now
+                            <strong><code>*-32 *-md-40 *-lg-56</code></strong>
+                          </li>
+                          <li><code>*-giant-r</code> is now <code>*-56 *-md-80</code></li>
+                        </ul>
+                        <span class="info"
+                          >⚠️ Bold entries (<code>large</code>, <code>big</code>, <code>huge</code>)
+                          are not 1:1 migrations, you should carefully review the autofix output to
+                          ensure spacing behaves as intended at each breakpoint.</span
+                        >
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="utilities-background"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.utilities.background}"
+                      />
+                      <label class="form-check-label" for="utilities-background">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Background color classes (<code>.bg-*</code>) removed
+                        <span class="info"
+                          >Colors are now handled by
+                          <a href="/?path=/docs/43481535-5b39-40b5-a273-478b07dc3b31--docs"
+                            >palettes</a
+                          >.</span
+                        >
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="utilities-renamed_various_utilities"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.utilities.renamed_various_utilities}"
+                      />
+                      <label class="form-check-label" for="utilities-renamed_various_utilities">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Utility classes renamed
+                        <ul>
+                          <li>
+                            <code>.h-visuallyhidden</code> is now <code>.visually-hidden</code>
+                          </li>
+                          <li><code>.h-clearfix</code> is now <code>.clearfix</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="utilities-removed_various_utilities"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.utilities.removed_various_utilities}"
+                      />
+                      <label class="form-check-label" for="utilities-removed_various_utilities"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Utility classes removed
+                        <ul>
+                          <li>
+                            <code>.spacer</code>
+                          </li>
+                          <li>
+                            <code>.h-visuallyhidden-up-md</code>,
+                            <code>.h-visuallyhidden-down-rg</code>,
+                            <code>.h-visuallyhidden-down-lg</code>
+                          </li>
+                        </ul>
+                        <span class="info"
+                          >Use
+                          <a href="/?path=/docs/facaacfd-18f1-49b4-80f1-a96680730fa0--docs#gap"
+                            >gaps</a
+                          >
+                          to add spacing between elements and the
+                          <code>.visually-hidden</code> class to hide content.</span
+                        >
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="utilities-border_radius"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.utilities.border_radius}"
+                      />
+                      <label class="form-check-label" for="utilities-border_radius">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Border radius classes renamed
+                        <ul>
+                          <li><code>.rounded</code> is now <code>.rounded-4</code></li>
+                          <li>
+                            <code>.rounded-{top/bottom/start/end}</code> are now
+                            <code>.rounded-{top/bottom/start/end}-4</code>
+                          </li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="utilities-position_helper"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.utilities.position_helper}"
+                      />
+                      <label class="form-check-label" for="utilities-position_helper">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Position helper classes replaced with a combination of other utilities
+                        <ul>
+                          <li>
+                            <code>.fixed-top</code> is now
+                            <code>.position-fixed .top-0 .start-0 .end-0 .z-fixed</code>
+                          </li>
+                          <li>
+                            <code>.fixed-bottom</code> is now
+                            <code>position-fixed bottom-0 .start-0 .end-0 .z-fixed</code>
+                          </li>
+                          <li>
+                            <code>.sticky-top</code> is now
+                            <code>.position-sticky .top-0 .z-header</code>
+                          </li>
+                          <li>
+                            <code>.sticky-bottom</code> is now
+                            <code>.position-sticky .bottom-0 .z-header</code>
+                          </li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="utilities-text_color"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.utilities.text_color}"
+                      />
+                      <label class="form-check-label" for="utilities-text_color"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Text color classes (<code>.text-*</code>) removed
+                        <ul>
+                          <li><code>.text-primary</code></li>
+                          <li><code>.text-secondary</code></li>
+                          <li><code>.text-light</code></li>
+                          <li><code>.text-dark</code></li>
+                          <li><code>.text-success</code></li>
+                          <li><code>.text-warning</code></li>
+                          <li><code>.text-error</code></li>
+                          <li><code>.text-info</code></li>
+                        </ul>
+                        <span class="info"
+                          >Colors are now handled by
+                          <a href="/?path=/docs/43481535-5b39-40b5-a273-478b07dc3b31--docs"
+                            >palettes</a
+                          >.</span
+                        >
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+
+                <h5>✒️ Typography</h5>
+                <ul class="list-unstyled">
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="typography-font_sizes_variables"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.typography.font_sizes_variables}"
+                      />
+                      <label class="form-check-label" for="typography-font_sizes_variables">
+                        Font size variables removed
+                        <ul>
+                          <li><code>$font-size-12</code></li>
+                          <li><code>$font-size-14</code></li>
+                          <li><code>$font-size-16</code></li>
+                          <li><code>$font-size-18</code></li>
+                          <li><code>$font-size-20</code></li>
+                          <li><code>$font-size-24</code></li>
+                          <li><code>$font-size-28</code></li>
+                          <li><code>$font-size-32</code></li>
+                          <li><code>$font-size-40</code></li>
+                          <li><code>$font-size-48</code></li>
+                          <li><code>$font-size-56</code></li>
+                        </ul>
+                        <span class="info"
+                          >Those SCSS variables can either be replaced by a static value, or you can
+                          add a
+                          <a
+                            href="/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs#font-sizes"
+                            >font-size class</a
+                          >
+                          to the element it was affecting.</span
+                        >
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="typography-font_sizes_classes"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.typography.font_sizes_classes}"
+                      />
+                      <label class="form-check-label" for="typography-font_sizes_classes">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Font size classes removed
+                        <ul>
+                          <li><code>.font-size-12</code> is now <code>.fs-11</code></li>
+                          <li><code>.font-size-14</code> is now <code>.fs-9</code></li>
+                          <li><code>.font-size-16</code> is now <code>.fs-8</code></li>
+                          <li><code>.font-size-18</code> is now <code>.fs-6</code></li>
+                          <li><code>.font-size-20</code> is now <code>.fs-6</code></li>
+                          <li><code>.font-size-24</code> is now <code>.fs-5</code></li>
+                          <li><code>.font-size-28</code> is now <code>.fs-4</code></li>
+                          <li><code>.font-size-32</code> is now <code>.fs-3</code></li>
+                          <li><code>.font-size-40</code> is now <code>.fs-2</code></li>
+                          <li><code>.font-size-48</code> is now <code>.fs-1</code></li>
+                          <li><code>.font-size-56</code> is now <code>.fs-1</code></li>
+                        </ul>
+                        <span class="info">
+                          ⚠️ For <code>post-icon</code> sizing, use the
+                          <a href="/?path=/docs/e728de1f-0d71-4317-8bb8-cbef0bf8d5db--docs"
+                            >sizing utility classes</a
+                          >
+                          instead of font size classes. If you're using the automigration rules,
+                          this gets handled correctly automatically.
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="typography-font_curves_classes"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.typography.font_curves_classes}"
+                      />
+                      <label class="form-check-label" for="typography-font_curves_classes">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Font curve classes removed
+                        <ul>
+                          <li><code>.font-curve-tiny</code> is now <code>.fs-9</code></li>
+                          <li><code>.font-curve-small</code> is now <code>.fs-7</code></li>
+                          <li><code>.font-curve-regular</code> is now <code>.fs-6</code></li>
+                          <li><code>.font-curve-bigger-regular</code> is now <code>.fs-5</code></li>
+                          <li><code>.font-curve-medium</code> is now <code>.fs-4</code></li>
+                          <li><code>.font-curve-large</code> is now <code>.fs-3</code></li>
+                          <li><code>.font-curve-big</code> is now <code>.fs-1</code></li>
+                          <li><code>.fs-tiny</code> is now <code>.fs-10</code></li>
+                          <li><code>.fs-small</code> is now <code>.fs-9</code></li>
+                          <li><code>.fs-regular</code> is now <code>.fs-8</code></li>
+                          <li><code>.fs-bigger-regular</code> is now <code>.fs-8</code></li>
+                          <li><code>.fs-medium</code> is now <code>.fs-6</code></li>
+                          <li><code>.fs-large</code> is now <code>.fs-6</code></li>
+                          <li><code>.fs-small-big</code> is now <code>.fs-5</code></li>
+                          <li><code>.fs-big</code> is now <code>.fs-4</code></li>
+                          <li><code>.fs-bigger-big</code> is now <code>.fs-3</code></li>
+                          <li><code>.fs-small-huge</code> is now <code>.fs-2</code></li>
+                          <li><code>.fs-huge</code> is now <code>.fs-1</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="typography-font_curves_variables"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.typography.font_curves_variables}"
+                      />
+                      <label class="form-check-label" for="typography-font_curves_variables">
+                        Font curve variables removed
+                        <ul>
+                          <li><code>$font-size-tiny</code></li>
+                          <li><code>$font-size-small</code></li>
+                          <li><code>$font-size-regular</code></li>
+                          <li>
+                            <code>$font-size-bigger-regular</code>
+                          </li>
+                          <li><code>$font-size-medium</code></li>
+                          <li><code>$font-size-large</code></li>
+                          <li><code>$font-size-small-big</code></li>
+                          <li><code>$font-size-big</code></li>
+                          <li>
+                            <code>$font-size-bigger-big</code>
+                          </li>
+                          <li>
+                            <code>$font-size-small-huge</code>
+                          </li>
+                          <li><code>$font-size-huge</code></li>
+                        </ul>
+                        <span class="info"
+                          >Those SCSS variables can either be replaced by a static value, or you can
+                          add a
+                          <a
+                            href="/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs#font-sizes"
+                            >font-size class</a
+                          >
+                          to the element it was affecting.</span
+                        >
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="typography-line_height_variables"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.typography.line_height_variables}"
+                      />
+                      <label class="form-check-label" for="typography-line_height_variables"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Line height variables and classes removed
+                        <ul>
+                          <li><code>$line-heights</code></li>
+                          <li><code>$line-height-tiny</code></li>
+                          <li><code>$line-height-small</code></li>
+                          <li><code>$line-height-regular</code></li>
+                          <li><code>$line-height-bigger-regular</code></li>
+                          <li><code>$line-height-medium</code></li>
+                          <li><code>$line-height-large</code></li>
+                          <li><code>$line-height-small-big</code></li>
+                          <li><code>$line-height-big</code></li>
+                          <li><code>$line-height-bigger-big</code></li>
+                          <li><code>$line-height-small-huge</code></li>
+                          <li><code>$line-height-huge</code></li>
+                          <li><code>.lh-base</code></li>
+                          <li><code>.lh-hair</code></li>
+                          <li><code>.lh-line</code></li>
+                          <li><code>.lh-micro</code></li>
+                          <li><code>.lh-mini</code></li>
+                          <li><code>.lh-small-regular</code></li>
+                          <li><code>.lh-regular</code></li>
+                          <li><code>.lh-small-large</code></li>
+                          <li><code>.lh-large</code></li>
+                          <li><code>.lh-big</code></li>
+                          <li><code>.lh-bigger-big</code></li>
+                          <li><code>.lh-small-huge</code></li>
+                          <li><code>.lh-huge</code></li>
+                          <li><code>.lh-small-giant</code></li>
+                          <li><code>.lh-giant</code></li>
+                          <li><code>.lh-bigger-giant</code></li>
+                        </ul>
+                        <span class="info">
+                          Line height utilities classes have been reduced to the following classes:
+                          <code>.lh-1</code>, <code>.lh-sm</code> and <code>.lh-lg</code> which are
+                          documented in the
+                          <a href="/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs"
+                            >text utilities</a
+                          >.
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="typography-weight_light"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.typography.weight_light}"
+                      />
+                      <label class="form-check-label" for="typography-weight_light"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Light font weight (300) removed as the new Swiss Post Sans does not provide
+                        it
+                        <ul>
+                          <li><code>.fw-light</code></li>
+                          <li><code>.light</code></li>
+                        </ul>
+                        <span class="info"
+                          >Those classes can safely be removed. If needed, they can be replaced with
+                          <code>.fw-regular</code> if a contrast needs to be set with a bold text
+                          parent.</span
+                        >
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="typography-font_weight"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.typography.font_weight}"
+                      />
+                      <label class="form-check-label" for="typography-font_weight">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Font weight utilities renamed
+                        <ul>
+                          <li><code>.bold</code> is now <code>.fw-bold</code></li>
+                          <li><code>.regular</code> is now <code>.fw-regular</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="typography-monospace"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.typography.monospace}"
+                      />
+                      <label class="form-check-label" for="typography-monospace"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Monospace font removed
+                        <ul>
+                          <li><code>.font-monospace</code></li>
+                          <li><code>$font-family-monospace</code></li>
+                        </ul>
+                        <span class="info"
+                          >Though we recommend using the official <b>Swiss Post Sans</b> font, if
+                          monospace is needed, you can define your own monospace font in your
+                          project.</span
+                        >
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+
+                <h5>🎨 Other styles</h5>
+                <ul class="list-unstyled">
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-card"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.card}"
+                      />
+                      <label class="form-check-label" for="others-card"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Some card component elements have been removed
+                        <ul>
+                          <li><code>.card-header</code></li>
+                          <li><code>.card-footer</code></li>
+                          <li><code>.card-img</code></li>
+                          <li><code>.card-img-top</code></li>
+                          <li><code>.card-img-bottom</code></li>
+                          <li><code>.card-button</code></li>
+                          <li><code>.card-buttons</code></li>
+                        </ul>
+                        <span class="info"
+                          >The card component has been simplified, images don't need a specific
+                          class anymore and all the card content is now within the
+                          <code>.card-body</code>.<br />
+                          Read the
+                          <a href="/?path=/docs/605c788d-3f75-4e6c-8498-be3d546843c2--docs"
+                            >card documentation</a
+                          >
+                          for more informations.</span
+                        >
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-card_group"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.card_group}"
+                      />
+                      <label class="form-check-label" for="others-card_group">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        <code>.card-group</code> removed
+                        <span class="info"
+                          >Card elements should be set inside a
+                          <a href="/?path=/docs/7240f2ef-216a-490e-9bd8-c0cef19f7b31--docs"
+                            >grid container</a
+                          >.</span
+                        >
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-button_regular"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.button_regular}"
+                      />
+                      <label class="form-check-label" for="others-button_regular">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        <code>.btn-rg</code> class removed.
+                        <span class="info"
+                          >Buttons using this class will now fall back to the default size</span
+                        >
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-button_animated"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.button_animated}"
+                      />
+                      <label class="form-check-label" for="others-button_animated"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        <code>.btn-animated</code> class removed
+                        <span class="info"
+                          >The class can safely be removed, there will simply be no icon animation
+                          on hover.</span
+                        >
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-icon_pi"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.icon_pi}"
+                      />
+                      <label class="form-check-label" for="others-icon_pi">
+                        <code>.pi-*</code> classes (icons) removed
+                        <span class="info"
+                          >The <code>post-icon</code> component should be used instead, which is
+                          documented in the
+                          <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs"
+                            >icon component</a
+                          >.</span
+                        >
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-breadcrumb_item"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.breadcrumb_item}"
+                      />
+                      <label class="form-check-label" for="others-breadcrumb_item">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        <code>.breadcrumb-item</code> class removed
+                        <span class="info">
+                          The <code>post-breadcrumb-item</code> component should be used instead,
+                          which is documented in the
+                          <a href="/?path=/docs/b7db7391-f893-4b1e-a125-b30c6f0b028b--docs"
+                            >breadcrumbs component</a
+                          >.
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-alert_fixed_bottom"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.alert_fixed_bottom}"
+                      />
+                      <label class="form-check-label" for="others-alert_fixed_bottom">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        <code>.alert-fixed-bottom</code> class removed
+                        <span class="info"
+                          >Use
+                          <a href="/?path=/docs/803a58e8-c734-4ad7-80a8-62da1bb29d4b--docs"
+                            >position utilities</a
+                          >
+                          to fix an alert to the bottom of a page.</span
+                        >
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-topic_teaser"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.topic_teaser}"
+                      />
+                      <label class="form-check-label" for="others-topic_teaser">
+                        <code>topic-teaser</code> component (and its related classes) removed
+                        <span class="info"
+                          >As an alternative, you can use the
+                          <a href="/?path=/docs/5a47ba70-7831-4e59-b83e-81b6e6c32372--docs"
+                            >list interactive</a
+                          >
+                          component to display a list of links.</span
+                        >
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-chip"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.chip}"
+                      />
+                      <label class="form-check-label" for="others-chip">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        <code>.chip-filter</code> renamed to <code>.chip-selectable</code>, and
+                        small variant <code>.chip-sm</code> removed
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-accent_colors"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.accent_colors}"
+                      />
+                      <label class="form-check-label" for="others-accent_colors"
+                        ><span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Accent colors removed
+                        <ul>
+                          <li>
+                            <code>.btn-nightblue</code>, <code>.btn-nightblue-bright</code>,
+                            <code>.btn-petrol</code>, <code>.btn-petrol-bright</code>,
+                            <code>.btn-coral</code>, <code>.btn-coral-bright</code>,
+                            <code>.btn-olive</code>, <code>.btn-olive-bright</code>,
+                            <code>.btn-purple</code>, <code>.btn-purple-bright</code>,
+                            <code>.btn-aubergine</code>, <code>.btn-aubergine-bright</code>
+                          </li>
+                          <li>
+                            <code>$nightblue</code>, <code>$nightblue-bright</code>,
+                            <code>$petrol</code>, <code>$petrol-bright</code>, <code>$coral</code>,
+                            <code>$coral-bright</code>, <code>$olive</code>,
+                            <code>$olive-bright</code>, <code>$purple</code>,
+                            <code>$purple-bright</code>, <code>$aubergine</code>,
+                            <code>$aubergine-bright</code>
+                          </li>
+                        </ul>
+                        <span class="info"
+                          >Colors are now handled by
+                          <a href="/?path=/docs/43481535-5b39-40b5-a273-478b07dc3b31--docs"
+                            >palettes</a
+                          >.</span
+                        >
+                      </label>
+                    </div>
+                  </li>
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-standard_html_alert"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.standard_html_alert}"
+                      />
+                      <label class="form-check-label" for="others-standard_html_alert">
+                        Standard HTML Alert component (<code>.alert</code>,
+                        <code>.alert-*</code>) removed
+                        <span class="info">
+                          Replaced by the <code>post-banner</code> component.
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-spinner"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.spinner}"
+                      />
+                      <label class="form-check-label" for="others-spinner">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Loader renamed to spinner
+                        <ul>
+                          <li><code>.loading-modal</code> is now <code>.spinner-modal</code></li>
+                          <li><code>.loader</code> is now <code>.spinner</code></li>
+                          <li><code>.loader-*</code> are now <code>.spinner-*</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-spinner_sizes"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.spinner_sizes}"
+                      />
+                      <label class="form-check-label" for="others-spinner_sizes">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        Loader size classes renamed
+                        <ul>
+                          <li><code>.loader-xs</code> is now <code>.spinner-16</code></li>
+                          <li><code>.loader-sm</code> is now <code>.spinner-40</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-stepper"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.stepper}"
+                      />
+                      <label class="form-check-label" for="others-stepper">
+                        Stepper HTML component removed
+                        <span class="info"
+                          >You can now use the <code>post-stepper</code> web component.</span
+                        >
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-dialog_icon"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.dialog_icon}"
+                      />
+                      <label class="form-check-label" for="others-dialog_icon">
+                        <code>dialog</code> icons can no longer be set manually. They are now
+                        automatically determined by the <code>data-type</code> attribute defined on
+                        the component. The data-type attribute supports only the four standard
+                        signal types: <code>info</code>, <code>success</code>, <code>warning</code>,
+                        and <code>error</code>.
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-subnavigation"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.subnavigation}"
+                      />
+                      <label class="form-check-label" for="others-subnavigation">
+                        Subnavigation component removed
+                        <span class="info">
+                          Replaced by the <code>post-tabs</code> component.
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-product_card"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.product_card}"
+                      />
+                      <label class="form-check-label" for="others-product_card">
+                        Card product component removed
+                        <span class="info">
+                          The <code>.product-card</code> and
+                          <code>.product-navigation</code> classes are no longer effective.
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-tag"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.tag}"
+                      />
+                      <label class="form-check-label" for="others-tag">
+                        <span data-info="automigration" class="tag tag-sm tag-info"
+                          >🪄 migration rule</span
+                        >
+                        <code>.tag-danger</code> renamed to <code>.tag-error</code>, and
+                        <code>.tag-yellow</code> and <code>.tag-white</code> variants removed
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class="mb-16">
+                    <div class="form-check">
+                      <input
+                        id="others-button_group"
+                        class="form-check-input"
+                        type="checkbox"
+                        ?checked="${this.state.others.button_group}"
+                      />
+                      <label class="form-check-label" for="others-button_group">
+                        Button group sizes removed
+                        <span class="info">
+                          The button group now only has one default size. You can safely remove the
+                          sizing class on the button group children elements.
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </section>
+            </div>
+          </li>
+          <li>
+            <h3>Icons Migration 🖼️</h3>
+            <p>Beside the <strong><a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=post">Post Icon Set</a></strong>, there is now a brand new
+              <strong>UI Icon Set</strong>, available as <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uilight">line</a> or <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uisolid">solid</a> icons.</p>
+            <p>Using the new icons is as easy as before, simply replace the icon number with the icon name, and you're done.</p>
+            <p>Below, we show you which of the previous icons you can replace with a corresponding new icon.</p>
+
+            <post-banner variant="info">
+              <p>Not all previous icons are (or will be) available in the new Icon Set. Instead, we produce icons on request.</p>
+              <p>For this reason, the previous Icon Set stays available and you can continue using icons from it if no equivalent exists in the new Icon Set. However, we strongly recommend switching to the new <strong>UI Icon Set</strong>
+              whenever possible!</p>
+            </post-banner>
+
+            <h4>Icon Mapping</h4>
+
+            <icons-migration-map></icons-migration-map>
+          </li>
+          <li>
+            <h3>Clean up 🧹</h3>
+            <p>
+              You're almost done! After completing the migration steps above, you can now remove all
+              remaining references to
+              <strong>Bootstrap</strong> and <strong>Ng-Bootstrap</strong> from your project. The
+              steps below help ensure that no deprecated imports or dependencies remain.
+            </p>
+            <ol>
+              <li>
+                Search your CSS or SCSS files for any occurrences of
+                <code>@import 'bootstrap/...';</code> and remove them.
+              </li>
+              <li>
+                Check your TypeScript files for Ng-Bootstrap imports such as
+                <code>import { ... } from '@ng-bootstrap/ng-bootstrap';</code> and delete them.
+                <span class="info">
+                  💡 <em>Note:</em> Your project might also use Ng-Bootstrap components that were
+                  not previously styled by the Design System. In that case, verify whether an
+                  equivalent component exists in the Design System. If no equivalent is available
+                  yet, you may need to keep <strong>Ng-Bootstrap</strong> temporarily until a
+                  replacement is provided.
+                </span>
+              </li>
+              <li>
+                Once you've verified that your project builds and displays correctly, uninstall the
+                packages by running:
+                <code-block
+                  code=${
+                    this.angular
+                      ? 'npm uninstall bootstrap @ng-bootstrap/ng-bootstrap'
+                      : 'npm uninstall bootstrap'
+                  }
+                ></code-block>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </section>
+    `;
+  }
+
+  private _onAutoMigrationChange(
+    event: Event & {
+      target: HTMLInputElement;
+    },
+  ) {
+    this.state.general.hide_automigration = event.target.checked;
+    this._toggleAutoMigrationVisibility();
+
+    _updatePersistedState(MIGRATION_CHECKS_KEY_V9, this.state);
+  }
+
+  // Toggle visibility of all lines that have the auto migration tag.
+  // Items with data-info="partial-automigration" are never hidden — they contain manual steps.
+  private _toggleAutoMigrationVisibility() {
+    document
+      .querySelectorAll('[data-info="automigration"]')
+      ?.forEach(item =>
+        this.state.general.hide_automigration
+          ? item.closest('li')?.classList.add('d-none')
+          : item.closest('li')?.classList.remove('d-none'),
+      );
+  }
+
+  private _onChange(
+    event: Event & {
+      target: HTMLInputElement;
+    },
+  ) {
+    _updateOnChange(event, MIGRATION_CHECKS_KEY_V9, this.state);
+    this.requestUpdate();
+  }
+}

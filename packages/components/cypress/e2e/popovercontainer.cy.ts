@@ -1,6 +1,8 @@
+import { getPopoverOpenSelector } from './helper/popovercontainer';
+
 describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
   describe('default', () => {
-    const selector = isPopoverSupported() ? ':popover-open' : '.\\:popover-open';
+    const selector = getPopoverOpenSelector();
 
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-popover.test.html');
@@ -55,11 +57,3 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
     });
   });
 });
-
-export function isPopoverSupported() {
-  return (
-    typeof HTMLElement !== 'undefined' &&
-    typeof HTMLElement.prototype === 'object' &&
-    'popover' in HTMLElement.prototype
-  );
-}

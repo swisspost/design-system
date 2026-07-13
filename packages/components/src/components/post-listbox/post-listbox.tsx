@@ -1,6 +1,6 @@
-import { Component, Element, h, Host, Listen, Method, Event, EventEmitter } from '@stencil/core';
-import { version } from '@root/package.json';
 import { EventFrom } from '@/utils';
+import { version } from '@root/package.json';
+import { Component, Element, Event, EventEmitter, h, Host, Listen, Method } from '@stencil/core';
 
 @Component({
   tag: 'post-listbox',
@@ -10,7 +10,7 @@ import { EventFrom } from '@/utils';
 export class PostListbox {
   private highlightedIndex: number = -1;
   private visibleOptions: HTMLPostListboxOptionElement[] = [];
-  private readonly diacriticPattern = /[\u0300-\u036f]/u;
+  private readonly diacriticPattern = /[\u0300-\u036F]/u;
   private popoverContainer?: HTMLPostPopovercontainerElement;
   @Element() host: HTMLPostListboxElement;
 
@@ -59,14 +59,12 @@ export class PostListbox {
     const input = this.inputElement;
     if (input) {
       this.popoverContainer?.show(input);
-      this.host.role = 'listbox';
     }
   }
 
   /** Closes the listbox */
   @Method()
   async hide() {
-    this.host.removeAttribute('role');
     this.popoverContainer?.hide();
   }
 
@@ -158,7 +156,7 @@ export class PostListbox {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={version} role="listbox">
         <post-popovercontainer placement="bottom-start" ref={el => (this.popoverContainer = el)}>
           {this.visibleOptions.length === 0 ? <slot name="blank-slate" /> : <slot />}
         </post-popovercontainer>

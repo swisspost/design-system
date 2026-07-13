@@ -1,0 +1,363 @@
+@use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/utilities';
+
+:root {
+  --post-side-navigation-width: 296px;
+}
+
+@include media.min(desktop) {
+  .main-container {
+    margin-inline-start: var(--post-side-navigation-width);
+  }
+}
+
+post-side-navigation {
+  --post-side-navigation-item-enabled-fg: #050400;
+  --post-side-navigation-item-enabled-stroke-inactive: #b4b3af;
+  --post-side-navigation-item-enabled-stroke-active: #050400;
+  --post-side-navigation-item-selected-fg: #ffffff;
+  --post-side-navigation-item-selected-bg: #050400;
+  --post-side-navigation-item-selected-stroke: #ffffff;
+  --post-side-navigation-item-hovered-fg: #ffffff;
+  --post-side-navigation-item-hovered-bg: #504f4b;
+
+  --post-side-navigation-heading-fg: #696864;
+
+  --post-side-navigation-padding-block-end: 16px;
+  --post-side-navigation-height: 100vh;
+
+  // Large
+  --post-side-navigation-padding-block-start: 28px;
+
+  --post-side-navigation-heading-padding-block-start: 15px;
+  --post-side-navigation-heading-padding-block-end: 4px;
+  --post-side-navigation-heading-padding-inline: 16px;
+  --post-side-navigation-heading-font-size: 14px;
+
+  --post-side-navigation-item-padding-inline: 16px;
+  --post-side-navigation-item-height: 40px;
+  --post-side-navigation-item-gap: 12px;
+  --post-side-navigation-item-interval: 16px;
+  --post-side-navigation-icon-size: 16px;
+  --post-side-navigation-item-font-size: 14px;
+  --post-side-navigation-item-line-height: 1.5;
+  --post-side-navigation-item-divider-padding-block: 9px;
+
+  @include media.min(tablet) {
+    --post-side-navigation-padding-block-start: 34px;
+    --post-side-navigation-item-font-size: 16px;
+    --post-side-navigation-heading-padding-block-start: 12px;
+    --post-side-navigation-heading-font-size: 16px;
+    --post-side-navigation-item-divider-padding-block: 7.5px;
+    --post-side-navigation-item-gap: 16px;
+    --post-side-navigation-icon-size: 20px;
+  }
+
+  @include media.min(desktop) {
+    position: fixed;
+    top: var(--post-header-height);
+    width: var(--post-side-navigation-width);
+    --post-side-navigation-padding-block-start: 16px;
+    --post-side-navigation-item-font-size: 20px;
+    --post-side-navigation-height: calc(100vh - var(--post-header-height));
+    --post-side-navigation-heading-padding-block-start: 20px;
+    --post-side-navigation-item-height: 48px;
+  }
+
+  // Small
+  &[size='small'] {
+    --post-side-navigation-heading-padding-inline: 12px;
+    --post-side-navigation-item-padding-inline: 12px;
+    --post-side-navigation-item-height: 40px;
+    --post-side-navigation-item-gap: 8px;
+    --post-side-navigation-item-interval: 12px;
+    --post-side-navigation-icon-size: 16px;
+
+    @include media.min(tablet) {
+      --post-side-navigation-heading-padding-block-start: 15px;
+      --post-side-navigation-item-font-size: 14px;
+      --post-side-navigation-heading-font-size: 14px;
+    }
+
+    @include media.min(desktop) {
+      --post-side-navigation-heading-padding-block-start: 15px;
+      --post-side-navigation-item-font-size: 16px;
+      --post-side-navigation-heading-font-size: 14px;
+    }
+  }
+
+  nav {
+    width: 100%;
+    padding-block: var(--post-side-navigation-padding-block-start)
+      var(--post-side-navigation-padding-block-end);
+    height: var(--post-side-navigation-height);
+    overflow-y: auto;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding-inline-start: 0;
+    }
+  }
+
+  .post-side-navigation-heading {
+    margin: 0;
+    padding: var(--post-side-navigation-heading-padding-block-start)
+      var(--post-side-navigation-heading-padding-inline)
+      var(--post-side-navigation-heading-padding-block-end);
+    font-size: var(--post-side-navigation-heading-font-size);
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--post-side-navigation-heading-fg);
+  }
+
+  > ul > li > .post-side-navigation-item {
+    font-weight: 700;
+  }
+
+  // Active page indicator
+  .post-side-navigation-item[aria-current='page'],
+  .post-side-navigation-item a[aria-current='page'] {
+    background-color: var(--post-side-navigation-item-selected-bg);
+    color: var(--post-side-navigation-item-selected-fg);
+    border-color: var(--post-side-navigation-item-selected-stroke);
+  }
+
+  // Nesting depth tracking via custom property inheritance
+  ul {
+    --_indent-level: 0;
+  }
+
+  ul ul {
+    --_indent-level: 1;
+  }
+
+  ul ul ul {
+    --_indent-level: 2;
+  }
+
+  ul ul ul ul {
+    --_indent-level: 3;
+  }
+
+  // Nested item indentation with icons on first level
+  ul ul .post-side-navigation-item:not(:has(a):has(button)),
+  ul ul .post-side-navigation-item:has(a):has(button) a {
+    padding-inline-start: calc(
+      var(--post-side-navigation-item-padding-inline) + var(--_indent-level) *
+        var(--post-side-navigation-item-interval)
+    );
+  }
+
+  // Nested item without icons on first level
+  ul > li:has(post-icon:not([name='chevrondown'])) {
+    ul .post-side-navigation-item:not(:has(a):has(button)),
+    ul .post-side-navigation-item:has(a):has(button) a {
+      padding-inline-start: calc(
+        var(--post-side-navigation-item-padding-inline) + var(--post-side-navigation-icon-size) +
+          var(--post-side-navigation-item-gap) + var(--_indent-level) *
+          var(--post-side-navigation-item-interval)
+      );
+    }
+  }
+
+  // Icon alignment spacer for mixed icon/non-icon items
+  $has-icon: '> li > :where(a, span, post-collapsible-trigger > button, div > a) > post-icon:first-child';
+
+  :where(nav) > ul:has(#{$has-icon}) > li {
+    > :where(a, span):not(:has(> post-icon:first-child))::before,
+    > div:not(:has(> a > post-icon:first-child))::before {
+      content: '';
+      flex: none;
+      inline-size: var(--post-side-navigation-icon-size);
+
+      @include media.max(desktop) {
+        inline-size: 1rem;
+      }
+    }
+  }
+
+  :where(nav) > ul:has(#{$has-icon}) > li > post-collapsible-trigger {
+    > button:not(:has(> post-icon:first-child))::before {
+      content: '';
+      flex: none;
+      inline-size: var(--post-side-navigation-icon-size);
+
+      @include media.max(desktop) {
+        inline-size: 1rem;
+      }
+    }
+  }
+}
+
+// Navigation item row (link, button, span, or collapsible wrapper)
+.post-side-navigation-item {
+  display: flex;
+  align-items: center;
+  gap: var(--post-side-navigation-item-gap);
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding-inline: var(--post-side-navigation-item-padding-inline);
+  min-height: var(--post-side-navigation-item-height);
+  font-size: var(--post-side-navigation-item-font-size);
+  line-height: var(--post-side-navigation-item-line-height);
+  box-sizing: border-box;
+  border: 0;
+  border-block-end: 1px solid var(--post-side-navigation-item-enabled-stroke-active);
+  border-radius: 0;
+  background-color: transparent;
+  color: var(--post-side-navigation-item-enabled-fg);
+  text-align: start;
+  text-decoration: none;
+  appearance: none;
+
+  // Split link and button
+  &:has(a):has(button) {
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    gap: 0;
+    align-items: stretch;
+
+    a {
+      flex: 1 1 auto;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      min-height: var(--post-side-navigation-item-height);
+      gap: var(--post-side-navigation-item-gap);
+      border-radius: 0;
+      padding-inline-end: var(--post-side-navigation-item-padding-inline);
+    }
+
+    button {
+      padding-inline: var(--post-side-navigation-item-padding-inline);
+      display: flex;
+      align-items: center;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      position: relative;
+      margin-left: 1px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: var(--post-side-navigation-item-divider-padding-block);
+        height: calc(100% - var(--post-side-navigation-item-divider-padding-block) * 2);
+        width: 1px;
+        background: var(--post-side-navigation-item-enabled-stroke-inactive);
+        left: -1px;
+      }
+    }
+  }
+
+  &:where(a, button),
+  &:has(a):has(button) a,
+  &:has(a):has(button) button {
+    cursor: pointer;
+    position: relative;
+    color: var(--post-side-navigation-item-enabled-fg);
+    transition:
+      background-color 250ms,
+      color 250ms;
+
+    // Custom inner focus
+    &::after {
+      --_offset: 3px;
+
+      content: '';
+      position: absolute;
+      pointer-events: none;
+      border: 2px solid transparent;
+      border-radius: 4px;
+      width: calc(100% - var(--_offset) * 2);
+      height: calc(100% - var(--_offset) * 2);
+      top: var(--_offset);
+      left: var(--_offset);
+    }
+
+    &:hover {
+      background-color: var(--post-side-navigation-item-hovered-bg);
+      color: var(--post-side-navigation-item-hovered-fg);
+    }
+  }
+
+  &:where(a, button) {
+    @include utilities.focus-style-custom('::after') {
+      border-color: var(--post-side-navigation-item-enabled-stroke-active);
+    }
+
+    @include utilities.focus-style-custom("[aria-current='page']::after") {
+      border-color: var(--post-side-navigation-item-selected-stroke);
+    }
+
+    @include utilities.focus-style-custom() {
+      @include utilities.focus-style-none;
+    }
+  }
+
+  &:has(a):has(button) a {
+    @include utilities.focus-style-custom('::after') {
+      border-color: var(--post-side-navigation-item-enabled-stroke-active);
+    }
+
+    @include utilities.focus-style-custom("[aria-current='page']::after") {
+      border-color: var(--post-side-navigation-item-selected-stroke);
+    }
+
+    @include utilities.focus-style-custom() {
+      @include utilities.focus-style-none;
+    }
+  }
+
+  &:has(a):has(button) button {
+    @include utilities.focus-style-custom('::after') {
+      border-color: var(--post-side-navigation-item-enabled-stroke-active);
+    }
+
+    @include utilities.focus-style-custom("[aria-current='page']::after") {
+      border-color: var(--post-side-navigation-item-selected-stroke);
+    }
+
+    @include utilities.focus-style-custom() {
+      @include utilities.focus-style-none;
+    }
+  }
+
+  post-icon {
+    flex: none;
+    width: var(--post-side-navigation-icon-size);
+    height: var(--post-side-navigation-icon-size);
+    color: inherit;
+  }
+
+  post-icon[name='chevrondown'] {
+    transition: transform 0.2s ease;
+    margin-inline-start: auto;
+  }
+
+  &[aria-expanded='true'] post-icon[name='chevrondown'],
+  [aria-expanded='true'] post-icon[name='chevrondown'] {
+    transform: rotate(180deg);
+  }
+}
+
+nav > ul > li {
+  // First level specific
+  & > .post-side-navigation-item,
+  & > post-collapsible-trigger > .post-side-navigation-item {
+    font-weight: 700;
+  }
+
+  // Border color mechanism to always have the outer borders of a level 1 darker
+  & .post-side-navigation-item:has(+ ul),
+  & li:has(+ li) .post-side-navigation-item,
+  .post-side-navigation-item[aria-expanded='true'] {
+    border-color: var(--post-side-navigation-item-enabled-stroke-inactive);
+  }
+
+  &:first-child .post-side-navigation-item {
+    border-block-start: 1px solid var(--post-side-navigation-item-enabled-stroke-active);
+  }
+}

@@ -1,0 +1,75 @@
+@use '../functions/tokens';
+@use '../tokens/components';
+
+tokens.$default-map: components.$post-button-group;
+
+@mixin vertical-variant() {
+  display: inline-flex;
+  flex-direction: column;
+  border-radius: tokens.get('button-group-vertical-border-radius');
+  width: 100%;
+
+  label,
+  button,
+  a {
+    height: tokens.get('button-group-vertical-button-height');
+    padding-inline: tokens.get('button-group-horizontal-button-padding-inline');
+    gap: tokens.get('button-group-horizontal-button-gap-inline');
+
+    post-icon {
+      width: tokens.get('button-group-vertical-button-icon-size');
+      height: tokens.get('button-group-vertical-button-icon-size');
+    }
+
+    &:not(:first-of-type) {
+      border-top-width: 0;
+      border-left-width: tokens.get('button-group-button-border-width');
+    }
+
+    &:first-of-type {
+      border-radius: tokens.get('button-group-vertical-button-border-radius')
+        tokens.get('button-group-vertical-button-border-radius') 0 0;
+    }
+
+    &:last-of-type {
+      border-radius: 0 0 tokens.get('button-group-vertical-button-border-radius')
+        tokens.get('button-group-vertical-button-border-radius');
+    }
+  }
+}
+
+@mixin horizontal-variant() {
+  display: inline-grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  border-radius: tokens.get('button-group-horizontal-border-radius');
+  width: auto;
+
+  label,
+  button,
+  a {
+    height: tokens.get('button-group-horizontal-button-height');
+    padding-inline: tokens.get('button-group-horizontal-button-padding-inline');
+    gap: tokens.get('button-group-horizontal-button-gap-inline');
+
+    post-icon {
+      width: tokens.get('button-group-horizontal-button-icon-size');
+      height: tokens.get('button-group-horizontal-button-icon-size');
+    }
+
+    &:not(:first-of-type) {
+      border-left-width: 0;
+      border-top-width: tokens.get('button-group-button-border-width');
+    }
+
+    &:first-of-type {
+      border-radius: tokens.get('button-group-horizontal-button-border-radius') 0 0
+        tokens.get('button-group-horizontal-button-border-radius');
+    }
+
+    &:last-of-type {
+      border-radius: 0 tokens.get('button-group-horizontal-button-border-radius')
+        tokens.get('button-group-horizontal-button-border-radius') 0;
+    }
+  }
+}

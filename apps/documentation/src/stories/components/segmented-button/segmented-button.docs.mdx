@@ -1,0 +1,36 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import meta, * as SegmentedButtonStories from './segmented-button.stories';
+import StylesPackageImport from '@/shared/styles-package-import';
+import StoryTags from '@/shared/story-tags';
+
+<Meta of={SegmentedButtonStories} />
+
+<div className="docs-title">
+  # Segmented Button
+
+<link-design of={JSON.stringify(SegmentedButtonStories)}></link-design>
+
+</div>
+
+<StoryTags meta={meta} />
+
+The segmented button is a single-select component.
+It allows users to toggle between two or more content sections within the same area on the screen.
+
+The segmented button is an alternative to the [Content tabs](/?path=/docs/bb1291ca-4dbb-450c-a15f-596836d9f39e--docs).
+
+<post-banner>
+  If the labels are too long or the number of options is excessive for the available space, consider
+  using the content tabs component instead. Keep in mind that long labels may cause layout issues,
+  such as text overflowing or word breaks.
+</post-banner>
+
+<Canvas of={SegmentedButtonStories.TextExample} sourceState="shown" />
+<Controls of={SegmentedButtonStories.TextExample} />
+
+## Segmented icon button
+
+<Canvas of={SegmentedButtonStories.IconExample} sourceState="shown" />
+<Controls of={SegmentedButtonStories.IconExample} />
+
+<StylesPackageImport components={['segmented-button']} />

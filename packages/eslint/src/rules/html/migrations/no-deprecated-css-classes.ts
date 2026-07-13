@@ -97,6 +97,8 @@ const classNames: string[] = [
   '.btn-purple-bright',
   '.btn-aubergine',
   '.btn-aubergine-bright',
+  '.tag-yellow',
+  '.tag-white',
 ];
 
 export const classesMap = classNames.map(selector => ({

@@ -1,4 +1,9 @@
+import { slide } from '@/animations';
+import { fadeSlide, FadeSlideOptions } from '@/animations/fade-slide';
+import { Required, Type } from '@/utils';
+import { breakpoint, Device } from '@/utils/breakpoints';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
+import { version } from '@root/package.json';
 import {
   Component,
   Element,
@@ -9,13 +14,7 @@ import {
   Method,
   Prop,
   State,
-  Watch,
 } from '@stencil/core';
-import { version } from '@root/package.json';
-import { breakpoint, Device } from '@/utils/breakpoints';
-import { slide } from '@/animations';
-import { fadeSlide, FadeSlideOptions } from '@/animations/fade-slide';
-import { checkRequiredAndType } from '@/utils';
 
 @Component({
   tag: 'post-megadropdown',
@@ -46,22 +45,18 @@ export class PostMegadropdown {
   /**
    * An accessible label for the close button visible on desktop
    */
-  @Prop({ reflect: true }) textClose!: string;
-
-  @Watch('textClose')
-  validateTextClose() {
-    checkRequiredAndType(this, 'textClose', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textClose!: string;
 
   /**
    * A label for the back button visible on tablet and mobile
    */
-  @Prop({ reflect: true }) textBack!: string;
-
-  @Watch('textBack')
-  validateTextBack() {
-    checkRequiredAndType(this, 'textBack', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textBack!: string;
 
   @State() device: Device = breakpoint.get('device');
 
@@ -99,7 +94,7 @@ export class PostMegadropdown {
   }
 
   connectedCallback() {
-    window.addEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
+    globalThis.addEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
   }
 
   componentDidRender() {
@@ -107,15 +102,13 @@ export class PostMegadropdown {
   }
 
   componentDidLoad() {
-    this.validateTextClose();
-    this.validateTextBack();
     this.checkInitialAriaCurrent();
     this.setupObserver();
     this.handleAriaCurrentChange([]);
   }
 
   disconnectedCallback() {
-    window.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
+    globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
 
     if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
     this.removeListeners();
@@ -314,7 +307,7 @@ export class PostMegadropdown {
     ];
 
     this.firstFocusableEl = focusableElements[0];
-    this.lastFocusableEl = focusableElements[focusableElements.length - 1];
+    this.lastFocusableEl = focusableElements.at(-1);
   }
 
   // Loop through the focusable children
@@ -373,7 +366,7 @@ export class PostMegadropdown {
    * and sets the trigger as active accordingly.
    */
   private handleAriaCurrentChange(mutations: MutationRecord[]) {
-    if (!mutations.length) return;
+    if (mutations.length === 0) return;
     const hasCurrentPage = mutations.some(
       m => m.target instanceof HTMLElement && m.target.getAttribute('aria-current') === 'page',
     );

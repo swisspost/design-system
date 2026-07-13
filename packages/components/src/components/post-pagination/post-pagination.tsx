@@ -1,17 +1,16 @@
+import { debounce, nanoid, Required, Type } from '@/utils';
+import { version } from '@root/package.json';
 import {
   Component,
   Element,
-  Host,
-  h,
-  Prop,
-  State,
   Event,
   EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
   Watch,
 } from '@stencil/core';
-import { version } from '@root/package.json';
-import { nanoid } from 'nanoid';
-import { checkEmptyOrType, checkRequiredAndType, debounce } from '@/utils';
 
 const ELLIPSIS = '...';
 const MEASUREMENT_DEBOUNCE_MS = 50;
@@ -29,20 +28,6 @@ type PaginationItem = { type: 'page'; page: number } | { type: 'ellipsis' };
 
 type SectionType = 'none' | 'page' | 'ellipsis';
 
-/**
- * Valid prop names for validation
- */
-type ValidatableProp =
-  | 'page'
-  | 'pageSize'
-  | 'collectionSize'
-  | 'label'
-  | 'textNext'
-  | 'textPrevious'
-  | 'textPage'
-  | 'textFirst'
-  | 'textLast';
-
 @Component({
   tag: 'post-pagination',
   styleUrl: './post-pagination.scss',
@@ -52,7 +37,7 @@ export class PostPagination {
   @Element() host: HTMLPostPaginationElement;
 
   @State() private paginationId: string;
-  @State() private maxVisiblePages: number;
+  @State() private maxVisiblePages: number = 3;
   @State() private items: PaginationItem[] = [];
 
   /**
@@ -60,47 +45,73 @@ export class PostPagination {
    *
    * **If not specified, defaults to the first page.**
    */
-  @Prop({ mutable: true }) page?: number;
+  @Prop({ mutable: true })
+  @Type('number')
+  page?: number = 1;
 
   /**
    * The number of items per page.
    */
-  @Prop({ reflect: true }) pageSize!: number;
+  @Prop({ reflect: true })
+  @Required()
+  @Type('number')
+  pageSize!: number;
 
   /**
    * The total number of items in the collection.
    */
-  @Prop({ reflect: true }) collectionSize!: number;
+  @Prop({ reflect: true })
+  @Required()
+  @Type('number')
+  collectionSize!: number;
 
   /**
    * A descriptive label for the pagination navigation, used by assistive technologies.
    */
-  @Prop({ reflect: true }) readonly label!: string;
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  readonly label!: string;
 
   /**
    * Accessible label for the previous page button.
    */
-  @Prop({ reflect: true }) readonly textPrevious!: string;
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  readonly textPrevious!: string;
 
   /**
    * Accessible label for the next page button.
    */
-  @Prop({ reflect: true }) readonly textNext!: string;
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  readonly textNext!: string;
 
   /**
    * Prefix text for page number labels.
    */
-  @Prop({ reflect: true }) readonly textPage!: string;
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  readonly textPage!: string;
 
   /**
    * Prefix text for the first page label.
    */
-  @Prop({ reflect: true }) readonly textFirst!: string;
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  readonly textFirst!: string;
 
   /**
    * Prefix text for the last page label.
    */
-  @Prop({ reflect: true }) readonly textLast!: string;
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  readonly textLast!: string;
 
   /**
    * Event emitted when the page changes.
@@ -113,52 +124,7 @@ export class PostPagination {
   private loaded: boolean = false;
 
   private debouncedResize = debounce(this.handleResizeInternal.bind(this), RESIZE_DEBOUNCE_MS);
-  private measurementTimeoutId: number | null = null;
-
-  @Watch('page')
-  validatePage() {
-    this.validateProp('page', 'number', false);
-  }
-
-  @Watch('pageSize')
-  validatePageSize() {
-    this.validateProp('pageSize', 'number', true);
-  }
-
-  @Watch('collectionSize')
-  validateCollectionSize() {
-    this.validateProp('collectionSize', 'number', true);
-  }
-
-  @Watch('label')
-  validateLabel() {
-    this.validateProp('label', 'string', true);
-  }
-
-  @Watch('textPrevious')
-  validateTextPrevious() {
-    this.validateProp('textPrevious', 'string', true);
-  }
-
-  @Watch('textNext')
-  validateTextNext() {
-    this.validateProp('textNext', 'string', true);
-  }
-
-  @Watch('textPage')
-  validateTextPage() {
-    this.validateProp('textPage', 'string', true);
-  }
-
-  @Watch('textFirst')
-  validateTextFirst() {
-    this.validateProp('textFirst', 'string', true);
-  }
-
-  @Watch('textLast')
-  validateTextLast() {
-    this.validateProp('textLast', 'string', true);
-  }
+  private measurementTimeoutId: ReturnType<typeof globalThis.setTimeout> | null = null;
 
   @Watch('page')
   @Watch('pageSize')
@@ -170,9 +136,7 @@ export class PostPagination {
   componentWillLoad() {
     this.paginationId = `pagination-${this.host.id || nanoid(6)}`;
 
-    if (this.page == null) {
-      this.page = 1;
-    }
+    this.updatePagesWithValidation();
   }
 
   connectedCallback() {
@@ -181,8 +145,6 @@ export class PostPagination {
 
   componentDidLoad() {
     this.loaded = true;
-    this.runAllValidations();
-
     this.scheduleMeasurement();
   }
 
@@ -198,42 +160,12 @@ export class PostPagination {
   }
 
   /**
-   * Validate a prop with the appropriate check function
-   */
-  private validateProp(
-    propName: ValidatableProp,
-    type: 'string' | 'number' | 'boolean',
-    required: boolean = true,
-  ) {
-    if (required) {
-      checkRequiredAndType(this, propName, type);
-    } else {
-      checkEmptyOrType(this, propName, type);
-    }
-  }
-
-  /**
-   * Run all prop validations
-   */
-  private runAllValidations() {
-    this.validateProp('page', 'number', false);
-    this.validateProp('pageSize', 'number', true);
-    this.validateProp('collectionSize', 'number', true);
-    this.validateProp('label', 'string', true);
-    this.validateProp('textPrevious', 'string', true);
-    this.validateProp('textNext', 'string', true);
-    this.validateProp('textPage', 'string', true);
-    this.validateProp('textFirst', 'string', true);
-    this.validateProp('textLast', 'string', true);
-  }
-
-  /**
    * Schedule measurement attempt with timeout
    */
   private scheduleMeasurement() {
     if (!this.loaded) return;
 
-    this.measurementTimeoutId = window.setTimeout(() => {
+    this.measurementTimeoutId = globalThis.setTimeout(() => {
       const canMeasure = this.navRef?.clientWidth > 0 && this.hiddenItemsRef;
 
       if (canMeasure) {
@@ -320,9 +252,9 @@ export class PostPagination {
    */
   private getPaginationPadding(): number {
     if (!this.navRef) return 0;
-    const computedStyle = window.getComputedStyle(this.navRef);
-    const paddingLeft = parseFloat(computedStyle.paddingLeft) || 0;
-    const paddingRight = parseFloat(computedStyle.paddingRight) || 0;
+    const computedStyle = globalThis.getComputedStyle(this.navRef);
+    const paddingLeft = Number.parseFloat(computedStyle.paddingLeft) || 0;
+    const paddingRight = Number.parseFloat(computedStyle.paddingRight) || 0;
     return paddingLeft + paddingRight;
   }
 
@@ -346,8 +278,8 @@ export class PostPagination {
    * Clamps the page number to valid range
    */
   private clampPageToValidRange(totalPages: number): number {
-    const invalidTotalPages = totalPages === 0 || this.invalidSize || isNaN(totalPages);
-    const invalidPage = !this.page || this.page < 1 || isNaN(this.page);
+    const invalidTotalPages = totalPages === 0 || this.invalidSize || Number.isNaN(totalPages);
+    const invalidPage = !this.page || this.page < 1 || Number.isNaN(this.page);
     const pageExceedsTotal = this.page > totalPages;
 
     if (invalidTotalPages || invalidPage) {
@@ -659,7 +591,7 @@ export class PostPagination {
    */
   private generatePages(totalPages: number) {
     const maxVisible = this.maxVisiblePages;
-    const currentPage = this.page || 1;
+    const currentPage = this.page;
 
     if (totalPages <= maxVisible) {
       this.items = this.buildAllPages(totalPages);

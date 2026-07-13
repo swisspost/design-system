@@ -1,0 +1,57 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import meta, * as TabStories from './tabs.stories';
+import SampleTabChange from './tabs-tab-change.sample?raw';
+import SampleCustomTrigger from './tabs-custom-trigger.sample?raw';
+import StoryTags from '@/shared/story-tags';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+
+<Meta of={TabStories} />
+
+<div className="docs-title">
+  # Tabs
+
+<link-design of={JSON.stringify(TabStories)}></link-design>
+
+</div>
+
+<StoryTags meta={meta} />
+
+<div className="lead">Organize content across different sections that are shown one at a time.</div>
+
+<Canvas sourceState="shown" of={TabStories.Default} />
+
+<Controls of={TabStories.Default} />
+
+<ComponentsPackageInstall component="<post-tabs>" />
+
+## Page Tabs
+
+### Indicating the Current Page
+
+**The `aria-current="page"` attribute highlights the currently active page.**
+
+This attribute must be manually added to the anchor element that represents the current page since it is not set automatically. The component detects which link has `aria-current="page"` and applies the active styling to the parent `post-tab-item`.
+
+<Canvas of={TabStories.ActivePagesItem} />
+
+Navigation is handled by your application's router. When users click a tab, they navigate to the URL specified in the anchor's `href` attribute.
+
+## Content Tabs
+
+### Initially Active Tab
+
+By default, the first tab is active. To have a different tab active initially, use the `active-tab` property.
+
+<Canvas of={TabStories.ActiveTab} />
+
+### Tab Changes
+
+Use the `postChange` event to run a function anytime a new tab gets activated.
+
+<Source code={SampleTabChange} language="typescript" />
+
+### Custom Trigger
+
+To trigger a tab change, use the `show()` method specifying the name of the tab to activate and show its content.
+
+<Source code={SampleCustomTrigger} language="typescript" />

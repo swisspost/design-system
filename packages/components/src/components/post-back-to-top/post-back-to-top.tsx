@@ -1,7 +1,7 @@
-import { Component, Element, Host, State, h, Watch, Prop } from '@stencil/core';
 import { fadeSlide } from '@/animations/fade-slide';
+import { Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { checkRequiredAndType } from '@/utils';
+import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'post-back-to-top',
@@ -15,7 +15,10 @@ export class PostBackToTop {
    * The label of the back-to-top button, intended solely for accessibility purposes.
    * This label is always hidden from view.
    **/
-  @Prop({ reflect: true }) textBackToTop!: string;
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textBackToTop!: string;
 
   @State() belowFold: boolean = false;
 
@@ -28,11 +31,6 @@ export class PostBackToTop {
   private readonly handleScroll = () => {
     this.belowFold = this.isBelowFold();
   };
-
-  @Watch('textBackToTop')
-  validateTextBackToTop() {
-    checkRequiredAndType(this, 'textBackToTop', 'string');
-  }
 
   /*Watch for changes in belowFold to show/hide the back to top button*/
   @Watch('belowFold')
@@ -63,7 +61,7 @@ export class PostBackToTop {
 
   private animateButton() {
     // Get the back-to-top button top postiion
-    const positionTop = window.getComputedStyle(this.host).getPropertyValue('top');
+    const positionTop = globalThis.getComputedStyle(this.host).getPropertyValue('top');
 
     const buttonElement = this.host.shadowRoot.querySelector('button');
 
@@ -80,8 +78,8 @@ export class PostBackToTop {
     // The translateY is calculated as => -100% (btt button height) - topPosition - elevationHeight
     this.translateY =
       (-1 * 100) / 100 -
-      parseFloat(positionTop.replace('px', '')) -
-      parseFloat(elevationHeight.replace('px', ''));
+      Number.parseFloat(positionTop.replace('px', '')) -
+      Number.parseFloat(elevationHeight.replace('px', ''));
 
     if (this.belowFold) {
       fadeSlide(this.host, 'in', { translate: this.translateY, fill: 'forwards' });
@@ -101,8 +99,6 @@ export class PostBackToTop {
     window.addEventListener('scroll', this.handleScroll, false);
 
     this.animateButton();
-
-    this.validateTextBackToTop();
   }
 
   disconnectedCallback() {

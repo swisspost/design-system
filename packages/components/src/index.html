@@ -10,8 +10,7 @@
     <title>Stencil Component Starter</title>
 
     <link id="components-global-styles" rel="stylesheet" href="/build/post-components.css" />
-    <link id="tokens" rel="stylesheet" href="/assets/css/post-tokens-default.css" />
-    <link rel="stylesheet" href="/assets/css/index.css" />
+    <link rel="stylesheet" href="/assets/css/post-default.css" />
     <script type="module" src="/build/post-components.esm.js"></script>
     <script nomodule src="/build/post-components.js"></script>
   </head>
@@ -40,7 +39,7 @@
       <!-- Language switch -->
       <post-language-menu
         text-change-language="Change the language"
-        text-current-language="The currently selected language is #name."
+        text-current-language="The currently selected language is {name}."
         name="language-menu-example"
         slot="language-menu"
         variant="menu"
@@ -168,7 +167,13 @@
       id="tokens-select"
       value="default"
       class="mb-4"
-      onchange="if (['default', 'compact'].includes(this.value)) { document.getElementById('tokens').setAttribute('href', `/assets/css/post-tokens-${encodeURIComponent(this.value)}.css`); }"
+      onchange="
+        if (['default', 'compact'].includes(this.value)) {
+          document
+            .getElementById('tokens')
+            .setAttribute('href', `/assets/css/post-tokens-${encodeURIComponent(this.value)}.css`);
+        }
+      "
     >
       <option value="default">Post default</option>
       <option value="compact">Post compact</option>

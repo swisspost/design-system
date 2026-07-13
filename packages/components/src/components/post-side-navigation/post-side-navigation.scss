@@ -1,0 +1,52 @@
+@use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/tokens/utilities';
+@use '@swisspost/design-system-styles/functions/tokens';
+
+tokens.$default-map: utilities.$post-elevation;
+
+:host {
+  --post-side-navigation-padding-block-start: 34px;
+  --post-side-navigation-padding-block-end: 16px;
+  --post-side-navigation-bg: #f0efed;
+  --post-side-navigation-stroke: #b4b3af;
+
+  display: flex;
+  background-color: var(--post-side-navigation-bg);
+  border-inline-end: 1px solid var(--post-side-navigation-stroke);
+
+  & dialog {
+    overflow: visible;
+    width: var(--post-side-navigation-width);
+    bottom: auto;
+    right: auto;
+    border: none;
+    padding: 0;
+    max-height: 100dvh;
+    background-color: var(--post-side-navigation-bg);
+    border-inline-end: 1px solid var(--post-side-navigation-stroke);
+    transform: translateX(-100%);
+    transition-property: transform, overlay, display;
+    transition-behavior: allow-discrete;
+    transition-duration: 350ms;
+
+    @include media.max(desktop) {
+      box-shadow: tokens.get('utility-elevation-300');
+    }
+
+    &[open] {
+      transform: translateX(0);
+
+      @starting-style {
+        transform: translateX(-100%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
+  post-closebutton {
+    transform: translate(50%, 0);
+  }
+}

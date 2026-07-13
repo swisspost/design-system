@@ -113,7 +113,7 @@ describe('pagination', () => {
         .last()
         .invoke('text')
         .then(text => {
-          expect(parseInt(text)).to.be.greaterThan(1);
+          expect(Number.parseInt(text)).to.be.greaterThan(1);
         });
     });
 

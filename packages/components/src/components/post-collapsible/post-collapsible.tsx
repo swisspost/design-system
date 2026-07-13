@@ -1,4 +1,8 @@
+import { collapse, collapsedKeyframe, expand } from '@/animations/collapse';
+import { Type } from '@/utils';
+import { version } from '@root/package.json';
 import {
+  Build,
   Component,
   Element,
   Event,
@@ -7,12 +11,7 @@ import {
   Host,
   Method,
   Prop,
-  Watch,
-  Build,
 } from '@stencil/core';
-import { version } from '@root/package.json';
-import { collapsedKeyframe, collapse, expand } from '@/animations/collapse';
-import { checkEmptyOrType } from '@/utils';
 
 type InlineStyles = { [key: string]: string };
 
@@ -30,12 +29,9 @@ export class PostCollapsible {
   /**
    * If `true`, the element is collapsed otherwise it is displayed.
    */
-  @Prop({ mutable: true }) collapsed?: boolean = false;
-
-  @Watch('collapsed')
-  collapsedChange() {
-    checkEmptyOrType(this, 'collapsed', 'boolean');
-  }
+  @Prop({ mutable: true })
+  @Type('boolean')
+  collapsed?: boolean = false;
 
   /**
    * An event emitted when the collapse element is shown or hidden, before the transition.
@@ -49,7 +45,6 @@ export class PostCollapsible {
   }
 
   componentDidLoad() {
-    this.collapsedChange();
     this.updateTriggers();
   }
 
@@ -83,12 +78,24 @@ export class PostCollapsible {
   }
 
   /**
-   * Update all post-collapsible-trigger elements referring to the collapsible
+   * Update all post-collapsible-trigger elements referring to or wrapping the collapsible
    */
   private updateTriggers() {
-    const triggers: NodeListOf<HTMLPostCollapsibleTriggerElement> = document.querySelectorAll(
-      `post-collapsible-trigger[for="${this.host.id}"]`,
+    const triggers = this.host.id
+      ? Array.from(
+          document.querySelectorAll<HTMLPostCollapsibleTriggerElement>(
+            `post-collapsible-trigger[for="${this.host.id}"]`,
+          ),
+        )
+      : [];
+
+    // also update an ancestor trigger when the collapsible is nested inside one
+    const nestedTrigger = this.host.closest<HTMLPostCollapsibleTriggerElement>(
+      'post-collapsible-trigger',
     );
+    if (nestedTrigger && !triggers.includes(nestedTrigger)) {
+      triggers.push(nestedTrigger);
+    }
 
     triggers.forEach(trigger => trigger.update());
   }

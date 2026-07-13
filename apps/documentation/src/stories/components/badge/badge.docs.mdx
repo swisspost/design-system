@@ -1,0 +1,43 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as badgeStories from './badge.stories';
+import StylesPackageImport from '@/shared/styles-package-import';
+import StoryTags from '@/shared/story-tags';
+
+<Meta of={badgeStories} />
+
+<div className="docs-title">
+  # Badge
+
+<link-design of={JSON.stringify(badgeStories)}></link-design>
+
+</div>
+
+<StoryTags meta={meta} />
+
+<div className="lead">
+  A badge is a visual indicator that communicates notifications, counts, or status information
+  on/near an associated component. Badges can contain numbers or labels.
+</div>
+
+<Canvas sourceState="shown" of={badgeStories.Default} />
+<div className="hide-col-default">
+  <Controls of={badgeStories.Default} />
+</div>
+
+<StylesPackageImport components={['badge']} />
+
+## Examples
+
+### Large number
+
+A large number will extend the badge width.
+To prevent the badge from being too large you can simply use the `+` notation as shown hereafter.
+
+<Canvas of={badgeStories.LargeNumber} />
+
+### Position
+
+As inline elements, the badges can be placed inside other element such as tags.
+They can also be place absolutely to appear above other elements such as icons for example.
+
+<Canvas of={badgeStories.Position} />

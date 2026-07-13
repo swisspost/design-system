@@ -1,34 +1,36 @@
-import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { nanoid, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { checkRequiredAndType } from '@/utils';
-import { nanoid } from 'nanoid';
+import { Component, Element, h, Host, Prop, State, Build } from '@stencil/core';
 
 /**
- * @slot default - Slot for the content of the tab item. Can contain text or an <a> element for navigation mode.
+ * @slot default - Slot for the content of the tab item. Can contain text or an <a> element for Page Tabs variant.
  */
 
 @Component({
   tag: 'post-tab-item',
-  styleUrl: 'post-tab-item.scss',
   shadow: true,
 })
 export class PostTabItem {
-  private mutationObserver = new MutationObserver(this.checkNavigationMode.bind(this));
+  private readonly mutationObserver = new MutationObserver(this.checkPagesVariant.bind(this));
 
-  @Element() host: HTMLPostTabItemElement;
+  @Element() host!: HTMLPostTabItemElement;
 
-  @State() tabId: string;
-  @State() isNavigationMode = false;
+  @State() tabId!: string;
+  @State() isPagesVariant = false;
 
   /**
    * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
    */
-  @Prop({ reflect: true }) readonly name!: string;
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  readonly name!: string;
 
-  @Watch('name')
-  validateName() {
-    checkRequiredAndType(this, 'name', 'string');
-  }
+  /**
+   * Whether the tab item is disabled.
+   */
+  @Prop({ reflect: true })
+  disabled: boolean = false;
 
   connectedCallback() {
     this.mutationObserver.observe(this.host, {
@@ -39,7 +41,7 @@ export class PostTabItem {
 
   componentWillLoad() {
     this.tabId = `tab-${this.host.id || nanoid(6)}`;
-    this.checkNavigationMode();
+    this.checkPagesVariant();
   }
 
   disconnectedCallback() {
@@ -48,21 +50,28 @@ export class PostTabItem {
     }
   }
 
-  private checkNavigationMode() {
+  private checkPagesVariant() {
     const hasAnchor = this.host.querySelector('a') !== null;
-    this.isNavigationMode = hasAnchor;
+    this.isPagesVariant = hasAnchor;
   }
 
   render() {
+    const isSSR = Build.isServer;
     return (
       <Host
         id={this.tabId}
-        role={!this.isNavigationMode ? 'tab' : undefined}
+        role={this.isPagesVariant ? undefined : 'tab'}
         data-version={version}
-        data-navigation-mode={this.isNavigationMode.toString()}
-        aria-selected={!this.isNavigationMode ? 'false' : undefined}
-        tabindex={!this.isNavigationMode ? '-1' : undefined}
-        class={!this.isNavigationMode ? 'tab-title' : 'nav-item'}
+        data-pages-variant={this.isPagesVariant.toString()}
+        aria-selected={this.isPagesVariant ? undefined : 'false'}
+        aria-disabled={this.disabled ? 'true' : undefined}
+        tabindex={this.isPagesVariant ? undefined : '-1'}
+        class={`${this.isPagesVariant ? 'nav-item' : 'tab-title'}${isSSR && !this.isPagesVariant ? ' ssr' : ''}`}
+        style={
+          isSSR && !this.isPagesVariant
+            ? { '--active': `var(--post-tab-item-${this.name}, 0)` }
+            : undefined
+        }
       >
         <slot />
       </Host>

@@ -1,15 +1,9 @@
-import { Component, Element, Prop, h, Host, Watch, Build } from '@stencil/core';
-import { checkEmptyOrType } from '@/utils';
+import { Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import isFocusable from 'ally.js/is/focusable';
+import { Build, Component, Element, h, Host, Prop } from '@stencil/core';
 
-const TRIGGER_EVENTS = ['pointerenter', 'pointerleave', 'focusin', 'focusout', 'long-press'];
-
-if (Build.isBrowser) {
-  (async () => {
-    await import('long-press-event');
-  })();
-}
+const TRIGGER_EVENTS = ['pointerenter', 'pointerleave', 'focusin', 'focusout'];
+let isFocusable: ((element: HTMLElement) => boolean) | undefined;
 
 /**
  * @slot default - Content to trigger the tooltip. Can contain any focusable element or will be made focusable automatically.
@@ -25,7 +19,10 @@ export class PostTooltipTrigger {
   /**
    * ID of the tooltip element that this trigger is linked to.
    */
-  @Prop({ reflect: true }) for!: string;
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  for!: string;
 
   /**
    * Delay (in milliseconds) before the tooltip is shown.
@@ -40,7 +37,7 @@ export class PostTooltipTrigger {
   /**
    * Timeout ID for the delay.
    */
-  private delayTimeout: number | null = null;
+  private delayTimeout: ReturnType<typeof globalThis.setTimeout> | null = null;
 
   /**
    * Bound event handlers for proper removal
@@ -53,16 +50,21 @@ export class PostTooltipTrigger {
     this.boundTooltipHandler = this.handleTooltipEvent.bind(this);
   }
 
-  @Watch('for')
-  validateControlFor() {
-    checkEmptyOrType(this, 'for', 'string');
-  }
-
   private get tooltip(): HTMLPostTooltipElement | null {
     if (Build.isServer) return null;
 
     const ref = document.getElementById(this.for);
     return ref?.localName === 'post-tooltip' ? (ref as HTMLPostTooltipElement) : null;
+  }
+
+  componentWillLoad() {
+    if (Build.isBrowser) {
+      // Load ally.js lazily; setupTrigger uses optional chaining to handle the
+      // case where it hasn't loaded yet (falls back to adding tabindex="0").
+      import('ally.js/is/focusable').then(m => {
+        isFocusable ??= m.default;
+      });
+    }
   }
 
   componentDidLoad() {
@@ -112,7 +114,7 @@ export class PostTooltipTrigger {
     this.trigger = this.host.querySelector('*');
 
     if (this.trigger) {
-      if (!isFocusable(this.trigger)) {
+      if (!isFocusable?.(this.trigger)) {
         this.trigger.setAttribute('tabindex', '0');
       }
 
@@ -202,7 +204,7 @@ export class PostTooltipTrigger {
   private interestHandler() {
     if (this.trigger) {
       if (this.delay > 0) {
-        this.delayTimeout = window.setTimeout(() => {
+        this.delayTimeout = globalThis.setTimeout(() => {
           this.tooltip?.show(this.trigger);
           this.delayTimeout = null;
         }, this.delay);

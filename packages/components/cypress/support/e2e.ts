@@ -37,7 +37,7 @@ beforeEach(() => {
         res.headers['content-type'].includes('text/html') &&
         typeof res.body === 'string'
       ) {
-        res.body = res.body.replace(
+        res.body = res.body.replaceAll(
           /<meta http-equiv="Content-Security-Policy" content="[^"]*">/g,
           '<meta http-equiv="Content-Security-Policy" content="*">',
         );

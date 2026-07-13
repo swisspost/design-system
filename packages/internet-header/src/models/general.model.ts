@@ -1,5 +1,5 @@
-import { IHeaderConfig, ICustomHeaderConfig, NavMainEntity } from './header.model';
-import { IBreadcrumbConfig } from './breadcrumbs.model';
+import { HeaderConfig } from './header.model';
+import { BreadcrumbsConfig } from './breadcrumbs.model';
 import { FooterConfig } from './footer.model';
 
 declare global {
@@ -11,52 +11,26 @@ declare global {
     SockJS: unknown;
   }
 }
-export interface IPortalConfig {
-  de?: ILocalizedConfig;
-  fr?: ILocalizedConfig;
-  it?: ILocalizedConfig;
-  en?: ILocalizedConfig;
+
+export interface PortalConfig {
+  de?: LocalizedConfig;
+  fr?: LocalizedConfig;
+  it?: LocalizedConfig;
+  en?: LocalizedConfig;
 }
 
-export interface ILocalizedConfig {
-  header: IHeaderConfig;
-  breadcrumb: IBreadcrumbConfig;
+export interface LocalizedConfig {
+  header: HeaderConfig;
+  breadcrumbs?: BreadcrumbsConfig;
   footer?: FooterConfig;
 }
 
-export interface ICustomConfig {
-  de?: ILocalizedCustomConfig;
-  fr?: ILocalizedCustomConfig;
-  it?: ILocalizedCustomConfig;
-  en?: ILocalizedCustomConfig;
-}
-
-export interface ILocalizedCustomConfig {
-  header?: ICustomHeaderConfig;
+export interface LocalizedConfigParameters {
+  projectId: string;
+  environment: Environment;
+  language?: string;
 }
 
 export type Environment = 'dev01' | 'dev02' | 'devs1' | 'test' | 'int01' | 'int02' | 'prod';
 
 export type ActiveRouteProp = 'auto' | 'exact' | 'none' | string;
-
-export type LocalizedConfigParameters = {
-  projectId: string;
-  environment: Environment;
-  language?: string;
-  mapMyPost?: boolean;
-  cookieKey?: string;
-  localStorageKey?: string;
-  activeRouteProp?: ActiveRouteProp;
-  localizedCustomConfig?: ILocalizedCustomConfig;
-  osFlyoutOverrides?: NavMainEntity;
-};
-
-export interface TagManagerDataLayer {
-  push: (payload: {
-    event: string | undefined;
-    text: string | undefined;
-    link_url: string | undefined;
-    label: string | undefined;
-    type: string | undefined;
-  }) => void;
-}

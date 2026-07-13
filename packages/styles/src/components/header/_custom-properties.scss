@@ -17,6 +17,7 @@
     --post-global-header-reduced-height: 1.5rem;
     --post-local-header-reduced-height: 3.5rem;
     --post-main-navigation-height: var(--post-local-header-reduced-height);
+    --post-logo-reduced-offset: 0.375rem;
   }
 }
 
@@ -43,7 +44,7 @@ post-header:has([slot='main-nav']):not(:has([slot='title'])) {
 
 :root:has(post-header [slot='main-nav']):has(post-header [slot='title']) {
   --post-global-header-expanded-height: 4rem;
-  --post-local-header-reduced-height: 0rem;
+  --post-local-header-reduced-height: var(--post-local-header-expanded-height);
 
   @include media.only(mobile) {
     --post-local-header-expanded-min-height: 3rem;
@@ -57,8 +58,8 @@ post-header:has([slot='main-nav']):not(:has([slot='title'])) {
     --post-global-header-expanded-height: 4.5rem;
     --post-local-header-expanded-min-height: 7rem;
     --post-global-header-reduced-height: 1.5rem;
-    --post-local-header-reduced-height: 3.5rem;
-    --post-main-navigation-height: var(--post-local-header-reduced-height);
+    --post-main-navigation-height: 3.5rem;
+    --post-logo-reduced-offset: 0.375rem;
   }
 }
 
@@ -93,7 +94,9 @@ post-header:has([slot='main-nav']):has([slot='title']) {
 
 // One-pager header: when there is no main-nav and no title,
 // ensure the local header collapses to zero height
-:root:has(post-header):not(:has(post-header [slot='main-nav'])):not(:has(post-header [slot='title'])) {
+:root:has(post-header):not(:has(post-header [slot='main-nav'])):not(
+    :has(post-header [slot='title'])
+  ) {
   --post-local-header-expanded-min-height: 0rem;
 }
 
@@ -107,13 +110,49 @@ post-header:not(:has([slot='main-nav'])) {
   }
 
   // One-pager without local-nav
-  &:has([slot='title']):not(:has([slot='local-nav'])) {
+  &:has([slot='title']):not(:has([slot='local-nav'])):not(:has([slot='side-nav'])) {
     --post-local-header-grid-template: 'title' 1fr / 1fr;
   }
 
   // One-pager with local-nav
-  &:has([slot='title']):has([slot='local-nav']) {
+  &:has([slot='title']):has([slot='local-nav']):not(:has([slot='side-nav'])) {
     --post-local-header-grid-template: 'title local-nav' 1fr / minmax(0, 1fr) auto;
+  }
+
+  // Application header with side-nav, without local-nav
+  &:has([slot='title']):has([slot='side-nav']):not(:has([slot='local-nav'])) {
+    --post-local-header-grid-template: 'side-nav title' 1fr / auto minmax(0, 1fr);
+  }
+
+  // Application header with side-nav and local-nav
+  &:has([slot='title']):has([slot='side-nav']):has([slot='local-nav']) {
+    --post-local-header-grid-template: 'side-nav title local-nav' 1fr / auto minmax(0, 1fr) auto;
+  }
+}
+
+// ===========================================================
+// Application header: logo only, no global nav slots
+// ============================================================
+
+:root:has(post-header):not(:has(post-header > [slot='audience'])):not(
+    :has(post-header > [slot='global-nav-primary'])
+  ):not(:has(post-header > [slot='global-nav-secondary'])):not(
+    :has(post-header > [slot='language-menu'])
+  ):not(:has(post-header > [slot='post-login'])) {
+  --post-global-header-expanded-height: var(--_post-initial-global-header-height);
+  --post-global-header-reduced-height: 2rem;
+
+  @include media.only(desktop) {
+    --post-logo-expanded-offset: 0.625rem;
+    --post-logo-reduced-offset: 0.625rem;
+  }
+  @include media.only(tablet) {
+    --post-logo-expanded-offset: 0.75rem;
+    --post-logo-reduced-offset: 0.75rem;
+  }
+  @include media.only(mobile) {
+    --post-logo-expanded-offset: 0.5rem;
+    --post-logo-reduced-offset: 0.5rem;
   }
 }
 
@@ -122,6 +161,11 @@ post-header:not(:has([slot='main-nav'])) {
 // ============================================================
 
 :root:has(post-header) {
+  // Opt out of scroll anchoring so the browser doesn't adjust scrollY when the
+  // sticky header repositions itself on scroll. Removing this breaks shrink-on-scroll
+  // in frameworks that flush layout synchronously between scroll events (e.g. Angular).
+  overflow-anchor: none;
+
   // --- Expanded height ---
   --post-local-header-expanded-height: var(--post-local-header-expanded-min-height);
   --post-header-expanded-height: calc(
@@ -145,6 +189,10 @@ post-header:not(:has([slot='main-nav'])) {
     var(--post-local-header-reduced-height)
   );
   --post-header-height: calc(var(--post-global-header-height) + var(--post-local-header-height));
+
+  // --- Logo offset ---
+  --post-logo-expanded-offset: 0px;
+  --post-logo-reduced-offset: var(--post-logo-expanded-offset);
 
   // Override when mobile menu is open and page is scrolled
   &:has([data-menu-extended]) {

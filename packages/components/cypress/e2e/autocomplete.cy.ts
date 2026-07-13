@@ -1,5 +1,8 @@
+import { getPopoverOpenSelector } from './helper/popovercontainer';
+
 const FIXTURE_PATH = './cypress/fixtures/post-autocomplete.test.html';
 const DEBOUNCE_TIMEOUT = 300;
+const POPOVER_OPEN_SELECTOR = getPopoverOpenSelector();
 
 describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
   describe('nested listbox', () => {
@@ -56,7 +59,7 @@ describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
         .should('have.attr', 'selected');
       cy.get('@autocomplete').should('not.have.attr', 'open');
       cy.get('@input').should('have.attr', 'aria-expanded', 'false');
-      cy.get('@popovercontainer').should('not.match', ':popover-open');
+      cy.get('@popovercontainer').should('not.match', POPOVER_OPEN_SELECTOR);
     });
 
     it('should restore the selected value on blur', () => {
@@ -69,7 +72,7 @@ describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
 
       cy.get('@input').should('have.value', 'Portugal');
       cy.get('@autocomplete').should('not.have.attr', 'open');
-      cy.get('@popovercontainer').should('not.match', ':popover-open');
+      cy.get('@popovercontainer').should('not.match', POPOVER_OPEN_SELECTOR);
     });
 
     it('should clear the selected value when clicking the clear button', () => {
@@ -84,7 +87,7 @@ describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
         .find('post-listbox-option[value="Portugal"]')
         .should('not.have.attr', 'selected');
       cy.get('@autocomplete').should('not.have.attr', 'open');
-      cy.get('@popovercontainer').should('not.match', ':popover-open');
+      cy.get('@popovercontainer').should('not.match', POPOVER_OPEN_SELECTOR);
     });
 
     it('should close the listbox when pressing escape', () => {
@@ -95,7 +98,7 @@ describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
 
       cy.get('@autocomplete').should('not.have.attr', 'open');
       cy.get('@input').should('have.attr', 'aria-expanded', 'false');
-      cy.get('@popovercontainer').should('not.match', ':popover-open');
+      cy.get('@popovercontainer').should('not.match', POPOVER_OPEN_SELECTOR);
     });
   });
 
@@ -114,7 +117,7 @@ describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
       cy.wait(DEBOUNCE_TIMEOUT);
 
       cy.get('@autocomplete').should('have.attr', 'open');
-      cy.get('@popovercontainer').should('match', ':popover-open');
+      cy.get('@popovercontainer').should('match', POPOVER_OPEN_SELECTOR);
       cy.get('@listbox')
         .find('post-listbox-option[value="France"]')
         .should('not.have.attr', 'hidden');
@@ -126,7 +129,7 @@ describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
 
       cy.get('@input').should('have.value', 'France');
       cy.get('@autocomplete').should('not.have.attr', 'open');
-      cy.get('@popovercontainer').should('not.match', ':popover-open');
+      cy.get('@popovercontainer').should('not.match', POPOVER_OPEN_SELECTOR);
     });
   });
 
@@ -166,7 +169,7 @@ describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
       cy.document().then(document => {
         const output = document.createElement('output');
         output.id = 'cancel-event-value';
-        document.body.appendChild(output);
+        document.body.append(output);
 
         const autocomplete: HTMLPostAutocompleteElement = document.querySelector(
           'post-autocomplete#autocomplete-nested',
@@ -192,6 +195,39 @@ describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('@listbox')
         .find('post-listbox-option')
         .each($option => cy.wrap($option).should('not.have.attr', 'hidden'));
+    });
+  });
+
+  describe('announcements', () => {
+    beforeEach(() => {
+      cy.visit(FIXTURE_PATH);
+      cy.get('post-autocomplete#autocomplete-nested[data-hydrated]').as('autocomplete');
+      cy.get('@autocomplete').find('input').as('input');
+      cy.get('@autocomplete').shadow().find('output').as('output');
+    });
+
+    it('should render an output element in the shadow dom', () => {
+      cy.get('@output').should('exist');
+    });
+
+    it('should announce the total count when the listbox opens', () => {
+      cy.get('@input').click();
+
+      cy.get('@output').should('have.text', '10 suggestions available');
+    });
+
+    it('should announce the filtered count after typing', () => {
+      cy.get('@input').type('por');
+      cy.wait(DEBOUNCE_TIMEOUT);
+
+      cy.get('@output').should('have.text', '1 suggestions available');
+    });
+
+    it('should announce zero when no options match', () => {
+      cy.get('@input').type('zzz');
+      cy.wait(DEBOUNCE_TIMEOUT);
+
+      cy.get('@output').should('have.text', '0 suggestions available');
     });
   });
 

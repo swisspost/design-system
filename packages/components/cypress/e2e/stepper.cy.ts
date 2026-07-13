@@ -17,7 +17,7 @@ describe('stepper', { baseUrl: null }, () => {
     cy.window().then(win => {
       cy.spy(win.console, 'error').as('consoleError');
     });
-    cy.get('post-stepper').invoke('attr', 'text-current-step', null);
+    cy.get('post-stepper[data-hydrated]').invoke('attr', 'text-current-step', null);
     cy.get('@consoleError').should('be.called');
   });
 
@@ -25,15 +25,15 @@ describe('stepper', { baseUrl: null }, () => {
     cy.window().then(win => {
       cy.spy(win.console, 'error').as('consoleError');
     });
-    cy.get('post-stepper').invoke('attr', 'text-completed-step', null);
+    cy.get('post-stepper[data-hydrated]').invoke('attr', 'text-completed-step', null);
     cy.get('@consoleError').should('be.called');
   });
 
-  it('should log an error if the mobile step label does not contain #number', () => {
+  it('should log an error if the mobile step label does not contain {number}', () => {
     cy.window().then(win => {
       cy.spy(win.console, 'error').as('consoleError');
     });
-    cy.get('post-stepper').invoke('attr', 'text-step-number', 'Step:');
+    cy.get('post-stepper[data-hydrated]').invoke('attr', 'text-step-number', 'Step:');
     cy.get('@consoleError').should('be.called');
   });
 
@@ -41,7 +41,7 @@ describe('stepper', { baseUrl: null }, () => {
     cy.window().then(win => {
       cy.spy(win.console, 'error').as('consoleError');
     });
-    cy.get('post-stepper').invoke('attr', 'text-step-number', null);
+    cy.get('post-stepper[data-hydrated]').invoke('attr', 'text-step-number', null);
     cy.get('@consoleError').should('be.called');
   });
 
@@ -174,16 +174,18 @@ describe('stepper', { baseUrl: null }, () => {
 
   // Dynamically added/removed steps
 
-  it('should add correct class when a new step is added dynamically', () => {
+  it('should add correct class and step number when a new step is added dynamically', () => {
     cy.get('post-stepper').find('post-stepper-item').should('have.length', 5);
     cy.get('post-stepper').then($stepper => {
-      $stepper[0].appendChild(document.createElement('post-stepper-item'));
+      $stepper[0].append(document.createElement('post-stepper-item'));
       cy.get('post-stepper')
         .wait(100)
         .find('post-stepper-item')
         .should('have.length', 6)
-        .last()
-        .should('have.class', 'stepper-item-inactive');
+        .then($items => {
+          expect($items[5]).to.have.class('stepper-item-inactive');
+          expect($items[5].style.getPropertyValue('--step-number')).to.equal('"6"');
+        });
     });
   });
 
@@ -201,5 +203,17 @@ describe('stepper', { baseUrl: null }, () => {
 
     cy.get('post-stepper').find('post-stepper-item').should('have.length', 1);
     cy.get('@consoleError').should('be.called');
+  });
+
+  it('should set --step-number CSS custom property with correct sequential values on each step', () => {
+    cy.get('post-stepper')
+      .invoke('attr', 'current-index', 2)
+      .wait(100)
+      .find('post-stepper-item')
+      .then($items => {
+        $items.each((i, el) => {
+          expect(el.style.getPropertyValue('--step-number')).to.equal(`"${i + 1}"`);
+        });
+      });
   });
 });
