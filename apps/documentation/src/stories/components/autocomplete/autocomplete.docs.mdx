@@ -2,7 +2,7 @@ import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as AutocompleteStories from './autocomplete.stories';
 import * as ListboxStories from './listbox.stories';
 import * as ListboxOptionStories from './listbox-option.stories';
-import PackageTag from '@/shared/package-tag';
+import StoryTags from '@/shared/story-tags';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={AutocompleteStories} />
@@ -14,7 +14,7 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 </div>
 
-<PackageTag meta={meta} />
+<StoryTags meta={meta} />
 
 <div className="lead">
   The autocomplete combines a text input with a listbox to help users quickly find and select an option.

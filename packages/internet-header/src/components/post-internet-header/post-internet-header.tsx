@@ -277,7 +277,7 @@ export class PostInternetHeader {
           {globalHeader.postLogin &&
             this.renderNavItem(
               state.user
-                ? { user: state.user, options: globalHeader.postLogin.userLinks }
+                ? { user: state.user, options: globalHeader.postLogin.userLinks, accountSwitch: globalHeader.postLogin.accountSwitch }
                 : globalHeader.postLogin.loginLink,
               { slot: 'post-login' },
             )}
