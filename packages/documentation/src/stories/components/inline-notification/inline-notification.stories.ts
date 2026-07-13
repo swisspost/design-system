@@ -81,8 +81,10 @@ function renderInlineNotification(args: Args) {
       role="alert"
       aria-label="${title || message}"
     >
-      ${unsafeHTML(titleHTML)}
-      <p>${message}</p>
+      <div class="inline-notification-content">
+        ${unsafeHTML(titleHTML)}
+        <p>${message}</p>
+      </div>
     </div>
   `;
 }

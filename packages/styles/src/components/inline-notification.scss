@@ -1,19 +1,19 @@
-@use 'sass:map';
 @use '../functions/tokens';
 @use '../tokens/elements';
+@use '../tokens/components';
 @use './../mixins/utilities';
 
-tokens.$default-map: elements.$post-heading;
+tokens.$default-map: components.$post-inline-notification;
 
 .inline-notification {
   display: inline-flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 10px 14px;
-  border-radius: 4px;
-  border: 2px solid var(--post-inline-notification-border);
-  background: var(--post-inline-notification-bg);
   align-items: center;
+  gap: tokens.get('notification-inline-gap-inline');
+  padding-block: tokens.get('notification-inline-padding-block');
+  padding-inline: tokens.get('notification-inline-padding-inline');
+  border-style: tokens.get('notification-inline-border-style');
+  border-width: tokens.get('notification-inline-border-width');
+  border-radius: tokens.get('notification-inline-border-radius');
   min-width: 297px;
   max-width: 600px;
 
@@ -21,27 +21,8 @@ tokens.$default-map: elements.$post-heading;
     content: '';
     display: block;
     flex-shrink: 0;
-    width: 32px;
-    height: 32px;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 0;
-    padding: 0;
-    align-self: center;
-    font-size: tokens.get('h4-font-size');
-  }
-
-  p {
-    margin: 0;
-    padding: 0;
-    flex: 1;
-    align-self: center;
+    width: tokens.get('notification-inline-icon-size');
+    height: tokens.get('notification-inline-icon-size');
   }
 
   &.inline-notification-multi-line {
@@ -50,44 +31,14 @@ tokens.$default-map: elements.$post-heading;
     &::before {
       margin-top: 2px;
     }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      flex-basis: calc(100% - 40px);
-    }
-
-    p {
-      flex-basis: calc(100% - 40px);
-      margin-inline-start: 40px;
-    }
-  }
-
-  &.inline-notification-info {
-    --post-inline-notification-border: #0050a1;
-    --post-inline-notification-bg: #bfd3e7;
-  }
-
-  &.inline-notification-success {
-    --post-inline-notification-border: #107800;
-    --post-inline-notification-bg: #c3ddbf;
-  }
-
-  &.inline-notification-warning {
-    --post-inline-notification-border: #d93d00;
-    --post-inline-notification-bg: #f5cebf;
-  }
-
-  &.inline-notification-error {
-    --post-inline-notification-border: #b20000;
-    --post-inline-notification-bg: #ebbfbf;
   }
 
   @each $name in 'info', 'success', 'warning', 'error' {
     &.inline-notification-#{$name} {
+      border-color: tokens.get('notification-inline-color-#{$name}-stroke');
+      background-color: tokens.get('notification-inline-color-#{$name}-bg');
+      color: tokens.get('notification-inline-color-#{$name}-fg');
+
       &::before {
         background-image: var(--post-signal-icon-#{$name});
       }
@@ -97,4 +48,38 @@ tokens.$default-map: elements.$post-heading;
   @include utilities.high-contrast-mode {
     border: 2px solid CanvasText;
   }
+}
+
+.inline-notification-content {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  align-items: center;
+  min-width: 0;
+  gap: tokens.get('notification-inline-labels-gap-block')
+    tokens.get('notification-inline-labels-gap-inline');
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    padding: 0;
+    font-size: tokens.get('h4-font-size', elements.$post-heading);
+    font-weight: tokens.get('notification-inline-title-font-weight');
+  }
+
+  p {
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.inline-notification-multi-line .inline-notification-content {
+  flex-direction: column;
+  align-items: stretch;
 }
