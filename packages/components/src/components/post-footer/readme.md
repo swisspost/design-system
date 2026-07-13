@@ -2,11 +2,13 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property                  | Attribute     | Description                                            | Type     | Default     |
 | ------------------------- | ------------- | ------------------------------------------------------ | -------- | ----------- |
 | `textFooter` _(required)_ | `text-footer` | The textFooter to add to the footer (visually hidden). | `string` | `undefined` |
+
 
 ## Slots
 
@@ -21,6 +23,7 @@
 | `"prefooter"`               | Slot for the pre-footer.                                                     |
 | `"socialmedia"`             | Slot for the social media links.                                             |
 
+
 ## Dependencies
 
 ### Depends on
@@ -29,7 +32,6 @@
 - [post-accordion-item](../post-accordion-item)
 
 ### Graph
-
 ```mermaid
 graph TD;
   post-footer --> post-accordion
@@ -40,6 +42,6 @@ graph TD;
   style post-footer fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

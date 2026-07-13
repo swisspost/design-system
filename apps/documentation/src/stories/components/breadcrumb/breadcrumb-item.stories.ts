@@ -7,7 +7,7 @@ const meta: MetaComponent = {
   title: 'Components/Breadcrumb Item',
   component: 'post-breadcrumb-item',
   render,
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:New'],
   parameters: {
     badges: [],
     design: {
