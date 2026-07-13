@@ -5,7 +5,7 @@ import { html } from 'lit';
 const meta: MetaComponent<HTMLPostLanguageMenuElement> = {
   id: 'decbb10c-2b39-4f47-b67d-337d8111a3ae',
   title: 'Raw Components/Language Menu',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'devOnly', 'status:New'],
   component: 'post-language-menu',
   render: renderLanguageMenu,
   parameters: {
