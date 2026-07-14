@@ -71,7 +71,11 @@ export class PostClosebutton {
   render() {
     return (
       <Host data-version={version}>
-        <button type={this.buttonType} class="btn btn-icon btn-secondary btn-sm" onClick={this.handleClick}>
+        <button
+          type={this.buttonType}
+          class="btn btn-icon btn-secondary btn-sm"
+          onClick={this.handleClick}
+        >
           <post-icon aria-hidden="true" name="closex"></post-icon>
           <span class="visually-hidden">
             <slot></slot>

@@ -46,9 +46,8 @@ const CLOSABLE_TARGETS: ReadonlyArray<{
 ];
 
 export function findClosableTarget(start: Element): ClosableTarget | null {
-  const el = findClosestAcrossShadow(
-    start,
-    (el): el is Element => CLOSABLE_TARGETS.some(t => t.predicate(el)),
+  const el = findClosestAcrossShadow(start, (el): el is Element =>
+    CLOSABLE_TARGETS.some(t => t.predicate(el)),
   );
   if (!el) return null;
   const match = CLOSABLE_TARGETS.find(t => t.predicate(el))!;
