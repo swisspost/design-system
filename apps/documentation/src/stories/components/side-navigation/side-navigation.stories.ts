@@ -129,3 +129,29 @@ export const Large: Story = {
     <main class="main-container flex-grow-1">${fakeContent(4)}</main>
   `,
 };
+
+export const HeaderTrigger: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<post-header text-menu="Menu">
+  ...
+  <post-side-navigation-trigger slot="side-nav" for="sidenav">
+    <button>
+      <post-icon aria-hidden="true" name="burger"></post-icon>
+    </button>
+  </post-side-navigation-trigger>
+  <p slot="title">[Application Title]</p>
+  ...
+</post-header>
+
+<post-side-navigation id="sidenav" text-close="Close">
+  ...
+</post-side-navigation>
+
+`,
+      },
+    },
+  },
+};
