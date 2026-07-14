@@ -1,4 +1,4 @@
-import { LocalizedConfig } from '@/models/general.model';
+import { LocalizedConfig } from '../../src/models/general.model';
 import rawTestConfiguration from '../fixtures/internet-header/test-configuration.json';
 import { prepare } from '../support/prepare-story';
 import { BREADCRUMBS } from './shared/variables';
