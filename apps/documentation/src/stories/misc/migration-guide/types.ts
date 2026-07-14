@@ -173,6 +173,9 @@ export interface V910Checks {
     add_text_props: boolean;
     remove_props: boolean;
   };
+  intranet_header: {
+    migration: boolean;
+  };
 }
 
 export interface GlobalStateData {
