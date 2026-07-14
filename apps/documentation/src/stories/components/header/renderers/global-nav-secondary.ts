@@ -2,7 +2,7 @@ import { Args } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 
 export function renderGlobalNavSecondary(args: Args) {
-  const comment = html`<!-- Secondary global navigation (move to the bottom of the burger menu on tablet & mobile) -->`;
+  const comment = html`<!-- Secondary global navigation (moves to the bottom of the burger menu on tablet & mobile) -->`;
 
   const jobsLink = html`
     <a
