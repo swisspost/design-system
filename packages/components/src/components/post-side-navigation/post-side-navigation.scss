@@ -24,9 +24,25 @@ tokens.$default-map: utilities.$post-elevation;
     max-height: 100dvh;
     background-color: var(--post-side-navigation-bg);
     border-inline-end: 1px solid var(--post-side-navigation-stroke);
+    transform: translateX(-100%);
+    transition-property: transform, overlay, display;
+    transition-behavior: allow-discrete;
+    transition-duration: 350ms;
 
     @include media.max(desktop) {
       box-shadow: tokens.get('utility-elevation-300');
+    }
+
+    &[open] {
+      transform: translateX(0);
+
+      @starting-style {
+        transform: translateX(-100%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
     }
   }
 
