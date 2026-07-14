@@ -1,14 +1,10 @@
-import {
-  Environment,
-  PortalConfig,
-  LocalizedConfig,
-  LocalizedConfigParameters,
-} from '@/models/general.model';
+import { Environment, LocalizedConfig, LocalizedConfigParameters } from '@/models/general.model';
 import { state } from '@/data/store';
-import { getUserLang } from './language.service';
+import { getUserLang, SUPPORTED_LANGUAGES } from './language.service';
 
-// Prevent double requests
-let request: Promise<PortalConfig> | null = null;
+// Dedupes concurrent requests for the same projectId + environment + language.
+// Entries are removed once settled, so a new language switch always fetches fresh.
+const inFlightRequests = new Map<string, Promise<LocalizedConfig>>();
 
 const getPPMConfig = (): LocalizedConfig | null => {
   const ppmConfigScript = document.querySelector('#PPM_HEADER_DATA');
@@ -24,6 +20,7 @@ const getPPMConfig = (): LocalizedConfig | null => {
  * Get a localized config object
  *
  * @param projectId String identifying the project
+ * @param environment Target environment
  * @param language [optional] Preferred language
  * @returns Localized config object
  */
@@ -33,28 +30,27 @@ export const getLocalizedConfig = async ({
   language,
 }: LocalizedConfigParameters): Promise<LocalizedConfig> => {
   const ppmConfig = getPPMConfig();
-  let localizedConfig: LocalizedConfig;
-  let config: PortalConfig | null = null;
-  let lang: string | undefined;
 
   if (ppmConfig) {
-    localizedConfig = ppmConfig;
-    lang = document.documentElement.lang;
-  } else {
-    if (request == null) {
-      request = fetchConfig(projectId, environment);
-    }
-
-    config = await request;
-    lang = getUserLang(Object.keys(config), language);
-
-    if (lang === undefined) {
-      throw new Error('Internet Header: unable to determine current language');
-    }
-
-    // Clone config for more predictable state updates
-    localizedConfig = { ...config[lang] };
+    const lang = document.documentElement.lang;
+    state.currentLanguage = lang;
+    return ppmConfig;
   }
+
+  const lang = getUserLang(SUPPORTED_LANGUAGES, language);
+  const cacheKey = `${projectId}-${environment}-${lang}`;
+
+  let configPromise = inFlightRequests.get(cacheKey);
+
+  if (configPromise == null) {
+    configPromise = fetchConfig(projectId, environment, lang).finally(() => {
+      inFlightRequests.delete(cacheKey);
+    });
+    inFlightRequests.set(cacheKey, configPromise);
+  }
+
+  // Clone config for more predictable state updates
+  const localizedConfig = { ...(await configPromise) };
 
   // Set the new language choice
   state.currentLanguage = lang;
@@ -63,14 +59,18 @@ export const getLocalizedConfig = async ({
 };
 
 /**
- * Fetch the general config based on project id
+ * Fetch the config for a project, in a given language
  *
- * @returns Promise for Post Portal general config
+ * @param projectId String identifying the project
+ * @param environment Target environment
+ * @param lang Currently selected language
+ * @returns Promise for a single-language config object
  */
 export const fetchConfig = async (
   projectId: string,
   environment: Environment,
-): Promise<PortalConfig> => {
+  lang: string,
+): Promise<LocalizedConfig> => {
   // Check if project id is sanitized
   if (!isValidProjectId(projectId)) {
     throw new Error(`Internet Header: invalid project id "${projectId}"`);
@@ -80,12 +80,12 @@ export const fetchConfig = async (
     environment = 'int01';
   }
 
-  const url = generateConfigUrl(projectId, environment);
+  const url = generateConfigUrl(projectId, environment, lang);
 
   // Get the config if cache is invalid
   try {
     const res = await fetch(url);
-    return (await res.json()) as PortalConfig;
+    return (await res.json()) as LocalizedConfig;
   } catch (error) {
     throw new Error(`Internet Header: fetching config failed. ${error.message}`);
   }
@@ -96,18 +96,24 @@ export const fetchConfig = async (
  * Project id "test" will return a test configuration
  * @param projectId string
  * @param environment int01, int02 or prod
+ * @param lang currently selected language
  * @returns URL pointing to the project config
  */
-export const generateConfigUrl = (projectId: string, environment: Environment): string => {
+export const generateConfigUrl = (
+  projectId: string,
+  environment: Environment,
+  lang: string,
+): string => {
   if (projectId === 'test') return 'assets/config/test-configuration.json';
 
   const parsedEnvironment = environment.toLowerCase();
+  const parsedLang = lang.toLowerCase();
   const isProd = parsedEnvironment === 'prod';
   const host = `https://${isProd ? 'www' : 'int'}.post.ch`;
   try {
     // Use URL to validate the generated URL
     return new URL(
-      `${host}/api/headerjs/Json?serviceid=${encodeURIComponent(projectId)}${
+      `${host}/api/headerjs/Json?serviceid=${encodeURIComponent(projectId)}&lang=${encodeURIComponent(parsedLang)}${
         !isProd ? '&environment=' + parsedEnvironment : ''
       }`,
     ).toString();

@@ -1,5 +1,7 @@
 import { state } from '@/data/store';
 
+export const SUPPORTED_LANGUAGES = ['de', 'fr', 'it', 'en'];
+
 export const getUserLang = (
   supportedLanguages: string[],
   implementorPreferredLanguage?: string,

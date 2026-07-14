@@ -1,10 +1,10 @@
 import testConfiguration from '../fixtures/internet-header/test-configuration.json';
 import mockNotAuth from '../fixtures/internet-header/not-auth.json';
 import mockAuth from '../fixtures/internet-header/auth.json';
-import { PortalConfig } from '../../src/models/general.model';
+import { LocalizedConfig } from '@/models/general.model';
 
 export const installInterceptors = (
-  config: PortalConfig = testConfiguration,
+  config: LocalizedConfig = testConfiguration,
   loggedIn: boolean = false,
 ) => {
   cy.intercept('**/api/headerjs/Json?serviceid=*', config).as('getConfig');
@@ -14,7 +14,7 @@ export const installInterceptors = (
 
 interface PrepareOptions {
   loggedIn?: boolean;
-  config?: PortalConfig;
+  config?: LocalizedConfig;
 }
 
 export const prepare = (
@@ -29,6 +29,6 @@ export const prepare = (
   cy.get('#root-inner', { timeout: 30000 }).should('exist'); // Ensure that we have a storybook component loaded, before going further
 };
 
-export const copyConfig = (): PortalConfig => {
+export const copyConfig = (): LocalizedConfig => {
   return JSON.parse(JSON.stringify(testConfiguration));
 };

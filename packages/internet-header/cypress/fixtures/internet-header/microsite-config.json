@@ -1,87 +1,85 @@
 {
-  "de": {
-    "header": {
-      "globalHeader": {
-        "postLogo": {
-          "text": "Benutzerdefiniertes Logo",
-          "url": "/",
-          "image": {
-            "src": "/img.png",
-            "alt": "Mikrosite-Logo"
-          }
-        },
-        "languages": [
-          {
-            "code": "de-CH",
-            "text": "DE",
-            "url": "#"
-          },
-          {
-            "code": "fr-CH",
-            "text": "FR",
-            "url": "#"
-          },
-          {
-            "code": "it-CH",
-            "text": "IT",
-            "url": "#"
-          },
-          {
-            "code": "en",
-            "text": "EN",
-            "url": "#"
-          }
-        ]
+  "header": {
+    "globalHeader": {
+      "postLogo": {
+        "text": "Benutzerdefiniertes Logo",
+        "url": "/",
+        "image": {
+          "src": "/img.png",
+          "alt": "Mikrosite-Logo"
+        }
       },
-      "localHeader": {
-        "title": "Mikrosite-Titel",
-        "navigation": [
-          {
-            "text": "Suche",
-            "url": "#",
-            "icon": "search"
+      "languages": [
+        {
+          "code": "de-CH",
+          "text": "DE",
+          "url": "#"
+        },
+        {
+          "code": "fr-CH",
+          "text": "FR",
+          "url": "#"
+        },
+        {
+          "code": "it-CH",
+          "text": "IT",
+          "url": "#"
+        },
+        {
+          "code": "en",
+          "text": "EN",
+          "url": "#"
+        }
+      ]
+    },
+    "localHeader": {
+      "title": "Mikrosite-Titel",
+      "navigation": [
+        {
+          "text": "Suche",
+          "url": "#",
+          "icon": "search"
+        },
+        {
+          "user": {
+            "name": "John",
+            "surname": "Doe",
+            "email": "john@example.com"
           },
-          {
-            "user": {
-              "name": "John",
-              "surname": "Doe",
-              "email": "john@example.com"
+          "options": [
+            {
+              "text": "Mein Profil",
+              "url": "#",
+              "icon": "profile"
             },
-            "options": [
-              {
-                "text": "Mein Profil",
-                "url": "#",
-                "icon": "profile"
-              },
-              {
-                "text": "Nachrichten",
-                "url": "#",
-                "icon": "letter"
-              },
-              {
-                "text": "Einstellungen",
-                "url": "#",
-                "icon": "gear"
-              },
-              {
-                "text": "Abmelden",
-                "url": "#",
-                "icon": "logout"
-              }
-            ]
-          }
-        ],
-        "mainNavigation": [
-          {
-            "text": "Briefe",
-            "url": "#"
-          },
-          {
-            "text": "Pakete",
-            "url": "#"
-          }
-        ]
-      }
+            {
+              "text": "Nachrichten",
+              "url": "#",
+              "icon": "letter"
+            },
+            {
+              "text": "Einstellungen",
+              "url": "#",
+              "icon": "gear"
+            },
+            {
+              "text": "Abmelden",
+              "url": "#",
+              "icon": "logout"
+            }
+          ]
+        }
+      ],
+      "mainNavigation": [
+        {
+          "text": "Briefe",
+          "url": "#"
+        },
+        {
+          "text": "Pakete",
+          "url": "#"
+        }
+      ]
     }
   }
 }
