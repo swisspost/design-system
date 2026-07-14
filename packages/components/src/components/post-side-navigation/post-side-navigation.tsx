@@ -53,7 +53,6 @@ export class PostSideNavigation {
     this.device = e.detail;
 
     if (this.device === 'desktop') {
-      console.log('switching to desk');
       if (this.dialog?.open) {
         this.dialog.close();
       }

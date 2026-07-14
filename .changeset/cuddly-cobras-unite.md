@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Fixed the `post-side-navigation` toggle state sync when resizing between tablet and desktop breakpoints.
+Fixed an issue where the `post-side-navigation-trigger` state became out of sync when resizing between tablet and desktop breakpoints.
