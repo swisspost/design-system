@@ -44,14 +44,10 @@ export class PostInternetHeader {
 
   @Watch('language')
   async handleLanguageChange(newValue: string) {
-    const prevValue = state.currentLanguage;
-    state.currentLanguage = newValue;
-
     try {
-      await this.updateConfig();
+      await this.updateConfig(newValue);
     } catch (error) {
       console.error(error);
-      state.currentLanguage = prevValue;
     }
   }
 
@@ -174,11 +170,16 @@ export class PostInternetHeader {
     }
   }
 
-  private async updateConfig() {
+  /**
+   * Fetch and store the localized config.
+   * @param language Explicit language to request.
+   * Falls back to the `language` prop when not provided.
+   */
+  private async updateConfig(language?: string) {
     state.localizedConfig = await getLocalizedConfig({
       projectId: this.project,
       environment: this.environment,
-      language: this.language,
+      language: language ?? this.language,
     });
 
     this.updateActiveUrl();
