@@ -1,7 +1,7 @@
 import testConfiguration from '../fixtures/internet-header/test-configuration.json';
 import mockNotAuth from '../fixtures/internet-header/not-auth.json';
 import mockAuth from '../fixtures/internet-header/auth.json';
-import { LocalizedConfig } from '@/models/general.model';
+import { LocalizedConfig } from '../../src/models/general.model';
 
 export const installInterceptors = (
   config: LocalizedConfig = testConfiguration,

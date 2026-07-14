@@ -8,7 +8,7 @@ const testConfiguration: LocalizedConfig = rawTestConfiguration;
 describe('breadcrumb', () => {
   describe('configuration', () => {
     it(`should not rendered if no config present`, () => {
-      // Cast the imported JSON object to the PortalConfig interface
+      // Cast the imported JSON object to the LocalizedConfig interface
       const config: LocalizedConfig = testConfiguration;
       const modifiedConfig = JSON.parse(JSON.stringify(config));
 
