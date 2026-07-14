@@ -44,8 +44,15 @@ export class PostInternetHeader {
 
   @Watch('language')
   async handleLanguageChange(newValue: string) {
+    const prevValue = state.currentLanguage;
     state.currentLanguage = newValue;
-    await this.updateConfig();
+
+    try {
+      await this.updateConfig();
+    } catch (error) {
+      console.error(error);
+      state.currentLanguage = prevValue;
+    }
   }
 
   /**
