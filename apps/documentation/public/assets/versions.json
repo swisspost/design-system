@@ -1,129 +1,193 @@
 [
   {
-    "title": "Version 10 (next)",
-    "version": "10.0.1",
+    "title": "Version 10",
+    "version": "10.0.0",
     "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
     "url": "https://design-system.post.ch",
     "dependencies": {
-      "@swisspost/design-system-documentation": "6.1.0",
-      "@swisspost/design-system-integration-angular": "10.0.1",
-      "@swisspost/design-system-integration-next": "10.0.1",
-      "@swisspost/design-system-changelog-github": "10.0.1",
-      "@swisspost/design-system-components": "10.0.1",
-      "@swisspost/design-system-components-angular": "10.0.1",
-      "@swisspost/design-system-components-react": "10.0.1",
-      "@swisspost/design-system-eslint": "10.0.1",
-      "@swisspost/design-system-icons": "10.0.1",
-      "@swisspost/internet-header": "10.0.1",
-      "@swisspost/design-system-styles": "10.0.1",
-      "@swisspost/design-system-styles-primeng": "10.0.1",
-      "@swisspost/design-system-theme-ag-grid": "10.0.1",
-      "@swisspost/design-system-tokens": "10.0.1"
+      "@swisspost/design-system-documentation": "6.0.1",
+      "@swisspost/design-system-integration-angular": "10.0.0",
+      "@swisspost/design-system-integration-next": "10.0.0",
+      "@swisspost/design-system-changelog-github": "10.0.0",
+      "@swisspost/design-system-components": "10.0.0",
+      "@swisspost/design-system-components-angular": "10.0.0",
+      "@swisspost/design-system-components-react": "10.0.0",
+      "@swisspost/design-system-eslint": "10.0.0",
+      "@swisspost/design-system-icons": "10.0.0",
+      "@swisspost/internet-header": "10.0.0",
+      "@swisspost/design-system-styles": "10.0.0",
+      "@swisspost/design-system-styles-primeng": "10.0.0",
+      "@swisspost/design-system-theme-ag-grid": "10.0.0",
+      "@swisspost/design-system-tokens": "10.0.0"
+    },
+    "peerDependencies": {
+      "@swisspost/design-system-components-angular": {
+        "@angular/common": "^22.0.0",
+        "@angular/core": "^22.0.0",
+        "@angular/forms": "^22.0.0",
+        "rxjs": "~7.8.0"
+      },
+      "@swisspost/design-system-components-react": {
+        "react": ">=18.0.0 <20.0.0",
+        "react-dom": ">=18.0.0 <20.0.0"
+      },
+      "@swisspost/design-system-eslint": {
+        "eslint": ">=9.0.0",
+        "typescript": ">=5.0.0"
+      },
+      "@swisspost/design-system-styles-primeng": {
+        "primeng": "^21.0.0"
+      },
+      "@swisspost/design-system-theme-ag-grid": {
+        "ag-grid-community": "^33.3.2"
+      }
     }
   },
   {
     "title": "Version 9",
-    "version": "9.0.0",
+    "version": "9.13.0",
     "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
     "url": "https://swisspost-design-system-version-9.netlify.app",
     "dependencies": {
-      "@angular/core": "^19.0.0",
-      "@ng-bootstrap/ng-bootstrap": "^17.0.0 || ^18.0.0",
-      "bootstrap": "~5.3.0",
-      "@swisspost/design-system-changelog-github": "1.0.2",
-      "@swisspost/design-system-components": "9.0.0",
-      "@swisspost/design-system-components-angular-workspace": "1.1.28",
-      "@swisspost/design-system-components-angular": "9.0.0",
-      "@swisspost/design-system-components-react": "9.0.0",
-      "@swisspost/design-system-demo": "8.0.21",
-      "@swisspost/design-system-documentation": "5.5.16",
-      "@swisspost/design-system-icons": "9.0.0",
-      "@swisspost/internet-header": "1.15.14",
-      "@swisspost/design-system-intranet-header-workspace": "3.0.40",
-      "@swisspost/design-system-intranet-header": "9.0.0",
-      "@swisspost/design-system-intranet-header-showcase": "1.0.28",
-      "@swisspost/design-system-migrations": "9.0.0",
-      "@swisspost/design-system-integration-next": "0.1.32",
-      "@swisspost/design-system-styles": "9.0.0",
-      "@swisspost/design-system-styles-primeng-workspace": "1.0.22",
-      "@swisspost/design-system-styles-primeng": "9.0.0",
-      "@swisspost/design-system-theme-ag-grid": "9.7.0",
-      "@swisspost/design-system-tokens": "9.0.0"
+      "bootstrap": "~5.3.8",
+      "@ng-bootstrap/ng-bootstrap": ">=17.0.0 < 21.0.0",
+      "@swisspost/design-system-components": "9.13.0",
+      "@swisspost/design-system-components-angular": "9.13.0",
+      "@swisspost/design-system-icons": "9.13.0",
+      "@swisspost/internet-header": "1.17.0",
+      "@swisspost/design-system-intranet-header": "9.13.0",
+      "@swisspost/design-system-migrations": "9.13.0",
+      "@swisspost/design-system-styles": "9.13.0",
+      "@swisspost/design-system-styles-primeng": "9.13.0",
+      "@swisspost/design-system-theme-ag-grid": "9.13.0"
+    },
+    "peerDependencies": {
+      "@swisspost/design-system-components-angular": {
+        "@angular/core": ">=19.0.0 <22.0.0",
+        "@angular/forms": ">=19.0.0 <22.0.0"
+      },
+      "@swisspost/design-system-intranet-header": {
+        "@angular/common": ">=17.0.0 <22.0.0",
+        "@angular/core": ">=17.0.0 <22.0.0"
+      },
+      "@swisspost/design-system-styles": {
+        "bootstrap": "~5.3.8",
+        "@ng-bootstrap/ng-bootstrap": ">=17.0.0 < 21.0.0"
+      },
+      "@swisspost/design-system-styles-primeng": {
+        "primeng": "^21.0.4",
+        "@angular/core": "^19.0.0 || ^20.0.0 || ^21.0.0",
+        "@angular/common": "^19.0.0 || ^20.0.0 || ^21.0.0"
+      },
+      "@swisspost/design-system-theme-ag-grid": {
+        "ag-grid-community": "^33.3.2"
+      }
     }
   },
   {
     "title": "Version 8",
-    "version": "8.2.0",
+    "version": "8.12.1",
     "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
     "url": "https://design-system-version-8.netlify.app",
     "dependencies": {
+      "bootstrap": "~5.3.0",
       "@angular/core": "^18.0.0",
       "@ng-bootstrap/ng-bootstrap": "^17.0.0",
-      "bootstrap": "~5.3.0",
-      "@swisspost/design-system-changelog-github": "1.0.2",
-      "@swisspost/design-system-components": "8.2.1",
-      "@swisspost/design-system-components-angular-workspace": "1.1.10",
-      "@swisspost/design-system-components-angular": "8.2.1",
-      "@swisspost/design-system-components-react": "8.2.1",
-      "@swisspost/design-system-demo": "8.0.3",
-      "@swisspost/design-system-documentation": "5.4.1",
-      "@swisspost/design-system-icons": "8.2.1",
-      "@swisspost/internet-header": "1.14.6",
-      "@swisspost/design-system-intranet-header-workspace": "3.0.22",
-      "@swisspost/design-system-intranet-header": "8.2.1",
-      "@swisspost/design-system-intranet-header-showcase": "1.0.10",
-      "@swisspost/design-system-migrations": "8.2.1",
-      "@swisspost/design-system-integration-next": "0.1.14",
-      "@swisspost/design-system-styles": "8.2.1",
-      "@swisspost/design-system-styles-primeng-workspace": "1.0.6",
-      "@swisspost/design-system-styles-primeng": "8.2.1",
-      "@swisspost/design-system-tokens": "8.2.1"
+      "@swisspost/design-system-components": "8.12.1",
+      "@swisspost/design-system-components-angular": "8.12.1",
+      "@swisspost/design-system-icons": "8.12.1",
+      "@swisspost/internet-header": "1.15.13",
+      "@swisspost/design-system-intranet-header": "8.12.1",
+      "@swisspost/design-system-migrations": "8.12.1",
+      "@swisspost/design-system-styles": "8.12.1",
+      "@swisspost/design-system-styles-primeng": "8.12.1"
+    },
+    "peerDependencies": {
+      "@swisspost/design-system-components-angular": {
+        "@angular/core": "^16.0.0 || ^17.0.0 || ^18.0.0",
+        "@angular/forms": "^16.0.0 || ^17.0.0 || ^18.0.0",
+        "@angular/common": "^16.0.0 || ^17.0.0 || ^18.0.0"
+      },
+      "@swisspost/design-system-intranet-header": {
+        "@angular/core": "^16.0.0 || ^17.0.0 || ^18.0.0",
+        "@angular/common": "^16.0.0 || ^17.0.0 || ^18.0.0"
+      },
+      "@swisspost/design-system-styles": {
+        "bootstrap": "~5.3.0",
+        "@angular/core": "^18.0.0",
+        "@ng-bootstrap/ng-bootstrap": "^17.0.0"
+      },
+      "@swisspost/design-system-styles-primeng": {
+        "primeng": "^17.18.0",
+        "@angular/core": "^18.0.0",
+        "@angular/common": "^18.0.0"
+      }
     }
   },
   {
     "title": "Version 7",
-    "version": "7.4.0",
+    "version": "7.4.13",
     "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
     "url": "https://design-system-version-7.netlify.app",
     "dependencies": {
+      "bootstrap": "~5.3.0",
       "@angular/core": "^16.0.0 || ^17.0.0",
       "@ng-bootstrap/ng-bootstrap": "^15.0.0 || ^16.0.0",
+      "@swisspost/design-system-components": "7.4.13",
+      "@swisspost/design-system-components-angular": "7.4.13",
+      "@swisspost/design-system-icons": "7.4.13",
+      "@swisspost/internet-header": "1.14.13",
+      "@swisspost/design-system-intranet-header": "7.4.13",
+      "@swisspost/design-system-migrations": "7.4.13",
+      "@swisspost/design-system-styles": "7.4.13",
+      "@swisspost/design-system-styles-primeng": "7.4.13"
+    },
+    "peerDependencies": {
+      "@swisspost/design-system-components-angular": {
+        "@angular/core": "^16.0.0 || ^17.0.0",
+        "@angular/common": "^16.0.0 || ^17.0.0"
+      },
+      "@swisspost/design-system-intranet-header": {
+        "@angular/core": "^16.0.0 || ^17.0.0",
+        "@angular/common": "^16.0.0 || ^17.0.0"
+      },
+      "@swisspost/design-system-styles": {
+        "bootstrap": "~5.3.0",
+        "@angular/core": "^16.0.0 || ^17.0.0",
+        "@ng-bootstrap/ng-bootstrap": "^15.0.0 || ^16.0.0"
+      },
+      "@swisspost/design-system-styles-primeng": {
+        "primeng": "^17.0.0",
+        "@angular/core": "^17.0.0",
+        "@angular/common": "^17.0.0"
+      }
+    }
+  },
+  {
+    "title": "Version 6",
+    "version": "6.6.5",
+    "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
+    "url": "https://design-system-version-6.netlify.app",
+    "dependencies": {
       "bootstrap": "~5.3.0",
-      "@swisspost/design-system-changelog-github": "1.0.2",
-      "@swisspost/design-system-components": "7.4.0",
-      "@swisspost/design-system-components-angular": "7.4.0",
-      "@swisspost/design-system-icons": "7.4.0",
-      "@swisspost/internet-header": "1.14.2",
-      "@swisspost/design-system-intranet-header": "7.4.0",
-      "@swisspost/design-system-migrations": "7.4.0",
-      "@swisspost/design-system-styles": "7.4.0",
-      "@swisspost/design-system-styles-primeng": "7.4.0"
-    }
-  },
-  {
-    "title": "Version 6",
-    "version": "6.4.0 - 6.6.5",
-    "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
-    "url": "https://design-system-version-6.netlify.app",
-    "dependencies": {
-      "@angular/core": "16.2.3",
-      "@ng-bootstrap/ng-bootstrap": "15.1.1",
-      "@swisspost/design-system-intranet-header": "4.0.10",
-      "@swisspost/design-system-styles": "6.4.0",
-      "bootstrap": "5.3.1"
-    }
-  },
-  {
-    "title": "Version 6",
-    "version": "6.2.0 - 6.3.0",
-    "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
-    "url": "https://design-system-version-6.netlify.app",
-    "dependencies": {
-      "@angular/core": "15.0.4",
-      "@ng-bootstrap/ng-bootstrap": "15.2.0",
-      "@swisspost/design-system-intranet-header": "4.0.10",
-      "@swisspost/design-system-styles": "6.3.0",
-      "bootstrap": "5.2.3"
+      "@ng-bootstrap/ng-bootstrap": "^15.0.0",
+      "@swisspost/design-system-components": "2.1.1",
+      "@swisspost/design-system-components-angular": "2.0.1",
+      "@swisspost/design-system-icons": "1.4.0",
+      "@swisspost/internet-header": "1.13.8",
+      "@swisspost/design-system-intranet-header": "5.0.12",
+      "@swisspost/design-system-styles": "6.6.5"
+    },
+    "peerDependencies": {
+      "@swisspost/design-system-components-angular": {
+        "@angular/core": "^16.0.0",
+        "@angular/common": "^16.0.0",
+        "@swisspost/design-system-components": "2.1.1"
+      },
+      "@swisspost/design-system-styles": {
+        "bootstrap": "~5.3.0",
+        "@ng-bootstrap/ng-bootstrap": "^15.0.0"
+      }
     }
   },
   {
@@ -132,11 +196,10 @@
     "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
     "url": "https://swiss-post-design-system-v5.netlify.app",
     "dependencies": {
-      "@angular/core": "14.2.12",
-      "@ng-bootstrap/ng-bootstrap": "12.1.2",
-      "@swisspost/design-system-intranet-header": "3.1.1",
-      "@swisspost/design-system-styles": "5.4.1",
-      "bootstrap": "5.1.3"
+      "@swisspost/design-system-components": "1.3.1",
+      "@swisspost/design-system-icons": "1.0.1",
+      "@swisspost/internet-header": "1.5.5",
+      "@swisspost/design-system-styles": "5.4.1"
     }
   }
 ]
