@@ -144,7 +144,7 @@
     "replace": "1.2.2",
     "rimraf": "6.0.1",
     "rollup-plugin-postcss": "4.0.2",
-    "sass": "1.89.2",
+    "sass": "1.101.0",
     "throttle-debounce": "5.0.2",
     "ts-jest": "catalog:stencil/jest",
     "ts-node": "catalog:node",
