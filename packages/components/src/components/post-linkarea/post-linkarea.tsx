@@ -21,6 +21,9 @@ const LINKAREA_TARGET_SELECTOR = [
 ].join(',');
 
 function isDisabled(element: HTMLElement): boolean {
+  const fieldset = element.closest<HTMLFieldSetElement>('fieldset');
+  if (fieldset && fieldset.disabled) return true;
+
   return 'disabled' in element && Boolean(element.disabled);
 }
 
