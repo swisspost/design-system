@@ -281,7 +281,7 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
             }
 
             &.-other-decade- {
-              color: tokens.get('post-datepicker-grid-year-cell-element-color-enabled-fg');
+              display: none;
             }
 
             &:not(.-disabled-) {
