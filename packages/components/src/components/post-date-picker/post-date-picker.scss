@@ -755,7 +755,7 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
   );
 
   ::slotted(input.form-control:is(.is-invalid, .is-valid):not(:disabled)) {
-    background-position: inset-block-start 50% inset-inline-end
+    background-position: top 50% right
       calc(
         #{tokens.get('search-position-inline-end-icon', components.$post-search-input)} +
           #{tokens.get('post-datepicker-input-icons-gap-inline')} +
