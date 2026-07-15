@@ -1,6 +1,6 @@
 import { state } from '@/data/store';
 
-export const DEFAULT_LANGUAGE = 'de';
+const DEFAULT_LANGUAGE = 'de';
 
 /**
  * Determine the current user language
@@ -65,4 +65,4 @@ const getPreferredLanguageFromBrowser = (): string | null => {
   return null;
 };
 
-export const extractLanguage = (language: string): string => language.substring(0, 2).toLowerCase();
+const extractLanguage = (language: string): string => language.substring(0, 2).toLowerCase();
