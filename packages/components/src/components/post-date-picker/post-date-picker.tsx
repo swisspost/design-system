@@ -473,6 +473,8 @@ export class PostDatePicker {
 
   private skipOnSelectCount = 0;
   private skipFocusOnNextRender = false;
+  // Date the keyboard is navigating to, used to keep focus correct when the grid redraws
+  private pendingFocusDate: Date | null = null;
 
   private handleInputBlur = () => {
     if (this.range) {
@@ -643,11 +645,19 @@ export class PostDatePicker {
       current.getMonth() !== newDate.getMonth() || current.getFullYear() !== newDate.getFullYear();
 
     if (monthChanged) {
+      this.pendingFocusDate = newDate;
       this.skipFocusOnNextRender = false;
       this.dpInstance.setViewDate(newDate);
 
       requestAnimationFrame(() => {
         this.setActiveCell(newDate, true);
+
+        // Clear it a frame later, in case the grid redraws itself twice
+        requestAnimationFrame(() => {
+          if (this.pendingFocusDate === newDate) {
+            this.pendingFocusDate = null;
+          }
+        });
       });
     } else {
       this.setActiveCell(newDate, true);
@@ -707,7 +717,10 @@ export class PostDatePicker {
 
     const dates = this.getIsoDates();
     const selectedDate = dates[0] ? isoToDate(dates[0]) : null;
-    this.setActiveCell(selectedDate || this.today, focusOnDate);
+    // Focus the keyboard's target date if there is one, else the selected date, else today
+    const dateToFocus = this.pendingFocusDate || selectedDate || this.today;
+
+    this.setActiveCell(dateToFocus, focusOnDate);
   }
 
   /**
