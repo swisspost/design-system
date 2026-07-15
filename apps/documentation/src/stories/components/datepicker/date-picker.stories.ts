@@ -39,7 +39,7 @@ const meta: MetaComponent = {
     floatingLabel: true,
     validation: 'null',
     requiredOptional: 'null',
-    hint: 'This is helpful text that provides guidance or additional information to assist the user in filling out this field correctly.',
+    hint: 'This is a helpful text that provides guidance or additional information to assist the user in filling out this field correctly.',
   },
   argTypes: {
     locale: {
@@ -191,8 +191,6 @@ const isoStringPattern = /^\d{4}-\d{2}-\d{2}$/;
 function render(args: Args, context: StoryContext) {
   const validationMessages = getValidationMessages(args, context, !args.inline);
 
-  const dir = args.locale ? getLocaleDir(args.locale) : nothing;
-
   const validation = args.validation && args.validation !== 'null' ? ` ${args.validation}` : '';
 
   const ariaDescribedByParts = [
@@ -216,10 +214,9 @@ function render(args: Args, context: StoryContext) {
     >${getLabelText(args)}</label
   >`;
 
-  return keyed(
+  return html`${keyed(
     `${args.id}-${args.inline}-${args.floatingLabel}-${args.validation}`,
-    html`<div dir=${dir}>
-      ${args.floatingLabel ? nothing : label}
+    html` ${args.floatingLabel ? nothing : label}
       <post-date-picker
         id=${args.id}
         class=${args.floatingLabel && !args.inline ? 'form-floating' : ''}
@@ -240,14 +237,21 @@ function render(args: Args, context: StoryContext) {
           ? html`${input} ${label}`
           : html`${input}`}</post-date-picker
       >
-      ${validationMessages}
-    </div>`,
-  );
+      ${validationMessages}`,
+  )}`;
 }
 
 type Story = StoryObj;
 
-export const Default: Story = {};
+export const Default: Story = {
+  decorators: [
+    (story: StoryFn, context: StoryContext) => {
+      const locale = typeof context.args.locale === 'string' ? context.args.locale : '';
+      const dir = locale ? getLocaleDir(locale) : nothing;
+      return html`<div dir=${dir}>${story(context.args, context)}</div> `;
+    },
+  ],
+};
 
 // For testing purposes
 export const Inline: Story = {
