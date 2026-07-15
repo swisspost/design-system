@@ -1,6 +1,6 @@
 import { Environment, LocalizedConfig, LocalizedConfigParameters } from '@/models/general.model';
 import { state } from '@/data/store';
-import { getUserLang, SUPPORTED_LANGUAGES } from './language.service';
+import { getUserLang } from './language.service';
 
 // Dedupes concurrent requests for the same projectId + environment + language.
 // Entries are removed once settled, so a new language switch always fetches fresh.
@@ -37,7 +37,7 @@ export const getLocalizedConfig = async ({
     return ppmConfig;
   }
 
-  const lang = getUserLang(SUPPORTED_LANGUAGES, language);
+  const lang = getUserLang(language);
   const cacheKey = `${projectId}-${environment}-${lang}`;
 
   let configPromise = inFlightRequests.get(cacheKey);
