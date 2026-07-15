@@ -1,7 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as ChipStories from './chip.stories';
 import StylesPackageImport from '@/shared/styles-package-import';
-import PackageTag from '@/shared/package-tag';
+import StoryTags from '@/shared/story-tags';
 
 <Meta of={ChipStories} />
 
@@ -12,12 +12,12 @@ import PackageTag from '@/shared/package-tag';
 
 </div>
 
-<PackageTag meta={meta} />
+<StoryTags meta={meta} />
 
 <div className="lead">
-  Chips contain small labels which represent single values or a collection of values. These discrete
-  pieces of information can be inputs, status, properties, categories or any other pieces of meta
-  data.
+  The chip contains a small label which represents a single value or a collection of values.
+  These discrete pieces of information can be inputs, status, properties, categories or any
+  other pieces of metadata.
 </div>
 
 <Canvas sourceState="shown" of={ChipStories.Default} />

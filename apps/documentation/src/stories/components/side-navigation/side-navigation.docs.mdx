@@ -1,6 +1,6 @@
-import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import meta, * as SideNavigationStories from './side-navigation.stories';
-import PackageTag from '@/shared/package-tag';
+import StoryTags from '@/shared/story-tags';
 import StylesPackageImport from '@/shared/styles-package-import';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 import './side-navigation.styles.scss';
@@ -12,7 +12,7 @@ import './side-navigation.styles.scss';
   <link-design of={JSON.stringify(SideNavigationStories)}></link-design>
 </div>
 
-<PackageTag meta={meta} />
+<StoryTags meta={meta} />
 
 <div className="lead">
   The side navigation is a container of navigation menu items that lets the user navigate through
@@ -32,6 +32,15 @@ import './side-navigation.styles.scss';
 <ComponentsPackageInstall component="<post-side-navigation>" />
 
 <StylesPackageImport components={['side-navigation', 'list']} />
+
+## Adding the trigger to the header
+
+The `<post-side-navigation>` component has been designed to be used with the <a href="/?path=/docs/27a2e64d-55ba-492d-ab79-5f7c5e818498--docs#application">application header</a>.
+
+On desktop, it is always visible. For smaller screen, a trigger needs to be added in order to let users open it manually.
+To integrate the side navigation with the header, add the `<post-side-navigation-trigger>` component to the `slot="side-nav"` of the header, which will place it on the left of your application title.
+
+<Source of={SideNavigationStories.HeaderTrigger} />
 
 ## Page structure
 

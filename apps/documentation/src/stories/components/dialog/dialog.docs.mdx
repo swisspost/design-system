@@ -4,7 +4,7 @@ import BottomSheetContainerFluid from './dialog-bottom-sheet-container-fluid.sam
 import BottomSheetWidth from './dialog-bottom-sheet-width.sample.html?raw';
 import JSFormData from './samples/js-form-data?raw';
 import StylesPackageImport from '@/shared/styles-package-import';
-import PackageTag from '@/shared/package-tag';
+import StoryTags from '@/shared/story-tags';
 
 <Meta of={DialogStories} />
 
@@ -15,14 +15,18 @@ import PackageTag from '@/shared/package-tag';
 
 </div>
 
-<PackageTag meta={meta} />
+<StoryTags meta={meta} />
 
-<p className="lead">Communicate crucial information and request user action.</p>
+<div className="lead">
+  The dialog is an interface element that appears over other content and blocks interaction with
+  it until the user responds. Use it to communicate critical information or request a specific
+  action.
+</div>
 
 <post-banner type="warning">
   <p>
-    Using the Design System dialog component will need the <code>.post-dialog</code> class in the
-    future to prevent styling conflicts with other <code>dialog</code> elements on the page.
+    Using the Design System dialog component will require the <code>.post-dialog</code> class in
+    the future to prevent styling conflicts with other <code>dialog</code> elements on the page.
   </p>
 </post-banner>
 
