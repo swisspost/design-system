@@ -776,32 +776,13 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
   }
 }
 
-:host(.form-floating) {
-  &:has(> input.form-control.is-valid:not(:disabled))::after,
-  &:has(> input.form-control:-webkit-autofill.is-valid)::after {
-    content: '';
-    position: absolute;
-    inset-block-start: var(--post-form-floating-validation-icon-block-start);
-    transform: translateY(-50%);
-    inset-inline-end: var(--post-form-floating-validation-icon-inline-end);
-    z-index: 2;
-    pointer-events: none;
-    background-image: var(--post-signal-icon-success);
-    width: #{tokens.get('input-sizing-icon', components.$post-text-input)};
-    height: #{tokens.get('input-sizing-icon', components.$post-text-input)};
-  }
-
-  &:has(> input.form-control.is-invalid:not(:disabled))::after,
-  &:has(> input.form-control:-webkit-autofill.is-invalid)::after {
-    content: '';
-    position: absolute;
-    inset-block-start: var(--post-form-floating-validation-icon-block-start);
-    transform: translateY(-50%);
-    inset-inline-end: var(--post-form-floating-validation-icon-inline-end);
-    z-index: 1;
-    pointer-events: none;
-    background-image: var(--post-signal-icon-error);
-    width: #{tokens.get('input-sizing-icon', components.$post-text-input)};
-    height: #{tokens.get('input-sizing-icon', components.$post-text-input)};
+:host(:dir(rtl)) {
+  ::slotted(input.form-control:is(.is-invalid, .is-valid):not(:disabled)) {
+    background-position: top 50% left
+      calc(
+        #{tokens.get('search-position-inline-end-icon', components.$post-search-input)} +
+          #{tokens.get('post-datepicker-input-icons-gap-inline')} +
+          #{tokens.get('select-sizing-icon', components.$post-select)}
+      ) !important;
   }
 }
