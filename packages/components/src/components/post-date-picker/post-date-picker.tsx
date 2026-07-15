@@ -877,7 +877,12 @@ export class PostDatePicker {
       return;
     }
 
-    this.dpInput.type = this.inline ? 'hidden' : 'text';
+    if (this.inline) {
+      this.dpInput.type = 'hidden';
+    } else {
+      this.dpInput.type = 'text';
+      this.dpInput.inputMode = 'numeric';
+    }
 
     if (!this.inline && !this.dpInput.hasAttribute('placeholder')) {
       this.dpInput.placeholder = ' ';

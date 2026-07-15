@@ -6,7 +6,7 @@ import { html } from 'lit';
 const meta: MetaComponent<HTMLPostMegadropdownElement> = {
   id: '212efc4e-875b-4497-912d-d28c6baf32f5',
   title: 'Raw Components/Megadropdown',
-  tags: ['package:WebComponents', 'devOnly'],
+  tags: ['package:WebComponents', 'devOnly', 'status:New'],
   component: 'post-megadropdown',
   render: render,
   parameters: {
