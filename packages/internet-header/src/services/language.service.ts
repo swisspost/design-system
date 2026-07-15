@@ -1,6 +1,6 @@
 import { state } from '@/data/store';
 
-const DEFAULT_LANGUAGE = 'de';
+export const DEFAULT_LANGUAGE = 'de';
 
 /**
  * Determine the current user language
@@ -35,7 +35,7 @@ export const getUserLang = (implementorPreferredLanguage?: string): string => {
     state.currentLanguage,
   ].filter((lang): lang is string => lang != null);
 
-  return languagesSet[0] ?? DEFAULT_LANGUAGE;
+  return extractLanguage(languagesSet[0] ?? DEFAULT_LANGUAGE);
 };
 
 // Returns the first path segment if it's a valid language tag, e.g. "de" in "/de/products"
@@ -65,4 +65,4 @@ const getPreferredLanguageFromBrowser = (): string | null => {
   return null;
 };
 
-const extractLanguage = (language: string): string => language.substring(0, 2).toLowerCase();
+export const extractLanguage = (language: string): string => language.substring(0, 2).toLowerCase();

@@ -1,6 +1,6 @@
 import { Environment, LocalizedConfig, LocalizedConfigParameters } from '@/models/general.model';
 import { state } from '@/data/store';
-import { getUserLang } from './language.service';
+import { DEFAULT_LANGUAGE, extractLanguage, getUserLang } from './language.service';
 
 // Dedupes concurrent requests for the same projectId + environment + language.
 // Entries are removed once settled, so a new language switch always fetches fresh.
@@ -32,7 +32,7 @@ export const getLocalizedConfig = async ({
   const ppmConfig = getPPMConfig();
 
   if (ppmConfig) {
-    const lang = document.documentElement.lang;
+    const lang = extractLanguage(document.documentElement.lang || DEFAULT_LANGUAGE);
     state.currentLanguage = lang;
     return ppmConfig;
   }
@@ -82,7 +82,6 @@ export const fetchConfig = async (
 
   const url = generateConfigUrl(projectId, environment, lang);
 
-  // Get the config if cache is invalid
   try {
     const res = await fetch(url);
     return (await res.json()) as LocalizedConfig;
