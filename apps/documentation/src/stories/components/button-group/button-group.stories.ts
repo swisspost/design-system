@@ -156,8 +156,12 @@ export default meta;
 
 type Story = StoryObj;
 
-function createButtonTemplate(args: Args, context: StoryContext, index: number) {
-  const [_, updateArgs] = useArgs();
+function createButtonTemplate(
+  args: Args,
+  context: StoryContext,
+  index: number,
+  updateArgs: (args: Args) => void,
+) {
   const position = index + 1;
   const id = `btngroup_${context.name}_${position}`;
   const name = `btngroup_${context.name}`;
@@ -222,7 +226,10 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
 }
 
 function RenderButtonGroup(args: Args, context: StoryContext) {
-  const buttons = Array.from({ length: 4 }).map((_, i) => createButtonTemplate(args, context, i));
+  const [_, updateArgs] = useArgs();
+  const buttons = Array.from({ length: 4 }).map((_, i) =>
+    createButtonTemplate(args, context, i, updateArgs),
+  );
   const groupClass = args.direction === 'vertical' ? 'btn-group btn-group-vertical' : 'btn-group';
 
   if (args.element === 'radio' || args.element === 'checkbox') {
@@ -239,10 +246,11 @@ function RenderButtonGroup(args: Args, context: StoryContext) {
   }
 }
 
-function renderButtonGroupDirection(args: Args, context: StoryContext) {
+function RenderButtonGroupDirection(args: Args, context: StoryContext) {
+  const [_, updateArgs] = useArgs();
   return html`
     <div class="btn-group ${args.groupClass}" role="group" aria-label="Button group example">
-      ${Array.from({ length: 6 }).map((_, i) => createButtonTemplate(args, context, i))}
+      ${Array.from({ length: 6 }).map((_, i) => createButtonTemplate(args, context, i, updateArgs))}
     </div>
   `;
 }
@@ -265,7 +273,7 @@ export const Radios: Story = {
 };
 
 export const Direction: Story = {
-  render: renderButtonGroupDirection,
+  render: RenderButtonGroupDirection,
   args: {
     element: 'button',
   },
