@@ -104,3 +104,4 @@ function RenderBannerSnapshot() {
 
 export const Banner: Story = {
   render: RenderBannerSnapshot,
+}
