@@ -208,79 +208,77 @@ export default meta;
 
 type Story = StoryObj;
 
-const Template: Story = {
-  render: (args: Args, context: StoryContext) => {
-    const [_, updateArgs] = useArgs();
-    const classes = ['form-select', args.validation, args.size === 'small' && 'form-select-sm']
-      .filter(c => c && c !== 'null')
-      .join(' ');
-    const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
+function RenderSelect(args: Args, context: StoryContext) {
+  const [_, updateArgs] = useArgs();
+  const classes = ['form-select', args.validation, args.size === 'small' && 'form-select-sm']
+    .filter(c => c && c !== 'null')
+    .join(' ');
+  const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
 
-    const label = !useAriaLabel
-      ? html` <label for="${context.id}" class="form-label">${getLabelText(args)}</label> `
-      : null;
-    const options = Array.from({ length: args.options - 1 }, (_, i) => i + 2).map(
-      (key: number) => html` <option value="value_${key}">Option ${key}</option> `,
-    );
+  const label = !useAriaLabel
+    ? html` <label for="${context.id}" class="form-label">${getLabelText(args)}</label> `
+    : null;
+  const options = Array.from({ length: args.options - 1 }, (_, i) => i + 2).map(
+    (key: number) => html` <option value="value_${key}">Option ${key}</option> `,
+  );
 
-    const contextuals = getValidationMessages(args, context);
+  const contextuals = getValidationMessages(args, context);
 
-    const ariaDescribedByParts = [
-      args.hint ? 'form-hint-' + context.id : '',
-      args.validation !== 'null' ? `${args.validation}-id-${context.id}` : '',
-    ].filter(Boolean);
+  const ariaDescribedByParts = [
+    args.hint ? 'form-hint-' + context.id : '',
+    args.validation !== 'null' ? `${args.validation}-id-${context.id}` : '',
+  ].filter(Boolean);
 
-    const ariaDescribedBy =
-      args.hint || args.validation !== 'null' ? ariaDescribedByParts.join(' ') : nothing;
+  const ariaDescribedBy =
+    args.hint || args.validation !== 'null' ? ariaDescribedByParts.join(' ') : nothing;
 
-    const control = html`
-      <select
-        id="${context.id}"
-        class="${classes}"
-        ?multiple="${args.multiple}"
-        size="${args.multipleSize ?? nothing}"
-        ?disabled="${args.disabled}"
-        aria-label="${useAriaLabel ? args.label : nothing}"
-        aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
-        aria-describedby="${ariaDescribedBy}"
-        @change="${(e: Event) => {
-          updateArgs({ value: (e.target as HTMLSelectElement).value });
-        }}"
-        ?required="${args.requiredOptional === 'required'}"
-      >
-        <option>${args.emptyOptionText}</option>
-        ${[
-          options
-            .slice(1)
-            .map(
-              (option, index) => html`
-                <option value="value_${index + 1}" ?selected="${index === args.selectedOption - 2}">
-                  Option ${index + 2}
-                </option>
-              `,
-            ),
-        ]}
-      </select>
+  const control = html`
+    <select
+      id="${context.id}"
+      class="${classes}"
+      ?multiple="${args.multiple}"
+      size="${args.multipleSize ?? nothing}"
+      ?disabled="${args.disabled}"
+      aria-label="${useAriaLabel ? args.label : nothing}"
+      aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
+      aria-describedby="${ariaDescribedBy}"
+      @change="${(e: Event) => {
+        updateArgs({ value: (e.target as HTMLSelectElement).value });
+      }}"
+      ?required="${args.requiredOptional === 'required'}"
+    >
+      <option>${args.emptyOptionText}</option>
+      ${[
+        options
+          .slice(1)
+          .map(
+            (option, index) => html`
+              <option value="value_${index + 1}" ?selected="${index === args.selectedOption - 2}">
+                Option ${index + 2}
+              </option>
+            `,
+          ),
+      ]}
+    </select>
+  `;
+
+  if (args.floatingLabel) {
+    return html`
+      <div class="form-floating">
+        ${[control, label, ...contextuals].filter(el => el !== null)}
+      </div>
     `;
-
-    if (args.floatingLabel) {
-      return html`
-        <div class="form-floating">
-          ${[control, label, ...contextuals].filter(el => el !== null)}
-        </div>
-      `;
-    } else {
-      return html`${[label, control, ...contextuals].filter(el => el !== null)}`;
-    }
-  },
-};
+  } else {
+    return html`${[label, control, ...contextuals].filter(el => el !== null)}`;
+  }
+}
 
 export const Default: Story = {
-  ...Template,
+  render: RenderSelect,
 };
 
 export const FloatingLabel: Story = {
-  ...Template,
+  render: RenderSelect,
   args: {
     floatingLabel: true,
     hint: '',
@@ -289,7 +287,7 @@ export const FloatingLabel: Story = {
 };
 
 export const Small: Story = {
-  ...Template,
+  render: RenderSelect,
   args: {
     floatingLabel: false,
     size: 'small',

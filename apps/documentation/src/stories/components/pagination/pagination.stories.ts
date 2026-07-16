@@ -88,27 +88,29 @@ export default meta;
 
 type Story = StoryObj;
 
+function RenderPagination(args: Args) {
+  const [, updateArgs] = useArgs();
+  return html`
+    <post-pagination
+      page=${args.page}
+      page-size=${args.pageSize}
+      collection-size=${args.collectionSize}
+      label=${args.label}
+      text-previous=${args.textPrevious}
+      text-next=${args.textNext}
+      text-page=${args.textPage}
+      text-first=${args.textFirst}
+      text-last=${args.textLast}
+      @postChange=${(e: CustomEvent) => {
+        const newPage = e.detail;
+        updateArgs({ page: newPage });
+      }}
+    ></post-pagination>
+  `;
+}
+
 export const Default: Story = {
-  render: (args: Args) => {
-    const [, updateArgs] = useArgs();
-    return html`
-      <post-pagination
-        page=${args.page}
-        page-size=${args.pageSize}
-        collection-size=${args.collectionSize}
-        label=${args.label}
-        text-previous=${args.textPrevious}
-        text-next=${args.textNext}
-        text-page=${args.textPage}
-        text-first=${args.textFirst}
-        text-last=${args.textLast}
-        @postChange=${(e: CustomEvent) => {
-          const newPage = e.detail;
-          updateArgs({ page: newPage });
-        }}
-      ></post-pagination>
-    `;
-  },
+  render: RenderPagination,
 };
 
 export const ManyPages: Story = {

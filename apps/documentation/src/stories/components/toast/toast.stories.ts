@@ -211,7 +211,7 @@ const meta: MetaComponent = {
       },
     },
   },
-  render: render,
+  render: RenderToast,
   decorators: [
     (story, { args }) => {
       const [_, updateArgs] = useArgs();
@@ -309,7 +309,7 @@ function getDismissButton(args: Args, isFixed: boolean) {
   return args.dismissible || isFixed ? html` <post-closebutton>Close</post-closebutton> ` : null;
 }
 
-function render(args: Args, context: StoryContext) {
+function RenderToast(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
   updateAlignments(args, updateArgs);

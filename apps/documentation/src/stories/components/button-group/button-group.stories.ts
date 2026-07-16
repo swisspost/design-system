@@ -17,7 +17,7 @@ const meta: MetaComponent = {
   id: '021d61aa-e039-4858-b4b9-b86a3e772811',
   title: 'Components/Button Group',
   tags: ['package:Styles'],
-  render: renderButtonGroup,
+  render: RenderButtonGroup,
   parameters: {
     badges: [],
     design: {
@@ -221,7 +221,7 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
   }
 }
 
-function renderButtonGroup(args: Args, context: StoryContext) {
+function RenderButtonGroup(args: Args, context: StoryContext) {
   const buttons = Array.from({ length: 4 }).map((_, i) => createButtonTemplate(args, context, i));
   const groupClass = args.direction === 'vertical' ? 'btn-group btn-group-vertical' : 'btn-group';
 

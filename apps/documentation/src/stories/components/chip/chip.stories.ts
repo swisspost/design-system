@@ -7,7 +7,7 @@ const meta: MetaComponent = {
   id: '12576d97-52c3-49ec-be7b-6d37728b75f5',
   title: 'Components/Chip',
   tags: ['package:Styles'],
-  render: renderChip,
+  render: RenderChip,
   parameters: {
     design: {
       type: 'figma',
@@ -167,7 +167,7 @@ function getDismissibleChip(args: Args, updateArgs: (args: Args) => void) {
   `;
 }
 
-function renderChip(args: Args, context: StoryContext, index?: number) {
+function RenderChip(args: Args, context: StoryContext, index?: number) {
   const [_, updateArgs] = useArgs();
 
   if (args.dismissed) return html` ${nothing} `;

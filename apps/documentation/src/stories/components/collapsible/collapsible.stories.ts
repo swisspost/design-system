@@ -10,7 +10,7 @@ const meta: MetaComponent<HTMLPostCollapsibleElement> = {
   title: 'Components/Collapsible',
   tags: ['package:WebComponents'],
   component: 'post-collapsible',
-  render: renderCollapsible,
+  render: RenderCollapsible,
   parameters: {
     badges: [],
     controls: {
@@ -27,7 +27,7 @@ export default meta;
 
 //RENDERER
 let ignoreToggle = true;
-function renderCollapsible(
+function RenderCollapsible(
   { innerHTML, ...args }: Partial<HTMLPostCollapsibleElement>,
   context: StoryContext<HTMLPostCollapsibleElement>,
 ) {
