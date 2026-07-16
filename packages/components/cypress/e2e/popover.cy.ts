@@ -214,7 +214,9 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('Has no detectable a11y violations on load', () => {
-      cy.checkA11y('post-popover');
+      cy.checkA11y('post-popover', undefined, (violations) => {
+        expect(violations).to.have.length(0);
+      });
     });
   });
 });
