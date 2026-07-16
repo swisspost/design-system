@@ -36,7 +36,6 @@ test.describe('SSR compatibility', () => {
   // NextJS typically only logs a single hydration error.
   // This means that after an error in one component has been fixed, another one may occur.
   // Make sure you're not hunting ghosts!
-  // We skip this test currently, because there are still a lot of hydration errors we need to fix first.
   test('should render without hydration errors', async ({ page }) => {
     const hydrationErrors: string[] = [];
 
