@@ -108,7 +108,7 @@ $grid-container-padding: tokens.get('post-grid-container-padding-inline', compon
 
       // Left Scroll button
       &.scroll-btn-left {
-        inset-inline-start: calc(var(--post-container-offset) + #{$grid-container-padding});
+        inset-inline-start: 0;
         border-inline-start: none;
         border-radius: 0 tokens.get('post-tabs-page-scroll-button-border-radius')
           tokens.get('post-tabs-page-scroll-button-border-radius') 0;
@@ -116,7 +116,7 @@ $grid-container-padding: tokens.get('post-grid-container-padding-inline', compon
 
       // Right Scroll button
       &.scroll-btn-right {
-        inset-inline-end: calc(var(--post-container-offset) + #{$grid-container-padding});
+        inset-inline-end: 0;
         border-inline-end: none;
         border-radius: tokens.get('post-tabs-page-scroll-button-border-radius') 0 0
           tokens.get('post-tabs-page-scroll-button-border-radius');
