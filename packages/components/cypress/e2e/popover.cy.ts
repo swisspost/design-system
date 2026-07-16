@@ -138,7 +138,7 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
         .then(([trigger, popover]: [HTMLButtonElement, HTMLPostPopoverElement]) => {
           const t = trigger.getBoundingClientRect();
           const p = popover.getBoundingClientRect();
-          expect(t.top < p.top);
+          expect(t.top).to.be.lessThan(p.top);
         });
     });
 
