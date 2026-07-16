@@ -273,12 +273,16 @@ function RenderSelect(args: Args, context: StoryContext) {
   }
 }
 
-export const Default: Story = {
+const Template: Story = {
   render: RenderSelect,
 };
 
+export const Default: Story = {
+  ...Template,
+};
+
 export const FloatingLabel: Story = {
-  render: RenderSelect,
+  ...Template,
   args: {
     floatingLabel: true,
     hint: '',
@@ -287,7 +291,7 @@ export const FloatingLabel: Story = {
 };
 
 export const Small: Story = {
-  render: RenderSelect,
+  ...Template,
   args: {
     floatingLabel: false,
     size: 'small',

@@ -17,7 +17,7 @@ const meta: MetaComponent = {
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=31920-89085',
     },
   },
-  render: RenderTooltip,
+  render: Render,
   args: {
     id: 'tooltip-one',
     innerHTML: 'Hi there 👋',
@@ -52,7 +52,7 @@ const meta: MetaComponent = {
   },
 };
 
-function RenderTooltip(args: Args) {
+function Render(args: Args) {
   const [currentArgs, updateArgs] = useArgs();
   // Just for fun
   const innerHTML =

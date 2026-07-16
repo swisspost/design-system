@@ -91,10 +91,10 @@ const meta: MetaComponent = {
       table: { category: 'States' },
     },
   },
-  render: RenderRadio,
+  render: Render,
 };
 
-function RenderRadio(args: Args, context: StoryContext) {
+function Render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
   const radioClass = args.validation !== 'null' ? args.validation : undefined;

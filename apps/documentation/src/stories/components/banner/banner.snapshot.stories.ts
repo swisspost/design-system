@@ -26,7 +26,7 @@ export default {
 
 type Story = StoryObj;
 
-function RenderBannerSnapshot() {
+function RenderBanner() {
   const [args, updateArgs] = useArgs();
   const dismissedBanners = args.dismissedBanners || {};
 
@@ -103,5 +103,5 @@ function RenderBannerSnapshot() {
 }
 
 export const Banner: Story = {
-  render: RenderBannerSnapshot,
-}
+  render: RenderBanner,
+};

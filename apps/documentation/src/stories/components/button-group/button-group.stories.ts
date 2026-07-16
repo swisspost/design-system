@@ -17,7 +17,7 @@ const meta: MetaComponent = {
   id: '021d61aa-e039-4858-b4b9-b86a3e772811',
   title: 'Components/Button Group',
   tags: ['package:Styles'],
-  render: RenderButtonGroup,
+  render: renderButtonGroup,
   parameters: {
     badges: [],
     design: {
@@ -156,12 +156,8 @@ export default meta;
 
 type Story = StoryObj;
 
-function createButtonTemplate(
-  args: Args,
-  context: StoryContext,
-  index: number,
-  updateArgs: (args: Args) => void,
-) {
+function CreateButtonTemplate(args: Args, context: StoryContext, index: number) {
+  const [_, updateArgs] = useArgs();
   const position = index + 1;
   const id = `btngroup_${context.name}_${position}`;
   const name = `btngroup_${context.name}`;
@@ -225,11 +221,8 @@ function createButtonTemplate(
   }
 }
 
-function RenderButtonGroup(args: Args, context: StoryContext) {
-  const [_, updateArgs] = useArgs();
-  const buttons = Array.from({ length: 4 }).map((_, i) =>
-    createButtonTemplate(args, context, i, updateArgs),
-  );
+function renderButtonGroup(args: Args, context: StoryContext) {
+  const buttons = Array.from({ length: 4 }).map((_, i) => CreateButtonTemplate(args, context, i));
   const groupClass = args.direction === 'vertical' ? 'btn-group btn-group-vertical' : 'btn-group';
 
   if (args.element === 'radio' || args.element === 'checkbox') {
@@ -246,11 +239,10 @@ function RenderButtonGroup(args: Args, context: StoryContext) {
   }
 }
 
-function RenderButtonGroupDirection(args: Args, context: StoryContext) {
-  const [_, updateArgs] = useArgs();
+function renderButtonGroupDirection(args: Args, context: StoryContext) {
   return html`
     <div class="btn-group ${args.groupClass}" role="group" aria-label="Button group example">
-      ${Array.from({ length: 6 }).map((_, i) => createButtonTemplate(args, context, i, updateArgs))}
+      ${Array.from({ length: 6 }).map((_, i) => CreateButtonTemplate(args, context, i))}
     </div>
   `;
 }
@@ -273,7 +265,7 @@ export const Radios: Story = {
 };
 
 export const Direction: Story = {
-  render: RenderButtonGroupDirection,
+  render: renderButtonGroupDirection,
   args: {
     element: 'button',
   },
