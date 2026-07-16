@@ -13,8 +13,6 @@ $tabs-outline-offset: calc(
     (tokens.get('post-tabs-border-width'))
 );
 
-$grid-container-padding: tokens.get('post-grid-container-padding-inline', components.$post-grid);
-
 :host {
   display: block;
 
