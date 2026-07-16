@@ -23,7 +23,7 @@ describe('Back-to-top', () => {
     });
 
     it('should hide the textBackToTop label visually', () => {
-      cy.get('post-back-to-top').shadow().find('.visually-hidden').should('exist');
+      cy.get('post-back-to-top').shadow().find('span.visually-hidden').should('exist');
     });
 
     it('should scroll to top when clicked', () => {
