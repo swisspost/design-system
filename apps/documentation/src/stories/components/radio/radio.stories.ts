@@ -183,7 +183,7 @@ export function RenderGroup(args: Args, context: Partial<StoryContext>) {
 }
 
 export const Grouped: Story = {
-  render: renderGroup,
+  render: RenderGroup,
   parameters: {
     controls: {
       include: ['Size', 'Hidden Legend'],
@@ -202,7 +202,7 @@ export const Grouped: Story = {
 };
 
 export const Inline: Story = {
-  render: renderGroup,
+  render: RenderGroup,
   parameters: {
     controls: {
       include: ['Size', 'Hidden Legend'],

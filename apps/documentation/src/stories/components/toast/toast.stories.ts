@@ -212,44 +212,7 @@ const meta: MetaComponent = {
     },
   },
   render: RenderToast,
-  decorators: [
-    (story, { args }) => {
-      const [_, updateArgs] = useArgs();
-
-      if (args.stacked) {
-        return html`
-          <div class="toast-container-wrapper-stacked">
-            ${story()}
-            <style>
-              .toast-container-wrapper-stacked .toast-container {
-                position: relative;
-                inset: 0;
-              }
-
-              .toast-container-wrapper-stacked .toast-container > .toast:last-child {
-                margin-bottom: 0;
-              }
-            </style>
-          </div>
-        `;
-      } else if (args.position === 'fixed') {
-        return html`
-          <div>
-            <button
-              class="btn btn-secondary"
-              ?disabled="${args.show}"
-              @click="${(e: MouseEvent) => onToggle(e, args, updateArgs, true)}"
-            >
-              Create toast
-            </button>
-            ${story()}
-          </div>
-        `;
-      } else {
-        return html` ${story()} `;
-      }
-    },
-  ],
+  decorators: [RenderToastDecorator],
 };
 
 export default meta;
@@ -307,6 +270,43 @@ function killAutoHideTimeout(timeoutStore: ReturnType<typeof setTimeout>[], args
 
 function getDismissButton(args: Args, isFixed: boolean) {
   return args.dismissible || isFixed ? html` <post-closebutton>Close</post-closebutton> ` : null;
+}
+
+function RenderToastDecorator(story: () => unknown, { args }: StoryContext) {
+  const [_, updateArgs] = useArgs();
+
+  if (args.stacked) {
+    return html`
+      <div class="toast-container-wrapper-stacked">
+        ${story()}
+        <style>
+          .toast-container-wrapper-stacked .toast-container {
+            position: relative;
+            inset: 0;
+          }
+
+          .toast-container-wrapper-stacked .toast-container > .toast:last-child {
+            margin-bottom: 0;
+          }
+        </style>
+      </div>
+    `;
+  } else if (args.position === 'fixed') {
+    return html`
+      <div>
+        <button
+          class="btn btn-secondary"
+          ?disabled="${args.show}"
+          @click="${(e: MouseEvent) => onToggle(e, args, updateArgs, true)}"
+        >
+          Create toast
+        </button>
+        ${story()}
+      </div>
+    `;
+  } else {
+    return html` ${story()} `;
+  }
 }
 
 function RenderToast(args: Args, context: StoryContext) {
