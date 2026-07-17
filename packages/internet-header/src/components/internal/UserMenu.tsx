@@ -22,6 +22,7 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
   const isB2B = config.user.userType === 'B2B';
   const canChangeUserAndProfile = (isB2C || isB2B) && config.user.changeUserAndProfile === 'userAndProfile';
   const canChangeCompany = isB2B && config.user.canChangeCompany && config.user.company;
+  const canSeeAccountSwitch = canChangeUserAndProfile || canChangeCompany;
 
   const userFullname = [config.user.name, config.user.surname].join(' ');
   const userMenuId = createIdFrom(userFullname);
@@ -43,7 +44,7 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
           {config.user.company && <p>{config.user.company}</p>}
           <p>{userFullname}</p>
         </div>
-        {config.accountSwitch && canChangeUserAndProfile && (
+        {config.accountSwitch && canSeeAccountSwitch && (
           <post-menu-item>
             <Link
               config={{
