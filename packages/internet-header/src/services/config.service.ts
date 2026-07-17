@@ -95,7 +95,7 @@ export const fetchConfig = async (
  * Project id "test" will return a test configuration
  * @param projectId string
  * @param environment PROD, INT01 or INT02
- * @param lang currently selected language (de, en, fr, it)
+ * @param lang currently selected language
  * @returns URL pointing to the project config
  */
 export const generateConfigUrl = (
