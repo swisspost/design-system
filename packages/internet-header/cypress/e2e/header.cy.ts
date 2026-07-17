@@ -191,10 +191,19 @@ describe('header', () => {
 
       it('should show the user menu with the correct user links', () => {
         cy.get('[slot="post-login"] post-menu-trigger button').click();
+
+        const expectedCount =
+          (postLoginConfig.accountSwitch ? 1 : 0) +
+          (postLoginConfig.companySwitch ? 1 : 0) +
+          (postLoginConfig.userProfile ? 1 : 0) +
+          (postLoginConfig.settings ? 1 : 0) +
+          (postLoginConfig.userLinks?.length ?? 0) +
+          (postLoginConfig.logoutLink ? 1 : 0);
+
         cy.get('[slot="post-login"] post-menu')
           .find('post-menu-item')
           .should('be.visible')
-          .should('have.length', postLoginConfig.userLinks.length);
+          .should('have.length', expectedCount);
       });
     });
   });
