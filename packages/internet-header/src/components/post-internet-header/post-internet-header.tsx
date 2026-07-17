@@ -186,8 +186,6 @@ export class PostInternetHeader {
     state.activeLink = getActiveLink(this.activeRoute);
   }
 
-  // User-menu options: optional userProfile/settings links, then any userLinks.
-  // accountSwitch/companySwitch/logoutLink are handled separately (permission-gated / fixed position).
   private getUserMenuOptions(postLogin: PostLoginConfig): Array<IconLinkConfig> {
     return [
       ...(postLogin.userProfile ? [postLogin.userProfile] : []),
@@ -279,7 +277,7 @@ export class PostInternetHeader {
                 <post-language-menu-item
                   url={lang.url}
                   active={lang.active}
-                  code={lang.code.substring(0, 2).toLowerCase()}
+                  code={lang.code}
                   name={lang.label}
                   description={lang.description}
                 >

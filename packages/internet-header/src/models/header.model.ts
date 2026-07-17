@@ -37,12 +37,12 @@ export interface HeaderConfig {
  */
 export interface PostLoginConfig {
   loginLink: IconLinkConfig; // Login link when the user is not authenticated.
-  accountSwitch: IconLinkConfig; // Shown when appropriate based on user data, as the first entry of the userLinks list.
-  companySwitch: IconLinkConfig; // Shown when appropriate based on user data.
+  accountSwitch: IconLinkConfig; // Shown as the first entry when the user has permission to switch accounts.
+  companySwitch: IconLinkConfig; // Shown when the user has permission to switch companies.
   userProfile?: IconLinkConfig; // Link to the user's profile page.
   settings?: IconLinkConfig; // Link to account/app settings.
   userLinks?: Array<IconLinkConfig>; // Additional actions available when the user is authenticated.
-  logoutLink: IconLinkConfig; // Logout link when the user is authenticated. Always rendered last.
+  logoutLink: IconLinkConfig; // Logout link when the user is authenticated.
 }
 
 /**
