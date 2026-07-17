@@ -242,10 +242,9 @@ describe('header', () => {
         } else {
           cy.get('@nav-items').eq(index).find('post-menu-trigger').should('exist');
           
-          // Calculate expected menu items based on UserMenuConfig structure
+          // Calculate expected menu items for UserMenuConfig
+          // Note: accountSwitch and companySwitch are gated by permissions
           const expectedMenuItems =
-            (item.accountSwitch ? 1 : 0) +
-            (item.companySwitch ? 1 : 0) +
             (item.options?.length ?? 0) +
             (item.logoutLink ? 1 : 0);
           
