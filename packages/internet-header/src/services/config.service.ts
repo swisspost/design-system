@@ -94,8 +94,8 @@ export const fetchConfig = async (
  * Generate a URL with all necessary query params to get the configuration.
  * Project id "test" will return a test configuration
  * @param projectId string
- * @param environment int01, int02 or prod
- * @param lang currently selected language
+ * @param environment PROD, INT01 or INT02
+ * @param lang currently selected language (de, en, fr, it)
  * @returns URL pointing to the project config
  */
 export const generateConfigUrl = (
@@ -105,16 +105,14 @@ export const generateConfigUrl = (
 ): string => {
   if (projectId === 'test') return 'assets/config/test-configuration.json';
 
-  const parsedEnvironment = environment.toLowerCase();
+  const parsedEnvironment = environment.toUpperCase();
   const parsedLang = lang.toLowerCase();
-  const isProd = parsedEnvironment === 'prod';
+  const isProd = parsedEnvironment === 'PROD';
   const host = `https://${isProd ? 'www' : 'int'}.post.ch`;
   try {
     // Use URL to validate the generated URL
     return new URL(
-      `${host}/api/headerjs/Json?serviceid=${encodeURIComponent(projectId)}&lang=${encodeURIComponent(parsedLang)}${
-        !isProd ? '&environment=' + parsedEnvironment : ''
-      }`,
+      `${host}/api/header?serviceId=${encodeURIComponent(projectId)}&environment=${parsedEnvironment}&lang=${encodeURIComponent(parsedLang)}`,
     ).toString();
   } catch (error) {
     throw new Error(`Internet Header: Config URL is invalid.`);
