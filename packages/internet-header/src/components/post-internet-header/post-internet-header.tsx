@@ -1,9 +1,8 @@
 import { Link, LinkProps, MegaDropdown, UserMenu } from '@/components/internal';
 import { dispose, state } from '@/data/store';
 import { ActiveRouteProp, Environment } from '@/models/general.model';
-import { IconLinkConfig } from '@/models/shared.model';
 import { PostLoginConfig, UserMenuConfig } from '@/models/header.model';
-import { LinkConfig } from '@/models/shared.model';
+import { IconLinkConfig, LinkConfig } from '@/models/shared.model';
 import { getLocalizedConfig, isValidProjectId } from '@/services/config.service';
 import { getActiveLink } from '@/services/route.service';
 import { version } from '@root/package.json';
@@ -187,24 +186,8 @@ export class PostInternetHeader {
     state.activeLink = getActiveLink(this.activeRoute);
   }
 
-  /**
-   * Builds the list of options shown in the authenticated user menu.
-   *
-   * Rather than hardcoding each known `postLogin` field (userProfile, settings, ...),
-   * this picks up any single-link field on `postLogin` generically (anything with a
-   * `url`) so new fields added on the API side show up automatically without requiring
-   * a change here. `loginLink`, `accountSwitch`, and `userLinks` are excluded because
-   * they're either not applicable when logged in (`loginLink`) or already handled
-   * explicitly elsewhere (`accountSwitch`, `userLinks`). `logoutLink` is also excluded
-   * from the generic bucket and appended last explicitly, so "Abmelden" always sits at
-   * the bottom of the menu regardless of where it appears in the API response.
-   */
-  /**
-   * Builds the list of generic (non-gated) options shown in the authenticated user
-   * menu: the optional userProfile and settings links, followed by any additional
-   * userLinks. accountSwitch, companySwitch, and logoutLink are handled separately
-   * since they require permission-based gating / fixed positioning in UserMenu.
-   */
+  // User-menu options: optional userProfile/settings links, then any userLinks.
+  // accountSwitch/companySwitch/logoutLink are handled separately (permission-gated / fixed position).
   private getUserMenuOptions(postLogin: PostLoginConfig): Array<IconLinkConfig> {
     return [
       ...(postLogin.userProfile ? [postLogin.userProfile] : []),

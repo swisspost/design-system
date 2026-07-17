@@ -36,13 +36,13 @@ export interface HeaderConfig {
  * Configuration for the post-login widget.
  */
 export interface PostLoginConfig {
-  loginLink: IconLinkConfig; // Mandatory. Login link when the user is not authenticated.
-  accountSwitch: IconLinkConfig; // Mandatory. Shown when appropriate based on user data, as the first entry of the userLinks list.
-  companySwitch: IconLinkConfig; // Mandatory. Shown when appropriate based on user data.
-  userProfile?: IconLinkConfig; // Optional link to the user's profile page.
-  settings?: IconLinkConfig; // Optional link to account/app settings.
-  userLinks?: Array<IconLinkConfig>; // Optional additional actions available when the user is authenticated.
-  logoutLink: IconLinkConfig; // Mandatory. Logout link when the user is authenticated. Always rendered last.
+  loginLink: IconLinkConfig; // Login link when the user is not authenticated.
+  accountSwitch: IconLinkConfig; // Shown when appropriate based on user data, as the first entry of the userLinks list.
+  companySwitch: IconLinkConfig; // Shown when appropriate based on user data.
+  userProfile?: IconLinkConfig; // Link to the user's profile page.
+  settings?: IconLinkConfig; // Link to account/app settings.
+  userLinks?: Array<IconLinkConfig>; // Additional actions available when the user is authenticated.
+  logoutLink: IconLinkConfig; // Logout link when the user is authenticated. Always rendered last.
 }
 
 /**
