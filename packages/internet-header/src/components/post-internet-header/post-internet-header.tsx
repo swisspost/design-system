@@ -1,7 +1,8 @@
 import { Link, LinkProps, MegaDropdown, UserMenu } from '@/components/internal';
 import { dispose, state } from '@/data/store';
 import { ActiveRouteProp, Environment } from '@/models/general.model';
-import { UserMenuConfig } from '@/models/header.model';
+import { IconLinkConfig } from '@/models/shared.model';
+import { PostLoginConfig, UserMenuConfig } from '@/models/header.model';
 import { LinkConfig } from '@/models/shared.model';
 import { getLocalizedConfig, isValidProjectId } from '@/services/config.service';
 import { getActiveLink } from '@/services/route.service';
@@ -170,6 +171,7 @@ export class PostInternetHeader {
       // In case of an error, we assume the user is not logged in and do nothing
     }
   }
+
   // Fetch and store the localized config, defaulting to the `language` prop if none is passed
   private async updateConfig(language?: string) {
     state.localizedConfig = await getLocalizedConfig({
@@ -183,6 +185,32 @@ export class PostInternetHeader {
 
   private updateActiveUrl() {
     state.activeLink = getActiveLink(this.activeRoute);
+  }
+
+  /**
+   * Builds the list of options shown in the authenticated user menu.
+   *
+   * Rather than hardcoding each known `postLogin` field (userProfile, settings, ...),
+   * this picks up any single-link field on `postLogin` generically (anything with a
+   * `url`) so new fields added on the API side show up automatically without requiring
+   * a change here. `loginLink`, `accountSwitch`, and `userLinks` are excluded because
+   * they're either not applicable when logged in (`loginLink`) or already handled
+   * explicitly elsewhere (`accountSwitch`, `userLinks`). `logoutLink` is also excluded
+   * from the generic bucket and appended last explicitly, so "Abmelden" always sits at
+   * the bottom of the menu regardless of where it appears in the API response.
+   */
+  /**
+   * Builds the list of generic (non-gated) options shown in the authenticated user
+   * menu: the optional userProfile and settings links, followed by any additional
+   * userLinks. accountSwitch, companySwitch, and logoutLink are handled separately
+   * since they require permission-based gating / fixed positioning in UserMenu.
+   */
+  private getUserMenuOptions(postLogin: PostLoginConfig): Array<IconLinkConfig> {
+    return [
+      ...(postLogin.userProfile ? [postLogin.userProfile] : []),
+      ...(postLogin.settings ? [postLogin.settings] : []),
+      ...(postLogin.userLinks ?? []),
+    ];
   }
 
   private renderNavItem(config: LinkConfig | UserMenuConfig, props: LinkProps = {}): string {
@@ -268,7 +296,7 @@ export class PostInternetHeader {
                 <post-language-menu-item
                   url={lang.url}
                   active={lang.active}
-                  code={lang.code}
+                  code={lang.code.substring(0, 2).toLowerCase()}
                   name={lang.label}
                   description={lang.description}
                 >
@@ -283,8 +311,10 @@ export class PostInternetHeader {
               state.user
                 ? {
                     user: state.user,
-                    options: globalHeader.postLogin.userLinks,
+                    options: this.getUserMenuOptions(globalHeader.postLogin),
                     accountSwitch: globalHeader.postLogin.accountSwitch,
+                    companySwitch: globalHeader.postLogin.companySwitch,
+                    logoutLink: globalHeader.postLogin.logoutLink,
                   }
                 : globalHeader.postLogin.loginLink,
               { slot: 'post-login' },

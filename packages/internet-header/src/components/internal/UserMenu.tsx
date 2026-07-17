@@ -22,7 +22,6 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
   const isB2B = config.user.userType === 'B2B';
   const canChangeUserAndProfile = (isB2C || isB2B) && config.user.changeUserAndProfile === 'userAndProfile';
   const canChangeCompany = isB2B && config.user.canChangeCompany && config.user.company;
-  const canSeeAccountSwitch = canChangeUserAndProfile || canChangeCompany;
 
   const userFullname = [config.user.name, config.user.surname].join(' ');
   const userMenuId = createIdFrom(userFullname);
@@ -44,7 +43,7 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
           {config.user.company && <p>{config.user.company}</p>}
           <p>{userFullname}</p>
         </div>
-        {config.accountSwitch && canSeeAccountSwitch && (
+        {config.accountSwitch && canChangeUserAndProfile && (
           <post-menu-item>
             <Link
               config={{
@@ -55,11 +54,27 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
             />
           </post-menu-item>
         )}
+        {config.companySwitch && canChangeCompany && (
+          <post-menu-item>
+            <Link
+              config={{
+                text: config.companySwitch.text,
+                url: `${config.companySwitch.url}?returnURL=${encodeURIComponent(window.location.href)}`,
+                icon: config.companySwitch.icon,
+              }}
+            />
+          </post-menu-item>
+        )}
         {config.options.map(optionConfig => (
           <post-menu-item>
             <Link config={optionConfig} />
           </post-menu-item>
         ))}
+        {config.logoutLink && (
+          <post-menu-item>
+            <Link config={config.logoutLink} />
+          </post-menu-item>
+        )}
       </post-menu>
     </div>
   );

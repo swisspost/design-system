@@ -72,28 +72,38 @@
           "url": "#",
           "icon": "login"
         },
+        "accountSwitch": {
+          "text": "Account wechseln",
+          "url": "#",
+          "icon": "userswitch"
+        },
+        "companySwitch": {
+          "text": "Firma wechseln",
+          "url": "#",
+          "icon": "company"
+        },
+        "userProfile": {
+          "text": "Mein Profil",
+          "url": "#",
+          "icon": "profile"
+        },
+        "settings": {
+          "text": "Einstellungen",
+          "url": "#",
+          "icon": "gear"
+        },
         "userLinks": [
-          {
-            "text": "Mein Profil",
-            "url": "#",
-            "icon": "profile"
-          },
           {
             "text": "Nachrichten",
             "url": "#",
             "icon": "letter"
-          },
-          {
-            "text": "Einstellungen",
-            "url": "#",
-            "icon": "gear"
-          },
-          {
-            "text": "Abmelden",
-            "url": "#",
-            "icon": "logout"
           }
-        ]
+        ],
+        "logoutLink": {
+          "text": "Abmelden",
+          "url": "#",
+          "icon": "logout"
+        }
       }
     },
     "localHeader": {

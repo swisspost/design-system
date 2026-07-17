@@ -108,7 +108,8 @@ export const generateConfigUrl = (
   const parsedEnvironment = environment.toUpperCase();
   const parsedLang = lang.toLowerCase();
   const isProd = parsedEnvironment === 'PROD';
-  const host = `https://${isProd ? 'www' : 'int'}.post.ch`;
+  // NOTE: use int.preview.post.ch for local testing
+  const host = `https://${isProd ? 'www' : 'int.preview'}.post.ch`;
   try {
     // Use URL to validate the generated URL
     return new URL(
