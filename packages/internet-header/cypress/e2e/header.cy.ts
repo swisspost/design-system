@@ -192,12 +192,11 @@ describe('header', () => {
       it('should show the user menu with the correct user links', () => {
         cy.get('[slot="post-login"] post-menu-trigger button').click();
 
+        // Count expected menu items based on the PostLoginConfig structure
         const expectedCount =
-          (postLoginConfig.accountSwitch ? 1 : 0) +
-          (postLoginConfig.companySwitch ? 1 : 0) +
           (postLoginConfig.userProfile ? 1 : 0) +
-          (postLoginConfig.settings ? 1 : 0) +
           (postLoginConfig.userLinks?.length ?? 0) +
+          (postLoginConfig.settings ? 1 : 0) +
           (postLoginConfig.logoutLink ? 1 : 0);
 
         cy.get('[slot="post-login"] post-menu')
@@ -242,10 +241,18 @@ describe('header', () => {
           cy.get('@nav-items').eq(index).find('a').should('exist');
         } else {
           cy.get('@nav-items').eq(index).find('post-menu-trigger').should('exist');
+          
+          // Calculate expected menu items based on UserMenuConfig structure
+          const expectedMenuItems =
+            (item.accountSwitch ? 1 : 0) +
+            (item.companySwitch ? 1 : 0) +
+            (item.options?.length ?? 0) +
+            (item.logoutLink ? 1 : 0);
+          
           cy.get('@nav-items')
             .eq(index)
             .find('post-menu-item')
-            .should('have.length', item.options.length);
+            .should('have.length', expectedMenuItems);
         }
       });
     });
