@@ -1,0 +1,60 @@
+---
+'@swisspost/design-system-icons': minor
+---
+
+Added icons:
+
+- `adressed` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `artificialintelligenceskill` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `branchdooh` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `bring` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `cake` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `cardreader` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `castle` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `chevronleftrightwide` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `chevronupdownwide` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `church` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `compartmentcheck` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `consumerbehavior` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `cordial` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `coupon` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `customerexchange` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `customerjourneytest` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `customerjourney` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `dataanalytics` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `deploymentplan` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `displaymobilebanner` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `documentbgf` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `errornocircle` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `factory` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `family` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `foldedflyer` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `folderadd` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `geoemail` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `geomobile` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `hiking` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `ideaimplementation` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `laboratory` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `lead` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `listretour` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `locationspecific` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `medicine` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `mobileadloud` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `mobileinfo` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `moneyadd` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `proftal` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `rampdown` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `rampup` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `rollboxnarrow` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `sbbdisplay` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `sbbmobileapp` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `sampling` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `saturdaysort` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `scraper` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `selfmailer` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `shopconversion` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `statistics` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `stopsign` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `ticket` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `turndevice` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `wellness` (line & solid): 16, 24, 32, 40, 48 and 64px
