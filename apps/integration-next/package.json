@@ -53,7 +53,7 @@
     "tailwindcss": "4.3.1",
     "typescript": "catalog:typescript",
     "typescript-eslint": "catalog:typescript",
-    "vitest": "4.1.7"
+    "vitest": "4.1.10"
   },
   "keywords": [
     "nextjs",
