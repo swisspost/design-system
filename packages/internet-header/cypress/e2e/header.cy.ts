@@ -8,7 +8,7 @@ const language = 'de';
 
 describe('header', () => {
   describe('default', () => {
-    const headerConfig = testConfiguration.header;
+    const headerConfig = testConfiguration[language].header;
     beforeEach(() => {
       prepare(HEADER, 'Default');
       cy.changeArg('language', language);
@@ -85,8 +85,8 @@ describe('header', () => {
 
     context('active route', () => {
       const activeRouteConfig = copyConfig();
-      activeRouteConfig!.header.globalHeader.audience![0].url = '/audience-private';
-      activeRouteConfig!.header.globalHeader.secondaryNavigation![0].url = '/jobs';
+      activeRouteConfig[language]!.header.globalHeader.audience![0].url = '/audience-private';
+      activeRouteConfig[language]!.header.globalHeader.secondaryNavigation![0].url = '/jobs';
 
       beforeEach(() => {
         prepare(HEADER, 'Default', {
@@ -136,8 +136,8 @@ describe('header', () => {
 
       it('should set only one active link when URL exists in multiple header areas', () => {
         const conflictConfig = copyConfig();
-        conflictConfig!.header.globalHeader.audience![0].url = '/letters';
-        conflictConfig!.header.globalHeader.secondaryNavigation![0].url = '/jobs';
+        conflictConfig[language]!.header.globalHeader.audience![0].url = '/letters';
+        conflictConfig[language]!.header.globalHeader.secondaryNavigation![0].url = '/jobs';
 
         prepare(HEADER, 'Default', {
           config: conflictConfig,
@@ -154,7 +154,7 @@ describe('header', () => {
   });
 
   describe('post login', () => {
-    const postLoginConfig = testConfiguration.header.globalHeader.postLogin;
+    const postLoginConfig = testConfiguration[language].header.globalHeader.postLogin;
 
     context('logged out', () => {
       beforeEach(() => {
@@ -191,24 +191,16 @@ describe('header', () => {
 
       it('should show the user menu with the correct user links', () => {
         cy.get('[slot="post-login"] post-menu-trigger button').click();
-
-        // Count expected menu items based on the PostLoginConfig structure
-        const expectedCount =
-          (postLoginConfig.userProfile ? 1 : 0) +
-          (postLoginConfig.userLinks?.length ?? 0) +
-          (postLoginConfig.settings ? 1 : 0) +
-          (postLoginConfig.logoutLink ? 1 : 0);
-
         cy.get('[slot="post-login"] post-menu')
           .find('post-menu-item')
           .should('be.visible')
-          .should('have.length', expectedCount);
+          .should('have.length', postLoginConfig.userLinks.length);
       });
     });
   });
 
   describe('microsite', () => {
-    const headerConfig = micrositeConfiguration.header;
+    const headerConfig = micrositeConfiguration[language].header;
 
     beforeEach(() => {
       prepare(HEADER, 'Default', {
@@ -241,17 +233,10 @@ describe('header', () => {
           cy.get('@nav-items').eq(index).find('a').should('exist');
         } else {
           cy.get('@nav-items').eq(index).find('post-menu-trigger').should('exist');
-          
-          // Calculate expected menu items for UserMenuConfig
-          // Note: accountSwitch and companySwitch are gated by permissions
-          const expectedMenuItems =
-            (item.options?.length ?? 0) +
-            (item.logoutLink ? 1 : 0);
-          
           cy.get('@nav-items')
             .eq(index)
             .find('post-menu-item')
-            .should('have.length', expectedMenuItems);
+            .should('have.length', item.options.length);
         }
       });
     });
