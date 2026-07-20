@@ -81,8 +81,8 @@ export class PostInternetBreadcrumbs {
           textBreadcrumbs={this.textBreadcrumbs}
           textMoreItems={this.textMoreItems}
         >
-          {items.map(item => (
-            <post-breadcrumb-item label={item.label} description={item.description} url={item.url}>
+          {items.map((item, index) => (
+            <post-breadcrumb-item key={index} label={item.label} description={item.description} url={item.url}>
               {item.text}
             </post-breadcrumb-item>
           ))}

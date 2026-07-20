@@ -210,8 +210,8 @@ export class PostInternetHeader {
 
     return (
       <ul slot={slot}>
-        {config.map(navItem => (
-          <li>{this.renderNavItem(navItem, props)}</li>
+        {config.map((navItem, index) => (
+          <li key={index}>{this.renderNavItem(navItem, props)}</li>
         ))}
       </ul>
     );
@@ -262,6 +262,7 @@ export class PostInternetHeader {
             >
               {globalHeader.languages.map(lang => (
                 <post-language-menu-item
+                  key={lang.code}
                   url={lang.url}
                   active={lang.active}
                   code={lang.code}
@@ -289,8 +290,8 @@ export class PostInternetHeader {
           {localHeader.mainNavigation && (
             <post-mainnavigation slot="main-nav" textMain={this.textMain}>
               <ul>
-                {localHeader.mainNavigation.map(navItem => (
-                  <li>
+                {localHeader.mainNavigation.map((navItem, index) => (
+                  <li key={index}>
                     {'url' in navItem ? (
                       <Link config={navItem} ariaCurrentWhenActive="page" />
                     ) : (
