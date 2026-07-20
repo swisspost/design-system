@@ -1,9 +1,5 @@
 @use 'sass:list';
 @use 'sass:map';
-
-@use '../mixins/utilities' as utilities-mx;
-@use '../variables/grid';
-
 @use '../functions/tokens';
 @use '../tokens/utilities';
 @use '../tokens/components';
@@ -78,13 +74,13 @@ dialog {
   // Positioning
   // [top, center (default), bottom]
   &[data-position='top'] {
-    top: 2rem;
-    bottom: auto;
+    inset-block-start: 2rem;
+    inset-block-end: auto;
   }
 
   &[data-position='bottom'] {
-    top: auto;
-    bottom: 2rem;
+    inset-block-start: auto;
+    inset-block-end: 2rem;
   }
 
   &#{$dialog-bottom-sheet-selector} {
@@ -96,8 +92,8 @@ dialog {
     overflow: hidden;
     border-radius: tokens.get('dialog-border-radius', components.$post-dialog)
       tokens.get('dialog-border-radius', components.$post-dialog) 0 0;
-    top: auto;
-    bottom: 0;
+    inset-block-start: auto;
+    inset-block-end: 0;
     margin-block-start: auto;
     margin-block-end: 0;
 
@@ -151,7 +147,7 @@ dialog {
     background-color: inherit;
 
     &:not(:has(.dialog-controls)) {
-      padding-bottom: tokens.get('dialog-padding-block-end', components.$post-dialog);
+      padding-block-end: tokens.get('dialog-padding-block-end', components.$post-dialog);
     }
   }
 }
@@ -175,6 +171,7 @@ dialog {
     content: '';
     display: block;
     grid-area: icon;
+    align-self: center;
 
     width: tokens.get('dialog-icon-size', components.$post-dialog);
     height: tokens.get('dialog-icon-size', components.$post-dialog);
@@ -182,9 +179,9 @@ dialog {
 
   .dialog-header {
     grid-area: header;
-    margin-top: 0;
-    margin-bottom: tokens.get('dialog-content-gap-block', components.$post-dialog);
-    top: 0;
+    margin-block-start: 0;
+    margin-block-end: tokens.get('dialog-content-gap-block', components.$post-dialog);
+    inset-block-start: 0;
     position: sticky;
     z-index: 1;
     background-color: inherit;
@@ -194,7 +191,7 @@ dialog {
 
   .dialog-body {
     grid-area: body;
-    margin-bottom: 0;
+    margin-block-end: 0;
     overflow: auto;
     font-size: tokens.get('dialog-content-font-size', components.$post-dialog);
 
@@ -205,12 +202,12 @@ dialog {
     );
 
     padding: $focus-space;
-    margin-top: calc(-1 * #{$focus-space});
-    margin-left: calc(-1 * #{$focus-space});
-    margin-right: calc(-1 * #{$focus-space});
+    margin-block-start: calc(-1 * #{$focus-space});
+    margin-inline-start: calc(-1 * #{$focus-space});
+    margin-inline-end: calc(-1 * #{$focus-space});
 
     > *:last-child {
-      margin-bottom: 0;
+      margin-block-end: 0;
     }
   }
 
@@ -228,10 +225,10 @@ dialog {
 .dialog-controls {
   grid-area: controls;
   position: sticky;
-  bottom: 0;
+  inset-block-end: 0;
   z-index: 1;
-  padding-top: tokens.get('dialog-padding-block-end', components.$post-dialog);
-  padding-bottom: tokens.get('dialog-padding-block-end', components.$post-dialog);
+  padding-block-start: tokens.get('dialog-padding-block-end', components.$post-dialog);
+  padding-block-end: tokens.get('dialog-padding-block-end', components.$post-dialog);
   margin-block-end: 0;
   display: flex;
   flex-wrap: wrap;
