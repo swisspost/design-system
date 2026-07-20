@@ -29,13 +29,6 @@
       text-back="Back"
     ></swisspost-internet-header>
 
-    <div class="container my-32">
-      <swisspost-internet-breadcrumbs
-        text-home="Homepage"
-        text-breadcrumbs="Breadcrumbs"
-        text-more-items="More items"
-      ></swisspost-internet-breadcrumbs>
-    </div>
 
     <!-- Portal config test -->
     <script id="PPM_HEADER_DATA" type="application/json">
@@ -432,14 +425,6 @@
       };
 
       x();
-
-      const customBreadcrumbItems = [
-        { text: 'Some very long path', url: '/x' },
-        { text: 'path', url: '/x/xy' },
-        { text: 'finally the last item', url: '/x/xy/xyz' },
-      ];
-
-      document.querySelector('swisspost-internet-breadcrumbs').customItems = customBreadcrumbItems;
     </script>
 
     <main id="main-content-container" class="container mt-56">
