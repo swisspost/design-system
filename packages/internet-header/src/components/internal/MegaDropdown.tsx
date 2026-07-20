@@ -29,8 +29,8 @@ export const MegaDropdown: FunctionalComponent<
         />
       )}
       <div class="row row-cols-1 row-cols-sm-2">
-        {config.sections.map((section, index) => (
-          <MegaDropdownSection key={index} config={section} />
+        {config.sections.map(section => (
+          <MegaDropdownSection config={section} />
         ))}
       </div>
     </post-megadropdown>,
@@ -47,8 +47,8 @@ const MegaDropdownSection: FunctionalComponent<{
     <div class="col">
       <Title class="post-megadropdown-list-title" id={titleId} config={config.title} />
       <ul class="post-megadropdown-list" aria-labelledby={titleId}>
-        {config.items.map((item, index) => (
-          <li key={index}>
+        {config.items.map(item => (
+          <li key={item.url}>
             <Link config={item} ariaCurrentWhenActive="page" />
           </li>
         ))}
