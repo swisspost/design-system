@@ -1,4 +1,5 @@
 @use 'sass:list';
+@use '../mixins/utilities' as utilities-mx;
 @use 'sass:map';
 @use '../functions/tokens';
 @use '../tokens/utilities';
