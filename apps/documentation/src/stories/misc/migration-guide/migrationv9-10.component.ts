@@ -1489,6 +1489,31 @@ export class MyComponent {
                           <li class="mb-16">
                             <div class="form-check">
                               <input
+                                id="internet_header-remove_props"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.internet_header.remove_props}"
+                              />
+                              <label class="form-check-label" for="internet_header-remove_props">
+                                Remove props and runtime assignments that no longer exist
+                                <span class="info">
+                                  The following props have been removed and have no effect in v10:
+                                  <code>stickyness</code>, <code>meta</code>, <code>login</code>,
+                                  <code>search</code>, <code>skiplinks</code>,
+                                  <code>config-proxy</code>, <code>language-cookie-key</code>,
+                                  <code>language-local-storage-key</code>, <code>logout-url</code>,
+                                  <code>self-admin-origin</code>, <code>os-flyout-overrides</code>,
+                                  <code>custom-config</code>,
+                                  <code>language-switch-overrides</code>. Only
+                                  <code>language</code> and <code>active-route</code> remain
+                                  reactive at runtime.
+                                </span>
+                              </label>
+                            </div>
+                          </li>
+                          <li class="mb-16">
+                            <div class="form-check">
+                              <input
                                 id="internet_header-breadcrumb_migration"
                                 class="form-check-input"
                                 type="checkbox"
