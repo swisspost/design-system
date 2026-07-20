@@ -190,11 +190,20 @@ describe('header', () => {
       });
 
       it('should show the user menu with the correct user links', () => {
+        // The mocked logged-in user (auth.json) is B2C with
+        // changeUserAndProfile: 'notAvailable', so accountSwitch/companySwitch
+        // are correctly gated off here and intentionally excluded below.
+        const expectedCount =
+          (postLoginConfig.userProfile ? 1 : 0) +
+          (postLoginConfig.settings ? 1 : 0) +
+          (postLoginConfig.userLinks?.length ?? 0) +
+          (postLoginConfig.logoutLink ? 1 : 0);
+
         cy.get('[slot="post-login"] post-menu-trigger button').click();
         cy.get('[slot="post-login"] post-menu')
           .find('post-menu-item')
           .should('be.visible')
-          .should('have.length', postLoginConfig.userLinks.length);
+          .should('have.length', expectedCount);
       });
     });
   });
@@ -233,10 +242,25 @@ describe('header', () => {
           cy.get('@nav-items').eq(index).find('a').should('exist');
         } else {
           cy.get('@nav-items').eq(index).find('post-menu-trigger').should('exist');
+
+          // item is a UserMenuConfig here — accountSwitch/companySwitch/logoutLink
+          // render as separate menu items alongside options, not folded into it.
+          const isB2C = item.user.userType === 'B2C';
+          const isB2B = item.user.userType === 'B2B';
+          const canChangeUserAndProfile =
+            (isB2C || isB2B) && item.user.changeUserAndProfile === 'userAndProfile';
+          const canChangeCompany = isB2B && item.user.canChangeCompany && item.user.company;
+
+          const expectedCount =
+            item.options.length +
+            (item.accountSwitch && canChangeUserAndProfile ? 1 : 0) +
+            (item.companySwitch && canChangeCompany ? 1 : 0) +
+            (item.logoutLink ? 1 : 0);
+
           cy.get('@nav-items')
             .eq(index)
             .find('post-menu-item')
-            .should('have.length', item.options.length);
+            .should('have.length', expectedCount);
         }
       });
     });
