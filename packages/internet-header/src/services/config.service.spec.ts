@@ -48,7 +48,7 @@ describe('config.service.ts', () => {
 
     it('should return an int URL', () => {
       expect(generateConfigUrl('topos', 'int01', 'de')).toEqual(
-        'https://int.preview.post.ch/api/header?serviceId=topos&environment=INT01&lang=de',
+        'https://int.post.ch/api/header?serviceId=topos&environment=INT01&lang=de',
       );
     });
 
@@ -67,13 +67,13 @@ describe('config.service.ts', () => {
     it('should uppercase the environment param', () => {
       // @ts-expect-error second argument should be of type 'dev01' | 'dev02' | 'devs1' | 'test' | 'int01' | 'int02' | 'prod'
       expect(generateConfigUrl('whatever', 'INT01', 'de')).toEqual(
-        'https://int.preview.post.ch/api/header?serviceId=whatever&environment=INT01&lang=de',
+        'https://int.post.ch/api/header?serviceId=whatever&environment=INT01&lang=de',
       );
     });
 
     it('should lowercase the lang param', () => {
       expect(generateConfigUrl('topos', 'int01', 'DE')).toEqual(
-        'https://int.preview.post.ch/api/header?serviceId=topos&environment=INT01&lang=de',
+        'https://int.post.ch/api/header?serviceId=topos&environment=INT01&lang=de',
       );
     });
   });
