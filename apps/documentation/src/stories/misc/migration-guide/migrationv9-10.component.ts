@@ -101,6 +101,7 @@ export class MigrationV910Component extends LitElement {
       update_package: false,
       add_text_props: false,
       remove_props: false,
+      breadcrumb_migration: false,
     },
     intranet_header: {
       migration: false,
@@ -1507,6 +1508,27 @@ export class MyComponent {
                                   <code>language</code> and <code>active-route</code> remain
                                   reactive at runtime.
                                 </span>
+                              </label>
+                            </div>
+                          </li>
+                          <li class="mb-16">
+                            <div class="form-check">
+                              <input
+                                id="internet_header-breadcrumb_migration"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.internet_header.breadcrumb_migration}"
+                              />
+                              <label class="form-check-label" for="internet_header-breadcrumb_migration">
+                                Migrate from <code>&lt;swisspost-internet-breadcrumbs&gt;</code> to <code>&lt;post-breadcrumbs&gt;</code>
+                                <span class="info">
+                                  The <code>&lt;swisspost-internet-breadcrumbs&gt;</code> component has been removed. 
+                                  Migrate to the new <code>&lt;post-breadcrumbs&gt;</code> and 
+                                  <code>&lt;post-breadcrumb-item&gt;</code> components from the design system.
+                                </span>
+                                <code-block
+                                  code=${'<!-- Before: Internet Header -->\n<swisspost-internet-breadcrumbs></swisspost-internet-breadcrumbs>\n\n<!-- After: Design System -->\n<post-breadcrumbs\n  home-url="/"\n  text-home="Home"\n  text-breadcrumbs="Breadcrumbs"\n  text-more-items="More items"\n>\n  <post-breadcrumb-item url="/my-post">My Post</post-breadcrumb-item>\n  <post-breadcrumb-item url="/locations">Locations</post-breadcrumb-item>\n  <post-breadcrumb-item selected>Current Page</post-breadcrumb-item>\n</post-breadcrumbs>'}
+                                ></code-block>
                               </label>
                             </div>
                           </li>

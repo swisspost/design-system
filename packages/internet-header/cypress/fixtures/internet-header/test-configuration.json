@@ -222,21 +222,6 @@
         ]
       }
     },
-    "breadcrumbs": {
-      "rootUrl": "https://post.ch/de/",
-      "items": [
-        {
-          "text": "Meine Post",
-          "url": "https://post.ch/de/kundencenter"
-        },
-        {
-          "text": "Standorte und Öffnungszeiten",
-          "url": "https://places.post.ch/?lang=de",
-          "label": "Die label",
-          "description": "Die description"
-        }
-      ]
-    },
     "footer": {
       "prefooter": {
         "title": "Dienstname",
@@ -595,21 +580,6 @@
           }
         ]
       }
-    },
-    "breadcrumbs": {
-      "rootUrl": "https://post.ch/fr/",
-      "items": [
-        {
-          "text": "Ma Poste",
-          "url": "https://post.ch/fr/espace-clients"
-        },
-        {
-          "text": "Sites et heures d'ouverture",
-          "url": "https://places.post.ch/?lang=fr",
-          "label": "Mon label",
-          "description": "Ma description"
-        }
-      ]
     },
     "footer": {
       "prefooter": {
@@ -973,21 +943,6 @@
         ]
       }
     },
-    "breadcrumbs": {
-      "rootUrl": "https://post.ch/it/",
-      "items": [
-        {
-          "text": "Mia Posta",
-          "url": "https://post.ch/it/centro-clienti"
-        },
-        {
-          "text": "Ubicazioni e orari di apertura",
-          "url": "https://places.post.ch/?lang=it",
-          "label": "Mi label",
-          "description": "Mi descriptioni"
-        }
-      ]
-    },
     "footer": {
       "prefooter": {
         "title": "Nome del servizio",
@@ -1346,21 +1301,6 @@
           }
         ]
       }
-    },
-    "breadcrumbs": {
-      "rootUrl": "https://post.ch/en/",
-      "items": [
-        {
-          "text": "My Post",
-          "url": "https://post.ch/en/customer-center"
-        },
-        {
-          "text": "Locations and opening hours",
-          "url": "https://places.post.ch/?lang=en",
-          "label": "My label",
-          "description": "My description"
-        }
-      ]
     },
     "footer": {
       "prefooter": {

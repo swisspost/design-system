@@ -1,5 +1,4 @@
 import { HeaderConfig } from './header.model';
-import { BreadcrumbsConfig } from './breadcrumbs.model';
 import { FooterConfig } from './footer.model';
 
 declare global {
@@ -21,7 +20,6 @@ export interface PortalConfig {
 
 export interface LocalizedConfig {
   header: HeaderConfig;
-  breadcrumbs?: BreadcrumbsConfig;
   footer?: FooterConfig;
 }
 
