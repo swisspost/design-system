@@ -1487,57 +1487,57 @@ export class MyComponent {
                             </div>
                           </li>
                           <li class="mb-16">
-                  <div class="form-check">
-                    <input
-                      id="internet_header-breadcrumb_migration"
-                      class="form-check-input"
-                      type="checkbox"
-                      ?checked="${this.state.internet_header.breadcrumb_migration}"
-                    />
-                    <label class="form-check-label" for="internet_header-breadcrumb_migration">
-                      Migrate from <code>&lt;swisspost-internet-breadcrumbs&gt;</code> to
-                      <code>&lt;post-breadcrumbs&gt;</code>
-                      <span class="info">
-                        The <code>&lt;swisspost-internet-breadcrumbs&gt;</code> component has been
-                        removed, since the Header Configuration API response no longer includes a
-                        <code>breadcrumbs</code> field. Migrate to the self-managed
-                        <code>&lt;post-breadcrumbs&gt;</code> and
-                        <code>&lt;post-breadcrumb-item&gt;</code> components instead.
-                        <br /><br />
-                        The old component generated its trail automatically from the header
-                        config, usually requiring no props at all. The new components require
-                        manual setup:
-                        <ul>
-                          <li>
-                            Set <code>home-url</code>, <code>text-home</code>,
-                            <code>text-breadcrumbs</code>, and <code>text-more-items</code> on
-                            <code>&lt;post-breadcrumbs&gt;</code>
+                            <div class="form-check">
+                              <input
+                                id="internet_header-breadcrumb_migration"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.internet_header.breadcrumb_migration}"
+                              />
+                              <label class="form-check-label" for="internet_header-breadcrumb_migration">
+                                Migrate from <code>&lt;swisspost-internet-breadcrumbs&gt;</code> to
+                                <code>&lt;post-breadcrumbs&gt;</code>
+                                <span class="info">
+                                  The <code>&lt;swisspost-internet-breadcrumbs&gt;</code> component has been
+                                  removed, as breadcrumbs are not included in the online service header.
+                                  Migrate to the self-managed
+                                  <code>&lt;post-breadcrumbs&gt;</code> and
+                                  <code>&lt;post-breadcrumb-item&gt;</code> components instead.
+                                  <br /><br />
+                                  The old component generated its trail automatically from the header
+                                  config, usually requiring no props at all. The new components require
+                                  manual setup:
+                                  <ul>
+                                    <li>
+                                      Set <code>home-url</code>, <code>text-home</code>,
+                                      <code>text-breadcrumbs</code>, and <code>text-more-items</code> on
+                                      <code>&lt;post-breadcrumbs&gt;</code>
+                                    </li>
+                                    <li>Add one <code>&lt;post-breadcrumb-item&gt;</code> per trail item</li>
+                                    <li>
+                                      The <code>hide-buttons</code> prop and <code>toggleOverlayById()</code>
+                                      method have no equivalent
+                                    </li>
+                                  </ul>
+
+                                  <p><strong>Before (v9 — part of Internet Header package)</strong></p>
+                                  <code-block
+                                    code=${'<swisspost-internet-breadcrumbs></swisspost-internet-breadcrumbs>'}
+                                  ></code-block>
+
+                                  <p><strong>After (v10 — part of Components package)</strong></p>
+                                  <code-block
+                                    code=${'<post-breadcrumbs\n  home-url="/"\n  text-home="Home"\n  text-breadcrumbs="Breadcrumbs"\n  text-more-items="More items"\n>\n  <post-breadcrumb-item url="/my-post">My Post</post-breadcrumb-item>\n  <post-breadcrumb-item url="/locations">Locations</post-breadcrumb-item>\n  <post-breadcrumb-item selected>Current Page</post-breadcrumb-item>\n</post-breadcrumbs>'}
+                                  ></code-block>
+
+                                  More information on the
+                                  <a href="/?path=/docs/b7db7391-f893-4b1e-a125-b30c6f0b028b--docs"
+                                    >breadcrumbs docs</a
+                                  >.
+                                </span>
+                              </label>
+                            </div>
                           </li>
-                          <li>Add one <code>&lt;post-breadcrumb-item&gt;</code> per trail item</li>
-                          <li>
-                            The <code>hide-buttons</code> prop and <code>toggleOverlayById()</code>
-                            method have no equivalent
-                          </li>
-                        </ul>
-
-                        <p><strong>Before (v9 — part of Internet Header package)</strong></p>
-                        <code-block
-                          code=${'<swisspost-internet-breadcrumbs></swisspost-internet-breadcrumbs>'}
-                        ></code-block>
-
-                        <p><strong>After (v10 — part of Components package)</strong></p>
-                        <code-block
-                          code=${'<post-breadcrumbs\n  home-url="/"\n  text-home="Home"\n  text-breadcrumbs="Breadcrumbs"\n  text-more-items="More items"\n>\n  <post-breadcrumb-item url="/my-post">My Post</post-breadcrumb-item>\n  <post-breadcrumb-item url="/locations">Locations</post-breadcrumb-item>\n  <post-breadcrumb-item selected>Current Page</post-breadcrumb-item>\n</post-breadcrumbs>'}
-                        ></code-block>
-
-                        More information on the
-                        <a href="/?path=/docs/b7db7391-f893-4b1e-a125-b30c6f0b028b--docs"
-                          >breadcrumbs docs</a
-                        >.
-                      </span>
-                    </label>
-                  </div>
-                </li>
                         </ul>
                       </section>
                     `
