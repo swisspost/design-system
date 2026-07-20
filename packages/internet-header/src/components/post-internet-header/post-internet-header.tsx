@@ -210,8 +210,8 @@ export class PostInternetHeader {
 
     return (
       <ul slot={slot}>
-        {config.map((navItem, index) => (
-          <li key={index}>{this.renderNavItem(navItem, props)}</li>
+        {config.map(navItem => (
+          <li key={'url' in navItem ? navItem.url : navItem.user.email}>{this.renderNavItem(navItem, props)}</li>
         ))}
       </ul>
     );
@@ -290,8 +290,8 @@ export class PostInternetHeader {
           {localHeader.mainNavigation && (
             <post-mainnavigation slot="main-nav" textMain={this.textMain}>
               <ul>
-                {localHeader.mainNavigation.map((navItem, index) => (
-                  <li key={index}>
+                {localHeader.mainNavigation.map(navItem => (
+                  <li key={'url' in navItem ? navItem.url : navItem.trigger.text}>
                     {'url' in navItem ? (
                       <Link config={navItem} ariaCurrentWhenActive="page" />
                     ) : (
