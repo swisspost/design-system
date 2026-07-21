@@ -312,7 +312,9 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('Has no detectable a11y violations on load', () => {
-      cy.checkA11y('post-mainnavigation');
+      cy.checkA11y('post-mainnavigation', undefined, (violations) => {
+        expect(violations).to.have.length(0);
+      });
     });
   });
 });

@@ -238,7 +238,9 @@ describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('Has no detectable a11y violations on load', () => {
-      cy.checkA11y('body');
+      cy.checkA11y('body', undefined, (violations) => {
+        expect(violations).to.have.length(0);
+      });
     });
   });
 });
