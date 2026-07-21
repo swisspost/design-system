@@ -51,6 +51,14 @@ export class PostSideNavigation {
 
   private breakpointChange = (e: CustomEvent) => {
     this.device = e.detail;
+
+    if (this.device === 'desktop') {
+      if (this.dialog?.open) {
+        this.dialog.close();
+      }
+
+      this.postToggle.emit(false);
+    }
   };
 
   connectedCallback() {
