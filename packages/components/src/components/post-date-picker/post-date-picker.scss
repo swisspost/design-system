@@ -151,6 +151,12 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
       row-gap: tokens.get('post-datepicker-grid-gap-block');
       border-radius: tokens.get('post-datepicker-border-radius');
 
+      .a11y-row {
+        display: grid;
+        grid-column: 1/-1;
+        grid-template-columns: subgrid;
+      }
+
       /* View-specific styles */
 
       &.-days- {
@@ -785,4 +791,8 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
           #{tokens.get('select-sizing-icon', components.$post-select)}
       ) !important;
   }
+}
+
+.visually-hidden {
+  @include utilities.visuallyhidden;
 }
