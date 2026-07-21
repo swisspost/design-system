@@ -5,12 +5,6 @@ export interface ClosableTarget {
   close: (el: Element) => void;
 }
 
-/**
- * Ordered list of closable target matchers. Each entry is checked in order against the
- * current element during the ancestor walk; the first match wins. Custom components must
- * come before native element matchers so that, for example, post-popovercontainer (which
- * carries a popover attribute) is matched by its tag, not by the generic [popover] rule.
- */
 const CLOSABLE_TARGETS: ReadonlyArray<{
   predicate: (el: Element) => boolean;
   close: (el: Element) => void;

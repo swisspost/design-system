@@ -127,13 +127,11 @@ export function findClosestAcrossShadow<T extends Element>(
       return current;
     }
 
-    // Check regular parent first
     if (current.parentElement) {
       current = current.parentElement;
     } else {
-      // Use duck-typing to detect ShadowRoot: nodeType 11 (DocumentFragment) with a host Element.
-      // This avoids a direct `instanceof ShadowRoot` reference, which may be unavailable in
-      // test environments (e.g. JSDOM) that only partially implement the Shadow DOM API.
+      // Duck-typed ShadowRoot check (nodeType 11 + host) instead of `instanceof ShadowRoot`,
+      // since some test environments (e.g. JSDOM) only partially implement it.
       const parent = current.parentNode;
       if (parent !== null && parent.nodeType === 11 && 'host' in parent) {
         current = (parent as ShadowRoot).host as Element;

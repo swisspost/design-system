@@ -13,9 +13,6 @@ describe('Close button', () => {
     });
   });
 
-  // Covers the three DOM contexts the auto-close ancestor search has to handle:
-  // light DOM, slotted into another component, and rendered inside another
-  // component's shadow DOM.
   describe('auto-close behavior', () => {
     describe('light DOM: <dialog>', () => {
       beforeEach(() => {

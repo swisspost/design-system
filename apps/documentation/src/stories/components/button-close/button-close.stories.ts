@@ -33,40 +33,6 @@ const meta: MetaComponent = {
   },
 };
 
-type CloseAction = (el: Element) => void;
-
-interface ClosableTarget {
-  matches: (el: Element) => boolean;
-  close: CloseAction;
-}
-
-const CLOSABLE_TARGETS: ClosableTarget[] = [
-  {
-    matches: el => el.localName === 'post-banner',
-    close: el => (el as HTMLPostBannerElement).dismiss(),
-  },
-  {
-    matches: el => el.localName === 'post-popover',
-    close: el => (el as HTMLPostPopoverElement).hide(),
-  },
-  {
-    matches: el => el.localName === 'post-popovercontainer',
-    close: el => (el as HTMLPostPopovercontainerElement).hide(),
-  },
-  {
-    matches: el => el.localName === 'post-collapsible',
-    close: el => (el as HTMLPostCollapsibleElement).toggle(false),
-  },
-  {
-    matches: el => el.localName === 'post-accordion-item',
-    close: el => (el as HTMLPostAccordionItemElement).toggle(false),
-  },
-  { matches: el => el.localName === 'dialog', close: el => (el as HTMLDialogElement).close() },
-  {
-    matches: el => el.hasAttribute('popover'),
-    close: el => (el as HTMLElement).togglePopover(false),
-  },
-];
 export default meta;
 
 function getCloseButtonRenderer(extraClasses?: string) {

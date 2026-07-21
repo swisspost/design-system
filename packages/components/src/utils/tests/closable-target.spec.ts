@@ -1,8 +1,5 @@
 import { findClosableTarget } from '../closable-target';
 
-// Creates a lightweight mock that mimics an Element well enough for `findClosableTarget`
-// (localName, hasAttribute, parentElement/parentNode traversal) without depending on a
-// real DOM/shadow DOM implementation, mirroring the approach used in event-from.spec.ts.
 function createMockElement(
   tagName: string,
   options: { attributes?: Record<string, string>; methods?: Record<string, jest.Mock> } = {},
@@ -28,8 +25,6 @@ function createMockElement(
   return element;
 }
 
-// Mimics a ShadowRoot boundary using the same duck-typing signature
-// (`nodeType === 11` and a `host` property) that `findClosestAcrossShadow` relies on.
 function createMockShadowRoot(host: Element): Node {
   return { nodeType: 11, host } as unknown as Node;
 }
@@ -81,8 +76,6 @@ describe('findClosableTarget', () => {
         attributes: { slot: 'close-button' },
       });
 
-      // A slotted element stays in the light DOM: its parentElement is the host it was
-      // placed into (post-banner), not the slot itself.
       setParent(closebutton, banner);
 
       const target = findClosableTarget(closebutton);
@@ -100,8 +93,6 @@ describe('findClosableTarget', () => {
       const closebutton = createMockElement('post-closebutton');
       const shadowRoot = createMockShadowRoot(popover);
 
-      // The close button has no light DOM parent: it is the root of the shadow tree
-      // rendered by post-popover, so a regular parentElement walk stops here.
       setShadowParent(closebutton, shadowRoot);
 
       const target = findClosableTarget(closebutton);
