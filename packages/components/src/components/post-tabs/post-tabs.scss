@@ -13,8 +13,6 @@ $tabs-outline-offset: calc(
     (tokens.get('post-tabs-border-width'))
 );
 
-$grid-container-padding: tokens.get('post-grid-container-padding-inline', components.$post-grid);
-
 :host {
   display: block;
 
@@ -87,7 +85,7 @@ $grid-container-padding: tokens.get('post-grid-container-padding-inline', compon
 
   .tabs-wrapper {
     // These styles are required to stretch the bottom line to the edges of the container
-    margin-inline: calc(-1 * (var(--post-container-offset) + #{$grid-container-padding}));
+    margin-inline: calc(-1 * (var(--post-container-offset)));
 
     button.scroll-btn {
       color: tokens.get('post-tabs-page-scroll-button-enabled-fg');
@@ -108,7 +106,7 @@ $grid-container-padding: tokens.get('post-grid-container-padding-inline', compon
 
       // Left Scroll button
       &.scroll-btn-left {
-        inset-inline-start: calc(var(--post-container-offset) + #{$grid-container-padding});
+        inset-inline-start: 0;
         border-inline-start: none;
         border-radius: 0 tokens.get('post-tabs-page-scroll-button-border-radius')
           tokens.get('post-tabs-page-scroll-button-border-radius') 0;
@@ -116,7 +114,7 @@ $grid-container-padding: tokens.get('post-grid-container-padding-inline', compon
 
       // Right Scroll button
       &.scroll-btn-right {
-        inset-inline-end: calc(var(--post-container-offset) + #{$grid-container-padding});
+        inset-inline-end: 0;
         border-inline-end: none;
         border-radius: tokens.get('post-tabs-page-scroll-button-border-radius') 0 0
           tokens.get('post-tabs-page-scroll-button-border-radius');
@@ -146,7 +144,7 @@ $grid-container-padding: tokens.get('post-grid-container-padding-inline', compon
 
     .tabs {
       // These styles are required to stretch the bottom line to the edges of the container
-      padding-inline: calc(var(--post-container-offset) + #{$grid-container-padding});
+      padding-inline: calc(var(--post-container-offset));
       gap: tokens.get('post-tabs-page-gap-inline');
 
       // Hide scrollbar across browsers while keeping scroll functionality
