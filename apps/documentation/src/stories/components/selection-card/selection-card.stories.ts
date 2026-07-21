@@ -100,7 +100,7 @@ const meta: MetaComponent = {
   id: '047501dd-a185-4835-be91-09130fa3dad9',
   title: 'Components/Form Selection Card',
   tags: ['package:Styles', 'status:New'],
-  render: renderComponent,
+  render: RenderComponent,
   parameters: {
     badges: [],
     design: {
@@ -161,7 +161,7 @@ class RenderHelper {
 
 const _ = new RenderHelper();
 
-function renderComponent(args: Args, context: StoryContext, groupValidationId?: string) {
+function RenderComponent(args: Args, context: StoryContext, groupValidationId?: string) {
   const [_args, updateArgs] = useArgs();
   const [id] = useState(_.componentId(args, context));
   const validationId = groupValidationId ? groupValidationId : _.validationId(id);
@@ -296,7 +296,7 @@ export const CustomContent: Story = {
   },
 };
 
-export function renderGroup(args: Args, context: StoryContext) {
+export function RenderGroup(args: Args, context: StoryContext) {
   const [_args, updateArgs] = useArgs();
   args.validation = args.validationGroup;
   const id = _.componentId(args, context);
@@ -385,38 +385,40 @@ export const Grouping: Story = {
       ...validationArg,
     },
   },
-  render: renderGroup,
+  render: RenderGroup,
 };
+
+function RenderLineup(args: Args, context: StoryContext) {
+  const [_args, updateArgs] = useArgs();
+
+  return html`<div class="row g-16">
+    ${STORY_LINEUP_LABELS.map((label: string, i: number) => {
+      const checkedName = `checked${i + 1}`;
+
+      function onChange(e: InputEvent) {
+        const target = e.target as HTMLInputElement;
+        updateArgs({ [checkedName]: target?.checked ?? false });
+      }
+
+      return html`<div class="col-sm-6 col-lg-4">
+        ${meta.render?.(
+          {
+            ...args,
+            label,
+            description: STORY_LINEUP_DESCRIPTIONS[i],
+            checked: args[checkedName],
+            onChange,
+          },
+          context,
+        )}
+      </div>`;
+    })}
+  </div>`;
+}
 
 export const Lineup: Story = {
   args: {
     class: 'h-full',
   },
-  render: (args: Args, context: StoryContext) => {
-    const [_args, updateArgs] = useArgs();
-
-    return html`<div class="row g-16">
-      ${STORY_LINEUP_LABELS.map((label: string, i: number) => {
-        const checkedName = `checked${i + 1}`;
-
-        function onChange(e: InputEvent) {
-          const target = e.target as HTMLInputElement;
-          updateArgs({ [checkedName]: target?.checked ?? false });
-        }
-
-        return html`<div class="col-sm-6 col-lg-4">
-          ${meta.render?.(
-            {
-              ...args,
-              label,
-              description: STORY_LINEUP_DESCRIPTIONS[i],
-              checked: args[checkedName],
-              onChange,
-            },
-            context,
-          )}
-        </div>`;
-      })}
-    </div>`;
-  },
+  render: RenderLineup,
 };

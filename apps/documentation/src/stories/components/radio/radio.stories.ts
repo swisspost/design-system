@@ -91,10 +91,10 @@ const meta: MetaComponent = {
       table: { category: 'States' },
     },
   },
-  render: render,
+  render: Render,
 };
 
-function render(args: Args, context: StoryContext) {
+function Render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
   const radioClass = args.validation !== 'null' ? args.validation : undefined;
@@ -142,7 +142,7 @@ export const Default: Story = {
   },
 };
 
-export function renderGroup(args: Args, context: Partial<StoryContext>) {
+export function RenderGroup(args: Args, context: Partial<StoryContext>) {
   const [_, updateArgs] = useArgs();
 
   function onChange(e: Event, value: number) {
@@ -183,7 +183,7 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
 }
 
 export const Grouped: Story = {
-  render: renderGroup,
+  render: RenderGroup,
   parameters: {
     controls: {
       include: ['Size', 'Hidden Legend'],
@@ -202,7 +202,7 @@ export const Grouped: Story = {
 };
 
 export const Inline: Story = {
-  render: renderGroup,
+  render: RenderGroup,
   parameters: {
     controls: {
       include: ['Size', 'Hidden Legend'],
