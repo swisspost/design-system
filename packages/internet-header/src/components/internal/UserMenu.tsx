@@ -75,7 +75,7 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
           </post-menu-item>
         )}
         {config.options.map(optionConfig => (
-          <post-menu-item>
+          <post-menu-item key={optionConfig.url}>
             <Link config={optionConfig} />
           </post-menu-item>
         ))}
