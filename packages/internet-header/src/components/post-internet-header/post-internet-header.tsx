@@ -268,7 +268,7 @@ export class PostInternetHeader {
                 <post-language-menu-item
                   url={lang.url}
                   active={lang.active}
-                  code={lang.code}
+                  code={lang.code.substring(0, 2).toLowerCase()}
                   name={lang.label}
                   description={lang.description}
                 >
