@@ -21,6 +21,7 @@ const meta: MetaComponent<
   component: 'post-tabs',
   render: renderTabs,
   parameters: {
+    layout: 'fullscreen',
     badges: [],
     design: {
       type: 'figma',
