@@ -23,7 +23,7 @@ describe('Back-to-top', () => {
     });
 
     it('should hide the textBackToTop label visually', () => {
-      cy.get('post-back-to-top').shadow().find('.visually-hidden');
+      cy.get('post-back-to-top').shadow().find('span.visually-hidden').should('exist');
     });
 
     it('should scroll to top when clicked', () => {
@@ -54,7 +54,9 @@ describe('Back-to-top', () => {
   describe('Accessibility', () => {
     it('Has no detectable a11y violations on load for all variants', () => {
       cy.getSnapshots('post-back-to-top');
-      cy.checkA11y('post-back-to-top');
+      cy.checkA11y('post-back-to-top', undefined, (violations) => {
+        expect(violations).to.have.length(0);
+      });
     });
   });
 });
