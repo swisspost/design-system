@@ -113,6 +113,10 @@ const meta: MetaComponent = {
       table: {
         category: 'Input',
       },
+      if: {
+        arg: 'inline',
+        truthy: false,
+      },
     },
 
     label: {
@@ -124,6 +128,10 @@ const meta: MetaComponent = {
       },
       table: {
         category: 'Input',
+      },
+      if: {
+        arg: 'inline',
+        truthy: false,
       },
     },
     validation: {
@@ -139,7 +147,7 @@ const meta: MetaComponent = {
         },
       },
       if: {
-        arg: 'disabled',
+        arg: 'inline',
         truthy: false,
       },
       options: ['null', 'is-valid', 'is-invalid'],
@@ -162,6 +170,10 @@ const meta: MetaComponent = {
       table: {
         category: 'States',
       },
+      if: {
+        arg: 'inline',
+        truthy: false,
+      },
     },
     hint: {
       name: 'Helper Text',
@@ -171,6 +183,10 @@ const meta: MetaComponent = {
       },
       table: {
         category: 'General',
+      },
+      if: {
+        arg: 'inline',
+        truthy: false,
       },
     },
   },
@@ -214,7 +230,10 @@ function render(args: Args, context: StoryContext) {
     >${getLabelText(args)}</label
   >`;
 
-  return html`${keyed(
+  const locale = typeof context.args.locale === 'string' ? context.args.locale : '';
+  const dir = locale ? getLocaleDir(locale) : 'ltr';
+
+  const content = keyed(
     `${args.id}-${args.inline}-${args.floatingLabel}-${args.validation}`,
     html` ${args.floatingLabel ? nothing : label}
       <post-date-picker
@@ -238,20 +257,14 @@ function render(args: Args, context: StoryContext) {
           : html`${input}`}</post-date-picker
       >
       ${validationMessages}`,
-  )}`;
+  );
+
+  return dir === 'rtl' ? html`<div dir="rtl">${content}</div>` : html`${content}`;
 }
 
 type Story = StoryObj;
 
-export const Default: Story = {
-  decorators: [
-    (story: StoryFn, context: StoryContext) => {
-      const locale = typeof context.args.locale === 'string' ? context.args.locale : '';
-      const dir = locale ? getLocaleDir(locale) : nothing;
-      return html`<div dir=${dir}>${story(context.args, context)}</div> `;
-    },
-  ],
-};
+export const Default: Story = {};
 
 // For testing purposes
 export const Inline: Story = {
