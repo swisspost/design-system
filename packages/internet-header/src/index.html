@@ -38,6 +38,401 @@
       ></swisspost-internet-breadcrumbs>
     </div>
 
+    <!-- Portal config test -->
+    <script id="PPM_HEADER_DATA" type="application/json">
+      {
+        "header": {
+          "globalHeader": {
+            "postLogo": {
+              "text": "Startseite",
+              "url": "/"
+            },
+            "audience": [
+              {
+                "text": "Privatkunden",
+                "url": "#",
+                "active": true
+              },
+              {
+                "text": "Geschäftskunden",
+                "url": "#",
+                "active": false
+              }
+            ],
+            "primaryNavigation": [
+              {
+                "text": "Suche",
+                "url": "#",
+                "icon": "search"
+              }
+            ],
+            "secondaryNavigation": [
+              {
+                "text": "Jobs",
+                "url": "#",
+                "icon": "jobs"
+              },
+              {
+                "text": "Konto erstellen",
+                "url": "#",
+                "icon": "adduser"
+              }
+            ],
+            "languages": [
+              {
+                "code": "de-CH",
+                "text": "DE",
+                "label": "Deutsch",
+                "url": "#",
+                "active": false
+              },
+              {
+                "code": "fr-CH",
+                "text": "FR",
+                "label": "Französisch",
+                "url": "#",
+                "active": false
+              },
+              {
+                "code": "it-CH",
+                "text": "IT",
+                "label": "Italienisch",
+                "url": "#",
+                "active": false
+              },
+              {
+                "code": "en",
+                "text": "EN",
+                "label": "Englisch",
+                "url": "#",
+                "active": true
+              }
+            ],
+            "postLogin": {
+              "loginLink": {
+                "text": "Login",
+                "url": "#",
+                "icon": "login"
+              },
+              "accountSwitch": {
+                "text": "Switch account",
+                "url": "https://account.post.ch/switch",
+                "icon": "userswitch"
+              },
+              "companySwitch": {
+                "text": "Switch company",
+                "url": "https://account.post.ch/switch-company",
+                "icon": "changecompany"
+              },
+              "userLinks": [
+                {
+                  "text": "Mein Profil",
+                  "url": "#",
+                  "icon": "profile"
+                },
+                {
+                  "text": "Nachrichten",
+                  "url": "#",
+                  "icon": "letter"
+                },
+                {
+                  "text": "Einstellungen",
+                  "url": "#",
+                  "icon": "gear"
+                }
+              ],
+              "logoutLink": {
+                "text": "Abmelden",
+                "url": "#",
+                "icon": "logout"
+              }
+            }
+          },
+          "localHeader": {
+            "mainNavigation": [
+              {
+                "text": "Briefe",
+                "url": "#"
+              },
+              {
+                "text": "Pakete",
+                "url": "#"
+              },
+              {
+                "trigger": {
+                  "text": "Briefe"
+                },
+                "overview": {
+                  "text": "Übersicht Briefe",
+                  "url": "/letters"
+                },
+                "sections": [
+                  {
+                    "title": "Brief senden",
+                    "items": [
+                      {
+                        "text": "Briefe Schweiz",
+                        "url": "/sch"
+                      },
+                      {
+                        "text": "Kleinsendungen ins Ausland",
+                        "url": "/kl"
+                      },
+                      {
+                        "text": "Waren ins Ausland",
+                        "url": ""
+                      },
+                      {
+                        "text": "Express und Kurier",
+                        "url": ""
+                      }
+                    ]
+                  },
+                  {
+                    "title": {
+                      "text": "Schritt für Schritt",
+                      "url": "/step-by-step"
+                    },
+                    "items": [
+                      {
+                        "text": "Pakete Schweiz",
+                        "url": "/sch"
+                      },
+                      {
+                        "text": "Kleinsendungen ins Ausland",
+                        "url": "/kl"
+                      },
+                      {
+                        "text": "Waren ins Ausland",
+                        "url": ""
+                      },
+                      {
+                        "text": "Express und Kurier",
+                        "url": ""
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "trigger": {
+                  "text": "Pakete"
+                },
+                "overview": {
+                  "text": "Übersicht Pakete",
+                  "url": "/packages"
+                },
+                "sections": [
+                  {
+                    "title": "Brief senden",
+                    "items": [
+                      {
+                        "text": "Pakete Schweiz",
+                        "url": "/sch"
+                      },
+                      {
+                        "text": "Kleinsendungen ins Ausland",
+                        "url": "/kl"
+                      },
+                      {
+                        "text": "Waren ins Ausland",
+                        "url": ""
+                      },
+                      {
+                        "text": "Express und Kurier",
+                        "url": ""
+                      }
+                    ]
+                  },
+                  {
+                    "title": {
+                      "text": "Schritt für Schritt",
+                      "url": "/step-by-step"
+                    },
+                    "items": [
+                      {
+                        "text": "Pakete Schweiz",
+                        "url": "/sch"
+                      },
+                      {
+                        "text": "Kleinsendungen ins Ausland",
+                        "url": "/kl"
+                      },
+                      {
+                        "text": "Waren ins Ausland",
+                        "url": ""
+                      },
+                      {
+                        "text": "Express und Kurier",
+                        "url": ""
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "breadcrumbs": {
+          "rootUrl": "https://post.ch/de/",
+          "items": [
+            {
+              "text": "Meine Post",
+              "url": "https://post.ch/de/kundencenter"
+            },
+            {
+              "text": "Standorte und Öffnungszeiten",
+              "url": "https://places.post.ch/?lang=de",
+              "label": "Die label",
+              "description": "Die description"
+            }
+          ]
+        },
+        "footer": {
+          "prefooter": {
+            "title": "Service name",
+            "items": [
+              { "text": "Service link 1", "url": "#" },
+              { "text": "Service link 2", "url": "#" },
+              { "text": "Service link 3", "url": "#" }
+            ]
+          },
+          "sections": [
+            {
+              "title": "Title 1",
+              "items": [
+                { "text": "Text link 1", "url": "#" },
+                { "text": "Text link 2", "url": "#" },
+                { "text": "Text link 3", "url": "#" },
+                { "text": "Text link 4", "url": "#" },
+                { "text": "Text link 5", "url": "#" },
+                { "text": "Text link 6", "url": "#" }
+              ]
+            },
+            {
+              "title": "Title 2",
+              "items": [
+                { "text": "Text link 1", "url": "#" },
+                { "text": "Text link 2", "url": "#" },
+                { "text": "Text link 3", "url": "#" },
+                { "text": "Text link 4", "url": "#" },
+                { "text": "Text link 5", "url": "#" },
+                { "text": "Text link 6", "url": "#" },
+                { "text": "Text link 7", "url": "#" },
+                { "text": "Text link 8", "url": "#" }
+              ]
+            },
+            {
+              "title": "Title 3",
+              "items": [
+                { "text": "Text link 1", "url": "#" },
+                { "text": "Text link 2", "url": "#" },
+                { "text": "Text link 3", "url": "#" },
+                { "text": "Text link 4", "url": "#" },
+                { "text": "Text link 5", "url": "#" },
+                { "text": "Text link 6", "url": "#" },
+                { "text": "Text link 7", "url": "#" },
+                { "text": "Text link 8", "url": "#" }
+              ]
+            },
+            {
+              "title": "Title 4",
+              "items": [
+                { "text": "Text link 1", "url": "#" },
+                { "text": "Text link 2", "url": "#" },
+                { "text": "Text link 3", "url": "#" },
+                { "text": "Text link 4", "url": "#" },
+                { "text": "Text link 5", "url": "#" }
+              ]
+            }
+          ],
+          "socialLinks": {
+            "title": "Follow us",
+            "items": [
+              {
+                "text": "Facebook",
+                "url": "https://www.facebook.com/swisspost",
+                "icon": "facebook"
+              },
+              {
+                "text": "Instagram",
+                "url": "https://www.instagram.com/swisspost/",
+                "icon": "instagram"
+              },
+              { "text": "Youtube", "url": "http://www.youtube.com/swisspost", "icon": "youtube" },
+              {
+                "text": "Snapchat",
+                "url": "https://www.snapchat.com/add/swisspostjobs",
+                "icon": "snapchat"
+              },
+              { "text": "Twitter X", "url": "https://twitter.com/PostSchweiz", "icon": "twitterx" },
+              {
+                "text": "Linkedin",
+                "url": "https://www.linkedin.com/company/swiss-post",
+                "icon": "linkedin"
+              },
+              {
+                "text": "Xing",
+                "url": "https://www.xing.com/companies/dieschweizerischepost",
+                "icon": "xing"
+              },
+              { "text": "E-Mail", "url": "mailto:noreply@post.ch", "icon": "letter" }
+            ]
+          },
+          "appStoreLinks": {
+            "title": "Download app",
+            "items": [
+              {
+                "text": "Download the App on Google Play",
+                "url": "https://play.google.com/store/apps/details?id=com.nth.swisspost&hl=en_CH&pli=1",
+                "image": {
+                  "src": "https://next.design-system.post.ch/assets/images/google-play-badge.svg",
+                  "alt": "Google Play Store badge"
+                }
+              },
+              {
+                "text": "Download the App on the Apple Store",
+                "url": "https://apps.apple.com/ch/app/die-post/id378676700",
+                "image": {
+                  "src": "https://next.design-system.post.ch/assets/images/apple-store-badge.svg",
+                  "alt": "Apple App Store badge"
+                }
+              }
+            ]
+          },
+          "companyLinks": {
+            "title": "Swiss Post Ltd.",
+            "items": [
+              { "text": "PostBus", "url": "https://www.postauto.ch" },
+              { "text": "PostFinance", "url": "https://www.postfinance.ch" }
+            ]
+          },
+          "complianceLinks": {
+            "title": "Meta",
+            "items": [
+              {
+                "text": "Accessibility",
+                "url": "https://www.post.ch/en/pages/footer/accessibility-at-swiss-post"
+              },
+              {
+                "text": "General Terms and Conditions",
+                "url": "https://www.post.ch/en/pages/footer/general-terms-and-conditions-gtc"
+              },
+              {
+                "text": "Data protection and disclaimer",
+                "url": "https://www.post.ch/en/pages/footer/data-protection-and-disclaimer"
+              },
+              {
+                "text": "Publication details",
+                "url": "https://www.post.ch/en/pages/footer/publication-details"
+              }
+            ]
+          },
+          "copyright": "© Copyright 2024 by Swiss Post Ltd. All rights reserved."
+        }
+      }
+    </script>
+
     <script>
       const sleep = ms => new Promise(r => setTimeout(r, ms));
       window.UC_UI = { showSecondLayer: () => alert('second layer') };
