@@ -1530,7 +1530,7 @@ export class MyComponent {
                                   <code>&lt;post-breadcrumb-item&gt;</code> components instead.
                                   <br /><br />
                                   The old component generated its trail automatically from the header
-                                  config, usually requiring no props at all. The new components require
+                                  config, usually requiring no props. The new components require
                                   manual setup:
                                   <ul>
                                     <li>
@@ -1538,12 +1538,13 @@ export class MyComponent {
                                       <code>text-breadcrumbs</code>, and <code>text-more-items</code> on
                                       <code>&lt;post-breadcrumbs&gt;</code>
                                     </li>
-                                    <li>Add one <code>&lt;post-breadcrumb-item&gt;</code> per trail item</li>
                                     <li>
-                                      The <code>hide-buttons</code> prop and <code>toggleOverlayById()</code>
-                                      method have no equivalent
+                                      Set <code>url</code> and <code>label</code>/<code>description</code>
+                                      on each <code>&lt;post-breadcrumbs-item&gt;</code>
                                     </li>
                                   </ul>
+                                  The <code>hide-buttons</code> prop and <code>toggleOverlayById()</code>
+                                  method have no equivalent.
 
                                   <p><strong>Before (v9 — part of Internet Header package)</strong></p>
                                   <code-block
