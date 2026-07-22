@@ -44,8 +44,12 @@ export class PostInternetHeader {
 
   @Watch('language')
   async handleLanguageChange(newValue: string) {
-    state.currentLanguage = newValue;
-    await this.updateConfig();
+    try {
+      // Pass newValue explicitly — it wins first priority in getUserLang's chain
+      await this.updateConfig(newValue);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   /**
@@ -166,12 +170,12 @@ export class PostInternetHeader {
       // In case of an error, we assume the user is not logged in and do nothing
     }
   }
-
-  private async updateConfig() {
+  // Fetch and store the localized config, defaulting to the `language` prop if none is passed
+  private async updateConfig(language?: string) {
     state.localizedConfig = await getLocalizedConfig({
       projectId: this.project,
       environment: this.environment,
-      language: this.language,
+      language: language ?? this.language,
     });
 
     this.updateActiveUrl();
@@ -278,7 +282,11 @@ export class PostInternetHeader {
           {globalHeader.postLogin &&
             this.renderNavItem(
               state.user
-                ? { user: state.user, options: globalHeader.postLogin.userLinks, accountSwitch: globalHeader.postLogin.accountSwitch }
+                ? {
+                    user: state.user,
+                    options: globalHeader.postLogin.userLinks,
+                    accountSwitch: globalHeader.postLogin.accountSwitch,
+                  }
                 : globalHeader.postLogin.loginLink,
               { slot: 'post-login' },
             )}

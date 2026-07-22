@@ -138,7 +138,7 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
         .then(([trigger, popover]: [HTMLButtonElement, HTMLPostPopoverElement]) => {
           const t = trigger.getBoundingClientRect();
           const p = popover.getBoundingClientRect();
-          expect(t.top < p.top);
+          expect(t.top).to.be.lessThan(p.top);
         });
     });
 
@@ -214,7 +214,9 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('Has no detectable a11y violations on load', () => {
-      cy.checkA11y('post-popover');
+      cy.checkA11y('post-popover', undefined, (violations) => {
+        expect(violations).to.have.length(0);
+      });
     });
   });
 });
