@@ -12,7 +12,7 @@ tokens.$default-map: components.$post-text-input;
 ) {
   position: absolute;
   inset-inline-end: $inset-inline-end;
-  top: 50%;
+  inset-block-start: 50%;
   transform: translateY(-50%);
   width: tokens.get('input-sizing-icon');
   height: tokens.get('input-sizing-icon');
@@ -102,9 +102,9 @@ input.form-control {
       border-radius: 0;
       display: block;
       position: absolute;
-      top: 0;
-      bottom: 0;
-      right: 0;
+      inset-block-start: 0;
+      inset-block-end: 0;
+      inset-inline-end: 0;
       margin-inline: 0;
       height: auto;
       background-color: inherit;
@@ -129,13 +129,13 @@ input.form-control {
         align-items: center;
         content: 'Choose File';
         position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 0;
+        inset-block-start: 0;
+        inset-block-end: 0;
+        inset-inline-end: 0;
         z-index: 2;
         padding-inline: tokens.get('input-padding-inline-start');
         background-color: inherit;
-        border-left: inherit;
+        border-inline-start: inherit;
         text-align: center;
 
         [lang='de'] & {
@@ -354,9 +354,15 @@ input.form-control {
   &:has(> input.form-control:-webkit-autofill.is-valid)::after {
     content: '';
     position: absolute;
-    top: calc(#{tokens.get('input-sizing-height')} / 2);
+    inset-block-start: var(
+      --post-form-floating-validation-icon-block-start,
+      calc(#{tokens.get('input-sizing-height')} / 2)
+    );
     transform: translateY(-50%);
-    right: tokens.get('input-validation-icon-position-inline-end');
+    inset-inline-end: var(
+      --post-form-floating-validation-icon-inline-end,
+      #{tokens.get('input-validation-icon-position-inline-end')}
+    );
     z-index: 2;
     pointer-events: none;
     background-image: var(--post-signal-icon-success);
@@ -366,9 +372,15 @@ input.form-control {
   &:has(> input.form-control:-webkit-autofill.is-invalid)::after {
     content: '';
     position: absolute;
-    top: calc(#{tokens.get('input-sizing-height')} / 2);
+    inset-block-start: var(
+      --post-form-floating-validation-icon-block-start,
+      calc(#{tokens.get('input-sizing-height')} / 2)
+    );
     transform: translateY(-50%);
-    right: tokens.get('input-validation-icon-position-inline-end');
+    inset-inline-end: var(
+      --post-form-floating-validation-icon-inline-end,
+      #{tokens.get('input-validation-icon-position-inline-end')}
+    );
     z-index: 1;
     pointer-events: none;
     background-image: var(--post-signal-icon-error);
@@ -378,7 +390,7 @@ input.form-control {
   &:has(> input.form-control[type='time']:-webkit-autofill.is-valid)::after,
   &:has(> input.form-control[type='time'].is-invalid:not(:disabled))::after,
   &:has(> input.form-control[type='time']:-webkit-autofill.is-invalid)::after {
-    right: calc(
+    inset-inline-end: calc(
       #{tokens.get('input-validation-icon-position-inline-end')} +
         #{tokens.get('post-datepicker-input-icons-gap-inline', components.$post-datepicker)} +
         #{tokens.get('input-sizing-icon')}
@@ -391,8 +403,8 @@ input.form-control {
     text-align: start;
     pointer-events: none;
     display: block;
-    top: tokens.get('input-border-width');
-    left: tokens.get('input-border-width');
+    inset-block-start: tokens.get('input-border-width');
+    inset-inline-start: tokens.get('input-border-width');
     margin: 0;
     padding-inline-start: tokens.get('input-padding-inline-start');
     padding-inline-end: tokens.get('input-label-empty-padding-inline-end');
