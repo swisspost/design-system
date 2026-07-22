@@ -190,9 +190,9 @@ describe('header', () => {
       });
 
       it('should show the user menu with the correct user links', () => {
-        // The mocked logged-in user (auth.json) is B2C with
-        // changeUserAndProfile: 'notAvailable', so accountSwitch/companySwitch
-        // are correctly gated off here and intentionally excluded below.
+        // accountSwitch/companySwitch depend on the mocked user's permissions
+        // (auth.json) — only userProfile, settings, userLinks, and logoutLink
+        // are counted here.
         const expectedCount =
           (postLoginConfig.userProfile ? 1 : 0) +
           (postLoginConfig.settings ? 1 : 0) +
@@ -243,8 +243,9 @@ describe('header', () => {
         } else {
           cy.get('@nav-items').eq(index).find('post-menu-trigger').should('exist');
 
-          // item is a UserMenuConfig here — accountSwitch/companySwitch/logoutLink
-          // render as separate menu items alongside options, not folded into it.
+          // accountSwitch/companySwitch/logoutLink each render as their own
+          // menu item, gated by the item's own user permissions — not part
+          // of options.
           const isB2C = item.user.userType === 'B2C';
           const isB2B = item.user.userType === 'B2B';
           const canChangeUserAndProfile =
