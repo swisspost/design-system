@@ -14,11 +14,10 @@ export class PostListbox {
   private popoverContainer?: HTMLPostPopovercontainerElement;
   @Element() host: HTMLPostListboxElement;
 
-  // Kept as @State() (rather than derived inline from `visibleOptions.length` in render())
-  // since `visibleOptions` is a plain field, not @State()/@Prop(), so mutating it alone
-  // won't trigger a re-render. Without this, a listbox that mounts with zero options
-  // (e.g. async/backend-driven autocomplete) gets stuck on the blank-slate slot even
-  // after real options are added later.
+  // visibleOptions (below) is a plain field, not reactive, so mutating it alone won't
+  // trigger a re-render. This flag makes that check reactive instead, so the listbox
+  // correctly switches to the real slot once options exist (e.g. added asynchronously
+  // after the listbox already mounted empty).
   @State() private hasVisibleOptions: boolean = false;
 
   /**
