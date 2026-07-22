@@ -1,5 +1,5 @@
 import * as testConfigRaw from '@/assets/config/test-configuration.json';
-import { PortalConfig } from '@/models/general.model';
+import { LocalizedConfig } from '@/models/general.model';
 import {
   fetchConfig,
   generateConfigUrl,
@@ -7,13 +7,17 @@ import {
   isValidProjectId,
 } from './config.service';
 
-const testConfig: PortalConfig = testConfigRaw;
+const testConfig: LocalizedConfig = testConfigRaw;
 
 describe('config.service.ts', () => {
   global.fetch = jest.fn(() => {
     return Promise.resolve({
       json: () => Promise.resolve(testConfig),
     }) as Promise<Response>;
+  });
+
+  beforeEach(() => {
+    (fetch as jest.Mock).mockClear();
   });
 
   describe('isValidProjectId', () => {
@@ -37,38 +41,46 @@ describe('config.service.ts', () => {
 
   describe('generateConfigUrl', () => {
     it('should return a test URL', () => {
-      expect(generateConfigUrl('test', 'int01')).toEqual('assets/config/test-configuration.json');
+      expect(generateConfigUrl('test', 'int01', 'de')).toEqual(
+        'assets/config/test-configuration.json',
+      );
     });
 
     it('should return an int URL', () => {
-      expect(generateConfigUrl('topos', 'int01')).toEqual(
-        'https://int.post.ch/api/headerjs/Json?serviceid=topos&environment=int01',
+      expect(generateConfigUrl('topos', 'int01', 'de')).toEqual(
+        'https://int.post.ch/api/headerjs/Json?serviceid=topos&lang=de&environment=int01',
       );
     });
 
     it('should return prod by default', () => {
-      expect(generateConfigUrl('topos', 'prod')).toEqual(
-        'https://www.post.ch/api/headerjs/Json?serviceid=topos',
+      expect(generateConfigUrl('topos', 'prod', 'de')).toEqual(
+        'https://www.post.ch/api/headerjs/Json?serviceid=topos&lang=de',
       );
     });
 
     it('should reduce XSS risk', () => {
-      expect(generateConfigUrl('<script>alert()</script>', 'prod')).toEqual(
-        'https://www.post.ch/api/headerjs/Json?serviceid=%3Cscript%3Ealert()%3C%2Fscript%3E',
+      expect(generateConfigUrl('<script>alert()</script>', 'prod', 'de')).toEqual(
+        'https://www.post.ch/api/headerjs/Json?serviceid=%3Cscript%3Ealert()%3C%2Fscript%3E&lang=de',
       );
     });
 
     it('should work with upper case env', () => {
       // @ts-expect-error second argument should be of type 'dev01' | 'dev02' | 'devs1' | 'test' | 'int01' | 'int02' | 'prod'
-      expect(generateConfigUrl('whatever', 'INT01')).toEqual(
-        'https://int.post.ch/api/headerjs/Json?serviceid=whatever&environment=int01',
+      expect(generateConfigUrl('whatever', 'INT01', 'de')).toEqual(
+        'https://int.post.ch/api/headerjs/Json?serviceid=whatever&lang=de&environment=int01',
+      );
+    });
+
+    it('should lowercase the lang param', () => {
+      expect(generateConfigUrl('topos', 'int01', 'DE')).toEqual(
+        'https://int.post.ch/api/headerjs/Json?serviceid=topos&lang=de&environment=int01',
       );
     });
   });
 
   describe('fetchConfig', () => {
     it('should fetch config', async () => {
-      const res = await fetchConfig('test', 'int01');
+      const res = await fetchConfig('test', 'int01', 'de');
       expect(res).toEqual(testConfig);
       expect(fetch).toHaveBeenCalledTimes(1);
     });
@@ -81,7 +93,28 @@ describe('config.service.ts', () => {
         environment: 'int01',
         language: 'de',
       });
-      expect(config).toEqual(testConfig.de);
+      expect(config).toEqual(testConfig);
+    });
+
+    it('should fetch again when the language changes', async () => {
+      await getLocalizedConfig({ projectId: 'test', environment: 'int01', language: 'de' });
+      await getLocalizedConfig({ projectId: 'test', environment: 'int01', language: 'fr' });
+
+      // Two different languages must result in two separate network calls,
+      // not a reused/cached response from the first call.
+      expect(fetch).toHaveBeenCalledTimes(2);
+    });
+
+    it('should dedupe concurrent requests for the same language', async () => {
+      const [configA, configB] = await Promise.all([
+        getLocalizedConfig({ projectId: 'test', environment: 'int01', language: 'de' }),
+        getLocalizedConfig({ projectId: 'test', environment: 'int01', language: 'de' }),
+      ]);
+
+      // Both calls resolve to equivalent config, but only one network call was made.
+      expect(configA).toEqual(testConfig);
+      expect(configB).toEqual(testConfig);
+      expect(fetch).toHaveBeenCalledTimes(1);
     });
   });
 });

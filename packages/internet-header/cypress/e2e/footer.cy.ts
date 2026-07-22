@@ -1,7 +1,7 @@
 import { prepare } from '../support/prepare-story';
 import { FOOTER } from './shared/variables';
-import { IPortalConfig } from '@/models/general.model';
 import testConfiguration from '../fixtures/internet-header/test-configuration.json';
+import { LocalizedConfig } from '../../src/models/general.model';
 
 describe('footer', () => {
   describe('default', () => {
@@ -98,7 +98,7 @@ describe('footer', () => {
   });
 
   describe('optional content', () => {
-    let customConfig: IPortalConfig;
+    let customConfig: LocalizedConfig;
 
     const slotsByConfigKey: { [key in keyof typeof testConfiguration.en.footer]?: string } = {
       socialLinks: 'socialmedia',

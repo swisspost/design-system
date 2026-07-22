@@ -1,22 +1,19 @@
-import { PortalConfig } from '../../src/models/general.model';
+import { LocalizedConfig } from '../../src/models/general.model';
 import rawTestConfiguration from '../fixtures/internet-header/test-configuration.json';
 import { prepare } from '../support/prepare-story';
 import { BREADCRUMBS } from './shared/variables';
 
-const testConfiguration: PortalConfig = rawTestConfiguration;
+const testConfiguration: LocalizedConfig = rawTestConfiguration;
 
 describe('breadcrumb', () => {
   describe('configuration', () => {
     it(`should not rendered if no config present`, () => {
-      // Cast the imported JSON object to the PortalConfig interface
-      const config: PortalConfig = testConfiguration;
+      // Cast the imported JSON object to the LocalizedConfig interface
+      const config: LocalizedConfig = testConfiguration;
       const modifiedConfig = JSON.parse(JSON.stringify(config));
 
       // Clear breadcrumb config
-      modifiedConfig.de.breadcrumbs = undefined;
-      modifiedConfig.en.breadcrumbs = undefined;
-      modifiedConfig.fr.breadcrumbs = undefined;
-      modifiedConfig.it.breadcrumbs = undefined;
+      modifiedConfig.breadcrumbs = undefined;
 
       prepare(BREADCRUMBS, 'Default', { config: modifiedConfig });
       cy.get('swisspost-internet-breadcrumbs').should('exist');
