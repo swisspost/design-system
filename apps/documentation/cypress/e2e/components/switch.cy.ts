@@ -13,6 +13,8 @@ describe('Switch', () => {
             enabled: false,
           },
         },
+      }, (violations) => {
+        expect(violations).to.have.length(0);
       });
     });
   });

@@ -13,6 +13,8 @@ describe('Choice-card', () => {
             enabled: false,
           },
         },
+      }, (violations) => {
+        expect(violations).to.have.length(0);
       });
     });
   });

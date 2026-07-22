@@ -9,7 +9,9 @@ describe('Input', () => {
         cy.get('.form-control', { timeout: 30000 }).should('be.visible');
         cy.injectAxe();
 
-        cy.checkA11y('#root-inner');
+        cy.checkA11y('#root-inner', undefined, (violations) => {
+          expect(violations).to.have.length(0);
+        });
       });
     });
   });

@@ -128,7 +128,6 @@ export class PostHeader {
     this.updateLocalHeaderHeight = this.updateLocalHeaderHeight.bind(this);
     this.keyboardHandler = this.keyboardHandler.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
-    this.megadropdownStateHandler = this.megadropdownStateHandler.bind(this);
     this.checkSlottedContent = this.checkSlottedContent.bind(this);
     this.megadropdownStateHandler = this.megadropdownStateHandler.bind(this);
   }
@@ -467,8 +466,8 @@ export class PostHeader {
                 )}
                 <slot name="global-nav-primary"></slot>
                 {(onDesktop || !this.hasMainNav) && [
-                  <slot name="global-nav-secondary"></slot>,
-                  <slot name="language-menu"></slot>,
+                  <slot key="global-nav-secondary" name="global-nav-secondary"></slot>,
+                  <slot key="language-menu" name="language-menu"></slot>,
                 ]}
                 <slot name="post-login"></slot>
                 {onTabletAndMobile && this.hasMainNav && (
