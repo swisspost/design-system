@@ -293,12 +293,12 @@ function buildHeaderSlots(args: Args, subComponents: SubComponents) {
       : nothing,
     titleSlot: args.title !== '' ? title : nothing,
     sideNavTriggerSlot: args.sideNav && args.title !== '' ? renderSideNavTrigger() : nothing,
-    micrositeControlsSlot:
-      args.localNav || localLanguageMenuItem
+    localNavSlot: args.jobs
+      ? renderJobControls()
+      : args.localNav || localLanguageMenuItem
         ? renderMicrositeControls({ ...args, localLanguageMenuItem })
         : nothing,
     mainNavSlot: args.mainNav ? mainnavigation : nothing,
-    jobControlsSlot: args.jobs ? renderJobControls() : nothing,
     showSideNav: args.sideNav && args.title !== '',
   };
 }
@@ -316,8 +316,7 @@ function getHeaderRenderer(subComponents: SubComponents = {}) {
 
         <!-- Language menu (global) -->
         ${slots.globalLanguageMenuSlot} ${slots.globalLoginSlot} ${slots.titleSlot}
-        ${slots.sideNavTriggerSlot} ${slots.micrositeControlsSlot} ${slots.mainNavSlot}
-        ${slots.jobControlsSlot}
+        ${slots.sideNavTriggerSlot} ${slots.localNavSlot} ${slots.mainNavSlot}
       </post-header>
 
       ${slots.showSideNav ? renderSideNavigation() : nothing}
