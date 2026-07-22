@@ -278,7 +278,7 @@ export class PostInternetHeader {
                   key={lang.code}
                   url={lang.url}
                   active={lang.active}
-                  code={lang.code.substring(0, 2).toLowerCase()}
+                  code={lang.code}
                   name={lang.label}
                   description={lang.description}
                 >
