@@ -189,8 +189,8 @@ export class PostInternetHeader {
   private getUserMenuOptions(postLogin: PostLoginConfig): Array<IconLinkConfig> {
     return [
       ...(postLogin.userProfile ? [postLogin.userProfile] : []),
-      ...(postLogin.userLinks ?? []),
       ...(postLogin.settings ? [postLogin.settings] : []),
+      ...(postLogin.userLinks ?? []),
     ];
   }
 
