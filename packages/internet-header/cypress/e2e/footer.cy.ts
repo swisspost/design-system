@@ -2,6 +2,7 @@ import { prepare } from '../support/prepare-story';
 import { FOOTER } from './shared/variables';
 import testConfiguration from '../fixtures/internet-header/test-configuration.json';
 import { LocalizedConfig } from '../../src/models/general.model';
+import { FooterConfig } from '../../src/models/footer.model';
 
 describe('footer', () => {
   describe('default', () => {
@@ -100,7 +101,7 @@ describe('footer', () => {
   describe('optional content', () => {
     let customConfig: LocalizedConfig;
 
-    const slotsByConfigKey: { [key in keyof typeof testConfiguration.en.footer]?: string } = {
+    const slotsByConfigKey: { [key in keyof FooterConfig]?: string } = {
       socialLinks: 'socialmedia',
       appStoreLinks: 'app',
       companyLinks: 'businesssectors',
@@ -108,10 +109,10 @@ describe('footer', () => {
       copyright: 'copyright',
     };
 
-    function removeKeyFromConfig(configKey: string) {
+    function removeKeyFromConfig(configKey: keyof FooterConfig) {
       customConfig = structuredClone(testConfiguration);
-      if (customConfig.en?.footer && configKey in customConfig.en.footer) {
-        delete customConfig.en.footer[configKey];
+      if (customConfig.footer && configKey in customConfig.footer) {
+        delete customConfig.footer[configKey];
       }
     }
 
@@ -122,13 +123,15 @@ describe('footer', () => {
       cy.get(`[slot^=grid]`).should('not.exist');
     });
 
-    Object.entries(slotsByConfigKey).forEach(([configKey, slot]) => {
-      it(`should work properly when "${configKey}" is not defined in the configuration`, () => {
-        removeKeyFromConfig(configKey);
-        prepare(FOOTER, 'Default', { config: customConfig });
+    (Object.entries(slotsByConfigKey) as [keyof FooterConfig, string][]).forEach(
+      ([configKey, slot]) => {
+        it(`should work properly when "${configKey}" is not defined in the configuration`, () => {
+          removeKeyFromConfig(configKey);
+          prepare(FOOTER, 'Default', { config: customConfig });
 
-        cy.get(`[slot|="${slot}"]`).should('not.exist');
-      });
-    });
+          cy.get(`[slot|="${slot}"]`).should('not.exist');
+        });
+      },
+    );
   });
 });
