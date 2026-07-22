@@ -1535,7 +1535,7 @@ export class MyComponent {
                                   <ul>
                                     <li>
                                       Set <code>home-url</code>, <code>text-home</code>,
-                                      <code>text-breadcrumbs</code>, and <code>text-more-items</code> on
+                                      <code>text-breadcrumbs</code>, and <code>text-more-items</code> props on
                                       <code>&lt;post-breadcrumbs&gt;</code>
                                     </li>
                                     <li>
