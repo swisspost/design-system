@@ -231,21 +231,6 @@
       ]
     }
   },
-  "breadcrumbs": {
-    "rootUrl": "https://post.ch/de/",
-    "items": [
-      {
-        "text": "Meine Post",
-        "url": "https://post.ch/de/kundencenter"
-      },
-      {
-        "text": "Standorte und Öffnungszeiten",
-        "url": "https://places.post.ch/?lang=de",
-        "label": "Die label",
-        "description": "Die description"
-      }
-    ]
-  },
   "footer": {
     "prefooter": {
       "title": "Dienstname",
