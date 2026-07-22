@@ -1,1444 +1,374 @@
 {
-  "de": {
-    "header": {
-      "globalHeader": {
-        "postLogo": {
-          "text": "Startseite",
-          "url": "/"
-        },
-        "audience": [
-          {
-            "text": "Privatkunden",
-            "url": "#",
-            "active": true
-          },
-          {
-            "text": "Geschäftskunden",
-            "url": "#",
-            "active": false
-          }
-        ],
-        "primaryNavigation": [
-          {
-            "text": "Suche",
-            "url": "#",
-            "icon": "search"
-          }
-        ],
-        "secondaryNavigation": [
-          {
-            "text": "Career",
-            "url": "#",
-            "icon": "rocket"
-          },
-          {
-            "text": "Konto erstellen",
-            "url": "#",
-            "icon": "adduser"
-          }
-        ],
-        "languages": [
-          {
-            "code": "de-CH",
-            "text": "DE",
-            "label": "Deutsch",
-            "url": "#",
-            "active": false
-          },
-          {
-            "code": "fr-CH",
-            "text": "FR",
-            "label": "Französisch",
-            "url": "#",
-            "active": false
-          },
-          {
-            "code": "it-CH",
-            "text": "IT",
-            "label": "Italienisch",
-            "url": "#",
-            "active": false
-          },
-          {
-            "code": "en",
-            "text": "EN",
-            "label": "Englisch",
-            "url": "#",
-            "active": true
-          }
-        ],
-        "postLogin": {
-          "loginLink": {
-            "text": "Login",
-            "url": "#",
-            "icon": "login"
-          },
-          "userLinks": [
-            {
-              "text": "Mein Profil",
-              "url": "#",
-              "icon": "profile"
-            },
-            {
-              "text": "Nachrichten",
-              "url": "#",
-              "icon": "letter"
-            },
-            {
-              "text": "Einstellungen",
-              "url": "#",
-              "icon": "gear"
-            },
-            {
-              "text": "Abmelden",
-              "url": "#",
-              "icon": "logout"
-            }
-          ]
-        }
+  "header": {
+    "globalHeader": {
+      "postLogo": {
+        "text": "Startseite",
+        "url": "/"
       },
-      "localHeader": {
-        "mainNavigation": [
+      "audience": [
+        {
+          "text": "Privatkunden",
+          "url": "#",
+          "active": true
+        },
+        {
+          "text": "Geschäftskunden",
+          "url": "#",
+          "active": false
+        }
+      ],
+      "primaryNavigation": [
+        {
+          "text": "Suche",
+          "url": "#",
+          "icon": "search"
+        }
+      ],
+      "secondaryNavigation": [
+        {
+          "text": "Career",
+          "url": "#",
+          "icon": "rocket"
+        },
+        {
+          "text": "Konto erstellen",
+          "url": "#",
+          "icon": "adduser"
+        }
+      ],
+      "languages": [
+        {
+          "code": "de-CH",
+          "text": "DE",
+          "label": "Deutsch",
+          "url": "#",
+          "active": false
+        },
+        {
+          "code": "fr-CH",
+          "text": "FR",
+          "label": "Französisch",
+          "url": "#",
+          "active": false
+        },
+        {
+          "code": "it-CH",
+          "text": "IT",
+          "label": "Italienisch",
+          "url": "#",
+          "active": false
+        },
+        {
+          "code": "en",
+          "text": "EN",
+          "label": "Englisch",
+          "url": "#",
+          "active": true
+        }
+      ],
+      "postLogin": {
+        "loginLink": {
+          "text": "Login",
+          "url": "#",
+          "icon": "login"
+        },
+        "userLinks": [
           {
-            "text": "Briefe",
-            "url": "#"
+            "text": "Mein Profil",
+            "url": "#",
+            "icon": "profile"
           },
           {
-            "text": "Pakete",
-            "url": "#"
+            "text": "Nachrichten",
+            "url": "#",
+            "icon": "letter"
           },
           {
-            "trigger": {
-              "text": "Briefe"
-            },
-            "overview": {
-              "text": "Übersicht Briefe",
-              "url": "/letters"
-            },
-            "sections": [
-              {
-                "title": "Brief senden",
-                "items": [
-                  {
-                    "text": "Briefe Schweiz",
-                    "url": "/sch"
-                  },
-                  {
-                    "text": "Kleinsendungen ins Ausland",
-                    "url": "/kl"
-                  },
-                  {
-                    "text": "Waren ins Ausland",
-                    "url": ""
-                  },
-                  {
-                    "text": "Express und Kurier",
-                    "url": ""
-                  }
-                ]
-              },
-              {
-                "title": {
-                  "text": "Schritt für Schritt",
-                  "url": "/step-by-step"
-                },
-                "items": [
-                  {
-                    "text": "Pakete Schweiz",
-                    "url": "/sch"
-                  },
-                  {
-                    "text": "Kleinsendungen ins Ausland",
-                    "url": "/kl"
-                  },
-                  {
-                    "text": "Waren ins Ausland",
-                    "url": ""
-                  },
-                  {
-                    "text": "Express und Kurier",
-                    "url": ""
-                  }
-                ]
-              }
-            ]
+            "text": "Einstellungen",
+            "url": "#",
+            "icon": "gear"
           },
           {
-            "trigger": {
-              "text": "Pakete"
-            },
-            "overview": {
-              "text": "Übersicht Pakete",
-              "url": "/packages"
-            },
-            "sections": [
-              {
-                "title": "Brief senden",
-                "items": [
-                  {
-                    "text": "Pakete Schweiz",
-                    "url": "/sch"
-                  },
-                  {
-                    "text": "Kleinsendungen ins Ausland",
-                    "url": "/kl"
-                  },
-                  {
-                    "text": "Waren ins Ausland",
-                    "url": ""
-                  },
-                  {
-                    "text": "Express und Kurier",
-                    "url": ""
-                  }
-                ]
-              },
-              {
-                "title": {
-                  "text": "Schritt für Schritt",
-                  "url": "/step-by-step"
-                },
-                "items": [
-                  {
-                    "text": "Pakete Schweiz",
-                    "url": "/sch"
-                  },
-                  {
-                    "text": "Kleinsendungen ins Ausland",
-                    "url": "/kl"
-                  },
-                  {
-                    "text": "Waren ins Ausland",
-                    "url": ""
-                  },
-                  {
-                    "text": "Express und Kurier",
-                    "url": ""
-                  }
-                ]
-              }
-            ]
+            "text": "Abmelden",
+            "url": "#",
+            "icon": "logout"
           }
         ]
       }
     },
-    "footer": {
-      "prefooter": {
-        "title": "Dienstname",
-        "items": [
-          { "text": "Dienstlink 1", "url": "#" },
-          { "text": "Dienstlink 2", "url": "#" },
-          { "text": "Dienstlink 3", "url": "#" }
-        ]
-      },
-      "sections": [
+    "localHeader": {
+      "mainNavigation": [
         {
-          "title": "Titel 1",
-          "items": [
-            { "text": "Textlink 1", "url": "#" },
-            { "text": "Textlink 2", "url": "#" },
-            { "text": "Textlink 3", "url": "#" },
-            { "text": "Textlink 4", "url": "#" },
-            { "text": "Textlink 5", "url": "#" },
-            { "text": "Textlink 6", "url": "#" }
+          "text": "Briefe",
+          "url": "#"
+        },
+        {
+          "text": "Pakete",
+          "url": "#"
+        },
+        {
+          "trigger": {
+            "text": "Briefe"
+          },
+          "overview": {
+            "text": "Übersicht Briefe",
+            "url": "/letters"
+          },
+          "sections": [
+            {
+              "title": "Brief senden",
+              "items": [
+                {
+                  "text": "Briefe Schweiz",
+                  "url": "/sch"
+                },
+                {
+                  "text": "Kleinsendungen ins Ausland",
+                  "url": "/kl"
+                },
+                {
+                  "text": "Waren ins Ausland",
+                  "url": ""
+                },
+                {
+                  "text": "Express und Kurier",
+                  "url": ""
+                }
+              ]
+            },
+            {
+              "title": {
+                "text": "Schritt für Schritt",
+                "url": "/step-by-step"
+              },
+              "items": [
+                {
+                  "text": "Pakete Schweiz",
+                  "url": "/sch"
+                },
+                {
+                  "text": "Kleinsendungen ins Ausland",
+                  "url": "/kl"
+                },
+                {
+                  "text": "Waren ins Ausland",
+                  "url": ""
+                },
+                {
+                  "text": "Express und Kurier",
+                  "url": ""
+                }
+              ]
+            }
           ]
         },
         {
-          "title": "Titel 2",
-          "items": [
-            { "text": "Textlink 1", "url": "#" },
-            { "text": "Textlink 2", "url": "#" },
-            { "text": "Textlink 3", "url": "#" },
-            { "text": "Textlink 4", "url": "#" },
-            { "text": "Textlink 5", "url": "#" },
-            { "text": "Textlink 6", "url": "#" },
-            { "text": "Textlink 7", "url": "#" },
-            { "text": "Textlink 8", "url": "#" }
-          ]
-        },
-        {
-          "title": "Titel 3",
-          "items": [
-            { "text": "Textlink 1", "url": "#" },
-            { "text": "Textlink 2", "url": "#" },
-            { "text": "Textlink 3", "url": "#" },
-            { "text": "Textlink 4", "url": "#" },
-            { "text": "Textlink 5", "url": "#" },
-            { "text": "Textlink 6", "url": "#" },
-            { "text": "Textlink 7", "url": "#" },
-            { "text": "Textlink 8", "url": "#" }
-          ]
-        },
-        {
-          "title": "Titel 4",
-          "items": [
-            { "text": "Textlink 1", "url": "#" },
-            { "text": "Textlink 2", "url": "#" },
-            { "text": "Textlink 3", "url": "#" },
-            { "text": "Textlink 4", "url": "#" },
-            { "text": "Textlink 5", "url": "#" }
+          "trigger": {
+            "text": "Pakete"
+          },
+          "overview": {
+            "text": "Übersicht Pakete",
+            "url": "/packages"
+          },
+          "sections": [
+            {
+              "title": "Brief senden",
+              "items": [
+                {
+                  "text": "Pakete Schweiz",
+                  "url": "/sch"
+                },
+                {
+                  "text": "Kleinsendungen ins Ausland",
+                  "url": "/kl"
+                },
+                {
+                  "text": "Waren ins Ausland",
+                  "url": ""
+                },
+                {
+                  "text": "Express und Kurier",
+                  "url": ""
+                }
+              ]
+            },
+            {
+              "title": {
+                "text": "Schritt für Schritt",
+                "url": "/step-by-step"
+              },
+              "items": [
+                {
+                  "text": "Pakete Schweiz",
+                  "url": "/sch"
+                },
+                {
+                  "text": "Kleinsendungen ins Ausland",
+                  "url": "/kl"
+                },
+                {
+                  "text": "Waren ins Ausland",
+                  "url": ""
+                },
+                {
+                  "text": "Express und Kurier",
+                  "url": ""
+                }
+              ]
+            }
           ]
         }
-      ],
-      "socialLinks": {
-        "title": "Folgen Sie uns",
-        "items": [
-          { "text": "Facebook", "url": "https://www.facebook.com/swisspost", "icon": "facebook" },
-          {
-            "text": "Instagram",
-            "url": "https://www.instagram.com/swisspost/",
-            "icon": "instagram"
-          },
-          { "text": "Youtube", "url": "http://www.youtube.com/swisspost", "icon": "youtube" },
-          {
-            "text": "Snapchat",
-            "url": "https://www.snapchat.com/add/swisspostjobs",
-            "icon": "snapchat"
-          },
-          { "text": "Twitter X", "url": "https://twitter.com/PostSchweiz", "icon": "twitterx" },
-          {
-            "text": "Linkedin",
-            "url": "https://www.linkedin.com/company/swiss-post",
-            "icon": "linkedin"
-          },
-          {
-            "text": "Xing",
-            "url": "https://www.xing.com/companies/dieschweizerischepost",
-            "icon": "xing"
-          },
-          { "text": "E-Mail", "url": "mailto:noreply@post.ch", "icon": "letter" }
-        ]
-      },
-      "appStoreLinks": {
-        "title": "App herunterladen",
-        "items": [
-          {
-            "text": "App bei Google Play herunterladen",
-            "url": "https://play.google.com/store/apps/details?id=com.nth.swisspost&hl=de_CH&pli=1",
-            "image": {
-              "src": "https://next.design-system.post.ch/assets/images/google-play-badge.svg",
-              "alt": "Google Play Store Badge"
-            }
-          },
-          {
-            "text": "App im Apple Store herunterladen",
-            "url": "https://apps.apple.com/ch/app/die-post/id378676700",
-            "image": {
-              "src": "https://next.design-system.post.ch/assets/images/apple-store-badge.svg",
-              "alt": "Apple App Store Badge"
-            }
-          }
-        ]
-      },
-      "companyLinks": {
-        "title": "Die Schweizerische Post AG",
-        "items": [
-          { "text": "PostAuto", "url": "https://www.postauto.ch" },
-          { "text": "PostFinance", "url": "https://www.postfinance.ch" }
-        ]
-      },
-      "complianceLinks": {
-        "title": "Meta",
-        "items": [
-          {
-            "text": "Barrierefreiheit",
-            "url": "https://www.post.ch/en/pages/footer/accessibility-at-swiss-post"
-          },
-          {
-            "text": "Allgemeine Geschäftsbedingungen",
-            "url": "https://www.post.ch/en/pages/footer/general-terms-and-conditions-gtc"
-          },
-          {
-            "text": "Datenschutz und Haftungsausschluss",
-            "url": "https://www.post.ch/en/pages/footer/data-protection-and-disclaimer"
-          },
-          { "text": "Impressum", "url": "https://www.post.ch/en/pages/footer/publication-details" }
-        ]
-      },
-      "copyright": "© Copyright 2024 Die Schweizerische Post AG. Alle Rechte vorbehalten."
+      ]
     }
   },
-  "fr": {
-    "header": {
-      "globalHeader": {
-        "postLogo": {
-          "text": "Page d’accueil",
-          "url": "/"
-        },
-        "audience": [
-          {
-            "text": "Clients privés",
-            "url": "#",
-            "active": true
-          },
-          {
-            "text": "Clients commerciaux",
-            "url": "#",
-            "active": false
-          }
-        ],
-        "primaryNavigation": [
-          {
-            "text": "Recherche",
-            "url": "#",
-            "icon": "search"
-          }
-        ],
-        "secondaryNavigation": [
-          {
-            "text": "Emplois",
-            "url": "#",
-            "icon": "rocket"
-          },
-          {
-            "text": "Créer un compte",
-            "url": "#",
-            "icon": "adduser"
-          }
-        ],
-        "languages": [
-          {
-            "code": "de-CH",
-            "text": "DE",
-            "label": "Allemand",
-            "url": "#",
-            "active": false
-          },
-          {
-            "code": "fr-CH",
-            "text": "FR",
-            "label": "Français",
-            "url": "#",
-            "active": false
-          },
-          {
-            "code": "it-CH",
-            "text": "IT",
-            "label": "Italien",
-            "url": "#",
-            "active": false
-          },
-          {
-            "code": "en",
-            "text": "EN",
-            "label": "Anglais",
-            "url": "#",
-            "active": true
-          }
-        ],
-        "postLogin": {
-          "loginLink": {
-            "text": "Connexion",
-            "url": "#",
-            "icon": "login"
-          },
-          "userLinks": [
-            {
-              "text": "Mon profil",
-              "url": "#",
-              "icon": "profile"
-            },
-            {
-              "text": "Messages",
-              "url": "#",
-              "icon": "letter"
-            },
-            {
-              "text": "Param\u00e8tres",
-              "url": "#",
-              "icon": "gear"
-            },
-            {
-              "text": "D\u00e9connexion",
-              "url": "#",
-              "icon": "logout"
-            }
-          ]
-        }
+  "breadcrumbs": {
+    "rootUrl": "https://post.ch/de/",
+    "items": [
+      {
+        "text": "Meine Post",
+        "url": "https://post.ch/de/kundencenter"
       },
-      "localHeader": {
-        "mainNavigation": [
-          {
-            "text": "Lettres",
-            "url": "#"
-          },
-          {
-            "text": "Colis",
-            "url": "#"
-          },
-          {
-            "trigger": {
-              "text": "Lettres"
-            },
-            "overview": {
-              "text": "Aperçu Lettres",
-              "url": "/letters"
-            },
-            "sections": [
-              {
-                "title": "Envoyer une lettre",
-                "items": [
-                  {
-                    "text": "Lettres Suisse",
-                    "url": "/sch"
-                  },
-                  {
-                    "text": "Petits objets à l'étranger",
-                    "url": "/kl"
-                  },
-                  {
-                    "text": "Marchandises à l'étranger",
-                    "url": ""
-                  },
-                  {
-                    "text": "Express et courrier",
-                    "url": ""
-                  }
-                ]
-              },
-              {
-                "title": {
-                  "text": "Étape par étape",
-                  "url": "/step-by-step"
-                },
-                "items": [
-                  {
-                    "text": "Colis Suisse",
-                    "url": "/sch"
-                  },
-                  {
-                    "text": "Petits objets à l'étranger",
-                    "url": "/kl"
-                  },
-                  {
-                    "text": "Marchandises à l'étranger",
-                    "url": ""
-                  },
-                  {
-                    "text": "Express et courrier",
-                    "url": ""
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "trigger": {
-              "text": "Colis"
-            },
-            "overview": {
-              "text": "Aperçu Colis",
-              "url": "/packages"
-            },
-            "sections": [
-              {
-                "title": "Envoyer une lettre",
-                "items": [
-                  {
-                    "text": "Colis Suisse",
-                    "url": "/sch"
-                  },
-                  {
-                    "text": "Petits objets à l'étranger",
-                    "url": "/kl"
-                  },
-                  {
-                    "text": "Marchandises à l'étranger",
-                    "url": ""
-                  },
-                  {
-                    "text": "Express et courrier",
-                    "url": ""
-                  }
-                ]
-              },
-              {
-                "title": {
-                  "text": "Étape par étape",
-                  "url": "/step-by-step"
-                },
-                "items": [
-                  {
-                    "text": "Colis Suisse",
-                    "url": "/sch"
-                  },
-                  {
-                    "text": "Petits objets à l'étranger",
-                    "url": "/kl"
-                  },
-                  {
-                    "text": "Marchandises à l'étranger",
-                    "url": ""
-                  },
-                  {
-                    "text": "Express et courrier",
-                    "url": ""
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+      {
+        "text": "Standorte und Öffnungszeiten",
+        "url": "https://places.post.ch/?lang=de",
+        "label": "Die label",
+        "description": "Die description"
       }
-    },
-    "footer": {
-      "prefooter": {
-        "title": "Nom du service",
-        "items": [
-          { "text": "Lien du service 1", "url": "#" },
-          { "text": "Lien du service 2", "url": "#" },
-          { "text": "Lien du service 3", "url": "#" }
-        ]
-      },
-      "sections": [
-        {
-          "title": "Titre 1",
-          "items": [
-            { "text": "Lien texte 1", "url": "#" },
-            { "text": "Lien texte 2", "url": "#" },
-            { "text": "Lien texte 3", "url": "#" },
-            { "text": "Lien texte 4", "url": "#" },
-            { "text": "Lien texte 5", "url": "#" },
-            { "text": "Lien texte 6", "url": "#" }
-          ]
-        },
-        {
-          "title": "Titre 2",
-          "items": [
-            { "text": "Lien texte 1", "url": "#" },
-            { "text": "Lien texte 2", "url": "#" },
-            { "text": "Lien texte 3", "url": "#" },
-            { "text": "Lien texte 4", "url": "#" },
-            { "text": "Lien texte 5", "url": "#" },
-            { "text": "Lien texte 6", "url": "#" },
-            { "text": "Lien texte 7", "url": "#" },
-            { "text": "Lien texte 8", "url": "#" }
-          ]
-        },
-        {
-          "title": "Titre 3",
-          "items": [
-            { "text": "Lien texte 1", "url": "#" },
-            { "text": "Lien texte 2", "url": "#" },
-            { "text": "Lien texte 3", "url": "#" },
-            { "text": "Lien texte 4", "url": "#" },
-            { "text": "Lien texte 5", "url": "#" },
-            { "text": "Lien texte 6", "url": "#" },
-            { "text": "Lien texte 7", "url": "#" },
-            { "text": "Lien texte 8", "url": "#" }
-          ]
-        },
-        {
-          "title": "Titre 4",
-          "items": [
-            { "text": "Lien texte 1", "url": "#" },
-            { "text": "Lien texte 2", "url": "#" },
-            { "text": "Lien texte 3", "url": "#" },
-            { "text": "Lien texte 4", "url": "#" },
-            { "text": "Lien texte 5", "url": "#" }
-          ]
-        }
-      ],
-      "socialLinks": {
-        "title": "Suivez-nous",
-        "items": [
-          { "text": "Facebook", "url": "https://www.facebook.com/swisspost", "icon": "facebook" },
-          {
-            "text": "Instagram",
-            "url": "https://www.instagram.com/swisspost/",
-            "icon": "instagram"
-          },
-          { "text": "Youtube", "url": "http://www.youtube.com/swisspost", "icon": "youtube" },
-          {
-            "text": "Snapchat",
-            "url": "https://www.snapchat.com/add/swisspostjobs",
-            "icon": "snapchat"
-          },
-          { "text": "Twitter X", "url": "https://twitter.com/PostSchweiz", "icon": "twitterx" },
-          {
-            "text": "Linkedin",
-            "url": "https://www.linkedin.com/company/swiss-post",
-            "icon": "linkedin"
-          },
-          {
-            "text": "Xing",
-            "url": "https://www.xing.com/companies/dieschweizerischepost",
-            "icon": "xing"
-          },
-          { "text": "E-Mail", "url": "mailto:noreply@post.ch", "icon": "letter" }
-        ]
-      },
-      "appStoreLinks": {
-        "title": "Télécharger l'application",
-        "items": [
-          {
-            "text": "Télécharger l'application sur Google Play",
-            "url": "https://play.google.com/store/apps/details?id=com.nth.swisspost&hl=fr_CH&pli=1",
-            "image": {
-              "src": "https://next.design-system.post.ch/assets/images/google-play-badge.svg",
-              "alt": "Badge Google Play Store"
-            }
-          },
-          {
-            "text": "Télécharger l'application sur l'Apple Store",
-            "url": "https://apps.apple.com/ch/app/die-post/id378676700",
-            "image": {
-              "src": "https://next.design-system.post.ch/assets/images/apple-store-badge.svg",
-              "alt": "Badge Apple App Store"
-            }
-          }
-        ]
-      },
-      "companyLinks": {
-        "title": "La Poste Suisse SA",
-        "items": [
-          { "text": "CarPostal", "url": "https://www.postauto.ch" },
-          { "text": "PostFinance", "url": "https://www.postfinance.ch" }
-        ]
-      },
-      "complianceLinks": {
-        "title": "Méta",
-        "items": [
-          {
-            "text": "Accessibilité",
-            "url": "https://www.post.ch/en/pages/footer/accessibility-at-swiss-post"
-          },
-          {
-            "text": "Conditions générales",
-            "url": "https://www.post.ch/en/pages/footer/general-terms-and-conditions-gtc"
-          },
-          {
-            "text": "Protection des données et avertissement",
-            "url": "https://www.post.ch/en/pages/footer/data-protection-and-disclaimer"
-          },
-          {
-            "text": "Mentions légales",
-            "url": "https://www.post.ch/en/pages/footer/publication-details"
-          }
-        ]
-      },
-      "copyright": "© Copyright 2024 par La Poste Suisse SA. Tous droits réservés."
-    }
+    ]
   },
-  "it": {
-    "header": {
-      "globalHeader": {
-        "postLogo": {
-          "text": "Homepage",
-          "url": "/"
-        },
-        "audience": [
-          {
-            "text": "Clienti privati",
-            "url": "#",
-            "active": true
-          },
-          {
-            "text": "Clienti aziendali",
-            "url": "#",
-            "active": false
-          }
-        ],
-        "primaryNavigation": [
-          {
-            "text": "Ricerca",
-            "url": "#",
-            "icon": "search"
-          }
-        ],
-        "secondaryNavigation": [
-          {
-            "text": "Lavoro",
-            "url": "#",
-            "icon": "rocket"
-          },
-          {
-            "text": "Crea account",
-            "url": "#",
-            "icon": "adduser"
-          }
-        ],
-        "languages": [
-          {
-            "code": "de-CH",
-            "text": "DE",
-            "label": "Tedesco",
-            "url": "#",
-            "active": false
-          },
-          {
-            "code": "fr-CH",
-            "text": "FR",
-            "label": "Francese",
-            "url": "#",
-            "active": false
-          },
-          {
-            "code": "it-CH",
-            "text": "IT",
-            "label": "Italiano",
-            "url": "#",
-            "active": false
-          },
-          {
-            "code": "en",
-            "text": "EN",
-            "label": "Inglese",
-            "url": "#",
-            "active": true
-          }
-        ],
-        "postLogin": {
-          "loginLink": {
-            "text": "Accesso",
-            "url": "#",
-            "icon": "login"
-          },
-          "userLinks": [
-            {
-              "text": "Il mio profilo",
-              "url": "#",
-              "icon": "profile"
-            },
-            {
-              "text": "Messaggi",
-              "url": "#",
-              "icon": "letter"
-            },
-            {
-              "text": "Impostazioni",
-              "url": "#",
-              "icon": "gear"
-            },
-            {
-              "text": "Disconnetti",
-              "url": "#",
-              "icon": "logout"
-            }
-          ]
-        }
+  "footer": {
+    "prefooter": {
+      "title": "Dienstname",
+      "items": [
+        { "text": "Dienstlink 1", "url": "#" },
+        { "text": "Dienstlink 2", "url": "#" },
+        { "text": "Dienstlink 3", "url": "#" }
+      ]
+    },
+    "sections": [
+      {
+        "title": "Titel 1",
+        "items": [
+          { "text": "Textlink 1", "url": "#" },
+          { "text": "Textlink 2", "url": "#" },
+          { "text": "Textlink 3", "url": "#" },
+          { "text": "Textlink 4", "url": "#" },
+          { "text": "Textlink 5", "url": "#" },
+          { "text": "Textlink 6", "url": "#" }
+        ]
       },
-      "localHeader": {
-        "mainNavigation": [
-          {
-            "text": "Lettere",
-            "url": "#"
-          },
-          {
-            "text": "Pacchi",
-            "url": "#"
-          },
-          {
-            "trigger": {
-              "text": "Lettere"
-            },
-            "overview": {
-              "text": "Panoramica Lettere",
-              "url": "/letters"
-            },
-            "sections": [
-              {
-                "title": "Inviare una lettera",
-                "items": [
-                  {
-                    "text": "Lettere Svizzera",
-                    "url": "/sch"
-                  },
-                  {
-                    "text": "Piccoli oggetti all'estero",
-                    "url": "/kl"
-                  },
-                  {
-                    "text": "Merci all'estero",
-                    "url": ""
-                  },
-                  {
-                    "text": "Espresso e corriere",
-                    "url": ""
-                  }
-                ]
-              },
-              {
-                "title": {
-                  "text": "Passo dopo passo",
-                  "url": "/step-by-step"
-                },
-                "items": [
-                  {
-                    "text": "Pacchi Svizzera",
-                    "url": "/sch"
-                  },
-                  {
-                    "text": "Piccoli oggetti all'estero",
-                    "url": "/kl"
-                  },
-                  {
-                    "text": "Merci all'estero",
-                    "url": ""
-                  },
-                  {
-                    "text": "Espresso e corriere",
-                    "url": ""
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "trigger": {
-              "text": "Pacchi"
-            },
-            "overview": {
-              "text": "Panoramica Pacchi",
-              "url": "/packages"
-            },
-            "sections": [
-              {
-                "title": "Inviare una lettera",
-                "items": [
-                  {
-                    "text": "Pacchi Svizzera",
-                    "url": "/sch"
-                  },
-                  {
-                    "text": "Piccoli oggetti all'estero",
-                    "url": "/kl"
-                  },
-                  {
-                    "text": "Merci all'estero",
-                    "url": ""
-                  },
-                  {
-                    "text": "Espresso e corriere",
-                    "url": ""
-                  }
-                ]
-              },
-              {
-                "title": {
-                  "text": "Passo dopo passo",
-                  "url": "/step-by-step"
-                },
-                "items": [
-                  {
-                    "text": "Pacchi Svizzera",
-                    "url": "/sch"
-                  },
-                  {
-                    "text": "Piccoli oggetti all'estero",
-                    "url": "/kl"
-                  },
-                  {
-                    "text": "Merci all'estero",
-                    "url": ""
-                  },
-                  {
-                    "text": "Espresso e corriere",
-                    "url": ""
-                  }
-                ]
-              }
-            ]
-          }
+      {
+        "title": "Titel 2",
+        "items": [
+          { "text": "Textlink 1", "url": "#" },
+          { "text": "Textlink 2", "url": "#" },
+          { "text": "Textlink 3", "url": "#" },
+          { "text": "Textlink 4", "url": "#" },
+          { "text": "Textlink 5", "url": "#" },
+          { "text": "Textlink 6", "url": "#" },
+          { "text": "Textlink 7", "url": "#" },
+          { "text": "Textlink 8", "url": "#" }
+        ]
+      },
+      {
+        "title": "Titel 3",
+        "items": [
+          { "text": "Textlink 1", "url": "#" },
+          { "text": "Textlink 2", "url": "#" },
+          { "text": "Textlink 3", "url": "#" },
+          { "text": "Textlink 4", "url": "#" },
+          { "text": "Textlink 5", "url": "#" },
+          { "text": "Textlink 6", "url": "#" },
+          { "text": "Textlink 7", "url": "#" },
+          { "text": "Textlink 8", "url": "#" }
+        ]
+      },
+      {
+        "title": "Titel 4",
+        "items": [
+          { "text": "Textlink 1", "url": "#" },
+          { "text": "Textlink 2", "url": "#" },
+          { "text": "Textlink 3", "url": "#" },
+          { "text": "Textlink 4", "url": "#" },
+          { "text": "Textlink 5", "url": "#" }
         ]
       }
+    ],
+    "socialLinks": {
+      "title": "Folgen Sie uns",
+      "items": [
+        { "text": "Facebook", "url": "https://www.facebook.com/swisspost", "icon": "facebook" },
+        {
+          "text": "Instagram",
+          "url": "https://www.instagram.com/swisspost/",
+          "icon": "instagram"
+        },
+        { "text": "Youtube", "url": "http://www.youtube.com/swisspost", "icon": "youtube" },
+        {
+          "text": "Snapchat",
+          "url": "https://www.snapchat.com/add/swisspostjobs",
+          "icon": "snapchat"
+        },
+        { "text": "Twitter X", "url": "https://twitter.com/PostSchweiz", "icon": "twitterx" },
+        {
+          "text": "Linkedin",
+          "url": "https://www.linkedin.com/company/swiss-post",
+          "icon": "linkedin"
+        },
+        {
+          "text": "Xing",
+          "url": "https://www.xing.com/companies/dieschweizerischepost",
+          "icon": "xing"
+        },
+        { "text": "E-Mail", "url": "mailto:noreply@post.ch", "icon": "letter" }
+      ]
     },
-    "footer": {
-      "prefooter": {
-        "title": "Nome del servizio",
-        "items": [
-          { "text": "Link al servizio 1", "url": "#" },
-          { "text": "Link al servizio 2", "url": "#" },
-          { "text": "Link al servizio 3", "url": "#" }
-        ]
-      },
-      "sections": [
+    "appStoreLinks": {
+      "title": "App herunterladen",
+      "items": [
         {
-          "title": "Titolo 1",
-          "items": [
-            { "text": "Link testo 1", "url": "#" },
-            { "text": "Link testo 2", "url": "#" },
-            { "text": "Link testo 3", "url": "#" },
-            { "text": "Link testo 4", "url": "#" },
-            { "text": "Link testo 5", "url": "#" },
-            { "text": "Link testo 6", "url": "#" }
-          ]
+          "text": "App bei Google Play herunterladen",
+          "url": "https://play.google.com/store/apps/details?id=com.nth.swisspost&hl=de_CH&pli=1",
+          "image": {
+            "src": "https://next.design-system.post.ch/assets/images/google-play-badge.svg",
+            "alt": "Google Play Store Badge"
+          }
         },
         {
-          "title": "Titolo 2",
-          "items": [
-            { "text": "Link testo 1", "url": "#" },
-            { "text": "Link testo 2", "url": "#" },
-            { "text": "Link testo 3", "url": "#" },
-            { "text": "Link testo 4", "url": "#" },
-            { "text": "Link testo 5", "url": "#" },
-            { "text": "Link testo 6", "url": "#" },
-            { "text": "Link testo 7", "url": "#" },
-            { "text": "Link testo 8", "url": "#" }
-          ]
-        },
-        {
-          "title": "Titolo 3",
-          "items": [
-            { "text": "Link testo 1", "url": "#" },
-            { "text": "Link testo 2", "url": "#" },
-            { "text": "Link testo 3", "url": "#" },
-            { "text": "Link testo 4", "url": "#" },
-            { "text": "Link testo 5", "url": "#" },
-            { "text": "Link testo 6", "url": "#" },
-            { "text": "Link testo 7", "url": "#" },
-            { "text": "Link testo 8", "url": "#" }
-          ]
-        },
-        {
-          "title": "Titolo 4",
-          "items": [
-            { "text": "Link testo 1", "url": "#" },
-            { "text": "Link testo 2", "url": "#" },
-            { "text": "Link testo 3", "url": "#" },
-            { "text": "Link testo 4", "url": "#" },
-            { "text": "Link testo 5", "url": "#" }
-          ]
+          "text": "App im Apple Store herunterladen",
+          "url": "https://apps.apple.com/ch/app/die-post/id378676700",
+          "image": {
+            "src": "https://next.design-system.post.ch/assets/images/apple-store-badge.svg",
+            "alt": "Apple App Store Badge"
+          }
         }
-      ],
-      "socialLinks": {
-        "title": "Seguici",
-        "items": [
-          { "text": "Facebook", "url": "https://www.facebook.com/swisspost", "icon": "facebook" },
-          {
-            "text": "Instagram",
-            "url": "https://www.instagram.com/swisspost/",
-            "icon": "instagram"
-          },
-          { "text": "Youtube", "url": "http://www.youtube.com/swisspost", "icon": "youtube" },
-          {
-            "text": "Snapchat",
-            "url": "https://www.snapchat.com/add/swisspostjobs",
-            "icon": "snapchat"
-          },
-          { "text": "Twitter X", "url": "https://twitter.com/PostSchweiz", "icon": "twitterx" },
-          {
-            "text": "Linkedin",
-            "url": "https://www.linkedin.com/company/swiss-post",
-            "icon": "linkedin"
-          },
-          {
-            "text": "Xing",
-            "url": "https://www.xing.com/companies/dieschweizerischepost",
-            "icon": "xing"
-          },
-          { "text": "E-Mail", "url": "mailto:noreply@post.ch", "icon": "letter" }
-        ]
-      },
-      "appStoreLinks": {
-        "title": "Scarica l'app",
-        "items": [
-          {
-            "text": "Scarica l'app su Google Play",
-            "url": "https://play.google.com/store/apps/details?id=com.nth.swisspost&hl=it_CH&pli=1",
-            "image": {
-              "src": "https://next.design-system.post.ch/assets/images/google-play-badge.svg",
-              "alt": "Badge Google Play Store"
-            }
-          },
-          {
-            "text": "Scarica l'app su Apple Store",
-            "url": "https://apps.apple.com/ch/app/die-post/id378676700",
-            "image": {
-              "src": "https://next.design-system.post.ch/assets/images/apple-store-badge.svg",
-              "alt": "Badge Apple App Store"
-            }
-          }
-        ]
-      },
-      "companyLinks": {
-        "title": "La Posta Svizzera SA",
-        "items": [
-          { "text": "AutoPostale", "url": "https://www.postauto.ch" },
-          { "text": "PostFinance", "url": "https://www.postfinance.ch" }
-        ]
-      },
-      "complianceLinks": {
-        "title": "Meta",
-        "items": [
-          {
-            "text": "Accessibilità",
-            "url": "https://www.post.ch/en/pages/footer/accessibility-at-swiss-post"
-          },
-          {
-            "text": "Condizioni generali",
-            "url": "https://www.post.ch/en/pages/footer/general-terms-and-conditions-gtc"
-          },
-          {
-            "text": "Protezione dei dati e avvertenza",
-            "url": "https://www.post.ch/en/pages/footer/data-protection-and-disclaimer"
-          },
-          { "text": "Colophon", "url": "https://www.post.ch/en/pages/footer/publication-details" }
-        ]
-      },
-      "copyright": "© Copyright 2024 La Posta Svizzera SA. Tutti i diritti riservati."
-    }
-  },
-  "en": {
-    "header": {
-      "globalHeader": {
-        "postLogo": {
-          "text": "Homepage",
-          "url": "/"
-        },
-        "audience": [
-          {
-            "text": "Private customers",
-            "url": "#",
-            "active": true
-          },
-          {
-            "text": "Business customers",
-            "url": "#",
-            "active": false
-          }
-        ],
-        "primaryNavigation": [
-          {
-            "text": "Search",
-            "url": "#",
-            "icon": "search"
-          }
-        ],
-        "secondaryNavigation": [
-          {
-            "text": "Career",
-            "url": "#",
-            "icon": "rocket"
-          },
-          {
-            "text": "Create Account",
-            "url": "#",
-            "icon": "adduser"
-          }
-        ],
-        "languages": [
-          {
-            "code": "de-CH",
-            "text": "DE",
-            "label": "German",
-            "url": "#",
-            "active": false
-          },
-          {
-            "code": "fr-CH",
-            "text": "FR",
-            "label": "French",
-            "url": "#",
-            "active": false
-          },
-          {
-            "code": "it-CH",
-            "text": "IT",
-            "label": "Italian",
-            "url": "#",
-            "active": false
-          },
-          {
-            "code": "en",
-            "text": "EN",
-            "label": "English",
-            "url": "#",
-            "active": true
-          }
-        ],
-        "postLogin": {
-          "loginLink": {
-            "text": "Login",
-            "url": "#",
-            "icon": "login"
-          },
-          "userLinks": [
-            {
-              "text": "My Profile",
-              "url": "#",
-              "icon": "profile"
-            },
-            {
-              "text": "Messages",
-              "url": "#",
-              "icon": "letter"
-            },
-            {
-              "text": "Settings",
-              "url": "#",
-              "icon": "gear"
-            },
-            {
-              "text": "Logout",
-              "url": "#",
-              "icon": "logout"
-            }
-          ]
-        }
-      },
-      "localHeader": {
-        "mainNavigation": [
-          {
-            "text": "Letters",
-            "url": "#"
-          },
-          {
-            "text": "Packages",
-            "url": "#"
-          },
-          {
-            "trigger": {
-              "text": "Letters"
-            },
-            "overview": {
-              "text": "Overview Letters",
-              "url": "/letters"
-            },
-            "sections": [
-              {
-                "title": "Send letter",
-                "items": [
-                  {
-                    "text": "Letters Switzerland",
-                    "url": "/sch"
-                  },
-                  {
-                    "text": "Small items abroad",
-                    "url": "/kl"
-                  },
-                  {
-                    "text": "Goods abroad",
-                    "url": ""
-                  },
-                  {
-                    "text": "Express and courier",
-                    "url": ""
-                  }
-                ]
-              },
-              {
-                "title": {
-                  "text": "Step by step",
-                  "url": "/step-by-step"
-                },
-                "items": [
-                  {
-                    "text": "Packages Switzerland",
-                    "url": "/sch"
-                  },
-                  {
-                    "text": "Small items abroad",
-                    "url": "/kl"
-                  },
-                  {
-                    "text": "Goods abroad",
-                    "url": ""
-                  },
-                  {
-                    "text": "Express and courier",
-                    "url": ""
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "trigger": {
-              "text": "Packages"
-            },
-            "overview": {
-              "text": "Overview Packages",
-              "url": "/packages"
-            },
-            "sections": [
-              {
-                "title": "Send letter",
-                "items": [
-                  {
-                    "text": "Packages Switzerland",
-                    "url": "/sch"
-                  },
-                  {
-                    "text": "Small items abroad",
-                    "url": "/kl"
-                  },
-                  {
-                    "text": "Goods abroad",
-                    "url": ""
-                  },
-                  {
-                    "text": "Express and courier",
-                    "url": ""
-                  }
-                ]
-              },
-              {
-                "title": {
-                  "text": "Step by step",
-                  "url": "/step-by-step"
-                },
-                "items": [
-                  {
-                    "text": "Packages Switzerland",
-                    "url": "/sch"
-                  },
-                  {
-                    "text": "Small items abroad",
-                    "url": "/kl"
-                  },
-                  {
-                    "text": "Goods abroad",
-                    "url": ""
-                  },
-                  {
-                    "text": "Express and courier",
-                    "url": ""
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+      ]
     },
-    "footer": {
-      "prefooter": {
-        "title": "Service name",
-        "items": [
-          { "text": "Service link 1", "url": "#" },
-          { "text": "Service link 2", "url": "#" },
-          { "text": "Service link 3", "url": "#" }
-        ]
-      },
-      "sections": [
+    "companyLinks": {
+      "title": "Die Schweizerische Post AG",
+      "items": [
+        { "text": "PostAuto", "url": "https://www.postauto.ch" },
+        { "text": "PostFinance", "url": "https://www.postfinance.ch" }
+      ]
+    },
+    "complianceLinks": {
+      "title": "Meta",
+      "items": [
         {
-          "title": "Title 1",
-          "items": [
-            { "text": "Text link 1", "url": "#" },
-            { "text": "Text link 2", "url": "#" },
-            { "text": "Text link 3", "url": "#" },
-            { "text": "Text link 4", "url": "#" },
-            { "text": "Text link 5", "url": "#" },
-            { "text": "Text link 6", "url": "#" }
-          ]
+          "text": "Barrierefreiheit",
+          "url": "https://www.post.ch/en/pages/footer/accessibility-at-swiss-post"
         },
         {
-          "title": "Title 2",
-          "items": [
-            { "text": "Text link 1", "url": "#" },
-            { "text": "Text link 2", "url": "#" },
-            { "text": "Text link 3", "url": "#" },
-            { "text": "Text link 4", "url": "#" },
-            { "text": "Text link 5", "url": "#" },
-            { "text": "Text link 6", "url": "#" },
-            { "text": "Text link 7", "url": "#" },
-            { "text": "Text link 8", "url": "#" }
-          ]
+          "text": "Allgemeine Geschäftsbedingungen",
+          "url": "https://www.post.ch/en/pages/footer/general-terms-and-conditions-gtc"
         },
         {
-          "title": "Title 3",
-          "items": [
-            { "text": "Text link 1", "url": "#" },
-            { "text": "Text link 2", "url": "#" },
-            { "text": "Text link 3", "url": "#" },
-            { "text": "Text link 4", "url": "#" },
-            { "text": "Text link 5", "url": "#" },
-            { "text": "Text link 6", "url": "#" },
-            { "text": "Text link 7", "url": "#" },
-            { "text": "Text link 8", "url": "#" }
-          ]
+          "text": "Datenschutz und Haftungsausschluss",
+          "url": "https://www.post.ch/en/pages/footer/data-protection-and-disclaimer"
         },
-        {
-          "title": "Title 4",
-          "items": [
-            { "text": "Text link 1", "url": "#" },
-            { "text": "Text link 2", "url": "#" },
-            { "text": "Text link 3", "url": "#" },
-            { "text": "Text link 4", "url": "#" },
-            { "text": "Text link 5", "url": "#" }
-          ]
-        }
-      ],
-      "socialLinks": {
-        "title": "Follow us",
-        "items": [
-          { "text": "Facebook", "url": "https://www.facebook.com/swisspost", "icon": "facebook" },
-          {
-            "text": "Instagram",
-            "url": "https://www.instagram.com/swisspost/",
-            "icon": "instagram"
-          },
-          { "text": "Youtube", "url": "http://www.youtube.com/swisspost", "icon": "youtube" },
-          {
-            "text": "Snapchat",
-            "url": "https://www.snapchat.com/add/swisspostjobs",
-            "icon": "snapchat"
-          },
-          { "text": "Twitter X", "url": "https://twitter.com/PostSchweiz", "icon": "twitterx" },
-          {
-            "text": "Linkedin",
-            "url": "https://www.linkedin.com/company/swiss-post",
-            "icon": "linkedin"
-          },
-          {
-            "text": "Xing",
-            "url": "https://www.xing.com/companies/dieschweizerischepost",
-            "icon": "xing"
-          },
-          { "text": "E-Mail", "url": "mailto:noreply@post.ch", "icon": "letter" }
-        ]
-      },
-      "appStoreLinks": {
-        "title": "Download app",
-        "items": [
-          {
-            "text": "Download the App on Google Play",
-            "url": "https://play.google.com/store/apps/details?id=com.nth.swisspost&hl=en_CH&pli=1",
-            "image": {
-              "src": "https://next.design-system.post.ch/assets/images/google-play-badge.svg",
-              "alt": "Google Play Store badge"
-            }
-          },
-          {
-            "text": "Download the App on the Apple Store",
-            "url": "https://apps.apple.com/ch/app/die-post/id378676700",
-            "image": {
-              "src": "https://next.design-system.post.ch/assets/images/apple-store-badge.svg",
-              "alt": "Apple App Store badge"
-            }
-          }
-        ]
-      },
-      "companyLinks": {
-        "title": "Swiss Post Ltd.",
-        "items": [
-          { "text": "PostBus", "url": "https://www.postauto.ch" },
-          { "text": "PostFinance", "url": "https://www.postfinance.ch" }
-        ]
-      },
-      "complianceLinks": {
-        "title": "Meta",
-        "items": [
-          {
-            "text": "Accessibility",
-            "url": "https://www.post.ch/en/pages/footer/accessibility-at-swiss-post"
-          },
-          {
-            "text": "General Terms and Conditions",
-            "url": "https://www.post.ch/en/pages/footer/general-terms-and-conditions-gtc"
-          },
-          {
-            "text": "Data protection and disclaimer",
-            "url": "https://www.post.ch/en/pages/footer/data-protection-and-disclaimer"
-          },
-          {
-            "text": "Publication details",
-            "url": "https://www.post.ch/en/pages/footer/publication-details"
-          }
-        ]
-      },
-      "copyright": "© Copyright 2024 by Swiss Post Ltd. All rights reserved."
-    }
+        { "text": "Impressum", "url": "https://www.post.ch/en/pages/footer/publication-details" }
+      ]
+    },
+    "copyright": "© Copyright 2024 Die Schweizerische Post AG. Alle Rechte vorbehalten."
   }
 }

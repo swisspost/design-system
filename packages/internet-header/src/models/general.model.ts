@@ -11,13 +11,6 @@ declare global {
   }
 }
 
-export interface PortalConfig {
-  de?: LocalizedConfig;
-  fr?: LocalizedConfig;
-  it?: LocalizedConfig;
-  en?: LocalizedConfig;
-}
-
 export interface LocalizedConfig {
   header: HeaderConfig;
   footer?: FooterConfig;
