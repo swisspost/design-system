@@ -203,10 +203,42 @@ function getLocaleDir(locale: string): 'rtl' | 'ltr' {
 
 const isoStringPattern = /^\d{4}-\d{2}-\d{2}$/;
 
+function renderDatePickerContent(
+  args: Args,
+  input: ReturnType<typeof html>,
+  label: ReturnType<typeof html>,
+  validationMessages: unknown,
+) {
+  const useFloatingLabel = args.floatingLabel && !args.inline;
+
+  return keyed(
+    `${args.id}-${args.inline}-${args.floatingLabel}-${args.validation}`,
+    html` ${useFloatingLabel ? nothing : label}
+      <post-date-picker
+        id=${args.id}
+        class=${useFloatingLabel ? 'form-floating' : ''}
+        ?range="${args.range}"
+        ?inline="${args.inline}"
+        min=${isoStringPattern.test(args.min) ? args.min : nothing}
+        max=${isoStringPattern.test(args.max) ? args.max : nothing}
+        locale=${args.locale || nothing}
+        text-toggle-calendar=${args.textToggleCalendar}
+        text-next-decade=${args.textNextDecade}
+        text-next-month=${args.textNextMonth}
+        text-next-year=${args.textNextYear}
+        text-previous-decade=${args.textPreviousDecade}
+        text-previous-month=${args.textPreviousMonth}
+        text-previous-year=${args.textPreviousYear}
+        text-switch-year=${args.textSwitchYear}
+        >${useFloatingLabel ? html`${input} ${label}` : html`${input}`}</post-date-picker
+      >
+      ${validationMessages}`,
+  );
+}
+
 // Setting different instances of the post-date-picker forces the rerender of the component and make sure it updates when args change
 function render(args: Args, context: StoryContext) {
   const validationMessages = getValidationMessages(args, context, !args.inline);
-
   const validation = args.validation && args.validation !== 'null' ? ` ${args.validation}` : '';
 
   const ariaDescribedByParts = [
@@ -232,32 +264,7 @@ function render(args: Args, context: StoryContext) {
 
   const locale = typeof context.args.locale === 'string' ? context.args.locale : '';
   const dir = locale ? getLocaleDir(locale) : 'ltr';
-
-  const content = keyed(
-    `${args.id}-${args.inline}-${args.floatingLabel}-${args.validation}`,
-    html` ${args.floatingLabel ? nothing : label}
-      <post-date-picker
-        id=${args.id}
-        class=${args.floatingLabel && !args.inline ? 'form-floating' : ''}
-        ?range="${args.range}"
-        ?inline="${args.inline}"
-        min=${isoStringPattern.test(args.min) ? args.min : nothing}
-        max=${isoStringPattern.test(args.max) ? args.max : nothing}
-        locale=${args.locale || nothing}
-        text-toggle-calendar=${args.textToggleCalendar}
-        text-next-decade=${args.textNextDecade}
-        text-next-month=${args.textNextMonth}
-        text-next-year=${args.textNextYear}
-        text-previous-decade=${args.textPreviousDecade}
-        text-previous-month=${args.textPreviousMonth}
-        text-previous-year=${args.textPreviousYear}
-        text-switch-year=${args.textSwitchYear}
-        >${args.floatingLabel && !args.inline
-          ? html`${input} ${label}`
-          : html`${input}`}</post-date-picker
-      >
-      ${validationMessages}`,
-  );
+  const content = renderDatePickerContent(args, input, label, validationMessages);
 
   return dir === 'rtl' ? html`<div dir="rtl">${content}</div>` : html`${content}`;
 }
