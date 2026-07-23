@@ -108,7 +108,7 @@ catalogs:
 
 overrides:
   browserslist: '>=4.27.0'
-  form-data@>=4.0.0 <4.0.4: 4.0.5
+  form-data@>=4.0.0 <4.0.4: 4.0.6
 
 importers:
 
@@ -14668,10 +14668,7 @@ snapshots:
     dependencies:
       '@percy/cli-command': 1.31.13(typescript@6.0.3)
     transitivePeerDependencies:
-      - bufferutil
-      - supports-color
       - typescript
-      - utf-8-validate
 
   '@percy/cli-command@1.31.13(typescript@6.0.3)':
     dependencies:
@@ -14688,10 +14685,7 @@ snapshots:
     dependencies:
       '@percy/cli-command': 1.31.13(typescript@6.0.3)
     transitivePeerDependencies:
-      - bufferutil
-      - supports-color
       - typescript
-      - utf-8-validate
 
   '@percy/cli-doctor@1.31.13(typescript@6.0.3)':
     dependencies:
@@ -14727,10 +14721,7 @@ snapshots:
       '@percy/cli-command': 1.31.13(typescript@6.0.3)
       yaml: 2.8.3
     transitivePeerDependencies:
-      - bufferutil
-      - supports-color
       - typescript
-      - utf-8-validate
 
   '@percy/cli-upload@1.31.13(typescript@6.0.3)':
     dependencies:
@@ -14738,10 +14729,7 @@ snapshots:
       fast-glob: 3.3.3
       image-size: 1.2.0
     transitivePeerDependencies:
-      - bufferutil
-      - supports-color
       - typescript
-      - utf-8-validate
 
   '@percy/cli@1.31.13(typescript@6.0.3)':
     dependencies:
@@ -20534,7 +20522,7 @@ snapshots:
       decimal.js: 10.5.0
       domexception: 4.0.0
       escodegen: 2.1.0
-      form-data: 4.0.5
+      form-data: 4.0.6
       html-encoding-sniffer: 3.0.0
       http-proxy-agent: 5.0.0
       https-proxy-agent: 5.0.1
@@ -20561,7 +20549,7 @@ snapshots:
       cssstyle: 4.4.0
       data-urls: 5.0.0
       decimal.js: 10.5.0
-      form-data: 4.0.5
+      form-data: 4.0.6
       html-encoding-sniffer: 4.0.0
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.6
