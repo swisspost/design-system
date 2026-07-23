@@ -44,8 +44,12 @@ export class PostInternetHeader {
 
   @Watch('language')
   async handleLanguageChange(newValue: string) {
-    state.currentLanguage = newValue;
-    await this.updateConfig();
+    try {
+      // Pass newValue explicitly — it wins first priority in getUserLang's chain
+      await this.updateConfig(newValue);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   /**
@@ -166,12 +170,12 @@ export class PostInternetHeader {
       // In case of an error, we assume the user is not logged in and do nothing
     }
   }
-
-  private async updateConfig() {
+  // Fetch and store the localized config, defaulting to the `language` prop if none is passed
+  private async updateConfig(language?: string) {
     state.localizedConfig = await getLocalizedConfig({
       projectId: this.project,
       environment: this.environment,
-      language: this.language,
+      language: language ?? this.language,
     });
 
     this.updateActiveUrl();
@@ -211,7 +215,7 @@ export class PostInternetHeader {
     return (
       <ul slot={slot}>
         {config.map(navItem => (
-          <li>{this.renderNavItem(navItem, props)}</li>
+          <li key={'url' in navItem ? navItem.url : navItem.user.email}>{this.renderNavItem(navItem, props)}</li>
         ))}
       </ul>
     );
@@ -262,6 +266,7 @@ export class PostInternetHeader {
             >
               {globalHeader.languages.map(lang => (
                 <post-language-menu-item
+                  key={lang.code}
                   url={lang.url}
                   active={lang.active}
                   code={lang.code}
@@ -277,7 +282,11 @@ export class PostInternetHeader {
           {globalHeader.postLogin &&
             this.renderNavItem(
               state.user
-                ? { user: state.user, options: globalHeader.postLogin.userLinks, accountSwitch: globalHeader.postLogin.accountSwitch }
+                ? {
+                    user: state.user,
+                    options: globalHeader.postLogin.userLinks,
+                    accountSwitch: globalHeader.postLogin.accountSwitch,
+                  }
                 : globalHeader.postLogin.loginLink,
               { slot: 'post-login' },
             )}
@@ -290,7 +299,7 @@ export class PostInternetHeader {
             <post-mainnavigation slot="main-nav" textMain={this.textMain}>
               <ul>
                 {localHeader.mainNavigation.map(navItem => (
-                  <li>
+                  <li key={'url' in navItem ? navItem.url : navItem.trigger.text}>
                     {'url' in navItem ? (
                       <Link config={navItem} ariaCurrentWhenActive="page" />
                     ) : (

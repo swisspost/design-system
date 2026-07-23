@@ -373,7 +373,9 @@ describe('Accessibility', () => {
   variants.forEach(variant => {
     it(`Has no detectable a11y violations for ${variant.name} variant`, () => {
       cy.getComponent('pagination', PAGINATION_ID, variant.id);
-      cy.checkA11y('#root-inner');
+      cy.checkA11y('#root-inner', undefined, (violations) => {
+        expect(violations).to.have.length(0);
+      });
     });
   });
 });

@@ -8,7 +8,7 @@ const language = 'de';
 
 describe('header', () => {
   describe('default', () => {
-    const headerConfig = testConfiguration[language].header;
+    const headerConfig = testConfiguration.header;
     beforeEach(() => {
       prepare(HEADER, 'Default');
       cy.changeArg('language', language);
@@ -85,8 +85,8 @@ describe('header', () => {
 
     context('active route', () => {
       const activeRouteConfig = copyConfig();
-      activeRouteConfig[language]!.header.globalHeader.audience![0].url = '/audience-private';
-      activeRouteConfig[language]!.header.globalHeader.secondaryNavigation![0].url = '/jobs';
+      activeRouteConfig!.header.globalHeader.audience![0].url = '/audience-private';
+      activeRouteConfig!.header.globalHeader.secondaryNavigation![0].url = '/jobs';
 
       beforeEach(() => {
         prepare(HEADER, 'Default', {
@@ -136,8 +136,8 @@ describe('header', () => {
 
       it('should set only one active link when URL exists in multiple header areas', () => {
         const conflictConfig = copyConfig();
-        conflictConfig[language]!.header.globalHeader.audience![0].url = '/letters';
-        conflictConfig[language]!.header.globalHeader.secondaryNavigation![0].url = '/jobs';
+        conflictConfig!.header.globalHeader.audience![0].url = '/letters';
+        conflictConfig!.header.globalHeader.secondaryNavigation![0].url = '/jobs';
 
         prepare(HEADER, 'Default', {
           config: conflictConfig,
@@ -154,7 +154,7 @@ describe('header', () => {
   });
 
   describe('post login', () => {
-    const postLoginConfig = testConfiguration[language].header.globalHeader.postLogin;
+    const postLoginConfig = testConfiguration.header.globalHeader.postLogin;
 
     context('logged out', () => {
       beforeEach(() => {
@@ -200,7 +200,7 @@ describe('header', () => {
   });
 
   describe('microsite', () => {
-    const headerConfig = micrositeConfiguration[language].header;
+    const headerConfig = micrositeConfiguration.header;
 
     beforeEach(() => {
       prepare(HEADER, 'Default', {
