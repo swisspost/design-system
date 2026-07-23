@@ -70,7 +70,9 @@ tokens.$default-map: components.$post-stepper;
   text-decoration: none;
   color: tokens.get('stepper-text-disabled-fg');
   width: fit-content;
-  word-break: break-word;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  line-break: strict;
   font-size: tokens.get('stepper-step-label-font-size');
 
   :host(:not(:first-of-type, :last-of-type)) > & {

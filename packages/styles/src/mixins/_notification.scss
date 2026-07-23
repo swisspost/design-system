@@ -47,7 +47,7 @@
     top: $padding-y;
   }
 
-  @include utilities-mx.high-contrast-mode {
+  @include utilities-mx.high-contrast-mode() {
     filter: none !important;
     border: 2px solid CanvasText;
   }
@@ -56,13 +56,10 @@
 @mixin notification-body($size) {
   $hr-margin-block: map.get(notification.$notification-hr-margin-block-map, $size);
 
-  /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
-  & {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: notification.$notification-body-gap;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: notification.$notification-body-gap;
 
   a {
     font-weight: notification.$notification-link-font-weight;
