@@ -80,7 +80,7 @@
     "storybook": "9.1.19",
     "typescript": "catalog:typescript",
     "typescript-eslint": "catalog:typescript",
-    "vite": "8.0.16"
+    "vite": "7.3.5"
   },
   "keywords": [
     "storybook",
