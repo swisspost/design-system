@@ -1,5 +1,17 @@
 # @swisspost/internet-header
 
+## 10.1.0
+
+### Minor Changes
+
+- Added account switch link to the user menu. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7983](https://github.com/swisspost/design-system/pull/7983))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.1.0
+  - @swisspost/design-system-styles@10.1.0
+
 ## 10.0.1
 
 ### Patch Changes

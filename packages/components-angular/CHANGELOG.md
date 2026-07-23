@@ -1,5 +1,13 @@
 # @swisspost/design-system-components-angular
 
+## 10.1.0
+
+### Patch Changes
+
+- Updated the `post-linkarea` component to work with a `RouterLink`, making it possible to navigate without the page being reloaded. (by [@alizedebray](https://github.com/alizedebray) with [#8109](https://github.com/swisspost/design-system/pull/8109))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.1.0
+
 ## 10.0.1
 
 ### Patch Changes
