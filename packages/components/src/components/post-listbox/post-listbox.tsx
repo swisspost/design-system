@@ -1,6 +1,6 @@
 import { EventFrom } from '@/utils';
 import { version } from '@root/package.json';
-import { Component, Element, Event, EventEmitter, h, Host, Listen, Method } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Host, Listen, Method, State } from '@stencil/core';
 
 @Component({
   tag: 'post-listbox',
@@ -13,6 +13,12 @@ export class PostListbox {
   private readonly diacriticPattern = /[\u0300-\u036F]/u;
   private popoverContainer?: HTMLPostPopovercontainerElement;
   @Element() host: HTMLPostListboxElement;
+
+  // visibleOptions (below) is a plain field, not reactive, so mutating it alone won't
+  // trigger a re-render. This flag makes that check reactive instead, so the listbox
+  // correctly switches to the real slot once options exist (e.g. added asynchronously
+  // after the listbox already mounted empty).
+  @State() private hasVisibleOptions: boolean = false;
 
   /**
    *  Emitted option id for the active option
@@ -37,6 +43,7 @@ export class PostListbox {
 
   private readonly registerOptions = () => {
     this.visibleOptions = this.options;
+    this.hasVisibleOptions = this.visibleOptions.length > 0;
   };
 
   private readonly updateSelection = (value?: string) => {
@@ -82,6 +89,7 @@ export class PostListbox {
         option.hidden = !isVisible;
         return isVisible;
       });
+      this.hasVisibleOptions = this.visibleOptions.length > 0;
     } else {
       this.resetFilter();
     }
@@ -94,6 +102,7 @@ export class PostListbox {
 
   private readonly resetFilter = () => {
     this.visibleOptions = this.options;
+    this.hasVisibleOptions = this.visibleOptions.length > 0;
     this.options.forEach(option => {
       option.hidden = false;
       option.highlighted = false;
@@ -158,7 +167,7 @@ export class PostListbox {
     return (
       <Host data-version={version} role="listbox">
         <post-popovercontainer placement="bottom-start" ref={el => (this.popoverContainer = el)}>
-          {this.visibleOptions.length === 0 ? <slot name="blank-slate" /> : <slot />}
+          {this.hasVisibleOptions ? <slot /> : <slot name="blank-slate" />}
         </post-popovercontainer>
       </Host>
     );
