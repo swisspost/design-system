@@ -75,7 +75,7 @@ export function writeReport(
     return {
       ...report,
       icons: [...report.icons, ...mergedIcons],
-    } as MergedReport;
+    };
   }, getBaseMergedReport());
 
   mergedReport.icons.sort(sortIcons);
@@ -129,7 +129,7 @@ export function writeReport(
 
   function getReportSetStats() {
     return mergedReport.icons.reduce((acc: { [key: string]: IconSetStats }, icon: MergedIcon) => {
-      acc[icon.stats.set] = acc[icon.stats.set] ?? ({ sources: 0, outputs: 0 } as IconSetStats);
+      acc[icon.stats.set] = acc[icon.stats.set] ?? { sources: 0, outputs: 0 };
       acc[icon.stats.set].sources += icon.stats.sources.length;
       acc[icon.stats.set].outputs++;
       return acc;

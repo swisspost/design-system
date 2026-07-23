@@ -17,7 +17,7 @@ const compatStencilCommunityRecommendedRules = fixupConfigRules(
 )[0].rules;
 
 /** @type {import('eslint').Linter.Config[]} */
-export default ts.config(
+export default [
   {
     name: 'post/global/ignores',
     ignores: [
@@ -116,4 +116,4 @@ export default ts.config(
     ...pluginCypress.configs.recommended,
     rules: {},
   },
-);
+];
