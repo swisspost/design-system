@@ -1,5 +1,13 @@
 # @swisspost/design-system-styles
 
+## 10.1.0
+
+### Patch Changes
+
+- Fixed bullet list alignment on older browser versions. (by [@leagrdv](https://github.com/leagrdv) and [@Copilot](https://github.com/Copilot) with [#8042](https://github.com/swisspost/design-system/pull/8042))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.1.0
+
 ## 10.0.1
 
 ### Patch Changes
