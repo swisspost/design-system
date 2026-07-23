@@ -10,7 +10,7 @@ type RuleType = Rule.RuleMetaData['type'];
 
 export interface RuleConfigBase {
   name: string;
-  type: RuleType;
+  type?: RuleType;
 }
 
 export interface PhaseConfig<T> {
