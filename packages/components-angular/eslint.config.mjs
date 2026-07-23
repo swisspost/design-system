@@ -6,7 +6,7 @@ import globals from 'globals';
 import ts from 'typescript-eslint';
 
 /** @type {import('eslint').Linter.Config[]} */
-export default [
+export default ts.config(
   {
     name: 'post/global/ignores',
     ignores: ['dist/*', '**/stencil-generated/*'],
@@ -68,14 +68,19 @@ export default [
       parserOptions: ['./tsconfig.json'],
     },
   },
-  ...ts.configs.recommended,
   {
-    files: ['**/*.{js,mjs,cjs}'],
-    ...ts.configs.disableTypeChecked,
+    files: ['**/*.{ts,mts,cts}'],
+    extends: [
+      ...ts.configs.recommended,
+      {
+        files: ['**/*.{js,mjs,cjs}'],
+        ...ts.configs.disableTypeChecked,
+      },
+      ...ng.configs.tsRecommended,
+    ],
   },
-  ...ng.configs.tsRecommended,
   ...ng.configs.templateRecommended.map(config => ({
     ...config,
     files: ['**/*.{html,htm}'],
   })),
-];
+);
