@@ -4,7 +4,7 @@ import {
   hasGlobalLogin,
   isApplicationHeader,
   SubComponentRenderers,
-} from '@root/src/stories/components/header/utils';
+} from '@root/src/stories/components/header/self-managed/utils';
 import { Args } from '@storybook/web-components-vite';
 import { nothing } from 'lit';
 

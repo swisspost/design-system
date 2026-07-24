@@ -1,7 +1,8 @@
 import { Args } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { renderUserMenu } from './user-menu';
-import { getSubComponentRenderers, isApplicationHeader } from '../../utils';
+import { getSubComponentRenderers } from '../utils/get-sub-component-renderers';
+import { isApplicationHeader } from '../utils/is-application-header';
 
 export function renderMicrositeControls(args: Args) {
   const { renderLanguageMenu } = getSubComponentRenderers({});

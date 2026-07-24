@@ -10,7 +10,7 @@ import { MetaComponent } from '@root/types';
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { forceCompactAppearance } from '../../../../../.storybook/helpers';
-import { getSlottedContent, SubComponentRenderers } from '../utils';
+import { getSlottedContent, SubComponentRenderers } from './utils';
 
 const meta: MetaComponent = {
   id: '27a2e64d-55ba-492d-ab79-5f7c5e818498',
