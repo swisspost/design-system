@@ -23,6 +23,16 @@ import SampleSessionSubscription from './session-subscription.sample?raw';
   experience across the digital Post systems, products and services.
 </div>
 
+<post-tabs size="large">
+  <post-tab-item name="overview">Overview</post-tab-item>
+  <post-tab-item name="portal">Post Portal</post-tab-item>
+  <post-tab-item name="microsite">Microsite/Online Services</post-tab-item>
+  <post-tab-item name="one-pager">One Pager</post-tab-item>
+  <post-tab-item name="application">Application</post-tab-item>
+<post-tab-panel for="overview" class="pt-24">
+    
+Allow users to navigate through your application.
+
 It adapts to your needs and can contain a variety of sub-components depending on your use case.
 
 The Header is divided into two sections:
@@ -37,34 +47,8 @@ The Header is divided into two sections:
   <Controls of={HeaderStories.Default} />
 </div>
 
-<ComponentsPackageInstall component="<post-header>" />
-
-<StylesPackageImport components={['header', 'list', 'button']} />
-
-### CSS Properties
-
-The `<post-header>` styles expose several custom properties on the `:root` element:
-
-- `--post-header-height`: the current visible height of the header
-- `--post-header-expanded-height`: the height of the header when expanded
-- `--post-header-reduced-height`: the height of the header when reduced
-
-In addition, the `<post-header>` styles set the `scroll-padding-top` property on the `<body>` element to match the currently visible header height.
-This ensures that when using scroll navigation (e.g. jumping to anchors), content is positioned correctly below the header.
-
-## Active Navigation Items
-
-**The `aria-current="page"` attribute highlights the active navigation items**
-
-This attribute is not added automatically,
-it must be applied by your application logic to the `<a>` element of the `<post-mainnavigation>` that represents the page currently being viewed.
-Once applied, parent items in the navigation automatically inherit the correct selected styling.
-
-<Canvas sourceState="shown" of={HeaderStories.ActiveNavigationItem} />
-
-## Examples
-
-### Post Portal
+</post-tab-panel>
+<post-tab-panel for="portal" class="pt-24">
 
 The Header for the Post Portal (post.ch) is a consistently available interface element that provides a consistent navigation experience across the whole Post Portal and other portals.
 
@@ -72,53 +56,11 @@ It not only contains globally available key elements (such as Language), it also
 
 <Canvas of={HeaderStories.Portal} inline="false" />
 
-#### Jobs
+## Jobs
 
 A dedicated header for the Jobs pages within the Post Portal.
 
 <Canvas of={HeaderStories.Jobs} inline="false" />
-
-### Microsite
-
-The Microsite Header is a consistently available interface element that provides a consistent navigation experience across the whole Microsite.
-
-<Canvas of={HeaderStories.Microsite} inline="false" />
-
-### One Pager
-
-The One Pager Header is a consistently available interface element that provides a consistent navigation experience across the whole One Pager.
-
-<Canvas of={HeaderStories.OnePager} inline="false" />
-
-You can use the title inside the `post-header` section as the main title for your webpage.
-To do this, wrap the title text in an `<h1>` element.
-
-A page should generally have **only one `<h1>` element**,
-this helps with accessibility and search engine optimization.
-Use other heading levels (`<h2>`–`<h6>`) for subsections of your content.
-
-For more information about heading tags and their usage,
-see the [Heading elements documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/Heading_Elements) on MDN.
-
-<Canvas sourceState="shown" of={HeaderStories.OnePagerH1} inline="false" />
-
-### Application
-
-The Application header is a header variant intended for internal applications. It uses the [compact styles bundle](/?path=/docs/e53e2de8-0bbf-4f70-babc-074c5466f700--docs&devModeEnabled=true#available-bundles) and is distinguished by the absence of any content in its global (yellow) part except from the Logo. For applications that require in-app navigation, the Application header supports [Side Navigation](/?path=/docs/9f26d86e-7edb-5804-ac96-92g22f91c9d9--docs).
-
-<Canvas of={HeaderStories.Application} inline="false" />
-
-#### Example with Language Menu
-
-If a language menu is needed, it should be placed as a list item within the `slot="local-nav"`, alongside any other local controls such as search or login.
-
-<Canvas of={HeaderStories.ApplicationWithLanguageMenu} inline="false" />
-
-#### Example with Side Navigation
-
-The Application header can be paired with a [Side Navigation](/?path=/docs/9f26d86e-7edb-5804-ac96-92g22f91c9d9--docs) to provide hierarchical navigation within the application.
-
-<Canvas of={HeaderStories.ApplicationWithSideNavigation} inline="false" />
 
 ## User menu
 
@@ -140,13 +82,83 @@ If the request fails or returns no valid `userdata`, the user is not authenticat
 
 When no user is authenticated, a login link is slotted into `post-login`:
 
-<Canvas sourceState="hidden" of={HeaderStories.LoggedOut} />
+<Canvas of={HeaderStories.LoggedOut} />
 
 ### Logged in
 
 When a user is authenticated, the user menu is slotted into `post-login`. The session data can be used to populate the avatar and menu header:
 
-<Canvas sourceState="shown" of={HeaderStories.LoggedIn} />
+<Canvas of={HeaderStories.LoggedIn} />
+
+</post-tab-panel>
+
+<post-tab-panel for="microsite" class="pt-24">
+
+The Microsite and Online Services Header is a consistently available interface element that provides a consistent navigation experience across the whole Microsite and Online Services.
+
+<Canvas of={HeaderStories.Microsite} inline="false" />
+
+</post-tab-panel>
+
+<post-tab-panel for="one-pager" class="pt-24">
+
+The One Pager Header is a consistently available interface element that provides a consistent navigation experience across the whole One Pager.
+
+<Canvas of={HeaderStories.OnePager} inline="false" />
+
+You can use the title inside the `post-header` section as the main title for your webpage.
+To do this, wrap the title text in an `<h1>` element.
+
+A page should generally have **only one `<h1>` element**,
+this helps with accessibility and search engine optimization.
+Use other heading levels (`<h2>`–`<h6>`) for subsections of your content.
+
+For more information about heading tags and their usage,
+see the [Heading elements documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/Heading_Elements) on MDN.
+
+<Canvas of={HeaderStories.OnePagerH1} inline="false" />
+
+</post-tab-panel>
+
+<post-tab-panel for="application" class="pt-24">
+
+The Application header is a header variant intended for internal applications. It uses the [compact styles bundle](/?path=/docs/e53e2de8-0bbf-4f70-babc-074c5466f700--docs&devModeEnabled=true#available-bundles) and is distinguished by the absence of any content in its global (yellow) part except from the Logo. For applications that require in-app navigation, the Application header supports [Side Navigation](/?path=/docs/9f26d86e-7edb-5804-ac96-92g22f91c9d9--docs).
+
+<Canvas of={HeaderStories.Application} inline="false" />
+
+## Example with Side Navigation
+
+The Application header can be paired with a [Side Navigation](/?path=/docs/9f26d86e-7edb-5804-ac96-92g22f91c9d9--docs) to provide hierarchical navigation within the application.
+
+<Canvas of={HeaderStories.ApplicationWithSideNavigation} inline="false" />
+
+</post-tab-panel>
+</post-tabs>
+
+<ComponentsPackageInstall component="<post-header>" />
+
+<StylesPackageImport components={['header', 'list', 'button']} />
+
+## CSS Properties
+
+The `<post-header>` styles expose several custom properties on the `:root` element:
+
+- `--post-header-height`: the current visible height of the header
+- `--post-header-expanded-height`: the height of the header when expanded
+- `--post-header-reduced-height`: the height of the header when reduced
+
+In addition, the `<post-header>` styles set the `scroll-padding-top` property on the `<body>` element to match the currently visible header height.
+This ensures that when using scroll navigation (e.g. jumping to anchors), content is positioned correctly below the header.
+
+## Active Navigation Items
+
+**The `aria-current="page"` attribute highlights the active navigation items**
+
+This attribute is not added automatically,
+it must be applied by your application logic to the `<a>` element of the `<post-mainnavigation>` that represents the page currently being viewed.
+Once applied, parent items in the navigation automatically inherit the correct selected styling.
+
+<Canvas of={HeaderStories.ActiveNavigationItem} />
 
 ## Accessibility
 
