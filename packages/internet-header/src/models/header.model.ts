@@ -37,8 +37,12 @@ export interface HeaderConfig {
  */
 export interface PostLoginConfig {
   loginLink: IconLinkConfig; // Login link when the user is not authenticated.
-  userLinks: Array<IconLinkConfig>; // Actions available when the user is authenticated (e.g. "Profile", "Settings", "Logout").
-  accountSwitch?: IconLinkConfig; // Optional link shown as the first item in the user menu to switch between accounts.
+  accountSwitch: IconLinkConfig; // Shown when appropriate based on the user data.
+  companySwitch: IconLinkConfig; // Shown when appropriate based on the user data.
+  userProfile?: IconLinkConfig; // Link to the user's profile page.
+  settings?: IconLinkConfig; // Link to account/app settings.
+  userLinks?: Array<IconLinkConfig>; // Additional actions available when the user is authenticated.
+  logoutLink: IconLinkConfig; // Logout link when the user is authenticated.
 }
 
 /**
@@ -61,8 +65,10 @@ export interface MegadropdownConfig {
  */
 export interface UserMenuConfig {
   user: UserConfig; // Logged-in user's profile information.
-  options: Array<IconLinkConfig>; // Actions available to the user (e.g. "Profile", "Settings", "Logout").
+  options: Array<IconLinkConfig>; // Actions available to the user (e.g. "Profile", "Settings", additional userLinks).
   accountSwitch?: IconLinkConfig; // Optional account switch link, shown before userLinks when the user has permission to switch accounts.
+  companySwitch?: IconLinkConfig; // Optional company switch link, shown when the user has permission to switch companies.
+  logoutLink?: IconLinkConfig; // Optional logout link.
 }
 
 /**

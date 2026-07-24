@@ -48,32 +48,32 @@ describe('config.service.ts', () => {
 
     it('should return an int URL', () => {
       expect(generateConfigUrl('topos', 'int01', 'de')).toEqual(
-        'https://int.post.ch/api/headerjs/Json?serviceid=topos&lang=de&environment=int01',
+        'https://int.post.ch/api/header?serviceId=topos&environment=INT01&lang=de',
       );
     });
 
-    it('should return prod by default', () => {
+    it('should include environment even on prod', () => {
       expect(generateConfigUrl('topos', 'prod', 'de')).toEqual(
-        'https://www.post.ch/api/headerjs/Json?serviceid=topos&lang=de',
+        'https://www.post.ch/api/header?serviceId=topos&environment=PROD&lang=de',
       );
     });
 
     it('should reduce XSS risk', () => {
       expect(generateConfigUrl('<script>alert()</script>', 'prod', 'de')).toEqual(
-        'https://www.post.ch/api/headerjs/Json?serviceid=%3Cscript%3Ealert()%3C%2Fscript%3E&lang=de',
+        'https://www.post.ch/api/header?serviceId=%3Cscript%3Ealert%28%29%3C%2Fscript%3E&environment=PROD&lang=de',
       );
     });
 
-    it('should work with upper case env', () => {
+    it('should uppercase the environment param', () => {
       // @ts-expect-error second argument should be of type 'dev01' | 'dev02' | 'devs1' | 'test' | 'int01' | 'int02' | 'prod'
       expect(generateConfigUrl('whatever', 'INT01', 'de')).toEqual(
-        'https://int.post.ch/api/headerjs/Json?serviceid=whatever&lang=de&environment=int01',
+        'https://int.post.ch/api/header?serviceId=whatever&environment=INT01&lang=de',
       );
     });
 
     it('should lowercase the lang param', () => {
       expect(generateConfigUrl('topos', 'int01', 'DE')).toEqual(
-        'https://int.post.ch/api/headerjs/Json?serviceid=topos&lang=de&environment=int01',
+        'https://int.post.ch/api/header?serviceId=topos&environment=INT01&lang=de',
       );
     });
   });

@@ -105,17 +105,21 @@ export const generateConfigUrl = (
 ): string => {
   if (projectId === 'test') return 'assets/config/test-configuration.json';
 
-  const parsedEnvironment = environment.toLowerCase();
+  const parsedEnvironment = environment.toUpperCase();
   const parsedLang = lang.toLowerCase();
-  const isProd = parsedEnvironment === 'prod';
+  const isProd = parsedEnvironment === 'PROD';
+  // NOTE: use preview.post.ch for local testing
   const host = `https://${isProd ? 'www' : 'int'}.post.ch`;
+
   try {
+    const query = new URLSearchParams({
+      serviceId: projectId,
+      environment: parsedEnvironment,
+      lang: parsedLang,
+    }).toString();
+
     // Use URL to validate the generated URL
-    return new URL(
-      `${host}/api/headerjs/Json?serviceid=${encodeURIComponent(projectId)}&lang=${encodeURIComponent(parsedLang)}${
-        !isProd ? '&environment=' + parsedEnvironment : ''
-      }`,
-    ).toString();
+    return new URL(`${host}/api/header?${query}`).toString();
   } catch (error) {
     throw new Error(`Internet Header: Config URL is invalid.`);
   }
