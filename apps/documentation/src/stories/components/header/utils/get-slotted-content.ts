@@ -1,4 +1,4 @@
-import { renderJobControls } from '@root/src/stories/components/header/renderers';
+import { renderJobControls } from '@root/src/stories/components/header/self-managed/renderers';
 import {
   getSubComponentRenderers,
   hasGlobalLogin,
