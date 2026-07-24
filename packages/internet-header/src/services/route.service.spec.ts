@@ -92,11 +92,11 @@ describe('route.service.ts', () => {
 
   describe('getActiveLink', () => {
     beforeEach(() => {
-      const config = [...testConfig.de.header.localHeader.mainNavigation] as MainNavigationConfig;
+      const config = [...testConfig.header.localHeader.mainNavigation] as MainNavigationConfig;
       state.localizedConfig = {
         header: {
-          ...testConfig.de.header,
-          localHeader: { ...testConfig.de.header.localHeader, mainNavigation: config },
+          ...testConfig.header,
+          localHeader: { ...testConfig.header.localHeader, mainNavigation: config },
         },
       };
     });
@@ -138,14 +138,14 @@ describe('route.service.ts', () => {
       const activeLink = { text: 'Active Link', url: '/active-link', active: true };
       state.localizedConfig = {
         header: {
-          ...testConfig.de.header,
+          ...testConfig.header,
           globalHeader: {
-            ...testConfig.de.header.globalHeader,
-            audience: testConfig.de.header.globalHeader.audience.map(link => ({
+            ...testConfig.header.globalHeader,
+            audience: testConfig.header.globalHeader.audience.map(link => ({
               ...link,
               active: false,
             })),
-            languages: testConfig.de.header.globalHeader.languages.map(language => ({
+            languages: testConfig.header.globalHeader.languages.map(language => ({
               ...language,
               active: false,
             })),
@@ -164,7 +164,7 @@ describe('route.service.ts', () => {
       const link2 = { text: 'Second', url: '/sch' };
       state.localizedConfig = {
         header: {
-          ...testConfig.de.header,
+          ...testConfig.header,
           localHeader: {
             mainNavigation: [link1, link2],
           },
@@ -179,9 +179,9 @@ describe('route.service.ts', () => {
       const localAction: IconLinkConfig = { text: 'Search', url: '/search', icon: 'search' };
       state.localizedConfig = {
         header: {
-          ...testConfig.de.header,
+          ...testConfig.header,
           localHeader: {
-            ...testConfig.de.header.localHeader,
+            ...testConfig.header.localHeader,
             navigation: [localAction],
           },
         },
@@ -195,9 +195,9 @@ describe('route.service.ts', () => {
       const secondaryLink: IconLinkConfig = { text: 'Jobs', url: '/jobs', icon: 'jobs' };
       state.localizedConfig = {
         header: {
-          ...testConfig.de.header,
+          ...testConfig.header,
           globalHeader: {
-            ...testConfig.de.header.globalHeader,
+            ...testConfig.header.globalHeader,
             secondaryNavigation: [secondaryLink],
           },
         },
@@ -213,13 +213,13 @@ describe('route.service.ts', () => {
 
       state.localizedConfig = {
         header: {
-          ...testConfig.de.header,
+          ...testConfig.header,
           localHeader: {
-            ...testConfig.de.header.localHeader,
+            ...testConfig.header.localHeader,
             mainNavigation: [mainNavigationLink],
           },
           globalHeader: {
-            ...testConfig.de.header.globalHeader,
+            ...testConfig.header.globalHeader,
             secondaryNavigation: [secondaryLink],
           },
         },
@@ -235,9 +235,9 @@ describe('route.service.ts', () => {
 
       state.localizedConfig = {
         header: {
-          ...testConfig.de.header,
+          ...testConfig.header,
           localHeader: {
-            ...testConfig.de.header.localHeader,
+            ...testConfig.header.localHeader,
             navigation: [
               {
                 user: {
