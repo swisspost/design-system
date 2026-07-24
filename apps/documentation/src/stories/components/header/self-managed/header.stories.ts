@@ -1,24 +1,24 @@
-import { renderAudience } from '@/stories/components/header/renderers/audience';
-import { renderGlobalNavSecondary } from '@/stories/components/header/renderers/global-nav-secondary';
-import { renderJobControls } from '@/stories/components/header/renderers/job-controls';
-import { renderMainnavigation } from '@/stories/components/header/renderers/main-navigation';
-import { renderMicrositeControls } from '@/stories/components/header/renderers/microsite-controls';
-import { renderTitle } from '@/stories/components/header/renderers/title';
-import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
+import { renderAudience } from '@/stories/components/header/self-managed/renderers/audience';
+import { renderGlobalNavSecondary } from '@/stories/components/header/self-managed/renderers/global-nav-secondary';
+import { renderJobControls } from '@/stories/components/header/self-managed/renderers/job-controls';
+import { renderMainnavigation } from '@/stories/components/header/self-managed/renderers/main-navigation';
+import { renderMicrositeControls } from '@/stories/components/header/self-managed/renderers/microsite-controls';
+import { renderTitle } from '@/stories/components/header/self-managed/renderers/title';
+import { renderUserMenu } from '@/stories/components/header/self-managed/renderers/user-menu';
 import { fakeContent } from '@/utils';
-import { renderLoginLink } from '@/stories/components/header/renderers/login-link';
+import { renderLoginLink } from '@/stories/components/header/self-managed/renderers/login-link';
 import { MetaComponent } from '@root/types';
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing, TemplateResult } from 'lit';
 import {
   renderSideNavTrigger,
   renderSideNavigation,
-} from '@/stories/components/header/renderers/side-navigation';
-import { forceCompactAppearance } from '../../../../.storybook/helpers';
+} from '@/stories/components/header/self-managed/renderers/side-navigation';
+import { forceCompactAppearance } from '../../../../../.storybook/helpers';
 
 const meta: MetaComponent = {
   id: '27a2e64d-55ba-492d-ab79-5f7c5e818498',
-  title: 'Components/Header',
+  title: 'Components/Header/Self-Managed',
   tags: ['package:WebComponents', 'status:New'],
   component: 'post-header',
   parameters: {

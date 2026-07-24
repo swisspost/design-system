@@ -1,6 +1,6 @@
 import { Args } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { renderUserMenu } from '@/stories/components/header/renderers/user-menu';
+import { renderUserMenu } from './user-menu';
 
 export function renderMicrositeControls(args: Args) {
   const loginButton = html`

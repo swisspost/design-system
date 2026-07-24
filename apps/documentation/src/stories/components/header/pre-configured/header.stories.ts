@@ -21,8 +21,8 @@ const defaultArgs: Args = {
 
 const meta: MetaComponent = {
   id: 'ebb11274-091b-4cb7-9a3f-3e0451c9a865',
-  title: 'Raw Components/Internet Header',
-  tags: ['package:InternetHeader', 'devOnly'],
+  title: 'Components/Header/Pre-Configured',
+  tags: ['package:InternetHeader', 'status:New'],
   component: 'swisspost-internet-header',
   parameters: {
     badges: [],
