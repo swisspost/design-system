@@ -7,7 +7,7 @@ tokens.$default-map: components.$post-inline-notification;
 
 .inline-notification {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
   gap: tokens.get('notification-inline-gap-inline');
   padding-block: tokens.get('notification-inline-padding-block');
   padding-inline: tokens.get('notification-inline-padding-inline');
@@ -23,14 +23,7 @@ tokens.$default-map: components.$post-inline-notification;
     flex-shrink: 0;
     width: tokens.get('notification-inline-icon-size');
     height: tokens.get('notification-inline-icon-size');
-  }
-
-  &.inline-notification-multi-line {
-    align-items: flex-start;
-
-    &::before {
-      margin-block-start: 2px;
-    }
+    margin-block-start: 2px;
   }
 
   @each $name in 'info', 'success', 'warning', 'error' {
@@ -51,13 +44,11 @@ tokens.$default-map: components.$post-inline-notification;
 }
 
 .inline-notification-content {
-  display: flex;
+  display: grid;
   flex: 1;
-  flex-wrap: wrap;
-  align-items: center;
+  grid-template-columns: 1fr;
+  row-gap: tokens.get('notification-inline-labels-gap-block');
   min-width: 0;
-  gap: tokens.get('notification-inline-labels-gap-block')
-    tokens.get('notification-inline-labels-gap-inline');
 
   h1,
   h2,
@@ -74,12 +65,6 @@ tokens.$default-map: components.$post-inline-notification;
   p {
     margin: 0;
     padding: 0;
-    flex: 1;
     min-width: 0;
   }
-}
-
-.inline-notification-multi-line .inline-notification-content {
-  flex-direction: column;
-  align-items: stretch;
 }

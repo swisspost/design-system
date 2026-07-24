@@ -12,12 +12,11 @@ const meta: MetaComponent = {
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=18807-68180&mode=design&t=PR2ZnqAacaK7UiXP-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=1447-8953&m=dev',
     },
   },
   args: {
     variant: 'info',
-    layout: 'single-line',
     title: 'Title',
     message: 'Message',
     headingLevel: 'h4',
@@ -28,15 +27,6 @@ const meta: MetaComponent = {
       description: 'Defines the color variant of the notification.',
       control: 'select',
       options: ['info', 'success', 'warning', 'error'],
-      table: {
-        category: 'General',
-      },
-    },
-    layout: {
-      name: 'Layout',
-      description: 'Defines the layout of the notification.',
-      control: 'select',
-      options: ['single-line', 'multi-line'],
       table: {
         category: 'General',
       },
@@ -70,14 +60,12 @@ export default meta;
 
 // RENDERER
 function renderInlineNotification(args: Args) {
-  const { variant, layout, title, message, headingLevel = 'h4' } = args;
-
-  const layoutClass = layout === 'multi-line' ? 'inline-notification-multi-line' : '';
+  const { variant, title, message, headingLevel = 'h4' } = args;
   const titleHTML = title ? `<${headingLevel}>${title}</${headingLevel}>` : '';
 
   return html`
     <div
-      class="inline-notification inline-notification-${variant} ${layoutClass}"
+      class="inline-notification inline-notification-${variant}"
       role="alert"
       aria-label="${title || message}"
     >
@@ -102,8 +90,7 @@ export const Variants: Story = {
       renderInlineNotification({
         ...args,
         variant,
-        layout: 'single-line',
-        title: 'Title',
+        title: '',
         message: 'Message',
       }),
     )}`;
@@ -119,9 +106,9 @@ export const MultiLine: Story = {
       renderInlineNotification({
         ...args,
         variant,
-        layout: 'multi-line',
         title: 'Title',
-        message: 'Message',
+        message:
+          'This is a longer notification message that wraps automatically without requiring an extra class.',
       }),
     )}`;
   },

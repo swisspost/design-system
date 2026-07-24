@@ -23,7 +23,6 @@ export const InlineNotification: Story = {
               {
                 ...args,
                 variant: 'info',
-                layout: 'multi-line',
                 headingLevel,
                 title: `Title with ${headingLevel}`,
                 message: 'The title should have the same size regardless of the heading tag.',
