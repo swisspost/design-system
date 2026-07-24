@@ -4,20 +4,17 @@ import {
   renderSideNavigation,
   renderTitle,
   renderUserMenu,
-} from '@/stories/components/header/renderers';
+} from '@/stories/components/header/self-managed/renderers';
 import { fakeContent } from '@/utils';
-import {
-  getSlottedContent,
-  SubComponentRenderers,
-} from '@root/src/stories/components/header/utils';
 import { MetaComponent } from '@root/types';
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { forceCompactAppearance } from '../../../../.storybook/helpers';
+import { forceCompactAppearance } from '../../../../../.storybook/helpers';
+import { getSlottedContent, SubComponentRenderers } from './utils';
 
 const meta: MetaComponent = {
   id: '27a2e64d-55ba-492d-ab79-5f7c5e818498',
-  title: 'Components/Header',
+  title: 'Components/Header/Self-Managed',
   tags: ['package:WebComponents', 'status:New'],
   component: 'post-header',
   parameters: {
