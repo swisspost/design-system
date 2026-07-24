@@ -1,0 +1,85 @@
+@use '../functions/tokens';
+@use '../tokens/elements';
+@use '../tokens/components';
+@use './../mixins/utilities';
+
+tokens.$default-map: components.$post-inline-notification;
+
+.inline-notification {
+  display: inline-flex;
+  align-items: center;
+  gap: tokens.get('notification-inline-gap-inline');
+  padding-block: tokens.get('notification-inline-padding-block');
+  padding-inline: tokens.get('notification-inline-padding-inline');
+  border-style: tokens.get('notification-inline-border-style');
+  border-width: tokens.get('notification-inline-border-width');
+  border-radius: tokens.get('notification-inline-border-radius');
+  min-width: 297px;
+  max-width: 600px;
+
+  &::before {
+    content: '';
+    display: block;
+    flex-shrink: 0;
+    width: tokens.get('notification-inline-icon-size');
+    height: tokens.get('notification-inline-icon-size');
+  }
+
+  &.inline-notification-multi-line {
+    align-items: flex-start;
+
+    &::before {
+      margin-block-start: 2px;
+    }
+  }
+
+  @each $name in 'info', 'success', 'warning', 'error' {
+    &.inline-notification-#{$name} {
+      border-color: tokens.get('notification-inline-color-#{$name}-stroke');
+      background-color: tokens.get('notification-inline-color-#{$name}-bg');
+      color: tokens.get('notification-inline-color-#{$name}-fg');
+
+      &::before {
+        background-image: var(--post-signal-icon-#{$name});
+      }
+    }
+  }
+
+  @include utilities.high-contrast-mode {
+    border: 2px solid CanvasText;
+  }
+}
+
+.inline-notification-content {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  align-items: center;
+  min-width: 0;
+  gap: tokens.get('notification-inline-labels-gap-block')
+    tokens.get('notification-inline-labels-gap-inline');
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    padding: 0;
+    font-size: tokens.get('h4-font-size', elements.$post-heading);
+    font-weight: tokens.get('notification-inline-title-font-weight');
+  }
+
+  p {
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.inline-notification-multi-line .inline-notification-content {
+  flex-direction: column;
+  align-items: stretch;
+}
