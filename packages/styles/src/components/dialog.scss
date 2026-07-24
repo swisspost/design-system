@@ -1,12 +1,9 @@
 @use 'sass:list';
-@use 'sass:map';
-
 @use '../mixins/utilities' as utilities-mx;
-@use '../variables/elevation';
-@use '../variables/grid';
-
+@use 'sass:map';
 @use '../functions/tokens';
 @use '../tokens/utilities';
+@use '../tokens/components';
 @use '../tokens/helpers';
 @use '../mixins/media';
 @use '../mixins/color-scheme';
@@ -14,13 +11,12 @@
 tokens.$default-map: utilities.$post-spacing;
 
 $dialog-types: 'info', 'error', 'success', 'warning';
-$border-radius: 0.5rem;
 $dialog-bottom-sheet-selector: "[data-variant='bottom-sheet']";
 
 .post-dialog,
 // deprecated
 dialog {
-  box-shadow: elevation.$elevation-500;
+  box-shadow: tokens.get('dialog-elevation', components.$post-dialog);
   padding: 0;
   min-width: min(389px, 90vw);
   max-width: 590px;
@@ -28,19 +24,22 @@ dialog {
   overflow: visible;
   margin: revert;
   overscroll-behavior: contain;
-  background-color: #fafafa;
-  border: 2px #cdccc8;
-  border-radius: $border-radius;
+  color: tokens.get('dialog-color-fg', components.$post-dialog);
+  background-color: tokens.get('dialog-color-bg', components.$post-dialog);
+  border: tokens.get('dialog-border-width', components.$post-dialog)
+    tokens.get('dialog-border-style', components.$post-dialog)
+    tokens.get('dialog-color-stroke', components.$post-dialog);
+  border-radius: tokens.get('dialog-border-radius', components.$post-dialog);
   @include color-scheme.set(light);
 
   &::backdrop {
-    background-color: rgba(#050400, 0.8);
+    background-color: tokens.get('backdrop-color-bg', components.$post-backdrop);
     backdrop-filter: blur(0);
   }
 
   @include utilities-mx.high-contrast-mode {
     // Show the border in HCM
-    border-width: 2px;
+    border-width: tokens.get('dialog-border-width', components.$post-dialog);
 
     // Mark the backdrop as inactive in HCM
     &::backdrop {
@@ -76,13 +75,13 @@ dialog {
   // Positioning
   // [top, center (default), bottom]
   &[data-position='top'] {
-    top: 2rem;
-    bottom: auto;
+    inset-block-start: 2rem;
+    inset-block-end: auto;
   }
 
   &[data-position='bottom'] {
-    top: auto;
-    bottom: 2rem;
+    inset-block-start: auto;
+    inset-block-end: 2rem;
   }
 
   &#{$dialog-bottom-sheet-selector} {
@@ -92,9 +91,10 @@ dialog {
     max-width: var(--post-dialog-width, var(--_dialog-sheet-default-width));
     max-height: 80dvh;
     overflow: hidden;
-    border-radius: $border-radius $border-radius 0 0;
-    top: auto;
-    bottom: 0;
+    border-radius: tokens.get('dialog-border-radius', components.$post-dialog)
+      tokens.get('dialog-border-radius', components.$post-dialog) 0 0;
+    inset-block-start: auto;
+    inset-block-end: 0;
     margin-block-start: auto;
     margin-block-end: 0;
 
@@ -122,20 +122,21 @@ dialog {
     }
 
     > .dialog-grid > post-closebutton {
-      inset-block-start: tokens.get('utility-gap-16');
-      inset-inline-end: tokens.get('utility-gap-16');
+      inset-block-start: tokens.get('dialog-padding-block-start', components.$post-dialog);
+      inset-inline-end: tokens.get('dialog-padding-inline', components.$post-dialog);
       transform: none;
       z-index: 2;
     }
   }
 
   > .dialog-grid {
-    padding: tokens.get('utility-gap-16') tokens.get('utility-gap-16') 0;
-    border-radius: $border-radius;
+    padding: tokens.get('dialog-padding-block-start', components.$post-dialog)
+      tokens.get('dialog-padding-inline', components.$post-dialog) 0;
+    border-radius: tokens.get('dialog-border-radius', components.$post-dialog);
     display: grid;
     grid-template-rows: auto 1fr auto;
     max-height: 90vh;
-    column-gap: tokens.get('utility-gap-16');
+    column-gap: tokens.get('dialog-gap-inline', components.$post-dialog);
     grid-template-columns: auto 1fr;
     grid-template-areas:
       'icon header'
@@ -147,7 +148,7 @@ dialog {
     background-color: inherit;
 
     &:not(:has(.dialog-controls)) {
-      padding-bottom: tokens.get('utility-gap-16');
+      padding-block-end: tokens.get('dialog-padding-block-end', components.$post-dialog);
     }
   }
 }
@@ -171,24 +172,29 @@ dialog {
     content: '';
     display: block;
     grid-area: icon;
+    align-self: center;
 
-    width: tokens.get('utility-gap-40');
-    height: tokens.get('utility-gap-40');
+    width: tokens.get('dialog-icon-size', components.$post-dialog);
+    height: tokens.get('dialog-icon-size', components.$post-dialog);
   }
 
   .dialog-header {
     grid-area: header;
-    margin-top: 0;
-    top: 0;
+    margin-block-start: 0;
+    margin-block-end: tokens.get('dialog-content-gap-block', components.$post-dialog);
+    inset-block-start: 0;
     position: sticky;
     z-index: 1;
     background-color: inherit;
+    font-size: tokens.get('dialog-heading-font-size', components.$post-dialog);
+    font-weight: tokens.get('dialog-heading-font-weight', components.$post-dialog);
   }
 
   .dialog-body {
     grid-area: body;
-    margin-bottom: 0;
+    margin-block-end: 0;
     overflow: auto;
+    font-size: tokens.get('dialog-content-font-size', components.$post-dialog);
 
     // prevent overflow: auto from clipping focus rings of child elements
     $focus-space: calc(
@@ -197,12 +203,12 @@ dialog {
     );
 
     padding: $focus-space;
-    margin-top: calc(-1 * #{$focus-space});
-    margin-left: calc(-1 * #{$focus-space});
-    margin-right: calc(-1 * #{$focus-space});
+    margin-block-start: calc(-1 * #{$focus-space});
+    margin-inline-start: calc(-1 * #{$focus-space});
+    margin-inline-end: calc(-1 * #{$focus-space});
 
     > *:last-child {
-      margin-bottom: 0;
+      margin-block-end: 0;
     }
   }
 
@@ -220,15 +226,15 @@ dialog {
 .dialog-controls {
   grid-area: controls;
   position: sticky;
-  bottom: 0;
+  inset-block-end: 0;
   z-index: 1;
-  padding-top: tokens.get('utility-gap-16');
-  padding-bottom: tokens.get('utility-gap-16');
+  padding-block-start: tokens.get('dialog-padding-block-end', components.$post-dialog);
+  padding-block-end: tokens.get('dialog-padding-block-end', components.$post-dialog);
   margin-block-end: 0;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row-reverse;
-  gap: tokens.get('utility-gap-8');
+  gap: tokens.get('dialog-footer-actions-gap', components.$post-dialog);
   background-color: inherit;
 
   button {
@@ -240,7 +246,10 @@ dialog {
 
 .post-dialog#{$dialog-bottom-sheet-selector} .dialog-header,
 dialog#{$dialog-bottom-sheet-selector} .dialog-header {
-  padding-inline-end: calc(tokens.get('utility-gap-40') + tokens.get('utility-gap-16'));
+  padding-inline-end: calc(
+    #{tokens.get('dialog-icon-size', components.$post-dialog)} +
+      #{tokens.get('dialog-padding-inline', components.$post-dialog)}
+  );
 }
 
 // Animations
@@ -299,7 +308,7 @@ dialog:not([data-animation='none']) {
 
     &::backdrop {
       opacity: 1;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(tokens.get('backdrop-blur', components.$post-backdrop));
 
       @starting-style {
         opacity: 0;
