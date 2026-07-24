@@ -1,12 +1,9 @@
-import { renderJobControls } from '@root/src/stories/components/header/self-managed/renderers';
-import {
-  getSubComponentRenderers,
-  hasGlobalLogin,
-  isApplicationHeader,
-  SubComponentRenderers,
-} from '@root/src/stories/components/header/self-managed/utils';
+import { renderJobControls } from '../renderers';
 import { Args } from '@storybook/web-components-vite';
 import { nothing } from 'lit';
+import { getSubComponentRenderers, SubComponentRenderers } from './get-sub-component-renderers';
+import { hasGlobalLogin } from './has-global-login';
+import { isApplicationHeader } from './is-application-header';
 
 export function getSlottedContent(args: Args, customRenderers: SubComponentRenderers = {}) {
   const {

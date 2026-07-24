@@ -1,4 +1,4 @@
-import * as defaultRenderers from '@root/src/stories/components/header/self-managed/renderers';
+import * as defaultRenderers from '../renderers';
 
 export type SubComponentRenderers = Partial<typeof defaultRenderers>;
 
