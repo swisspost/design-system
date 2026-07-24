@@ -1,20 +1,13 @@
-import {
-  renderLoginLink,
-  renderMainnavigation,
-  renderSideNavigation,
-  renderTitle,
-  renderUserMenu,
-} from '@/stories/components/header/renderers';
 import { fakeContent } from '@/utils';
-import { renderLoginLink } from '@/stories/components/header/renderers/login-link';
+import {
+  getSlottedContent,
+  SubComponentRenderers,
+} from '@root/src/stories/components/header/utils';
 import { MetaComponent } from '@root/types';
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
-import { html, nothing, TemplateResult } from 'lit';
-import {
-  renderSideNavTrigger,
-  renderSideNavigation,
-} from '@/stories/components/header/renderers/side-navigation';
-import { forceCompactAppearance } from '../../../../.storybook/helpers';
+import { html, nothing } from 'lit';
+import { forceCompactAppearance } from '../../../../../.storybook/helpers';
+import { renderLoginLink, renderMainnavigation, renderSideNavigation, renderTitle, renderUserMenu } from './renderers';
 
 const meta: MetaComponent = {
   id: '27a2e64d-55ba-492d-ab79-5f7c5e818498',
