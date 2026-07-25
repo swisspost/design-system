@@ -8,7 +8,7 @@ export function renderTitle(args: Args) {
       : html` <h1 slot="title">${args.title}</h1> `;
 
   return html`
-    <!-- Application title (optional) -->
+    <!-- Application title -->
     ${title}
   `;
 }

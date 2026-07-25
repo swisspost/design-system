@@ -150,6 +150,12 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
       row-gap: tokens.get('post-datepicker-grid-gap-block');
       border-radius: tokens.get('post-datepicker-border-radius');
 
+      .a11y-row {
+        display: grid;
+        grid-column: 1/-1;
+        grid-template-columns: subgrid;
+      }
+
       /* View-specific styles */
 
       &.-days- {
@@ -281,7 +287,7 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
             }
 
             &.-other-decade- {
-              color: tokens.get('post-datepicker-grid-year-cell-element-color-enabled-fg');
+              display: none;
             }
 
             &:not(.-disabled-) {
@@ -761,4 +767,8 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
       }
     }
   }
+}
+
+.visually-hidden {
+  @include utilities.visuallyhidden;
 }

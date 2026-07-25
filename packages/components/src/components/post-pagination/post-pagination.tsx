@@ -210,7 +210,6 @@ export class PostPagination {
     const availableWidth = this.getAvailableWidth();
     const netWidth = availableWidth - paginationPadding;
 
-    const controlButtonsWidth = this.getControlButtonsWidth();
     const pageButton = this.hiddenItemsRef.querySelector('.hidden-page-button');
     const ellipsis = this.hiddenItemsRef.querySelector('.hidden-ellipsis');
 
@@ -218,8 +217,8 @@ export class PostPagination {
 
     const singleButtonWidth = pageButton.getBoundingClientRect().width;
     const gap = pageButton && ellipsis ? this.calculateGap(pageButton, ellipsis) : 0;
-    const controlButtonGaps = gap * 2; // Gap after prev and before next
-    const widthForPages = netWidth - controlButtonsWidth - controlButtonGaps;
+    const controlButtonsWidth = this.getControlButtonsWidth(gap);
+    const widthForPages = netWidth - controlButtonsWidth;
 
     // Calculate how many page buttons can fit
     const maxPages = Math.floor((widthForPages + gap) / (singleButtonWidth + gap));
@@ -230,19 +229,20 @@ export class PostPagination {
   }
 
   /**
-   * Gets total width of control buttons (prev/next)
+   * Gets total width of control buttons (prev/next) with their respective margins and gaps
    */
-  private getControlButtonsWidth(): number {
+  private getControlButtonsWidth(gap: number): number {
     if (!this.hiddenItemsRef) return 0;
 
     const controlButtons = Array.from(
       this.hiddenItemsRef.querySelectorAll('.hidden-control-button'),
     );
 
-    const totalWidth = controlButtons.reduce(
-      (sum, el) => sum + el.getBoundingClientRect().width,
-      0,
-    );
+    const totalWidth = controlButtons.reduce((sum, el) => {
+      const mStart = Number.parseFloat(globalThis.getComputedStyle(el).marginInlineStart);
+      const mEnd = Number.parseFloat(globalThis.getComputedStyle(el).marginInlineEnd);
+      return sum + el.getBoundingClientRect().width + mStart + mEnd + gap;
+    }, 0);
 
     return totalWidth;
   }
@@ -614,6 +614,8 @@ export class PostPagination {
    */
   private emitPageChange(newPage: number) {
     this.page = newPage;
+    requestAnimationFrame(() => this.measureAndCalculateVisiblePages());
+
     this.postChange.emit(newPage);
   }
 
@@ -748,22 +750,23 @@ export class PostPagination {
   private renderHiddenItems(totalPages: number, isPrevHidden: boolean, isNextHidden: boolean) {
     return [
       !isPrevHidden && (
-        <button class="pagination-link pagination-control-button hidden-control-button" disabled>
+        <button key="hidden-prev" class="pagination-link pagination-control-button hidden-control-button" disabled>
           <post-icon name="chevronleftwide" aria-hidden="true"></post-icon>
         </button>
       ),
       <button
+        key="hidden-page"
         class="pagination-link pagination-control-button hidden-page-button"
         aria-label={this.buildPageLabel(totalPages)}
         disabled
       >
         <span aria-hidden="true">{totalPages}</span>
       </button>,
-      <span class="pagination-ellipsis-content hidden-ellipsis" aria-hidden="true">
+      <span key="hidden-ellipsis" class="pagination-ellipsis-content hidden-ellipsis" aria-hidden="true">
         {ELLIPSIS}
       </span>,
       !isNextHidden && (
-        <button class="pagination-link pagination-control-button hidden-control-button" disabled>
+        <button key="hidden-next" class="pagination-link pagination-control-button hidden-control-button" disabled>
           <post-icon name="chevronrightwide" aria-hidden="true"></post-icon>
         </button>
       ),

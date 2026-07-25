@@ -1,14 +1,13 @@
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
-
-import { renderHeader } from '../internet-header/header.stories';
+import { renderHeader } from '../../header/pre-configured/header.stories';
 
 const meta: MetaComponent = {
   id: '27fc009d-3eec-43a9-b3a2-55531e721817',
-  title: 'Raw Components/Internet Header/Footer',
+  title: 'Components/Footer/Pre-Configured',
   component: 'swisspost-internet-footer',
-  tags: ['package:InternetHeader', 'devOnly'],
+  tags: ['package:InternetHeader', 'status:New'],
   render: renderInternetFooter,
   decorators: [hiddenHeader],
   parameters: {

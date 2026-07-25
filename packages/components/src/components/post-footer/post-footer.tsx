@@ -76,6 +76,7 @@ export class PostFooter {
       <post-accordion headingLevel={3} multiple={true}>
         {GRID_SLOTS.map(slotName => (
           <post-accordion-item
+            key={slotName}
             class={{ 'd-none': !this.gridSlotDisplayed[slotName] }}
             collapsed={true}
           >
@@ -91,7 +92,7 @@ export class PostFooter {
 
   private renderColumns() {
     return GRID_SLOTS.map(slotName => (
-      <div class={{ 'd-none': !this.gridSlotDisplayed[slotName] }}>
+      <div key={slotName} class={{ 'd-none': !this.gridSlotDisplayed[slotName] }}>
         <h3>
           <slot name={slotName + '-title'}></slot>
         </h3>
