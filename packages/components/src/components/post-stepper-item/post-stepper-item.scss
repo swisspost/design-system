@@ -206,6 +206,12 @@ $checkIconSize: calc(
   :host([aria-current='step']:not(:first-of-type, :last-of-type)) > & {
     inset-inline-start: calc(50% - (tokens.get('stepper-icon-current-size') / 2));
   }
+
+  :host([aria-current='step']:last-of-type) > & {
+    inset-inline-end: calc(
+      (tokens.get('stepper-indicator') - tokens.get('stepper-icon-current-size')) / 2
+    );
+  }
 }
 
 // smaller screens

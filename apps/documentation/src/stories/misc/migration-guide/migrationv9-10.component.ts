@@ -101,6 +101,7 @@ export class MigrationV910Component extends LitElement {
       update_package: false,
       add_text_props: false,
       remove_props: false,
+      breadcrumb_migration: false,
     },
     intranet_header: {
       migration: false,
@@ -1506,6 +1507,59 @@ export class MyComponent {
                                   <code>language-switch-overrides</code>. Only
                                   <code>language</code> and <code>active-route</code> remain
                                   reactive at runtime.
+                                </span>
+                              </label>
+                            </div>
+                          </li>
+                          <li class="mb-16">
+                            <div class="form-check">
+                              <input
+                                id="internet_header-breadcrumb_migration"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.internet_header.breadcrumb_migration}"
+                              />
+                              <label class="form-check-label" for="internet_header-breadcrumb_migration">
+                                Migrate from <code>&lt;swisspost-internet-breadcrumbs&gt;</code> to
+                                <code>&lt;post-breadcrumbs&gt;</code>
+                                <span class="info">
+                                  The <code>&lt;swisspost-internet-breadcrumbs&gt;</code> component has been
+                                  removed, as breadcrumbs are not included in the online service header.
+                                  Migrate to the self-managed
+                                  <code>&lt;post-breadcrumbs&gt;</code> and
+                                  <code>&lt;post-breadcrumb-item&gt;</code> components instead.
+                                  <br /><br />
+                                  The old component generated its trail automatically from the header
+                                  config, usually requiring no props. The new components require
+                                  manual setup:
+                                  <ul>
+                                    <li>
+                                      Set <code>home-url</code>, <code>text-home</code>,
+                                      <code>text-breadcrumbs</code>, and <code>text-more-items</code> props on
+                                      <code>&lt;post-breadcrumbs&gt;</code>
+                                    </li>
+                                    <li>
+                                      Set <code>url</code> and <code>label</code>/<code>description</code>
+                                      on each <code>&lt;post-breadcrumbs-item&gt;</code>
+                                    </li>
+                                  </ul>
+                                  The <code>hide-buttons</code> prop and <code>toggleOverlayById()</code>
+                                  method have no equivalent.
+
+                                  <p><strong>Before (v9 — part of Internet Header package)</strong></p>
+                                  <code-block
+                                    code=${'<swisspost-internet-breadcrumbs></swisspost-internet-breadcrumbs>'}
+                                  ></code-block>
+
+                                  <p><strong>After (v10 — part of Components package)</strong></p>
+                                  <code-block
+                                    code=${'<post-breadcrumbs\n  home-url="/"\n  text-home="Home"\n  text-breadcrumbs="Breadcrumbs"\n  text-more-items="More items"\n>\n  <post-breadcrumb-item url="/my-post">My Post</post-breadcrumb-item>\n  <post-breadcrumb-item url="/locations">Locations</post-breadcrumb-item>\n  <post-breadcrumb-item selected>Current Page</post-breadcrumb-item>\n</post-breadcrumbs>'}
+                                  ></code-block>
+
+                                  More information on the
+                                  <a href="/?path=/docs/b7db7391-f893-4b1e-a125-b30c6f0b028b--docs"
+                                    >breadcrumbs docs</a
+                                  >.
                                 </span>
                               </label>
                             </div>
