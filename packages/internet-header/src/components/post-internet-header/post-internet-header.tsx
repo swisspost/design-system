@@ -1,8 +1,8 @@
 import { Link, LinkProps, MegaDropdown, UserMenu } from '@/components/internal';
 import { dispose, state } from '@/data/store';
 import { ActiveRouteProp, Environment } from '@/models/general.model';
-import { UserMenuConfig } from '@/models/header.model';
-import { LinkConfig } from '@/models/shared.model';
+import { PostLoginConfig, UserMenuConfig } from '@/models/header.model';
+import { IconLinkConfig, LinkConfig } from '@/models/shared.model';
 import { getLocalizedConfig, isValidProjectId } from '@/services/config.service';
 import { getActiveLink } from '@/services/route.service';
 import { version } from '@root/package.json';
@@ -170,6 +170,7 @@ export class PostInternetHeader {
       // In case of an error, we assume the user is not logged in and do nothing
     }
   }
+
   // Fetch and store the localized config, defaulting to the `language` prop if none is passed
   private async updateConfig(language?: string) {
     state.localizedConfig = await getLocalizedConfig({
@@ -183,6 +184,14 @@ export class PostInternetHeader {
 
   private updateActiveUrl() {
     state.activeLink = getActiveLink(this.activeRoute);
+  }
+
+  private getUserMenuOptions(postLogin: PostLoginConfig): Array<IconLinkConfig> {
+    return [
+      ...(postLogin.userProfile ? [postLogin.userProfile] : []),
+      ...(postLogin.settings ? [postLogin.settings] : []),
+      ...(postLogin.userLinks ?? []),
+    ];
   }
 
   private renderNavItem(config: LinkConfig | UserMenuConfig, props: LinkProps = {}): string {
@@ -284,8 +293,10 @@ export class PostInternetHeader {
               state.user
                 ? {
                     user: state.user,
-                    options: globalHeader.postLogin.userLinks,
+                    options: this.getUserMenuOptions(globalHeader.postLogin),
                     accountSwitch: globalHeader.postLogin.accountSwitch,
+                    companySwitch: globalHeader.postLogin.companySwitch,
+                    logoutLink: globalHeader.postLogin.logoutLink,
                   }
                 : globalHeader.postLogin.loginLink,
               { slot: 'post-login' },
