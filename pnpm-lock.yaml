@@ -329,7 +329,7 @@ importers:
     devDependencies:
       '@angular/build':
         specifier: catalog:angular
-        version: 22.0.5(d5940d1969a906423d85d2a178ed0025)
+        version: 22.0.5(0a3fe101fa6ccc398dd2d2b081b02b7e)
       '@angular/cli':
         specifier: catalog:angular
         version: 22.0.5(@types/node@26.1.1)(chokidar@5.0.0)
@@ -771,7 +771,7 @@ importers:
         version: 17.3.0
       jest:
         specifier: catalog:jest
-        version: 30.3.0(@types/node@26.1.1)(esbuild-register@3.6.0(esbuild@0.28.1))
+        version: 30.3.0(@types/node@26.1.0)(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@26.1.0)(typescript@6.0.3))
       parse5:
         specifier: 7.2.1
         version: 7.2.1
@@ -780,7 +780,7 @@ importers:
         version: 6.0.1
       ts-jest:
         specifier: catalog:jest
-        version: 29.4.9(@babel/core@7.29.7)(@jest/transform@30.4.1)(@jest/types@30.4.1)(babel-jest@30.4.1(@babel/core@7.29.7))(esbuild@0.28.1)(jest-util@30.4.1)(jest@30.3.0(@types/node@26.1.1)(esbuild-register@3.6.0(esbuild@0.28.1)))(typescript@6.0.3)
+        version: 29.4.9(@babel/core@7.29.7)(@jest/transform@30.4.1)(@jest/types@30.4.1)(babel-jest@30.4.1(@babel/core@7.29.7))(esbuild@0.28.1)(jest-util@30.4.1)(jest@30.3.0(@types/node@26.1.0)(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@26.1.0)(typescript@6.0.3)))(typescript@6.0.3)
       typescript:
         specifier: catalog:typescript
         version: 6.0.3
@@ -961,7 +961,7 @@ importers:
         version: 4.2.0(eslint@9.26.0(jiti@2.6.1))
       eslint-plugin-jest:
         specifier: 29.15.4
-        version: 29.15.4(@typescript-eslint/eslint-plugin@8.62.0(@typescript-eslint/parser@7.18.0(eslint@9.26.0(jiti@2.6.1))(typescript@6.0.3))(eslint@9.26.0(jiti@2.6.1))(typescript@6.0.3))(eslint@9.26.0(jiti@2.6.1))(jest@30.3.0(@types/node@24.0.0)(esbuild-register@3.6.0(esbuild@0.28.1)))(typescript@6.0.3)
+        version: 29.15.4(@typescript-eslint/eslint-plugin@8.62.0(@typescript-eslint/parser@7.18.0(eslint@9.26.0(jiti@2.6.1))(typescript@6.0.3))(eslint@9.26.0(jiti@2.6.1))(typescript@6.0.3))(eslint@9.26.0(jiti@2.6.1))(jest@30.3.0(@types/node@24.0.0)(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@24.0.0)(typescript@6.0.3)))(typescript@6.0.3)
       eslint-plugin-react:
         specifier: 7.37.5
         version: 7.37.5(eslint@9.26.0(jiti@2.6.1))
@@ -976,7 +976,7 @@ importers:
         version: 15.0.0
       jest:
         specifier: catalog:jest
-        version: 30.3.0(@types/node@24.0.0)(esbuild-register@3.6.0(esbuild@0.28.1))
+        version: 30.3.0(@types/node@24.0.0)(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@24.0.0)(typescript@6.0.3))
       jest-environment-jsdom:
         specifier: 29.7.0
         version: 29.7.0
@@ -1000,7 +1000,7 @@ importers:
         version: 2.1.5
       ts-jest:
         specifier: catalog:jest
-        version: 29.4.9(@babel/core@7.29.7)(@jest/transform@30.4.1)(@jest/types@30.4.1)(babel-jest@30.4.1(@babel/core@7.29.7))(esbuild@0.28.1)(jest-util@30.4.1)(jest@30.3.0(@types/node@24.0.0)(esbuild-register@3.6.0(esbuild@0.28.1)))(typescript@6.0.3)
+        version: 29.4.9(@babel/core@7.29.7)(@jest/transform@30.4.1)(@jest/types@30.4.1)(babel-jest@30.4.1(@babel/core@7.29.7))(esbuild@0.28.1)(jest-util@30.4.1)(jest@30.3.0(@types/node@24.0.0)(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@24.0.0)(typescript@6.0.3)))(typescript@6.0.3)
       typescript:
         specifier: catalog:typescript
         version: 6.0.3
@@ -1028,7 +1028,7 @@ importers:
         version: 24.0.0
       autoprefixer:
         specifier: 10.5.0
-        version: 10.5.0(postcss@8.5.13)
+        version: 10.5.0(postcss@8.5.18)
       copyfiles:
         specifier: 2.4.1
         version: 2.4.1
@@ -1043,16 +1043,16 @@ importers:
         version: 1.4.0
       gulp-postcss:
         specifier: 10.0.0
-        version: 10.0.0(jiti@2.6.1)(postcss@8.5.13)
+        version: 10.0.0(jiti@2.6.1)(postcss@8.5.18)
       gulp-sass:
         specifier: 6.0.1
         version: 6.0.1
       postcss:
-        specifier: 8.5.13
-        version: 8.5.13
+        specifier: 8.5.18
+        version: 8.5.18
       postcss-scss:
         specifier: 4.0.9
-        version: 4.0.9(postcss@8.5.13)
+        version: 4.0.9(postcss@8.5.18)
       prettier:
         specifier: 3.6.2
         version: 3.6.2
@@ -1067,7 +1067,7 @@ importers:
         version: 16.26.1(typescript@6.0.3)
       stylelint-config-sass-guidelines:
         specifier: 11.1.0
-        version: 11.1.0(postcss@8.5.13)(stylelint@16.26.1(typescript@6.0.3))
+        version: 11.1.0(postcss@8.5.18)(stylelint@16.26.1(typescript@6.0.3))
       stylelint-prettier:
         specifier: 5.0.3
         version: 5.0.3(prettier@3.6.2)(stylelint@16.26.1(typescript@6.0.3))
@@ -5988,9 +5988,19 @@ packages:
 
   debug@2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
 
   debug@3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
 
   debug@4.4.0:
     resolution: {integrity: sha512-6WTZ/IxCY/T6BALoZHaE4ctp9xm+Z5kY/pzYaCHRFeyVhojxlrm+46y68HA6hr0TcwEssoxNiDEUJQjfPZ/RYA==}
@@ -8903,11 +8913,6 @@ packages:
     resolution: {integrity: sha512-dkEJPVvun4FryqBmZ5KhDo0K9iDXAwn08tMLDinNdRBNPcYEDiWYysLcc6k3mjTMlbP9KyylvRpd4wFtwrT9rw==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
-  nanoid@3.3.12:
-    resolution: {integrity: sha512-ZB9RH/39qpq5Vu6Y+NmUaFhQR6pp+M2Xt76XBnEwDaGcVAqhlvxrl3B2bKS5D3NH3QR76v3aSrKaF/Kiy7lEtQ==}
-    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
-    hasBin: true
-
   nanoid@3.3.16:
     resolution: {integrity: sha512-bzlKTyNJ7+LdGIIwy8ijFpIqEQIvafahV7eYykJ8Cvh42EdJeODoJ6gUJXpQJvej1BddH8OqTXZNE/KfbWAu8Q==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
@@ -9752,6 +9757,10 @@ packages:
     resolution: {integrity: sha512-qif0+jGGZoLWdHey3UFHHWP0H7Gbmsk8T5VEqyYFbWqPr1XqvLGBbk/sl8V5exGmcYJklJOhOQq1pV9IcsiFag==}
     engines: {node: ^10 || ^12 || >=14}
 
+  postcss@8.5.18:
+    resolution: {integrity: sha512-xdB1oSLHbz1vRWgCDalrCqEFTWzFlhqFC5tIHLMOSUIjhm3XXQ1qrFy8S/ESr1JYRRXqM3c1QFiMZUJdUTqyMQ==}
+    engines: {node: ^10 || ^12 || >=14}
+
   postcss@8.5.23:
     resolution: {integrity: sha512-g50586zr4bZmwFiTlflMu8E0bDTb5I5gertgwAKmsdUlTQIhZtunzUlD1WSzwcVWPoAVpsrA6vlfCD7oXvRwgg==}
     engines: {node: ^10 || ^12 || >=14}
@@ -9830,6 +9839,11 @@ packages:
 
   promise-inflight@1.0.1:
     resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
+    peerDependencies:
+      bluebird: '*'
+    peerDependenciesMeta:
+      bluebird:
+        optional: true
 
   promise-retry@2.0.1:
     resolution: {integrity: sha512-y+WKFlBR8BGXnsNlIHFGPZmyDf3DFMoLhaflAnyZgV6rG6xu+JwesTo2Q9R6XwYmtmwAFCkAk3e35jEdoeh/3g==}
@@ -12308,7 +12322,7 @@ snapshots:
       '@angular/core': 22.0.5(@angular/compiler@22.0.5)(rxjs@7.8.2)(zone.js@0.16.1)
       tslib: 2.8.1
 
-  '@angular/build@22.0.5(d5940d1969a906423d85d2a178ed0025)':
+  '@angular/build@22.0.5(0a3fe101fa6ccc398dd2d2b081b02b7e)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.2200.5(chokidar@5.0.0)
@@ -12347,7 +12361,7 @@ snapshots:
       less: 4.3.0
       lmdb: 3.5.4
       ng-packagr: 22.0.1(@angular/compiler-cli@22.0.5(@angular/compiler@22.0.5)(typescript@6.0.3))(tailwindcss@4.3.1)(tslib@2.8.1)(typescript@6.0.3)
-      postcss: 8.5.13
+      postcss: 8.5.18
       tailwindcss: 4.3.1
       vitest: 4.1.10(@types/node@26.1.1)(jsdom@26.1.0)(vite@7.3.5(@types/node@26.1.1)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.33.0)(sass-embedded@1.89.2)(sass@1.99.0)(terser@5.49.0)(yaml@2.8.3))
     transitivePeerDependencies:
@@ -13045,10 +13059,12 @@ snapshots:
       tunnel-agent: 0.6.0
       uuid: 8.3.2
 
-  '@cypress/xvfb@1.2.4':
+  '@cypress/xvfb@1.2.4(supports-color@8.1.1)':
     dependencies:
-      debug: 3.2.7
+      debug: 3.2.7(supports-color@8.1.1)
       lodash.once: 4.1.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@dual-bundle/import-meta-resolve@4.2.1': {}
 
@@ -13802,6 +13818,41 @@ snapshots:
       - supports-color
       - ts-node
 
+  '@jest/core@30.3.0(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@26.1.0)(typescript@6.0.3))':
+    dependencies:
+      '@jest/console': 30.3.0
+      '@jest/pattern': 30.0.1
+      '@jest/reporters': 30.3.0
+      '@jest/test-result': 30.3.0
+      '@jest/transform': 30.3.0
+      '@jest/types': 30.3.0
+      '@types/node': 26.1.0
+      ansi-escapes: 4.3.2
+      chalk: 4.1.2
+      ci-info: 4.4.0
+      exit-x: 0.2.2
+      graceful-fs: 4.2.11
+      jest-changed-files: 30.3.0
+      jest-config: 30.3.0(@types/node@26.1.0)(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@26.1.0)(typescript@6.0.3))
+      jest-haste-map: 30.3.0
+      jest-message-util: 30.3.0
+      jest-regex-util: 30.0.1
+      jest-resolve: 30.3.0
+      jest-resolve-dependencies: 30.3.0
+      jest-runner: 30.3.0
+      jest-runtime: 30.3.0
+      jest-snapshot: 30.3.0
+      jest-util: 30.3.0
+      jest-validate: 30.3.0
+      jest-watcher: 30.3.0
+      pretty-format: 30.3.0
+      slash: 3.0.0
+    transitivePeerDependencies:
+      - babel-plugin-macros
+      - esbuild-register
+      - supports-color
+      - ts-node
+
   '@jest/diff-sequences@30.3.0': {}
 
   '@jest/diff-sequences@30.4.0': {}
@@ -14459,6 +14510,8 @@ snapshots:
       proc-log: 4.2.0
       semver: 7.8.5
       walk-up-path: 3.0.1
+    transitivePeerDependencies:
+      - bluebird
 
   '@npmcli/fs@5.0.0':
     dependencies:
@@ -14475,6 +14528,8 @@ snapshots:
       promise-retry: 2.0.1
       semver: 7.8.5
       which: 4.0.0
+    transitivePeerDependencies:
+      - bluebird
 
   '@npmcli/git@7.0.2':
     dependencies:
@@ -14512,6 +14567,8 @@ snapshots:
       normalize-package-data: 6.0.2
       proc-log: 4.2.0
       semver: 7.8.5
+    transitivePeerDependencies:
+      - bluebird
 
   '@npmcli/package-json@7.0.5':
     dependencies:
@@ -14624,10 +14681,7 @@ snapshots:
     dependencies:
       '@percy/cli-command': 1.31.13(typescript@6.0.3)
     transitivePeerDependencies:
-      - bufferutil
-      - supports-color
       - typescript
-      - utf-8-validate
 
   '@percy/cli-command@1.31.13(typescript@6.0.3)':
     dependencies:
@@ -14644,10 +14698,7 @@ snapshots:
     dependencies:
       '@percy/cli-command': 1.31.13(typescript@6.0.3)
     transitivePeerDependencies:
-      - bufferutil
-      - supports-color
       - typescript
-      - utf-8-validate
 
   '@percy/cli-doctor@1.31.13(typescript@6.0.3)':
     dependencies:
@@ -14683,10 +14734,7 @@ snapshots:
       '@percy/cli-command': 1.31.13(typescript@6.0.3)
       yaml: 2.8.3
     transitivePeerDependencies:
-      - bufferutil
-      - supports-color
       - typescript
-      - utf-8-validate
 
   '@percy/cli-upload@1.31.13(typescript@6.0.3)':
     dependencies:
@@ -14694,10 +14742,7 @@ snapshots:
       fast-glob: 3.3.3
       image-size: 1.2.0
     transitivePeerDependencies:
-      - bufferutil
-      - supports-color
       - typescript
-      - utf-8-validate
 
   '@percy/cli@1.31.13(typescript@6.0.3)':
     dependencies:
@@ -16452,13 +16497,13 @@ snapshots:
 
   atob@2.1.2: {}
 
-  autoprefixer@10.5.0(postcss@8.5.13):
+  autoprefixer@10.5.0(postcss@8.5.18):
     dependencies:
       browserslist: 4.28.2
       caniuse-lite: 1.0.30001792
       fraction.js: 5.3.4
       picocolors: 1.1.1
-      postcss: 8.5.13
+      postcss: 8.5.18
       postcss-value-parser: 4.2.0
 
   available-typed-arrays@1.0.7:
@@ -16648,9 +16693,9 @@ snapshots:
       domhandler: 5.0.3
       htmlparser2: 10.0.0
       picocolors: 1.1.1
-      postcss: 8.5.13
+      postcss: 8.5.18
       postcss-media-query-parser: 0.2.3
-      postcss-safe-parser: 7.0.1(postcss@8.5.13)
+      postcss-safe-parser: 7.0.1(postcss@8.5.18)
 
   better-opn@3.0.2:
     dependencies:
@@ -16686,6 +16731,8 @@ snapshots:
       raw-body: 2.5.3
       type-is: 1.6.18
       unpipe: 1.0.0
+    transitivePeerDependencies:
+      - supports-color
     optional: true
 
   body-parser@2.2.2:
@@ -17083,6 +17130,8 @@ snapshots:
       finalhandler: 1.1.2
       parseurl: 1.3.3
       utils-merge: 1.0.1
+    transitivePeerDependencies:
+      - supports-color
     optional: true
 
   content-disposition@0.5.4:
@@ -17352,7 +17401,7 @@ snapshots:
   cypress@15.14.2:
     dependencies:
       '@cypress/request': 3.0.10
-      '@cypress/xvfb': 1.2.4
+      '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
       '@types/sinonjs__fake-timers': 8.1.1
       '@types/sizzle': 2.3.9
       '@types/tmp': 0.2.6
@@ -17441,18 +17490,22 @@ snapshots:
 
   debug-fabulous@1.1.0:
     dependencies:
-      debug: 3.2.7
+      debug: 3.2.7(supports-color@8.1.1)
       memoizee: 0.4.17
       object-assign: 4.1.1
+    transitivePeerDependencies:
+      - supports-color
 
   debug@2.6.9:
     dependencies:
       ms: 2.0.0
     optional: true
 
-  debug@3.2.7:
+  debug@3.2.7(supports-color@8.1.1):
     dependencies:
       ms: 2.1.3
+    optionalDependencies:
+      supports-color: 8.1.1
 
   debug@4.4.0:
     dependencies:
@@ -18003,6 +18056,7 @@ snapshots:
       uvu: 0.5.6
       vfile: 6.0.3
     transitivePeerDependencies:
+      - bluebird
       - supports-color
 
   eslint-plugin-cypress@4.2.0(eslint@9.26.0(jiti@2.6.1)):
@@ -18021,13 +18075,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-jest@29.15.4(@typescript-eslint/eslint-plugin@8.62.0(@typescript-eslint/parser@7.18.0(eslint@9.26.0(jiti@2.6.1))(typescript@6.0.3))(eslint@9.26.0(jiti@2.6.1))(typescript@6.0.3))(eslint@9.26.0(jiti@2.6.1))(jest@30.3.0(@types/node@24.0.0)(esbuild-register@3.6.0(esbuild@0.28.1)))(typescript@6.0.3):
+  eslint-plugin-jest@29.15.4(@typescript-eslint/eslint-plugin@8.62.0(@typescript-eslint/parser@7.18.0(eslint@9.26.0(jiti@2.6.1))(typescript@6.0.3))(eslint@9.26.0(jiti@2.6.1))(typescript@6.0.3))(eslint@9.26.0(jiti@2.6.1))(jest@30.3.0(@types/node@24.0.0)(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@24.0.0)(typescript@6.0.3)))(typescript@6.0.3):
     dependencies:
       '@typescript-eslint/utils': 8.49.0(eslint@9.26.0(jiti@2.6.1))(typescript@6.0.3)
       eslint: 9.26.0(jiti@2.6.1)
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 8.62.0(@typescript-eslint/parser@7.18.0(eslint@9.26.0(jiti@2.6.1))(typescript@6.0.3))(eslint@9.26.0(jiti@2.6.1))(typescript@6.0.3)
-      jest: 30.3.0(@types/node@24.0.0)(esbuild-register@3.6.0(esbuild@0.28.1))
+      jest: 30.3.0(@types/node@24.0.0)(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@24.0.0)(typescript@6.0.3))
       typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
@@ -18046,6 +18100,7 @@ snapshots:
       unified: 11.0.5
       vfile: 6.0.3
     transitivePeerDependencies:
+      - bluebird
       - remark-lint-file-extension
       - supports-color
 
@@ -18510,6 +18565,8 @@ snapshots:
       parseurl: 1.3.3
       statuses: 1.5.0
       unpipe: 1.0.0
+    transitivePeerDependencies:
+      - supports-color
     optional: true
 
   finalhandler@2.1.0:
@@ -18890,12 +18947,12 @@ snapshots:
       kew: 0.7.0
       plugin-error: 0.1.2
 
-  gulp-postcss@10.0.0(jiti@2.6.1)(postcss@8.5.13):
+  gulp-postcss@10.0.0(jiti@2.6.1)(postcss@8.5.18):
     dependencies:
       fancy-log: 2.0.0
       plugin-error: 2.0.1
-      postcss: 8.5.13
-      postcss-load-config: 5.1.0(jiti@2.6.1)(postcss@8.5.13)
+      postcss: 8.5.18
+      postcss-load-config: 5.1.0(jiti@2.6.1)(postcss@8.5.18)
       vinyl-sourcemaps-apply: 0.2.1
     transitivePeerDependencies:
       - jiti
@@ -18923,6 +18980,8 @@ snapshots:
       source-map: 0.6.1
       strip-bom-string: 1.0.0
       through2: 2.0.5
+    transitivePeerDependencies:
+      - supports-color
 
   gulp@5.0.1:
     dependencies:
@@ -19140,6 +19199,7 @@ snapshots:
       url-join: 4.0.1
     transitivePeerDependencies:
       - debug
+      - supports-color
 
   http-signature@1.4.0:
     dependencies:
@@ -19685,25 +19745,6 @@ snapshots:
       - supports-color
       - ts-node
 
-  jest-cli@30.3.0(@types/node@24.0.0)(esbuild-register@3.6.0(esbuild@0.28.1)):
-    dependencies:
-      '@jest/core': 30.3.0(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@24.0.0)(typescript@6.0.3))
-      '@jest/test-result': 30.3.0
-      '@jest/types': 30.3.0
-      chalk: 4.1.2
-      exit-x: 0.2.2
-      import-local: 3.2.0
-      jest-config: 30.3.0(@types/node@24.0.0)(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@24.0.0)(typescript@6.0.3))
-      jest-util: 30.3.0
-      jest-validate: 30.3.0
-      yargs: 17.7.2
-    transitivePeerDependencies:
-      - '@types/node'
-      - babel-plugin-macros
-      - esbuild-register
-      - supports-color
-      - ts-node
-
   jest-cli@30.3.0(@types/node@24.0.0)(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@24.0.0)(typescript@6.0.3)):
     dependencies:
       '@jest/core': 30.3.0(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@24.0.0)(typescript@6.0.3))
@@ -19723,15 +19764,15 @@ snapshots:
       - supports-color
       - ts-node
 
-  jest-cli@30.3.0(@types/node@26.1.1)(esbuild-register@3.6.0(esbuild@0.28.1)):
+  jest-cli@30.3.0(@types/node@26.1.0)(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@26.1.0)(typescript@6.0.3)):
     dependencies:
-      '@jest/core': 30.3.0(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@24.0.0)(typescript@6.0.3))
+      '@jest/core': 30.3.0(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@26.1.0)(typescript@6.0.3))
       '@jest/test-result': 30.3.0
       '@jest/types': 30.3.0
       chalk: 4.1.2
       exit-x: 0.2.2
       import-local: 3.2.0
-      jest-config: 30.3.0(@types/node@26.1.1)(esbuild-register@3.6.0(esbuild@0.28.1))
+      jest-config: 30.3.0(@types/node@26.1.0)(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@26.1.0)(typescript@6.0.3))
       jest-util: 30.3.0
       jest-validate: 30.3.0
       yargs: 17.7.2
@@ -19870,7 +19911,7 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
-  jest-config@30.3.0(@types/node@26.1.1)(esbuild-register@3.6.0(esbuild@0.28.1)):
+  jest-config@30.3.0(@types/node@26.1.0)(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@26.1.0)(typescript@6.0.3)):
     dependencies:
       '@babel/core': 7.29.7
       '@jest/get-type': 30.1.0
@@ -19896,8 +19937,9 @@ snapshots:
       slash: 3.0.0
       strip-json-comments: 3.1.1
     optionalDependencies:
-      '@types/node': 26.1.1
+      '@types/node': 26.1.0
       esbuild-register: 3.6.0(esbuild@0.28.1)
+      ts-node: 10.9.2(@types/node@26.1.0)(typescript@6.0.3)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -20434,19 +20476,6 @@ snapshots:
       - supports-color
       - ts-node
 
-  jest@30.3.0(@types/node@24.0.0)(esbuild-register@3.6.0(esbuild@0.28.1)):
-    dependencies:
-      '@jest/core': 30.3.0(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@24.0.0)(typescript@6.0.3))
-      '@jest/types': 30.3.0
-      import-local: 3.2.0
-      jest-cli: 30.3.0(@types/node@24.0.0)(esbuild-register@3.6.0(esbuild@0.28.1))
-    transitivePeerDependencies:
-      - '@types/node'
-      - babel-plugin-macros
-      - esbuild-register
-      - supports-color
-      - ts-node
-
   jest@30.3.0(@types/node@24.0.0)(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@24.0.0)(typescript@6.0.3)):
     dependencies:
       '@jest/core': 30.3.0(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@24.0.0)(typescript@6.0.3))
@@ -20460,12 +20489,12 @@ snapshots:
       - supports-color
       - ts-node
 
-  jest@30.3.0(@types/node@26.1.1)(esbuild-register@3.6.0(esbuild@0.28.1)):
+  jest@30.3.0(@types/node@26.1.0)(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@26.1.0)(typescript@6.0.3)):
     dependencies:
-      '@jest/core': 30.3.0(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@24.0.0)(typescript@6.0.3))
+      '@jest/core': 30.3.0(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@26.1.0)(typescript@6.0.3))
       '@jest/types': 30.3.0
       import-local: 3.2.0
-      jest-cli: 30.3.0(@types/node@26.1.1)(esbuild-register@3.6.0(esbuild@0.28.1))
+      jest-cli: 30.3.0(@types/node@26.1.0)(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@26.1.0)(typescript@6.0.3))
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -20900,6 +20929,8 @@ snapshots:
     dependencies:
       '@npmcli/config': 8.3.4
       import-meta-resolve: 4.2.0
+    transitivePeerDependencies:
+      - bluebird
 
   loader-runner@4.3.2: {}
 
@@ -21672,8 +21703,6 @@ snapshots:
 
   mute-stream@3.0.0: {}
 
-  nanoid@3.3.12: {}
-
   nanoid@3.3.16: {}
 
   napi-postinstall@0.3.4: {}
@@ -22344,8 +22373,10 @@ snapshots:
   portfinder@1.0.32:
     dependencies:
       async: 2.6.4
-      debug: 3.2.7
+      debug: 3.2.7(supports-color@8.1.1)
       mkdirp: 0.5.6
+    transitivePeerDependencies:
+      - supports-color
 
   possible-typed-array-names@1.1.0: {}
 
@@ -22397,13 +22428,13 @@ snapshots:
       postcss: 8.5.23
       ts-node: 10.9.2(@types/node@24.0.0)(typescript@6.0.3)
 
-  postcss-load-config@5.1.0(jiti@2.6.1)(postcss@8.5.13):
+  postcss-load-config@5.1.0(jiti@2.6.1)(postcss@8.5.18):
     dependencies:
       lilconfig: 3.1.2
       yaml: 2.8.3
     optionalDependencies:
       jiti: 2.6.1
-      postcss: 8.5.13
+      postcss: 8.5.18
 
   postcss-media-query-parser@0.2.3: {}
 
@@ -22543,13 +22574,13 @@ snapshots:
 
   postcss-resolve-nested-selector@0.1.6: {}
 
-  postcss-safe-parser@7.0.1(postcss@8.5.13):
+  postcss-safe-parser@7.0.1(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.13
+      postcss: 8.5.18
 
-  postcss-scss@4.0.9(postcss@8.5.13):
+  postcss-scss@4.0.9(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.13
+      postcss: 8.5.18
 
   postcss-selector-parser@6.1.2:
     dependencies:
@@ -22589,7 +22620,13 @@ snapshots:
 
   postcss@8.5.13:
     dependencies:
-      nanoid: 3.3.12
+      nanoid: 3.3.16
+      picocolors: 1.1.1
+      source-map-js: 1.2.1
+
+  postcss@8.5.18:
+    dependencies:
+      nanoid: 3.3.16
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
@@ -22601,7 +22638,7 @@ snapshots:
 
   postcss@8.5.6:
     dependencies:
-      nanoid: 3.3.12
+      nanoid: 3.3.16
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
@@ -23991,10 +24028,10 @@ snapshots:
       postcss: 8.5.23
       postcss-selector-parser: 6.1.2
 
-  stylelint-config-sass-guidelines@11.1.0(postcss@8.5.13)(stylelint@16.26.1(typescript@6.0.3)):
+  stylelint-config-sass-guidelines@11.1.0(postcss@8.5.18)(stylelint@16.26.1(typescript@6.0.3)):
     dependencies:
-      postcss: 8.5.13
-      postcss-scss: 4.0.9(postcss@8.5.13)
+      postcss: 8.5.18
+      postcss-scss: 4.0.9(postcss@8.5.18)
       stylelint: 16.26.1(typescript@6.0.3)
       stylelint-scss: 6.12.1(stylelint@16.26.1(typescript@6.0.3))
 
@@ -24046,9 +24083,9 @@ snapshots:
       micromatch: 4.0.8
       normalize-path: 3.0.0
       picocolors: 1.1.1
-      postcss: 8.5.13
+      postcss: 8.5.18
       postcss-resolve-nested-selector: 0.1.6
-      postcss-safe-parser: 7.0.1(postcss@8.5.13)
+      postcss-safe-parser: 7.0.1(postcss@8.5.18)
       postcss-selector-parser: 7.1.0
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
@@ -24327,33 +24364,12 @@ snapshots:
       esbuild: 0.28.1
       jest-util: 30.4.1
 
-  ts-jest@29.4.9(@babel/core@7.29.7)(@jest/transform@30.4.1)(@jest/types@30.4.1)(babel-jest@30.4.1(@babel/core@7.29.7))(esbuild@0.28.1)(jest-util@30.4.1)(jest@30.3.0(@types/node@24.0.0)(esbuild-register@3.6.0(esbuild@0.28.1)))(typescript@6.0.3):
+  ts-jest@29.4.9(@babel/core@7.29.7)(@jest/transform@30.4.1)(@jest/types@30.4.1)(babel-jest@30.4.1(@babel/core@7.29.7))(esbuild@0.28.1)(jest-util@30.4.1)(jest@30.3.0(@types/node@26.1.0)(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@26.1.0)(typescript@6.0.3)))(typescript@6.0.3):
     dependencies:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
       handlebars: 4.7.9
-      jest: 30.3.0(@types/node@24.0.0)(esbuild-register@3.6.0(esbuild@0.28.1))
-      json5: 2.2.3
-      lodash.memoize: 4.1.2
-      make-error: 1.3.6
-      semver: 7.8.4
-      type-fest: 4.41.0
-      typescript: 6.0.3
-      yargs-parser: 21.1.1
-    optionalDependencies:
-      '@babel/core': 7.29.7
-      '@jest/transform': 30.4.1
-      '@jest/types': 30.4.1
-      babel-jest: 30.4.1(@babel/core@7.29.7)
-      esbuild: 0.28.1
-      jest-util: 30.4.1
-
-  ts-jest@29.4.9(@babel/core@7.29.7)(@jest/transform@30.4.1)(@jest/types@30.4.1)(babel-jest@30.4.1(@babel/core@7.29.7))(esbuild@0.28.1)(jest-util@30.4.1)(jest@30.3.0(@types/node@26.1.1)(esbuild-register@3.6.0(esbuild@0.28.1)))(typescript@6.0.3):
-    dependencies:
-      bs-logger: 0.2.6
-      fast-json-stable-stringify: 2.1.0
-      handlebars: 4.7.9
-      jest: 30.3.0(@types/node@26.1.1)(esbuild-register@3.6.0(esbuild@0.28.1))
+      jest: 30.3.0(@types/node@26.1.0)(esbuild-register@3.6.0(esbuild@0.28.1))(ts-node@10.9.2(@types/node@26.1.0)(typescript@6.0.3))
       json5: 2.2.3
       lodash.memoize: 4.1.2
       make-error: 1.3.6
@@ -24411,6 +24427,25 @@ snapshots:
       typescript: 6.0.3
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
+
+  ts-node@10.9.2(@types/node@26.1.0)(typescript@6.0.3):
+    dependencies:
+      '@cspotcode/source-map-support': 0.8.1
+      '@tsconfig/node10': 1.0.9
+      '@tsconfig/node12': 1.0.11
+      '@tsconfig/node14': 1.0.3
+      '@tsconfig/node16': 1.0.4
+      '@types/node': 26.1.0
+      acorn: 8.17.0
+      acorn-walk: 8.2.0
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      typescript: 6.0.3
+      v8-compile-cache-lib: 3.0.1
+      yn: 3.1.1
+    optional: true
 
   tslib@1.14.1: {}
 
@@ -24588,6 +24623,7 @@ snapshots:
       vfile-statistics: 3.0.0
       yaml: 2.8.3
     transitivePeerDependencies:
+      - bluebird
       - supports-color
 
   unified@11.0.5:
@@ -24909,7 +24945,7 @@ snapshots:
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.5
-      postcss: 8.5.23
+      postcss: 8.5.18
       rolldown: 1.0.3
       tinyglobby: 0.2.17
     optionalDependencies:
@@ -24927,7 +24963,7 @@ snapshots:
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.5
-      postcss: 8.5.23
+      postcss: 8.5.18
       rolldown: 1.0.3
       tinyglobby: 0.2.17
     optionalDependencies:
