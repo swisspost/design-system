@@ -16,7 +16,7 @@ export const FooterArgs = {
 const meta: MetaComponent = {
   id: 'f2eddf67-2c3c-40c4-bfec-df49bd028001',
   title: 'Components/Form Footer',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:New'],
   render: render,
   parameters: {
     badges: [],
@@ -130,21 +130,15 @@ export function render(args: Args) {
 
   return html`
     <div class="form-footer">
-      ${
-        args.showPrimaryButton || args.showSecondaryButton
-          ? html`
-              <div class="form-footer-primary-actions">${primaryButton} ${secondaryButton}</div>
-            `
-          : null
-      }
-      ${
-        args.showTertiaryButton
-          ? html`<button class="btn btn-tertiary px-0">
-              <post-icon aria-hidden="true" name="${args.tertiaryButtonIcon}"></post-icon
-              >${args.tertiaryButtonText}
-            </button>`
-          : null
-      }
+      ${args.showPrimaryButton || args.showSecondaryButton
+        ? html`<div class="form-footer-primary-actions">${primaryButton} ${secondaryButton}</div>`
+        : null}
+      ${args.showTertiaryButton
+        ? html`<button class="btn btn-tertiary px-0">
+            <post-icon aria-hidden="true" name="${args.tertiaryButtonIcon}"></post-icon
+            >${args.tertiaryButtonText}
+          </button>`
+        : null}
     </div>
   `;
 }

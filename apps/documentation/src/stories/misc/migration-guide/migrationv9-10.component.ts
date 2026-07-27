@@ -101,6 +101,10 @@ export class MigrationV910Component extends LitElement {
       update_package: false,
       add_text_props: false,
       remove_props: false,
+      breadcrumb_migration: false,
+    },
+    intranet_header: {
+      migration: false,
     },
   };
 
@@ -111,6 +115,7 @@ export class MigrationV910Component extends LitElement {
       this.state = {
         ...restored,
         internet_header: restored.internet_header ?? this.state.internet_header,
+        intranet_header: restored.intranet_header ?? this.state.intranet_header,
       };
     }
     setTimeout(() => this._toggleAutoMigrationVisibility(), 0);
@@ -1060,6 +1065,222 @@ export class MyComponent {
                   </li>
                 </ul>
               </section>
+              ${
+                this.environment === 'intranet'
+                  ? html`
+                      <section>
+                        <h4>Intranet header</h4>
+                        <p>
+                          The <code>sp-intranet-header</code> no longer exists. In this new version,
+                          both internet and intranet use the same
+                          <a href="/?path=/docs/27a2e64d-55ba-492d-ab79-5f7c5e818498--docs"
+                            ><code>post-header</code></a
+                          >
+                          component and compose content through slots. For intranet applications,
+                          this means using the
+                          <a
+                            href="/?path=/docs/27a2e64d-55ba-492d-ab79-5f7c5e818498--docs#application"
+                            >application header</a
+                          >
+                          variant. If you were also using a sidebar, migrate it to the
+                          <a href="/?path=/docs/9f26d86e-7edb-5804-ac96-92g22f91c9d9--docs"
+                            >post-side-navigation</a
+                          >
+                          component.
+                        </p>
+
+                        <ul class="list-unstyled">
+                          <li class="mb-16">
+                            <div class="form-check">
+                              <input
+                                id="intranet_header-migration"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.intranet_header.migration}"
+                              />
+                              <label class="form-check-label" for="intranet_header-migration">
+                                Migrate old intranet header properties to the new
+                                <code>post-header</code> structure
+                                <span class="info">
+                                  <p><strong>Migration mapping:</strong></p>
+                                  <ul>
+                                    <li>
+                                      <code>siteTitle</code> → move to the
+                                      <code>slot="title"</code>.
+                                    </li>
+                                    <li>
+                                      <code>showIntranetSearch</code> → there is no longer a search
+                                      within the header itself, you can add a link to your search
+                                      page on the <code>slot="local-nav"</code>.
+                                    </li>
+                                    <li>
+                                      <code>languages</code> and <code>lang</code> → use
+                                      <code>post-language-menu</code> in
+                                      <code>slot="local-nav"</code>. The <code>lang</code> is
+                                      replaced with setting <code>active="true"</code> on the
+                                      currently active language entry. Keep language switching and
+                                      persistence logic in your application code.
+                                    </li>
+                                    <li>
+                                      <code>currentUserId</code> and <code>displayName</code> → map
+                                      to your authenticated user state and render user UI in
+                                      <code>slot="post-login"</code>. When no user is authenticated,
+                                      render a login link in the same slot.
+                                    </li>
+                                    <li>
+                                      <code>additionalInfo</code> and
+                                      <code>optionDropdownContent</code> → move content into the
+                                      user <code>post-menu</code>..
+                                    </li>
+                                    <li>
+                                      <code>optionHeaderContent</code> → no longer available. If
+                                      needed on the header, the content can be manually appended to
+                                      the title area.
+                                    </li>
+                                    <li>
+                                      <code>navigation</code> → move links to
+                                      <code>slot="local-nav"</code>. If there are many, or if
+                                      nesting/dropdowns are needed, migrate to
+                                      <code>post-side-navigation</code>. If you need two different
+                                      navigations (navigation links + side navigation), you can move
+                                      those links into the <code>post-mainnavigation</code>.
+                                    </li>
+                                    <li>
+                                      <code>logoUrl</code> → set URL directly on
+                                      <code>post-logo</code> in <code>slot="post-logo"</code>.
+                                    </li>
+                                  </ul>
+                                  <p>
+                                    <strong>Accessibility reminders</strong>: set
+                                    <code>aria-current="page"</code> on active navigation links.
+                                  </p>
+                                </span>
+                                <code-block
+                                  code=${`<post-header>
+  <div slot="title">
+    My Application <!-- Previous siteTitle -->
+    <small class="d-block">INT / v10.0.0</small> <!-- Previous optionHeaderContent -->
+  </div>
+  <a slot="post-logo" href="/">
+    <post-logo url="/home"></post-logo> <!-- Previous logoUrl → url prop -->
+  </a>
+
+  <ul slot="local-nav" class="d-flex align-items-center gap-8">
+    <li><a href="/search">Search</a></li> <!-- Previous showIntranetSearch → Link to search page -->
+    <li><a href="/dashboard" aria-current="page">Dashboard</a></li>
+    <li>
+      <!-- Previous languages and lang → Implement language menu component -->
+      <post-language-menu
+        text-change-language="Change the language"
+        text-current-language="The currently selected language is {name}."
+        name="header-language"
+      >
+        <post-language-menu-item code="de" name="German" active="true">de</post-language-menu-item>
+        <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
+        <post-language-menu-item code="it" name="Italian">it</post-language-menu-item>
+        <post-language-menu-item code="en" name="English">en</post-language-menu-item>
+      </post-language-menu>
+    </li>
+  </ul>
+
+  <div slot="post-login">
+    <post-menu-trigger for="user-menu">
+      <button class="btn btn-link" type="button">
+        <!-- currentUserId → Render user UI in post-avatar -->
+        <post-avatar
+          firstname="Jane"
+          lastname="Doe"
+          description="Current user is Jane Doe."
+        ></post-avatar>
+        <span class="visually-hidden">Access user links.</span>
+      </button>
+    </post-menu-trigger>
+    <post-menu id="user-menu" label="User links">
+      <div slot="header">
+        <post-avatar firstname="Jane" lastname="Doe" aria-hidden="true"></post-avatar>
+        <p>Jane Doe</p> <!-- displayName -->
+      </div>
+      <!-- Previous optionDropdownContent and additionalInfo -->
+      <post-menu-item>
+        <a href="/profile">
+          <post-icon aria-hidden="true" name="profile"></post-icon>
+          My Profile
+        </a>
+      </post-menu-item>
+      ...
+      <post-menu-item>
+        <button type="button">
+          <post-icon aria-hidden="true" name="logout"></post-icon>
+          Logout
+        </button>
+      </post-menu-item>
+    </post-menu>
+  </div>
+</post-header>`}
+                                ></code-block>
+                                <span class="info">
+                                  <p>
+                                    <strong
+                                      >Sidebar migration example (.sidebar →
+                                      post-side-navigation)</strong
+                                    >
+                                  </p>
+                                </span>
+                                <code-block
+                                  code=${`<!-- v9 -->
+<nav class="col-md-3 col-lg-2 d-md-flex bg-light sidebar p-md-3" id="sidebar">
+  ...
+</nav>
+
+<!-- v10 -->
+<post-side-navigation text-close="Close navigation">
+  <nav aria-label="Side navigation">
+    <h2 class="post-side-navigation-heading">Section title (optional)</h2>
+    <ul>
+      <li>
+        <a href="/" class="post-side-navigation-item">
+          <post-icon name="letter" aria-hidden="true"></post-icon>
+          Home
+        </a>
+      </li>
+      <li>
+        <post-collapsible-trigger>
+          <button class="post-side-navigation-item">
+            <post-icon name="letter" aria-hidden="true"></post-icon>
+            Menu Text
+            <post-icon name="chevrondown" aria-hidden="true"></post-icon>
+          </button>
+          <post-collapsible>
+            <ul>
+              <li>
+                <a href="#" class="post-side-navigation-item" aria-current="page"
+                  >Link 1 (active)</a
+                >
+              </li>
+              <li><a href="#" class="post-side-navigation-item">Link 2</a></li>
+              <li><a href="#" class="post-side-navigation-item">Link 3</a></li>
+              <li><a href="#" class="post-side-navigation-item">Link 4</a></li>
+              <li><a href="#" class="post-side-navigation-item">Link 5</a></li>
+            </ul>
+          </post-collapsible>
+        </post-collapsible-trigger>
+      </li>
+    </ul>
+  </nav>
+</post-side-navigation>
+
+<main class="main-container">
+  <!-- page content -->
+</main>`}
+                                ></code-block>
+                              </label>
+                            </div>
+                          </li>
+                        </ul>
+                      </section>
+                    `
+                  : nothing
+              }
               <section>
                 <h4>Components</h4>
 
@@ -1286,6 +1507,59 @@ export class MyComponent {
                                   <code>language-switch-overrides</code>. Only
                                   <code>language</code> and <code>active-route</code> remain
                                   reactive at runtime.
+                                </span>
+                              </label>
+                            </div>
+                          </li>
+                          <li class="mb-16">
+                            <div class="form-check">
+                              <input
+                                id="internet_header-breadcrumb_migration"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.internet_header.breadcrumb_migration}"
+                              />
+                              <label class="form-check-label" for="internet_header-breadcrumb_migration">
+                                Migrate from <code>&lt;swisspost-internet-breadcrumbs&gt;</code> to
+                                <code>&lt;post-breadcrumbs&gt;</code>
+                                <span class="info">
+                                  The <code>&lt;swisspost-internet-breadcrumbs&gt;</code> component has been
+                                  removed, as breadcrumbs are not included in the online service header.
+                                  Migrate to the self-managed
+                                  <code>&lt;post-breadcrumbs&gt;</code> and
+                                  <code>&lt;post-breadcrumb-item&gt;</code> components instead.
+                                  <br /><br />
+                                  The old component generated its trail automatically from the header
+                                  config, usually requiring no props. The new components require
+                                  manual setup:
+                                  <ul>
+                                    <li>
+                                      Set <code>home-url</code>, <code>text-home</code>,
+                                      <code>text-breadcrumbs</code>, and <code>text-more-items</code> props on
+                                      <code>&lt;post-breadcrumbs&gt;</code>
+                                    </li>
+                                    <li>
+                                      Set <code>url</code> and <code>label</code>/<code>description</code>
+                                      on each <code>&lt;post-breadcrumbs-item&gt;</code>
+                                    </li>
+                                  </ul>
+                                  The <code>hide-buttons</code> prop and <code>toggleOverlayById()</code>
+                                  method have no equivalent.
+
+                                  <p><strong>Before (v9 — part of Internet Header package)</strong></p>
+                                  <code-block
+                                    code=${'<swisspost-internet-breadcrumbs></swisspost-internet-breadcrumbs>'}
+                                  ></code-block>
+
+                                  <p><strong>After (v10 — part of Components package)</strong></p>
+                                  <code-block
+                                    code=${'<post-breadcrumbs\n  home-url="/"\n  text-home="Home"\n  text-breadcrumbs="Breadcrumbs"\n  text-more-items="More items"\n>\n  <post-breadcrumb-item url="/my-post">My Post</post-breadcrumb-item>\n  <post-breadcrumb-item url="/locations">Locations</post-breadcrumb-item>\n  <post-breadcrumb-item selected>Current Page</post-breadcrumb-item>\n</post-breadcrumbs>'}
+                                  ></code-block>
+
+                                  More information on the
+                                  <a href="/?path=/docs/b7db7391-f893-4b1e-a125-b30c6f0b028b--docs"
+                                    >breadcrumbs docs</a
+                                  >.
                                 </span>
                               </label>
                             </div>

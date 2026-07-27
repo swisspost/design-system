@@ -7,7 +7,7 @@ const meta: MetaComponent = {
   id: '5ef3cb45-86f6-4baf-bdbf-35bd2ddf0f3d',
   title: 'Raw Components/Form Autocomplete',
   component: 'post-autocomplete',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'devOnly', 'status:New'],
   render: createAutocompleteRenderer(),
   parameters: {
     badges: [],
@@ -118,11 +118,9 @@ export function createAutocompleteRenderer({ detached = false }: { detached?: bo
         ${detached ? null : html`<post-listbox>${getListboxOptions()}</post-listbox>`}
       </post-autocomplete>
 
-      ${
-        detached
-          ? html`<post-listbox id="${listboxId}">${getListboxOptions()}</post-listbox>`
-          : null
-      }
+      ${detached
+        ? html`<post-listbox id="${listboxId}">${getListboxOptions()}</post-listbox>`
+        : null}
     `;
   };
 }

@@ -5,7 +5,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'bc68b346-2fdd-436e-bddf-309d24df06a1',
   title: 'Components/Form Search',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:New'],
   render: render,
   parameters: {
     badges: [],
@@ -81,28 +81,24 @@ function render(args: Args, context: StoryContext) {
         value="${args.value}"
       />
       <label class="form-label" for="${id}">Label</label>
-      ${
-        args.showDeleteButton
-          ? html`
-              <button
-                class="delete-button"
-                aria-label="Clear search"
-                onclick="this.closest('.search-input').querySelector('input').value = ''"
-              >
-                <post-icon name="closex"></post-icon>
-              </button>
-            `
-          : nothing
-      }
-      ${
-        args.showSearchButton
-          ? html`
-              <button class="search-button" aria-label="Start search">
-                <post-icon name="search"></post-icon>
-              </button>
-            `
-          : nothing
-      }
+      ${args.showDeleteButton
+        ? html`
+            <button
+              class="delete-button"
+              aria-label="Clear search"
+              onclick="this.closest('.search-input').querySelector('input').value = ''"
+            >
+              <post-icon name="closex"></post-icon>
+            </button>
+          `
+        : nothing}
+      ${args.showSearchButton
+        ? html`
+            <button class="search-button" aria-label="Start search">
+              <post-icon name="search"></post-icon>
+            </button>
+          `
+        : nothing}
     </div>
   `;
 }

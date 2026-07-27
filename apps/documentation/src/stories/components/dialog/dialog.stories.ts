@@ -15,7 +15,7 @@ const DIALOG_VARIANT_OPTIONS = {
 const meta: Meta = {
   id: '562eac2b-6dc1-4007-ba8e-4e981cef0cbc',
   title: 'Components/Dialog',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:New'],
   parameters: {
     design: {
       type: 'figma',

@@ -511,7 +511,9 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('Has no detectable a11y violations on load', () => {
-      cy.checkA11y('post-tooltip');
+      cy.checkA11y('post-tooltip', undefined, (violations) => {
+        expect(violations).to.have.length(0);
+      });
     });
   });
 });

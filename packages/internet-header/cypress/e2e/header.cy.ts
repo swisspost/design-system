@@ -8,7 +8,7 @@ const language = 'de';
 
 describe('header', () => {
   describe('default', () => {
-    const headerConfig = testConfiguration[language].header;
+    const headerConfig = testConfiguration.header;
     beforeEach(() => {
       prepare(HEADER, 'Default');
       cy.changeArg('language', language);
@@ -85,8 +85,8 @@ describe('header', () => {
 
     context('active route', () => {
       const activeRouteConfig = copyConfig();
-      activeRouteConfig[language]!.header.globalHeader.audience![0].url = '/audience-private';
-      activeRouteConfig[language]!.header.globalHeader.secondaryNavigation![0].url = '/jobs';
+      activeRouteConfig!.header.globalHeader.audience![0].url = '/audience-private';
+      activeRouteConfig!.header.globalHeader.secondaryNavigation![0].url = '/jobs';
 
       beforeEach(() => {
         prepare(HEADER, 'Default', {
@@ -136,8 +136,8 @@ describe('header', () => {
 
       it('should set only one active link when URL exists in multiple header areas', () => {
         const conflictConfig = copyConfig();
-        conflictConfig[language]!.header.globalHeader.audience![0].url = '/letters';
-        conflictConfig[language]!.header.globalHeader.secondaryNavigation![0].url = '/jobs';
+        conflictConfig!.header.globalHeader.audience![0].url = '/letters';
+        conflictConfig!.header.globalHeader.secondaryNavigation![0].url = '/jobs';
 
         prepare(HEADER, 'Default', {
           config: conflictConfig,
@@ -154,7 +154,7 @@ describe('header', () => {
   });
 
   describe('post login', () => {
-    const postLoginConfig = testConfiguration[language].header.globalHeader.postLogin;
+    const postLoginConfig = testConfiguration.header.globalHeader.postLogin;
 
     context('logged out', () => {
       beforeEach(() => {
@@ -190,17 +190,26 @@ describe('header', () => {
       });
 
       it('should show the user menu with the correct user links', () => {
+        // accountSwitch/companySwitch depend on the mocked user's permissions
+        // (auth.json) — only userProfile, settings, userLinks, and logoutLink
+        // are counted here.
+        const expectedCount =
+          (postLoginConfig.userProfile ? 1 : 0) +
+          (postLoginConfig.settings ? 1 : 0) +
+          (postLoginConfig.userLinks?.length ?? 0) +
+          (postLoginConfig.logoutLink ? 1 : 0);
+
         cy.get('[slot="post-login"] post-menu-trigger button').click();
         cy.get('[slot="post-login"] post-menu')
           .find('post-menu-item')
           .should('be.visible')
-          .should('have.length', postLoginConfig.userLinks.length);
+          .should('have.length', expectedCount);
       });
     });
   });
 
   describe('microsite', () => {
-    const headerConfig = micrositeConfiguration[language].header;
+    const headerConfig = micrositeConfiguration.header;
 
     beforeEach(() => {
       prepare(HEADER, 'Default', {
@@ -233,10 +242,26 @@ describe('header', () => {
           cy.get('@nav-items').eq(index).find('a').should('exist');
         } else {
           cy.get('@nav-items').eq(index).find('post-menu-trigger').should('exist');
+
+          // accountSwitch/companySwitch/logoutLink each render as their own
+          // menu item, gated by the item's own user permissions — not part
+          // of options.
+          const isB2C = item.user.userType === 'B2C';
+          const isB2B = item.user.userType === 'B2B';
+          const canChangeUserAndProfile =
+            (isB2C || isB2B) && item.user.changeUserAndProfile === 'userAndProfile';
+          const canChangeCompany = isB2B && item.user.canChangeCompany && item.user.company;
+
+          const expectedCount =
+            item.options.length +
+            (item.accountSwitch && canChangeUserAndProfile ? 1 : 0) +
+            (item.companySwitch && canChangeCompany ? 1 : 0) +
+            (item.logoutLink ? 1 : 0);
+
           cy.get('@nav-items')
             .eq(index)
             .find('post-menu-item')
-            .should('have.length', item.options.length);
+            .should('have.length', expectedCount);
         }
       });
     });

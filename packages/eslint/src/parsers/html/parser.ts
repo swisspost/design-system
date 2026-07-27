@@ -163,6 +163,26 @@ function getAST($: CheerioAPI, node: AnyNode = $.root()[0]): HtmlNode {
   return astNode as HtmlNode;
 }
 
+import { parse, parseFragment } from 'parse5-case-sensitive';
+import {
+  adapter as htmlparser2Adapter,
+  Htmlparser2TreeAdapterMap,
+} from 'parse5-htmlparser2-tree-adapter';
+
+function loadCaseSensitive(code: string, isFragment = true) {
+  const dom = isFragment
+    ? parseFragment<Htmlparser2TreeAdapterMap>(code, {
+        treeAdapter: htmlparser2Adapter,
+        sourceCodeLocationInfo: true,
+      })
+    : parse<Htmlparser2TreeAdapterMap>(code, {
+        treeAdapter: htmlparser2Adapter,
+        sourceCodeLocationInfo: true,
+      });
+
+  return cheerio.load(dom, {}, !isFragment);
+}
+
 /**
  * Parses the provided code into a `parseForESLint` object, following ESLint specifications.
  *
@@ -176,9 +196,7 @@ export function parseForESLint(code: string): {
     cheerioAPI: CheerioAPI;
   };
 } {
-  const $ = cheerio.load(code, {
-    sourceCodeLocationInfo: true,
-  });
+  const $ = loadCaseSensitive(code);
 
   const ast: AST = {
     ...getAST($),

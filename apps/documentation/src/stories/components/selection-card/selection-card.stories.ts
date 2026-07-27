@@ -99,7 +99,7 @@ const validationArg: object = {
 const meta: MetaComponent = {
   id: '047501dd-a185-4835-be91-09130fa3dad9',
   title: 'Components/Form Selection Card',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'status:New'],
   render: renderComponent,
   parameters: {
     badges: [],
