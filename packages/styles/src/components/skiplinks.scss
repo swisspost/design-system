@@ -1,4 +1,12 @@
+@use '../mixins/color-scheme';
+@use '../functions/tokens';
+@use '../tokens/elements';
+
+tokens.$default-map: elements.$post-body;
+
 .skiplinks {
+  @include color-scheme.set(light);
+
   a {
     position: absolute;
     top: 0.5rem;
@@ -9,7 +17,8 @@
     display: flex;
     align-items: center;
     padding: 0.25rem;
-    background: #fff;
+    background-color: tokens.get('body-color-bg');
+    color: tokens.get('body-color-fg');
 
     &:focus-visible {
       position: absolute;
