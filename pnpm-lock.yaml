@@ -329,7 +329,7 @@ importers:
     devDependencies:
       '@angular/build':
         specifier: catalog:angular
-        version: 22.0.5(d5940d1969a906423d85d2a178ed0025)
+        version: 22.0.5(0a3fe101fa6ccc398dd2d2b081b02b7e)
       '@angular/cli':
         specifier: catalog:angular
         version: 22.0.5(@types/node@26.1.1)(chokidar@5.0.0)
@@ -1028,7 +1028,7 @@ importers:
         version: 24.0.0
       autoprefixer:
         specifier: 10.5.0
-        version: 10.5.0(postcss@8.5.13)
+        version: 10.5.0(postcss@8.5.18)
       copyfiles:
         specifier: 2.4.1
         version: 2.4.1
@@ -1043,16 +1043,16 @@ importers:
         version: 1.4.0
       gulp-postcss:
         specifier: 10.0.0
-        version: 10.0.0(jiti@2.6.1)(postcss@8.5.13)
+        version: 10.0.0(jiti@2.6.1)(postcss@8.5.18)
       gulp-sass:
         specifier: 6.0.1
         version: 6.0.1
       postcss:
-        specifier: 8.5.13
-        version: 8.5.13
+        specifier: 8.5.18
+        version: 8.5.18
       postcss-scss:
         specifier: 4.0.9
-        version: 4.0.9(postcss@8.5.13)
+        version: 4.0.9(postcss@8.5.18)
       prettier:
         specifier: 3.6.2
         version: 3.6.2
@@ -1067,7 +1067,7 @@ importers:
         version: 16.26.1(typescript@6.0.3)
       stylelint-config-sass-guidelines:
         specifier: 11.1.0
-        version: 11.1.0(postcss@8.5.13)(stylelint@16.26.1(typescript@6.0.3))
+        version: 11.1.0(postcss@8.5.18)(stylelint@16.26.1(typescript@6.0.3))
       stylelint-prettier:
         specifier: 5.0.3
         version: 5.0.3(prettier@3.6.2)(stylelint@16.26.1(typescript@6.0.3))
@@ -5988,19 +5988,9 @@ packages:
 
   debug@2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
 
   debug@3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
 
   debug@4.4.0:
     resolution: {integrity: sha512-6WTZ/IxCY/T6BALoZHaE4ctp9xm+Z5kY/pzYaCHRFeyVhojxlrm+46y68HA6hr0TcwEssoxNiDEUJQjfPZ/RYA==}
@@ -9762,6 +9752,10 @@ packages:
     resolution: {integrity: sha512-qif0+jGGZoLWdHey3UFHHWP0H7Gbmsk8T5VEqyYFbWqPr1XqvLGBbk/sl8V5exGmcYJklJOhOQq1pV9IcsiFag==}
     engines: {node: ^10 || ^12 || >=14}
 
+  postcss@8.5.18:
+    resolution: {integrity: sha512-xdB1oSLHbz1vRWgCDalrCqEFTWzFlhqFC5tIHLMOSUIjhm3XXQ1qrFy8S/ESr1JYRRXqM3c1QFiMZUJdUTqyMQ==}
+    engines: {node: ^10 || ^12 || >=14}
+
   postcss@8.5.23:
     resolution: {integrity: sha512-g50586zr4bZmwFiTlflMu8E0bDTb5I5gertgwAKmsdUlTQIhZtunzUlD1WSzwcVWPoAVpsrA6vlfCD7oXvRwgg==}
     engines: {node: ^10 || ^12 || >=14}
@@ -9840,11 +9834,6 @@ packages:
 
   promise-inflight@1.0.1:
     resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
-    peerDependencies:
-      bluebird: '*'
-    peerDependenciesMeta:
-      bluebird:
-        optional: true
 
   promise-retry@2.0.1:
     resolution: {integrity: sha512-y+WKFlBR8BGXnsNlIHFGPZmyDf3DFMoLhaflAnyZgV6rG6xu+JwesTo2Q9R6XwYmtmwAFCkAk3e35jEdoeh/3g==}
@@ -12323,7 +12312,7 @@ snapshots:
       '@angular/core': 22.0.5(@angular/compiler@22.0.5)(rxjs@7.8.2)(zone.js@0.16.1)
       tslib: 2.8.1
 
-  '@angular/build@22.0.5(d5940d1969a906423d85d2a178ed0025)':
+  '@angular/build@22.0.5(0a3fe101fa6ccc398dd2d2b081b02b7e)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.2200.5(chokidar@5.0.0)
@@ -12362,7 +12351,7 @@ snapshots:
       less: 4.3.0
       lmdb: 3.5.4
       ng-packagr: 22.0.1(@angular/compiler-cli@22.0.5(@angular/compiler@22.0.5)(typescript@6.0.3))(tailwindcss@4.3.1)(tslib@2.8.1)(typescript@6.0.3)
-      postcss: 8.5.13
+      postcss: 8.5.18
       tailwindcss: 4.3.1
       vitest: 4.1.10(@types/node@26.1.1)(jsdom@26.1.0)(vite@7.3.5(@types/node@26.1.1)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.33.0)(sass-embedded@1.89.2)(sass@1.99.0)(terser@5.49.0)(yaml@2.8.3))
     transitivePeerDependencies:
@@ -13060,12 +13049,10 @@ snapshots:
       tunnel-agent: 0.6.0
       uuid: 8.3.2
 
-  '@cypress/xvfb@1.2.4(supports-color@8.1.1)':
+  '@cypress/xvfb@1.2.4':
     dependencies:
-      debug: 3.2.7(supports-color@8.1.1)
+      debug: 3.2.7
       lodash.once: 4.1.1
-    transitivePeerDependencies:
-      - supports-color
 
   '@dual-bundle/import-meta-resolve@4.2.1': {}
 
@@ -14511,8 +14498,6 @@ snapshots:
       proc-log: 4.2.0
       semver: 7.8.5
       walk-up-path: 3.0.1
-    transitivePeerDependencies:
-      - bluebird
 
   '@npmcli/fs@5.0.0':
     dependencies:
@@ -14529,8 +14514,6 @@ snapshots:
       promise-retry: 2.0.1
       semver: 7.8.5
       which: 4.0.0
-    transitivePeerDependencies:
-      - bluebird
 
   '@npmcli/git@7.0.2':
     dependencies:
@@ -14568,8 +14551,6 @@ snapshots:
       normalize-package-data: 6.0.2
       proc-log: 4.2.0
       semver: 7.8.5
-    transitivePeerDependencies:
-      - bluebird
 
   '@npmcli/package-json@7.0.5':
     dependencies:
@@ -14682,7 +14663,10 @@ snapshots:
     dependencies:
       '@percy/cli-command': 1.31.13(typescript@6.0.3)
     transitivePeerDependencies:
+      - bufferutil
+      - supports-color
       - typescript
+      - utf-8-validate
 
   '@percy/cli-command@1.31.13(typescript@6.0.3)':
     dependencies:
@@ -14699,7 +14683,10 @@ snapshots:
     dependencies:
       '@percy/cli-command': 1.31.13(typescript@6.0.3)
     transitivePeerDependencies:
+      - bufferutil
+      - supports-color
       - typescript
+      - utf-8-validate
 
   '@percy/cli-doctor@1.31.13(typescript@6.0.3)':
     dependencies:
@@ -14735,7 +14722,10 @@ snapshots:
       '@percy/cli-command': 1.31.13(typescript@6.0.3)
       yaml: 2.8.3
     transitivePeerDependencies:
+      - bufferutil
+      - supports-color
       - typescript
+      - utf-8-validate
 
   '@percy/cli-upload@1.31.13(typescript@6.0.3)':
     dependencies:
@@ -14743,7 +14733,10 @@ snapshots:
       fast-glob: 3.3.3
       image-size: 1.2.0
     transitivePeerDependencies:
+      - bufferutil
+      - supports-color
       - typescript
+      - utf-8-validate
 
   '@percy/cli@1.31.13(typescript@6.0.3)':
     dependencies:
@@ -16498,13 +16491,13 @@ snapshots:
 
   atob@2.1.2: {}
 
-  autoprefixer@10.5.0(postcss@8.5.13):
+  autoprefixer@10.5.0(postcss@8.5.18):
     dependencies:
       browserslist: 4.28.2
       caniuse-lite: 1.0.30001792
       fraction.js: 5.3.4
       picocolors: 1.1.1
-      postcss: 8.5.13
+      postcss: 8.5.18
       postcss-value-parser: 4.2.0
 
   available-typed-arrays@1.0.7:
@@ -16694,9 +16687,9 @@ snapshots:
       domhandler: 5.0.3
       htmlparser2: 10.0.0
       picocolors: 1.1.1
-      postcss: 8.5.13
+      postcss: 8.5.18
       postcss-media-query-parser: 0.2.3
-      postcss-safe-parser: 7.0.1(postcss@8.5.13)
+      postcss-safe-parser: 7.0.1(postcss@8.5.18)
 
   better-opn@3.0.2:
     dependencies:
@@ -16732,8 +16725,6 @@ snapshots:
       raw-body: 2.5.3
       type-is: 1.6.18
       unpipe: 1.0.0
-    transitivePeerDependencies:
-      - supports-color
     optional: true
 
   body-parser@2.2.2:
@@ -17131,8 +17122,6 @@ snapshots:
       finalhandler: 1.1.2
       parseurl: 1.3.3
       utils-merge: 1.0.1
-    transitivePeerDependencies:
-      - supports-color
     optional: true
 
   content-disposition@0.5.4:
@@ -17402,7 +17391,7 @@ snapshots:
   cypress@15.14.2:
     dependencies:
       '@cypress/request': 3.0.10
-      '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
+      '@cypress/xvfb': 1.2.4
       '@types/sinonjs__fake-timers': 8.1.1
       '@types/sizzle': 2.3.9
       '@types/tmp': 0.2.6
@@ -17491,22 +17480,18 @@ snapshots:
 
   debug-fabulous@1.1.0:
     dependencies:
-      debug: 3.2.7(supports-color@8.1.1)
+      debug: 3.2.7
       memoizee: 0.4.17
       object-assign: 4.1.1
-    transitivePeerDependencies:
-      - supports-color
 
   debug@2.6.9:
     dependencies:
       ms: 2.0.0
     optional: true
 
-  debug@3.2.7(supports-color@8.1.1):
+  debug@3.2.7:
     dependencies:
       ms: 2.1.3
-    optionalDependencies:
-      supports-color: 8.1.1
 
   debug@4.4.0:
     dependencies:
@@ -18057,7 +18042,6 @@ snapshots:
       uvu: 0.5.6
       vfile: 6.0.3
     transitivePeerDependencies:
-      - bluebird
       - supports-color
 
   eslint-plugin-cypress@4.2.0(eslint@9.26.0(jiti@2.6.1)):
@@ -18101,7 +18085,6 @@ snapshots:
       unified: 11.0.5
       vfile: 6.0.3
     transitivePeerDependencies:
-      - bluebird
       - remark-lint-file-extension
       - supports-color
 
@@ -18566,8 +18549,6 @@ snapshots:
       parseurl: 1.3.3
       statuses: 1.5.0
       unpipe: 1.0.0
-    transitivePeerDependencies:
-      - supports-color
     optional: true
 
   finalhandler@2.1.0:
@@ -18948,12 +18929,12 @@ snapshots:
       kew: 0.7.0
       plugin-error: 0.1.2
 
-  gulp-postcss@10.0.0(jiti@2.6.1)(postcss@8.5.13):
+  gulp-postcss@10.0.0(jiti@2.6.1)(postcss@8.5.18):
     dependencies:
       fancy-log: 2.0.0
       plugin-error: 2.0.1
-      postcss: 8.5.13
-      postcss-load-config: 5.1.0(jiti@2.6.1)(postcss@8.5.13)
+      postcss: 8.5.18
+      postcss-load-config: 5.1.0(jiti@2.6.1)(postcss@8.5.18)
       vinyl-sourcemaps-apply: 0.2.1
     transitivePeerDependencies:
       - jiti
@@ -18981,8 +18962,6 @@ snapshots:
       source-map: 0.6.1
       strip-bom-string: 1.0.0
       through2: 2.0.5
-    transitivePeerDependencies:
-      - supports-color
 
   gulp@5.0.1:
     dependencies:
@@ -19200,7 +19179,6 @@ snapshots:
       url-join: 4.0.1
     transitivePeerDependencies:
       - debug
-      - supports-color
 
   http-signature@1.4.0:
     dependencies:
@@ -20930,8 +20908,6 @@ snapshots:
     dependencies:
       '@npmcli/config': 8.3.4
       import-meta-resolve: 4.2.0
-    transitivePeerDependencies:
-      - bluebird
 
   loader-runner@4.3.2: {}
 
@@ -22376,10 +22352,8 @@ snapshots:
   portfinder@1.0.32:
     dependencies:
       async: 2.6.4
-      debug: 3.2.7(supports-color@8.1.1)
+      debug: 3.2.7
       mkdirp: 0.5.6
-    transitivePeerDependencies:
-      - supports-color
 
   possible-typed-array-names@1.1.0: {}
 
@@ -22431,13 +22405,13 @@ snapshots:
       postcss: 8.5.23
       ts-node: 10.9.2(@types/node@24.0.0)(typescript@6.0.3)
 
-  postcss-load-config@5.1.0(jiti@2.6.1)(postcss@8.5.13):
+  postcss-load-config@5.1.0(jiti@2.6.1)(postcss@8.5.18):
     dependencies:
       lilconfig: 3.1.2
       yaml: 2.8.3
     optionalDependencies:
       jiti: 2.6.1
-      postcss: 8.5.13
+      postcss: 8.5.18
 
   postcss-media-query-parser@0.2.3: {}
 
@@ -22577,13 +22551,13 @@ snapshots:
 
   postcss-resolve-nested-selector@0.1.6: {}
 
-  postcss-safe-parser@7.0.1(postcss@8.5.13):
+  postcss-safe-parser@7.0.1(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.13
+      postcss: 8.5.18
 
-  postcss-scss@4.0.9(postcss@8.5.13):
+  postcss-scss@4.0.9(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.13
+      postcss: 8.5.18
 
   postcss-selector-parser@6.1.2:
     dependencies:
@@ -22624,6 +22598,12 @@ snapshots:
   postcss@8.5.13:
     dependencies:
       nanoid: 3.3.12
+      picocolors: 1.1.1
+      source-map-js: 1.2.1
+
+  postcss@8.5.18:
+    dependencies:
+      nanoid: 3.3.16
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
@@ -24025,10 +24005,10 @@ snapshots:
       postcss: 8.5.23
       postcss-selector-parser: 6.1.2
 
-  stylelint-config-sass-guidelines@11.1.0(postcss@8.5.13)(stylelint@16.26.1(typescript@6.0.3)):
+  stylelint-config-sass-guidelines@11.1.0(postcss@8.5.18)(stylelint@16.26.1(typescript@6.0.3)):
     dependencies:
-      postcss: 8.5.13
-      postcss-scss: 4.0.9(postcss@8.5.13)
+      postcss: 8.5.18
+      postcss-scss: 4.0.9(postcss@8.5.18)
       stylelint: 16.26.1(typescript@6.0.3)
       stylelint-scss: 6.12.1(stylelint@16.26.1(typescript@6.0.3))
 
@@ -24080,9 +24060,9 @@ snapshots:
       micromatch: 4.0.8
       normalize-path: 3.0.0
       picocolors: 1.1.1
-      postcss: 8.5.13
+      postcss: 8.5.18
       postcss-resolve-nested-selector: 0.1.6
-      postcss-safe-parser: 7.0.1(postcss@8.5.13)
+      postcss-safe-parser: 7.0.1(postcss@8.5.18)
       postcss-selector-parser: 7.1.0
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
@@ -24620,7 +24600,6 @@ snapshots:
       vfile-statistics: 3.0.0
       yaml: 2.8.3
     transitivePeerDependencies:
-      - bluebird
       - supports-color
 
   unified@11.0.5:
@@ -24942,7 +24921,7 @@ snapshots:
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.5
-      postcss: 8.5.23
+      postcss: 8.5.18
       rolldown: 1.0.3
       tinyglobby: 0.2.17
     optionalDependencies:
@@ -24960,7 +24939,7 @@ snapshots:
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.5
-      postcss: 8.5.23
+      postcss: 8.5.18
       rolldown: 1.0.3
       tinyglobby: 0.2.17
     optionalDependencies:
