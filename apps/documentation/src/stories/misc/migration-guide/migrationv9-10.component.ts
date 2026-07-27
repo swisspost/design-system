@@ -253,7 +253,7 @@ export class MigrationV910Component extends LitElement {
               </li>
               <li>
                 Install the developer skills plugin:
-                <code-block code=${'/plugin install software-developement@post-marketplace'}></code-block>
+                <code-block code=${'/plugin install software-development@post-marketplace'}></code-block>
               </li>
               <li>
                 Once installed, ask Copilot to run the skill:
@@ -1519,34 +1519,43 @@ export class MyComponent {
                                 type="checkbox"
                                 ?checked="${this.state.internet_header.breadcrumb_migration}"
                               />
-                              <label class="form-check-label" for="internet_header-breadcrumb_migration">
+                              <label
+                                class="form-check-label"
+                                for="internet_header-breadcrumb_migration"
+                              >
                                 Migrate from <code>&lt;swisspost-internet-breadcrumbs&gt;</code> to
                                 <code>&lt;post-breadcrumbs&gt;</code>
                                 <span class="info">
-                                  The <code>&lt;swisspost-internet-breadcrumbs&gt;</code> component has been
-                                  removed, as breadcrumbs are not included in the online service header.
-                                  Migrate to the self-managed
+                                  The <code>&lt;swisspost-internet-breadcrumbs&gt;</code> component
+                                  has been removed, as breadcrumbs are not included in the online
+                                  service header. Migrate to the self-managed
                                   <code>&lt;post-breadcrumbs&gt;</code> and
                                   <code>&lt;post-breadcrumb-item&gt;</code> components instead.
                                   <br /><br />
-                                  The old component generated its trail automatically from the header
-                                  config, usually requiring no props. The new components require
-                                  manual setup:
+                                  The old component generated its trail automatically from the
+                                  header config, usually requiring no props. The new components
+                                  require manual setup:
                                   <ul>
                                     <li>
                                       Set <code>home-url</code>, <code>text-home</code>,
-                                      <code>text-breadcrumbs</code>, and <code>text-more-items</code> props on
+                                      <code>text-breadcrumbs</code>, and
+                                      <code>text-more-items</code> props on
                                       <code>&lt;post-breadcrumbs&gt;</code>
                                     </li>
                                     <li>
-                                      Set <code>url</code> and <code>label</code>/<code>description</code>
+                                      Set <code>url</code> and <code>label</code>/<code
+                                        >description</code
+                                      >
                                       on each <code>&lt;post-breadcrumbs-item&gt;</code>
                                     </li>
                                   </ul>
-                                  The <code>hide-buttons</code> prop and <code>toggleOverlayById()</code>
+                                  The <code>hide-buttons</code> prop and
+                                  <code>toggleOverlayById()</code>
                                   method have no equivalent.
 
-                                  <p><strong>Before (v9 — part of Internet Header package)</strong></p>
+                                  <p>
+                                    <strong>Before (v9 — part of Internet Header package)</strong>
+                                  </p>
                                   <code-block
                                     code=${'<swisspost-internet-breadcrumbs></swisspost-internet-breadcrumbs>'}
                                   ></code-block>
