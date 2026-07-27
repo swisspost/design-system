@@ -286,6 +286,8 @@ describe('post-side-navigation-trigger', () => {
 describe('Accessibility', () => {
   it('has no detectable a11y violations on load for all variants', () => {
     cy.getSnapshots('post-side-navigation');
-    cy.checkA11y('#root-inner');
+    cy.checkA11y('#root-inner', undefined, (violations) => {
+      expect(violations).to.have.length(0);
+    });
   });
 });

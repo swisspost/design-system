@@ -21,8 +21,8 @@ const defaultArgs: Args = {
 
 const meta: MetaComponent = {
   id: 'ebb11274-091b-4cb7-9a3f-3e0451c9a865',
-  title: 'Raw Components/Internet Header',
-  tags: ['package:InternetHeader', 'devOnly'],
+  title: 'Components/Header/Pre-Configured',
+  tags: ['package:InternetHeader', 'status:New'],
   component: 'swisspost-internet-header',
   parameters: {
     badges: [],
@@ -39,7 +39,6 @@ const meta: MetaComponent = {
     story => html`
       <div
         class="header-story-wrapper"
-        style="--header-z-index: 1;overflow: auto;max-height: 100svh;"
       >
         ${story()} ${fakeContent()}
       </div>

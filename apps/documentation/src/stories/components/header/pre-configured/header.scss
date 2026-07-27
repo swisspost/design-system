@@ -1,12 +1,7 @@
-.container {
-  div {
-    overflow: visible;
-  }
-}
-
 #storybook-docs {
   .header-story-wrapper {
-    max-height: 20rem !important;
+    max-height: 450px !important;
+    overflow: visible !important;
   }
 }
 
