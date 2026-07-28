@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppHeader, AppFooter } from './navigation';
 
 @Component({
