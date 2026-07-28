@@ -1,0 +1,7 @@
+post-listbox [slot='blank-slate'] {
+  display: none;
+}
+
+post-listbox:not(:has(post-listbox-option:not([hidden]))) [slot='blank-slate'] {
+  display: block;
+}
