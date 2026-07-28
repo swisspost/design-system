@@ -203,6 +203,11 @@ $tabs-outline-offset: calc(
         padding-inline: tokens.get('post-tabs-large-scroll-button-right-padding-inline-start')
           tokens.get('post-tabs-large-scroll-button-right-padding-inline-end');
       }
+
+      post-icon {
+        height: tokens.get('post-tabs-large-icon-size');
+        width: tokens.get('post-tabs-large-icon-size');
+      }
     }
   }
 }
