@@ -30,7 +30,7 @@
   "dependencies": {
     "@swisspost/design-system-components-react": "workspace:10.0.1",
     "@swisspost/design-system-styles": "workspace:10.0.1",
-    "next": "16.2.6",
+    "next": "16.2.11",
     "react": "19.1.1",
     "react-dom": "19.1.1"
   },

@@ -63,7 +63,15 @@ export class PostLinkarea {
 
     const { ctrlKey, shiftKey, altKey, metaKey, button } = event;
     delegateTarget.dispatchEvent(
-      new MouseEvent('click', { cancelable: true, ctrlKey, shiftKey, altKey, metaKey, button }),
+      new MouseEvent('click', {
+        cancelable: true,
+        bubbles: true,
+        ctrlKey,
+        shiftKey,
+        altKey,
+        metaKey,
+        button,
+      }),
     );
   }
 

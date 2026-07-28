@@ -750,22 +750,23 @@ export class PostPagination {
   private renderHiddenItems(totalPages: number, isPrevHidden: boolean, isNextHidden: boolean) {
     return [
       !isPrevHidden && (
-        <button class="pagination-link pagination-control-button hidden-control-button" disabled>
+        <button key="hidden-prev" class="pagination-link pagination-control-button hidden-control-button" disabled>
           <post-icon name="chevronleftwide" aria-hidden="true"></post-icon>
         </button>
       ),
       <button
+        key="hidden-page"
         class="pagination-link pagination-control-button hidden-page-button"
         aria-label={this.buildPageLabel(totalPages)}
         disabled
       >
         <span aria-hidden="true">{totalPages}</span>
       </button>,
-      <span class="pagination-ellipsis-content hidden-ellipsis" aria-hidden="true">
+      <span key="hidden-ellipsis" class="pagination-ellipsis-content hidden-ellipsis" aria-hidden="true">
         {ELLIPSIS}
       </span>,
       !isNextHidden && (
-        <button class="pagination-link pagination-control-button hidden-control-button" disabled>
+        <button key="hidden-next" class="pagination-link pagination-control-button hidden-control-button" disabled>
           <post-icon name="chevronrightwide" aria-hidden="true"></post-icon>
         </button>
       ),
