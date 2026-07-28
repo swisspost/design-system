@@ -109,7 +109,7 @@ export const generateConfigUrl = (
   const parsedLang = lang.toLowerCase();
   const isProd = parsedEnvironment === 'PROD';
   // NOTE: use preview.post.ch for local testing
-  const host = `https://${isProd ? 'www' : 'int'}.post.ch`;
+  const host = `https://${isProd ? '' : 'int'}.preview.post.ch`;
 
   try {
     const query = new URLSearchParams({
