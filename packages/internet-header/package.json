@@ -14,7 +14,8 @@
     "url": "https://github.com/swisspost/design-system/issues"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "linkDirectory": true
   },
   "files": [
     "dist/",
