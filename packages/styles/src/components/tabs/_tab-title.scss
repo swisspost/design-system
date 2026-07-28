@@ -7,10 +7,8 @@
 
 tokens.$default-map: components.$post-tabs;
 
-$tabs-outline-offset: calc(
-  tokens.get('focus-outline-offset2', helpers.$post-focus) + -1 *
-    (tokens.get('post-tabs-border-width'))
-);
+$tabs-outline-offset: -6px;
+  // tokens.get('focus-outline-offset3', helpers.$post-focus);
 
 $adjusted-border-radius: calc(
   tokens.get('focus-border-radius', helpers.$post-focus) - $tabs-outline-offset
@@ -35,9 +33,7 @@ post-tab-item.nav-item a {
     }
   }
 
-  @include utilities-mx.focus-style() {
-    outline-offset: $tabs-outline-offset !important;
-  }
+  @include utilities-mx.focus-style($outline-offset: $tabs-outline-offset);
 }
 
 // Content Tabs Variant
@@ -126,10 +122,7 @@ post-tab-item.nav-item {
 
     // Dark background needs the inverted focus ring color
     &:not([aria-current='page']) {
-      @include utilities-mx.focus-style-custom {
-        outline-color: tokens.get('focus-outline-color-inverted', helpers.$post-focus) !important;
-        outline-offset: $tabs-outline-offset !important;
-      }
+      @include utilities-mx.focus-style-custom($outline-offset: $tabs-outline-offset, $outline-color: tokens.get('focus-outline-color-inverted', helpers.$post-focus));
     }
 
     // hovered
@@ -145,10 +138,7 @@ post-tab-item.nav-item {
       color: tokens.get('post-tabs-page-tab-selected-fg');
       border-color: tokens.get('post-tabs-page-tab-selected-border-color');
 
-      @include utilities-mx.focus-style-custom {
-        outline-color: tokens.get('post-tabs-page-tab-selected-fg') !important;
-        outline-offset: $tabs-outline-offset !important;
-      }
+      @include utilities-mx.focus-style-custom($outline-offset: $tabs-outline-offset, $outline-color: tokens.get('post-tabs-page-tab-selected-fg'));
 
       // selected — hovered
       &:hover {

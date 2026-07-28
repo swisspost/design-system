@@ -8,10 +8,9 @@
 
 tokens.$default-map: components.$post-tabs;
 
-$tabs-outline-offset: calc(
-  tokens.get('focus-outline-offset2', helpers.$post-focus) + -1 *
-    (tokens.get('post-tabs-border-width'))
-);
+$tabs-outline-offset: -6px;
+//   tokens.get('focus-outline-offset3', helpers.$post-focus
+// );
 
 :host {
   display: block;
@@ -51,8 +50,7 @@ $tabs-outline-offset: calc(
         display: none;
       }
 
-      @include utilities-mx.focus-style() {
-        outline-offset: $tabs-outline-offset !important;
+    @include utilities-mx.focus-style($outline-offset: $tabs-outline-offset) {
 
         @include utilities-mx.high-contrast-mode() {
           transition: none;
