@@ -7,7 +7,7 @@ export const installInterceptors = (
   config: LocalizedConfig = testConfiguration,
   loggedIn: boolean = false,
 ) => {
-  cy.intercept('**/api/headerjs/Json?serviceid=*', config).as('getConfig');
+  cy.intercept('**/api/header?serviceId=*', config).as('getConfig');
   cy.intercept('/assets/config/test-configuration.json', config).as('getTestConfig');
   cy.intercept('**/v1/session/subscribe', loggedIn ? mockAuth : mockNotAuth).as('auth');
 };
