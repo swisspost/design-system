@@ -113,6 +113,7 @@ export class PostFooter {
   render() {
     const socialmediaDisplayed = this.slotDisplayed['socialmedia'];
     const appDisplayed = this.slotDisplayed['app'];
+    const allGridSlotsEmpty = GRID_SLOTS.every(slotName => !this.slotDisplayed[slotName]);
 
     return (
       <Host data-version={version} data-color-scheme="light">
@@ -127,7 +128,7 @@ export class PostFooter {
 
           <div class="footer-main">
             <div class="footer-container">
-              <div class="footer-grid">
+              <div class={{ 'footer-grid': true, 'd-none': allGridSlotsEmpty }}>
                 {this.device === 'mobile' ? this.renderAccordion() : this.renderColumns()}
               </div>
 
@@ -137,9 +138,7 @@ export class PostFooter {
                   'd-none': !socialmediaDisplayed && !appDisplayed,
                 }}
               >
-                <div
-                  class={{ 'footer-socialmedia': true, 'd-none': !socialmediaDisplayed }}
-                >
+                <div class={{ 'footer-socialmedia': true, 'd-none': !socialmediaDisplayed }}>
                   <slot onSlotchange={this.handleSlotChange} name="socialmedia"></slot>
                 </div>
 
