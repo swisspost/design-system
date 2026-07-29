@@ -3,6 +3,8 @@ import { version } from '@root/package.json';
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 
 const GRID_SLOTS = ['grid-1', 'grid-2', 'grid-3', 'grid-4'];
+// slots outside the grid that must also collapse their wrapper when empty
+const CONTENT_SLOTS = ['socialmedia', 'app', 'businesssectors', 'meta', 'copyright'];
 
 /**
  * @slot prefooter - Slot for the pre-footer.
@@ -31,10 +33,11 @@ export class PostFooter {
   readonly textFooter!: string;
 
   @State() device: Device = breakpoint.get('device');
-  @State() gridSlotDisplayed: Record<string, boolean> = {};
+  @State() slotDisplayed: Record<string, boolean> = {};
 
   constructor() {
     this.handleGridSlotChange = this.handleGridSlotChange.bind(this);
+    this.handleSlotChange = this.handleSlotChange.bind(this);
   }
 
   connectedCallback() {
@@ -42,10 +45,10 @@ export class PostFooter {
   }
 
   componentWillLoad() {
-    // initialize grid visibility by checking the content of each slot
-    GRID_SLOTS.forEach(slotName => {
+    // initialize slot visibility by checking the content of each slot
+    [...GRID_SLOTS, ...CONTENT_SLOTS].forEach(slotName => {
       const assignedElements = this.host.querySelectorAll(`[slot="${slotName}"]`);
-      this.updateGridSlotDisplay(slotName, assignedElements.length > 0);
+      this.updateSlotDisplay(slotName, assignedElements.length > 0);
     });
   }
 
@@ -60,14 +63,20 @@ export class PostFooter {
   private handleGridSlotChange(...devices: string[]) {
     return (e: Event) => {
       if (devices.includes(this.device) && e.target instanceof HTMLSlotElement) {
-        this.updateGridSlotDisplay(e.target.name, e.target.assignedElements().length > 0);
+        this.updateSlotDisplay(e.target.name, e.target.assignedElements().length > 0);
       }
     };
   }
 
-  private updateGridSlotDisplay(slotName: string, hasContent: boolean) {
-    if (this.gridSlotDisplayed[slotName] !== hasContent) {
-      this.gridSlotDisplayed = { ...this.gridSlotDisplayed, [slotName]: hasContent };
+  private handleSlotChange(e: Event) {
+    if (e.target instanceof HTMLSlotElement) {
+      this.updateSlotDisplay(e.target.name, e.target.assignedElements().length > 0);
+    }
+  }
+
+  private updateSlotDisplay(slotName: string, hasContent: boolean) {
+    if (this.slotDisplayed[slotName] !== hasContent) {
+      this.slotDisplayed = { ...this.slotDisplayed, [slotName]: hasContent };
     }
   }
 
@@ -77,7 +86,7 @@ export class PostFooter {
         {GRID_SLOTS.map(slotName => (
           <post-accordion-item
             key={slotName}
-            class={{ 'd-none': !this.gridSlotDisplayed[slotName] }}
+            class={{ 'd-none': !this.slotDisplayed[slotName] }}
             collapsed={true}
           >
             <span slot="header">
@@ -92,7 +101,7 @@ export class PostFooter {
 
   private renderColumns() {
     return GRID_SLOTS.map(slotName => (
-      <div key={slotName} class={{ 'd-none': !this.gridSlotDisplayed[slotName] }}>
+      <div key={slotName} class={{ 'd-none': !this.slotDisplayed[slotName] }}>
         <h3>
           <slot name={slotName + '-title'}></slot>
         </h3>
@@ -102,6 +111,9 @@ export class PostFooter {
   }
 
   render() {
+    const socialmediaDisplayed = this.slotDisplayed['socialmedia'];
+    const appDisplayed = this.slotDisplayed['app'];
+
     return (
       <Host data-version={version} data-color-scheme="light">
         <footer>
@@ -119,26 +131,40 @@ export class PostFooter {
                 {this.device === 'mobile' ? this.renderAccordion() : this.renderColumns()}
               </div>
 
-              <div class="footer-column">
-                <div class="footer-socialmedia">
-                  <slot name="socialmedia"></slot>
+              <div
+                class={{
+                  'footer-column': true,
+                  'd-none': !socialmediaDisplayed && !appDisplayed,
+                }}
+              >
+                <div
+                  class={{ 'footer-socialmedia': true, 'd-none': !socialmediaDisplayed }}
+                >
+                  <slot onSlotchange={this.handleSlotChange} name="socialmedia"></slot>
                 </div>
 
-                <div class="footer-app">
-                  <slot name="app"></slot>
+                <div class={{ 'footer-app': true, 'd-none': !appDisplayed }}>
+                  <slot onSlotchange={this.handleSlotChange} name="app"></slot>
                 </div>
               </div>
 
-              <div class="footer-businesssectors">
-                <slot name="businesssectors"></slot>
+              <div
+                class={{
+                  'footer-businesssectors': true,
+                  'd-none': !this.slotDisplayed['businesssectors'],
+                }}
+              >
+                <slot onSlotchange={this.handleSlotChange} name="businesssectors"></slot>
               </div>
 
-              <div class="footer-meta">
-                <slot name="meta"></slot>
+              <div class={{ 'footer-meta': true, 'd-none': !this.slotDisplayed['meta'] }}>
+                <slot onSlotchange={this.handleSlotChange} name="meta"></slot>
               </div>
 
-              <div class="footer-copyright">
-                <slot name="copyright"></slot>
+              <div
+                class={{ 'footer-copyright': true, 'd-none': !this.slotDisplayed['copyright'] }}
+              >
+                <slot onSlotchange={this.handleSlotChange} name="copyright"></slot>
               </div>
             </div>
           </div>
