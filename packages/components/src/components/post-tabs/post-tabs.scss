@@ -8,9 +8,7 @@
 
 tokens.$default-map: components.$post-tabs;
 
-$tabs-outline-offset: -6px;
-//   tokens.get('focus-outline-offset3', helpers.$post-focus
-// );
+$tabs-outline-offset: tokens.get('focus-outline-offset3', helpers.$post-focus);
 
 :host {
   display: block;
@@ -89,7 +87,7 @@ $tabs-outline-offset: -6px;
       color: tokens.get('post-tabs-page-scroll-button-enabled-fg');
       background-color: tokens.get('post-tabs-page-scroll-button-enabled-bg');
       border: tokens.get('post-tabs-border-width') solid
-        tokens.get('post-tabs-page-scroll-button-enabled-border-color');
+        tokens.get('post-tabs-page-scroll-button-enabled-border');
       position: absolute;
       z-index: 2;
       box-shadow: elevation.$elevation-200;
@@ -97,7 +95,7 @@ $tabs-outline-offset: -6px;
 
       // hovered
       &:hover {
-        border-color: tokens.get('post-tabs-page-scroll-button-hovered-border-color') !important;
+        border-color: tokens.get('post-tabs-page-scroll-button-hovered-border') !important;
         color: tokens.get('post-tabs-page-scroll-button-hovered-fg');
         background-color: tokens.get('post-tabs-page-scroll-button-hovered-bg');
       }
@@ -133,7 +131,7 @@ $tabs-outline-offset: -6px;
       inset-inline-start: 0;
       width: 100%;
       height: tokens.get('post-tabs-border-width');
-      background-color: tokens.get('post-tabs-page-border-color');
+      background-color: tokens.get('post-tabs-page-border');
 
       @include utilities-mx.high-contrast-mode() {
         background-color: LinkText;
@@ -172,7 +170,7 @@ $tabs-outline-offset: -6px;
 
       // hovered
       &:hover {
-        border-color: tokens.get('post-tabs-page-scroll-button-hovered-border-color') !important;
+        border-color: tokens.get('post-tabs-page-scroll-button-hovered-border') !important;
         color: tokens.get('post-tabs-content-scroll-button-hovered-fg');
 
         @include utilities-mx.high-contrast-mode() {
