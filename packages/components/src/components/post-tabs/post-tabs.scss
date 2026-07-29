@@ -87,7 +87,7 @@ $tabs-outline-offset: tokens.get('focus-outline-offset3', helpers.$post-focus);
       color: tokens.get('post-tabs-page-scroll-button-enabled-fg');
       background-color: tokens.get('post-tabs-page-scroll-button-enabled-bg');
       border: tokens.get('post-tabs-border-width') solid
-        tokens.get('post-tabs-page-scroll-button-enabled-border');
+        tokens.get('post-tabs-page-scroll-button-enabled-border-color');
       position: absolute;
       z-index: 2;
       box-shadow: elevation.$elevation-200;
