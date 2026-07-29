@@ -1,5 +1,32 @@
 # @swisspost/design-system-documentation
 
+## 6.2.0
+
+### Minor Changes
+
+- Added the _🆕 New_ status tag on all new components. (by [@leagrdv](https://github.com/leagrdv) with [#8071](https://github.com/swisspost/design-system/pull/8071))
+
+### Patch Changes
+
+- Added `sp-intranet-header` to `post-header` migration information on the migration guide. (by [@leagrdv](https://github.com/leagrdv) with [#8083](https://github.com/swisspost/design-system/pull/8083))
+
+- Fixed a typo in the migration docs for skills installation script, the command can now be copy&pasted. (by [@gfellerph](https://github.com/gfellerph) with [#8183](https://github.com/swisspost/design-system/pull/8183))
+
+- Added documentation for the internet header on how to import it into an Angular project. (by [@gfellerph](https://github.com/gfellerph) with [#8197](https://github.com/swisspost/design-system/pull/8197))
+
+- Fixed the overlapping local nav and jobs controls in the header example. (by [@leagrdv](https://github.com/leagrdv) with [#8161](https://github.com/swisspost/design-system/pull/8161))
+
+- Moved `post-side-navigation` example on the header docs to the Application header, and improved the Side navigation docs. (by [@leagrdv](https://github.com/leagrdv) with [#8088](https://github.com/swisspost/design-system/pull/8088))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.1.0
+  - @swisspost/design-system-components@10.1.0
+  - @swisspost/design-system-styles@10.1.0
+  - @swisspost/design-system-components-react@10.1.0
+  - @swisspost/internet-header@10.1.0
+  - @swisspost/design-system-styles-primeng@10.1.0
+  - @swisspost/design-system-theme-ag-grid@10.1.0
+  - @swisspost/design-system-tokens@10.1.0
+
 ## 6.1.0
 
 ### Minor Changes
