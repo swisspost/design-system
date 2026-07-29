@@ -76,7 +76,10 @@
   outline: none !important;
 }
 
-@mixin focus-style($additional-selector: '', $outline-offset: tokens.get('focus-outline-offset', helpers.$post-focus)) {
+@mixin focus-style(
+  $additional-selector: '',
+  $outline-offset: tokens.get('focus-outline-offset', helpers.$post-focus)
+) {
   &#{$additional-selector} {
     outline-offset: $outline-offset !important;
     outline: tokens.get('focus-outline-color', helpers.$post-focus) none
@@ -115,11 +118,14 @@
   }
 }
 
-@mixin focus-style-custom($additional-selector: '', $outline-offset: tokens.get('focus-outline-offset', helpers.$post-focus), $outline-color: tokens.get('focus-outline-color', helpers.$post-focus)) {
+@mixin focus-style-custom(
+  $additional-selector: '',
+  $outline-offset: tokens.get('focus-outline-offset', helpers.$post-focus),
+  $outline-color: tokens.get('focus-outline-color', helpers.$post-focus)
+) {
   &#{$additional-selector} {
     outline-offset: $outline-offset !important;
-    outline: $outline-color none tokens.get('focus-outline-width', helpers.$post-focus)
-      !important;
+    outline: $outline-color none tokens.get('focus-outline-width', helpers.$post-focus) !important;
   }
 
   // :has(:focus-visible) mimic a focus-visible-within pseudo-class
