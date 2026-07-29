@@ -7,6 +7,10 @@ import SampleCDNBareComponent from './internet-header-cdn-bare-component.sample.
 import SampleCDNLazyLoaded from './internet-header-cdn-lazy-loaded.sample.html?raw';
 import SampleFrameworks from './internet-header-frameworks.sample.html?raw';
 import SampleLazyLoaded from './internet-header-lazy-loaded.sample.js?raw';
+import SampleWithAngularHeaderHTML from './internet-header-angular-app-header.sample.html?raw';
+import SampleWithAngularFooterHTML from './internet-header-angular-app-footer.sample.html?raw';
+import SampleWithAngularNavJS from './internet-header-angular-app-nav.sample.js?raw';
+import SampleWithAngularAppJS from './internet-header-angular-app.sample.js?raw';
 import * as PackageStories from './internet-header.stories';
 import { PackageShields } from '@root/src/shared/package-shields';
 
@@ -87,6 +91,34 @@ Internet-header package provide two versions:
       </div>
     </div>
 
+  </post-tab-panel>
+  <post-tab-item name="with-angular">Install with Angular</post-tab-item>
+  <post-tab-panel for="with-angular">
+
+    If you are using Angular, you can create two components for the header and the footer. It's easiest if you define the markup in two separate HTML component files.
+
+    <figure className="code-sample-file">
+      <figcaption>header.html</figcaption>
+      <Source code={SampleWithAngularHeaderHTML} dark={SourceDarkScheme} language="html" />
+    </figure>
+    <figure className="code-sample-file">
+      <figcaption>footer.html</figcaption>
+      <Source code={SampleWithAngularFooterHTML} dark={SourceDarkScheme} language="html" />
+    </figure>
+
+    Expose the components in a component file using the `CUSTOM_ELEMENTS_SCHEMA` to allow the use of custom elements in Angular.
+    <figure className="code-sample-file">
+      <figcaption>navigation.ts</figcaption>
+      <Source code={SampleWithAngularNavJS} dark={SourceDarkScheme} language="javascript" />
+    </figure>
+
+    Finally, you can use the header and footer components in your main application component.
+    <figure className="code-sample-file">
+      <figcaption>app.ts</figcaption>
+      <Source code={SampleWithAngularAppJS} dark={SourceDarkScheme} language="javascript" />
+    </figure>
+
+    
   </post-tab-panel>
   <post-tab-item name="with-cdn">Include from a CDN</post-tab-item>
   <post-tab-panel for="with-cdn">
