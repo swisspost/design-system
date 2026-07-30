@@ -209,11 +209,12 @@ function renderDatePickerContent(
   label: ReturnType<typeof html>,
   validationMessages: unknown,
 ) {
-  const useFloatingLabel = args.floatingLabel && !args.inline;
+  const showLabel = !args.inline;
+  const useFloatingLabel = args.floatingLabel && showLabel;
 
   return keyed(
     `${args.id}-${args.inline}-${args.floatingLabel}-${args.validation}`,
-    html` ${useFloatingLabel ? nothing : label}
+    html` ${showLabel && !useFloatingLabel ? label : nothing}
       <post-date-picker
         id=${args.id}
         class=${useFloatingLabel ? 'form-floating' : ''}
@@ -230,7 +231,7 @@ function renderDatePickerContent(
         text-previous-month=${args.textPreviousMonth}
         text-previous-year=${args.textPreviousYear}
         text-switch-year=${args.textSwitchYear}
-        >${useFloatingLabel ? html`${input} ${label}` : html`${input}`}</post-date-picker
+        >${useFloatingLabel ? html`${input} ${label}` : input}</post-date-picker
       >
       ${validationMessages}`,
   );
