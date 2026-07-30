@@ -3,7 +3,7 @@ import { version } from '@root/package.json';
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 
 const GRID_SLOTS = ['grid-1', 'grid-2', 'grid-3', 'grid-4'];
-const CONTENT_SLOTS = ['socialmedia', 'app', 'businesssectors', 'meta', 'copyright'];
+const SECTION_SLOTS = ['socialmedia', 'app', 'businesssectors', 'meta', 'copyright'];
 
 /**
  * @slot prefooter - Slot for the pre-footer.
@@ -45,7 +45,7 @@ export class PostFooter {
 
   componentWillLoad() {
     // initialize slot visibility by checking the content of each slot
-    [...GRID_SLOTS, ...CONTENT_SLOTS].forEach(slotName => {
+    [...GRID_SLOTS, ...SECTION_SLOTS].forEach(slotName => {
       const assignedElements = this.host.querySelectorAll(`[slot="${slotName}"]`);
       this.updateSlotDisplay(slotName, assignedElements.length > 0);
     });
