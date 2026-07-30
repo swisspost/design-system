@@ -38,7 +38,7 @@ export function getSlottedContent(args: Args, customRenderers: SubComponentRende
 
   const sideNavTrigger = args.sideNav && args.title !== '' ? renderSideNavTrigger() : nothing;
 
-  const micrositeControls = args.localNav ? renderMicrositeControls(args) : nothing;
+  const micrositeControls = args.localNav && !args.jobs ? renderMicrositeControls(args) : nothing;
 
   const mainNavSlot = args.mainNav ? renderMainnavigation() : nothing;
 

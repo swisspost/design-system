@@ -1,5 +1,13 @@
 # @swisspost/design-system-components-react
 
+## 10.1.0
+
+### Patch Changes
+
+- Updated `post-linkarea` to dispatch a bubbling event, enabling router link navigation without triggering a full page reload. (by [@myrta2302](https://github.com/myrta2302) and [@alizedebray](https://github.com/alizedebray) with [#8141](https://github.com/swisspost/design-system/pull/8141))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.1.0
+
 ## 10.0.1
 
 ### Patch Changes
