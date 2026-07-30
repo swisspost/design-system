@@ -1,5 +1,14 @@
 # @swisspost/internet-header
 
+## 10.1.0
+
+### Patch Changes
+
+- Stable release of the internet header compatible with v10 of the Design System. (by [@gfellerph](https://github.com/gfellerph) with [#8203](https://github.com/swisspost/design-system/pull/8203))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.1.0
+  - @swisspost/design-system-styles@10.1.0
+
 ## 10.0.1
 
 ### Patch Changes
