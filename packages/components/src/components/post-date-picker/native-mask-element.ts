@@ -1,7 +1,17 @@
 import { HTMLInputMaskElement } from 'imask';
 import type { EventHandlers } from 'imask/esm/controls/mask-element';
 
-const nativeValueDescriptor = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')!;
+// Resolved lazily so that merely importing this module does not touch the browser-only
+// `HTMLInputElement` global. Accessing it at module top-level crashes in Node/SSR
+// environments (e.g. Next.js pre-rendering) with `HTMLInputElement is not defined`.
+let cachedNativeValueDescriptor: PropertyDescriptor | undefined;
+function nativeValueDescriptor(): PropertyDescriptor {
+  cachedNativeValueDescriptor ??= Object.getOwnPropertyDescriptor(
+    HTMLInputElement.prototype,
+    'value',
+  )!;
+  return cachedNativeValueDescriptor;
+}
 
 // iMask adapter that bypasses the instance-level `input.value` override (which returns ISO strings)
 // so iMask always works with locale-formatted display text.
@@ -14,11 +24,11 @@ export class NativeInputMaskElement extends HTMLInputMaskElement {
   };
 
   get value(): string {
-    return nativeValueDescriptor.get!.call(this.input);
+    return nativeValueDescriptor().get!.call(this.input);
   }
 
   set value(val: string) {
-    nativeValueDescriptor.set!.call(this.input, val);
+    nativeValueDescriptor().set!.call(this.input, val);
   }
 
   bindEvents(handlers: EventHandlers): void {
@@ -33,9 +43,9 @@ export class NativeInputMaskElement extends HTMLInputMaskElement {
 }
 
 export function getNativeValue(input: HTMLInputElement): string {
-  return nativeValueDescriptor.get!.call(input);
+  return nativeValueDescriptor().get!.call(input);
 }
 
 export function setNativeValue(input: HTMLInputElement, val: string): void {
-  nativeValueDescriptor.set!.call(input, val);
+  nativeValueDescriptor().set!.call(input, val);
 }
