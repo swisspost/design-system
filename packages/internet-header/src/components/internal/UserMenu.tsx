@@ -11,6 +11,13 @@ export type UserMenuProps = {
   textAccessUserLinks: string;
 };
 
+// Appends/overwrites a returnURL param on the given URL
+const withReturnUrl = (url: string): string => {
+  const target = new URL(url, window.location.href);
+  target.searchParams.set('returnURL', window.location.href);
+  return target.toString();
+};
+
 export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenuProps> = ({
   config,
   slot,
@@ -20,7 +27,8 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
 }) => {
   const isB2C = config.user.userType === 'B2C';
   const isB2B = config.user.userType === 'B2B';
-  const canChangeUserAndProfile = (isB2C || isB2B) && config.user.changeUserAndProfile === 'userAndProfile';
+  const canChangeUserAndProfile =
+    (isB2C || isB2B) && config.user.changeUserAndProfile === 'userAndProfile';
   const canChangeCompany = isB2B && config.user.canChangeCompany && config.user.company;
   const canSeeAccountSwitch = canChangeUserAndProfile || canChangeCompany;
 
@@ -49,8 +57,19 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
             <Link
               config={{
                 text: config.accountSwitch.text,
-                url: `${config.accountSwitch.url}?returnURL=${encodeURIComponent(window.location.href)}`,
+                url: withReturnUrl(config.accountSwitch.url),
                 icon: config.accountSwitch.icon,
+              }}
+            />
+          </post-menu-item>
+        )}
+        {config.companySwitch && canChangeCompany && (
+          <post-menu-item>
+            <Link
+              config={{
+                text: config.companySwitch.text,
+                url: withReturnUrl(config.companySwitch.url),
+                icon: config.companySwitch.icon,
               }}
             />
           </post-menu-item>
@@ -60,6 +79,11 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
             <Link config={optionConfig} />
           </post-menu-item>
         ))}
+        {config.logoutLink && (
+          <post-menu-item>
+            <Link config={config.logoutLink} />
+          </post-menu-item>
+        )}
       </post-menu>
     </div>
   );
