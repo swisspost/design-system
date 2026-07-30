@@ -3,7 +3,6 @@ import { version } from '@root/package.json';
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 
 const GRID_SLOTS = ['grid-1', 'grid-2', 'grid-3', 'grid-4'];
-// slots outside the grid that must also collapse their wrapper when empty
 const CONTENT_SLOTS = ['socialmedia', 'app', 'businesssectors', 'meta', 'copyright'];
 
 /**
