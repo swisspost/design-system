@@ -59,7 +59,7 @@ export class PostFooter {
     this.device = e.detail;
   };
 
-  private handleGridSlotChange(...devices: string[]) {
+  private handleGridSlotChange(...devices: Device[]) {
     return (e: Event) => {
       if (devices.includes(this.device) && e.target instanceof HTMLSlotElement) {
         this.updateSlotDisplay(e.target.name, e.target.assignedElements().length > 0);
