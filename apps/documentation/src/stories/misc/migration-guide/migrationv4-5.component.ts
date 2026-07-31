@@ -186,7 +186,6 @@ npm uninstall @swisspost/design-system-migrations`}
         See the
         <a
           href="https://getbootstrap.com/docs/5.1/migration"
-          target="_blank"
           rel="noopener noreferrer"
           >Bootstrap 5.1.x migration guide</a
         >
@@ -196,7 +195,6 @@ npm uninstall @swisspost/design-system-migrations`}
                 and
                 <a
                   href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1400-2022-12-07"
-                  target="_blank"
                   rel="noopener noreferrer"
                   >ng-bootstrap 12.x.x changelog</a
                 >
