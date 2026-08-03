@@ -229,6 +229,13 @@ export class PostDatePicker {
 
   private static readonly FLYOUT_OFFSET: number = 4;
 
+  // Cells per row for each view
+  private static readonly COLUMNS_BY_VIEW: Record<AirDatepickerViews, number> = {
+    days: 7,
+    months: 4,
+    years: 4,
+  };
+
   private currentViewMonth: number;
   private currentViewYear: number;
   private currentViewType: AirDatepickerViews = 'days';
@@ -370,7 +377,7 @@ export class PostDatePicker {
         break;
     }
 
-    return Array.from(this.dpContainer.querySelectorAll(selector));
+    return Array.from(this.dpContainer.querySelectorAll<HTMLElement>(selector));
   }
 
   private setActiveCell(date: Date, focusOnDate: boolean = true) {
@@ -466,6 +473,8 @@ export class PostDatePicker {
 
   private skipOnSelectCount = 0;
   private skipFocusOnNextRender = false;
+  // Date the keyboard is navigating to, used to keep focus correct when the grid redraws
+  private pendingFocusDate: Date | null = null;
 
   private handleInputBlur = () => {
     if (this.range) {
@@ -636,16 +645,52 @@ export class PostDatePicker {
       current.getMonth() !== newDate.getMonth() || current.getFullYear() !== newDate.getFullYear();
 
     if (monthChanged) {
+      this.pendingFocusDate = newDate;
       this.skipFocusOnNextRender = false;
       this.dpInstance.setViewDate(newDate);
 
       requestAnimationFrame(() => {
         this.setActiveCell(newDate, true);
+
+        // Clear it a frame later, in case the grid redraws itself twice
+        requestAnimationFrame(() => {
+          if (this.pendingFocusDate === newDate) {
+            this.pendingFocusDate = null;
+          }
+        });
       });
     } else {
       this.setActiveCell(newDate, true);
     }
   };
+
+  // ARIA requires role="grid" to own role="row", and role="row" to own role="gridcell"
+  // AirDatepicker renders cells flat, so we wrap them in row divs to satisfy that
+  private wrapCellsInRows(body: Element) {
+    this.gridObserver?.disconnect();
+
+    body.querySelectorAll(':scope > [role="row"]').forEach(row => {
+      while (row.firstChild) body.insertBefore(row.firstChild, row);
+      row.remove();
+    });
+
+    const cells = Array.from(body.children).filter(el =>
+      el.classList.contains('air-datepicker-cell'),
+    );
+    const columns = PostDatePicker.COLUMNS_BY_VIEW[this.currentViewType];
+
+    for (let i = 0; i < cells.length; i += columns) {
+      const row = document.createElement('div');
+      row.setAttribute('role', 'row');
+      row.classList.add('a11y-row');
+      body.insertBefore(row, cells[i]);
+      for (let j = i; j < i + columns && j < cells.length; j++) {
+        row.append(cells[j]);
+      }
+    }
+
+    this.gridObserver.observe(body, { childList: true, subtree: false });
+  }
 
   private enhanceAccessibility(focusOnDate: boolean = true) {
     let body = this.dpContainer.querySelector('.air-datepicker-body--cells');
@@ -658,6 +703,7 @@ export class PostDatePicker {
     if (!body) return;
 
     body.setAttribute('role', 'grid');
+    this.wrapCellsInRows(body);
 
     this.getCells().forEach(c => {
       c.setAttribute('aria-selected', c.classList.contains('-selected-') ? 'true' : 'false');
@@ -671,7 +717,10 @@ export class PostDatePicker {
 
     const dates = this.getIsoDates();
     const selectedDate = dates[0] ? isoToDate(dates[0]) : null;
-    this.setActiveCell(selectedDate || this.today, focusOnDate);
+    // Focus the keyboard's target date if there is one, else the selected date, else today
+    const dateToFocus = this.pendingFocusDate || selectedDate || this.today;
+
+    this.setActiveCell(dateToFocus, focusOnDate);
   }
 
   /**
@@ -863,8 +912,8 @@ export class PostDatePicker {
     if (this.dpContainer) {
       const options: AirDatepickerOptions<HTMLDivElement> = {
         navTitles: {
-          days: `<button aria-label="${this.textSwitchYear}"><strong>MMMM yyyy</strong><post-icon name="chevrondown"></post-icon></button>`,
-          months: `<button aria-label="${this.textSwitchYear}"><strong>yyyy</strong><post-icon name="chevrondown"></post-icon></button>`,
+          days: `<button><strong>MMMM yyyy</strong><span class="visually-hidden">, ${this.textSwitchYear}</span><post-icon name="chevrondown"></post-icon></button>`,
+          months: `<button><strong>yyyy</strong><span class="visually-hidden">, ${this.textSwitchYear}</span><post-icon name="chevrondown"></post-icon></button>`,
         },
         prevHtml: '<button><post-icon name="chevronleft" ></post-icon></button>',
         nextHtml: '<button><post-icon name="chevronright" ></post-icon></button>',

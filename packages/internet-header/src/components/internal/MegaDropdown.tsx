@@ -16,11 +16,11 @@ export const MegaDropdown: FunctionalComponent<
   const megaDropdownId = createIdFrom(config.trigger.text);
 
   return [
-    <post-megadropdown-trigger for={megaDropdownId}>
+    <post-megadropdown-trigger key="trigger" for={megaDropdownId}>
       {config.trigger.text}
     </post-megadropdown-trigger>,
 
-    <post-megadropdown id={megaDropdownId} textClose={textClose} textBack={textBack}>
+    <post-megadropdown key="dropdown" id={megaDropdownId} textClose={textClose} textBack={textBack}>
       {config.overview && (
         <Link
           config={config.overview}
@@ -48,7 +48,7 @@ const MegaDropdownSection: FunctionalComponent<{
       <Title class="post-megadropdown-list-title" id={titleId} config={config.title} />
       <ul class="post-megadropdown-list" aria-labelledby={titleId}>
         {config.items.map(item => (
-          <li>
+          <li key={item.url}>
             <Link config={item} ariaCurrentWhenActive="page" />
           </li>
         ))}
