@@ -30,6 +30,7 @@ test.describe('SSR compatibility', () => {
     await page.reload();
 
     assertNoComponentErrors(errorCapture.errors, componentNames as string[]);
+    expect(errorCapture.errors.length).toBe(0);
   });
 
   // NextJS typically only logs a single hydration error.

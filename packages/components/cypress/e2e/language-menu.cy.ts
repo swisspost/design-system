@@ -177,14 +177,18 @@ describe('post-language-menu', () => {
   describe('Accessibility', () => {
     it('Has no detectable a11y violations for all variants', () => {
       cy.getComponent('language-menu', LANGUAGE_SWITCH_ID);
-      cy.checkA11y('#root-inner');
+      cy.checkA11y('#root-inner', undefined, (violations) => {
+        expect(violations).to.have.length(0);
+      });
       cy.getComponent('language-menu', LANGUAGE_SWITCH_ID);
       cy.get('post-language-menu').invoke('prop', 'variant', 'menu');
       cy.get('post-language-menu[data-hydrated]')
         .find('post-menu-trigger')
         .find('button')
         .should('have.attr', 'aria-expanded', 'false');
-      cy.checkA11y('#root-inner');
+      cy.checkA11y('#root-inner', undefined, (violations) => {
+        expect(violations).to.have.length(0);
+      });
     });
   });
 });
