@@ -29204,6 +29204,74 @@
       "modifiedAt": "2026-05-05T10:05:07.473Z"
     },
     {
+      "uuid": "a4783280-8ca1-11f1-81f8-0050568d2654",
+      "id": 10836105,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10836105/storage/MDEwODM2MTA1LzAvbWFzdGVyLy8vMTAxOTc5MzE5",
+        "keywords": [
+          "Paketzentrum",
+          "Parcel center",
+          "Centro pacchi",
+          "Centre colis",
+          "conveyor belt",
+          "Laufband",
+          "Tapis roulant",
+          "Nastro trasportatore"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2797.svg",
+        "basename": "2797",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T05:35:30.000Z",
+      "modifiedAt": "2026-07-31T05:38:35.000Z"
+    },
+    {
+      "uuid": "fd16da80-8ca2-11f1-81f8-0050568d2654",
+      "id": 10837071,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10837071/storage/MDEwODM3MDcxLzAvbWFzdGVyLy8vMTAxOTg2Mjg4",
+        "keywords": [
+          "Paketzentrum",
+          "Parcel center",
+          "Centro pacchi",
+          "Centre colis",
+          "lorry",
+          "LKW",
+          "Camion",
+          "AUTOCARRO",
+          "poids lourd",
+          "truck",
+          "Lastwagen",
+          "automezzo pesante"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2798.svg",
+        "basename": "2798",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T05:45:08.000Z",
+      "modifiedAt": "2026-07-31T05:48:05.000Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -42425,13 +42493,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1128,
+    "success": 1130,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2026-07-27T07:39:14.261Z",
-  "version": "10.0.1"
+  "created": "2026-08-02T03:52:26.685Z",
+  "version": "10.1.0"
 }
