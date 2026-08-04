@@ -4,7 +4,7 @@
 post-header {
   [slot='post-login'],
   .local-login {
-    > post-menu-trigger > button {
+    > post-menu-trigger > button.btn-link {
       display: block;
       border-radius: tokens.get('avatar-border-radius', components.$post-avatar);
     }
