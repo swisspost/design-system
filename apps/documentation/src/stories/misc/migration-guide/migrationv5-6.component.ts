@@ -65,7 +65,6 @@ export class MigrationV56Component extends LitElement {
                   See the
                   <a
                     href="https://getbootstrap.com/docs/5.3/migration"
-                    target="_blank"
                     rel="noopener noreferrer"
                     >Bootstrap 5.3.x migration guide</a
                   >
@@ -75,7 +74,6 @@ export class MigrationV56Component extends LitElement {
                           and
                           <a
                             href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1500-2023-05-25"
-                            target="_blank"
                             rel="noopener noreferrer"
                             >ng-bootstrap 15.x.x changelog</a
                           >
