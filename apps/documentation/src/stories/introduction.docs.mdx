@@ -1,7 +1,8 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import * as IntroductionStories from './introduction.stories';
 import { Feature } from './introduction.blocks';
-import { packages } from '@/shared/packages.data';
+import { packages } from "@/shared/packages.data";
+import { getGithubLinkForPackage, getHumanReadableVersionForPackage } from '@/utils/package';
 import './introduction.styles.scss';
 import '@/shared/tile/tile.component';
 import { technologies, browsers } from './introduction.data';
@@ -11,11 +12,11 @@ import { technologies, browsers } from './introduction.data';
 <div className="mt-56 text-center px-16">
   <h2 className="h3">Packages &amp; Resources</h2>
   <ul className="mt-32 tile-wrapper" role="list">
-    {packages.map(p => (
-      <li key={p.name}>
-        <ti-le title={p.name} href={p.link.github.href} ariaLabel={p.link.github.ariaLabel}>
-          <img src={p.img.src} alt={p.img.alt} />
-          <span>{p.version}</span>
+    {Object.values(packages).map(pkg => (
+      <li key={pkg.name}>
+        <ti-le title={pkg.name} href={getGithubLinkForPackage(pkg)} ariaLabel={pkg.github.linkAriaLabel}>
+          <img src={pkg.img.src} alt={pkg.img.alt} />
+          <span>{getHumanReadableVersionForPackage(pkg)}</span>
         </ti-le>
       </li>
     ))}

@@ -1,9 +1,21 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import * as DeveloperStories from './developer.stories';
 import { packages } from '@/shared/packages.data';
+import { getHumanReadableVersionForPackage, getDocsLinkForPackage } from '@/utils/package';
 import '../../../shared/tile/tile.component';
 import { PackageType } from '@/../types';
 import './list-component';
+
+export const renderPackageTile = pkg => (
+  <ti-le
+    title={pkg.name}
+    href={getDocsLinkForPackage(pkg)}
+    ariaLabel={pkg.docs.linkAriaLabel}
+  >
+    <img src={pkg.img.src} alt={pkg.img.alt} />
+    <span>{getHumanReadableVersionForPackage(pkg)}</span>
+  </ti-le>
+);
 
 <Meta of={DeveloperStories} />
 
@@ -110,31 +122,11 @@ The design-system is formed with several packages and different compatibilities 
           ></developer-list-component>
         </td>
         <td rowSpan="4">
-          {[packages.find(pkg => pkg.name === 'Styles')].map(p => (
-            <ti-le
-              title={p.name}
-              href={p.link.docs.href}
-              ariaLabel={p.link.docs.ariaLabel}
-              key={p.name}
-            >
-              <img src={p.img.src} alt={p.img.alt} />
-              <span>{p.version}</span>
-            </ti-le>
-          ))}
+          {renderPackageTile(packages['design-system-styles'])}
         </td>
         <td colSpan="2">
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            {[packages.find(pkg => pkg.name === 'Internet-Header')].map(p => (
-              <ti-le
-                title={p.name}
-                href={p.link.docs.href}
-                ariaLabel={p.link.docs.ariaLabel}
-                key={p.name}
-              >
-                <img src={p.img.src} alt={p.img.alt} />
-                <span>{p.version}</span>
-              </ti-le>
-            ))}
+            {renderPackageTile(packages['internet-header'])}
           </div>
         </td>
         <td>TBD</td>
@@ -145,43 +137,13 @@ The design-system is formed with several packages and different compatibilities 
           <developer-list-component packageType={PackageType.Wc}></developer-list-component>
         </td>
         <td>
-          {[packages.find(pkg => pkg.name === 'Components')].map(p => (
-            <ti-le
-              title={p.name}
-              href={p.link.docs.href}
-              ariaLabel={p.link.docs.ariaLabel}
-              key={p.name}
-            >
-              <img src={p.img.src} alt={p.img.alt} />
-              <span>{p.version}</span>
-            </ti-le>
-          ))}
+          {renderPackageTile(packages['design-system-components'])}
         </td>
         <td>
-          {[packages.find(pkg => pkg.name === 'Components for Angular')].map(p => (
-            <ti-le
-              title={p.name}
-              href={p.link.docs.href}
-              ariaLabel={p.link.docs.ariaLabel}
-              key={p.name}
-            >
-              <img src={p.img.src} alt={p.img.alt} />
-              <span>{p.version}</span>
-            </ti-le>
-          ))}
+          {renderPackageTile(packages['design-system-components-angular'])}
         </td>
         <td>
-          {[packages.find(pkg => pkg.name === 'Components for React')].map(p => (
-            <ti-le
-              title={p.name}
-              href={p.link.docs.href}
-              ariaLabel={p.link.docs.ariaLabel}
-              key={p.name}
-            >
-              <img src={p.img.src} alt={p.img.alt} />
-              <span>{p.version}</span>
-            </ti-le>
-          ))}
+          {renderPackageTile(packages['design-system-components-react'])}
         </td>
       </tr>
       <tr>
