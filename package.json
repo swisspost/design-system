@@ -133,7 +133,7 @@
     },
     "packageManager": {
       "name": "pnpm",
-      "version": "10.29.3",
+      "version": "11.20.0",
       "onFail": "warn"
     }
   },

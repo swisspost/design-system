@@ -54,4 +54,14 @@ overrides:
 strictPeerDependencies: false
 saveExact: true
 allowBuilds:
+  '@parcel/watcher': true
+  '@percy/core': true
+  core-js-pure: true
   cypress: true
+  es5-ext: true
+  esbuild: true
+  iframe-resizer: true
+  lmdb: true
+  msgpackr-extract: true
+  sharp: true
+  unrs-resolver: true
