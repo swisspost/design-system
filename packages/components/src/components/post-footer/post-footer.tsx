@@ -12,8 +12,8 @@ const SECTION_SLOTS = ['socialmedia', 'app', 'businesssectors', 'meta', 'copyrig
  * @slot socialmedia - Slot for the social media links.
  * @slot app - Slot for the app links.
  * @slot businesssectors - Slot for the business sectors links.
- * @slot meta - Slot for the meta links.
- * @slot copyright - Slot for the copyright text.
+ * @slot meta - **Required.** Slot for the meta links.
+ * @slot copyright - **Required.** Slot for the copyright text.
  */
 @Component({
   tag: 'post-footer',
