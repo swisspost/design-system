@@ -110,8 +110,11 @@ export class PostFooter {
   }
 
   render() {
-    const socialmediaDisplayed = this.slotDisplayed['socialmedia'];
-    const appDisplayed = this.slotDisplayed['app'];
+    const renderSocialmedia = this.slotDisplayed['socialmedia'];
+    const renderApp = this.slotDisplayed['app'];
+    const renderBusinesssectors = this.slotDisplayed['businesssectors'];
+    const renderMeta = this.slotDisplayed['meta'];
+    const renderCopyright = this.slotDisplayed['copyright'];
     const allGridSlotsEmpty = GRID_SLOTS.every(slotName => !this.slotDisplayed[slotName]);
 
     return (
@@ -134,34 +137,27 @@ export class PostFooter {
               <div
                 class={{
                   'footer-column': true,
-                  'd-none': !socialmediaDisplayed && !appDisplayed,
+                  'd-none': !renderSocialmedia && !renderApp,
                 }}
               >
-                <div class={{ 'footer-socialmedia': true, 'd-none': !socialmediaDisplayed }}>
+                <div class={{ 'footer-socialmedia': true, 'd-none': !renderSocialmedia }}>
                   <slot onSlotchange={this.handleSlotChange} name="socialmedia"></slot>
                 </div>
 
-                <div class={{ 'footer-app': true, 'd-none': !appDisplayed }}>
+                <div class={{ 'footer-app': true, 'd-none': !renderApp }}>
                   <slot onSlotchange={this.handleSlotChange} name="app"></slot>
                 </div>
               </div>
 
-              <div
-                class={{
-                  'footer-businesssectors': true,
-                  'd-none': !this.slotDisplayed['businesssectors'],
-                }}
-              >
+              <div class={{ 'footer-businesssectors': true, 'd-none': !renderBusinesssectors }}>
                 <slot onSlotchange={this.handleSlotChange} name="businesssectors"></slot>
               </div>
 
-              <div class={{ 'footer-meta': true, 'd-none': !this.slotDisplayed['meta'] }}>
+              <div class={{ 'footer-meta': true, 'd-none': !renderMeta }}>
                 <slot onSlotchange={this.handleSlotChange} name="meta"></slot>
               </div>
 
-              <div
-                class={{ 'footer-copyright': true, 'd-none': !this.slotDisplayed['copyright'] }}
-              >
+              <div class={{ 'footer-copyright': true, 'd-none': !renderCopyright }}>
                 <slot onSlotchange={this.handleSlotChange} name="copyright"></slot>
               </div>
             </div>
