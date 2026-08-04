@@ -42,3 +42,16 @@ catalogs:
     'rxjs': 7.8.2
     'tslib': 2.8.1
     'zone.js': 0.16.1
+peerDependencyRules:
+  ignoreMissing: []
+  allowedVersions:
+    '@typescript-eslint/eslint-plugin': '>=7'
+    '@typescript-eslint/parser': '>=7'
+    zone.js: '>=0.14'
+overrides:
+  browserslist: '>=4.27.0'
+  form-data@>=4.0.0 <4.0.4: 4.0.6
+strictPeerDependencies: false
+saveExact: true
+allowBuilds:
+  cypress: true
