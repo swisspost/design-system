@@ -75,6 +75,8 @@ export class PostFooter {
 
   private updateSlotDisplay(slotName: string, hasContent: boolean) {
     if (this.slotDisplayed[slotName] !== hasContent) {
+      // @State only re-renders when this.slotDisplayed itself is replaced,
+      // not when one of its properties is changed directly
       this.slotDisplayed = { ...this.slotDisplayed, [slotName]: hasContent };
     }
   }
