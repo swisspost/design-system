@@ -576,31 +576,30 @@ describe('header', () => {
   });
 
   describe('layout stability while resizing', () => {
-  //   const widths = [1400, 1200, 1024, 992, 900, 768];
+    const widths = [1400, 1200, 1024, 992, 900, 768];
 
-  //   it('should not show both desktop and mobile nav affordances at any intermediate width', () => {
-  //     cy.visit(`/iframe.html?id=${HEADER_ID}--portal`);
-  //     cy.get('post-header').as('header');
+    it('should not show both desktop and mobile nav affordances at any intermediate width', () => {
+      cy.visit(`/iframe.html?id=${HEADER_ID}--portal`);
+      cy.get('post-header').as('header');
 
-  //     cy.wrap(widths).each((width: number) => {
-  //       cy.viewport(width, 600);
+      cy.wrap(widths).each((width: number) => {
+        cy.viewport(width, 600);
 
-  //       cy.get('@header').shadow().then($shadow => {
-  //         cy.get('@header').then($header => {
-  //           const $burger = $shadow.find('.burger-button');
-  //           const $mainNav = $header.find('post-mainnavigation');
+        cy.get('@header').shadow().then($shadow => {
+          cy.get('@header').then($header => {
+            const $burger = $shadow.find('.burger-button');
+            const $mainNav = $header.find('post-mainnavigation');
 
-  //           const burgerVisible = $burger.length > 0 && $burger.is(':visible');
-  //           const mainNavVisible = $mainNav.length > 0 && $mainNav.is(':visible');
+            const burgerVisible = $burger.length > 0 && $burger.is(':visible');
+            const mainNavVisible = $mainNav.length > 0 && $mainNav.is(':visible');
 
-  //           expect(
-  //             burgerVisible && mainNavVisible,
-  //             `at ${width}px: burger visible=${burgerVisible}, main nav visible=${mainNavVisible}`,
-  //           ).to.eq(false);
-  //         });
-  //       });
-  //     });
-  //   });
-  // });
-});
+            expect(
+              burgerVisible && mainNavVisible,
+              `at ${width}px: burger visible=${burgerVisible}, main nav visible=${mainNavVisible}`,
+            ).to.eq(false);
+          });
+        });
+      });
+    });
+  });
 });
