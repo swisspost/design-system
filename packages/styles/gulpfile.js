@@ -155,6 +155,13 @@ gulp.task('sass:dev', () => {
 });
 
 /**
+ * Watch task for scss development
+ */
+gulp.task('watch', () => {
+  return gulp.watch('./src/**/*.scss', gulp.series('copy', 'sass:dev'));
+});
+
+/**
  * Run copy and sass task in parallel per default
  */
 exports.default = gulp.task(
