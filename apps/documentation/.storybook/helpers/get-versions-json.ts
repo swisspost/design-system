@@ -2,9 +2,8 @@ import { DEPENDENCIES, getVersion } from '../../src/utils/version';
 const currentMajorVersion =
   getVersion(DEPENDENCIES['@swisspost/design-system-styles'], 'major') ?? '';
 
-const VERSIONS_URL = globalThis.location.href.includes('http://localhost')
-  ? '/assets/versions.json'
-  : 'https://design-system.post.ch/assets/versions.json';
+const LOCAL_VERSIONS_URL = '/assets/versions.json';
+const REMOTE_VERSIONS_URL = 'https://design-system.post.ch/assets/versions.json';
 const PRE_FLAG_REGEX = /-(alpha|beta|rc|pre|next|canary|snapshot)/i;
 
 export interface Version {
@@ -55,9 +54,20 @@ function getVersionsStore(): VersionsStore {
 }
 
 /**
- * Fetch versions.json once and cache the result across all Storybook contexts.
+ * Fetch versions.json from a single URL, throwing if the response is not ok.
  */
-function loadVersionsJson(url: string = VERSIONS_URL): Promise<Versions> {
+function fetchVersionsJson(url: string): Promise<Versions> {
+  return fetch(url).then(response => {
+    if (!response.ok) throw new Error(`Failed to load versions.json from ${url}`);
+    return response.json() as Promise<Version[]>;
+  });
+}
+
+/**
+ * Fetch versions.json once and cache the result across all Storybook contexts.
+ * Prefer the local copy and fall back to the remote origin when unavailable.
+ */
+function loadVersionsJson(): Promise<Versions> {
   const store = getVersionsStore();
 
   // Already loaded: reuse the cached data.
@@ -66,11 +76,8 @@ function loadVersionsJson(url: string = VERSIONS_URL): Promise<Versions> {
   // Already loading: reuse the in-flight request instead of fetching again.
   if (store.promise !== null) return store.promise;
 
-  store.promise = fetch(url)
-    .then(response => {
-      if (!response.ok) throw new Error(`Failed to load versions.json from ${url}`);
-      return response.json() as Promise<Version[]>;
-    })
+  store.promise = fetchVersionsJson(LOCAL_VERSIONS_URL)
+    .catch(() => fetchVersionsJson(REMOTE_VERSIONS_URL))
     .then(data => {
       store.cache = data;
       return store.cache;
