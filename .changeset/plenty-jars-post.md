@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': minor
 ---
 
-added person Andrin to docs Footer
+Added Andrin Affolter to the documentation footer.
