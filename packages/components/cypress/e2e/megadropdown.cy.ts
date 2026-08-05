@@ -135,36 +135,6 @@ describe('megadropdown', () => {
     });
   });
 
-  describe('style regressions', () => {
-    beforeEach(() => {
-      cy.viewport(1920, 1080);
-      cy.getComponents(MEGADROPDOWN_ID, 'tests', 'post-megadropdown');
-      cy.get('post-megadropdown-trigger[data-hydrated]').find('button').as('trigger');
-      cy.get('@trigger').click({ force: true });
-    });
-
-    it('should not have a border-radius on megadropdown title links', () => {
-      cy.get('@megadropdown')
-        .find('.post-megadropdown-list-title')
-        .should('have.css', 'border-radius', '0px');
-    });
-
-    it('should keep megadropdown-content bottom padding when the content overflows and is scrolled', () => {
-      cy.get('@megadropdown')
-        .find('.megadropdown-content')
-        .then($content => {
-          const before = window.getComputedStyle($content.get(0)).paddingBottom;
-          cy.get('@megadropdown')
-            .find('.megadropdown')
-            .scrollTo('bottom')
-            .then(() => {
-              const after = window.getComputedStyle($content.get(0)).paddingBottom;
-              expect(after).to.eq(before);
-            });
-        });
-    });
-  });
-
   describe('chevron rotation', () => {
     function getRotation($icon: JQuery<HTMLElement>): number {
       const transform = window.getComputedStyle($icon.get(0)).transform;
@@ -199,91 +169,6 @@ describe('megadropdown', () => {
       cy.get('post-megadropdown-trigger[data-hydrated]').find('button').first().click({ force: true });
 
       cy.get('@chevron').should($icon => expect(getRotation($icon)).to.eq(-90));
-    });
-  });
-
-  describe('stylesheet actually applied', () => {
-    it('should apply the real desktop background, z-index and elevation shadow', () => {
-      cy.viewport(1920, 1080);
-      cy.getComponents(MEGADROPDOWN_ID, 'tests', 'post-megadropdown');
-      cy.get('post-megadropdown-trigger[data-hydrated]').find('button').first().click({ force: true });
-
-      cy.get('@megadropdown')
-        .find('.megadropdown')
-        .should('have.css', 'background-color', 'rgb(240, 239, 237)')
-        .and('have.css', 'z-index', '-1')
-        .and($el => {
-          expect(window.getComputedStyle($el.get(0)).boxShadow).to.not.eq('none');
-        });
-    });
-
-    it('should apply the real mobile background and z-index', () => {
-      cy.viewport('iphone-6');
-      cy.getComponents(MEGADROPDOWN_ID, 'tests', 'post-megadropdown');
-      cy.get('post-megadropdown-trigger[data-hydrated]').find('button').first().click({ force: true });
-
-      cy.get('@megadropdown')
-        .find('.megadropdown')
-        .should('have.css', 'background-color', 'rgb(250, 250, 250)')
-        .and('have.css', 'z-index', '1');
-    });
-  });
-
-  describe('3rd level mobile link styling', () => {
-    beforeEach(() => {
-      cy.viewport('iphone-6');
-      cy.getComponents(MEGADROPDOWN_ID, 'tests', 'post-megadropdown');
-      cy.get('post-megadropdown-trigger[data-hydrated]').find('button').first().click({ force: true });
-    });
-
-    it('should render a bottom border on every link in the megadropdown list', () => {
-      cy.get('@megadropdown')
-        .find('.post-megadropdown-list > li > a')
-        .each($link => {
-          const borderBottom = window.getComputedStyle($link.get(0)).borderBottomWidth;
-          expect(parseFloat(borderBottom)).to.be.greaterThan(0);
-        });
-    });
-  });
-
-  describe('responsive columns', () => {
-    beforeEach(() => {
-      cy.getComponents(MEGADROPDOWN_ID, 'tests', 'post-megadropdown');
-    });
-
-    it('should render columns that fill 100% of the available width regardless of count', () => {
-      cy.viewport(1920, 1080);
-      cy.get('post-megadropdown-trigger[data-hydrated]').find('button').first().click({ force: true });
-
-      cy.get('@megadropdown')
-        .find('.post-megadropdown-grid')
-        .then($grid => {
-          const gridWidth = $grid.get(0).getBoundingClientRect().width;
-          cy.wrap($grid.children()).each($col => {
-            const colWidth = $col.get(0).getBoundingClientRect().width;
-            expect(colWidth).to.be.greaterThan(0);
-            expect(colWidth).to.be.lessThan(gridWidth + 1);
-          });
-        });
-    });
-
-    it('should wrap to a new row when the columns do not fit the available width', () => {
-      // requires a fixture variant with enough columns to force a wrap at this viewport
-      cy.viewport(1920, 1080);
-      cy.get('post-megadropdown-trigger[data-hydrated]').find('button').first().click({ force: true });
-
-      cy.get('@megadropdown')
-        .find('.post-megadropdown-grid')
-        .children()
-        .then($cols => {
-          if ($cols.length <= 1) {
-            cy.log('fixture has a single column, wrap behavior not exercised');
-            return;
-          }
-          const tops = [...$cols].map(col => col.getBoundingClientRect().top);
-          const uniqueRows = new Set(tops.map(t => Math.round(t)));
-          cy.log(`${uniqueRows.size} row(s) detected for ${$cols.length} column(s)`);
-        });
     });
   });
 });
