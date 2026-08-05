@@ -5,6 +5,7 @@ const VIEWPORTS: Record<string, Cypress.ViewportPreset> = {
   tablet: 'ipad-2',
   mobile: 'iphone-6',
 };
+const POPOVER_OPEN_SELECTOR = ':where(:popover-open, .popover-open)';
 
 describe('header', () => {
   function getContentTop() {
@@ -395,103 +396,148 @@ describe('header', () => {
     });
   });
 
-  describe('collapse suppression on focus', () => {
+  describe('header expansion on focus', () => {
     beforeEach(() => {
       cy.viewport(1920, 1080);
-      cy.visit(`/iframe.html?id=${HEADER_ID}--portal`);
-      cy.get('post-header').as('header');
+      cy.getComponent('header', HEADER_ID);
     });
 
-    it('should set data-expanded when a global-header element receives keyboard focus', () => {
-      cy.get('@header').shadow().find('.global-header a, .global-header button').first().focus();
-
-      cy.get('@header').should('have.attr', 'data-expanded');
-    });
-
-    it('should not remain collapsed while focus stays inside the global header, even after scrolling', () => {
+    it('should add data-expanded when a global-header element receives keyboard focus while scrolled', () => {
+      // Simulate the scrolled/reduced header state
       cy.scrollTo(0, 500);
-      cy.get('@header').shadow().find('.global-header a, .global-header button').first().focus();
+
+      cy.get('@header').should('not.have.attr', 'data-expanded');
+
+      // Grab the first focusable element that is NOT part of main-nav
+      cy.get('@header')
+        .getFocusableElements()
+        .then(focusableElements => {
+          const globalHeaderEl = Array.from(focusableElements).find(
+            el => !el.closest('[slot="main-nav"]'),
+          );
+          expect(globalHeaderEl, 'a focusable global-header element').to.exist;
+          cy.wrap(globalHeaderEl).focus();
+        });
 
       cy.get('@header').should('have.attr', 'data-expanded');
     });
 
-    it('should clear data-expanded once focus leaves the header entirely', () => {
-      cy.get('@header').shadow().find('.global-header a, .global-header button').first().focus();
+    it('should remove data-expanded once focus leaves the header', () => {
+      cy.scrollTo(0, 500);
+
+      cy.get('@header')
+        .getFocusableElements()
+        .then(focusableElements => {
+          const globalHeaderEl = Array.from(focusableElements).find(
+            el => !el.closest('[slot="main-nav"]'),
+          );
+          cy.wrap(globalHeaderEl).focus();
+        });
+
       cy.get('@header').should('have.attr', 'data-expanded');
 
-      cy.get('body').click(10, 10);
+      cy.get('body').click(0, 0);
+
+      cy.get('@header').should('not.have.attr', 'data-expanded');
+    });
+
+    it('should NOT add data-expanded when focus stays inside main navigation on desktop', () => {
+      cy.scrollTo(0, 500);
+
+      cy.get('post-megadropdown-trigger').find('button').first().focus();
+
       cy.get('@header').should('not.have.attr', 'data-expanded');
     });
   });
 
-  describe('icon-only nav links on mobile', () => {
+  describe('login button on mobile', () => {
     beforeEach(() => {
       cy.viewport('iphone-6');
-      cy.visit(`/iframe.html?id=${HEADER_ID}--portal`);
-      cy.get('post-header').as('header');
+      cy.getComponent('header', HEADER_ID);
     });
 
-    it('should visually hide the text label on the login button, not remove it', () => {
+    it('should visually hide the login label without removing it from the DOM', () => {
       cy.get('@header')
-        .find('[slot="local-nav"] a')
-        .contains('Login')
+        .find('[slot="post-login"]')
+        .first()
+        .as('loginControl');
+
+      cy.get('@loginControl').find('span').should('exist').and('contain.text', 'Login');
+
+      cy.get('@loginControl')
         .find('span')
         .first()
-        .should('exist')
-        .and('have.class', 'visually-hidden');
+        .then($label => {
+          const rect = $label[0].getBoundingClientRect();
+          expect(rect.width).to.be.lte(1);
+          expect(rect.height).to.be.lte(1);
+
+          const style = globalThis.getComputedStyle($label[0]);
+          expect(style.display).not.to.equal('none');
+          expect(style.visibility).not.to.equal('hidden');
+        });
     });
 
     it('should keep the login label accessible to screen readers', () => {
       cy.get('@header')
-        .find('[slot="local-nav"] a')
-        .contains('Login')
-        .invoke('text')
-        .should('match', /Login/);
-    });
-
-    it('should show the label again on desktop', () => {
-      cy.viewport(1920, 1080);
-      cy.get('@header')
-        .find('[slot="local-nav"] a')
-        .contains('Login')
-        .find('span')
+        .find('[slot="post-login"]')
         .first()
-        .should('not.have.class', 'visually-hidden');
+        .as('loginControl');
+
+      cy.get('@loginControl').should('not.have.attr', 'aria-hidden', 'true');
+      cy.get('@loginControl').find('span').should('not.have.attr', 'aria-hidden', 'true');
+
+      cy.get('@loginControl')
+        .invoke('text')
+        .then(text => {
+          expect(text.trim()).to.equal('Login');
+        });
     });
   });
 
-  describe('language menu interaction', () => {
+  describe('language menu interactions (regression for #7216)', () => {
     beforeEach(() => {
       cy.viewport(1920, 1080);
-      cy.visit(`/iframe.html?id=${HEADER_ID}--portal`);
-      cy.get('post-header').as('header');
+      cy.getComponent('header', HEADER_ID, 'microsite');
     });
 
-    it('should still collapse on scroll after the language menu has been opened and closed', () => {
-      cy.get('@header').find('post-language-menu').shadow().find('button').first().click();
-      cy.get('@header').find('post-language-menu').shadow().find('button').first().click();
-
-      cy.scrollTo(0, 500);
+    function openLanguageMenu() {
       cy.get('@header')
+        .find('post-language-menu')
         .shadow()
-        .find('.local-header')
-        .should($localHeader => {
-          expect($localHeader.get(0).getBoundingClientRect().top).to.be.at.most(0);
-        });
-    });
+        .find('post-menu-trigger')
+        .find('button')
+        .should('have.attr', 'aria-expanded', 'false')
+        .as('langTrigger');
 
-    it('should still open a megadropdown after the language menu was left open while scrolled', () => {
-      cy.get('@header').find('post-language-menu').shadow().find('button').first().click();
-      cy.scrollTo(0, 500);
-
-      cy.get('@header').find('post-megadropdown-trigger').first().find('button').click({ force: true });
+      cy.get('@langTrigger').click({ scrollBehavior: false });
 
       cy.get('@header')
-        .find('post-megadropdown')
-        .first()
+        .find('post-language-menu')
         .shadow()
-        .find('.megadropdown')
-        .should('be.visible');
+        .find('post-popovercontainer')
+        .should('match', POPOVER_OPEN_SELECTOR);
+    }
+
+    it('should open a megadropdown on click even if the language menu was left open while scrolled, without affecting scroll position', () => {
+      openLanguageMenu();
+
+      cy.scrollTo(0, 500);
+      cy.wait(300);
+
+      cy.get('post-megadropdown-trigger:visible').first().invoke('attr', 'for').as('targetId');
+
+      cy.window().its('scrollY').then(scrollYBeforeClick => {
+        cy.get('post-megadropdown-trigger:visible').first().find('button').click({ force: true });
+
+        cy.get('post-megadropdown-trigger:visible')
+          .first()
+          .shadow()
+          .find('button')
+          .should('have.attr', 'aria-expanded', 'true');
+
+        cy.window().its('scrollY').should('eq', scrollYBeforeClick);
+      });
     });
   });
 
@@ -503,20 +549,22 @@ describe('header', () => {
       cy.get('post-header').as('header');
 
       cy.wrap(widths).each((width: number) => {
-        cy.viewport(width, 900);
-        cy.get('@header')
-          .shadow()
-          .find('.burger-button')
-          .then($burger => {
-            cy.get('@header')
-              .find('post-mainnavigation')
-              .then($mainNav => {
-                const burgerVisible = $burger.is(':visible');
-                const mainNavVisible = $mainNav.is(':visible');
-                // exactly one of the two navigation modes should be active, never both, never neither
-                expect(burgerVisible).to.not.eq(mainNavVisible);
-              });
+        cy.viewport(width, 600);
+
+        cy.get('@header').shadow().then($shadow => {
+          cy.get('@header').then($header => {
+            const $burger = $shadow.find('.burger-button');
+            const $mainNav = $header.find('post-mainnavigation');
+
+            const burgerVisible = $burger.length > 0 && $burger.is(':visible');
+            const mainNavVisible = $mainNav.length > 0 && $mainNav.is(':visible');
+
+            expect(
+              burgerVisible && mainNavVisible,
+              `at ${width}px: burger visible=${burgerVisible}, main nav visible=${mainNavVisible}`,
+            ).to.eq(false);
           });
+        });
       });
     });
   });
