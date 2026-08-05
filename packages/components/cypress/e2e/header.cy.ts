@@ -394,4 +394,130 @@ describe('header', () => {
       });
     });
   });
+
+  describe('collapse suppression on focus', () => {
+    beforeEach(() => {
+      cy.viewport(1920, 1080);
+      cy.visit(`/iframe.html?id=${HEADER_ID}--portal`);
+      cy.get('post-header').as('header');
+    });
+
+    it('should set data-expanded when a global-header element receives keyboard focus', () => {
+      cy.get('@header').shadow().find('.global-header a, .global-header button').first().focus();
+
+      cy.get('@header').should('have.attr', 'data-expanded');
+    });
+
+    it('should not remain collapsed while focus stays inside the global header, even after scrolling', () => {
+      cy.scrollTo(0, 500);
+      cy.get('@header').shadow().find('.global-header a, .global-header button').first().focus();
+
+      cy.get('@header').should('have.attr', 'data-expanded');
+    });
+
+    it('should clear data-expanded once focus leaves the header entirely', () => {
+      cy.get('@header').shadow().find('.global-header a, .global-header button').first().focus();
+      cy.get('@header').should('have.attr', 'data-expanded');
+
+      cy.get('body').click(10, 10);
+      cy.get('@header').should('not.have.attr', 'data-expanded');
+    });
+  });
+
+  describe('icon-only nav links on mobile', () => {
+    beforeEach(() => {
+      cy.viewport('iphone-6');
+      cy.visit(`/iframe.html?id=${HEADER_ID}--portal`);
+      cy.get('post-header').as('header');
+    });
+
+    it('should visually hide the text label on the login button, not remove it', () => {
+      cy.get('@header')
+        .find('[slot="local-nav"] a')
+        .contains('Login')
+        .find('span')
+        .first()
+        .should('exist')
+        .and('have.class', 'visually-hidden');
+    });
+
+    it('should keep the login label accessible to screen readers', () => {
+      cy.get('@header')
+        .find('[slot="local-nav"] a')
+        .contains('Login')
+        .invoke('text')
+        .should('match', /Login/);
+    });
+
+    it('should show the label again on desktop', () => {
+      cy.viewport(1920, 1080);
+      cy.get('@header')
+        .find('[slot="local-nav"] a')
+        .contains('Login')
+        .find('span')
+        .first()
+        .should('not.have.class', 'visually-hidden');
+    });
+  });
+
+  describe('language menu interaction', () => {
+    beforeEach(() => {
+      cy.viewport(1920, 1080);
+      cy.visit(`/iframe.html?id=${HEADER_ID}--portal`);
+      cy.get('post-header').as('header');
+    });
+
+    it('should still collapse on scroll after the language menu has been opened and closed', () => {
+      cy.get('@header').find('post-language-menu').shadow().find('button').first().click();
+      cy.get('@header').find('post-language-menu').shadow().find('button').first().click();
+
+      cy.scrollTo(0, 500);
+      cy.get('@header')
+        .shadow()
+        .find('.local-header')
+        .should($localHeader => {
+          expect($localHeader.get(0).getBoundingClientRect().top).to.be.at.most(0);
+        });
+    });
+
+    it('should still open a megadropdown after the language menu was left open while scrolled', () => {
+      cy.get('@header').find('post-language-menu').shadow().find('button').first().click();
+      cy.scrollTo(0, 500);
+
+      cy.get('@header').find('post-megadropdown-trigger').first().find('button').click({ force: true });
+
+      cy.get('@header')
+        .find('post-megadropdown')
+        .first()
+        .shadow()
+        .find('.megadropdown')
+        .should('be.visible');
+    });
+  });
+
+  describe('layout stability while resizing', () => {
+    const widths = [1400, 1200, 1024, 992, 900, 768];
+
+    it('should not show both desktop and mobile nav affordances at any intermediate width', () => {
+      cy.visit(`/iframe.html?id=${HEADER_ID}--portal`);
+      cy.get('post-header').as('header');
+
+      widths.forEach(width => {
+        cy.viewport(width, 900);
+        cy.get('@header')
+          .shadow()
+          .find('.burger-button')
+          .then($burger => {
+            cy.get('@header')
+              .find('post-mainnavigation')
+              .then($mainNav => {
+                const burgerVisible = $burger.is(':visible');
+                const mainNavVisible = $mainNav.is(':visible');
+                // exactly one of the two navigation modes should be active, never both, never neither
+                expect(burgerVisible).to.not.eq(mainNavVisible);
+              });
+          });
+      });
+    });
+  });
 });
