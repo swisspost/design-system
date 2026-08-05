@@ -70,7 +70,6 @@ describe('megadropdown', () => {
     });
   });
 
-  // --- New: active state correctness (#7144) ---
   describe('active state', () => {
     beforeEach(() => {
       cy.viewport(1920, 1080);
@@ -94,8 +93,6 @@ describe('megadropdown', () => {
     });
 
     it('should keep the current-page active state distinguishable while the dropdown is open', () => {
-      // regression for #7144: open state and current-page state must not collapse into
-      // the same visual indicator
       cy.get('@megadropdown')
         .find('a')
         .first()
@@ -105,14 +102,11 @@ describe('megadropdown', () => {
       cy.get('@trigger').click({ force: true });
       cy.get('@megadropdown').find('.megadropdown').should('be.visible');
 
-      // both states are present at once: aria-expanded for "open", active attr for "current page"
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'true');
       cy.get('post-megadropdown-trigger').should('have.attr', 'active', 'true');
     });
   });
 
-  // --- New: animation on switching between dropdowns (#6576, #6824) ---
-  // Requires a fixture with at least two post-megadropdown instances wired to two triggers.
   describe('animation on switching between dropdowns', () => {
     beforeEach(() => {
       cy.viewport(1920, 1080);
@@ -141,7 +135,6 @@ describe('megadropdown', () => {
     });
   });
 
-  // --- New: style regressions (#6707, #7809) ---
   describe('style regressions', () => {
     beforeEach(() => {
       cy.viewport(1920, 1080);
@@ -151,9 +144,6 @@ describe('megadropdown', () => {
     });
 
     it('should not have a border-radius on megadropdown title links', () => {
-      // selector confirmed against the real _post-megadropdown.scss; the expected
-      // border-radius value itself comes from a placeholder not visible in this
-      // project mount, confirm once against the built CSS.
       cy.get('@megadropdown')
         .find('.post-megadropdown-list-title')
         .should('have.css', 'border-radius', '0px');
@@ -175,7 +165,6 @@ describe('megadropdown', () => {
     });
   });
 
-  // --- New: chevron rotation (#6889) ---
   describe('chevron rotation', () => {
     function getRotation($icon: JQuery<HTMLElement>): number {
       const transform = window.getComputedStyle($icon.get(0)).transform;
@@ -213,7 +202,6 @@ describe('megadropdown', () => {
     });
   });
 
-  // --- New: real stylesheet applied, catches silent stylesheet-load failures (#7003) ---
   describe('stylesheet actually applied', () => {
     it('should apply the real desktop background, z-index and elevation shadow', () => {
       cy.viewport(1920, 1080);
@@ -222,7 +210,7 @@ describe('megadropdown', () => {
 
       cy.get('@megadropdown')
         .find('.megadropdown')
-        .should('have.css', 'background-color', 'rgb(240, 239, 237)') // #f0efed
+        .should('have.css', 'background-color', 'rgb(240, 239, 237)')
         .and('have.css', 'z-index', '-1')
         .and($el => {
           expect(window.getComputedStyle($el.get(0)).boxShadow).to.not.eq('none');
@@ -236,15 +224,12 @@ describe('megadropdown', () => {
 
       cy.get('@megadropdown')
         .find('.megadropdown')
-        .should('have.css', 'background-color', 'rgb(250, 250, 250)') // #fafafa
+        .should('have.css', 'background-color', 'rgb(250, 250, 250)')
         .and('have.css', 'z-index', '1');
     });
   });
 
-  // --- New: 3rd-level mobile link styling (#6890) ---
   describe('3rd level mobile link styling', () => {
-    // NOTE: expected border-bottom value comes from a placeholder in
-    // @swisspost/design-system-styles not visible in this project mount, confirm once.
     beforeEach(() => {
       cy.viewport('iphone-6');
       cy.getComponents(MEGADROPDOWN_ID, 'tests', 'post-megadropdown');
@@ -261,7 +246,6 @@ describe('megadropdown', () => {
     });
   });
 
-  // --- New: responsive columns (#7249) ---
   describe('responsive columns', () => {
     beforeEach(() => {
       cy.getComponents(MEGADROPDOWN_ID, 'tests', 'post-megadropdown');
