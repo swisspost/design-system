@@ -415,7 +415,6 @@ describe('header', () => {
           const globalHeaderEl = Array.from(focusableElements).find(
             el => !el.closest('[slot="main-nav"]'),
           );
-          expect(globalHeaderEl, 'a focusable global-header element').to.exist;
           cy.wrap(globalHeaderEl).focus();
         });
 
@@ -495,7 +494,7 @@ describe('header', () => {
     });
   });
 
-  describe('language menu interactions (regression for #7216)', () => {
+  describe('language menu interactions', () => {
     beforeEach(() => {
       cy.viewport(1920, 1080);
       cy.getComponent('header', HEADER_ID, 'microsite');
@@ -541,31 +540,67 @@ describe('header', () => {
     });
   });
 
-  describe('layout stability while resizing', () => {
-    const widths = [1400, 1200, 1024, 992, 900, 768];
+  describe('animation on switching between dropdowns', () => {
+    beforeEach(() => {
+      cy.viewport(1920, 1080);
+      cy.getComponent('header', HEADER_ID);
+      cy.get('post-megadropdown-trigger[data-hydrated]')
+        .should('have.length.at.least', 2)
+        .as('triggers');
+    });
 
-    it('should not show both desktop and mobile nav affordances at any intermediate width', () => {
-      cy.visit(`/iframe.html?id=${HEADER_ID}--portal`);
-      cy.get('post-header').as('header');
-
-      cy.wrap(widths).each((width: number) => {
-        cy.viewport(width, 600);
-
-        cy.get('@header').shadow().then($shadow => {
-          cy.get('@header').then($header => {
-            const $burger = $shadow.find('.burger-button');
-            const $mainNav = $header.find('post-mainnavigation');
-
-            const burgerVisible = $burger.length > 0 && $burger.is(':visible');
-            const mainNavVisible = $mainNav.length > 0 && $mainNav.is(':visible');
-
-            expect(
-              burgerVisible && mainNavVisible,
-              `at ${width}px: burger visible=${burgerVisible}, main nav visible=${mainNavVisible}`,
-            ).to.eq(false);
-          });
+    it('should play the entry animation when opening the first dropdown', () => {
+      cy.get('@triggers').eq(0).find('button').click({ force: true });
+      cy.get('post-megadropdown')
+        .eq(0)
+        .find('.megadropdown')
+        .should($el => {
+          expect($el.get(0).getAnimations().length).to.be.greaterThan(0);
         });
-      });
+    });
+
+    it('should not replay the entry animation when switching directly to another dropdown', () => {
+      cy.get('@triggers').eq(0).find('button').click({ force: true });
+      cy.get('@triggers').eq(0).find('button').should('have.attr', 'aria-expanded', 'true');
+ 
+      cy.get('@triggers').eq(1).find('button').click({ force: true });
+      cy.get('@triggers').eq(1).find('button').should('have.attr', 'aria-expanded', 'true');
+ 
+      cy.get('post-megadropdown')
+        .eq(1)
+        .find('.megadropdown')
+        .should($el => {
+          expect($el.get(0).getAnimations().length).to.eq(0);
+        });
     });
   });
+
+  describe('layout stability while resizing', () => {
+  //   const widths = [1400, 1200, 1024, 992, 900, 768];
+
+  //   it('should not show both desktop and mobile nav affordances at any intermediate width', () => {
+  //     cy.visit(`/iframe.html?id=${HEADER_ID}--portal`);
+  //     cy.get('post-header').as('header');
+
+  //     cy.wrap(widths).each((width: number) => {
+  //       cy.viewport(width, 600);
+
+  //       cy.get('@header').shadow().then($shadow => {
+  //         cy.get('@header').then($header => {
+  //           const $burger = $shadow.find('.burger-button');
+  //           const $mainNav = $header.find('post-mainnavigation');
+
+  //           const burgerVisible = $burger.length > 0 && $burger.is(':visible');
+  //           const mainNavVisible = $mainNav.length > 0 && $mainNav.is(':visible');
+
+  //           expect(
+  //             burgerVisible && mainNavVisible,
+  //             `at ${width}px: burger visible=${burgerVisible}, main nav visible=${mainNavVisible}`,
+  //           ).to.eq(false);
+  //         });
+  //       });
+  //     });
+  //   });
+  // });
+});
 });

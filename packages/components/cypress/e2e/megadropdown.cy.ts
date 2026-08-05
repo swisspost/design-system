@@ -83,12 +83,12 @@ describe('megadropdown', () => {
         .first()
         .then($link => $link.attr('aria-current', 'page'));
 
-      cy.get('post-megadropdown-trigger').should('have.attr', 'active', 'true');
+      cy.get('post-megadropdown-trigger').should('have.attr', 'active');
       cy.get('@trigger').should('have.class', 'active');
     });
 
     it('should not mark the trigger active when no slotted link is current', () => {
-      cy.get('post-megadropdown-trigger').should('have.attr', 'active', 'false');
+      cy.get('post-megadropdown-trigger').should('not.have.attr', 'active');
       cy.get('@trigger').should('not.have.class', 'active');
     });
 
@@ -97,41 +97,13 @@ describe('megadropdown', () => {
         .find('a')
         .first()
         .then($link => $link.attr('aria-current', 'page'));
-      cy.get('post-megadropdown-trigger').should('have.attr', 'active', 'true');
+      cy.get('post-megadropdown-trigger').should('have.attr', 'active');
 
       cy.get('@trigger').click({ force: true });
       cy.get('@megadropdown').find('.megadropdown').should('be.visible');
 
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'true');
-      cy.get('post-megadropdown-trigger').should('have.attr', 'active', 'true');
-    });
-  });
-
-  describe('animation on switching between dropdowns', () => {
-    beforeEach(() => {
-      cy.viewport(1920, 1080);
-      cy.getComponents(MEGADROPDOWN_ID, 'tests', 'post-megadropdown');
-      cy.get('post-megadropdown-trigger[data-hydrated]').as('triggers');
-    });
-
-    it('should play the entry animation when opening the first dropdown', () => {
-      cy.get('@triggers').eq(0).find('button').click({ force: true });
-      cy.get('post-megadropdown')
-        .eq(0)
-        .find('.megadropdown')
-        .should($el => {
-          expect($el.get(0).getAnimations().length).to.be.greaterThan(0);
-        });
-    });
-
-    it('should not replay the entry animation when switching directly to another dropdown', () => {
-      cy.get('@triggers').eq(0).find('button').click({ force: true });
-      cy.get('post-megadropdown').eq(0).find('.megadropdown').should('be.visible');
-
-      cy.get('@triggers').eq(1).find('button').click({ force: true });
-
-      cy.get('post-megadropdown').eq(1).find('.megadropdown').should('be.visible');
-      cy.get('post-megadropdown').eq(0).find('.megadropdown').should('not.be.visible');
+      cy.get('post-megadropdown-trigger').should('have.attr', 'active');
     });
   });
 
