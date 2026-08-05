@@ -502,7 +502,7 @@ describe('header', () => {
       cy.visit(`/iframe.html?id=${HEADER_ID}--portal`);
       cy.get('post-header').as('header');
 
-      widths.forEach(width => {
+      cy.wrap(widths).each((width: number) => {
         cy.viewport(width, 900);
         cy.get('@header')
           .shadow()
