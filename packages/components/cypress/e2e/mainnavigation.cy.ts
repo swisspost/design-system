@@ -191,7 +191,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
           .then($nav => {
             const scrollLeftAtLeave = $nav.get(0).scrollLeft;
 
-            cy.get('body').trigger('mouseleave');
+cy.window().then(win => win.dispatchEvent(new MouseEvent('mouseleave')));
             cy.wait(300);
 
             cy.get('@mainnavigation')
