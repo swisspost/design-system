@@ -137,7 +137,7 @@ describe('megadropdown', () => {
 
   describe('chevron rotation', () => {
     function getRotation($icon: JQuery<HTMLElement>): number {
-      const transform = window.getComputedStyle($icon.get(0)).transform;
+      const transform = globalThis.getComputedStyle($icon.get(0)).transform;
       if (transform === 'none') return 0;
       const values = transform.match(/matrix\(([^)]+)\)/)?.[1].split(',').map(Number);
       if (!values) return 0;

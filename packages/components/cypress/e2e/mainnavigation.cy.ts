@@ -355,8 +355,8 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
               const a = document.createElement('a');
               a.href = `/extra-item-${i}`;
               a.textContent = `Extra item ${i}`;
-              li.appendChild(a);
-              $navList.get(0).appendChild(li);
+              li.append(a);
+              $navList.get(0).append(li);
             }
           });
 
