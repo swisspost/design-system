@@ -207,6 +207,19 @@ describe('header', () => {
       cy.get('div.burger-menu.extended').should('exist').should('be.visible');
       cy.get('@title').should('be.visible');
     });
+
+    it('should not collapse the local header on scroll when a title is present', () => {
+      cy.viewport(1920, 1080);
+
+      cy.get('@header').shadow().find('.local-header').should('be.visible');
+
+      cy.scrollTo(0, 500);
+      cy.wait(300);
+
+      // per design, a header with a title intentionally keeps the local header expanded on scroll
+      cy.get('@header').should('not.have.attr', 'data-expanded');
+      cy.get('@header').shadow().find('.local-header').should('be.visible');
+    });
   });
 
   describe('keyboard navigation', () => {
