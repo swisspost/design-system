@@ -1,5 +1,3 @@
-import { DEPENDENCIES, getVersion } from '@/utils/version';
-
 import metaStyles from '@/stories/packages/styles/styles.stories';
 import metaComponents from '@/stories/packages/components/components.stories';
 import metaComponentsAngular from '@/stories/packages/components-angular/components-angular.stories';
@@ -11,186 +9,159 @@ import metaThemeAGGrid from '@/stories/packages/theme-ag-grid/theme-ag-grid.stor
 
 import { PackageType } from '@/../types';
 
-interface IPackage {
-  name: string;
-  docsStoryId: string;
+export interface IPackage {
   type: PackageType;
-  link: {
-    [key: string]: {
-      href: string;
-      ariaLabel: string;
-    };
+  name: string;
+  packageName: string;
+  dependencyName: string;
+  docs: {
+    storyId: string;
+    linkAriaLabel: string;
+  };
+  github: {
+    linkAriaLabel: string;
   };
   img: {
     src: string;
     alt: string;
   };
-  version: string;
 }
 
-export const packages: IPackage[] = [
-  {
+export const packages: Record<string, IPackage> = {
+  'design-system-styles': {
     name: 'Styles',
-    docsStoryId: metaStyles.id,
-    type: PackageType.Styles,
-    link: {
-      github: {
-        href: 'https://github.com/swisspost/design-system/tree/main/packages/styles',
-        ariaLabel: 'Source of Styles package',
-      },
-      docs: {
-        href: generateDocsRelativeLink(metaStyles.id),
-        ariaLabel: 'Getting started with Styles package',
-      },
+    packageName: 'styles',
+    dependencyName: '@swisspost/design-system-styles',
+    docs: {
+      storyId: metaStyles.id,
+      linkAriaLabel: 'Getting started with Styles package',
     },
+    github: {
+      linkAriaLabel: 'Source of Styles package',
+    },
+    type: PackageType.Styles,
     img: {
       src: '/assets/images/packages/styles.svg',
       alt: '',
     },
-    version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-styles'])}`,
   },
-  {
-    name: 'Components',
-    docsStoryId: metaComponents.id,
+  'design-system-components': {
     type: PackageType.Wc,
-    link: {
-      github: {
-        href: 'https://github.com/swisspost/design-system/tree/main/packages/components',
-        ariaLabel: 'Source of Components package',
-      },
-      docs: {
-        href: generateDocsRelativeLink(metaComponents.id),
-        ariaLabel: 'Getting started with Components package',
-      },
+    name: 'Components',
+    packageName: 'components',
+    dependencyName: '@swisspost/design-system-components',
+    docs: {
+      storyId: metaComponents.id,
+      linkAriaLabel: 'Getting started with Components package',
+    },
+    github: {
+      linkAriaLabel: 'Source of Components package',
     },
     img: {
       src: '/assets/images/packages/components.svg',
       alt: '',
     },
-    version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-components'])}`,
   },
-  {
-    name: 'Components for Angular',
-    docsStoryId: metaComponentsAngular.id,
+  'design-system-components-angular': {
     type: PackageType.Angular,
-    link: {
-      github: {
-        href: 'https://github.com/swisspost/design-system/tree/main/packages/components-angular',
-        ariaLabel: 'Source of Components for Angular package',
-      },
-      docs: {
-        href: generateDocsRelativeLink(metaComponentsAngular.id),
-        ariaLabel: 'Getting started with Components for Angular package',
-      },
+    name: 'Components for Angular',
+    packageName: 'components-angular',
+    dependencyName: '@swisspost/design-system-components-angular',
+    docs: {
+      storyId: metaComponentsAngular.id,
+      linkAriaLabel: 'Getting started with Components for Angular package',
+    },
+    github: {
+      linkAriaLabel: 'Source of Components for Angular package',
     },
     img: {
       src: '/assets/images/packages/components-angular.svg',
       alt: '',
     },
-    version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-components-angular'])}`,
   },
-  {
-    name: 'Components for React',
-    docsStoryId: metaComponentsReact.id,
+  'design-system-components-react': {
     type: PackageType.React,
-    link: {
-      github: {
-        href: 'https://github.com/swisspost/design-system/tree/main/packages/components-react',
-        ariaLabel: 'Source of Components for React package',
-      },
-      docs: {
-        href: generateDocsRelativeLink(metaComponentsReact.id),
-        ariaLabel: 'Getting started with Components for React package',
-      },
+    name: 'Components for React',
+    packageName: 'components-react',
+    dependencyName: '@swisspost/design-system-components-react',
+    docs: {
+      storyId: metaComponentsReact.id,
+      linkAriaLabel: 'Getting started with Components for React package',
+    },
+    github: {
+      linkAriaLabel: 'Source of Components for React package',
     },
     img: {
       src: '/assets/images/packages/components-react.svg',
       alt: '',
     },
-    version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-components-react'])}`,
   },
-  {
-    name: 'Internet-Header',
-    docsStoryId: metaInternetHeader.id,
+  'internet-header': {
     type: PackageType.Wc,
-    link: {
-      github: {
-        href: 'https://github.com/swisspost/design-system/tree/main/packages/internet-header',
-        ariaLabel: 'Source of Internet-Header package',
-      },
-      docs: {
-        href: generateDocsRelativeLink(metaInternetHeader.id),
-        ariaLabel: 'Getting started with Internet-Header package',
-      },
+    name: 'Internet-Header',
+    packageName: 'internet-header',
+    dependencyName: '@swisspost/internet-header',
+    docs: {
+      storyId: metaInternetHeader.id,
+      linkAriaLabel: 'Getting started with Internet-Header package',
+    },
+    github: {
+      linkAriaLabel: 'Source of Internet-Header package',
     },
     img: {
       src: '/assets/images/packages/internet-header.svg',
       alt: '',
     },
-    version: `v${getVersion(DEPENDENCIES['@swisspost/internet-header'])}`,
   },
-  {
-    name: 'Icons',
-    docsStoryId: metaIcons.id,
+  'design-system-icons': {
     type: PackageType.Assets,
-    link: {
-      github: {
-        href: 'https://github.com/swisspost/design-system/tree/main/packages/icons',
-        ariaLabel: 'Source of Icons package',
-      },
-      docs: {
-        href: generateDocsRelativeLink(metaIcons.id),
-        ariaLabel: 'Getting started with Icons package',
-      },
+    name: 'Icons',
+    packageName: 'icons',
+    dependencyName: '@swisspost/design-system-icons',
+    docs: {
+      storyId: metaIcons.id,
+      linkAriaLabel: 'Getting started with Icons package',
+    },
+    github: {
+      linkAriaLabel: 'Source of Icons package',
     },
     img: {
       src: '/assets/images/packages/icons.svg',
       alt: '',
     },
-    version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-icons'])}`,
   },
-  {
-    name: 'Theme AG Grid',
-    docsStoryId: metaThemeAGGrid.id,
+  'design-system-theme-ag-grid': {
     type: PackageType.Ts,
-    link: {
-      github: {
-        href: 'https://github.com/swisspost/design-system/tree/main/packages/theme-ag-grid',
-        ariaLabel: 'Source of Theme AG Grid package',
-      },
-      docs: {
-        href: generateDocsRelativeLink(metaThemeAGGrid.id),
-        ariaLabel: 'Getting started with Theme AG Grid package',
-      },
+    name: 'Theme AG Grid',
+    packageName: 'theme-ag-grid',
+    dependencyName: '@swisspost/design-system-theme-ag-grid',
+    docs: {
+      storyId: metaThemeAGGrid.id,
+      linkAriaLabel: 'Getting started with Theme AG Grid package',
+    },
+    github: {
+      linkAriaLabel: 'Source of Theme AG Grid package',
     },
     img: {
       src: '/assets/images/packages/theme-ag-grid.svg',
       alt: '',
     },
-    version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-theme-ag-grid'])}`,
   },
-  {
-    name: 'Tokens',
-    docsStoryId: metaTokens.id,
+  'design-system-tokens': {
     type: PackageType.Assets,
-    link: {
-      github: {
-        href: 'https://github.com/swisspost/design-system/tree/main/packages/tokens',
-        ariaLabel: 'Source of Tokens package',
-      },
-      docs: {
-        href: generateDocsRelativeLink(metaTokens.id),
-        ariaLabel: 'Getting started with Tokens package',
-      },
+    name: 'Tokens',
+    packageName: 'tokens',
+    dependencyName: '@swisspost/design-system-tokens',
+    docs: {
+      storyId: metaTokens.id,
+      linkAriaLabel: 'Getting started with Tokens package',
+    },
+    github: {
+      linkAriaLabel: 'Source of Tokens package',
     },
     img: {
       src: '/assets/images/packages/tokens.svg',
       alt: '',
     },
-    version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-tokens'])}`,
   },
-];
-
-function generateDocsRelativeLink(storyId: string) {
-  return `/?path=/docs/${storyId}--docs`;
-}
+};
