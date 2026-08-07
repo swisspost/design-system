@@ -94,7 +94,8 @@ StyleDictionary.registerPreprocessor({
 
     function traverse(context: DesignToken) {
       Object.entries(context).forEach(([key, value]) => {
-        const isToken = context[key].$type !== undefined;
+        const usesDtcg = context[key].$type && context[key].$value;
+        const isToken = context[key][usesDtcg ? '$type' : 'type'] !== undefined;
         const tokenType = context[key].$type;
         const tokenValue = context[key].$value;
 
