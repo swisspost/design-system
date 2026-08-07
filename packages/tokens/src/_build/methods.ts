@@ -421,8 +421,9 @@ export function getTokenValue(
 ): TokenProperty {
   const { outputReferences } = options;
 
-  const originalTokenValue = token.original.$value;
-  let tokenValue = token.$value;
+  const usesDtcg = token.$type && token.$value;
+  const originalTokenValue = usesDtcg ? token.original.$value : token.original.value;
+  let tokenValue = usesDtcg ? token.$value : token.value;
 
   if (outputReferences && usesReferences(originalTokenValue)) {
     tokenValue = replaceAllReferences(originalTokenValue);
