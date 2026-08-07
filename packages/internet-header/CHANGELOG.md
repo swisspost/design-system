@@ -1,5 +1,16 @@
 # @swisspost/internet-header
 
+## 10.2.0
+
+### Patch Changes
+
+- Fixed user menu's trigger radius on focus. (by [@leagrdv](https://github.com/leagrdv) with [#8204](https://github.com/swisspost/design-system/pull/8204))
+
+- Fixed the login button, primary navigation links, and local navigation links not collapsing to icon-only on mobile. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8223](https://github.com/swisspost/design-system/pull/8223))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.2.0
+  - @swisspost/design-system-styles@10.2.0
+
 ## 10.1.0
 
 ### Patch Changes
