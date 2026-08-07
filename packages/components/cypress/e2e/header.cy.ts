@@ -164,9 +164,6 @@ describe('header', () => {
     });
   });
 
-  // merged 'keyboard navigation' and 'header expansion on focus' into one block, both
-  // were really the same concern (does focus/keyboard behave correctly) split for no
-  // strong reason
   describe('focus and keyboard navigation', () => {
     describe('desktop', () => {
       beforeEach(() => {
