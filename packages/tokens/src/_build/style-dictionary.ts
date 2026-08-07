@@ -39,7 +39,7 @@ StyleDictionary.registerTransform({
   type: 'value',
   filter: token => {
     let transformType = false;
-    const typeToCheck = token.$type ? (token.$type as string) : (token.type as string);
+    const typeToCheck = token.$type as string;
     transformType = NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES.includes(typeToCheck);
     if (transformType) {
       return token.$value === '0';
