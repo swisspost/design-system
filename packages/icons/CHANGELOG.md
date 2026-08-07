@@ -1,5 +1,31 @@
 # @swisspost/design-system-icons
 
+## 10.2.0
+
+### Minor Changes
+
+- Added icons: `2797` and `2798` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8229](https://github.com/swisspost/design-system/pull/8229))
+
+- Added icons:
+  - `aboutus` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `bedhospital` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `border` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `constructionworker` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `construction` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `evoting` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `experiencehub` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `firewall` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `fridge` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `infinityloop` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `menusort` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `mypost24search` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `parcelcenterconveyerbelt` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `parcelcenterlorry` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `smallparcels` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `smartshuttle` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `targetcenterfull` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `voting` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8229](https://github.com/swisspost/design-system/pull/8229))
+
 ## 10.1.0
 
 ### Minor Changes
