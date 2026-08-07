@@ -96,8 +96,8 @@ StyleDictionary.registerPreprocessor({
       Object.entries(context).forEach(([key, value]) => {
         const usesDtcg = context[key].$type && context[key].$value;
         const isToken = context[key][usesDtcg ? '$type' : 'type'] !== undefined;
-        const tokenType = context[key].$type;
-        const tokenValue = context[key].$value;
+        const tokenType = context[key][usesDtcg ? '$type' : 'type'];
+        const tokenValue = context[key][usesDtcg ? '$value' : 'value'];
 
         if (typeof context[key] === 'object' && context[key] !== null) {
           if (isToken) {
