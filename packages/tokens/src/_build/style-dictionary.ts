@@ -38,19 +38,17 @@ StyleDictionary.registerTransform({
   name: 'swisspost/scss-no-unitless-zero-values',
   type: 'value',
   filter: token => {
-    const usesDtcg = token.$type && token.$value;
     let transformType = false;
-    const typeToCheck = usesDtcg ? (token.$type as string) : (token.type as string);
+    const typeToCheck = token.$type ? (token.$type as string) : (token.type as string);
     transformType = NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES.includes(typeToCheck);
     if (transformType) {
-      return token[usesDtcg ? '$value' : 'value'] === '0';
+      return token.$value === '0';
     } else {
       return false;
     }
   },
   transform: token => {
-    const usesDtcg = token.$type && token.$value;
-    return token[usesDtcg ? '$value' : 'value'] + 'px';
+    return token.$value + 'px';
   },
 });
 
@@ -67,13 +65,11 @@ StyleDictionary.registerTransform({
   name: 'swisspost/px-to-rem',
   type: 'value',
   filter: token => {
-    const usesDtcg = token.$type && token.$value;
-    return token[usesDtcg ? '$type' : 'type'] === PX_TO_REM_TOKEN_TYPE;
+    return token.$type === PX_TO_REM_TOKEN_TYPE;
   },
   transform: token => {
-    const usesDtcg = token.$type && token.$value;
     const baseFontSize = BASE_FONT_SIZE;
-    let value = token[usesDtcg ? '$value' : 'value'];
+    let value = token.$value;
     if (typeof value === 'string' && value.includes('px')) {
       // Convert value to a number
       value = parseFloat(value);
@@ -98,10 +94,9 @@ StyleDictionary.registerPreprocessor({
 
     function traverse(context: DesignToken) {
       Object.entries(context).forEach(([key, value]) => {
-        const usesDtcg = context[key].$type && context[key].$value;
-        const isToken = context[key][usesDtcg ? '$type' : 'type'] !== undefined;
-        const tokenType = context[key][usesDtcg ? '$type' : 'type'];
-        const tokenValue = context[key][usesDtcg ? '$value' : 'value'];
+        const isToken = context[key].$type !== undefined;
+        const tokenType = context[key].$type;
+        const tokenValue = context[key].$value;
 
         if (typeof context[key] === 'object' && context[key] !== null) {
           if (isToken) {
