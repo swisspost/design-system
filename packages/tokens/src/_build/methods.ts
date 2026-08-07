@@ -380,6 +380,7 @@ export function getSet(
   return tokenSet;
 
   function normalizeToken(token: TransformedToken) {
+    const usesDtcg = token.$type && token.$value;
     const name = token.path.slice(1).join('-');
     const path = name.split('-');
     const original = token.original;
@@ -391,7 +392,7 @@ export function getSet(
     );
 
     if (boxShadowKeepRefsWorkaroundValue) {
-      original.$value = boxShadowKeepRefsWorkaroundValue;
+      original[usesDtcg ? '$value' : 'value'] = boxShadowKeepRefsWorkaroundValue;
     }
 
     return {
