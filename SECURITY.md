@@ -13,7 +13,7 @@ Please contact [security@post.ch](mailto:security@post.ch).
 | Version | Supported          | Supported Dependencies                           |
 |---------|--------------------|--------------------------------------------------|
 | 10      | :white_check_mark: | -                                                |
-| 9       | until July 2027    | Bootstrap 5.3.8, Angular 18, ng-bootstrap 17-^21 |
+| 9       | until July 2027    | Bootstrap ~5.3.0, Angular 19, ng-bootstrap ^17.0.0 or ^18.0.0 |
 | 8       | until June 2026    | Bootstrap 5.3, Angular 18, ng-bootstrap 17       |
 | 7       | until June 2025    | Bootstrap 5.3, Angular 17, ng-bootstrap 16       |
 | 6.4     | until end of 2024  | Bootstrap 5.2, Angular 16, ng-bootstrap 15       |
