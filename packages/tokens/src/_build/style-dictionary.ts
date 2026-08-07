@@ -49,7 +49,8 @@ StyleDictionary.registerTransform({
     }
   },
   transform: token => {
-    return token.$value + 'px';
+    const usesDtcg = token.$type && token.$value;
+    return token[usesDtcg ? '$value' : 'value'] + 'px';
   },
 });
 
