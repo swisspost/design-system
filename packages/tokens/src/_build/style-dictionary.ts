@@ -67,11 +67,13 @@ StyleDictionary.registerTransform({
   name: 'swisspost/px-to-rem',
   type: 'value',
   filter: token => {
-    return token.$type === PX_TO_REM_TOKEN_TYPE;
+    const usesDtcg = token.$type && token.$value;
+    return token[usesDtcg ? '$type' : 'type'] === PX_TO_REM_TOKEN_TYPE;
   },
   transform: token => {
+    const usesDtcg = token.$type && token.$value;
     const baseFontSize = BASE_FONT_SIZE;
-    let value = token.$value;
+    let value = token[usesDtcg ? '$value' : 'value'];
     if (typeof value === 'string' && value.includes('px')) {
       // Convert value to a number
       value = parseFloat(value);
