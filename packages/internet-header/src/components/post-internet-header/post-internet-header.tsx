@@ -306,7 +306,7 @@ export class PostInternetHeader {
 
           {localHeader.navigation && this.renderNavigation('local-nav', localHeader.navigation)}
 
-          {localHeader.mainNavigation && (
+          {localHeader.mainNavigation && localHeader.mainNavigation.length > 0 && (
             <post-mainnavigation slot="main-nav" textMain={this.textMain}>
               <ul>
                 {localHeader.mainNavigation.map(navItem => (
