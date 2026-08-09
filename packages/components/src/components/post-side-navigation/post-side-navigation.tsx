@@ -160,6 +160,12 @@ export class PostSideNavigation {
   private renderDialog() {
     return (
       <dialog
+        onClick={(e) => {
+          const path = e.composedPath() as HTMLElement[];
+          if (path.some(el => el instanceof HTMLAnchorElement)) {
+            this.dialog.close();
+          }
+        }}
         onClose={() => {
           this.postToggle.emit(false);
         }}
