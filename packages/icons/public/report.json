@@ -20827,7 +20827,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/648784/storage/MDY0ODc4OC8wL21hc3Rlci8vLzE4MDY2NTky",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/648784/storage/NjQ4Nzg4LzAvbWFzdGVyLy8vMTAyMzM2MDgw",
         "keywords": [
           "Stehlenticket",
           "stolen ticket",
@@ -20854,7 +20854,7 @@
         }
       },
       "createdAt": "2022-08-04T06:01:15.000Z",
-      "modifiedAt": "2024-11-29T13:57:22.000Z"
+      "modifiedAt": "2026-08-03T08:30:21.000Z"
     },
     {
       "uuid": "778bb4d0-13bb-11ed-84aa-005056873709",
@@ -20913,7 +20913,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/648801/storage/MDY0ODgwMy8wL21hc3Rlci8vLzE4MDY2NjA0",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/648801/storage/NjQ4ODAzLzAvbWFzdGVyLy8vMTAyMzM2NjQ3",
         "keywords": [
           "Ticketausgabe",
           "ticket issuing",
@@ -20948,7 +20948,7 @@
         }
       },
       "createdAt": "2022-08-04T06:29:32.000Z",
-      "modifiedAt": "2024-11-29T13:57:23.000Z"
+      "modifiedAt": "2026-08-03T08:31:02.000Z"
     },
     {
       "uuid": "386f1a40-13bf-11ed-84aa-005056873709",
@@ -34104,6 +34104,77 @@
       "modifiedAt": "2026-07-31T05:46:48.000Z"
     },
     {
+      "uuid": "6f43e060-9259-11f1-a720-0050568d2654",
+      "id": 10937856,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10937856/storage/MDEwOTM3ODU1LzAvbWFzdGVyLy8vMTAzMzMwODc4",
+        "keywords": [
+          "Fahhrad",
+          "Keine Veloreservation",
+          "keine Veloreservation"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2799.svg",
+        "basename": "2799",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T12:13:44.000Z",
+      "modifiedAt": "2026-08-08T12:05:06.309Z"
+    },
+    {
+      "uuid": "4bd2e3a0-925a-11f1-a720-0050568d2654",
+      "id": 10937861,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10937861/storage/MDEwOTM3ODYwLzAvbWFzdGVyLy8vMTAzMzMxMzQy",
+        "keywords": [
+          "Rollstuhl",
+          "Wheelchair",
+          "Sedia a rotelle",
+          "Fauteuil Roulant"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2800.svg",
+        "basename": "2800",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T12:19:54.000Z",
+      "modifiedAt": "2026-08-07T12:21:41.000Z"
+    },
+    {
+      "uuid": "c19119e0-925a-11f1-a720-0050568d2654",
+      "id": 10937866,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10937866/storage/MDEwOTM3ODY1LzAvbWFzdGVyLy8vMTAzMzMxODc5",
+        "keywords": [
+          "Rollstuhl",
+          "Wheelchair",
+          "Sedia a rotelle",
+          "Fauteuil Roulant"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2801.svg",
+        "basename": "2801",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T12:23:11.000Z",
+      "modifiedAt": "2026-08-07T12:25:44.000Z"
+    },
+    {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
       "id": 352241,
       "type": "picture.pictogram.",
@@ -46692,11 +46763,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2026-08-02T04:06:01.861Z",
+  "created": "2026-08-09T02:35:57.018Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 1128
+    "success": 1131
   },
   "version": "9.13.0"
 }
