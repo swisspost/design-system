@@ -2,6 +2,7 @@
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/mixins/utilities';
+@use './mixins';
 
 tokens.$default-map: components.$post-breadcrumb;
 
