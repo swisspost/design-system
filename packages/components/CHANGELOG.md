@@ -1,5 +1,12 @@
 # @swisspost/design-system-components
 
+## 9.14.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.14.0
+
 ## 9.13.0
 
 ### Minor Changes
