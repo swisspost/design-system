@@ -26,6 +26,7 @@ tokens.$default-map: components.$post-teaser;
   h5,
   h6,
   p {
+    margin: 0;
     @include utilities.word-break;
   }
 
