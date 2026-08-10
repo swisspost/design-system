@@ -21,12 +21,37 @@ const MAX_ELLIPSIS_COUNT = 2; // Maximum ellipsis elements
 const GAP_THRESHOLD_FOR_PAGE = 2; // Show page number instead of ellipsis when gap is this value
 const MIDDLE_RANGE_START = 2; // Middle range starts from page 2 (page 1 is always shown separately)
 
+const enum PaginationItemType {
+  Page,
+  Control,
+  Ellipsis,
+}
+
 /**
  * Type-safe pagination item definition using discriminated union.
  */
-type PaginationItem = { type: 'page'; page: number } | { type: 'ellipsis' };
+type PaginationItem =
+  | { type: PaginationItemType.Page; page: number }
+  | { type: PaginationItemType.Control; action: ControlAction; disabled: boolean }
+  | { type: PaginationItemType.Ellipsis };
 
-type SectionType = 'none' | 'page' | 'ellipsis';
+const enum ControlAction {
+  Previous,
+  Next,
+}
+
+interface ControlAttributes {
+  icon: string;
+  label: string;
+  className: string;
+  onClick: () => void;
+}
+
+const enum SectionType {
+  None,
+  Page,
+  Ellipsis,
+}
 
 @Component({
   tag: 'post-pagination',
@@ -297,7 +322,7 @@ export class PostPagination {
   private updatePagesWithValidation() {
     const totalPages = this.getTotalPages();
     this.page = this.clampPageToValidRange(totalPages);
-    this.generatePages(totalPages);
+    this.generateItems(totalPages);
   }
 
   /**
@@ -312,8 +337,8 @@ export class PostPagination {
    * Convert numeric gap to a section type
    */
   private sectionForGap(gap: number): SectionType {
-    if (gap <= 1) return 'none';
-    return gap === GAP_THRESHOLD_FOR_PAGE ? 'page' : 'ellipsis';
+    if (gap <= 1) return SectionType.None;
+    return gap === GAP_THRESHOLD_FOR_PAGE ? SectionType.Page : SectionType.Ellipsis;
   }
 
   /**
@@ -337,8 +362,8 @@ export class PostPagination {
   private computeTotalItems(startPage: number, endPage: number, totalPages: number): number {
     const { leftSection, rightSection } = this.getSections(startPage, endPage, totalPages);
     const middle = Math.max(0, endPage - startPage + 1);
-    const leftCount = leftSection === 'none' ? 0 : 1;
-    const rightCount = rightSection === 'none' ? 0 : 1;
+    const leftCount = leftSection === SectionType.None ? 0 : 1;
+    const rightCount = rightSection === SectionType.None ? 0 : 1;
 
     // Always include first page (1) and last page (totalPages) = EDGE_ITEM_COUNT pages
     // Plus any left/right sections (ellipsis or pages) and middle pages
@@ -351,7 +376,7 @@ export class PostPagination {
   private buildAllPages(totalPages: number): PaginationItem[] {
     const items: PaginationItem[] = [];
     for (let i = 1; i <= totalPages; i++) {
-      items.push({ type: 'page', page: i });
+      items.push({ type: PaginationItemType.Page, page: i });
     }
     return items;
   }
@@ -544,32 +569,32 @@ export class PostPagination {
     const hasMiddlePages = startPage <= endPage;
 
     // First page
-    items.push({ type: 'page', page: 1 });
+    items.push({ type: PaginationItemType.Page, page: 1 });
 
     if (hasMiddlePages) {
       const { leftSection, rightSection } = this.getSections(startPage, endPage, totalPages);
 
       // Left section (ellipsis or page 2)
-      if (leftSection === 'page') {
-        items.push({ type: 'page', page: 2 });
-      } else if (leftSection === 'ellipsis') {
-        items.push({ type: 'ellipsis' });
+      if (leftSection === SectionType.Page) {
+        items.push({ type: PaginationItemType.Page, page: 2 });
+      } else if (leftSection === SectionType.Ellipsis) {
+        items.push({ type: PaginationItemType.Ellipsis });
       }
 
       // Middle pages
       for (let i = startPage; i <= endPage; i++) {
-        items.push({ type: 'page', page: i });
+        items.push({ type: PaginationItemType.Page, page: i });
       }
 
       // Right section (ellipsis or second-to-last page)
-      if (rightSection === 'page') {
-        items.push({ type: 'page', page: totalPages - 1 });
-      } else if (rightSection === 'ellipsis') {
-        items.push({ type: 'ellipsis' });
+      if (rightSection === SectionType.Page) {
+        items.push({ type: PaginationItemType.Page, page: totalPages - 1 });
+      } else if (rightSection === SectionType.Ellipsis) {
+        items.push({ type: PaginationItemType.Ellipsis });
       }
 
       // Last page
-      items.push({ type: 'page', page: totalPages });
+      items.push({ type: PaginationItemType.Page, page: totalPages });
 
       return items;
     }
@@ -581,32 +606,62 @@ export class PostPagination {
    */
   private generateSmallPagination(currentPage: number, totalPages: number): PaginationItem[] {
     if (currentPage === 1 || currentPage === totalPages) {
-      return [{ type: 'page', page: 1 }, { type: 'ellipsis' }, { type: 'page', page: totalPages }];
+      return [
+        { type: PaginationItemType.Page, page: 1 },
+        { type: PaginationItemType.Ellipsis },
+        { type: PaginationItemType.Page, page: totalPages },
+      ];
     }
-    return [{ type: 'ellipsis' }, { type: 'page', page: currentPage }, { type: 'ellipsis' }];
+
+    return [
+      { type: PaginationItemType.Ellipsis },
+      { type: PaginationItemType.Page, page: currentPage },
+      { type: PaginationItemType.Ellipsis },
+    ];
   }
 
   /**
    * Generates the page numbers array with ellipsis based on available space.
    */
-  private generatePages(totalPages: number) {
-    const maxVisible = this.maxVisiblePages;
-    const currentPage = this.page;
-
+  private generatePages(
+    totalPages: number,
+    maxVisible: number,
+    currentPage: number,
+  ): PaginationItem[] {
     if (totalPages <= maxVisible) {
-      this.items = this.buildAllPages(totalPages);
-      return;
+      return this.buildAllPages(totalPages);
     }
 
     // Use simplified logic for small slot counts
     if (maxVisible <= 4) {
-      this.items = this.generateSmallPagination(currentPage, totalPages);
-      return;
+      return this.generateSmallPagination(currentPage, totalPages);
     }
 
     // Use full algorithm for larger slot counts
     const { startPage, endPage } = this.calculatePageRange(currentPage, totalPages, maxVisible);
-    this.items = this.buildPaginationItems(startPage, endPage, totalPages);
+    return this.buildPaginationItems(startPage, endPage, totalPages);
+  }
+
+  /**
+   * Generates the full list of pagination items including controls and pages.
+   */
+  private generateItems(totalPages: number) {
+    const maxVisible = this.maxVisiblePages;
+    const currentPage = this.page;
+
+    this.items = [
+      {
+        type: PaginationItemType.Control,
+        action: ControlAction.Previous,
+        disabled: currentPage <= 1,
+      },
+      ...this.generatePages(totalPages, maxVisible, currentPage),
+      {
+        type: PaginationItemType.Control,
+        action: ControlAction.Next,
+        disabled: currentPage >= totalPages,
+      },
+    ];
   }
 
   /**
@@ -673,11 +728,33 @@ export class PostPagination {
   }
 
   /**
+   * Builds the attributes for a control button based on the action type.
+   */
+  private buildControlAttributes(action: ControlAction): ControlAttributes {
+    switch (action) {
+      case ControlAction.Next:
+        return {
+          icon: 'chevronleftwide',
+          label: this.textPrevious,
+          className: 'prev-button',
+          onClick: () => this.handlePrevious(),
+        };
+      case ControlAction.Previous:
+        return {
+          icon: 'chevronrightwide',
+          label: this.textNext,
+          className: 'next-button',
+          onClick: () => this.handleNext(),
+        };
+    }
+  }
+
+  /**
    * Renders an ellipsis item.
    */
-  private renderEllipsis(key: string) {
+  private renderEllipsis(index: number) {
     return (
-      <li class="pagination-item pagination-ellipsis" key={key} aria-hidden="true">
+      <li class="pagination-item pagination-ellipsis" key={`ellipsis-${index}`} aria-hidden="true">
         <span class="pagination-ellipsis-content">{ELLIPSIS}</span>
       </li>
     );
@@ -710,50 +787,66 @@ export class PostPagination {
   }
 
   /**
-   * Renders a pagination item.
+   * Renders a control button.
    */
-  private renderItem(item: PaginationItem, index: number) {
-    return item.type === 'ellipsis'
-      ? this.renderEllipsis(`ellipsis-${index}`)
-      : this.renderPageButton(item.page);
-  }
+  private renderControlButton(action: ControlAction, disabled: boolean, dummy: boolean) {
+    const attributes = this.buildControlAttributes(action);
 
-  /**
-   * Renders control button (prev/next)
-   */
-  private renderControlButton(
-    iconName: string,
-    isPrev: boolean,
-    label: string,
-    onClick: () => void,
-  ) {
+    if (dummy) {
+      return (
+        <button
+          key="hidden-prev"
+          class="pagination-link pagination-control-button hidden-control-button"
+          disabled
+        >
+          <post-icon name={attributes.icon} aria-hidden="true"></post-icon>
+        </button>
+      );
+    }
+
     return (
       <li class="pagination-item pagination-control">
         <button
           type="button"
-          class={`pagination-control-button btn btn-icon btn-secondary ${isPrev ? 'prev-button' : 'next-button'}`}
-          aria-label={label}
-          onClick={onClick}
-          onKeyDown={e => this.handleKeyDown(e, onClick)}
+          class={`pagination-control-button btn btn-icon btn-secondary ${attributes.className}`}
+          aria-label={attributes.label}
+          onClick={attributes.onClick}
+          onKeyDown={e => this.handleKeyDown(e, attributes.onClick)}
           tabIndex={0}
+          disabled={disabled}
         >
-          <post-icon name={iconName} aria-hidden="true"></post-icon>
-          <span class="visually-hidden">{label}</span>
+          <post-icon name={attributes.icon} aria-hidden="true"></post-icon>
+          <span class="visually-hidden">{attributes.label}</span>
         </button>
       </li>
     );
   }
 
   /**
+   * Renders a pagination item.
+   */
+  private renderItem(item: PaginationItem, index: number) {
+    switch (item.type) {
+      case PaginationItemType.Page:
+        return this.renderPageButton(item.page);
+      case PaginationItemType.Control:
+        return this.renderControlButton(item.action, item.disabled, false);
+      case PaginationItemType.Ellipsis:
+        return this.renderEllipsis(index);
+    }
+  }
+
+  /**
    * Renders minimal hidden items for measurement
    */
-  private renderHiddenItems(totalPages: number, isPrevHidden: boolean, isNextHidden: boolean) {
+  private renderHiddenItems(totalPages: number) {
+    const first = this.items.at(0);
+    const last = this.items.at(totalPages);
+
     return [
-      !isPrevHidden && (
-        <button key="hidden-prev" class="pagination-link pagination-control-button hidden-control-button" disabled>
-          <post-icon name="chevronleftwide" aria-hidden="true"></post-icon>
-        </button>
-      ),
+      first?.type === PaginationItemType.Control &&
+        this.renderControlButton(first.action, true, true),
+
       <button
         key="hidden-page"
         class="pagination-link pagination-control-button hidden-page-button"
@@ -762,14 +855,16 @@ export class PostPagination {
       >
         <span aria-hidden="true">{totalPages}</span>
       </button>,
-      <span key="hidden-ellipsis" class="pagination-ellipsis-content hidden-ellipsis" aria-hidden="true">
+      <span
+        key="hidden-ellipsis"
+        class="pagination-ellipsis-content hidden-ellipsis"
+        aria-hidden="true"
+      >
         {ELLIPSIS}
       </span>,
-      !isNextHidden && (
-        <button key="hidden-next" class="pagination-link pagination-control-button hidden-control-button" disabled>
-          <post-icon name="chevronrightwide" aria-hidden="true"></post-icon>
-        </button>
-      ),
+
+      last?.type === PaginationItemType.Control &&
+        this.renderControlButton(last.action, true, true),
     ];
   }
 
@@ -780,9 +875,6 @@ export class PostPagination {
       return null;
     }
 
-    const isPrevHidden = this.page <= 1;
-    const isNextHidden = this.page >= totalPages;
-
     return (
       <Host slot="post-pagination" data-version={version}>
         <nav
@@ -792,25 +884,12 @@ export class PostPagination {
           ref={el => (this.navRef = el)}
         >
           <ul class="pagination-list" role="list">
-            {/* Previous Button */}
-            {!isPrevHidden &&
-              this.renderControlButton('chevronleftwide', true, this.textPrevious, () =>
-                this.handlePrevious(),
-              )}
-
-            {/* Page Items */}
             {this.items.map((item, index) => this.renderItem(item, index))}
-
-            {/* Next Button */}
-            {!isNextHidden &&
-              this.renderControlButton('chevronrightwide', false, this.textNext, () =>
-                this.handleNext(),
-              )}
           </ul>
 
           {/* Hidden items container for width measurement */}
           <div class="hidden-items" aria-hidden="true" ref={el => (this.hiddenItemsRef = el)}>
-            {this.renderHiddenItems(totalPages, isPrevHidden, isNextHidden)}
+            {this.renderHiddenItems(totalPages)}
           </div>
         </nav>
       </Host>
