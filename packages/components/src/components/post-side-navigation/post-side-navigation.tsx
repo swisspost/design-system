@@ -100,6 +100,16 @@ export class PostSideNavigation {
   };
 
   /**
+   * Closes the dialog when a navigation link is clicked.
+   */
+  private handleDialogClick = (e: MouseEvent) => {
+    const path = e.composedPath() as HTMLElement[];
+    if (path.some(el => el instanceof HTMLAnchorElement)) {
+      this.dialog.close();
+    }
+  };
+
+  /**
    * Toggles the navigation programmatically.
    * No-op on desktop.
    */
@@ -160,12 +170,7 @@ export class PostSideNavigation {
   private renderDialog() {
     return (
       <dialog
-        onClick={(e) => {
-          const path = e.composedPath() as HTMLElement[];
-          if (path.some(el => el instanceof HTMLAnchorElement)) {
-            this.dialog.close();
-          }
-        }}
+        onClick={this.handleDialogClick}
         onClose={() => {
           this.postToggle.emit(false);
         }}
