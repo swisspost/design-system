@@ -5,6 +5,7 @@ const VIEWPORTS: Record<string, Cypress.ViewportPreset> = {
   tablet: 'ipad-2',
   mobile: 'iphone-6',
 };
+const POPOVER_OPEN_SELECTOR = ':where(:popover-open, .popover-open)';
 
 describe('header', () => {
   function getContentTop() {
@@ -47,12 +48,11 @@ describe('header', () => {
     });
   });
 
-  describe('React Navigation', { viewportHeight: 1000, viewportWidth: 400 }, () => {
+  describe('DOM reattachment & state', { viewportHeight: 1000, viewportWidth: 400 }, () => {
     beforeEach(() => {
       cy.getComponent('header', HEADER_ID);
     });
 
-    // Function to remove and reattach the header
     const removeAndReattachHeader = () => {
       cy.get('@header').then($header => {
         const headerElement = $header[0];
@@ -164,51 +164,7 @@ describe('header', () => {
     });
   });
 
-  describe('local navigation', () => {
-    const localNavNextToTitle = 'slot[name="title"] + slot[name="local-nav"]';
-    const localNavNextToMainNav = 'slot[name="main-nav"] + slot[name="local-nav"]';
-
-    beforeEach(() => {
-      cy.getComponent('header', HEADER_ID, 'microsite');
-      cy.get('@header').find('[slot="title"]').as('title');
-    });
-
-    it('should show the local navigation next to the title', () => {
-      cy.get('@header').shadow().find(localNavNextToTitle).should('exist');
-      cy.get('@header').shadow().find(localNavNextToMainNav).should('not.exist');
-    });
-
-    it('should show the local navigation next to the main navigation', () => {
-      cy.get('@title').then($title => {
-        $title[0].remove();
-      });
-
-      cy.wait(300);
-
-      cy.get('@header').shadow().find(localNavNextToTitle).should('not.exist');
-      cy.get('@header').shadow().find(localNavNextToMainNav).should('exist');
-    });
-
-    it('should show the local navigation in the mobile menu when the page is scrolled', () => {
-      cy.viewport('iphone-6');
-
-      // Initial state
-      cy.get('@title').should('be.visible');
-      cy.get('div.burger-menu.extended').should('not.exist');
-
-      cy.scrollTo(0, 500);
-
-      // Page is scrolled down
-      cy.get('@title').should('be.visible');
-      cy.get('post-togglebutton').click();
-
-      // Burger menu is opened
-      cy.get('div.burger-menu.extended').should('exist').should('be.visible');
-      cy.get('@title').should('be.visible');
-    });
-  });
-
-  describe('keyboard navigation', () => {
+  describe('focus and keyboard navigation', () => {
     describe('desktop', () => {
       beforeEach(() => {
         cy.viewport(1920, 1080);
@@ -433,6 +389,273 @@ describe('header', () => {
               });
             });
           });
+        });
+      });
+    });
+
+    describe('header expansion on focus', () => {
+      beforeEach(() => {
+        cy.viewport(1920, 1080);
+        cy.getComponent('header', HEADER_ID);
+      });
+
+      it('should add data-expanded when a global-header element receives keyboard focus while scrolled', () => {
+        // Simulate the scrolled/reduced header state
+        cy.scrollTo(0, 500);
+
+        cy.get('@header').should('not.have.attr', 'data-expanded');
+
+        // Grab the first focusable element that is NOT part of main-nav
+        cy.get('@header')
+          .getFocusableElements()
+          .then(focusableElements => {
+            const globalHeaderEl = Array.from(focusableElements).find(
+              el => !el.closest('[slot="main-nav"]'),
+            );
+            cy.wrap(globalHeaderEl).focus();
+          });
+
+        cy.get('@header').should('have.attr', 'data-expanded');
+      });
+
+      it('should remove data-expanded once focus leaves the header', () => {
+        cy.scrollTo(0, 500);
+
+        cy.get('@header')
+          .getFocusableElements()
+          .then(focusableElements => {
+            const globalHeaderEl = Array.from(focusableElements).find(
+              el => !el.closest('[slot="main-nav"]'),
+            );
+            cy.wrap(globalHeaderEl).focus();
+          });
+
+        cy.get('@header').should('have.attr', 'data-expanded');
+
+        cy.get('body').click(0, 0);
+
+        cy.get('@header').should('not.have.attr', 'data-expanded');
+      });
+
+      it('should NOT add data-expanded when focus stays inside main navigation on desktop', () => {
+        cy.scrollTo(0, 500);
+
+        cy.get('post-megadropdown-trigger').find('button').first().focus();
+
+        cy.get('@header').should('not.have.attr', 'data-expanded');
+      });
+    });
+  });
+
+  describe('responsive behavior', () => {
+    describe('local navigation', () => {
+      const localNavNextToTitle = 'slot[name="title"] + slot[name="local-nav"]';
+      const localNavNextToMainNav = 'slot[name="main-nav"] + slot[name="local-nav"]';
+
+      beforeEach(() => {
+        cy.getComponent('header', HEADER_ID, 'microsite');
+        cy.get('@header').find('[slot="title"]').as('title');
+      });
+
+      it('should show the local navigation next to the title', () => {
+        cy.get('@header').shadow().find(localNavNextToTitle).should('exist');
+        cy.get('@header').shadow().find(localNavNextToMainNav).should('not.exist');
+      });
+
+      it('should show the local navigation next to the main navigation', () => {
+        cy.get('@title').then($title => {
+          $title[0].remove();
+        });
+
+        cy.wait(300);
+
+        cy.get('@header').shadow().find(localNavNextToTitle).should('not.exist');
+        cy.get('@header').shadow().find(localNavNextToMainNav).should('exist');
+      });
+
+      it('should show the local navigation in the mobile menu when the page is scrolled', () => {
+        cy.viewport('iphone-6');
+
+        // Initial state
+        cy.get('@title').should('be.visible');
+        cy.get('div.burger-menu.extended').should('not.exist');
+
+        cy.scrollTo(0, 500);
+
+        // Page is scrolled down
+        cy.get('@title').should('be.visible');
+        cy.get('post-togglebutton').click();
+
+        // Burger menu is opened
+        cy.get('div.burger-menu.extended').should('exist').should('be.visible');
+        cy.get('@title').should('be.visible');
+      });
+
+      it('should not collapse the local header on scroll when a title is present', () => {
+        cy.viewport(1920, 1080);
+
+        cy.get('@header').shadow().find('.local-header').should('be.visible');
+
+        cy.scrollTo(0, 500);
+        cy.wait(300);
+
+        // per design, a header with a title intentionally keeps the local header expanded on scroll
+        cy.get('@header').should('not.have.attr', 'data-expanded');
+        cy.get('@header').shadow().find('.local-header').should('be.visible');
+      });
+    });
+
+    describe('login button on mobile', () => {
+      beforeEach(() => {
+        cy.viewport('iphone-6');
+        cy.getComponent('header', HEADER_ID);
+      });
+
+      it('should visually hide the login label without removing it from the DOM', () => {
+        cy.get('@header').find('[slot="post-login"]').first().as('loginControl');
+
+        cy.get('@loginControl').find('span').should('exist').and('contain.text', 'Login');
+
+        cy.get('@loginControl')
+          .find('span')
+          .first()
+          .then($label => {
+            const rect = $label[0].getBoundingClientRect();
+            expect(rect.width).to.be.lte(1);
+            expect(rect.height).to.be.lte(1);
+
+            const style = globalThis.getComputedStyle($label[0]);
+            expect(style.display).not.to.equal('none');
+            expect(style.visibility).not.to.equal('hidden');
+          });
+      });
+
+      it('should keep the login label accessible to screen readers', () => {
+        cy.get('@header').find('[slot="post-login"]').first().as('loginControl');
+
+        cy.get('@loginControl').should('not.have.attr', 'aria-hidden', 'true');
+        cy.get('@loginControl').find('span').should('not.have.attr', 'aria-hidden', 'true');
+
+        cy.get('@loginControl')
+          .invoke('text')
+          .then(text => {
+            expect(text.trim()).to.equal('Login');
+          });
+      });
+    });
+
+    describe('language menu interactions', () => {
+      beforeEach(() => {
+        cy.viewport(1920, 1080);
+        cy.getComponent('header', HEADER_ID, 'microsite');
+      });
+
+      function openLanguageMenu() {
+        cy.get('@header')
+          .find('post-language-menu')
+          .shadow()
+          .find('post-menu-trigger')
+          .find('button')
+          .should('have.attr', 'aria-expanded', 'false')
+          .as('langTrigger');
+
+        cy.get('@langTrigger').click({ scrollBehavior: false });
+
+        cy.get('@header')
+          .find('post-language-menu')
+          .shadow()
+          .find('post-popovercontainer')
+          .should('match', POPOVER_OPEN_SELECTOR);
+      }
+
+      it('should open a megadropdown on click even if the language menu was left open while scrolled, without affecting scroll position', () => {
+        openLanguageMenu();
+
+        cy.scrollTo(0, 500);
+        cy.wait(300);
+
+        cy.get('post-megadropdown-trigger:visible').first().invoke('attr', 'for').as('targetId');
+
+        cy.window()
+          .its('scrollY')
+          .then(scrollYBeforeClick => {
+            cy.get('post-megadropdown-trigger:visible')
+              .first()
+              .find('button')
+              .click({ force: true });
+
+            cy.get('post-megadropdown-trigger:visible')
+              .first()
+              .shadow()
+              .find('button')
+              .should('have.attr', 'aria-expanded', 'true');
+
+            cy.window().its('scrollY').should('eq', scrollYBeforeClick);
+          });
+      });
+    });
+
+    describe('animation on switching between dropdowns', () => {
+      beforeEach(() => {
+        cy.viewport(1920, 1080);
+        cy.getComponent('header', HEADER_ID);
+        cy.get('post-megadropdown-trigger[data-hydrated]')
+          .should('have.length.at.least', 2)
+          .as('triggers');
+      });
+
+      it('should play the entry animation when opening the first dropdown', () => {
+        cy.get('@triggers').eq(0).find('button').click({ force: true });
+        cy.get('post-megadropdown')
+          .eq(0)
+          .find('.megadropdown')
+          .should($el => {
+            expect($el.get(0).getAnimations().length).to.be.greaterThan(0);
+          });
+      });
+
+      it('should not replay the entry animation when switching directly to another dropdown', () => {
+        cy.get('@triggers').eq(0).find('button').click({ force: true });
+        cy.get('@triggers').eq(0).find('button').should('have.attr', 'aria-expanded', 'true');
+
+        cy.get('@triggers').eq(1).find('button').click({ force: true });
+        cy.get('@triggers').eq(1).find('button').should('have.attr', 'aria-expanded', 'true');
+
+        cy.get('post-megadropdown')
+          .eq(1)
+          .find('.megadropdown')
+          .should($el => {
+            expect($el.get(0).getAnimations().length).to.eq(0);
+          });
+      });
+    });
+
+    describe('layout stability while resizing', () => {
+      const widths = [1400, 1200, 1024, 992, 900, 768];
+
+      it('should not show both desktop and mobile nav affordances at any intermediate width', () => {
+        cy.visit(`/iframe.html?id=${HEADER_ID}--portal`);
+        cy.get('post-header').as('header');
+
+        cy.wrap(widths).each((width: number) => {
+          cy.viewport(width, 600);
+
+          cy.get('@header')
+            .shadow()
+            .then($shadow => {
+              cy.get('@header').then($header => {
+                const $burger = $shadow.find('.burger-button');
+                const $mainNav = $header.find('post-mainnavigation');
+
+                const burgerVisible = $burger.length > 0 && $burger.is(':visible');
+                const mainNavVisible = $mainNav.length > 0 && $mainNav.is(':visible');
+
+                expect(
+                  burgerVisible && mainNavVisible,
+                  `at ${width}px: burger visible=${burgerVisible}, main nav visible=${mainNavVisible}`,
+                ).to.eq(false);
+              });
+            });
         });
       });
     });
