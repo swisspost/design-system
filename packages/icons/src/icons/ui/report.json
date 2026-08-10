@@ -48171,6 +48171,342 @@
       "modifiedAt": "2026-05-09T12:05:01.276Z"
     },
     {
+      "uuid": "139c7f50-9223-11f1-a720-0050568d2654",
+      "id": 10929517,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929517/storage/MDEwOTI5NTE3LzAvbWFzdGVyLy8vMTAzMTk0NjEy",
+        "keywords": [
+          "vehicle fleet",
+          "Fahrzeugflotte",
+          "Parc de véhicules",
+          "Parco veicoli",
+          "Fleet management",
+          "Flottenmanagement",
+          "Gestion de la flotte",
+          "Gestione parco veicoli"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CarFleet_Shape_16.svg",
+        "basename": "CarFleet_Shape_16",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:44:37.000Z",
+      "modifiedAt": "2026-08-07T05:47:21.000Z"
+    },
+    {
+      "uuid": "139c5840-9223-11f1-a720-0050568d2654",
+      "id": 10929516,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929516/storage/MDEwOTI5NTE2LzAvbWFzdGVyLy8vMTAzMTk0NjEx",
+        "keywords": [
+          "vehicle fleet",
+          "Fahrzeugflotte",
+          "Parc de véhicules",
+          "Parco veicoli",
+          "Fleet management",
+          "Flottenmanagement",
+          "Gestion de la flotte",
+          "Gestione parco veicoli"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CarFleet_Shape_24.svg",
+        "basename": "CarFleet_Shape_24",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:44:37.000Z",
+      "modifiedAt": "2026-08-07T05:47:21.000Z"
+    },
+    {
+      "uuid": "126c8ad0-9223-11f1-a720-0050568d2654",
+      "id": 10929512,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929512/storage/MDEwOTI5NTEyLzAvbWFzdGVyLy8vMTAzMTk0NjEw",
+        "keywords": [
+          "vehicle fleet",
+          "Fahrzeugflotte",
+          "Parc de véhicules",
+          "Parco veicoli",
+          "Fleet management",
+          "Flottenmanagement",
+          "Gestion de la flotte",
+          "Gestione parco veicoli"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CarFleet_Shape_32.svg",
+        "basename": "CarFleet_Shape_32",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:44:35.000Z",
+      "modifiedAt": "2026-08-07T05:47:21.000Z"
+    },
+    {
+      "uuid": "11d83a10-9223-11f1-a720-0050568d2654",
+      "id": 10929511,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929511/storage/MDEwOTI5NTExLzAvbWFzdGVyLy8vMTAzMTk0NjA5",
+        "keywords": [
+          "vehicle fleet",
+          "Fahrzeugflotte",
+          "Parc de véhicules",
+          "Parco veicoli",
+          "Fleet management",
+          "Flottenmanagement",
+          "Gestion de la flotte",
+          "Gestione parco veicoli"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CarFleet_Shape_40.svg",
+        "basename": "CarFleet_Shape_40",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:44:34.000Z",
+      "modifiedAt": "2026-08-07T05:47:21.000Z"
+    },
+    {
+      "uuid": "11641b80-9223-11f1-a720-0050568d2654",
+      "id": 10929509,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929509/storage/MDEwOTI5NTA5LzAvbWFzdGVyLy8vMTAzMTk0NjA4",
+        "keywords": [
+          "vehicle fleet",
+          "Fahrzeugflotte",
+          "Parc de véhicules",
+          "Parco veicoli",
+          "Fleet management",
+          "Flottenmanagement",
+          "Gestion de la flotte",
+          "Gestione parco veicoli"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CarFleet_Shape_48.svg",
+        "basename": "CarFleet_Shape_48",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:44:33.000Z",
+      "modifiedAt": "2026-08-07T05:47:21.000Z"
+    },
+    {
+      "uuid": "104b5880-9223-11f1-a720-0050568d2654",
+      "id": 10929506,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929506/storage/MDEwOTI5NTA2LzAvbWFzdGVyLy8vMTAzMTkzNzg2",
+        "keywords": [
+          "vehicle fleet",
+          "Fahrzeugflotte",
+          "Parc de véhicules",
+          "Parco veicoli",
+          "Fleet management",
+          "Flottenmanagement",
+          "Gestion de la flotte",
+          "Gestione parco veicoli"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CarFleet_Shape_64.svg",
+        "basename": "CarFleet_Shape_64",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:44:32.000Z",
+      "modifiedAt": "2026-08-07T05:46:29.000Z"
+    },
+    {
+      "uuid": "0f2eec00-9223-11f1-a720-0050568d2654",
+      "id": 10929502,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929502/storage/MDEwOTI5NTAyLzAvbWFzdGVyLy8vMTAzMTk0NjA2",
+        "keywords": [
+          "vehicle fleet",
+          "Fahrzeugflotte",
+          "Parc de véhicules",
+          "Parco veicoli",
+          "Fleet management",
+          "Flottenmanagement",
+          "Gestion de la flotte",
+          "Gestione parco veicoli"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CarFleet_Solid_Shape_16.svg",
+        "basename": "CarFleet_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:44:30.000Z",
+      "modifiedAt": "2026-08-07T05:47:21.000Z"
+    },
+    {
+      "uuid": "0f6b31b0-9223-11f1-a720-0050568d2654",
+      "id": 10929504,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929504/storage/MDEwOTI5NTA0LzAvbWFzdGVyLy8vMTAzMTk0NjA3",
+        "keywords": [
+          "vehicle fleet",
+          "Fahrzeugflotte",
+          "Parc de véhicules",
+          "Parco veicoli",
+          "Fleet management",
+          "Flottenmanagement",
+          "Gestion de la flotte",
+          "Gestione parco veicoli"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CarFleet_Solid_Shape_24.svg",
+        "basename": "CarFleet_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:44:30.000Z",
+      "modifiedAt": "2026-08-07T05:47:21.000Z"
+    },
+    {
+      "uuid": "0e8c4360-9223-11f1-a720-0050568d2654",
+      "id": 10929500,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929500/storage/MDEwOTI5NTAwLzAvbWFzdGVyLy8vMTAzMTk0NjA1",
+        "keywords": [
+          "vehicle fleet",
+          "Fahrzeugflotte",
+          "Parc de véhicules",
+          "Parco veicoli",
+          "Fleet management",
+          "Flottenmanagement",
+          "Gestion de la flotte",
+          "Gestione parco veicoli"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CarFleet_Solid_Shape_32.svg",
+        "basename": "CarFleet_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:44:29.000Z",
+      "modifiedAt": "2026-08-07T05:47:21.000Z"
+    },
+    {
+      "uuid": "0c3e82d0-9223-11f1-a720-0050568d2654",
+      "id": 10929492,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929492/storage/MDEwOTI5NDkyLzAvbWFzdGVyLy8vMTAzMTk0NjAy",
+        "keywords": [
+          "vehicle fleet",
+          "Fahrzeugflotte",
+          "Parc de véhicules",
+          "Parco veicoli",
+          "Fleet management",
+          "Flottenmanagement",
+          "Gestion de la flotte",
+          "Gestione parco veicoli"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CarFleet_Solid_Shape_40.svg",
+        "basename": "CarFleet_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:44:25.000Z",
+      "modifiedAt": "2026-08-07T05:47:21.000Z"
+    },
+    {
+      "uuid": "0c420540-9223-11f1-a720-0050568d2654",
+      "id": 10929494,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929494/storage/MDEwOTI5NDk0LzAvbWFzdGVyLy8vMTAzMTk0NjA0",
+        "keywords": [
+          "vehicle fleet",
+          "Fahrzeugflotte",
+          "Parc de véhicules",
+          "Parco veicoli",
+          "Fleet management",
+          "Flottenmanagement",
+          "Gestion de la flotte",
+          "Gestione parco veicoli"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CarFleet_Solid_Shape_48.svg",
+        "basename": "CarFleet_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:44:25.000Z",
+      "modifiedAt": "2026-08-07T05:47:21.000Z"
+    },
+    {
+      "uuid": "0c3f4620-9223-11f1-a720-0050568d2654",
+      "id": 10929493,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929493/storage/MDEwOTI5NDkzLzAvbWFzdGVyLy8vMTAzMTk0NjAz",
+        "keywords": [
+          "vehicle fleet",
+          "Fahrzeugflotte",
+          "Parc de véhicules",
+          "Parco veicoli",
+          "Fleet management",
+          "Flottenmanagement",
+          "Gestion de la flotte",
+          "Gestione parco veicoli"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CarFleet_Solid_Shape_64.svg",
+        "basename": "CarFleet_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:44:25.000Z",
+      "modifiedAt": "2026-08-07T05:47:21.000Z"
+    },
+    {
       "uuid": "98f0ac40-e562-11ef-a15d-005056873709",
       "id": 1831740,
       "type": "picture.pictogram.",
@@ -72009,6 +72345,294 @@
       },
       "createdAt": "2026-07-13T08:06:33.000Z",
       "modifiedAt": "2026-07-13T08:11:17.000Z"
+    },
+    {
+      "uuid": "08cfb752-9222-11f1-a720-0050568d2654",
+      "id": 10928713,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928713/storage/MDEwOTI4NzEzLzAvbWFzdGVyLy8vMTAzMTg2MTE4",
+        "keywords": [
+          "Customs clearance",
+          "Verzollung",
+          "Sdoganamento",
+          "Dédouanement"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CustomsClearance_Shape_16.svg",
+        "basename": "CustomsClearance_Shape_16",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:37:09.000Z",
+      "modifiedAt": "2026-08-07T05:39:39.000Z"
+    },
+    {
+      "uuid": "08c6b6a1-9222-11f1-a720-0050568d2654",
+      "id": 10928712,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928712/storage/MDEwOTI4NzEyLzAvbWFzdGVyLy8vMTAzMTg2MTE2",
+        "keywords": [
+          "Customs clearance",
+          "Verzollung",
+          "Sdoganamento",
+          "Dédouanement"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CustomsClearance_Shape_24.svg",
+        "basename": "CustomsClearance_Shape_24",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:37:09.000Z",
+      "modifiedAt": "2026-08-07T05:39:40.000Z"
+    },
+    {
+      "uuid": "07465830-9222-11f1-a720-0050568d2654",
+      "id": 10928709,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928709/storage/MDEwOTI4NzA5LzAvbWFzdGVyLy8vMTAzMTg2MTEx",
+        "keywords": [
+          "Customs clearance",
+          "Verzollung",
+          "Sdoganamento",
+          "Dédouanement"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CustomsClearance_Shape_32.svg",
+        "basename": "CustomsClearance_Shape_32",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:37:07.000Z",
+      "modifiedAt": "2026-08-07T05:39:40.000Z"
+    },
+    {
+      "uuid": "07471b80-9222-11f1-a720-0050568d2654",
+      "id": 10928710,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928710/storage/MDEwOTI4NzEwLzAvbWFzdGVyLy8vMTAzMTg2MTE1",
+        "keywords": [
+          "Customs clearance",
+          "Verzollung",
+          "Sdoganamento",
+          "Dédouanement"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CustomsClearance_Shape_40.svg",
+        "basename": "CustomsClearance_Shape_40",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:37:07.000Z",
+      "modifiedAt": "2026-08-07T05:39:40.000Z"
+    },
+    {
+      "uuid": "05dc67f0-9222-11f1-a720-0050568d2654",
+      "id": 10928706,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928706/storage/MDEwOTI4NzA2LzAvbWFzdGVyLy8vMTAzMTg2MTEw",
+        "keywords": [
+          "Customs clearance",
+          "Verzollung",
+          "Sdoganamento",
+          "Dédouanement"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CustomsClearance_Shape_48.svg",
+        "basename": "CustomsClearance_Shape_48",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:37:05.000Z",
+      "modifiedAt": "2026-08-07T05:39:39.000Z"
+    },
+    {
+      "uuid": "06322910-9222-11f1-a720-0050568d2654",
+      "id": 10928707,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928707/storage/MDEwOTI4NzA3LzAvbWFzdGVyLy8vMTAzMTg1MjI4",
+        "keywords": [
+          "Customs clearance",
+          "Verzollung",
+          "Sdoganamento",
+          "Dédouanement"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CustomsClearance_Shape_64.svg",
+        "basename": "CustomsClearance_Shape_64",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:37:05.000Z",
+      "modifiedAt": "2026-08-07T05:38:48.000Z"
+    },
+    {
+      "uuid": "050eb7b0-9222-11f1-a720-0050568d2654",
+      "id": 10928704,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928704/storage/MDEwOTI4NzA0LzAvbWFzdGVyLy8vMTAzMTg2MTA5",
+        "keywords": [
+          "Customs clearance",
+          "Verzollung",
+          "Sdoganamento",
+          "Dédouanement"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CustomsClearance_Solid_Shape_16.svg",
+        "basename": "CustomsClearance_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:37:03.000Z",
+      "modifiedAt": "2026-08-07T05:39:39.000Z"
+    },
+    {
+      "uuid": "03cc73b0-9222-11f1-a720-0050568d2654",
+      "id": 10928700,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928700/storage/MDEwOTI4NzAwLzAvbWFzdGVyLy8vMTAzMTg2MTA4",
+        "keywords": [
+          "Customs clearance",
+          "Verzollung",
+          "Sdoganamento",
+          "Dédouanement"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CustomsClearance_Solid_Shape_24.svg",
+        "basename": "CustomsClearance_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:37:01.000Z",
+      "modifiedAt": "2026-08-07T05:39:40.000Z"
+    },
+    {
+      "uuid": "03afc3f2-9222-11f1-a720-0050568d2654",
+      "id": 10928699,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928699/storage/MDEwOTI4Njk5LzAvbWFzdGVyLy8vMTAzMTg2MTA3",
+        "keywords": [
+          "Customs clearance",
+          "Verzollung",
+          "Sdoganamento",
+          "Dédouanement"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CustomsClearance_Solid_Shape_32.svg",
+        "basename": "CustomsClearance_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:37:01.000Z",
+      "modifiedAt": "2026-08-07T05:39:40.000Z"
+    },
+    {
+      "uuid": "01f8c520-9222-11f1-a720-0050568d2654",
+      "id": 10928694,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928694/storage/MDEwOTI4Njk0LzAvbWFzdGVyLy8vMTAzMTg2MTA2",
+        "keywords": [
+          "Customs clearance",
+          "Verzollung",
+          "Sdoganamento",
+          "Dédouanement"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CustomsClearance_Solid_Shape_40.svg",
+        "basename": "CustomsClearance_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:36:58.000Z",
+      "modifiedAt": "2026-08-07T05:39:40.000Z"
+    },
+    {
+      "uuid": "01eeb300-9222-11f1-a720-0050568d2654",
+      "id": 10928692,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928692/storage/MDEwOTI4NjkyLzAvbWFzdGVyLy8vMTAzMTg2MTA0",
+        "keywords": [
+          "Customs clearance",
+          "Verzollung",
+          "Sdoganamento",
+          "Dédouanement"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CustomsClearance_Solid_Shape_48.svg",
+        "basename": "CustomsClearance_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:36:58.000Z",
+      "modifiedAt": "2026-08-07T05:39:40.000Z"
+    },
+    {
+      "uuid": "01f23572-9222-11f1-a720-0050568d2654",
+      "id": 10928693,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928693/storage/MDEwOTI4NjkzLzAvbWFzdGVyLy8vMTAzMTg2MTA1",
+        "keywords": [
+          "Customs clearance",
+          "Verzollung",
+          "Sdoganamento",
+          "Dédouanement"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CustomsClearance_Solid_Shape_64.svg",
+        "basename": "CustomsClearance_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:36:58.000Z",
+      "modifiedAt": "2026-08-07T05:39:39.000Z"
     },
     {
       "uuid": "e5cc5100-65f9-11f0-ad2d-005056873709",
@@ -174489,6 +175113,342 @@
       "modifiedAt": "2025-03-26T13:54:09.000Z"
     },
     {
+      "uuid": "3d1ec260-9224-11f1-a720-0050568d2654",
+      "id": 10930398,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10930398/storage/MDEwOTMwMzk4LzAvbWFzdGVyLy8vMTAzMjAzMTQ2",
+        "keywords": [
+          "Zeitung Adresse",
+          "Newspaper Address",
+          "Giornale Indirizzo",
+          "Journal Adresse",
+          "Zeitung",
+          "Newspaper",
+          "Giornale",
+          "Journal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NewspaperAdress_Shape_16.svg",
+        "basename": "NewspaperAdress_Shape_16",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:52:56.000Z",
+      "modifiedAt": "2026-08-07T05:55:13.000Z"
+    },
+    {
+      "uuid": "3c2fa771-9224-11f1-a720-0050568d2654",
+      "id": 10930397,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10930397/storage/MDEwOTMwMzk3LzAvbWFzdGVyLy8vMTAzMjAzMTQ0",
+        "keywords": [
+          "Zeitung Adresse",
+          "Newspaper Address",
+          "Giornale Indirizzo",
+          "Journal Adresse",
+          "Zeitung",
+          "Newspaper",
+          "Giornale",
+          "Journal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NewspaperAdress_Shape_24.svg",
+        "basename": "NewspaperAdress_Shape_24",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:52:55.000Z",
+      "modifiedAt": "2026-08-07T05:55:13.000Z"
+    },
+    {
+      "uuid": "3b4a7790-9224-11f1-a720-0050568d2654",
+      "id": 10930395,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10930395/storage/MDEwOTMwMzk1LzAvbWFzdGVyLy8vMTAzMjAzMTQz",
+        "keywords": [
+          "Zeitung Adresse",
+          "Newspaper Address",
+          "Giornale Indirizzo",
+          "Journal Adresse",
+          "Zeitung",
+          "Newspaper",
+          "Giornale",
+          "Journal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NewspaperAdress_Shape_32.svg",
+        "basename": "NewspaperAdress_Shape_32",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:52:53.000Z",
+      "modifiedAt": "2026-08-07T05:55:13.000Z"
+    },
+    {
+      "uuid": "39771720-9224-11f1-a720-0050568d2654",
+      "id": 10930393,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10930393/storage/MDEwOTMwMzkzLzAvbWFzdGVyLy8vMTAzMjAzMTQy",
+        "keywords": [
+          "Zeitung Adresse",
+          "Newspaper Address",
+          "Giornale Indirizzo",
+          "Journal Adresse",
+          "Zeitung",
+          "Newspaper",
+          "Giornale",
+          "Journal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NewspaperAdress_Shape_40.svg",
+        "basename": "NewspaperAdress_Shape_40",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:52:50.000Z",
+      "modifiedAt": "2026-08-07T05:55:13.000Z"
+    },
+    {
+      "uuid": "37e309a2-9224-11f1-a720-0050568d2654",
+      "id": 10930390,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10930390/storage/MDEwOTMwMzkwLzAvbWFzdGVyLy8vMTAzMjAzMTQx",
+        "keywords": [
+          "Zeitung Adresse",
+          "Newspaper Address",
+          "Giornale Indirizzo",
+          "Journal Adresse",
+          "Zeitung",
+          "Newspaper",
+          "Giornale",
+          "Journal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NewspaperAdress_Shape_48.svg",
+        "basename": "NewspaperAdress_Shape_48",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:52:47.000Z",
+      "modifiedAt": "2026-08-07T05:55:13.000Z"
+    },
+    {
+      "uuid": "37ea83b0-9224-11f1-a720-0050568d2654",
+      "id": 10930391,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10930391/storage/MDEwOTMwMzkxLzAvbWFzdGVyLy8vMTAzMjAyNTEx",
+        "keywords": [
+          "Zeitung Adresse",
+          "Newspaper Address",
+          "Giornale Indirizzo",
+          "Journal Adresse",
+          "Zeitung",
+          "Newspaper",
+          "Giornale",
+          "Journal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NewspaperAdress_Shape_64.svg",
+        "basename": "NewspaperAdress_Shape_64",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:52:47.000Z",
+      "modifiedAt": "2026-08-07T05:54:35.000Z"
+    },
+    {
+      "uuid": "362fb450-9224-11f1-a720-0050568d2654",
+      "id": 10930386,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10930386/storage/MDEwOTMwMzg2LzAvbWFzdGVyLy8vMTAzMjAzMTM5",
+        "keywords": [
+          "Zeitung Adresse",
+          "Newspaper Address",
+          "Giornale Indirizzo",
+          "Journal Adresse",
+          "Zeitung",
+          "Newspaper",
+          "Giornale",
+          "Journal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NewspaperAdress_Solid_Shape_16.svg",
+        "basename": "NewspaperAdress_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:52:45.000Z",
+      "modifiedAt": "2026-08-07T05:55:13.000Z"
+    },
+    {
+      "uuid": "363113e0-9224-11f1-a720-0050568d2654",
+      "id": 10930387,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10930387/storage/MDEwOTMwMzg3LzAvbWFzdGVyLy8vMTAzMjAzMTQw",
+        "keywords": [
+          "Zeitung Adresse",
+          "Newspaper Address",
+          "Giornale Indirizzo",
+          "Journal Adresse",
+          "Zeitung",
+          "Newspaper",
+          "Giornale",
+          "Journal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NewspaperAdress_Solid_Shape_24.svg",
+        "basename": "NewspaperAdress_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:52:45.000Z",
+      "modifiedAt": "2026-08-07T05:55:13.000Z"
+    },
+    {
+      "uuid": "351fcaf0-9224-11f1-a720-0050568d2654",
+      "id": 10930384,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10930384/storage/MDEwOTMwMzg0LzAvbWFzdGVyLy8vMTAzMjAzMTM4",
+        "keywords": [
+          "Zeitung Adresse",
+          "Newspaper Address",
+          "Giornale Indirizzo",
+          "Journal Adresse",
+          "Zeitung",
+          "Newspaper",
+          "Giornale",
+          "Journal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NewspaperAdress_Solid_Shape_32.svg",
+        "basename": "NewspaperAdress_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:52:43.000Z",
+      "modifiedAt": "2026-08-07T05:55:13.000Z"
+    },
+    {
+      "uuid": "334a47a2-9224-11f1-a720-0050568d2654",
+      "id": 10930379,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10930379/storage/MDEwOTMwMzc5LzAvbWFzdGVyLy8vMTAzMjAzMTM3",
+        "keywords": [
+          "Zeitung Adresse",
+          "Newspaper Address",
+          "Giornale Indirizzo",
+          "Journal Adresse",
+          "Zeitung",
+          "Newspaper",
+          "Giornale",
+          "Journal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NewspaperAdress_Solid_Shape_40.svg",
+        "basename": "NewspaperAdress_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:52:40.000Z",
+      "modifiedAt": "2026-08-07T05:55:13.000Z"
+    },
+    {
+      "uuid": "3339f3f0-9224-11f1-a720-0050568d2654",
+      "id": 10930377,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10930377/storage/MDEwOTMwMzc3LzAvbWFzdGVyLy8vMTAzMjAzMTMy",
+        "keywords": [
+          "Zeitung Adresse",
+          "Newspaper Address",
+          "Giornale Indirizzo",
+          "Journal Adresse",
+          "Zeitung",
+          "Newspaper",
+          "Giornale",
+          "Journal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NewspaperAdress_Solid_Shape_48.svg",
+        "basename": "NewspaperAdress_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:52:40.000Z",
+      "modifiedAt": "2026-08-07T05:55:13.000Z"
+    },
+    {
+      "uuid": "33453e97-9224-11f1-a720-0050568d2654",
+      "id": 10930378,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10930378/storage/MDEwOTMwMzc4LzAvbWFzdGVyLy8vMTAzMjAzMTMz",
+        "keywords": [
+          "Zeitung Adresse",
+          "Newspaper Address",
+          "Giornale Indirizzo",
+          "Journal Adresse",
+          "Zeitung",
+          "Newspaper",
+          "Giornale",
+          "Journal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NewspaperAdress_Solid_Shape_64.svg",
+        "basename": "NewspaperAdress_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:52:40.000Z",
+      "modifiedAt": "2026-08-07T05:55:13.000Z"
+    },
+    {
       "uuid": "8d6be610-55e0-11f1-97f7-0050568d2654",
       "id": 10387536,
       "type": "picture.pictogram.",
@@ -196529,6 +197489,294 @@
       },
       "createdAt": "2026-06-04T11:30:31.000Z",
       "modifiedAt": "2026-06-05T11:05:03.262Z"
+    },
+    {
+      "uuid": "635cacb0-9221-11f1-a720-0050568d2654",
+      "id": 10928275,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928275/storage/MDEwOTI4Mjc1LzAvbWFzdGVyLy8vMTAzMTgxMjAx",
+        "keywords": [
+          "Drucken & Senden",
+          "Print & send",
+          "Imprimer et envoyer",
+          "Stampa e invio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrintSend_Shape_16.svg",
+        "basename": "PrintSend_Shape_16",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:32:32.000Z",
+      "modifiedAt": "2026-08-07T05:35:23.000Z"
+    },
+    {
+      "uuid": "635c85a0-9221-11f1-a720-0050568d2654",
+      "id": 10928274,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928274/storage/MDEwOTI4Mjc0LzAvbWFzdGVyLy8vMTAzMTgxMjIx",
+        "keywords": [
+          "Drucken & Senden",
+          "Print & send",
+          "Imprimer et envoyer",
+          "Stampa e invio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrintSend_Shape_24.svg",
+        "basename": "PrintSend_Shape_24",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:32:32.000Z",
+      "modifiedAt": "2026-08-07T05:35:23.000Z"
+    },
+    {
+      "uuid": "620d9770-9221-11f1-a720-0050568d2654",
+      "id": 10928273,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928273/storage/MDEwOTI4MjczLzAvbWFzdGVyLy8vMTAzMTgxMjIw",
+        "keywords": [
+          "Drucken & Senden",
+          "Print & send",
+          "Imprimer et envoyer",
+          "Stampa e invio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrintSend_Shape_32.svg",
+        "basename": "PrintSend_Shape_32",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:32:30.000Z",
+      "modifiedAt": "2026-08-07T05:35:23.000Z"
+    },
+    {
+      "uuid": "618b4810-9221-11f1-a720-0050568d2654",
+      "id": 10928272,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928272/storage/MDEwOTI4MjcyLzAvbWFzdGVyLy8vMTAzMTgxMjE5",
+        "keywords": [
+          "Drucken & Senden",
+          "Print & send",
+          "Imprimer et envoyer",
+          "Stampa e invio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrintSend_Shape_40.svg",
+        "basename": "PrintSend_Shape_40",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:32:29.000Z",
+      "modifiedAt": "2026-08-07T05:35:23.000Z"
+    },
+    {
+      "uuid": "618af9f0-9221-11f1-a720-0050568d2654",
+      "id": 10928271,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928271/storage/MDEwOTI4MjcxLzAvbWFzdGVyLy8vMTAzMTgxMjE1",
+        "keywords": [
+          "Drucken & Senden",
+          "Print & send",
+          "Imprimer et envoyer",
+          "Stampa e invio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrintSend_Shape_48.svg",
+        "basename": "PrintSend_Shape_48",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:32:29.000Z",
+      "modifiedAt": "2026-08-07T05:35:23.000Z"
+    },
+    {
+      "uuid": "60f26370-9221-11f1-a720-0050568d2654",
+      "id": 10928270,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928270/storage/MDEwOTI4MjcwLzAvbWFzdGVyLy8vMTAzMTc5OTA5",
+        "keywords": [
+          "Drucken & Senden",
+          "Print & send",
+          "Imprimer et envoyer",
+          "Stampa e invio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrintSend_Shape_64.svg",
+        "basename": "PrintSend_Shape_64",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:32:28.000Z",
+      "modifiedAt": "2026-08-07T05:34:04.000Z"
+    },
+    {
+      "uuid": "60388950-9221-11f1-a720-0050568d2654",
+      "id": 10928269,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928269/storage/MDEwOTI4MjY5LzAvbWFzdGVyLy8vMTAzMTgxMjE0",
+        "keywords": [
+          "Drucken & Senden",
+          "Print & send",
+          "Imprimer et envoyer",
+          "Stampa e invio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrintSend_Solid_Shape_16.svg",
+        "basename": "PrintSend_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:32:27.000Z",
+      "modifiedAt": "2026-08-07T05:35:23.000Z"
+    },
+    {
+      "uuid": "5f515da0-9221-11f1-a720-0050568d2654",
+      "id": 10928268,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928268/storage/MDEwOTI4MjY4LzAvbWFzdGVyLy8vMTAzMTgxMjEz",
+        "keywords": [
+          "Drucken & Senden",
+          "Print & send",
+          "Imprimer et envoyer",
+          "Stampa e invio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrintSend_Solid_Shape_24.svg",
+        "basename": "PrintSend_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:32:25.000Z",
+      "modifiedAt": "2026-08-07T05:35:23.000Z"
+    },
+    {
+      "uuid": "5f047620-9221-11f1-a720-0050568d2654",
+      "id": 10928267,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928267/storage/MDEwOTI4MjY3LzAvbWFzdGVyLy8vMTAzMTgxMjEy",
+        "keywords": [
+          "Drucken & Senden",
+          "Print & send",
+          "Imprimer et envoyer",
+          "Stampa e invio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrintSend_Solid_Shape_32.svg",
+        "basename": "PrintSend_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:32:25.000Z",
+      "modifiedAt": "2026-08-07T05:35:23.000Z"
+    },
+    {
+      "uuid": "5d8a5940-9221-11f1-a720-0050568d2654",
+      "id": 10928266,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928266/storage/MDEwOTI4MjY2LzAvbWFzdGVyLy8vMTAzMTgxMjA4",
+        "keywords": [
+          "Drucken & Senden",
+          "Print & send",
+          "Imprimer et envoyer",
+          "Stampa e invio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrintSend_Solid_Shape_40.svg",
+        "basename": "PrintSend_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:32:22.000Z",
+      "modifiedAt": "2026-08-07T05:35:23.000Z"
+    },
+    {
+      "uuid": "5d7d8800-9221-11f1-a720-0050568d2654",
+      "id": 10928264,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928264/storage/MDEwOTI4MjY0LzAvbWFzdGVyLy8vMTAzMTgxMjAz",
+        "keywords": [
+          "Drucken & Senden",
+          "Print & send",
+          "Imprimer et envoyer",
+          "Stampa e invio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrintSend_Solid_Shape_48.svg",
+        "basename": "PrintSend_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:32:22.000Z",
+      "modifiedAt": "2026-08-07T05:35:23.000Z"
+    },
+    {
+      "uuid": "5d87c130-9221-11f1-a720-0050568d2654",
+      "id": 10928265,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928265/storage/MDEwOTI4MjY1LzAvbWFzdGVyLy8vMTAzMTgxMjA0",
+        "keywords": [
+          "Drucken & Senden",
+          "Print & send",
+          "Imprimer et envoyer",
+          "Stampa e invio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrintSend_Solid_Shape_64.svg",
+        "basename": "PrintSend_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:32:22.000Z",
+      "modifiedAt": "2026-08-07T05:35:23.000Z"
     },
     {
       "uuid": "95113580-e51d-11ef-a15d-005056873709",
@@ -247835,6 +249083,438 @@
       "modifiedAt": "2025-03-26T13:27:38.000Z"
     },
     {
+      "uuid": "8e255d00-9223-11f1-a720-0050568d2654",
+      "id": 10929890,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929890/storage/MDEwOTI5ODkwLzAvbWFzdGVyLy8vMTAzMTk5MDE5",
+        "keywords": [
+          "Speak",
+          "Sprechen",
+          "Parler",
+          "Parlare",
+          "Reden",
+          "Speech",
+          "Discorso",
+          "Discours",
+          "oralement message",
+          "messaggio orale",
+          "oral message",
+          "Mündliche Botschaft",
+          "speech bubble",
+          "Sprechblase",
+          "Fumetto",
+          "Bulle de texte"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Talking_Shape_16.svg",
+        "basename": "Talking_Shape_16",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:48:03.000Z",
+      "modifiedAt": "2026-08-07T05:51:20.000Z"
+    },
+    {
+      "uuid": "8e3848c0-9223-11f1-a720-0050568d2654",
+      "id": 10929891,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929891/storage/MDEwOTI5ODkxLzAvbWFzdGVyLy8vMTAzMTk5MDE4",
+        "keywords": [
+          "Speak",
+          "Sprechen",
+          "Parler",
+          "Parlare",
+          "Reden",
+          "Speech",
+          "Discorso",
+          "Discours",
+          "oralement message",
+          "messaggio orale",
+          "oral message",
+          "Mündliche Botschaft",
+          "speech bubble",
+          "Sprechblase",
+          "Fumetto",
+          "Bulle de texte"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Talking_Shape_24.svg",
+        "basename": "Talking_Shape_24",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:48:03.000Z",
+      "modifiedAt": "2026-08-07T05:51:20.000Z"
+    },
+    {
+      "uuid": "8d16ac21-9223-11f1-a720-0050568d2654",
+      "id": 10929888,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929888/storage/MDEwOTI5ODg4LzAvbWFzdGVyLy8vMTAzMTk5MDIw",
+        "keywords": [
+          "Speak",
+          "Sprechen",
+          "Parler",
+          "Parlare",
+          "Reden",
+          "Speech",
+          "Discorso",
+          "Discours",
+          "oralement message",
+          "messaggio orale",
+          "oral message",
+          "Mündliche Botschaft",
+          "speech bubble",
+          "Sprechblase",
+          "Fumetto",
+          "Bulle de texte"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Talking_Shape_32.svg",
+        "basename": "Talking_Shape_32",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:48:01.000Z",
+      "modifiedAt": "2026-08-07T05:51:20.000Z"
+    },
+    {
+      "uuid": "8bee7fd0-9223-11f1-a720-0050568d2654",
+      "id": 10929885,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929885/storage/MDEwOTI5ODg1LzAvbWFzdGVyLy8vMTAzMTk5MDAy",
+        "keywords": [
+          "Speak",
+          "Sprechen",
+          "Parler",
+          "Parlare",
+          "Reden",
+          "Speech",
+          "Discorso",
+          "Discours",
+          "oralement message",
+          "messaggio orale",
+          "oral message",
+          "Mündliche Botschaft",
+          "speech bubble",
+          "Sprechblase",
+          "Fumetto",
+          "Bulle de texte"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Talking_Shape_40.svg",
+        "basename": "Talking_Shape_40",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:47:59.000Z",
+      "modifiedAt": "2026-08-07T05:51:20.000Z"
+    },
+    {
+      "uuid": "8acbf8d2-9223-11f1-a720-0050568d2654",
+      "id": 10929882,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929882/storage/MDEwOTI5ODgyLzAvbWFzdGVyLy8vMTAzMTk5MDAz",
+        "keywords": [
+          "Speak",
+          "Sprechen",
+          "Parler",
+          "Parlare",
+          "Reden",
+          "Speech",
+          "Discorso",
+          "Discours",
+          "oralement message",
+          "messaggio orale",
+          "oral message",
+          "Mündliche Botschaft",
+          "speech bubble",
+          "Sprechblase",
+          "Fumetto",
+          "Bulle de texte"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Talking_Shape_48.svg",
+        "basename": "Talking_Shape_48",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:47:57.000Z",
+      "modifiedAt": "2026-08-07T05:51:20.000Z"
+    },
+    {
+      "uuid": "89fb3b50-9223-11f1-a720-0050568d2654",
+      "id": 10929878,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929878/storage/MDEwOTI5ODc4LzAvbWFzdGVyLy8vMTAzMTk4MzQ2",
+        "keywords": [
+          "Speak",
+          "Sprechen",
+          "Parler",
+          "Parlare",
+          "Reden",
+          "Speech",
+          "Discorso",
+          "Discours",
+          "oralement message",
+          "messaggio orale",
+          "oral message",
+          "Mündliche Botschaft",
+          "speech bubble",
+          "Sprechblase",
+          "Fumetto",
+          "Bulle de texte"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Talking_Shape_64.svg",
+        "basename": "Talking_Shape_64",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:47:56.000Z",
+      "modifiedAt": "2026-08-07T05:50:36.000Z"
+    },
+    {
+      "uuid": "88ba2fd0-9223-11f1-a720-0050568d2654",
+      "id": 10929873,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929873/storage/MDEwOTI5ODczLzAvbWFzdGVyLy8vMTAzMTk5MDA1",
+        "keywords": [
+          "Reden",
+          "Speech",
+          "Discorso",
+          "Discours",
+          "oralement message",
+          "messaggio orale",
+          "oral message",
+          "Mündliche Botschaft",
+          "speech bubble",
+          "Sprechblase",
+          "Fumetto",
+          "Bulle de texte",
+          "Speak",
+          "Sprechen",
+          "Parler",
+          "Parlare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Talking_Solid_Shape_16.svg",
+        "basename": "Talking_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:47:54.000Z",
+      "modifiedAt": "2026-08-07T05:51:20.000Z"
+    },
+    {
+      "uuid": "88bb1a30-9223-11f1-a720-0050568d2654",
+      "id": 10929874,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929874/storage/MDEwOTI5ODc0LzAvbWFzdGVyLy8vMTAzMTk5MDA0",
+        "keywords": [
+          "Speak",
+          "Sprechen",
+          "Parler",
+          "Parlare",
+          "Reden",
+          "Speech",
+          "Discorso",
+          "Discours",
+          "oralement message",
+          "messaggio orale",
+          "oral message",
+          "Mündliche Botschaft",
+          "speech bubble",
+          "Sprechblase",
+          "Fumetto",
+          "Bulle de texte"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Talking_Solid_Shape_24.svg",
+        "basename": "Talking_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:47:54.000Z",
+      "modifiedAt": "2026-08-07T05:51:20.000Z"
+    },
+    {
+      "uuid": "884993b0-9223-11f1-a720-0050568d2654",
+      "id": 10929871,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929871/storage/MDEwOTI5ODcxLzAvbWFzdGVyLy8vMTAzMTk5MDA2",
+        "keywords": [
+          "Speak",
+          "Sprechen",
+          "Parler",
+          "Parlare",
+          "Reden",
+          "Speech",
+          "Discorso",
+          "Discours",
+          "oralement message",
+          "messaggio orale",
+          "oral message",
+          "Mündliche Botschaft",
+          "speech bubble",
+          "Sprechblase",
+          "Fumetto",
+          "Bulle de texte"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Talking_Solid_Shape_32.svg",
+        "basename": "Talking_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:47:53.000Z",
+      "modifiedAt": "2026-08-07T05:51:20.000Z"
+    },
+    {
+      "uuid": "851fcb02-9223-11f1-a720-0050568d2654",
+      "id": 10929867,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929867/storage/MDEwOTI5ODY3LzAvbWFzdGVyLy8vMTAzMTk5MDE2",
+        "keywords": [
+          "Speak",
+          "Sprechen",
+          "Parler",
+          "Parlare",
+          "Reden",
+          "Speech",
+          "Discorso",
+          "Discours",
+          "oralement message",
+          "messaggio orale",
+          "oral message",
+          "Mündliche Botschaft",
+          "speech bubble",
+          "Sprechblase",
+          "Fumetto",
+          "Bulle de texte"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Talking_Solid_Shape_40.svg",
+        "basename": "Talking_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:47:48.000Z",
+      "modifiedAt": "2026-08-07T05:51:21.000Z"
+    },
+    {
+      "uuid": "8508e7a0-9223-11f1-a720-0050568d2654",
+      "id": 10929865,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929865/storage/MDEwOTI5ODY1LzAvbWFzdGVyLy8vMTAzMTk5MDAw",
+        "keywords": [
+          "Speak",
+          "Sprechen",
+          "Parler",
+          "Parlare",
+          "Reden",
+          "Speech",
+          "Discorso",
+          "Discours",
+          "oralement message",
+          "messaggio orale",
+          "oral message",
+          "Mündliche Botschaft",
+          "speech bubble",
+          "Sprechblase",
+          "Fumetto",
+          "Bulle de texte"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Talking_Solid_Shape_48.svg",
+        "basename": "Talking_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:47:47.000Z",
+      "modifiedAt": "2026-08-07T05:51:20.000Z"
+    },
+    {
+      "uuid": "8512d2b0-9223-11f1-a720-0050568d2654",
+      "id": 10929866,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929866/storage/MDEwOTI5ODY2LzAvbWFzdGVyLy8vMTAzMTk5MDE3",
+        "keywords": [
+          "Speak",
+          "Sprechen",
+          "Parler",
+          "Parlare",
+          "Reden",
+          "Speech",
+          "Discorso",
+          "Discours",
+          "oralement message",
+          "messaggio orale",
+          "oral message",
+          "Mündliche Botschaft",
+          "speech bubble",
+          "Sprechblase",
+          "Fumetto",
+          "Bulle de texte"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Talking_Solid_Shape_64.svg",
+        "basename": "Talking_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:47:47.000Z",
+      "modifiedAt": "2026-08-07T05:51:21.000Z"
+    },
+    {
       "uuid": "17891210-65f4-11f0-ad2d-005056873709",
       "id": 5595082,
       "type": "picture.pictogram.",
@@ -259335,6 +261015,294 @@
       "modifiedAt": "2026-02-09T12:11:50.000Z"
     },
     {
+      "uuid": "8b571742-9222-11f1-a720-0050568d2654",
+      "id": 10929105,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929105/storage/MDEwOTI5MTA1LzAvbWFzdGVyLy8vMTAzMTkwMjA2",
+        "keywords": [
+          "tractor for semi-trailers",
+          "Sattelschlepper",
+          "Tracteur à sellette",
+          "trattore a sella"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckSemi_Shape_16.svg",
+        "basename": "TruckSemi_Shape_16",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:40:48.000Z",
+      "modifiedAt": "2026-08-07T05:43:26.000Z"
+    },
+    {
+      "uuid": "8a88a3b0-9222-11f1-a720-0050568d2654",
+      "id": 10929103,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929103/storage/MDEwOTI5MTAzLzAvbWFzdGVyLy8vMTAzMTkwMjA1",
+        "keywords": [
+          "tractor for semi-trailers",
+          "Sattelschlepper",
+          "Tracteur à sellette",
+          "trattore a sella"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckSemi_Shape_24.svg",
+        "basename": "TruckSemi_Shape_24",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:40:47.000Z",
+      "modifiedAt": "2026-08-07T05:43:26.000Z"
+    },
+    {
+      "uuid": "89394052-9222-11f1-a720-0050568d2654",
+      "id": 10929100,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929100/storage/MDEwOTI5MTAwLzAvbWFzdGVyLy8vMTAzMTkwMjAz",
+        "keywords": [
+          "tractor for semi-trailers",
+          "Sattelschlepper",
+          "Tracteur à sellette",
+          "trattore a sella"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckSemi_Shape_32.svg",
+        "basename": "TruckSemi_Shape_32",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:40:45.000Z",
+      "modifiedAt": "2026-08-07T05:43:26.000Z"
+    },
+    {
+      "uuid": "89a21440-9222-11f1-a720-0050568d2654",
+      "id": 10929101,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929101/storage/MDEwOTI5MTAxLzAvbWFzdGVyLy8vMTAzMTkwMjA0",
+        "keywords": [
+          "tractor for semi-trailers",
+          "Sattelschlepper",
+          "Tracteur à sellette",
+          "trattore a sella"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckSemi_Shape_40.svg",
+        "basename": "TruckSemi_Shape_40",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:40:46.000Z",
+      "modifiedAt": "2026-08-07T05:43:26.000Z"
+    },
+    {
+      "uuid": "87a0c600-9222-11f1-a720-0050568d2654",
+      "id": 10929097,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929097/storage/MDEwOTI5MDk3LzAvbWFzdGVyLy8vMTAzMTkwMjAy",
+        "keywords": [
+          "tractor for semi-trailers",
+          "Sattelschlepper",
+          "Tracteur à sellette",
+          "trattore a sella"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckSemi_Shape_48.svg",
+        "basename": "TruckSemi_Shape_48",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:40:42.000Z",
+      "modifiedAt": "2026-08-07T05:43:26.000Z"
+    },
+    {
+      "uuid": "8825ad70-9222-11f1-a720-0050568d2654",
+      "id": 10929099,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929099/storage/MDEwOTI5MDk5LzAvbWFzdGVyLy8vMTAzMTg5NzAw",
+        "keywords": [
+          "tractor for semi-trailers",
+          "Sattelschlepper",
+          "Tracteur à sellette",
+          "trattore a sella"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckSemi_Shape_64.svg",
+        "basename": "TruckSemi_Shape_64",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:40:43.000Z",
+      "modifiedAt": "2026-08-07T05:42:50.000Z"
+    },
+    {
+      "uuid": "8616a390-9222-11f1-a720-0050568d2654",
+      "id": 10929093,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929093/storage/MDEwOTI5MDkzLzAvbWFzdGVyLy8vMTAzMTkwMjAx",
+        "keywords": [
+          "tractor for semi-trailers",
+          "Sattelschlepper",
+          "Tracteur à sellette",
+          "trattore a sella"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckSemi_Solid_Shape_16.svg",
+        "basename": "TruckSemi_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:40:40.000Z",
+      "modifiedAt": "2026-08-07T05:43:26.000Z"
+    },
+    {
+      "uuid": "85aff280-9222-11f1-a720-0050568d2654",
+      "id": 10929091,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929091/storage/MDEwOTI5MDkxLzAvbWFzdGVyLy8vMTAzMTkwMjAw",
+        "keywords": [
+          "tractor for semi-trailers",
+          "Sattelschlepper",
+          "Tracteur à sellette",
+          "trattore a sella"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckSemi_Solid_Shape_24.svg",
+        "basename": "TruckSemi_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:40:39.000Z",
+      "modifiedAt": "2026-08-07T05:43:26.000Z"
+    },
+    {
+      "uuid": "845b5f00-9222-11f1-a720-0050568d2654",
+      "id": 10929087,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929087/storage/MDEwOTI5MDg3LzAvbWFzdGVyLy8vMTAzMTkwMTk2",
+        "keywords": [
+          "tractor for semi-trailers",
+          "Sattelschlepper",
+          "Tracteur à sellette",
+          "trattore a sella"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckSemi_Solid_Shape_32.svg",
+        "basename": "TruckSemi_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:40:37.000Z",
+      "modifiedAt": "2026-08-07T05:43:26.000Z"
+    },
+    {
+      "uuid": "819f2530-9222-11f1-a720-0050568d2654",
+      "id": 10929081,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929081/storage/MDEwOTI5MDgxLzAvbWFzdGVyLy8vMTAzMTkwMTky",
+        "keywords": [
+          "tractor for semi-trailers",
+          "Sattelschlepper",
+          "Tracteur à sellette",
+          "trattore a sella"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckSemi_Solid_Shape_40.svg",
+        "basename": "TruckSemi_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:40:32.000Z",
+      "modifiedAt": "2026-08-07T05:43:26.000Z"
+    },
+    {
+      "uuid": "819d5070-9222-11f1-a720-0050568d2654",
+      "id": 10929080,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929080/storage/MDEwOTI5MDgwLzAvbWFzdGVyLy8vMTAzMTkwMTg4",
+        "keywords": [
+          "tractor for semi-trailers",
+          "Sattelschlepper",
+          "Tracteur à sellette",
+          "trattore a sella"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckSemi_Solid_Shape_48.svg",
+        "basename": "TruckSemi_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:40:32.000Z",
+      "modifiedAt": "2026-08-07T05:43:26.000Z"
+    },
+    {
+      "uuid": "8196e7d0-9222-11f1-a720-0050568d2654",
+      "id": 10929079,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10929079/storage/MDEwOTI5MDc5LzAvbWFzdGVyLy8vMTAzMTkwMTg3",
+        "keywords": [
+          "tractor for semi-trailers",
+          "Sattelschlepper",
+          "Tracteur à sellette",
+          "trattore a sella"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckSemi_Solid_Shape_64.svg",
+        "basename": "TruckSemi_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:40:32.000Z",
+      "modifiedAt": "2026-08-07T05:43:26.000Z"
+    },
+    {
       "uuid": "5370b690-e51e-11ef-a15d-005056873709",
       "id": 1822294,
       "type": "picture.pictogram.",
@@ -266641,6 +268609,486 @@
       "modifiedAt": "2025-09-16T12:25:04.000Z"
     },
     {
+      "uuid": "a108e700-9220-11f1-a720-0050568d2654",
+      "id": 10928258,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928258/storage/MDEwOTI4MjU4LzAvbWFzdGVyLy8vMTAzMTc4Nzc2",
+        "keywords": [
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User known",
+          "Nutzer bekannt",
+          "Utilisateur connu",
+          "Utente conosciuto",
+          "Customer known",
+          "Kunde bekannt",
+          "Client connu",
+          "Cliente conosciuto",
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "known",
+          "bekannt",
+          "Connu",
+          "noto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserKnown_Shape_16.svg",
+        "basename": "UserKnown_Shape_16",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:27:06.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
+      "uuid": "a03c2120-9220-11f1-a720-0050568d2654",
+      "id": 10928257,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928257/storage/MDEwOTI4MjU3LzAvbWFzdGVyLy8vMTAzMTc4Nzcy",
+        "keywords": [
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User known",
+          "Nutzer bekannt",
+          "Utilisateur connu",
+          "Utente conosciuto",
+          "Customer known",
+          "Kunde bekannt",
+          "Client connu",
+          "Cliente conosciuto",
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "known",
+          "bekannt",
+          "Connu",
+          "noto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserKnown_Shape_24.svg",
+        "basename": "UserKnown_Shape_24",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:27:05.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
+      "uuid": "9f791f40-9220-11f1-a720-0050568d2654",
+      "id": 10928256,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928256/storage/MDEwOTI4MjU2LzAvbWFzdGVyLy8vMTAzMTc4Nzcx",
+        "keywords": [
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User known",
+          "Nutzer bekannt",
+          "Utilisateur connu",
+          "Utente conosciuto",
+          "Customer known",
+          "Kunde bekannt",
+          "Client connu",
+          "Cliente conosciuto",
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "known",
+          "bekannt",
+          "Connu",
+          "noto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserKnown_Shape_32.svg",
+        "basename": "UserKnown_Shape_32",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:27:03.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
+      "uuid": "9eb05100-9220-11f1-a720-0050568d2654",
+      "id": 10928255,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928255/storage/MDEwOTI4MjU1LzAvbWFzdGVyLy8vMTAzMTc4Nzcw",
+        "keywords": [
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User known",
+          "Nutzer bekannt",
+          "Utilisateur connu",
+          "Utente conosciuto",
+          "Customer known",
+          "Kunde bekannt",
+          "Client connu",
+          "Cliente conosciuto",
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "known",
+          "bekannt",
+          "Connu",
+          "noto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserKnown_Shape_40.svg",
+        "basename": "UserKnown_Shape_40",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:27:02.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
+      "uuid": "9def7200-9220-11f1-a720-0050568d2654",
+      "id": 10928254,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928254/storage/MDEwOTI4MjU0LzAvbWFzdGVyLy8vMTAzMTc4NzY5",
+        "keywords": [
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User known",
+          "Nutzer bekannt",
+          "Utilisateur connu",
+          "Utente conosciuto",
+          "Customer known",
+          "Kunde bekannt",
+          "Client connu",
+          "Cliente conosciuto",
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "known",
+          "bekannt",
+          "Connu",
+          "noto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserKnown_Shape_48.svg",
+        "basename": "UserKnown_Shape_48",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:27:01.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
+      "uuid": "9d2ce550-9220-11f1-a720-0050568d2654",
+      "id": 10928253,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928253/storage/MDEwOTI4MjUzLzAvbWFzdGVyLy8vMTAzMTc4NjMx",
+        "keywords": [
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User known",
+          "Nutzer bekannt",
+          "Utilisateur connu",
+          "Utente conosciuto",
+          "Customer known",
+          "Kunde bekannt",
+          "Client connu",
+          "Cliente conosciuto",
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "known",
+          "bekannt",
+          "Connu",
+          "noto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserKnown_Shape_64.svg",
+        "basename": "UserKnown_Shape_64",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:26:59.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
+      "uuid": "9befaa60-9220-11f1-a720-0050568d2654",
+      "id": 10928252,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928252/storage/MDEwOTI4MjUyLzAvbWFzdGVyLy8vMTAzMTc4NzY4",
+        "keywords": [
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User known",
+          "Nutzer bekannt",
+          "Utilisateur connu",
+          "Utente conosciuto",
+          "Customer known",
+          "Kunde bekannt",
+          "Client connu",
+          "Cliente conosciuto",
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "known",
+          "bekannt",
+          "Connu",
+          "noto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserKnown_Solid_Shape_16.svg",
+        "basename": "UserKnown_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:26:57.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
+      "uuid": "9be438b3-9220-11f1-a720-0050568d2654",
+      "id": 10928251,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928251/storage/MDEwOTI4MjUxLzAvbWFzdGVyLy8vMTAzMTc4NzY3",
+        "keywords": [
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User known",
+          "Nutzer bekannt",
+          "Utilisateur connu",
+          "Utente conosciuto",
+          "Customer known",
+          "Kunde bekannt",
+          "Client connu",
+          "Cliente conosciuto",
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "known",
+          "bekannt",
+          "Connu",
+          "noto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserKnown_Solid_Shape_24.svg",
+        "basename": "UserKnown_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:26:57.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
+      "uuid": "9b143e80-9220-11f1-a720-0050568d2654",
+      "id": 10928250,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928250/storage/MDEwOTI4MjUwLzAvbWFzdGVyLy8vMTAzMTc4NzY2",
+        "keywords": [
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User known",
+          "Nutzer bekannt",
+          "Utilisateur connu",
+          "Utente conosciuto",
+          "Customer known",
+          "Kunde bekannt",
+          "Client connu",
+          "Cliente conosciuto",
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "known",
+          "bekannt",
+          "Connu",
+          "noto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserKnown_Solid_Shape_32.svg",
+        "basename": "UserKnown_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:26:56.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
+      "uuid": "99864b80-9220-11f1-a720-0050568d2654",
+      "id": 10928248,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928248/storage/MDEwOTI4MjQ4LzAvbWFzdGVyLy8vMTAzMTc4NzY0",
+        "keywords": [
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User known",
+          "Nutzer bekannt",
+          "Utilisateur connu",
+          "Utente conosciuto",
+          "Customer known",
+          "Kunde bekannt",
+          "Client connu",
+          "Cliente conosciuto",
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "known",
+          "bekannt",
+          "Connu",
+          "noto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserKnown_Solid_Shape_40.svg",
+        "basename": "UserKnown_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:26:53.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
+      "uuid": "99875cf0-9220-11f1-a720-0050568d2654",
+      "id": 10928249,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928249/storage/MDEwOTI4MjQ5LzAvbWFzdGVyLy8vMTAzMTc4NzY1",
+        "keywords": [
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User known",
+          "Nutzer bekannt",
+          "Utilisateur connu",
+          "Utente conosciuto",
+          "Customer known",
+          "Kunde bekannt",
+          "Client connu",
+          "Cliente conosciuto",
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "known",
+          "bekannt",
+          "Connu",
+          "noto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserKnown_Solid_Shape_48.svg",
+        "basename": "UserKnown_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:26:53.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
+      "uuid": "99803100-9220-11f1-a720-0050568d2654",
+      "id": 10928247,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928247/storage/MDEwOTI4MjQ3LzAvbWFzdGVyLy8vMTAzMTc4NzYz",
+        "keywords": [
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User known",
+          "Nutzer bekannt",
+          "Utilisateur connu",
+          "Utente conosciuto",
+          "Customer known",
+          "Kunde bekannt",
+          "Client connu",
+          "Cliente conosciuto",
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "known",
+          "bekannt",
+          "Connu",
+          "noto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserKnown_Solid_Shape_64.svg",
+        "basename": "UserKnown_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:26:53.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
       "uuid": "946d2200-68b7-11f1-be66-0050568d2654",
       "id": 10504611,
       "type": "picture.pictogram.",
@@ -267023,6 +269471,438 @@
       },
       "createdAt": "2026-06-15T12:41:36.000Z",
       "modifiedAt": "2026-06-16T12:05:00.978Z"
+    },
+    {
+      "uuid": "e10504c0-921f-11f1-a720-0050568d2654",
+      "id": 10928242,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928242/storage/MDEwOTI4MjQyLzAvbWFzdGVyLy8vMTAzMTc4MDcy",
+        "keywords": [
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "Customer unknown",
+          "Kunde unbekannt",
+          "Client inconnu",
+          "Cliente sconosciuto",
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User unknown",
+          "Nutzer unbekannt",
+          "Utilisateur inconnu",
+          "Utente sconosciuto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserUnknown_Shape_16.svg",
+        "basename": "UserUnknown_Shape_16",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:21:44.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
+      "uuid": "e0b58530-921f-11f1-a720-0050568d2654",
+      "id": 10928241,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928241/storage/MDEwOTI4MjQxLzAvbWFzdGVyLy8vMTAzMTc4MDcx",
+        "keywords": [
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "Customer unknown",
+          "Kunde unbekannt",
+          "Client inconnu",
+          "Cliente sconosciuto",
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User unknown",
+          "Nutzer unbekannt",
+          "Utilisateur inconnu",
+          "Utente sconosciuto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserUnknown_Shape_24.svg",
+        "basename": "UserUnknown_Shape_24",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:21:43.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
+      "uuid": "dfe53ce0-921f-11f1-a720-0050568d2654",
+      "id": 10928240,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928240/storage/MDEwOTI4MjQwLzAvbWFzdGVyLy8vMTAzMTc4MDcw",
+        "keywords": [
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "Customer unknown",
+          "Kunde unbekannt",
+          "Client inconnu",
+          "Cliente sconosciuto",
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User unknown",
+          "Nutzer unbekannt",
+          "Utilisateur inconnu",
+          "Utente sconosciuto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserUnknown_Shape_32.svg",
+        "basename": "UserUnknown_Shape_32",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:21:42.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
+      "uuid": "df3044c0-921f-11f1-a720-0050568d2654",
+      "id": 10928239,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928239/storage/MDEwOTI4MjM5LzAvbWFzdGVyLy8vMTAzMTc4MDY5",
+        "keywords": [
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "Customer unknown",
+          "Kunde unbekannt",
+          "Client inconnu",
+          "Cliente sconosciuto",
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User unknown",
+          "Nutzer unbekannt",
+          "Utilisateur inconnu",
+          "Utente sconosciuto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserUnknown_Shape_40.svg",
+        "basename": "UserUnknown_Shape_40",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:21:41.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
+      "uuid": "dde37970-921f-11f1-a720-0050568d2654",
+      "id": 10928238,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928238/storage/MDEwOTI4MjM4LzAvbWFzdGVyLy8vMTAzMTc4MDY4",
+        "keywords": [
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "Customer unknown",
+          "Kunde unbekannt",
+          "Client inconnu",
+          "Cliente sconosciuto",
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User unknown",
+          "Nutzer unbekannt",
+          "Utilisateur inconnu",
+          "Utente sconosciuto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserUnknown_Shape_48.svg",
+        "basename": "UserUnknown_Shape_48",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:21:38.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
+      "uuid": "dde0e160-921f-11f1-a720-0050568d2654",
+      "id": 10928237,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928237/storage/MDEwOTI4MjM3LzAvbWFzdGVyLy8vMTAzMTc3OTU3",
+        "keywords": [
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "Customer unknown",
+          "Kunde unbekannt",
+          "Client inconnu",
+          "Cliente sconosciuto",
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User unknown",
+          "Nutzer unbekannt",
+          "Utilisateur inconnu",
+          "Utente sconosciuto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserUnknown_Shape_64.svg",
+        "basename": "UserUnknown_Shape_64",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:21:38.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
+      "uuid": "dc92dd91-921f-11f1-a720-0050568d2654",
+      "id": 10928235,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928235/storage/MDEwOTI4MjM1LzAvbWFzdGVyLy8vMTAzMTc4MDY2",
+        "keywords": [
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "Customer unknown",
+          "Kunde unbekannt",
+          "Client inconnu",
+          "Cliente sconosciuto",
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User unknown",
+          "Nutzer unbekannt",
+          "Utilisateur inconnu",
+          "Utente sconosciuto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserUnknown_Solid_Shape_16.svg",
+        "basename": "UserUnknown_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:21:36.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
+      "uuid": "dc9352c0-921f-11f1-a720-0050568d2654",
+      "id": 10928236,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928236/storage/MDEwOTI4MjM2LzAvbWFzdGVyLy8vMTAzMTc4MDY3",
+        "keywords": [
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "Customer unknown",
+          "Kunde unbekannt",
+          "Client inconnu",
+          "Cliente sconosciuto",
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User unknown",
+          "Nutzer unbekannt",
+          "Utilisateur inconnu",
+          "Utente sconosciuto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserUnknown_Solid_Shape_24.svg",
+        "basename": "UserUnknown_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:21:36.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
+      "uuid": "dc92dd90-921f-11f1-a720-0050568d2654",
+      "id": 10928234,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928234/storage/MDEwOTI4MjM0LzAvbWFzdGVyLy8vMTAzMTc4MDY1",
+        "keywords": [
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "Customer unknown",
+          "Kunde unbekannt",
+          "Client inconnu",
+          "Cliente sconosciuto",
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User unknown",
+          "Nutzer unbekannt",
+          "Utilisateur inconnu",
+          "Utente sconosciuto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserUnknown_Solid_Shape_32.svg",
+        "basename": "UserUnknown_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:21:36.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
+      "uuid": "d9e808e0-921f-11f1-a720-0050568d2654",
+      "id": 10928231,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928231/storage/MDEwOTI4MjMxLzAvbWFzdGVyLy8vMTAzMTc4MDYy",
+        "keywords": [
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "Customer unknown",
+          "Kunde unbekannt",
+          "Client inconnu",
+          "Cliente sconosciuto",
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User unknown",
+          "Nutzer unbekannt",
+          "Utilisateur inconnu",
+          "Utente sconosciuto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserUnknown_Solid_Shape_40.svg",
+        "basename": "UserUnknown_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:21:32.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
+      "uuid": "d9ea04b0-921f-11f1-a720-0050568d2654",
+      "id": 10928232,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928232/storage/MDEwOTI4MjMyLzAvbWFzdGVyLy8vMTAzMTc4MDYz",
+        "keywords": [
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "Customer unknown",
+          "Kunde unbekannt",
+          "Client inconnu",
+          "Cliente sconosciuto",
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User unknown",
+          "Nutzer unbekannt",
+          "Utilisateur inconnu",
+          "Utente sconosciuto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserUnknown_Solid_Shape_48.svg",
+        "basename": "UserUnknown_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:21:32.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
+    },
+    {
+      "uuid": "d9eaa0f0-921f-11f1-a720-0050568d2654",
+      "id": 10928233,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10928233/storage/MDEwOTI4MjMzLzAvbWFzdGVyLy8vMTAzMTc4MDY0",
+        "keywords": [
+          "Kunde",
+          "Customer",
+          "Cliente",
+          "Client",
+          "Customer unknown",
+          "Kunde unbekannt",
+          "Client inconnu",
+          "Cliente sconosciuto",
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "User unknown",
+          "Nutzer unbekannt",
+          "Utilisateur inconnu",
+          "Utente sconosciuto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UserUnknown_Solid_Shape_64.svg",
+        "basename": "UserUnknown_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-08-07T05:21:32.000Z",
+      "modifiedAt": "2026-08-08T05:05:06.166Z"
     },
     {
       "uuid": "5b8754b0-e51e-11ef-a15d-005056873709",
@@ -359888,13 +362768,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 9288,
+    "success": 9384,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 2948,
     "duplicates": 0
   },
-  "created": "2026-08-02T03:52:26.685Z",
+  "created": "2026-08-09T02:28:22.395Z",
   "version": "10.1.0"
 }
