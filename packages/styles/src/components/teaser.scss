@@ -27,7 +27,7 @@ tokens.$default-map: components.$post-teaser;
   p {
     margin: 0;
     overflow-wrap: anywhere;
-    word-break: normal;
+    hyphens: auto;
     line-break: strict;
   }
 

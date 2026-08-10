@@ -12,7 +12,7 @@ tokens.$default-map: components.$post-breadcrumb;
 :is(a, span) {
   white-space: var(--post-breadcrumb-item-wrap, normal) !important;
   overflow-wrap: anywhere;
-  word-break: normal;
+  hyphens: auto;
   line-break: strict;
   hyphens: auto;
 }

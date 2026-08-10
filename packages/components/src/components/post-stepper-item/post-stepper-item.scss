@@ -71,7 +71,7 @@ tokens.$default-map: components.$post-stepper;
   color: tokens.get('stepper-text-disabled-fg');
   width: fit-content;
   overflow-wrap: anywhere;
-  word-break: normal;
+  hyphens: auto;
   line-break: strict;
   font-size: tokens.get('stepper-step-label-font-size');
 
