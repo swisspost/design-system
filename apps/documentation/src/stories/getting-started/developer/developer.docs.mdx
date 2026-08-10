@@ -1,7 +1,6 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import * as DeveloperStories from './developer.stories';
 import { packages } from '@/shared/packages.data';
-import { getHumanReadableVersionForPackage, getDocsLinkForPackage } from '@/utils/package';
 import '../../../shared/tile/tile.component';
 import { PackageType } from '@/../types';
 import './list-component';
@@ -9,11 +8,11 @@ import './list-component';
 export const renderPackageTile = pkg => (
   <ti-le
     title={pkg.name}
-    href={getDocsLinkForPackage(pkg)}
-    ariaLabel={pkg.docs.linkAriaLabel}
+    href={pkg.links.docs.href}
+    ariaLabel={pkg.links.docs.ariaLabel}
   >
-    <img src={pkg.img.src} alt={pkg.img.alt} />
-    <span>{getHumanReadableVersionForPackage(pkg)}</span>
+    <img src={pkg.image.src} alt={pkg.image.alt} />
+    <span>{pkg.version}</span>
   </ti-le>
 );
 
@@ -122,7 +121,7 @@ The design-system is formed with several packages and different compatibilities 
           ></developer-list-component>
         </td>
         <td rowSpan="4">
-          {renderPackageTile(packages['design-system-styles'])}
+          {renderPackageTile(packages['styles'])}
         </td>
         <td colSpan="2">
           <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -137,13 +136,13 @@ The design-system is formed with several packages and different compatibilities 
           <developer-list-component packageType={PackageType.Wc}></developer-list-component>
         </td>
         <td>
-          {renderPackageTile(packages['design-system-components'])}
+          {renderPackageTile(packages['components'])}
         </td>
         <td>
-          {renderPackageTile(packages['design-system-components-angular'])}
+          {renderPackageTile(packages['components-angular'])}
         </td>
         <td>
-          {renderPackageTile(packages['design-system-components-react'])}
+          {renderPackageTile(packages['components-react'])}
         </td>
       </tr>
       <tr>

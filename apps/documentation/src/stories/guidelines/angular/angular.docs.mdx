@@ -3,7 +3,6 @@ import * as AngularStories from './angular.stories';
 import SampleIconsConfig from './sample-icons-config.sample.json?raw';
 import SampleWcAngularManually from './sample-web-components-angular-manually.component.ts?raw';
 import { packages } from '@/shared/packages.data';
-import { getDocsLinkForPackage, getHumanReadableVersionForPackage } from '@/utils/package';
 import '../../../shared/tile/tile.component';
 import './angular.styles.scss';
 import { PackageType } from '@/../types';
@@ -25,9 +24,9 @@ Currently, we are providing some of our packages with those technologies:
     .filter(pkg => pkg.type === PackageType.Wc)
     .map(pkg => (
       <li key={pkg.name}>
-        <ti-le title={pkg.name} href={getDocsLinkForPackage(pkg)} ariaLabel={pkg.docs.linkAriaLabel}>
-          <img src={pkg.img.src} alt={pkg.img.alt} />
-          <span>{getHumanReadableVersionForPackage(pkg)}</span>
+        <ti-le title={pkg.name} href={pkg.links.docs.href} ariaLabel={pkg.links.docs.ariaLabel}>
+          <img src={pkg.image.src} alt={pkg.image.alt} />
+          <span>{pkg.version}</span>
         </ti-le>
       </li>
     ))}
