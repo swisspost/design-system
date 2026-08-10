@@ -63,13 +63,23 @@
               "text": "Einstellungen",
               "url": "#",
               "icon": "gear"
-            },
-            {
-              "text": "Abmelden",
-              "url": "#",
-              "icon": "logout"
             }
-          ]
+          ],
+          "accountSwitch": {
+            "text": "Account wechseln",
+            "url": "#",
+            "icon": "userswitch"
+          },
+          "companySwitch": {
+            "text": "Firma wechseln",
+            "url": "#",
+            "icon": "company"
+          },
+          "logoutLink": {
+            "text": "Abmelden",
+            "url": "#",
+            "icon": "logout"
+          }
         }
       ],
       "mainNavigation": [
