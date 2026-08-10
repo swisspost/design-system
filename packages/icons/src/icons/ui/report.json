@@ -28485,6 +28485,318 @@
       "modifiedAt": "2025-12-12T06:13:39.000Z"
     },
     {
+      "uuid": "e9650d20-947e-11f1-a107-0050568d2654",
+      "id": 10947421,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947421/storage/MDEwOTQ3NDIxLzAvbWFzdGVyLy8vMTAzNDU5OTc2",
+        "keywords": [
+          "Keine Veloreservation",
+          "keine Veloreservation"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleNo_Shape_16.svg",
+        "basename": "BicycleNo_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:47:02.000Z",
+      "modifiedAt": "2026-08-10T05:49:58.000Z"
+    },
+    {
+      "uuid": "e81386e0-947e-11f1-a107-0050568d2654",
+      "id": 10947419,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947419/storage/MDEwOTQ3NDE5LzAvbWFzdGVyLy8vMTAzNDU5OTg4",
+        "keywords": [
+          "Keine Veloreservation",
+          "keine Veloreservation"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleNo_Shape_24.svg",
+        "basename": "BicycleNo_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:47:00.000Z",
+      "modifiedAt": "2026-08-10T05:49:58.000Z"
+    },
+    {
+      "uuid": "e81868e0-947e-11f1-a107-0050568d2654",
+      "id": 10947420,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947420/storage/MDEwOTQ3NDIwLzAvbWFzdGVyLy8vMTAzNDU5OTg0",
+        "keywords": [
+          "Keine Veloreservation",
+          "keine Veloreservation"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleNo_Shape_32.svg",
+        "basename": "BicycleNo_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:47:00.000Z",
+      "modifiedAt": "2026-08-10T05:49:58.000Z"
+    },
+    {
+      "uuid": "e689b290-947e-11f1-a107-0050568d2654",
+      "id": 10947418,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947418/storage/MDEwOTQ3NDE4LzAvbWFzdGVyLy8vMTAzNDU5OTky",
+        "keywords": [
+          "Keine Veloreservation",
+          "keine Veloreservation"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleNo_Shape_40.svg",
+        "basename": "BicycleNo_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:46:57.000Z",
+      "modifiedAt": "2026-08-10T05:49:58.000Z"
+    },
+    {
+      "uuid": "e67e67f0-947e-11f1-a107-0050568d2654",
+      "id": 10947417,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947417/storage/MDEwOTQ3NDE3LzAvbWFzdGVyLy8vMTAzNDU5OTk2",
+        "keywords": [
+          "Keine Veloreservation",
+          "keine Veloreservation"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleNo_Shape_48.svg",
+        "basename": "BicycleNo_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:46:57.000Z",
+      "modifiedAt": "2026-08-10T05:49:58.000Z"
+    },
+    {
+      "uuid": "e4dcc5e0-947e-11f1-a107-0050568d2654",
+      "id": 10947415,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947415/storage/MDEwOTQ3NDE1LzAvbWFzdGVyLy8vMTAzNDU5ODMy",
+        "keywords": [
+          "Keine Veloreservation",
+          "keine Veloreservation"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleNo_Shape_64.svg",
+        "basename": "BicycleNo_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:46:55.000Z",
+      "modifiedAt": "2026-08-10T05:49:06.000Z"
+    },
+    {
+      "uuid": "e4ddd750-947e-11f1-a107-0050568d2654",
+      "id": 10947416,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947416/storage/MDEwOTQ3NDE2LzAvbWFzdGVyLy8vMTAzNDYwMDAw",
+        "keywords": [
+          "Keine Veloreservation",
+          "keine Veloreservation"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleNo_Solid_Shape_16.svg",
+        "basename": "BicycleNo_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:46:55.000Z",
+      "modifiedAt": "2026-08-10T05:49:58.000Z"
+    },
+    {
+      "uuid": "e41e57e0-947e-11f1-a107-0050568d2654",
+      "id": 10947414,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947414/storage/MDEwOTQ3NDE0LzAvbWFzdGVyLy8vMTAzNDYwMDA0",
+        "keywords": [
+          "Keine Veloreservation",
+          "keine Veloreservation"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleNo_Solid_Shape_24.svg",
+        "basename": "BicycleNo_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:46:53.000Z",
+      "modifiedAt": "2026-08-10T05:49:58.000Z"
+    },
+    {
+      "uuid": "e32b6c60-947e-11f1-a107-0050568d2654",
+      "id": 10947413,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947413/storage/MDEwOTQ3NDEzLzAvbWFzdGVyLy8vMTAzNDYwMDA4",
+        "keywords": [
+          "Keine Veloreservation",
+          "keine Veloreservation"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleNo_Solid_Shape_32.svg",
+        "basename": "BicycleNo_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:46:52.000Z",
+      "modifiedAt": "2026-08-10T05:49:59.000Z"
+    },
+    {
+      "uuid": "e134f390-947e-11f1-a107-0050568d2654",
+      "id": 10947412,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947412/storage/MDEwOTQ3NDEyLzAvbWFzdGVyLy8vMTAzNDYwMDEy",
+        "keywords": [
+          "Keine Veloreservation",
+          "keine Veloreservation"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleNo_Solid_Shape_40.svg",
+        "basename": "BicycleNo_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:46:49.000Z",
+      "modifiedAt": "2026-08-10T05:49:58.000Z"
+    },
+    {
+      "uuid": "e12f0020-947e-11f1-a107-0050568d2654",
+      "id": 10947410,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947410/storage/MDEwOTQ3NDEwLzAvbWFzdGVyLy8vMTAzNDU5OTgw",
+        "keywords": [
+          "Keine Veloreservation",
+          "keine Veloreservation"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleNo_Solid_Shape_48.svg",
+        "basename": "BicycleNo_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:46:48.000Z",
+      "modifiedAt": "2026-08-10T05:49:59.000Z"
+    },
+    {
+      "uuid": "e12f4e40-947e-11f1-a107-0050568d2654",
+      "id": 10947411,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947411/storage/MDEwOTQ3NDExLzAvbWFzdGVyLy8vMTAzNDYwMDE2",
+        "keywords": [
+          "Keine Veloreservation",
+          "keine Veloreservation"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleNo_Solid_Shape_64.svg",
+        "basename": "BicycleNo_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:46:48.000Z",
+      "modifiedAt": "2026-08-10T05:49:59.000Z"
+    },
+    {
       "uuid": "847409b1-92d2-11f0-9719-005056873709",
       "id": 6252423,
       "type": "picture.pictogram.",
@@ -277192,6 +277504,1110 @@
       "modifiedAt": "2026-07-15T05:10:32.000Z"
     },
     {
+      "uuid": "561e9130-947e-11f1-a107-0050568d2654",
+      "id": 10947406,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947406/storage/MDEwOTQ3NDA2LzAvbWFzdGVyLy8vMTAzNDU5Mjg4",
+        "keywords": [
+          "Wheelchair partially",
+          "Rollstuhl Teilweise",
+          "Fauteuil roulant En partie",
+          "Sedia a rotelle Parzialmente"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairPartially_Shape_16.svg",
+        "basename": "WheelchairPartially_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:42:55.000Z",
+      "modifiedAt": "2026-08-10T05:46:05.000Z"
+    },
+    {
+      "uuid": "55591e50-947e-11f1-a107-0050568d2654",
+      "id": 10947405,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947405/storage/MDEwOTQ3NDA1LzAvbWFzdGVyLy8vMTAzNDU5Mjg0",
+        "keywords": [
+          "Wheelchair partially",
+          "Rollstuhl Teilweise",
+          "Fauteuil roulant En partie",
+          "Sedia a rotelle Parzialmente"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairPartially_Shape_24.svg",
+        "basename": "WheelchairPartially_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:42:54.000Z",
+      "modifiedAt": "2026-08-10T05:46:04.000Z"
+    },
+    {
+      "uuid": "549691a0-947e-11f1-a107-0050568d2654",
+      "id": 10947404,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947404/storage/MDEwOTQ3NDA0LzAvbWFzdGVyLy8vMTAzNDU5Mjgw",
+        "keywords": [
+          "Wheelchair partially",
+          "Rollstuhl Teilweise",
+          "Fauteuil roulant En partie",
+          "Sedia a rotelle Parzialmente"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairPartially_Shape_32.svg",
+        "basename": "WheelchairPartially_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:42:53.000Z",
+      "modifiedAt": "2026-08-10T05:46:04.000Z"
+    },
+    {
+      "uuid": "53b5a780-947e-11f1-a107-0050568d2654",
+      "id": 10947403,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947403/storage/MDEwOTQ3NDAzLzAvbWFzdGVyLy8vMTAzNDU5Mjc2",
+        "keywords": [
+          "Wheelchair partially",
+          "Rollstuhl Teilweise",
+          "Fauteuil roulant En partie",
+          "Sedia a rotelle Parzialmente"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairPartially_Shape_40.svg",
+        "basename": "WheelchairPartially_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:42:51.000Z",
+      "modifiedAt": "2026-08-10T05:46:04.000Z"
+    },
+    {
+      "uuid": "52c94bb0-947e-11f1-a107-0050568d2654",
+      "id": 10947402,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947402/storage/MDEwOTQ3NDAyLzAvbWFzdGVyLy8vMTAzNDU5MjY5",
+        "keywords": [
+          "Wheelchair partially",
+          "Rollstuhl Teilweise",
+          "Fauteuil roulant En partie",
+          "Sedia a rotelle Parzialmente"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairPartially_Shape_48.svg",
+        "basename": "WheelchairPartially_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:42:50.000Z",
+      "modifiedAt": "2026-08-10T05:46:04.000Z"
+    },
+    {
+      "uuid": "51869280-947e-11f1-a107-0050568d2654",
+      "id": 10947401,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947401/storage/MDEwOTQ3NDAxLzAvbWFzdGVyLy8vMTAzNDU5MTg2",
+        "keywords": [
+          "Wheelchair partially",
+          "Rollstuhl Teilweise",
+          "Fauteuil roulant En partie",
+          "Sedia a rotelle Parzialmente"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairPartially_Shape_64.svg",
+        "basename": "WheelchairPartially_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:42:47.000Z",
+      "modifiedAt": "2026-08-10T05:45:28.000Z"
+    },
+    {
+      "uuid": "5134a1f0-947e-11f1-a107-0050568d2654",
+      "id": 10947400,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947400/storage/MDEwOTQ3NDAwLzAvbWFzdGVyLy8vMTAzNDU5MjY1",
+        "keywords": [
+          "Wheelchair partially",
+          "Rollstuhl Teilweise",
+          "Fauteuil roulant En partie",
+          "Sedia a rotelle Parzialmente"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairPartially_Solid_Shape_16.svg",
+        "basename": "WheelchairPartially_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:42:47.000Z",
+      "modifiedAt": "2026-08-10T05:46:05.000Z"
+    },
+    {
+      "uuid": "51158130-947e-11f1-a107-0050568d2654",
+      "id": 10947399,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947399/storage/MDEwOTQ3Mzk5LzAvbWFzdGVyLy8vMTAzNDU5MjYx",
+        "keywords": [
+          "Wheelchair partially",
+          "Rollstuhl Teilweise",
+          "Fauteuil roulant En partie",
+          "Sedia a rotelle Parzialmente"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairPartially_Solid_Shape_24.svg",
+        "basename": "WheelchairPartially_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:42:47.000Z",
+      "modifiedAt": "2026-08-10T05:46:05.000Z"
+    },
+    {
+      "uuid": "504008c1-947e-11f1-a107-0050568d2654",
+      "id": 10947398,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947398/storage/MDEwOTQ3Mzk4LzAvbWFzdGVyLy8vMTAzNDU5MjU3",
+        "keywords": [
+          "Wheelchair partially",
+          "Rollstuhl Teilweise",
+          "Fauteuil roulant En partie",
+          "Sedia a rotelle Parzialmente"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairPartially_Solid_Shape_32.svg",
+        "basename": "WheelchairPartially_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:42:45.000Z",
+      "modifiedAt": "2026-08-10T05:46:05.000Z"
+    },
+    {
+      "uuid": "4e9c91f0-947e-11f1-a107-0050568d2654",
+      "id": 10947396,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947396/storage/MDEwOTQ3Mzk2LzAvbWFzdGVyLy8vMTAzNDU5MjQ5",
+        "keywords": [
+          "Wheelchair partially",
+          "Rollstuhl Teilweise",
+          "Fauteuil roulant En partie",
+          "Sedia a rotelle Parzialmente"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairPartially_Solid_Shape_40.svg",
+        "basename": "WheelchairPartially_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:42:43.000Z",
+      "modifiedAt": "2026-08-10T05:46:05.000Z"
+    },
+    {
+      "uuid": "4ea01460-947e-11f1-a107-0050568d2654",
+      "id": 10947397,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947397/storage/MDEwOTQ3Mzk3LzAvbWFzdGVyLy8vMTAzNDU5MjUz",
+        "keywords": [
+          "Wheelchair partially",
+          "Rollstuhl Teilweise",
+          "Fauteuil roulant En partie",
+          "Sedia a rotelle Parzialmente"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairPartially_Solid_Shape_48.svg",
+        "basename": "WheelchairPartially_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:42:43.000Z",
+      "modifiedAt": "2026-08-10T05:46:04.000Z"
+    },
+    {
+      "uuid": "4e99d2d0-947e-11f1-a107-0050568d2654",
+      "id": 10947395,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947395/storage/MDEwOTQ3Mzk1LzAvbWFzdGVyLy8vMTAzNDU5MjQ1",
+        "keywords": [
+          "Wheelchair partially",
+          "Rollstuhl Teilweise",
+          "Fauteuil roulant En partie",
+          "Sedia a rotelle Parzialmente"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairPartially_Solid_Shape_64.svg",
+        "basename": "WheelchairPartially_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:42:43.000Z",
+      "modifiedAt": "2026-08-10T05:46:04.000Z"
+    },
+    {
+      "uuid": "32f843f1-947d-11f1-a107-0050568d2654",
+      "id": 10947377,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947377/storage/MDEwOTQ3Mzc3LzAvbWFzdGVyLy8vMTAzNDU3OTg0",
+        "keywords": [
+          "Rollstuhl",
+          "Wheelchair",
+          "Sedia a rotelle",
+          "Fauteuil Roulant",
+          "Drivers Help",
+          "Fahrpersonal Hilfe",
+          "Aide au personnel de conduite",
+          "Aiuto del personale conducente",
+          "Drivers Help reservations",
+          "Fahrpersonal Hilfe Reservation",
+          "Aide au personnel de conduite Réservation",
+          "Aiuto personale conducente prenotazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairReservation_Shape_16.svg",
+        "basename": "WheelchairReservation_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:34:47.000Z",
+      "modifiedAt": "2026-08-10T05:38:10.000Z"
+    },
+    {
+      "uuid": "31b42b31-947d-11f1-a107-0050568d2654",
+      "id": 10947376,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947376/storage/MDEwOTQ3Mzc2LzAvbWFzdGVyLy8vMTAzNDU3OTgw",
+        "keywords": [
+          "Rollstuhl",
+          "Wheelchair",
+          "Sedia a rotelle",
+          "Fauteuil Roulant",
+          "Drivers Help",
+          "Fahrpersonal Hilfe",
+          "Aide au personnel de conduite",
+          "Aiuto del personale conducente",
+          "Drivers Help reservations",
+          "Fahrpersonal Hilfe Reservation",
+          "Aide au personnel de conduite Réservation",
+          "Aiuto personale conducente prenotazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairReservation_Shape_24.svg",
+        "basename": "WheelchairReservation_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:34:45.000Z",
+      "modifiedAt": "2026-08-10T05:38:10.000Z"
+    },
+    {
+      "uuid": "3178cfe1-947d-11f1-a107-0050568d2654",
+      "id": 10947375,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947375/storage/MDEwOTQ3Mzc1LzAvbWFzdGVyLy8vMTAzNDU3OTc2",
+        "keywords": [
+          "Rollstuhl",
+          "Wheelchair",
+          "Sedia a rotelle",
+          "Fauteuil Roulant",
+          "Drivers Help",
+          "Fahrpersonal Hilfe",
+          "Aide au personnel de conduite",
+          "Aiuto del personale conducente",
+          "Drivers Help reservations",
+          "Fahrpersonal Hilfe Reservation",
+          "Aide au personnel de conduite Réservation",
+          "Aiuto personale conducente prenotazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairReservation_Shape_32.svg",
+        "basename": "WheelchairReservation_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:34:44.000Z",
+      "modifiedAt": "2026-08-10T05:38:10.000Z"
+    },
+    {
+      "uuid": "309833e0-947d-11f1-a107-0050568d2654",
+      "id": 10947374,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947374/storage/MDEwOTQ3Mzc0LzAvbWFzdGVyLy8vMTAzNDU3OTcy",
+        "keywords": [
+          "Rollstuhl",
+          "Wheelchair",
+          "Sedia a rotelle",
+          "Fauteuil Roulant",
+          "Drivers Help",
+          "Fahrpersonal Hilfe",
+          "Aide au personnel de conduite",
+          "Aiuto del personale conducente",
+          "Drivers Help reservations",
+          "Fahrpersonal Hilfe Reservation",
+          "Aide au personnel de conduite Réservation",
+          "Aiuto personale conducente prenotazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairReservation_Shape_40.svg",
+        "basename": "WheelchairReservation_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:34:43.000Z",
+      "modifiedAt": "2026-08-10T05:38:10.000Z"
+    },
+    {
+      "uuid": "2fab14c0-947d-11f1-a107-0050568d2654",
+      "id": 10947373,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947373/storage/MDEwOTQ3MzczLzAvbWFzdGVyLy8vMTAzNDU3OTY4",
+        "keywords": [
+          "Rollstuhl",
+          "Wheelchair",
+          "Sedia a rotelle",
+          "Fauteuil Roulant",
+          "Drivers Help",
+          "Fahrpersonal Hilfe",
+          "Aide au personnel de conduite",
+          "Aiuto del personale conducente",
+          "Drivers Help reservations",
+          "Fahrpersonal Hilfe Reservation",
+          "Aide au personnel de conduite Réservation",
+          "Aiuto personale conducente prenotazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairReservation_Shape_48.svg",
+        "basename": "WheelchairReservation_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:34:41.000Z",
+      "modifiedAt": "2026-08-10T05:38:10.000Z"
+    },
+    {
+      "uuid": "2d6347a0-947d-11f1-a107-0050568d2654",
+      "id": 10947372,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947372/storage/MDEwOTQ3MzcyLzAvbWFzdGVyLy8vMTAzNDU3ODAw",
+        "keywords": [
+          "Rollstuhl",
+          "Wheelchair",
+          "Sedia a rotelle",
+          "Fauteuil Roulant",
+          "Drivers Help",
+          "Fahrpersonal Hilfe",
+          "Aide au personnel de conduite",
+          "Aiuto del personale conducente",
+          "Drivers Help reservations",
+          "Fahrpersonal Hilfe Reservation",
+          "Aide au personnel de conduite Réservation",
+          "Aiuto personale conducente prenotazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairReservation_Shape_64.svg",
+        "basename": "WheelchairReservation_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:34:37.000Z",
+      "modifiedAt": "2026-08-10T05:37:20.000Z"
+    },
+    {
+      "uuid": "2c430a90-947d-11f1-a107-0050568d2654",
+      "id": 10947371,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947371/storage/MDEwOTQ3MzcxLzAvbWFzdGVyLy8vMTAzNDU3OTY0",
+        "keywords": [
+          "Rollstuhl",
+          "Wheelchair",
+          "Sedia a rotelle",
+          "Fauteuil Roulant",
+          "Drivers Help",
+          "Fahrpersonal Hilfe",
+          "Aide au personnel de conduite",
+          "Aiuto del personale conducente",
+          "Drivers Help reservations",
+          "Fahrpersonal Hilfe Reservation",
+          "Aide au personnel de conduite Réservation",
+          "Aiuto personale conducente prenotazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairReservation_Solid_Shape_16.svg",
+        "basename": "WheelchairReservation_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:34:35.000Z",
+      "modifiedAt": "2026-08-10T05:38:10.000Z"
+    },
+    {
+      "uuid": "2c2b15c0-947d-11f1-a107-0050568d2654",
+      "id": 10947370,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947370/storage/MDEwOTQ3MzcwLzAvbWFzdGVyLy8vMTAzNDU3OTYw",
+        "keywords": [
+          "Rollstuhl",
+          "Wheelchair",
+          "Sedia a rotelle",
+          "Fauteuil Roulant",
+          "Drivers Help",
+          "Fahrpersonal Hilfe",
+          "Aide au personnel de conduite",
+          "Aiuto del personale conducente",
+          "Drivers Help reservations",
+          "Fahrpersonal Hilfe Reservation",
+          "Aide au personnel de conduite Réservation",
+          "Aiuto personale conducente prenotazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairReservation_Solid_Shape_24.svg",
+        "basename": "WheelchairReservation_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:34:35.000Z",
+      "modifiedAt": "2026-08-10T05:38:10.000Z"
+    },
+    {
+      "uuid": "2a942210-947d-11f1-a107-0050568d2654",
+      "id": 10947369,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947369/storage/MDEwOTQ3MzY5LzAvbWFzdGVyLy8vMTAzNDU3OTU2",
+        "keywords": [
+          "Rollstuhl",
+          "Wheelchair",
+          "Sedia a rotelle",
+          "Fauteuil Roulant",
+          "Drivers Help",
+          "Fahrpersonal Hilfe",
+          "Aide au personnel de conduite",
+          "Aiuto del personale conducente",
+          "Drivers Help reservations",
+          "Fahrpersonal Hilfe Reservation",
+          "Aide au personnel de conduite Réservation",
+          "Aiuto personale conducente prenotazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairReservation_Solid_Shape_32.svg",
+        "basename": "WheelchairReservation_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:34:33.000Z",
+      "modifiedAt": "2026-08-10T05:38:10.000Z"
+    },
+    {
+      "uuid": "27de9f00-947d-11f1-a107-0050568d2654",
+      "id": 10947368,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947368/storage/MDEwOTQ3MzY4LzAvbWFzdGVyLy8vMTAzNDU3OTUy",
+        "keywords": [
+          "Rollstuhl",
+          "Wheelchair",
+          "Sedia a rotelle",
+          "Fauteuil Roulant",
+          "Drivers Help",
+          "Fahrpersonal Hilfe",
+          "Aide au personnel de conduite",
+          "Aiuto del personale conducente",
+          "Drivers Help reservations",
+          "Fahrpersonal Hilfe Reservation",
+          "Aide au personnel de conduite Réservation",
+          "Aiuto personale conducente prenotazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairReservation_Solid_Shape_40.svg",
+        "basename": "WheelchairReservation_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:34:28.000Z",
+      "modifiedAt": "2026-08-10T05:38:10.000Z"
+    },
+    {
+      "uuid": "27d6afc0-947d-11f1-a107-0050568d2654",
+      "id": 10947366,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947366/storage/MDEwOTQ3MzY2LzAvbWFzdGVyLy8vMTAzNDU3OTQ0",
+        "keywords": [
+          "Rollstuhl",
+          "Wheelchair",
+          "Sedia a rotelle",
+          "Fauteuil Roulant",
+          "Drivers Help",
+          "Fahrpersonal Hilfe",
+          "Aide au personnel de conduite",
+          "Aiuto del personale conducente",
+          "Drivers Help reservations",
+          "Fahrpersonal Hilfe Reservation",
+          "Aide au personnel de conduite Réservation",
+          "Aiuto personale conducente prenotazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairReservation_Solid_Shape_48.svg",
+        "basename": "WheelchairReservation_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:34:28.000Z",
+      "modifiedAt": "2026-08-10T05:38:10.000Z"
+    },
+    {
+      "uuid": "27dd6680-947d-11f1-a107-0050568d2654",
+      "id": 10947367,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947367/storage/MDEwOTQ3MzY3LzAvbWFzdGVyLy8vMTAzNDU3OTQ4",
+        "keywords": [
+          "Rollstuhl",
+          "Wheelchair",
+          "Sedia a rotelle",
+          "Fauteuil Roulant",
+          "Drivers Help",
+          "Fahrpersonal Hilfe",
+          "Aide au personnel de conduite",
+          "Aiuto del personale conducente",
+          "Drivers Help reservations",
+          "Fahrpersonal Hilfe Reservation",
+          "Aide au personnel de conduite Réservation",
+          "Aiuto personale conducente prenotazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairReservation_Solid_Shape_64.svg",
+        "basename": "WheelchairReservation_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:34:28.000Z",
+      "modifiedAt": "2026-08-10T05:38:10.000Z"
+    },
+    {
+      "uuid": "d62c5b10-947d-11f1-a107-0050568d2654",
+      "id": 10947392,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947392/storage/MDEwOTQ3MzkyLzAvbWFzdGVyLy8vMTAzNDU4NjI4",
+        "keywords": [
+          "Replacement wheelchair transport",
+          "Rollstuhlersatztransportmittel",
+          "Moyen de transport de remplacement pour fauteuils roulants",
+          "Mezzi di trasporto sostitutivi per sedie a rotelle"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairSubstituteTransport_Shape_16.svg",
+        "basename": "WheelchairSubstituteTransport_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:39:21.000Z",
+      "modifiedAt": "2026-08-10T05:41:48.000Z"
+    },
+    {
+      "uuid": "d5502be0-947d-11f1-a107-0050568d2654",
+      "id": 10947391,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947391/storage/MDEwOTQ3MzkxLzAvbWFzdGVyLy8vMTAzNDU4NjI0",
+        "keywords": [
+          "Replacement wheelchair transport",
+          "Rollstuhlersatztransportmittel",
+          "Moyen de transport de remplacement pour fauteuils roulants",
+          "Mezzi di trasporto sostitutivi per sedie a rotelle"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairSubstituteTransport_Shape_24.svg",
+        "basename": "WheelchairSubstituteTransport_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:39:19.000Z",
+      "modifiedAt": "2026-08-10T05:41:48.000Z"
+    },
+    {
+      "uuid": "d4862520-947d-11f1-a107-0050568d2654",
+      "id": 10947390,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947390/storage/MDEwOTQ3MzkwLzAvbWFzdGVyLy8vMTAzNDU4NjIw",
+        "keywords": [
+          "Replacement wheelchair transport",
+          "Rollstuhlersatztransportmittel",
+          "Moyen de transport de remplacement pour fauteuils roulants",
+          "Mezzi di trasporto sostitutivi per sedie a rotelle"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairSubstituteTransport_Shape_32.svg",
+        "basename": "WheelchairSubstituteTransport_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:39:18.000Z",
+      "modifiedAt": "2026-08-10T05:41:48.000Z"
+    },
+    {
+      "uuid": "d38afc40-947d-11f1-a107-0050568d2654",
+      "id": 10947389,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947389/storage/MDEwOTQ3Mzg5LzAvbWFzdGVyLy8vMTAzNDU4NjE2",
+        "keywords": [
+          "Replacement wheelchair transport",
+          "Rollstuhlersatztransportmittel",
+          "Moyen de transport de remplacement pour fauteuils roulants",
+          "Mezzi di trasporto sostitutivi per sedie a rotelle"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairSubstituteTransport_Shape_40.svg",
+        "basename": "WheelchairSubstituteTransport_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:39:16.000Z",
+      "modifiedAt": "2026-08-10T05:41:48.000Z"
+    },
+    {
+      "uuid": "d3021d30-947d-11f1-a107-0050568d2654",
+      "id": 10947388,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947388/storage/MDEwOTQ3Mzg4LzAvbWFzdGVyLy8vMTAzNDU4NjEy",
+        "keywords": [
+          "Replacement wheelchair transport",
+          "Rollstuhlersatztransportmittel",
+          "Moyen de transport de remplacement pour fauteuils roulants",
+          "Mezzi di trasporto sostitutivi per sedie a rotelle"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairSubstituteTransport_Shape_48.svg",
+        "basename": "WheelchairSubstituteTransport_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:39:15.000Z",
+      "modifiedAt": "2026-08-10T05:41:48.000Z"
+    },
+    {
+      "uuid": "d27d83e0-947d-11f1-a107-0050568d2654",
+      "id": 10947387,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947387/storage/MDEwOTQ3Mzg3LzAvbWFzdGVyLy8vMTAzNDU4NDQ0",
+        "keywords": [
+          "Replacement wheelchair transport",
+          "Rollstuhlersatztransportmittel",
+          "Moyen de transport de remplacement pour fauteuils roulants",
+          "Mezzi di trasporto sostitutivi per sedie a rotelle"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairSubstituteTransport_Shape_64.svg",
+        "basename": "WheelchairSubstituteTransport_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:39:14.000Z",
+      "modifiedAt": "2026-08-10T05:41:06.000Z"
+    },
+    {
+      "uuid": "d1a684d0-947d-11f1-a107-0050568d2654",
+      "id": 10947386,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947386/storage/MDEwOTQ3Mzg2LzAvbWFzdGVyLy8vMTAzNDU4NjA4",
+        "keywords": [
+          "Replacement wheelchair transport",
+          "Rollstuhlersatztransportmittel",
+          "Moyen de transport de remplacement pour fauteuils roulants",
+          "Mezzi di trasporto sostitutivi per sedie a rotelle"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairSubstituteTransport_Solid_Shape_16.svg",
+        "basename": "WheelchairSubstituteTransport_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:39:13.000Z",
+      "modifiedAt": "2026-08-10T05:41:48.000Z"
+    },
+    {
+      "uuid": "d0e557b0-947d-11f1-a107-0050568d2654",
+      "id": 10947385,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947385/storage/MDEwOTQ3Mzg1LzAvbWFzdGVyLy8vMTAzNDU4NjA0",
+        "keywords": [
+          "Replacement wheelchair transport",
+          "Rollstuhlersatztransportmittel",
+          "Moyen de transport de remplacement pour fauteuils roulants",
+          "Mezzi di trasporto sostitutivi per sedie a rotelle"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairSubstituteTransport_Solid_Shape_24.svg",
+        "basename": "WheelchairSubstituteTransport_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:39:12.000Z",
+      "modifiedAt": "2026-08-10T05:41:48.000Z"
+    },
+    {
+      "uuid": "d0c7e4a0-947d-11f1-a107-0050568d2654",
+      "id": 10947384,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947384/storage/MDEwOTQ3Mzg0LzAvbWFzdGVyLy8vMTAzNDU4NjAw",
+        "keywords": [
+          "Replacement wheelchair transport",
+          "Rollstuhlersatztransportmittel",
+          "Moyen de transport de remplacement pour fauteuils roulants",
+          "Mezzi di trasporto sostitutivi per sedie a rotelle"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairSubstituteTransport_Solid_Shape_32.svg",
+        "basename": "WheelchairSubstituteTransport_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:39:11.000Z",
+      "modifiedAt": "2026-08-10T05:41:48.000Z"
+    },
+    {
+      "uuid": "cf0e74d0-947d-11f1-a107-0050568d2654",
+      "id": 10947383,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947383/storage/MDEwOTQ3MzgzLzAvbWFzdGVyLy8vMTAzNDU4NTk2",
+        "keywords": [
+          "Replacement wheelchair transport",
+          "Rollstuhlersatztransportmittel",
+          "Moyen de transport de remplacement pour fauteuils roulants",
+          "Mezzi di trasporto sostitutivi per sedie a rotelle"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairSubstituteTransport_Solid_Shape_40.svg",
+        "basename": "WheelchairSubstituteTransport_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:39:09.000Z",
+      "modifiedAt": "2026-08-10T05:41:48.000Z"
+    },
+    {
+      "uuid": "cf0bb5b0-947d-11f1-a107-0050568d2654",
+      "id": 10947381,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947381/storage/MDEwOTQ3MzgxLzAvbWFzdGVyLy8vMTAzNDU4NTg4",
+        "keywords": [
+          "Replacement wheelchair transport",
+          "Rollstuhlersatztransportmittel",
+          "Moyen de transport de remplacement pour fauteuils roulants",
+          "Mezzi di trasporto sostitutivi per sedie a rotelle"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairSubstituteTransport_Solid_Shape_48.svg",
+        "basename": "WheelchairSubstituteTransport_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:39:09.000Z",
+      "modifiedAt": "2026-08-10T05:41:48.000Z"
+    },
+    {
+      "uuid": "cf0bb5b1-947d-11f1-a107-0050568d2654",
+      "id": 10947382,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10947382/storage/MDEwOTQ3MzgyLzAvbWFzdGVyLy8vMTAzNDU4NTky",
+        "keywords": [
+          "Replacement wheelchair transport",
+          "Rollstuhlersatztransportmittel",
+          "Moyen de transport de remplacement pour fauteuils roulants",
+          "Mezzi di trasporto sostitutivi per sedie a rotelle"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "WheelchairSubstituteTransport_Solid_Shape_64.svg",
+        "basename": "WheelchairSubstituteTransport_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-10T05:39:09.000Z",
+      "modifiedAt": "2026-08-10T05:41:48.000Z"
+    },
+    {
       "uuid": "6dad0590-e51e-11ef-a15d-005056873709",
       "id": 1822444,
       "type": "picture.pictogram.",
@@ -362768,13 +364184,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 9384,
+    "success": 9432,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 2948,
     "duplicates": 0
   },
-  "created": "2026-08-09T02:28:22.395Z",
+  "created": "2026-08-10T08:34:44.487Z",
   "version": "10.1.0"
 }
