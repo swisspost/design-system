@@ -1,5 +1,24 @@
 # @swisspost/design-system-documentation
 
+## 6.3.0
+
+### Minor Changes
+
+- Added Andrin Affolter to the documentation footer. (by [@AndrinAAF](https://github.com/AndrinAAF) and [@Copilot](https://github.com/Copilot) with [#8253](https://github.com/swisspost/design-system/pull/8253))
+
+### Patch Changes
+
+- Fixed incorrect `cellConfig` callback signature in the `<post-date-picker>` disable-dates documentation sample. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8249](https://github.com/swisspost/design-system/pull/8249))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.2.0
+  - @swisspost/internet-header@10.2.0
+  - @swisspost/design-system-components@10.2.0
+  - @swisspost/design-system-components-react@10.2.0
+  - @swisspost/design-system-styles@10.2.0
+  - @swisspost/design-system-styles-primeng@10.2.0
+  - @swisspost/design-system-theme-ag-grid@10.2.0
+  - @swisspost/design-system-tokens@10.2.0
+
 ## 6.2.0
 
 ### Minor Changes
