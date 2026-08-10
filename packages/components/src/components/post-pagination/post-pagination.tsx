@@ -41,6 +41,7 @@ const enum ControlAction {
 }
 
 interface ControlAttributes {
+  key: string;
   icon: string;
   label: string;
   className: string;
@@ -732,15 +733,17 @@ export class PostPagination {
    */
   private buildControlAttributes(action: ControlAction): ControlAttributes {
     switch (action) {
-      case ControlAction.Next:
+      case ControlAction.Previous:
         return {
+          key: 'prev',
           icon: 'chevronleftwide',
           label: this.textPrevious,
           className: 'prev-button',
           onClick: () => this.handlePrevious(),
         };
-      case ControlAction.Previous:
+      case ControlAction.Next:
         return {
+          key: 'next',
           icon: 'chevronrightwide',
           label: this.textNext,
           className: 'next-button',
@@ -795,7 +798,7 @@ export class PostPagination {
     if (dummy) {
       return (
         <button
-          key="hidden-prev"
+          key={`hidden-${attributes.key}`}
           class="pagination-link pagination-control-button hidden-control-button"
           disabled
         >
@@ -805,7 +808,7 @@ export class PostPagination {
     }
 
     return (
-      <li class="pagination-item pagination-control">
+      <li class="pagination-item pagination-control" key={attributes.key}>
         <button
           type="button"
           class={`pagination-control-button btn btn-icon btn-secondary ${attributes.className}`}
@@ -841,7 +844,7 @@ export class PostPagination {
    */
   private renderHiddenItems(totalPages: number) {
     const first = this.items.at(0);
-    const last = this.items.at(totalPages);
+    const last = this.items.at(-1);
 
     return [
       first?.type === PaginationItemType.Control &&
