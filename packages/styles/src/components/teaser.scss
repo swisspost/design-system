@@ -1,5 +1,6 @@
 @use '../tokens/components';
 @use '../functions/tokens';
+@use '../mixins/utilities';
 
 tokens.$default-map: components.$post-teaser;
 
@@ -25,10 +26,7 @@ tokens.$default-map: components.$post-teaser;
   h5,
   h6,
   p {
-    margin: 0;
-    overflow-wrap: anywhere;
-    hyphens: auto;
-    line-break: strict;
+    @include utilities.word-break;
   }
 
   h1,
