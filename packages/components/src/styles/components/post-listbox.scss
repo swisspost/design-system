@@ -1,0 +1,11 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+post-listbox [slot='blank-slate'] {
+  display: none;
+  padding: 0.75rem;
+  color: post.$gray-60;
+}
+
+post-listbox:not(:has(post-listbox-option:not([hidden]))) [slot='blank-slate'] {
+  display: block;
+}
