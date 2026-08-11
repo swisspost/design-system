@@ -21,24 +21,15 @@ const MAX_ELLIPSIS_COUNT = 2; // Maximum ellipsis elements
 const GAP_THRESHOLD_FOR_PAGE = 2; // Show page number instead of ellipsis when gap is this value
 const MIDDLE_RANGE_START = 2; // Middle range starts from page 2 (page 1 is always shown separately)
 
-const enum PaginationItemType {
-  Page,
-  Control,
-  Ellipsis,
-}
-
 /**
  * Type-safe pagination item definition using discriminated union.
  */
 type PaginationItem =
-  | { type: PaginationItemType.Page; page: number }
-  | { type: PaginationItemType.Control; action: ControlAction; disabled: boolean }
-  | { type: PaginationItemType.Ellipsis };
+  | { type: 'page'; page: number }
+  | { type: 'control'; action: ControlAction; disabled: boolean }
+  | { type: 'ellipsis' };
 
-const enum ControlAction {
-  Previous,
-  Next,
-}
+type ControlAction = 'previous' | 'next';
 
 interface ControlAttributes {
   key: string;
@@ -48,11 +39,7 @@ interface ControlAttributes {
   onClick: () => void;
 }
 
-const enum SectionType {
-  None,
-  Page,
-  Ellipsis,
-}
+type SectionType = 'none' | 'page' | 'ellipsis';
 
 @Component({
   tag: 'post-pagination',
@@ -338,8 +325,8 @@ export class PostPagination {
    * Convert numeric gap to a section type
    */
   private sectionForGap(gap: number): SectionType {
-    if (gap <= 1) return SectionType.None;
-    return gap === GAP_THRESHOLD_FOR_PAGE ? SectionType.Page : SectionType.Ellipsis;
+    if (gap <= 1) return 'none';
+    return gap === GAP_THRESHOLD_FOR_PAGE ? 'page' : 'ellipsis';
   }
 
   /**
@@ -363,8 +350,8 @@ export class PostPagination {
   private computeTotalItems(startPage: number, endPage: number, totalPages: number): number {
     const { leftSection, rightSection } = this.getSections(startPage, endPage, totalPages);
     const middle = Math.max(0, endPage - startPage + 1);
-    const leftCount = leftSection === SectionType.None ? 0 : 1;
-    const rightCount = rightSection === SectionType.None ? 0 : 1;
+    const leftCount = leftSection === 'none' ? 0 : 1;
+    const rightCount = rightSection === 'none' ? 0 : 1;
 
     // Always include first page (1) and last page (totalPages) = EDGE_ITEM_COUNT pages
     // Plus any left/right sections (ellipsis or pages) and middle pages
@@ -377,7 +364,7 @@ export class PostPagination {
   private buildAllPages(totalPages: number): PaginationItem[] {
     const items: PaginationItem[] = [];
     for (let i = 1; i <= totalPages; i++) {
-      items.push({ type: PaginationItemType.Page, page: i });
+      items.push({ type: 'page', page: i });
     }
     return items;
   }
@@ -570,32 +557,32 @@ export class PostPagination {
     const hasMiddlePages = startPage <= endPage;
 
     // First page
-    items.push({ type: PaginationItemType.Page, page: 1 });
+    items.push({ type: 'page', page: 1 });
 
     if (hasMiddlePages) {
       const { leftSection, rightSection } = this.getSections(startPage, endPage, totalPages);
 
       // Left section (ellipsis or page 2)
-      if (leftSection === SectionType.Page) {
-        items.push({ type: PaginationItemType.Page, page: 2 });
-      } else if (leftSection === SectionType.Ellipsis) {
-        items.push({ type: PaginationItemType.Ellipsis });
+      if (leftSection === 'page') {
+        items.push({ type: 'page', page: 2 });
+      } else if (leftSection === 'ellipsis') {
+        items.push({ type: 'ellipsis' });
       }
 
       // Middle pages
       for (let i = startPage; i <= endPage; i++) {
-        items.push({ type: PaginationItemType.Page, page: i });
+        items.push({ type: 'page', page: i });
       }
 
       // Right section (ellipsis or second-to-last page)
-      if (rightSection === SectionType.Page) {
-        items.push({ type: PaginationItemType.Page, page: totalPages - 1 });
-      } else if (rightSection === SectionType.Ellipsis) {
-        items.push({ type: PaginationItemType.Ellipsis });
+      if (rightSection === 'page') {
+        items.push({ type: 'page', page: totalPages - 1 });
+      } else if (rightSection === 'ellipsis') {
+        items.push({ type: 'ellipsis' });
       }
 
       // Last page
-      items.push({ type: PaginationItemType.Page, page: totalPages });
+      items.push({ type: 'page', page: totalPages });
 
       return items;
     }
@@ -607,18 +594,10 @@ export class PostPagination {
    */
   private generateSmallPagination(currentPage: number, totalPages: number): PaginationItem[] {
     if (currentPage === 1 || currentPage === totalPages) {
-      return [
-        { type: PaginationItemType.Page, page: 1 },
-        { type: PaginationItemType.Ellipsis },
-        { type: PaginationItemType.Page, page: totalPages },
-      ];
+      return [{ type: 'page', page: 1 }, { type: 'ellipsis' }, { type: 'page', page: totalPages }];
     }
 
-    return [
-      { type: PaginationItemType.Ellipsis },
-      { type: PaginationItemType.Page, page: currentPage },
-      { type: PaginationItemType.Ellipsis },
-    ];
+    return [{ type: 'ellipsis' }, { type: 'page', page: currentPage }, { type: 'ellipsis' }];
   }
 
   /**
@@ -652,14 +631,14 @@ export class PostPagination {
 
     this.items = [
       {
-        type: PaginationItemType.Control,
-        action: ControlAction.Previous,
+        type: 'control',
+        action: 'previous',
         disabled: currentPage <= 1,
       },
       ...this.generatePages(totalPages, maxVisible, currentPage),
       {
-        type: PaginationItemType.Control,
-        action: ControlAction.Next,
+        type: 'control',
+        action: 'next',
         disabled: currentPage >= totalPages,
       },
     ];
@@ -733,7 +712,7 @@ export class PostPagination {
    */
   private buildControlAttributes(action: ControlAction): ControlAttributes {
     switch (action) {
-      case ControlAction.Previous:
+      case 'previous':
         return {
           key: 'prev',
           icon: 'chevronleftwide',
@@ -741,7 +720,7 @@ export class PostPagination {
           className: 'prev-button',
           onClick: () => this.handlePrevious(),
         };
-      case ControlAction.Next:
+      case 'next':
         return {
           key: 'next',
           icon: 'chevronrightwide',
@@ -792,20 +771,8 @@ export class PostPagination {
   /**
    * Renders a control button.
    */
-  private renderControlButton(action: ControlAction, disabled: boolean, dummy: boolean) {
+  private renderControlButton(action: ControlAction, disabled: boolean) {
     const attributes = this.buildControlAttributes(action);
-
-    if (dummy) {
-      return (
-        <button
-          key={`hidden-${attributes.key}`}
-          class="pagination-link pagination-control-button hidden-control-button"
-          disabled
-        >
-          <post-icon name={attributes.icon} aria-hidden="true"></post-icon>
-        </button>
-      );
-    }
 
     return (
       <li class="pagination-item pagination-control" key={attributes.key}>
@@ -815,7 +782,7 @@ export class PostPagination {
           aria-label={attributes.label}
           onClick={attributes.onClick}
           onKeyDown={e => this.handleKeyDown(e, attributes.onClick)}
-          tabIndex={0}
+          tabIndex={disabled ? -1 : 0}
           disabled={disabled}
         >
           <post-icon name={attributes.icon} aria-hidden="true"></post-icon>
@@ -830,13 +797,30 @@ export class PostPagination {
    */
   private renderItem(item: PaginationItem, index: number) {
     switch (item.type) {
-      case PaginationItemType.Page:
+      case 'page':
         return this.renderPageButton(item.page);
-      case PaginationItemType.Control:
-        return this.renderControlButton(item.action, item.disabled, false);
-      case PaginationItemType.Ellipsis:
+      case 'control':
+        return this.renderControlButton(item.action, item.disabled);
+      case 'ellipsis':
         return this.renderEllipsis(index);
     }
+  }
+
+  /**
+   * Renders a minimal control button for measurement.
+   */
+  private renderHiddenControlButton(action: ControlAction) {
+    const attributes = this.buildControlAttributes(action);
+
+    return (
+      <button
+        key={`hidden-${attributes.key}`}
+        class="pagination-link pagination-control-button hidden-control-button"
+        disabled
+      >
+        <post-icon name={attributes.icon} aria-hidden="true"></post-icon>
+      </button>
+    );
   }
 
   /**
@@ -847,8 +831,7 @@ export class PostPagination {
     const last = this.items.at(-1);
 
     return [
-      first?.type === PaginationItemType.Control &&
-        this.renderControlButton(first.action, true, true),
+      first?.type === 'control' && this.renderHiddenControlButton(first.action),
 
       <button
         key="hidden-page"
@@ -866,8 +849,7 @@ export class PostPagination {
         {ELLIPSIS}
       </span>,
 
-      last?.type === PaginationItemType.Control &&
-        this.renderControlButton(last.action, true, true),
+      last?.type === 'control' && this.renderHiddenControlButton(last.action),
     ];
   }
 
