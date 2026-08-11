@@ -74,6 +74,18 @@ const TEAM_MEMBERS: TeamMember[] = [
     githubImageId: '166115007',
     githubUsername: 'bucknatt',
   },
+  {
+    name: 'Yanis Morgenegg',
+    title: 'UI Developer',
+    githubImageId: '53319436',
+    githubUsername: 'yomonom',
+  },
+  {
+    name: 'Andrin Affolter',
+    title: 'UI Developer',
+    githubImageId: '253728423',
+    githubUsername: 'andrinaaf',
+  },
 ];
 
 const BASEURL = 'https://github.com/swisspost/design-system/tree/main/apps/documentation';

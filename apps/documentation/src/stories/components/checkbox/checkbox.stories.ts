@@ -10,7 +10,7 @@ const meta: MetaComponent = {
   id: 'e6ecc86f-d148-413b-b796-614a89da54be',
   title: 'Components/Form Checkbox',
   tags: ['package:Styles'],
-  render: renderCheckbox,
+  render: RenderCheckbox,
   parameters: {
     badges: [],
     design: {
@@ -175,7 +175,7 @@ const CHECKED_STATE_TOGGLE_MAP: Record<string, string> = {
   checked: 'unchecked',
 };
 
-function renderCheckbox(args: Args, context: StoryContext) {
+function RenderCheckbox(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
   const containerClasses = mapClasses({

@@ -276,6 +276,27 @@ tokens.$default-map: utilities.$post-spacing;
   .limit-source-height [data-radix-scroll-area-viewport] {
     max-height: 15rem;
   }
+
+  // Litte tab displaying the filename for code samples
+  .code-sample-file {
+    margin-inline: 0;
+
+    figcaption {
+      display: block;
+      width: fit-content;
+      font-size: 0.9rem;
+      margin-block-end: 0;
+      padding-inline: 0.5em;
+      border: 1px solid black;
+      border-bottom-width: 0;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+
+      & + .docblock-source {
+        border-top-left-radius: 0;
+      }
+    }
+  }
 }
 
 #storybook-docs {

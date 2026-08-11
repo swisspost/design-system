@@ -1,5 +1,24 @@
 # @swisspost/design-system-styles
 
+## 10.2.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.2.0
+
+## 10.1.0
+
+### Patch Changes
+
+- Fixed an issue where the avatar in the user menu header slot overlapped its container. (by [@leagrdv](https://github.com/leagrdv) with [#8155](https://github.com/swisspost/design-system/pull/8155))
+
+- Fixed bullet list alignment on older browser versions. (by [@leagrdv](https://github.com/leagrdv) and [@Copilot](https://github.com/Copilot) with [#8042](https://github.com/swisspost/design-system/pull/8042))
+
+- Enforced light mode on the `.skiplinks` elements. (by [@leagrdv](https://github.com/leagrdv) with [#8123](https://github.com/swisspost/design-system/pull/8123))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.1.0
+
 ## 10.0.1
 
 ### Patch Changes
