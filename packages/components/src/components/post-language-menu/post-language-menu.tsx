@@ -18,9 +18,9 @@ export class PostLanguageMenu {
     );
   }
 
-  @Event() postChange: EventEmitter<string>;
-
   @Element() host: HTMLPostLanguageMenuElement;
+  
+  @Event() postChange: EventEmitter<string>;
 
   /**
    * A title for the list of language options
