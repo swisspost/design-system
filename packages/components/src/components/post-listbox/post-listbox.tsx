@@ -45,7 +45,7 @@ export class PostListbox {
       option.highlighted = false;
     });
     this.highlightedIndex = -1;
-    this.filter('');
+    this.clearActive();
   };
 
   private readonly clearActive = () => {
