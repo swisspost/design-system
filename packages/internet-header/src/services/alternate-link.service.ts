@@ -1,5 +1,3 @@
-import { state } from '@/data/store';
-
 const SUPPORTED_LANGUAGES = new Set(['de', 'fr', 'it', 'en']);
 
 /**
@@ -21,11 +19,10 @@ export const getAlternateLinks = (): Map<string, string> => {
     if (!href) continue;
 
     try {
-      // Validate the href
       const url = new URL(href, document.baseURI);
       result.set(lang, url.href);
     } catch {
-      // Invalid URL, skip this entry
+      // Invalid URL, fall back to config
     }
   }
 
@@ -47,7 +44,7 @@ export const observeAlternateLinks = (
       // Attribute change on a link[rel="alternate"]
       if (m.type === 'attributes' && m.target instanceof HTMLLinkElement) {
         return (
-          m.target.rel === 'alternate' && m.target.hasAttribute('hreflang') ||
+          (m.target.rel === 'alternate' && m.target.hasAttribute('hreflang')) ||
           m.attributeName === 'hreflang' ||
           m.attributeName === 'rel'
         );
@@ -79,19 +76,4 @@ export const observeAlternateLinks = (
   });
 
   return () => observer.disconnect();
-};
-
-/**
- * Initialize alternate links: read from DOM and start observing.
- * Updates state.alternateLinks on change.
- *
- * @returns A cleanup function that disconnects the observer.
- */
-export const initAlternateLinks = (): (() => void) => {
-  const links = getAlternateLinks();
-  state.alternateLinks = links.size > 0 ? links : null;
-
-  return observeAlternateLinks(updated => {
-    state.alternateLinks = updated.size > 0 ? updated : null;
-  });
 };

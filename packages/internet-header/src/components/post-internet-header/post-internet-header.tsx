@@ -193,7 +193,7 @@ export class PostInternetHeader {
     const links = getAlternateLinks();
     state.alternateLinks = links.size > 0 ? links : null;
 
-    // Watch for dynamic changes
+    // Watch for dynamic changes (SPA route changes, late inserts)
     this.disconnectAlternateLinksObserver = observeAlternateLinks(updated => {
       state.alternateLinks = updated.size > 0 ? updated : null;
     });
