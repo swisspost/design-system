@@ -5,6 +5,17 @@ import '../../../shared/tile/tile.component';
 import { PackageType } from '@/../types';
 import './list-component';
 
+export const renderPackageTile = pkg => (
+  <ti-le
+    title={pkg.name}
+    href={pkg.links.docs.href}
+    ariaLabel={pkg.links.docs.ariaLabel}
+  >
+    <img src={pkg.image.src} alt={pkg.image.alt} />
+    <span>{pkg.version}</span>
+  </ti-le>
+);
+
 <Meta of={DeveloperStories} />
 
 # Getting Started as a Developer
@@ -110,31 +121,11 @@ The design-system is formed with several packages and different compatibilities 
           ></developer-list-component>
         </td>
         <td rowSpan="4">
-          {[packages.find(pkg => pkg.name === 'Styles')].map(p => (
-            <ti-le
-              title={p.name}
-              href={p.link.docs.href}
-              ariaLabel={p.link.docs.ariaLabel}
-              key={p.name}
-            >
-              <img src={p.img.src} alt={p.img.alt} />
-              <span>{p.version}</span>
-            </ti-le>
-          ))}
+          {renderPackageTile(packages['styles'])}
         </td>
         <td colSpan="2">
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            {[packages.find(pkg => pkg.name === 'Internet-Header')].map(p => (
-              <ti-le
-                title={p.name}
-                href={p.link.docs.href}
-                ariaLabel={p.link.docs.ariaLabel}
-                key={p.name}
-              >
-                <img src={p.img.src} alt={p.img.alt} />
-                <span>{p.version}</span>
-              </ti-le>
-            ))}
+            {renderPackageTile(packages['internet-header'])}
           </div>
         </td>
         <td>TBD</td>
@@ -145,43 +136,13 @@ The design-system is formed with several packages and different compatibilities 
           <developer-list-component packageType={PackageType.Wc}></developer-list-component>
         </td>
         <td>
-          {[packages.find(pkg => pkg.name === 'Components')].map(p => (
-            <ti-le
-              title={p.name}
-              href={p.link.docs.href}
-              ariaLabel={p.link.docs.ariaLabel}
-              key={p.name}
-            >
-              <img src={p.img.src} alt={p.img.alt} />
-              <span>{p.version}</span>
-            </ti-le>
-          ))}
+          {renderPackageTile(packages['components'])}
         </td>
         <td>
-          {[packages.find(pkg => pkg.name === 'Components for Angular')].map(p => (
-            <ti-le
-              title={p.name}
-              href={p.link.docs.href}
-              ariaLabel={p.link.docs.ariaLabel}
-              key={p.name}
-            >
-              <img src={p.img.src} alt={p.img.alt} />
-              <span>{p.version}</span>
-            </ti-le>
-          ))}
+          {renderPackageTile(packages['components-angular'])}
         </td>
         <td>
-          {[packages.find(pkg => pkg.name === 'Components for React')].map(p => (
-            <ti-le
-              title={p.name}
-              href={p.link.docs.href}
-              ariaLabel={p.link.docs.ariaLabel}
-              key={p.name}
-            >
-              <img src={p.img.src} alt={p.img.alt} />
-              <span>{p.version}</span>
-            </ti-le>
-          ))}
+          {renderPackageTile(packages['components-react'])}
         </td>
       </tr>
       <tr>
