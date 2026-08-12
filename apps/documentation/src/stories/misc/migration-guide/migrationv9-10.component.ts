@@ -102,6 +102,7 @@ export class MigrationV910Component extends LitElement {
       add_text_props: false,
       remove_props: false,
       breadcrumb_migration: false,
+      language_switch_migration: false,
     },
     intranet_header: {
       migration: false,
@@ -1508,6 +1509,32 @@ export class MyComponent {
                                   <code>language</code> and <code>active-route</code> remain
                                   reactive at runtime.
                                 </span>
+                              </label>
+                            </div>
+                          </li>
+                          <li class="mb-16">
+                            <div class="form-check">
+                              <input
+                                id="internet_header-language_switch_migration"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.internet_header.language_switch_migration}"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="internet_header-language_switch_migration"
+                              >
+                                Migrate from <code>language-switch-overrides</code> prop to
+                                <code>&lt;link rel="alternate"&gt;</code> tags
+                                <span class="info">
+                                  The <code>language-switch-overrides</code> prop has been removed.
+                                  Use standard <code>&lt;link rel="alternate"&gt;</code> tags in
+                                  your <code>&lt;head&gt;</code> instead. The header reads these
+                                  tags automatically and updates the language switch URLs.
+                                  More information on the
+                                  <a href="/?path=/docs/ebb11274-091b-4cb7-9a3f-3e0451c9a865--docs#language-switch-overrides"
+                                    >language switch overrides docs</a
+                                  >.
                               </label>
                             </div>
                           </li>
