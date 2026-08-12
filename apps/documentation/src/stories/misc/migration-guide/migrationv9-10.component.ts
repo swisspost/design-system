@@ -1532,7 +1532,7 @@ export class MyComponent {
                                   your <code>&lt;head&gt;</code> instead. The header reads these
                                   tags automatically and updates the language switch URLs.
                                   More information on the
-                                  <a href="/?path=/docs/ebb11274-091b-4cb7-9a3f-3e0451c9a865--docs#language-switch-overrides"
+                                  <a href="/?path=/docs/ebb11274-091b-4cb7-9a3f-3e0451c9a865--docs#dynamic-updates"
                                     >language switch overrides docs</a
                                   >.
                               </label>
