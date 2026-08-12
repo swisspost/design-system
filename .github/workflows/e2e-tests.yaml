@@ -16,6 +16,8 @@ permissions:
 jobs:
   e2e:
     runs-on: ubuntu-latest
+    env:
+      DISPLAY: :99
 
     steps:
       - name: Checkout
@@ -40,9 +42,6 @@ jobs:
 
       - name: Prepare Cypress – Spawn Xvfb server
         run: Xvfb :99 &
-
-      - name: Prepare Cypress – Share Xvfb server as environment variable
-        run: export DISPLAY=:99
 
       - name: Cypress info
         run: pnpm --filter design-system-documentation exec cypress info
