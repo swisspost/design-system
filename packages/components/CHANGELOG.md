@@ -1,5 +1,16 @@
 # @swisspost/design-system-components
 
+## 10.2.0
+
+### Patch Changes
+
+- Aligned the style of the `post-tabs` content tab variant's scroll buttons to Figma design. (by [@leagrdv](https://github.com/leagrdv) with [#8209](https://github.com/swisspost/design-system/pull/8209))
+
+- Cleaned up layout gap caused by empty sections in the `<post-footer>` component when their slots have no content. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8206](https://github.com/swisspost/design-system/pull/8206))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.2.0
+  - @swisspost/design-system-styles@10.2.0
+
 ## 10.1.0
 
 ### Patch Changes

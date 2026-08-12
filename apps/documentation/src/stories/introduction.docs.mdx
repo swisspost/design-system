@@ -11,11 +11,11 @@ import { technologies, browsers } from './introduction.data';
 <div className="mt-56 text-center px-16">
   <h2 className="h3">Packages &amp; Resources</h2>
   <ul className="mt-32 tile-wrapper" role="list">
-    {packages.map(p => (
-      <li key={p.name}>
-        <ti-le title={p.name} href={p.link.github.href} ariaLabel={p.link.github.ariaLabel}>
-          <img src={p.img.src} alt={p.img.alt} />
-          <span>{p.version}</span>
+    {Object.values(packages).map(pkg => (
+      <li key={pkg.name}>
+        <ti-le title={pkg.name} href={pkg.links.github.href} ariaLabel={pkg.links.github.ariaLabel}>
+          <img src={pkg.image.src} alt={pkg.image.alt} />
+          <span>{pkg.version}</span>
         </ti-le>
       </li>
     ))}
@@ -110,7 +110,7 @@ import { technologies, browsers } from './introduction.data';
   <div className="tile-wrapper">
     {technologies.map(t => (
       <ti-le href={t.href} key={t.name}>
-        <img src={t.img.src} alt={t.img.alt}/>
+        <img src={t.img.src} alt={t.img.alt} />
         <span>{t.name}</span>
       </ti-le>
     ))}
