@@ -1,74 +1,179 @@
-const SUPPORTED_LANGUAGES = new Set(['de', 'fr', 'it', 'en']);
+describe('Language switch alternate link overrides', () => {
+  const addAlternateLink = (doc: Document, hreflang: string, href: string) => {
+    const link = doc.createElement('link');
+    link.rel = 'alternate';
+    link.hreflang = hreflang;
+    link.href = href;
+    doc.head.appendChild(link);
+    return link;
+  };
 
-/**
- * Read alternate language links from <link rel="alternate" hreflang="..."> in <head>.
- * Only returns entries whose hreflang matches a supported language and whose href is a valid URL.
- */
-export const getAlternateLinks = (): Map<string, string> => {
-  const result = new Map<string, string>();
-  const links = document.querySelectorAll<HTMLLinkElement>(
-    'link[rel="alternate"][hreflang]',
-  );
+  const removeAlternateLinks = (doc: Document) => {
+    doc.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el => el.remove());
+  };
 
-  for (const link of links) {
-    const lang = link.hreflang?.substring(0, 2).toLowerCase();
-    if (!SUPPORTED_LANGUAGES.has(lang)) continue;
-    if (result.has(lang)) continue; // first match wins
+  const getLanguageMenuItems = () =>
+    cy.get('swisspost-internet-header').find('post-language-menu-item');
 
-    try {
-      // Validate the href — resolves relative URLs against the document base
-      const url = new URL(link.href, document.baseURI);
-      result.set(lang, url.href);
-    } catch {
-      // Invalid URL, skip this entry
-    }
-  }
+  const getLanguageMenuItemByCode = (code: string) =>
+    getLanguageMenuItems().filter(`[code="${code}"]`);
 
-  return result;
-};
+  beforeEach(() => {
+    cy.visit('/iframe.html?id=snapshots--header');
+    cy.get('swisspost-internet-header').should('exist');
+  });
 
-/**
- * Observe <head> for changes to alternate links.
- * Fires the callback whenever a <link rel="alternate"> is added, removed,
- * or has its href/hreflang attribute changed.
- *
- * @returns A cleanup function that disconnects the observer.
- */
-export const observeAlternateLinks = (
-  callback: (links: Map<string, string>) => void,
-): (() => void) => {
-  const observer = new MutationObserver(mutations => {
-    const isRelevant = mutations.some(m => {
-      // Attribute change on a link[rel="alternate"]
-      if (m.type === 'attributes' && m.target instanceof HTMLLinkElement) {
-        return m.target.rel === 'alternate' && m.target.hasAttribute('hreflang');
-      }
-
-      // Child node added or removed — check if any affected node is a link[rel="alternate"]
-      if (m.type === 'childList') {
-        const nodes = [...m.addedNodes, ...m.removedNodes];
-        return nodes.some(
-          n =>
-            n instanceof HTMLLinkElement &&
-            n.rel === 'alternate' &&
-            n.hasAttribute('hreflang'),
-        );
-      }
-
-      return false;
+  describe('fallback to config', () => {
+    it('should use config URLs when no alternate links are present', () => {
+      getLanguageMenuItems().should('have.length.greaterThan', 0);
+      getLanguageMenuItems().each($item => {
+        cy.wrap($item).should('have.attr', 'url').and('not.be.empty');
+      });
     });
 
-    if (isRelevant) {
-      callback(getAlternateLinks());
-    }
+    it('should fall back to config URL for unsupported hreflang values', () => {
+      cy.document().then(doc => {
+        addAlternateLink(doc, 'pt', 'https://example.com/pt/page');
+      });
+
+      // Portuguese is not supported — all items should keep their config URLs
+      getLanguageMenuItemByCode('de')
+        .should('have.attr', 'url')
+        .and('not.contain', 'example.com');
+    });
   });
 
-  observer.observe(document.head, {
-    childList: true,
-    subtree: true,
-    attributes: true,
-    attributeFilter: ['href', 'hreflang', 'rel'],
+  describe('alternate links present on page load', () => {
+    it('should override config URLs with alternate link hrefs', () => {
+      cy.document().then(doc => {
+        addAlternateLink(doc, 'de', 'https://example.com/de/custom-page');
+        addAlternateLink(doc, 'fr', 'https://example.com/fr/custom-page');
+      });
+
+      // Wait for MutationObserver to fire
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.wait(100);
+
+      getLanguageMenuItemByCode('de')
+        .should('have.attr', 'url', 'https://example.com/de/custom-page');
+      getLanguageMenuItemByCode('fr')
+        .should('have.attr', 'url', 'https://example.com/fr/custom-page');
+    });
+
+    it('should partially override — only languages with alternate links are overridden', () => {
+      cy.document().then(doc => {
+        addAlternateLink(doc, 'de', 'https://example.com/de/custom');
+        // No alternate link for fr, it, en
+      });
+
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.wait(100);
+
+      getLanguageMenuItemByCode('de')
+        .should('have.attr', 'url', 'https://example.com/de/custom');
+
+      // fr should still use the config URL (not overridden)
+      getLanguageMenuItemByCode('fr')
+        .should('have.attr', 'url')
+        .and('not.contain', 'example.com');
+    });
   });
 
-  return () => observer.disconnect();
-};
+  describe('dynamically inserted alternate links', () => {
+    it('should update language URLs when alternate links are added after page load', () => {
+      // Initially, no alternate links — config URLs are used
+      getLanguageMenuItemByCode('de')
+        .should('have.attr', 'url')
+        .and('not.contain', 'example.com');
+
+      // Add alternate links dynamically
+      cy.document().then(doc => {
+        addAlternateLink(doc, 'de', 'https://example.com/de/dynamic');
+        addAlternateLink(doc, 'fr', 'https://example.com/fr/dynamic');
+      });
+
+      getLanguageMenuItemByCode('de')
+        .should('have.attr', 'url', 'https://example.com/de/dynamic');
+      getLanguageMenuItemByCode('fr')
+        .should('have.attr', 'url', 'https://example.com/fr/dynamic');
+    });
+  });
+
+  describe('dynamically updated alternate links', () => {
+    it('should reflect href changes on existing alternate links', () => {
+      cy.document().then(doc => {
+        const link = addAlternateLink(doc, 'de', 'https://example.com/de/v1');
+
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
+        cy.wait(100).then(() => {
+          link.href = 'https://example.com/de/v2';
+        });
+      });
+
+      getLanguageMenuItemByCode('de')
+        .should('have.attr', 'url', 'https://example.com/de/v2');
+    });
+  });
+
+  describe('alternate links removed', () => {
+    it('should revert to config URLs when alternate links are removed', () => {
+      cy.document().then(doc => {
+        addAlternateLink(doc, 'de', 'https://example.com/de/temp');
+      });
+
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.wait(100);
+
+      getLanguageMenuItemByCode('de')
+        .should('have.attr', 'url', 'https://example.com/de/temp');
+
+      // Remove all alternate links
+      cy.document().then(doc => {
+        removeAlternateLinks(doc);
+      });
+
+      // Should revert to config value
+      getLanguageMenuItemByCode('de')
+        .should('have.attr', 'url')
+        .and('not.contain', 'example.com');
+    });
+  });
+
+  describe('hreflang mismatches', () => {
+    it('should ignore hreflang values that do not match de, fr, it, en', () => {
+      cy.document().then(doc => {
+        addAlternateLink(doc, 'pt', 'https://example.com/pt/page');
+        addAlternateLink(doc, 'ja', 'https://example.com/ja/page');
+        addAlternateLink(doc, 'x-default', 'https://example.com/page');
+      });
+
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.wait(100);
+
+      // None of the supported languages should be overridden
+      getLanguageMenuItems().each($item => {
+        cy.wrap($item)
+          .should('have.attr', 'url')
+          .and('not.contain', 'example.com');
+      });
+    });
+
+    it('should handle mixed valid and invalid hreflang values', () => {
+      cy.document().then(doc => {
+        addAlternateLink(doc, 'de', 'https://example.com/de/page');
+        addAlternateLink(doc, 'pt', 'https://example.com/pt/page');
+      });
+
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.wait(100);
+
+      getLanguageMenuItemByCode('de')
+        .should('have.attr', 'url', 'https://example.com/de/page');
+
+      // fr should still use config URL
+      getLanguageMenuItemByCode('fr')
+        .should('have.attr', 'url')
+        .and('not.contain', 'example.com');
+    });
+  });
+});

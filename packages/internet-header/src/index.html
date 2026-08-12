@@ -9,10 +9,6 @@
       https://int.post.ch https://www.post.ch https://n.account.post.ch"
     />
     <title>Common Web Frontend Internet Header</title>
-    <link rel="alternate" hreflang="de" href="https://post.ch/de/custom-page" />
-    <link rel="alternate" hreflang="fr" href="https://post.ch/fr/custom-page" />
-    <link rel="alternate" hreflang="it" href="https://post.ch/it/custom-page" />
-    <link rel="alternate" hreflang="en" href="https://post.ch/en/custom-page" />
 
     <link rel="stylesheet" href="/build/swisspost-internet-header.css" />
     <script type="module" src="/build/swisspost-internet-header.esm.js"></script>
@@ -34,30 +30,6 @@
       text-back="Back"
     ></swisspost-internet-header>
 
-    <script>
-  const x = async () => {
-    const header = document.querySelector('swisspost-internet-header');
-    header.addEventListener('headerLoaded', () => {
-      console.log('header loaded');
-
-      // Test: inject alternate links 2s after header loads
-      setTimeout(() => {
-        console.log('Injecting alternate links...');
-        ['de', 'fr', 'it', 'en'].forEach(lang => {
-          const link = document.createElement('link');
-          link.rel = 'alternate';
-          link.hreflang = lang;
-          link.href = `https://post.ch/${lang}/injected-page`;
-          document.head.appendChild(link);
-        });
-      }, 2000);
-    });
-
-    // ...rest of existing script
-  };
-
-  x();
-</script>
     <script>
       const sleep = ms => new Promise(r => setTimeout(r, ms));
       window.UC_UI = { showSecondLayer: () => alert('second layer') };

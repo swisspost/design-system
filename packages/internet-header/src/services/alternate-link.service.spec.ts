@@ -67,7 +67,7 @@ describe('alternate-link.service', () => {
       expect(result.get('de')).toBe('https://example.com/de/first');
     });
 
-    it('skips entries with an invalid href', () => {
+    it('does not throw when an alternate link is missing an href attribute', () => {
       // An empty href resolves to the current page URL via the URL constructor,
       // so we test with a link that has no href attribute at all
       const link = document.createElement('link');

@@ -17,9 +17,12 @@ export const getAlternateLinks = (): Map<string, string> => {
     if (!SUPPORTED_LANGUAGES.has(lang)) continue;
     if (result.has(lang)) continue;
 
+    const href = link.getAttribute('href');
+    if (!href) continue;
+
     try {
       // Validate the href
-      const url = new URL(link.href, document.baseURI);
+      const url = new URL(href, document.baseURI);
       result.set(lang, url.href);
     } catch {
       // Invalid URL, skip this entry
@@ -43,7 +46,11 @@ export const observeAlternateLinks = (
     const isRelevant = mutations.some(m => {
       // Attribute change on a link[rel="alternate"]
       if (m.type === 'attributes' && m.target instanceof HTMLLinkElement) {
-        return m.target.rel === 'alternate' && m.target.hasAttribute('hreflang');
+        return (
+          m.target.rel === 'alternate' && m.target.hasAttribute('hreflang') ||
+          m.attributeName === 'hreflang' ||
+          m.attributeName === 'rel'
+        );
       }
 
       if (m.type === 'childList') {
