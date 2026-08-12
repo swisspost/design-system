@@ -1,7 +1,7 @@
 import type { StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import meta, { createAutocompleteRenderer } from './autocomplete.stories';
-import { COLOR_SCHEMES, schemes } from '@/shared/snapshots/schemes';
+import { schemes } from '@/shared/snapshots/schemes';
 
 const { id, ...metaWithoutId } = meta;
 
@@ -36,7 +36,6 @@ export const Autocomplete: Story = {
           </div>
         </div>
       `,
-      { filter: scheme => scheme === COLOR_SCHEMES.light },
     );
   },
 };
