@@ -28,7 +28,7 @@ describe('Language switch alternate link overrides', () => {
       getLanguageMenuItems().should('have.length.greaterThan', 0);
       getLanguageMenuItems().each($item => {
         const url = $item.attr('url');
-        expect(url).to.not.be.empty;
+        expect(url).to.not.equal('');
       });
     });
 
