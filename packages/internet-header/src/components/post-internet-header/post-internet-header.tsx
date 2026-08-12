@@ -3,6 +3,7 @@ import { dispose, state } from '@/data/store';
 import { ActiveRouteProp, Environment } from '@/models/general.model';
 import { PostLoginConfig, UserMenuConfig } from '@/models/header.model';
 import { IconLinkConfig, LinkConfig } from '@/models/shared.model';
+import { getAlternateLinks, observeAlternateLinks } from '@/services/alternate-link.service';
 import { getLocalizedConfig, isValidProjectId } from '@/services/config.service';
 import { getActiveLink } from '@/services/route.service';
 import { version } from '@root/package.json';
@@ -16,6 +17,8 @@ const SESSION_URL = 'https://n.account.post.ch/v1/session/subscribe';
   shadow: false,
 })
 export class PostInternetHeader {
+  private disconnectAlternateLinksObserver?: () => void;
+
   /**
    * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted.
    * Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
@@ -122,12 +125,16 @@ export class PostInternetHeader {
   }
 
   componentDidLoad() {
+    this.initAlternateLinksObserver();
+
     window.requestAnimationFrame(() => {
       this.headerLoaded.emit();
     });
   }
 
   disconnectedCallback() {
+    this.disconnectAlternateLinksObserver?.();
+
     // Reset the store to its original state
     dispose();
   }
@@ -182,6 +189,16 @@ export class PostInternetHeader {
     this.updateActiveUrl();
   }
 
+  private initAlternateLinksObserver() {
+    const links = getAlternateLinks();
+    state.alternateLinks = links.size > 0 ? links : null;
+
+    // Watch for dynamic changes
+    this.disconnectAlternateLinksObserver = observeAlternateLinks(updated => {
+      state.alternateLinks = updated.size > 0 ? updated : null;
+    });
+  }
+
   private updateActiveUrl() {
     state.activeLink = getActiveLink(this.activeRoute);
   }
@@ -192,6 +209,14 @@ export class PostInternetHeader {
       ...(postLogin.settings ? [postLogin.settings] : []),
       ...(postLogin.userLinks ?? []),
     ];
+  }
+
+  /**
+   * Get the language switch URL for a given language code.
+   * Alternate links from <head> take priority over config-provided URLs.
+   */
+  private getLanguageUrl(code: string, configUrl: string): string {
+    return state.alternateLinks?.get(code) ?? configUrl;
   }
 
   private renderNavItem(config: LinkConfig | UserMenuConfig, props: LinkProps = {}): string {
@@ -276,7 +301,7 @@ export class PostInternetHeader {
               {globalHeader.languages.map(lang => (
                 <post-language-menu-item
                   key={lang.code}
-                  url={lang.url}
+                  url={this.getLanguageUrl(lang.code, lang.url)}
                   active={lang.active}
                   code={lang.code}
                   name={lang.label}
