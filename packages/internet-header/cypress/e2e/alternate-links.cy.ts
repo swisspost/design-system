@@ -27,7 +27,7 @@ describe('Language switch alternate link overrides', () => {
     it('should use config URLs when no alternate links are present', () => {
       getLanguageMenuItems().should('have.length.greaterThan', 0);
       getLanguageMenuItems().each($item => {
-        cy.wrap($item).should('have.attr', 'url').and('not.be.empty');
+        expect($item).to.have.attr('url').and.not.be.empty;
       });
     });
 
@@ -39,7 +39,9 @@ describe('Language switch alternate link overrides', () => {
       // Portuguese is not supported — all items should keep their config URLs
       getLanguageMenuItemByCode('de')
         .should('have.attr', 'url')
-        .and('not.contain', 'example.com');
+        .then(url => {
+          expect(url).to.not.contain('example.com');
+        });
     });
   });
 
@@ -55,9 +57,15 @@ describe('Language switch alternate link overrides', () => {
       cy.wait(100);
 
       getLanguageMenuItemByCode('de')
-        .should('have.attr', 'url', 'https://example.com/de/custom-page');
+        .should('have.attr', 'url')
+        .then(url => {
+          expect(url).to.equal('https://example.com/de/custom-page');
+        });
       getLanguageMenuItemByCode('fr')
-        .should('have.attr', 'url', 'https://example.com/fr/custom-page');
+        .should('have.attr', 'url')
+        .then(url => {
+          expect(url).to.equal('https://example.com/fr/custom-page');
+        });
     });
 
     it('should partially override — only languages with alternate links are overridden', () => {
@@ -70,12 +78,17 @@ describe('Language switch alternate link overrides', () => {
       cy.wait(100);
 
       getLanguageMenuItemByCode('de')
-        .should('have.attr', 'url', 'https://example.com/de/custom');
+        .should('have.attr', 'url')
+        .then(url => {
+          expect(url).to.equal('https://example.com/de/custom');
+        });
 
       // fr should still use the config URL (not overridden)
       getLanguageMenuItemByCode('fr')
         .should('have.attr', 'url')
-        .and('not.contain', 'example.com');
+        .then(url => {
+          expect(url).to.not.contain('example.com');
+        });
     });
   });
 
@@ -84,7 +97,9 @@ describe('Language switch alternate link overrides', () => {
       // Initially, no alternate links — config URLs are used
       getLanguageMenuItemByCode('de')
         .should('have.attr', 'url')
-        .and('not.contain', 'example.com');
+        .then(url => {
+          expect(url).to.not.contain('example.com');
+        });
 
       // Add alternate links dynamically
       cy.document().then(doc => {
@@ -93,9 +108,15 @@ describe('Language switch alternate link overrides', () => {
       });
 
       getLanguageMenuItemByCode('de')
-        .should('have.attr', 'url', 'https://example.com/de/dynamic');
+        .should('have.attr', 'url')
+        .then(url => {
+          expect(url).to.equal('https://example.com/de/dynamic');
+        });
       getLanguageMenuItemByCode('fr')
-        .should('have.attr', 'url', 'https://example.com/fr/dynamic');
+        .should('have.attr', 'url')
+        .then(url => {
+          expect(url).to.equal('https://example.com/fr/dynamic');
+        });
     });
   });
 
@@ -111,7 +132,10 @@ describe('Language switch alternate link overrides', () => {
       });
 
       getLanguageMenuItemByCode('de')
-        .should('have.attr', 'url', 'https://example.com/de/v2');
+        .should('have.attr', 'url')
+        .then(url => {
+          expect(url).to.equal('https://example.com/de/v2');
+        });
     });
   });
 
@@ -125,7 +149,10 @@ describe('Language switch alternate link overrides', () => {
       cy.wait(100);
 
       getLanguageMenuItemByCode('de')
-        .should('have.attr', 'url', 'https://example.com/de/temp');
+        .should('have.attr', 'url')
+        .then(url => {
+          expect(url).to.equal('https://example.com/de/temp');
+        });
 
       // Remove all alternate links
       cy.document().then(doc => {
@@ -135,7 +162,9 @@ describe('Language switch alternate link overrides', () => {
       // Should revert to config value
       getLanguageMenuItemByCode('de')
         .should('have.attr', 'url')
-        .and('not.contain', 'example.com');
+        .then(url => {
+          expect(url).to.not.contain('example.com');
+        });
     });
   });
 
@@ -152,9 +181,7 @@ describe('Language switch alternate link overrides', () => {
 
       // None of the supported languages should be overridden
       getLanguageMenuItems().each($item => {
-        cy.wrap($item)
-          .should('have.attr', 'url')
-          .and('not.contain', 'example.com');
+        expect($item).to.have.attr('url').and.not.contain('example.com');
       });
     });
 
@@ -168,12 +195,17 @@ describe('Language switch alternate link overrides', () => {
       cy.wait(100);
 
       getLanguageMenuItemByCode('de')
-        .should('have.attr', 'url', 'https://example.com/de/page');
+        .should('have.attr', 'url')
+        .then(url => {
+          expect(url).to.equal('https://example.com/de/page');
+        });
 
       // fr should still use config URL
       getLanguageMenuItemByCode('fr')
         .should('have.attr', 'url')
-        .and('not.contain', 'example.com');
+        .then(url => {
+          expect(url).to.not.contain('example.com');
+        });
     });
   });
 });
