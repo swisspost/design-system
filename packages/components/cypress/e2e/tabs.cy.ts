@@ -1,5 +1,16 @@
 const TABS_ID = 'bb1291ca-4dbb-450c-a15f-596836d9f39e';
 
+// Clicking a tab item triggers CSS transitions on the active-state styling.
+// Stencil's re-render can interrupt these transitions mid-flight, causing
+// the browser's implicit CSSTransition.finished promise to reject with a
+// stackless DOMException(AbortError). Disabling transitions on tab items
+// prevents this — the tests verify attributes, not visual transitions.
+Cypress.on('window:before:load', win => {
+  const style = win.document.createElement('style');
+  style.textContent = 'post-tab-item, post-tab-item * { transition: none !important; }';
+  win.document.documentElement.appendChild(style);
+});
+
 describe('tabs', () => {
   describe('default', () => {
     beforeEach(() => {
@@ -161,7 +172,6 @@ describe('tabs', () => {
     describe('anchor elements in light DOM', () => {
       it('should render anchor elements in light DOM for consumer routing integration', () => {
         cy.get('@items').each($item => {
-          // Verify anchor is in light DOM (not in shadow DOM)
           cy.wrap($item).children('a').should('exist');
         });
       });
@@ -173,33 +183,24 @@ describe('tabs', () => {
 
     describe('active state management', () => {
       it('should be controlled by aria-current attribute only', () => {
-        // Verify there is one active tab which has aria-current="page" on its anchor
         cy.get('@items').find('a[aria-current="page"]').should('have.length', 1);
-
-        // Verify that the rest of the tabs don't have aria-current="page"
         cy.get('@items').find('a:not([aria-current="page"])').should('have.length', 2);
       });
     });
 
     describe('pages variant behavior', () => {
       it('should not prevent default link behavior', () => {
-        // Anchors should have href attributes (routing framework will handle them)
         cy.get('@items').first().find('a').should('have.attr', 'href');
       });
 
       it('should have clickable anchor elements', () => {
-        // Verify anchors are present and accessible
         cy.get('@items').each($item => {
           cy.wrap($item).find('a').should('be.visible');
         });
       });
 
       it('should not emit postChange event in pages variant', () => {
-        // This is a limitation test - we can't easily test events NOT firing
-        // without framework integration, but we document the expectation
         cy.get('@tabs').should('exist');
-        // In a real integration test with a framework, you would verify
-        // that postChange handlers are never called
       });
     });
   });
@@ -227,7 +228,7 @@ describe('Accessibility', () => {
     cy.get('@tabs').should('exist');
     cy.checkA11y({ include: [['post-tabs']], exclude: [['post-tab-panel']] }, undefined, (violations) => {
       expect(violations).to.have.length(0);
-    }); // panel is excluded as it is unstyled on purpose
+    });
   });
 
   it('Has no detectable a11y violations on load (page-tabs)', () => {
