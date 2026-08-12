@@ -1,3 +1,6 @@
+import { prepare } from '../support/prepare-story';
+import { HEADER } from './shared/variables';
+
 describe('Language switch alternate link overrides', () => {
   const addAlternateLink = (doc: Document, hreflang: string, href: string) => {
     const link = doc.createElement('link');
@@ -12,15 +15,18 @@ describe('Language switch alternate link overrides', () => {
     doc.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el => el.remove());
   };
 
-  const getLanguageMenuItems = () =>
-    cy.get('swisspost-internet-header').find('post-language-menu-item');
+  const getLanguageMenuItems = () => cy.get('post-language-menu-item');
 
   const getLanguageMenuItemByCode = (code: string) =>
     getLanguageMenuItems().filter(`[code="${code}"]`);
 
   beforeEach(() => {
-    cy.visit('/iframe.html?id=snapshots--header');
-    cy.get('swisspost-internet-header').should('exist');
+    prepare(HEADER, 'Default');
+    cy.changeArg('language', 'en');
+  });
+
+  afterEach(() => {
+    cy.document().then(doc => removeAlternateLinks(doc));
   });
 
   describe('fallback to config', () => {
