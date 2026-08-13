@@ -163,12 +163,16 @@ describe('Footer', () => {
 
     it('Has no detectable a11y violations', () => {
       cy.getSnapshots('footer');
-      cy.checkA11y('#root-inner');
+      cy.checkA11y('#root-inner', undefined, (violations) => {
+        expect(violations).to.have.length(0);
+      });
     });
 
     it('Has no detectable a11y violations on mobile', () => {
       cy.viewport('iphone-3');
-      cy.checkA11y('#root-inner');
+      cy.checkA11y('#root-inner', undefined, (violations) => {
+        expect(violations).to.have.length(0);
+      });
     });
   });
 });

@@ -16,6 +16,7 @@ tokens.$default-map: components.$post-pagination;
   max-width: 100%;
   padding: tokens.get('pagination-padding');
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .pagination-list {
@@ -110,12 +111,21 @@ tokens.$default-map: components.$post-pagination;
 .hidden-items {
   position: absolute;
   display: flex;
-  gap: tokens.get('pagination-gap');
+  gap: tokens.get('pagination-numbers-gap');
   height: 0;
   overflow: hidden;
   white-space: nowrap;
   visibility: hidden;
   pointer-events: none;
+
+  // Add same margins to hidden elements for computing sizes
+  .pagination-control-button:not(.hidden-page-button):first-child {
+    margin-inline-end: calc(tokens.get('pagination-gap') - tokens.get('pagination-numbers-gap'));
+  }
+
+  .pagination-control-button:not(.hidden-page-button):last-child {
+    margin-inline-start: calc(tokens.get('pagination-gap') - tokens.get('pagination-numbers-gap'));
+  }
 }
 
 .visually-hidden {

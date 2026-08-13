@@ -1,7 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as RadioStories from './radio.stories';
 import StylesPackageImport from '@/shared/styles-package-import';
-import PackageTag from '@/shared/package-tag';
+import StoryTags from '@/shared/story-tags';
 
 <Meta of={RadioStories} />
 
@@ -12,14 +12,12 @@ import PackageTag from '@/shared/package-tag';
 
 </div>
 
-<PackageTag meta={meta} />
+<StoryTags meta={meta} />
 
-<div className="lead">
-  Customize the native <code>&lt;input type="radio"&gt;</code> with CSS that changes the element’s
-  initial appearance. Consistent, cross-browser and cross-device.
-</div>
+<p className="lead">The radio button lets users select one option from a group of options.</p>
 
-Our radios use custom icons to indicate checked states.
+Our component customizes the native <code>&lt;input type="radio"&gt;</code> with CSS that overrides its default appearance, staying
+consistent across browsers and devices. Custom icons indicate the checked state.
 
 <Canvas sourceState="shown" of={RadioStories.Default} />
 <div className="hide-col-default">
@@ -52,7 +50,7 @@ Read more about that topic in our [form labels guidelines](/?path=/docs/13fb5dfe
 ### Inline
 
 To render a radio inline, simply add the class `.form-check-inline` to the `.form-check` wrapper element.
-Combine it with the small variant `.form-check-sm`  to render small radio buttons in an inline group.
+Combine it with the small variant `.form-check-sm` to render small radio buttons in an inline group.
 
 <post-banner>
   Remember to wrap your radio groups in a <code>&lt;fieldset&gt;</code> including a <code>&lt;legend&gt;</code> tag.
@@ -64,6 +62,6 @@ Read more about that topic in our [form labels guidelines](/?path=/docs/13fb5dfe
 To visually hide the `<legend>` element, use the `.visually-hidden` class.
 
 <Canvas of={RadioStories.Inline} />
-  <div className="hide-col-default">
-    <Controls of={RadioStories.Inline} />
-  </div>
+<div className="hide-col-default">
+  <Controls of={RadioStories.Inline} />
+</div>

@@ -42,8 +42,8 @@ describe('date-picker', { includeShadowDom: true }, () => {
         cy.get('@container').find('[role="grid"]').should('exist');
 
         cy.get('@container')
-          .find('.air-datepicker-nav--title button')
-          .should('have.attr', 'aria-label', 'Switch to year view');
+          .find('.air-datepicker-nav--title button .visually-hidden')
+          .should('have.text', ', Switch to year view');
 
         cy.get('@container')
           .find('[data-action="next"] button')

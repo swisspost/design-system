@@ -157,7 +157,7 @@ function StylesSwitcher() {
     stories.forEach(story => {
       story.setAttribute('data-color-scheme', scheme);
       story.querySelector('.docs-story')?.classList.add('palette', 'palette-default');
-      
+
       // Update nested iframes (inline: false stories)
       story
         .querySelector('iframe')

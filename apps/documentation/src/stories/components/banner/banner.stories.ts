@@ -14,13 +14,13 @@ const meta: MetaComponent<PostBannerControls> = {
   title: 'Components/Banner',
   tags: ['package:WebComponents'],
   component: 'post-banner',
-  render: renderBanner,
+  render: RenderBanner,
   decorators: [],
   parameters: {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=1447-8848',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-V2?node-id=33070-74194',
     },
     controls: {
       exclude: ['dismissed'],
@@ -63,7 +63,7 @@ const meta: MetaComponent<PostBannerControls> = {
 export default meta;
 
 // Renderer
-function renderBanner({ innerHTML, dismissible, dismissed, type }: PostBannerControls) {
+function RenderBanner({ innerHTML, dismissible, dismissed, type }: PostBannerControls) {
   const [, updateArgs] = useArgs();
 
   if (dismissed && !dismissible) {
@@ -82,9 +82,11 @@ function renderBanner({ innerHTML, dismissible, dismissed, type }: PostBannerCon
       type=${type === 'info' ? nothing : type}
       @postDismissed=${() => updateArgs({ dismissed: true })}
     >
-      ${dismissible
-        ? html` <post-closebutton slot="close-button"> Close </post-closebutton> `
-        : nothing}
+      ${
+        dismissible
+          ? html` <post-closebutton slot="close-button"> Close </post-closebutton> `
+          : nothing
+      }
       ${unsafeHTML(innerHTML ?? '')}
     </post-banner>
   `;

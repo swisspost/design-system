@@ -169,8 +169,8 @@ post-tab-item.nav-item {
 
       &:hover {
         border-color: Highlight;
-        background-color: white;
-        color: HighlightText !important;
+        background-color: Canvas;
+        color: CanvasText !important;
       }
 
       &[aria-current='page'] {
@@ -349,6 +349,7 @@ post-tabs[active-tab] {
     @include utilities-mx.high-contrast-mode() {
       forced-color-adjust: none;
       transition: none;
+
       &::after {
         background-color: color-mix(in srgb, Highlight calc(var(--active, 0) * 100%), Canvas);
       }

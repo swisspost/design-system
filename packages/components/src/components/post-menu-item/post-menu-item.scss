@@ -4,6 +4,9 @@
 post-menu-item {
   button {
     @include button.reset-button;
+    // Buttons have intrinsic sizing, so they may not stretch to the full menu-item width.
+    // Force full-width to match <a> items and ensure hover/focus styles cover the whole row.
+    width: 100%;
   }
 
   a {

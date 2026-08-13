@@ -1,7 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as ButtonGroupStories from './button-group.stories';
 import StylesPackageImport from '@/shared/styles-package-import';
-import PackageTag from '@/shared/package-tag';
+import StoryTags from '@/shared/story-tags';
 
 <Meta of={ButtonGroupStories} />
 
@@ -12,10 +12,10 @@ import PackageTag from '@/shared/package-tag';
 
 </div>
 
-<PackageTag meta={meta} />
+<StoryTags meta={meta} />
 
 <div className="lead">
-  The button group is a container consisting of multiple buttons with similar or related actions.
+  The button group is a container consisting of multiple buttons with similar or related actions or selections.
 </div>
 
 <Canvas sourceState="shown" of={ButtonGroupStories.Default} />

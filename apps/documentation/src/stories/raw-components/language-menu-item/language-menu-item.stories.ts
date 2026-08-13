@@ -6,7 +6,7 @@ import { StoryContext, StoryFn } from '@storybook/web-components-vite';
 const meta: MetaComponent<HTMLPostLanguageMenuItemElement> = {
   id: '3753ab83-a659-47b5-a2f2-ac452ec97916',
   title: 'Raw Components/Language Menu Item',
-  tags: ['package:WebComponents', 'devOnly'],
+  tags: ['package:WebComponents', 'devOnly', 'status:New'],
   component: 'post-language-menu-item',
   render: renderLanguageOption,
   decorators: [listContainer],

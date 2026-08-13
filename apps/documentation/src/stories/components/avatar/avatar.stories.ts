@@ -10,7 +10,7 @@ const meta: MetaComponent = {
   id: '09aac03d-220e-4885-8fb8-1cfa01add188',
   title: 'Components/Avatar',
   component: 'post-avatar',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:New'],
   parameters: {
     design: {
       type: 'figma',

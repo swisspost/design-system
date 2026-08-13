@@ -8,6 +8,8 @@
 
 tokens.$default-map: components.$post-datepicker;
 
+$current-day-inset: calc(var(--adp-cell-border-width) * -1);
+
 /* Flyout Styles */
 
 .air-datepicker {
@@ -148,6 +150,12 @@ tokens.$default-map: components.$post-datepicker;
       row-gap: tokens.get('post-datepicker-grid-gap-block');
       border-radius: tokens.get('post-datepicker-border-radius');
 
+      .a11y-row {
+        display: grid;
+        grid-column: 1/-1;
+        grid-template-columns: subgrid;
+      }
+
       /* View-specific styles */
 
       &.-days- {
@@ -279,7 +287,7 @@ tokens.$default-map: components.$post-datepicker;
             }
 
             &.-other-decade- {
-              color: tokens.get('post-datepicker-grid-year-cell-element-color-enabled-fg');
+              display: none;
             }
 
             &:not(.-disabled-) {
@@ -445,7 +453,12 @@ tokens.$default-map: components.$post-datepicker;
             &.-current- {
               &::before,
               &::after {
-                inset: calc(var(--adp-cell-border-width) * -1);
+                inset: $current-day-inset;
+                @media (min-resolution: 1.25dppx) and (max-resolution: 1.4999dppx) {
+                  inset: calc(
+                    $current-day-inset - 0.5
+                  ); // Correction for subpixel rendering issue in 1.25 dpr screens
+                }
               }
 
               &.-selected-:hover {
@@ -754,4 +767,8 @@ tokens.$default-map: components.$post-datepicker;
       }
     }
   }
+}
+
+.visually-hidden {
+  @include utilities.visuallyhidden;
 }

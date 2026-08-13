@@ -1,9 +1,11 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Route, Router, RouterLink, RouterOutlet } from '@angular/router';
 import {
   PostBackToTop,
   PostBreadcrumbItem,
   PostBreadcrumbs,
+  PostCollapsible,
+  PostCollapsibleTrigger,
   PostFooter,
   PostHeader,
   PostIcon,
@@ -13,18 +15,23 @@ import {
   PostMainnavigation,
   PostMegadropdown,
   PostMegadropdownTrigger,
+  PostSideNavigation,
+  PostSideNavigationTrigger,
 } from '@swisspost/design-system-components-angular';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     RouterOutlet,
     RouterLink,
     PostBackToTop,
     PostBreadcrumbItem,
     PostBreadcrumbs,
+    PostCollapsible,
+    PostCollapsibleTrigger,
     PostFooter,
     PostHeader,
     PostIcon,
@@ -34,6 +41,8 @@ import {
     PostMainnavigation,
     PostMegadropdown,
     PostMegadropdownTrigger,
+    PostSideNavigation,
+    PostSideNavigationTrigger,
   ],
 })
 export class App implements OnInit {

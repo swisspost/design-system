@@ -25,9 +25,12 @@ tokens.$default-map: components.$post-button;
   @include header-mx.nav-item-base;
   @include header-mx.nav-item-rotating-chevron;
   text-transform: uppercase;
+  line-height: inherit;
   cursor: pointer;
 }
 
 .post-language-menu-list {
+  display: flex;
+  gap: 0.5rem;
   margin-top: 1rem;
 }

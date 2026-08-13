@@ -1,6 +1,0 @@
----
-'@swisspost/design-system-documentation': minor
-'@swisspost/design-system-styles': minor
----
-
-Added a new App Store Badge component for promoting apps, supporting both Google Play and Apple App Store badges.

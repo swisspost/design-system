@@ -94,16 +94,6 @@ export default [
     name: 'post/stencil/recommended/overrides',
     files: ['**/*.{ts,mts,cts,tsx}'],
     rules: {
-      'indent': [
-        'error',
-        2,
-        {
-          SwitchCase: 1,
-          ignoredNodes: ['PropertyDefinition[decorators]'],
-        },
-      ],
-      'quotes': ['error', 'single'],
-      'semi': ['error', 'always'],
       'react/jsx-no-bind': 'off',
       '@stencil-community/strict-boolean-conditions': 'off',
       '@stencil-community/prefer-vdom-listener': 'off',

@@ -20,7 +20,7 @@
   );
 
   @include media.only(desktop) {
-    --post-header-gap: 0.25rem;
+    --post-header-gap: 0.5rem;
     --post-global-header-padding-inline-start: 0.25rem;
     --post-global-header-padding-inline-end: 0.5rem;
     --post-local-header-padding-inline-start: 0.75rem;
