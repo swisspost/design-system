@@ -438,10 +438,10 @@ export class PostTabs {
 
   private hidePanel(panelName: HTMLPostTabPanelElement['for']) {
     const previousPanel = this.getPanel(panelName);
-
     if (!previousPanel) return;
 
     this.hiding = fade(previousPanel, 'out');
+    this.hiding.finished.catch(e => { if (!this.isAbortError(e)) throw e; });
     this.hiding.onfinish = () => {
       previousPanel.style.display = 'none';
       this.hiding = null;
@@ -453,11 +453,10 @@ export class PostTabs {
     const panel = this.getPanel(this.currentActiveTab.name);
     if (!panel) return;
     panel.style.display = 'block';
-
-    // prevent the initially selected panel from fading in
     if (!this.isLoaded) return;
 
     this.showing = fade(panel, 'in');
+    this.showing.finished.catch(e => { if (!this.isAbortError(e)) throw e; });
     this.showing.onfinish = () => {
       this.showing = null;
     };
