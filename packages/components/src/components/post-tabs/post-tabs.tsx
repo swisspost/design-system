@@ -1,4 +1,3 @@
-import { fade } from '@/animations';
 import { componentOnReady, OneOf, Type } from '@/utils';
 import { version } from '@root/package.json';
 
@@ -30,8 +29,6 @@ import {
 })
 export class PostTabs {
   private currentActiveTab?: HTMLPostTabItemElement;
-  private showing: Animation | null = null;
-  private hiding: Animation | null = null;
   private isLoaded = false;
   private contentObserver?: MutationObserver;
   private resizeObserver?: ResizeObserver;
@@ -105,7 +102,7 @@ export class PostTabs {
   }
 
   /**
-   * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished.
+   * An event emitted after the active tab changes.
    * The payload is the name of the newly active tab.
    * Only emitted in Content Tabs variant.
    */
@@ -138,7 +135,7 @@ export class PostTabs {
     } else {
       const tabToActivate = this.activeTab || this.tabs[0]?.name;
       if (tabToActivate) {
-        void this.show(tabToActivate);
+        this.show(tabToActivate);
         const activeTab = this.tabs.find(t => t.name === tabToActivate);
         if (activeTab) this.scrollTabIntoView(activeTab);
       }
@@ -148,15 +145,6 @@ export class PostTabs {
   }
 
   disconnectedCallback() {
-    if (this.showing) {
-      this.showing.cancel();
-      this.showing = null;
-    }
-    if (this.hiding) {
-      this.hiding.cancel();
-      this.hiding = null;
-    }
-
     if (this.contentObserver) {
       this.contentObserver?.disconnect();
     }
@@ -245,7 +233,7 @@ export class PostTabs {
     } else {
       const tabToActivate = this.activeTab || this.tabs[0]?.name;
       if (tabToActivate) {
-        void this.show(tabToActivate);
+        this.show(tabToActivate);
       }
     }
   }
@@ -293,56 +281,25 @@ export class PostTabs {
    */
   @Method()
   async show(tabName: string) {
-    try {
-      // do nothing if the tab is already active
-      if (tabName === this.currentActiveTab?.name) {
-        return;
-      }
-
-      const previousTab = this.currentActiveTab;
-      const newTab = this.host.querySelector<HTMLPostTabItemElement>(
-        `post-tab-item[name="${tabName}"]`,
-      );
-      if (!newTab) return;
-
-      this.activateTab(newTab);
-      this.scrollTabIntoView(newTab, 'smooth');
-
-      // if a panel is currently being displayed, remove it from the view and complete the associated animation
-      if (this.showing) {
-        this.showing.finish();
-        this.showing = null;
-      }
-
-      // hide the currently visible panel only if no other animation is running
-      if (previousTab && !this.showing && !this.hiding) this.hidePanel(previousTab.name);
-      if (await this.awaitAnimation(this.hiding)) return;
-
-      this.showSelectedPanel();
-
-      if (await this.awaitAnimation(this.showing)) return;
-
-      if (this.isLoaded && this.currentActiveTab) this.postChange.emit(this.currentActiveTab.name);
-    } catch (e) {
-      if (this.isAbortError(e)) return;
-      throw e;
+    // do nothing if the tab is already active
+    if (tabName === this.currentActiveTab?.name) {
+      return;
     }
-  }
 
-  // Awaits an animation; returns true if it was aborted (caller should bail out).
-  private async awaitAnimation(animation: Animation | null): Promise<boolean> {
-    if (!animation) return false;
-    try {
-      await animation.finished;
-      return false;
-    } catch (e) {
-      if (this.isAbortError(e)) return true;
-      throw e;
-    }
-  }
+    const previousTab = this.currentActiveTab;
+    const newTab = this.host.querySelector<HTMLPostTabItemElement>(
+      `post-tab-item[name="${tabName}"]`,
+    );
+    if (!newTab) return;
 
-  private isAbortError(error: unknown): boolean {
-    return (error instanceof DOMException || error instanceof Error) && error.name === 'AbortError';
+    this.activateTab(newTab);
+    this.scrollTabIntoView(newTab, 'smooth');
+
+    if (previousTab) this.hidePanel(previousTab.name);
+
+    this.showSelectedPanel();
+
+    if (this.isLoaded && this.currentActiveTab) this.postChange.emit(this.currentActiveTab.name);
   }
 
   private moveMisplacedTabs() {
@@ -440,12 +397,7 @@ export class PostTabs {
     const previousPanel = this.getPanel(panelName);
     if (!previousPanel) return;
 
-    this.hiding = fade(previousPanel, 'out');
-    this.hiding.finished.catch(e => { if (!this.isAbortError(e)) throw e; });
-    this.hiding.onfinish = () => {
-      previousPanel.style.display = 'none';
-      this.hiding = null;
-    };
+    previousPanel.style.display = 'none';
   }
 
   private showSelectedPanel() {
@@ -453,13 +405,6 @@ export class PostTabs {
     const panel = this.getPanel(this.currentActiveTab.name);
     if (!panel) return;
     panel.style.display = 'block';
-    if (!this.isLoaded) return;
-
-    this.showing = fade(panel, 'in');
-    this.showing.finished.catch(e => { if (!this.isAbortError(e)) throw e; });
-    this.showing.onfinish = () => {
-      this.showing = null;
-    };
   }
 
   private getPanel(name: string): HTMLPostTabPanelElement | null {
