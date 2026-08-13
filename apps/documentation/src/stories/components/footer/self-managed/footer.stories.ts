@@ -2,6 +2,8 @@ import { MetaComponent } from '@root/types';
 import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 
+const LINKS_PER_CELL = [6, 8, 8, 5];
+
 const meta: MetaComponent = {
   id: 'd97528b3-a9ef-4201-bf28-9caf6e8997dc',
   title: 'Components/Footer/Self-Managed',
@@ -136,7 +138,7 @@ function render(args: Args) {
         <span id="grid-${i + 1}-title" slot="grid-${i + 1}-title">Title ${i + 1}</span>
 
         <ul slot="grid-${i + 1}" aria-labelledby="grid-${i + 1}-title">
-          ${Array.from({ length: Math.floor(Math.random() * 5) + 4 }).map(
+          ${Array.from(Array(LINKS_PER_CELL[i]).keys()).map(
             (_, j) => html`
               <li>
                 <a href="#">Text link ${j + 1}</a>
