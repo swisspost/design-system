@@ -163,10 +163,16 @@ describe('tabs', () => {
       });
 
       it('should not have tabindex on tab items in pages variant', () => {
-        cy.get('@items').each($item => {
-          cy.wrap($item).should('not.have.attr', 'tabindex');
-        });
-      });
+  // make sure the component has actually settled into pages variant
+  cy.get('post-tabs').should('have.class', 'page-tabs');
+
+  cy.get('@items').should($items => {
+    expect($items.length).to.be.greaterThan(0);
+    $items.each((_, item) => {
+      expect(item).to.not.have.attr('tabindex');
+    });
+  });
+});
     });
 
     describe('anchor elements in light DOM', () => {
