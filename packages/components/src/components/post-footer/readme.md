@@ -16,10 +16,10 @@
 | --------------------------- | ---------------------------------------------------------------------------- |
 | `"app"`                     | Slot for the app links.                                                      |
 | `"businesssectors"`         | Slot for the business sectors links.                                         |
-| `"copyright"`               | **Required.** Slot for the copyright text.                                   |
+| `"copyright"`               | Slot for the copyright text.                                                 |
 | `"grid-{1\|2\|3\|4}"`       | Slot for the accordion bodies (mobile) and the grid cells (tablet, desktop). |
 | `"grid-{1\|2\|3\|4}-title"` | Slot for the accordion headers (mobile).                                     |
-| `"meta"`                    | **Required.** Slot for the meta links.                                       |
+| `"meta"`                    | Slot for the meta links.                                                     |
 | `"prefooter"`               | Slot for the pre-footer.                                                     |
 | `"socialmedia"`             | Slot for the social media links.                                             |
 
