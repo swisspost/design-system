@@ -96,7 +96,7 @@ export interface V910Checks {
     pagination: boolean;
     typeahead: boolean;
     progressbar: boolean;
-    timepicker: boolean,
+    timepicker: boolean;
   };
   forms: {
     tooltip_validation: boolean;
@@ -172,6 +172,10 @@ export interface V910Checks {
     update_package: boolean;
     add_text_props: boolean;
     remove_props: boolean;
+    breadcrumb_migration: boolean;
+  };
+  intranet_header: {
+    migration: boolean;
   };
 }
 

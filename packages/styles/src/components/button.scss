@@ -56,11 +56,15 @@ tokens.$default-map: components.$post-button;
 .btn-link {
   text-decoration: tokens.get('link-decoration', elements.$post-link);
   border: 0 none;
-  border-radius: tokens.get('link-border-radius', elements.$post-link);
+  border-radius: 0;
   min-height: 0;
   font-size: inherit;
   font-weight: inherit;
   padding: 0;
+
+  @include utilities.focus-style-custom() {
+    border-radius: tokens.get('link-border-radius', elements.$post-link);
+  }
 
   &:hover {
     color: tokens.get('link-hover-fg', elements.$post-link);

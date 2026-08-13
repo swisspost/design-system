@@ -10,7 +10,7 @@ const meta: MetaComponent = {
   id: '7fb639f8-86f6-4937-999c-4ee15f81643b',
   title: 'Components/Form Switch',
   tags: ['package:Styles'],
-  render: renderSwitch,
+  render: RenderSwitch,
   parameters: {
     badges: [],
     design: {
@@ -124,7 +124,7 @@ const meta: MetaComponent = {
 
 export default meta;
 
-function renderSwitch(args: Args, context: StoryContext) {
+function RenderSwitch(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
   const switchClasses = mapClasses({
@@ -172,9 +172,9 @@ function renderSwitch(args: Args, context: StoryContext) {
         ?disabled=${args.disabled}
         aria-label=${useAriaLabel ? ariaLabel : nothing}
         aria-invalid=${ifDefined(VALIDATION_STATE_MAP[args.validation])}
-        aria-describedby="${args.validation != 'null'
-          ? `${args.validation}-id-${context.id}`
-          : nothing}"
+        aria-describedby="${
+          args.validation != 'null' ? `${args.validation}-id-${context.id}` : nothing
+        }"
         @change=${() => updateArgs({ checked: !args.checked })}
         ?required="${args.requiredOptional === 'required'}"
       />

@@ -40,7 +40,6 @@
       "groupName": "all patch dependencies",
       "groupSlug": "all-patch",
       "matchPackageNames": [
-        "*",
         "!typescript",
         "!@storybook/*",
         "!storybook",

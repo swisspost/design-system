@@ -9,14 +9,14 @@ import { forceCompactAppearance } from '../../../../.storybook/helpers';
 const meta: MetaComponent = {
   id: '9f26d86e-7edb-5804-ac96-92g22f91c9d9',
   title: 'Components/Side Navigation',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:New'],
   component: 'post-side-navigation',
   parameters: {
     layout: 'fullscreen',
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=14478-28019',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-V2?node-id=33106-167470',
     },
     docs: {
       story: {
@@ -128,4 +128,30 @@ export const Large: Story = {
 
     <main class="main-container flex-grow-1">${fakeContent(4)}</main>
   `,
+};
+
+export const HeaderTrigger: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<post-header text-menu="Menu">
+  ...
+  <post-side-navigation-trigger slot="side-nav" for="sidenav">
+    <button>
+      <post-icon aria-hidden="true" name="burger"></post-icon>
+    </button>
+  </post-side-navigation-trigger>
+  <p slot="title">[Application Title]</p>
+  ...
+</post-header>
+
+<post-side-navigation id="sidenav" text-close="Close">
+  ...
+</post-side-navigation>
+
+`,
+      },
+    },
+  },
 };

@@ -1,7 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as HintStories from './hint.stories';
 import StylesPackageImport from '@/shared/styles-package-import';
-import PackageTag from '@/shared/package-tag';
+import StoryTags from '@/shared/story-tags';
 
 <Meta of={HintStories} />
 
@@ -12,11 +12,11 @@ import PackageTag from '@/shared/package-tag';
 
 </div>
 
-<PackageTag meta={meta} />
+<StoryTags meta={meta} />
 
 <div className="lead">
-  Form hint or assistive text is used under a form element to give guidance to users on how to best
-  fill in fields.
+  The form hint is assistive text used under a form element to give guidance to users on how to
+  best fill in fields.
 </div>
 
 <Canvas sourceState="shown" of={HintStories.Default} />

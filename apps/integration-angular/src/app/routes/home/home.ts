@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   PostAccordion,
   PostAccordionItem,
@@ -24,8 +23,6 @@ import {
   PostPopoverTrigger,
   PostProgressbar,
   PostRating,
-  PostSideNavigation,
-  PostSideNavigationTrigger,
   PostStepper,
   PostStepperItem,
   PostTabItem,
@@ -39,6 +36,7 @@ import {
 @Component({
   selector: 'home-page',
   templateUrl: './home.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     PostAccordion,
     PostAccordionItem,
@@ -63,8 +61,6 @@ import {
     PostPopoverTrigger,
     PostProgressbar,
     PostRating,
-    PostSideNavigation,
-    PostSideNavigationTrigger,
     PostStepper,
     PostStepperItem,
     PostTabItem,
@@ -73,16 +69,8 @@ import {
     PostTogglebutton,
     PostTooltip,
     PostTooltipTrigger,
-    ReactiveFormsModule,
-    FormsModule,
   ],
 })
 export class Home {
   isCollapsed = false;
-
-  formControl = new FormControl('France');
-
-  log(something: unknown) {
-    console.log(something);
-  }
 }

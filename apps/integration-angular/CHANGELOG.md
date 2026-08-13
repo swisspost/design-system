@@ -1,5 +1,59 @@
 # @swisspost/design-system-integration-angular
 
+## 10.2.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.2.0
+  - @swisspost/design-system-styles@10.2.0
+  - @swisspost/design-system-components-angular@10.2.0
+  - @swisspost/design-system-styles-primeng@10.2.0
+
+## 10.1.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.1.0
+  - @swisspost/design-system-styles@10.1.0
+  - @swisspost/design-system-components-angular@10.1.0
+  - @swisspost/design-system-styles-primeng@10.1.0
+
+## 10.0.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.1
+  - @swisspost/design-system-components-angular@10.0.1
+  - @swisspost/design-system-styles-primeng@10.0.1
+  - @swisspost/design-system-icons@10.0.1
+
+## 10.0.0
+
+### Minor Changes
+
+- Increased browser coverage by adding `baseline widely available` query to the browserslistrc. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7613](https://github.com/swisspost/design-system/pull/7613))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0
+  - @swisspost/design-system-styles@10.0.0
+  - @swisspost/design-system-components-angular@10.0.0
+  - @swisspost/design-system-styles-primeng@10.0.0
+
+## 10.0.0-next.76
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.76
+  - @swisspost/design-system-styles@10.0.0-next.76
+  - @swisspost/design-system-styles-primeng@10.0.0-next.76
+  - @swisspost/design-system-components-angular@10.0.0-next.76
+
 ## 10.0.0-next.74
 
 ### Patch Changes

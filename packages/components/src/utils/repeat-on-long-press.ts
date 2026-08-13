@@ -16,7 +16,6 @@ export function repeatOnLongPress(callback: () => void, options?: LongPressOptio
   globalThis.addEventListener('pointerup', handler);
   globalThis.addEventListener('pointercancel', handler);
   globalThis.addEventListener('pointerleave', handler);
-
 }
 
 function repeat(

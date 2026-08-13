@@ -72,19 +72,25 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('@first').should('be.visible');
     });
 
+    it('should have the scrollable class on the host while scrolling is possible', () => {
+      cy.get('@mainnavigation').should('have.class', 'scrollable');
+    });
+
     describe('right scroll', () => {
       beforeEach(() => {
         cy.get('@mainnavigation').shadow().find('.scroll-right').as('rightScroll');
       });
 
       it('should correctly show the right scroll button', () => {
-        cy.get('@rightScroll').should('be.visible').then($rightScroll => {
-          cy.get('@mainnavigation').then($mainnavigation => {
-            const scrollHeight = $rightScroll.get(0).getBoundingClientRect().height;
-            const navHeight = $mainnavigation.get(0).getBoundingClientRect().height;
-            expect(scrollHeight).to.be.closeTo(navHeight, 1);
+        cy.get('@rightScroll')
+          .should('be.visible')
+          .then($rightScroll => {
+            cy.get('@mainnavigation').then($mainnavigation => {
+              const scrollHeight = $rightScroll.get(0).getBoundingClientRect().height;
+              const navHeight = $mainnavigation.get(0).getBoundingClientRect().height;
+              expect(scrollHeight).to.be.closeTo(navHeight, 1);
+            });
           });
-        });
       });
 
       it('should click until the last navigation item is visible', () => {
@@ -97,7 +103,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
       });
 
       it('should scroll continuously until the last navigation item is visible', () => {
-        const rightScrollPosition = [Cypress.config('viewportWidth') - 5, 5];
+        const rightScrollPosition: [number, number] = [Cypress.config('viewportWidth') - 5, 5];
         cy.get('@mainnavigation').trigger('mousedown', ...rightScrollPosition, { button: 0 });
         cy.wait(800);
         cy.get('@mainnavigation').trigger('mouseup');
@@ -160,6 +166,43 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
             expect($megadropdown.position().left).eq(0);
           });
       });
+
+      it('should mark the navbar inert while a scroll button is held, and release it afterward', () => {
+        const rightScrollPosition: [number, number] = [Cypress.config('viewportWidth') - 5, 5];
+        cy.get('@mainnavigation').trigger('mousedown', ...rightScrollPosition, { button: 0 });
+
+        cy.get('@mainnavigation').shadow().find('nav').should('have.attr', 'inert');
+
+        cy.get('@mainnavigation').trigger('mouseup');
+
+        // NAVBAR_DISABLE_DURATION is 400ms
+        cy.wait(450);
+        cy.get('@mainnavigation').shadow().find('nav').should('not.have.attr', 'inert');
+      });
+
+      it('should stop the repeat-scroll interval when the mouse leaves the window, not just on mouseup', () => {
+        const rightScrollPosition: [number, number] = [Cypress.config('viewportWidth') - 5, 5];
+        cy.get('@mainnavigation').trigger('mousedown', ...rightScrollPosition, { button: 0 });
+        cy.wait(250);
+
+        cy.get('@mainnavigation')
+          .shadow()
+          .find('nav')
+          .then($nav => {
+            const scrollLeftAtLeave = $nav.get(0).scrollLeft;
+
+cy.window().then(win => win.dispatchEvent(new MouseEvent('mouseleave')));
+            cy.wait(300);
+
+            cy.get('@mainnavigation')
+              .shadow()
+              .find('nav')
+              .should($navAfter => {
+                // scroll position should not have kept advancing after mouseleave fired
+                expect($navAfter.get(0).scrollLeft).to.eq(scrollLeftAtLeave);
+              });
+          });
+      });
     });
 
     describe('left scroll', () => {
@@ -176,13 +219,15 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
       });
 
       it('should correctly show the left scroll button', () => {
-        cy.get('@leftScroll').should('be.visible').then($leftScroll => {
-          cy.get('@mainnavigation').then($mainnavigation => {
-            const scrollHeight = $leftScroll.get(0).getBoundingClientRect().height;
-            const navHeight = $mainnavigation.get(0).getBoundingClientRect().height;
-            expect(scrollHeight).to.be.closeTo(navHeight, 1);
+        cy.get('@leftScroll')
+          .should('be.visible')
+          .then($leftScroll => {
+            cy.get('@mainnavigation').then($mainnavigation => {
+              const scrollHeight = $leftScroll.get(0).getBoundingClientRect().height;
+              const navHeight = $mainnavigation.get(0).getBoundingClientRect().height;
+              expect(scrollHeight).to.be.closeTo(navHeight, 1);
+            });
           });
-        });
       });
 
       it('should click until the first navigation item is visible', () => {
@@ -195,7 +240,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
       });
 
       it('should scroll continuously until the first navigation item is visible', () => {
-        const leftScrollPosition = [5, 5];
+        const leftScrollPosition: [number, number] = [5, 5];
         cy.get('@mainnavigation').trigger('mousedown', ...leftScrollPosition, { button: 0 });
         cy.wait(800);
         cy.get('@mainnavigation').trigger('mouseup');
@@ -297,6 +342,26 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
         cy.get('@leftScroll').should('be.visible');
         cy.get('@rightScroll').should('be.visible');
       });
+
+      it('should show the right scroll button after adding enough nav items to overflow', () => {
+        cy.viewport(1920, 600);
+        cy.get('@rightScroll').should('not.be.visible');
+
+        cy.get('@mainnavigation')
+          .find('ul')
+          .then($navList => {
+            for (let i = 0; i < 20; i++) {
+              const li = document.createElement('li');
+              const a = document.createElement('a');
+              a.href = `/extra-item-${i}`;
+              a.textContent = `Extra item ${i}`;
+              li.append(a);
+              $navList.get(0).append(li);
+            }
+          });
+
+        cy.get('@rightScroll').should('be.visible');
+      });
     });
   });
 
@@ -308,7 +373,9 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('Has no detectable a11y violations on load', () => {
-      cy.checkA11y('post-mainnavigation');
+      cy.checkA11y('post-mainnavigation', undefined, (violations) => {
+        expect(violations).to.have.length(0);
+      });
     });
   });
 });
