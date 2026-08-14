@@ -128,24 +128,16 @@ export function getVersions(): Promise<Versions> {
 }
 
 /**
- * Resolve the version entry that matches the current major version of the
- * bundled styles package, falling back to an empty entry when none is found.
- * @returns Promise that resolves to the current version entry
+ * Resolve the version entry that matches the current major version of the bundled
+ * styles package, or null when no matching entry exists so consumers can tell the
+ * difference between "found" and "not found".
+ * @returns Promise that resolves to the current version entry or null
  */
-export function getCurrentVersion(): Promise<Version> {
+export function getCurrentVersion(): Promise<Version | null> {
   // use pkg.dependencies['@swisspost/design-system-styles'] to find the current version in the versionsCache
-  return getVersions().then(versions => {
-    return (
-      versions?.find((v: Version) => v.version.startsWith(currentMajorVersion)) ?? {
-        title: '',
-        version: '',
-        description: '',
-        url: '',
-        dependencies: {},
-        peerDependencies: {},
-      }
-    );
-  });
+  return getVersions().then(
+    versions => versions?.find((v: Version) => v.version.startsWith(currentMajorVersion)) ?? null,
+  );
 }
 
 /**
@@ -153,7 +145,9 @@ export function getCurrentVersion(): Promise<Version> {
  * @returns Promise that resolves to the dist-tag of the current version
  */
 export function getCurrentDistTag(): Promise<string> {
-  return getCurrentVersion().then(currentVersion => getDistTag(currentVersion));
+  return getCurrentVersion().then(currentVersion =>
+    currentVersion ? getDistTag(currentVersion) : 'latest',
+  );
 }
 
 /**
@@ -164,9 +158,9 @@ export function getCurrentDistTag(): Promise<string> {
  */
 export function getDistTag(version: Version): Promise<string> {
   return getVersions().then(versions => {
-    const currentPreFlag = NEXT_FLAG_REGEX.exec(version.version ?? '')?.[1]?.toLowerCase();
+    const nextFlag = NEXT_FLAG_REGEX.exec(version.version ?? '')?.[1]?.toLowerCase();
 
-    if (currentPreFlag) return currentPreFlag;
+    if (nextFlag) return nextFlag;
 
     // A stable release is `latest` only when no other stable release has a higher
     // version. Deriving this from semver keeps the tag independent of the entry
