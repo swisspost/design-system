@@ -167,9 +167,9 @@ export const PackageShields: React.FC<PackageShieldsProps> = ({ packageName }) =
         {isCurrent && (
           <div className="text-end mt-8">
             <button
-              command="show-modal"
-              commandfor="PackageShieldsDialog"
+              type="button"
               className="btn btn-link fs-9"
+              onClick={() => dialogRef.current?.showModal()}
             >
               Show Package History <post-icon name="history" />
             </button>
