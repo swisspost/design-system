@@ -28,8 +28,6 @@ const meta: MetaComponent = {
     socialmedia: true,
     app: true,
     businesssectors: true,
-    meta: true,
-    copyright: true,
   },
   argTypes: {
     prefooter: {
@@ -79,26 +77,6 @@ const meta: MetaComponent = {
     businesssectors: {
       name: 'Business Sectors',
       description: 'Whether the footer contains business sectors links or not.',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'General',
-      },
-    },
-    meta: {
-      name: 'Meta Links',
-      description: 'Whether the footer contains meta links or not.',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'General',
-      },
-    },
-    copyright: {
-      name: 'Copyright',
-      description: 'Whether the footer contains copyright text or not.',
       control: {
         type: 'boolean',
       },
@@ -266,49 +244,38 @@ function render(args: Args) {
           </div>
         `
       : nothing}
-    ${args.copyright
-      ? html`
-          <!-- copyright -->
-          <span slot="copyright">© Copyright 2024 by Swiss Post Ltd. All rights reserved.</span>
-        `
-      : nothing}
-    ${args.meta
-      ? html`
-          <!-- meta links -->
-          <div slot="meta">
-            <ul aria-label="Meta">
-              <li>
-                <a href="https://www.post.ch/en/pages/footer/accessibility-at-swiss-post"
-                  >Accessibility</a
-                >
-              </li>
-              <li>
-                <a href="https://www.post.ch/en/pages/footer/general-terms-and-conditions-gtc"
-                  >General Terms and Conditions</a
-                >
-              </li>
-              <li>
-                <a href="https://www.post.ch/en/pages/footer/data-protection-and-disclaimer"
-                  >Data protection and disclaimer</a
-                >
-              </li>
-              <li>
-                <a href="https://www.post.ch/en/pages/footer/publication-details"
-                  >Publication details</a
-                >
-              </li>
-              <li>
-                <button
-                  class="btn btn-link"
-                  style="min-height: 0; border: 0 none; font-weight: inherit;"
-                >
-                  Cookie Settings
-                </button>
-              </li>
-            </ul>
-          </div>
-        `
-      : nothing}
+
+    <!-- copyright -->
+    <span slot="copyright">© Copyright 2024 by Swiss Post Ltd. All rights reserved.</span>
+
+    <!-- meta links -->
+    <div slot="meta">
+      <ul aria-label="Meta">
+        <li>
+          <a href="https://www.post.ch/en/pages/footer/accessibility-at-swiss-post"
+            >Accessibility</a
+          >
+        </li>
+        <li>
+          <a href="https://www.post.ch/en/pages/footer/general-terms-and-conditions-gtc"
+            >General Terms and Conditions</a
+          >
+        </li>
+        <li>
+          <a href="https://www.post.ch/en/pages/footer/data-protection-and-disclaimer"
+            >Data protection and disclaimer</a
+          >
+        </li>
+        <li>
+          <a href="https://www.post.ch/en/pages/footer/publication-details">Publication details</a>
+        </li>
+        <li>
+          <button class="btn btn-link" style="min-height: 0; border: 0 none; font-weight: inherit;">
+            Cookie Settings
+          </button>
+        </li>
+      </ul>
+    </div>
   </post-footer>`;
 }
 

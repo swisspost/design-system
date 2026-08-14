@@ -20,8 +20,6 @@ export const Footer: Story = {
       () => html`
         ${bombArgs({
           prefooter: [true, false],
-          meta: [true, false],
-          copyright: [true, false],
           businesssectors: [true, false],
           socialmedia: [true, false],
           app: [true, false],
