@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import type { Versions, Version } from '@root/.storybook/helpers/get-versions-json';
 import {
   getVersions,
@@ -19,6 +19,20 @@ export const PackageShields: React.FC<PackageShieldsProps> = ({ packageName }) =
   const [loading, setLoading] = useState<boolean>(true);
   const [versions, setVersions] = useState<VersionsWithDistTag>([]);
   const [currentVersion, setCurrentVersion] = useState<VersionWithDistTag | null>(null);
+  const [dialogOpen, setDialogOpen] = useState<boolean>(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    const handleToggle = (event: Event) => {
+      setDialogOpen((event as Event & { newState?: string }).newState === 'open');
+    };
+
+    dialog.addEventListener('toggle', handleToggle);
+    return () => dialog.removeEventListener('toggle', handleToggle);
+  }, []);
 
   useEffect(() => {
     setLoading(true);
@@ -172,6 +186,7 @@ export const PackageShields: React.FC<PackageShieldsProps> = ({ packageName }) =
       <hr className="mb-32" />
       {/* only render versions which contain a packageVersion of given packageName */}
       <dialog
+        ref={dialogRef}
         id="PackageShieldsDialog"
         className="post-dialog"
         closedby="any"
@@ -187,7 +202,8 @@ export const PackageShields: React.FC<PackageShieldsProps> = ({ packageName }) =
             Package History
           </h3>
           <div className="dialog-body">
-            {versions.filter(v => getVersionPackage(v)).map((v, i) => renderVersion(v, i === 0))}
+            {dialogOpen &&
+              versions.filter(v => getVersionPackage(v)).map((v, i) => renderVersion(v, i === 0))}
           </div>
           <post-closebutton button-type="button">Close</post-closebutton>
         </div>
