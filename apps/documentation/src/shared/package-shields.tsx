@@ -146,7 +146,7 @@ export const PackageShields: React.FC<PackageShieldsProps> = ({ packageName }) =
 
     return (
       <React.Fragment key={version?.title || ''}>
-        <div className={`d-sm-flex position-relative${renderTitle ? '' : ' mt-8 pt-8 border-top'}`}>
+        <div className={`d-sm-flex gap-24${renderTitle ? '' : ' mt-8 pt-8 border-top'}`}>
           {renderVersionShields(version, renderTitle)}
           {renderVersionPeerShields(version, renderTitle)}
         </div>
