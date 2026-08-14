@@ -1,10 +1,15 @@
-import { DEPENDENCIES, getVersion } from '../../src/utils/version';
+import { DEPENDENCIES, getVersion, compareVersions } from '../../src/utils/version';
 const currentMajorVersion =
   getVersion(DEPENDENCIES['@swisspost/design-system-styles'], 'major') ?? '';
 
 const LOCAL_VERSIONS_URL = '/assets/versions.json';
 const REMOTE_VERSIONS_URL = 'https://design-system.post.ch/assets/versions.json';
-const PRE_FLAG_REGEX = /-(alpha|beta|rc|pre|next|canary|snapshot)/i;
+
+const NEXT_FLAG_REGEX = /-(next)/i;
+const NEXT_VERSION_URLS = [
+  'next.design-system.post.ch',
+  'swisspost-design-system-next.netlify.app',
+];
 
 export interface Version {
   title: string;
@@ -96,13 +101,37 @@ function loadVersionsJson(): Promise<Versions> {
 }
 
 /**
- * Get cached versions data as a Promise
- * @returns Promise that resolves to the cached versions data
+ * The "next" documentation site is the only place pre-release versions may be listed.
+ * Matches the canonical host and any Netlify deploy/branch preview of the next site.
  */
-export function getVersions(): Promise<Versions> {
-  return loadVersionsJson();
+function isNextDocs(): boolean {
+  if (globalThis.window === undefined) return false;
+  return NEXT_VERSION_URLS.some(url => globalThis.window.location.hostname.endsWith(url));
 }
 
+/**
+ * Get cached versions data as a Promise, always sorted newest to oldest.
+ * Sorting happens on read so the result is stable regardless of the file order
+ * or of a shared cache populated by another Storybook realm. Pre-release versions
+ * are excluded unless the docs are served from the "next" site.
+ * @returns Promise that resolves to the sorted versions data
+ */
+export function getVersions(): Promise<Versions> {
+  const includePrereleases = isNextDocs();
+
+  return loadVersionsJson().then(versions =>
+    [...versions]
+
+      .filter(version => includePrereleases || !NEXT_FLAG_REGEX.test(version.version))
+      .sort((a, b) => compareVersions(b.version, a.version)),
+  );
+}
+
+/**
+ * Resolve the version entry that matches the current major version of the
+ * bundled styles package, falling back to an empty entry when none is found.
+ * @returns Promise that resolves to the current version entry
+ */
 export function getCurrentVersion(): Promise<Version> {
   // use pkg.dependencies['@swisspost/design-system-styles'] to find the current version in the versionsCache
   return getVersions().then(versions => {
@@ -119,21 +148,35 @@ export function getCurrentVersion(): Promise<Version> {
   });
 }
 
+/**
+ * Get the npm dist-tag for the current version.
+ * @returns Promise that resolves to the dist-tag of the current version
+ */
 export function getCurrentDistTag(): Promise<string> {
   return getCurrentVersion().then(currentVersion => getDistTag(currentVersion));
 }
 
+/**
+ * Determine the npm dist-tag for a version: the pre-release flag for pre-releases,
+ * `latest` for the newest stable release, or `version-<major>` for older stable releases.
+ * @param version - The version entry to resolve the dist-tag for
+ * @returns Promise that resolves to the dist-tag
+ */
 export function getDistTag(version: Version): Promise<string> {
   return getVersions().then(versions => {
-    const currentPreFlag = PRE_FLAG_REGEX.exec(version.version ?? '')?.[1]?.toLowerCase();
+    const currentPreFlag = NEXT_FLAG_REGEX.exec(version.version ?? '')?.[1]?.toLowerCase();
 
     if (currentPreFlag) return currentPreFlag;
 
-    const currentIndex = versions?.indexOf(version) ?? -1;
-    const previousVersion = versions?.[currentIndex - 1];
-    const previousHasPreFlag = previousVersion && PRE_FLAG_REGEX.test(previousVersion.version);
+    // A stable release is `latest` only when no other stable release has a higher
+    // version. Deriving this from semver keeps the tag independent of the entry
+    // order in versions.json (reordering entries no longer breaks the badges).
+    const hasNewerStableVersion = (versions ?? []).some(
+      other =>
+        !NEXT_FLAG_REGEX.test(other.version) && compareVersions(other.version, version.version) > 0,
+    );
 
-    if (currentIndex !== 0 && !previousHasPreFlag) {
+    if (hasNewerStableVersion) {
       const major = version.version.split('.')[0];
       return `version-${major}`;
     }
