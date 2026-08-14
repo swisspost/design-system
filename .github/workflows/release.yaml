@@ -405,10 +405,15 @@ jobs:
 
             // Enumerate the workspace package names that exist on a release/v* branch.
             const packageNames = worktree => {
-              const monorepo = JSON.parse(
-                execSync('pnpm m ls --depth=0 --json', { cwd: worktree, encoding: 'utf8' }),
-              )
-              return monorepo.map(pkg => pkg.name).filter(Boolean)
+              try {
+                const monorepo = JSON.parse(
+                  execSync('pnpm m ls --depth=0 --json', { cwd: worktree, encoding: 'utf8' }),
+                )
+                return monorepo.map(pkg => pkg.name).filter(Boolean)
+              } catch {
+                core.info(`Skipping package enumeration: "pnpm m ls" failed in ${worktree}.`)
+                return []
+              }
             }
 
             const updated = []
