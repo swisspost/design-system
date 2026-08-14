@@ -13,9 +13,3 @@ div[role='listbox'] {
   display: flex;
   flex-direction: column;
 }
-
-::slotted([slot='blank-slate']) {
-  display: block;
-  padding: 0.75rem;
-  color: post.$gray-60;
-}

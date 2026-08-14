@@ -1,5 +1,45 @@
 # @swisspost/design-system-components
 
+## 10.2.0
+
+### Patch Changes
+
+- Aligned the style of the `post-tabs` content tab variant's scroll buttons to Figma design. (by [@leagrdv](https://github.com/leagrdv) with [#8209](https://github.com/swisspost/design-system/pull/8209))
+
+- Cleaned up layout gap caused by empty sections in the `<post-footer>` component when their slots have no content. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8206](https://github.com/swisspost/design-system/pull/8206))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.2.0
+  - @swisspost/design-system-styles@10.2.0
+
+## 10.1.0
+
+### Patch Changes
+
+- Increased gap between the `post-popover` and the edge of the screen to allow for its close button to be fully visible. (by [@leagrdv](https://github.com/leagrdv) and [@alionazherdetska](https://github.com/alionazherdetska) with [#7877](https://github.com/swisspost/design-system/pull/7877))
+
+- Fixed an issue where the `post-side-navigation-trigger` state became out of sync when resizing between tablet and desktop breakpoints. (by [@leagrdv](https://github.com/leagrdv) and [@alizedebray](https://github.com/alizedebray) with [#8075](https://github.com/swisspost/design-system/pull/8075))
+
+- Updated the `post-date-picker` component to hide years outside the currently visible decade. (by [@alizedebray](https://github.com/alizedebray) with [#8128](https://github.com/swisspost/design-system/pull/8128))
+
+- Fixed selected step not appearing bold when `selected-index` is not set for `post-stepper` component. (by [@alionazherdetska](https://github.com/alionazherdetska) and [@alizedebray](https://github.com/alizedebray) with [#7839](https://github.com/swisspost/design-system/pull/7839))
+
+- Updated the `post-linkarea` component to correctly delegate clicks from mouse buttons other than left-click, making it possible to middle-click links to open them in a new tab. (by [@alizedebray](https://github.com/alizedebray) with [#8109](https://github.com/swisspost/design-system/pull/8109))
+
+- Fixed icon misalignment when the current step is the last step for `post-stepper` component. (by [@alionazherdetska](https://github.com/alionazherdetska) and [@alizedebray](https://github.com/alizedebray) with [#7839](https://github.com/swisspost/design-system/pull/7839))
+
+- Fixed a server-side rendering crash (`HTMLInputElement is not defined`) that occurred when importing the components (for example through the `@swisspost/design-system-components-react` barrels) in a Node/SSR environment such as Next.js pre-rendering. The `post-date-picker` mask helper now resolves the native `HTMLInputElement` value descriptor lazily (only on runtime) instead of at module evaluation time. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#8187](https://github.com/swisspost/design-system/pull/8187))
+
+- Fixed accessibility violations in the `<post-date-picker>` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8111](https://github.com/swisspost/design-system/pull/8111))
+
+- Fixed the available-width calculation in `post-pagination` to display as many pages as the available space allows. (by [@leagrdv](https://github.com/leagrdv) with [#8118](https://github.com/swisspost/design-system/pull/8118))
+
+- Added a slide in animation on the mobile and tablet versions of the `post-side-navigation`. (by [@leagrdv](https://github.com/leagrdv) with [#8076](https://github.com/swisspost/design-system/pull/8076))
+
+- Fixed the position of the scroll buttons in the `post-tabs` component. (by [@myrta2302](https://github.com/myrta2302) and [@alizedebray](https://github.com/alizedebray) with [#8135](https://github.com/swisspost/design-system/pull/8135))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.1.0
+  - @swisspost/design-system-styles@10.1.0
+
 ## 10.0.1
 
 ### Patch Changes
