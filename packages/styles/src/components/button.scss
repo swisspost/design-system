@@ -36,7 +36,8 @@ tokens.$default-map: components.$post-button;
 
     @include utilities.high-contrast-mode() {
       @if ($variant == 'link') {
-        &:disabled, &.disabled {
+        &:disabled,
+        &.disabled {
           text-decoration: none;
         }
       } @else {
