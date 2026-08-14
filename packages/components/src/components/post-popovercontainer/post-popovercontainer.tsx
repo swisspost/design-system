@@ -20,6 +20,7 @@ import {
   autoUpdate,
   computePosition,
   flip,
+  hide,
   inline,
   limitShift,
   offset,
@@ -192,7 +193,7 @@ export class PostPopovercontainer {
     if (this.toggleTimeoutId || !target) return;
 
     this.eventTarget = target;
-    this.calculatePosition();
+    this.updatePosition();
     this.host.showPopover();
   }
 
@@ -224,7 +225,7 @@ export class PostPopovercontainer {
 
     // Prevent instant double toggle
     if (!this.toggleTimeoutId) {
-      this.calculatePosition();
+      this.updatePosition();
 
       this.host.togglePopover(force);
       this.toggleTimeoutId = null;
@@ -355,11 +356,7 @@ export class PostPopovercontainer {
    */
   private startAutoupdates() {
     if (!this.eventTarget || !this.host) return;
-    this.clearAutoUpdate = autoUpdate(
-      this.eventTarget,
-      this.host,
-      this.calculatePosition.bind(this),
-    );
+    this.clearAutoUpdate = autoUpdate(this.eventTarget, this.host, this.updatePosition.bind(this));
   }
 
   /**
@@ -370,10 +367,18 @@ export class PostPopovercontainer {
     return header ? Number.parseFloat(getComputedStyle(header).height) : 0;
   }
 
-  private async calculatePosition() {
-    const { x, y, middlewareData, placement } = await this.computeMainPosition();
+  private async updatePosition() {
+    const { x, y, middlewareData, placement } = await this.calculatePosition();
+
+    // Hide popover if the target is out of bounds
+    if (middlewareData.hide?.referenceHidden) {
+      this.host.hidePopover();
+      this.close();
+    }
+
     const currentPlacement = placement.split('-')[0];
     this.dynamicPlacement = currentPlacement;
+
     // Position popover
     this.host.style.left = `${x}px`;
     this.host.style.top = `${y}px`;
@@ -403,12 +408,13 @@ export class PostPopovercontainer {
     }
   }
 
-  private async computeMainPosition() {
+  private async calculatePosition() {
     const gap = this.edgeGap;
     const isAligned = (this.placement || 'top').includes('-');
+    const headerHeight = this.getHeaderHeight();
 
     const flipMiddleware = flip({
-      padding: this.getHeaderHeight(),
+      padding: headerHeight,
       crossAxis: false,
     });
 
@@ -430,6 +436,13 @@ export class PostPopovercontainer {
           Object.assign(elements.floating.style, {
             maxWidth: `${availableWidth - gap * 2}px`,
           });
+        },
+      }),
+      // Per floating-ui docs: hide should generally be placed at the end.
+      hide({
+        strategy: 'referenceHidden',
+        padding: {
+          top: headerHeight,
         },
       }),
     ];
