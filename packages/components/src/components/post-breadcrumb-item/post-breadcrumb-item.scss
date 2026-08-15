@@ -1,6 +1,7 @@
 @use '@swisspost/design-system-styles/elements/anchor';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/mixins/utilities';
 @use './mixins';
 
 tokens.$default-map: components.$post-breadcrumb;
@@ -11,8 +12,7 @@ tokens.$default-map: components.$post-breadcrumb;
 
 :is(a, span) {
   white-space: var(--post-breadcrumb-item-wrap, normal) !important;
-  word-break: break-word;
-  hyphens: auto;
+  @include utilities.word-break;
 }
 
 :host([selected]:not([selected='false'])) {
