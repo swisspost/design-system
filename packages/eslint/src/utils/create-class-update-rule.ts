@@ -6,7 +6,7 @@ import { generateReplacedClassMessages } from './generate-messages';
 import { getDynamicClassType, getNewAttrValue } from './class-binding-helpers';
 import { removeEmptyAttrs } from './empty-attrs-remover';
 
-type RuleType = Rule.RuleMetaData['type'];
+type RuleType = NonNullable<Rule.RuleMetaData['type']>;
 
 export interface RuleConfigBase {
   name: string;
