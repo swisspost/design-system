@@ -4,10 +4,8 @@ import { HEADER } from './shared/variables';
 const language = 'de';
 
 describe('Language switch alternate link overrides', () => {
-  // The component renders each item's own hreflang (e.g. "de-ch", not just
-  // "de") and matches document <link rel="alternate"> tags against that
-  // exact value. We capture the real per-language hreflang from the DOM
-  // once per test, then use it whenever we build alternate links below.
+  // Component renders each item's real hreflang (e.g. "de-ch"), captured
+  // once per test so alternate links below match it exactly.
   let hreflangByLang: Record<string, string> = {};
 
   const captureHreflangs = () => {
@@ -22,12 +20,8 @@ describe('Language switch alternate link overrides', () => {
     });
   };
 
-  // Adds an alternate link, replacing any existing link with the same hreflang
-  // so that a later `addAlternateLink` call always overrides cleanly (instead
-  // of creating a duplicate alongside the default links added in beforeEach).
-  // `lang` may be a short code we know about ('de', 'fr', 'it', 'en'), which
-  // gets translated to the real hreflang the component renders; anything not
-  // in the map (e.g. 'ja', 'x-custom') is used as-is.
+  // Removes any existing link with the same hreflang first, then adds the
+  // new one, so a language's alternate link is always overridden cleanly.
   const addAlternateLink = (doc: Document, lang: string, href: string) => {
     const hreflang = hreflangByLang[lang] ?? lang;
 
@@ -43,8 +37,7 @@ describe('Language switch alternate link overrides', () => {
     return link;
   };
 
-  // Baseline alternate links present on the page by default, mirroring what a
-  // real host page would render for every supported language.
+  // Baseline links mirroring what a real host page renders by default.
   const addDefaultAlternateLinks = (doc: Document) => {
     Object.keys(hreflangByLang).forEach(lang => {
       addAlternateLink(doc, lang, `/?lang=${lang}`);
@@ -53,13 +46,6 @@ describe('Language switch alternate link overrides', () => {
 
   const removeAlternateLinks = (doc: Document) => {
     doc.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el => el.remove());
-  };
-
-  const getLanguageItemHref = (code: string) => {
-    return cy
-      .get(`post-language-menu-item[code^="${code}"]`)
-      .find('a[hreflang]')
-      .invoke('attr', 'href');
   };
 
   beforeEach(() => {
@@ -90,7 +76,10 @@ describe('Language switch alternate link overrides', () => {
       addAlternateLink(doc, 'de', 'https://example.com/de/page');
     });
 
-    getLanguageItemHref('de').should('eq', 'https://example.com/de/page');
+    cy.get('post-language-menu-item[code^="de"]')
+      .find('a[hreflang]')
+      .invoke('attr', 'href')
+      .should('eq', 'https://example.com/de/page');
   });
 
   it('should override multiple language URLs at once', () => {
@@ -99,8 +88,14 @@ describe('Language switch alternate link overrides', () => {
       addAlternateLink(doc, 'fr', 'https://example.com/fr/page');
     });
 
-    getLanguageItemHref('de').should('eq', 'https://example.com/de/page');
-    getLanguageItemHref('fr').should('eq', 'https://example.com/fr/page');
+    cy.get('post-language-menu-item[code^="de"]')
+      .find('a[hreflang]')
+      .invoke('attr', 'href')
+      .should('eq', 'https://example.com/de/page');
+    cy.get('post-language-menu-item[code^="fr"]')
+      .find('a[hreflang]')
+      .invoke('attr', 'href')
+      .should('eq', 'https://example.com/fr/page');
   });
 
   it('should only override languages that have an alternate link', () => {
@@ -112,8 +107,14 @@ describe('Language switch alternate link overrides', () => {
           addAlternateLink(doc, 'de', 'https://example.com/de/override');
         });
 
-        getLanguageItemHref('de').should('eq', 'https://example.com/de/override');
-        getLanguageItemHref('fr').should('eq', originalFrHref);
+        cy.get('post-language-menu-item[code^="de"]')
+          .find('a[hreflang]')
+          .invoke('attr', 'href')
+          .should('eq', 'https://example.com/de/override');
+        cy.get('post-language-menu-item[code^="fr"]')
+          .find('a[hreflang]')
+          .invoke('attr', 'href')
+          .should('eq', originalFrHref);
       });
   });
 
@@ -130,13 +131,19 @@ describe('Language switch alternate link overrides', () => {
           tempLink = addAlternateLink(doc, 'de', 'https://example.com/de/temp');
         });
 
-        getLanguageItemHref('de').should('eq', 'https://example.com/de/temp');
+        cy.get('post-language-menu-item[code^="de"]')
+          .find('a[hreflang]')
+          .invoke('attr', 'href')
+          .should('eq', 'https://example.com/de/temp');
 
         cy.then(() => {
           tempLink.remove();
         });
 
-        getLanguageItemHref('de').should('eq', originalDeHref);
+        cy.get('post-language-menu-item[code^="de"]')
+          .find('a[hreflang]')
+          .invoke('attr', 'href')
+          .should('eq', originalDeHref);
       });
   });
 
@@ -147,13 +154,19 @@ describe('Language switch alternate link overrides', () => {
       link = addAlternateLink(doc, 'de', 'https://example.com/de/first');
     });
 
-    getLanguageItemHref('de').should('eq', 'https://example.com/de/first');
+    cy.get('post-language-menu-item[code^="de"]')
+      .find('a[hreflang]')
+      .invoke('attr', 'href')
+      .should('eq', 'https://example.com/de/first');
 
     cy.then(() => {
       link.href = 'https://example.com/de/second';
     });
 
-    getLanguageItemHref('de').should('eq', 'https://example.com/de/second');
+    cy.get('post-language-menu-item[code^="de"]')
+      .find('a[hreflang]')
+      .invoke('attr', 'href')
+      .should('eq', 'https://example.com/de/second');
   });
 
   it('should ignore alternate links with unsupported hreflang values', () => {
@@ -169,7 +182,10 @@ describe('Language switch alternate link overrides', () => {
         });
 
         // existing items keep their current URLs
-        getLanguageItemHref('de').should('eq', originalDeHref);
+        cy.get('post-language-menu-item[code^="de"]')
+          .find('a[hreflang]')
+          .invoke('attr', 'href')
+          .should('eq', originalDeHref);
       });
   });
 
@@ -184,7 +200,10 @@ describe('Language switch alternate link overrides', () => {
           addAlternateLink(doc, 'de', '');
         });
 
-        getLanguageItemHref('de').should('eq', originalDeHref);
+        cy.get('post-language-menu-item[code^="de"]')
+          .find('a[hreflang]')
+          .invoke('attr', 'href')
+          .should('eq', originalDeHref);
       });
   });
 
@@ -193,14 +212,16 @@ describe('Language switch alternate link overrides', () => {
       addAlternateLink(doc, 'de', '/de/relative-page');
     });
 
-    getLanguageItemHref('de').should('match', /\/de\/relative-page$/);
+    cy.get('post-language-menu-item[code^="de"]')
+      .find('a[hreflang]')
+      .invoke('attr', 'href')
+      .should('match', /\/de\/relative-page$/);
   });
 
   it('should use the first alternate link when duplicates exist for the same hreflang', () => {
     cy.document().then(doc => {
       addAlternateLink(doc, 'de', 'https://example.com/de/first');
-      // Append a genuine duplicate directly, bypassing the dedup in
-      // addAlternateLink, to actually exercise the "first wins" behavior.
+      // Append a real duplicate directly, bypassing addAlternateLink's dedup.
       const link = doc.createElement('link');
       link.rel = 'alternate';
       link.hreflang = hreflangByLang['de'];
@@ -208,7 +229,10 @@ describe('Language switch alternate link overrides', () => {
       doc.head.appendChild(link);
     });
 
-    getLanguageItemHref('de').should('eq', 'https://example.com/de/first');
+    cy.get('post-language-menu-item[code^="de"]')
+      .find('a[hreflang]')
+      .invoke('attr', 'href')
+      .should('eq', 'https://example.com/de/first');
   });
 
   it('should handle all four supported languages', () => {
@@ -226,7 +250,10 @@ describe('Language switch alternate link overrides', () => {
     });
 
     for (const [lang, url] of Object.entries(overrides)) {
-      getLanguageItemHref(lang).should('eq', url);
+      cy.get(`post-language-menu-item[code^="${lang}"]`)
+        .find('a[hreflang]')
+        .invoke('attr', 'href')
+        .should('eq', url);
     }
   });
 });
