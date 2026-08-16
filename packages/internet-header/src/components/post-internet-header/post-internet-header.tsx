@@ -121,11 +121,12 @@ export class PostInternetHeader {
   }
 
   async componentWillLoad() {
+    this.initAlternateLinks();
     await Promise.all([this.fetchHeaderConfig(), this.fetchUserData()]);
   }
 
   componentDidLoad() {
-    this.initAlternateLinksObserver();
+    this.observeAlternateLinks();
 
     window.requestAnimationFrame(() => {
       this.headerLoaded.emit();
@@ -189,10 +190,12 @@ export class PostInternetHeader {
     this.updateActiveUrl();
   }
 
-  private initAlternateLinksObserver() {
+  private initAlternateLinks() {
     const links = getAlternateLinks();
     state.alternateLinks = links.size > 0 ? links : null;
+  }
 
+  private observeAlternateLinks() {
     // Watch for dynamic changes (SPA route changes, late inserts)
     this.disconnectAlternateLinksObserver = observeAlternateLinks(updated => {
       state.alternateLinks = updated.size > 0 ? updated : null;
