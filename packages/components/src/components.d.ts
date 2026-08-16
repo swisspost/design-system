@@ -668,6 +668,9 @@ export namespace Components {
         "toggle": () => Promise<void>;
     }
     interface PostSideNavigationTrigger {
+        /**
+          * ID of the side navigation element that this trigger is linked to. Used to open and close the specified side navigation.
+         */
         "for": string;
         /**
           * Manually update the trigger's ARIA attributes.
@@ -1923,6 +1926,9 @@ declare namespace LocalJSX {
         "textClose": string;
     }
     interface PostSideNavigationTrigger {
+        /**
+          * ID of the side navigation element that this trigger is linked to. Used to open and close the specified side navigation.
+         */
         "for": string;
     }
     interface PostStepper {
