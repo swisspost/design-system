@@ -5,7 +5,6 @@ const VIEWPORTS: Record<string, Cypress.ViewportPreset> = {
   tablet: 'ipad-2',
   mobile: 'iphone-6',
 };
-const POPOVER_OPEN_SELECTOR = ':where(:popover-open, .popover-open)';
 
 describe('header', () => {
   function getContentTop() {
@@ -562,10 +561,8 @@ describe('header', () => {
         cy.get('@langTrigger').click({ scrollBehavior: false });
 
         cy.get('@header')
-          .find('post-language-menu')
-          .shadow()
-          .find('post-popovercontainer')
-          .should('match', POPOVER_OPEN_SELECTOR);
+          .find('post-language-menu-item')
+          .should('be.visible');
       }
 
       it('should open a megadropdown on click even if the language menu was left open while scrolled, without affecting scroll position', () => {
