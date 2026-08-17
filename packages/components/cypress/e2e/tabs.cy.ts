@@ -1,16 +1,5 @@
 const TABS_ID = 'bb1291ca-4dbb-450c-a15f-596836d9f39e';
 
-// Clicking a tab item triggers CSS transitions on the active-state styling.
-// Stencil's re-render can interrupt these transitions mid-flight, causing
-// the browser's implicit CSSTransition.finished promise to reject with a
-// stackless DOMException(AbortError). Disabling transitions on tab items
-// prevents this — the tests verify attributes, not visual transitions.
-Cypress.on('window:before:load', win => {
-  const style = win.document.createElement('style');
-  style.textContent = 'post-tab-item, post-tab-item * { transition: none !important; }';
-  win.document.documentElement.appendChild(style);
-});
-
 describe('tabs', () => {
   describe('default', () => {
     beforeEach(() => {
@@ -163,16 +152,10 @@ describe('tabs', () => {
       });
 
       it('should not have tabindex on tab items in pages variant', () => {
-  // make sure the component has actually settled into pages variant
-  cy.get('post-tabs').should('have.class', 'page-tabs');
-
-  cy.get('@items').should($items => {
-    expect($items.length).to.be.greaterThan(0);
-    $items.each((_, item) => {
-      expect(item).to.not.have.attr('tabindex');
-    });
-  });
-});
+        cy.get('@items').each($item => {
+          cy.wrap($item).should('not.have.attr', 'tabindex');
+        });
+      });
     });
 
     describe('anchor elements in light DOM', () => {

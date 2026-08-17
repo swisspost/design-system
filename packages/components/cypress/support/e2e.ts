@@ -19,37 +19,13 @@ import 'cypress-storybook/cypress';
 import './commands';
 import 'cypress-axe';
 
-// Clicking a tab item triggers CSS transitions on the active-state styling.
-// Stencil's re-render can interrupt these transitions mid-flight, causing
-// the browser's implicit CSSTransition.finished promise to reject with a
-// stackless DOMException(AbortError). Disabling transitions on tab items
-// prevents this — the tests verify attributes, not visual transitions.
-Cypress.on('window:before:load', win => {
-  const style = win.document.createElement('style');
-  style.textContent = 'post-tab-item, post-tab-item * { transition: none !important; }';
-  win.document.documentElement.appendChild(style);
-});
-
 // https://docs.cypress.io/api/events/catalog-of-events#Uncaught-Exceptions
-Cypress.on('uncaught:exception', (err, runnable) => {
-  // Log the full stack trace so intermittent CI-only failures (e.g. the
-  // AbortError from unhandled promise rejections) are actually diagnosable
-  // from CI output, instead of just the generic top-level error message.
-  // eslint-disable-next-line no-console
-  console.error(
-    `\n🔴 Uncaught in "${runnable?.title}": ${err.name}: ${err.message}\nStack:\n${err.stack}\n`,
-  );
-  err.message = `${err.message}\n\nFULL STACK:\n${err.stack}`;
-
+Cypress.on('uncaught:exception', err => {
   // From time to time (mostly random) the 'klp-login-widget' throws an uncaught 'TypeError: Cannot read properties of null (reading 'shadowRoot')' exception
   // Returning false here prevents Cypress from failing the test
   if (err.name.includes('TypeError')) {
     return false;
   }
-
-  // For everything else (including AbortError), keep default fail-the-test
-  // behavior, but now with the stack trace embedded above.
-  return true;
 });
 
 // cypress is inserting scripts into the html file to execute its tests, but the script is blocked by the csp, so we remove the csp for the tests.
