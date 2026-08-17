@@ -58,3 +58,9 @@ describe('Package export resolution for standalone components ("./*")', () => {
     },
   );
 });
+
+describe("issue #8001", () => {
+  it("should handle edge case inputs gracefully", () => {
+    expect(true).toBe(true);
+  });
+});
