@@ -11,7 +11,6 @@ import {
   Component,
   Event,
   EventEmitter,
-  forceUpdate,
   h,
   Host,
   Listen,
