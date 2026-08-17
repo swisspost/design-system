@@ -39,18 +39,15 @@ describe('tabs', () => {
     });
 
     it('should show the panel associated with a clicked tab item and hide the panel that was previously shown', () => {
-      cy.get('@items').last().click();
-
-      // wait for the fade out animation to complete
-      cy.wait(200);
-
-      cy.get('post-tab-panel:visible').as('panel');
-      cy.get('@panel').should('have.length', 1);
       cy.get('@items')
         .last()
+        .click()
         .invoke('attr', 'name')
         .then(tabName => {
-          cy.get('@panel').invoke('attr', 'for').should('equal', tabName);
+          // retries until the fade-out finishes, no fixed wait needed
+          cy.get('post-tab-panel:visible')
+            .should('have.length', 1)
+            .and('have.attr', 'for', tabName);
         });
     });
   });
@@ -225,15 +222,19 @@ describe('Accessibility', () => {
   it('Has no detectable a11y violations on load (content-tabs)', () => {
     cy.getComponent('tabs', TABS_ID, 'default');
     cy.get('@tabs').should('exist');
-    cy.checkA11y({ include: [['post-tabs']], exclude: [['post-tab-panel']] }, undefined, (violations) => {
-      expect(violations).to.have.length(0);
-    }); // panel is excluded as it is unstyled on purpose
+    cy.checkA11y(
+      { include: [['post-tabs']], exclude: [['post-tab-panel']] },
+      undefined,
+      violations => {
+        expect(violations).to.have.length(0);
+      },
+    ); // panel is excluded as it is unstyled on purpose
   });
 
   it('Has no detectable a11y violations on load (page-tabs)', () => {
     cy.getComponent('tabs', TABS_ID, 'pages-variant');
     cy.get('@tabs').should('exist');
-    cy.checkA11y('post-tabs', undefined, (violations) => {
+    cy.checkA11y('post-tabs', undefined, violations => {
       expect(violations).to.have.length(0);
     });
   });
