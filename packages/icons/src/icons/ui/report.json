@@ -30200,6 +30200,402 @@
       "modifiedAt": "2025-11-12T06:38:00.000Z"
     },
     {
+      "uuid": "26e19ea0-8cac-11f1-81f8-0050568d2654",
+      "id": 10839863,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839863/storage/MDEwODM5ODYzLzAvbWFzdGVyLy8vMTAzNDY3MzI0",
+        "keywords": [
+          "Access blocked",
+          "Zugang blockiert",
+          "Accès bloqué",
+          "Accesso bloccato",
+          "Blocked",
+          "Blockiert",
+          "Bloqué",
+          "Bloccato",
+          "Geblockt"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blocked_Shape_16.svg",
+        "basename": "Blocked_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:50:43.000Z",
+      "modifiedAt": "2026-08-10T10:50:20.000Z"
+    },
+    {
+      "uuid": "25d16720-8cac-11f1-81f8-0050568d2654",
+      "id": 10839862,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839862/storage/MDEwODM5ODYyLzAvbWFzdGVyLy8vMTAzNDY3MzEw",
+        "keywords": [
+          "Access blocked",
+          "Zugang blockiert",
+          "Accès bloqué",
+          "Accesso bloccato",
+          "Blocked",
+          "Blockiert",
+          "Bloqué",
+          "Bloccato",
+          "Geblockt"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blocked_Shape_24.svg",
+        "basename": "Blocked_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:50:42.000Z",
+      "modifiedAt": "2026-08-10T10:50:07.000Z"
+    },
+    {
+      "uuid": "25cef620-8cac-11f1-81f8-0050568d2654",
+      "id": 10839861,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839861/storage/MDEwODM5ODYxLzAvbWFzdGVyLy8vMTAzNDY3Mjk2",
+        "keywords": [
+          "Access blocked",
+          "Zugang blockiert",
+          "Accès bloqué",
+          "Accesso bloccato",
+          "Blocked",
+          "Blockiert",
+          "Bloqué",
+          "Bloccato",
+          "Geblockt"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blocked_Shape_32.svg",
+        "basename": "Blocked_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:50:42.000Z",
+      "modifiedAt": "2026-08-10T10:49:47.000Z"
+    },
+    {
+      "uuid": "24fbc7a0-8cac-11f1-81f8-0050568d2654",
+      "id": 10839860,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839860/storage/MDEwODM5ODYwLzAvbWFzdGVyLy8vMTAzNDY3Mjgy",
+        "keywords": [
+          "Access blocked",
+          "Zugang blockiert",
+          "Accès bloqué",
+          "Accesso bloccato",
+          "Blocked",
+          "Blockiert",
+          "Bloqué",
+          "Bloccato",
+          "Geblockt"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blocked_Shape_40.svg",
+        "basename": "Blocked_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:50:40.000Z",
+      "modifiedAt": "2026-08-10T10:49:32.000Z"
+    },
+    {
+      "uuid": "239c5eb0-8cac-11f1-81f8-0050568d2654",
+      "id": 10839858,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839858/storage/MDEwODM5ODU4LzAvbWFzdGVyLy8vMTAzNDY3MjYx",
+        "keywords": [
+          "Access blocked",
+          "Zugang blockiert",
+          "Accès bloqué",
+          "Accesso bloccato",
+          "Blocked",
+          "Blockiert",
+          "Bloqué",
+          "Bloccato",
+          "Geblockt"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blocked_Shape_48.svg",
+        "basename": "Blocked_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:50:38.000Z",
+      "modifiedAt": "2026-08-10T10:48:54.000Z"
+    },
+    {
+      "uuid": "23d82f30-8cac-11f1-81f8-0050568d2654",
+      "id": 10839859,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839859/storage/MDEwODM5ODU5LzAvbWFzdGVyLy8vMTAzNDY3MjQ3",
+        "keywords": [
+          "Access blocked",
+          "Zugang blockiert",
+          "Accès bloqué",
+          "Accesso bloccato",
+          "Blocked",
+          "Blockiert",
+          "Bloqué",
+          "Bloccato",
+          "Geblockt"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blocked_Shape_64.svg",
+        "basename": "Blocked_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:50:38.000Z",
+      "modifiedAt": "2026-08-10T10:48:40.000Z"
+    },
+    {
+      "uuid": "2296fca0-8cac-11f1-81f8-0050568d2654",
+      "id": 10839857,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839857/storage/MDEwODM5ODU3LzAvbWFzdGVyLy8vMTAzNDY3MjMz",
+        "keywords": [
+          "Access blocked",
+          "Zugang blockiert",
+          "Accès bloqué",
+          "Accesso bloccato",
+          "Blocked",
+          "Blockiert",
+          "Bloqué",
+          "Bloccato",
+          "Geblockt"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blocked_Solid_Shape_16.svg",
+        "basename": "Blocked_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:50:36.000Z",
+      "modifiedAt": "2026-08-10T10:48:25.000Z"
+    },
+    {
+      "uuid": "21985150-8cac-11f1-81f8-0050568d2654",
+      "id": 10839856,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839856/storage/MDEwODM5ODU2LzAvbWFzdGVyLy8vMTAzNDY3MjE5",
+        "keywords": [
+          "Access blocked",
+          "Zugang blockiert",
+          "Accès bloqué",
+          "Accesso bloccato",
+          "Blocked",
+          "Blockiert",
+          "Bloqué",
+          "Bloccato",
+          "Geblockt"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blocked_Solid_Shape_24.svg",
+        "basename": "Blocked_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:50:35.000Z",
+      "modifiedAt": "2026-08-10T10:48:09.000Z"
+    },
+    {
+      "uuid": "21965580-8cac-11f1-81f8-0050568d2654",
+      "id": 10839855,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839855/storage/MDEwODM5ODU1LzAvbWFzdGVyLy8vMTAzNDY3MjEy",
+        "keywords": [
+          "Access blocked",
+          "Zugang blockiert",
+          "Accès bloqué",
+          "Accesso bloccato",
+          "Blocked",
+          "Blockiert",
+          "Bloqué",
+          "Bloccato",
+          "Geblockt"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blocked_Solid_Shape_32.svg",
+        "basename": "Blocked_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:50:35.000Z",
+      "modifiedAt": "2026-08-10T10:47:55.000Z"
+    },
+    {
+      "uuid": "1facfc10-8cac-11f1-81f8-0050568d2654",
+      "id": 10839854,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839854/storage/MDEwODM5ODU0LzAvbWFzdGVyLy8vMTAzNDY3MTkx",
+        "keywords": [
+          "Access blocked",
+          "Zugang blockiert",
+          "Accès bloqué",
+          "Accesso bloccato",
+          "Blocked",
+          "Blockiert",
+          "Bloqué",
+          "Bloccato",
+          "Geblockt"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blocked_Solid_Shape_40.svg",
+        "basename": "Blocked_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:50:31.000Z",
+      "modifiedAt": "2026-08-10T10:47:29.000Z"
+    },
+    {
+      "uuid": "1fa72fb0-8cac-11f1-81f8-0050568d2654",
+      "id": 10839852,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839852/storage/MDEwODM5ODUyLzAvbWFzdGVyLy8vMTAzNDY3MTg0",
+        "keywords": [
+          "Access blocked",
+          "Zugang blockiert",
+          "Accès bloqué",
+          "Accesso bloccato",
+          "Blocked",
+          "Blockiert",
+          "Bloqué",
+          "Bloccato",
+          "Geblockt"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blocked_Solid_Shape_48.svg",
+        "basename": "Blocked_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:50:31.000Z",
+      "modifiedAt": "2026-08-10T10:47:09.000Z"
+    },
+    {
+      "uuid": "1fa7cbf0-8cac-11f1-81f8-0050568d2654",
+      "id": 10839853,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839853/storage/MDEwODM5ODUzLzAvbWFzdGVyLy8vMTAzNDY3MDkz",
+        "keywords": [
+          "Access blocked",
+          "Zugang blockiert",
+          "Accès bloqué",
+          "Accesso bloccato",
+          "Blocked",
+          "Blockiert",
+          "Bloqué",
+          "Bloccato",
+          "Geblockt"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blocked_Solid_Shape_64.svg",
+        "basename": "Blocked_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:50:31.000Z",
+      "modifiedAt": "2026-08-10T10:45:00.000Z"
+    },
+    {
       "uuid": "eb06fb60-fe8a-11ef-990c-005056873709",
       "id": 1839182,
       "type": "picture.pictogram.",
@@ -48505,7 +48901,11 @@
         "name": "CarFleet_Shape_16.svg",
         "basename": "CarFleet_Shape_16",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:44:37.000Z",
       "modifiedAt": "2026-08-07T05:47:21.000Z"
@@ -48533,7 +48933,11 @@
         "name": "CarFleet_Shape_24.svg",
         "basename": "CarFleet_Shape_24",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:44:37.000Z",
       "modifiedAt": "2026-08-07T05:47:21.000Z"
@@ -48561,7 +48965,11 @@
         "name": "CarFleet_Shape_32.svg",
         "basename": "CarFleet_Shape_32",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:44:35.000Z",
       "modifiedAt": "2026-08-07T05:47:21.000Z"
@@ -48589,7 +48997,11 @@
         "name": "CarFleet_Shape_40.svg",
         "basename": "CarFleet_Shape_40",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:44:34.000Z",
       "modifiedAt": "2026-08-07T05:47:21.000Z"
@@ -48617,7 +49029,11 @@
         "name": "CarFleet_Shape_48.svg",
         "basename": "CarFleet_Shape_48",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:44:33.000Z",
       "modifiedAt": "2026-08-07T05:47:21.000Z"
@@ -48645,7 +49061,11 @@
         "name": "CarFleet_Shape_64.svg",
         "basename": "CarFleet_Shape_64",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:44:32.000Z",
       "modifiedAt": "2026-08-07T05:46:29.000Z"
@@ -48673,7 +49093,11 @@
         "name": "CarFleet_Solid_Shape_16.svg",
         "basename": "CarFleet_Solid_Shape_16",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:44:30.000Z",
       "modifiedAt": "2026-08-07T05:47:21.000Z"
@@ -48701,7 +49125,11 @@
         "name": "CarFleet_Solid_Shape_24.svg",
         "basename": "CarFleet_Solid_Shape_24",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:44:30.000Z",
       "modifiedAt": "2026-08-07T05:47:21.000Z"
@@ -48729,7 +49157,11 @@
         "name": "CarFleet_Solid_Shape_32.svg",
         "basename": "CarFleet_Solid_Shape_32",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:44:29.000Z",
       "modifiedAt": "2026-08-07T05:47:21.000Z"
@@ -48757,7 +49189,11 @@
         "name": "CarFleet_Solid_Shape_40.svg",
         "basename": "CarFleet_Solid_Shape_40",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:44:25.000Z",
       "modifiedAt": "2026-08-07T05:47:21.000Z"
@@ -48785,7 +49221,11 @@
         "name": "CarFleet_Solid_Shape_48.svg",
         "basename": "CarFleet_Solid_Shape_48",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:44:25.000Z",
       "modifiedAt": "2026-08-07T05:47:21.000Z"
@@ -48813,7 +49253,11 @@
         "name": "CarFleet_Solid_Shape_64.svg",
         "basename": "CarFleet_Solid_Shape_64",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:44:25.000Z",
       "modifiedAt": "2026-08-07T05:47:21.000Z"
@@ -49883,7 +50327,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10663866/storage/MDAxMDY2Mzg2Ni8wL21hc3Rlci8vLzk5NzQ4ODQw",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10663866/storage/MDEwNjYzODY2LzAvbWFzdGVyLy8vMTAzNDY4NTA0",
         "keywords": [
           "Kartenleser",
           "card reader",
@@ -49919,7 +50363,7 @@
         }
       },
       "createdAt": "2026-07-13T07:51:19.000Z",
-      "modifiedAt": "2026-07-13T07:54:42.000Z"
+      "modifiedAt": "2026-08-10T14:39:26.000Z"
     },
     {
       "uuid": "a18c36e0-7e8f-11f1-8560-0050568d2654",
@@ -49927,7 +50371,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10663865/storage/MDAxMDY2Mzg2NS8wL21hc3Rlci8vLzk5NzQ4ODM2",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10663865/storage/MDEwNjYzODY1LzAvbWFzdGVyLy8vMTAzNDY4NTMw",
         "keywords": [
           "Kartenleser",
           "card reader",
@@ -49963,7 +50407,7 @@
         }
       },
       "createdAt": "2026-07-13T07:51:18.000Z",
-      "modifiedAt": "2026-07-13T07:54:42.000Z"
+      "modifiedAt": "2026-08-10T14:39:50.000Z"
     },
     {
       "uuid": "a0e94020-7e8f-11f1-8560-0050568d2654",
@@ -49971,7 +50415,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10663864/storage/MDAxMDY2Mzg2NC8wL21hc3Rlci8vLzk5NzQ4ODMy",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10663864/storage/MDEwNjYzODY0LzAvbWFzdGVyLy8vMTAzNDY4NTU2",
         "keywords": [
           "Kartenleser",
           "card reader",
@@ -50007,7 +50451,7 @@
         }
       },
       "createdAt": "2026-07-13T07:51:17.000Z",
-      "modifiedAt": "2026-07-13T07:54:42.000Z"
+      "modifiedAt": "2026-08-10T14:40:15.000Z"
     },
     {
       "uuid": "a03f92a0-7e8f-11f1-8560-0050568d2654",
@@ -50015,7 +50459,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10663863/storage/MDAxMDY2Mzg2My8wL21hc3Rlci8vLzk5NzQ4ODI4",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10663863/storage/MDEwNjYzODYzLzAvbWFzdGVyLy8vMTAzNDY4NTg2",
         "keywords": [
           "Kartenleser",
           "card reader",
@@ -50051,7 +50495,7 @@
         }
       },
       "createdAt": "2026-07-13T07:51:15.000Z",
-      "modifiedAt": "2026-07-13T07:54:42.000Z"
+      "modifiedAt": "2026-08-10T14:40:39.000Z"
     },
     {
       "uuid": "9f6d0060-7e8f-11f1-8560-0050568d2654",
@@ -50059,7 +50503,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10663862/storage/MDAxMDY2Mzg2Mi8wL21hc3Rlci8vLzk5NzQ4ODI0",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10663862/storage/MDEwNjYzODYyLzAvbWFzdGVyLy8vMTAzNDY4NjEy",
         "keywords": [
           "Kartenleser",
           "card reader",
@@ -50095,7 +50539,7 @@
         }
       },
       "createdAt": "2026-07-13T07:51:14.000Z",
-      "modifiedAt": "2026-07-13T07:54:42.000Z"
+      "modifiedAt": "2026-08-10T14:40:59.000Z"
     },
     {
       "uuid": "9f461770-7e8f-11f1-8560-0050568d2654",
@@ -50103,7 +50547,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10663861/storage/MDAxMDY2Mzg2MS8wL21hc3Rlci8vLzk5NzQ4NzQ0",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10663861/storage/MDEwNjYzODYxLzAvbWFzdGVyLy8vMTAzNDY4NjM4",
         "keywords": [
           "Kartenleser",
           "card reader",
@@ -50139,7 +50583,7 @@
         }
       },
       "createdAt": "2026-07-13T07:51:14.000Z",
-      "modifiedAt": "2026-07-13T07:54:01.000Z"
+      "modifiedAt": "2026-08-10T14:41:17.000Z"
     },
     {
       "uuid": "9e412a90-7e8f-11f1-8560-0050568d2654",
@@ -52150,6 +52594,522 @@
       },
       "createdAt": "2025-02-07T14:48:30.000Z",
       "modifiedAt": "2025-03-26T13:27:16.000Z"
+    },
+    {
+      "uuid": "db0d2bf0-96d5-11f1-ab02-0050568d2654",
+      "id": 10973382,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10973382/storage/MDEwOTczMzgyLzAvbWFzdGVyLy8vMTAzNzY5Njcy",
+        "keywords": [
+          "Okay",
+          "Ok",
+          "D'accord",
+          "OK wide",
+          "Okay weit",
+          "D’accord",
+          "loin",
+          "Ok lontano",
+          "Hacken",
+          "hoe",
+          "Hacker",
+          "Broad hoeing",
+          "Hacken weit",
+          "Crochet large",
+          "segno di spunta lungo",
+          "Check far",
+          "Check weit",
+          "Contrôle large",
+          "Controllo a tutto tondo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CheckmarkWide_Shape_16.svg",
+        "basename": "CheckmarkWide_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:14:27.000Z",
+      "modifiedAt": "2026-08-14T05:05:06.818Z"
+    },
+    {
+      "uuid": "db09a980-96d5-11f1-ab02-0050568d2654",
+      "id": 10973381,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10973381/storage/MDEwOTczMzgxLzAvbWFzdGVyLy8vMTAzNzY5NjY4",
+        "keywords": [
+          "Okay",
+          "Ok",
+          "D'accord",
+          "OK wide",
+          "Okay weit",
+          "D’accord",
+          "loin",
+          "Ok lontano",
+          "Hacken",
+          "hoe",
+          "Hacker",
+          "Broad hoeing",
+          "Hacken weit",
+          "Crochet large",
+          "segno di spunta lungo",
+          "Check far",
+          "Check weit",
+          "Contrôle large",
+          "Controllo a tutto tondo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CheckmarkWide_Shape_24.svg",
+        "basename": "CheckmarkWide_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:14:27.000Z",
+      "modifiedAt": "2026-08-14T05:05:06.818Z"
+    },
+    {
+      "uuid": "da39fd70-96d5-11f1-ab02-0050568d2654",
+      "id": 10973380,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10973380/storage/MDEwOTczMzgwLzAvbWFzdGVyLy8vMTAzNzY5NjY0",
+        "keywords": [
+          "Okay",
+          "Ok",
+          "D'accord",
+          "OK wide",
+          "Okay weit",
+          "D’accord",
+          "loin",
+          "Ok lontano",
+          "Hacken",
+          "hoe",
+          "Hacker",
+          "Broad hoeing",
+          "Hacken weit",
+          "Crochet large",
+          "segno di spunta lungo",
+          "Check far",
+          "Check weit",
+          "Contrôle large",
+          "Controllo a tutto tondo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CheckmarkWide_Shape_32.svg",
+        "basename": "CheckmarkWide_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:14:25.000Z",
+      "modifiedAt": "2026-08-14T05:05:06.818Z"
+    },
+    {
+      "uuid": "d96dd3d0-96d5-11f1-ab02-0050568d2654",
+      "id": 10973379,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10973379/storage/MDEwOTczMzc5LzAvbWFzdGVyLy8vMTAzNzY5NjYw",
+        "keywords": [
+          "Okay",
+          "Ok",
+          "D'accord",
+          "OK wide",
+          "Okay weit",
+          "D’accord",
+          "loin",
+          "Ok lontano",
+          "Hacken",
+          "hoe",
+          "Hacker",
+          "Broad hoeing",
+          "Hacken weit",
+          "Crochet large",
+          "segno di spunta lungo",
+          "Check far",
+          "Check weit",
+          "Contrôle large",
+          "Controllo a tutto tondo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CheckmarkWide_Shape_40.svg",
+        "basename": "CheckmarkWide_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:14:24.000Z",
+      "modifiedAt": "2026-08-14T05:05:06.818Z"
+    },
+    {
+      "uuid": "d89c2bf0-96d5-11f1-ab02-0050568d2654",
+      "id": 10973378,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10973378/storage/MDEwOTczMzc4LzAvbWFzdGVyLy8vMTAzNzY5NjU2",
+        "keywords": [
+          "Okay",
+          "Ok",
+          "D'accord",
+          "OK wide",
+          "Okay weit",
+          "D’accord",
+          "loin",
+          "Ok lontano",
+          "Hacken",
+          "hoe",
+          "Hacker",
+          "Broad hoeing",
+          "Hacken weit",
+          "Crochet large",
+          "segno di spunta lungo",
+          "Check far",
+          "Check weit",
+          "Contrôle large",
+          "Controllo a tutto tondo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CheckmarkWide_Shape_48.svg",
+        "basename": "CheckmarkWide_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:14:23.000Z",
+      "modifiedAt": "2026-08-14T05:05:06.818Z"
+    },
+    {
+      "uuid": "d7dfb9c0-96d5-11f1-ab02-0050568d2654",
+      "id": 10973377,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10973377/storage/MDEwOTczMzc3LzAvbWFzdGVyLy8vMTAzNzY5NTc4",
+        "keywords": [
+          "Okay",
+          "Ok",
+          "D'accord",
+          "OK wide",
+          "Okay weit",
+          "D’accord",
+          "loin",
+          "Ok lontano",
+          "Hacken",
+          "hoe",
+          "Hacker",
+          "Broad hoeing",
+          "Hacken weit",
+          "Crochet large",
+          "segno di spunta lungo",
+          "Check far",
+          "Check weit",
+          "Contrôle large",
+          "Controllo a tutto tondo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CheckmarkWide_Shape_64.svg",
+        "basename": "CheckmarkWide_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:14:21.000Z",
+      "modifiedAt": "2026-08-14T05:05:06.818Z"
+    },
+    {
+      "uuid": "d7298920-96d5-11f1-ab02-0050568d2654",
+      "id": 10973376,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10973376/storage/MDEwOTczMzc2LzAvbWFzdGVyLy8vMTAzNzY5NjUy",
+        "keywords": [
+          "Okay",
+          "Ok",
+          "D'accord",
+          "OK wide",
+          "Okay weit",
+          "D’accord",
+          "loin",
+          "Ok lontano",
+          "Hacken",
+          "hoe",
+          "Hacker",
+          "Broad hoeing",
+          "Hacken weit",
+          "Crochet large",
+          "segno di spunta lungo",
+          "Check far",
+          "Check weit",
+          "Contrôle large",
+          "Controllo a tutto tondo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CheckmarkWide_Solid_Shape_16.svg",
+        "basename": "CheckmarkWide_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:14:20.000Z",
+      "modifiedAt": "2026-08-14T05:05:06.818Z"
+    },
+    {
+      "uuid": "d6779e40-96d5-11f1-ab02-0050568d2654",
+      "id": 10973375,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10973375/storage/MDEwOTczMzc1LzAvbWFzdGVyLy8vMTAzNzY5NjQ4",
+        "keywords": [
+          "Okay",
+          "Ok",
+          "D'accord",
+          "OK wide",
+          "Okay weit",
+          "D’accord",
+          "loin",
+          "Ok lontano",
+          "Hacken",
+          "hoe",
+          "Hacker",
+          "Broad hoeing",
+          "Hacken weit",
+          "Crochet large",
+          "segno di spunta lungo",
+          "Check far",
+          "Check weit",
+          "Contrôle large",
+          "Controllo a tutto tondo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CheckmarkWide_Solid_Shape_24.svg",
+        "basename": "CheckmarkWide_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:14:19.000Z",
+      "modifiedAt": "2026-08-14T05:05:06.818Z"
+    },
+    {
+      "uuid": "d5a1d7b0-96d5-11f1-ab02-0050568d2654",
+      "id": 10973374,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10973374/storage/MDEwOTczMzc0LzAvbWFzdGVyLy8vMTAzNzY5NjQ0",
+        "keywords": [
+          "Okay",
+          "Ok",
+          "D'accord",
+          "OK wide",
+          "Okay weit",
+          "D’accord",
+          "loin",
+          "Ok lontano",
+          "Hacken",
+          "hoe",
+          "Hacker",
+          "Broad hoeing",
+          "Hacken weit",
+          "Crochet large",
+          "segno di spunta lungo",
+          "Check far",
+          "Check weit",
+          "Contrôle large",
+          "Controllo a tutto tondo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CheckmarkWide_Solid_Shape_32.svg",
+        "basename": "CheckmarkWide_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:14:18.000Z",
+      "modifiedAt": "2026-08-14T05:05:06.818Z"
+    },
+    {
+      "uuid": "d4027f90-96d5-11f1-ab02-0050568d2654",
+      "id": 10973373,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10973373/storage/MDEwOTczMzczLzAvbWFzdGVyLy8vMTAzNzY5NjQw",
+        "keywords": [
+          "Okay",
+          "Ok",
+          "D'accord",
+          "OK wide",
+          "Okay weit",
+          "D’accord",
+          "loin",
+          "Ok lontano",
+          "Hacken",
+          "hoe",
+          "Hacker",
+          "Broad hoeing",
+          "Hacken weit",
+          "Crochet large",
+          "segno di spunta lungo",
+          "Check far",
+          "Check weit",
+          "Contrôle large",
+          "Controllo a tutto tondo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CheckmarkWide_Solid_Shape_40.svg",
+        "basename": "CheckmarkWide_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:14:15.000Z",
+      "modifiedAt": "2026-08-14T05:05:06.818Z"
+    },
+    {
+      "uuid": "d4023170-96d5-11f1-ab02-0050568d2654",
+      "id": 10973372,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10973372/storage/MDEwOTczMzcyLzAvbWFzdGVyLy8vMTAzNzY5NjM2",
+        "keywords": [
+          "Okay",
+          "Ok",
+          "D'accord",
+          "OK wide",
+          "Okay weit",
+          "D’accord",
+          "loin",
+          "Ok lontano",
+          "Hacken",
+          "hoe",
+          "Hacker",
+          "Broad hoeing",
+          "Hacken weit",
+          "Crochet large",
+          "segno di spunta lungo",
+          "Check far",
+          "Check weit",
+          "Contrôle large",
+          "Controllo a tutto tondo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CheckmarkWide_Solid_Shape_48.svg",
+        "basename": "CheckmarkWide_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:14:15.000Z",
+      "modifiedAt": "2026-08-14T05:05:06.818Z"
+    },
+    {
+      "uuid": "d3feaf00-96d5-11f1-ab02-0050568d2654",
+      "id": 10973371,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10973371/storage/MDEwOTczMzcxLzAvbWFzdGVyLy8vMTAzNzY5NjMy",
+        "keywords": [
+          "Okay",
+          "Ok",
+          "D'accord",
+          "OK wide",
+          "Okay weit",
+          "D’accord",
+          "loin",
+          "Ok lontano",
+          "Hacken",
+          "hoe",
+          "Hacker",
+          "Broad hoeing",
+          "Hacken weit",
+          "Crochet large",
+          "segno di spunta lungo",
+          "Check far",
+          "Check weit",
+          "Contrôle large",
+          "Controllo a tutto tondo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CheckmarkWide_Solid_Shape_64.svg",
+        "basename": "CheckmarkWide_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:14:15.000Z",
+      "modifiedAt": "2026-08-14T05:05:06.818Z"
     },
     {
       "uuid": "98c94e20-e562-11ef-a15d-005056873709",
@@ -62101,6 +63061,354 @@
       },
       "createdAt": "2026-06-03T06:16:29.000Z",
       "modifiedAt": "2026-06-04T06:05:05.125Z"
+    },
+    {
+      "uuid": "ddaf7240-97df-11f1-aecd-0050568d2654",
+      "id": 10983595,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983595/storage/MDEwOTgzNTk1LzAvbWFzdGVyLy8vMTAzOTA2NzA1",
+        "keywords": [
+          "Kombiverkehr",
+          "combined traffic",
+          "Trasporto combinato",
+          "Transport combiné",
+          "Multimodal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CombinedTransport_Shape_16.svg",
+        "basename": "CombinedTransport_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:58:37.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "dcf263d0-97df-11f1-aecd-0050568d2654",
+      "id": 10983594,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983594/storage/MDEwOTgzNTk0LzAvbWFzdGVyLy8vMTAzOTA2NzA5",
+        "keywords": [
+          "Kombiverkehr",
+          "combined traffic",
+          "Trasporto combinato",
+          "Transport combiné",
+          "Multimodal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CombinedTransport_Shape_24.svg",
+        "basename": "CombinedTransport_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:58:36.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "dc435f20-97df-11f1-aecd-0050568d2654",
+      "id": 10983593,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983593/storage/MDEwOTgzNTkzLzAvbWFzdGVyLy8vMTAzOTA2NzEz",
+        "keywords": [
+          "Kombiverkehr",
+          "combined traffic",
+          "Trasporto combinato",
+          "Transport combiné",
+          "Multimodal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CombinedTransport_Shape_32.svg",
+        "basename": "CombinedTransport_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:58:35.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "db92acc0-97df-11f1-aecd-0050568d2654",
+      "id": 10983592,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983592/storage/MDEwOTgzNTkyLzAvbWFzdGVyLy8vMTAzOTA2NzE3",
+        "keywords": [
+          "Kombiverkehr",
+          "combined traffic",
+          "Trasporto combinato",
+          "Transport combiné",
+          "Multimodal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CombinedTransport_Shape_40.svg",
+        "basename": "CombinedTransport_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:58:34.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "dad1a6b0-97df-11f1-aecd-0050568d2654",
+      "id": 10983591,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983591/storage/MDEwOTgzNTkxLzAvbWFzdGVyLy8vMTAzOTA2NzIx",
+        "keywords": [
+          "Kombiverkehr",
+          "combined traffic",
+          "Trasporto combinato",
+          "Transport combiné",
+          "Multimodal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CombinedTransport_Shape_48.svg",
+        "basename": "CombinedTransport_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:58:32.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "da21b7a0-97df-11f1-aecd-0050568d2654",
+      "id": 10983590,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983590/storage/MDEwOTgzNTkwLzAvbWFzdGVyLy8vMTAzOTA2NjQ1",
+        "keywords": [
+          "Kombiverkehr",
+          "combined traffic",
+          "Trasporto combinato",
+          "Transport combiné",
+          "Multimodal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CombinedTransport_Shape_64.svg",
+        "basename": "CombinedTransport_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:58:31.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "d96370b0-97df-11f1-aecd-0050568d2654",
+      "id": 10983589,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983589/storage/MDEwOTgzNTg5LzAvbWFzdGVyLy8vMTAzOTA2NzI1",
+        "keywords": [
+          "Kombiverkehr",
+          "combined traffic",
+          "Trasporto combinato",
+          "Transport combiné",
+          "Multimodal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CombinedTransport_Solid_Shape_16.svg",
+        "basename": "CombinedTransport_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:58:30.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "d8ac2ea0-97df-11f1-aecd-0050568d2654",
+      "id": 10983588,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983588/storage/MDEwOTgzNTg4LzAvbWFzdGVyLy8vMTAzOTA2NzI5",
+        "keywords": [
+          "Kombiverkehr",
+          "combined traffic",
+          "Trasporto combinato",
+          "Transport combiné",
+          "Multimodal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CombinedTransport_Solid_Shape_24.svg",
+        "basename": "CombinedTransport_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:58:29.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "d7e9c900-97df-11f1-aecd-0050568d2654",
+      "id": 10983587,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983587/storage/MDEwOTgzNTg3LzAvbWFzdGVyLy8vMTAzOTA2NzMz",
+        "keywords": [
+          "Kombiverkehr",
+          "combined traffic",
+          "Trasporto combinato",
+          "Transport combiné",
+          "Multimodal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CombinedTransport_Solid_Shape_32.svg",
+        "basename": "CombinedTransport_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:58:28.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "d6857e10-97df-11f1-aecd-0050568d2654",
+      "id": 10983585,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983585/storage/MDEwOTgzNTg1LzAvbWFzdGVyLy8vMTAzOTA2NzQx",
+        "keywords": [
+          "Kombiverkehr",
+          "combined traffic",
+          "Trasporto combinato",
+          "Transport combiné",
+          "Multimodal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CombinedTransport_Solid_Shape_40.svg",
+        "basename": "CombinedTransport_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:58:25.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "d685a520-97df-11f1-aecd-0050568d2654",
+      "id": 10983586,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983586/storage/MDEwOTgzNTg2LzAvbWFzdGVyLy8vMTAzOTA2NzM3",
+        "keywords": [
+          "Kombiverkehr",
+          "combined traffic",
+          "Trasporto combinato",
+          "Transport combiné",
+          "Multimodal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CombinedTransport_Solid_Shape_48.svg",
+        "basename": "CombinedTransport_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:58:25.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "d6835b30-97df-11f1-aecd-0050568d2654",
+      "id": 10983584,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983584/storage/MDEwOTgzNTg0LzAvbWFzdGVyLy8vMTAzOTA2NzQ1",
+        "keywords": [
+          "Kombiverkehr",
+          "combined traffic",
+          "Trasporto combinato",
+          "Transport combiné",
+          "Multimodal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CombinedTransport_Solid_Shape_64.svg",
+        "basename": "CombinedTransport_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:58:25.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
     },
     {
       "uuid": "987e3b60-e562-11ef-a15d-005056873709",
@@ -72677,7 +73985,11 @@
         "name": "CustomsClearance_Shape_16.svg",
         "basename": "CustomsClearance_Shape_16",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:37:09.000Z",
       "modifiedAt": "2026-08-07T05:39:39.000Z"
@@ -72701,7 +74013,11 @@
         "name": "CustomsClearance_Shape_24.svg",
         "basename": "CustomsClearance_Shape_24",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:37:09.000Z",
       "modifiedAt": "2026-08-07T05:39:40.000Z"
@@ -72725,7 +74041,11 @@
         "name": "CustomsClearance_Shape_32.svg",
         "basename": "CustomsClearance_Shape_32",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:37:07.000Z",
       "modifiedAt": "2026-08-07T05:39:40.000Z"
@@ -72749,7 +74069,11 @@
         "name": "CustomsClearance_Shape_40.svg",
         "basename": "CustomsClearance_Shape_40",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:37:07.000Z",
       "modifiedAt": "2026-08-07T05:39:40.000Z"
@@ -72773,7 +74097,11 @@
         "name": "CustomsClearance_Shape_48.svg",
         "basename": "CustomsClearance_Shape_48",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:37:05.000Z",
       "modifiedAt": "2026-08-07T05:39:39.000Z"
@@ -72797,7 +74125,11 @@
         "name": "CustomsClearance_Shape_64.svg",
         "basename": "CustomsClearance_Shape_64",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:37:05.000Z",
       "modifiedAt": "2026-08-07T05:38:48.000Z"
@@ -72821,7 +74153,11 @@
         "name": "CustomsClearance_Solid_Shape_16.svg",
         "basename": "CustomsClearance_Solid_Shape_16",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:37:03.000Z",
       "modifiedAt": "2026-08-07T05:39:39.000Z"
@@ -72845,7 +74181,11 @@
         "name": "CustomsClearance_Solid_Shape_24.svg",
         "basename": "CustomsClearance_Solid_Shape_24",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:37:01.000Z",
       "modifiedAt": "2026-08-07T05:39:40.000Z"
@@ -72869,7 +74209,11 @@
         "name": "CustomsClearance_Solid_Shape_32.svg",
         "basename": "CustomsClearance_Solid_Shape_32",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:37:01.000Z",
       "modifiedAt": "2026-08-07T05:39:40.000Z"
@@ -72893,7 +74237,11 @@
         "name": "CustomsClearance_Solid_Shape_40.svg",
         "basename": "CustomsClearance_Solid_Shape_40",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:36:58.000Z",
       "modifiedAt": "2026-08-07T05:39:40.000Z"
@@ -72917,7 +74265,11 @@
         "name": "CustomsClearance_Solid_Shape_48.svg",
         "basename": "CustomsClearance_Solid_Shape_48",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:36:58.000Z",
       "modifiedAt": "2026-08-07T05:39:40.000Z"
@@ -72941,7 +74293,11 @@
         "name": "CustomsClearance_Solid_Shape_64.svg",
         "basename": "CustomsClearance_Solid_Shape_64",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:36:58.000Z",
       "modifiedAt": "2026-08-07T05:39:39.000Z"
@@ -73612,7 +74968,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831421/storage/MTgzMTQyMS8wL21hc3Rlci8vLzMxOTU1OTMy",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831421/storage/MDAxODMxNDIxLzAvbWFzdGVyLy8vMTAzODI0MTQ3",
         "businessfield": [
           "edk"
         ],
@@ -73632,7 +74988,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-03-26T13:37:16.000Z"
+      "modifiedAt": "2026-08-13T06:58:32.000Z"
     },
     {
       "uuid": "983fabc0-e562-11ef-a15d-005056873709",
@@ -73640,7 +74996,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831422/storage/MTgzMTQyMi8wL21hc3Rlci8vLzMxOTU2MTky",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831422/storage/MDAxODMxNDIyLzAvbWFzdGVyLy8vMTAzODI0MTYz",
         "businessfield": [
           "edk"
         ],
@@ -73660,7 +75016,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-03-26T13:37:16.000Z"
+      "modifiedAt": "2026-08-13T06:58:54.000Z"
     },
     {
       "uuid": "98404800-e562-11ef-a15d-005056873709",
@@ -73668,7 +75024,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831423/storage/MTgzMTQyMy8wL21hc3Rlci8vLzMxOTU2MDk2",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831423/storage/MDAxODMxNDIzLzAvbWFzdGVyLy8vMTAzODI0MjY5",
         "businessfield": [
           "edk"
         ],
@@ -73688,7 +75044,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-03-26T13:37:16.000Z"
+      "modifiedAt": "2026-08-13T06:59:19.000Z"
     },
     {
       "uuid": "9840bd30-e562-11ef-a15d-005056873709",
@@ -73696,7 +75052,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831424/storage/MTgzMTQyNC8wL21hc3Rlci8vLzMxOTU2MzU5",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831424/storage/MDAxODMxNDI0LzAvbWFzdGVyLy8vMTAzODI0Mjg1",
         "businessfield": [
           "edk"
         ],
@@ -73716,7 +75072,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-03-26T13:37:18.000Z"
+      "modifiedAt": "2026-08-13T06:59:36.000Z"
     },
     {
       "uuid": "98415970-e562-11ef-a15d-005056873709",
@@ -73724,7 +75080,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831425/storage/MTgzMTQyNS8wL21hc3Rlci8vLzMxOTU2MjU3",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831425/storage/MDAxODMxNDI1LzAvbWFzdGVyLy8vMTAzODI0Mzkx",
         "businessfield": [
           "edk"
         ],
@@ -73744,7 +75100,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-03-26T13:37:18.000Z"
+      "modifiedAt": "2026-08-13T06:59:55.000Z"
     },
     {
       "uuid": "9841cea0-e562-11ef-a15d-005056873709",
@@ -73752,7 +75108,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831426/storage/MTgzMTQyNi8wL21hc3Rlci8vLzM3ODAzNjY5",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831426/storage/MDAxODMxNDI2LzAvbWFzdGVyLy8vMTAzOTA3Mzc5",
         "businessfield": [
           "edk"
         ],
@@ -73778,7 +75134,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-04-15T07:43:46.000Z"
+      "modifiedAt": "2026-08-14T14:11:22.000Z"
     },
     {
       "uuid": "984243d0-e562-11ef-a15d-005056873709",
@@ -73786,7 +75142,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831427/storage/MTgzMTQyNy8wL21hc3Rlci8vLzMxOTU2NDE1",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831427/storage/MDAxODMxNDI3LzAvbWFzdGVyLy8vMTAzODI0NDA3",
         "businessfield": [
           "edk"
         ],
@@ -73806,7 +75162,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-03-26T13:37:18.000Z"
+      "modifiedAt": "2026-08-13T07:00:17.000Z"
     },
     {
       "uuid": "9842e010-e562-11ef-a15d-005056873709",
@@ -73814,7 +75170,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831428/storage/MTgzMTQyOC8wL21hc3Rlci8vLzMxOTU2MzMx",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831428/storage/MDAxODMxNDI4LzAvbWFzdGVyLy8vMTAzODI0NTM5",
         "businessfield": [
           "edk"
         ],
@@ -73834,7 +75190,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-03-26T13:37:18.000Z"
+      "modifiedAt": "2026-08-13T07:00:58.000Z"
     },
     {
       "uuid": "98435540-e562-11ef-a15d-005056873709",
@@ -73842,7 +75198,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831429/storage/MTgzMTQyOS8wL21hc3Rlci8vLzQ3OTc1Nzk0",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831429/storage/MDAxODMxNDI5LzAvbWFzdGVyLy8vMTAzODI0NjQ1",
         "businessfield": [
           "edk"
         ],
@@ -73862,7 +75218,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-06-04T07:57:46.000Z"
+      "modifiedAt": "2026-08-13T07:01:41.000Z"
     },
     {
       "uuid": "9843f180-e562-11ef-a15d-005056873709",
@@ -73870,7 +75226,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831430/storage/MTgzMTQzMC8wL21hc3Rlci8vLzMxOTU2NTAx",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831430/storage/MDAxODMxNDMwLzAvbWFzdGVyLy8vMTAzODI0Njk3",
         "businessfield": [
           "edk"
         ],
@@ -73890,7 +75246,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-03-26T13:37:18.000Z"
+      "modifiedAt": "2026-08-13T07:02:00.000Z"
     },
     {
       "uuid": "984466b0-e562-11ef-a15d-005056873709",
@@ -73898,7 +75254,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831431/storage/MTgzMTQzMS8wL21hc3Rlci8vLzMxOTU2NDQx",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831431/storage/MDAxODMxNDMxLzAvbWFzdGVyLy8vMTAzODI0NzY3",
         "businessfield": [
           "edk"
         ],
@@ -73918,7 +75274,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-03-26T13:37:18.000Z"
+      "modifiedAt": "2026-08-13T07:02:15.000Z"
     },
     {
       "uuid": "9844dbe0-e562-11ef-a15d-005056873709",
@@ -73926,7 +75282,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831432/storage/MTgzMTQzMi8wL21hc3Rlci8vLzMxOTU2MTc1",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831432/storage/MDAxODMxNDMyLzAvbWFzdGVyLy8vMTAzODI0Nzgz",
         "businessfield": [
           "edk"
         ],
@@ -73946,7 +75302,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-03-26T13:37:16.000Z"
+      "modifiedAt": "2026-08-13T07:02:33.000Z"
     },
     {
       "uuid": "5e56ead1-6704-11f0-ad2d-005056873709",
@@ -108661,6 +110017,342 @@
       },
       "createdAt": "2025-02-07T06:26:54.000Z",
       "modifiedAt": "2025-03-26T13:10:08.000Z"
+    },
+    {
+      "uuid": "16e1bd30-97df-11f1-aecd-0050568d2654",
+      "id": 10983580,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983580/storage/MDEwOTgzNTgwLzAvbWFzdGVyLy8vMTAzOTA2NDY0",
+        "keywords": [
+          "Feuer",
+          "Fire",
+          "Incendio",
+          "Incendie"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FireAlarmSystem_Shape_16.svg",
+        "basename": "FireAlarmSystem_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:53:04.000Z",
+      "modifiedAt": "2026-08-14T12:56:50.000Z"
+    },
+    {
+      "uuid": "16159390-97df-11f1-aecd-0050568d2654",
+      "id": 10983579,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983579/storage/MDEwOTgzNTc5LzAvbWFzdGVyLy8vMTAzOTA2NDYw",
+        "keywords": [
+          "Feuer",
+          "Fire",
+          "Incendio",
+          "Incendie"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FireAlarmSystem_Shape_24.svg",
+        "basename": "FireAlarmSystem_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:53:02.000Z",
+      "modifiedAt": "2026-08-14T12:56:50.000Z"
+    },
+    {
+      "uuid": "150d7260-97df-11f1-aecd-0050568d2654",
+      "id": 10983578,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983578/storage/MDEwOTgzNTc4LzAvbWFzdGVyLy8vMTAzOTA2NDU2",
+        "keywords": [
+          "Feuer",
+          "Fire",
+          "Incendio",
+          "Incendie"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FireAlarmSystem_Shape_32.svg",
+        "basename": "FireAlarmSystem_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:53:01.000Z",
+      "modifiedAt": "2026-08-14T12:56:50.000Z"
+    },
+    {
+      "uuid": "145ee2e0-97df-11f1-aecd-0050568d2654",
+      "id": 10983577,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983577/storage/MDEwOTgzNTc3LzAvbWFzdGVyLy8vMTAzOTA2NDUy",
+        "keywords": [
+          "Feuer",
+          "Fire",
+          "Incendio",
+          "Incendie"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FireAlarmSystem_Shape_40.svg",
+        "basename": "FireAlarmSystem_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:53:00.000Z",
+      "modifiedAt": "2026-08-14T12:56:50.000Z"
+    },
+    {
+      "uuid": "13999710-97df-11f1-aecd-0050568d2654",
+      "id": 10983576,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983576/storage/MDEwOTgzNTc2LzAvbWFzdGVyLy8vMTAzOTA2NDQ4",
+        "keywords": [
+          "Feuer",
+          "Fire",
+          "Incendio",
+          "Incendie"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FireAlarmSystem_Shape_48.svg",
+        "basename": "FireAlarmSystem_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:52:58.000Z",
+      "modifiedAt": "2026-08-14T12:56:50.000Z"
+    },
+    {
+      "uuid": "12d5aad0-97df-11f1-aecd-0050568d2654",
+      "id": 10983575,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983575/storage/MDEwOTgzNTc1LzAvbWFzdGVyLy8vMTAzOTA2Mzcx",
+        "keywords": [
+          "Feuer",
+          "Fire",
+          "Incendio",
+          "Incendie"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FireAlarmSystem_Shape_64.svg",
+        "basename": "FireAlarmSystem_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:52:57.000Z",
+      "modifiedAt": "2026-08-14T12:56:09.000Z"
+    },
+    {
+      "uuid": "11d5c700-97df-11f1-aecd-0050568d2654",
+      "id": 10983574,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983574/storage/MDEwOTgzNTc0LzAvbWFzdGVyLy8vMTAzOTA2NDQ0",
+        "keywords": [
+          "Feuer",
+          "Fire",
+          "Incendio",
+          "Incendie"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FireAlarmSystem_Solid_Shape_16.svg",
+        "basename": "FireAlarmSystem_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:52:55.000Z",
+      "modifiedAt": "2026-08-14T12:56:50.000Z"
+    },
+    {
+      "uuid": "11cfac80-97df-11f1-aecd-0050568d2654",
+      "id": 10983573,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983573/storage/MDEwOTgzNTczLzAvbWFzdGVyLy8vMTAzOTA2NDQw",
+        "keywords": [
+          "Feuer",
+          "Fire",
+          "Incendio",
+          "Incendie"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FireAlarmSystem_Solid_Shape_24.svg",
+        "basename": "FireAlarmSystem_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:52:55.000Z",
+      "modifiedAt": "2026-08-14T12:56:50.000Z"
+    },
+    {
+      "uuid": "10e636e0-97df-11f1-aecd-0050568d2654",
+      "id": 10983572,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983572/storage/MDEwOTgzNTcyLzAvbWFzdGVyLy8vMTAzOTA2NDM2",
+        "keywords": [
+          "Feuer",
+          "Fire",
+          "Incendio",
+          "Incendie"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FireAlarmSystem_Solid_Shape_32.svg",
+        "basename": "FireAlarmSystem_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:52:54.000Z",
+      "modifiedAt": "2026-08-14T12:56:50.000Z"
+    },
+    {
+      "uuid": "0df22430-97df-11f1-aecd-0050568d2654",
+      "id": 10983571,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983571/storage/MDEwOTgzNTcxLzAvbWFzdGVyLy8vMTAzOTA2NDMy",
+        "keywords": [
+          "Feuer",
+          "Fire",
+          "Incendio",
+          "Incendie"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FireAlarmSystem_Solid_Shape_40.svg",
+        "basename": "FireAlarmSystem_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:52:49.000Z",
+      "modifiedAt": "2026-08-14T12:56:49.000Z"
+    },
+    {
+      "uuid": "0debe2a0-97df-11f1-aecd-0050568d2654",
+      "id": 10983569,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983569/storage/MDEwOTgzNTY5LzAvbWFzdGVyLy8vMTAzOTA2NDI0",
+        "keywords": [
+          "Feuer",
+          "Fire",
+          "Incendio",
+          "Incendie"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FireAlarmSystem_Solid_Shape_48.svg",
+        "basename": "FireAlarmSystem_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:52:49.000Z",
+      "modifiedAt": "2026-08-14T12:56:50.000Z"
+    },
+    {
+      "uuid": "0df160e0-97df-11f1-aecd-0050568d2654",
+      "id": 10983570,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983570/storage/MDEwOTgzNTcwLzAvbWFzdGVyLy8vMTAzOTA2NDI4",
+        "keywords": [
+          "Feuer",
+          "Fire",
+          "Incendio",
+          "Incendie"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FireAlarmSystem_Solid_Shape_64.svg",
+        "basename": "FireAlarmSystem_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:52:49.000Z",
+      "modifiedAt": "2026-08-14T12:56:50.000Z"
     },
     {
       "uuid": "c918a300-8caa-11f1-81f8-0050568d2654",
@@ -155916,6 +157608,366 @@
       "modifiedAt": "2025-03-26T13:09:27.000Z"
     },
     {
+      "uuid": "689e6770-96d8-11f1-ab02-0050568d2654",
+      "id": 10974423,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10974423/storage/MDEwOTc0NDIzLzAvbWFzdGVyLy8vMTAzNzg2MTcy",
+        "keywords": [
+          "Lunge",
+          "Long",
+          "poumons",
+          "polmoni",
+          "lungs",
+          "Lungen"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Lung_Shape_16.svg",
+        "basename": "Lung_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:32:43.000Z",
+      "modifiedAt": "2026-08-13T05:38:59.000Z"
+    },
+    {
+      "uuid": "68bb6550-96d8-11f1-ab02-0050568d2654",
+      "id": 10974424,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10974424/storage/MDEwOTc0NDI0LzAvbWFzdGVyLy8vMTAzNzg2MTc2",
+        "keywords": [
+          "Lunge",
+          "Long",
+          "poumons",
+          "polmoni",
+          "lungs",
+          "Lungen"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Lung_Shape_24.svg",
+        "basename": "Lung_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:32:43.000Z",
+      "modifiedAt": "2026-08-13T05:38:59.000Z"
+    },
+    {
+      "uuid": "66de19d0-96d8-11f1-ab02-0050568d2654",
+      "id": 10974420,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10974420/storage/MDEwOTc0NDIwLzAvbWFzdGVyLy8vMTAzNzg2MTY0",
+        "keywords": [
+          "Lunge",
+          "Long",
+          "poumons",
+          "polmoni",
+          "lungs",
+          "Lungen"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Lung_Shape_32.svg",
+        "basename": "Lung_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:32:40.000Z",
+      "modifiedAt": "2026-08-13T05:38:59.000Z"
+    },
+    {
+      "uuid": "66e2fbd0-96d8-11f1-ab02-0050568d2654",
+      "id": 10974421,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10974421/storage/MDEwOTc0NDIxLzAvbWFzdGVyLy8vMTAzNzg2MTY4",
+        "keywords": [
+          "Lunge",
+          "Long",
+          "poumons",
+          "polmoni",
+          "lungs",
+          "Lungen"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Lung_Shape_40.svg",
+        "basename": "Lung_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:32:40.000Z",
+      "modifiedAt": "2026-08-13T05:38:58.000Z"
+    },
+    {
+      "uuid": "6596ccc0-96d8-11f1-ab02-0050568d2654",
+      "id": 10974417,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10974417/storage/MDEwOTc0NDE3LzAvbWFzdGVyLy8vMTAzNzg2MTU3",
+        "keywords": [
+          "Lunge",
+          "Long",
+          "poumons",
+          "polmoni",
+          "lungs",
+          "Lungen"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Lung_Shape_48.svg",
+        "basename": "Lung_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:32:38.000Z",
+      "modifiedAt": "2026-08-13T05:38:59.000Z"
+    },
+    {
+      "uuid": "653ffa32-96d8-11f1-ab02-0050568d2654",
+      "id": 10974416,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10974416/storage/MDEwOTc0NDE2LzAvbWFzdGVyLy8vMTAzNzg0MzM2",
+        "keywords": [
+          "Lunge",
+          "Long",
+          "poumons",
+          "polmoni",
+          "lungs",
+          "Lungen"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Lung_Shape_64.svg",
+        "basename": "Lung_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:32:38.000Z",
+      "modifiedAt": "2026-08-13T05:37:00.000Z"
+    },
+    {
+      "uuid": "63e6d2d2-96d8-11f1-ab02-0050568d2654",
+      "id": 10974412,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10974412/storage/MDEwOTc0NDEyLzAvbWFzdGVyLy8vMTAzNzg2MTUw",
+        "keywords": [
+          "Lunge",
+          "Long",
+          "poumons",
+          "polmoni",
+          "lungs",
+          "Lungen"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Lung_Solid_Shape_16.svg",
+        "basename": "Lung_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:32:35.000Z",
+      "modifiedAt": "2026-08-13T05:38:59.000Z"
+    },
+    {
+      "uuid": "63c0d440-96d8-11f1-ab02-0050568d2654",
+      "id": 10974411,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10974411/storage/MDEwOTc0NDExLzAvbWFzdGVyLy8vMTAzNzg2MTQ2",
+        "keywords": [
+          "Lunge",
+          "Long",
+          "poumons",
+          "polmoni",
+          "lungs",
+          "Lungen"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Lung_Solid_Shape_24.svg",
+        "basename": "Lung_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:32:35.000Z",
+      "modifiedAt": "2026-08-13T05:38:59.000Z"
+    },
+    {
+      "uuid": "62cde8c2-96d8-11f1-ab02-0050568d2654",
+      "id": 10974409,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10974409/storage/MDEwOTc0NDA5LzAvbWFzdGVyLy8vMTAzNzg2MTQy",
+        "keywords": [
+          "Lunge",
+          "Long",
+          "poumons",
+          "polmoni",
+          "lungs",
+          "Lungen"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Lung_Solid_Shape_32.svg",
+        "basename": "Lung_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:32:33.000Z",
+      "modifiedAt": "2026-08-13T05:38:58.000Z"
+    },
+    {
+      "uuid": "60a897c0-96d8-11f1-ab02-0050568d2654",
+      "id": 10974402,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10974402/storage/MDEwOTc0NDAyLzAvbWFzdGVyLy8vMTAzNzg2MTMz",
+        "keywords": [
+          "Lunge",
+          "Long",
+          "poumons",
+          "polmoni",
+          "lungs",
+          "Lungen"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Lung_Solid_Shape_40.svg",
+        "basename": "Lung_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:32:30.000Z",
+      "modifiedAt": "2026-08-13T05:38:59.000Z"
+    },
+    {
+      "uuid": "60ab08c0-96d8-11f1-ab02-0050568d2654",
+      "id": 10974403,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10974403/storage/MDEwOTc0NDAzLzAvbWFzdGVyLy8vMTAzNzg2MTM4",
+        "keywords": [
+          "Lunge",
+          "Long",
+          "poumons",
+          "polmoni",
+          "lungs",
+          "Lungen"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Lung_Solid_Shape_48.svg",
+        "basename": "Lung_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:32:30.000Z",
+      "modifiedAt": "2026-08-13T05:38:59.000Z"
+    },
+    {
+      "uuid": "60a82290-96d8-11f1-ab02-0050568d2654",
+      "id": 10974401,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10974401/storage/MDEwOTc0NDAxLzAvbWFzdGVyLy8vMTAzNzg2MTI5",
+        "keywords": [
+          "Lunge",
+          "Long",
+          "poumons",
+          "polmoni",
+          "lungs",
+          "Lungen"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Lung_Solid_Shape_64.svg",
+        "basename": "Lung_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-13T05:32:30.000Z",
+      "modifiedAt": "2026-08-13T05:38:59.000Z"
+    },
+    {
       "uuid": "41f3e550-e51d-11ef-a15d-005056873709",
       "id": 1821077,
       "type": "picture.pictogram.",
@@ -170751,6 +172803,402 @@
       "modifiedAt": "2026-01-10T08:05:00.467Z"
     },
     {
+      "uuid": "7861b840-97de-11f1-aecd-0050568d2654",
+      "id": 10983566,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983566/storage/MDEwOTgzNTY2LzAvbWFzdGVyLy8vMTAzOTA2MjM3",
+        "keywords": [
+          "Berge",
+          "Gebirge",
+          "Mountains",
+          "Montagna",
+          "Montagnes",
+          "Vorgebirge",
+          "Promontory",
+          "Promontorio",
+          "Promontoire"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Mountains_Shape_16.svg",
+        "basename": "Mountains_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:48:38.000Z",
+      "modifiedAt": "2026-08-14T12:51:52.000Z"
+    },
+    {
+      "uuid": "785d4b70-97de-11f1-aecd-0050568d2654",
+      "id": 10983565,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983565/storage/MDEwOTgzNTY1LzAvbWFzdGVyLy8vMTAzOTA2MjQx",
+        "keywords": [
+          "Berge",
+          "Gebirge",
+          "Mountains",
+          "Montagna",
+          "Montagnes",
+          "Vorgebirge",
+          "Promontory",
+          "Promontorio",
+          "Promontoire"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Mountains_Shape_24.svg",
+        "basename": "Mountains_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:48:38.000Z",
+      "modifiedAt": "2026-08-14T12:51:52.000Z"
+    },
+    {
+      "uuid": "767fd8e0-97de-11f1-aecd-0050568d2654",
+      "id": 10983564,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983564/storage/MDEwOTgzNTY0LzAvbWFzdGVyLy8vMTAzOTA2MjQ1",
+        "keywords": [
+          "Berge",
+          "Gebirge",
+          "Mountains",
+          "Montagna",
+          "Montagnes",
+          "Vorgebirge",
+          "Promontory",
+          "Promontorio",
+          "Promontoire"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Mountains_Shape_32.svg",
+        "basename": "Mountains_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:48:35.000Z",
+      "modifiedAt": "2026-08-14T12:51:52.000Z"
+    },
+    {
+      "uuid": "763b07b0-97de-11f1-aecd-0050568d2654",
+      "id": 10983563,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983563/storage/MDEwOTgzNTYzLzAvbWFzdGVyLy8vMTAzOTA2MjQ5",
+        "keywords": [
+          "Berge",
+          "Gebirge",
+          "Mountains",
+          "Montagna",
+          "Montagnes",
+          "Vorgebirge",
+          "Promontory",
+          "Promontorio",
+          "Promontoire"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Mountains_Shape_40.svg",
+        "basename": "Mountains_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:48:34.000Z",
+      "modifiedAt": "2026-08-14T12:51:52.000Z"
+    },
+    {
+      "uuid": "7578f030-97de-11f1-aecd-0050568d2654",
+      "id": 10983562,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983562/storage/MDEwOTgzNTYyLzAvbWFzdGVyLy8vMTAzOTA2MjUz",
+        "keywords": [
+          "Berge",
+          "Gebirge",
+          "Mountains",
+          "Montagna",
+          "Montagnes",
+          "Vorgebirge",
+          "Promontory",
+          "Promontorio",
+          "Promontoire"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Mountains_Shape_48.svg",
+        "basename": "Mountains_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:48:33.000Z",
+      "modifiedAt": "2026-08-14T12:51:52.000Z"
+    },
+    {
+      "uuid": "74bd8f70-97de-11f1-aecd-0050568d2654",
+      "id": 10983561,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983561/storage/MDEwOTgzNTYxLzAvbWFzdGVyLy8vMTAzOTA2MTU5",
+        "keywords": [
+          "Berge",
+          "Gebirge",
+          "Mountains",
+          "Montagna",
+          "Montagnes",
+          "Vorgebirge",
+          "Promontory",
+          "Promontorio",
+          "Promontoire"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Mountains_Shape_64.svg",
+        "basename": "Mountains_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:48:32.000Z",
+      "modifiedAt": "2026-08-14T12:51:05.000Z"
+    },
+    {
+      "uuid": "74bd6860-97de-11f1-aecd-0050568d2654",
+      "id": 10983560,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983560/storage/MDEwOTgzNTYwLzAvbWFzdGVyLy8vMTAzOTA2MjE3",
+        "keywords": [
+          "Berge",
+          "Gebirge",
+          "Mountains",
+          "Montagna",
+          "Montagnes",
+          "Vorgebirge",
+          "Promontory",
+          "Promontorio",
+          "Promontoire"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Mountains_Solid_Shape_16.svg",
+        "basename": "Mountains_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:48:32.000Z",
+      "modifiedAt": "2026-08-14T12:51:52.000Z"
+    },
+    {
+      "uuid": "74240e92-97de-11f1-aecd-0050568d2654",
+      "id": 10983559,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983559/storage/MDEwOTgzNTU5LzAvbWFzdGVyLy8vMTAzOTA2MjIx",
+        "keywords": [
+          "Berge",
+          "Gebirge",
+          "Mountains",
+          "Montagna",
+          "Montagnes",
+          "Vorgebirge",
+          "Promontory",
+          "Promontorio",
+          "Promontoire"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Mountains_Solid_Shape_24.svg",
+        "basename": "Mountains_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:48:31.000Z",
+      "modifiedAt": "2026-08-14T12:51:52.000Z"
+    },
+    {
+      "uuid": "7364b630-97de-11f1-aecd-0050568d2654",
+      "id": 10983558,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983558/storage/MDEwOTgzNTU4LzAvbWFzdGVyLy8vMTAzOTA2MjI1",
+        "keywords": [
+          "Berge",
+          "Gebirge",
+          "Mountains",
+          "Montagna",
+          "Montagnes",
+          "Vorgebirge",
+          "Promontory",
+          "Promontorio",
+          "Promontoire"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Mountains_Solid_Shape_32.svg",
+        "basename": "Mountains_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:48:29.000Z",
+      "modifiedAt": "2026-08-14T12:51:52.000Z"
+    },
+    {
+      "uuid": "71eb83b0-97de-11f1-aecd-0050568d2654",
+      "id": 10983556,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983556/storage/MDEwOTgzNTU2LzAvbWFzdGVyLy8vMTAzOTA2MjMz",
+        "keywords": [
+          "Berge",
+          "Gebirge",
+          "Mountains",
+          "Montagna",
+          "Montagnes",
+          "Vorgebirge",
+          "Promontory",
+          "Promontorio",
+          "Promontoire"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Mountains_Solid_Shape_40.svg",
+        "basename": "Mountains_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:48:27.000Z",
+      "modifiedAt": "2026-08-14T12:51:52.000Z"
+    },
+    {
+      "uuid": "71eda690-97de-11f1-aecd-0050568d2654",
+      "id": 10983557,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983557/storage/MDEwOTgzNTU3LzAvbWFzdGVyLy8vMTAzOTA2MjI5",
+        "keywords": [
+          "Berge",
+          "Gebirge",
+          "Mountains",
+          "Montagna",
+          "Montagnes",
+          "Vorgebirge",
+          "Promontory",
+          "Promontorio",
+          "Promontoire"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Mountains_Solid_Shape_48.svg",
+        "basename": "Mountains_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:48:27.000Z",
+      "modifiedAt": "2026-08-14T12:51:52.000Z"
+    },
+    {
+      "uuid": "71e6c8c0-97de-11f1-aecd-0050568d2654",
+      "id": 10983555,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983555/storage/MDEwOTgzNTU1LzAvbWFzdGVyLy8vMTAzOTA2MjEz",
+        "keywords": [
+          "Berge",
+          "Gebirge",
+          "Mountains",
+          "Montagna",
+          "Montagnes",
+          "Vorgebirge",
+          "Promontory",
+          "Promontorio",
+          "Promontoire"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Mountains_Solid_Shape_64.svg",
+        "basename": "Mountains_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:48:27.000Z",
+      "modifiedAt": "2026-08-14T12:51:52.000Z"
+    },
+    {
       "uuid": "76050ef0-e51d-11ef-a15d-005056873709",
       "id": 1821367,
       "type": "picture.pictogram.",
@@ -175447,7 +177895,11 @@
         "name": "NewspaperAdress_Shape_16.svg",
         "basename": "NewspaperAdress_Shape_16",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:52:56.000Z",
       "modifiedAt": "2026-08-07T05:55:13.000Z"
@@ -175475,7 +177927,11 @@
         "name": "NewspaperAdress_Shape_24.svg",
         "basename": "NewspaperAdress_Shape_24",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:52:55.000Z",
       "modifiedAt": "2026-08-07T05:55:13.000Z"
@@ -175503,7 +177959,11 @@
         "name": "NewspaperAdress_Shape_32.svg",
         "basename": "NewspaperAdress_Shape_32",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:52:53.000Z",
       "modifiedAt": "2026-08-07T05:55:13.000Z"
@@ -175531,7 +177991,11 @@
         "name": "NewspaperAdress_Shape_40.svg",
         "basename": "NewspaperAdress_Shape_40",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:52:50.000Z",
       "modifiedAt": "2026-08-07T05:55:13.000Z"
@@ -175559,7 +178023,11 @@
         "name": "NewspaperAdress_Shape_48.svg",
         "basename": "NewspaperAdress_Shape_48",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:52:47.000Z",
       "modifiedAt": "2026-08-07T05:55:13.000Z"
@@ -175587,7 +178055,11 @@
         "name": "NewspaperAdress_Shape_64.svg",
         "basename": "NewspaperAdress_Shape_64",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:52:47.000Z",
       "modifiedAt": "2026-08-07T05:54:35.000Z"
@@ -175615,7 +178087,11 @@
         "name": "NewspaperAdress_Solid_Shape_16.svg",
         "basename": "NewspaperAdress_Solid_Shape_16",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:52:45.000Z",
       "modifiedAt": "2026-08-07T05:55:13.000Z"
@@ -175643,7 +178119,11 @@
         "name": "NewspaperAdress_Solid_Shape_24.svg",
         "basename": "NewspaperAdress_Solid_Shape_24",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:52:45.000Z",
       "modifiedAt": "2026-08-07T05:55:13.000Z"
@@ -175671,7 +178151,11 @@
         "name": "NewspaperAdress_Solid_Shape_32.svg",
         "basename": "NewspaperAdress_Solid_Shape_32",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:52:43.000Z",
       "modifiedAt": "2026-08-07T05:55:13.000Z"
@@ -175699,7 +178183,11 @@
         "name": "NewspaperAdress_Solid_Shape_40.svg",
         "basename": "NewspaperAdress_Solid_Shape_40",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:52:40.000Z",
       "modifiedAt": "2026-08-07T05:55:13.000Z"
@@ -175727,7 +178215,11 @@
         "name": "NewspaperAdress_Solid_Shape_48.svg",
         "basename": "NewspaperAdress_Solid_Shape_48",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:52:40.000Z",
       "modifiedAt": "2026-08-07T05:55:13.000Z"
@@ -175755,7 +178247,11 @@
         "name": "NewspaperAdress_Solid_Shape_64.svg",
         "basename": "NewspaperAdress_Solid_Shape_64",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:52:40.000Z",
       "modifiedAt": "2026-08-07T05:55:13.000Z"
@@ -187554,6 +190050,666 @@
       "modifiedAt": "2025-07-31T09:22:27.000Z"
     },
     {
+      "uuid": "5bac16c0-97dc-11f1-aecd-0050568d2654",
+      "id": 10983524,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983524/storage/MDEwOTgzNTI0LzAvbWFzdGVyLy8vMTAzOTA1ODI3",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage",
+          "Phishing Versuch",
+          "Phishing-Versuch",
+          "Hameçonnage Versuch"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PhishingAttempt_Shape_16.svg",
+        "basename": "PhishingAttempt_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:33:31.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "5adf77f0-97dc-11f1-aecd-0050568d2654",
+      "id": 10983522,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983522/storage/MDEwOTgzNTIyLzAvbWFzdGVyLy8vMTAzOTA1ODE5",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage",
+          "Phishing Versuch",
+          "Phishing-Versuch",
+          "Hameçonnage Versuch"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PhishingAttempt_Shape_24.svg",
+        "basename": "PhishingAttempt_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:33:29.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "5b046510-97dc-11f1-aecd-0050568d2654",
+      "id": 10983523,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983523/storage/MDEwOTgzNTIzLzAvbWFzdGVyLy8vMTAzOTA1ODIz",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage",
+          "Phishing Versuch",
+          "Phishing-Versuch",
+          "Hameçonnage Versuch"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PhishingAttempt_Shape_32.svg",
+        "basename": "PhishingAttempt_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:33:30.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "598b0b81-97dc-11f1-aecd-0050568d2654",
+      "id": 10983521,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983521/storage/MDEwOTgzNTIxLzAvbWFzdGVyLy8vMTAzOTA1ODE1",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage",
+          "Phishing Versuch",
+          "Phishing-Versuch",
+          "Hameçonnage Versuch"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PhishingAttempt_Shape_40.svg",
+        "basename": "PhishingAttempt_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:33:27.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "59873af0-97dc-11f1-aecd-0050568d2654",
+      "id": 10983520,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983520/storage/MDEwOTgzNTIwLzAvbWFzdGVyLy8vMTAzOTA1ODEx",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage",
+          "Phishing Versuch",
+          "Phishing-Versuch",
+          "Hameçonnage Versuch"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PhishingAttempt_Shape_48.svg",
+        "basename": "PhishingAttempt_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:33:27.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "58dd6667-97dc-11f1-aecd-0050568d2654",
+      "id": 10983519,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983519/storage/MDEwOTgzNTE5LzAvbWFzdGVyLy8vMTAzOTA1NzI2",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage",
+          "Phishing Versuch",
+          "Phishing-Versuch",
+          "Hameçonnage Versuch"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PhishingAttempt_Shape_64.svg",
+        "basename": "PhishingAttempt_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:33:26.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "5820a610-97dc-11f1-aecd-0050568d2654",
+      "id": 10983518,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983518/storage/MDEwOTgzNTE4LzAvbWFzdGVyLy8vMTAzOTA1ODA3",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage",
+          "Phishing Versuch",
+          "Phishing-Versuch",
+          "Hameçonnage Versuch"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PhishingAttempt_Solid_Shape_16.svg",
+        "basename": "PhishingAttempt_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:33:25.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "576d3490-97dc-11f1-aecd-0050568d2654",
+      "id": 10983517,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983517/storage/MDEwOTgzNTE3LzAvbWFzdGVyLy8vMTAzOTA1ODAz",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage",
+          "Phishing Versuch",
+          "Phishing-Versuch",
+          "Hameçonnage Versuch"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PhishingAttempt_Solid_Shape_24.svg",
+        "basename": "PhishingAttempt_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:33:24.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "56b52f30-97dc-11f1-aecd-0050568d2654",
+      "id": 10983516,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983516/storage/MDEwOTgzNTE2LzAvbWFzdGVyLy8vMTAzOTA1Nzk5",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage",
+          "Phishing Versuch",
+          "Phishing-Versuch",
+          "Hameçonnage Versuch"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PhishingAttempt_Solid_Shape_32.svg",
+        "basename": "PhishingAttempt_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:33:22.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "55465cf0-97dc-11f1-aecd-0050568d2654",
+      "id": 10983513,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983513/storage/MDEwOTgzNTEzLzAvbWFzdGVyLy8vMTAzOTA1Nzg3",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage",
+          "Phishing Versuch",
+          "Phishing-Versuch",
+          "Hameçonnage Versuch"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PhishingAttempt_Solid_Shape_40.svg",
+        "basename": "PhishingAttempt_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:33:20.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "55513260-97dc-11f1-aecd-0050568d2654",
+      "id": 10983515,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983515/storage/MDEwOTgzNTE1LzAvbWFzdGVyLy8vMTAzOTA1Nzk1",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage",
+          "Phishing Versuch",
+          "Phishing-Versuch",
+          "Hameçonnage Versuch"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PhishingAttempt_Solid_Shape_48.svg",
+        "basename": "PhishingAttempt_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:33:20.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "5549df60-97dc-11f1-aecd-0050568d2654",
+      "id": 10983514,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983514/storage/MDEwOTgzNTE0LzAvbWFzdGVyLy8vMTAzOTA1Nzkx",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage",
+          "Phishing Versuch",
+          "Phishing-Versuch",
+          "Hameçonnage Versuch"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PhishingAttempt_Solid_Shape_64.svg",
+        "basename": "PhishingAttempt_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:33:20.000Z",
+      "modifiedAt": "2026-08-15T12:05:06.028Z"
+    },
+    {
+      "uuid": "c98a0bb0-97dd-11f1-aecd-0050568d2654",
+      "id": 10983547,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983547/storage/MDEwOTgzNTQ3LzAvbWFzdGVyLy8vMTAzOTA2MDM1",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Phishing_Shape_16.svg",
+        "basename": "Phishing_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:43:45.000Z",
+      "modifiedAt": "2026-08-14T12:47:23.000Z"
+    },
+    {
+      "uuid": "c98e9f90-97dd-11f1-aecd-0050568d2654",
+      "id": 10983548,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983548/storage/MDEwOTgzNTQ4LzAvbWFzdGVyLy8vMTAzOTA2MDM5",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Phishing_Shape_24.svg",
+        "basename": "Phishing_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:43:45.000Z",
+      "modifiedAt": "2026-08-14T12:47:23.000Z"
+    },
+    {
+      "uuid": "c838d390-97dd-11f1-aecd-0050568d2654",
+      "id": 10983546,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983546/storage/MDEwOTgzNTQ2LzAvbWFzdGVyLy8vMTAzOTA2MDMx",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Phishing_Shape_32.svg",
+        "basename": "Phishing_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:43:42.000Z",
+      "modifiedAt": "2026-08-14T12:47:23.000Z"
+    },
+    {
+      "uuid": "c8357830-97dd-11f1-aecd-0050568d2654",
+      "id": 10983545,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983545/storage/MDEwOTgzNTQ1LzAvbWFzdGVyLy8vMTAzOTA2MDI3",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Phishing_Shape_40.svg",
+        "basename": "Phishing_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:43:42.000Z",
+      "modifiedAt": "2026-08-14T12:47:23.000Z"
+    },
+    {
+      "uuid": "c7840280-97dd-11f1-aecd-0050568d2654",
+      "id": 10983544,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983544/storage/MDEwOTgzNTQ0LzAvbWFzdGVyLy8vMTAzOTA2MDIz",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Phishing_Shape_48.svg",
+        "basename": "Phishing_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:43:41.000Z",
+      "modifiedAt": "2026-08-14T12:47:23.000Z"
+    },
+    {
+      "uuid": "c6b17040-97dd-11f1-aecd-0050568d2654",
+      "id": 10983543,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983543/storage/MDEwOTgzNTQzLzAvbWFzdGVyLy8vMTAzOTA1OTI3",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Phishing_Shape_64.svg",
+        "basename": "Phishing_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:43:40.000Z",
+      "modifiedAt": "2026-08-14T12:45:44.000Z"
+    },
+    {
+      "uuid": "c60d4100-97dd-11f1-aecd-0050568d2654",
+      "id": 10983542,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983542/storage/MDEwOTgzNTQyLzAvbWFzdGVyLy8vMTAzOTA2MDE5",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Phishing_Solid_Shape_16.svg",
+        "basename": "Phishing_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:43:39.000Z",
+      "modifiedAt": "2026-08-14T12:47:23.000Z"
+    },
+    {
+      "uuid": "c4fe6910-97dd-11f1-aecd-0050568d2654",
+      "id": 10983541,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983541/storage/MDEwOTgzNTQxLzAvbWFzdGVyLy8vMTAzOTA2MDE1",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Phishing_Solid_Shape_24.svg",
+        "basename": "Phishing_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:43:37.000Z",
+      "modifiedAt": "2026-08-14T12:47:23.000Z"
+    },
+    {
+      "uuid": "c3dd41a0-97dd-11f1-aecd-0050568d2654",
+      "id": 10983540,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983540/storage/MDEwOTgzNTQwLzAvbWFzdGVyLy8vMTAzOTA2MDEx",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Phishing_Solid_Shape_32.svg",
+        "basename": "Phishing_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:43:35.000Z",
+      "modifiedAt": "2026-08-14T12:47:23.000Z"
+    },
+    {
+      "uuid": "c1f87c10-97dd-11f1-aecd-0050568d2654",
+      "id": 10983538,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983538/storage/MDEwOTgzNTM4LzAvbWFzdGVyLy8vMTAzOTA2MDAz",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Phishing_Solid_Shape_40.svg",
+        "basename": "Phishing_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:43:32.000Z",
+      "modifiedAt": "2026-08-14T12:47:23.000Z"
+    },
+    {
+      "uuid": "c1f8ca30-97dd-11f1-aecd-0050568d2654",
+      "id": 10983539,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983539/storage/MDEwOTgzNTM5LzAvbWFzdGVyLy8vMTAzOTA2MDA3",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Phishing_Solid_Shape_48.svg",
+        "basename": "Phishing_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:43:32.000Z",
+      "modifiedAt": "2026-08-14T12:47:23.000Z"
+    },
+    {
+      "uuid": "c1f85500-97dd-11f1-aecd-0050568d2654",
+      "id": 10983537,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10983537/storage/MDEwOTgzNTM3LzAvbWFzdGVyLy8vMTAzOTA1OTk5",
+        "keywords": [
+          "Phishing",
+          "Hameçonnage"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Phishing_Solid_Shape_64.svg",
+        "basename": "Phishing_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-14T12:43:32.000Z",
+      "modifiedAt": "2026-08-14T12:47:23.000Z"
+    },
+    {
       "uuid": "f745ac40-0b00-11f1-afda-0050568d2654",
       "id": 9199301,
       "type": "picture.pictogram.",
@@ -197821,7 +200977,11 @@
         "name": "PrintSend_Shape_16.svg",
         "basename": "PrintSend_Shape_16",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:32:32.000Z",
       "modifiedAt": "2026-08-07T05:35:23.000Z"
@@ -197845,7 +201005,11 @@
         "name": "PrintSend_Shape_24.svg",
         "basename": "PrintSend_Shape_24",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:32:32.000Z",
       "modifiedAt": "2026-08-07T05:35:23.000Z"
@@ -197869,7 +201033,11 @@
         "name": "PrintSend_Shape_32.svg",
         "basename": "PrintSend_Shape_32",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:32:30.000Z",
       "modifiedAt": "2026-08-07T05:35:23.000Z"
@@ -197893,7 +201061,11 @@
         "name": "PrintSend_Shape_40.svg",
         "basename": "PrintSend_Shape_40",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:32:29.000Z",
       "modifiedAt": "2026-08-07T05:35:23.000Z"
@@ -197917,7 +201089,11 @@
         "name": "PrintSend_Shape_48.svg",
         "basename": "PrintSend_Shape_48",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:32:29.000Z",
       "modifiedAt": "2026-08-07T05:35:23.000Z"
@@ -197941,7 +201117,11 @@
         "name": "PrintSend_Shape_64.svg",
         "basename": "PrintSend_Shape_64",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:32:28.000Z",
       "modifiedAt": "2026-08-07T05:34:04.000Z"
@@ -197965,7 +201145,11 @@
         "name": "PrintSend_Solid_Shape_16.svg",
         "basename": "PrintSend_Solid_Shape_16",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:32:27.000Z",
       "modifiedAt": "2026-08-07T05:35:23.000Z"
@@ -197989,7 +201173,11 @@
         "name": "PrintSend_Solid_Shape_24.svg",
         "basename": "PrintSend_Solid_Shape_24",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:32:25.000Z",
       "modifiedAt": "2026-08-07T05:35:23.000Z"
@@ -198013,7 +201201,11 @@
         "name": "PrintSend_Solid_Shape_32.svg",
         "basename": "PrintSend_Solid_Shape_32",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:32:25.000Z",
       "modifiedAt": "2026-08-07T05:35:23.000Z"
@@ -198037,7 +201229,11 @@
         "name": "PrintSend_Solid_Shape_40.svg",
         "basename": "PrintSend_Solid_Shape_40",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:32:22.000Z",
       "modifiedAt": "2026-08-07T05:35:23.000Z"
@@ -198061,7 +201257,11 @@
         "name": "PrintSend_Solid_Shape_48.svg",
         "basename": "PrintSend_Solid_Shape_48",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:32:22.000Z",
       "modifiedAt": "2026-08-07T05:35:23.000Z"
@@ -198085,7 +201285,11 @@
         "name": "PrintSend_Solid_Shape_64.svg",
         "basename": "PrintSend_Solid_Shape_64",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:32:22.000Z",
       "modifiedAt": "2026-08-07T05:35:23.000Z"
@@ -249425,7 +252629,11 @@
         "name": "Talking_Shape_16.svg",
         "basename": "Talking_Shape_16",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:48:03.000Z",
       "modifiedAt": "2026-08-07T05:51:20.000Z"
@@ -249461,7 +252669,11 @@
         "name": "Talking_Shape_24.svg",
         "basename": "Talking_Shape_24",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:48:03.000Z",
       "modifiedAt": "2026-08-07T05:51:20.000Z"
@@ -249497,7 +252709,11 @@
         "name": "Talking_Shape_32.svg",
         "basename": "Talking_Shape_32",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:48:01.000Z",
       "modifiedAt": "2026-08-07T05:51:20.000Z"
@@ -249533,7 +252749,11 @@
         "name": "Talking_Shape_40.svg",
         "basename": "Talking_Shape_40",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:47:59.000Z",
       "modifiedAt": "2026-08-07T05:51:20.000Z"
@@ -249569,7 +252789,11 @@
         "name": "Talking_Shape_48.svg",
         "basename": "Talking_Shape_48",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:47:57.000Z",
       "modifiedAt": "2026-08-07T05:51:20.000Z"
@@ -249605,7 +252829,11 @@
         "name": "Talking_Shape_64.svg",
         "basename": "Talking_Shape_64",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:47:56.000Z",
       "modifiedAt": "2026-08-07T05:50:36.000Z"
@@ -249641,7 +252869,11 @@
         "name": "Talking_Solid_Shape_16.svg",
         "basename": "Talking_Solid_Shape_16",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:47:54.000Z",
       "modifiedAt": "2026-08-07T05:51:20.000Z"
@@ -249677,7 +252909,11 @@
         "name": "Talking_Solid_Shape_24.svg",
         "basename": "Talking_Solid_Shape_24",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:47:54.000Z",
       "modifiedAt": "2026-08-07T05:51:20.000Z"
@@ -249713,7 +252949,11 @@
         "name": "Talking_Solid_Shape_32.svg",
         "basename": "Talking_Solid_Shape_32",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:47:53.000Z",
       "modifiedAt": "2026-08-07T05:51:20.000Z"
@@ -249749,7 +252989,11 @@
         "name": "Talking_Solid_Shape_40.svg",
         "basename": "Talking_Solid_Shape_40",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:47:48.000Z",
       "modifiedAt": "2026-08-07T05:51:21.000Z"
@@ -249785,7 +253029,11 @@
         "name": "Talking_Solid_Shape_48.svg",
         "basename": "Talking_Solid_Shape_48",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:47:47.000Z",
       "modifiedAt": "2026-08-07T05:51:20.000Z"
@@ -249821,7 +253069,11 @@
         "name": "Talking_Solid_Shape_64.svg",
         "basename": "Talking_Solid_Shape_64",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:47:47.000Z",
       "modifiedAt": "2026-08-07T05:51:21.000Z"
@@ -261345,7 +264597,11 @@
         "name": "TruckSemi_Shape_16.svg",
         "basename": "TruckSemi_Shape_16",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:40:48.000Z",
       "modifiedAt": "2026-08-07T05:43:26.000Z"
@@ -261369,7 +264625,11 @@
         "name": "TruckSemi_Shape_24.svg",
         "basename": "TruckSemi_Shape_24",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:40:47.000Z",
       "modifiedAt": "2026-08-07T05:43:26.000Z"
@@ -261393,7 +264653,11 @@
         "name": "TruckSemi_Shape_32.svg",
         "basename": "TruckSemi_Shape_32",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:40:45.000Z",
       "modifiedAt": "2026-08-07T05:43:26.000Z"
@@ -261417,7 +264681,11 @@
         "name": "TruckSemi_Shape_40.svg",
         "basename": "TruckSemi_Shape_40",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:40:46.000Z",
       "modifiedAt": "2026-08-07T05:43:26.000Z"
@@ -261441,7 +264709,11 @@
         "name": "TruckSemi_Shape_48.svg",
         "basename": "TruckSemi_Shape_48",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:40:42.000Z",
       "modifiedAt": "2026-08-07T05:43:26.000Z"
@@ -261465,7 +264737,11 @@
         "name": "TruckSemi_Shape_64.svg",
         "basename": "TruckSemi_Shape_64",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:40:43.000Z",
       "modifiedAt": "2026-08-07T05:42:50.000Z"
@@ -261489,7 +264765,11 @@
         "name": "TruckSemi_Solid_Shape_16.svg",
         "basename": "TruckSemi_Solid_Shape_16",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:40:40.000Z",
       "modifiedAt": "2026-08-07T05:43:26.000Z"
@@ -261513,7 +264793,11 @@
         "name": "TruckSemi_Solid_Shape_24.svg",
         "basename": "TruckSemi_Solid_Shape_24",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:40:39.000Z",
       "modifiedAt": "2026-08-07T05:43:26.000Z"
@@ -261537,7 +264821,11 @@
         "name": "TruckSemi_Solid_Shape_32.svg",
         "basename": "TruckSemi_Solid_Shape_32",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:40:37.000Z",
       "modifiedAt": "2026-08-07T05:43:26.000Z"
@@ -261561,7 +264849,11 @@
         "name": "TruckSemi_Solid_Shape_40.svg",
         "basename": "TruckSemi_Solid_Shape_40",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:40:32.000Z",
       "modifiedAt": "2026-08-07T05:43:26.000Z"
@@ -261585,7 +264877,11 @@
         "name": "TruckSemi_Solid_Shape_48.svg",
         "basename": "TruckSemi_Solid_Shape_48",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:40:32.000Z",
       "modifiedAt": "2026-08-07T05:43:26.000Z"
@@ -261609,7 +264905,11 @@
         "name": "TruckSemi_Solid_Shape_64.svg",
         "basename": "TruckSemi_Solid_Shape_64",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:40:32.000Z",
       "modifiedAt": "2026-08-07T05:43:26.000Z"
@@ -268955,7 +272255,11 @@
         "name": "UserKnown_Shape_16.svg",
         "basename": "UserKnown_Shape_16",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:27:06.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -268995,7 +272299,11 @@
         "name": "UserKnown_Shape_24.svg",
         "basename": "UserKnown_Shape_24",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:27:05.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -269035,7 +272343,11 @@
         "name": "UserKnown_Shape_32.svg",
         "basename": "UserKnown_Shape_32",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:27:03.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -269075,7 +272387,11 @@
         "name": "UserKnown_Shape_40.svg",
         "basename": "UserKnown_Shape_40",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:27:02.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -269115,7 +272431,11 @@
         "name": "UserKnown_Shape_48.svg",
         "basename": "UserKnown_Shape_48",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:27:01.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -269155,7 +272475,11 @@
         "name": "UserKnown_Shape_64.svg",
         "basename": "UserKnown_Shape_64",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:26:59.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -269195,7 +272519,11 @@
         "name": "UserKnown_Solid_Shape_16.svg",
         "basename": "UserKnown_Solid_Shape_16",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:26:57.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -269235,7 +272563,11 @@
         "name": "UserKnown_Solid_Shape_24.svg",
         "basename": "UserKnown_Solid_Shape_24",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:26:57.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -269275,7 +272607,11 @@
         "name": "UserKnown_Solid_Shape_32.svg",
         "basename": "UserKnown_Solid_Shape_32",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:26:56.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -269315,7 +272651,11 @@
         "name": "UserKnown_Solid_Shape_40.svg",
         "basename": "UserKnown_Solid_Shape_40",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:26:53.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -269355,7 +272695,11 @@
         "name": "UserKnown_Solid_Shape_48.svg",
         "basename": "UserKnown_Solid_Shape_48",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:26:53.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -269395,7 +272739,11 @@
         "name": "UserKnown_Solid_Shape_64.svg",
         "basename": "UserKnown_Solid_Shape_64",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:26:53.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -269815,7 +273163,11 @@
         "name": "UserUnknown_Shape_16.svg",
         "basename": "UserUnknown_Shape_16",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:21:44.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -269851,7 +273203,11 @@
         "name": "UserUnknown_Shape_24.svg",
         "basename": "UserUnknown_Shape_24",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:21:43.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -269887,7 +273243,11 @@
         "name": "UserUnknown_Shape_32.svg",
         "basename": "UserUnknown_Shape_32",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:21:42.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -269923,7 +273283,11 @@
         "name": "UserUnknown_Shape_40.svg",
         "basename": "UserUnknown_Shape_40",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:21:41.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -269959,7 +273323,11 @@
         "name": "UserUnknown_Shape_48.svg",
         "basename": "UserUnknown_Shape_48",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:21:38.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -269995,7 +273363,11 @@
         "name": "UserUnknown_Shape_64.svg",
         "basename": "UserUnknown_Shape_64",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:21:38.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -270031,7 +273403,11 @@
         "name": "UserUnknown_Solid_Shape_16.svg",
         "basename": "UserUnknown_Solid_Shape_16",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:21:36.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -270067,7 +273443,11 @@
         "name": "UserUnknown_Solid_Shape_24.svg",
         "basename": "UserUnknown_Solid_Shape_24",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:21:36.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -270103,7 +273483,11 @@
         "name": "UserUnknown_Solid_Shape_32.svg",
         "basename": "UserUnknown_Solid_Shape_32",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:21:36.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -270139,7 +273523,11 @@
         "name": "UserUnknown_Solid_Shape_40.svg",
         "basename": "UserUnknown_Solid_Shape_40",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:21:32.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -270175,7 +273563,11 @@
         "name": "UserUnknown_Solid_Shape_48.svg",
         "basename": "UserUnknown_Solid_Shape_48",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:21:32.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -270211,7 +273603,11 @@
         "name": "UserUnknown_Solid_Shape_64.svg",
         "basename": "UserUnknown_Solid_Shape_64",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T05:21:32.000Z",
       "modifiedAt": "2026-08-08T05:05:06.166Z"
@@ -300095,7 +303491,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831421/storage/MTgzMTQyMS8wL21hc3Rlci8vLzMxOTU1OTMy",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831421/storage/MDAxODMxNDIxLzAvbWFzdGVyLy8vMTAzODI0MTQ3",
         "businessfield": [
           "edk"
         ],
@@ -300115,7 +303511,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-03-26T13:37:16.000Z"
+      "modifiedAt": "2026-08-13T06:58:32.000Z"
     },
     {
       "uuid": "983fabc0-e562-11ef-a15d-005056873709",
@@ -300123,7 +303519,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831422/storage/MTgzMTQyMi8wL21hc3Rlci8vLzMxOTU2MTky",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831422/storage/MDAxODMxNDIyLzAvbWFzdGVyLy8vMTAzODI0MTYz",
         "businessfield": [
           "edk"
         ],
@@ -300143,7 +303539,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-03-26T13:37:16.000Z"
+      "modifiedAt": "2026-08-13T06:58:54.000Z"
     },
     {
       "uuid": "98404800-e562-11ef-a15d-005056873709",
@@ -300151,7 +303547,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831423/storage/MTgzMTQyMy8wL21hc3Rlci8vLzMxOTU2MDk2",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831423/storage/MDAxODMxNDIzLzAvbWFzdGVyLy8vMTAzODI0MjY5",
         "businessfield": [
           "edk"
         ],
@@ -300171,7 +303567,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-03-26T13:37:16.000Z"
+      "modifiedAt": "2026-08-13T06:59:19.000Z"
     },
     {
       "uuid": "9840bd30-e562-11ef-a15d-005056873709",
@@ -300179,7 +303575,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831424/storage/MTgzMTQyNC8wL21hc3Rlci8vLzMxOTU2MzU5",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831424/storage/MDAxODMxNDI0LzAvbWFzdGVyLy8vMTAzODI0Mjg1",
         "businessfield": [
           "edk"
         ],
@@ -300199,7 +303595,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-03-26T13:37:18.000Z"
+      "modifiedAt": "2026-08-13T06:59:36.000Z"
     },
     {
       "uuid": "98415970-e562-11ef-a15d-005056873709",
@@ -300207,7 +303603,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831425/storage/MTgzMTQyNS8wL21hc3Rlci8vLzMxOTU2MjU3",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831425/storage/MDAxODMxNDI1LzAvbWFzdGVyLy8vMTAzODI0Mzkx",
         "businessfield": [
           "edk"
         ],
@@ -300227,7 +303623,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-03-26T13:37:18.000Z"
+      "modifiedAt": "2026-08-13T06:59:55.000Z"
     },
     {
       "uuid": "984243d0-e562-11ef-a15d-005056873709",
@@ -300235,7 +303631,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831427/storage/MTgzMTQyNy8wL21hc3Rlci8vLzMxOTU2NDE1",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831427/storage/MDAxODMxNDI3LzAvbWFzdGVyLy8vMTAzODI0NDA3",
         "businessfield": [
           "edk"
         ],
@@ -300255,7 +303651,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-03-26T13:37:18.000Z"
+      "modifiedAt": "2026-08-13T07:00:17.000Z"
     },
     {
       "uuid": "9842e010-e562-11ef-a15d-005056873709",
@@ -300263,7 +303659,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831428/storage/MTgzMTQyOC8wL21hc3Rlci8vLzMxOTU2MzMx",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831428/storage/MDAxODMxNDI4LzAvbWFzdGVyLy8vMTAzODI0NTM5",
         "businessfield": [
           "edk"
         ],
@@ -300283,7 +303679,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-03-26T13:37:18.000Z"
+      "modifiedAt": "2026-08-13T07:00:58.000Z"
     },
     {
       "uuid": "98435540-e562-11ef-a15d-005056873709",
@@ -300291,7 +303687,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831429/storage/MTgzMTQyOS8wL21hc3Rlci8vLzQ3OTc1Nzk0",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831429/storage/MDAxODMxNDI5LzAvbWFzdGVyLy8vMTAzODI0NjQ1",
         "businessfield": [
           "edk"
         ],
@@ -300311,7 +303707,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-06-04T07:57:46.000Z"
+      "modifiedAt": "2026-08-13T07:01:41.000Z"
     },
     {
       "uuid": "9843f180-e562-11ef-a15d-005056873709",
@@ -300319,7 +303715,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831430/storage/MTgzMTQzMC8wL21hc3Rlci8vLzMxOTU2NTAx",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831430/storage/MDAxODMxNDMwLzAvbWFzdGVyLy8vMTAzODI0Njk3",
         "businessfield": [
           "edk"
         ],
@@ -300339,7 +303735,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-03-26T13:37:18.000Z"
+      "modifiedAt": "2026-08-13T07:02:00.000Z"
     },
     {
       "uuid": "984466b0-e562-11ef-a15d-005056873709",
@@ -300347,7 +303743,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831431/storage/MTgzMTQzMS8wL21hc3Rlci8vLzMxOTU2NDQx",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831431/storage/MDAxODMxNDMxLzAvbWFzdGVyLy8vMTAzODI0NzY3",
         "businessfield": [
           "edk"
         ],
@@ -300367,7 +303763,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-03-26T13:37:18.000Z"
+      "modifiedAt": "2026-08-13T07:02:15.000Z"
     },
     {
       "uuid": "9844dbe0-e562-11ef-a15d-005056873709",
@@ -300375,7 +303771,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831432/storage/MTgzMTQzMi8wL21hc3Rlci8vLzMxOTU2MTc1",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1831432/storage/MDAxODMxNDMyLzAvbWFzdGVyLy8vMTAzODI0Nzgz",
         "businessfield": [
           "edk"
         ],
@@ -300395,7 +303791,7 @@
         }
       },
       "createdAt": "2025-02-07T14:48:29.000Z",
-      "modifiedAt": "2025-03-26T13:37:16.000Z"
+      "modifiedAt": "2026-08-13T07:02:33.000Z"
     },
     {
       "uuid": "98457820-e562-11ef-a15d-005056873709",
@@ -364184,13 +367580,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 9432,
+    "success": 9528,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 2948,
     "duplicates": 0
   },
-  "created": "2026-08-10T08:34:44.487Z",
-  "version": "10.1.0"
+  "created": "2026-08-16T01:56:59.615Z",
+  "version": "10.2.0"
 }
