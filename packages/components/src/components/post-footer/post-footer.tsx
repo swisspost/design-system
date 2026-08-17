@@ -3,6 +3,7 @@ import { version } from '@root/package.json';
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 
 const GRID_SLOTS = ['grid-1', 'grid-2', 'grid-3', 'grid-4'];
+const SECTION_SLOTS = ['socialmedia', 'app', 'businesssectors', 'meta', 'copyright'];
 
 /**
  * @slot prefooter - Slot for the pre-footer.
@@ -11,8 +12,8 @@ const GRID_SLOTS = ['grid-1', 'grid-2', 'grid-3', 'grid-4'];
  * @slot socialmedia - Slot for the social media links.
  * @slot app - Slot for the app links.
  * @slot businesssectors - Slot for the business sectors links.
- * @slot meta - Slot for the meta links.
- * @slot copyright - Slot for the copyright text.
+ * @slot meta - **Required.** Slot for the meta links.
+ * @slot copyright - **Required.** Slot for the copyright text.
  */
 @Component({
   tag: 'post-footer',
@@ -31,10 +32,11 @@ export class PostFooter {
   readonly textFooter!: string;
 
   @State() device: Device = breakpoint.get('device');
-  @State() gridSlotDisplayed: Record<string, boolean> = {};
+  @State() slotDisplayed: Record<string, boolean> = {};
 
   constructor() {
     this.handleGridSlotChange = this.handleGridSlotChange.bind(this);
+    this.handleSlotChange = this.handleSlotChange.bind(this);
   }
 
   connectedCallback() {
@@ -42,10 +44,10 @@ export class PostFooter {
   }
 
   componentWillLoad() {
-    // initialize grid visibility by checking the content of each slot
-    GRID_SLOTS.forEach(slotName => {
+    // initialize slot visibility by checking the content of each slot
+    [...GRID_SLOTS, ...SECTION_SLOTS].forEach(slotName => {
       const assignedElements = this.host.querySelectorAll(`[slot="${slotName}"]`);
-      this.updateGridSlotDisplay(slotName, assignedElements.length > 0);
+      this.updateSlotDisplay(slotName, assignedElements.length > 0);
     });
   }
 
@@ -57,17 +59,25 @@ export class PostFooter {
     this.device = e.detail;
   };
 
-  private handleGridSlotChange(...devices: string[]) {
+  private handleGridSlotChange(...devices: Device[]) {
     return (e: Event) => {
       if (devices.includes(this.device) && e.target instanceof HTMLSlotElement) {
-        this.updateGridSlotDisplay(e.target.name, e.target.assignedElements().length > 0);
+        this.updateSlotDisplay(e.target.name, e.target.assignedElements().length > 0);
       }
     };
   }
 
-  private updateGridSlotDisplay(slotName: string, hasContent: boolean) {
-    if (this.gridSlotDisplayed[slotName] !== hasContent) {
-      this.gridSlotDisplayed = { ...this.gridSlotDisplayed, [slotName]: hasContent };
+  private handleSlotChange(e: Event) {
+    if (e.target instanceof HTMLSlotElement) {
+      this.updateSlotDisplay(e.target.name, e.target.assignedElements().length > 0);
+    }
+  }
+
+  private updateSlotDisplay(slotName: string, hasContent: boolean) {
+    if (this.slotDisplayed[slotName] !== hasContent) {
+      // @State only re-renders when this.slotDisplayed itself is replaced,
+      // not when one of its properties is changed directly
+      this.slotDisplayed = { ...this.slotDisplayed, [slotName]: hasContent };
     }
   }
 
@@ -77,7 +87,7 @@ export class PostFooter {
         {GRID_SLOTS.map(slotName => (
           <post-accordion-item
             key={slotName}
-            class={{ 'd-none': !this.gridSlotDisplayed[slotName] }}
+            class={{ 'd-none': !this.slotDisplayed[slotName] }}
             collapsed={true}
           >
             <span slot="header">
@@ -92,7 +102,7 @@ export class PostFooter {
 
   private renderColumns() {
     return GRID_SLOTS.map(slotName => (
-      <div key={slotName} class={{ 'd-none': !this.gridSlotDisplayed[slotName] }}>
+      <div key={slotName} class={{ 'd-none': !this.slotDisplayed[slotName] }}>
         <h3>
           <slot name={slotName + '-title'}></slot>
         </h3>
@@ -102,6 +112,13 @@ export class PostFooter {
   }
 
   render() {
+    const renderSocialmedia = this.slotDisplayed['socialmedia'];
+    const renderApp = this.slotDisplayed['app'];
+    const renderBusinesssectors = this.slotDisplayed['businesssectors'];
+    const renderMeta = this.slotDisplayed['meta'];
+    const renderCopyright = this.slotDisplayed['copyright'];
+    const allGridSlotsEmpty = GRID_SLOTS.every(slotName => !this.slotDisplayed[slotName]);
+
     return (
       <Host data-version={version} data-color-scheme="light">
         <footer>
@@ -115,30 +132,35 @@ export class PostFooter {
 
           <div class="footer-main">
             <div class="footer-container">
-              <div class="footer-grid">
+              <div class={{ 'footer-grid': true, 'd-none': allGridSlotsEmpty }}>
                 {this.device === 'mobile' ? this.renderAccordion() : this.renderColumns()}
               </div>
 
-              <div class="footer-column">
-                <div class="footer-socialmedia">
-                  <slot name="socialmedia"></slot>
+              <div
+                class={{
+                  'footer-column': true,
+                  'd-none': !renderSocialmedia && !renderApp,
+                }}
+              >
+                <div class={{ 'footer-socialmedia': true, 'd-none': !renderSocialmedia }}>
+                  <slot onSlotchange={this.handleSlotChange} name="socialmedia"></slot>
                 </div>
 
-                <div class="footer-app">
-                  <slot name="app"></slot>
+                <div class={{ 'footer-app': true, 'd-none': !renderApp }}>
+                  <slot onSlotchange={this.handleSlotChange} name="app"></slot>
                 </div>
               </div>
 
-              <div class="footer-businesssectors">
-                <slot name="businesssectors"></slot>
+              <div class={{ 'footer-businesssectors': true, 'd-none': !renderBusinesssectors }}>
+                <slot onSlotchange={this.handleSlotChange} name="businesssectors"></slot>
               </div>
 
-              <div class="footer-meta">
-                <slot name="meta"></slot>
+              <div class={{ 'footer-meta': true, 'd-none': !renderMeta }}>
+                <slot onSlotchange={this.handleSlotChange} name="meta"></slot>
               </div>
 
-              <div class="footer-copyright">
-                <slot name="copyright"></slot>
+              <div class={{ 'footer-copyright': true, 'd-none': !renderCopyright }}>
+                <slot onSlotchange={this.handleSlotChange} name="copyright"></slot>
               </div>
             </div>
           </div>
