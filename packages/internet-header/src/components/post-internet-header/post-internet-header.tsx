@@ -7,7 +7,17 @@ import { getAlternateLinks, observeAlternateLinks } from '@/services/alternate-l
 import { getLocalizedConfig, isValidProjectId } from '@/services/config.service';
 import { getActiveLink } from '@/services/route.service';
 import { version } from '@root/package.json';
-import { Component, Event, EventEmitter, h, Host, Listen, Prop, Watch } from '@stencil/core';
+import {
+  Component,
+  Event,
+  EventEmitter,
+  forceUpdate,
+  h,
+  Host,
+  Listen,
+  Prop,
+  Watch,
+} from '@stencil/core';
 import '@swisspost/design-system-components';
 
 const SESSION_URL = 'https://n.account.post.ch/v1/session/subscribe';
@@ -120,14 +130,16 @@ export class PostInternetHeader {
     }
   }
 
+  connectedCallback() {
+    this.observeAlternateLinks();
+  }
+
   async componentWillLoad() {
     this.initAlternateLinks();
     await Promise.all([this.fetchHeaderConfig(), this.fetchUserData()]);
   }
 
   componentDidLoad() {
-    this.observeAlternateLinks();
-
     window.requestAnimationFrame(() => {
       this.headerLoaded.emit();
     });
