@@ -120,7 +120,7 @@
   "devDependencies": {
     "@changesets/cli": "2.31.0",
     "start-server-and-test": "2.1.5",
-    "turbo": "2.9.14"
+    "turbo": "2.10.10"
   },
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
@@ -130,6 +130,11 @@
       "name": "node",
       "version": "^24.0.0",
       "onFail": "error"
+    },
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.20.0",
+      "onFail": "warn"
     }
   },
   "pnpm": {
