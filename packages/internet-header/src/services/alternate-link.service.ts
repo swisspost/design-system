@@ -31,11 +31,11 @@ export const getAlternateLinks = (): Map<string, string> => {
  * Fires the callback whenever a <link rel="alternate"> is added, removed,
  * or has its href/hreflang attribute changed.
  *
- * @returns A cleanup function that disconnects the observer.
+ * @returns The MutationObserver instance.
  */
 export const observeAlternateLinks = (
   callback: (links: Map<string, string>) => void,
-): (() => void) => {
+): MutationObserver => {
   const observer = new MutationObserver(mutations => {
     const isRelevant = mutations.some(m => {
       if (m.type === 'attributes') {
@@ -73,5 +73,5 @@ export const observeAlternateLinks = (
     attributeFilter: ['href', 'hreflang', 'rel'],
   });
 
-  return () => observer.disconnect();
+  return observer;
 };

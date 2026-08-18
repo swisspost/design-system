@@ -26,7 +26,7 @@ const SESSION_URL = 'https://n.account.post.ch/v1/session/subscribe';
   shadow: false,
 })
 export class PostInternetHeader {
-  private disconnectAlternateLinksObserver?: () => void;
+  private alternateLinksObserver?: MutationObserver;
 
   /**
    * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted.
@@ -145,7 +145,7 @@ export class PostInternetHeader {
   }
 
   disconnectedCallback() {
-    this.disconnectAlternateLinksObserver?.();
+    this.alternateLinksObserver?.disconnect();
 
     // Reset the store to its original state
     dispose();
@@ -207,7 +207,7 @@ export class PostInternetHeader {
 
   private observeAlternateLinks() {
     // Watch for dynamic changes (SPA route changes, late inserts)
-    this.disconnectAlternateLinksObserver = observeAlternateLinks(updated => {
+    this.alternateLinksObserver = observeAlternateLinks(updated => {
       state.alternateLinks = updated;
     });
   }
