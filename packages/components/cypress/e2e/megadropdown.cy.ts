@@ -69,4 +69,78 @@ describe('megadropdown', () => {
       });
     });
   });
+
+  describe('active state', () => {
+    beforeEach(() => {
+      cy.viewport(1920, 1080);
+      cy.getComponents(MEGADROPDOWN_ID, 'tests', 'post-megadropdown');
+      cy.get('post-megadropdown-trigger[data-hydrated]').find('button').as('trigger');
+    });
+
+    it('should mark the trigger active when a slotted link has aria-current="page"', () => {
+      cy.get('@megadropdown')
+        .find('a')
+        .first()
+        .then($link => $link.attr('aria-current', 'page'));
+
+      cy.get('post-megadropdown-trigger').should('have.attr', 'active');
+      cy.get('@trigger').should('have.class', 'active');
+    });
+
+    it('should not mark the trigger active when no slotted link is current', () => {
+      cy.get('post-megadropdown-trigger').should('not.have.attr', 'active');
+      cy.get('@trigger').should('not.have.class', 'active');
+    });
+
+    it('should keep the current-page active state distinguishable while the dropdown is open', () => {
+      cy.get('@megadropdown')
+        .find('a')
+        .first()
+        .then($link => $link.attr('aria-current', 'page'));
+      cy.get('post-megadropdown-trigger').should('have.attr', 'active');
+
+      cy.get('@trigger').click({ force: true });
+      cy.get('@megadropdown').find('.megadropdown').should('be.visible');
+
+      cy.get('@trigger').should('have.attr', 'aria-expanded', 'true');
+      cy.get('post-megadropdown-trigger').should('have.attr', 'active');
+    });
+  });
+
+  describe('chevron rotation', () => {
+    function getRotation($icon: JQuery<HTMLElement>): number {
+      const transform = globalThis.getComputedStyle($icon.get(0)).transform;
+      if (transform === 'none') return 0;
+      const values = transform.match(/matrix\(([^)]+)\)/)?.[1].split(',').map(Number);
+      if (!values) return 0;
+      const [a, b] = values;
+      return Math.round((Math.atan2(b, a) * 180) / Math.PI);
+    }
+
+    beforeEach(() => {
+      cy.getComponents(MEGADROPDOWN_ID, 'tests', 'post-megadropdown');
+    });
+
+    it('should rotate the chevron 180deg on desktop when the dropdown opens, and back on close', () => {
+      cy.viewport(1920, 1080);
+      cy.get('post-megadropdown-trigger[data-hydrated]').find('post-icon').first().as('chevron');
+
+      cy.get('@chevron').should($icon => expect(getRotation($icon)).to.eq(0));
+
+      cy.get('post-megadropdown-trigger[data-hydrated]').find('button').first().click({ force: true });
+
+      cy.get('@chevron').should($icon => expect(Math.abs(getRotation($icon))).to.eq(180));
+    });
+
+    it('should keep the chevron fixed at -90deg on mobile regardless of open state', () => {
+      cy.viewport('iphone-6');
+      cy.get('post-megadropdown-trigger[data-hydrated]').find('post-icon').first().as('chevron');
+
+      cy.get('@chevron').should($icon => expect(getRotation($icon)).to.eq(-90));
+
+      cy.get('post-megadropdown-trigger[data-hydrated]').find('button').first().click({ force: true });
+
+      cy.get('@chevron').should($icon => expect(getRotation($icon)).to.eq(-90));
+    });
+  });
 });

@@ -13,6 +13,9 @@ import { EventFrom, getRoot, Required, Type } from '@/utils';
 export class PostSideNavigationTrigger {
   @Element() host: HTMLPostSideNavigationTriggerElement;
 
+  /**
+   * ID of the side navigation element that this trigger is linked to. Used to open and close the specified side navigation.
+   */
   @Prop({ reflect: true })
   @Required()
   @Type('string')
