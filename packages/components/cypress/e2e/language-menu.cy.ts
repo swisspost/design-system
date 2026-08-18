@@ -168,6 +168,7 @@ describe('post-language-menu', () => {
           .should('exist')
           .and('have.attr', 'aria-current', 'page')
           .and('have.attr', 'href', 'https://www.post.ch/en')
+          .and('have.attr', 'hrefLang', 'en')
           .and('have.attr', 'lang', 'en');
       });
     });

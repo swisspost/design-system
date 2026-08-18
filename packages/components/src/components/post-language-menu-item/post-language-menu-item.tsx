@@ -106,6 +106,7 @@ export class PostLanguageMenuItem {
       <a
         aria-current={this.active ? 'page' : undefined}
         href={this.url}
+        hreflang={lang.substring(0,2)}
         lang={lang}
         aria-description={this.description}
         onClick={() => this.emitChange()}
