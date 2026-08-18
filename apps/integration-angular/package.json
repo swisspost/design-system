@@ -26,7 +26,6 @@
     "lint:fix": "ng lint --fix"
   },
   "dependencies": {
-    "@angular/animations": "catalog:angular",
     "@angular/common": "catalog:angular",
     "@angular/compiler": "catalog:angular",
     "@angular/core": "catalog:angular",
