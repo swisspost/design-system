@@ -1,8 +1,8 @@
 import { Link, LinkProps, MegaDropdown, UserMenu } from '@/components/internal';
 import { dispose, state } from '@/data/store';
 import { ActiveRouteProp, Environment } from '@/models/general.model';
-import { UserMenuConfig } from '@/models/header.model';
-import { LinkConfig } from '@/models/shared.model';
+import { PostLoginConfig, UserMenuConfig } from '@/models/header.model';
+import { IconLinkConfig, LinkConfig } from '@/models/shared.model';
 import { getLocalizedConfig, isValidProjectId } from '@/services/config.service';
 import { getActiveLink } from '@/services/route.service';
 import { version } from '@root/package.json';
@@ -44,8 +44,12 @@ export class PostInternetHeader {
 
   @Watch('language')
   async handleLanguageChange(newValue: string) {
-    state.currentLanguage = newValue;
-    await this.updateConfig();
+    try {
+      // Pass newValue explicitly — it wins first priority in getUserLang's chain
+      await this.updateConfig(newValue);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   /**
@@ -167,11 +171,12 @@ export class PostInternetHeader {
     }
   }
 
-  private async updateConfig() {
+  // Fetch and store the localized config, defaulting to the `language` prop if none is passed
+  private async updateConfig(language?: string) {
     state.localizedConfig = await getLocalizedConfig({
       projectId: this.project,
       environment: this.environment,
-      language: this.language,
+      language: language ?? this.language,
     });
 
     this.updateActiveUrl();
@@ -179,6 +184,14 @@ export class PostInternetHeader {
 
   private updateActiveUrl() {
     state.activeLink = getActiveLink(this.activeRoute);
+  }
+
+  private getUserMenuOptions(postLogin: PostLoginConfig): Array<IconLinkConfig> {
+    return [
+      ...(postLogin.userProfile ? [postLogin.userProfile] : []),
+      ...(postLogin.settings ? [postLogin.settings] : []),
+      ...(postLogin.userLinks ?? []),
+    ];
   }
 
   private renderNavItem(config: LinkConfig | UserMenuConfig, props: LinkProps = {}): string {
@@ -211,7 +224,7 @@ export class PostInternetHeader {
     return (
       <ul slot={slot}>
         {config.map(navItem => (
-          <li>{this.renderNavItem(navItem, props)}</li>
+          <li key={'url' in navItem ? navItem.url : navItem.user.email}>{this.renderNavItem(navItem, props)}</li>
         ))}
       </ul>
     );
@@ -262,6 +275,7 @@ export class PostInternetHeader {
             >
               {globalHeader.languages.map(lang => (
                 <post-language-menu-item
+                  key={lang.code}
                   url={lang.url}
                   active={lang.active}
                   code={lang.code}
@@ -277,7 +291,13 @@ export class PostInternetHeader {
           {globalHeader.postLogin &&
             this.renderNavItem(
               state.user
-                ? { user: state.user, options: globalHeader.postLogin.userLinks, accountSwitch: globalHeader.postLogin.accountSwitch }
+                ? {
+                    user: state.user,
+                    options: this.getUserMenuOptions(globalHeader.postLogin),
+                    accountSwitch: globalHeader.postLogin.accountSwitch,
+                    companySwitch: globalHeader.postLogin.companySwitch,
+                    logoutLink: globalHeader.postLogin.logoutLink,
+                  }
                 : globalHeader.postLogin.loginLink,
               { slot: 'post-login' },
             )}
@@ -286,11 +306,11 @@ export class PostInternetHeader {
 
           {localHeader.navigation && this.renderNavigation('local-nav', localHeader.navigation)}
 
-          {localHeader.mainNavigation && (
+          {localHeader.mainNavigation && localHeader.mainNavigation.length > 0 && (
             <post-mainnavigation slot="main-nav" textMain={this.textMain}>
               <ul>
                 {localHeader.mainNavigation.map(navItem => (
-                  <li>
+                  <li key={'url' in navItem ? navItem.url : navItem.trigger.text}>
                     {'url' in navItem ? (
                       <Link config={navItem} ariaCurrentWhenActive="page" />
                     ) : (

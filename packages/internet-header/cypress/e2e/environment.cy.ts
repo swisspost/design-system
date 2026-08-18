@@ -4,13 +4,13 @@ import mockAuth from '../fixtures/internet-header/auth.json';
 describe('header attributes', { baseUrl: null }, () => {
   beforeEach(() => {
     cy.intercept('**/v1/session/subscribe', mockAuth).as('auth');
-    cy.intercept('**/api/headerjs/Json?serviceid=*', testConfiguration).as('getConfig');
+    cy.intercept('**/api/header?serviceId=*', testConfiguration).as('getConfig');
   });
 
-  it('should lowercase the environment attribute', () => {
+  it('should uppercase the environment attribute', () => {
     cy.visit('./cypress/fixtures/pages/uppercase-environment.html');
     cy.wait('@getConfig').then(interception => {
-      expect(interception.request.query['environment']).to.eq('int01');
+      expect(interception.request.query['environment']).to.eq('INT01');
     });
   });
 });

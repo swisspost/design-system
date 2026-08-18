@@ -400,7 +400,7 @@ export class PostHeader {
   @Listen('focusin')
   @Listen('focusout')
   onFocusChange() {
-    const isFocusVisible = document.activeElement?.matches(':focus-visible');
+    const isFocusVisible = this.getDeepActiveElement()?.matches(':focus-visible');
     const isFocusedInHeader = this.host.matches(':focus-within');
 
     const mustRemainCollapsed =
@@ -411,6 +411,18 @@ export class PostHeader {
     const isHeaderExpanded = isFocusVisible && isFocusedInHeader && !mustRemainCollapsed;
 
     this.host.toggleAttribute('data-expanded', isHeaderExpanded);
+  }
+
+  // document.activeElement stops at the outermost shadow host (e.g. post-language-menu)
+  // when focus is nested inside its own shadow root, walk down to find the real target
+  private getDeepActiveElement(): Element | null {
+    let activeElement = document.activeElement;
+
+    while (activeElement?.shadowRoot?.activeElement) {
+      activeElement = activeElement.shadowRoot.activeElement;
+    }
+
+    return activeElement;
   }
 
   private renderBurgerMenu() {
@@ -466,8 +478,8 @@ export class PostHeader {
                 )}
                 <slot name="global-nav-primary"></slot>
                 {(onDesktop || !this.hasMainNav) && [
-                  <slot name="global-nav-secondary"></slot>,
-                  <slot name="language-menu"></slot>,
+                  <slot key="global-nav-secondary" name="global-nav-secondary"></slot>,
+                  <slot key="language-menu" name="language-menu"></slot>,
                 ]}
                 <slot name="post-login"></slot>
                 {onTabletAndMobile && this.hasMainNav && (
