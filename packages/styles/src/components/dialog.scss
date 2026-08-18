@@ -172,7 +172,8 @@ dialog {
     content: '';
     display: block;
     grid-area: icon;
-    align-self: center;
+    align-self: start;
+    margin-block-start: tokens.get('utility-gap-2', utilities.$post-spacing);
 
     width: tokens.get('dialog-icon-size', components.$post-dialog);
     height: tokens.get('dialog-icon-size', components.$post-dialog);
@@ -187,6 +188,7 @@ dialog {
     z-index: 1;
     background-color: inherit;
     font-size: tokens.get('dialog-heading-font-size', components.$post-dialog);
+    line-height: tokens.get('utility-line-height-sm', utilities.$post-typo);
     font-weight: tokens.get('dialog-heading-font-weight', components.$post-dialog);
   }
 
