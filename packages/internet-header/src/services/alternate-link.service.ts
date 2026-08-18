@@ -41,13 +41,16 @@ export const observeAlternateLinks = (
 ): (() => void) => {
   const observer = new MutationObserver(mutations => {
     const isRelevant = mutations.some(m => {
-      // Attribute change on a link[rel="alternate"]
-      if (m.type === 'attributes' && m.target instanceof HTMLLinkElement) {
-        return (
-          (m.target.rel === 'alternate' && m.target.hasAttribute('hreflang')) ||
-          m.attributeName === 'hreflang' ||
-          m.attributeName === 'rel'
-        );
+      if (m.type === 'attributes') {
+        const isLinkAttribute = m.target instanceof HTMLLinkElement;
+        const isRelevantAttribute = ['hreflang', 'rel'].some(a => a === m.attributeName);
+
+        if (!isLinkAttribute || !isRelevantAttribute) return false;
+
+        const link = m.target as HTMLLinkElement;
+        const isAlternateLink = link.rel === 'alternate' && link.hasAttribute('hreflang');
+
+        return isAlternateLink;
       }
 
       if (m.type === 'childList') {

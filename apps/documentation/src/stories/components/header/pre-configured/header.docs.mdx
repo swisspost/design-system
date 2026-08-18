@@ -9,9 +9,7 @@ import './header.scss';
 
 <div className="docs-title">
   # Internet Header
-
-<link-design of={JSON.stringify(HeaderStories)}></link-design>
-
+  <link-design of={JSON.stringify(HeaderStories)}></link-design>
 </div>
 
 <p className="lead">The internet header is built for external, client-facing applications.</p>
@@ -27,6 +25,10 @@ Override the language switch links with custom URLs. This is helpful when your a
 <Source code={htmlSample} language="html" />
 
 Add `<link rel="alternate">` tags to the `<head>` of your page. When present, alternate links take priority over the Portal config URLs. If no alternate link exists for a given language, the header falls back to the config value.
+
+<post-banner type="info">
+  Both the `rel="alternate"` and `hreflang` attributes are required for a link to be recognized.
+</post-banner>
 
 Supported `hreflang` values are `de`, `fr`, `it`, and `en`.
 
