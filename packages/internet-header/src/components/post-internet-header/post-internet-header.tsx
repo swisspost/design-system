@@ -229,8 +229,7 @@ export class PostInternetHeader {
    * Alternate links from <head> take priority over config-provided URLs.
    */
   private getLanguageUrl(code: string, configUrl: string): string {
-    const normalizedCode = code.toLowerCase();
-    return state.alternateLinks.get(normalizedCode) ?? configUrl;
+    return state.alternateLinks.get(code.toLowerCase()) ?? configUrl;
   }
 
   private renderNavItem(config: LinkConfig | UserMenuConfig, props: LinkProps = {}): string {
