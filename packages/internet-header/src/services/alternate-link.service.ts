@@ -52,8 +52,9 @@ export const observeAlternateLinks = (
         return [...m.addedNodes, ...m.removedNodes].some(
           n =>
             n instanceof HTMLLinkElement &&
-            n.rel === 'alternate' &&
-            n.hasAttribute('hreflang'),
+            n.hasAttribute('href') &&
+            n.hasAttribute('hreflang') &&
+            n.hasAttribute('rel') && n.rel === 'alternate',
         );
       }
 
