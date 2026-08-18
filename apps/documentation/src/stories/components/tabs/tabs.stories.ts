@@ -354,6 +354,10 @@ function sideNav(story: PartialStoryFn) {
         </button>
       </post-side-navigation-trigger>
       <p slot="title">[Application Title]</p>
+      <a href="" slot="local-nav">
+        <span>Login</span>
+        <post-icon name="login"></post-icon>
+      </a>
     </post-header>
     <post-side-navigation size="large" id="sidenavigation" text-close="Close">
       <nav aria-label="Main navigation">${unsafeHTML(defaultNav)}</nav>
