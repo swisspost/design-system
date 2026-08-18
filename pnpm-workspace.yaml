@@ -27,7 +27,6 @@ catalogs:
     'typescript': 6.0.3
     'typescript-eslint': 8.62.0
   angular:
-    '@angular/animations': 22.0.5
     '@angular/build': 22.0.5
     '@angular/cli': 22.0.5
     '@angular/common': 22.0.5
