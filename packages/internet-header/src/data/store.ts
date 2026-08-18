@@ -11,7 +11,7 @@ export interface HeaderState {
   activeLink: RouteLink | null;
   search: boolean;
   user: UserConfig | null;
-  alternateLinks: Map<string, string> | null;
+  alternateLinks: Map<string, string>;
 }
 
 export const { state, onChange, reset, dispose } = createStore<HeaderState>({
@@ -22,5 +22,5 @@ export const { state, onChange, reset, dispose } = createStore<HeaderState>({
   activeLink: null,
   search: true,
   user: null,
-  alternateLinks: null,
+  alternateLinks: new Map<string, string>(),
 });

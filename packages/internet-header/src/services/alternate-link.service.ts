@@ -1,5 +1,3 @@
-const SUPPORTED_LANGUAGES = new Set(['de', 'fr', 'it', 'en']);
-
 /**
  * Read alternate language links from <link rel="alternate" hreflang="..."> in <head>.
  * Only returns entries whose hreflang matches a supported language and whose href is a valid URL.
@@ -7,20 +5,19 @@ const SUPPORTED_LANGUAGES = new Set(['de', 'fr', 'it', 'en']);
 export const getAlternateLinks = (): Map<string, string> => {
   const result = new Map<string, string>();
   const links = document.querySelectorAll<HTMLLinkElement>(
-    'link[rel="alternate"][hreflang]',
+    'head link[rel="alternate"][hreflang][href]',
   );
 
   for (const link of links) {
-    const lang = link.hreflang?.substring(0, 2).toLowerCase();
-    if (!SUPPORTED_LANGUAGES.has(lang)) continue;
-    if (result.has(lang)) continue;
-
     const href = link.getAttribute('href');
     if (!href) continue;
 
+    const code = link.hreflang?.toLowerCase();
+    if (result.has(code)) continue;
+
     try {
       const url = new URL(href, document.baseURI);
-      result.set(lang, url.href);
+      result.set(code, url.href);
     } catch {
       // Invalid URL, fall back to config
     }
@@ -42,14 +39,13 @@ export const observeAlternateLinks = (
   const observer = new MutationObserver(mutations => {
     const isRelevant = mutations.some(m => {
       if (m.type === 'attributes') {
-        const isRelevantAttribute = ['hreflang', 'rel'].some(a => a === m.attributeName);
+        if (!(m.target instanceof HTMLLinkElement)) return false; 
 
-        return m.target instanceof HTMLLinkElement && isRelevantAttribute;
+        return m.attributeName === 'hreflang' || (m.attributeName === 'rel' && m.target.rel === 'alternate');
       }
 
       if (m.type === 'childList') {
-        const nodes = [...m.addedNodes, ...m.removedNodes];
-        return nodes.some(
+        return [...m.addedNodes, ...m.removedNodes].some(
           n =>
             n instanceof HTMLLinkElement &&
             n.rel === 'alternate' &&

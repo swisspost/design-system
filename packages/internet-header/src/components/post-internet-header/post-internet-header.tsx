@@ -202,14 +202,13 @@ export class PostInternetHeader {
   }
 
   private initAlternateLinks() {
-    const links = getAlternateLinks();
-    state.alternateLinks = links.size > 0 ? links : null;
+    state.alternateLinks = getAlternateLinks();
   }
 
   private observeAlternateLinks() {
     // Watch for dynamic changes (SPA route changes, late inserts)
     this.disconnectAlternateLinksObserver = observeAlternateLinks(updated => {
-      state.alternateLinks = updated.size > 0 ? updated : null;
+      state.alternateLinks = updated;
     });
   }
 
@@ -230,8 +229,8 @@ export class PostInternetHeader {
    * Alternate links from <head> take priority over config-provided URLs.
    */
   private getLanguageUrl(code: string, configUrl: string): string {
-    const normalizedCode = code.substring(0, 2).toLowerCase();
-    return state.alternateLinks?.get(normalizedCode) ?? configUrl;
+    const normalizedCode = code.toLowerCase();
+    return state.alternateLinks.get(normalizedCode) ?? configUrl;
   }
 
   private renderNavItem(config: LinkConfig | UserMenuConfig, props: LinkProps = {}): string {
