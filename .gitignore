@@ -8,7 +8,6 @@ yarn.lock
 
 # Log files
 .pnpm-debug.log
-lerna-debug.log
 
 # System Files
 .DS_Store
@@ -35,3 +34,6 @@ styles/stylelint-report.txt
 
 # Intellij IDEA
 .idea
+
+# Git worktrees
+.worktrees

@@ -274,7 +274,7 @@ describe('download/report', () => {
 
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         path.join(mockIconSet.downloadDirectory, 'report.json'),
-        expect.any(String)
+        expect.any(String),
       );
     });
 
@@ -286,13 +286,15 @@ describe('download/report', () => {
 
       const result = writeReport(mockIconSet, report);
 
-      expect(result).toEqual(expect.objectContaining({
-        icons: expect.any(Array),
-        stats: expect.objectContaining({
-          success: expect.any(Number),
-          errors: expect.any(Number),
+      expect(result).toEqual(
+        expect.objectContaining({
+          icons: expect.any(Array),
+          stats: expect.objectContaining({
+            success: expect.any(Number),
+            errors: expect.any(Number),
+          }),
         }),
-      }));
+      );
     });
   });
 });

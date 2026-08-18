@@ -28,3 +28,7 @@
     padding: 0.5rem 1rem;
   }
 }
+
+post-popovercontainer::part(post-popovercontainer-content) {
+  background-color: #fff;
+}

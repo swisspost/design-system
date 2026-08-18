@@ -1,9 +1,9 @@
-import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core';
-import { Placement } from '@floating-ui/dom';
-import { version } from '@root/package.json';
 import { PostPopovercontainerCustomEvent } from '@/components';
-import { checkEmptyOrOneOf } from '@/utils';
-import { PLACEMENT_TYPES } from '@/types';
+import { PLACEMENT_TYPES } from '@/types/placement';
+import { OneOf } from '@/utils';
+import type { Placement } from '@floating-ui/dom';
+import { version } from '@root/package.json';
+import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 
 @Component({
   tag: 'post-tooltip',
@@ -20,12 +20,9 @@ export class PostTooltip {
    * Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
    * For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
    */
-  @Prop() readonly placement?: Placement = 'top';
-
-  @Watch('placement')
-  validatePlacement() {
-    checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
-  }
+  @Prop()
+  @OneOf(PLACEMENT_TYPES)
+  readonly placement?: Placement = 'top';
 
   /**
    * Whether or not to display a little pointer arrow
@@ -37,10 +34,6 @@ export class PostTooltip {
    */
   @Prop({ reflect: true, mutable: true }) open = false;
 
-  componentWillLoad() {
-    this.validatePlacement();
-  }
-
   componentDidLoad() {
     if (!this.host.id) {
       console.error(
@@ -51,8 +44,8 @@ export class PostTooltip {
   }
 
   /**
-   * Programmatically display the tooltip.
-   * @param target An element where the tooltip should be shown
+   * Programmatically display the tooltip,
+   * `target` is the HTML element the menu is anchored to.
    */
   @Method()
   async show(target: HTMLElement) {
@@ -69,9 +62,8 @@ export class PostTooltip {
   }
 
   /**
-   * Toggle tooltip display.
-   * @param target An element where the tooltip should be shown
-   * @param [force] Pass true to always show or false to always hide
+   * Toggle tooltip display,
+   * `target` is the HTML element the menu is anchored to.
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean) {

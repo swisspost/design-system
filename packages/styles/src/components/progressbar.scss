@@ -1,0 +1,79 @@
+@use '../functions/tokens';
+@use '../tokens/components';
+
+tokens.$default-map: components.$post-progressbar;
+
+.progressbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  column-gap: tokens.get('progressbar-gap-inline-end');
+
+  > p {
+    margin-block: 0;
+  }
+
+  > .progressbar-label,
+  > .progressbar-value {
+    font-size: tokens.get('progressbar-label-font-size');
+  }
+
+  > .progressbar-label {
+    display: flex;
+    align-items: center;
+    font-weight: tokens.get('progressbar-label-font-weight');
+
+    &::before,
+    > post-icon {
+      width: tokens.get('progressbar-icon-size');
+      height: tokens.get('progressbar-icon-size');
+      margin-inline-end: tokens.get('progressbar-gap-inline-start');
+    }
+  }
+
+  > post-progressbar,
+  > .progressbar-message,
+  > .progressbar-status {
+    flex: 0 0 100%;
+  }
+
+  > post-progressbar {
+    margin-block: tokens.get('progressbar-gap-block');
+  }
+
+  > .progressbar-message,
+  > .progressbar-status {
+    font-size: tokens.get('progressbar-sublabel-font-size');
+  }
+
+  > .progressbar-message:not(:last-child) {
+    margin-block-end: tokens.get('progressbar-assistive-area-gap-block');
+  }
+
+  > .progressbar-status {
+    color: var(--post-progressbar-status-color, tokens.get('progressbar-status-color-neutral'));
+    display: none;
+  }
+
+  @each $status in 'success', 'error', 'warning' {
+    &.progressbar-#{$status} {
+      --post-progressbar-status-color: #{tokens.get('progressbar-status-color-#{$status}')};
+
+      > .progressbar-label {
+        post-icon {
+          display: none;
+        }
+
+        &::before {
+          content: '';
+          display: inline-block;
+          background-image: var(--post-signal-icon-#{$status});
+        }
+      }
+
+      > .progressbar-status {
+        display: initial;
+      }
+    }
+  }
+}

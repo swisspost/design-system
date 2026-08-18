@@ -13,7 +13,7 @@ jest.mock('fs');
 jest.mock('../../../iconsets.config', () => [
   {
     name: 'test-iconset',
-    apiUrl: 'http://test.com',
+    apiUrl: 'https://test.com',
     downloadDirectory: '/test/icons',
     expectedSourcesPerIcon: 2,
   },
@@ -28,18 +28,13 @@ describe('getIconSetGroups', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    jest
-      .spyOn(fs, 'readFileSync')
-      .mockReturnValue(JSON.stringify(mockSourceReport));
+    jest.spyOn(fs, 'readFileSync').mockReturnValue(JSON.stringify(mockSourceReport));
   });
 
   it('should read the source report from the iconset download directory', () => {
     getIconSetGroups();
 
-    expect(fs.readFileSync).toHaveBeenCalledWith(
-      path.join('/test/icons', 'report.json'),
-      'utf-8'
-    );
+    expect(fs.readFileSync).toHaveBeenCalledWith(path.join('/test/icons', 'report.json'), 'utf-8');
   });
 
   it('should group icons by their base name without size indicator', () => {
@@ -105,9 +100,7 @@ describe('getIconSetGroups', () => {
       ],
     };
 
-    jest
-      .spyOn(fs, 'readFileSync')
-      .mockReturnValue(JSON.stringify(mockReportWithShapeIcon));
+    jest.spyOn(fs, 'readFileSync').mockReturnValue(JSON.stringify(mockReportWithShapeIcon));
 
     const result = getIconSetGroups();
 

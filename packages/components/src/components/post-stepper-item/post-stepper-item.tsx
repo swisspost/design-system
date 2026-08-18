@@ -1,5 +1,5 @@
-import { Component, h, Host } from '@stencil/core';
 import { version } from '@root/package.json';
+import { Component, h, Host } from '@stencil/core';
 
 @Component({
   tag: 'post-stepper-item',

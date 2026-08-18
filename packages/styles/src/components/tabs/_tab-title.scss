@@ -1,167 +1,441 @@
-@use './../../mixins/color' as color-mx;
 @use './../../mixins/utilities' as utilities-mx;
 @use './../../variables/color';
-@use './../../variables/spacing';
 @use './../../variables/components/nav';
-
 @use './../../functions/tokens';
-@use './../../tokens/utilities';
+@use './../../tokens/components' as components;
+@use './../../tokens/helpers';
 
-tokens.$default-map: utilities.$post-spacing;
+tokens.$default-map: components.$post-tabs;
 
-.tab-title,
-.nav-item a {
-  display: inline-block;
+$tabs-outline-offset: calc(
+  tokens.get('focus-outline-offset2', helpers.$post-focus) + -1 *
+    (tokens.get('post-tabs-border-width'))
+);
+
+$adjusted-border-radius: calc(
+  tokens.get('focus-border-radius', helpers.$post-focus) - $tabs-outline-offset
+);
+
+// Common for all variants
+post-tab-item.tab-title,
+post-tab-item.nav-item a {
   position: relative;
   box-sizing: border-box;
-  padding: nav.$nav-link-padding;
-  transition: background-color 100ms;
-  border-right: 1px solid transparent;
-  border-left: 1px solid transparent;
-  opacity: 0.7;
-  color: color.$black;
-  text-decoration: none;
   background-color: transparent;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: tokens.get('post-tabs-tab-font-weight');
 
-  &:hover {
-    opacity: 1;
-    background-color: color.$black-alpha-60;
-    color: color.$white;
+  post-icon {
+    @include utilities-mx.high-contrast-mode() {
+      forced-color-adjust: auto;
+      color: inherit;
+    }
   }
 
-  // same styles as focus, can't use placeholder here because focus-visible can't be described outside of the support condition
-  &:focus-visible {
-    outline: transparent;
-    opacity: 1;
-    background-color: color.$black-alpha-60;
-    color: color.$white;
-    box-shadow: none;
+  @include utilities-mx.focus-style() {
+    outline-offset: $tabs-outline-offset !important;
+  }
+}
+
+// Content Tabs Variant
+post-tab-item.tab-title {
+  transition:
+    background-color 100ms,
+    color 100ms;
+  border-radius: $adjusted-border-radius;
+  color: tokens.get('post-tabs-content-tab-enabled-fg');
+
+  // Indicator line as pseudo-element so border-radius on focus doesn't affect it
+  &::after {
+    content: '';
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline: 0;
+    height: tokens.get('post-tabs-border-width');
+    background-color: transparent;
+    transition: background-color 100ms;
+  }
+
+  // selected
+  &[aria-selected='true'] {
+    &::after {
+      background-color: tokens.get('post-tabs-content-tab-selected-border-color');
+    }
+    color: tokens.get('post-tabs-content-tab-selected-fg');
+  }
+
+  // hovered
+  &:hover:not([disabled]) {
+    &::after {
+      background-color: tokens.get('post-tabs-content-tab-hovered-border-color');
+    }
+    color: tokens.get('post-tabs-content-tab-hovered-fg');
+  }
+
+  // disabled
+  &[disabled] {
+    color: tokens.get('post-tabs-content-tab-disabled-fg');
+    pointer-events: none;
+  }
+
+  // HCM
+  @include utilities-mx.high-contrast-mode() {
+    transition: none;
 
     &::after {
-      content: '';
-      display: block;
-      position: absolute;
-      top: nav.$nav-tabs-focus-box-shadow-width;
-      right: nav.$nav-tabs-focus-box-shadow-width - 1px;
-      bottom: 0;
-      left: nav.$nav-tabs-focus-box-shadow-width - 1px;
-      box-shadow: nav.$nav-tabs-focus-box-shadow;
+      background-color: Canvas;
     }
-  }
 
-  @include color-mx.on-dark-background() {
-    &:hover,
-    &:focus-visible {
-      background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
+    &[disabled] {
+      color: GrayText;
     }
-  }
 
-  @include utilities-mx.high-contrast-mode() {
-    opacity: 1;
-    border-left-color: Canvas;
-    border-right-color: Canvas;
-    color: LinkText;
-
-    &:hover,
-    &:focus,
-    &:focus-within,
-    &:focus-visible {
-      outline: tokens.get('utility-gap-2') solid Highlight;
-      outline-offset: calc(tokens.get('utility-gap-4') * -1);
+    &:hover:not([disabled]),
+    &[aria-selected='true'] {
+      &::after {
+        background-color: Highlight;
+      }
+      color: Highlight !important;
     }
   }
 }
 
-.nav-item {
-  display: inline-block;
-  position: relative;
-  box-sizing: border-box;
-  cursor: default;
-
-  &:focus,
-  &:focus-visible {
-    outline: none;
-    box-shadow: none;
-
-    &::after {
-      display: none;
-    }
-  }
-
+// Page Tabs Variant
+post-tab-item.nav-item {
   a {
-    color: inherit;
+    // enabled
     text-decoration: none;
-    display: block;
     width: 100%;
     height: 100%;
-    box-sizing: border-box;
-    position: relative;
-    outline: none;
-    cursor: pointer;
-    border-radius: 0;
+    transition:
+      background-color 100ms,
+      border-color 100ms,
+      color 100ms,
+      padding-block 200ms,
+      height 200ms;
 
-    &:focus {
-      outline: none;
+    border-block-start: tokens.get('post-tabs-border-width') solid transparent;
+    border-inline-start: tokens.get('post-tabs-border-width') solid transparent;
+    border-inline-end: tokens.get('post-tabs-border-width') solid transparent;
+    background-color: tokens.get('post-tabs-page-tab-enabled-bg');
+    border-color: tokens.get('post-tabs-page-tab-enabled-border-color');
+    color: tokens.get('post-tabs-page-tab-enabled-fg');
+
+    // Dark background needs the inverted focus ring color
+    &:not([aria-current='page']) {
+      @include utilities-mx.focus-style-custom {
+        outline-color: tokens.get('focus-outline-color-inverted', helpers.$post-focus) !important;
+        outline-offset: $tabs-outline-offset !important;
+      }
     }
 
-    &:active {
-      opacity: 1;
-      background-color: color.$black-alpha-60;
-      color: color.$white;
+    // hovered
+    &:hover {
+      background-color: tokens.get('post-tabs-page-tab-hovered-bg');
+      border-color: tokens.get('post-tabs-page-tab-hovered-border-color');
+      color: tokens.get('post-tabs-page-tab-hovered-fg');
     }
 
-    &:focus-visible {
-      outline: none !important;
-    }
-  }
+    // selected
+    &[aria-current='page'] {
+      background-color: tokens.get('post-tabs-page-tab-selected-bg');
+      color: tokens.get('post-tabs-page-tab-selected-fg');
+      border-color: tokens.get('post-tabs-page-tab-selected-border-color');
 
-  @include color-mx.on-dark-background() {
-    a {
+      @include utilities-mx.focus-style-custom {
+        outline-color: tokens.get('post-tabs-page-tab-selected-fg') !important;
+        outline-offset: $tabs-outline-offset !important;
+      }
+
+      // selected — hovered
       &:hover {
-        background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
+        color: tokens.get('post-tabs-page-tab-selected-hovered-fg');
+        background-color: tokens.get('post-tabs-page-tab-selected-bg');
+        border-color: tokens.get('post-tabs-page-tab-selected-hovered-border-color');
+      }
+    }
+
+    // HCM
+    @include utilities-mx.high-contrast-mode() {
+      color: LinkText;
+      border-color: LinkText;
+      forced-color-adjust: none;
+      transition:
+        padding-block 200ms,
+        height 200ms; // No color transition in HCM
+
+      &:hover {
+        border-color: Highlight;
+        background-color: Canvas;
+        color: CanvasText !important;
       }
 
-      &:focus-visible {
-        background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
+      &[aria-current='page'] {
+        background-color: Highlight;
+        border-color: Highlight;
+        color: HighlightText !important;
+
+        &:hover {
+          border-color: Highlight;
+          color: HighlightText !important;
+        }
       }
+    }
+  }
+
+  // disabled
+  &[disabled] a:not([aria-current='page']) {
+    background-color: tokens.get('post-tabs-page-tab-disabled-bg');
+    border-color: tokens.get('post-tabs-page-tab-disabled-border-color');
+    color: tokens.get('post-tabs-page-tab-disabled-fg');
+    border-style: tokens.get('post-tabs-tab-disabled-border-style');
+    pointer-events: none;
+    border-block-end: none;
+
+    // Disabled tabs are still keyboard-focusable, so keep focus ring visible.
+    @include utilities-mx.focus-style-custom {
+      outline-color: tokens.get('post-tabs-page-tab-selected-fg') !important;
+      outline-offset: $tabs-outline-offset !important;
+    }
+
+    @include utilities-mx.high-contrast-mode() {
+      color: GrayText;
+      border-color: GrayText;
     }
   }
 }
 
-.tab-title.active,
-.nav-item.active a {
+// Active state — all variants
+post-tab-item.tab-title[aria-selected='true'],
+post-tab-item.nav-item a[aria-current='page'] {
   z-index: 1;
-  border-right-color: nav.$nav-tabs-border-color;
-  border-left-color: nav.$nav-tabs-border-color;
-  opacity: 1;
-  background-color: color.$white;
-  color: color.$black;
-  font-weight: 700;
 }
 
-// Create a line that does not suffer from border corner mitering
-.tab-title.active::before,
-.nav-item.active a::before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  right: -1px;
-  left: -1px;
-  height: tokens.get('utility-gap-4');
-  background-color: nav.$nav-tabs-link-active-border-color;
-}
+// Large variant (default)
+post-tabs:not([size='small']) post-tab-item {
+  post-icon {
+    margin-block: tokens.get('post-tabs-large-tab-icon-padding-block');
+  }
 
-@include utilities-mx.high-contrast-mode() {
-  .tab-title.active,
-  .nav-item.active a {
-    border-left-color: ButtonText;
-    border-right-color: ButtonText;
-    color: Highlight;
+  &.tab-title {
+    padding-inline: tokens.get('post-tabs-large-tab-padding-inline');
+    gap: tokens.get('post-tabs-large-tab-gap-inline');
+    height: tokens.get('post-tabs-content-large-tab-height');
+    padding-block: tokens.get('post-tabs-content-large-tab-padding-block');
+  }
 
-    &::before {
-      background-color: Highlight;
+  // large page
+  &.nav-item {
+    a {
+      // enabled
+      padding-inline: tokens.get('post-tabs-large-tab-padding-inline');
+      gap: tokens.get('post-tabs-large-tab-gap-inline');
+      border-radius: tokens.get('post-tabs-page-large-tab-border-radius')
+        tokens.get('post-tabs-page-large-tab-border-radius') 0 0;
+      padding-block: tokens.get('post-tabs-page-large-tab-enabled-padding-block');
+      height: tokens.get('post-tabs-page-large-tab-enabled-height');
+
+      post-icon {
+        width: tokens.get('post-tabs-large-icon-size');
+        height: tokens.get('post-tabs-large-icon-size');
+      }
+
+      // selected
+      &[aria-current='page'] {
+        padding-block: tokens.get('post-tabs-page-large-tab-selected-padding-block');
+        height: tokens.get('post-tabs-page-large-tab-selected-height');
+      }
+
+      // hovered
+      &:hover {
+        height: tokens.get('post-tabs-page-large-tab-hovered-height');
+        padding-block: tokens.get('post-tabs-page-large-tab-hovered-padding-block');
+      }
+
+      // focused
+      &:focus,
+      &:focus-visible,
+      &:focus-within {
+        padding-block: tokens.get('post-tabs-page-large-tab-focused-padding-block');
+        height: tokens.get('post-tabs-page-large-tab-focused-height');
+      }
     }
+
+    // disabled
+    &[disabled] a:not([aria-current='page']) {
+      padding-block: tokens.get('post-tabs-page-large-tab-disabled-padding-block');
+      height: tokens.get('post-tabs-page-large-tab-disabled-height');
+    }
+  }
+}
+
+// Small variant
+post-tabs[size='small'] post-tab-item {
+  font-size: tokens.get('post-tabs-small-font-size');
+
+  post-icon {
+    margin-block: tokens.get('post-tabs-small-tab-icon-padding-block');
+    width: tokens.get('post-tabs-small-icon-size');
+    height: tokens.get('post-tabs-small-icon-size');
+  }
+
+  // content tabs
+  &.tab-title {
+    padding-inline: tokens.get('post-tabs-small-tab-padding-inline');
+    gap: tokens.get('post-tabs-small-tab-gap-inline');
+    height: tokens.get('post-tabs-content-small-tab-height');
+    padding-block: tokens.get('post-tabs-content-small-tab-padding-block');
+  }
+
+  // page variant
+  &.nav-item {
+    a {
+      // enabled
+      padding-inline: tokens.get('post-tabs-small-tab-padding-inline');
+      gap: tokens.get('post-tabs-small-tab-gap-inline');
+      height: tokens.get('post-tabs-page-small-tab-enabled-height');
+      border-radius: tokens.get('post-tabs-page-small-tab-border-radius')
+        tokens.get('post-tabs-page-small-tab-border-radius') 0 0;
+      padding-block: tokens.get('post-tabs-page-small-tab-enabled-padding-block');
+
+      // selected
+      &[aria-current='page'] {
+        padding-block: tokens.get('post-tabs-page-small-tab-selected-padding-block');
+        height: tokens.get('post-tabs-page-small-tab-selected-height');
+      }
+
+      // hovered
+      &:hover {
+        padding-block: tokens.get('post-tabs-page-small-tab-hovered-padding-block');
+        height: tokens.get('post-tabs-page-small-tab-hovered-height');
+      }
+
+      // focused
+      &:focus,
+      &:focus-visible,
+      &:focus-within {
+        padding-block: tokens.get('post-tabs-page-small-tab-focused-padding-block');
+        height: tokens.get('post-tabs-page-small-tab-focused-height');
+      }
+    }
+
+    // disabled
+    &[disabled] a:not([aria-current='page']) {
+      padding-block: tokens.get('post-tabs-page-small-tab-disabled-padding-block');
+      height: tokens.get('post-tabs-page-small-tab-disabled-height');
+    }
+  }
+}
+
+// SSR
+
+// Show by default the first panel for SSR if no explicit prop is set
+post-tabs[active-tab] {
+  // Content Tabs: Style active post-tab-item for SSR if there is a [active-tab] set
+  post-tab-item.tab-title.ssr {
+    &::after {
+      background-color: color-mix(
+        in srgb,
+        tokens.get('post-tabs-content-tab-selected-border-color') calc(var(--active, 0) * 100%),
+        transparent
+      );
+    }
+
+    z-index: calc(var(--active, 0) * 1);
+
+    @include utilities-mx.high-contrast-mode() {
+      forced-color-adjust: none;
+      transition: none;
+
+      &::after {
+        background-color: color-mix(in srgb, Highlight calc(var(--active, 0) * 100%), Canvas);
+      }
+      color: color-mix(in srgb, Highlight calc(var(--active, 0) * 100%), ButtonText);
+    }
+  }
+
+  // Page Tabs: Style active post-tab-item for SSR if there is a [active-tab] set
+  post-tab-item.nav-item.ssr a {
+    background-color: color-mix(
+      in srgb,
+      tokens.get('post-tabs-page-tab-selected-bg') calc(var(--active, 0) * 100%),
+      tokens.get('post-tabs-page-tab-enabled-bg')
+    );
+    color: color-mix(
+      in srgb,
+      tokens.get('post-tabs-page-tab-selected-fg') calc(var(--active, 0) * 100%),
+      tokens.get('post-tabs-page-tab-enabled-fg')
+    );
+    padding-block: calc(
+      tokens.get('post-tabs-page-large-tab-selected-padding-block') + var(--active, 0) *
+        (
+          tokens.get('post-tabs-page-large-tab-enabled-padding-block') - tokens.get(
+              'post-tabs-page-large-tab-selected-padding-block'
+            )
+        )
+    );
+    z-index: calc(var(--active, 0) * 1);
+
+    @include utilities-mx.high-contrast-mode() {
+      &[style*='--active: 1'] {
+        background-color: Highlight;
+        border-color: Highlight;
+        color: HighlightText;
+      }
+    }
+  }
+
+  &[size='small'] post-tab-item.nav-item.ssr a {
+    padding-block: calc(
+      tokens.get('post-tabs-page-small-tab-selected-padding-block') + var(--active, 0) *
+        (
+          tokens.get('post-tabs-page-small-tab-enabled-padding-block') - tokens.get(
+              'post-tabs-page-small-tab-selected-padding-block'
+            )
+        )
+    );
+  }
+}
+
+// Style the first item for SSR when no [active-tab] is set
+post-tabs:not([active-tab]) {
+  &:has(post-tab-item.tab-title.ssr, post-tab-item.nav-item.ssr) post-tab-panel:first-of-type {
+    display: block !important;
+  }
+
+  // Content Tabs: first item is active
+  post-tab-item.tab-title.ssr:first-of-type {
+    &::after {
+      background-color: tokens.get('post-tabs-content-tab-selected-border-color');
+    }
+    z-index: 1;
+
+    @include utilities-mx.high-contrast-mode() {
+      &::after {
+        background-color: Highlight;
+      }
+      color: Highlight;
+    }
+  }
+
+  // Page Tabs: first item is active
+  post-tab-item.nav-item.ssr:first-of-type a {
+    background-color: tokens.get('post-tabs-page-tab-selected-bg');
+    color: tokens.get('post-tabs-page-tab-selected-fg');
+    padding-block: tokens.get('post-tabs-page-large-tab-selected-padding-block');
+    z-index: 1;
+
+    @include utilities-mx.high-contrast-mode() {
+      background-color: Highlight;
+      border-color: Highlight;
+      color: HighlightText;
+    }
+  }
+
+  &[size='small'] post-tab-item.nav-item.ssr:first-of-type a {
+    padding-block: tokens.get('post-tabs-page-small-tab-selected-padding-block');
   }
 }

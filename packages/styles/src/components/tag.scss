@@ -1,81 +1,69 @@
-@use 'sass:map';
-@use './../variables/color';
-@use './../variables/components/tag';
-@use './../functions/contrast' as contrast-fn;
+@use '../tokens/components';
+@use '../tokens/elements';
+@use '../functions/tokens';
 
-// style `.tag` only if is not descendant of a `<pre>` element
-// as `<pre><div class="tag">...</div><pre>` is usually used by code highlight tools
+tokens.$default-map: components.$post-tag;
 
-// `.tag` selector can be removed (leave only `.tag:where(:has(:not(pre)))`)as soon as Firefox ESR v128 is released and rolled out
-// https://whattrainisitnow.com/calendar/
-.tag,
-.tag:where(:has(:not(pre))) {
-  --post-tag-bg: #{tag.$tag-default-background};
-  --post-tag-fg: #{contrast-fn.get-best-contrast-text(tag.$tag-default-background)};
-
+.tag:not(:where(pre .tag)) {
   display: inline-flex;
   align-items: center;
-  gap: tag.$tag-gap;
-  padding: tag.$tag-padding-y tag.$tag-padding-x;
-  max-width: tag.$tag-max-width;
-  background-color: var(--post-tag-bg);
-  border: tag.$tag-border-width solid transparent;
-  border-radius: tag.$tag-border-radius;
-  font-size: tag.$tag-font-size;
-  line-height: tag.$tag-line-height;
+  border: tokens.get('tag-border-width') tokens.get('tag-border-style')
+    tokens.get('tag-neutral-color-border');
+  gap: tokens.get('tag-large-gap-inline');
+  padding-inline: tokens.get('tag-large-padding-inline');
+  height: tokens.get('tag-large-height');
+  background-color: transparent;
+  border-radius: tokens.get('tag-border-radius');
+  font-size: tokens.get('tag-large-font-size');
   white-space: nowrap;
-  color: var(--post-tag-fg);
+  color: tokens.get('tag-neutral-color-fg');
+  font-weight: tokens.get('body-font-weight', elements.$post-body);
+  vertical-align: top;
 
-  post-icon {
-    flex: 0 0 auto;
-    width: tag.$tag-icon-size;
-    height: tag.$tag-icon-size;
+  img,
+  svg {
+    display: inline-block;
+    vertical-align: text-bottom;
   }
 
-  .tag-text {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    svg,
-    img {
-      display: inline-block;
-      height: tag.$tag-icon-size !important;
-      vertical-align: text-top;
-    }
+  post-icon,
+  img,
+  svg,
+  &:not(.tag-sm, :has(post-icon))::before {
+    width: tokens.get('tag-large-icon-size');
+    height: tokens.get('tag-large-icon-size');
   }
 
   &.tag-sm {
-    line-height: tag.$tag-sm-line-height;
+    gap: tokens.get('tag-small-gap-inline');
+    padding-inline: tokens.get('tag-small-padding-inline');
+    height: tokens.get('tag-small-height');
+    font-size: tokens.get('tag-small-font-size');
 
-    .tag-icon {
-      width: tag.$tag-sm-icon-size;
-      height: tag.$tag-sm-icon-size;
+    post-icon,
+    img,
+    svg,
+    &:not(:has(post-icon))::before {
+      width: tokens.get('tag-small-icon-size');
+      height: tokens.get('tag-small-icon-size');
     }
   }
 
-  @each $key, $color in tag.$tag-backgrounds {
-    &.tag-#{$key} {
-      --post-tag-bg: #{$color};
-      --post-tag-fg: #{contrast-fn.get-best-contrast-text($color)};
+  @each $name in 'success', 'warning', 'error', 'info' {
+    &.tag-#{$name} {
+      color-scheme: light;
+      background-color: tokens.get('tag-#{$name}-color-bg');
+      color: tokens.get('tag-#{$name}-color-fg');
+      border-color: tokens.get('tag-#{$name}-color-border');
+
+      post-icon {
+        color: tokens.get('tag-#{$name}-color-icon');
+      }
+
+      &:not(:has(post-icon))::before {
+        content: '';
+        background-image: var(--post-signal-icon-#{$name});
+      }
     }
-  }
-
-  &.tag-white {
-    border-color: color.$black;
-  }
-
-  // Can be removed completely as soon as Firefox ESR v128 is released and rolled out
-  // https://whattrainisitnow.com/calendar/
-  pre & {
-    display: inline;
-    padding: initial;
-    max-width: initial;
-    background: initial;
-    border: initial;
-    border-radius: initial;
-    font-size: inherit;
-    line-height: inherit;
-    white-space: unset;
   }
 }

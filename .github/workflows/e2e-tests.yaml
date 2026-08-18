@@ -2,10 +2,9 @@ name: End to end tests
 on:
   pull_request:
     paths:
-      - 'packages/documentation/**'
+      - 'apps/documentation/**'
       - 'packages/styles/**'
       - 'packages/components/**'
-      - 'packages/components-angular/**'
       - 'packages/internet-header/**'
       - 'packages/icons/**'
       - 'packages/tokens/tokensstudio-generated/tokens.json'

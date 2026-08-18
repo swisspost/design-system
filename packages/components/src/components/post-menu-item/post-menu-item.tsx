@@ -1,5 +1,5 @@
-import { Component, Element } from '@stencil/core';
 import { version } from '@root/package.json';
+import { Component, Element } from '@stencil/core';
 
 @Component({
   tag: 'post-menu-item',
@@ -9,6 +9,6 @@ export class PostMenuItem {
   @Element() host: HTMLPostMenuItemElement;
 
   connectedCallback() {
-    this.host.setAttribute('data-version', version);
+    this.host.dataset.version = version;
   }
 }

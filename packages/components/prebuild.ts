@@ -67,4 +67,7 @@ function prebuild() {
   createComponentNameOutput(componentNameOutputOptions);
 }
 
-prebuild();
+// run prebuild automatically if script is executed directly in node
+if (process.argv[0].match(/node(\.exe)?$/) && process.argv[1]?.endsWith('prebuild.ts')) {
+  prebuild();
+}

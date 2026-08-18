@@ -28,7 +28,7 @@ describe('build/setup', () => {
     const reportPath = path.join(mockReportOutputDir, 'report.json');
     const minReportPath = path.join(mockReportOutputDir, 'report.min.json');
 
-    jest.spyOn(fs, 'existsSync').mockImplementation((p) => {
+    jest.spyOn(fs, 'existsSync').mockImplementation(p => {
       return p === reportPath || p === minReportPath;
     });
     jest.spyOn(fs, 'unlinkSync').mockImplementation();

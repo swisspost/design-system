@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import * as fs from 'node:fs';
 
 const file = fs.readFileSync('./src/utils/index.ts').toString();
 const exportModuleMatches = file.matchAll(/^export \* from '(?:\.\/)?(.*)';$/gm);

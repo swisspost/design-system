@@ -27,6 +27,12 @@ textarea.form-control {
   @include utilities.focus-style;
   @include forms-mx.textarea-resizer-svg(#050400);
 
+  &.form-control-sm {
+    min-height: tokens.get('textarea-small-sizing-min-height');
+    padding-block: tokens.get('textarea-non-floating-small-padding-block');
+    font-size: tokens.get('textarea-non-floating-small-font-size');
+  }
+
   &[disabled] {
     @include forms-mx.textarea-resizer-svg(#696864);
   }
@@ -81,6 +87,14 @@ textarea.form-control {
         tokens.get('textarea-position-inline-end-validation');
       background-repeat: no-repeat;
       padding-inline-end: tokens.get('textarea-validated-padding-inline-end');
+
+      &.form-control-sm {
+        background-size: tokens.get('textarea-small-sizing-icon')
+          tokens.get('textarea-small-sizing-icon');
+        background-position: top
+          tokens.get('textarea-non-floating-small-position-block-start-validation') right
+          tokens.get('textarea-position-inline-end-validation');
+      }
     }
   }
 
@@ -89,6 +103,14 @@ textarea.form-control {
 
 .form-label:has(+ textarea.form-control[disabled]) {
   color: tokens.get('textarea-disabled-fg');
+}
+
+.form-label:has(+ textarea.form-control-sm) {
+  display: block;
+  padding-inline: tokens.get('textarea-non-floating-small-label-padding-inline');
+  padding-block: tokens.get('textarea-non-floating-small-label-padding-block');
+  font-weight: tokens.get('textarea-non-floating-small-label-font-weight');
+  font-size: tokens.get('textarea-non-floating-small-font-size');
 }
 
 .form-floating {
@@ -140,7 +162,7 @@ textarea.form-control {
     &::placeholder {
       color: transparent;
       opacity: 0;
-      /* 
+      /*
        * Does not work in firefox because it's non-standard behaviour.
        * Implemented as progressive enhancement for the browsers that support it.
        * https://stackoverflow.com/questions/16381895/firefox-transition-placeholder-opacity

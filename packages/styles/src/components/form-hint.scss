@@ -36,8 +36,12 @@ post-number-input.number-input-sm,
 .form-hint,
 .valid-feedback + .form-hint,
 .invalid-feedback + .form-hint {
-  .form-control-sm + & {
+  input.form-control-sm + & {
     font-size: tokens.get('input-small-assist-font-size', components.$post-text-input);
+  }
+
+  textarea.form-control-sm + & {
+    font-size: tokens.get('textarea-small-assist-font-size', components.$post-text-area);
   }
 
   .form-select-sm + & {

@@ -4,8 +4,8 @@ const GRAVATAR_DEFAULT = '404';
 const GRAVATAR_RATING = 'g';
 const GRAVATAR_SIZE = 80;
 
-export function getGravatarUrl(email: string): string {
-  const hash = cryptify(email.trim().toLowerCase());
+export async function getGravatarUrl(email: string): Promise<string> {
+  const hash = await cryptify(email.trim().toLowerCase());
   return `https://www.gravatar.com/avatar/${hash}?s=${GRAVATAR_SIZE}&d=${GRAVATAR_DEFAULT}&r=${GRAVATAR_RATING}`;
 }
 

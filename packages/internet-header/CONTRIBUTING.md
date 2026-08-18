@@ -2,7 +2,7 @@
 
 ## Design Principles
 
-The header is designed to load a configuration file from the Post Portal Sitecore CMS and render Header, Breadcrumbs and Footer from that information. Implementing projects can add information at certain points, but not override the configuration provided by the portal (except for the language switch).
+The header is designed to load a configuration file from the Post Portal Sitecore CMS and render Header and Footer from that information. Implementing projects can add information at certain points, but not override the configuration provided by the portal (except for the language switch).
 
 The header is designed to work with as few settings as possible, so the only required setting is the project ID, needed to load the config. Many options are available for customization, but are not required for the basic setup.
 
@@ -10,7 +10,7 @@ The header should work on any device, any screen, any framework that can render 
 
 ## Portal config
 
-The config file is a large json object containing configuration for all four languages (or as many as defined) and the header, breadcrumbs and footer components. This config is a runtime dependency. Therefore, breaking changes to the config may break older header versions. When planning breaking changes to the config, the config path should be versioned and the current version has to stay online as long as there are older header versions online.
+The config file is a large json object containing configuration for all four languages (or as many as defined) and the header and footer components. This config is a runtime dependency. Therefore, breaking changes to the config may break older header versions. When planning breaking changes to the config, the config path should be versioned and the current version has to stay online as long as there are older header versions online.
 
 ### Main navigation
 
@@ -23,10 +23,6 @@ The search knows three kind of suggestions. Search suggestions from Coveo, place
 ### Login widget
 
 The login widget is a relic of old times, adapted to work within the shadow-dom. Handle with care, it's fragile.
-
-### Breadcrumbs
-
-The breadcrumbs can easily be too long to be displayed on one line on small screens. A mechanism using an invisible second breadcrumb element is used to determine if there is enough space to render the breadcrumbs fully or not. If there is not, breadcrumbs will be shortened and a dropdown provides the middle steps.
 
 ### Help & Contact overlays
 

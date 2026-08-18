@@ -1,13 +1,7 @@
-import { Component, Element, Host, h, Prop, Watch, State, Listen } from '@stencil/core';
-import {
-  checkRequiredAndType,
-  checkRequiredAndPattern,
-  checkEmptyOrOneOf,
-  EventFrom,
-} from '@/utils';
+import { EventFrom, nanoid, OneOf, Pattern, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
+import { Component, Element, h, Host, Listen, Prop, State, Watch } from '@stencil/core';
 import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
-import { nanoid } from 'nanoid';
 
 @Component({
   tag: 'post-language-menu',
@@ -17,6 +11,7 @@ import { nanoid } from 'nanoid';
 export class PostLanguageMenu {
   private readonly menuId = `p${nanoid(11)}`;
   private readonly listSpanId = `list-span-${nanoid(11)}`;
+  private menu: HTMLPostMenuElement;
   private get languageOptions(): HTMLPostLanguageMenuItemElement[] {
     return Array.from(
       this.host.querySelectorAll<HTMLPostLanguageMenuItemElement>('post-language-menu-item'),
@@ -28,31 +23,29 @@ export class PostLanguageMenu {
   /**
    * A title for the list of language options
    */
-  @Prop({ reflect: true }) textChangeLanguage!: string;
-
-  @Watch('textChangeLanguage')
-  validateTextChangeLanguage() {
-    checkRequiredAndType(this, 'textChangeLanguage', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textChangeLanguage!: string;
 
   /**
-   * An accessible description text for the list of language options. The `#name` placeholder is dynamic and will be replaced with the active language name.
+   * An accessible description text for the list of language options.
+   * The `{name}` placeholder is dynamic and will be replaced with the active language name.
    */
-  @Prop({ reflect: true }) textCurrentLanguage!: string;
-
-  @Watch('textCurrentLanguage')
-  validateTextCurrentLanguage() {
-    checkRequiredAndPattern(this, 'textCurrentLanguage', /#name\b/);
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Pattern(/(\{name\}|#name)/)
+  textCurrentLanguage!: string;
 
   /**
    * Whether the component is rendered as a list or a menu
    */
-  @Prop({ reflect: true }) variant: SwitchVariant = 'menu';
+  @Prop({ reflect: true })
+  @OneOf(SWITCH_VARIANTS)
+  variant: SwitchVariant = 'menu';
 
   @Watch('variant')
-  validateVariant() {
-    checkEmptyOrOneOf(this, 'variant', SWITCH_VARIANTS);
+  handleVariantChange() {
     this.updateChildrenVariant();
   }
 
@@ -69,16 +62,14 @@ export class PostLanguageMenu {
         `post-language-menu-item[code="${this.activeLang}"]`,
       );
 
-    return activeLanguage
-      ? this.textCurrentLanguage.replace(/#name/g, activeLanguage.name)
-      : undefined;
+    if (!activeLanguage) return undefined;
+
+    return this.textCurrentLanguage
+      .replaceAll('{name}', activeLanguage.name)
+      .replaceAll('#name', activeLanguage.name);
   }
 
   componentDidLoad() {
-    this.validateTextChangeLanguage();
-    this.validateTextCurrentLanguage();
-    this.validateVariant();
-
     // Initially set variants and active language
     // Handles cases where the language-menu is rendered after the language-options have been rendered
     this.updateChildrenVariant();
@@ -106,6 +97,11 @@ export class PostLanguageMenu {
       const menu = this.host.shadowRoot.querySelector<HTMLPostMenuElement>('post-menu');
       menu.hide();
     }
+  }
+
+  @Listen('scroll', { target: 'document', capture: true })
+  hideMenuOnScroll() {
+    if (this.menu) this.menu.hide();
   }
 
   /**
@@ -154,6 +150,7 @@ export class PostLanguageMenu {
           </button>
         </post-menu-trigger>
         <post-menu
+          ref={el => (this.menu = el)}
           id={this.menuId}
           class="post-language-menu-dropdown-container"
           label={this.textChangeLanguage}

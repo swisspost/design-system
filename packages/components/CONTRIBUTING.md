@@ -113,9 +113,28 @@ By setting a component's name as a `component` property in your stories' metadat
 All components should have automated tests.
 These tests are available in the `cypress/e2e` folder.
 
-### Set inital component Visibility to hidden
+## Maintaining the `sideEffects` array
 
-To prevent flickering while components load, add each new component to the list in `packages/styles/src/utilities/_not-defined.scss`, which applies `visibility: hidden` to all listed components until they are registered by the browser (when the hydrated attribute actually starts to take effect).
+The `sideEffects` field in `package.json` tells bundlers (webpack, Rollup, esbuild, etc.) which files **cannot be safely tree-shaken** because they modify global state at import time (e.g. registering custom elements, injecting styles, or patching globals).
+
+**Add new entires when...**
+
+- You introduce a new entry point (in the `exports` map) that calls `customElements.define()`, `bootstrapLazy()`, or injects global styles/patches at import time.
+- You add a non-`.css` file that appends stylesheets or mutates `window`/`document` on import.
+- You add a new Stencil output target directory with a different entry path.
+
+**What happens if `sideEffects` is wrong**
+
+- **Missing side-effectful files means:** the bundler tree-shakes them away in production builds. Causing at least visual errors if not worse.<p>:warning: This is hard to catch because it only manifests in optimized builds, not during development!</p>
+- **Over-listing files means:** the bundler cannot tree-shake them, resulting in unnecessarily larger bundle sizes for consumers who only import a subset of components.
+
+### How to verify
+
+After changing the `sideEffects` array, verify that:
+
+- Tree-shaking still works: importing a single component from `./*` should not bundle all components.
+- SSR still works: server-rendered components must hydrate correctly on the client.
+- All custom elements are registered when using the barrel import (`.`).
 
 ## Stencil
 

@@ -1,7 +1,7 @@
-import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { Pattern, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { checkRequiredAndType, checkEmptyOrPattern, checkEmptyOrType } from '@/utils';
-import { GRAVATAR_BASE_URL, cryptify } from './avatar-utils';
+import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { cryptify, GRAVATAR_BASE_URL } from './avatar-utils';
 
 const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -21,9 +21,6 @@ enum AvatarType {
   shadow: true,
 })
 export class PostAvatar {
-  private static readonly INTERNAL_USERID_IMAGE_SRC =
-    'https://web.post.ch/UserProfileImage/{userid}.png';
-
   private slottedImageObserver: MutationObserver; // To watch the slotted image src.
 
   @Element() host: HTMLPostAvatarElement;
@@ -31,27 +28,31 @@ export class PostAvatar {
   /**
    * Defines the users firstname.
    */
-  @Prop({ reflect: true }) readonly firstname!: string;
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  readonly firstname!: string;
 
   /**
    * Defines the users lastname.
    */
-  @Prop() readonly lastname?: string;
-
-  /**
-   * Defines the company internal userId.<post-banner type="warning" data-size="sm"><p>Can only be used on post.ch domains!</p></post-banner>
-   */
-  @Prop() readonly userid?: string;
+  @Prop()
+  @Type('string')
+  readonly lastname?: string;
 
   /**
    * Defines the users email address associated with a gravatar profile picture.
    */
-  @Prop() readonly email?: string;
+  @Prop()
+  @Pattern(emailPattern)
+  readonly email?: string;
 
   /**
    * Provides a custom description for the avatar, used for accessibility purposes.
    */
-  @Prop() description?: string;
+  @Prop()
+  @Type('string')
+  description?: string;
 
   @State() slottedImage: HTMLImageElement;
   @State() avatarType: AvatarType = null;
@@ -59,42 +60,12 @@ export class PostAvatar {
   @State() imageAlt = '';
   @State() initials = '';
 
-  // To handle email or userid updates and reset the storage item
+  // To handle email updates and reset the storage item
   @State() storageKey: string = '';
-
-  @Watch('firstname')
-  validateFirstname() {
-    checkRequiredAndType(this, 'firstname', 'string');
-  }
-
-  @Watch('lastname')
-  validateLastname() {
-    checkEmptyOrType(this, 'lastname', 'string');
-  }
-
-  @Watch('userid')
-  updateUserid() {
-    this.validateUserId();
-    this.getAvatarImage();
-  }
 
   @Watch('email')
   updateEmail() {
-    this.validateEmail();
     this.getAvatarImage();
-  }
-
-  @Watch('description')
-  validateDescription() {
-    checkEmptyOrType(this, 'description', 'string');
-  }
-
-  private validateUserId() {
-    checkEmptyOrType(this, 'userid', 'string');
-  }
-
-  private validateEmail() {
-    if (this.email) checkEmptyOrPattern(this, 'email', emailPattern);
   }
 
   private async getAvatarImage() {
@@ -103,10 +74,7 @@ export class PostAvatar {
     const imageUrl = this.slottedImage?.getAttribute('src');
 
     if (!imageUrl) {
-      if (this.userid) {
-        imageLoaded = await this.getImageByProp(this.userid, this.fetchImageByUserId.bind(this));
-      }
-      if (!imageLoaded && this.email?.match(emailPattern)) {
+      if (this.email?.match(emailPattern)) {
         imageLoaded = await this.getImageByProp(this.email, this.fetchImageByEmail.bind(this));
       }
       if (!imageLoaded) {
@@ -146,12 +114,6 @@ export class PostAvatar {
       this.avatarType = AvatarType.Image;
       return true;
     }
-  }
-
-  private async fetchImageByUserId() {
-    return await fetch(
-      PostAvatar.INTERNAL_USERID_IMAGE_SRC.replace('{userid}', encodeURIComponent(this.userid)),
-    );
   }
 
   private async fetchImageByEmail() {
@@ -201,16 +163,8 @@ export class PostAvatar {
     this.getAvatarImage();
   }
 
-  componentDidLoad() {
-    this.validateFirstname();
-    this.validateLastname();
-    this.validateDescription();
-    this.validateUserId();
-    this.validateEmail();
-  }
-
   render() {
-    const names = [this.firstname, this.lastname].filter(n => n).map(n => n.trim());
+    const names = [this.firstname, this.lastname].filter(Boolean).map(n => n.trim());
     const initials = names
       .map(n => n.charAt(0))
       .join('')

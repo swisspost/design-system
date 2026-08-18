@@ -31,5 +31,5 @@ export function parse(scss: Scss) {
 }
 
 export function formatAsMap(obj: object) {
-  return JSON.stringify(obj, null, 2).replace(/[{[]/g, '(').replace(/[}\]]/g, ')');
+  return JSON.stringify(obj, null, 2).replaceAll(/[{[]/g, '(').replaceAll(/[}\]]/g, ')');
 }

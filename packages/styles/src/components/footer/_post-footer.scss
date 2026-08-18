@@ -2,6 +2,8 @@
 @use '../../mixins/media';
 @use '../../mixins/list';
 @use '../../mixins/utilities';
+@use '../../functions/tokens';
+@use '../../tokens/elements';
 
 post-footer {
   // mobile
@@ -11,7 +13,7 @@ post-footer {
   --post-footer-socialmedia-list-item-gap: 8px;
   --post-footer-app-list-item-gap: 8px;
   --post-footer-businesssector-list-item-gap: 8px;
-  --post-footer-meta-list-item-gap: 8px;
+  --post-footer-list-item-gap: 8px;
 
   // tablet sm
   @include media.min(sm) {
@@ -19,12 +21,12 @@ post-footer {
 
     --post-footer-socialmedia-list-item-gap: 16px;
     --post-footer-businesssector-list-item-gap: 24px;
-    --post-footer-meta-list-item-gap: 16px;
+    --post-footer-list-item-gap: 16px;
   }
 
   // desktop lg
   @include media.min(lg) {
-    --post-footer-meta-list-item-gap: 24px;
+    --post-footer-list-item-gap: 24px;
   }
 
   :is(h3, .h3) {
@@ -51,6 +53,10 @@ post-footer {
   span[slot|='grid'] {
     display: block;
     margin-block-end: var(--post-footer-grid-list-title-gap);
+
+    @include media.max(sm) {
+      font-size: tokens.get('h6-font-size', elements.$post-heading);
+    }
   }
 
   // Grid item's content
@@ -71,8 +77,16 @@ post-footer {
     }
   }
 
-  div:is([slot='socialmedia'], [slot='app'], [slot='businesssectors'], [slot='meta']) > ul {
+  div:is(
+      [slot='socialmedia'],
+      [slot='app'],
+      [slot='businesssectors'],
+      [slot='meta'],
+      [slot='prefooter']
+    )
+    > ul {
     @include list.list-inline();
+    column-gap: var(--post-footer-list-item-gap);
     margin: 0;
   }
 
@@ -90,7 +104,7 @@ post-footer {
 
   div[slot='meta'] > ul {
     row-gap: 0;
-    column-gap: var(--post-footer-meta-list-item-gap);
+    column-gap: var(--post-footer-list-item-gap);
   }
 
   post-icon:is(div[slot='socialmedia'] > ul > li > a > *):not([name='letter']) {

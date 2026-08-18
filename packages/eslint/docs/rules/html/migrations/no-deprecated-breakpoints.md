@@ -3,7 +3,18 @@
 Flags all deprecated breakpoint size classes and replaces with existing ones.
 
 - Type: problem
-- 🔧 Supports autofix (--fix)
+- 🔧 Supports autofix (--fix) — **except for `rg` and `sm` breakpoint classes (see note below)**
+
+## ⚠️ Manual migration required for `-rg-` and `-sm-` classes
+
+Classes using the `rg` or `sm` breakpoints **cannot be auto-fixed**. They are flagged as errors so you can find them, but you must rename them by hand.
+
+Both form a chain collision: renaming `*-rg-*` → `*-sm-*` would immediately be picked up by the `*-sm-*` → `*-xs-*` rule and renamed to the wrong final value. Since the two renames are interdependent, both must be done manually.
+
+| Old breakpoint | New breakpoint |
+| -------------- | -------------- |
+| `-rg-`         | `-sm-`         |
+| `-sm-`         | `-xs-`         |
 
 ## Class list
 

@@ -33,6 +33,13 @@
       #paragraph-after {
         margin: 4px 0;
       }
+      /* Ensure the placement-test trigger (#target2) is centered with room on all sides */
+      .placement-test-trigger {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
     </style>
     <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
   </head>
@@ -40,7 +47,7 @@
     <post-tooltip-trigger for="tooltip-one">
       <button aria-describedby="existing-value" id="target1">toggle</button>
     </post-tooltip-trigger>
-    <post-tooltip-trigger for="tooltip-one">
+    <post-tooltip-trigger for="tooltip-one" class="placement-test-trigger">
       <button id="target2">toggle 2 <span>child element</span></button>
     </post-tooltip-trigger>
     <post-tooltip-trigger for="tooltip-one">
@@ -67,7 +74,6 @@
     <!-- layout test section — tightly packed so tooltip visually overlaps neighbors -->
     <!-- All elements here must not shift position (top/left) when the tooltip is shown -->
     <div class="tooltip-layout-container">
-
       <!-- button group above the trigger row — must not shift vertically -->
       <post-button-group id="layout-button-group" class="tooltip-layout-spacing">
         <post-button variant="secondary">Button 1</post-button>
@@ -93,9 +99,7 @@
       </post-accordion>
 
       <!-- paragraph directly above trigger — must not reflow -->
-      <p id="paragraph-before">
-        Paragraph before trigger — must not reflow.
-      </p>
+      <p id="paragraph-before">Paragraph before trigger — must not reflow.</p>
 
       <!-- trigger row: trigger flanked by dense inline content on both sides -->
       <div class="tooltip-trigger-row">
@@ -105,18 +109,8 @@
         </post-tooltip-trigger>
         <span id="text-after-trigger">Text after — must not shift.</span>
         <!-- reference boxes: fixed-size siblings that must not shift when tooltip opens -->
-        <div
-          id="reference-box"
-          class="tooltip-reference-box"
-        >
-          ref 1
-        </div>
-        <div
-          id="reference-box-2"
-          class="tooltip-reference-box"
-        >
-          ref 2
-        </div>
+        <div id="reference-box" class="tooltip-reference-box">ref 1</div>
+        <div id="reference-box-2" class="tooltip-reference-box">ref 2</div>
         <!-- second trigger: used to test layout shift on siblings from a different anchor point -->
         <post-tooltip-trigger for="tooltip-layout">
           <button id="layout-trigger-2">trigger 2</button>
@@ -124,9 +118,7 @@
       </div>
 
       <!-- paragraph directly below trigger — must not shift or reflow -->
-      <p id="paragraph-after">
-        Paragraph after trigger — must not shift.
-      </p>
+      <p id="paragraph-after">Paragraph after trigger — must not shift.</p>
 
       <!-- rating directly below trigger — must not shift vertically -->
       <post-rating id="layout-rating" label="Rating" class="tooltip-layout-spacing"></post-rating>
@@ -151,7 +143,6 @@
         <label for="test-input">Label</label>
         <input id="test-input" type="text" placeholder="Should not move" />
       </div>
-
     </div>
 
     <post-tooltip id="tooltip-layout">Layout tooltip</post-tooltip>

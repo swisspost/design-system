@@ -1,30 +1,31 @@
+import { fade } from '@/animations';
+import { AnimationOptions } from '@/animations/types';
+import { SwitchVariant } from '@/components';
+import { Required, Type } from '@/utils';
+import { breakpoint, Device } from '@/utils/breakpoints';
+import { EventFrom } from '@/utils/event-from';
+import { getDeepFocusableChildren } from '@/utils/get-focusable-children';
+import { version } from '@root/package.json';
 import {
+  Build,
   Component,
+  Element,
   h,
   Host,
-  State,
-  Element,
-  Method,
-  Watch,
   Listen,
+  Method,
   Prop,
-  Build,
+  State,
+  Watch,
 } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
-import { version } from '@root/package.json';
-import { SwitchVariant } from '@/components';
-import { breakpoint, Device } from '@/utils/breakpoints';
-import { fade } from '@/animations';
-import { getDeepFocusableChildren } from '@/utils/get-focusable-children';
-import { EventFrom } from '@/utils/event-from';
-import { AnimationOptions } from '@/animations/types';
-import { checkRequiredAndType } from '@/utils';
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
  * @slot global-nav-primary - Holds search button in the global header.
  * @slot global-nav-secondary - Holds an `<ul>` with meta navigation links.
- * @slot language-menu - Should be used with the `<post-language-switch>` component.
+ * @slot language-menu - Should be used with the `<post-language-menu>` component.
+ * @slot side-nav - Should be used with the `<post-side-navigation>` component.
  * @slot title - Holds the application title.
  * @slot main-nav - Has a default slot because it's only meant to be used in the `<post-header>`.
  * @slot audience - Holds the list of buttons to choose the audience.
@@ -92,22 +93,18 @@ export class PostHeader {
   /**
    * Makes the header content span the full width on screens larger than 1440px.
    */
-  @Prop({ reflect: true }) fullWidth = false;
-
-  @Watch('fullWidth')
-  validateFullWidth() {
-    checkRequiredAndType(this, 'fullWidth', 'boolean');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('boolean')
+  fullWidth = false;
 
   /**
    * The label of the burger menu button.
    */
-  @Prop({ reflect: true }) textMenu!: string;
-
-  @Watch('textMenu')
-  validateTextMenu() {
-    checkRequiredAndType(this, 'textMenu', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textMenu!: string;
 
   @Watch('device')
   @Watch('burgerMenuExtended')
@@ -117,10 +114,10 @@ export class PostHeader {
       propName === 'burgerMenuExtended' ? newValue : this.burgerMenuExtended;
 
     if (this.device !== 'desktop' && burgerMenuExtended) {
-      scrollParent.setAttribute('data-post-scroll-locked', '');
+      scrollParent.dataset.postScrollLocked = '';
       this.host.addEventListener('keydown', this.keyboardHandler);
     } else {
-      scrollParent.removeAttribute('data-post-scroll-locked');
+      delete scrollParent.dataset.postScrollLocked;
       this.host.removeEventListener('keydown', this.keyboardHandler);
     }
   }
@@ -131,7 +128,6 @@ export class PostHeader {
     this.updateLocalHeaderHeight = this.updateLocalHeaderHeight.bind(this);
     this.keyboardHandler = this.keyboardHandler.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
-    this.megadropdownStateHandler = this.megadropdownStateHandler.bind(this);
     this.checkSlottedContent = this.checkSlottedContent.bind(this);
     this.megadropdownStateHandler = this.megadropdownStateHandler.bind(this);
   }
@@ -155,15 +151,15 @@ export class PostHeader {
   };
 
   connectedCallback() {
-    window.addEventListener('resize', this.throttledResize, { passive: true });
-    window.addEventListener('scroll', this.handleScrollEvent, {
+    globalThis.addEventListener('resize', this.throttledResize, { passive: true });
+    globalThis.addEventListener('scroll', this.handleScrollEvent, {
       passive: true,
     });
     this.scrollParent.addEventListener('scroll', this.handleScrollEvent, {
       passive: true,
     });
     document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
-    window.addEventListener('postBreakpoint:device', this.breakpointChange);
+    globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
 
     this.handleScrollParentResize();
     this.lockBody(false, this.burgerMenuExtended, 'burgerMenuExtended');
@@ -176,8 +172,6 @@ export class PostHeader {
   }
 
   componentDidRender() {
-    this.validateTextMenu();
-    this.validateFullWidth();
     this.getFocusableElements();
     this.handleLocalHeaderResize();
 
@@ -198,9 +192,9 @@ export class PostHeader {
   disconnectedCallback() {
     const scrollParent = this.scrollParent;
 
-    window.removeEventListener('postBreakpoint:device', this.breakpointChange);
-    window.removeEventListener('resize', this.throttledResize);
-    window.removeEventListener('scroll', this.handleScrollEvent);
+    globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange);
+    globalThis.removeEventListener('resize', this.throttledResize);
+    globalThis.removeEventListener('scroll', this.handleScrollEvent);
     if (scrollParent) scrollParent.removeEventListener('scroll', this.handleScrollEvent);
     document.removeEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.removeEventListener('keydown', this.keyboardHandler);
@@ -288,7 +282,7 @@ export class PostHeader {
     );
 
     this.firstFocusableEl = focusableElements[0];
-    this.lastFocusableEl = focusableElements[focusableElements.length - 1];
+    this.lastFocusableEl = focusableElements.at(-1);
   }
 
   private keyboardHandler(e: KeyboardEvent) {
@@ -405,21 +399,30 @@ export class PostHeader {
 
   @Listen('focusin')
   @Listen('focusout')
-  onFocusChange(e: FocusEvent) {
-    const isHeaderFocused =
-      e.target === document.activeElement && this.host.matches(':focus-within');
+  onFocusChange() {
+    const isFocusVisible = this.getDeepActiveElement()?.matches(':focus-visible');
+    const isFocusedInHeader = this.host.matches(':focus-within');
 
-    const mustRemainCollapsedOnDesktop =
-      this.device === 'desktop' && this.host.querySelector('post-mainnavigation:focus-within');
+    const mustRemainCollapsed =
+      this.device === 'desktop'
+        ? !!this.host.querySelector('post-mainnavigation:focus-within')
+        : !!this.host.shadowRoot?.querySelector(':is(.global-header, .burger-menu):focus-within');
 
-    const mustRemainCollapsedOnNonDesktop =
-      this.device !== 'desktop' &&
-      this.host.shadowRoot?.querySelector(':is(.global-header, .burger-menu):focus-within');
-
-    const isHeaderExpanded =
-      isHeaderFocused && !mustRemainCollapsedOnDesktop && !mustRemainCollapsedOnNonDesktop;
+    const isHeaderExpanded = isFocusVisible && isFocusedInHeader && !mustRemainCollapsed;
 
     this.host.toggleAttribute('data-expanded', isHeaderExpanded);
+  }
+
+  // document.activeElement stops at the outermost shadow host (e.g. post-language-menu)
+  // when focus is nested inside its own shadow root, walk down to find the real target
+  private getDeepActiveElement(): Element | null {
+    let activeElement = document.activeElement;
+
+    while (activeElement?.shadowRoot?.activeElement) {
+      activeElement = activeElement.shadowRoot.activeElement;
+    }
+
+    return activeElement;
   }
 
   private renderBurgerMenu() {
@@ -475,8 +478,8 @@ export class PostHeader {
                 )}
                 <slot name="global-nav-primary"></slot>
                 {(onDesktop || !this.hasMainNav) && [
-                  <slot name="global-nav-secondary"></slot>,
-                  <slot name="language-menu"></slot>,
+                  <slot key="global-nav-secondary" name="global-nav-secondary"></slot>,
+                  <slot key="language-menu" name="language-menu"></slot>,
                 ]}
                 <slot name="post-login"></slot>
                 {onTabletAndMobile && this.hasMainNav && (
@@ -502,6 +505,7 @@ export class PostHeader {
             class={{ 'local-header': true, 'megadropdown-open': this.megadropdownOpen }}
           >
             <div class="section">
+              <slot name="side-nav"></slot>
               <slot name="title"></slot>
               {this.hasTitle && <slot name="local-nav"></slot>}
               {onDesktop && <slot name="main-nav"></slot>}

@@ -15,8 +15,12 @@ Default feedback message classes
   margin: 0;
   font-size: tokens.get('post-validation-font-size');
 
-  .form-control-sm + & {
+  input.form-control-sm + & {
     font-size: tokens.get('input-small-assist-font-size', components.$post-text-input);
+  }
+
+  textarea.form-control-sm + & {
+    font-size: tokens.get('textarea-small-assist-font-size', components.$post-text-area);
   }
 
   .form-select-sm + & {
@@ -72,7 +76,7 @@ post-number-input {
 }
 
 post-number-input.number-input-sm,
-input.form-control-sm,
+.form-control-sm,
 select.form-select-sm {
   + .invalid-feedback,
   + .valid-feedback {
@@ -91,22 +95,26 @@ input[type='checkbox'],
 input[type='radio'],
 :has(input[type='checkbox']),
 :has(input[type='radio']) {
-  ~ .invalid-feedback,
-  ~ .valid-feedback {
-    padding-inline-start: tokens.get('validation-group-padding-inline-start');
+  ~ .invalid-feedback::before,
+  ~ .valid-feedback::before {
+    height: tokens.get('validation-group-icon-size');
+    width: tokens.get('validation-group-icon-size');
+    margin-block-start: tokens.get('validation-group-icon-block-start');
+    margin-block-end: tokens.get('validation-group-icon-block-end');
+    margin-inline-end: tokens.get('validation-group-gap-inline');
+    content: '';
+    flex-shrink: 0;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
 
-    &::before {
-      height: tokens.get('validation-group-icon-size');
-      width: tokens.get('validation-group-icon-size');
-      margin-block-start: tokens.get('validation-group-icon-block-start');
-      margin-block-end: tokens.get('validation-group-icon-block-end');
-      margin-inline-end: tokens.get('validation-group-gap-inline');
-      content: '';
-      flex-shrink: 0;
-      mask-size: contain;
-      mask-position: center;
-      mask-repeat: no-repeat;
-    }
+  &:not(.form-check-sm) ~ .invalid-feedback,
+  &:not(.form-check-sm) ~ .valid-feedback {
+    padding-inline-start: tokens.get('validation-group-padding-inline-start');
   }
 
   input[type='radio'],
