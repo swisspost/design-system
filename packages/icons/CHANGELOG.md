@@ -1,5 +1,127 @@
 # @swisspost/design-system-icons
 
+## 10.2.0
+
+### Minor Changes
+
+- Added icons: `2797` and `2798` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8229](https://github.com/swisspost/design-system/pull/8229))
+
+- Added icons:
+  - `aboutus` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `bedhospital` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `border` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `constructionworker` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `construction` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `evoting` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `experiencehub` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `firewall` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `fridge` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `infinityloop` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `menusort` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `mypost24search` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `parcelcenterconveyerbelt` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `parcelcenterlorry` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `smallparcels` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `smartshuttle` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `targetcenterfull` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `voting` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8229](https://github.com/swisspost/design-system/pull/8229))
+
+- Added icons: `2799`, `2800` and `2801` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8269](https://github.com/swisspost/design-system/pull/8269))
+
+- Added icons:
+  - `carfleet` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `customsclearance` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `newspaperadress` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `printsend` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `talking` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `trucksemi` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `userknown` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `userunknown` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8269](https://github.com/swisspost/design-system/pull/8269))
+
+- Added icons:
+  - `bicycleno` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `wheelchairpartially` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `wheelchairreservation` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `wheelchairsubstitutetransport` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8274](https://github.com/swisspost/design-system/pull/8274))
+
+### Patch Changes
+
+- Updated icons: `2420` and `2422` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8269](https://github.com/swisspost/design-system/pull/8269))
+
+## 10.1.0
+
+### Minor Changes
+
+- Added icons:
+  - `adressed` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `artificialintelligenceskill` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `branchdooh` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `bring` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `cake` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `cardreader` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `castle` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `chevronleftrightwide` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `chevronupdownwide` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `church` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `compartmentcheck` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `consumerbehavior` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `cordial` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `coupon` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `customerexchange` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `customerjourneytest` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `customerjourney` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `dataanalytics` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `deploymentplan` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `displaymobilebanner` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `documentbgf` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `errornocircle` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `factory` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `family` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `foldedflyer` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `folderadd` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `geoemail` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `geomobile` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `hiking` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `ideaimplementation` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `laboratory` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `lead` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `listretour` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `locationspecific` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `medicine` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `mobileadloud` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `mobileinfo` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `moneyadd` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `proftal` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `rampdown` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `rampup` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `rollboxnarrow` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `sbbdisplay` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `sbbmobileapp` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `sampling` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `saturdaysort` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `scraper` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `selfmailer` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `shopconversion` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `statistics` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `stopsign` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `ticket` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `turndevice` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `wellness` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8179](https://github.com/swisspost/design-system/pull/8179))
+
+### Patch Changes
+
+- Updated icons:
+  - `facebook` (solid): 16, 24, 32, 40, 48 and 64px
+  - `instagram` (solid): 16, 24, 32, 40, 48 and 64px
+  - `linkedin` (solid): 16, 24, 32, 40, 48 and 64px
+  - `snapchat` (solid): 16, 24, 32, 40, 48 and 64px
+  - `tiktok` (solid): 16, 24, 32, 40, 48 and 64px
+  - `twitterx` (solid): 16, 24, 32, 40, 48 and 64px
+  - `whatsapp` (solid): 16, 24, 32, 40, 48 and 64px
+  - `xing` (solid): 16, 24, 32, 40, 48 and 64px
+  - `youtube` (solid): 16, 24, 32, 40, 48 and 64px
+  - `kununu` (solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8179](https://github.com/swisspost/design-system/pull/8179))
+
 ## 10.0.1
 
 ## 10.0.0

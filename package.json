@@ -125,19 +125,13 @@
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
   },
+  "packageManager": "pnpm@10.29.3",
   "devEngines": {
     "runtime": {
       "name": "node",
-      "version": "^24.0.0",
-      "onFail": "error"
-    },
-    "packageManager": {
-      "name": "pnpm",
-      "version": "10.29.3",
-      "onFail": "warn"
+      "version": "^24.0.0"
     }
   },
-  "packageManager": "pnpm@10.29.3",
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [],
@@ -149,7 +143,7 @@
     },
     "overrides": {
       "browserslist": ">=4.27.0",
-      "form-data@>=4.0.0 <4.0.4": "4.0.5"
+      "form-data@>=4.0.0 <4.0.4": "4.0.6"
     },
     "onlyBuiltDependencies": [
       "cypress"
