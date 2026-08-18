@@ -2,7 +2,6 @@ import type { Args, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { MetaComponent } from '@root/types';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import '../../../../../styles/src/components/inline-notification.scss';
 
 const meta: MetaComponent = {
   id: 'bf4826ad-450e-4d8a-8b2d-796c31758349',
@@ -64,11 +63,7 @@ function renderInlineNotification(args: Args) {
   const titleHTML = title ? `<${headingLevel}>${title}</${headingLevel}>` : '';
 
   return html`
-    <div
-      class="inline-notification inline-notification-${variant}"
-      role="alert"
-      aria-label="${title || message}"
-    >
+    <div class="inline-notification inline-notification-${variant}" role="alert">
       <div class="inline-notification-content">
         ${unsafeHTML(titleHTML)}
         <p>${message}</p>
