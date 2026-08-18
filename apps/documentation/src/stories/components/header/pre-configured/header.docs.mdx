@@ -27,10 +27,10 @@ Override the language switch links with custom URLs. This is helpful when your a
 Add `<link rel="alternate">` tags to the `<head>` of your page. When present, alternate links take priority over the Portal config URLs. If no alternate link exists for a given language, the header falls back to the config value.
 
 <post-banner type="info">
-  Both the `rel="alternate"`, `href` and `hreflang` attributes are required for a `<link>` to be recognized.
+  All, the `rel="alternate"`, `href` and `hreflang` attributes are required for a `<link>` to be recognized.
 </post-banner>
 
-The value of each `hreflang` value must match the `code` of the corresponding language entry in the Portal Configuration (`globalHeader.languages[].code`).
+To be accepted as an override, the value of the `hreflang` attribute on a `<link>` element must match the value of the `code` property in the corresponding language entry in the Portal Configuration (`globalHeader.languages[].code`).
 
 ### Dynamic updates
 
