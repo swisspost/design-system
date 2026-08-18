@@ -44,10 +44,10 @@ describe('tabs', () => {
         .click()
         .invoke('attr', 'name')
         .then(tabName => {
-          // retries until the fade-out finishes, no fixed wait needed
-          cy.get('post-tab-panel:visible')
-            .should('have.length', 1)
-            .and('have.attr', 'for', tabName);
+          // Assert per panel so Cypress retries until the fade-out/fade-in settles,
+          // instead of counting :visible mid-transition (opacity is ignored by :visible)
+          cy.get(`post-tab-panel[for="${tabName}"]`).should('be.visible');
+          cy.get(`post-tab-panel:not([for="${tabName}"])`).should('not.be.visible');
         });
     });
   });
