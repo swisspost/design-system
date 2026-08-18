@@ -24,7 +24,7 @@ describe('alternate-link.service', () => {
       expect(result.size).toBe(0);
     });
 
-    it('returns links for supported languages', () => {
+    it('returns links keyed by their lowercased hreflang value', () => {
       addLink('de', 'https://example.com/de/page');
       addLink('fr', 'https://example.com/fr/page');
       addLink('it', 'https://example.com/it/page');
@@ -38,25 +38,34 @@ describe('alternate-link.service', () => {
       expect(result.get('en')).toBe('https://example.com/en/page');
     });
 
-    it('ignores unsupported hreflang values', () => {
-      addLink('de', 'https://example.com/de/page');
-      addLink('pt', 'https://example.com/pt/page');
+    it('returns links for any hreflang value', () => {
       addLink('ja', 'https://example.com/ja/page');
+      addLink('pt-BR', 'https://example.com/pt-br/page');
 
       const result = getAlternateLinks();
-      expect(result.size).toBe(1);
-      expect(result.has('pt')).toBe(false);
-      expect(result.has('ja')).toBe(false);
+      expect(result.size).toBe(2);
+      expect(result.get('ja')).toBe('https://example.com/ja/page');
+      expect(result.get('pt-br')).toBe('https://example.com/pt-br/page');
     });
 
-    it('extracts the two-letter code from longer hreflang values', () => {
+    it('keeps the full hreflang value instead of truncating it to two letters', () => {
       addLink('de-CH', 'https://example.com/de-ch/page');
       addLink('fr-CH', 'https://example.com/fr-ch/page');
 
       const result = getAlternateLinks();
       expect(result.size).toBe(2);
-      expect(result.get('de')).toBe('https://example.com/de-ch/page');
-      expect(result.get('fr')).toBe('https://example.com/fr-ch/page');
+      expect(result.has('de')).toBe(false);
+      expect(result.has('fr')).toBe(false);
+      expect(result.get('de-ch')).toBe('https://example.com/de-ch/page');
+      expect(result.get('fr-ch')).toBe('https://example.com/fr-ch/page');
+    });
+
+    it('lowercases the hreflang value used as the key', () => {
+      addLink('DE', 'https://example.com/de/page');
+
+      const result = getAlternateLinks();
+      expect(result.has('de')).toBe(true);
+      expect(result.get('de')).toBe('https://example.com/de/page');
     });
 
     it('uses the first match when duplicate hreflang values exist', () => {
@@ -67,20 +76,25 @@ describe('alternate-link.service', () => {
       expect(result.get('de')).toBe('https://example.com/de/first');
     });
 
-    it('does not throw when an alternate link is missing an href attribute', () => {
-      // An empty href resolves to the current page URL via the URL constructor,
-      // so we test with a link that has no href attribute at all
+    it('ignores links without an href attribute', () => {
       const link = document.createElement('link');
       link.rel = 'alternate';
       link.hreflang = 'de';
-      // Intentionally not setting link.href
       document.head.appendChild(link);
 
       addLink('fr', 'https://example.com/fr/page');
 
       const result = getAlternateLinks();
-      // The de link has an empty href which resolves to the document URL - that's still valid.
-      // The point is that the service doesn't crash.
+      expect(result.has('de')).toBe(false);
+      expect(result.has('fr')).toBe(true);
+    });
+
+    it('ignores links with an empty href', () => {
+      addLink('de', '');
+      addLink('fr', 'https://example.com/fr/page');
+
+      const result = getAlternateLinks();
+      expect(result.has('de')).toBe(false);
       expect(result.has('fr')).toBe(true);
     });
 
