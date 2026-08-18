@@ -14,7 +14,7 @@ const meta: MetaComponent<PostBannerControls> = {
   title: 'Components/Banner',
   tags: ['package:WebComponents'],
   component: 'post-banner',
-  render: renderBanner,
+  render: RenderBanner,
   decorators: [],
   parameters: {
     badges: [],
@@ -63,7 +63,7 @@ const meta: MetaComponent<PostBannerControls> = {
 export default meta;
 
 // Renderer
-function renderBanner({ innerHTML, dismissible, dismissed, type }: PostBannerControls) {
+function RenderBanner({ innerHTML, dismissible, dismissed, type }: PostBannerControls) {
   const [, updateArgs] = useArgs();
 
   if (dismissed && !dismissible) {
