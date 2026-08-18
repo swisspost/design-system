@@ -28,9 +28,6 @@ describe('Language switch alternate link overrides', () => {
     doc.querySelectorAll('link[rel="alternate"]').forEach(el => el.remove());
   };
 
-  const getHref = (code: string) =>
-    cy.get(`post-language-menu-item[code="${code}"]`).find('a').invoke('attr', 'href');
-
   beforeEach(() => {
     prepare(HEADER, 'Default');
     cy.changeArg('language', language);
@@ -49,7 +46,10 @@ describe('Language switch alternate link overrides', () => {
   describe('getAlternateLinks — reading <head> on load', () => {
     it('uses the config url for every language when no alternate links exist', () => {
       languagesConfig.forEach(lang => {
-        getHref(lang.code).should('eq', lang.url);
+        cy.get(`post-language-menu-item[code="${lang.code}"]`)
+          .find('a')
+          .invoke('attr', 'href')
+          .should('eq', lang.url);
       });
     });
 
@@ -58,7 +58,10 @@ describe('Language switch alternate link overrides', () => {
 
       cy.document().then(doc => addAlternateLink(doc, firstLang.code, overrideUrl));
 
-      getHref(firstLang.code).should('eq', overrideUrl);
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', overrideUrl);
     });
 
     it('overrides multiple languages independently', () => {
@@ -69,7 +72,10 @@ describe('Language switch alternate link overrides', () => {
       });
 
       languagesConfig.forEach(lang => {
-        getHref(lang.code).should('eq', `https://example.com/${lang.code}/all`);
+        cy.get(`post-language-menu-item[code="${lang.code}"]`)
+          .find('a')
+          .invoke('attr', 'href')
+          .should('eq', `https://example.com/${lang.code}/all`);
       });
     });
 
@@ -80,8 +86,14 @@ describe('Language switch alternate link overrides', () => {
 
       // Wait for the override to land first, so we know the read has happened
       // before asserting the untouched language stayed put.
-      getHref(firstLang.code).should('eq', overrideUrl);
-      getHref(secondLang.code).should('eq', secondLang.url);
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', overrideUrl);
+      cy.get(`post-language-menu-item[code="${secondLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', secondLang.url);
     });
 
     it('matches hreflang case-insensitively', () => {
@@ -91,7 +103,10 @@ describe('Language switch alternate link overrides', () => {
         addAlternateLink(doc, firstLang.code.toUpperCase(), overrideUrl);
       });
 
-      getHref(firstLang.code).should('eq', overrideUrl);
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', overrideUrl);
     });
 
     it('uses the first matching link when duplicate hreflang values exist', () => {
@@ -107,13 +122,19 @@ describe('Language switch alternate link overrides', () => {
         doc.head.appendChild(duplicate);
       });
 
-      getHref(firstLang.code).should('eq', 'https://example.com/de/first');
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', 'https://example.com/de/first');
     });
 
     it('resolves a relative href against the document base URI', () => {
       cy.document().then(doc => addAlternateLink(doc, firstLang.code, '/de/relative-page'));
 
-      getHref(firstLang.code).should('match', /\/de\/relative-page$/);
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('match', /\/de\/relative-page$/);
     });
 
     it('ignores a link with no href attribute at all', () => {
@@ -125,13 +146,19 @@ describe('Language switch alternate link overrides', () => {
         doc.head.appendChild(link);
       });
 
-      getHref(firstLang.code).should('eq', firstLang.url);
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', firstLang.url);
     });
 
     it('ignores a link with an empty href attribute', () => {
       cy.document().then(doc => addAlternateLink(doc, firstLang.code, ''));
 
-      getHref(firstLang.code).should('eq', firstLang.url);
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', firstLang.url);
     });
 
     it('ignores a link with no hreflang attribute', () => {
@@ -143,7 +170,10 @@ describe('Language switch alternate link overrides', () => {
         doc.head.appendChild(link);
       });
 
-      getHref(firstLang.code).should('eq', firstLang.url);
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', firstLang.url);
     });
 
     it('ignores a link whose rel is not "alternate"', () => {
@@ -155,18 +185,24 @@ describe('Language switch alternate link overrides', () => {
         doc.head.appendChild(link);
       });
 
-      getHref(firstLang.code).should('eq', firstLang.url);
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', firstLang.url);
     });
 
     it('ignores a link whose href cannot be parsed as a URL', () => {
       cy.document().then(doc => {
-        // A malformed IPv6 host literal, new URL() throws even when
+        // A malformed IPv6 host literal — new URL() throws even when
         // resolved against a valid base, so this entry gets dropped and
         // the language falls back to the config url.
         addAlternateLink(doc, firstLang.code, 'http://[invalid');
       });
 
-      getHref(firstLang.code).should('eq', firstLang.url);
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', firstLang.url);
     });
   });
 
@@ -176,7 +212,10 @@ describe('Language switch alternate link overrides', () => {
 
       cy.document().then(doc => addAlternateLink(doc, firstLang.code, overrideUrl));
 
-      getHref(firstLang.code).should('eq', overrideUrl);
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', overrideUrl);
     });
 
     it('falls back to the config url when the alternate link is removed', () => {
@@ -187,11 +226,17 @@ describe('Language switch alternate link overrides', () => {
         link = addAlternateLink(doc, firstLang.code, overrideUrl);
       });
 
-      getHref(firstLang.code).should('eq', overrideUrl);
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', overrideUrl);
 
       cy.then(() => link.remove());
 
-      getHref(firstLang.code).should('eq', firstLang.url);
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', firstLang.url);
     });
 
     it('updates the url when the href attribute of an existing alternate link changes', () => {
@@ -203,13 +248,19 @@ describe('Language switch alternate link overrides', () => {
         link = addAlternateLink(doc, firstLang.code, firstUrl);
       });
 
-      getHref(firstLang.code).should('eq', firstUrl);
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', firstUrl);
 
       cy.then(() => {
         link.href = secondUrl;
       });
 
-      getHref(firstLang.code).should('eq', secondUrl);
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', secondUrl);
     });
 
     it('moves the override when the hreflang attribute of an existing link changes', () => {
@@ -220,16 +271,25 @@ describe('Language switch alternate link overrides', () => {
         link = addAlternateLink(doc, firstLang.code, overrideUrl);
       });
 
-      getHref(firstLang.code).should('eq', overrideUrl);
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', overrideUrl);
 
       cy.then(() => {
         link.hreflang = secondLang.code;
       });
 
       // The override follows the link to its new language...
-      getHref(secondLang.code).should('eq', overrideUrl);
+      cy.get(`post-language-menu-item[code="${secondLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', overrideUrl);
       // ...and the original language reverts to its config url.
-      getHref(firstLang.code).should('eq', firstLang.url);
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', firstLang.url);
     });
 
     it('starts applying an override once rel is changed to "alternate"', () => {
@@ -245,13 +305,19 @@ describe('Language switch alternate link overrides', () => {
       });
 
       // Not applied yet — rel isn't "alternate".
-      getHref(firstLang.code).should('eq', firstLang.url);
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', firstLang.url);
 
       cy.then(() => {
         link.rel = 'alternate';
       });
 
-      getHref(firstLang.code).should('eq', overrideUrl);
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', overrideUrl);
     });
 
     it('does not clear an override when rel is changed away from "alternate"', () => {
@@ -266,13 +332,19 @@ describe('Language switch alternate link overrides', () => {
         link = addAlternateLink(doc, firstLang.code, overrideUrl);
       });
 
-      getHref(firstLang.code).should('eq', overrideUrl);
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', overrideUrl);
 
       cy.then(() => {
         link.rel = 'stylesheet';
       });
 
-      getHref(firstLang.code).should('eq', overrideUrl);
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', overrideUrl);
     });
 
     it('ignores an added link that is missing href, hreflang, or rel="alternate"', () => {
@@ -294,7 +366,10 @@ describe('Language switch alternate link overrides', () => {
         doc.head.appendChild(wrongRel);
       });
 
-      getHref(firstLang.code).should('eq', firstLang.url);
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', firstLang.url);
     });
 
     it('ignores unrelated <head> mutations, like adding a <meta> tag', () => {
@@ -306,7 +381,10 @@ describe('Language switch alternate link overrides', () => {
         doc.head.appendChild(meta);
       });
 
-      getHref(firstLang.code).should('eq', firstLang.url);
+      cy.get(`post-language-menu-item[code="${firstLang.code}"]`)
+        .find('a')
+        .invoke('attr', 'href')
+        .should('eq', firstLang.url);
     });
   });
 });
