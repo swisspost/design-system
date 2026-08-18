@@ -71,13 +71,6 @@
     <post-tooltip id="tooltip-arrow" arrow>Arrow tooltip</post-tooltip>
     <post-tooltip id="tooltip-methods" placement="bottom">Methods tooltip</post-tooltip>
 
-    <!-- constrained-width container: reproduces the customer's original page layout —
-         a plain 1440px-capped container with the trigger pinned to its right edge,
-         tested against a wider viewport (1500px) so there's a small amount of leftover
-         space beyond the container's edge. Note: this has nothing to do with
-         getHeaderHeight()/post-header's vertical flip padding — that logic only affects
-         vertical boundary space via the real <post-header> component's height, not width.
-         This is purely a page-layout constraint, matching the customer's actual scenario. -->
     <div
       id="constrained-container"
       style="
