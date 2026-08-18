@@ -18,8 +18,8 @@ import { PLACEMENT_TYPES } from '@/types';
 import {
   arrow,
   autoUpdate,
-  computePosition,
   flip,
+  hide,
   inline,
   limitShift,
   offset,
@@ -31,6 +31,7 @@ import {
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
 import { popIn } from '@/animations/pop-in';
 import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
+import { computePositionWithSafeArea } from '@/utils/floating-ui';
 
 interface PopoverElement {
   showPopover: () => void;
@@ -192,7 +193,7 @@ export class PostPopovercontainer {
     if (this.toggleTimeoutId || !target) return;
 
     this.eventTarget = target;
-    this.calculatePosition();
+    this.updatePosition();
     this.host.showPopover();
   }
 
@@ -224,7 +225,7 @@ export class PostPopovercontainer {
 
     // Prevent instant double toggle
     if (!this.toggleTimeoutId) {
-      this.calculatePosition();
+      this.updatePosition();
 
       this.host.togglePopover(force);
       this.toggleTimeoutId = null;
@@ -355,25 +356,21 @@ export class PostPopovercontainer {
    */
   private startAutoupdates() {
     if (!this.eventTarget || !this.host) return;
-    this.clearAutoUpdate = autoUpdate(
-      this.eventTarget,
-      this.host,
-      this.calculatePosition.bind(this),
-    );
+    this.clearAutoUpdate = autoUpdate(this.eventTarget, this.host, this.updatePosition.bind(this));
   }
 
-  /**
-   * Retrieves the dynamic height of the header
-   */
-  private getHeaderHeight(): number {
-    const header = document.querySelector('post-header');
-    return header ? Number.parseFloat(getComputedStyle(header).height) : 0;
-  }
+  private async updatePosition() {
+    const { x, y, middlewareData, placement } = await this.calculatePosition();
 
-  private async calculatePosition() {
-    const { x, y, middlewareData, placement } = await this.computeMainPosition();
+    // Hide the popover if the target is outside the viewport
+    if (middlewareData.hide?.referenceHidden) {
+      this.host.hidePopover();
+      this.close();
+    }
+
     const currentPlacement = placement.split('-')[0];
     this.dynamicPlacement = currentPlacement;
+
     // Position popover
     this.host.style.left = `${x}px`;
     this.host.style.top = `${y}px`;
@@ -403,14 +400,16 @@ export class PostPopovercontainer {
     }
   }
 
-  private async computeMainPosition() {
+  private async calculatePosition() {
     const gap = this.edgeGap;
     const isAligned = (this.placement || 'top').includes('-');
 
-    const flipMiddleware = flip({
-      padding: this.getHeaderHeight(),
-      crossAxis: false,
-    });
+    const flipMiddleware = [
+      // Flip the popover if the target moves outside the viewport
+      flip({ elementContext: 'reference', crossAxis: false }),
+      // Flip the popover if the popover itself moves outside the viewport
+      flip({ elementContext: 'floating', crossAxis: false }),
+    ];
 
     const shiftMiddleware = shift({
       padding: gap,
@@ -424,7 +423,7 @@ export class PostPopovercontainer {
       inline(),
       // Per floating-ui docs: for aligned placements (e.g. bottom-end),
       // flip should come before shift. For non-aligned, shift before flip.
-      ...(isAligned ? [flipMiddleware, shiftMiddleware] : [shiftMiddleware, flipMiddleware]),
+      ...(isAligned ? [...flipMiddleware, shiftMiddleware] : [shiftMiddleware, ...flipMiddleware]),
       size({
         apply({ availableWidth, elements }) {
           Object.assign(elements.floating.style, {
@@ -432,13 +431,17 @@ export class PostPopovercontainer {
           });
         },
       }),
+      // Per floating-ui docs: hide should generally be placed at the end.
+      hide({
+        strategy: 'referenceHidden',
+      }),
     ];
 
     if (this.arrow) {
       middleware.push(arrow({ element: this.arrowRef, padding: gap }));
     }
 
-    return computePosition(this.eventTarget, this.host, {
+    return computePositionWithSafeArea(this.eventTarget, this.host, {
       placement: this.placement || 'top',
       strategy: 'fixed',
       middleware,
