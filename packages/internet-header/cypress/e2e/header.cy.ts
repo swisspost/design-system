@@ -83,6 +83,23 @@ describe('header', () => {
       });
     });
 
+    context('empty main navigation', () => {
+      beforeEach(() => {
+        const emptyMainNavConfig = copyConfig();
+        emptyMainNavConfig!.header.localHeader.mainNavigation = [];
+        delete emptyMainNavConfig!.header.localHeader.title;
+
+        prepare(HEADER, 'Default', {
+          config: emptyMainNavConfig,
+        });
+        cy.changeArg('language', language);
+      });
+
+      it('should not render main navigation when mainNavigation is an empty array', () => {
+        cy.get('[slot="main-nav"]').should('not.exist');
+      });
+    });
+
     context('active route', () => {
       const activeRouteConfig = copyConfig();
       activeRouteConfig!.header.globalHeader.audience![0].url = '/audience-private';

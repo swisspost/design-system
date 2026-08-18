@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-styles",
-  "version": "10.1.0",
+  "version": "10.2.0",
   "description": "Design System Styles for the Swiss Post web platform.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -30,8 +30,8 @@
   },
   "dependencies": {
     "@popperjs/core": "2.11.8",
-    "@swisspost/design-system-icons": "workspace:10.1.0",
-    "@swisspost/design-system-tokens": "workspace:10.1.0",
+    "@swisspost/design-system-icons": "workspace:10.2.0",
+    "@swisspost/design-system-tokens": "workspace:10.2.0",
     "gulp-sourcemaps": "3.0.0"
   },
   "devDependencies": {
@@ -43,7 +43,7 @@
     "gulp-newer": "1.4.0",
     "gulp-postcss": "10.0.0",
     "gulp-sass": "6.0.1",
-    "postcss": "8.5.19",
+    "postcss": "8.5.23",
     "postcss-scss": "4.0.9",
     "prettier": "3.6.2",
     "rimraf": "6.0.1",

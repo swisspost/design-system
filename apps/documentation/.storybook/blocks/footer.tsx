@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface TeamMember {
   name: string;
   title: string;
@@ -13,12 +11,6 @@ const TEAM_MEMBERS: TeamMember[] = [
     title: 'Context switcher',
     githubImageId: '1659006',
     githubUsername: 'gfellerph',
-  },
-  {
-    name: 'Alizé Debray',
-    title: 'UI Developer',
-    githubImageId: '33580481',
-    githubUsername: 'alizedebray',
   },
   {
     name: 'Oliver Schürch',
@@ -57,28 +49,16 @@ const TEAM_MEMBERS: TeamMember[] = [
     githubUsername: 'sandra-post',
   },
   {
-    name: 'Alessio Travaglini',
-    title: 'Token Orchestrator',
-    githubImageId: '158268546',
-    githubUsername: 'Vandapanda',
-  },
-  {
-    name: 'Hugo Machado da Silva',
-    title: 'UI Developer',
-    githubImageId: '170833805',
-    githubUsername: 'hugomslv',
-  },
-  {
-    name: 'Nattaya Buck',
-    title: 'Whitespace Warrior',
-    githubImageId: '166115007',
-    githubUsername: 'bucknatt',
-  },
-  {
     name: 'Yanis Morgenegg',
     title: 'UI Developer',
     githubImageId: '53319436',
     githubUsername: 'yomonom',
+  },
+  {
+    name: 'Andrin Affolter',
+    title: 'UI Developer',
+    githubImageId: '253728423',
+    githubUsername: 'andrinaaf',
   },
 ];
 
