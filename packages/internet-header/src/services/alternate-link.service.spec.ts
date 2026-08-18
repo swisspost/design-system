@@ -130,7 +130,7 @@ describe('alternate-link.service', () => {
   describe('observeAlternateLinks', () => {
     it('fires callback when an alternate link is added', async () => {
       const callback = jest.fn();
-      const disconnect = observeAlternateLinks(callback);
+      const observer = observeAlternateLinks(callback);
 
       addLink('de', 'https://example.com/de/page');
 
@@ -141,14 +141,14 @@ describe('alternate-link.service', () => {
       const links = callback.mock.calls[0][0] as Map<string, string>;
       expect(links.get('de')).toBe('https://example.com/de/page');
 
-      disconnect();
+      observer.disconnect();
     });
 
     it('fires callback when an alternate link is removed', async () => {
       const link = addLink('de', 'https://example.com/de/page');
 
       const callback = jest.fn();
-      const disconnect = observeAlternateLinks(callback);
+      const observer = observeAlternateLinks(callback);
 
       link.remove();
       await new Promise(resolve => setTimeout(resolve, 0));
@@ -157,14 +157,14 @@ describe('alternate-link.service', () => {
       const links = callback.mock.calls[0][0] as Map<string, string>;
       expect(links.size).toBe(0);
 
-      disconnect();
+      observer.disconnect();
     });
 
     it('fires callback when href attribute changes', async () => {
       const link = addLink('de', 'https://example.com/de/old');
 
       const callback = jest.fn();
-      const disconnect = observeAlternateLinks(callback);
+      const observer = observeAlternateLinks(callback);
 
       link.href = 'https://example.com/de/new';
       await new Promise(resolve => setTimeout(resolve, 0));
@@ -173,12 +173,12 @@ describe('alternate-link.service', () => {
       const links = callback.mock.calls[0][0] as Map<string, string>;
       expect(links.get('de')).toBe('https://example.com/de/new');
 
-      disconnect();
+      observer.disconnect();
     });
 
     it('does not fire callback for unrelated head changes', async () => {
       const callback = jest.fn();
-      const disconnect = observeAlternateLinks(callback);
+      const observer = observeAlternateLinks(callback);
 
       const meta = document.createElement('meta');
       meta.name = 'description';
@@ -190,13 +190,13 @@ describe('alternate-link.service', () => {
       expect(callback).not.toHaveBeenCalled();
 
       meta.remove();
-      disconnect();
+      observer.disconnect();
     });
 
     it('stops firing after disconnect', async () => {
       const callback = jest.fn();
-      const disconnect = observeAlternateLinks(callback);
-      disconnect();
+      const observer = observeAlternateLinks(callback);
+      observer.disconnect();
 
       addLink('de', 'https://example.com/de/page');
       await new Promise(resolve => setTimeout(resolve, 0));
