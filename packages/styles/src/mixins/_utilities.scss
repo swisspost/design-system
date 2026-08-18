@@ -115,6 +115,29 @@
   }
 }
 
+// Draws the focus outline on a pseudo-element instead of on the element itself.
+//
+// Use it on full-width stacked elements where the default outline would clash with neighbouring outlines and borders.
+@mixin focus-inline($top: 0, $bottom: 0, $selector: '::before') {
+  $focus-outline-inverse: calc(
+    tokens.get('focus-outline-width', helpers.$post-focus) +
+      tokens.get('focus-outline-offset', helpers.$post-focus)
+  );
+
+  @include focus-style {
+    @include focus-style-none;
+  }
+
+  @include focus-style($selector) {
+    display: block;
+    content: '';
+    position: absolute;
+    // Inset the pseudo-element instead of adjusting the outline offset to ensure that the outline retains its default appearance.
+    inset: calc(#{$focus-outline-inverse} + #{$top}) 0 calc(#{$focus-outline-inverse} + #{$bottom});
+    border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+  }
+}
+
 @mixin focus-style-custom($additional-selector: '') {
   // :has(:focus-visible) mimic a focus-visible-within pseudo-class
   &:is(:focus-visible, :has(:focus-visible), .pretend-focus)#{$additional-selector} {
