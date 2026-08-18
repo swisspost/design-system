@@ -1,8 +1,10 @@
+import { defaultNav } from '@root/src/stories/components/side-navigation/nav-content';
+import { MetaComponent } from '@root/types';
 import { StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { MetaComponent } from '@root/types';
+import { PartialStoryFn } from 'storybook/internal/types';
 
 const meta: MetaComponent<
   HTMLPostTabsElement & {
@@ -334,4 +336,72 @@ export const ActivePagesItem: Story = {
       </post-tab-item>
     `,
   },
+};
+
+// Temporary
+function paragraphs(length: number = 6) {
+  return Array.from({ length }).map(() => html`<p aria-hidden="true" class="fake-content"></p>`);
+}
+
+function sideNav(story: PartialStoryFn) {
+  return html`
+    <post-header text-menu="Menu">
+      <post-logo slot="post-logo" url="/">Homepage</post-logo>
+      <post-side-navigation-trigger slot="side-nav" for="sidenavigation">
+        <button>
+          <span>Menu</span>
+          <post-icon aria-hidden="true" name="burger"></post-icon>
+        </button>
+      </post-side-navigation-trigger>
+      <p slot="title">[Application Title]</p>
+    </post-header>
+    <post-side-navigation size="large" id="sidenavigation" text-close="Close">
+      <nav aria-label="Main navigation">${unsafeHTML(defaultNav)}</nav>
+    </post-side-navigation>
+
+    <main class="main-container">${story()}</main>
+  `;
+}
+
+export const TestBase: StoryObj = {
+  args: {
+    variant: 'Page Tabs',
+    showTabs: true,
+  },
+  render: args => html`${args.showTabs ? renderTabs(args) : nothing}${paragraphs()}`,
+};
+
+export const Container: Story = {
+  ...TestBase,
+  decorators: [story => html`<div class="container my-16">${story()}</div>`],
+};
+
+export const ContainerFluid: Story = {
+  ...TestBase,
+  decorators: [story => html`<div class="container-fluid my-16">${story()}</div>`],
+};
+
+export const Section: Story = {
+  ...TestBase,
+  decorators: [
+    story =>
+      html`<section class="section palette palette-accent">
+        <div class="container py-64">${story()}</div>
+      </section>`,
+  ],
+};
+
+export const ContainerAndSidenav: Story = {
+  ...TestBase,
+  decorators: [...(Container.decorators as []), sideNav],
+};
+
+export const ContainerFluidAndSidenav: Story = {
+  ...TestBase,
+  decorators: [...(ContainerFluid.decorators as []), sideNav],
+};
+
+export const SectionAndSidenav: Story = {
+  ...TestBase,
+  decorators: [...(Section.decorators as []), sideNav],
 };
