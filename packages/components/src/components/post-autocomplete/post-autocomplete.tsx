@@ -89,8 +89,15 @@ export class PostAutocomplete {
       this.inputElement.addEventListener('keydown', this.handleKeyDown);
       this.inputElement.addEventListener('blur', this.handleOnBlur);
       this.inputElement.addEventListener('click', this.showListBox);
+      this.inputElement.addEventListener('focus', this.handleFocus);
     }
   }
+
+  private readonly handleFocus = () => {
+    if (this.filterThreshold !== 0) return;
+    if (this.inputElement && this.inputElement.value.trim() !== '') return;
+    this.postFilteringEvent.emit('');
+  };
 
   private detachInputListeners() {
     if (this.inputElement) {
@@ -98,6 +105,7 @@ export class PostAutocomplete {
       this.inputElement.removeEventListener('keydown', this.handleKeyDown);
       this.inputElement.removeEventListener('blur', this.handleOnBlur);
       this.inputElement.removeEventListener('click', this.showListBox);
+      this.inputElement.removeEventListener('focus', this.handleFocus);
     }
   }
 

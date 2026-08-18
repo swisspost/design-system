@@ -177,3 +177,9 @@
     }
   }
 }
+
+@mixin word-break() {
+  overflow-wrap: anywhere;
+  hyphens: auto;
+  line-break: strict;
+}

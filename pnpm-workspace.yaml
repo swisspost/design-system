@@ -7,9 +7,9 @@ catalog:
 
 catalogs:
   cypress:
-    'cypress': 15.14.2
+    'cypress': 15.20.1
     'cypress-each': 1.14.1
-    'cypress-axe': 1.6.0
+    'cypress-axe': 1.7.0
     'cypress-storybook': 1.0.0
   node:
     '@types/node': 24.0.0
@@ -27,7 +27,6 @@ catalogs:
     'typescript': 6.0.3
     'typescript-eslint': 8.62.0
   angular:
-    '@angular/animations': 22.0.5
     '@angular/build': 22.0.5
     '@angular/cli': 22.0.5
     '@angular/common': 22.0.5

@@ -182,50 +182,57 @@ $tabs-outline-offset: tokens.get('focus-outline-offset3', helpers.$post-focus);
 }
 
 // Large/Default variant
-:host(.page-tabs:not([size='small'])) {
-  .tabs-wrapper {
-    button.scroll-btn {
-      height: tokens.get('post-tabs-large-scroll-button-height');
-      width: tokens.get('post-tabs-large-scroll-button-width');
+:host(post-tabs:not([size='small'])) {
+  button.scroll-btn {
+    height: tokens.get('post-tabs-large-scroll-button-height');
+    width: tokens.get('post-tabs-large-scroll-button-width');
+    border-radius: tokens.get('post-tabs-page-scroll-button-border-radius');
 
-      // Left Scroll button
-      &.scroll-btn-left {
-        padding-inline: tokens.get('post-tabs-large-scroll-button-left-padding-inline-start')
-          tokens.get('post-tabs-large-scroll-button-left-padding-inline-end');
-      }
-
-      // Right Scroll button
-      &.scroll-btn-right {
-        padding-inline: tokens.get('post-tabs-large-scroll-button-right-padding-inline-start')
-          tokens.get('post-tabs-large-scroll-button-right-padding-inline-end');
-      }
+    post-icon {
+      height: tokens.get('post-tabs-large-icon-size');
+      width: tokens.get('post-tabs-large-icon-size');
     }
+  }
+}
+
+:host(.page-tabs:not([size='small'])) {
+  // Left Scroll button
+  button.scroll-btn-left {
+    padding-inline: tokens.get('post-tabs-large-scroll-button-left-padding-inline-start')
+      tokens.get('post-tabs-large-scroll-button-left-padding-inline-end');
+  }
+
+  // Right Scroll button
+  button.scroll-btn-right {
+    padding-inline: tokens.get('post-tabs-large-scroll-button-right-padding-inline-start')
+      tokens.get('post-tabs-large-scroll-button-right-padding-inline-end');
   }
 }
 
 // Small variant
 :host([size='small']) {
-  .tabs-wrapper {
-    button.scroll-btn {
-      height: tokens.get('post-tabs-small-scroll-button-height');
-      width: tokens.get('post-tabs-small-scroll-button-width');
+  button.scroll-btn {
+    height: tokens.get('post-tabs-small-scroll-button-height');
+    width: tokens.get('post-tabs-small-scroll-button-width');
+    border-radius: tokens.get('post-tabs-page-scroll-button-border-radius');
 
-      // Left Scroll button
-      &.scroll-btn-left {
-        padding-inline: tokens.get('post-tabs-small-scroll-button-left-padding-inline-start')
-          tokens.get('post-tabs-small-scroll-button-left-padding-inline-end');
-      }
-
-      // Right Scroll button
-      &.scroll-btn-right {
-        padding-inline: tokens.get('post-tabs-small-scroll-button-right-padding-inline-start')
-          tokens.get('post-tabs-small-scroll-button-right-padding-inline-end');
-      }
-
-      post-icon {
-        height: tokens.get('post-tabs-small-icon-size');
-        width: tokens.get('post-tabs-small-icon-size');
-      }
+    post-icon {
+      height: tokens.get('post-tabs-small-icon-size');
+      width: tokens.get('post-tabs-small-icon-size');
     }
+  }
+}
+
+:host(.page-tabs[size='small']) {
+  // Left Scroll button
+  button.scroll-btn-left {
+    padding-inline: tokens.get('post-tabs-small-scroll-button-left-padding-inline-start')
+      tokens.get('post-tabs-small-scroll-button-left-padding-inline-end');
+  }
+
+  // Right Scroll button
+  button.scroll-btn-right {
+    padding-inline: tokens.get('post-tabs-small-scroll-button-right-padding-inline-start')
+      tokens.get('post-tabs-small-scroll-button-right-padding-inline-end');
   }
 }
