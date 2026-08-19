@@ -20,40 +20,40 @@
   );
 
   @include media.only(desktop) {
-    --post-header-gap: 0.5rem;
-    --post-global-header-padding-inline-start: 0.25rem;
-    --post-global-header-padding-inline-end: 0.5rem;
-    --post-local-header-padding-inline-start: 0.75rem;
-    --post-local-header-padding-inline-end: 0.5rem;
+    --post-header-gap: 8px;
+    --post-global-header-padding-inline-start: 4px;
+    --post-global-header-padding-inline-end: 8px;
+    --post-local-header-padding-inline-start: 12px;
+    --post-local-header-padding-inline-end: 8px;
   }
 
   @include media.only(tablet) {
-    --post-header-gap: 0.75rem 0.5rem;
-    --post-global-header-padding-inline-start: 0.25rem;
-    --post-global-header-padding-inline-end: 0.25rem;
-    --post-local-header-padding-inline-start: 0.75rem;
-    --post-local-header-padding-inline-end: 0.25rem;
-    --post-local-header-padding-block: 0.75rem;
-    --post-burger-menu-padding-inline: 2.5rem;
-    --post-burger-menu-body-gap: 2rem;
-    --post-burger-menu-footer-gap: 1.5rem;
+    --post-header-gap: 12px 8px;
+    --post-global-header-padding-inline-start: 4px;
+    --post-global-header-padding-inline-end: 4px;
+    --post-local-header-padding-inline-start: 12px;
+    --post-local-header-padding-inline-end: 4px;
+    --post-local-header-padding-block: 12px;
+    --post-burger-menu-padding-inline: 40px;
+    --post-burger-menu-body-gap: 32px;
+    --post-burger-menu-footer-gap: 24px;
   }
 
   // this is being discussed in Figma
   @include media.only(sm) {
-    --post-burger-menu-padding-inline: 1rem;
+    --post-burger-menu-padding-inline: 16px;
   }
 
   @include media.only(mobile) {
-    --post-header-gap: 0.75rem 0.5rem;
-    --post-global-header-padding-inline-start: 0rem;
-    --post-global-header-padding-inline-end: 0.5rem;
-    --post-local-header-padding-inline-start: 0.5rem;
-    --post-local-header-padding-inline-end: 0.5rem;
-    --post-local-header-padding-block: 0.5rem;
-    --post-burger-menu-padding-inline: 1rem;
-    --post-burger-menu-body-gap: 1.5rem;
-    --post-burger-menu-footer-gap: 1rem;
+    --post-header-gap: 12px 8px;
+    --post-global-header-padding-inline-start: 0px;
+    --post-global-header-padding-inline-end: 8px;
+    --post-local-header-padding-inline-start: 8px;
+    --post-local-header-padding-inline-end: 8px;
+    --post-local-header-padding-block: 8px;
+    --post-burger-menu-padding-inline: 16px;
+    --post-burger-menu-body-gap: 24px;
+    --post-burger-menu-footer-gap: 16px;
   }
 }
 
