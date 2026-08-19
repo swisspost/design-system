@@ -344,7 +344,7 @@ export namespace Components {
          */
         "active"?: boolean;
         /**
-          * The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
+          * The ISO 639-1 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
          */
         "code": string;
         /**
@@ -1621,7 +1621,7 @@ declare namespace LocalJSX {
          */
         "active"?: boolean;
         /**
-          * The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
+          * The ISO 639-1 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
          */
         "code": string;
         /**
