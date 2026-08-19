@@ -105,7 +105,8 @@
     "copy:styles:components-angular": "copyfiles -f www/build/post-components.css ../components-angular/src/stencil-generated/"
   },
   "dependencies": {
-    "@floating-ui/dom": "1.7.6",
+    "@floating-ui/dom": "1.8.0",
+    "@floating-ui/utils": "0.2.12",
     "@oddbird/popover-polyfill": "0.6.0",
     "@stencil/core": "4.43.3",
     "@swisspost/design-system-icons": "workspace:10.3.0",
