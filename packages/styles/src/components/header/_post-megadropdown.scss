@@ -37,7 +37,7 @@ post-megadropdown {
     --post-nav-item-border-width: 2px;
 
     @include media.only(desktop) {
-      font-size: 1.25rem;
+      font-size: 20px;
     }
 
     &:not(#{$interactive-elements-selector}) {
@@ -46,14 +46,14 @@ post-megadropdown {
   }
 
   .post-megadropdown-overview {
-    margin-block: 0 1rem;
+    margin-block: 0 16px;
 
     @include media.only(desktop) {
-      font-size: 1.25rem;
+      font-size: 20px;
     }
 
     &:first-child {
-      margin-block-start: -0.5rem;
+      margin-block-start: -8px;
     }
   }
 
