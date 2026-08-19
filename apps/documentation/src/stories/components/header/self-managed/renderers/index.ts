@@ -6,7 +6,7 @@ export * from './language-menu';
 export * from './login-link';
 export * from './logo';
 export * from './main-navigation';
-export * from './microsite-controls';
+export * from './local-nav';
 export * from './side-navigation';
 export * from './title';
 export * from './user-menu';
