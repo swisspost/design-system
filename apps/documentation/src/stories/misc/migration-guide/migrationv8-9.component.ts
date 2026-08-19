@@ -134,7 +134,7 @@ export class MigrationV89Component extends LitElement {
                   : nothing
               }.
               Support for these packages will be dropped with v10. Long term support for v9 will be
-              active until the end of 2025 and will receive critical bugfixes.
+              active until mid-2027 and will receive critical bugfixes.
             </p>
             <p>
               Bootstrap will be removed as a dependency for the Design System. For easy upgrades in
