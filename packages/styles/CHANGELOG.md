@@ -1,5 +1,13 @@
 # @swisspost/design-system-styles
 
+## 10.3.0
+
+### Patch Changes
+
+- Replaced deprecated `word-break: break-word` with `overflow-wrap: anywhere`, `hyphens: auto`, and `line-break: strict` for the `post-breadcrumb-item`, `post-stepper-item`, and html/css `teaser card` components. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8165](https://github.com/swisspost/design-system/pull/8165))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.3.0
+
 ## 10.2.0
 
 ### Patch Changes
