@@ -47,7 +47,8 @@
   font-size: tokens.get('button-font-size', components.$post-button);
   font-weight: tokens.get('button-label-font-weight', components.$post-button);
   text-decoration: none;
-  white-space: nowrap; // Long content should never break in buttons
+  white-space: normal; // Long content should never break in buttons
+  overflow-wrap: anywhere;
   cursor: pointer;
 
   &:not(:disabled):hover {
@@ -80,13 +81,17 @@
 }
 
 @mixin button-size($size: md) {
-  min-height: map.get(button.$btn-height-map, $size);
+  $height: map.get(button.$btn-height-map, $size);
+
+  min-height: $height;
   gap: map.get(button.$btn-gap-x-map, $size);
   padding: 0 map.get(button.$btn-padding-x-map, $size);
+  border-radius: calc(#{$height} / 2);
 
   > post-icon {
     width: map.get(button.$btn-icon-size-map, $size);
     height: map.get(button.$btn-icon-size-map, $size);
+    flex-shrink: 0;
   }
 }
 
