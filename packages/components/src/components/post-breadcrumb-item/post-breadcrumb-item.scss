@@ -8,6 +8,10 @@ tokens.$default-map: components.$post-breadcrumb;
 
 :host(:not([variant='menuitem'])) {
   @include mixins.breadcrumb-item;
+
+  &:is(:host(:not([selected])), :host([selected='false'])) {
+    --post-breadcrumb-item-wrap: nowrap;
+  }
 }
 
 :is(a, span) {
