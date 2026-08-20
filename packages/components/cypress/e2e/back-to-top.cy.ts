@@ -35,16 +35,21 @@ describe('Back-to-top', () => {
       });
     });
 
-    it('should toggle visibility based on scroll position', () => {
+     it('should toggle visibility based on scroll position', () => {
       cy.window().then(win => {
         win.scrollTo(0, 0);
-        cy.get('post-back-to-top').should('have.prop', 'hidden', true);
+        cy.get('post-back-to-top')
+          .shadow()
+          .find('.back-to-top')
+          .should('have.attr', 'aria-hidden', 'true');
 
-        win.scrollTo(0, 3000);
-        cy.get('post-back-to-top').should('have.prop', 'hidden', false);
-      });
-    });
-
+        win.scrollTo(0, win.innerHeight + 2000);
+        cy.get('post-back-to-top')
+          .shadow()
+          .find('.back-to-top')
+          .should('have.attr', 'aria-hidden', 'false');
+      })
+    })
     it('should not overlap other page content while hidden', () => {
       cy.window().then(win => {
         win.scrollTo(0, 0);
