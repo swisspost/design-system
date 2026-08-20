@@ -344,7 +344,7 @@ export namespace Components {
          */
         "active"?: boolean;
         /**
-          * The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
+          * The ISO 639-1 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
          */
         "code": string;
         /**
@@ -668,6 +668,9 @@ export namespace Components {
         "toggle": () => Promise<void>;
     }
     interface PostSideNavigationTrigger {
+        /**
+          * ID of the side navigation element that this trigger is linked to. Used to open and close the specified side navigation.
+         */
         "for": string;
         /**
           * Manually update the trigger's ARIA attributes.
@@ -1618,7 +1621,7 @@ declare namespace LocalJSX {
          */
         "active"?: boolean;
         /**
-          * The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
+          * The ISO 639-1 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
          */
         "code": string;
         /**
@@ -1907,6 +1910,9 @@ declare namespace LocalJSX {
         "textClose": string;
     }
     interface PostSideNavigationTrigger {
+        /**
+          * ID of the side navigation element that this trigger is linked to. Used to open and close the specified side navigation.
+         */
         "for": string;
     }
     interface PostStepper {
