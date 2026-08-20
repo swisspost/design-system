@@ -23,6 +23,7 @@ export class PostBackToTop {
   @State() belowFold: boolean = false;
 
   private translateY: number;
+  private currentAnimation?: Animation;
 
   private isBelowFold(): boolean {
     return window.scrollY > window.innerHeight;
@@ -34,11 +35,30 @@ export class PostBackToTop {
 
   /*Watch for changes in belowFold to show/hide the back to top button*/
   @Watch('belowFold')
-  watchBelowFold(newValue: boolean) {
+  async watchBelowFold(newValue: boolean) {
+    this.currentAnimation?.cancel();
+
     if (newValue) {
-      fadeSlide(this.host, 'in', { translate: this.translateY, fill: 'forwards' });
-    } else {
-      fadeSlide(this.host, 'out', { translate: this.translateY, fill: 'forwards' });
+      // unhide before animating in, otherwise there's nothing to animate
+      this.host.hidden = false;
+      this.currentAnimation = fadeSlide(this.host, 'in', {
+        translate: this.translateY,
+        fill: 'forwards',
+      });
+      return;
+    }
+
+    this.currentAnimation = fadeSlide(this.host, 'out', {
+      translate: this.translateY,
+      fill: 'forwards',
+    });
+
+    try {
+      await this.currentAnimation.finished;
+      // only hide once the fade-out finished and we're still not below fold
+      if (!this.belowFold) this.host.hidden = true;
+    } catch {
+      // animation got canceled, nothing to do
     }
   }
 
@@ -93,10 +113,11 @@ export class PostBackToTop {
   // Set the initial state
   componentWillLoad() {
     this.belowFold = this.isBelowFold();
+    this.host.hidden = !this.belowFold;
   }
 
   componentDidLoad() {
-    window.addEventListener('scroll', this.handleScroll, false);
+    window.addEventListener('scroll', this.handleScroll, { passive: true });
 
     this.animateButton();
   }
@@ -108,12 +129,7 @@ export class PostBackToTop {
   render() {
     return (
       <Host data-version={version}>
-        <button
-          class="back-to-top"
-          aria-hidden={this.belowFold ? 'false' : 'true'}
-          tabindex={this.belowFold ? '0' : '-1'}
-          onClick={this.scrollToTop}
-        >
+        <button class="back-to-top" onClick={this.scrollToTop}>
           <post-icon aria-hidden="true" name="arrowup"></post-icon>
           <span class="visually-hidden">{this.textBackToTop}</span>
         </button>

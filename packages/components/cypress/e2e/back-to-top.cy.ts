@@ -38,23 +38,43 @@ describe('Back-to-top', () => {
     it('should toggle visibility based on scroll position', () => {
       cy.window().then(win => {
         win.scrollTo(0, 0);
-        cy.get('post-back-to-top')
-          .shadow()
-          .find('.back-to-top')
-          .should('have.attr', 'aria-hidden', 'true');
+        cy.get('post-back-to-top').should('have.prop', 'hidden', true);
 
         win.scrollTo(0, win.innerHeight + 2000);
-        cy.get('post-back-to-top')
-          .shadow()
-          .find('.back-to-top')
-          .should('have.attr', 'aria-hidden', 'false');
+        cy.get('post-back-to-top').should('have.prop', 'hidden', false);
+      });
+    });
+
+    it('should not overlap other page content while hidden', () => {
+      // regression test for #8319: the button used to keep its 56x56 hit area
+      // even when not displayed, overlapping elements like a banner close button
+      cy.window().then(win => {
+        win.scrollTo(0, 0);
+        cy.get('post-back-to-top').should($el => {
+          const rect = $el[0].getBoundingClientRect();
+          expect(rect.width).to.equal(0);
+          expect(rect.height).to.equal(0);
+        });
+      });
+    });
+
+    it('should stay in the DOM until the fade-out animation finishes', () => {
+      cy.window().then(win => {
+        win.scrollTo(0, win.innerHeight + 2000);
+        cy.get('post-back-to-top').should('have.prop', 'hidden', false);
+
+        win.scrollTo(0, 0);
+        // animation is still running right after the scroll, must not be hidden yet
+        cy.get('post-back-to-top').should('have.prop', 'hidden', false);
+        // once the fade-out animation completes it should be fully hidden again
+        cy.get('post-back-to-top', { timeout: 1000 }).should('have.prop', 'hidden', true);
       });
     });
   });
   describe('Accessibility', () => {
     it('Has no detectable a11y violations on load for all variants', () => {
       cy.getSnapshots('post-back-to-top');
-      cy.checkA11y('post-back-to-top', undefined, (violations) => {
+      cy.checkA11y('post-back-to-top', undefined, violations => {
         expect(violations).to.have.length(0);
       });
     });
