@@ -45,7 +45,7 @@ $nav-block-padding-inline-end: 12px;
   display: flex;
   padding: 4px 10px;
   gap: 6px;
-  font-size: 16px;
+  font-size: 1rem;
 
   @include button.button-variant-def('enabled', 'tertiary');
 
@@ -122,16 +122,16 @@ $nav-block-padding-inline-end: 12px;
     padding: calc(8px + 1.5px) $nav-block-padding-inline-end
       calc(8px + 1.5px - var(--post-nav-item-border-width)) $nav-block-padding-inline-start;
     gap: 8px;
-    font-size: 14px;
+    font-size: 0.875rem;
 
     > post-icon {
-      font-size: 16px;
+      font-size: 1rem;
     }
   }
 
   @include media.only(tablet) {
     > post-icon {
-      font-size: 24px;
+      font-size: 1.5rem;
     }
   }
 }
@@ -145,7 +145,7 @@ $nav-block-padding-inline-end: 12px;
   }
 
   > post-icon {
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 }
 

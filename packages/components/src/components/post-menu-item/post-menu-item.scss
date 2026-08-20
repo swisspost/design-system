@@ -20,7 +20,7 @@ post-menu-item {
     align-items: center;
     padding: 8px 12px 8px 16px;
     gap: 12px;
-    font-size: 14px;
+    font-size: 0.875rem;
     color: #050400;
     border-radius: 0;
 
@@ -31,7 +31,7 @@ post-menu-item {
     }
 
     @include media.min(md) {
-      font-size: 16px;
+      font-size: 1rem;
       padding-block: 12px;
       gap: 16px;
 
@@ -43,7 +43,7 @@ post-menu-item {
     }
 
     @include media.min(lg) {
-      font-size: 20px;
+      font-size: 1.25rem;
       padding-block: 13px;
     }
 

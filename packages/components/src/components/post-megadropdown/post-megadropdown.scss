@@ -74,11 +74,11 @@
   font-weight: 950;
 
   @include media.only(tablet) {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 
   @include media.only(mobile) {
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 }
 

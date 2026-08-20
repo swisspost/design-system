@@ -109,11 +109,11 @@ post-header {
     grid-area: title;
     flex-grow: 1;
     margin: 0;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 950;
 
     @include media.only(desktop) {
-      font-size: 28px;
+      font-size: 1.75rem;
       line-height: 34px;
     }
   }
