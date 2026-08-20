@@ -31,7 +31,7 @@ export const GridTable = () => (
     <tr>
       <th>Custom gutters</th>
       <td colSpan={SCSS_VARIABLES['breakpoint-count']}>
-        <a href="#gutters">
+        <a href="#gutters" target="_self">
           yes
         </a>
       </td>
@@ -39,7 +39,7 @@ export const GridTable = () => (
     <tr>
       <th>Nestable</th>
       <td colSpan={SCSS_VARIABLES['breakpoint-count']}>
-        <a href="#nesting">
+        <a href="#nesting" target="_self">
           yes
         </a>
       </td>
