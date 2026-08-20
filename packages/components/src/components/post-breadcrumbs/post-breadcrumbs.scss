@@ -38,22 +38,15 @@ nav {
 }
 
 .home {
-  $home-height: tokens.get('breadcrumb-icon-size');
-  $chevron-height: 16px;
-  $chevron-margin-block: tokens.get('breadcrumb-padding-block-icon-link');
-
-  padding-block: calc((#{$chevron-height} + 2 * #{$chevron-margin-block} - #{$home-height}) / 2);
+  padding-block: tokens.get('breadcrumb-padding-block-icon-home');
 
   &::before {
     content: unset;
   }
 
   post-icon {
-    font-size: $home-height;
-
-    @include media.only(mobile) {
-      font-size: 20px;
-    }
+    width: tokens.get('breadcrumb-icon-home-size');
+    height: tokens.get('breadcrumb-icon-home-size');
   }
 }
 
