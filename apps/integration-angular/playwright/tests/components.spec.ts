@@ -33,5 +33,6 @@ test.describe('components-angular (consumer-app)', () => {
 
     errorCapture.dispose();
     assertNoComponentErrors(errorCapture.errors, componentNames as string[]);
+    expect(errorCapture.errors.length).toBe(0);
   });
 });
