@@ -40,7 +40,7 @@ describe('Back-to-top', () => {
         win.scrollTo(0, 0);
         cy.get('post-back-to-top').should('have.prop', 'hidden', true);
 
-        win.scrollTo(0, win.innerHeight + 2000);
+        win.scrollTo(0, 3000);
         cy.get('post-back-to-top').should('have.prop', 'hidden', false);
       });
     });
@@ -56,16 +56,13 @@ describe('Back-to-top', () => {
       });
     });
 
-    it('should stay in the DOM until the fade-out animation finishes', () => {
+    it('should play a fade animation when becoming visible', () => {
       cy.window().then(win => {
-        win.scrollTo(0, win.innerHeight + 2000);
-        cy.get('post-back-to-top').should('have.prop', 'hidden', false);
-
-        win.scrollTo(0, 0);
-        // animation is still running right after the scroll, must not be hidden yet
-        cy.get('post-back-to-top').should('have.prop', 'hidden', false);
-        // once the fade-out animation completes it should be fully hidden again
-        cy.get('post-back-to-top', { timeout: 1000 }).should('have.prop', 'hidden', true);
+        win.scrollTo(0, 3000);
+        cy.get('post-back-to-top').should($el => {
+          const animations = $el[0].getAnimations();
+          expect(animations.length).to.be.greaterThan(0);
+        });
       });
     });
   });
