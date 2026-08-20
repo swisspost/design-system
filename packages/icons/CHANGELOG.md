@@ -1,5 +1,72 @@
 # @swisspost/design-system-icons
 
+## 10.3.0
+
+### Minor Changes
+
+- Added icons:
+  - `blocked` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `checkmarkwide` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `combinedtransport` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `firealarmsystem` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `lung` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `mountains` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `phishingattempt` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `phishing` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8317](https://github.com/swisspost/design-system/pull/8317))
+
+### Patch Changes
+
+- Updated icons:
+  - `cardreader` (line): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8317](https://github.com/swisspost/design-system/pull/8317))
+
+## 10.2.0
+
+### Minor Changes
+
+- Added icons: `2797` and `2798` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8229](https://github.com/swisspost/design-system/pull/8229))
+
+- Added icons:
+  - `aboutus` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `bedhospital` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `border` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `constructionworker` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `construction` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `evoting` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `experiencehub` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `firewall` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `fridge` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `infinityloop` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `menusort` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `mypost24search` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `parcelcenterconveyerbelt` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `parcelcenterlorry` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `smallparcels` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `smartshuttle` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `targetcenterfull` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `voting` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8229](https://github.com/swisspost/design-system/pull/8229))
+
+- Added icons: `2799`, `2800` and `2801` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8269](https://github.com/swisspost/design-system/pull/8269))
+
+- Added icons:
+  - `carfleet` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `customsclearance` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `newspaperadress` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `printsend` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `talking` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `trucksemi` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `userknown` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `userunknown` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8269](https://github.com/swisspost/design-system/pull/8269))
+
+- Added icons:
+  - `bicycleno` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `wheelchairpartially` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `wheelchairreservation` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `wheelchairsubstitutetransport` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8274](https://github.com/swisspost/design-system/pull/8274))
+
+### Patch Changes
+
+- Updated icons: `2420` and `2422` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8269](https://github.com/swisspost/design-system/pull/8269))
+
 ## 10.1.0
 
 ### Minor Changes
