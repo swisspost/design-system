@@ -78,12 +78,6 @@ export class PostFooter {
       // @State only re-renders when this.slotDisplayed itself is replaced,
       // not when one of its properties is changed directly
       this.slotDisplayed = { ...this.slotDisplayed, [slotName]: hasContent };
-
-      ['meta', 'copyright']
-        .filter(requiredSlot => this.slotDisplayed[requiredSlot] === false)
-        .forEach(requiredSlot => {
-          console.error(`The slot "${requiredSlot}" is required in the footer but has no content.`);
-        });
     }
   }
 
@@ -122,10 +116,13 @@ export class PostFooter {
     const renderSocialmedia = this.slotDisplayed['socialmedia'];
     const renderApp = this.slotDisplayed['app'];
     const renderBusinesssectors = this.slotDisplayed['businesssectors'];
+    const renderMeta = this.slotDisplayed['meta'];
+    const renderCopyright = this.slotDisplayed['copyright'];
 
     const allGridSlotsEmpty = GRID_SLOTS.every(slotName => !this.slotDisplayed[slotName]);
     const renderMain =
       !allGridSlotsEmpty || renderSocialmedia || renderApp || renderBusinesssectors;
+    const renderBase = renderCopyright || renderMeta;
 
     return (
       <Host data-version={version} data-color-scheme="light">
@@ -165,13 +162,13 @@ export class PostFooter {
             </div>
           </div>
 
-          <div class="footer-base">
+          <div class={{ 'footer-base': true, 'd-none': !renderBase }}>
             <div class="footer-container">
-              <div class="footer-copyright">
+              <div class={{ 'footer-copyright': true, 'd-none': !renderCopyright }}>
                 <slot onSlotchange={this.handleSlotChange} name="copyright"></slot>
               </div>
 
-              <div class="footer-meta">
+              <div class={{ 'footer-meta': true, 'd-none': !renderMeta }}>
                 <slot onSlotchange={this.handleSlotChange} name="meta"></slot>
               </div>
             </div>

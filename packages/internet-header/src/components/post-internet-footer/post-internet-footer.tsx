@@ -162,27 +162,29 @@ export class PostInternetFooter {
             </div>
           )}
 
-          <p slot="copyright">{footerConfig.copyright}</p>
+          {footerConfig.complianceLinks && (
+            <div slot="meta">
+              <ul aria-label={getText(footerConfig.complianceLinks.title)}>
+                {footerConfig.complianceLinks.items.map(item => (
+                  <li key={item.text}>
+                    <Link config={item} />
+                  </li>
+                ))}
+                {this.cookieSettingsEnabled && (
+                  <li>
+                    <button
+                      class="btn btn-link cookie-settings"
+                      onClick={this.handleCookieSettingsClick}
+                    >
+                      {this.textCookieSettings}
+                    </button>
+                  </li>
+                )}
+              </ul>
+            </div>
+          )}
 
-          <div slot="meta">
-            <ul aria-label={getText(footerConfig.complianceLinks.title)}>
-              {footerConfig.complianceLinks.items.map(item => (
-                <li key={item.text}>
-                  <Link config={item} />
-                </li>
-              ))}
-              {this.cookieSettingsEnabled && (
-                <li>
-                  <button
-                    class="btn btn-link cookie-settings"
-                    onClick={this.handleCookieSettingsClick}
-                  >
-                    {this.textCookieSettings}
-                  </button>
-                </li>
-              )}
-            </ul>
-          </div>
+          {footerConfig.copyright && <p slot="copyright">{footerConfig.copyright}</p>}
         </post-footer>
       </Host>
     );
