@@ -38,11 +38,7 @@ export class MigrationV67Component extends LitElement {
               this.angular
                 ? html`
                     <li>
-                      <p>
-                        Use
-                        <a href="https://update.angular.io/">Angular Update Guide</a>
-                        to update Angular to version 17
-                      </p>
+                      <p>Use <a href="https://update.angular.io/">Angular Update Guide</a> to update Angular to version 17</p>
                     </li>
                   `
                 : nothing
