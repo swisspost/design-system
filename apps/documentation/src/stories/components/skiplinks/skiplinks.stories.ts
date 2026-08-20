@@ -17,7 +17,7 @@ export function renderSkiplinks() {
   return html`
     <div class="skiplinks">
       <a href="#navigation" target="_self">Navigation</a>
-      <a href="#main-content" arget="_self">Main</a>
+      <a href="#main-content" target="_self">Main</a>
     </div>
     <div id="navigation" role="navigation">
       Navigation

@@ -185,7 +185,8 @@ npm uninstall @swisspost/design-system-migrations`}
       <div class="mt-2">
         See the
         <a
-          href="https://getbootstrap.com/docs/5.1/migration" target="_blank"
+          href="https://getbootstrap.com/docs/5.1/migration"
+          target="_blank"
           rel="noopener noreferrer"
           >Bootstrap 5.1.x migration guide<span class="visually-hidden">(opens in a new tab)</span></a
         >

@@ -60,7 +60,8 @@ export class MigrationV78Component extends LitElement {
                           See the
                           <a
                             href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1700-2024-xx-xx"
-                            rel="noopener noreferrer" target="_blank"
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
                             ng-bootstrap 17.x.x changelog<span class="visually-hidden">(opens in a new tab)</span></a>
                           for more details.
