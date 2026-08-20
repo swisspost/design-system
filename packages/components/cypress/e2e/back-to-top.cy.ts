@@ -38,23 +38,38 @@ describe('Back-to-top', () => {
     it('should toggle visibility based on scroll position', () => {
       cy.window().then(win => {
         win.scrollTo(0, 0);
-        cy.get('post-back-to-top')
-          .shadow()
-          .find('.back-to-top')
-          .should('have.attr', 'aria-hidden', 'true');
+        cy.get('post-back-to-top').should('have.prop', 'hidden', true);
 
-        win.scrollTo(0, win.innerHeight + 2000);
-        cy.get('post-back-to-top')
-          .shadow()
-          .find('.back-to-top')
-          .should('have.attr', 'aria-hidden', 'false');
+        win.scrollTo(0, 3000);
+        cy.get('post-back-to-top').should('have.prop', 'hidden', false);
+      });
+    });
+
+    it('should not overlap other page content while hidden', () => {
+      cy.window().then(win => {
+        win.scrollTo(0, 0);
+        cy.get('post-back-to-top').should($el => {
+          const rect = $el[0].getBoundingClientRect();
+          expect(rect.width).to.equal(0);
+          expect(rect.height).to.equal(0);
+        });
+      });
+    });
+
+    it('should play a fade animation when becoming visible', () => {
+      cy.window().then(win => {
+        win.scrollTo(0, 3000);
+        cy.get('post-back-to-top').should($el => {
+          const animations = $el[0].getAnimations();
+          expect(animations.length).to.be.greaterThan(0);
+        });
       });
     });
   });
   describe('Accessibility', () => {
     it('Has no detectable a11y violations on load for all variants', () => {
       cy.getSnapshots('post-back-to-top');
-      cy.checkA11y('post-back-to-top', undefined, (violations) => {
+      cy.checkA11y('post-back-to-top', undefined, violations => {
         expect(violations).to.have.length(0);
       });
     });
