@@ -1,14 +1,15 @@
-import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import * as HeaderStories from './header.stories';
+import htmlSample from './samples/alternate-links.sample.html?raw';
+import angularSample from './samples/alternate-links-angular.sample.ts?raw';
+import reactSample from './samples/alternate-links-react.sample.ts?raw';
 import './header.scss';
 
 <Meta of={HeaderStories} />
 
 <div className="docs-title">
   # Internet Header
-
-<link-design of={JSON.stringify(HeaderStories)}></link-design>
-
+  <link-design of={JSON.stringify(HeaderStories)}></link-design>
 </div>
 
 <p className="lead">The internet header is built for external, client-facing applications.</p>
@@ -16,3 +17,29 @@ import './header.scss';
 <Canvas sourceState="shown" of={HeaderStories.Default} />
 
 <Controls of={HeaderStories.Default} />
+
+## Language switch overrides
+
+Override the language switch links with custom URLs. This is helpful when your application contains sub-pages and you want users to stay on the same sub-page when they change language.
+
+<Source code={htmlSample} language="html" />
+
+Add `<link rel="alternate">` tags to the `<head>` of your page. When present, alternate links take priority over the Portal config URLs. If no alternate link exists for a given language, the header falls back to the config value.
+
+<post-banner type="info">
+  All, the `rel="alternate"`, `href` and `hreflang` attributes are required for a `<link>` to be recognized.
+</post-banner>
+
+To be accepted as an override, the value of the `hreflang` attribute on a `<link>` element must match the value of the `code` property in the corresponding language entry in the Portal Configuration (`globalHeader.languages[].code`).
+
+### Dynamic updates
+
+Update the alternate link URLs on every route change to ensure that the language switch always points to the correct page.
+
+#### Angular example
+
+<Source code={angularSample} language="typescript" />
+
+#### React example
+
+<Source code={reactSample} language="typescript" />
