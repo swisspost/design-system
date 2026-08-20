@@ -46,8 +46,6 @@ describe('Back-to-top', () => {
     });
 
     it('should not overlap other page content while hidden', () => {
-      // regression test for #8319: the button used to keep its 56x56 hit area
-      // even when not displayed, overlapping elements like a banner close button
       cy.window().then(win => {
         win.scrollTo(0, 0);
         cy.get('post-back-to-top').should($el => {
