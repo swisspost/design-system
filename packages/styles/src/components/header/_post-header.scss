@@ -66,12 +66,6 @@ post-header {
     &:where(ul) {
       align-items: center;
     }
-
-    @include media.only(mobile) {
-      @include interactive-elements {
-        padding: 0.25rem 0.75rem;
-      }
-    }
   }
 
   // audience
