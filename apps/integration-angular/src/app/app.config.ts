@@ -4,8 +4,6 @@ import { providePostComponents } from '@swisspost/design-system-components-angul
 import { providePrimeNG } from 'primeng/config';
 import { swissPostPreset } from '@swisspost/design-system-styles-primeng';
 
-
-
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
