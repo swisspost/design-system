@@ -3,10 +3,20 @@ import { dispose, state } from '@/data/store';
 import { ActiveRouteProp, Environment } from '@/models/general.model';
 import { PostLoginConfig, UserMenuConfig } from '@/models/header.model';
 import { IconLinkConfig, LinkConfig } from '@/models/shared.model';
+import { getAlternateLinks, observeAlternateLinks } from '@/services/alternate-link.service';
 import { getLocalizedConfig, isValidProjectId } from '@/services/config.service';
 import { getActiveLink } from '@/services/route.service';
 import { version } from '@root/package.json';
-import { Component, Event, EventEmitter, h, Host, Listen, Prop, Watch } from '@stencil/core';
+import {
+  Component,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Prop,
+  Watch,
+} from '@stencil/core';
 import '@swisspost/design-system-components';
 
 const SESSION_URL = 'https://n.account.post.ch/v1/session/subscribe';
@@ -16,6 +26,8 @@ const SESSION_URL = 'https://n.account.post.ch/v1/session/subscribe';
   shadow: false,
 })
 export class PostInternetHeader {
+  private alternateLinksObserver?: MutationObserver;
+
   /**
    * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted.
    * Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
@@ -117,7 +129,12 @@ export class PostInternetHeader {
     }
   }
 
+  connectedCallback() {
+    this.observeAlternateLinks();
+  }
+
   async componentWillLoad() {
+    this.initAlternateLinks();
     await Promise.all([this.fetchHeaderConfig(), this.fetchUserData()]);
   }
 
@@ -128,6 +145,8 @@ export class PostInternetHeader {
   }
 
   disconnectedCallback() {
+    this.alternateLinksObserver?.disconnect();
+
     // Reset the store to its original state
     dispose();
   }
@@ -182,6 +201,17 @@ export class PostInternetHeader {
     this.updateActiveUrl();
   }
 
+  private initAlternateLinks() {
+    state.alternateLinks = getAlternateLinks();
+  }
+
+  private observeAlternateLinks() {
+    // Watch for dynamic changes (SPA route changes, late inserts)
+    this.alternateLinksObserver = observeAlternateLinks(updated => {
+      state.alternateLinks = updated;
+    });
+  }
+
   private updateActiveUrl() {
     state.activeLink = getActiveLink(this.activeRoute);
   }
@@ -192,6 +222,14 @@ export class PostInternetHeader {
       ...(postLogin.settings ? [postLogin.settings] : []),
       ...(postLogin.userLinks ?? []),
     ];
+  }
+
+  /**
+   * Get the language switch URL for a given language code.
+   * Alternate links from <head> take priority over config-provided URLs.
+   */
+  private getLanguageUrl(code: string, configUrl: string): string {
+    return state.alternateLinks.get(code.toLowerCase()) ?? configUrl;
   }
 
   private renderNavItem(config: LinkConfig | UserMenuConfig, props: LinkProps = {}): string {
@@ -276,7 +314,7 @@ export class PostInternetHeader {
               {globalHeader.languages.map(lang => (
                 <post-language-menu-item
                   key={lang.code}
-                  url={lang.url}
+                  url={this.getLanguageUrl(lang.code, lang.url)}
                   active={lang.active}
                   code={lang.code}
                   name={lang.label}
@@ -306,7 +344,7 @@ export class PostInternetHeader {
 
           {localHeader.navigation && this.renderNavigation('local-nav', localHeader.navigation)}
 
-          {localHeader.mainNavigation && (
+          {localHeader.mainNavigation && localHeader.mainNavigation.length > 0 && (
             <post-mainnavigation slot="main-nav" textMain={this.textMain}>
               <ul>
                 {localHeader.mainNavigation.map(navItem => (

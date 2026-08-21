@@ -344,7 +344,7 @@ export namespace Components {
          */
         "active"?: boolean;
         /**
-          * The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
+          * The ISO 639-1 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
          */
         "code": string;
         /**
@@ -668,6 +668,9 @@ export namespace Components {
         "toggle": () => Promise<void>;
     }
     interface PostSideNavigationTrigger {
+        /**
+          * ID of the side navigation element that this trigger is linked to. Used to open and close the specified side navigation.
+         */
         "for": string;
         /**
           * Manually update the trigger's ARIA attributes.
@@ -804,6 +807,10 @@ export interface PostBannerCustomEvent<T> extends CustomEvent<T> {
 export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
+}
+export interface PostLanguageMenuCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostLanguageMenuElement;
 }
 export interface PostLanguageMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -972,7 +979,18 @@ declare global {
         prototype: HTMLPostIconElement;
         new (): HTMLPostIconElement;
     };
+    interface HTMLPostLanguageMenuElementEventMap {
+        "postChange": string;
+    }
     interface HTMLPostLanguageMenuElement extends Components.PostLanguageMenu, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostLanguageMenuElementEventMap>(type: K, listener: (this: HTMLPostLanguageMenuElement, ev: PostLanguageMenuCustomEvent<HTMLPostLanguageMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostLanguageMenuElementEventMap>(type: K, listener: (this: HTMLPostLanguageMenuElement, ev: PostLanguageMenuCustomEvent<HTMLPostLanguageMenuElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostLanguageMenuElement: {
         prototype: HTMLPostLanguageMenuElement;
@@ -1598,6 +1616,7 @@ declare namespace LocalJSX {
         "url"?: string;
     }
     interface PostLanguageMenu {
+        "onPostChange"?: (event: PostLanguageMenuCustomEvent<string>) => void;
         /**
           * A title for the list of language options
          */
@@ -1618,7 +1637,7 @@ declare namespace LocalJSX {
          */
         "active"?: boolean;
         /**
-          * The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
+          * The ISO 639-1 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
          */
         "code": string;
         /**
@@ -1907,6 +1926,9 @@ declare namespace LocalJSX {
         "textClose": string;
     }
     interface PostSideNavigationTrigger {
+        /**
+          * ID of the side navigation element that this trigger is linked to. Used to open and close the specified side navigation.
+         */
         "for": string;
     }
     interface PostStepper {

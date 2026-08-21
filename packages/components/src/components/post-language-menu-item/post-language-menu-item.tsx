@@ -14,7 +14,7 @@ export class PostLanguageMenuItem {
   @Element() host: HTMLPostLanguageMenuItemElement;
 
   /**
-   *  The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
+   *  The ISO 639-1 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
    */
   @Prop({ reflect: true })
   @Required()
@@ -106,7 +106,7 @@ export class PostLanguageMenuItem {
       <a
         aria-current={this.active ? 'page' : undefined}
         href={this.url}
-        hrefLang={lang}
+        hreflang={lang}
         lang={lang}
         aria-description={this.description}
         onClick={() => this.emitChange()}

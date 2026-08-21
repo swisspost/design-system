@@ -66659,6 +66659,774 @@
       "modifiedAt": "2026-07-31T06:06:39.000Z"
     },
     {
+      "uuid": "2df02a51-8ca6-11f1-81f8-0050568d2654",
+      "id": 10839236,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839236/storage/MDEwODM5MjM2LzAvbWFzdGVyLy8vMTAyMDAzMDE5",
+        "keywords": [
+          "construction worker",
+          "ouvrier du bâtiment",
+          "Bauarbeiter",
+          "operaio edile"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionWorker_Shape_16.svg",
+        "basename": "ConstructionWorker_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:07:58.000Z",
+      "modifiedAt": "2026-07-31T06:10:38.000Z"
+    },
+    {
+      "uuid": "2cf68810-8ca6-11f1-81f8-0050568d2654",
+      "id": 10839234,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839234/storage/MDEwODM5MjM0LzAvbWFzdGVyLy8vMTAyMDAzMDE1",
+        "keywords": [
+          "construction worker",
+          "ouvrier du bâtiment",
+          "Bauarbeiter",
+          "operaio edile"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionWorker_Shape_24.svg",
+        "basename": "ConstructionWorker_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:07:57.000Z",
+      "modifiedAt": "2026-07-31T06:10:38.000Z"
+    },
+    {
+      "uuid": "2beeb500-8ca6-11f1-81f8-0050568d2654",
+      "id": 10839233,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839233/storage/MDEwODM5MjMzLzAvbWFzdGVyLy8vMTAyMDAzMDEx",
+        "keywords": [
+          "construction worker",
+          "ouvrier du bâtiment",
+          "Bauarbeiter",
+          "operaio edile"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionWorker_Shape_32.svg",
+        "basename": "ConstructionWorker_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:07:55.000Z",
+      "modifiedAt": "2026-07-31T06:10:38.000Z"
+    },
+    {
+      "uuid": "2aa78f00-8ca6-11f1-81f8-0050568d2654",
+      "id": 10839231,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839231/storage/MDEwODM5MjMxLzAvbWFzdGVyLy8vMTAyMDAzMDA3",
+        "keywords": [
+          "construction worker",
+          "ouvrier du bâtiment",
+          "Bauarbeiter",
+          "operaio edile"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionWorker_Shape_40.svg",
+        "basename": "ConstructionWorker_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:07:53.000Z",
+      "modifiedAt": "2026-07-31T06:10:38.000Z"
+    },
+    {
+      "uuid": "290e2a50-8ca6-11f1-81f8-0050568d2654",
+      "id": 10839230,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839230/storage/MDEwODM5MjMwLzAvbWFzdGVyLy8vMTAyMDAzMDAz",
+        "keywords": [
+          "construction worker",
+          "ouvrier du bâtiment",
+          "Bauarbeiter",
+          "operaio edile"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionWorker_Shape_48.svg",
+        "basename": "ConstructionWorker_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:07:50.000Z",
+      "modifiedAt": "2026-07-31T06:10:38.000Z"
+    },
+    {
+      "uuid": "2838b1e0-8ca6-11f1-81f8-0050568d2654",
+      "id": 10839218,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839218/storage/MDEwODM5MjE4LzAvbWFzdGVyLy8vMTAyMDAyMzI0",
+        "keywords": [
+          "construction worker",
+          "ouvrier du bâtiment",
+          "Bauarbeiter",
+          "operaio edile"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionWorker_Shape_64.svg",
+        "basename": "ConstructionWorker_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:07:49.000Z",
+      "modifiedAt": "2026-07-31T06:09:38.000Z"
+    },
+    {
+      "uuid": "27254610-8ca6-11f1-81f8-0050568d2654",
+      "id": 10839216,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839216/storage/MDEwODM5MjE2LzAvbWFzdGVyLy8vMTAyMDAyOTkw",
+        "keywords": [
+          "construction worker",
+          "ouvrier du bâtiment",
+          "Bauarbeiter",
+          "operaio edile"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionWorker_Solid_Shape_16.svg",
+        "basename": "ConstructionWorker_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:07:47.000Z",
+      "modifiedAt": "2026-07-31T06:10:38.000Z"
+    },
+    {
+      "uuid": "26f842a0-8ca6-11f1-81f8-0050568d2654",
+      "id": 10839215,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839215/storage/MDEwODM5MjE1LzAvbWFzdGVyLy8vMTAyMDAyOTg2",
+        "keywords": [
+          "construction worker",
+          "ouvrier du bâtiment",
+          "Bauarbeiter",
+          "operaio edile"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionWorker_Solid_Shape_24.svg",
+        "basename": "ConstructionWorker_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:07:47.000Z",
+      "modifiedAt": "2026-07-31T06:10:38.000Z"
+    },
+    {
+      "uuid": "262d9fa0-8ca6-11f1-81f8-0050568d2654",
+      "id": 10839213,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839213/storage/MDEwODM5MjEzLzAvbWFzdGVyLy8vMTAyMDAyOTgy",
+        "keywords": [
+          "construction worker",
+          "ouvrier du bâtiment",
+          "Bauarbeiter",
+          "operaio edile"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionWorker_Solid_Shape_32.svg",
+        "basename": "ConstructionWorker_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:07:45.000Z",
+      "modifiedAt": "2026-07-31T06:10:38.000Z"
+    },
+    {
+      "uuid": "2479fc30-8ca6-11f1-81f8-0050568d2654",
+      "id": 10839219,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839219/storage/MDEwODM5MjE5LzAvbWFzdGVyLy8vMTAyMDAyOTk1",
+        "keywords": [
+          "construction worker",
+          "ouvrier du bâtiment",
+          "Bauarbeiter",
+          "operaio edile"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionWorker_Solid_Shape_40.svg",
+        "basename": "ConstructionWorker_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:07:42.000Z",
+      "modifiedAt": "2026-07-31T06:10:39.000Z"
+    },
+    {
+      "uuid": "247938e0-8ca6-11f1-81f8-0050568d2654",
+      "id": 10839229,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839229/storage/MDEwODM5MjI5LzAvbWFzdGVyLy8vMTAyMDAyOTk5",
+        "keywords": [
+          "construction worker",
+          "ouvrier du bâtiment",
+          "Bauarbeiter",
+          "operaio edile"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionWorker_Solid_Shape_48.svg",
+        "basename": "ConstructionWorker_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:07:42.000Z",
+      "modifiedAt": "2026-07-31T06:10:39.000Z"
+    },
+    {
+      "uuid": "247911d0-8ca6-11f1-81f8-0050568d2654",
+      "id": 10839209,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10839209/storage/MDEwODM5MjA5LzAvbWFzdGVyLy8vMTAyMDAyOTc4",
+        "keywords": [
+          "construction worker",
+          "ouvrier du bâtiment",
+          "Bauarbeiter",
+          "operaio edile"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionWorker_Solid_Shape_64.svg",
+        "basename": "ConstructionWorker_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:07:42.000Z",
+      "modifiedAt": "2026-07-31T06:10:38.000Z"
+    },
+    {
+      "uuid": "98357a11-8ca5-11f1-81f8-0050568d2654",
+      "id": 10838839,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10838839/storage/MDEwODM4ODM5LzAvbWFzdGVyLy8vMTAxOTk5ODYw",
+        "keywords": [
+          "Bau",
+          "Constructions",
+          "Costruzioni",
+          "burrow",
+          "Baukran",
+          "Construction Crane",
+          "Gru da costruzione",
+          "Grue De Construction",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Construction_Shape_16.svg",
+        "basename": "Construction_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:03:47.000Z",
+      "modifiedAt": "2026-07-31T06:06:39.000Z"
+    },
+    {
+      "uuid": "973d3760-8ca5-11f1-81f8-0050568d2654",
+      "id": 10838836,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10838836/storage/MDEwODM4ODM2LzAvbWFzdGVyLy8vMTAxOTk5ODU2",
+        "keywords": [
+          "Bau",
+          "Constructions",
+          "Costruzioni",
+          "burrow",
+          "Baukran",
+          "Construction Crane",
+          "Gru da costruzione",
+          "Grue De Construction",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Construction_Shape_24.svg",
+        "basename": "Construction_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:03:46.000Z",
+      "modifiedAt": "2026-07-31T06:06:39.000Z"
+    },
+    {
+      "uuid": "96070150-8ca5-11f1-81f8-0050568d2654",
+      "id": 10838833,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10838833/storage/MDEwODM4ODMzLzAvbWFzdGVyLy8vMTAxOTk5ODUy",
+        "keywords": [
+          "Bau",
+          "Constructions",
+          "Costruzioni",
+          "burrow",
+          "Baukran",
+          "Construction Crane",
+          "Gru da costruzione",
+          "Grue De Construction",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Construction_Shape_32.svg",
+        "basename": "Construction_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:03:43.000Z",
+      "modifiedAt": "2026-07-31T06:06:39.000Z"
+    },
+    {
+      "uuid": "9604de72-8ca5-11f1-81f8-0050568d2654",
+      "id": 10838832,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10838832/storage/MDEwODM4ODMyLzAvbWFzdGVyLy8vMTAxOTk5ODQ4",
+        "keywords": [
+          "Bau",
+          "Constructions",
+          "Costruzioni",
+          "burrow",
+          "Baukran",
+          "Construction Crane",
+          "Gru da costruzione",
+          "Grue De Construction",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Construction_Shape_40.svg",
+        "basename": "Construction_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:03:43.000Z",
+      "modifiedAt": "2026-07-31T06:06:39.000Z"
+    },
+    {
+      "uuid": "94c161f0-8ca5-11f1-81f8-0050568d2654",
+      "id": 10838828,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10838828/storage/MDEwODM4ODI4LzAvbWFzdGVyLy8vMTAxOTk5ODQx",
+        "keywords": [
+          "Bau",
+          "Constructions",
+          "Costruzioni",
+          "burrow",
+          "Baukran",
+          "Construction Crane",
+          "Gru da costruzione",
+          "Grue De Construction",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Construction_Shape_48.svg",
+        "basename": "Construction_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:03:41.000Z",
+      "modifiedAt": "2026-07-31T06:06:39.000Z"
+    },
+    {
+      "uuid": "930f4520-8ca5-11f1-81f8-0050568d2654",
+      "id": 10838826,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10838826/storage/MDEwODM4ODI2LzAvbWFzdGVyLy8vMTAxOTk5MTU3",
+        "keywords": [
+          "Bau",
+          "Constructions",
+          "Costruzioni",
+          "burrow",
+          "Baukran",
+          "Construction Crane",
+          "Gru da costruzione",
+          "Grue De Construction",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Construction_Shape_64.svg",
+        "basename": "Construction_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:03:38.000Z",
+      "modifiedAt": "2026-07-31T06:05:42.000Z"
+    },
+    {
+      "uuid": "91aad320-8ca5-11f1-81f8-0050568d2654",
+      "id": 10838825,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10838825/storage/MDEwODM4ODI1LzAvbWFzdGVyLy8vMTAxOTk5ODM3",
+        "keywords": [
+          "Bau",
+          "Constructions",
+          "Costruzioni",
+          "burrow",
+          "Baukran",
+          "Construction Crane",
+          "Gru da costruzione",
+          "Grue De Construction",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Construction_Solid_Shape_16.svg",
+        "basename": "Construction_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:03:36.000Z",
+      "modifiedAt": "2026-07-31T06:06:39.000Z"
+    },
+    {
+      "uuid": "919db3c0-8ca5-11f1-81f8-0050568d2654",
+      "id": 10838824,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10838824/storage/MDEwODM4ODI0LzAvbWFzdGVyLy8vMTAxOTk5ODMz",
+        "keywords": [
+          "Bau",
+          "Constructions",
+          "Costruzioni",
+          "burrow",
+          "Baukran",
+          "Construction Crane",
+          "Gru da costruzione",
+          "Grue De Construction",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Construction_Solid_Shape_24.svg",
+        "basename": "Construction_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:03:36.000Z",
+      "modifiedAt": "2026-07-31T06:06:39.000Z"
+    },
+    {
+      "uuid": "90e78320-8ca5-11f1-81f8-0050568d2654",
+      "id": 10838822,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10838822/storage/MDEwODM4ODIyLzAvbWFzdGVyLy8vMTAxOTk5ODI5",
+        "keywords": [
+          "Bau",
+          "Constructions",
+          "Costruzioni",
+          "burrow",
+          "Baukran",
+          "Construction Crane",
+          "Gru da costruzione",
+          "Grue De Construction",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Construction_Solid_Shape_32.svg",
+        "basename": "Construction_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:03:35.000Z",
+      "modifiedAt": "2026-07-31T06:06:39.000Z"
+    },
+    {
+      "uuid": "8e7f35b0-8ca5-11f1-81f8-0050568d2654",
+      "id": 10838814,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10838814/storage/MDEwODM4ODE0LzAvbWFzdGVyLy8vMTAxOTk5ODE2",
+        "keywords": [
+          "Bau",
+          "Constructions",
+          "Costruzioni",
+          "burrow",
+          "Baukran",
+          "Construction Crane",
+          "Gru da costruzione",
+          "Grue De Construction",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Construction_Solid_Shape_40.svg",
+        "basename": "Construction_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:03:31.000Z",
+      "modifiedAt": "2026-07-31T06:06:39.000Z"
+    },
+    {
+      "uuid": "8e91ac40-8ca5-11f1-81f8-0050568d2654",
+      "id": 10838816,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10838816/storage/MDEwODM4ODE2LzAvbWFzdGVyLy8vMTAxOTk5ODI0",
+        "keywords": [
+          "Bau",
+          "Constructions",
+          "Costruzioni",
+          "burrow",
+          "Baukran",
+          "Construction Crane",
+          "Gru da costruzione",
+          "Grue De Construction",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Construction_Solid_Shape_48.svg",
+        "basename": "Construction_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:03:31.000Z",
+      "modifiedAt": "2026-07-31T06:06:39.000Z"
+    },
+    {
+      "uuid": "8e8e77f0-8ca5-11f1-81f8-0050568d2654",
+      "id": 10838815,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/10838815/storage/MDEwODM4ODE1LzAvbWFzdGVyLy8vMTAxOTk5ODIw",
+        "keywords": [
+          "Bau",
+          "Constructions",
+          "Costruzioni",
+          "burrow",
+          "Baukran",
+          "Construction Crane",
+          "Gru da costruzione",
+          "Grue De Construction",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Construction_Solid_Shape_64.svg",
+        "basename": "Construction_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-07-31T06:03:31.000Z",
+      "modifiedAt": "2026-07-31T06:06:39.000Z"
+    },
+    {
       "uuid": "f60831c0-1b93-11f0-990c-005056873709",
       "id": 3411406,
       "type": "picture.pictogram.",
