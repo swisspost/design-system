@@ -121,7 +121,8 @@ export class PostBreadcrumbs {
 
     const breadcrumbItems = Array.from(hiddenNav.querySelectorAll('post-breadcrumb-item'));
     Promise.all(breadcrumbItems.map(item => componentOnReady(item))).then(() => {
-      this.shouldRenderMenu = hiddenNav.scrollWidth > hiddenNav.clientWidth;
+      this.shouldRenderMenu =
+        hiddenNav.scrollWidth > hiddenNav.clientWidth && breadcrumbItems.length > 1;
       this.updateBreadcrumbItemProps();
     });
   }
