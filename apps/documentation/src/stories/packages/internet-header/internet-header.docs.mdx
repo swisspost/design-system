@@ -30,6 +30,19 @@ import { PackageShields } from '@root/src/shared/package-shields';
       <p>The Internet Header is built to support the already existing Portal Configuration used for the old Internet Header.
       <br/>If you're working on a new project, you probably need a new configuration. Please contact the Post Portal Team.</p>
 
+      <post-banner type="warning" className="mt-16 mb-16">
+        <h4 slot="heading">Migrating from v9?</h4>
+        <p>
+          Version 10 uses a <strong>new configuration format</strong>. Your existing v9
+          configuration <strong>will not work</strong> with the v10 header and will cause
+          errors at runtime. Before upgrading, contact the Post Portal Team at{' '}
+          <a href="mailto:dm-tec@post.ch" rel="noopener">dm-tec@post.ch <post-icon name="letter" /></a>{' '}
+          to request a <strong>configuration migration</strong> to the v10 format. Provide your
+          project's <code>serviceId</code> and the environments you need migrated
+          (e.g. <code>int01</code>, <code>int02</code>, <code>prod</code>).
+        </p>
+      </post-banner>
+
       <h3>Step 1</h3>
       <p>Integration of header only: contact <a href="mailto:dm-tec@post.ch" rel="noopener">dm-tec@post.ch <post-icon name="letter" /></a> directly</p>
       <p>Integration of header and KLP: contact KLP first for integration</p>
