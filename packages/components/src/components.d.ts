@@ -808,6 +808,10 @@ export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
 }
+export interface PostLanguageMenuCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostLanguageMenuElement;
+}
 export interface PostLanguageMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostLanguageMenuItemElement;
@@ -975,7 +979,18 @@ declare global {
         prototype: HTMLPostIconElement;
         new (): HTMLPostIconElement;
     };
+    interface HTMLPostLanguageMenuElementEventMap {
+        "postChange": string;
+    }
     interface HTMLPostLanguageMenuElement extends Components.PostLanguageMenu, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostLanguageMenuElementEventMap>(type: K, listener: (this: HTMLPostLanguageMenuElement, ev: PostLanguageMenuCustomEvent<HTMLPostLanguageMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostLanguageMenuElementEventMap>(type: K, listener: (this: HTMLPostLanguageMenuElement, ev: PostLanguageMenuCustomEvent<HTMLPostLanguageMenuElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostLanguageMenuElement: {
         prototype: HTMLPostLanguageMenuElement;
@@ -1601,6 +1616,7 @@ declare namespace LocalJSX {
         "url"?: string;
     }
     interface PostLanguageMenu {
+        "onPostChange"?: (event: PostLanguageMenuCustomEvent<string>) => void;
         /**
           * A title for the list of language options
          */
