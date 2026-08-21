@@ -1,5 +1,6 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as languageMenuStories from './language-menu.stories';
+import * as languageMenuItemStories from '../language-menu-item/language-menu-item.stories';
 import { PostBanner } from '@swisspost/design-system-components-react';
 import StoryTags from '@/shared/story-tags';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
@@ -17,14 +18,16 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <p className="lead">The language menu enables users to select their preferred language.</p>
 
+It is designed to be used within the `post-header` component.
+
 <Canvas sourceState="shown" of={languageMenuStories.Default} />
 
 <Controls of={languageMenuStories.Default} />
 
 <PostBanner>
   <p>
-    <b>Accessibility Note:</b> For each language option in the selection menu, the accessible name
-    is generated using the `name` property. It is essential that this property is set with the full,
+    <b>Accessibility Note:</b> For each language in the selection menu, the accessible name is
+    generated using the `name` property. It is essential that this property is set with the full,
     readable name of the language (e.g., English) to serve as an accurate and clear accessible name
     for assistive technologies.
   </p>
@@ -32,8 +35,15 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <ComponentsPackageInstall component="<post-language-menu>" />
 
+## Language menu item
+
+The `post-language-menu` consists of a list of `post-language-menu-item`.
+
+<Canvas sourceState="shown" of={languageMenuItemStories.Default} />
+<Controls of={languageMenuItemStories.Default} />
+
 ## Links
 
-The language options can be used as links, which will navigate to a different page upon selection.
+The language menu items can be used as links, which will navigate to a different page upon selection.
 
 <Canvas sourceState="shown" of={languageMenuStories.Links} />
