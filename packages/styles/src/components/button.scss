@@ -34,6 +34,23 @@ tokens.$default-map: components.$post-button;
       box-shadow: tokens.get('button-elevation');
     }
 
+    @include utilities.high-contrast-mode() {
+      @if ($variant == 'link') {
+        &:disabled,
+        &.disabled {
+          text-decoration: none;
+        }
+      } @else {
+        &:not(:disabled, .disabled):not(a.btn-tertiary.px-0):hover {
+          background-color: Highlight !important;
+
+          > post-icon {
+            color: HighlightText !important;
+          }
+        }
+      }
+    }
+
     @include button-mx.button-variant-def('enabled', $color, $variant);
 
     &:disabled {
