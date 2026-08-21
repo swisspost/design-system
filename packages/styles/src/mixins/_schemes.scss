@@ -1,4 +1,4 @@
-@use '../tokens/temp/schemestatic';
+@use '@swisspost/design-system-tokens/schemestatic';
 
 /**
  * Check for light-dark support was added so we don't use CSS functions that don't work anyway.
