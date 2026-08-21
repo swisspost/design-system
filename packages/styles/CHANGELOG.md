@@ -1,5 +1,13 @@
 # @swisspost/design-system-styles
 
+## 10.3.1
+
+### Patch Changes
+
+- Adjusted the form switch handle position. (by [@alizedebray](https://github.com/alizedebray) with [#8310](https://github.com/swisspost/design-system/pull/8310))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.3.1
+
 ## 10.3.0
 
 ### Patch Changes
