@@ -49,16 +49,6 @@ tokens.$default-map: components.$post-accordion;
   border-block-end: tokens.get('accordion-border-bottom-width')
     tokens.get('accordion-border-bottom-style') transparent;
   cursor: pointer;
-  @include utility-mx.focus-style-none;
-
-  @include utility-mx.focus-style('::before') {
-    display: block;
-    content: '';
-    position: absolute;
-    inset: calc(tokens.get('accordion-group-border-top-width') * -1) 0
-      calc(tokens.get('accordion-border-bottom-width') * -1);
-    border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
-  }
 
   slot::slotted(span[slot='header']) {
     flex-grow: 1;
@@ -88,6 +78,8 @@ tokens.$default-map: components.$post-accordion;
   > ::slotted(.text-truncate) {
     display: block;
   }
+
+  @include utility-mx.focus-inline(3px, 3px);
 
   @include utility-mx.high-contrast-mode() {
     &:hover,

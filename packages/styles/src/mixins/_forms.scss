@@ -330,14 +330,6 @@
     vertical-align: top;
   }
 
-  &:has(> input:not(:only-child)) {
-    @include utility-mx.focus-style();
-
-    > input {
-      @include utility-mx.focus-style-none();
-    }
-  }
-
   > label {
     transition: color #{animation.$transition-base-timing};
     flex: 1;
@@ -365,6 +357,16 @@
       @include utility-mx.high-contrast-mode() {
         color: GrayText;
       }
+    }
+  }
+}
+
+@mixin form-check-focus($additional-selector: '') {
+  &:has(> input:not(:only-child))#{$additional-selector} {
+    @include utility-mx.focus-style();
+
+    > input {
+      @include utility-mx.focus-style-none();
     }
   }
 }

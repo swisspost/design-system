@@ -29,6 +29,7 @@ tokens.$default-map: components.$post-checkbox;
   padding-block: tokens.get('checkbox-padding-block-single');
 
   @include forms-mx.form-check-base();
+  @include forms-mx.form-check-focus();
 
   // Grouped
   fieldset > &:not(.form-check-inline):not(:last-of-type) {

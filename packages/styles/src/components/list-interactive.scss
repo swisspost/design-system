@@ -28,7 +28,6 @@ tokens.$default-map: components.$post-list;
   padding-block-end: tokens.get('list-item-padding-block-end');
   padding-inline-start: tokens.get('list-item-padding-inline-start');
   padding-inline-end: tokens.get('list-item-padding-inline-end');
-  border-radius: tokens.get('focus-border-radius', helpers.$post-focus); // Used for the focus only
   color: tokens.get('list-item-enabled-fg');
 
   &::after {
@@ -48,7 +47,7 @@ tokens.$default-map: components.$post-list;
     }
   }
 
-  @include utilities-mx.focus-style;
+  @include utilities-mx.focus-inline(3px, calc(3px + tokens.get('list-item-border-width')));
 }
 
 .list-interactive-link,
@@ -90,6 +89,10 @@ tokens.$default-map: components.$post-list;
   .form-check-input {
     flex-shrink: 0;
     margin-block: tokens.get('list-switch-padding-block');
+  }
+
+  > input {
+    @include utilities-mx.focus-style-none;
   }
 }
 
