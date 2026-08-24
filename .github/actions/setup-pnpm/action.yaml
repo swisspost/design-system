@@ -15,39 +15,18 @@ name: Setup pnpm
 description: Provides node and pnpm in a specific version.
 
 inputs:
-  node_version:
-    description: Specify the node version to install
-    type: string
-  pnpm_version:
-    description: Specify the pnpm version to install
-    type: string
   use_cache:
-    description: Specify wether to use the pnpm cache or not
+    description: Specify whether to use the pnpm cache or not
     default: true
     type: boolean
 
 runs:
   using: composite
   steps:
-    - name: Detect wanted version
-      id: wanted-versions
-      uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
-      with:
-        script: |
-          const fs = require('fs')
-          const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'))
-          const pm = pkg.packageManager || ''
-
-          return {
-            node: pkg.devEngines?.runtime?.version || pkg.engines?.node || 'lts/*',
-            pnpm: pkg.devEngines?.packageManager?.version || pm.replace(/^pnpm@/, '') || 'latest'
-          }
-
     - name: Install pnpm and runtime
       uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2
       with:
-        version: ${{ inputs.pnpm_version || fromJSON(steps.wanted-versions.outputs.result).pnpm }}
-        runtime: node@${{ inputs.node_version || fromJSON(steps.wanted-versions.outputs.result).node }}
+        runtime: node
         install: false
         cache: ${{ inputs.use_cache }}
 
