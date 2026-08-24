@@ -173,6 +173,7 @@ export interface V910Checks {
     add_text_props: boolean;
     remove_props: boolean;
     breadcrumb_migration: boolean;
+    language_switch_migration: boolean;
   };
   intranet_header: {
     migration: boolean;
