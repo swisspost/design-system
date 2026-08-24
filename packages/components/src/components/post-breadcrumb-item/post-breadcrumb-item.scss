@@ -11,7 +11,7 @@ tokens.$default-map: components.$post-breadcrumb;
 
   // Only the selected item is allowed to wrap onto multiple lines.
   // Keeping all other items on a single line prevents them from briefly wrapping during a resize.
-  &:host(:not([selected]), [selected='false']) {
+  &:host(:not([selected])), &:host([selected='false']) {
     --post-breadcrumb-item-wrap: nowrap;
   }
 }
