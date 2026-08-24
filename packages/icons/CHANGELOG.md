@@ -1,5 +1,24 @@
 # @swisspost/design-system-icons
 
+## 10.3.0
+
+### Minor Changes
+
+- Added icons:
+  - `blocked` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `checkmarkwide` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `combinedtransport` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `firealarmsystem` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `lung` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `mountains` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `phishingattempt` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `phishing` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8317](https://github.com/swisspost/design-system/pull/8317))
+
+### Patch Changes
+
+- Updated icons:
+  - `cardreader` (line): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8317](https://github.com/swisspost/design-system/pull/8317))
+
 ## 10.2.0
 
 ### Minor Changes

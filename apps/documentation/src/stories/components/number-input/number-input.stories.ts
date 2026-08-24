@@ -1,7 +1,7 @@
+import { getLabelText, getValidationMessages, VALIDATION_STATE_MAP } from '@/utils/form-elements';
+import { MetaComponent } from '@root/types';
 import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '@root/types';
-import { getLabelText, getValidationMessages, VALIDATION_STATE_MAP } from '@/utils/form-elements';
 import { repeat } from 'lit-html/directives/repeat.js';
 
 const meta: MetaComponent = {
@@ -65,7 +65,7 @@ const meta: MetaComponent = {
     placeholder: {
       name: 'Placeholder',
       description:
-        'A brief hint to the user as to what kind of information is expected in the field.',
+        'A brief hint about the expected input. For floating labels, use at least a space character.',
       type: {
         name: 'string',
       },
@@ -206,7 +206,7 @@ function render(args: Args, context: StoryContext) {
     .filter(c => c && c !== 'null')
     .join(' ');
 
-  const defaultPlaceholder = args.floatingLabel ? '' : nothing;
+  const defaultPlaceholder = args.floatingLabel ? ' ' : nothing;
 
   const contextual = getValidationMessages(args, context);
 
