@@ -365,7 +365,6 @@ export class PostPopovercontainer {
     // Hide the popover if the target is outside the viewport
     if (middlewareData.hide?.referenceHidden) {
       this.host.hidePopover();
-      this.close();
     }
 
     const currentPlacement = placement.split('-')[0];
