@@ -50,6 +50,14 @@ export class PostBreadcrumbItem {
   @Type('boolean')
   selected = false;
 
+  /**
+   * Indicates that this is the only visible item, applying appropriate styling.
+   */
+  @Prop({ reflect: true })
+  @Required()
+  @Type('boolean')
+  standalone = false;
+
   render() {
     const href = this.url instanceof URL ? this.url.href : this.url;
     const content = href ? (

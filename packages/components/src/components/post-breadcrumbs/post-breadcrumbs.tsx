@@ -25,6 +25,7 @@ export class PostBreadcrumbs {
   @Element() host: HTMLPostBreadcrumbsElement;
 
   @State() id: string;
+  @State() loaded = false;
 
   /** The number of breadcrumb items, counted from the start, that are moved into the overflow menu. */
   @State() collapsed = 0;
@@ -81,6 +82,7 @@ export class PostBreadcrumbs {
 
     await this.updateHiddenNav();
     await this.updateCollapsedItems();
+    this.loaded = true;
   }
 
   disconnectedCallback() {
@@ -95,23 +97,18 @@ export class PostBreadcrumbs {
    */
   private async updateCollapsedItems() {
     if (!this.nav) return;
-
-    const items = this.host.querySelectorAll('post-breadcrumb-item');
-    this.collapsed = await this.calculateCollapsedItems(items);
-    this.updateItems(items, this.collapsed);
+    this.collapsed = await this.calculateCollapsedItems();
   }
 
   /**
    * Determines how many items have to be collapsed, either because they do not fit the breadcrumb
    * navigation or because they exceed the maximum number of visible items.
    */
-  private async calculateCollapsedItems(items: NodeListOf<Element>) {
-    // A lone item is always the selected one, collapsing it would leave the breadcrumbs empty
-    if (items.length === 1) return 0;
-
+  private async calculateCollapsedItems() {
+    const items = this.host.querySelectorAll('post-breadcrumb-item');
     const overflowing = await this.calculateOverflowingItems();
 
-    // Never show more than `MAX_VISIBLE_ITEMS`, even if the nav is wide enough to fit them all
+    // Never show more than `MAX_VISIBLE_ITEMS`, even if the nav is wide enough to fit them all.
     return Math.max(overflowing, items.length - MAX_VISIBLE_ITEMS);
   }
 
@@ -122,14 +119,24 @@ export class PostBreadcrumbs {
     // Fallback to zero if the hidden nav is not available for measurement.
     if (!this.hiddenNav) return 0;
 
-    let width = this.hiddenNav.scrollWidth;
-    let overflowing = 0;
+    const gap = Number.parseFloat(getComputedStyle(this.hiddenNav.firstElementChild).gap);
+    const menu = this.hiddenNav.querySelector<HTMLElement>('.menu').clientWidth;
 
-    const items = Array.from(this.hiddenNav.querySelectorAll('post-breadcrumb-item'));
+    // The last item can never be collapsed, so it is ignored when measuring the width of the items.
+    const items = Array.from(this.hiddenNav.querySelectorAll('post-breadcrumb-item')).slice(0, -1);
+
+    // Start from the assumption that all items fit and that no menu is shown.
+    // Therefore, subtract the width of the overflow menu.
+    let width = this.hiddenNav.scrollWidth - menu + gap;
+    let overflowing = 0;
 
     // Discard items from the start until the remaining ones fit the available width.
     while (overflowing < items.length && width > this.hiddenNav.clientWidth) {
-      width -= items[overflowing++].clientWidth;
+      // The overflow menu needs to be displayed as soon as the first item is moved into it, so its
+      // width needs to be taken into account when measuring the remaining items.
+      if (overflowing === 0) width += menu;
+
+      width -= items[overflowing++].clientWidth + gap;
     }
 
     return overflowing;
@@ -142,6 +149,7 @@ export class PostBreadcrumbs {
     items.forEach((item, index) => {
       item.setAttribute('variant', index < collapsed ? 'menuitem' : 'listitem');
       item.setAttribute('selected', String(index === items.length - 1));
+      item.setAttribute('standalone', String(index === items.length - 1 && index === collapsed));
     });
   }
 
@@ -161,13 +169,17 @@ export class PostBreadcrumbs {
     if (!shadowRoot || !this.nav) return null;
 
     const clone = cloneElementWithSlots(this.nav);
+    clone.classList.remove('loading');
     clone.classList.add('invisible');
 
-    const items = clone.querySelectorAll<HTMLStencilElement>('post-breadcrumb-item');
+    // Show the overflow menu so that we can include the space it takes up in the measurement.
+    clone.querySelector('.menu').classList.remove('empty');
     shadowRoot.append(clone);
 
     // Wait for all items to be fully hydrated before measuring.
+    const items = clone.querySelectorAll<HTMLStencilElement>('post-breadcrumb-item');
     await Promise.all(Array.from(items).map(item => componentOnReady(item)));
+
     // Move the items out of the overflow menu so that the uncollapsed layout can be measured.
     this.updateItems(items, 0);
 
@@ -178,17 +190,13 @@ export class PostBreadcrumbs {
     const menuId = `${this.id}-menu`;
 
     return (
-      <div role="listitem">
-        {/* Extra wrapper aligns menu with button, excluding .breadcrumb-item chevron. */}
-        <div class="breadcrumb-item">
-          <post-menu-trigger for={menuId}>
-            <button>
-              <span class="visually-hidden">{this.textMoreItems}</span>
-              <span aria-hidden="true">...</span>
-            </button>
-          </post-menu-trigger>
-        </div>
-
+      <div class={`breadcrumb-item menu ${this.collapsed === 0 ? 'empty' : ''}`} role="listitem">
+        <post-menu-trigger for={menuId}>
+          <button>
+            <span class="visually-hidden">{this.textMoreItems}</span>
+            <span aria-hidden="true">...</span>
+          </button>
+        </post-menu-trigger>
         <post-menu id={menuId} label={this.textMoreItems} placement="bottom-start">
           <slot name="menu" />
         </post-menu>
@@ -197,9 +205,18 @@ export class PostBreadcrumbs {
   }
 
   render() {
+    if (this.loaded) {
+      const items = this.host.querySelectorAll('post-breadcrumb-item');
+      this.updateItems(items, this.collapsed);
+    }
+
     return (
       <Host data-version={version}>
-        <nav aria-label={this.textBreadcrumbs} ref={el => (this.nav = el)}>
+        <nav
+          aria-label={this.textBreadcrumbs}
+          ref={el => (this.nav = el)}
+          class={this.loaded ? '' : 'loading'}
+        >
           <div role="list">
             <div class="breadcrumb-item home" role="listitem">
               <a href={this.homeUrl}>
@@ -207,7 +224,7 @@ export class PostBreadcrumbs {
                 <post-icon aria-hidden="true" name="home" />
               </a>
             </div>
-            {this.collapsed > 0 && this.renderMenu()}
+            {this.renderMenu()}
             <slot />
             <slot name="selected" />
           </div>

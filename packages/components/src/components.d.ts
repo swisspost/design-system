@@ -126,6 +126,11 @@ export namespace Components {
          */
         "selected": boolean;
         /**
+          * Indicates that this is the only visible item, applying appropriate styling.
+          * @default false
+         */
+        "standalone": boolean;
+        /**
           * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
          */
         "url"?: string | URL;
@@ -1422,6 +1427,11 @@ declare namespace LocalJSX {
          */
         "selected"?: boolean;
         /**
+          * Indicates that this is the only visible item, applying appropriate styling.
+          * @default false
+         */
+        "standalone"?: boolean;
+        /**
           * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
          */
         "url"?: string | URL;
@@ -2069,6 +2079,7 @@ declare namespace LocalJSX {
         "description": string;
         "variant": Variant;
         "selected": boolean;
+        "standalone": boolean;
     }
     interface PostBreadcrumbsAttributes {
         "homeUrl": string;
