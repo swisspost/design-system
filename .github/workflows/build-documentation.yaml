@@ -32,6 +32,13 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup-pnpm
 
+      # TEMPORARY: verify the branch's setup-netlify-cli action on CI. Remove before merge.
+      - name: Setup netlify-cli
+        uses: ./.github/actions/setup-netlify-cli
+
+      - name: Verify netlify-cli version
+        run: netlify --version
+
       - name: Install documentation & dependencies
         run: pnpm --filter design-system-documentation... install
 
