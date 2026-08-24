@@ -279,7 +279,7 @@ describe('header', () => {
           it('should add data-expanded when a global-header element receives keyboard focus while scrolled', () => {
             cy.scrollTo(0, 500);
             cy.get('@header').should('not.have.attr', 'data-expanded');
-
+            
             cy.get('@header')
               .find('post-language-menu')
               .shadow()
