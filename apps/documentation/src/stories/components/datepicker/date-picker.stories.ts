@@ -121,7 +121,7 @@ const meta: MetaComponent = {
 
     label: {
       name: 'Label',
-      description: 'A label for the date picker, required to provide it with an accessible name.',
+      description: 'A label for the date picker input, required for accessibility.',
       type: {
         name: 'string',
         required: true,
