@@ -1,5 +1,3 @@
-import { throttle } from 'throttle-debounce';
-
 export type Device = 'desktop' | 'tablet' | 'mobile';
 export type BreakpointKey = 'xl' | 'lg' | 'md' | 'sm' | 'xs';
 export type BreakpointMinWidth = 1280 | 1024 | 780 | 600 | 0;
@@ -34,27 +32,24 @@ class Breakpoint {
     }
   }
 
-  private updateCurrentBreakpoint = throttle(
-    50,
-    (options: { emitEvents: boolean } = { emitEvents: true }) => {
-      const previousBreakpoint = this.currentBreakpoint;
-      const newBreakpoint = this.breakpoints.find(breakpoint => {
-        return breakpoint.minWidth <= innerWidth;
-      });
+  private updateCurrentBreakpoint = (options: { emitEvents: boolean } = { emitEvents: true }) => {
+    const previousBreakpoint = this.currentBreakpoint;
+    const newBreakpoint = this.breakpoints.find(breakpoint => {
+      return breakpoint.minWidth <= document.documentElement.clientWidth;
+    });
 
-      if (!newBreakpoint) return;
+    if (!newBreakpoint) return;
 
-      this.currentBreakpoint = newBreakpoint;
+    this.currentBreakpoint = newBreakpoint;
 
-      if (!options.emitEvents) return;
+    if (!options.emitEvents) return;
 
-      Object.keys(this.currentBreakpoint)
-        .filter(
-          key => !previousBreakpoint || this.currentBreakpoint[key] !== previousBreakpoint[key],
-        )
-        .forEach((key: BreakpointProperty) => this.dispatchEvent(key));
-    },
-  );
+    Object.keys(this.currentBreakpoint)
+      .filter(
+        key => !previousBreakpoint || this.currentBreakpoint[key] !== previousBreakpoint[key],
+      )
+      .forEach((key: BreakpointProperty) => this.dispatchEvent(key));
+  };
 
   private dispatchEvent(property: BreakpointProperty): void {
     globalThis.dispatchEvent(
