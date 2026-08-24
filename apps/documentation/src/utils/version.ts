@@ -44,6 +44,8 @@ const versionFilterMap: IVersionFilterMap = {
   M: 'major',
   minor: 'minor',
   m: 'minor',
+  patch: 'patch',
+  p: 'patch',
   pre: 'pre',
   majorminor: 'majorminor',
   Mm: 'majorminor',
@@ -51,7 +53,7 @@ const versionFilterMap: IVersionFilterMap = {
   Mmp: 'majorminorpatch',
 };
 
-export function getVersion(version: string, filter = '') {
+export function getVersion(version: string, filter = ''): string | null {
   const cleanVersion = version.replace(/^[^\d]+/, '');
 
   if (filter) {
@@ -64,4 +66,21 @@ export function getVersion(version: string, filter = '') {
   } else {
     return cleanVersion.length > 0 ? cleanVersion : (version ?? null);
   }
+}
+
+/**
+ * Compare two semver-like version strings by their numeric major.minor.patch parts.
+ * Returns > 0 when `a` is newer than `b`, < 0 when older, and 0 when equal.
+ */
+export function compareVersions(a: string, b: string): number {
+  const parts = ['major', 'minor', 'patch'] as const;
+
+  for (const part of parts) {
+    const diff =
+      Number.parseInt(getVersion(a, part) ?? '0', 10) -
+      Number.parseInt(getVersion(b, part) ?? '0', 10);
+    if (diff !== 0) return diff;
+  }
+
+  return 0;
 }
