@@ -45,10 +45,11 @@ runs:
         script: |
           const fs = require('fs')
           const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'))
+          const pm = pkg.packageManager || ''
 
           return {
             node: pkg.devEngines?.runtime?.version || pkg.engines?.node || 'lts/*',
-            pnpm: pkg.devEngines?.packageManager?.version || pkg.packageManager || 'latest'
+            pnpm: pm.replace(/^pnpm@/, '') || pkg.devEngines?.packageManager?.version || 'latest'
           }
 
     - name: Install pnpm
