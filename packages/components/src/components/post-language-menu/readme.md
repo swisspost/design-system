@@ -12,6 +12,13 @@
 | `variant`                          | `variant`               | Whether the component is rendered as a list or a menu                                                                                                    | `"list" \| "menu"` | `'menu'`    |
 
 
+## Events
+
+| Event        | Description | Type                  |
+| ------------ | ----------- | --------------------- |
+| `postChange` |             | `CustomEvent<string>` |
+
+
 ## Dependencies
 
 ### Depends on
