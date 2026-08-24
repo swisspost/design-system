@@ -1,8 +1,3 @@
-// Mock throttle to call the function immediately without delay
-jest.mock('throttle-debounce', () => ({
-  throttle: jest.fn().mockImplementation((_, fn) => fn),
-}));
-
 // Mock CSS variables data used for breakpoints
 const breakpointStyles = {
   widths: [0, 600, 780, 1024, 1280],
@@ -32,23 +27,37 @@ globalThis.getComputedStyle = jest.fn().mockReturnValue({
   },
 });
 
+// jsdom has no real layout, so clientWidth is always 0 and read-only.
+// Redefine it per test to simulate a given viewport width.
+Object.defineProperty(document.documentElement, 'clientWidth', {
+  configurable: true,
+  value: 0,
+});
+
+function setClientWidth(width: number): void {
+  Object.defineProperty(document.documentElement, 'clientWidth', {
+    configurable: true,
+    value: width,
+  });
+}
+
 // Import breakpoint utility after mocks so it uses the mocked data
 import { breakpoint } from '@/utils';
 
 describe('breakpoints', () => {
   breakpointStyles.widths.forEach((width, i) => {
     it('returns correct breakpoint key', () => {
-      global['innerWidth'] = width;
+      setClientWidth(width);
       expect(breakpoint.get('key')).toBe(breakpointStyles.keys[i]);
     });
 
     it('returns correct breakpoint device', () => {
-      global['innerWidth'] = width;
+      setClientWidth(width);
       expect(breakpoint.get('device')).toBe(breakpointStyles.devices[i]);
     });
 
     it('returns correct breakpoint min width', () => {
-      global['innerWidth'] = width;
+      setClientWidth(width);
       expect(breakpoint.get('minWidth')).toBe(breakpointStyles.widths[i]);
     });
   });
