@@ -279,7 +279,7 @@ describe('header', () => {
           it('should add data-expanded when a global-header element receives keyboard focus while scrolled', () => {
             cy.scrollTo(0, 500);
             cy.get('@header').should('not.have.attr', 'data-expanded');
-            
+
             cy.get('@header')
               .find('post-language-menu')
               .shadow()
@@ -452,6 +452,7 @@ describe('header', () => {
       const localNavNextToMainNav = 'slot[name="main-nav"] + slot[name="local-nav"]';
 
       beforeEach(() => {
+        cy.viewport(VIEWPORTS.desktop);
         cy.getComponent('header', HEADER_ID, 'microsite');
         cy.get('@header').find('[slot="title"]').as('title');
       });
