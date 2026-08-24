@@ -72,7 +72,7 @@ export class PostBreadcrumbItem {
         {content}
       </Host>
     ) : (
-      <Host data-version={version}>
+      <Host data-version={version} slot="menu">
         <post-menu-item>{content}</post-menu-item>
       </Host>
     );

@@ -1,7 +1,12 @@
 import { componentOnReady, nanoid, Required, Type, Url } from '@/utils';
 import { version } from '@root/package.json';
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { Component, Element, Host, Prop, State, h } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
+import { cloneElementWithSlots } from '@/utils/clone';
+import type { HTMLStencilElement } from '@stencil/core/internal';
+
+const MAX_VISIBLE_ITEMS = 6;
+const MEASUREMENT_DEBOUNCE_MS = 50;
 
 @Component({
   tag: 'post-breadcrumbs',
@@ -9,13 +14,26 @@ import { throttle } from 'throttle-debounce';
   shadow: true,
 })
 export class PostBreadcrumbs {
-  private mutationObserver: MutationObserver;
-  private resizeObserver: ResizeObserver;
+  private debounceUpdateCollapsedItems = throttle(
+    MEASUREMENT_DEBOUNCE_MS,
+    this.updateCollapsedItems.bind(this),
+  );
+
+  private resizeObserver = new ResizeObserver(this.debounceUpdateCollapsedItems);
+  private mutationObserver = new MutationObserver(this.updateHiddenNav.bind(this));
 
   @Element() host: HTMLPostBreadcrumbsElement;
 
-  @State() shouldRenderMenu = false;
   @State() id: string;
+
+  /** The number of breadcrumb items, counted from the start, that are moved into the overflow menu. */
+  @State() collapsed = 0;
+
+  /** The visible breadcrumb navigation. */
+  private nav: HTMLElement | null = null;
+
+  /** An off-screen copy of the breadcrumb navigation used for measurement. */
+  private hiddenNav: HTMLElement | null = null;
 
   /**
    * The URL for the root (home) breadcrumb item.
@@ -53,90 +71,107 @@ export class PostBreadcrumbs {
     this.id = this.host.id || `b${nanoid(6)}`;
   }
 
-  componentDidLoad() {
-    this.createMutationObserver();
-    this.createResizeObserver();
-  }
-
-  disconnectedCallback() {
-    this.mutationObserver?.disconnect();
-    this.resizeObserver?.disconnect();
-  }
-
-  private createMutationObserver() {
-    this.mutationObserver = new MutationObserver(this.duplicateNavElement.bind(this));
+  async componentDidLoad() {
+    this.resizeObserver.observe(document.body);
     this.mutationObserver.observe(this.host, {
       childList: true,
       characterData: true,
       subtree: true,
     });
 
-    this.duplicateNavElement();
+    await this.updateHiddenNav();
+    await this.updateCollapsedItems();
   }
 
-  private createResizeObserver() {
-    this.resizeObserver = new ResizeObserver(throttle(50, this.checkOverflow.bind(this)));
-    this.resizeObserver.observe(document.body);
+  disconnectedCallback() {
+    this.resizeObserver.disconnect();
+    this.mutationObserver.disconnect();
+    this.debounceUpdateCollapsedItems.cancel();
   }
 
   /**
-   * To measure overflow, we duplicate the entire breadcrumb so an inline version is always available.
+   * Measures the space available in the breadcrumb navigation and moves the items that do not fit
+   * into the overflow menu.
    */
-  private duplicateNavElement() {
+  private async updateCollapsedItems() {
+    if (!this.nav) return;
+
+    const items = this.host.querySelectorAll('post-breadcrumb-item');
+    this.collapsed = await this.calculateCollapsedItems(items);
+    this.updateItems(items, this.collapsed);
+  }
+
+  /**
+   * Determines how many items have to be collapsed, either because they do not fit the breadcrumb
+   * navigation or because they exceed the maximum number of visible items.
+   */
+  private async calculateCollapsedItems(items: NodeListOf<Element>) {
+    // A lone item is always the selected one, collapsing it would leave the breadcrumbs empty
+    if (items.length === 1) return 0;
+
+    const overflowing = await this.calculateOverflowingItems();
+
+    // Never show more than `MAX_VISIBLE_ITEMS`, even if the nav is wide enough to fit them all
+    return Math.max(overflowing, items.length - MAX_VISIBLE_ITEMS);
+  }
+
+  /**
+   * Determines how many items overflow the width of the breadcrumb navigation.
+   */
+  private async calculateOverflowingItems() {
+    // Fallback to zero if the hidden nav is not available for measurement.
+    if (!this.hiddenNav) return 0;
+
+    let width = this.hiddenNav.scrollWidth;
+    let overflowing = 0;
+
+    const items = Array.from(this.hiddenNav.querySelectorAll('post-breadcrumb-item'));
+
+    // Discard items from the start until the remaining ones fit the available width.
+    while (overflowing < items.length && width > this.hiddenNav.clientWidth) {
+      width -= items[overflowing++].clientWidth;
+    }
+
+    return overflowing;
+  }
+
+  /**
+   * Moves `collapsed` items into the overflow menu and marks the last item as selected.
+   */
+  private updateItems(items: NodeListOf<Element>, collapsed: number) {
+    items.forEach((item, index) => {
+      item.setAttribute('variant', index < collapsed ? 'menuitem' : 'listitem');
+      item.setAttribute('selected', String(index === items.length - 1));
+    });
+  }
+
+  /**
+   * Rebuilds the off-screen copy of the breadcrumb navigation.
+   */
+  private async updateHiddenNav() {
+    this.hiddenNav?.remove();
+    this.hiddenNav = await this.renderHiddenNav();
+  }
+
+  /**
+   * Renders an off-screen copy of the breadcrumb navigation that is used for measurements.
+   */
+  private async renderHiddenNav() {
     const shadowRoot = this.host.shadowRoot;
-    const nav = shadowRoot?.querySelector('nav');
-    if (!shadowRoot || !nav) return;
+    if (!shadowRoot || !this.nav) return null;
 
-    this.prepareBreadcrumbItemsForClone();
-
-    const clone = nav.cloneNode(true) as HTMLElement;
+    const clone = cloneElementWithSlots(this.nav);
     clone.classList.add('invisible');
 
-    shadowRoot.querySelector('nav.invisible')?.remove();
+    const items = clone.querySelectorAll<HTMLStencilElement>('post-breadcrumb-item');
     shadowRoot.append(clone);
 
-    requestAnimationFrame(() => {
-      this.duplicateSlottedElements(clone, 'slot:not([name])');
-      this.duplicateSlottedElements(clone, 'slot[name="selected"]');
+    // Wait for all items to be fully hydrated before measuring.
+    await Promise.all(Array.from(items).map(item => componentOnReady(item)));
+    // Move the items out of the overflow menu so that the uncollapsed layout can be measured.
+    this.updateItems(items, 0);
 
-      this.checkOverflow();
-    });
-  }
-
-  private duplicateSlottedElements(clone: Element, slotSelector: string) {
-    const originalSlot = this.host.shadowRoot?.querySelector<HTMLSlotElement>(slotSelector);
-    const clonedSlot = clone.querySelector(slotSelector);
-    if (!originalSlot || !clonedSlot) return;
-
-    originalSlot.assignedElements().forEach(element => {
-      clonedSlot.insertAdjacentElement('beforebegin', element.cloneNode(true) as Element);
-    });
-
-    clonedSlot.remove();
-  }
-
-  private checkOverflow() {
-    const hiddenNav = this.host.shadowRoot?.querySelector('nav.invisible');
-    if (!hiddenNav) return;
-
-    const breadcrumbItems = Array.from(hiddenNav.querySelectorAll('post-breadcrumb-item'));
-    Promise.all(breadcrumbItems.map(item => componentOnReady(item))).then(() => {
-      this.shouldRenderMenu = hiddenNav.scrollWidth > hiddenNav.clientWidth;
-      this.updateBreadcrumbItemProps();
-    });
-  }
-
-  private prepareBreadcrumbItemsForClone() {
-    this.shouldRenderMenu = false;
-    this.updateBreadcrumbItemProps();
-  }
-
-  private updateBreadcrumbItemProps() {
-    const breadcrumbItems = this.host.querySelectorAll('post-breadcrumb-item');
-    breadcrumbItems.forEach((item, index) => {
-      item.setAttribute('variant', this.shouldRenderMenu ? 'menuitem' : 'listitem');
-      item.setAttribute('selected', String(index === breadcrumbItems.length - 1));
-    });
+    return clone;
   }
 
   private renderMenu() {
@@ -155,7 +190,7 @@ export class PostBreadcrumbs {
         </div>
 
         <post-menu id={menuId} label={this.textMoreItems} placement="bottom-start">
-          <slot />
+          <slot name="menu" />
         </post-menu>
       </div>
     );
@@ -164,7 +199,7 @@ export class PostBreadcrumbs {
   render() {
     return (
       <Host data-version={version}>
-        <nav aria-label={this.textBreadcrumbs}>
+        <nav aria-label={this.textBreadcrumbs} ref={el => (this.nav = el)}>
           <div role="list">
             <div class="breadcrumb-item home" role="listitem">
               <a href={this.homeUrl}>
@@ -172,7 +207,8 @@ export class PostBreadcrumbs {
                 <post-icon aria-hidden="true" name="home" />
               </a>
             </div>
-            {this.shouldRenderMenu ? this.renderMenu() : <slot />}
+            {this.collapsed > 0 && this.renderMenu()}
+            <slot />
             <slot name="selected" />
           </div>
         </nav>
