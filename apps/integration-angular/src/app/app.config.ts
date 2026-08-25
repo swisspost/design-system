@@ -4,9 +4,6 @@ import { providePostComponents } from '@swisspost/design-system-components-angul
 import { providePrimeNG } from 'primeng/config';
 import { swissPostPreset } from '@swisspost/design-system-styles-primeng';
 
-// Remove once PrimeNG migrates away from AnimationBuilder (Angular v23 removal)
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
@@ -26,6 +23,5 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     providePostComponents(),
     providePrimeNG({ theme: { preset: swissPostPreset } }),
-    provideAnimationsAsync(),
   ],
 };

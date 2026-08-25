@@ -64,7 +64,7 @@ header,
     height: var(--post-logo-height);
     min-height: var(--post-global-header-reduced-height);
     max-height: 100%;
-    margin-inline-end: calc(1.25rem - var(--post-header-gap));
+    margin-inline-end: calc(20px - var(--post-header-gap));
 
     // Offset the logo to ensure visual alignment with the local header content
     margin-inline-start: clamp(
@@ -161,7 +161,7 @@ header,
 
   @include media-mx.only(mobile) {
     @include header-mx.nav-item-icon-only;
-    padding: 0.625rem;
+    padding: 10px;
   }
 
   @include media-mx.only(desktop) {
@@ -204,21 +204,21 @@ header,
 
   .burger-menu-body {
     flex-grow: 1;
-    padding-block: 1.5rem;
+    padding-block: 24px;
     gap: var(--post-burger-menu-body-gap);
   }
 
   .burger-menu-footer {
     background-color: #f0efed;
-    padding-block: 1rem 1.5rem;
+    padding-block: 16px 24px;
     gap: var(--post-burger-menu-footer-gap);
   }
 
   .local-nav {
-    min-height: 3.5rem;
+    min-height: 56px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-inline: 0.25rem;
+    padding-inline: 4px;
   }
 }

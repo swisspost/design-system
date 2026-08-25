@@ -1,5 +1,18 @@
 # @swisspost/design-system-components
 
+## 10.3.0
+
+### Patch Changes
+
+- Fixed `post-header` not expanding back to full height when `post-language-menu-trigger` receives focus. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8263](https://github.com/swisspost/design-system/pull/8263))
+
+- Updated the `post-pagination` component to always show, but dynamically disable the navigation control buttons. (by [@yomonom](https://github.com/yomonom) with [#8276](https://github.com/swisspost/design-system/pull/8276))
+
+- Replaced deprecated `word-break: break-word` with `overflow-wrap: anywhere`, `hyphens: auto`, and `line-break: strict` for the `post-breadcrumb-item`, `post-stepper-item`, and html/css `teaser card` components. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8165](https://github.com/swisspost/design-system/pull/8165))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.3.0
+  - @swisspost/design-system-styles@10.3.0
+
 ## 10.2.0
 
 ### Patch Changes
