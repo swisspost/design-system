@@ -18,14 +18,14 @@
   background-color: var(--post-current-bg);
   display: flex;
   align-items: self-start;
-  padding: 0.5em;
+  padding: 8px;
 
   min-width: 160px;
   max-width: var(--post-popover-max-width, 280px);
 }
 
 .popover-content {
-  padding: 0.5em;
+  padding: 8px;
   flex-grow: 1;
 }
 

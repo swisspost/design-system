@@ -7,10 +7,7 @@
 
 tokens.$default-map: components.$post-tabs;
 
-$tabs-outline-offset: calc(
-  tokens.get('focus-outline-offset2', helpers.$post-focus) + -1 *
-    (tokens.get('post-tabs-border-width'))
-);
+$tabs-outline-offset: tokens.get('focus-outline-offset3', helpers.$post-focus);
 
 $adjusted-border-radius: calc(
   tokens.get('focus-border-radius', helpers.$post-focus) - $tabs-outline-offset
@@ -35,9 +32,7 @@ post-tab-item.nav-item a {
     }
   }
 
-  @include utilities-mx.focus-style() {
-    outline-offset: $tabs-outline-offset !important;
-  }
+  @include utilities-mx.focus-style($outline-offset: $tabs-outline-offset);
 }
 
 // Content Tabs Variant
@@ -62,7 +57,7 @@ post-tab-item.tab-title {
   // selected
   &[aria-selected='true'] {
     &::after {
-      background-color: tokens.get('post-tabs-content-tab-selected-border-color');
+      background-color: tokens.get('post-tabs-content-tab-selected-border');
     }
     color: tokens.get('post-tabs-content-tab-selected-fg');
   }
@@ -70,7 +65,7 @@ post-tab-item.tab-title {
   // hovered
   &:hover:not([disabled]) {
     &::after {
-      background-color: tokens.get('post-tabs-content-tab-hovered-border-color');
+      background-color: tokens.get('post-tabs-content-tab-hovered-border');
     }
     color: tokens.get('post-tabs-content-tab-hovered-fg');
   }
@@ -121,21 +116,18 @@ post-tab-item.nav-item {
     border-inline-start: tokens.get('post-tabs-border-width') solid transparent;
     border-inline-end: tokens.get('post-tabs-border-width') solid transparent;
     background-color: tokens.get('post-tabs-page-tab-enabled-bg');
-    border-color: tokens.get('post-tabs-page-tab-enabled-border-color');
+    border-color: tokens.get('post-tabs-page-tab-enabled-border');
     color: tokens.get('post-tabs-page-tab-enabled-fg');
 
     // Dark background needs the inverted focus ring color
     &:not([aria-current='page']) {
-      @include utilities-mx.focus-style-custom {
-        outline-color: tokens.get('focus-outline-color-inverted', helpers.$post-focus) !important;
-        outline-offset: $tabs-outline-offset !important;
-      }
+      @include utilities-mx.focus-style-custom($outline-offset: $tabs-outline-offset, $outline-color: tokens.get('focus-outline-color-inverted', helpers.$post-focus));
     }
 
     // hovered
     &:hover {
       background-color: tokens.get('post-tabs-page-tab-hovered-bg');
-      border-color: tokens.get('post-tabs-page-tab-hovered-border-color');
+      border-color: tokens.get('post-tabs-page-tab-hovered-border');
       color: tokens.get('post-tabs-page-tab-hovered-fg');
     }
 
@@ -143,18 +135,15 @@ post-tab-item.nav-item {
     &[aria-current='page'] {
       background-color: tokens.get('post-tabs-page-tab-selected-bg');
       color: tokens.get('post-tabs-page-tab-selected-fg');
-      border-color: tokens.get('post-tabs-page-tab-selected-border-color');
+      border-color: tokens.get('post-tabs-page-tab-selected-border');
 
-      @include utilities-mx.focus-style-custom {
-        outline-color: tokens.get('post-tabs-page-tab-selected-fg') !important;
-        outline-offset: $tabs-outline-offset !important;
-      }
+      @include utilities-mx.focus-style-custom($outline-offset: $tabs-outline-offset, $outline-color: tokens.get('post-tabs-page-tab-selected-fg'));
 
       // selected — hovered
       &:hover {
         color: tokens.get('post-tabs-page-tab-selected-hovered-fg');
         background-color: tokens.get('post-tabs-page-tab-selected-bg');
-        border-color: tokens.get('post-tabs-page-tab-selected-hovered-border-color');
+        border-color: tokens.get('post-tabs-page-tab-selected-hovered-border');
       }
     }
 
@@ -189,7 +178,7 @@ post-tab-item.nav-item {
   // disabled
   &[disabled] a:not([aria-current='page']) {
     background-color: tokens.get('post-tabs-page-tab-disabled-bg');
-    border-color: tokens.get('post-tabs-page-tab-disabled-border-color');
+    border-color: tokens.get('post-tabs-page-tab-disabled-border');
     color: tokens.get('post-tabs-page-tab-disabled-fg');
     border-style: tokens.get('post-tabs-tab-disabled-border-style');
     pointer-events: none;
@@ -339,7 +328,7 @@ post-tabs[active-tab] {
     &::after {
       background-color: color-mix(
         in srgb,
-        tokens.get('post-tabs-content-tab-selected-border-color') calc(var(--active, 0) * 100%),
+        tokens.get('post-tabs-content-tab-selected-border') calc(var(--active, 0) * 100%),
         transparent
       );
     }
@@ -409,7 +398,7 @@ post-tabs:not([active-tab]) {
   // Content Tabs: first item is active
   post-tab-item.tab-title.ssr:first-of-type {
     &::after {
-      background-color: tokens.get('post-tabs-content-tab-selected-border-color');
+      background-color: tokens.get('post-tabs-content-tab-selected-border');
     }
     z-index: 1;
 
