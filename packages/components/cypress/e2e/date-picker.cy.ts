@@ -113,59 +113,67 @@ describe('date-picker', { includeShadowDom: true }, () => {
         cy.focused().should('have.prop', 'tagName', 'INPUT');
       });
     });
+  });
 
-    describe('i18n', () => {
-      const START_DAY = 1;
-      const END_DAY = 10;
+  describe('i18n', () => {
+    const START_DAY = 1;
+    const END_DAY = 10;
 
-      const s = new Date();
-      const e = new Date();
-      const ltrSeparator = DATE_FORMAT_RANGE_SEPARATOR;
-      const rtlSeparator = `${UNICODE_BIDI.rtl}${DATE_FORMAT_RANGE_SEPARATOR}${UNICODE_BIDI.pop}`;
+    const s = new Date();
+    const e = new Date();
+    const ltrSeparator = DATE_FORMAT_RANGE_SEPARATOR;
+    const rtlSeparator = `${UNICODE_BIDI.rtl}${DATE_FORMAT_RANGE_SEPARATOR}${UNICODE_BIDI.pop}`;
 
-      s.setDate(START_DAY);
-      e.setDate(END_DAY);
+    s.setDate(START_DAY);
+    e.setDate(END_DAY);
 
-      it('should apply correct mask & date format based on the "locale" property', () => {
-        cy.get('@date-picker').invoke('attr', 'locale', 'ar');
+    beforeEach(() => {
+      cy.visit(`/iframe.html?id=${DATEPICKER_ID}--default&args=floatingLabel:false`);
+      cy.get('post-date-picker[data-hydrated]', { timeout: 30000 }).as('date-picker');
+      cy.get('@date-picker').find('input').as('input');
+      cy.get('@date-picker').shadow().find('button[aria-haspopup="true"]').as('toggle');
+      cy.get('@date-picker').shadow().find('.datepicker-container').as('container');
+    });
 
-        cy.get('@date-picker').invoke('attr', 'locale', 'de');
-        cy.get('@date-picker').shadow().find('[dir]').should('have.attr', 'dir', 'ltr');
-        cy.get('@date-picker').invoke('attr', 'locale', 'ar');
-        cy.get('@date-picker').shadow().find('[dir]').should('have.attr', 'dir', 'rtl');
-      });
+    it('should apply correct mask & date format based on the "locale" property', () => {
+      cy.get('@date-picker').invoke('attr', 'locale', 'ar').wait(500);
+      cy.get('@date-picker').invoke('attr', 'locale', 'de').wait(500);
+      cy.get('@date-picker').shadow().find('[dir]').should('have.attr', 'dir', 'ltr');
+      cy.get('@date-picker').invoke('attr', 'locale', 'ar').wait(500);
+      cy.get('@date-picker').shadow().find('[dir]').should('have.attr', 'dir', 'rtl');
+    });
 
-      LOCALES_MAP.forEach(i18n => {
-        function haveDisplayValue(expected: string) {
-          return ($el: JQuery<HTMLElement>) => {
-            const nativeValue = Object.getOwnPropertyDescriptor(
-              HTMLInputElement.prototype,
-              'value',
-            )!.get!.call($el[0]);
-            expect(nativeValue).to.equal(expected);
-          };
-        }
+    LOCALES_MAP.forEach(i18n => {
+      function haveDisplayValue(expected: string) {
+        return ($el: JQuery<HTMLElement>) => {
+          const nativeValue = Object.getOwnPropertyDescriptor(
+            HTMLInputElement.prototype,
+            'value',
+          )!.get!.call($el[0]);
+          expect(nativeValue).to.equal(expected);
+        };
+      }
 
-        describe(`Locales: ${i18n.locales.join(', ')}`, () => {
-          it('should apply correct mask & date format based on the "locale" property', () => {
-            const expectedStartDate = s.toLocaleDateString(i18n.locale, DATE_FORMAT_STRING_OPTIONS);
-            const expectedEndDate = e.toLocaleDateString(i18n.locale, DATE_FORMAT_STRING_OPTIONS);
-            const separator = i18n.dir === 'rtl' ? rtlSeparator : ltrSeparator;
+      describe(`Locales: ${i18n.locales.join(', ')}`, () => {
+        it('should apply correct mask & date format based on the "locale" property', () => {
+          const expectedStartDate = s.toLocaleDateString(i18n.locale, DATE_FORMAT_STRING_OPTIONS);
+          const expectedEndDate = e.toLocaleDateString(i18n.locale, DATE_FORMAT_STRING_OPTIONS);
+          const separator = i18n.dir === 'rtl' ? rtlSeparator : ltrSeparator;
 
-            cy.get('@date-picker').invoke('attr', 'locale', i18n.locale);
-            cy.get('@input').should(haveDisplayValue(i18n.mask));
+          cy.get('@date-picker').invoke('attr', 'locale', i18n.locale);
+          cy.get('@input').should(haveDisplayValue(i18n.mask));
 
-            cy.get('@toggle').click().wait(200);
-            cy.get('@container').find(`[data-date="${START_DAY}"]`).first().click();
-            cy.get('@input').should(haveDisplayValue(expectedStartDate));
+          cy.get('@toggle').click().wait(200);
+          cy.get('@container').find(`[data-date="${START_DAY}"]`).first().click();
+          cy.get('@input').should(haveDisplayValue(expectedStartDate));
 
-            cy.get('@date-picker').invoke('attr', 'range', true);
-            cy.get('@toggle').click().wait(200);
-            cy.get('@container').find(`[data-date="${END_DAY}"]`).first().click();
-            cy.get('@input').should(
-              haveDisplayValue(`${expectedStartDate}${separator}${expectedEndDate}`),
-            );
-          });
+          cy.get('@date-picker').invoke('attr', 'range', true);
+          cy.get('@toggle').click().wait(200);
+          cy.get('@container').find(`[data-date="${END_DAY}"]`).first().click();
+
+          cy.get('@input').should(
+            haveDisplayValue(`${expectedStartDate}${separator}${expectedEndDate}`),
+          );
         });
       });
     });
