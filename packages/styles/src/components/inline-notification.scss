@@ -14,8 +14,6 @@ tokens.$default-map: components.$post-inline-notification;
   border-style: tokens.get('notification-inline-border-style');
   border-width: tokens.get('notification-inline-border-width');
   border-radius: tokens.get('notification-inline-border-radius');
-  min-width: 297px;
-  max-width: 600px;
 
   &::before {
     content: '';
