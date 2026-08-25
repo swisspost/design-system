@@ -69,15 +69,6 @@ No `onClick` handler or event listener is required on the consumer side.
 | `<dialog>` | `close()` |
 | native `[popover]` element | `togglePopover(false)` |
 
-### Three placement contexts
-
-The auto-close behavior works regardless of where `<post-closebutton>` is placed relative to the closable element:
-
-1. **Light DOM**  `<post-closebutton>` is placed directly inside the closable element (e.g. inside a `<dialog>`). Standard `parentElement` traversal reaches the ancestor directly.
-2. **Slotted**  `<post-closebutton>` is projected into a component via a named slot (e.g. `<post-closebutton slot="close-button">` inside `<post-banner>`). The element stays in the light DOM, so the traversal still finds the banner host on the way up.
-3. **Shadow DOM rendered**  `<post-closebutton>` lives inside a component's own shadow root (e.g. the internal close button of `<post-popover>`). When traversal reaches a shadow root boundary, it automatically jumps to the shadow host and continues upward.
-
-In all three cases no consumer wiring is needed.
 
 ### Examples
 
