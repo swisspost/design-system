@@ -16,7 +16,7 @@
   box-shadow: elevation.$elevation-300;
 
   @include media.only(desktop) {
-    max-height: calc(100vh - var(--post-header-height) - 3rem);
+    max-height: calc(100vh - var(--post-header-height) - 48px);
     background-color: #f0efed;
     z-index: -1;
     inset-block-start: 100%;
@@ -49,7 +49,7 @@
   position: relative;
 
   @include media.only(desktop) {
-    padding: 3rem 2.5rem 2.5rem;
+    padding: 48px 40px 40px;
   }
 
   @include media.max(desktop) {
@@ -59,18 +59,18 @@
       min(var(--post-header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
     );
     padding-inline: var(--post-burger-menu-padding-inline);
-    padding-block-start: 1.5rem;
+    padding-block-start: 24px;
   }
 
   .megadropdown-content {
     @include media.max(desktop) {
-      padding-block-end: 1.5rem;
+      padding-block-end: 24px;
     }
   }
 }
 
 .megadropdown-title {
-  margin-block: 0 1rem;
+  margin-block: 0 16px;
   font-weight: 950;
 
   @include media.only(tablet) {
@@ -95,18 +95,18 @@
   }
 
   @include media.only(tablet) {
-    margin-block-end: 2rem;
+    margin-block-end: 32px;
   }
 
   @include media.only(mobile) {
-    margin-block-end: 1.5rem;
+    margin-block-end: 24px;
   }
 }
 
 .close-button {
   position: absolute;
-  inset-block-start: 0.5rem;
-  inset-inline-end: 0.5rem;
+  inset-block-start: 8px;
+  inset-inline-end: 8px;
 
   @include media.max(lg) {
     display: none;
