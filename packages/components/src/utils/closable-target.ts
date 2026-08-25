@@ -2,7 +2,7 @@ import { findClosestAcrossShadow } from './event-from';
 
 export interface ClosableTarget {
   element: Element;
-  close: (el: Element) => void;
+  close: () => void;
 }
 
 const CLOSABLE_TARGETS: ReadonlyArray<{

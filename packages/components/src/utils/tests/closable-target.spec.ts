@@ -63,7 +63,7 @@ describe('findClosableTarget', () => {
       const target = findClosableTarget(closebutton);
 
       expect(target?.element).toBe(dialog);
-      target?.close(target.element);
+      target?.close();
       expect(close).toHaveBeenCalledTimes(1);
     });
   });
@@ -81,7 +81,7 @@ describe('findClosableTarget', () => {
       const target = findClosableTarget(closebutton);
 
       expect(target?.element).toBe(banner);
-      target?.close(target.element);
+      target?.close();
       expect(dismiss).toHaveBeenCalledTimes(1);
     });
   });
@@ -98,7 +98,7 @@ describe('findClosableTarget', () => {
       const target = findClosableTarget(closebutton);
 
       expect(target?.element).toBe(popover);
-      target?.close(target.element);
+      target?.close();
       expect(hide).toHaveBeenCalledTimes(1);
     });
 
@@ -114,7 +114,7 @@ describe('findClosableTarget', () => {
       const target = findClosableTarget(closebutton);
 
       expect(target?.element).toBe(popoverContainer);
-      target?.close(target.element);
+      target?.close();
       expect(hide).toHaveBeenCalledTimes(1);
     });
   });
@@ -127,7 +127,7 @@ describe('findClosableTarget', () => {
       setParent(closebutton, collapsible);
 
       const target = findClosableTarget(closebutton);
-      target?.close(target.element);
+      target?.close();
 
       expect(target?.element).toBe(collapsible);
       expect(toggle).toHaveBeenCalledWith(false);
@@ -140,7 +140,7 @@ describe('findClosableTarget', () => {
       setParent(closebutton, accordionItem);
 
       const target = findClosableTarget(closebutton);
-      target?.close(target.element);
+      target?.close();
 
       expect(target?.element).toBe(accordionItem);
       expect(toggle).toHaveBeenCalledWith(false);
@@ -156,7 +156,7 @@ describe('findClosableTarget', () => {
       setParent(closebutton, popoverEl);
 
       const target = findClosableTarget(closebutton);
-      target?.close(target.element);
+      target?.close();
 
       expect(target?.element).toBe(popoverEl);
       expect(togglePopover).toHaveBeenCalledWith(false);
@@ -173,7 +173,7 @@ describe('findClosableTarget', () => {
       setParent(closebutton, popoverContainer);
 
       const target = findClosableTarget(closebutton);
-      target?.close(target.element);
+      target?.close();
 
       expect(hide).toHaveBeenCalledTimes(1);
       expect(togglePopover).not.toHaveBeenCalled();

@@ -23,7 +23,7 @@ export class PostClosebutton {
 
   /**
    * The "type" attribute used for the close button
-  
+
    */
   @Prop()
   @OneOf(BUTTON_TYPES)
@@ -73,7 +73,7 @@ export class PostClosebutton {
 
   private handleClick = () => {
     const target = findClosableTarget(this.host);
-    target?.close(target.element);
+    target?.close();
   };
 
   render() {
