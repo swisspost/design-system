@@ -41,7 +41,6 @@ post-popovercontainer::part(post-popovercontainer-content) {
   padding: #{tokens.get('post-tooltip-padding-block')} #{tokens.get('post-tooltip-padding-inline')};
   font-size: #{tokens.get('post-tooltip-font-size')};
   max-width: var(--post-tooltip-max-width, 280px);
-  width: inherit;
   word-wrap: break-word;
   white-space: normal;
 }
