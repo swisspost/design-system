@@ -134,7 +134,7 @@ export function findClosestAcrossShadow<T extends Element>(
       // since some test environments (e.g. JSDOM) only partially implement it.
       const parent = current.parentNode;
       if (parent !== null && parent.nodeType === 11 && 'host' in parent) {
-        current = (parent as ShadowRoot).host as Element;
+        current = (parent as ShadowRoot).host;
       } else {
         current = null;
       }
