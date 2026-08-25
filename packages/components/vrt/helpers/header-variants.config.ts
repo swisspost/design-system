@@ -11,6 +11,7 @@ export type HeaderSlot =
 
 export interface VariantConfig {
   slots: HeaderSlot[];
+  stylesheet?: string;
   hasGlobalHeader: boolean;
   hasUserMenu: boolean;
   hasMegadropdown: boolean;
@@ -23,6 +24,20 @@ export interface VariantConfig {
 }
 
 export const HEADER_VARIANTS: Record<string, VariantConfig> = {
+  'application': {
+    slots: ['post-logo', 'local-nav', 'title'],
+    stylesheet: 'post-compact.css',
+    hasGlobalHeader: false,
+    hasUserMenu: false,
+    hasMegadropdown: false,
+    hasAudience: false,
+    hasGlobalNavSecondary: false,
+    hasGlobalNavPrimary: false,
+    hasLocalNavigation: true,
+    hasGlobalLogin: false,
+    features: [],
+  },
+
   'onepager': {
     slots: ['post-logo', 'language-menu', 'title'],
     hasGlobalHeader: false,
@@ -35,7 +50,7 @@ export const HEADER_VARIANTS: Record<string, VariantConfig> = {
     hasGlobalLogin: false,
     features: ['language-menu-list-mode'],
   },
-  
+
   'microsite-loggedout': {
     slots: ['post-logo', 'language-menu', 'main-nav', 'local-nav', 'title'],
     hasGlobalHeader: false,
@@ -48,7 +63,7 @@ export const HEADER_VARIANTS: Record<string, VariantConfig> = {
     hasGlobalLogin: false,
     features: ['main-navigation', 'local-login'],
   },
-  
+
   'microsite-loggedin': {
     slots: ['post-logo', 'language-menu', 'main-nav', 'local-nav', 'title'],
     hasGlobalHeader: false,
@@ -63,7 +78,14 @@ export const HEADER_VARIANTS: Record<string, VariantConfig> = {
   },
 
   'jobs-loggedout': {
-    slots: ['post-logo', 'audience', 'global-nav-secondary', 'language-menu', 'main-nav', 'local-nav'],
+    slots: [
+      'post-logo',
+      'audience',
+      'global-nav-secondary',
+      'language-menu',
+      'main-nav',
+      'local-nav',
+    ],
     hasGlobalHeader: true,
     hasUserMenu: false,
     hasMegadropdown: true,
@@ -76,7 +98,14 @@ export const HEADER_VARIANTS: Record<string, VariantConfig> = {
   },
 
   'jobs-loggedin': {
-    slots: ['post-logo', 'audience', 'global-nav-secondary', 'language-menu', 'main-nav', 'local-nav'],
+    slots: [
+      'post-logo',
+      'audience',
+      'global-nav-secondary',
+      'language-menu',
+      'main-nav',
+      'local-nav',
+    ],
     hasGlobalHeader: true,
     hasUserMenu: true,
     hasMegadropdown: true,

@@ -163,12 +163,35 @@ describe('Footer', () => {
 
     it('Has no detectable a11y violations', () => {
       cy.getSnapshots('footer');
-      cy.checkA11y('#root-inner');
+      cy.checkA11y(
+        '#root-inner',
+        {
+          rules: {
+            // exclude rules because it is expected for the snapshots to include multiple footers
+            'landmark-unique': { enabled: false },
+            'landmark-no-duplicate-contentinfo': { enabled: false },
+          },
+        },
+        violations => {
+          expect(violations).to.have.length(0);
+        },
+      );
     });
 
     it('Has no detectable a11y violations on mobile', () => {
       cy.viewport('iphone-3');
-      cy.checkA11y('#root-inner');
+      cy.checkA11y(
+        '#root-inner',
+        {
+          rules: {
+            'landmark-unique': { enabled: false },
+            'landmark-no-duplicate-contentinfo': { enabled: false },
+          },
+        },
+        violations => {
+          expect(violations).to.have.length(0);
+        },
+      );
     });
   });
 });

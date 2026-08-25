@@ -44,8 +44,8 @@ export class PostTooltip {
   }
 
   /**
-   * Programmatically display the tooltip.
-   * @param target An element where the tooltip should be shown
+   * Programmatically display the tooltip,
+   * `target` is the HTML element the menu is anchored to.
    */
   @Method()
   async show(target: HTMLElement) {
@@ -62,9 +62,8 @@ export class PostTooltip {
   }
 
   /**
-   * Toggle tooltip display.
-   * @param target An element where the tooltip should be shown
-   * @param [force] Pass true to always show or false to always hide
+   * Toggle tooltip display,
+   * `target` is the HTML element the menu is anchored to.
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean) {

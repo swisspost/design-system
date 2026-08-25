@@ -172,9 +172,19 @@ describe('stepper', { baseUrl: null }, () => {
       .should('have.text', 'Step 2: Step 2');
   });
 
+  it('should default selected step to current step when selected-index is not set', () => {
+    cy.get('post-stepper')
+      .invoke('attr', 'current-index', 2)
+      .wait(100)
+      .find('post-stepper-item')
+      .eq(2)
+      .should('have.class', 'stepper-item-selected')
+      .should('have.attr', 'aria-current', 'step');
+  });
+
   // Dynamically added/removed steps
 
-  it('should add correct class when a new step is added dynamically', () => {
+  it('should add correct class and step number when a new step is added dynamically', () => {
     cy.get('post-stepper').find('post-stepper-item').should('have.length', 5);
     cy.get('post-stepper').then($stepper => {
       $stepper[0].append(document.createElement('post-stepper-item'));
@@ -182,8 +192,10 @@ describe('stepper', { baseUrl: null }, () => {
         .wait(100)
         .find('post-stepper-item')
         .should('have.length', 6)
-        .last()
-        .should('have.class', 'stepper-item-inactive');
+        .then($items => {
+          expect($items[5]).to.have.class('stepper-item-inactive');
+          expect($items[5].style.getPropertyValue('--step-number')).to.equal('"6"');
+        });
     });
   });
 
@@ -201,5 +213,17 @@ describe('stepper', { baseUrl: null }, () => {
 
     cy.get('post-stepper').find('post-stepper-item').should('have.length', 1);
     cy.get('@consoleError').should('be.called');
+  });
+
+  it('should set --step-number CSS custom property with correct sequential values on each step', () => {
+    cy.get('post-stepper')
+      .invoke('attr', 'current-index', 2)
+      .wait(100)
+      .find('post-stepper-item')
+      .then($items => {
+        $items.each((i, el) => {
+          expect(el.style.getPropertyValue('--step-number')).to.equal(`"${i + 1}"`);
+        });
+      });
   });
 });

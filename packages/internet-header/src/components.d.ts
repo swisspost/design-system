@@ -5,29 +5,9 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { LinkConfig } from "./models/shared.model";
 import { ActiveRouteProp, Environment } from "./models/general.model";
-export { LinkConfig } from "./models/shared.model";
 export { ActiveRouteProp, Environment } from "./models/general.model";
 export namespace Components {
-    interface SwisspostInternetBreadcrumbs {
-        /**
-          * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
-         */
-        "customItems"?: string | Array<LinkConfig>;
-        /**
-          * Accessible label for the breadcrumbs navigation.
-         */
-        "textBreadcrumbs": string;
-        /**
-          * Label for the home link.
-         */
-        "textHome": string;
-        /**
-          * Label for the overflow menu button.
-         */
-        "textMoreItems": string;
-    }
     interface SwisspostInternetFooter {
         /**
           * Label for the "Cookie Settings" button.
@@ -63,6 +43,10 @@ export namespace Components {
          */
         "project": string;
         /**
+          * Visually hidden label for the login widget trigger button.
+         */
+        "textAccessUserLinks": string;
+        /**
           * Visually hidden label for the back button.
          */
         "textBack": string;
@@ -75,11 +59,11 @@ export namespace Components {
          */
         "textClose": string;
         /**
-          * Visually hidden label for the current language.
+          * Visually hidden label for the current language. The placeholder `{name}` will be replaced with the name of the currently selected language.
          */
         "textCurrentLanguage": string;
         /**
-          * Visually hidden label for the current user.
+          * Visually hidden label for the current user. The placeholder `{user}` will be replaced with the full name of the currently logged-in user.
          */
         "textCurrentUser": string;
         /**
@@ -94,24 +78,6 @@ export namespace Components {
           * Visually hidden label for the user menu.
          */
         "textUserLinks": string;
-        /**
-          * Visually hidden label for the login widget trigger button.
-         */
-        "textUserMenuTrigger": string;
-    }
-    interface SwisspostInternetLoginWidget {
-        /**
-          * Label for the "Current user is {user}" accessibility description. Use `{user}` as a placeholder — it will be replaced with the current user's name at runtime.
-         */
-        "textCurrentUser": string;
-        /**
-          * Accessible label for the dropdown menu.
-         */
-        "textUserMenu": string;
-        /**
-          * Hidden label for the user menu trigger button, for accessibility purposes.
-         */
-        "textUserMenuTrigger": string;
     }
 }
 export interface SwisspostInternetHeaderCustomEvent<T> extends CustomEvent<T> {
@@ -119,12 +85,6 @@ export interface SwisspostInternetHeaderCustomEvent<T> extends CustomEvent<T> {
     target: HTMLSwisspostInternetHeaderElement;
 }
 declare global {
-    interface HTMLSwisspostInternetBreadcrumbsElement extends Components.SwisspostInternetBreadcrumbs, HTMLStencilElement {
-    }
-    var HTMLSwisspostInternetBreadcrumbsElement: {
-        prototype: HTMLSwisspostInternetBreadcrumbsElement;
-        new (): HTMLSwisspostInternetBreadcrumbsElement;
-    };
     interface HTMLSwisspostInternetFooterElement extends Components.SwisspostInternetFooter, HTMLStencilElement {
     }
     var HTMLSwisspostInternetFooterElement: {
@@ -148,40 +108,14 @@ declare global {
         prototype: HTMLSwisspostInternetHeaderElement;
         new (): HTMLSwisspostInternetHeaderElement;
     };
-    interface HTMLSwisspostInternetLoginWidgetElement extends Components.SwisspostInternetLoginWidget, HTMLStencilElement {
-    }
-    var HTMLSwisspostInternetLoginWidgetElement: {
-        prototype: HTMLSwisspostInternetLoginWidgetElement;
-        new (): HTMLSwisspostInternetLoginWidgetElement;
-    };
     interface HTMLElementTagNameMap {
-        "swisspost-internet-breadcrumbs": HTMLSwisspostInternetBreadcrumbsElement;
         "swisspost-internet-footer": HTMLSwisspostInternetFooterElement;
         "swisspost-internet-header": HTMLSwisspostInternetHeaderElement;
-        "swisspost-internet-login-widget": HTMLSwisspostInternetLoginWidgetElement;
     }
 }
 declare namespace LocalJSX {
     type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
 
-    interface SwisspostInternetBreadcrumbs {
-        /**
-          * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
-         */
-        "customItems"?: string | Array<LinkConfig>;
-        /**
-          * Accessible label for the breadcrumbs navigation.
-         */
-        "textBreadcrumbs": string;
-        /**
-          * Label for the home link.
-         */
-        "textHome": string;
-        /**
-          * Label for the overflow menu button.
-         */
-        "textMoreItems": string;
-    }
     interface SwisspostInternetFooter {
         /**
           * Label for the "Cookie Settings" button.
@@ -221,6 +155,10 @@ declare namespace LocalJSX {
          */
         "project": string;
         /**
+          * Visually hidden label for the login widget trigger button.
+         */
+        "textAccessUserLinks": string;
+        /**
           * Visually hidden label for the back button.
          */
         "textBack": string;
@@ -233,11 +171,11 @@ declare namespace LocalJSX {
          */
         "textClose": string;
         /**
-          * Visually hidden label for the current language.
+          * Visually hidden label for the current language. The placeholder `{name}` will be replaced with the name of the currently selected language.
          */
         "textCurrentLanguage": string;
         /**
-          * Visually hidden label for the current user.
+          * Visually hidden label for the current user. The placeholder `{user}` will be replaced with the full name of the currently logged-in user.
          */
         "textCurrentUser": string;
         /**
@@ -252,32 +190,8 @@ declare namespace LocalJSX {
           * Visually hidden label for the user menu.
          */
         "textUserLinks": string;
-        /**
-          * Visually hidden label for the login widget trigger button.
-         */
-        "textUserMenuTrigger": string;
-    }
-    interface SwisspostInternetLoginWidget {
-        /**
-          * Label for the "Current user is {user}" accessibility description. Use `{user}` as a placeholder — it will be replaced with the current user's name at runtime.
-         */
-        "textCurrentUser": string;
-        /**
-          * Accessible label for the dropdown menu.
-         */
-        "textUserMenu": string;
-        /**
-          * Hidden label for the user menu trigger button, for accessibility purposes.
-         */
-        "textUserMenuTrigger": string;
     }
 
-    interface SwisspostInternetBreadcrumbsAttributes {
-        "customItems": string | Array<LinkConfig>;
-        "textHome": string;
-        "textBreadcrumbs": string;
-        "textMoreItems": string;
-    }
     interface SwisspostInternetFooterAttributes {
         "textFooter": string;
         "textCookieSettings": string;
@@ -295,30 +209,21 @@ declare namespace LocalJSX {
         "textCurrentUser": string;
         "textMain": string;
         "textMenu": string;
-        "textUserMenuTrigger": string;
+        "textAccessUserLinks": string;
         "textUserLinks": string;
-    }
-    interface SwisspostInternetLoginWidgetAttributes {
-        "textCurrentUser": string;
-        "textUserMenu": string;
-        "textUserMenuTrigger": string;
     }
 
     interface IntrinsicElements {
-        "swisspost-internet-breadcrumbs": Omit<SwisspostInternetBreadcrumbs, keyof SwisspostInternetBreadcrumbsAttributes> & { [K in keyof SwisspostInternetBreadcrumbs & keyof SwisspostInternetBreadcrumbsAttributes]?: SwisspostInternetBreadcrumbs[K] } & { [K in keyof SwisspostInternetBreadcrumbs & keyof SwisspostInternetBreadcrumbsAttributes as `attr:${K}`]?: SwisspostInternetBreadcrumbsAttributes[K] } & { [K in keyof SwisspostInternetBreadcrumbs & keyof SwisspostInternetBreadcrumbsAttributes as `prop:${K}`]?: SwisspostInternetBreadcrumbs[K] } & OneOf<"textHome", SwisspostInternetBreadcrumbs["textHome"], SwisspostInternetBreadcrumbsAttributes["textHome"]> & OneOf<"textBreadcrumbs", SwisspostInternetBreadcrumbs["textBreadcrumbs"], SwisspostInternetBreadcrumbsAttributes["textBreadcrumbs"]> & OneOf<"textMoreItems", SwisspostInternetBreadcrumbs["textMoreItems"], SwisspostInternetBreadcrumbsAttributes["textMoreItems"]>;
         "swisspost-internet-footer": Omit<SwisspostInternetFooter, keyof SwisspostInternetFooterAttributes> & { [K in keyof SwisspostInternetFooter & keyof SwisspostInternetFooterAttributes]?: SwisspostInternetFooter[K] } & { [K in keyof SwisspostInternetFooter & keyof SwisspostInternetFooterAttributes as `attr:${K}`]?: SwisspostInternetFooterAttributes[K] } & { [K in keyof SwisspostInternetFooter & keyof SwisspostInternetFooterAttributes as `prop:${K}`]?: SwisspostInternetFooter[K] } & OneOf<"textFooter", SwisspostInternetFooter["textFooter"], SwisspostInternetFooterAttributes["textFooter"]> & OneOf<"textCookieSettings", SwisspostInternetFooter["textCookieSettings"], SwisspostInternetFooterAttributes["textCookieSettings"]>;
-        "swisspost-internet-header": Omit<SwisspostInternetHeader, keyof SwisspostInternetHeaderAttributes> & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes]?: SwisspostInternetHeader[K] } & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes as `attr:${K}`]?: SwisspostInternetHeaderAttributes[K] } & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes as `prop:${K}`]?: SwisspostInternetHeader[K] } & OneOf<"project", SwisspostInternetHeader["project"], SwisspostInternetHeaderAttributes["project"]> & OneOf<"textBack", SwisspostInternetHeader["textBack"], SwisspostInternetHeaderAttributes["textBack"]> & OneOf<"textChangeLanguage", SwisspostInternetHeader["textChangeLanguage"], SwisspostInternetHeaderAttributes["textChangeLanguage"]> & OneOf<"textClose", SwisspostInternetHeader["textClose"], SwisspostInternetHeaderAttributes["textClose"]> & OneOf<"textCurrentLanguage", SwisspostInternetHeader["textCurrentLanguage"], SwisspostInternetHeaderAttributes["textCurrentLanguage"]> & OneOf<"textCurrentUser", SwisspostInternetHeader["textCurrentUser"], SwisspostInternetHeaderAttributes["textCurrentUser"]> & OneOf<"textMain", SwisspostInternetHeader["textMain"], SwisspostInternetHeaderAttributes["textMain"]> & OneOf<"textMenu", SwisspostInternetHeader["textMenu"], SwisspostInternetHeaderAttributes["textMenu"]> & OneOf<"textUserMenuTrigger", SwisspostInternetHeader["textUserMenuTrigger"], SwisspostInternetHeaderAttributes["textUserMenuTrigger"]> & OneOf<"textUserLinks", SwisspostInternetHeader["textUserLinks"], SwisspostInternetHeaderAttributes["textUserLinks"]>;
-        "swisspost-internet-login-widget": Omit<SwisspostInternetLoginWidget, keyof SwisspostInternetLoginWidgetAttributes> & { [K in keyof SwisspostInternetLoginWidget & keyof SwisspostInternetLoginWidgetAttributes]?: SwisspostInternetLoginWidget[K] } & { [K in keyof SwisspostInternetLoginWidget & keyof SwisspostInternetLoginWidgetAttributes as `attr:${K}`]?: SwisspostInternetLoginWidgetAttributes[K] } & { [K in keyof SwisspostInternetLoginWidget & keyof SwisspostInternetLoginWidgetAttributes as `prop:${K}`]?: SwisspostInternetLoginWidget[K] } & OneOf<"textCurrentUser", SwisspostInternetLoginWidget["textCurrentUser"], SwisspostInternetLoginWidgetAttributes["textCurrentUser"]> & OneOf<"textUserMenu", SwisspostInternetLoginWidget["textUserMenu"], SwisspostInternetLoginWidgetAttributes["textUserMenu"]> & OneOf<"textUserMenuTrigger", SwisspostInternetLoginWidget["textUserMenuTrigger"], SwisspostInternetLoginWidgetAttributes["textUserMenuTrigger"]>;
+        "swisspost-internet-header": Omit<SwisspostInternetHeader, keyof SwisspostInternetHeaderAttributes> & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes]?: SwisspostInternetHeader[K] } & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes as `attr:${K}`]?: SwisspostInternetHeaderAttributes[K] } & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes as `prop:${K}`]?: SwisspostInternetHeader[K] } & OneOf<"project", SwisspostInternetHeader["project"], SwisspostInternetHeaderAttributes["project"]> & OneOf<"textBack", SwisspostInternetHeader["textBack"], SwisspostInternetHeaderAttributes["textBack"]> & OneOf<"textChangeLanguage", SwisspostInternetHeader["textChangeLanguage"], SwisspostInternetHeaderAttributes["textChangeLanguage"]> & OneOf<"textClose", SwisspostInternetHeader["textClose"], SwisspostInternetHeaderAttributes["textClose"]> & OneOf<"textCurrentLanguage", SwisspostInternetHeader["textCurrentLanguage"], SwisspostInternetHeaderAttributes["textCurrentLanguage"]> & OneOf<"textCurrentUser", SwisspostInternetHeader["textCurrentUser"], SwisspostInternetHeaderAttributes["textCurrentUser"]> & OneOf<"textMain", SwisspostInternetHeader["textMain"], SwisspostInternetHeaderAttributes["textMain"]> & OneOf<"textMenu", SwisspostInternetHeader["textMenu"], SwisspostInternetHeaderAttributes["textMenu"]> & OneOf<"textAccessUserLinks", SwisspostInternetHeader["textAccessUserLinks"], SwisspostInternetHeaderAttributes["textAccessUserLinks"]> & OneOf<"textUserLinks", SwisspostInternetHeader["textUserLinks"], SwisspostInternetHeaderAttributes["textUserLinks"]>;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "swisspost-internet-breadcrumbs": LocalJSX.IntrinsicElements["swisspost-internet-breadcrumbs"] & JSXBase.HTMLAttributes<HTMLSwisspostInternetBreadcrumbsElement>;
             "swisspost-internet-footer": LocalJSX.IntrinsicElements["swisspost-internet-footer"] & JSXBase.HTMLAttributes<HTMLSwisspostInternetFooterElement>;
             "swisspost-internet-header": LocalJSX.IntrinsicElements["swisspost-internet-header"] & JSXBase.HTMLAttributes<HTMLSwisspostInternetHeaderElement>;
-            "swisspost-internet-login-widget": LocalJSX.IntrinsicElements["swisspost-internet-login-widget"] & JSXBase.HTMLAttributes<HTMLSwisspostInternetLoginWidgetElement>;
         }
     }
 }

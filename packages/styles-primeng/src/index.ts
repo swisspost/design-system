@@ -1,0 +1,1 @@
+export { swissPostPreset } from './theme';

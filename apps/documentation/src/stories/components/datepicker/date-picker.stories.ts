@@ -1,13 +1,14 @@
-import { Args, StoryObj, StoryContext, StoryFn } from '@storybook/web-components-vite';
-import { html } from 'lit';
 import { MetaComponent } from '@root/types';
-import { spreadArgs } from '@/utils';
+import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
+import { html, nothing } from 'lit';
+import { keyed } from 'lit/directives/keyed.js';
+import { getLabelText, VALIDATION_STATE_MAP, getValidationMessages } from '@/utils/form-elements';
 
 const meta: MetaComponent = {
   id: 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e',
-  title: 'Components/Date Picker',
+  title: 'Components/Form Date Picker',
   component: 'post-date-picker',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:New'],
   render,
   parameters: {
     controls: {
@@ -16,14 +17,16 @@ const meta: MetaComponent = {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=21044-101376&t=FNgdl36MZPMbc1Bs-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=32786-277036',
     },
   },
   args: {
     id: 'main',
-    locale: '',
     inline: false,
     range: false,
+    min: '',
+    max: '',
+    locale: '',
     textToggleCalendar: 'Open calendar',
     textNextDecade: 'Next decade',
     textNextMonth: 'Next month',
@@ -32,6 +35,11 @@ const meta: MetaComponent = {
     textPreviousMonth: 'Previous month',
     textPreviousYear: 'Previous year',
     textSwitchYear: 'Switch to year view',
+    label: 'Date',
+    floatingLabel: true,
+    validation: 'null',
+    requiredOptional: 'null',
+    hint: 'This is a helpful text that provides guidance or additional information to assist the user in filling out this field correctly.',
   },
   argTypes: {
     locale: {
@@ -83,33 +91,183 @@ const meta: MetaComponent = {
     max: {
       control: 'text',
     },
-    selectedStartDate: {
-      control: 'text',
+    cellConfig: {
+      control: false,
     },
-    selectedEndDate: {
-      control: 'text',
+    value: {
+      name: 'Value',
+      description: 'The date or date range used as a value for the input.',
+      type: {
+        name: 'string',
+      },
+      table: {
+        category: 'Input',
+      },
+    },
+    floatingLabel: {
+      name: 'Floating Label',
+      description: 'If true, the label floats over the input field.',
+      type: {
+        name: 'boolean',
+      },
+      table: {
+        category: 'Input',
+      },
       if: {
-        arg: 'range',
+        arg: 'inline',
+        truthy: false,
+      },
+    },
+
+    label: {
+      name: 'Label',
+      description: 'A label for the date picker input, required for accessibility.',
+      type: {
+        name: 'string',
+        required: true,
+      },
+      table: {
+        category: 'Input',
+      },
+      if: {
+        arg: 'inline',
+        truthy: false,
+      },
+    },
+    validation: {
+      name: 'Validation',
+      description:
+        'Defines the validation state of the input and controls the display of the corresponding return message. <post-banner data-size="sm"><p>Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs#input">validation guidelines here</a>.</p></post-banner> ',
+      control: {
+        type: 'radio',
+        labels: {
+          'null': 'Default',
+          'is-valid': 'Valid',
+          'is-invalid': 'Invalid',
+        },
+      },
+      if: {
+        arg: 'inline',
+        truthy: false,
+      },
+      options: ['null', 'is-valid', 'is-invalid'],
+      table: {
+        category: 'States',
+      },
+    },
+    requiredOptional: {
+      name: 'Required / Optional',
+      description: 'Whether the field is required or optional.',
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          required: 'Required',
+          optional: 'Optional',
+        },
+      },
+      options: ['null', 'required', 'optional'],
+      table: {
+        category: 'States',
+      },
+      if: {
+        arg: 'inline',
+        truthy: false,
+      },
+    },
+    hint: {
+      name: 'Helper Text',
+      description: 'Text to place in the help text area of the component.',
+      control: {
+        type: 'text',
+      },
+      table: {
+        category: 'General',
+      },
+      if: {
+        arg: 'inline',
+        truthy: false,
       },
     },
   },
 };
 export default meta;
 
+function getLocaleDir(locale: string): 'rtl' | 'ltr' {
+  return new Date()
+    .toLocaleDateString(locale, { day: '2-digit', month: '2-digit', year: 'numeric' })
+    .includes('\u200F')
+    ? 'rtl'
+    : 'ltr';
+}
+
+const isoStringPattern = /^\d{4}-\d{2}-\d{2}$/;
+
+function renderDatePickerContent(
+  args: Args,
+  input: ReturnType<typeof html>,
+  label: ReturnType<typeof html>,
+  validationMessages: unknown,
+) {
+  const showLabel = !args.inline;
+  const useFloatingLabel = args.floatingLabel && showLabel;
+
+  return keyed(
+    `${args.id}-${args.inline}-${args.floatingLabel}-${args.validation}`,
+    html` ${showLabel && !useFloatingLabel ? label : nothing}
+      <post-date-picker
+        id=${args.id}
+        class=${useFloatingLabel ? 'form-floating' : ''}
+        ?range="${args.range}"
+        ?inline="${args.inline}"
+        min=${isoStringPattern.test(args.min) ? args.min : nothing}
+        max=${isoStringPattern.test(args.max) ? args.max : nothing}
+        locale=${args.locale || nothing}
+        text-toggle-calendar=${args.textToggleCalendar}
+        text-next-decade=${args.textNextDecade}
+        text-next-month=${args.textNextMonth}
+        text-next-year=${args.textNextYear}
+        text-previous-decade=${args.textPreviousDecade}
+        text-previous-month=${args.textPreviousMonth}
+        text-previous-year=${args.textPreviousYear}
+        text-switch-year=${args.textSwitchYear}
+        >${useFloatingLabel ? html`${input} ${label}` : input}</post-date-picker
+      >
+      ${validationMessages}`,
+  );
+}
+
 // Setting different instances of the post-date-picker forces the rerender of the component and make sure it updates when args change
-function render(args: Args) {
-  return args.inline ? renderInline(args) : renderPopup(args);
-}
+function render(args: Args, context: StoryContext) {
+  const validationMessages = getValidationMessages(args, context, !args.inline);
+  const validation = args.validation && args.validation !== 'null' ? ` ${args.validation}` : '';
 
-function renderInline(args: Args) {
-  return html` <post-date-picker ${spreadArgs(args)}> </post-date-picker>`;
-}
+  const ariaDescribedByParts = [
+    args.hint ? `form-hint-${context.id}` : '',
+    args.validation !== 'null' ? `${args.validation}-id-${context.id}` : '',
+  ].filter(Boolean);
 
-function renderPopup(args: Args) {
-  return html`
-    <post-date-picker ${spreadArgs(args)}>
-      <input class="form-control" type="text"></input>
-    </post-date-picker>`;
+  const ariaDescribedBy = ariaDescribedByParts.join(' ') || nothing;
+
+  const input = html`<input
+    id="${args.id}-input"
+    type=${args.inline ? 'hidden' : 'text'}
+    class=${args.inline ? nothing : `form-control${validation}`}
+    value=${args.value ?? nothing}
+    aria-describedby=${args.inline ? nothing : ariaDescribedBy}
+    ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
+    ?required="${args.requiredOptional === 'required'}"
+  />`;
+
+  const label = html`<label class="form-label" for="${args.id}-input"
+    >${getLabelText(args)}</label
+  >`;
+
+  const locale = typeof context.args.locale === 'string' ? context.args.locale : '';
+  const dir = locale ? getLocaleDir(locale) : 'ltr';
+  const content = renderDatePickerContent(args, input, label, validationMessages);
+
+  return dir === 'rtl' ? html`<div dir="rtl">${content}</div>` : html`${content}`;
 }
 
 type Story = StoryObj;
@@ -147,7 +305,7 @@ export const DisabledDates: Story = {
         <script>
           window.addEventListener('DOMContentLoaded', () => {
             const dp = document.querySelector('post-date-picker#disabled-dates');
-            dp.renderCellCallback = ({ date, cellType }) => {
+            dp.cellConfig = (date, cellType) => {
               if (cellType === 'day' && date.getDay() === 0) {
                 return { disabled: true, classes: 'is-sunday' };
               }

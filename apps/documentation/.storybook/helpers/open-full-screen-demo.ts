@@ -20,10 +20,13 @@ export const fullScreenUrlDecorator = (story: StoryFn, context: StoryContext) =>
   if (args.length) storyURL += `&args=${args}`;
 
   // Link for the copy configuration button
-  let linkConfigBaseURL = `/?path=/docs/${id.split('--')[0]}--docs&story=${context.story}`;
+  const docsId = new URLSearchParams(window.location.search).get('id');
 
-  if (args.length) linkConfigBaseURL += `&args=${args}`;
-  const linkConfigURL = window.location.origin + linkConfigBaseURL.replace(':!', ':') + '#' + id;
+  const newParams = new URLSearchParams();
+  newParams.set('story', context.name);
+  if (args.length) newParams.set('args', args);
+
+  const linkConfigURL = `${window.location.origin}/?path=/docs/${docsId}&${newParams.toString()}#${id}`;
 
   return html`
     <p class="linkConfigURL" hidden>${linkConfigURL}</p>
@@ -34,8 +37,7 @@ export const fullScreenUrlDecorator = (story: StoryFn, context: StoryContext) =>
 
 export const copyStoryConfigUrl = (e: Event) => {
   const target = e.target as HTMLButtonElement;
-  const canvas = target.closest('.docs-story');
-  const linkConfigURL = canvas && canvas.querySelector('.linkConfigURL');
+  const linkConfigURL = getStoryContainer(target)?.querySelector('.linkConfigURL');
 
   if (linkConfigURL && linkConfigURL.textContent) {
     // Copy link to clipboard
@@ -51,9 +53,7 @@ export const copyStoryConfigUrl = (e: Event) => {
 };
 
 export const openFullScreenDemo = (e: Event) => {
-  const target = e.target as HTMLButtonElement;
-  const canvas = target.closest('.docs-story');
-  const storyURL = canvas && canvas.querySelector('.storyURL');
+  const storyURL = getStoryContainer(e.target as HTMLElement)?.querySelector('.storyURL');
 
   if (storyURL && storyURL.textContent) {
     window.open(storyURL.textContent, '_blank');
@@ -61,3 +61,14 @@ export const openFullScreenDemo = (e: Event) => {
     alert('The full screen demo is not available.');
   }
 };
+
+function getStoryContainer(target: Element): Document | Element | null {
+  const canvas = target.closest('.docs-story');
+  const iframe: HTMLIFrameElement | null = canvas && canvas.querySelector('iframe');
+
+  if (iframe) {
+    return iframe.contentDocument;
+  } else {
+    return canvas;
+  }
+}

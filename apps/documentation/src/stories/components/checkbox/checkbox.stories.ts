@@ -9,8 +9,8 @@ import { getLabelText, getValidationMessages, VALIDATION_STATE_MAP } from '@/uti
 const meta: MetaComponent = {
   id: 'e6ecc86f-d148-413b-b796-614a89da54be',
   title: 'Components/Form Checkbox',
-  tags: ['package:Styles', 'status:Stable'],
-  render: renderCheckbox,
+  tags: ['package:Styles'],
+  render: RenderCheckbox,
   parameters: {
     badges: [],
     design: {
@@ -175,7 +175,7 @@ const CHECKED_STATE_TOGGLE_MAP: Record<string, string> = {
   checked: 'unchecked',
 };
 
-function renderCheckbox(args: Args, context: StoryContext) {
+function RenderCheckbox(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
   const containerClasses = mapClasses({
@@ -203,9 +203,9 @@ function renderCheckbox(args: Args, context: StoryContext) {
         type="checkbox"
         aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
         aria-label="${ifDefined(args.hiddenLabel ? args.label : undefined)}"
-        aria-describedby="${args.validation != 'null'
-          ? `${args.validation}-id-${context.id}`
-          : nothing}"
+        aria-describedby="${
+          args.validation != 'null' ? `${args.validation}-id-${context.id}` : nothing
+        }"
         ?disabled="${args.disabled}"
         .checked="${CHECKED_STATE_MAP[args.checked]}"
         @change="${handleChange}"

@@ -12,15 +12,15 @@
 | `fullWidth`                        | `full-width`             | Makes the header content span the full width on screens larger than 1440px.                                                                                                                                               | `boolean`                                                                 | `false`     |
 | `language`                         | `language`               | Initial language to be used. Overrides automatic language detection.                                                                                                                                                      | `"de" \| "en" \| "fr" \| "it" \| undefined`                               | `undefined` |
 | `project` _(required)_             | `project`                | Your project id, previously passed as query string parameter serviceId.                                                                                                                                                   | `string`                                                                  | `undefined` |
+| `textAccessUserLinks` _(required)_ | `text-access-user-links` | Visually hidden label for the login widget trigger button.                                                                                                                                                                | `string`                                                                  | `undefined` |
 | `textBack` _(required)_            | `text-back`              | Visually hidden label for the back button.                                                                                                                                                                                | `string`                                                                  | `undefined` |
 | `textChangeLanguage` _(required)_  | `text-change-language`   | Visually hidden label for the language menu.                                                                                                                                                                              | `string`                                                                  | `undefined` |
 | `textClose` _(required)_           | `text-close`             | Visually hidden label for the close button.                                                                                                                                                                               | `string`                                                                  | `undefined` |
-| `textCurrentLanguage` _(required)_ | `text-current-language`  | Visually hidden label for the current language.                                                                                                                                                                           | `string`                                                                  | `undefined` |
-| `textCurrentUser` _(required)_     | `text-current-user`      | Visually hidden label for the current user.                                                                                                                                                                               | `string`                                                                  | `undefined` |
+| `textCurrentLanguage` _(required)_ | `text-current-language`  | Visually hidden label for the current language. The placeholder `{name}` will be replaced with the name of the currently selected language.                                                                               | `string`                                                                  | `undefined` |
+| `textCurrentUser` _(required)_     | `text-current-user`      | Visually hidden label for the current user. The placeholder `{user}` will be replaced with the full name of the currently logged-in user.                                                                                 | `string`                                                                  | `undefined` |
 | `textMain` _(required)_            | `text-main`              | Visually hidden label for the main navigation element.                                                                                                                                                                    | `string`                                                                  | `undefined` |
 | `textMenu` _(required)_            | `text-menu`              | Visually hidden label for the burger menu button.                                                                                                                                                                         | `string`                                                                  | `undefined` |
 | `textUserLinks` _(required)_       | `text-user-links`        | Visually hidden label for the user menu.                                                                                                                                                                                  | `string`                                                                  | `undefined` |
-| `textUserMenuTrigger` _(required)_ | `text-user-menu-trigger` | Visually hidden label for the login widget trigger button.                                                                                                                                                                | `string`                                                                  | `undefined` |
 
 
 ## Events
@@ -38,7 +38,6 @@
 - post-logo
 - post-language-menu
 - post-language-menu-item
-- [swisspost-internet-login-widget](../post-internet-login-widget)
 - post-mainnavigation
 
 ### Graph
@@ -48,7 +47,6 @@ graph TD;
   swisspost-internet-header --> post-logo
   swisspost-internet-header --> post-language-menu
   swisspost-internet-header --> post-language-menu-item
-  swisspost-internet-header --> swisspost-internet-login-widget
   swisspost-internet-header --> post-mainnavigation
   post-header --> post-togglebutton
   post-header --> post-icon
@@ -57,12 +55,6 @@ graph TD;
   post-language-menu --> post-menu
   post-menu --> post-popovercontainer
   post-language-menu-item --> post-menu-item
-  swisspost-internet-login-widget --> post-login-widget
-  swisspost-internet-login-widget --> post-menu-item
-  swisspost-internet-login-widget --> post-icon
-  post-login-widget --> post-menu-trigger
-  post-login-widget --> post-avatar
-  post-login-widget --> post-menu
   post-mainnavigation --> post-icon
   style swisspost-internet-header fill:#f9f,stroke:#333,stroke-width:4px
 ```

@@ -31,7 +31,7 @@ describe('build/report', () => {
     createMockSourceIcon(
       {
         meta: {
-          downloadLink: 'http://test.com/1000.svg',
+          downloadLink: 'https://test.com/1000.svg',
           businessfield: Businessfield.Kommunikation,
           keywords: ['test', 'icon', 'sample'],
           year: '2024',
@@ -41,7 +41,7 @@ describe('build/report', () => {
     ),
     createMockSourceIconWithSize(1001, 24, {
       meta: {
-        downloadLink: 'http://test.com/1001.svg',
+        downloadLink: 'https://test.com/1001.svg',
         businessfield: Businessfield.Kommunikation,
         keywords: ['ui', 'button'],
         year: '2024',
@@ -149,7 +149,7 @@ describe('build/report', () => {
       writeReport(mockReportOutputDirectory, mockIconSetGroups);
 
       const minReportData = getMinReportJsonData(fs.writeFileSync as jest.Mock);
-      
+
       expect(minReportData).toBeDefined();
       expectReportJsonStructure(minReportData);
     });
@@ -177,7 +177,7 @@ describe('build/report', () => {
       expect(icon.stats.sources).toEqual(
         expect.arrayContaining([
           expect.objectContaining({ id: expect.any(Number), name: expect.any(String) }),
-        ])
+        ]),
       );
     });
   });
@@ -289,11 +289,11 @@ describe('build/report', () => {
 
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         path.join(mockReportOutputDirectory, 'report.json'),
-        expect.any(String)
+        expect.any(String),
       );
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         path.join(mockReportOutputDirectory, 'report.min.json'),
-        expect.any(String)
+        expect.any(String),
       );
     });
   });

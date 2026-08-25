@@ -1027,9 +1027,8 @@ export class MigrationV45ManualListComponent extends LitElement {
                   />
 
                   <label class="form-check-label" for="bootstrap-cards_classes">
-                    <span class="tag tag-sm tag-error">breaking</span> Removed
-                    <em>card</em> classes <code>.card-deck</code> and
-                    <code>.card-columns</code>.<br />
+                    <span class="tag tag-sm tag-error">breaking</span> Removed <em>card</em> classes
+                    <code>.card-deck</code> and <code>.card-columns</code>.<br />
                     Use the <em>grid-system</em> instead.
                   </label>
                 </div>
@@ -1790,13 +1789,15 @@ export class MigrationV45ManualListComponent extends LitElement {
                       component.
                     </p>
 
-                    ${this.angular
-                      ? html` <post-banner>
-                          One might think: "When it is so easy to migrate, why don't you offer an
-                          automatic migration?"<br />
-                          The short answer: because it is no longer the same component!
-                        </post-banner>`
-                      : nothing}
+                    ${
+                      this.angular
+                        ? html` <post-banner>
+                            One might think: "When it is so easy to migrate, why don't you offer an
+                            automatic migration?"<br />
+                            The short answer: because it is no longer the same component!
+                          </post-banner>`
+                        : nothing
+                    }
                   </label>
                 </div>
               </li>

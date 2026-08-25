@@ -10,6 +10,7 @@ Flags all deprecated bootstrap gutter utility classes and replaces them with the
 Classes using the values `1` or `4` **cannot be auto-fixed**.
 
 These values form a rename chain that ESLint's `--fix` loop would follow incorrectly:
+
 - `*-1` → renames to `*-4`, but `*-4` is itself deprecated → would chain to `*-24`
 - `*-4` → must also be manual-only, so that a user who manually renames `*-1` → `*-4` doesn't have `*-4` auto-renamed to `*-24` on the next run
 

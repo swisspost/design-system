@@ -10,11 +10,11 @@ tokens.$default-map: utilities.$post-spacing;
     background: post.$black-alpha-80;
     color: post.$white;
     border-radius: tokens.get('utility-gap-4');
-    padding-inline: tokens.get('utility-gap-16');
+    padding-inline: 0;
     margin-block: tokens.get('utility-gap-8');
     font-family: monospace;
     font-size: 0.875rem;
-    overflow-x: hidden;
+    overflow-x: auto;
 
     button {
       position: absolute;
@@ -36,6 +36,7 @@ tokens.$default-map: utilities.$post-spacing;
 
     pre {
       margin: 0;
+      padding: tokens.get('utility-gap-16') tokens.get('utility-gap-16');
       overflow-x: auto;
       scrollbar-color: post.$gray-60 transparent;
       scrollbar-width: thin;

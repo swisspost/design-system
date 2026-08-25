@@ -9,6 +9,7 @@
 tokens.$default-map: components.$post-breadcrumb;
 
 :host {
+  display: block;
   position: relative;
 }
 
@@ -16,16 +17,19 @@ nav {
   max-width: 100%;
 
   &.invisible {
+    --post-breadcrumb-item-wrap: nowrap;
+
     visibility: hidden;
     overflow: hidden;
     position: absolute;
     inset: 0;
+    padding-inline: 1px; // Detects overflow 2px sooner to favor menu layout.
   }
 }
 
 [role='list'] {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   gap: tokens.get('breadcrumb-gap-inline-outer');
 }
 
@@ -34,16 +38,15 @@ nav {
 }
 
 .home {
+  padding-block: tokens.get('breadcrumb-padding-block-icon-home');
+
   &::before {
     content: unset;
   }
 
   post-icon {
-    font-size: tokens.get('breadcrumb-icon-size');
-
-    @include media.only(mobile) {
-      font-size: 20px;
-    }
+    width: tokens.get('breadcrumb-icon-home-size');
+    height: tokens.get('breadcrumb-icon-home-size');
   }
 }
 

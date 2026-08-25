@@ -1,7 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as SearchInputStories from './search.stories';
 import StylesPackageImport from '@/shared/styles-package-import';
-import PackageTag from '@/shared/package-tag';
+import StoryTags from '@/shared/story-tags';
 
 <Meta of={SearchInputStories} />
 
@@ -12,11 +12,14 @@ import PackageTag from '@/shared/package-tag';
 
 </div>
 
-<PackageTag meta={meta} />
+<StoryTags meta={meta} />
 
 <div className="lead">
-  Customize the native `<input type="search">` element with CSS that changes the element’s initial appearance.
+  The search component is a specific input field that lets users enter keywords to find the
+  information they're looking for.
 </div>
+
+Our component customizes the native <code>&lt;input type="search"&gt;</code> with CSS that overrides its initial appearance.
 
 <Canvas sourceState="shown" of={SearchInputStories.Default} />
 

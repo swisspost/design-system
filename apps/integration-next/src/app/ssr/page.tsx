@@ -34,6 +34,7 @@ import {
   PostTooltip,
   PostTooltipTrigger,
 } from '@swisspost/design-system-components-react/server';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -179,9 +180,9 @@ export default function Home() {
           <div className="card-body">
             <h5>Titulum</h5>
             <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-            <a className="card-link" href="#test">
+            <Link className="card-link" href="/csr">
               Ligilo teksto
-            </a>
+            </Link>
           </div>
         </div>
       </PostLinkarea>

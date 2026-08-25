@@ -4,15 +4,23 @@ import SampleListBullet from './list-bullet.sample.scss?raw';
 import SampleListInline from './list-inline.sample.scss?raw';
 import SampleListUnstyled from './list-unstyled.sample.scss?raw';
 import SampleListNumber from './list-number.sample.scss?raw';
-import PackageTag from '@/shared/package-tag';
+import StoryTags from '@/shared/story-tags';
 
 <Meta of={ListStories} />
 
-# List
+<div className="docs-title">
+  # List
 
-<PackageTag meta={meta} />
+<link-design of={JSON.stringify(ListStories)}></link-design>
 
-<p className="lead">Use lists to group a collection of related items.</p>
+</div>
+
+<StoryTags meta={meta} />
+
+<div className="lead">
+  The list consists of related content grouped together and organized vertically. Use it to group
+  a collection of related items.
+</div>
 
 There are three types of HTML lists: unordered lists, ordered lists, and description lists.
 Utility classes allow you to style each of these lists in different ways.

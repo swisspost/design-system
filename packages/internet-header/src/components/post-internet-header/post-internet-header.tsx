@@ -1,19 +1,33 @@
 import { Link, LinkProps, MegaDropdown, UserMenu } from '@/components/internal';
 import { dispose, state } from '@/data/store';
 import { ActiveRouteProp, Environment } from '@/models/general.model';
-import { UserMenuConfig } from '@/models/header.model';
-import { LinkConfig } from '@/models/shared.model';
+import { PostLoginConfig, UserMenuConfig } from '@/models/header.model';
+import { IconLinkConfig, LinkConfig } from '@/models/shared.model';
+import { getAlternateLinks, observeAlternateLinks } from '@/services/alternate-link.service';
 import { getLocalizedConfig, isValidProjectId } from '@/services/config.service';
 import { getActiveLink } from '@/services/route.service';
 import { version } from '@root/package.json';
-import { Component, Event, EventEmitter, h, Host, Listen, Prop, Watch } from '@stencil/core';
+import {
+  Component,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Prop,
+  Watch,
+} from '@stencil/core';
 import '@swisspost/design-system-components';
+
+const SESSION_URL = 'https://n.account.post.ch/v1/session/subscribe';
 
 @Component({
   tag: 'swisspost-internet-header',
   shadow: false,
 })
 export class PostInternetHeader {
+  private alternateLinksObserver?: MutationObserver;
+
   /**
    * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted.
    * Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
@@ -42,8 +56,12 @@ export class PostInternetHeader {
 
   @Watch('language')
   async handleLanguageChange(newValue: string) {
-    state.currentLanguage = newValue;
-    await this.updateConfig();
+    try {
+      // Pass newValue explicitly — it wins first priority in getUserLang's chain
+      await this.updateConfig(newValue);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   /**
@@ -68,11 +86,13 @@ export class PostInternetHeader {
 
   /**
    * Visually hidden label for the current language.
+   * The placeholder `{name}` will be replaced with the name of the currently selected language.
    */
   @Prop({ reflect: true }) readonly textCurrentLanguage!: string;
 
   /**
    * Visually hidden label for the current user.
+   * The placeholder `{user}` will be replaced with the full name of the currently logged-in user.
    */
   @Prop({ reflect: true }) readonly textCurrentUser!: string;
 
@@ -89,7 +109,7 @@ export class PostInternetHeader {
   /**
    * Visually hidden label for the login widget trigger button.
    */
-  @Prop({ reflect: true }) readonly textUserMenuTrigger!: string;
+  @Prop({ reflect: true }) readonly textAccessUserLinks!: string;
 
   /**
    * Visually hidden label for the user menu.
@@ -109,17 +129,13 @@ export class PostInternetHeader {
     }
   }
 
-  async componentWillLoad() {
-    // Wait for the config to arrive, then render the header
-    try {
-      state.projectId = this.project;
-      state.environment = this.environment.toLocaleLowerCase() as Environment;
-      if (this.language !== undefined) state.currentLanguage = this.language;
+  connectedCallback() {
+    this.observeAlternateLinks();
+  }
 
-      await this.updateConfig();
-    } catch (error) {
-      console.error(error);
-    }
+  async componentWillLoad() {
+    this.initAlternateLinks();
+    await Promise.all([this.fetchHeaderConfig(), this.fetchUserData()]);
   }
 
   componentDidLoad() {
@@ -129,6 +145,8 @@ export class PostInternetHeader {
   }
 
   disconnectedCallback() {
+    this.alternateLinksObserver?.disconnect();
+
     // Reset the store to its original state
     dispose();
   }
@@ -144,18 +162,74 @@ export class PostInternetHeader {
     }
   }
 
-  private async updateConfig() {
+  private async fetchHeaderConfig() {
+    // Wait for the config to arrive, then render the header
+    try {
+      state.projectId = this.project;
+      state.environment = this.environment.toLocaleLowerCase() as Environment;
+      if (this.language !== undefined) state.currentLanguage = this.language;
+
+      await this.updateConfig();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  private async fetchUserData(): Promise<void> {
+    try {
+      const response = await fetch(SESSION_URL, {
+        credentials: 'include',
+      });
+
+      if (response.ok) {
+        const json = await response.json();
+        state.user = json?.data;
+      }
+    } catch {
+      // In case of an error, we assume the user is not logged in and do nothing
+    }
+  }
+
+  // Fetch and store the localized config, defaulting to the `language` prop if none is passed
+  private async updateConfig(language?: string) {
     state.localizedConfig = await getLocalizedConfig({
       projectId: this.project,
       environment: this.environment,
-      language: this.language,
+      language: language ?? this.language,
     });
 
     this.updateActiveUrl();
   }
 
+  private initAlternateLinks() {
+    state.alternateLinks = getAlternateLinks();
+  }
+
+  private observeAlternateLinks() {
+    // Watch for dynamic changes (SPA route changes, late inserts)
+    this.alternateLinksObserver = observeAlternateLinks(updated => {
+      state.alternateLinks = updated;
+    });
+  }
+
   private updateActiveUrl() {
     state.activeLink = getActiveLink(this.activeRoute);
+  }
+
+  private getUserMenuOptions(postLogin: PostLoginConfig): Array<IconLinkConfig> {
+    return [
+      ...(postLogin.userProfile ? [postLogin.userProfile] : []),
+      ...(postLogin.settings ? [postLogin.settings] : []),
+      ...(postLogin.userLinks ?? []),
+    ];
+  }
+
+  /**
+   * Get the language switch URL for a given language code.
+   * Alternate links from <head> take priority over config-provided URLs.
+   */
+  private getLanguageUrl(code: string, configUrl: string): string {
+    return state.alternateLinks.get(code.toLowerCase()) ?? configUrl;
   }
 
   private renderNavItem(config: LinkConfig | UserMenuConfig, props: LinkProps = {}): string {
@@ -168,6 +242,7 @@ export class PostInternetHeader {
         slot={props.slot}
         config={config}
         textCurrentUser={this.textCurrentUser}
+        textAccessUserLinks={this.textAccessUserLinks}
         textUserLinks={this.textUserLinks}
       />
     );
@@ -187,7 +262,7 @@ export class PostInternetHeader {
     return (
       <ul slot={slot}>
         {config.map(navItem => (
-          <li>{this.renderNavItem(navItem, props)}</li>
+          <li key={'url' in navItem ? navItem.url : navItem.user.email}>{this.renderNavItem(navItem, props)}</li>
         ))}
       </ul>
     );
@@ -238,7 +313,8 @@ export class PostInternetHeader {
             >
               {globalHeader.languages.map(lang => (
                 <post-language-menu-item
-                  url={lang.url}
+                  key={lang.code}
+                  url={this.getLanguageUrl(lang.code, lang.url)}
                   active={lang.active}
                   code={lang.code}
                   name={lang.label}
@@ -250,24 +326,29 @@ export class PostInternetHeader {
             </post-language-menu>
           )}
 
-          {globalHeader.login && (
-            <swisspost-internet-login-widget
-              slot="post-login"
-              textCurrentUser={this.textCurrentUser}
-              textUserMenu={this.textUserLinks}
-              textUserMenuTrigger={this.textUserMenuTrigger}
-            />
-          )}
+          {globalHeader.postLogin &&
+            this.renderNavItem(
+              state.user
+                ? {
+                    user: state.user,
+                    options: this.getUserMenuOptions(globalHeader.postLogin),
+                    accountSwitch: globalHeader.postLogin.accountSwitch,
+                    companySwitch: globalHeader.postLogin.companySwitch,
+                    logoutLink: globalHeader.postLogin.logoutLink,
+                  }
+                : globalHeader.postLogin.loginLink,
+              { slot: 'post-login' },
+            )}
 
           {localHeader.title && <p slot="title">{localHeader.title}</p>}
 
           {localHeader.navigation && this.renderNavigation('local-nav', localHeader.navigation)}
 
-          {localHeader.mainNavigation && (
+          {localHeader.mainNavigation && localHeader.mainNavigation.length > 0 && (
             <post-mainnavigation slot="main-nav" textMain={this.textMain}>
               <ul>
                 {localHeader.mainNavigation.map(navItem => (
-                  <li>
+                  <li key={'url' in navItem ? navItem.url : navItem.trigger.text}>
                     {'url' in navItem ? (
                       <Link config={navItem} ariaCurrentWhenActive="page" />
                     ) : (

@@ -89,7 +89,14 @@ export interface V910Checks {
     hide_automigration: boolean;
   };
   ngbootstrap: {
-    removed_components: boolean;
+    modal: boolean;
+    custom_select: boolean;
+    datatable: boolean;
+    datepicker: boolean;
+    pagination: boolean;
+    typeahead: boolean;
+    progressbar: boolean;
+    timepicker: boolean;
   };
   forms: {
     tooltip_validation: boolean;
@@ -165,6 +172,11 @@ export interface V910Checks {
     update_package: boolean;
     add_text_props: boolean;
     remove_props: boolean;
+    breadcrumb_migration: boolean;
+    language_switch_migration: boolean;
+  };
+  intranet_header: {
+    migration: boolean;
   };
 }
 

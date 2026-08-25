@@ -8,16 +8,16 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'cd684d90-e7a7-41a9-8923-b1b72ad9b384',
   title: 'Components/Tooltip',
-  tags: ['package:WebComponents', 'status:InProgress'],
+  tags: ['package:WebComponents'],
   component: 'post-tooltip',
   parameters: {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=14016-23251&t=0yPuKvPCIphY5J5M-0',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=31920-89085',
     },
   },
-  render,
+  render: Render,
   args: {
     id: 'tooltip-one',
     innerHTML: 'Hi there 👋',
@@ -52,7 +52,7 @@ const meta: MetaComponent = {
   },
 };
 
-function render(args: Args) {
+function Render(args: Args) {
   const [currentArgs, updateArgs] = useArgs();
   // Just for fun
   const innerHTML =

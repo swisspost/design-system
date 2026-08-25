@@ -120,10 +120,8 @@ export const config: Config = {
       customElementsDir: 'components',
       componentCorePackage: '@swisspost/design-system-components',
       outputType: 'standalone',
-      directivesProxyFile:
-        '../components-angular/projects/components/src/lib/stencil-generated/components.ts',
-      directivesArrayFile:
-        '../components-angular/projects/components/src/lib/stencil-generated/index.ts',
+      directivesProxyFile: '../components-angular/src/stencil-generated/components.ts',
+      directivesArrayFile: '../components-angular/src/stencil-generated/index.ts',
       valueAccessorConfigs: angularValueAccessorBindings,
     }),
   ],

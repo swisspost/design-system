@@ -85,7 +85,8 @@ export class PostMenu {
   }
 
   /**
-   * Toggles the menu visibility based on its current state.
+   * Toggles the menu visibility based on its current state,
+   * `target` is the HTML element the menu is anchored to.
    */
   @Method()
   async toggle(target: HTMLElement) {
@@ -97,9 +98,8 @@ export class PostMenu {
   }
 
   /**
-   * Displays the popover menu, focusing the first menu item.
-   *
-   * @param target - The HTML element relative to which the popover menu should be displayed.
+   * Displays the popover menu, focusing the first menu item,
+   * `target` is the HTML element the menu is anchored to.
    */
   @Method()
   async show(target: HTMLElement) {

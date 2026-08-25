@@ -5,7 +5,7 @@ import { MetaExtended } from '@root/types';
 const meta: MetaExtended = {
   id: 'cd70f48f-6308-4ec8-a8c6-982bd72c855c',
   title: 'Foundations/Layout/Columns',
-  tags: ['package:Styles', 'status:Stable'],
+  tags: ['package:Styles'],
   parameters: {
     badges: [],
   },
@@ -196,9 +196,9 @@ export const OrderExample: Story = {
           Second in DOM
         </div>
         <div
-          class="col${args.ColumnThreeOrder === 'no order class'
-            ? ''
-            : ` ${args.ColumnThreeOrder}`}"
+          class="col${
+            args.ColumnThreeOrder === 'no order class' ? '' : ` ${args.ColumnThreeOrder}`
+          }"
         >
           Third in DOM
         </div>
@@ -242,12 +242,14 @@ export const ColumnBreakExample: Story = {
     <div class="row">
       <div class="col-3">.col-3</div>
       <div class="col-3">.col-3</div>
-      ${args.renderBreakingElement
-        ? html`
-            <!-- Force next columns to break to new line -->
-            <div class="w-full"></div>
-          `
-        : nothing}
+      ${
+        args.renderBreakingElement
+          ? html`
+              <!-- Force next columns to break to new line -->
+              <div class="w-full"></div>
+            `
+          : nothing
+      }
       <div class="col-3">.col-3</div>
       <div class="col-3">.col-3</div>
     </div>

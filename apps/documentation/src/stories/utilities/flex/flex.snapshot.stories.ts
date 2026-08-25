@@ -82,9 +82,11 @@ function getFlex(type: string) {
                 I'm ${args.value === 0 ? 'not' : ''} ${args.type}ing
               </div>
               <div class="p-12">
-                ${args.type === 'grow'
-                  ? 'Content'
-                  : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'}
+                ${
+                  args.type === 'grow'
+                    ? 'Content'
+                    : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+                }
               </div>
             </div>
           `,

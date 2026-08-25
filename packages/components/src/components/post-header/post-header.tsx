@@ -24,7 +24,8 @@ import { throttle } from 'throttle-debounce';
  * @slot post-logo - Should be used together with the `<post-logo>` component.
  * @slot global-nav-primary - Holds search button in the global header.
  * @slot global-nav-secondary - Holds an `<ul>` with meta navigation links.
- * @slot language-menu - Should be used with the `<post-language-switch>` component.
+ * @slot language-menu - Should be used with the `<post-language-menu>` component.
+ * @slot side-nav - Should be used with the `<post-side-navigation>` component.
  * @slot title - Holds the application title.
  * @slot main-nav - Has a default slot because it's only meant to be used in the `<post-header>`.
  * @slot audience - Holds the list of buttons to choose the audience.
@@ -127,7 +128,6 @@ export class PostHeader {
     this.updateLocalHeaderHeight = this.updateLocalHeaderHeight.bind(this);
     this.keyboardHandler = this.keyboardHandler.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
-    this.megadropdownStateHandler = this.megadropdownStateHandler.bind(this);
     this.checkSlottedContent = this.checkSlottedContent.bind(this);
     this.megadropdownStateHandler = this.megadropdownStateHandler.bind(this);
   }
@@ -399,21 +399,30 @@ export class PostHeader {
 
   @Listen('focusin')
   @Listen('focusout')
-  onFocusChange(e: FocusEvent) {
-    const isHeaderFocused =
-      e.target === document.activeElement && this.host.matches(':focus-visible:focus-within');
+  onFocusChange() {
+    const isFocusVisible = this.getDeepActiveElement()?.matches(':focus-visible');
+    const isFocusedInHeader = this.host.matches(':focus-within');
 
-    const mustRemainCollapsedOnDesktop =
-      this.device === 'desktop' && this.host.querySelector('post-mainnavigation:focus-within');
+    const mustRemainCollapsed =
+      this.device === 'desktop'
+        ? !!this.host.querySelector('post-mainnavigation:focus-within')
+        : !!this.host.shadowRoot?.querySelector(':is(.global-header, .burger-menu):focus-within');
 
-    const mustRemainCollapsedOnNonDesktop =
-      this.device !== 'desktop' &&
-      this.host.shadowRoot?.querySelector(':is(.global-header, .burger-menu):focus-within');
-
-    const isHeaderExpanded =
-      isHeaderFocused && !mustRemainCollapsedOnDesktop && !mustRemainCollapsedOnNonDesktop;
+    const isHeaderExpanded = isFocusVisible && isFocusedInHeader && !mustRemainCollapsed;
 
     this.host.toggleAttribute('data-expanded', isHeaderExpanded);
+  }
+
+  // document.activeElement stops at the outermost shadow host (e.g. post-language-menu)
+  // when focus is nested inside its own shadow root, walk down to find the real target
+  private getDeepActiveElement(): Element | null {
+    let activeElement = document.activeElement;
+
+    while (activeElement?.shadowRoot?.activeElement) {
+      activeElement = activeElement.shadowRoot.activeElement;
+    }
+
+    return activeElement;
   }
 
   private renderBurgerMenu() {
@@ -469,8 +478,8 @@ export class PostHeader {
                 )}
                 <slot name="global-nav-primary"></slot>
                 {(onDesktop || !this.hasMainNav) && [
-                  <slot name="global-nav-secondary"></slot>,
-                  <slot name="language-menu"></slot>,
+                  <slot key="global-nav-secondary" name="global-nav-secondary"></slot>,
+                  <slot key="language-menu" name="language-menu"></slot>,
                 ]}
                 <slot name="post-login"></slot>
                 {onTabletAndMobile && this.hasMainNav && (
@@ -496,6 +505,7 @@ export class PostHeader {
             class={{ 'local-header': true, 'megadropdown-open': this.megadropdownOpen }}
           >
             <div class="section">
+              <slot name="side-nav"></slot>
               <slot name="title"></slot>
               {this.hasTitle && <slot name="local-nav"></slot>}
               {onDesktop && <slot name="main-nav"></slot>}

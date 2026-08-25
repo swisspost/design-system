@@ -6,12 +6,12 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '825b65c9-7eaf-4e0a-9e20-5f5ed406726d',
   title: 'Components/Toast',
-  tags: ['package:Styles', 'status:InProgress'],
+  tags: ['package:Styles'],
   parameters: {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=85-321',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-V2?node-id=33070-74229',
     },
   },
   args: {
@@ -211,7 +211,7 @@ const meta: MetaComponent = {
       },
     },
   },
-  render: render,
+  render: Render,
   decorators: [
     (story, { args }) => {
       const [_, updateArgs] = useArgs();
@@ -309,7 +309,7 @@ function getDismissButton(args: Args, isFixed: boolean) {
   return args.dismissible || isFixed ? html` <post-closebutton>Close</post-closebutton> ` : null;
 }
 
-function render(args: Args, context: StoryContext) {
+function Render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
   updateAlignments(args, updateArgs);

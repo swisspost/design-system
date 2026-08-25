@@ -34,26 +34,30 @@ export class MigrationV56Component extends LitElement {
           <li>
             <h3>Package Update 🩺</h3>
             <ol>
-              ${this.angular
-                ? html`
-                    <li>
-                      <p>
-                        Use
-                        <a href="https://update.angular.io/">Angular Update Guide</a>
-                        to update Angular to version 16
-                      </p>
-                    </li>
-                  `
-                : nothing}
+              ${
+                this.angular
+                  ? html`
+                      <li>
+                        <p>
+                          Use
+                          <a href="https://update.angular.io/">Angular Update Guide</a>
+                          to update Angular to version 16
+                        </p>
+                      </li>
+                    `
+                  : nothing
+              }
 
               <li>
                 <div>
                   Update Bootstrap to version
                   5.3.x${this.angular ? html` and ng-bootstrap to version 15.x.x` : nothing}:
                   <code-block
-                    code=${this.angular
-                      ? 'npm install bootstrap@5.3 @ng-bootstrap/ng-bootstrap@15'
-                      : 'npm install bootstrap@5.3'}
+                    code=${
+                      this.angular
+                        ? 'npm install bootstrap@5.3 @ng-bootstrap/ng-bootstrap@15'
+                        : 'npm install bootstrap@5.3'
+                    }
                   ></code-block>
                 </div>
 
@@ -65,17 +69,19 @@ export class MigrationV56Component extends LitElement {
                     rel="noopener noreferrer"
                     >Bootstrap 5.3.x migration guide</a
                   >
-                  ${this.angular
-                    ? html`
-                        and
-                        <a
-                          href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1500-2023-05-25"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          >ng-bootstrap 15.x.x changelog</a
-                        >
-                      `
-                    : nothing}
+                  ${
+                    this.angular
+                      ? html`
+                          and
+                          <a
+                            href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1500-2023-05-25"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >ng-bootstrap 15.x.x changelog</a
+                          >
+                        `
+                      : nothing
+                  }
                   for more details.
                 </div>
               </li>
@@ -87,39 +93,43 @@ export class MigrationV56Component extends LitElement {
               </li>
             </ol>
           </li>
-          ${this.angular
-            ? html`
-                <li>
-                  <h3>Automatic Migration ⚙️</h3>
-                  <p>
-                    For Angular application, you can take advantage of our migration schematics.
-                  </p>
-                  <ol>
-                    <li>Commit all the changes you have made so far</li>
-                    <li>Make sure you are running on a node version >= 16</li>
-                    <li>
-                      You should now be able to run the following command to apply all automatic
-                      migrations to your application:
-                      <code-block
-                        code=${`npm install @swisspost/design-system-migrations
+          ${
+            this.angular
+              ? html`
+                  <li>
+                    <h3>Automatic Migration ⚙️</h3>
+                    <p>
+                      For Angular application, you can take advantage of our migration schematics.
+                    </p>
+                    <ol>
+                      <li>Commit all the changes you have made so far</li>
+                      <li>Make sure you are running on a node version >= 16</li>
+                      <li>
+                        You should now be able to run the following command to apply all automatic
+                        migrations to your application:
+                        <code-block
+                          code=${`npm install @swisspost/design-system-migrations
 npx ng update @swisspost/design-system-migrations --from=5 --to=6 --migrate-only --allow-dirty
 npm uninstall @swisspost/design-system-migrations`}
-                      ></code-block>
-                    </li>
-                  </ol>
-                </li>
-              `
-            : nothing}
+                        ></code-block>
+                      </li>
+                    </ol>
+                  </li>
+                `
+              : nothing
+          }
           <li>
             <h3>Component Migration 🤓</h3>
-            ${this.angular
-              ? html`
-                  <p class="info">
-                    Changes flagged with the ⚙️ symbol should be automatically migrated with our
-                    migration tool.
-                  </p>
-                `
-              : nothing}
+            ${
+              this.angular
+                ? html`
+                    <p class="info">
+                      Changes flagged with the ⚙️ symbol should be automatically migrated with our
+                      migration tool.
+                    </p>
+                  `
+                : nothing
+            }
             <h4>Accessibility</h4>
             <ul>
               <li>
@@ -149,33 +159,35 @@ npm uninstall @swisspost/design-system-migrations`}
             </ul>
             <h4>Deprecations</h4>
             <ul>
-              ${this.angular
-                ? html`
-                    <li>
-                      <h5>
-                        ngbButton ⚙️
-                        <span class="tag tag-sm tag-error">breaking</span>
-                      </h5>
-                      <p>
-                        The
-                        <em>ngbButton</em>
-                        and
-                        <em>ngbButtonLabel</em>
-                        directives are no longer a part of ng-bootstrap.
-                        <br />
-                        The markup and styles have changed and everything now works with CSS
-                        Bootstrap classes only.
-                      </p>
-                      <p class="info">
-                        See the
-                        <a href="/?path=/docs/021d61aa-e039-4858-b4b9-b86a3e772811--docs"
-                          >Button component documentation</a
-                        >
-                        for more detailed information.
-                      </p>
-                    </li>
-                  `
-                : nothing}
+              ${
+                this.angular
+                  ? html`
+                      <li>
+                        <h5>
+                          ngbButton ⚙️
+                          <span class="tag tag-sm tag-error">breaking</span>
+                        </h5>
+                        <p>
+                          The
+                          <em>ngbButton</em>
+                          and
+                          <em>ngbButtonLabel</em>
+                          directives are no longer a part of ng-bootstrap.
+                          <br />
+                          The markup and styles have changed and everything now works with CSS
+                          Bootstrap classes only.
+                        </p>
+                        <p class="info">
+                          See the
+                          <a href="/?path=/docs/021d61aa-e039-4858-b4b9-b86a3e772811--docs"
+                            >Button component documentation</a
+                          >
+                          for more detailed information.
+                        </p>
+                      </li>
+                    `
+                  : nothing
+              }
               <li>
                 <h5>
                   Removed variables

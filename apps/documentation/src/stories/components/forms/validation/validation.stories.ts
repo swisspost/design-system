@@ -51,19 +51,23 @@ function renderFeedback(
   validationState: string,
 ) {
   return html`
-    ${validFeedbackId && validationState === 'is-valid'
-      ? html`<p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>`
-      : nothing}
-    ${invalidFeedbackId && validationState === 'is-invalid'
-      ? html`<p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>`
-      : nothing}
+    ${
+      validFeedbackId && validationState === 'is-valid'
+        ? html`<p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>`
+        : nothing
+    }
+    ${
+      invalidFeedbackId && validationState === 'is-invalid'
+        ? html`<p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>`
+        : nothing
+    }
   `;
 }
 
 const meta: MetaComponent = {
   id: '1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472',
   title: 'Components/Form Validation',
-  tags: ['package:Styles', 'status:Stable'],
+  tags: ['package:Styles'],
   parameters: {
     badges: [],
     design: {

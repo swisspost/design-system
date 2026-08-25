@@ -1,7 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as TextareaStories from './textarea.stories';
 import StylesPackageImport from '@/shared/styles-package-import';
-import PackageTag from '@/shared/package-tag';
+import StoryTags from '@/shared/story-tags';
 
 <Meta of={TextareaStories} />
 
@@ -12,13 +12,15 @@ import PackageTag from '@/shared/package-tag';
 
 </div>
 
-<PackageTag meta={meta} />
+<StoryTags meta={meta} />
 
 <div className="lead">
-  Customize the native `<textarea>` with CSS that changes the element’s initial appearance.
+  The text area component allows the user to enter more content than a regular
+  [input](/?path=/docs/2df77c32-5e33-402e-bd2e-54d54271ce19--docs) would provide, spanning
+  over more than one line of text.
 </div>
 
-Custom textarea elements need only the class `.form-control` to trigger the custom styles.
+Our component customizes the native `<textarea>` with CSS. Add the `.form-control` class to trigger the custom styles.
 
 <Canvas sourceState="shown" of={TextareaStories.Default} />
 <div className="hide-col-default">
@@ -37,3 +39,9 @@ Wrap a pair of `<textarea>` and `<label>` elements in a `.form-floating` contain
 But note that the `<textarea>` element must come first, so we can ensure the correct styles.
 
 <Canvas of={TextareaStories.FloatingLabel} />
+
+### Small textarea
+
+For a more compact version of the textarea, add the `.form-control-sm` class to it. This variant only works with non-floating labels.
+
+<Canvas of={TextareaStories.Small} />

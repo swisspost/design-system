@@ -14,7 +14,7 @@ export const CustomIconSignalMapping: Record<string, string> = {
 const meta: MetaComponent = {
   id: '1b1ea384-7421-4064-ad34-e3f48a36b39f',
   title: 'Components/Tag',
-  tags: ['package:Styles', 'status:Stable'],
+  tags: ['package:Styles'],
   render: renderTag,
   parameters: {
     design: {

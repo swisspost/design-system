@@ -2,7 +2,7 @@ import { Required, Type } from '@/utils';
 import { version } from '@root/package.json';
 import { Build, Component, Element, h, Host, Prop } from '@stencil/core';
 
-const TRIGGER_EVENTS = ['pointerenter', 'pointerleave', 'focusin', 'focusout', 'long-press'];
+const TRIGGER_EVENTS = ['pointerenter', 'pointerleave', 'focusin', 'focusout'];
 let isFocusable: ((element: HTMLElement) => boolean) | undefined;
 
 /**
@@ -59,8 +59,6 @@ export class PostTooltipTrigger {
 
   componentWillLoad() {
     if (Build.isBrowser) {
-      // Fire-and-forget: long-press-event registers a global event listener on import.
-      import('long-press-event');
       // Load ally.js lazily; setupTrigger uses optional chaining to handle the
       // case where it hasn't loaded yet (falls back to adding tabindex="0").
       import('ally.js/is/focusable').then(m => {

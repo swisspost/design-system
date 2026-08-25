@@ -185,11 +185,12 @@ export class PostPopovercontainer {
 
   /**
    * Programmatically display the popovercontainer
-   * @param target A focusable element inside the trigger component that controls the popover
+   * @param target The element that invokes the popover and to which it is visually anchored.
    */
   @Method()
   async show(target: HTMLElement) {
-    if (this.toggleTimeoutId) return;
+    if (this.toggleTimeoutId || !target) return;
+
     this.eventTarget = target;
     this.calculatePosition();
     this.host.showPopover();
@@ -209,11 +210,16 @@ export class PostPopovercontainer {
 
   /**
    * Toggle popovercontainer display
-   * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
+   * @param target The element that invokes the popover and to which it is visually anchored.
    * @param force Pass true to always show or false to always hide
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
+    const isOpen = this.host.matches(':where(:popover-open, .popover-open)');
+    const willOpen = force === true || (force === undefined && !isOpen);
+
+    if (willOpen && !target) return isOpen;
+
     this.eventTarget = target;
 
     // Prevent instant double toggle
@@ -420,12 +426,10 @@ export class PostPopovercontainer {
       // flip should come before shift. For non-aligned, shift before flip.
       ...(isAligned ? [flipMiddleware, shiftMiddleware] : [shiftMiddleware, flipMiddleware]),
       size({
-        apply({ availableWidth, availableHeight, elements }) {
-          elements.floating.style.maxWidth = `${availableWidth - gap * 2}px`;
-          elements.floating.style.setProperty(
-            '--post-popovercontainer-available-height',
-            `${availableHeight - gap * 2}px`,
-          );
+        apply({ availableWidth, elements }) {
+          Object.assign(elements.floating.style, {
+            maxWidth: `${availableWidth - gap * 2}px`,
+          });
         },
       }),
     ];
@@ -533,9 +537,7 @@ export class PostPopovercontainer {
           )}
           {/* exposed via ::part for consuming components to activate as a bleed mask */}
           <span part="post-popovercontainer-border-mask"></span>
-          <div class="popover-scroll">
-            <slot></slot>
-          </div>
+          <slot></slot>
         </div>
       </Host>
     );

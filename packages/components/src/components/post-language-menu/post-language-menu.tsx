@@ -1,6 +1,6 @@
 import { EventFrom, nanoid, OneOf, Pattern, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { Component, Element, h, Host, Listen, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, EventEmitter, h, Host, Event, Listen, Prop, State, Watch } from '@stencil/core';
 import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
 
 @Component({
@@ -19,6 +19,8 @@ export class PostLanguageMenu {
   }
 
   @Element() host: HTMLPostLanguageMenuElement;
+  
+  @Event() postChange: EventEmitter<string>;
 
   /**
    * A title for the list of language options
@@ -29,11 +31,12 @@ export class PostLanguageMenu {
   textChangeLanguage!: string;
 
   /**
-   * An accessible description text for the list of language options. The `#name` placeholder is dynamic and will be replaced with the active language name.
+   * An accessible description text for the list of language options.
+   * The `{name}` placeholder is dynamic and will be replaced with the active language name.
    */
   @Prop({ reflect: true })
   @Required()
-  @Pattern(/#name\b/)
+  @Pattern(/(\{name\}|#name)/)
   textCurrentLanguage!: string;
 
   /**
@@ -61,9 +64,11 @@ export class PostLanguageMenu {
         `post-language-menu-item[code="${this.activeLang}"]`,
       );
 
-    return activeLanguage
-      ? this.textCurrentLanguage.replaceAll('#name', activeLanguage.name)
-      : undefined;
+    if (!activeLanguage) return undefined;
+
+    return this.textCurrentLanguage
+      .replaceAll('{name}', activeLanguage.name)
+      .replaceAll('#name', activeLanguage.name);
   }
 
   componentDidLoad() {

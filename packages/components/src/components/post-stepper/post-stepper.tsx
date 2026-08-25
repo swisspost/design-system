@@ -123,6 +123,9 @@ export class PostStepper {
     this.updateActiveStepNumber();
 
     this.stepItems.forEach((el, i) => {
+      // Set CSS custom property for step number (iOS compatible fix)
+      el.style.setProperty('--step-number', `"${i + 1}"`);
+
       if (this.selectedIndex === i) {
         this.mobileActiveStepName = el.innerHTML;
       }

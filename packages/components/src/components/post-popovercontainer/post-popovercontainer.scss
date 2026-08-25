@@ -45,11 +45,6 @@
     }
   }
 
-  .popover-scroll {
-    max-height: var(--post-popovercontainer-available-height, none);
-    overflow-y: auto;
-  }
-
   [part='post-popovercontainer-border-mask'] {
     display: none;
     position: absolute;

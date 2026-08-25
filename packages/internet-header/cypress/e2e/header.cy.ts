@@ -8,7 +8,7 @@ const language = 'de';
 
 describe('header', () => {
   describe('default', () => {
-    const headerConfig = testConfiguration[language].header;
+    const headerConfig = testConfiguration.header;
     beforeEach(() => {
       prepare(HEADER, 'Default');
       cy.changeArg('language', language);
@@ -47,13 +47,6 @@ describe('header', () => {
       );
     });
 
-    it('should correctly show the login link', () => {
-      cy.get('[slot="post-login"]')
-        .invoke('prop', 'localName')
-        .should('eq', 'swisspost-internet-login-widget');
-      cy.get('[slot="post-login"]').shadow().find('[slot="login-link"]').should('be.visible');
-    });
-
     context('main navigation', () => {
       const mainNavigationConfig = headerConfig.localHeader.mainNavigation;
 
@@ -90,10 +83,27 @@ describe('header', () => {
       });
     });
 
+    context('empty main navigation', () => {
+      beforeEach(() => {
+        const emptyMainNavConfig = copyConfig();
+        emptyMainNavConfig!.header.localHeader.mainNavigation = [];
+        delete emptyMainNavConfig!.header.localHeader.title;
+
+        prepare(HEADER, 'Default', {
+          config: emptyMainNavConfig,
+        });
+        cy.changeArg('language', language);
+      });
+
+      it('should not render main navigation when mainNavigation is an empty array', () => {
+        cy.get('[slot="main-nav"]').should('not.exist');
+      });
+    });
+
     context('active route', () => {
       const activeRouteConfig = copyConfig();
-      activeRouteConfig[language]!.header.globalHeader.audience![0].url = '/audience-private';
-      activeRouteConfig[language]!.header.globalHeader.secondaryNavigation![0].url = '/jobs';
+      activeRouteConfig!.header.globalHeader.audience![0].url = '/audience-private';
+      activeRouteConfig!.header.globalHeader.secondaryNavigation![0].url = '/jobs';
 
       beforeEach(() => {
         prepare(HEADER, 'Default', {
@@ -143,8 +153,8 @@ describe('header', () => {
 
       it('should set only one active link when URL exists in multiple header areas', () => {
         const conflictConfig = copyConfig();
-        conflictConfig[language]!.header.globalHeader.audience![0].url = '/letters';
-        conflictConfig[language]!.header.globalHeader.secondaryNavigation![0].url = '/jobs';
+        conflictConfig!.header.globalHeader.audience![0].url = '/letters';
+        conflictConfig!.header.globalHeader.secondaryNavigation![0].url = '/jobs';
 
         prepare(HEADER, 'Default', {
           config: conflictConfig,
@@ -160,8 +170,63 @@ describe('header', () => {
     });
   });
 
+  describe('post login', () => {
+    const postLoginConfig = testConfiguration.header.globalHeader.postLogin;
+
+    context('logged out', () => {
+      beforeEach(() => {
+        prepare(HEADER, 'Default');
+        cy.changeArg('language', language);
+      });
+
+      it('should show the login link', () => {
+        cy.get('[slot="post-login"]')
+          .should('be.visible')
+          .invoke('prop', 'localName')
+          .should('eq', 'a');
+      });
+
+      it('should not show the user menu', () => {
+        cy.get('[slot="post-login"] post-menu').should('not.exist');
+      });
+    });
+
+    context('logged in', () => {
+      beforeEach(() => {
+        prepare(HEADER, 'Default', { loggedIn: true });
+        cy.changeArg('language', language);
+      });
+
+      it('should not show the login link', () => {
+        cy.get('[slot="post-login"]').invoke('prop', 'localName').should('not.eq', 'a');
+      });
+
+      it('should show the user menu trigger with an avatar', () => {
+        cy.get('[slot="post-login"] post-menu-trigger').should('be.visible');
+        cy.get('[slot="post-login"] post-avatar').should('be.visible');
+      });
+
+      it('should show the user menu with the correct user links', () => {
+        // accountSwitch/companySwitch depend on the mocked user's permissions
+        // (auth.json) — only userProfile, settings, userLinks, and logoutLink
+        // are counted here.
+        const expectedCount =
+          (postLoginConfig.userProfile ? 1 : 0) +
+          (postLoginConfig.settings ? 1 : 0) +
+          (postLoginConfig.userLinks?.length ?? 0) +
+          (postLoginConfig.logoutLink ? 1 : 0);
+
+        cy.get('[slot="post-login"] post-menu-trigger button').click();
+        cy.get('[slot="post-login"] post-menu')
+          .find('post-menu-item')
+          .should('be.visible')
+          .should('have.length', expectedCount);
+      });
+    });
+  });
+
   describe('microsite', () => {
-    const headerConfig = micrositeConfiguration[language].header;
+    const headerConfig = micrositeConfiguration.header;
 
     beforeEach(() => {
       prepare(HEADER, 'Default', {
@@ -194,10 +259,26 @@ describe('header', () => {
           cy.get('@nav-items').eq(index).find('a').should('exist');
         } else {
           cy.get('@nav-items').eq(index).find('post-menu-trigger').should('exist');
+
+          // accountSwitch/companySwitch/logoutLink each render as their own
+          // menu item, gated by the item's own user permissions — not part
+          // of options.
+          const isB2C = item.user.userType === 'B2C';
+          const isB2B = item.user.userType === 'B2B';
+          const canChangeUserAndProfile =
+            (isB2C || isB2B) && item.user.changeUserAndProfile === 'userAndProfile';
+          const canChangeCompany = isB2B && item.user.canChangeCompany && item.user.company;
+
+          const expectedCount =
+            item.options.length +
+            (item.accountSwitch && canChangeUserAndProfile ? 1 : 0) +
+            (item.companySwitch && canChangeCompany ? 1 : 0) +
+            (item.logoutLink ? 1 : 0);
+
           cy.get('@nav-items')
             .eq(index)
             .find('post-menu-item')
-            .should('have.length', item.options.length);
+            .should('have.length', expectedCount);
         }
       });
     });

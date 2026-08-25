@@ -34,9 +34,7 @@ export class CodeBlock extends LitElement {
       <div class="wrapper">
         <button @click=${this.handleCopy}>${this.copied ? 'Copied' : 'Copy'}</button>
 
-        <pre><code>
-  ${this.code}
-        </code></pre>
+        <pre><code>${this.code}</code></pre>
       </div>
     `;
   }

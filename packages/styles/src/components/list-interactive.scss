@@ -74,6 +74,7 @@ tokens.$default-map: components.$post-list;
 }
 
 .list-interactive-switch {
+  width: unset; // to override the width: fit-content applied from form-switch
   justify-content: space-between;
   margin-bottom: 0;
   flex-wrap: nowrap;
