@@ -188,7 +188,6 @@ dialog {
     z-index: 1;
     background-color: inherit;
     font-size: tokens.get('dialog-heading-font-size', components.$post-dialog);
-    line-height: tokens.get('utility-line-height-sm', utilities.$post-typo);
     font-weight: tokens.get('dialog-heading-font-weight', components.$post-dialog);
   }
 
