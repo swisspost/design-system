@@ -173,7 +173,7 @@ dialog {
     display: block;
     grid-area: icon;
     align-self: start;
-    margin-block-start: tokens.get('utility-gap-2', utilities.$post-spacing);
+    margin-block-start: tokens.get('dialog-icon-padding-block-start', components.$post-dialog);
 
     width: tokens.get('dialog-icon-size', components.$post-dialog);
     height: tokens.get('dialog-icon-size', components.$post-dialog);
