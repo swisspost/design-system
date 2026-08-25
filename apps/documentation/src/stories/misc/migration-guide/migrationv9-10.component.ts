@@ -1469,11 +1469,6 @@ export class MyComponent {
                                 Request a configuration migration to the v10 format
                                 <span class="info">
                                   <p>
-                                    The v10 Internet Header uses a new Portal configuration format.
-                                    Your existing v9 configuration is incompatible and will cause
-                                    runtime errors after upgrading.
-                                  </p>
-                                  <p>
                                     Contact the Post Portal Team at
                                     <a href="mailto:dm-tec@post.ch">dm-tec@post.ch</a> to request a
                                     configuration migration. Provide your
