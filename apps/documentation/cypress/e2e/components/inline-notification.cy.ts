@@ -13,6 +13,7 @@ describe('Inline Notification', () => {
     });
 
     it('renders all variants with and without title', () => {
+      cy.get('.inline-notification').should('have.length.at.least', 1);
       cy.percySnapshot('Inline Notification - All Variants');
     });
   });

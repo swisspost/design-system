@@ -1,7 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as InlineNotificationStories from './inline-notification.stories';
 import StylesPackageImport from '@/shared/styles-package-import';
-import PackageTag from '@/shared/package-tag';
+import StoryTags from '@/shared/story-tags';
 
 <Meta of={InlineNotificationStories} />
 
@@ -12,7 +12,7 @@ import PackageTag from '@/shared/package-tag';
 
 </div>
 
-<PackageTag meta={meta} />
+<StoryTags meta={meta} />
 
 <div className="lead">
   Inline notifications show up in task flows, to communicate the users the status of an action or system. It can also be used as a persistent element on the page to communicate information which needs higher attention than regular text.
