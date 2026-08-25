@@ -45,5 +45,5 @@ export function findClosableTarget(start: Element): ClosableTarget | null {
   );
   if (!el) return null;
   const match = CLOSABLE_TARGETS.find(t => t.predicate(el))!;
-  return { element: el, close: match.close };
+  return { element: el, close: () => match.close(el) };
 }
