@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="../../node_modules/@swisspost/design-system-styles/post-default.css"
+      rel="stylesheet"
+    />
+    <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
+    <style>
+      .popover-body {
+        width: 128px;
+        height: 256px;
+      }
+
+      .spacer {
+        height: 1024px;
+      }
+    </style>
+  </head>
+  <body>
+    <post-header text-menu="Menu">
+      <post-logo slot="post-logo" url="/">Homepage</post-logo>
+
+      <div slot="global-nav-primary">
+        <post-popover-trigger id="popover-header-trigger">
+          <button type="button" class="btn btn-secondary">Popover Trigger</button>
+          <post-popover text-close="Close" id="popover-header">
+            <div class="popover-body" id="popover-header-content"></div>
+          </post-popover>
+        </post-popover-trigger>
+      </div>
+    </post-header>
+
+    <main>
+      <post-popover-trigger id="popover-page-top-trigger">
+        <button type="button" class="btn btn-secondary">Popover Trigger</button>
+        <post-popover text-close="Close" id="popover-page-top">
+          <div class="popover-body" id="popover-page-top-content"></div>
+        </post-popover>
+      </post-popover-trigger>
+
+      <div class="spacer"></div>
+
+      <post-popover-trigger id="popover-page-bottom-trigger">
+        <button type="button" class="btn btn-secondary">Popover Trigger</button>
+        <post-popover text-close="Close" id="popover-page-bottom">
+          <div class="popover-body" id="popover-page-bottom-content"></div>
+        </post-popover>
+      </post-popover-trigger>
+
+      <div class="spacer"></div>
+    </main>
+  </body>
+</html>
