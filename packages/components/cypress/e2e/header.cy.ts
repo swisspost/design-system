@@ -452,7 +452,6 @@ describe('header', () => {
       const localNavNextToMainNav = 'slot[name="main-nav"] + slot[name="local-nav"]';
 
       beforeEach(() => {
-        cy.viewport(VIEWPORTS.desktop);
         cy.getComponent('header', HEADER_ID, 'microsite');
         cy.get('@header').find('[slot="title"]').as('title');
       });

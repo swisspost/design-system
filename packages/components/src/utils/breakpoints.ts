@@ -35,7 +35,9 @@ class Breakpoint {
   private updateCurrentBreakpoint = (options: { emitEvents: boolean } = { emitEvents: true }) => {
     const previousBreakpoint = this.currentBreakpoint;
     const newBreakpoint = this.breakpoints.find(breakpoint => {
-      return breakpoint.minWidth <= document.documentElement.clientWidth;
+      return globalThis.matchMedia
+        ? globalThis.matchMedia(`(min-width: ${breakpoint.minWidth}px)`).matches
+        : breakpoint.minWidth <= document.documentElement.clientWidth;
     });
 
     if (!newBreakpoint) return;
