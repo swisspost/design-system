@@ -1,8 +1,6 @@
-import { renderJobControls } from '../renderers';
 import { Args } from '@storybook/web-components-vite';
 import { nothing } from 'lit';
 import { getSubComponentRenderers, SubComponentRenderers } from './get-sub-component-renderers';
-import { hasGlobalLogin } from './has-global-login';
 import { isApplicationHeader } from './is-application-header';
 
 export function getSlottedContent(args: Args, customRenderers: SubComponentRenderers = {}) {
@@ -16,7 +14,8 @@ export function getSlottedContent(args: Args, customRenderers: SubComponentRende
     renderLoginLink,
     renderTitle,
     renderSideNavTrigger,
-    renderMicrositeControls,
+    renderLocalNav,
+    renderJobControls,
     renderMainnavigation,
   } = getSubComponentRenderers(customRenderers);
 
@@ -32,17 +31,16 @@ export function getSlottedContent(args: Args, customRenderers: SubComponentRende
     args.languageMenu && !isApplicationHeader(args) ? renderLanguageMenu() : nothing;
 
   const login = args.isLoggedIn ? renderUserMenu() : renderLoginLink();
-  const globalLogin = hasGlobalLogin(args) ? login : nothing;
+  const globalLogin = args.postLogin && !args.jobs ? login : nothing;
 
   const title = args.title !== '' ? renderTitle(args) : nothing;
 
   const sideNavTrigger = args.sideNav && args.title !== '' ? renderSideNavTrigger() : nothing;
 
-  const micrositeControls = args.localNav && !args.jobs ? renderMicrositeControls(args) : nothing;
+  const localNav = args.localNav ? renderLocalNav(args) : nothing;
+  const localControls = args.jobs ? renderJobControls() : localNav;
 
   const mainNavSlot = args.mainNav ? renderMainnavigation() : nothing;
-
-  const jobControls = args.jobs ? renderJobControls() : nothing;
 
   return [
     logo,
@@ -53,8 +51,7 @@ export function getSlottedContent(args: Args, customRenderers: SubComponentRende
     globalLogin,
     title,
     sideNavTrigger,
-    micrositeControls,
+    localControls,
     mainNavSlot,
-    jobControls,
   ];
 }
