@@ -62,9 +62,7 @@ tokens.$default-map: components.$post-inline-notification;
     font-weight: tokens.get('notification-inline-title-font-weight');
   }
 
-  p {
+  > * {
     margin: 0;
-    padding: 0;
-    min-width: 0;
   }
 }
