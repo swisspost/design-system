@@ -2,6 +2,8 @@ import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-compo
 import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import bannerMeta, { Dismissible as BannerDismissible } from '../banner/banner.stories';
+import dialogMeta, { Default as DialogDefault } from '../dialog/dialog.stories';
 import './button-close.styles.scss';
 
 const meta: MetaComponent = {
@@ -65,89 +67,19 @@ export const AutomaticPositioning: Story = {
   },
 };
 
-export const ClosePostPopoverContainer: Story = {
-  render: () => html`
-    <button
-      class="btn btn-secondary"
-      onclick="document.getElementById('bc-popovercontainer').show(this)"
-    >
-      Open popovercontainer
-    </button>
-    <post-popovercontainer id="bc-popovercontainer">
-      <div class="position-relative p-24">
-        <p>This is a <code>post-popovercontainer</code>. Click x to close no wiring needed.</p>
-        <post-closebutton>Close</post-closebutton>
-      </div>
-    </post-popovercontainer>
-  `,
-};
-
-export const ClosePostPopover: Story = {
-  render: () => html`
-    <post-popover-trigger for="bc-popover">
-      <button class="btn btn-secondary">Open popover</button>
-    </post-popover-trigger>
-    <post-popover
-      id="bc-popover"
-      class="palette palette-accent"
-      text-close="Close"
-      placement="bottom"
-      ?arrow=${true}
-    >
-      <p class="mb-0">
-        A <code>post-popover</code> with its built-in close button rendered in shadow DOM. Click x
-        to close no wiring needed.
-      </p>
-    </post-popover>
-  `,
-};
-
 export const CloseDialog: Story = {
-  render: () => html`
-    <button class="btn btn-secondary" onclick="this.nextElementSibling.showModal()">
-      Open dialog
-    </button>
-    <dialog class="post-dialog" aria-labelledby="bc-dialog-title" aria-describedby="bc-dialog-desc">
-      <form method="dialog" class="dialog-grid">
-        <h3 class="dialog-header" id="bc-dialog-title">Dialog</h3>
-        <div class="dialog-body">
-          <p id="bc-dialog-desc">Click x to close no event listener needed.</p>
-        </div>
-        <post-closebutton>Close</post-closebutton>
-      </form>
-    </dialog>
-  `,
+  ...DialogDefault,
+  args: {
+    ...dialogMeta.args,
+  },
+  decorators: dialogMeta.decorators,
 };
 
 export const CloseBanner: Story = {
-  render: () => html`
-    <post-banner>
-      <post-closebutton slot="close-button">Close</post-closebutton>
-      <p>This banner can be dismissed. The close button in the slot needs no wiring.</p>
-    </post-banner>
-  `,
-};
-
-export const CloseCollapsible: Story = {
-  render: () => html`
-    <post-collapsible-trigger for="bc-collapsible">
-      <button class="btn btn-secondary mb-16">Toggle collapsible</button>
-    </post-collapsible-trigger>
-    <post-collapsible id="bc-collapsible">
-      <p>Collapsible content. Click x to collapse no event listener needed.</p>
-      <post-closebutton>Close</post-closebutton>
-    </post-collapsible>
-  `,
-};
-
-export const CloseAccordionItem: Story = {
-  render: () => html`
-    <post-accordion heading-level="3">
-      <post-accordion-item>
-        <span slot="header">Accordion item</span>
-        <p>Accordion content. Click x to collapse this item no event listener needed.</p>
-        <post-closebutton>Close</post-closebutton>
-      </post-accordion-item>
-    </post-accordion>
-  `,
+  ...BannerDismissible,
+  args: {
+    ...bannerMeta.args,
+    ...BannerDismissible.args,
+  },
+  render: bannerMeta.render,
 };
