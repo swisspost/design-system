@@ -11,20 +11,27 @@ const CLIPPING_RECT_CACHE = Symbol('Clipping Rect Cache');
 
 type PlatformWithCache = Platform & { [CLIPPING_RECT_CACHE]: Map<Element, Rect> };
 
-/** A custom floating UI platform that applies safe areas to clipping rectangles. */
+/**
+ * A custom floating UI platform that restricts clipping rectangles to the safe area.
+ */
 const safeAreaPlatform = { ...domPlatform, getClippingRect } as PlatformWithCache;
 
+/**
+ * Computes the clipping rectangle of an element while accounting for the safe area.
+ */
 async function getClippingRect(
   this: PlatformWithCache,
   ...args: Parameters<Platform['getClippingRect']>
 ) {
   const element = args[0].element;
 
-  // Check whether the clipping rectangle for the specified element has already been computed in this pass.
+  // Check whether the clipping rectangle of the given element has already been computed during
+  // this pass.
   const hit = this[CLIPPING_RECT_CACHE].get(element);
   if (hit) return hit;
 
-  // Use the Floating UI DOM-Platform to compute the clipping rectangle, and then apply safe areas to it.
+  // Compute the clipping rectangle with the Floating UI DOM platform, then restrict it to the safe
+  // area.
   const clippingRect = await domPlatform.getClippingRect.apply(this, args);
   applySafeArea(clippingRect, element);
 
@@ -32,6 +39,12 @@ async function getClippingRect(
   return clippingRect;
 }
 
+/**
+ * Restricts a clipping rectangle to the safe area.
+ *
+ * The safe area only applies to elements that the header can actually cover, which excludes
+ * elements without a header on their page, elements on a top layer and elements within the header.
+ */
 function applySafeArea(clippingRect: Rect, element: Element) {
   const headerElement = element.ownerDocument.querySelector('post-header');
   if (headerElement === null) return;
@@ -57,7 +70,10 @@ function applySafeArea(clippingRect: Rect, element: Element) {
 
 /**
  * Computes the coordinates that will position the `floating` element next to a given `reference`
- * element while accounting for safe areas.
+ * element while accounting for the safe area.
+ *
+ * The safe area is the part of the viewport that the header does not cover. Restricting the
+ * clipping rectangles to it makes floating elements behave as if they were clipped by the header.
  */
 export const computePositionWithSafeArea: typeof computePosition = (
   reference,
