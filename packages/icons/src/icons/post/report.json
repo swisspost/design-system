@@ -29288,7 +29288,11 @@
         "name": "2799.svg",
         "basename": "2799",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T12:13:43.000Z",
       "modifiedAt": "2026-08-08T12:05:06.309Z"
@@ -29312,7 +29316,11 @@
         "name": "2800.svg",
         "basename": "2800",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T12:19:53.000Z",
       "modifiedAt": "2026-08-08T12:05:06.309Z"
@@ -29340,7 +29348,11 @@
         "name": "2801.svg",
         "basename": "2801",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T12:23:11.000Z",
       "modifiedAt": "2026-08-08T12:05:06.309Z"
@@ -42574,6 +42586,6 @@
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2026-08-10T08:34:44.487Z",
-  "version": "10.1.0"
+  "created": "2026-08-23T01:59:47.674Z",
+  "version": "10.3.0"
 }
