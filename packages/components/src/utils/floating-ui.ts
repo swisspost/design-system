@@ -22,7 +22,7 @@ const safeAreaPlatform = { ...domPlatform, getClippingRect } as PlatformWithCach
 async function getClippingRect(
   this: PlatformWithCache,
   ...args: Parameters<Platform['getClippingRect']>
-) {
+): Promise<ReturnType<Platform['getClippingRect']>> {
   const element = args[0].element;
 
   // Check whether the clipping rectangle of the given element has already been computed during
@@ -40,7 +40,7 @@ async function getClippingRect(
 }
 
 /**
- * Restricts a clipping rectangle to the safe area.
+ * Restricts the `clippingRect` computed for `element` to the safe area, modifying it in place.
  *
  * The safe area only applies to elements that the header can actually cover, which excludes
  * elements without a header on their page, elements on a top layer and elements within the header.
