@@ -54,7 +54,7 @@ post-header {
   > :is([slot='global-nav-primary'], [slot='post-login']) {
     @include media.only(mobile) {
       @include interactive-elements {
-        padding: 0.625rem;
+        padding: 10px;
       }
     }
   }
@@ -66,12 +66,6 @@ post-header {
     &:where(ul) {
       align-items: center;
     }
-
-    @include media.only(mobile) {
-      @include interactive-elements {
-        padding: 0.25rem 0.75rem;
-      }
-    }
   }
 
   // audience
@@ -79,16 +73,16 @@ post-header {
     &:where(ul) {
       @include media.only(tablet) {
         flex-direction: row;
-        margin-block: 1rem;
+        margin-block: 16px;
       }
 
       @include media.only(mobile) {
-        gap: 0.5rem;
+        gap: 8px;
       }
     }
 
     @include interactive-elements {
-      padding-inline: 1rem;
+      padding-inline: 16px;
     }
   }
 
@@ -138,13 +132,13 @@ post-header {
 
       @include media.only(mobile) {
         @include nav-item-icon-only;
-        padding: 0.625rem;
+        padding: 10px;
       }
     }
   }
 
   .local-login {
-    margin-block: -0.25rem;
+    margin-block: -4px;
   }
 
   // language menu
