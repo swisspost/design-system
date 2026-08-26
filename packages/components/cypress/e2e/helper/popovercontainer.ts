@@ -22,18 +22,32 @@ export function popoverShouldBeClosed() {
   cy.get('@content').should('not.be.visible');
 }
 
-interface PopoverContext {
-  trigger: HTMLButtonElement;
-  popover: HTMLPostPopoverElement;
+export function getPopoverElement() {
+  return cy.get<JQuery<HTMLPostPopoverElement>>('@popover').its(0);
 }
 
-export function withPopoverContext(callback: (context: PopoverContext) => Promise<void>) {
-  cy.get('@trigger').then($trigger =>
-    cy.get('@popover').then($popover =>
-      callback({
-        trigger: $trigger.get(0) as HTMLButtonElement,
-        popover: $popover.get(0) as HTMLPostPopoverElement,
-      }),
-    ),
-  );
+export function getTriggerElement() {
+  return cy.get<JQuery<HTMLButtonElement>>('@trigger').its(0);
+}
+
+export function getHeaderBoundingRect() {
+  return cy
+    .get('post-header')
+    .its(0)
+    .then(element => element.getBoundingClientRect());
+}
+
+export function scrollTrigger(position: 'above' | 'across' | 'below', y: number) {
+  cy.get('@trigger').then($trigger => {
+    const { top, bottom, height } = $trigger.get(0).getBoundingClientRect();
+
+    // Scrolling down by a positive distance moves the trigger up by the same distance
+    const distance = {
+      above: bottom - y + 1,
+      across: top + height / 2 - y,
+      below: top - y - 1,
+    }[position];
+
+    cy.window().then(win => cy.scrollTo(0, Math.max(win.scrollY + distance, 0)));
+  });
 }
