@@ -33,7 +33,7 @@
   display: inline-flex;
   position: relative;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   max-width: 100%;
   overflow: hidden;
   transition: button.$btn-transition;
@@ -47,9 +47,11 @@
   font-size: tokens.get('button-font-size', components.$post-button);
   font-weight: tokens.get('button-label-font-weight', components.$post-button);
   text-decoration: none;
-  white-space: normal; // Long content should never break in buttons
+  white-space: normal; //Allow long labels to wrap
   overflow-wrap: anywhere;
   cursor: pointer;
+  text-wrap: balance;
+  text-align: center;
 
   &:not(:disabled):hover {
     text-decoration: none;

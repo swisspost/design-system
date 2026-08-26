@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Added in 'button.scss' that a button can break into two or more rows if the button text is too long.
+Fixed the Problem with long text in the button field. The text will now wrap into multiple lines if it is too long.
