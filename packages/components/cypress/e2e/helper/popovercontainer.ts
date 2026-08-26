@@ -1,15 +1,15 @@
+import { getBoundingRect } from '../utils/element';
+
 const OPEN_SELECTOR = String.raw`post-popovercontainer:popover-open, post-popovercontainer.\:popover-open`;
 
 export function preparePopoverContext(id: string) {
   cy.visit('./cypress/fixtures/post-popovercontainer.html');
 
-  // Ensure the component is hydrated, which is necessary to ensure the component is ready for interaction
   cy.get(`#popover-${id}[data-hydrated]`).as('popover');
-
-  // Aria-expanded is set by the web component, therefore it's a good measure to indicate the component is ready
   cy.get(`#popover-${id}-trigger[data-hydrated]`).children().first().as('trigger');
-
   cy.get(`#popover-${id}-content`).as('content');
+
+  popoverShouldBeClosed();
 }
 
 export function popoverShouldBeOpen() {
@@ -22,32 +22,29 @@ export function popoverShouldBeClosed() {
   cy.get('@content').should('not.be.visible');
 }
 
-export function getPopoverElement() {
-  return cy.get<JQuery<HTMLPostPopoverElement>>('@popover').its(0);
+export const getPopoverElement = () => cy.get<JQuery<HTMLPostPopoverElement>>('@popover').its(0);
+export const getTriggerElement = () => cy.get<JQuery<HTMLButtonElement>>('@trigger').its(0);
+
+type ScrollPosition = 'above' | 'below' | 'across';
+
+function getTriggerScrollDistance(position: ScrollPosition, y: number) {
+  return getBoundingRect('@trigger').then(rect => {
+    if (position === 'above') return rect.bottom - y + 1;
+    if (position === 'below') return rect.top - y - 1;
+    return rect.top + rect.height / 2 - y;
+  });
 }
 
-export function getTriggerElement() {
-  return cy.get<JQuery<HTMLButtonElement>>('@trigger').its(0);
+export function scrollTrigger(position: ScrollPosition, y: number) {
+  getTriggerScrollDistance(position, y).then(distance => {
+    cy.window().then(window => cy.scrollTo(0, window.scrollY + distance));
+  });
 }
 
-export function getHeaderBoundingRect() {
-  return cy
-    .get('post-header')
-    .its(0)
-    .then(element => element.getBoundingClientRect());
-}
-
-export function scrollTrigger(position: 'above' | 'across' | 'below', y: number) {
-  cy.get('@trigger').then($trigger => {
-    const { top, bottom, height } = $trigger.get(0).getBoundingClientRect();
-
-    // Scrolling down by a positive distance moves the trigger up by the same distance
-    const distance = {
-      above: bottom - y + 1,
-      across: top + height / 2 - y,
-      below: top - y - 1,
-    }[position];
-
-    cy.window().then(win => cy.scrollTo(0, Math.max(win.scrollY + distance, 0)));
+export function scrollTriggerWithin(selector: string, position: ScrollPosition, y: number) {
+  getTriggerScrollDistance(position, y).then(distance => {
+    cy.get(selector)
+      .its(0)
+      .then(element => cy.get(selector).scrollTo(0, element.scrollTop + distance));
   });
 }

@@ -1,6 +1,11 @@
 import { Rect } from '@floating-ui/utils';
 import { computePosition, Platform, platform as domPlatform } from '@floating-ui/dom';
-import { getContainingBlock, getParentNode, isLastTraversableNode } from '@floating-ui/utils/dom';
+import {
+  getParentNode,
+  isHTMLElement,
+  isLastTraversableNode,
+  isTopLayer,
+} from '@floating-ui/utils/dom';
 
 const CLIPPING_RECT_CACHE = Symbol('Clipping Rect Cache');
 
@@ -28,17 +33,19 @@ async function getClippingRect(
 }
 
 function applySafeArea(clippingRect: Rect, element: Element) {
-  // Do not apply safe areas to elements that are inside another containing block, such as a dialog.
-  if (getContainingBlock(element) !== null) return;
-
   const headerElement = element.ownerDocument.querySelector('post-header');
   if (headerElement === null) return;
 
-  // Do not apply the safe area of the header to elements that are located within the header itself.
   let parent: Node = element;
   while (!isLastTraversableNode(parent)) {
     parent = getParentNode(parent);
-    if (parent === headerElement) return;
+
+    if (!isHTMLElement(parent)) continue;
+
+    // Do not apply the safe area of the header to
+    // - elements that are on a top layer, such as a dialog.
+    // - elements that are located within the header itself.
+    if (isTopLayer(parent) || parent === headerElement) return;
   }
 
   const headerRect = headerElement.getBoundingClientRect();
