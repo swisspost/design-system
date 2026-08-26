@@ -6,7 +6,7 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 const meta: MetaComponent = {
   id: 'bf4826ad-450e-4d8a-8b2d-796c31758349',
   title: 'Components/Inline Notification',
-  tags: ['package:Styles', 'status:InProgress'],
+  tags: ['package:Styles', 'status:New'],
   render: renderInlineNotification,
   parameters: {
     design: {
