@@ -102,7 +102,6 @@ const meta: MetaComponent = {
       control: {
         type: 'boolean',
       },
-      if: { arg: 'title', eq: '' },
       table: {
         category: 'Content',
       },
@@ -247,6 +246,40 @@ export const Jobs: Story = {
   },
 };
 
+export const OnlineService: Story = {
+  ...getIframeParameters(550),
+  args: {
+    title: '[Online Service]',
+    globalNavPrimary: false,
+    globalNavSecondary: false,
+    localNav: true,
+    targetGroup: false,
+    isLoggedIn: true,
+  },
+  render: (args: Args) => {
+    const renderHeader = getHeaderRenderer({
+      renderLocalNav: () => html`
+        <!-- Local navigation -->
+        <ul slot="local-nav">
+          <li>
+            <a href="#">
+              <span>Local action</span>
+              <post-icon aria-hidden="true" name="component"></post-icon>
+            </a>
+          </li>
+          <li>
+            <a class="btn-primary" href="#">
+              <span>Close</span>
+              <post-icon aria-hidden="true" name="closex"></post-icon>
+            </a>
+          </li>
+        </ul>
+      `,
+    });
+    return renderHeader(args);
+  },
+};
+
 export const Microsite: Story = {
   ...getIframeParameters(550),
   args: {
@@ -268,8 +301,8 @@ export const OnePager: Story = {
     globalNavSecondary: false,
     globalNavPrimary: false,
     localNav: false,
-    postLogin: false,
     targetGroup: false,
+    postLogin: false,
   },
 };
 
