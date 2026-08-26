@@ -61,13 +61,12 @@ export default meta;
 function renderInlineNotification(args: Args) {
   const { variant, title, message, headingLevel = 'h4' } = args;
   const titleHTML = title ? `<${headingLevel}>${title}</${headingLevel}>` : '';
+  const role = variant === 'warning' || variant === 'error' ? 'alert' : 'status';
 
   return html`
-    <div class="inline-notification inline-notification-${variant}" role="alert">
-      <div class="inline-notification-content">
-        ${unsafeHTML(titleHTML)}
-        <p>${message}</p>
-      </div>
+    <div class="inline-notification inline-notification-${variant}" role="${role}">
+      ${unsafeHTML(titleHTML)}
+      <p>${message}</p>
     </div>
   `;
 }

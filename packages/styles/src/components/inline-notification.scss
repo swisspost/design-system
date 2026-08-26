@@ -6,9 +6,11 @@
 tokens.$default-map: components.$post-inline-notification;
 
 .inline-notification {
-  display: inline-flex;
+  display: inline-grid;
   align-items: flex-start;
-  gap: tokens.get('notification-inline-gap-inline');
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: tokens.get('notification-inline-gap-inline');
+  row-gap: tokens.get('notification-inline-labels-gap-block');
   padding-block: tokens.get('notification-inline-padding-block');
   padding-inline: tokens.get('notification-inline-padding-inline');
   border-style: tokens.get('notification-inline-border-style');
@@ -18,7 +20,8 @@ tokens.$default-map: components.$post-inline-notification;
   &::before {
     content: '';
     display: block;
-    flex-shrink: 0;
+    grid-column: 1;
+    grid-row: 1;
     width: tokens.get('notification-inline-icon-size');
     height: tokens.get('notification-inline-icon-size');
     margin-block-start: 2px;
@@ -39,14 +42,6 @@ tokens.$default-map: components.$post-inline-notification;
   @include utilities.high-contrast-mode {
     border: 2px solid CanvasText;
   }
-}
-
-.inline-notification-content {
-  display: grid;
-  flex: 1;
-  grid-template-columns: 1fr;
-  row-gap: tokens.get('notification-inline-labels-gap-block');
-  min-width: 0;
 
   h1,
   h2,
@@ -56,11 +51,13 @@ tokens.$default-map: components.$post-inline-notification;
   h6 {
     margin: 0;
     padding: 0;
+    grid-row: 1;
     font-size: tokens.get('h4-font-size', elements.$post-heading);
     font-weight: tokens.get('notification-inline-title-font-weight');
   }
 
   > * {
     margin: 0;
+    grid-column: 2;
   }
 }
