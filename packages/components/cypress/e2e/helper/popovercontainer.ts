@@ -10,7 +10,7 @@ import { getBoundingRect } from '../utils/element';
  * Note: This function runs in the Cypress runner (Node.js), where CSS.supports is not available,
  * so we cannot feature-detect at import time.
  */
-const OPEN_SELECTOR = String.raw`post-popovercontainer:popover-open, post-popovercontainer.\:popover-open`;
+export const POPOVER_OPEN_SELECTOR = String.raw`post-popovercontainer:popover-open, post-popovercontainer.\:popover-open`;
 
 /**
  * Visits the popover fixture and aliases the elements of one of its popover setups.
@@ -36,7 +36,7 @@ export function preparePopoverContext(id: string) {
  * Asserts that `@popover` is open, and its `@content` is visible.
  */
 export function popoverShouldBeOpen() {
-  cy.get('@popover').find(OPEN_SELECTOR).should('exist');
+  cy.get('@popover').find(POPOVER_OPEN_SELECTOR).should('exist');
   cy.get('@content').should('be.visible');
 }
 
@@ -44,7 +44,7 @@ export function popoverShouldBeOpen() {
  * Asserts that `@popover` is closed, and its `@content` is not visible.
  */
 export function popoverShouldBeClosed() {
-  cy.get('@popover').find(OPEN_SELECTOR).should('not.exist');
+  cy.get('@popover').find(POPOVER_OPEN_SELECTOR).should('not.exist');
   cy.get('@content').should('not.be.visible');
 }
 
