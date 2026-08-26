@@ -27,6 +27,7 @@ import {
 export class PostMenu {
   private popoverRef: HTMLPostPopovercontainerElement;
   private lastFocusedElement: HTMLElement | null = null;
+  private pendingFocusFirst = false;
 
   private readonly KEYCODES = {
     SPACE: ' ',
@@ -89,7 +90,8 @@ export class PostMenu {
    * `target` is the HTML element the menu is anchored to.
    */
   @Method()
-  async toggle(target: HTMLElement) {
+  async toggle(target: HTMLElement, focusFirst = false) {
+    this.pendingFocusFirst = focusFirst;
     if (this.popoverRef) {
       await this.popoverRef.toggle(target);
     } else {
@@ -102,7 +104,8 @@ export class PostMenu {
    * `target` is the HTML element the menu is anchored to.
    */
   @Method()
-  async show(target: HTMLElement) {
+  async show(target: HTMLElement, focusFirst = false) {
+    this.pendingFocusFirst = focusFirst;
     if (this.popoverRef) {
       await this.popoverRef.show(target);
     } else {
@@ -157,12 +160,16 @@ export class PostMenu {
     this.toggleMenu.emit(this.isVisible);
     if (this.isVisible) {
       this.lastFocusedElement = this.root?.activeElement as HTMLElement;
-      requestAnimationFrame(() => {
-        const menuItems = this.getSlottedItems();
-        if (menuItems.length > 0) {
-          (menuItems[0] as HTMLElement).focus();
-        }
-      });
+
+      if (this.pendingFocusFirst) {
+        requestAnimationFrame(() => {
+          const menuItems = this.getSlottedItems();
+          if (menuItems.length > 0) {
+            (menuItems[0] as HTMLElement).focus();
+          }
+        });
+      }
+      this.pendingFocusFirst = false;
     } else if (this.lastFocusedElement) {
       this.lastFocusedElement.focus();
     }

@@ -478,11 +478,11 @@ export namespace Components {
         /**
           * Displays the popover menu, focusing the first menu item, `target` is the HTML element the menu is anchored to.
          */
-        "show": (target: HTMLElement) => Promise<void>;
+        "show": (target: HTMLElement, focusFirst?: boolean) => Promise<void>;
         /**
           * Toggles the menu visibility based on its current state, `target` is the HTML element the menu is anchored to.
          */
-        "toggle": (target: HTMLElement) => Promise<void>;
+        "toggle": (target: HTMLElement, focusFirst?: boolean) => Promise<void>;
     }
     interface PostMenuItem {
     }
