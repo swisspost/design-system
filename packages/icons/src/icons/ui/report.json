@@ -65459,6 +65459,438 @@
       "modifiedAt": "2025-03-26T13:27:06.000Z"
     },
     {
+      "uuid": "3e268fe0-9bb0-11f1-8c91-0050568d2654",
+      "id": 11029239,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029239/storage/MDExMDI5MjM5LzAvbWFzdGVyLy8vMTA0NTE1MTAw",
+        "keywords": [
+          "traffic light system",
+          "Lichtsignalanlage",
+          "Installation de signaux lumineux",
+          "Segnale luminoso",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site",
+          "Construction sites Light signalling system",
+          "Baustellen Lichtsignalanlage",
+          "Chantiers de l’installation de signaux lumineux",
+          "Cantieri impianto di segnalazione luminosa"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionSiteLightSystem_Shape_16.svg",
+        "basename": "ConstructionSiteLightSystem_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:27:48.000Z",
+      "modifiedAt": "2026-08-20T09:05:06.642Z"
+    },
+    {
+      "uuid": "3d647860-9bb0-11f1-8c91-0050568d2654",
+      "id": 11029238,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029238/storage/MDExMDI5MjM4LzAvbWFzdGVyLy8vMTA0NTE1MDk2",
+        "keywords": [
+          "traffic light system",
+          "Lichtsignalanlage",
+          "Installation de signaux lumineux",
+          "Segnale luminoso",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site",
+          "Construction sites Light signalling system",
+          "Baustellen Lichtsignalanlage",
+          "Chantiers de l’installation de signaux lumineux",
+          "Cantieri impianto di segnalazione luminosa"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionSiteLightSystem_Shape_24.svg",
+        "basename": "ConstructionSiteLightSystem_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:27:47.000Z",
+      "modifiedAt": "2026-08-20T09:05:06.642Z"
+    },
+    {
+      "uuid": "3c9a2381-9bb0-11f1-8c91-0050568d2654",
+      "id": 11029237,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029237/storage/MDExMDI5MjM3LzAvbWFzdGVyLy8vMTA0NTE1MDky",
+        "keywords": [
+          "traffic light system",
+          "Lichtsignalanlage",
+          "Installation de signaux lumineux",
+          "Segnale luminoso",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site",
+          "Construction sites Light signalling system",
+          "Baustellen Lichtsignalanlage",
+          "Chantiers de l’installation de signaux lumineux",
+          "Cantieri impianto di segnalazione luminosa"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionSiteLightSystem_Shape_32.svg",
+        "basename": "ConstructionSiteLightSystem_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:27:45.000Z",
+      "modifiedAt": "2026-08-20T09:05:06.642Z"
+    },
+    {
+      "uuid": "3afec300-9bb0-11f1-8c91-0050568d2654",
+      "id": 11029235,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029235/storage/MDExMDI5MjM1LzAvbWFzdGVyLy8vMTA0NTE1MDg0",
+        "keywords": [
+          "traffic light system",
+          "Lichtsignalanlage",
+          "Installation de signaux lumineux",
+          "Segnale luminoso",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site",
+          "Construction sites Light signalling system",
+          "Baustellen Lichtsignalanlage",
+          "Chantiers de l’installation de signaux lumineux",
+          "Cantieri impianto di segnalazione luminosa"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionSiteLightSystem_Shape_40.svg",
+        "basename": "ConstructionSiteLightSystem_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:27:43.000Z",
+      "modifiedAt": "2026-08-20T09:05:06.642Z"
+    },
+    {
+      "uuid": "3bc6a6e0-9bb0-11f1-8c91-0050568d2654",
+      "id": 11029236,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029236/storage/MDExMDI5MjM2LzAvbWFzdGVyLy8vMTA0NTE1MDg4",
+        "keywords": [
+          "traffic light system",
+          "Lichtsignalanlage",
+          "Installation de signaux lumineux",
+          "Segnale luminoso",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site",
+          "Construction sites Light signalling system",
+          "Baustellen Lichtsignalanlage",
+          "Chantiers de l’installation de signaux lumineux",
+          "Cantieri impianto di segnalazione luminosa"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionSiteLightSystem_Shape_48.svg",
+        "basename": "ConstructionSiteLightSystem_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:27:44.000Z",
+      "modifiedAt": "2026-08-20T09:05:06.642Z"
+    },
+    {
+      "uuid": "3a2775d0-9bb0-11f1-8c91-0050568d2654",
+      "id": 11029234,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029234/storage/MDExMDI5MjM0LzAvbWFzdGVyLy8vMTA0NTE0OTkz",
+        "keywords": [
+          "traffic light system",
+          "Lichtsignalanlage",
+          "Installation de signaux lumineux",
+          "Segnale luminoso",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site",
+          "Construction sites Light signalling system",
+          "Baustellen Lichtsignalanlage",
+          "Chantiers de l’installation de signaux lumineux",
+          "Cantieri impianto di segnalazione luminosa"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionSiteLightSystem_Shape_64.svg",
+        "basename": "ConstructionSiteLightSystem_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:27:41.000Z",
+      "modifiedAt": "2026-08-20T09:05:06.642Z"
+    },
+    {
+      "uuid": "394ec911-9bb0-11f1-8c91-0050568d2654",
+      "id": 11029233,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029233/storage/MDExMDI5MjMzLzAvbWFzdGVyLy8vMTA0NTE1MDgw",
+        "keywords": [
+          "traffic light system",
+          "Lichtsignalanlage",
+          "Installation de signaux lumineux",
+          "Segnale luminoso",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site",
+          "Construction sites Light signalling system",
+          "Baustellen Lichtsignalanlage",
+          "Chantiers de l’installation de signaux lumineux",
+          "Cantieri impianto di segnalazione luminosa"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionSiteLightSystem_Solid_Shape_16.svg",
+        "basename": "ConstructionSiteLightSystem_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:27:40.000Z",
+      "modifiedAt": "2026-08-20T09:05:06.642Z"
+    },
+    {
+      "uuid": "394bbbd2-9bb0-11f1-8c91-0050568d2654",
+      "id": 11029232,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029232/storage/MDExMDI5MjMyLzAvbWFzdGVyLy8vMTA0NTE1MDc2",
+        "keywords": [
+          "traffic light system",
+          "Lichtsignalanlage",
+          "Installation de signaux lumineux",
+          "Segnale luminoso",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site",
+          "Construction sites Light signalling system",
+          "Baustellen Lichtsignalanlage",
+          "Chantiers de l’installation de signaux lumineux",
+          "Cantieri impianto di segnalazione luminosa"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionSiteLightSystem_Solid_Shape_24.svg",
+        "basename": "ConstructionSiteLightSystem_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:27:40.000Z",
+      "modifiedAt": "2026-08-20T09:05:06.642Z"
+    },
+    {
+      "uuid": "38802e70-9bb0-11f1-8c91-0050568d2654",
+      "id": 11029231,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029231/storage/MDExMDI5MjMxLzAvbWFzdGVyLy8vMTA0NTE1MDcy",
+        "keywords": [
+          "traffic light system",
+          "Lichtsignalanlage",
+          "Installation de signaux lumineux",
+          "Segnale luminoso",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site",
+          "Construction sites Light signalling system",
+          "Baustellen Lichtsignalanlage",
+          "Chantiers de l’installation de signaux lumineux",
+          "Cantieri impianto di segnalazione luminosa"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionSiteLightSystem_Solid_Shape_32.svg",
+        "basename": "ConstructionSiteLightSystem_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:27:38.000Z",
+      "modifiedAt": "2026-08-20T09:05:06.642Z"
+    },
+    {
+      "uuid": "36e7db30-9bb0-11f1-8c91-0050568d2654",
+      "id": 11029230,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029230/storage/MDExMDI5MjMwLzAvbWFzdGVyLy8vMTA0NTE1MDY4",
+        "keywords": [
+          "traffic light system",
+          "Lichtsignalanlage",
+          "Installation de signaux lumineux",
+          "Segnale luminoso",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site",
+          "Construction sites Light signalling system",
+          "Baustellen Lichtsignalanlage",
+          "Chantiers de l’installation de signaux lumineux",
+          "Cantieri impianto di segnalazione luminosa"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionSiteLightSystem_Solid_Shape_40.svg",
+        "basename": "ConstructionSiteLightSystem_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:27:36.000Z",
+      "modifiedAt": "2026-08-20T09:05:06.642Z"
+    },
+    {
+      "uuid": "36e3e390-9bb0-11f1-8c91-0050568d2654",
+      "id": 11029229,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029229/storage/MDExMDI5MjI5LzAvbWFzdGVyLy8vMTA0NTE1MDY0",
+        "keywords": [
+          "traffic light system",
+          "Lichtsignalanlage",
+          "Installation de signaux lumineux",
+          "Segnale luminoso",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site",
+          "Construction sites Light signalling system",
+          "Baustellen Lichtsignalanlage",
+          "Chantiers de l’installation de signaux lumineux",
+          "Cantieri impianto di segnalazione luminosa"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionSiteLightSystem_Solid_Shape_48.svg",
+        "basename": "ConstructionSiteLightSystem_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:27:36.000Z",
+      "modifiedAt": "2026-08-20T09:05:06.642Z"
+    },
+    {
+      "uuid": "36e34750-9bb0-11f1-8c91-0050568d2654",
+      "id": 11029228,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029228/storage/MDExMDI5MjI4LzAvbWFzdGVyLy8vMTA0NTE1MDYw",
+        "keywords": [
+          "traffic light system",
+          "Lichtsignalanlage",
+          "Installation de signaux lumineux",
+          "Segnale luminoso",
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site",
+          "Construction sites Light signalling system",
+          "Baustellen Lichtsignalanlage",
+          "Chantiers de l’installation de signaux lumineux",
+          "Cantieri impianto di segnalazione luminosa"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ConstructionSiteLightSystem_Solid_Shape_64.svg",
+        "basename": "ConstructionSiteLightSystem_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:27:36.000Z",
+      "modifiedAt": "2026-08-20T09:05:06.642Z"
+    },
+    {
       "uuid": "2df02a51-8ca6-11f1-81f8-0050568d2654",
       "id": 10839236,
       "type": "picture.pictogram.",
@@ -134769,6 +135201,342 @@
       "modifiedAt": "2025-09-16T11:05:00.000Z"
     },
     {
+      "uuid": "b6277510-9bae-11f1-8c91-0050568d2654",
+      "id": 11029194,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029194/storage/MDExMDI5MTk0LzAvbWFzdGVyLy8vMTA0NTEyNDAx",
+        "keywords": [
+          "hot work",
+          "Heissarbeiten",
+          "Travaux à chaud",
+          "Lavori a caldo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "HotWork_Shape_16.svg",
+        "basename": "HotWork_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:16:50.000Z",
+      "modifiedAt": "2026-08-19T09:18:53.000Z"
+    },
+    {
+      "uuid": "b5642515-9bae-11f1-8c91-0050568d2654",
+      "id": 11029192,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029192/storage/MDExMDI5MTkyLzAvbWFzdGVyLy8vMTA0NTEyNDQz",
+        "keywords": [
+          "hot work",
+          "Heissarbeiten",
+          "Travaux à chaud",
+          "Lavori a caldo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "HotWork_Shape_24.svg",
+        "basename": "HotWork_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:16:49.000Z",
+      "modifiedAt": "2026-08-19T09:18:52.000Z"
+    },
+    {
+      "uuid": "b61db110-9bae-11f1-8c91-0050568d2654",
+      "id": 11029193,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029193/storage/MDExMDI5MTkzLzAvbWFzdGVyLy8vMTA0NTEyNDM5",
+        "keywords": [
+          "hot work",
+          "Heissarbeiten",
+          "Travaux à chaud",
+          "Lavori a caldo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "HotWork_Shape_32.svg",
+        "basename": "HotWork_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:16:50.000Z",
+      "modifiedAt": "2026-08-19T09:18:52.000Z"
+    },
+    {
+      "uuid": "b4781760-9bae-11f1-8c91-0050568d2654",
+      "id": 11029191,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029191/storage/MDExMDI5MTkxLzAvbWFzdGVyLy8vMTA0NTEyNDQ3",
+        "keywords": [
+          "hot work",
+          "Heissarbeiten",
+          "Travaux à chaud",
+          "Lavori a caldo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "HotWork_Shape_40.svg",
+        "basename": "HotWork_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:16:47.000Z",
+      "modifiedAt": "2026-08-19T09:18:53.000Z"
+    },
+    {
+      "uuid": "b3a55e10-9bae-11f1-8c91-0050568d2654",
+      "id": 11029189,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029189/storage/MDExMDI5MTg5LzAvbWFzdGVyLy8vMTA0NTEyNDE3",
+        "keywords": [
+          "hot work",
+          "Heissarbeiten",
+          "Travaux à chaud",
+          "Lavori a caldo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "HotWork_Shape_48.svg",
+        "basename": "HotWork_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:16:46.000Z",
+      "modifiedAt": "2026-08-19T09:18:52.000Z"
+    },
+    {
+      "uuid": "b3be6450-9bae-11f1-8c91-0050568d2654",
+      "id": 11029190,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029190/storage/MDExMDI5MTkwLzAvbWFzdGVyLy8vMTA0NTExODI4",
+        "keywords": [
+          "hot work",
+          "Heissarbeiten",
+          "Travaux à chaud",
+          "Lavori a caldo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "HotWork_Shape_64.svg",
+        "basename": "HotWork_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:16:46.000Z",
+      "modifiedAt": "2026-08-19T09:18:13.000Z"
+    },
+    {
+      "uuid": "b1f0d040-9bae-11f1-8c91-0050568d2654",
+      "id": 11029187,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029187/storage/MDExMDI5MTg3LzAvbWFzdGVyLy8vMTA0NTEyNDI4",
+        "keywords": [
+          "hot work",
+          "Heissarbeiten",
+          "Travaux à chaud",
+          "Lavori a caldo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "HotWork_Solid_Shape_16.svg",
+        "basename": "HotWork_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:16:43.000Z",
+      "modifiedAt": "2026-08-19T09:18:52.000Z"
+    },
+    {
+      "uuid": "b2a79d20-9bae-11f1-8c91-0050568d2654",
+      "id": 11029188,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029188/storage/MDExMDI5MTg4LzAvbWFzdGVyLy8vMTA0NTEyNDIx",
+        "keywords": [
+          "hot work",
+          "Heissarbeiten",
+          "Travaux à chaud",
+          "Lavori a caldo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "HotWork_Solid_Shape_24.svg",
+        "basename": "HotWork_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:16:44.000Z",
+      "modifiedAt": "2026-08-19T09:18:52.000Z"
+    },
+    {
+      "uuid": "b1cc5850-9bae-11f1-8c91-0050568d2654",
+      "id": 11029186,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029186/storage/MDExMDI5MTg2LzAvbWFzdGVyLy8vMTA0NTEyNDA1",
+        "keywords": [
+          "hot work",
+          "Heissarbeiten",
+          "Travaux à chaud",
+          "Lavori a caldo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "HotWork_Solid_Shape_32.svg",
+        "basename": "HotWork_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:16:43.000Z",
+      "modifiedAt": "2026-08-19T09:18:52.000Z"
+    },
+    {
+      "uuid": "b0565a20-9bae-11f1-8c91-0050568d2654",
+      "id": 11029183,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029183/storage/MDExMDI5MTgzLzAvbWFzdGVyLy8vMTA0NTEyNDMy",
+        "keywords": [
+          "hot work",
+          "Heissarbeiten",
+          "Travaux à chaud",
+          "Lavori a caldo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "HotWork_Solid_Shape_40.svg",
+        "basename": "HotWork_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:16:41.000Z",
+      "modifiedAt": "2026-08-19T09:18:52.000Z"
+    },
+    {
+      "uuid": "b068f7c0-9bae-11f1-8c91-0050568d2654",
+      "id": 11029184,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029184/storage/MDExMDI5MTg0LzAvbWFzdGVyLy8vMTA0NTEyNDEz",
+        "keywords": [
+          "hot work",
+          "Heissarbeiten",
+          "Travaux à chaud",
+          "Lavori a caldo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "HotWork_Solid_Shape_48.svg",
+        "basename": "HotWork_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:16:41.000Z",
+      "modifiedAt": "2026-08-19T09:18:52.000Z"
+    },
+    {
+      "uuid": "b06aa570-9bae-11f1-8c91-0050568d2654",
+      "id": 11029185,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029185/storage/MDExMDI5MTg1LzAvbWFzdGVyLy8vMTA0NTEyNDA5",
+        "keywords": [
+          "hot work",
+          "Heissarbeiten",
+          "Travaux à chaud",
+          "Lavori a caldo"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "HotWork_Solid_Shape_64.svg",
+        "basename": "HotWork_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:16:41.000Z",
+      "modifiedAt": "2026-08-19T09:18:52.000Z"
+    },
+    {
       "uuid": "dbd8a8e2-d720-11f0-b1fa-0050568d2654",
       "id": 7996992,
       "type": "picture.pictogram.",
@@ -168907,6 +169675,414 @@
       "modifiedAt": "2026-07-02T13:05:03.773Z"
     },
     {
+      "uuid": "67ea35d0-9bbe-11f1-8c91-0050568d2654",
+      "id": 11029286,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029286/storage/MDExMDI5Mjg2LzAvbWFzdGVyLy8vMTA0NTE4Mjgz",
+        "keywords": [
+          "Notifikation",
+          "notification",
+          "Notifica",
+          "Notification",
+          "Mobile",
+          "Portatile",
+          "Notification on mobile",
+          "Benachrichtigung auf dem Mobile",
+          "Notification sur le téléphone mobile",
+          "Notifica sul cellulare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "MobileNotification_Shape_16.svg",
+        "basename": "MobileNotification_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:09:11.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
+      "uuid": "66f06c80-9bbe-11f1-8c91-0050568d2654",
+      "id": 11029284,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029284/storage/MDExMDI5Mjg0LzAvbWFzdGVyLy8vMTA0NTE4Mjc1",
+        "keywords": [
+          "Notifikation",
+          "notification",
+          "Notifica",
+          "Notification",
+          "Mobile",
+          "Portatile",
+          "Notification on mobile",
+          "Benachrichtigung auf dem Mobile",
+          "Notification sur le téléphone mobile",
+          "Notifica sul cellulare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "MobileNotification_Shape_24.svg",
+        "basename": "MobileNotification_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:09:09.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
+      "uuid": "67a4ef70-9bbe-11f1-8c91-0050568d2654",
+      "id": 11029285,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029285/storage/MDExMDI5Mjg1LzAvbWFzdGVyLy8vMTA0NTE4Mjc5",
+        "keywords": [
+          "Notifikation",
+          "notification",
+          "Notifica",
+          "Notification",
+          "Mobile",
+          "Portatile",
+          "Notification on mobile",
+          "Benachrichtigung auf dem Mobile",
+          "Notification sur le téléphone mobile",
+          "Notifica sul cellulare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "MobileNotification_Shape_32.svg",
+        "basename": "MobileNotification_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:09:11.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
+      "uuid": "663fba20-9bbe-11f1-8c91-0050568d2654",
+      "id": 11029283,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029283/storage/MDExMDI5MjgzLzAvbWFzdGVyLy8vMTA0NTE4Mjcx",
+        "keywords": [
+          "Notifikation",
+          "notification",
+          "Notifica",
+          "Notification",
+          "Mobile",
+          "Portatile",
+          "Notification on mobile",
+          "Benachrichtigung auf dem Mobile",
+          "Notification sur le téléphone mobile",
+          "Notifica sul cellulare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "MobileNotification_Shape_40.svg",
+        "basename": "MobileNotification_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:09:08.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
+      "uuid": "657209e0-9bbe-11f1-8c91-0050568d2654",
+      "id": 11029281,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029281/storage/MDExMDI5MjgxLzAvbWFzdGVyLy8vMTA0NTE4MjY3",
+        "keywords": [
+          "Notifikation",
+          "notification",
+          "Notifica",
+          "Notification",
+          "Mobile",
+          "Portatile",
+          "Notification on mobile",
+          "Benachrichtigung auf dem Mobile",
+          "Notification sur le téléphone mobile",
+          "Notifica sul cellulare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "MobileNotification_Shape_48.svg",
+        "basename": "MobileNotification_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:09:07.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
+      "uuid": "6572cd30-9bbe-11f1-8c91-0050568d2654",
+      "id": 11029282,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029282/storage/MDExMDI5MjgyLzAvbWFzdGVyLy8vMTA0NTE4MTg5",
+        "keywords": [
+          "Notifikation",
+          "notification",
+          "Notifica",
+          "Notification",
+          "Mobile",
+          "Portatile",
+          "Notification on mobile",
+          "Benachrichtigung auf dem Mobile",
+          "Notification sur le téléphone mobile",
+          "Notifica sul cellulare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "MobileNotification_Shape_64.svg",
+        "basename": "MobileNotification_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:09:07.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
+      "uuid": "64666640-9bbe-11f1-8c91-0050568d2654",
+      "id": 11029280,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029280/storage/MDExMDI5MjgwLzAvbWFzdGVyLy8vMTA0NTE4MjYz",
+        "keywords": [
+          "Notifikation",
+          "notification",
+          "Notifica",
+          "Notification",
+          "Mobile",
+          "Portatile",
+          "Notification on mobile",
+          "Benachrichtigung auf dem Mobile",
+          "Notification sur le téléphone mobile",
+          "Notifica sul cellulare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "MobileNotification_Solid_Shape_16.svg",
+        "basename": "MobileNotification_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:09:05.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
+      "uuid": "63a5fc70-9bbe-11f1-8c91-0050568d2654",
+      "id": 11029279,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029279/storage/MDExMDI5Mjc5LzAvbWFzdGVyLy8vMTA0NTE4MjU5",
+        "keywords": [
+          "Notifikation",
+          "notification",
+          "Notifica",
+          "Notification",
+          "Mobile",
+          "Portatile",
+          "Notification on mobile",
+          "Benachrichtigung auf dem Mobile",
+          "Notification sur le téléphone mobile",
+          "Notifica sul cellulare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "MobileNotification_Solid_Shape_24.svg",
+        "basename": "MobileNotification_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:09:04.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
+      "uuid": "63852e00-9bbe-11f1-8c91-0050568d2654",
+      "id": 11029278,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029278/storage/MDExMDI5Mjc4LzAvbWFzdGVyLy8vMTA0NTE4MjU1",
+        "keywords": [
+          "Notifikation",
+          "notification",
+          "Notifica",
+          "Notification",
+          "Mobile",
+          "Portatile",
+          "Notification on mobile",
+          "Benachrichtigung auf dem Mobile",
+          "Notification sur le téléphone mobile",
+          "Notifica sul cellulare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "MobileNotification_Solid_Shape_32.svg",
+        "basename": "MobileNotification_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:09:04.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
+      "uuid": "6218f3d0-9bbe-11f1-8c91-0050568d2654",
+      "id": 11029277,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029277/storage/MDExMDI5Mjc3LzAvbWFzdGVyLy8vMTA0NTE4MjUx",
+        "keywords": [
+          "Notifikation",
+          "notification",
+          "Notifica",
+          "Notification",
+          "Mobile",
+          "Portatile",
+          "Notification on mobile",
+          "Benachrichtigung auf dem Mobile",
+          "Notification sur le téléphone mobile",
+          "Notifica sul cellulare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "MobileNotification_Solid_Shape_40.svg",
+        "basename": "MobileNotification_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:09:01.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
+      "uuid": "621438e0-9bbe-11f1-8c91-0050568d2654",
+      "id": 11029276,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029276/storage/MDExMDI5Mjc2LzAvbWFzdGVyLy8vMTA0NTE4MjQ3",
+        "keywords": [
+          "Notifikation",
+          "notification",
+          "Notifica",
+          "Notification",
+          "Mobile",
+          "Portatile",
+          "Notification on mobile",
+          "Benachrichtigung auf dem Mobile",
+          "Notification sur le téléphone mobile",
+          "Notifica sul cellulare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "MobileNotification_Solid_Shape_48.svg",
+        "basename": "MobileNotification_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:09:01.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
+      "uuid": "62123d10-9bbe-11f1-8c91-0050568d2654",
+      "id": 11029275,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029275/storage/MDExMDI5Mjc1LzAvbWFzdGVyLy8vMTA0NTE4MjQz",
+        "keywords": [
+          "Notifikation",
+          "notification",
+          "Notifica",
+          "Notification",
+          "Mobile",
+          "Portatile",
+          "Notification on mobile",
+          "Benachrichtigung auf dem Mobile",
+          "Notification sur le téléphone mobile",
+          "Notifica sul cellulare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "MobileNotification_Solid_Shape_64.svg",
+        "basename": "MobileNotification_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:09:01.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
       "uuid": "6e709921-e51d-11ef-a15d-005056873709",
       "id": 1821317,
       "type": "picture.pictogram.",
@@ -181007,6 +182183,402 @@
       },
       "createdAt": "2026-05-08T13:16:58.000Z",
       "modifiedAt": "2026-05-09T13:05:02.286Z"
+    },
+    {
+      "uuid": "af5fee60-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029270,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029270/storage/MDExMDI5MjcwLzAvbWFzdGVyLy8vMTA0NTE4MDc3",
+        "keywords": [
+          "OKR",
+          "Objective key and results",
+          "Objektives und Schlüssel Resultate",
+          "Résultats objectifs et clés",
+          "Chiave oggettiva e risultati",
+          "Goals and key results",
+          "Ziele und Schlüssel Resultate",
+          "Objectifs et résultats clés",
+          "Obiettivi e risultati chiave"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "OKR_Shape_16.svg",
+        "basename": "OKR_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:04:01.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
+      "uuid": "aeafd842-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029269,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029269/storage/MDExMDI5MjY5LzAvbWFzdGVyLy8vMTA0NTE4MDcz",
+        "keywords": [
+          "OKR",
+          "Objective key and results",
+          "Objektives und Schlüssel Resultate",
+          "Résultats objectifs et clés",
+          "Chiave oggettiva e risultati",
+          "Goals and key results",
+          "Ziele und Schlüssel Resultate",
+          "Objectifs et résultats clés",
+          "Obiettivi e risultati chiave"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "OKR_Shape_24.svg",
+        "basename": "OKR_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:04:00.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
+      "uuid": "adf1df70-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029268,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029268/storage/MDExMDI5MjY4LzAvbWFzdGVyLy8vMTA0NTE4MDY5",
+        "keywords": [
+          "OKR",
+          "Objective key and results",
+          "Objektives und Schlüssel Resultate",
+          "Résultats objectifs et clés",
+          "Chiave oggettiva e risultati",
+          "Goals and key results",
+          "Ziele und Schlüssel Resultate",
+          "Objectifs et résultats clés",
+          "Obiettivi e risultati chiave"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "OKR_Shape_32.svg",
+        "basename": "OKR_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:03:59.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
+      "uuid": "ad3211e0-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029267,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029267/storage/MDExMDI5MjY3LzAvbWFzdGVyLy8vMTA0NTE4MDY1",
+        "keywords": [
+          "OKR",
+          "Objective key and results",
+          "Objektives und Schlüssel Resultate",
+          "Résultats objectifs et clés",
+          "Chiave oggettiva e risultati",
+          "Goals and key results",
+          "Ziele und Schlüssel Resultate",
+          "Objectifs et résultats clés",
+          "Obiettivi e risultati chiave"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "OKR_Shape_40.svg",
+        "basename": "OKR_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:03:58.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
+      "uuid": "ac73a3e0-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029266,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029266/storage/MDExMDI5MjY2LzAvbWFzdGVyLy8vMTA0NTE4MDYx",
+        "keywords": [
+          "OKR",
+          "Objective key and results",
+          "Objektives und Schlüssel Resultate",
+          "Résultats objectifs et clés",
+          "Chiave oggettiva e risultati",
+          "Goals and key results",
+          "Ziele und Schlüssel Resultate",
+          "Objectifs et résultats clés",
+          "Obiettivi e risultati chiave"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "OKR_Shape_48.svg",
+        "basename": "OKR_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:03:56.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
+      "uuid": "abb38830-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029265,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029265/storage/MDExMDI5MjY1LzAvbWFzdGVyLy8vMTA0NTE3OTgz",
+        "keywords": [
+          "OKR",
+          "Objective key and results",
+          "Objektives und Schlüssel Resultate",
+          "Résultats objectifs et clés",
+          "Chiave oggettiva e risultati",
+          "Goals and key results",
+          "Ziele und Schlüssel Resultate",
+          "Objectifs et résultats clés",
+          "Obiettivi e risultati chiave"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "OKR_Shape_64.svg",
+        "basename": "OKR_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:03:55.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
+      "uuid": "aafeb720-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029264,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029264/storage/MDExMDI5MjY0LzAvbWFzdGVyLy8vMTA0NTE4MDU3",
+        "keywords": [
+          "OKR",
+          "Objective key and results",
+          "Objektives und Schlüssel Resultate",
+          "Résultats objectifs et clés",
+          "Chiave oggettiva e risultati",
+          "Goals and key results",
+          "Ziele und Schlüssel Resultate",
+          "Objectifs et résultats clés",
+          "Obiettivi e risultati chiave"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "OKR_Solid_Shape_16.svg",
+        "basename": "OKR_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:03:54.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
+      "uuid": "a9ecd1f0-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029263,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029263/storage/MDExMDI5MjYzLzAvbWFzdGVyLy8vMTA0NTE4MDUz",
+        "keywords": [
+          "OKR",
+          "Objective key and results",
+          "Objektives und Schlüssel Resultate",
+          "Résultats objectifs et clés",
+          "Chiave oggettiva e risultati",
+          "Goals and key results",
+          "Ziele und Schlüssel Resultate",
+          "Objectifs et résultats clés",
+          "Obiettivi e risultati chiave"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "OKR_Solid_Shape_24.svg",
+        "basename": "OKR_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:03:52.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
+      "uuid": "a9eaaf10-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029262,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029262/storage/MDExMDI5MjYyLzAvbWFzdGVyLy8vMTA0NTE4MDQ5",
+        "keywords": [
+          "OKR",
+          "Objective key and results",
+          "Objektives und Schlüssel Resultate",
+          "Résultats objectifs et clés",
+          "Chiave oggettiva e risultati",
+          "Goals and key results",
+          "Ziele und Schlüssel Resultate",
+          "Objectifs et résultats clés",
+          "Obiettivi e risultati chiave"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "OKR_Solid_Shape_32.svg",
+        "basename": "OKR_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:03:52.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
+      "uuid": "a894bc00-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029261,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029261/storage/MDExMDI5MjYxLzAvbWFzdGVyLy8vMTA0NTE4MDQ1",
+        "keywords": [
+          "OKR",
+          "Objective key and results",
+          "Objektives und Schlüssel Resultate",
+          "Résultats objectifs et clés",
+          "Chiave oggettiva e risultati",
+          "Goals and key results",
+          "Ziele und Schlüssel Resultate",
+          "Objectifs et résultats clés",
+          "Obiettivi e risultati chiave"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "OKR_Solid_Shape_40.svg",
+        "basename": "OKR_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:03:50.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
+      "uuid": "a88dde30-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029259,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029259/storage/MDExMDI5MjU5LzAvbWFzdGVyLy8vMTA0NTE4MDM3",
+        "keywords": [
+          "OKR",
+          "Objective key and results",
+          "Objektives und Schlüssel Resultate",
+          "Résultats objectifs et clés",
+          "Chiave oggettiva e risultati",
+          "Goals and key results",
+          "Ziele und Schlüssel Resultate",
+          "Objectifs et résultats clés",
+          "Obiettivi e risultati chiave"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "OKR_Solid_Shape_48.svg",
+        "basename": "OKR_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:03:50.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
+    },
+    {
+      "uuid": "a88ea180-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029260,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029260/storage/MDExMDI5MjYwLzAvbWFzdGVyLy8vMTA0NTE4MDQx",
+        "keywords": [
+          "OKR",
+          "Objective key and results",
+          "Objektives und Schlüssel Resultate",
+          "Résultats objectifs et clés",
+          "Chiave oggettiva e risultati",
+          "Goals and key results",
+          "Ziele und Schlüssel Resultate",
+          "Objectifs et résultats clés",
+          "Obiettivi e risultati chiave"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "OKR_Solid_Shape_64.svg",
+        "basename": "OKR_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:03:50.000Z",
+      "modifiedAt": "2026-08-20T11:05:01.298Z"
     },
     {
       "uuid": "e6efa6a0-55d0-11f1-97f7-0050568d2654",
@@ -197210,6 +198782,354 @@
       "modifiedAt": "2026-03-12T14:05:06.983Z"
     },
     {
+      "uuid": "adec4f40-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029325,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029325/storage/MDExMDI5MzI1LzAvbWFzdGVyLy8vMTA0NTE4NzMx",
+        "keywords": [
+          "Elektrobus",
+          "Elektropostauto",
+          "Electric post car",
+          "Autopostale elettrico",
+          "Car postal électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PostautoElectric_Shape_16.svg",
+        "basename": "PostautoElectric_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:18:18.000Z",
+      "modifiedAt": "2026-08-19T11:21:51.000Z"
+    },
+    {
+      "uuid": "ad7f5ca0-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029324,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029324/storage/MDExMDI5MzI0LzAvbWFzdGVyLy8vMTA0NTE4NzI3",
+        "keywords": [
+          "Elektrobus",
+          "Elektropostauto",
+          "Electric post car",
+          "Autopostale elettrico",
+          "Car postal électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PostautoElectric_Shape_24.svg",
+        "basename": "PostautoElectric_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:18:17.000Z",
+      "modifiedAt": "2026-08-19T11:21:51.000Z"
+    },
+    {
+      "uuid": "ad523220-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029323,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029323/storage/MDExMDI5MzIzLzAvbWFzdGVyLy8vMTA0NTE4NzIz",
+        "keywords": [
+          "Elektrobus",
+          "Elektropostauto",
+          "Electric post car",
+          "Autopostale elettrico",
+          "Car postal électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PostautoElectric_Shape_32.svg",
+        "basename": "PostautoElectric_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:18:17.000Z",
+      "modifiedAt": "2026-08-19T11:21:51.000Z"
+    },
+    {
+      "uuid": "ac69cdf0-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029322,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029322/storage/MDExMDI5MzIyLzAvbWFzdGVyLy8vMTA0NTE4NzE5",
+        "keywords": [
+          "Elektrobus",
+          "Elektropostauto",
+          "Electric post car",
+          "Autopostale elettrico",
+          "Car postal électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PostautoElectric_Shape_40.svg",
+        "basename": "PostautoElectric_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:18:15.000Z",
+      "modifiedAt": "2026-08-19T11:21:51.000Z"
+    },
+    {
+      "uuid": "ac000fa0-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029321,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029321/storage/MDExMDI5MzIxLzAvbWFzdGVyLy8vMTA0NTE4NzE1",
+        "keywords": [
+          "Elektrobus",
+          "Elektropostauto",
+          "Electric post car",
+          "Autopostale elettrico",
+          "Car postal électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PostautoElectric_Shape_48.svg",
+        "basename": "PostautoElectric_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:18:15.000Z",
+      "modifiedAt": "2026-08-19T11:21:51.000Z"
+    },
+    {
+      "uuid": "aafd6cb0-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029320,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029320/storage/MDExMDI5MzIwLzAvbWFzdGVyLy8vMTA0NTE4NjM0",
+        "keywords": [
+          "Elektrobus",
+          "Elektropostauto",
+          "Electric post car",
+          "Autopostale elettrico",
+          "Car postal électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PostautoElectric_Shape_64.svg",
+        "basename": "PostautoElectric_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:18:13.000Z",
+      "modifiedAt": "2026-08-19T11:21:11.000Z"
+    },
+    {
+      "uuid": "aa955c10-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029319,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029319/storage/MDExMDI5MzE5LzAvbWFzdGVyLy8vMTA0NTE4NzA4",
+        "keywords": [
+          "Elektrobus",
+          "Elektropostauto",
+          "Electric post car",
+          "Autopostale elettrico",
+          "Car postal électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PostautoElectric_Solid_Shape_16.svg",
+        "basename": "PostautoElectric_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:18:12.000Z",
+      "modifiedAt": "2026-08-19T11:21:51.000Z"
+    },
+    {
+      "uuid": "aa6d1390-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029318,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029318/storage/MDExMDI5MzE4LzAvbWFzdGVyLy8vMTA0NTE4NzA0",
+        "keywords": [
+          "Elektrobus",
+          "Elektropostauto",
+          "Electric post car",
+          "Autopostale elettrico",
+          "Car postal électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PostautoElectric_Solid_Shape_24.svg",
+        "basename": "PostautoElectric_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:18:12.000Z",
+      "modifiedAt": "2026-08-19T11:21:51.000Z"
+    },
+    {
+      "uuid": "a9afb700-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029317,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029317/storage/MDExMDI5MzE3LzAvbWFzdGVyLy8vMTA0NTE4NzAw",
+        "keywords": [
+          "Elektrobus",
+          "Elektropostauto",
+          "Electric post car",
+          "Autopostale elettrico",
+          "Car postal électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PostautoElectric_Solid_Shape_32.svg",
+        "basename": "PostautoElectric_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:18:11.000Z",
+      "modifiedAt": "2026-08-19T11:21:51.000Z"
+    },
+    {
+      "uuid": "a8240df0-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029314,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029314/storage/MDExMDI5MzE0LzAvbWFzdGVyLy8vMTA0NTE4Njg4",
+        "keywords": [
+          "Elektrobus",
+          "Elektropostauto",
+          "Electric post car",
+          "Autopostale elettrico",
+          "Car postal électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PostautoElectric_Solid_Shape_40.svg",
+        "basename": "PostautoElectric_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:18:08.000Z",
+      "modifiedAt": "2026-08-19T11:21:51.000Z"
+    },
+    {
+      "uuid": "a82ee360-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029316,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029316/storage/MDExMDI5MzE2LzAvbWFzdGVyLy8vMTA0NTE4Njk2",
+        "keywords": [
+          "Elektrobus",
+          "Elektropostauto",
+          "Electric post car",
+          "Autopostale elettrico",
+          "Car postal électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PostautoElectric_Solid_Shape_48.svg",
+        "basename": "PostautoElectric_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:18:08.000Z",
+      "modifiedAt": "2026-08-19T11:21:51.000Z"
+    },
+    {
+      "uuid": "a82a4f80-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029315,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029315/storage/MDExMDI5MzE1LzAvbWFzdGVyLy8vMTA0NTE4Njky",
+        "keywords": [
+          "Elektrobus",
+          "Elektropostauto",
+          "Electric post car",
+          "Autopostale elettrico",
+          "Car postal électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PostautoElectric_Solid_Shape_64.svg",
+        "basename": "PostautoElectric_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:18:08.000Z",
+      "modifiedAt": "2026-08-19T11:21:51.000Z"
+    },
+    {
       "uuid": "90e231d2-e51d-11ef-a15d-005056873709",
       "id": 1821555,
       "type": "picture.pictogram.",
@@ -200621,6 +202541,342 @@
       },
       "createdAt": "2025-07-16T09:11:51.000Z",
       "modifiedAt": "2025-07-31T09:22:24.000Z"
+    },
+    {
+      "uuid": "7c86a120-9bc0-11f1-8c91-0050568d2654",
+      "id": 11029339,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029339/storage/MDExMDI5MzM5LzAvbWFzdGVyLy8vMTA0NTE4OTA2",
+        "keywords": [
+          "Preise und Länderinformationen",
+          "Prices and country information",
+          "Prezzi e informazioni sui paesi",
+          "Prix et informations par pays"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PricesCountryInformation_Shape_16.svg",
+        "basename": "PricesCountryInformation_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:24:05.000Z",
+      "modifiedAt": "2026-08-19T11:26:22.000Z"
+    },
+    {
+      "uuid": "7d394f51-9bc0-11f1-8c91-0050568d2654",
+      "id": 11029340,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029340/storage/MDExMDI5MzQwLzAvbWFzdGVyLy8vMTA0NTE4OTE4",
+        "keywords": [
+          "Preise und Länderinformationen",
+          "Prices and country information",
+          "Prezzi e informazioni sui paesi",
+          "Prix et informations par pays"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PricesCountryInformation_Shape_24.svg",
+        "basename": "PricesCountryInformation_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:24:06.000Z",
+      "modifiedAt": "2026-08-19T11:26:22.000Z"
+    },
+    {
+      "uuid": "7b6e7a60-9bc0-11f1-8c91-0050568d2654",
+      "id": 11029338,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029338/storage/MDExMDI5MzM4LzAvbWFzdGVyLy8vMTA0NTE4OTEw",
+        "keywords": [
+          "Preise und Länderinformationen",
+          "Prices and country information",
+          "Prezzi e informazioni sui paesi",
+          "Prix et informations par pays"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PricesCountryInformation_Shape_32.svg",
+        "basename": "PricesCountryInformation_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:24:03.000Z",
+      "modifiedAt": "2026-08-19T11:26:22.000Z"
+    },
+    {
+      "uuid": "7b3f5410-9bc0-11f1-8c91-0050568d2654",
+      "id": 11029337,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029337/storage/MDExMDI5MzM3LzAvbWFzdGVyLy8vMTA0NTE4OTE0",
+        "keywords": [
+          "Preise und Länderinformationen",
+          "Prices and country information",
+          "Prezzi e informazioni sui paesi",
+          "Prix et informations par pays"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PricesCountryInformation_Shape_40.svg",
+        "basename": "PricesCountryInformation_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:24:02.000Z",
+      "modifiedAt": "2026-08-19T11:26:22.000Z"
+    },
+    {
+      "uuid": "7a0a2f70-9bc0-11f1-8c91-0050568d2654",
+      "id": 11029335,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029335/storage/MDExMDI5MzM1LzAvbWFzdGVyLy8vMTA0NTE4OTI2",
+        "keywords": [
+          "Preise und Länderinformationen",
+          "Prices and country information",
+          "Prezzi e informazioni sui paesi",
+          "Prix et informations par pays"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PricesCountryInformation_Shape_48.svg",
+        "basename": "PricesCountryInformation_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:24:00.000Z",
+      "modifiedAt": "2026-08-19T11:26:22.000Z"
+    },
+    {
+      "uuid": "7a26df30-9bc0-11f1-8c91-0050568d2654",
+      "id": 11029336,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029336/storage/MDExMDI5MzM2LzAvbWFzdGVyLy8vMTA0NTE4ODUy",
+        "keywords": [
+          "Preise und Länderinformationen",
+          "Prices and country information",
+          "Prezzi e informazioni sui paesi",
+          "Prix et informations par pays"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PricesCountryInformation_Shape_64.svg",
+        "basename": "PricesCountryInformation_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:24:01.000Z",
+      "modifiedAt": "2026-08-19T11:25:32.000Z"
+    },
+    {
+      "uuid": "78c77640-9bc0-11f1-8c91-0050568d2654",
+      "id": 11029334,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029334/storage/MDExMDI5MzM0LzAvbWFzdGVyLy8vMTA0NTE4OTMw",
+        "keywords": [
+          "Preise und Länderinformationen",
+          "Prices and country information",
+          "Prezzi e informazioni sui paesi",
+          "Prix et informations par pays"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PricesCountryInformation_Solid_Shape_16.svg",
+        "basename": "PricesCountryInformation_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:23:58.000Z",
+      "modifiedAt": "2026-08-19T11:26:22.000Z"
+    },
+    {
+      "uuid": "789da720-9bc0-11f1-8c91-0050568d2654",
+      "id": 11029333,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029333/storage/MDExMDI5MzMzLzAvbWFzdGVyLy8vMTA0NTE4OTM0",
+        "keywords": [
+          "Preise und Länderinformationen",
+          "Prices and country information",
+          "Prezzi e informazioni sui paesi",
+          "Prix et informations par pays"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PricesCountryInformation_Solid_Shape_24.svg",
+        "basename": "PricesCountryInformation_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:23:58.000Z",
+      "modifiedAt": "2026-08-19T11:26:22.000Z"
+    },
+    {
+      "uuid": "77e5c8d0-9bc0-11f1-8c91-0050568d2654",
+      "id": 11029332,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029332/storage/MDExMDI5MzMyLzAvbWFzdGVyLy8vMTA0NTE4OTM4",
+        "keywords": [
+          "Preise und Länderinformationen",
+          "Prices and country information",
+          "Prezzi e informazioni sui paesi",
+          "Prix et informations par pays"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PricesCountryInformation_Solid_Shape_32.svg",
+        "basename": "PricesCountryInformation_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:23:57.000Z",
+      "modifiedAt": "2026-08-19T11:26:22.000Z"
+    },
+    {
+      "uuid": "767262b0-9bc0-11f1-8c91-0050568d2654",
+      "id": 11029329,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029329/storage/MDExMDI5MzI5LzAvbWFzdGVyLy8vMTA0NTE4OTIy",
+        "keywords": [
+          "Preise und Länderinformationen",
+          "Prices and country information",
+          "Prezzi e informazioni sui paesi",
+          "Prix et informations par pays"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PricesCountryInformation_Solid_Shape_40.svg",
+        "basename": "PricesCountryInformation_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:23:54.000Z",
+      "modifiedAt": "2026-08-19T11:26:22.000Z"
+    },
+    {
+      "uuid": "767548e0-9bc0-11f1-8c91-0050568d2654",
+      "id": 11029331,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029331/storage/MDExMDI5MzMxLzAvbWFzdGVyLy8vMTA0NTE4OTQy",
+        "keywords": [
+          "Preise und Länderinformationen",
+          "Prices and country information",
+          "Prezzi e informazioni sui paesi",
+          "Prix et informations par pays"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PricesCountryInformation_Solid_Shape_48.svg",
+        "basename": "PricesCountryInformation_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:23:54.000Z",
+      "modifiedAt": "2026-08-19T11:26:22.000Z"
+    },
+    {
+      "uuid": "76745e80-9bc0-11f1-8c91-0050568d2654",
+      "id": 11029330,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029330/storage/MDExMDI5MzMwLzAvbWFzdGVyLy8vMTA0NTE4OTQ2",
+        "keywords": [
+          "Preise und Länderinformationen",
+          "Prices and country information",
+          "Prezzi e informazioni sui paesi",
+          "Prix et informations par pays"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PricesCountryInformation_Solid_Shape_64.svg",
+        "basename": "PricesCountryInformation_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:23:54.000Z",
+      "modifiedAt": "2026-08-19T11:26:22.000Z"
     },
     {
       "uuid": "d2662370-6008-11f1-aef4-0050568d2654",
@@ -236615,6 +238871,342 @@
       "modifiedAt": "2026-02-02T08:42:26.000Z"
     },
     {
+      "uuid": "164e7200-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029256,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029256/storage/MDExMDI5MjU2LzAvbWFzdGVyLy8vMTA0NTE3ODc1",
+        "keywords": [
+          "special transport",
+          "Spezialtransport",
+          "Transport spécial",
+          "Trasporto speciale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpecialTransport_Shape_16.svg",
+        "basename": "SpecialTransport_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T10:59:45.000Z",
+      "modifiedAt": "2026-08-19T11:02:42.000Z"
+    },
+    {
+      "uuid": "1595d062-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029255,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029255/storage/MDExMDI5MjU1LzAvbWFzdGVyLy8vMTA0NTE3ODcx",
+        "keywords": [
+          "special transport",
+          "Spezialtransport",
+          "Transport spécial",
+          "Trasporto speciale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpecialTransport_Shape_24.svg",
+        "basename": "SpecialTransport_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T10:59:43.000Z",
+      "modifiedAt": "2026-08-19T11:02:42.000Z"
+    },
+    {
+      "uuid": "14d4f160-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029254,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029254/storage/MDExMDI5MjU0LzAvbWFzdGVyLy8vMTA0NTE3ODY3",
+        "keywords": [
+          "special transport",
+          "Spezialtransport",
+          "Transport spécial",
+          "Trasporto speciale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpecialTransport_Shape_32.svg",
+        "basename": "SpecialTransport_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T10:59:42.000Z",
+      "modifiedAt": "2026-08-19T11:02:42.000Z"
+    },
+    {
+      "uuid": "136ab300-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029253,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029253/storage/MDExMDI5MjUzLzAvbWFzdGVyLy8vMTA0NTE3ODYz",
+        "keywords": [
+          "special transport",
+          "Spezialtransport",
+          "Transport spécial",
+          "Trasporto speciale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpecialTransport_Shape_40.svg",
+        "basename": "SpecialTransport_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T10:59:40.000Z",
+      "modifiedAt": "2026-08-19T11:02:42.000Z"
+    },
+    {
+      "uuid": "134d6700-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029251,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029251/storage/MDExMDI5MjUxLzAvbWFzdGVyLy8vMTA0NTE3ODU5",
+        "keywords": [
+          "special transport",
+          "Spezialtransport",
+          "Transport spécial",
+          "Trasporto speciale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpecialTransport_Shape_48.svg",
+        "basename": "SpecialTransport_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T10:59:40.000Z",
+      "modifiedAt": "2026-08-19T11:02:42.000Z"
+    },
+    {
+      "uuid": "1351fae0-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029252,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029252/storage/MDExMDI5MjUyLzAvbWFzdGVyLy8vMTA0NTE3Nzgx",
+        "keywords": [
+          "special transport",
+          "Spezialtransport",
+          "Transport spécial",
+          "Trasporto speciale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpecialTransport_Shape_64.svg",
+        "basename": "SpecialTransport_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T10:59:40.000Z",
+      "modifiedAt": "2026-08-19T11:02:04.000Z"
+    },
+    {
+      "uuid": "123dcbc0-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029250,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029250/storage/MDExMDI5MjUwLzAvbWFzdGVyLy8vMTA0NTE3ODU1",
+        "keywords": [
+          "special transport",
+          "Spezialtransport",
+          "Transport spécial",
+          "Trasporto speciale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpecialTransport_Solid_Shape_16.svg",
+        "basename": "SpecialTransport_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T10:59:38.000Z",
+      "modifiedAt": "2026-08-19T11:02:42.000Z"
+    },
+    {
+      "uuid": "123c4520-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029249,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029249/storage/MDExMDI5MjQ5LzAvbWFzdGVyLy8vMTA0NTE3ODUx",
+        "keywords": [
+          "special transport",
+          "Spezialtransport",
+          "Transport spécial",
+          "Trasporto speciale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpecialTransport_Solid_Shape_24.svg",
+        "basename": "SpecialTransport_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T10:59:38.000Z",
+      "modifiedAt": "2026-08-19T11:02:42.000Z"
+    },
+    {
+      "uuid": "117cecc0-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029248,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029248/storage/MDExMDI5MjQ4LzAvbWFzdGVyLy8vMTA0NTE3ODQ3",
+        "keywords": [
+          "special transport",
+          "Spezialtransport",
+          "Transport spécial",
+          "Trasporto speciale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpecialTransport_Solid_Shape_32.svg",
+        "basename": "SpecialTransport_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T10:59:36.000Z",
+      "modifiedAt": "2026-08-19T11:02:42.000Z"
+    },
+    {
+      "uuid": "1023ec70-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029245,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029245/storage/MDExMDI5MjQ1LzAvbWFzdGVyLy8vMTA0NTE3ODM1",
+        "keywords": [
+          "special transport",
+          "Spezialtransport",
+          "Transport spécial",
+          "Trasporto speciale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpecialTransport_Solid_Shape_40.svg",
+        "basename": "SpecialTransport_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T10:59:34.000Z",
+      "modifiedAt": "2026-08-19T11:02:42.000Z"
+    },
+    {
+      "uuid": "102ee8f2-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029247,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029247/storage/MDExMDI5MjQ3LzAvbWFzdGVyLy8vMTA0NTE3ODQz",
+        "keywords": [
+          "special transport",
+          "Spezialtransport",
+          "Transport spécial",
+          "Trasporto speciale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpecialTransport_Solid_Shape_48.svg",
+        "basename": "SpecialTransport_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T10:59:34.000Z",
+      "modifiedAt": "2026-08-19T11:02:42.000Z"
+    },
+    {
+      "uuid": "10268480-9bbd-11f1-8c91-0050568d2654",
+      "id": 11029246,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029246/storage/MDExMDI5MjQ2LzAvbWFzdGVyLy8vMTA0NTE3ODM5",
+        "keywords": [
+          "special transport",
+          "Spezialtransport",
+          "Transport spécial",
+          "Trasporto speciale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpecialTransport_Solid_Shape_64.svg",
+        "basename": "SpecialTransport_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T10:59:34.000Z",
+      "modifiedAt": "2026-08-19T11:02:42.000Z"
+    },
+    {
       "uuid": "0ddaaff0-e51e-11ef-a15d-005056873709",
       "id": 1821964,
       "type": "picture.pictogram.",
@@ -249760,6 +252352,534 @@
       "modifiedAt": "2025-10-24T12:52:08.000Z"
     },
     {
+      "uuid": "236e3540-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029302,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029302/storage/MDExMDI5MzAyLzAvbWFzdGVyLy8vMTA0NTE4NTA0",
+        "keywords": [
+          "Sustainable electricity",
+          "Nachhaltiger Strom",
+          "Energia sostenibile",
+          "Électricité durable",
+          "Top up",
+          "Aufladen",
+          "Recharge",
+          "Ricarica",
+          "top up",
+          "aufladen",
+          "Recharger",
+          "ricaricare",
+          "Nachhaltigkeit",
+          "Sustainability",
+          "Sostenibilità",
+          "Développement durable",
+          "electricity",
+          "elettricità",
+          "Elektrizität",
+          "électricité"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SustainablePower_Shape_16.svg",
+        "basename": "SustainablePower_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:14:26.000Z",
+      "modifiedAt": "2026-08-19T11:17:20.000Z"
+    },
+    {
+      "uuid": "22b5bab0-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029301,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029301/storage/MDExMDI5MzAxLzAvbWFzdGVyLy8vMTA0NTE4NTAw",
+        "keywords": [
+          "Sustainable electricity",
+          "Nachhaltiger Strom",
+          "Energia sostenibile",
+          "Électricité durable",
+          "Top up",
+          "Aufladen",
+          "Recharge",
+          "Ricarica",
+          "top up",
+          "aufladen",
+          "Recharger",
+          "ricaricare",
+          "Nachhaltigkeit",
+          "Sustainability",
+          "Sostenibilità",
+          "Développement durable",
+          "electricity",
+          "elettricità",
+          "Elektrizität",
+          "électricité"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SustainablePower_Shape_24.svg",
+        "basename": "SustainablePower_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:14:24.000Z",
+      "modifiedAt": "2026-08-19T11:17:20.000Z"
+    },
+    {
+      "uuid": "21fd8e40-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029300,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029300/storage/MDExMDI5MzAwLzAvbWFzdGVyLy8vMTA0NTE4NDk2",
+        "keywords": [
+          "Sustainable electricity",
+          "Nachhaltiger Strom",
+          "Energia sostenibile",
+          "Électricité durable",
+          "Top up",
+          "Aufladen",
+          "Recharge",
+          "Ricarica",
+          "top up",
+          "aufladen",
+          "Recharger",
+          "ricaricare",
+          "Nachhaltigkeit",
+          "Sustainability",
+          "Sostenibilità",
+          "Développement durable",
+          "electricity",
+          "elettricità",
+          "Elektrizität",
+          "électricité"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SustainablePower_Shape_32.svg",
+        "basename": "SustainablePower_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:14:23.000Z",
+      "modifiedAt": "2026-08-19T11:17:20.000Z"
+    },
+    {
+      "uuid": "214bf180-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029299,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029299/storage/MDExMDI5Mjk5LzAvbWFzdGVyLy8vMTA0NTE4NDky",
+        "keywords": [
+          "Sustainable electricity",
+          "Nachhaltiger Strom",
+          "Energia sostenibile",
+          "Électricité durable",
+          "Top up",
+          "Aufladen",
+          "Recharge",
+          "Ricarica",
+          "top up",
+          "aufladen",
+          "Recharger",
+          "ricaricare",
+          "Nachhaltigkeit",
+          "Sustainability",
+          "Sostenibilità",
+          "Développement durable",
+          "electricity",
+          "elettricità",
+          "Elektrizität",
+          "électricité"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SustainablePower_Shape_40.svg",
+        "basename": "SustainablePower_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:14:22.000Z",
+      "modifiedAt": "2026-08-19T11:17:20.000Z"
+    },
+    {
+      "uuid": "20817590-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029298,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029298/storage/MDExMDI5Mjk4LzAvbWFzdGVyLy8vMTA0NTE4NDg4",
+        "keywords": [
+          "Sustainable electricity",
+          "Nachhaltiger Strom",
+          "Energia sostenibile",
+          "Électricité durable",
+          "Top up",
+          "Aufladen",
+          "Recharge",
+          "Ricarica",
+          "top up",
+          "aufladen",
+          "Recharger",
+          "ricaricare",
+          "Nachhaltigkeit",
+          "Sustainability",
+          "Sostenibilità",
+          "Développement durable",
+          "electricity",
+          "elettricità",
+          "Elektrizität",
+          "électricité"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SustainablePower_Shape_48.svg",
+        "basename": "SustainablePower_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:14:21.000Z",
+      "modifiedAt": "2026-08-19T11:17:20.000Z"
+    },
+    {
+      "uuid": "1fcd8ee0-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029297,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029297/storage/MDExMDI5Mjk3LzAvbWFzdGVyLy8vMTA0NTE4NDEw",
+        "keywords": [
+          "Sustainable electricity",
+          "Nachhaltiger Strom",
+          "Energia sostenibile",
+          "Électricité durable",
+          "Top up",
+          "Aufladen",
+          "Recharge",
+          "Ricarica",
+          "top up",
+          "aufladen",
+          "Recharger",
+          "ricaricare",
+          "Nachhaltigkeit",
+          "Sustainability",
+          "Sostenibilità",
+          "Développement durable",
+          "electricity",
+          "elettricità",
+          "Elektrizität",
+          "électricité"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SustainablePower_Shape_64.svg",
+        "basename": "SustainablePower_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:14:19.000Z",
+      "modifiedAt": "2026-08-19T11:16:44.000Z"
+    },
+    {
+      "uuid": "1f171020-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029296,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029296/storage/MDExMDI5Mjk2LzAvbWFzdGVyLy8vMTA0NTE4NDg0",
+        "keywords": [
+          "Sustainable electricity",
+          "Nachhaltiger Strom",
+          "Energia sostenibile",
+          "Électricité durable",
+          "Top up",
+          "Aufladen",
+          "Recharge",
+          "Ricarica",
+          "top up",
+          "aufladen",
+          "Recharger",
+          "ricaricare",
+          "Nachhaltigkeit",
+          "Sustainability",
+          "Sostenibilità",
+          "Développement durable",
+          "electricity",
+          "elettricità",
+          "Elektrizität",
+          "électricité"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SustainablePower_Solid_Shape_16.svg",
+        "basename": "SustainablePower_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:14:18.000Z",
+      "modifiedAt": "2026-08-19T11:17:20.000Z"
+    },
+    {
+      "uuid": "1e5b8850-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029295,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029295/storage/MDExMDI5Mjk1LzAvbWFzdGVyLy8vMTA0NTE4NDgw",
+        "keywords": [
+          "Sustainable electricity",
+          "Nachhaltiger Strom",
+          "Energia sostenibile",
+          "Électricité durable",
+          "Top up",
+          "Aufladen",
+          "Recharge",
+          "Ricarica",
+          "top up",
+          "aufladen",
+          "Recharger",
+          "ricaricare",
+          "Nachhaltigkeit",
+          "Sustainability",
+          "Sostenibilità",
+          "Développement durable",
+          "electricity",
+          "elettricità",
+          "Elektrizität",
+          "électricité"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SustainablePower_Solid_Shape_24.svg",
+        "basename": "SustainablePower_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:14:17.000Z",
+      "modifiedAt": "2026-08-19T11:17:20.000Z"
+    },
+    {
+      "uuid": "1d84b050-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029294,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029294/storage/MDExMDI5Mjk0LzAvbWFzdGVyLy8vMTA0NTE4NDc2",
+        "keywords": [
+          "Sustainable electricity",
+          "Nachhaltiger Strom",
+          "Energia sostenibile",
+          "Électricité durable",
+          "Top up",
+          "Aufladen",
+          "Recharge",
+          "Ricarica",
+          "top up",
+          "aufladen",
+          "Recharger",
+          "ricaricare",
+          "Nachhaltigkeit",
+          "Sustainability",
+          "Sostenibilità",
+          "Développement durable",
+          "electricity",
+          "elettricità",
+          "Elektrizität",
+          "électricité"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SustainablePower_Solid_Shape_32.svg",
+        "basename": "SustainablePower_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:14:16.000Z",
+      "modifiedAt": "2026-08-19T11:17:20.000Z"
+    },
+    {
+      "uuid": "1c4a82a0-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029293,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029293/storage/MDExMDI5MjkzLzAvbWFzdGVyLy8vMTA0NTE4NDcy",
+        "keywords": [
+          "Sustainable electricity",
+          "Nachhaltiger Strom",
+          "Energia sostenibile",
+          "Électricité durable",
+          "Top up",
+          "Aufladen",
+          "Recharge",
+          "Ricarica",
+          "top up",
+          "aufladen",
+          "Recharger",
+          "ricaricare",
+          "Nachhaltigkeit",
+          "Sustainability",
+          "Sostenibilità",
+          "Développement durable",
+          "electricity",
+          "elettricità",
+          "Elektrizität",
+          "électricité"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SustainablePower_Solid_Shape_40.svg",
+        "basename": "SustainablePower_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:14:14.000Z",
+      "modifiedAt": "2026-08-19T11:17:20.000Z"
+    },
+    {
+      "uuid": "1c47c380-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029292,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029292/storage/MDExMDI5MjkyLzAvbWFzdGVyLy8vMTA0NTE4NDY4",
+        "keywords": [
+          "Sustainable electricity",
+          "Nachhaltiger Strom",
+          "Energia sostenibile",
+          "Électricité durable",
+          "Top up",
+          "Aufladen",
+          "Recharge",
+          "Ricarica",
+          "top up",
+          "aufladen",
+          "Recharger",
+          "ricaricare",
+          "Nachhaltigkeit",
+          "Sustainability",
+          "Sostenibilità",
+          "Développement durable",
+          "electricity",
+          "elettricità",
+          "Elektrizität",
+          "électricité"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SustainablePower_Solid_Shape_48.svg",
+        "basename": "SustainablePower_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:14:14.000Z",
+      "modifiedAt": "2026-08-19T11:17:20.000Z"
+    },
+    {
+      "uuid": "1c46d920-9bbf-11f1-8c91-0050568d2654",
+      "id": 11029291,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029291/storage/MDExMDI5MjkxLzAvbWFzdGVyLy8vMTA0NTE4NDY0",
+        "keywords": [
+          "Sustainable electricity",
+          "Nachhaltiger Strom",
+          "Energia sostenibile",
+          "Électricité durable",
+          "Top up",
+          "Aufladen",
+          "Recharge",
+          "Ricarica",
+          "top up",
+          "aufladen",
+          "Recharger",
+          "ricaricare",
+          "Nachhaltigkeit",
+          "Sustainability",
+          "Sostenibilità",
+          "Développement durable",
+          "electricity",
+          "elettricità",
+          "Elektrizität",
+          "électricité"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SustainablePower_Solid_Shape_64.svg",
+        "basename": "SustainablePower_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T11:14:14.000Z",
+      "modifiedAt": "2026-08-19T11:17:20.000Z"
+    },
+    {
       "uuid": "22bd36e0-e51e-11ef-a15d-005056873709",
       "id": 1822090,
       "type": "picture.pictogram.",
@@ -262726,6 +265846,342 @@
       "modifiedAt": "2025-03-26T13:37:18.000Z"
     },
     {
+      "uuid": "250f2e50-9baf-11f1-8c91-0050568d2654",
+      "id": 11029208,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029208/storage/MDExMDI5MjA4LzAvbWFzdGVyLy8vMTA0NTEzMTE1",
+        "keywords": [
+          "Organize small consignments transport",
+          "Stückgut Transport organisieren",
+          "Organiser le transport de marchandises",
+          "Organizzare il trasporto di collettame"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransportManagement_Shape_16.svg",
+        "basename": "TransportManagement_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:19:56.000Z",
+      "modifiedAt": "2026-08-19T09:22:23.000Z"
+    },
+    {
+      "uuid": "23ac6a04-9baf-11f1-8c91-0050568d2654",
+      "id": 11029207,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029207/storage/MDExMDI5MjA3LzAvbWFzdGVyLy8vMTA0NTEzMTEx",
+        "keywords": [
+          "Organize small consignments transport",
+          "Stückgut Transport organisieren",
+          "Organiser le transport de marchandises",
+          "Organizzare il trasporto di collettame"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransportManagement_Shape_24.svg",
+        "basename": "TransportManagement_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:19:54.000Z",
+      "modifiedAt": "2026-08-19T09:22:23.000Z"
+    },
+    {
+      "uuid": "23a209c0-9baf-11f1-8c91-0050568d2654",
+      "id": 11029206,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029206/storage/MDExMDI5MjA2LzAvbWFzdGVyLy8vMTA0NTEzMTA3",
+        "keywords": [
+          "Organize small consignments transport",
+          "Stückgut Transport organisieren",
+          "Organiser le transport de marchandises",
+          "Organizzare il trasporto di collettame"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransportManagement_Shape_32.svg",
+        "basename": "TransportManagement_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:19:54.000Z",
+      "modifiedAt": "2026-08-19T09:22:23.000Z"
+    },
+    {
+      "uuid": "22aab170-9baf-11f1-8c91-0050568d2654",
+      "id": 11029205,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029205/storage/MDExMDI5MjA1LzAvbWFzdGVyLy8vMTA0NTEzMTAz",
+        "keywords": [
+          "Organize small consignments transport",
+          "Stückgut Transport organisieren",
+          "Organiser le transport de marchandises",
+          "Organizzare il trasporto di collettame"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransportManagement_Shape_40.svg",
+        "basename": "TransportManagement_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:19:52.000Z",
+      "modifiedAt": "2026-08-19T09:22:23.000Z"
+    },
+    {
+      "uuid": "22283b00-9baf-11f1-8c91-0050568d2654",
+      "id": 11029204,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029204/storage/MDExMDI5MjA0LzAvbWFzdGVyLy8vMTA0NTEzMDk5",
+        "keywords": [
+          "Organize small consignments transport",
+          "Stückgut Transport organisieren",
+          "Organiser le transport de marchandises",
+          "Organizzare il trasporto di collettame"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransportManagement_Shape_48.svg",
+        "basename": "TransportManagement_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:19:51.000Z",
+      "modifiedAt": "2026-08-19T09:22:23.000Z"
+    },
+    {
+      "uuid": "21f25df0-9baf-11f1-8c91-0050568d2654",
+      "id": 11029203,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029203/storage/MDExMDI5MjAzLzAvbWFzdGVyLy8vMTA0NTEzMDIx",
+        "keywords": [
+          "Organize small consignments transport",
+          "Stückgut Transport organisieren",
+          "Organiser le transport de marchandises",
+          "Organizzare il trasporto di collettame"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransportManagement_Shape_64.svg",
+        "basename": "TransportManagement_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:19:51.000Z",
+      "modifiedAt": "2026-08-19T09:21:15.000Z"
+    },
+    {
+      "uuid": "20c92030-9baf-11f1-8c91-0050568d2654",
+      "id": 11029202,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029202/storage/MDExMDI5MjAyLzAvbWFzdGVyLy8vMTA0NTEzMDk1",
+        "keywords": [
+          "Organize small consignments transport",
+          "Stückgut Transport organisieren",
+          "Organiser le transport de marchandises",
+          "Organizzare il trasporto di collettame"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransportManagement_Solid_Shape_16.svg",
+        "basename": "TransportManagement_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:19:49.000Z",
+      "modifiedAt": "2026-08-19T09:22:23.000Z"
+    },
+    {
+      "uuid": "20ac2250-9baf-11f1-8c91-0050568d2654",
+      "id": 11029201,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029201/storage/MDExMDI5MjAxLzAvbWFzdGVyLy8vMTA0NTEzMDkx",
+        "keywords": [
+          "Organize small consignments transport",
+          "Stückgut Transport organisieren",
+          "Organiser le transport de marchandises",
+          "Organizzare il trasporto di collettame"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransportManagement_Solid_Shape_24.svg",
+        "basename": "TransportManagement_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:19:49.000Z",
+      "modifiedAt": "2026-08-19T09:22:23.000Z"
+    },
+    {
+      "uuid": "1fc82af0-9baf-11f1-8c91-0050568d2654",
+      "id": 11029200,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029200/storage/MDExMDI5MjAwLzAvbWFzdGVyLy8vMTA0NTEzMDg3",
+        "keywords": [
+          "Organize small consignments transport",
+          "Stückgut Transport organisieren",
+          "Organiser le transport de marchandises",
+          "Organizzare il trasporto di collettame"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransportManagement_Solid_Shape_32.svg",
+        "basename": "TransportManagement_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:19:47.000Z",
+      "modifiedAt": "2026-08-19T09:22:23.000Z"
+    },
+    {
+      "uuid": "1e2ddbe0-9baf-11f1-8c91-0050568d2654",
+      "id": 11029199,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029199/storage/MDExMDI5MTk5LzAvbWFzdGVyLy8vMTA0NTEzMDgz",
+        "keywords": [
+          "Organize small consignments transport",
+          "Stückgut Transport organisieren",
+          "Organiser le transport de marchandises",
+          "Organizzare il trasporto di collettame"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransportManagement_Solid_Shape_40.svg",
+        "basename": "TransportManagement_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:19:45.000Z",
+      "modifiedAt": "2026-08-19T09:22:23.000Z"
+    },
+    {
+      "uuid": "1e2a0b50-9baf-11f1-8c91-0050568d2654",
+      "id": 11029198,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029198/storage/MDExMDI5MTk4LzAvbWFzdGVyLy8vMTA0NTEzMDc5",
+        "keywords": [
+          "Organize small consignments transport",
+          "Stückgut Transport organisieren",
+          "Organiser le transport de marchandises",
+          "Organizzare il trasporto di collettame"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransportManagement_Solid_Shape_48.svg",
+        "basename": "TransportManagement_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:19:45.000Z",
+      "modifiedAt": "2026-08-19T09:22:23.000Z"
+    },
+    {
+      "uuid": "1e2661d0-9baf-11f1-8c91-0050568d2654",
+      "id": 11029197,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029197/storage/MDExMDI5MTk3LzAvbWFzdGVyLy8vMTA0NTEzMDc1",
+        "keywords": [
+          "Organize small consignments transport",
+          "Stückgut Transport organisieren",
+          "Organiser le transport de marchandises",
+          "Organizzare il trasporto di collettame"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransportManagement_Solid_Shape_64.svg",
+        "basename": "TransportManagement_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:19:45.000Z",
+      "modifiedAt": "2026-08-19T09:22:23.000Z"
+    },
+    {
       "uuid": "c94b9094-600d-11f1-aef4-0050568d2654",
       "id": 10444676,
       "type": "picture.pictogram.",
@@ -268783,6 +272239,342 @@
       },
       "createdAt": "2025-08-05T05:34:59.000Z",
       "modifiedAt": "2025-08-06T11:44:57.000Z"
+    },
+    {
+      "uuid": "9d8f91d1-9baf-11f1-8c91-0050568d2654",
+      "id": 11029223,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029223/storage/MDExMDI5MjIzLzAvbWFzdGVyLy8vMTA0NTE0ODY4",
+        "keywords": [
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UnderConstruction_Shape_16.svg",
+        "basename": "UnderConstruction_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:23:19.000Z",
+      "modifiedAt": "2026-08-19T09:26:31.000Z"
+    },
+    {
+      "uuid": "9cc786e0-9baf-11f1-8c91-0050568d2654",
+      "id": 11029222,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029222/storage/MDExMDI5MjIyLzAvbWFzdGVyLy8vMTA0NTE0ODY0",
+        "keywords": [
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UnderConstruction_Shape_24.svg",
+        "basename": "UnderConstruction_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:23:17.000Z",
+      "modifiedAt": "2026-08-19T09:26:31.000Z"
+    },
+    {
+      "uuid": "9c037390-9baf-11f1-8c91-0050568d2654",
+      "id": 11029221,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029221/storage/MDExMDI5MjIxLzAvbWFzdGVyLy8vMTA0NTE0ODYw",
+        "keywords": [
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UnderConstruction_Shape_32.svg",
+        "basename": "UnderConstruction_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:23:16.000Z",
+      "modifiedAt": "2026-08-19T09:26:31.000Z"
+    },
+    {
+      "uuid": "9b3eeb10-9baf-11f1-8c91-0050568d2654",
+      "id": 11029220,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029220/storage/MDExMDI5MjIwLzAvbWFzdGVyLy8vMTA0NTE0ODU2",
+        "keywords": [
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UnderConstruction_Shape_40.svg",
+        "basename": "UnderConstruction_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:23:15.000Z",
+      "modifiedAt": "2026-08-19T09:26:31.000Z"
+    },
+    {
+      "uuid": "9a79c650-9baf-11f1-8c91-0050568d2654",
+      "id": 11029219,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029219/storage/MDExMDI5MjE5LzAvbWFzdGVyLy8vMTA0NTE0ODUy",
+        "keywords": [
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UnderConstruction_Shape_48.svg",
+        "basename": "UnderConstruction_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:23:13.000Z",
+      "modifiedAt": "2026-08-19T09:26:31.000Z"
+    },
+    {
+      "uuid": "99b05bd1-9baf-11f1-8c91-0050568d2654",
+      "id": 11029218,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029218/storage/MDExMDI5MjE4LzAvbWFzdGVyLy8vMTA0NTE0Mzgx",
+        "keywords": [
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UnderConstruction_Shape_64.svg",
+        "basename": "UnderConstruction_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:23:12.000Z",
+      "modifiedAt": "2026-08-19T09:25:32.000Z"
+    },
+    {
+      "uuid": "98f01910-9baf-11f1-8c91-0050568d2654",
+      "id": 11029217,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029217/storage/MDExMDI5MjE3LzAvbWFzdGVyLy8vMTA0NTE0ODQ4",
+        "keywords": [
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UnderConstruction_Solid_Shape_16.svg",
+        "basename": "UnderConstruction_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:23:11.000Z",
+      "modifiedAt": "2026-08-19T09:26:31.000Z"
+    },
+    {
+      "uuid": "9815bea0-9baf-11f1-8c91-0050568d2654",
+      "id": 11029216,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029216/storage/MDExMDI5MjE2LzAvbWFzdGVyLy8vMTA0NTE0ODQ0",
+        "keywords": [
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UnderConstruction_Solid_Shape_24.svg",
+        "basename": "UnderConstruction_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:23:09.000Z",
+      "modifiedAt": "2026-08-19T09:26:31.000Z"
+    },
+    {
+      "uuid": "9752bcc6-9baf-11f1-8c91-0050568d2654",
+      "id": 11029215,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029215/storage/MDExMDI5MjE1LzAvbWFzdGVyLy8vMTA0NTE0ODQw",
+        "keywords": [
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UnderConstruction_Solid_Shape_32.svg",
+        "basename": "UnderConstruction_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:23:08.000Z",
+      "modifiedAt": "2026-08-19T09:26:31.000Z"
+    },
+    {
+      "uuid": "95b400e0-9baf-11f1-8c91-0050568d2654",
+      "id": 11029214,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029214/storage/MDExMDI5MjE0LzAvbWFzdGVyLy8vMTA0NTE0ODM2",
+        "keywords": [
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UnderConstruction_Solid_Shape_40.svg",
+        "basename": "UnderConstruction_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:23:05.000Z",
+      "modifiedAt": "2026-08-19T09:26:31.000Z"
+    },
+    {
+      "uuid": "95b03050-9baf-11f1-8c91-0050568d2654",
+      "id": 11029212,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029212/storage/MDExMDI5MjEyLzAvbWFzdGVyLy8vMTA0NTE0ODI4",
+        "keywords": [
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UnderConstruction_Solid_Shape_48.svg",
+        "basename": "UnderConstruction_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:23:05.000Z",
+      "modifiedAt": "2026-08-19T09:26:31.000Z"
+    },
+    {
+      "uuid": "95b20510-9baf-11f1-8c91-0050568d2654",
+      "id": 11029213,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11029213/storage/MDExMDI5MjEzLzAvbWFzdGVyLy8vMTA0NTE0ODMy",
+        "keywords": [
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "UnderConstruction_Solid_Shape_64.svg",
+        "basename": "UnderConstruction_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-08-19T09:23:05.000Z",
+      "modifiedAt": "2026-08-19T09:26:31.000Z"
     },
     {
       "uuid": "ab53d580-1967-11f1-a5c3-0050568d2654",
@@ -367580,13 +371372,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 9528,
+    "success": 9648,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 2948,
     "duplicates": 0
   },
-  "created": "2026-08-16T01:56:59.615Z",
-  "version": "10.2.0"
+  "created": "2026-08-23T01:59:47.674Z",
+  "version": "10.3.0"
 }
