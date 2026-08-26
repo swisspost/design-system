@@ -38,6 +38,12 @@ import * as StepperStories from './stepper.stories';
 
 ## Examples
 
+### Completed and current step
+
+Add the `.stepper-item-completed` class to every completed `.stepper-item`. Completion is independent of the current step, which continues to use `aria-current="step"`. If a user returns to a completed step, apply both states to show its checkmark while preserving the current-step semantics for assistive technologies.
+
+<Canvas of={StepperStories.CompletedCurrentStep} />
+
 ### Navigational Stepper
 
 You can use a stepper to allow users to navigate to specific steps.

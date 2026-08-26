@@ -74,10 +74,12 @@
     }
   }
 
-  // current and completed steps are preceded by a yellow segment (except for the first step)
+  // Explicitly completed steps fill both adjacent segments. The aria-current selectors preserve
+  // the legacy behavior that infers completed steps from their position before the current step.
+  &.stepper-item-completed::before,
+  &.stepper-item-completed::after,
   &:not(&[aria-current='step'] ~ *, :first-child)::before,
-  // steps that are not the current step or preceded by a current step are followed by a yellow segment
-    &:not([aria-current='step'], .stepper-item[aria-current='step'] ~ *)::after {
+  &:not([aria-current='step'], .stepper-item[aria-current='step'] ~ *)::after {
     background-color: stepper.$stepper-bar-fill-color;
     z-index: 1;
   }
@@ -148,13 +150,15 @@
     margin-inline-start: auto;
   }
 
-  .stepper-item:not([aria-current='step'], .stepper-item[aria-current='step'] ~ *) > & {
-    color: transparent;
-  }
-
   .stepper-item[aria-current='step'] ~ .stepper-item > & {
     color: stepper.$stepper-indicator-future-color;
     background-color: stepper.$stepper-indicator-future-bg;
+  }
+
+  .stepper-item.stepper-item-completed > &,
+  .stepper-item:not([aria-current='step'], .stepper-item[aria-current='step'] ~ *) > & {
+    color: transparent;
+    background-color: stepper.$stepper-indicator-bg;
   }
 }
 
@@ -189,6 +193,7 @@
   }
 
   // show only for completed steps
+  .stepper-item.stepper-item-completed > &,
   .stepper-item:not([aria-current='step'], .stepper-item[aria-current='step'] ~ *) > & {
     content: '';
   }
@@ -301,6 +306,8 @@
       background-color: CanvasText;
     }
 
+    &.stepper-item-completed::before,
+    &.stepper-item-completed::after,
     &:not(&[aria-current='step'] ~ &, :first-child)::before,
     &:not([aria-current='step']:not(:last-child), &[aria-current='step'] ~ *)::after {
       background-color: Highlight;
@@ -323,6 +330,14 @@
     .stepper-item:not([aria-current='step']) > & {
       &::before {
         color: Canvas;
+        border-color: Canvas;
+        background-color: CanvasText;
+      }
+    }
+
+    .stepper-item.stepper-item-completed > & {
+      &::before {
+        color: transparent;
         border-color: Canvas;
         background-color: CanvasText;
       }

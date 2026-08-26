@@ -23,6 +23,7 @@ const meta: MetaComponent = {
   },
   args: {
     currentStepNumber: 3,
+    lastCompletedStepNumber: 2,
     navigatableSteps: 'all',
     processName: 'Registration Form',
     steps: defaultSteps,
@@ -55,6 +56,18 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
+    lastCompletedStepNumber: {
+      name: 'Last Completed Step Number',
+      description:
+        'The number of the last completed step, tracked independently from the current step.',
+      control: {
+        type: 'select',
+      },
+      options: [0, ...Object.keys(defaultSteps).map(key => parseInt(key, 10) + 1)],
+      table: {
+        category: 'General',
+      },
+    },
     processName: {
       name: 'Process Name',
       description:
@@ -78,22 +91,25 @@ function getStepperItem(
   updateStep: (newStep: number, event: Event) => void,
 ) {
   const currentStepIndex = args.currentStepNumber - 1;
-  const isCompletedStep = index < currentStepIndex;
+  const isCompletedStep = index < args.lastCompletedStepNumber;
   const isCurrentStep = index === currentStepIndex;
-  const isNextStep = index > currentStepIndex;
+  const isNextStep = !isCompletedStep && !isCurrentStep;
   const isLink =
-    (isCompletedStep && args.navigatableSteps !== 'none') ||
-    (isNextStep && args.navigatableSteps === 'all');
+    !isCurrentStep &&
+    ((isCompletedStep && args.navigatableSteps !== 'none') ||
+      (isNextStep && args.navigatableSteps === 'all'));
 
-  let status = 'Current';
-  if (isCompletedStep) status = 'Completed';
-  if (isNextStep) status = 'Next';
+  let status = isCompletedStep ? 'Completed' : 'Next';
+  if (isCurrentStep) status = isCompletedStep ? 'Completed current' : 'Current';
 
   const text = html`<span class="visually-hidden">${status} step:</span> ${step}`;
   const title = step !== defaultSteps[index] ? step : undefined;
 
   return html`
-    <li aria-current=${ifDefined(isCurrentStep ? 'step' : undefined)} class="stepper-item">
+    <li
+      aria-current=${ifDefined(isCurrentStep ? 'step' : undefined)}
+      class="stepper-item${isCompletedStep ? ' stepper-item-completed' : ''}"
+    >
       ${isLink
         ? html`
             <a
@@ -148,6 +164,13 @@ export const NavigationalStepper: StoryObj = {
 export const InformationalStepper: StoryObj = {
   args: {
     navigatableSteps: 'none',
+  },
+};
+
+export const CompletedCurrentStep: StoryObj = {
+  args: {
+    currentStepNumber: 2,
+    lastCompletedStepNumber: 3,
   },
 };
 
