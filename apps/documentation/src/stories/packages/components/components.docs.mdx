@@ -1,6 +1,5 @@
 import { Meta, Source } from '@storybook/addon-docs/blocks';
 import * as PackageStories from './components.stories';
-
 import SampleCss from './components-css.sample.css?raw';
 import SampleLibraryJs from './components-library-js.sample.js?raw';
 import SampleLibraryWithNonce from './components-library-with-nonce.sample.js?raw';
@@ -9,6 +8,7 @@ import SampleLibraryCdnUnpkg from './components-library-cdn-unpkg.sample.html?ra
 import SampleStandaloneJs from './components-standalone-js.sample.js?raw';
 import SampleStandaloneCdnJsdelivr from './components-standalone-cdn-jsdelivr.sample.html?raw';
 import SampleStandaloneCdnUnpkg from './components-standalone-cdn-unpkg.sample.html?raw';
+import { PackageShields } from '@root/src/shared/package-shields';
 
 import changelog from '@/../../../packages/components/CHANGELOG.md?raw';
 import PackageDocs from '@/shared/packages-docs-layout.mdx';
@@ -17,10 +17,7 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
 
 # @swisspost/design-system-components
 
-<div className="npm-package-link">
-  [![npm
-  version](https://badge.fury.io/js/@swisspost%2Fdesign-system-components.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-components)
-</div>
+<PackageShields packageName="@swisspost/design-system-components" />
 
 <div className="lead">
   A set of standard Web Components for easy integration with every framework or no framework at all.
