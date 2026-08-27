@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': patch
 ---
 
-Filter `null` and `undefined` from attributes to be removed
+Prevent unchanged Storybook attributes from being temporarily removed when controls update.
