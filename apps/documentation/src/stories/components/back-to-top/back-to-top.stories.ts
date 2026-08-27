@@ -10,6 +10,16 @@ const meta: MetaComponent = {
   tags: ['package:WebComponents', 'status:New'],
   parameters: {
     layout: 'fullscreen',
+    docs: {
+      story: {
+        iframeHeight: 400,
+        inline: false,
+      },
+      source: {
+        code: `<post-back-to-top text-back-to-top="Back to top" />`,
+        language: 'html',
+      },
+    },
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=18-11',
