@@ -158,7 +158,7 @@ export class PostMenu {
     if (this.isVisible) {
       this.lastFocusedElement = this.root?.activeElement as HTMLElement;
 
-      // Only focus the first item if the trigger was keyboard-focus-visible —
+      // Only focus the first item if the trigger was keyboard-focus-visible
       // that's the browser's own signal for a keyboard-driven interaction.
       if (this.wasFocusVisible(this.lastFocusedElement)) {
         requestAnimationFrame(() => {
@@ -179,7 +179,7 @@ export class PostMenu {
     try {
       return element.matches(':focus-visible');
     } catch {
-      // Not supported — fall back to always focusing, the previous behavior.
+      // Not supported, fall back to always focusing
       return true;
     }
   }
