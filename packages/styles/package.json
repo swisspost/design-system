@@ -48,7 +48,7 @@
     "prettier": "3.6.2",
     "rimraf": "6.0.1",
     "sass-embedded": "1.78.0",
-    "stylelint-config-sass-guidelines": "11.1.0",
+    "stylelint-config-sass-guidelines": "13.0.0",
     "stylelint": "16.26.1",
     "stylelint-prettier": "5.0.3",
     "stylelint-scss": "6.12.1",
