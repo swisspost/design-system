@@ -522,7 +522,7 @@ importers:
     devDependencies:
       '@angular/build':
         specifier: catalog:angular
-        version: 22.1.5(61c3edf7d4548eb656351654a800852e)
+        version: 22.1.5(81dc7346ff36a35b58e861292cd16508)
       '@angular/cli':
         specifier: catalog:angular
         version: 22.1.5(@types/node@26.2.0)(chokidar@5.0.0)(supports-color@10.2.2)
@@ -1221,7 +1221,7 @@ importers:
         version: 24.0.0
       autoprefixer:
         specifier: 10.5.0
-        version: 10.5.0(postcss@8.5.23)
+        version: 10.5.0(postcss@8.5.24)
       copyfiles:
         specifier: 2.4.1
         version: 2.4.1
@@ -1236,16 +1236,16 @@ importers:
         version: 1.4.0
       gulp-postcss:
         specifier: 10.0.0
-        version: 10.0.0(jiti@2.6.1)(postcss@8.5.23)
+        version: 10.0.0(jiti@2.6.1)(postcss@8.5.24)
       gulp-sass:
         specifier: 6.0.1
         version: 6.0.1
       postcss:
-        specifier: 8.5.23
-        version: 8.5.23
+        specifier: 8.5.24
+        version: 8.5.24
       postcss-scss:
         specifier: 4.0.9
-        version: 4.0.9(postcss@8.5.23)
+        version: 4.0.9(postcss@8.5.24)
       prettier:
         specifier: 3.6.2
         version: 3.6.2
@@ -1260,7 +1260,7 @@ importers:
         version: 16.26.1(supports-color@5.5.0)(typescript@6.0.3)
       stylelint-config-sass-guidelines:
         specifier: 13.0.0
-        version: 13.0.0(postcss@8.5.23)(stylelint@16.26.1(supports-color@5.5.0)(typescript@6.0.3))
+        version: 13.0.0(postcss@8.5.24)(stylelint@16.26.1(supports-color@5.5.0)(typescript@6.0.3))
       stylelint-prettier:
         specifier: 5.0.3
         version: 5.0.3(prettier@3.6.2)(stylelint@16.26.1(supports-color@5.5.0)(typescript@6.0.3))
@@ -10137,20 +10137,12 @@ packages:
     resolution: {integrity: sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==}
     engines: {node: ^10 || ^12 || >=14}
 
-  postcss@8.5.13:
-    resolution: {integrity: sha512-qif0+jGGZoLWdHey3UFHHWP0H7Gbmsk8T5VEqyYFbWqPr1XqvLGBbk/sl8V5exGmcYJklJOhOQq1pV9IcsiFag==}
-    engines: {node: ^10 || ^12 || >=14}
-
-  postcss@8.5.23:
-    resolution: {integrity: sha512-g50586zr4bZmwFiTlflMu8E0bDTb5I5gertgwAKmsdUlTQIhZtunzUlD1WSzwcVWPoAVpsrA6vlfCD7oXvRwgg==}
+  postcss@8.5.24:
+    resolution: {integrity: sha512-8RyVklq0owXUTa4xlpzu4l9AaVKIdQvAcOHZWaMh98HgySsUtxRVf/chRe3dsSLqb6i40BzGRzEUddRaI+9TSw==}
     engines: {node: ^10 || ^12 || >=14}
 
   postcss@8.5.26:
     resolution: {integrity: sha512-u82N74LFzG8ca+dD8puPnplTXoGH4fTPpVGuIbt36G3qvNlkvfD0lEAZSxaly3KX8TS/L1A1gsCEmvKmBcVbkQ==}
-    engines: {node: ^10 || ^12 || >=14}
-
-  postcss@8.5.6:
-    resolution: {integrity: sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==}
     engines: {node: ^10 || ^12 || >=14}
 
   prelude-ls@1.2.1:
@@ -12598,64 +12590,6 @@ snapshots:
       eslint: 9.26.0(jiti@2.6.1)(supports-color@10.2.2)
       typescript: 6.0.3
 
-  '@angular/build@22.1.5(61c3edf7d4548eb656351654a800852e)':
-    dependencies:
-      '@ampproject/remapping': 2.3.0
-      '@angular-devkit/architect': 0.2201.5(chokidar@5.0.0)
-      '@angular/compiler': 22.1.3
-      '@angular/compiler-cli': 22.1.3(@angular/compiler@22.1.3)(typescript@6.0.3)
-      '@babel/core': 8.0.1
-      '@babel/helper-annotate-as-pure': 8.0.0
-      '@babel/helper-split-export-declaration': 7.24.7
-      '@inquirer/confirm': 6.1.1(@types/node@26.2.0)
-      '@vitejs/plugin-basic-ssl': 2.3.0(vite@8.1.5(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.6.1)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.101.0)(terser@5.50.0)(yaml@2.8.3))
-      beasties: 0.4.3
-      browserslist: 4.28.8
-      esbuild: 0.28.2
-      https-proxy-agent: 9.1.0(supports-color@10.2.2)
-      jsonc-parser: 3.3.1
-      listr2: 11.0.0
-      magic-string: 1.0.0
-      mrmime: 2.0.1
-      oxc-parser: 0.142.0
-      parse5-html-rewriting-stream: 8.0.1
-      picomatch: 4.0.5
-      piscina: 5.2.0
-      rolldown: 1.2.0
-      sass: 1.101.0
-      semver: 7.8.5
-      source-map-support: 0.5.21
-      tinyglobby: 0.2.17
-      tslib: 2.8.1
-      typescript: 6.0.3
-      vite: 8.1.5(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.6.1)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.101.0)(terser@5.50.0)(yaml@2.8.3)
-      watchpack: 2.5.2
-    optionalDependencies:
-      '@angular/core': 22.1.3(@angular/compiler@22.1.3)(rxjs@7.8.2)(zone.js@0.16.2)
-      '@angular/platform-browser': 22.1.3(@angular/common@22.1.3(@angular/core@22.1.3(@angular/compiler@22.1.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.1.3(@angular/compiler@22.1.3)(rxjs@7.8.2)(zone.js@0.16.2))
-      istanbul-lib-instrument: 6.0.3(supports-color@10.2.2)
-      karma: 6.4.4(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
-      less: 4.3.0
-      lmdb: 3.5.6
-      ng-packagr: 22.1.1(@angular/compiler-cli@22.1.3(@angular/compiler@22.1.3)(typescript@6.0.3))(tailwindcss@4.3.1)(tslib@2.8.1)(typescript@6.0.3)
-      postcss: 8.5.23
-      rollup: 4.60.2
-      tailwindcss: 4.3.1
-      vitest: 4.1.10(@types/node@26.2.0)(jsdom@26.1.0(supports-color@10.2.2))(vite@8.1.5(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.6.1)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.101.0)(terser@5.50.0)(yaml@2.8.3))
-    transitivePeerDependencies:
-      - '@types/node'
-      - '@vitejs/devtools'
-      - chokidar
-      - jiti
-      - kerberos
-      - sass-embedded
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
-      - tsx
-      - yaml
-
   '@angular/build@22.1.5(7578dfbaff383e25f06a4b4f2c988f99)':
     dependencies:
       '@ampproject/remapping': 2.3.0
@@ -12697,6 +12631,64 @@ snapshots:
       lmdb: 3.5.6
       ng-packagr: 22.1.1(@angular/compiler-cli@22.1.3(@angular/compiler@22.1.3)(typescript@6.0.3))(tailwindcss@4.3.1)(tslib@2.8.1)(typescript@6.0.3)
       postcss: 8.5.26
+      rollup: 4.60.2
+      tailwindcss: 4.3.1
+      vitest: 4.1.10(@types/node@26.2.0)(jsdom@26.1.0(supports-color@10.2.2))(vite@8.1.5(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.6.1)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.101.0)(terser@5.50.0)(yaml@2.8.3))
+    transitivePeerDependencies:
+      - '@types/node'
+      - '@vitejs/devtools'
+      - chokidar
+      - jiti
+      - kerberos
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+      - tsx
+      - yaml
+
+  '@angular/build@22.1.5(81dc7346ff36a35b58e861292cd16508)':
+    dependencies:
+      '@ampproject/remapping': 2.3.0
+      '@angular-devkit/architect': 0.2201.5(chokidar@5.0.0)
+      '@angular/compiler': 22.1.3
+      '@angular/compiler-cli': 22.1.3(@angular/compiler@22.1.3)(typescript@6.0.3)
+      '@babel/core': 8.0.1
+      '@babel/helper-annotate-as-pure': 8.0.0
+      '@babel/helper-split-export-declaration': 7.24.7
+      '@inquirer/confirm': 6.1.1(@types/node@26.2.0)
+      '@vitejs/plugin-basic-ssl': 2.3.0(vite@8.1.5(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.6.1)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.101.0)(terser@5.50.0)(yaml@2.8.3))
+      beasties: 0.4.3
+      browserslist: 4.28.8
+      esbuild: 0.28.2
+      https-proxy-agent: 9.1.0(supports-color@10.2.2)
+      jsonc-parser: 3.3.1
+      listr2: 11.0.0
+      magic-string: 1.0.0
+      mrmime: 2.0.1
+      oxc-parser: 0.142.0
+      parse5-html-rewriting-stream: 8.0.1
+      picomatch: 4.0.5
+      piscina: 5.2.0
+      rolldown: 1.2.0
+      sass: 1.101.0
+      semver: 7.8.5
+      source-map-support: 0.5.21
+      tinyglobby: 0.2.17
+      tslib: 2.8.1
+      typescript: 6.0.3
+      vite: 8.1.5(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.6.1)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.101.0)(terser@5.50.0)(yaml@2.8.3)
+      watchpack: 2.5.2
+    optionalDependencies:
+      '@angular/core': 22.1.3(@angular/compiler@22.1.3)(rxjs@7.8.2)(zone.js@0.16.2)
+      '@angular/platform-browser': 22.1.3(@angular/common@22.1.3(@angular/core@22.1.3(@angular/compiler@22.1.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.1.3(@angular/compiler@22.1.3)(rxjs@7.8.2)(zone.js@0.16.2))
+      istanbul-lib-instrument: 6.0.3(supports-color@10.2.2)
+      karma: 6.4.4(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
+      less: 4.3.0
+      lmdb: 3.5.6
+      ng-packagr: 22.1.1(@angular/compiler-cli@22.1.3(@angular/compiler@22.1.3)(typescript@6.0.3))(tailwindcss@4.3.1)(tslib@2.8.1)(typescript@6.0.3)
+      postcss: 8.5.24
       rollup: 4.60.2
       tailwindcss: 4.3.1
       vitest: 4.1.10(@types/node@26.2.0)(jsdom@26.1.0(supports-color@10.2.2))(vite@8.1.5(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.6.1)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.101.0)(terser@5.50.0)(yaml@2.8.3))
@@ -16353,7 +16345,7 @@ snapshots:
       '@alloc/quick-lru': 5.2.0
       '@tailwindcss/node': 4.1.18
       '@tailwindcss/oxide': 4.1.18
-      postcss: 8.5.6
+      postcss: 8.5.24
       tailwindcss: 4.1.18
 
   '@testing-library/dom@10.4.0':
@@ -17809,13 +17801,13 @@ snapshots:
 
   atob@2.1.2: {}
 
-  autoprefixer@10.5.0(postcss@8.5.23):
+  autoprefixer@10.5.0(postcss@8.5.24):
     dependencies:
       browserslist: 4.28.2
       caniuse-lite: 1.0.30001792
       fraction.js: 5.3.4
       picocolors: 1.1.1
-      postcss: 8.5.23
+      postcss: 8.5.24
       postcss-value-parser: 4.2.0
 
   available-typed-arrays@1.0.7:
@@ -18074,9 +18066,9 @@ snapshots:
       domhandler: 5.0.3
       htmlparser2: 10.0.0
       picocolors: 1.1.1
-      postcss: 8.5.23
+      postcss: 8.5.24
       postcss-media-query-parser: 0.2.3
-      postcss-safe-parser: 7.0.1(postcss@8.5.23)
+      postcss-safe-parser: 7.0.1(postcss@8.5.24)
 
   better-opn@3.0.2:
     dependencies:
@@ -20572,12 +20564,12 @@ snapshots:
       kew: 0.7.0
       plugin-error: 0.1.2
 
-  gulp-postcss@10.0.0(jiti@2.6.1)(postcss@8.5.23):
+  gulp-postcss@10.0.0(jiti@2.6.1)(postcss@8.5.24):
     dependencies:
       fancy-log: 2.0.0
       plugin-error: 2.0.1
-      postcss: 8.5.23
-      postcss-load-config: 5.1.0(jiti@2.6.1)(postcss@8.5.23)
+      postcss: 8.5.24
+      postcss-load-config: 5.1.0(jiti@2.6.1)(postcss@8.5.24)
       vinyl-sourcemaps-apply: 0.2.1
     transitivePeerDependencies:
       - jiti
@@ -23654,7 +23646,7 @@ snapshots:
       less: 4.3.0
       ora: 9.4.1
       piscina: 5.2.0
-      postcss: 8.5.23
+      postcss: 8.5.26
       rollup-plugin-dts: 6.4.1(rollup@4.60.2)(typescript@6.0.3)
       rxjs: 7.8.2
       sass: 1.101.0
@@ -24266,13 +24258,13 @@ snapshots:
       postcss: 8.5.26
       ts-node: 10.9.2(@types/node@24.0.0)(typescript@6.0.3)
 
-  postcss-load-config@5.1.0(jiti@2.6.1)(postcss@8.5.23):
+  postcss-load-config@5.1.0(jiti@2.6.1)(postcss@8.5.24):
     dependencies:
       lilconfig: 3.1.2
       yaml: 2.8.3
     optionalDependencies:
       jiti: 2.6.1
-      postcss: 8.5.23
+      postcss: 8.5.24
 
   postcss-media-query-parser@0.2.3: {}
 
@@ -24412,13 +24404,13 @@ snapshots:
 
   postcss-resolve-nested-selector@0.1.6: {}
 
-  postcss-safe-parser@7.0.1(postcss@8.5.23):
+  postcss-safe-parser@7.0.1(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.23
+      postcss: 8.5.24
 
-  postcss-scss@4.0.9(postcss@8.5.23):
+  postcss-scss@4.0.9(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.23
+      postcss: 8.5.24
 
   postcss-selector-parser@6.1.2:
     dependencies:
@@ -24461,25 +24453,13 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  postcss@8.5.13:
-    dependencies:
-      nanoid: 3.3.18
-      picocolors: 1.1.1
-      source-map-js: 1.2.1
-
-  postcss@8.5.23:
+  postcss@8.5.24:
     dependencies:
       nanoid: 3.3.18
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
   postcss@8.5.26:
-    dependencies:
-      nanoid: 3.3.18
-      picocolors: 1.1.1
-      source-map-js: 1.2.1
-
-  postcss@8.5.6:
     dependencies:
       nanoid: 3.3.18
       picocolors: 1.1.1
@@ -25964,11 +25944,11 @@ snapshots:
       postcss: 8.5.26
       postcss-selector-parser: 6.1.2
 
-  stylelint-config-sass-guidelines@13.0.0(postcss@8.5.23)(stylelint@16.26.1(supports-color@5.5.0)(typescript@6.0.3)):
+  stylelint-config-sass-guidelines@13.0.0(postcss@8.5.24)(stylelint@16.26.1(supports-color@5.5.0)(typescript@6.0.3)):
     dependencies:
       '@stylistic/stylelint-plugin': 5.3.0(stylelint@16.26.1(supports-color@5.5.0)(typescript@6.0.3))
-      postcss: 8.5.23
-      postcss-scss: 4.0.9(postcss@8.5.23)
+      postcss: 8.5.24
+      postcss-scss: 4.0.9(postcss@8.5.24)
       stylelint: 16.26.1(supports-color@5.5.0)(typescript@6.0.3)
       stylelint-scss: 7.2.0(stylelint@16.26.1(supports-color@5.5.0)(typescript@6.0.3))
 
@@ -26035,9 +26015,9 @@ snapshots:
       micromatch: 4.0.8
       normalize-path: 3.0.0
       picocolors: 1.1.1
-      postcss: 8.5.23
+      postcss: 8.5.24
       postcss-resolve-nested-selector: 0.1.6
-      postcss-safe-parser: 7.0.1(postcss@8.5.23)
+      postcss-safe-parser: 7.0.1(postcss@8.5.24)
       postcss-selector-parser: 7.1.0
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
@@ -26863,7 +26843,7 @@ snapshots:
       esbuild: 0.25.11
       fdir: 6.5.0(picomatch@4.0.5)
       picomatch: 4.0.5
-      postcss: 8.5.23
+      postcss: 8.5.26
       rollup: 4.60.2
       tinyglobby: 0.2.17
     optionalDependencies:
@@ -26882,7 +26862,7 @@ snapshots:
       esbuild: 0.27.7
       fdir: 6.5.0(picomatch@4.0.5)
       picomatch: 4.0.5
-      postcss: 8.5.13
+      postcss: 8.5.24
       rollup: 4.60.2
       tinyglobby: 0.2.17
     optionalDependencies:
@@ -26901,7 +26881,7 @@ snapshots:
       esbuild: 0.27.7
       fdir: 6.5.0(picomatch@4.0.5)
       picomatch: 4.0.5
-      postcss: 8.5.13
+      postcss: 8.5.24
       rollup: 4.60.2
       tinyglobby: 0.2.17
     optionalDependencies:
@@ -26919,7 +26899,7 @@ snapshots:
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.5
-      postcss: 8.5.23
+      postcss: 8.5.26
       rolldown: 1.1.5
       tinyglobby: 0.2.17
     optionalDependencies:
@@ -26937,7 +26917,7 @@ snapshots:
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.5
-      postcss: 8.5.23
+      postcss: 8.5.26
       rolldown: 1.1.5
       tinyglobby: 0.2.17
     optionalDependencies:
