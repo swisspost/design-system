@@ -1,5 +1,6 @@
 @use '../tokens/components';
 @use '../functions/tokens';
+@use '../mixins/utilities';
 
 tokens.$default-map: components.$post-teaser;
 
@@ -26,7 +27,7 @@ tokens.$default-map: components.$post-teaser;
   h6,
   p {
     margin: 0;
-    word-break: break-word;
+    @include utilities.word-break;
   }
 
   h1,
