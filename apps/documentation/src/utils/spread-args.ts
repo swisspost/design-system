@@ -42,13 +42,6 @@ export class SpreadArgsDirective<T extends HTMLElement> extends AsyncDirective {
     });
 
     // remove previously set attributes
-    // console.log('prevAttrs', this.prevAttrs);
-    // console.log('attrs', attrs);
-    // console.log('all keys', Object.keys(this.prevAttrs));
-    // console.log(
-    //   'filter attrs with key',
-    //   Object.keys(this.prevAttrs).filter(key => attrs[key]),
-    // );
     Object.keys(this.prevAttrs)
       .filter(attrKey => attrs[attrKey] === null || attrs[attrKey] === undefined)
       .forEach(attrKey => element.removeAttribute(attrKey));
