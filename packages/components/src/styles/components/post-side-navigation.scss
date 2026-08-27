@@ -211,9 +211,9 @@ post-side-navigation {
   text-align: start;
   text-decoration: none;
   appearance: none;
-  
+
   @include utilities.word-break;
-  
+
   // Split link and button
   &:has(a):has(button) {
     padding-inline-start: 0;
@@ -335,14 +335,33 @@ post-side-navigation {
   }
 
   post-icon[name='chevrondown'] {
-    transition: transform 0.2s ease;
     margin-inline-start: auto;
+    transform: var(--post-side-navigation-chevron-initial-transform, none);
   }
 
   &[aria-expanded='true'] post-icon[name='chevrondown'],
   [aria-expanded='true'] post-icon[name='chevrondown'] {
     transform: rotate(180deg);
   }
+
+  &[aria-expanded='false'] post-icon[name='chevrondown'],
+  [aria-expanded='false'] post-icon[name='chevrondown'] {
+    transform: none;
+  }
+}
+
+// Only animate the chevron once its trigger has actually hydrated — avoids
+// animating any transient value change that happens during hydration itself.
+post-collapsible-trigger[data-hydrated] .post-side-navigation-item post-icon[name='chevrondown'] {
+  transition: transform 0.2s ease;
+}
+
+// Predict the expanded/collapsed chevron state before hydration sets aria-expanded.
+// Once aria-expanded is explicitly 'true' or 'false' (post-hydration), the rules above
+// always take precedence over this fallback — this only matters pre-hydration.
+post-collapsible-trigger:not(:has(> post-collapsible[collapsed]))
+  > .post-side-navigation-item post-icon[name='chevrondown'] {
+  --post-side-navigation-chevron-initial-transform: rotate(180deg);
 }
 
 nav > ul > li {
