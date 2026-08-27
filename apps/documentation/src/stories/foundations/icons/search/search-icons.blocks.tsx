@@ -491,7 +491,7 @@ export class Search extends React.Component {
       <div className="container" data-iconset={this.form.set.current}>
         <div className="search-form">{this.searchForm()}</div>
         <div className="search-results">
-          <a href="#results-top" aria-hidden="true" tabindex="-1"></a>
+          <a href="#results-top" aria-hidden="true" tabIndex={-1}></a>
           {this.paging()}
           {this.resultsList()}
           {this.paging()}
