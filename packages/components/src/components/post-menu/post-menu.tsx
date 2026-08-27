@@ -155,7 +155,6 @@ export class PostMenu {
   private handlePostBeforeToggle(event: CustomEvent<{ willOpen: boolean }>) {
     this.isVisible = event.detail.willOpen;
     this.toggleMenu.emit(this.isVisible);
-
     if (this.isVisible) {
       this.lastFocusedElement = this.root?.activeElement as HTMLElement;
 
