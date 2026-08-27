@@ -27,7 +27,6 @@ import {
 export class PostMenu {
   private popoverRef: HTMLPostPopovercontainerElement;
   private lastFocusedElement: HTMLElement | null = null;
-  private pendingFocusFirst = false;
 
   private readonly KEYCODES = {
     SPACE: ' ',
@@ -90,8 +89,7 @@ export class PostMenu {
    * `target` is the HTML element the menu is anchored to.
    */
   @Method()
-  async toggle(target: HTMLElement, focusFirst = false) {
-    this.pendingFocusFirst = focusFirst;
+  async toggle(target: HTMLElement) {
     if (this.popoverRef) {
       await this.popoverRef.toggle(target);
     } else {
@@ -104,8 +102,7 @@ export class PostMenu {
    * `target` is the HTML element the menu is anchored to.
    */
   @Method()
-  async show(target: HTMLElement, focusFirst = false) {
-    this.pendingFocusFirst = focusFirst;
+  async show(target: HTMLElement) {
     if (this.popoverRef) {
       await this.popoverRef.show(target);
     } else {
@@ -158,10 +155,13 @@ export class PostMenu {
   private handlePostBeforeToggle(event: CustomEvent<{ willOpen: boolean }>) {
     this.isVisible = event.detail.willOpen;
     this.toggleMenu.emit(this.isVisible);
+
     if (this.isVisible) {
       this.lastFocusedElement = this.root?.activeElement as HTMLElement;
 
-      if (this.pendingFocusFirst) {
+      // Only focus the first item if the trigger was keyboard-focus-visible —
+      // that's the browser's own signal for a keyboard-driven interaction.
+      if (this.wasFocusVisible(this.lastFocusedElement)) {
         requestAnimationFrame(() => {
           const menuItems = this.getSlottedItems();
           if (menuItems.length > 0) {
@@ -169,9 +169,19 @@ export class PostMenu {
           }
         });
       }
-      this.pendingFocusFirst = false;
     } else if (this.lastFocusedElement) {
       this.lastFocusedElement.focus();
+    }
+  }
+
+  private wasFocusVisible(element: HTMLElement | null): boolean {
+    if (!element) return false;
+
+    try {
+      return element.matches(':focus-visible');
+    } catch {
+      // Not supported — fall back to always focusing, the previous behavior.
+      return true;
     }
   }
 

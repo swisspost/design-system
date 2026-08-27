@@ -65,24 +65,20 @@ export class PostMenuTrigger {
     this.slottedButton.setAttribute('aria-haspopup', 'menu');
     this.slottedButton.setAttribute('aria-expanded', 'false');
 
-    this.slottedButton.addEventListener('click', this.handleClick.bind(this));
+    this.slottedButton.addEventListener('click', this.handleToggle.bind(this));
     this.slottedButton.addEventListener('keydown', this.handleKeyDown.bind(this));
   }
 
   private handleKeyDown(e: KeyboardEvent) {
     if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
       e.preventDefault();
-      this.handleToggle(true);
+      this.handleToggle();
     }
   }
 
-  private handleClick() {
-    this.handleToggle(false);
-  }
-
-  private handleToggle(focusFirst: boolean) {
+  private handleToggle() {
     const menu = this.getMenu();
-    if (menu) menu.toggle(this.host, focusFirst);
+    if (menu) menu.toggle(this.host);
   }
 
   private getMenu(): HTMLPostMenuElement | null {
