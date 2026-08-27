@@ -98,10 +98,12 @@ export class MigrationV910Component extends LitElement {
       tag: false,
     },
     internet_header: {
+      request_config: false,
       update_package: false,
       add_text_props: false,
       remove_props: false,
       breadcrumb_migration: false,
+      language_switch_migration: false,
     },
     intranet_header: {
       migration: false,
@@ -1446,7 +1448,42 @@ export class MyComponent {
                   ? html`
                       <section>
                         <h4>Internet Header (@swisspost/internet-header)</h4>
+                        <post-banner type="warning" class="mb-16">
+                          <p>
+                            Version 10 uses a <strong>new configuration format</strong>. Your
+                            existing v9 Portal configuration will not work with the v10 Internet
+                            Header and will cause errors at runtime. You must request a
+                            configuration migration <strong>before</strong> upgrading the package.
+                          </p>
+                        </post-banner>
                         <ul class="list-unstyled">
+                          <li class="mb-16">
+                            <div class="form-check">
+                              <input
+                                id="internet_header-request_config"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.internet_header.request_config}"
+                              />
+                              <label class="form-check-label" for="internet_header-request_config">
+                                Request a configuration migration to the v10 format
+                                <span class="info">
+                                  <p>
+                                    Contact the Post Portal Team at
+                                    <a href="mailto:dm-tec@post.ch">dm-tec@post.ch</a> to request a
+                                    configuration migration. Provide your
+                                    <code>serviceId</code> (project ID) and the environments you
+                                    need migrated (e.g. <code>int01</code>, <code>int02</code>,
+                                    <code>prod</code>).
+                                  </p>
+                                  <p>
+                                    Do not upgrade the <code>@swisspost/internet-header</code>
+                                    package until the new configuration is in place.
+                                  </p>
+                                </span>
+                              </label>
+                            </div>
+                          </li>
                           <li class="mb-16">
                             <div class="form-check">
                               <input
@@ -1508,6 +1545,32 @@ export class MyComponent {
                                   <code>language</code> and <code>active-route</code> remain
                                   reactive at runtime.
                                 </span>
+                              </label>
+                            </div>
+                          </li>
+                          <li class="mb-16">
+                            <div class="form-check">
+                              <input
+                                id="internet_header-language_switch_migration"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.internet_header.language_switch_migration}"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="internet_header-language_switch_migration"
+                              >
+                                Migrate from <code>language-switch-overrides</code> prop to
+                                <code>&lt;link rel="alternate"&gt;</code> tags
+                                <span class="info">
+                                  The <code>language-switch-overrides</code> prop has been removed.
+                                  Use standard <code>&lt;link rel="alternate"&gt;</code> tags in
+                                  your <code>&lt;head&gt;</code> instead. The header reads these
+                                  tags automatically and updates the language switch URLs.
+                                  More information on the
+                                  <a href="/?path=/docs/ebb11274-091b-4cb7-9a3f-3e0451c9a865--docs#dynamic-updates"
+                                    >language switch overrides docs</a
+                                  >.
                               </label>
                             </div>
                           </li>
