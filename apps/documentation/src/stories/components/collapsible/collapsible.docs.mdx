@@ -1,16 +1,16 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import meta, * as CollapsibleStories from './collapsible.stories';
 import SampleCustomTrigger from './collapsible-custom-trigger.sample?raw';
-import PackageTag from '@/shared/package-tag';
+import StoryTags from '@/shared/story-tags';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={CollapsibleStories} />
 
 # Collapsible
 
-<PackageTag meta={meta} />
+<StoryTags meta={meta} />
 
-<p className="lead">Toggle the visibility of content across your project.</p>
+<p className="lead">The collapsible toggles the visibility of content within your project.</p>
 
 The `<post-collapsible>` component is used to show and hide content.
 Collapsing an element will animate the height from its current value to 0.
@@ -37,3 +37,9 @@ This method is asynchronous and returns a promise that resolves with the current
 It optionally takes a boolean parameter: `true` forces it open, and `false` forces it closed.
 
 <Source code={SampleCustomTrigger} language="typescript" />
+
+### Wrapped Collapsible
+
+The `<post-collapsible>` can be nested within the `<post-collapsible-trigger>` to establish the trigger–collapsible relationship, eliminating the need for an explicit id reference.
+
+<Canvas of={CollapsibleStories.WrappedCollapsible} />

@@ -47,70 +47,80 @@ export class MigrationV45Component extends LitElement {
               package${this._isIntranet() ? html`<span>s</span>` : nothing}.
             </p>
             <code-block
-              code=${this._isIntranet()
-                ? 'npm uninstall @******/common-web-frontend @******/common-web-frontend-intranet-header'
-                : 'npm uninstall @******/common-web-frontend'}
+              code=${
+                this._isIntranet()
+                  ? 'npm uninstall @******/common-web-frontend @******/common-web-frontend-intranet-header'
+                  : 'npm uninstall @******/common-web-frontend'
+              }
             ></code-block>
           </li>
           <li>
             <h3>New Package Installation 📦</h3>
             <code-block
-              code=${this._isIntranet()
-                ? 'npm install @swisspost/design-system-styles@5 @swisspost/design-system-intranet-header@3'
-                : 'npm install @swisspost/design-system-styles@5'}
+              code=${
+                this._isIntranet()
+                  ? 'npm install @swisspost/design-system-styles@5 @swisspost/design-system-intranet-header@3'
+                  : 'npm install @swisspost/design-system-styles@5'
+              }
             ></code-block>
           </li>
           <li>
             <h3>Package Update 🩺</h3>
-            ${this.angular
-              ? html`
-                  <ol>
-                    <li>
-                      If your Angular version is lower than 13, use
-                      <a href="https://update.angular.io/">Angular Update Guide</a>
-                      to update Angular step by step to version 13.
-                    </li>
-                    <li>${this._templateBootstrapInstructions()}</li>
-                  </ol>
-                `
-              : nothing}
+            ${
+              this.angular
+                ? html`
+                    <ol>
+                      <li>
+                        If your Angular version is lower than 13, use
+                        <a href="https://update.angular.io/">Angular Update Guide</a>
+                        to update Angular step by step to version 13.
+                      </li>
+                      <li>${this._templateBootstrapInstructions()}</li>
+                    </ol>
+                  `
+                : nothing
+            }
             ${!this.angular ? html` <p>${this._templateBootstrapInstructions()}</p> ` : nothing}
           </li>
-          ${this.angular
-            ? html`
-                <li>
-                  <h3>Automatic Migration ⚙️</h3>
-                  <p>
-                    If you are migrating an Angular application, you can take advantage of our
-                    migration schematics.
-                  </p>
-                  <ol>
-                    <li>Commit all the changes you have made so far</li>
-                    <li>Make sure you are running on a node version >= 16</li>
-                    <li>
-                      You should now be able to run the following command to apply all automatic
-                      migrations to your application:
+          ${
+            this.angular
+              ? html`
+                  <li>
+                    <h3>Automatic Migration ⚙️</h3>
+                    <p>
+                      If you are migrating an Angular application, you can take advantage of our
+                      migration schematics.
+                    </p>
+                    <ol>
+                      <li>Commit all the changes you have made so far</li>
+                      <li>Make sure you are running on a node version >= 16</li>
+                      <li>
+                        You should now be able to run the following command to apply all automatic
+                        migrations to your application:
 
-                      <code-block
-                        code=${`npm install @swisspost/design-system-migrations
+                        <code-block
+                          code=${`npm install @swisspost/design-system-migrations
 npx ng update @swisspost/design-system-migrations --from=4 --to=5 --migrate-only --allow-dirty
 npm uninstall @swisspost/design-system-migrations`}
-                      ></code-block>
-                    </li>
-                  </ol>
-                </li>
-              `
-            : nothing}
+                        ></code-block>
+                      </li>
+                    </ol>
+                  </li>
+                `
+              : nothing
+          }
           <li>
             <h3>Component Migration 🤓</h3>
-            ${this.angular
-              ? html`
-                  <p class="info">
-                    Changes flagged with the ⚙️ symbol should be automatically migrated with our
-                    migration tool.
-                  </p>
-                `
-              : nothing}
+            ${
+              this.angular
+                ? html`
+                    <p class="info">
+                      Changes flagged with the ⚙️ symbol should be automatically migrated with our
+                      migration tool.
+                    </p>
+                  `
+                : nothing
+            }
             <h4>Deprecations</h4>
             <ul class="mt-8 mb-16">
               <li>
@@ -164,9 +174,11 @@ npm uninstall @swisspost/design-system-migrations`}
         Update Bootstrap to version
         5.1.x${this.angular ? html` and ng-bootstrap to version 12.x.x` : nothing}:
         <code-block
-          code=${this.angular
-            ? 'npm install bootstrap@5.1 @ng-bootstrap/ng-bootstrap@12'
-            : 'npm install bootstrap@5.1'}
+          code=${
+            this.angular
+              ? 'npm install bootstrap@5.1 @ng-bootstrap/ng-bootstrap@12'
+              : 'npm install bootstrap@5.1'
+          }
         ></code-block>
       </div>
 
@@ -178,17 +190,19 @@ npm uninstall @swisspost/design-system-migrations`}
           rel="noopener noreferrer"
           >Bootstrap 5.1.x migration guide</a
         >
-        ${this.angular
-          ? html`
-              and
-              <a
-                href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1400-2022-12-07"
-                target="_blank"
-                rel="noopener noreferrer"
-                >ng-bootstrap 12.x.x changelog</a
-              >
-            `
-          : nothing}
+        ${
+          this.angular
+            ? html`
+                and
+                <a
+                  href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1400-2022-12-07"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >ng-bootstrap 12.x.x changelog</a
+                >
+              `
+            : nothing
+        }
         for more details.
       </div>
     `;

@@ -1,0 +1,39 @@
+@use '@swisspost/design-system-styles/core' as post;
+@use '../variables' as sb;
+@use '../mixins/style-docs-only-guard' as mixins;
+
+@mixin code-element($guarded: true) {
+  @if $guarded {
+    @include mixins.style-docs-only-guard('code') {
+      @include _code-styles();
+    }
+  } @else {
+    code {
+      @include _code-styles();
+    }
+  }
+}
+
+@mixin _code-styles() {
+  display: inline-block;
+  position: relative;
+  top: -0.1em;
+  margin: 0 0.1em;
+  padding: 0.15em 0.4em 0.1em;
+  background-color: color-mix(in srgb, var(--post-current-bg) 85%, transparent);
+  border: 1px solid color-mix(in srgb, var(--post-current-fg) 25%, transparent);
+  border-radius: 0.2em;
+  font-family: sb.$monospace;
+  font-size: 0.975em;
+  white-space: nowrap;
+  line-height: 1;
+  vertical-align: text-top;
+
+  &[languages] {
+    display: block;
+    margin-top: 0.25rem;
+    padding: 1rem;
+    background-color: var(--post-current-fg);
+    color: var(--post-current-bg);
+  }
+}

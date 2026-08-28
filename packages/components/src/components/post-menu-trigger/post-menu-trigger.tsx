@@ -1,6 +1,6 @@
-import { Component, Element, Prop, h, Host, Watch } from '@stencil/core';
+import { getRoot, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { getRoot, checkRequiredAndType } from '@/utils';
+import { Component, Element, h, Host, Prop } from '@stencil/core';
 
 @Component({
   tag: 'post-menu-trigger',
@@ -16,12 +16,10 @@ export class PostMenuTrigger {
   /**
    * ID of the menu element that this trigger is linked to. Used to open and close the specified menu.
    */
-  @Prop({ reflect: true }) for!: string;
-
-  @Watch('for')
-  validateFor() {
-    checkRequiredAndType(this, 'for', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  for!: string;
 
   constructor() {
     this.updateAriaExpanded = this.updateAriaExpanded.bind(this);
@@ -32,7 +30,6 @@ export class PostMenuTrigger {
   }
 
   componentDidLoad() {
-    this.validateFor();
     this.setAriaAttributes();
 
     if (this.root) {

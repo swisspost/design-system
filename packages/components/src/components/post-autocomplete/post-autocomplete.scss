@@ -1,4 +1,5 @@
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/utilities';
 
 :host {
   position: relative;
@@ -40,4 +41,8 @@
     width: 20px;
     height: 20px;
   }
+}
+
+.visually-hidden {
+  @include utilities.visuallyhidden;
 }

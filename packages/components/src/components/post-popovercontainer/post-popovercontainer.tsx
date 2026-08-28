@@ -1,20 +1,20 @@
 import {
+  Build,
   Component,
   Element,
   Event,
   EventEmitter,
+  h,
   Host,
   Method,
   Prop,
-  h,
-  Watch,
   State,
-  Build,
 } from '@stencil/core';
 
-import { checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
+import { OneOf, Type } from '@/utils';
 import { version } from '@root/package.json';
 
+import { PLACEMENT_TYPES } from '@/types';
 import {
   arrow,
   autoUpdate,
@@ -27,11 +27,10 @@ import {
   shift,
   size,
 } from '@floating-ui/dom';
-import { PLACEMENT_TYPES } from '@/types';
 
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
-import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
 import { popIn } from '@/animations/pop-in';
+import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
 
 interface PopoverElement {
   showPopover: () => void;
@@ -121,12 +120,16 @@ export class PostPopovercontainer {
    * Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted
    * towards the viewport if they would overlap edge boundaries.
    */
-  @Prop() readonly placement?: Placement = 'top';
+  @Prop()
+  @OneOf(PLACEMENT_TYPES)
+  readonly placement?: Placement = 'top';
 
   /**
    * Gap between the edge of the page and the popovercontainer
    */
-  @Prop() readonly edgeGap?: number = 8;
+  @Prop()
+  @Type('number')
+  readonly edgeGap?: number = 8;
 
   /**
    * Offset for more precise placement
@@ -142,22 +145,9 @@ export class PostPopovercontainer {
   /**
    * Enables a safespace through which the cursor can be moved without the popover being disabled
    */
-  @Prop({ reflect: true }) readonly safeSpace?: 'triangle' | 'trapezoid';
-
-  @Watch('placement')
-  validatePlacement() {
-    checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
-  }
-
-  @Watch('edgeGap')
-  validateEdgeGap() {
-    checkEmptyOrType(this, 'edgeGap', 'number');
-  }
-
-  @Watch('safeSpace')
-  validateSafeSpace() {
-    checkEmptyOrOneOf(this, 'safeSpace', ['triangle', 'trapezoid']);
-  }
+  @Prop({ reflect: true })
+  @OneOf(['triangle', 'trapezoid'])
+  readonly safeSpace?: 'triangle' | 'trapezoid';
 
   /**
    * Animation style
@@ -183,9 +173,6 @@ export class PostPopovercontainer {
   }
 
   componentDidLoad() {
-    this.validatePlacement();
-    this.validateEdgeGap();
-    this.validateSafeSpace();
     this.host.addEventListener('beforetoggle', this.handleToggle.bind(this));
   }
 
@@ -198,11 +185,12 @@ export class PostPopovercontainer {
 
   /**
    * Programmatically display the popovercontainer
-   * @param target A focusable element inside the trigger component that controls the popover
+   * @param target The element that invokes the popover and to which it is visually anchored.
    */
   @Method()
   async show(target: HTMLElement) {
-    if (this.toggleTimeoutId) return;
+    if (this.toggleTimeoutId || !target) return;
+
     this.eventTarget = target;
     this.calculatePosition();
     this.host.showPopover();
@@ -222,11 +210,16 @@ export class PostPopovercontainer {
 
   /**
    * Toggle popovercontainer display
-   * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
+   * @param target The element that invokes the popover and to which it is visually anchored.
    * @param force Pass true to always show or false to always hide
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
+    const isOpen = this.host.matches(':where(:popover-open, .popover-open)');
+    const willOpen = force === true || (force === undefined && !isOpen);
+
+    if (willOpen && !target) return isOpen;
+
     this.eventTarget = target;
 
     // Prevent instant double toggle
@@ -391,16 +384,7 @@ export class PostPopovercontainer {
 
       const staticSide = PostPopovercontainer.STATIC_SIDES[currentPlacement];
 
-      const rootFontSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize);
-
-      // Calculate dynamically the half side which provides the static side offset
-      const arrowSizeValue = getComputedStyle(this.arrowRef)
-        .getPropertyValue('--arrow-size')
-        .trim();
-
-      const arrowSizePx = arrowSizeValue.endsWith('rem')
-        ? Number.parseFloat(arrowSizeValue) * rootFontSize
-        : Number.parseFloat(arrowSizeValue);
+      const arrowSizePx = this.arrowRef.offsetWidth;
 
       const halfSide = -0.5 * arrowSizePx;
 
@@ -551,6 +535,8 @@ export class PostPopovercontainer {
               }}
             ></span>
           )}
+          {/* exposed via ::part for consuming components to activate as a bleed mask */}
+          <span part="post-popovercontainer-border-mask"></span>
           <slot></slot>
         </div>
       </Host>

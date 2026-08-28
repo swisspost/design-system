@@ -6,13 +6,13 @@ import { nothing } from 'lit';
 const meta: MetaComponent = {
   id: 'a1eef11e-b5db-4066-99a8-9723a6cdef12',
   title: 'Components/Divider',
-  tags: ['package:Styles', 'status:Experimental'],
+  tags: ['package:Styles', 'status:New'],
   render,
   parameters: {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=13995-180113&t=w6yq9dykdA3NLIPh-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=29015-206599',
     },
   },
   args: {

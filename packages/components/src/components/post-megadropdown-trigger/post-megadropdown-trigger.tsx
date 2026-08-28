@@ -1,6 +1,6 @@
-import { Component, Element, Prop, h, Host, Watch, State, Build, Listen } from '@stencil/core';
+import { EventFrom, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { checkRequiredAndType, EventFrom } from '@/utils';
+import { Build, Component, Element, h, Host, Listen, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'post-megadropdown-trigger',
@@ -24,19 +24,13 @@ export class PostMegadropdownTrigger {
   /**
    * ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown.
    */
-  @Prop({ reflect: true }) for!: string;
-
-  @Watch('for')
-  validateFor() {
-    checkRequiredAndType(this, 'for', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  for!: string;
 
   componentWillRender() {
     this.handleSlottedContentChanges();
-  }
-
-  componentDidLoad() {
-    this.validateFor();
   }
 
   disconnectedCallback() {

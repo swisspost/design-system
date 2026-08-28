@@ -19,6 +19,7 @@ tokens.$default-map: components.$post-checkbox;
   margin-block: tokens.get('checkbox-small-icon-container-padding');
 
   &::after {
+    -webkit-mask-size: tokens.get('checkbox-small-icon-size');
     mask-size: tokens.get('checkbox-small-icon-size');
   }
 }

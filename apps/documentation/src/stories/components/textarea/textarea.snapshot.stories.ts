@@ -68,9 +68,24 @@ export const Textarea: Story = {
             })}
           </div>
 
-          <h2 class="h4">Standard Label</h2>
+          <h2 class="h4">Standard Label - Default size</h2>
           <div class="row">
             ${getCombinations('floatingLabel', [false], combinations).map((args: Args) => {
+              context.id = crypto.randomUUID();
+              return html` <div class="col-md-6 mb-16">
+                <h3 class="h6">${args.title}</h3>
+                <div class="mb-4">${meta.render?.({ ...context.args, ...args }, context)}</div>
+              </div>`;
+            })}
+          </div>
+
+          <h2 class="h4">Standard Label - Small size</h2>
+          <div class="row">
+            ${getCombinations(
+              'floatingLabel',
+              [false],
+              combinations.map(c => ({ ...c, size: 'small' })),
+            ).map((args: Args) => {
               context.id = crypto.randomUUID();
               return html` <div class="col-md-6 mb-16">
                 <h3 class="h6">${args.title}</h3>

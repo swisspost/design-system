@@ -26,13 +26,14 @@ Type: `Promise<void>`
 
 ### `show(target: HTMLElement) => Promise<void>`
 
-Programmatically display the popover
+Programmatically display the popover,
+`target` is the HTML element the menu is anchored to.
 
 #### Parameters
 
-| Name     | Type          | Description                                                                               |
-| -------- | ------------- | ----------------------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | A focusable element inside the <post-popover-trigger> component that controls the popover |
+| Name     | Type          | Description |
+| -------- | ------------- | ----------- |
+| `target` | `HTMLElement` |             |
 
 #### Returns
 
@@ -42,14 +43,15 @@ Type: `Promise<void>`
 
 ### `toggle(target: HTMLElement, force?: boolean) => Promise<void>`
 
-Toggle popover display
+Toggle popover display,
+`target` is the HTML element the menu is anchored to.
 
 #### Parameters
 
-| Name     | Type          | Description                                                                               |
-| -------- | ------------- | ----------------------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | A focusable element inside the <post-popover-trigger> component that controls the popover |
-| `force`  | `boolean`     | Pass true to always show or false to always hide                                          |
+| Name     | Type          | Description |
+| -------- | ------------- | ----------- |
+| `target` | `HTMLElement` |             |
+| `force`  | `boolean`     |             |
 
 #### Returns
 

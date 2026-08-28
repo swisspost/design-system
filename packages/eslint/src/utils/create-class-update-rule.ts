@@ -4,8 +4,9 @@ import { Rule } from 'eslint';
 import { generateReplacedClassMutations } from './generate-mutations';
 import { generateReplacedClassMessages } from './generate-messages';
 import { getDynamicClassType, getNewAttrValue } from './class-binding-helpers';
+import { removeEmptyAttrs } from './empty-attrs-remover';
 
-type RuleType = Rule.RuleMetaData['type'];
+type RuleType = NonNullable<Rule.RuleMetaData['type']>;
 
 export interface RuleConfigBase {
   name: string;
@@ -15,7 +16,13 @@ export interface RuleConfigBase {
 export interface PhaseConfig<T> {
   description: string;
   messages: T;
-  mutations: Record<keyof T, [string, string]>;
+  /**
+   * Tuple of [oldClass, newClass, manualOnly?].
+   * When `manualOnly` is `true` the rule reports the violation but provides no autofix,
+   * because applying the fix would create a chain collision with another migration rule.
+   * Users must migrate these classes by hand.
+   */
+  mutations: Record<keyof T, [string, string, boolean?]>;
 }
 
 export interface PhaseConfigWrapper {
@@ -50,76 +57,98 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
         tag(node: HtmlNode) {
           const $node = node.toCheerio();
 
-          Object.entries(config.mutations).forEach(([messageId, [oldClass, newClass]]) => {
-            // Simple HTML class
-            if ($node.hasClass(oldClass)) {
-              context.report({
-                messageId,
-                loc: node.loc,
-                fix(fixer) {
-                  const fixedNode = $node.removeClass(oldClass);
-                  if (newClass) fixedNode.addClass(newClass);
+          Object.entries(config.mutations).forEach(
+            ([messageId, [oldClass, newClass, manualOnly]]) => {
+              // Simple HTML class
+              if ($node.hasClass(oldClass)) {
+                context.report({
+                  messageId,
+                  loc: node.loc,
+                  // Reported but not auto-fixed — the renamed class would chain into another rule.
+                  ...(manualOnly
+                    ? {}
+                    : {
+                        fix(fixer) {
+                          const fixedNode = $node.removeClass(oldClass);
+                          if (newClass) fixedNode.addClass(newClass);
 
-                  // Remove empty class attribute
-                  if (!fixedNode.attr('class')?.trim()) fixedNode.removeAttr('class');
+                          // Remove empty class attribute
+                          if (!fixedNode.attr('class')?.trim()) fixedNode.removeAttr('class');
 
-                  return fixer.replaceTextRange(node.range, fixedNode.toString());
-                },
-              });
-              return;
-            }
+                          const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
+                          return fixer.replaceTextRange(node.range, fixedHtml);
+                        },
+                      }),
+                });
+                return;
+              }
 
-            // Skip if no newClass to replace - should be updated for deleted classes case
-            if (!newClass?.trim()) return;
+              // Skip if no newClass to replace - should be updated for deleted classes case
+              if (!newClass?.trim()) return;
 
-            const root = $node[0];
-            if (!root || root.type !== 'tag') return;
+              const root = $node[0];
+              if (!root || root.type !== 'tag') return;
 
-            const attribs = root.attribs as Record<string, string>;
+              const attribs = root.attribs as Record<string, string>;
 
-            for (const attrName of Object.keys(attribs)) {
-              const value = $node.attr(attrName);
+              for (const attrName of Object.keys(attribs)) {
+                const value = $node.attr(attrName);
 
-              const { isClassBinding, isNgClass, isClass } = getDynamicClassType(
-                attrName,
-                value,
-                oldClass,
-              );
+                const { isClassBinding, isNgClass, isClass } = getDynamicClassType(
+                  attrName,
+                  value,
+                  oldClass,
+                );
 
-              if (!isClassBinding && !isNgClass && !isClass) continue;
+                if (!isClassBinding && !isNgClass && !isClass) continue;
 
-              context.report({
-                loc: node.loc,
-                messageId,
-                fix(fixer) {
-                  if (isClassBinding) {
-                    const fixedAttrName = `[class.${newClass}]`;
-                    const oldAttrValue = $node.attr(attrName);
-                    if (!oldAttrValue) return null;
+                context.report({
+                  loc: node.loc,
+                  messageId,
+                  // Reported but not auto-fixed in dynamic bindings: chain collision risk.
+                  ...(manualOnly
+                    ? {}
+                    : {
+                        fix(fixer) {
+                          if (isClassBinding) {
+                            const fixedAttrName = `[class.${newClass}]`;
+                            const oldAttrValue = $node.attr(attrName);
+                            if (!oldAttrValue) return null;
 
-                    $node.attr(fixedAttrName, oldAttrValue);
-                    $node.removeAttr(`[class.${oldClass}]`);
+                            $node.attr(fixedAttrName, oldAttrValue);
+                            $node.removeAttr(`[class.${oldClass}]`);
 
-                    return fixer.replaceTextRange(node.range, $node.toString());
-                  }
+                            const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
+                            return fixer.replaceTextRange(node.range, fixedHtml);
+                          }
 
-                  const raw = $node.attr(attrName)?.trim();
-                  if (!raw) return null;
+                          const raw = $node.attr(attrName)?.trim();
+                          if (!raw) return null;
 
-                  const newValue = getNewAttrValue($node, attrName, oldClass, newClass, raw);
-                  if (newValue === null) return null;
+                          const newValue = getNewAttrValue(
+                            $node,
+                            attrName,
+                            oldClass,
+                            newClass,
+                            raw,
+                          );
+                          if (newValue === null) return null;
 
-                  const targetAttr = isNgClass ? '[ngClass]' : '[class]';
-                  if (newValue === '') $node.removeAttr(targetAttr);
-                  else $node.attr(targetAttr, newValue);
+                          const targetAttr = attrName;
 
-                  if (isNgClass && attrName !== targetAttr) $node.removeAttr(attrName);
+                          if (newValue === '') $node.removeAttr(targetAttr);
+                          else $node.attr(targetAttr, newValue);
 
-                  return fixer.replaceTextRange(node.range, $node.toString());
-                },
-              });
-            }
-          });
+                          if (isNgClass && attrName !== targetAttr) $node.removeAttr(attrName);
+
+                          const fixedHtml = removeEmptyAttrs($node.toString(), context, node);
+                          return fixer.replaceTextRange(node.range, fixedHtml);
+                        },
+                      }),
+                });
+              }
+            },
+          );
         },
       };
     },

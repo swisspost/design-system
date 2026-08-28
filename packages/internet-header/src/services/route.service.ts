@@ -1,179 +1,130 @@
+import { state } from '@/data/store';
 import { ActiveRouteProp } from '../models/general.model';
-import { NavMainEntity, MainNavScoreList, MainNavScoreListItem } from '../models/header.model';
+import { HeaderConfig } from '../models/header.model';
+import { RouteLink } from '../models/shared.model';
 
 /**
- * Activate the current route based on the config and the match mode
- * @param config Main Navigation Config
- * @param activeRouteProp Match mode
- * @returns Modified Main Navigation Config
+ * Determine the active link from the header config and the activeRoute prop.
+ * @param activeRouteProp Match mode or custom URL
+ * @returns The best-matching link config object, or null
  */
-export const markActiveRoute = (
-  config: NavMainEntity[],
-  activeRouteProp: ActiveRouteProp,
-): NavMainEntity[] => {
-  // Don't highlight any route
-  if (activeRouteProp === 'none') {
-    return config;
+export const getActiveLink = (activeRouteProp: ActiveRouteProp): RouteLink | null => {
+  const headerLinks = getHeaderLinks(state.localizedConfig?.header);
+
+  if (headerLinks.length === 0 || activeRouteProp === 'none') {
+    return null;
   }
 
-  // Set compare URL and check if activeRouteProp is valid
+  // If 'auto' or 'exact', check if any link is already marked active in the config
+  if (activeRouteProp === 'auto' || activeRouteProp === 'exact') {
+    const activeLink = findActiveLink(headerLinks);
+    if (activeLink) return activeLink;
+  }
+
   let compareUrl: URL;
-  config = resetOverrideConfig(config);
 
   if (activeRouteProp === 'auto' || activeRouteProp === 'exact') {
-    // Check if an active route is already configured, set override to that and return
-    if (hasActivePortalRoute(config)) {
-      return resetActiveStateToPortalConfig(config);
-    }
-
     compareUrl = new URL(window.location.href);
   } else {
     try {
       compareUrl = new URL(activeRouteProp, document.location.origin);
-    } catch (error) {
+    } catch {
       console.warn(
         `Active Route: ${activeRouteProp} is not a valid URL. Navigation highlighting has been disabled.`,
       );
-      return config;
+      return null;
     }
   }
 
-  const scoreList = compileScoreList(config, compareUrl, activeRouteProp);
+  const candidates = extractCandidateLinks(headerLinks);
+  const matchMode = activeRouteProp === 'exact' ? 'exact' : 'auto';
+  return findBestMatch(candidates, compareUrl, matchMode);
+};
 
-  if (scoreList.length === 0) {
-    // No match found or already active links defined
-    return config;
+/**
+ * Find the first link marked as active in the header config
+ */
+const findActiveLink = (headerLinks: RouteLink[]): RouteLink | undefined => {
+  return headerLinks.find(link => link.active);
+};
+
+/**
+ * Extract all candidate links from the header config.
+ */
+const extractCandidateLinks = (headerLinks: RouteLink[]): RouteLink[] => {
+  return headerLinks.filter(link => link.url !== '' && link.url !== '#' && link.url !== '/');
+};
+
+/**
+ * Recursively walks the header config and returns every item with a `url` property.
+ */
+const getHeaderLinks = (headerConfig: HeaderConfig | undefined): RouteLink[] => {
+  const links: RouteLink[] = [];
+
+  if (!headerConfig) {
+    return links;
   }
 
-  const winnerPair = scoreList[0];
-  winnerPair.main.isActiveOverride = true;
-  if (winnerPair.sub) winnerPair.sub.isActiveOverride = true;
+  const walk = (value: unknown): void => {
+    if (value === null || value === undefined) {
+      return;
+    }
 
-  return config;
+    if (Array.isArray(value)) {
+      value.forEach(walk);
+      return;
+    }
+
+    if (typeof value !== 'object' || value === null) {
+      return;
+    }
+
+    if ('url' in value && typeof value.url === 'string') {
+      links.push(value as RouteLink);
+    }
+
+    Object.values(value).forEach(walk);
+  };
+
+  walk(headerConfig);
+
+  return links;
 };
 
 /**
- * Check if the portal config set any active route
- * @param config Main navigation config
- * @returns True if portal set any route as active
+ * Find the best matching link against the compare URL and return it
  */
-export const hasActivePortalRoute = (config: NavMainEntity[]): boolean => {
-  return config.filter(nav => nav.isActive).length > 0;
-};
-
-export const resetActiveStateToPortalConfig = (config: NavMainEntity[]): NavMainEntity[] => {
-  return config.map(nav => ({
-    ...nav,
-    isActiveOverride: nav.isActive,
-    flyout: nav.flyout?.map(flyout => ({
-      ...flyout,
-      linkList: flyout.linkList.map(link => ({ ...link, isActiveOverride: link.isActive })),
-    })),
-  }));
-};
-
-const resetOverrideConfig = (config: NavMainEntity[]): NavMainEntity[] => {
-  return config.map(nav => ({
-    ...nav,
-    isActiveOverride: false,
-    // Initialize flyout as an empty array if it's undefined
-    flyout:
-      nav.flyout?.map(flyout => ({
-        ...flyout,
-        linkList: flyout.linkList.map(link => ({ ...link, isActiveOverride: false })),
-      })) || [], // Fallback to an empty array if nav.flyout is undefined
-  }));
-};
-
-/**
- * Compile a list of scores based on the map mode, sorted in descending order
- * @param config Main Nav Config
- * @param compareUrl Current Browser URL or a custom URL
- * @param activeRouteProp Match mode
- * @returns A list of scored URLs if any matched
- */
-export const compileScoreList = (
-  config: NavMainEntity[],
+const findBestMatch = (
+  candidates: RouteLink[],
   compareUrl: URL,
-  activeRouteProp: ActiveRouteProp,
-): MainNavScoreList => {
-  // Flag to check if the Portal set any active links or if there are any exact matches
-  let hadAnyActiveLink = false;
-  const scoreList: MainNavScoreList = [];
+  matchMode: 'auto' | 'exact',
+): RouteLink | null => {
+  let bestMatch: { link: RouteLink; score: number } | null = null;
 
-  config
-    .filter(mainNav => !hadAnyActiveLink && mainNav)
-    .forEach(mainNav => {
-      try {
-        const score = compareRoutes(
-          compareUrl,
-          new URL(mainNav.url),
-          activeRouteProp as 'auto' | 'exact',
-        );
+  for (const candidate of candidates) {
+    try {
+      const candidateUrl = new URL(candidate.url, document.location.origin);
+      const score = compareRoutes(compareUrl, candidateUrl, matchMode);
 
-        hadAnyActiveLink = updateScoreList(
-          scoreList,
-          score,
-          { main: mainNav, score },
-          hadAnyActiveLink,
-        );
-      } catch {
-        // Not a valid url, continue
+      if (score > 0) {
+        if (!bestMatch || score > bestMatch.score) {
+          bestMatch = { link: candidate, score };
+        }
+
+        if (score === Infinity) break;
       }
-
-      // Loop through flyout links 2nd level
-      mainNav.flyout?.forEach(flyout => {
-        flyout.linkList?.forEach(linklist => {
-          // Don't override if any link is already active
-          if (linklist.isActive && (activeRouteProp === 'auto' || activeRouteProp === 'exact')) {
-            hadAnyActiveLink = true;
-            return;
-          }
-
-          try {
-            const url = new URL(linklist.url);
-            const score = compareRoutes(compareUrl, url, activeRouteProp as 'auto' | 'exact');
-
-            hadAnyActiveLink = updateScoreList(
-              scoreList,
-              score,
-              { main: mainNav, sub: linklist, score },
-              hadAnyActiveLink,
-            );
-          } catch {
-            // Not a valid URL, continue
-          }
-        });
-      });
-    });
-
-  return scoreList.sort((a, b) => b.score - a.score);
-};
-
-/**
- * Update score list
- */
-function updateScoreList(
-  scoreList: MainNavScoreList,
-  score: number,
-  scoreListItem: MainNavScoreListItem,
-  hadAnyActiveLink: boolean,
-) {
-  let hadActiveLink = hadAnyActiveLink;
-
-  if (score > 0) {
-    if (score === Infinity) hadActiveLink = true;
-    // Push score
-    scoreList.push(scoreListItem);
+    } catch {
+      // Not a valid URL, continue
+    }
   }
 
-  return hadActiveLink;
-}
+  return bestMatch ? bestMatch.link : null;
+};
 
 /**
  * Compare two URLs for similarity based on a match mode
  * @param baseUrl Browser URL
- * @param compareUrl Navigatgion URL
+ * @param compareUrl Navigation URL
  * @param matchMode exact or auto matching
  * @returns Score
  */

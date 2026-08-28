@@ -29,12 +29,9 @@ export const Checkbox: Story = {
         <div class="d-flex flex-wrap gap-16">
           ${[
             ...bombArgs({
-              checked: ['indeterminate'],
-            }),
-            ...bombArgs({
               label: ['Label', longText],
               validation: context.argTypes.validation.options,
-              checked: ['unchecked', 'checked'],
+              checked: ['unchecked', 'checked', 'indeterminate'],
               size: ['null', 'form-check-sm'],
               hiddenLabel: [false, true],
               disabled: [false, true],

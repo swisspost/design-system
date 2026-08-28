@@ -36,6 +36,9 @@ import noDeprecatedAlert, { name as noDeprecatedAlertName } from './no-deprecate
 import noDeprecatedPositionHelpersRule, {
   name as noDeprecatedPositionHelpersRuleName,
 } from './no-deprecated-position-helpers';
+import noDeprecatedTagDanger, {
+  name as noDeprecatedTagDangerName,
+} from './no-deprecated-tag-danger';
 
 import {
   rulePhase1 as noDeprecatedBreakpointsRulePhase1,
@@ -78,5 +81,6 @@ export const htmlMigrationRules = {
   [noDeprecatedChipFilterName]: noDeprecatedChipFilter,
   [noDeprecatedAlertName]: noDeprecatedAlert,
   [noDeprecatedCssClassesRuleName]: noDeprecatedCssClasses,
+  [noDeprecatedTagDangerName]: noDeprecatedTagDanger,
   [noDeprecatedResponsiveSpacingUtilitiesRuleName]: noDeprecatedResponsiveSpacingUtilitiesRule,
 };

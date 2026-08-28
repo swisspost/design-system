@@ -1,6 +1,6 @@
+import { AST_NODE_TYPES, ASTUtils } from '@typescript-eslint/utils';
 import { createRule } from '../utils/create-rule';
 import { isCallExpressionWithName } from '../utils/stencil-helpers';
-import { AST_NODE_TYPES, ASTUtils } from '@typescript-eslint/utils';
 
 export const name = 'stencil-no-unreflected-required-props';
 export const messageId = 'stencilNoUnreflectedRequiredProps';
@@ -30,7 +30,7 @@ export default createRule({
         if (isRequired) {
           node.decorators
             // Find property nodes with a "@Prop()" decorator
-            .filter(decorator => isCallExpressionWithName(decorator, 'Prop') !== null)
+            .filter(decorator => isCallExpressionWithName(decorator, 'Prop'))
             // Find property nodes without the `{ reflect: true }` argument in their "@Prop()" decorator
             .filter(
               decorator =>

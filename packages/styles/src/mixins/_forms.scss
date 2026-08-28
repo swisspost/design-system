@@ -69,7 +69,7 @@
   margin: tokens.get('checkbox-icon-padding-inner', components.$post-checkbox);
   margin-block: calc(
     tokens.get('checkbox-icon-padding-inner', components.$post-checkbox) +
-      tokens.get('checkbox-icon-padding-container', components.$post-checkbox)
+    tokens.get('checkbox-icon-padding-container', components.$post-checkbox)
   );
   width: tokens.get('checkbox-icon-size', components.$post-checkbox);
   height: tokens.get('checkbox-icon-size', components.$post-checkbox);
@@ -102,8 +102,11 @@
     content: '';
     width: 100%;
     height: 100%;
+    -webkit-mask-size: tokens.get('checkbox-icon-size', components.$post-checkbox);
     mask-size: tokens.get('checkbox-icon-size', components.$post-checkbox);
+    -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
+    -webkit-mask-position: center;
     mask-position: center;
   }
 
@@ -134,12 +137,14 @@
 
   &:checked {
     &::after {
+      -webkit-mask-image: $checkbox-icon-checked;
       mask-image: $checkbox-icon-checked;
     }
   }
 
   &:indeterminate {
     &::after {
+      -webkit-mask-image: $checkbox-icon-indeterminate;
       mask-image: $checkbox-icon-indeterminate;
     }
   }
@@ -193,7 +198,7 @@
   align-items: center;
   margin-block: calc(
     tokens.get('radio-button-icon-padding-block-inner', components.$post-radio-button) +
-      tokens.get('radio-button-icon-padding-block-container', components.$post-radio-button)
+    tokens.get('radio-button-icon-padding-block-container', components.$post-radio-button)
   );
   margin-inline: tokens.get(
     'radio-button-icon-padding-inline-inner',
@@ -253,7 +258,7 @@
 
   @if $custom-hover-selector != null {
     @at-root #{$custom-hover-selector},
-      &:not([disabled]):hover {
+    &:not([disabled]):hover {
       @include radio-button-hover();
     }
   } @else {

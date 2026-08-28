@@ -1,14 +1,17 @@
+import { Environment, LocalizedConfig } from '@/models/general.model';
+import { RouteLink } from '@/models/shared.model';
+import { UserConfig } from '@/models/user.model';
 import { createStore } from '@stencil/store';
-import { Environment, ILocalizedConfig, ILocalizedCustomConfig } from '@/models/general.model';
 
 export interface HeaderState {
-  localizedConfig: ILocalizedConfig | null;
+  localizedConfig: LocalizedConfig | null;
   currentLanguage: string | null;
   projectId: string | null;
   environment: Environment;
+  activeLink: RouteLink | null;
   search: boolean;
-  login: boolean;
-  localizedCustomConfig?: ILocalizedCustomConfig;
+  user: UserConfig | null;
+  alternateLinks: Map<string, string>;
 }
 
 export const { state, onChange, reset, dispose } = createStore<HeaderState>({
@@ -16,6 +19,8 @@ export const { state, onChange, reset, dispose } = createStore<HeaderState>({
   currentLanguage: null,
   localizedConfig: null,
   environment: 'prod',
+  activeLink: null,
   search: true,
-  login: true,
+  user: null,
+  alternateLinks: new Map<string, string>(),
 });

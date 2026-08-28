@@ -8,20 +8,19 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'cd684d90-e7a7-41a9-8923-b1b72ad9b384',
   title: 'Components/Tooltip',
-  tags: ['package:WebComponents', 'status:InProgress'],
+  tags: ['package:WebComponents'],
   component: 'post-tooltip',
   parameters: {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=18199-6303&mode=design&t=rXQXLIbDtUBHn9jE-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=31920-89085',
     },
   },
-  render,
+  render: Render,
   args: {
     id: 'tooltip-one',
     innerHTML: 'Hi there 👋',
-    palette: 'palette-accent',
     placement: 'top',
   },
   argTypes: {
@@ -41,20 +40,6 @@ const meta: MetaComponent = {
         },
       },
     },
-    palette: {
-      name: 'Palette',
-      description: 'Define the color scheme of the tooltip.',
-      control: {
-        type: 'select',
-      },
-      options: ['palette-accent', 'palette-brand'],
-      table: {
-        category: 'General',
-        type: {
-          summary: 'HTML class attribute',
-        },
-      },
-    },
     placement: {
       name: 'Placement',
     },
@@ -67,7 +52,7 @@ const meta: MetaComponent = {
   },
 };
 
-function render(args: Args) {
+function Render(args: Args) {
   const [currentArgs, updateArgs] = useArgs();
   // Just for fun
   const innerHTML =
@@ -84,7 +69,6 @@ function render(args: Args) {
     <post-tooltip
       id="${args.id}"
       arrow="${ifDefined(args.arrow)}"
-      class="palette ${args.palette}"
       placement="${ifDefined(args.placement)}"
     >
       ${unsafeHTML(innerHTML)}

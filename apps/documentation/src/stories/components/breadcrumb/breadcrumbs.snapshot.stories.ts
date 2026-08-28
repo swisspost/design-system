@@ -17,12 +17,11 @@ export const BreadcrumbsSnapshots: Story = {
     const scenarios = [
       {
         label: 'Default',
-        story: Default.render?.(context.args, context) || html`<p>Error rendering Default</p>`,
+        story: meta.render?.({ ...context.args, ...Default.args }, context),
       },
       {
         label: 'Concatenated',
-        story:
-          Concatenated.render?.(context.args, context) || html`<p>Error rendering Concatenated</p>`,
+        story: meta.render?.({ ...context.args, ...Concatenated.args }, context),
       },
       {
         label: 'Long Text',

@@ -1,7 +1,7 @@
 {
   "name": "@swisspost/design-system-eslint",
   "private": false,
-  "version": "10.0.0-next.66",
+  "version": "10.4.0",
   "description": "A set of custom ESLint rules to help keeping projects using the Swiss Post Design System up-to-date.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -40,23 +40,25 @@
     "@typescript-eslint/utils": "8.49.0",
     "cheerio": "1.0.0",
     "eslint-plugin-unicorn": "^56.0.0",
-    "eslint-scope": "8.2.0"
+    "eslint-scope": "8.2.0",
+    "parse5-case-sensitive": "7.1.2-0",
+    "parse5-htmlparser2-tree-adapter": "7.0.0"
   },
   "devDependencies": {
     "@eslint/js": "9.19.0",
     "@types/eslint-scope": "3.7.7",
     "@types/jest": "catalog:jest",
     "@typescript-eslint/rule-tester": "8.49.0",
-    "concurrently": "9.2.1",
+    "concurrently": "10.0.3",
     "domhandler": "5.0.3",
     "eslint": "9.26.0",
     "globals": "17.3.0",
     "jest": "catalog:jest",
     "parse5": "7.2.1",
-    "rimraf": "6.0.1",
+    "rimraf": "6.1.3",
     "ts-jest": "catalog:jest",
-    "typescript": "5.8.3",
-    "typescript-eslint": "8.49.0"
+    "typescript": "catalog:typescript",
+    "typescript-eslint": "catalog:typescript"
   },
   "peerDependencies": {
     "eslint": ">=9.0.0",

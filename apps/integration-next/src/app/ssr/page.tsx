@@ -1,4 +1,9 @@
 import {
+  PostIconExplosives,
+  PostIconLetter,
+  PostIconLetterSolid,
+} from '@swisspost/design-system-components-react/icons';
+import {
   PostAccordion,
   PostAccordionItem,
   PostAutocomplete,
@@ -18,21 +23,18 @@ import {
   PostPagination,
   PostPopover,
   PostPopoverTrigger,
+  PostProgressbar,
   PostRating,
-  PostTabs,
-  PostTabItem,
-  PostTabPanel,
-  PostTogglebutton,
-  PostTooltipTrigger,
-  PostTooltip,
   PostStepper,
   PostStepperItem,
+  PostTabItem,
+  PostTabPanel,
+  PostTabs,
+  PostTogglebutton,
+  PostTooltip,
+  PostTooltipTrigger,
 } from '@swisspost/design-system-components-react/server';
-import {
-  PostIconExplosives,
-  PostIconLetter,
-  PostIconLetterSolid,
-} from '@swisspost/design-system-components-react/icons';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -113,7 +115,7 @@ export default function Home() {
       </PostDatePicker>
 
       <h2>Autocomplete</h2>
-      <PostAutocomplete clearable={true}>
+      <PostAutocomplete clearable={true} textAvailableSuggestions="{count} suggestions available">
         <div className="form-floating">
           <input
             type="text"
@@ -178,9 +180,9 @@ export default function Home() {
           <div className="card-body">
             <h5>Titulum</h5>
             <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-            <a className="card-link" href="#test">
+            <Link className="card-link" href="/csr">
               Ligilo teksto
-            </a>
+            </Link>
           </div>
         </div>
       </PostLinkarea>
@@ -240,6 +242,24 @@ export default function Home() {
         </p>
       </PostPopover>
 
+      <h2>Progressbar</h2>
+      <div className="progressbar">
+        <p
+          className="progressbar-label"
+          id="progressbar-label-a1b2c3d4-e5f6-7890-abcd-ef1234567890--default"
+        >
+          Loading packages
+        </p>
+        <p className="progressbar-value">11 of 17</p>
+        <PostProgressbar
+          value={11}
+          min={0}
+          max={17}
+          aria-valuetext="11 of 17"
+          aria-labelledby="progressbar-label-a1b2c3d4-e5f6-7890-abcd-ef1234567890--default"
+        ></PostProgressbar>
+      </div>
+
       <h2>Rating</h2>
       <PostRating label="Rating"></PostRating>
 
@@ -247,7 +267,7 @@ export default function Home() {
       <PostStepper
         textCompletedStep="Completed step"
         textCurrentStep="Current step"
-        textStepNumber="Step #number:"
+        textStepNumber="Step {number}:"
         currentIndex={1}
       >
         <PostStepperItem> Step 1 </PostStepperItem>

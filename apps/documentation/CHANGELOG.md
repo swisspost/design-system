@@ -1,5 +1,611 @@
 # @swisspost/design-system-documentation
 
+## 6.4.1
+
+### Patch Changes
+
+- Documented an example of self-managed header for online services. (by [@alizedebray](https://github.com/alizedebray) with [#8335](https://github.com/swisspost/design-system/pull/8335))
+
+- Updated the `post-datepicker` component and its documentation page to demonstrate floating label support. (by [@myrta2302](https://github.com/myrta2302) with [#8054](https://github.com/swisspost/design-system/pull/8054))
+
+- Updated the `SECURITY.md` file with information regarding v9 and v10. (by [@AndrinAAF](https://github.com/AndrinAAF), [@Copilot](https://github.com/Copilot) and [@alionazherdetska](https://github.com/alionazherdetska) with [#8256](https://github.com/swisspost/design-system/pull/8256))
+
+- Added a warning that the `v10` Internet Header requires requesting a new Portal configuration and will not work with the old `v9` format. (by [@alionazherdetska](https://github.com/alionazherdetska) and [@alizedebray](https://github.com/alizedebray) with [#8355](https://github.com/swisspost/design-system/pull/8355))
+
+- Updated `post-footer` to ensure consistent spacing regardless of its content. (by [@alizedebray](https://github.com/alizedebray) and [@alionazherdetska](https://github.com/alionazherdetska) with [#8306](https://github.com/swisspost/design-system/pull/8306))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.4.0
+  - @swisspost/design-system-components@10.4.0
+  - @swisspost/design-system-components-react@10.4.0
+  - @swisspost/design-system-styles@10.4.0
+  - @swisspost/internet-header@10.4.0
+  - @swisspost/design-system-styles-primeng@10.4.0
+  - @swisspost/design-system-theme-ag-grid@10.4.0
+  - @swisspost/design-system-tokens@10.4.0
+
+## 6.4.0
+
+### Minor Changes
+
+- Added support for customisable language links: language switch URLs can now be overridden by adding `<link rel="alternate" hreflang="..." href="...">` tags to the page `<head>`. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8298](https://github.com/swisspost/design-system/pull/8298))
+
+- Added package and peer-dependency shields with a package version history dialog, so each package's published versions and peer dependencies can be browsed directly in the documentation. (by [@oliverschuerch](https://github.com/oliverschuerch) and [@alionazherdetska](https://github.com/alionazherdetska) with [#8067](https://github.com/swisspost/design-system/pull/8067))
+
+### Patch Changes
+
+- Fixed the ngx-toastr samples to wrap `this.toastr` calls in a proper class context. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8163](https://github.com/swisspost/design-system/pull/8163))
+
+- Updated the packages displayed on the Introduction page of the documentation to link to their corresponding version tag on GitHub, rather than to the main branch. (by [@yomonom](https://github.com/yomonom) and [@alionazherdetska](https://github.com/alionazherdetska) with [#8248](https://github.com/swisspost/design-system/pull/8248))
+
+- Updated the number input documentation to use a non-empty placeholder when floating labels are enabled. (by [@alizedebray](https://github.com/alizedebray) with [#8302](https://github.com/swisspost/design-system/pull/8302))
+
+- Fixed a missing `const` in the theme-ag-grid usage sample. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8163](https://github.com/swisspost/design-system/pull/8163))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.3.0
+  - @swisspost/internet-header@10.3.0
+  - @swisspost/design-system-components@10.3.0
+  - @swisspost/design-system-styles@10.3.0
+  - @swisspost/design-system-components-react@10.3.0
+  - @swisspost/design-system-styles-primeng@10.3.0
+  - @swisspost/design-system-theme-ag-grid@10.3.0
+  - @swisspost/design-system-tokens@10.3.0
+
+## 6.3.0
+
+### Minor Changes
+
+- Added Andrin Affolter to the documentation footer. (by [@AndrinAAF](https://github.com/AndrinAAF) and [@Copilot](https://github.com/Copilot) with [#8253](https://github.com/swisspost/design-system/pull/8253))
+
+### Patch Changes
+
+- Fixed incorrect `cellConfig` callback signature in the `<post-date-picker>` disable-dates documentation sample. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8249](https://github.com/swisspost/design-system/pull/8249))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.2.0
+  - @swisspost/internet-header@10.2.0
+  - @swisspost/design-system-components@10.2.0
+  - @swisspost/design-system-components-react@10.2.0
+  - @swisspost/design-system-styles@10.2.0
+  - @swisspost/design-system-styles-primeng@10.2.0
+  - @swisspost/design-system-theme-ag-grid@10.2.0
+  - @swisspost/design-system-tokens@10.2.0
+
+## 6.2.0
+
+### Minor Changes
+
+- Added the _🆕 New_ status tag on all new components. (by [@leagrdv](https://github.com/leagrdv) with [#8071](https://github.com/swisspost/design-system/pull/8071))
+
+### Patch Changes
+
+- Added `sp-intranet-header` to `post-header` migration information on the migration guide. (by [@leagrdv](https://github.com/leagrdv) with [#8083](https://github.com/swisspost/design-system/pull/8083))
+
+- Fixed a typo in the migration docs for skills installation script, the command can now be copy&pasted. (by [@gfellerph](https://github.com/gfellerph) with [#8183](https://github.com/swisspost/design-system/pull/8183))
+
+- Added documentation for the internet header on how to import it into an Angular project. (by [@gfellerph](https://github.com/gfellerph) with [#8197](https://github.com/swisspost/design-system/pull/8197))
+
+- Fixed the overlapping local nav and jobs controls in the header example. (by [@leagrdv](https://github.com/leagrdv) with [#8161](https://github.com/swisspost/design-system/pull/8161))
+
+- Moved `post-side-navigation` example on the header docs to the Application header, and improved the Side navigation docs. (by [@leagrdv](https://github.com/leagrdv) with [#8088](https://github.com/swisspost/design-system/pull/8088))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.1.0
+  - @swisspost/design-system-components@10.1.0
+  - @swisspost/design-system-styles@10.1.0
+  - @swisspost/design-system-components-react@10.1.0
+  - @swisspost/internet-header@10.1.0
+  - @swisspost/design-system-styles-primeng@10.1.0
+  - @swisspost/design-system-theme-ag-grid@10.1.0
+  - @swisspost/design-system-tokens@10.1.0
+
+## 6.1.0
+
+### Minor Changes
+
+- Added information about how to migrate the `Post Icon Set` icons to the `UI Icon Sets` icons, in the `v9` to `v10` migration guide. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7960](https://github.com/swisspost/design-system/pull/7960))
+
+### Patch Changes
+
+- Added `NgbTimepicker` migration information on the migration guide. (by [@leagrdv](https://github.com/leagrdv) with [#8028](https://github.com/swisspost/design-system/pull/8028))
+
+- Added `NgbDropdown` and custom select migration information on the migration guide. (by [@leagrdv](https://github.com/leagrdv) with [#8016](https://github.com/swisspost/design-system/pull/8016))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.1
+  - @swisspost/design-system-styles@10.0.1
+  - @swisspost/design-system-components-react@10.0.1
+  - @swisspost/internet-header@10.0.1
+  - @swisspost/design-system-styles-primeng@10.0.1
+  - @swisspost/design-system-icons@10.0.1
+  - @swisspost/design-system-theme-ag-grid@10.0.1
+  - @swisspost/design-system-tokens@10.0.1
+
+## 6.0.1
+
+### Patch Changes
+
+- Release v10.0.0 docs (by [@oliverschuerch](https://github.com/oliverschuerch) with [#8014](https://github.com/swisspost/design-system/pull/8014))
+
+## 6.0.0
+
+### Major Changes
+
+- Removed the slider (form range) component - as it was depending on bootstrap - which will be replaced by a web component in the future. (by [@leagrdv](https://github.com/leagrdv) and [@alizedebray](https://github.com/alizedebray) with [#5850](https://github.com/swisspost/design-system/pull/5850))
+
+- Removed the `<post-card-control>` web component. The component is now provided only as an HTML/CSS `Selection Card` implementation:
+  - `.card-control` is now `.selection-card`
+  - `.card-control--description` is now `.selection-card--description`
+  - `.card-control--icon` is now `.selection-card--icon` (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7026](https://github.com/swisspost/design-system/pull/7026))
+
+- Removed the deprecated css component `.card-button`. (by [@leagrdv](https://github.com/leagrdv) with [#4950](https://github.com/swisspost/design-system/pull/4950))
+
+- Removed the Monospace font from the typography page of the documentation (will not be available once Bootstrap isn't included anymore). (by [@schaertim](https://github.com/schaertim) and [@alizedebray](https://github.com/alizedebray) with [#3384](https://github.com/swisspost/design-system/pull/3384))
+
+- Removed the `post-login-widget` component. The user menu can be built using the `post-menu` component by following the "Logged in" section in the header documentation. (by [@alizedebray](https://github.com/alizedebray) with [#7883](https://github.com/swisspost/design-system/pull/7883))
+
+- Removed the deprecated notification overlay documentation page. (by [@leagrdv](https://github.com/leagrdv) and [@gfellerph](https://github.com/gfellerph) with [#5304](https://github.com/swisspost/design-system/pull/5304))
+
+- Removed the `<post-tag>` component. The `.tag` class can be used instead. (by [@schaertim](https://github.com/schaertim) with [#5764](https://github.com/swisspost/design-system/pull/5764))
+
+- Uninstalled **Intranet Header** package, documentation and all references to it. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4587](https://github.com/swisspost/design-system/pull/4587))
+
+- Removed deprecated `carousel` component. (by [@leagrdv](https://github.com/leagrdv) with [#4075](https://github.com/swisspost/design-system/pull/4075))
+
+- Changed web component `<post-alert>` to `<post-banner>`, and removed the HTML/CSS `.alert` version. Additionally, the classes `.{toast|alert}-primary`, `.{toast|alert}-gray` and `.toast-notification` have been removed.  
+  BEFORE:
+
+  ```html
+  <div role="alert" class="alert alert-success">
+    <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+  </div>
+  ```
+
+  ```html
+  <post-alert type="success">
+    <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+  </post-alert>
+  ```
+
+  AFTER:
+
+  ````html
+  <post-banner type="success">
+    <p>This is the content of the banner. It helps to draw attention to critical messages.</p>
+  </post-banner>
+  ``` (by [@alizedebray](https://github.com/alizedebray) with
+  [#6078](https://github.com/swisspost/design-system/pull/6078))
+  ````
+
+- Removed the `ng-bootstrap` dependency as well as all of the components built on it:
+  - datepicker
+  - timepicker
+  - pagination
+  - typeahead
+  - dropdown
+  - datatable
+  - progressbar (by [@leagrdv](https://github.com/leagrdv) with [#5830](https://github.com/swisspost/design-system/pull/5830))
+
+- Removed deprecated `topic-teaser`. (by [@leagrdv](https://github.com/leagrdv) with [#4056](https://github.com/swisspost/design-system/pull/4056))
+
+- Removed the subnavigation component in favor of page tabs. (by [@alizedebray](https://github.com/alizedebray) with [#6913](https://github.com/swisspost/design-system/pull/6913))
+
+### Minor Changes
+
+- Added a new `.segmented-button` component, which allows users to toggle between two or more content sections within the same area on the screen. (by [@alionazherdetska](https://github.com/alionazherdetska) and [@gfellerph](https://github.com/gfellerph) with [#3879](https://github.com/swisspost/design-system/pull/3879))
+
+- Added release lines for the styles package versions. (by [@leagrdv](https://github.com/leagrdv) with [#4827](https://github.com/swisspost/design-system/pull/4827))
+
+- Added docs page for the new `.section` css component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4733](https://github.com/swisspost/design-system/pull/4733))
+
+- Added the `<post-language-menu-item>` component, a header component made to enable users to select their preferred language. (by [@alizedebray](https://github.com/alizedebray) with [#3802](https://github.com/swisspost/design-system/pull/3802))
+
+- Published `<post-date-picker>` web component. (by [@myrta2302](https://github.com/myrta2302) and [@swisspost-bot](https://github.com/swisspost-bot) with [#7316](https://github.com/swisspost/design-system/pull/7316))
+
+- Added the `<post-togglebutton>` component. (by [@veyaromain](https://github.com/veyaromain) with [#3889](https://github.com/swisspost/design-system/pull/3889))
+
+- Implemented simple check list component. (by [@myrta2302](https://github.com/myrta2302) with [#4171](https://github.com/swisspost/design-system/pull/4171))
+
+- Added a new `@swisspost/design-system-theme-ag-grid` package, exposing a shared AG Grid theme so all applications use the same datatable styling and stay visually consistent. (by [@leagrdv](https://github.com/leagrdv) and [@alionazherdetska](https://github.com/alionazherdetska) with [#7253](https://github.com/swisspost/design-system/pull/7253))
+
+- Updated icon search, by implementing a paging and separating icon sets from each other. (by [@oliverschuerch](https://github.com/oliverschuerch) and [@gfellerph](https://github.com/gfellerph) with [#4351](https://github.com/swisspost/design-system/pull/4351))
+
+- Implemented the `<post-back-to-top>` component. (by [@myrta2302](https://github.com/myrta2302) and [@alizedebray](https://github.com/alizedebray) with [#3991](https://github.com/swisspost/design-system/pull/3991))
+
+- Moved the form element `<input type="time" />` documentation to its own **Form timepicker** documentation page. (by [@leagrdv](https://github.com/leagrdv) with [#7199](https://github.com/swisspost/design-system/pull/7199))
+
+- Increased browser coverage by adding `baseline widely available` query to the browserslistrc. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7613](https://github.com/swisspost/design-system/pull/7613))
+
+- Added a toolbar for switching the theme, channel, and mode of all stories. (by [@alizedebray](https://github.com/alizedebray) with [#3528](https://github.com/swisspost/design-system/pull/3528))
+
+- Updated the Accessibility documentation, reorganized in multiple folders and added Grouping Controls section (by [@myrta2302](https://github.com/myrta2302) with [#3638](https://github.com/swisspost/design-system/pull/3638))
+
+- Updated the Accessibility documentation section with Form Labels guidelines. (by [@myrta2302](https://github.com/myrta2302) with [#3835](https://github.com/swisspost/design-system/pull/3835))
+
+- Added the `<post-number-input>` web component. (by [@leagrdv](https://github.com/leagrdv) with [#7415](https://github.com/swisspost/design-system/pull/7415))
+
+- Added component `<post-avatar>` to show an avatar, based on different possible input data (gravatar by email, initials by first- and/or lastname, fallback). (by [@oliverschuerch](https://github.com/oliverschuerch), [@alizedebray](https://github.com/alizedebray) and [@gfellerph](https://github.com/gfellerph) with [#3352](https://github.com/swisspost/design-system/pull/3352))
+
+- Added Form Footer component. (by [@leagrdv](https://github.com/leagrdv) and [@alizedebray](https://github.com/alizedebray) with [#3616](https://github.com/swisspost/design-system/pull/3616))
+
+- Created the `.search-input` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4099](https://github.com/swisspost/design-system/pull/4099))
+
+- Enhanced component documentation to include a badge at the top of each page showing the package where the component can be found, clarifying which dependency needs to be installed to make it available in a project (by [@bucknatt](https://github.com/bucknatt) with [#5984](https://github.com/swisspost/design-system/pull/5984))
+
+- Added styling support and documentation for the `<dialog>` element. The dialog will replace the current modal and notification overlay components coming from ng-bootstrap. (by [@gfellerph](https://github.com/gfellerph) and [@alizedebray](https://github.com/alizedebray) with [#2772](https://github.com/swisspost/design-system/pull/2772))
+
+- Updated the styles for `.focus-ring` and added documentation. (by [@alionazherdetska](https://github.com/alionazherdetska) and [@alizedebray](https://github.com/alizedebray) with [#4543](https://github.com/swisspost/design-system/pull/4543))
+
+- Updated the Link component styles to align with the new design, added a documentation page outlining the usage of the component. (by [@alionazherdetska](https://github.com/alionazherdetska), [@gfellerph](https://github.com/gfellerph) and [@alizedebray](https://github.com/alizedebray) with [#3590](https://github.com/swisspost/design-system/pull/3590))
+
+- Renamed the `List Group` component to `List Interactive`, and their classes respectively from `.list-group` to `.list-interactive`. (by [@schaertim](https://github.com/schaertim) and [@alizedebray](https://github.com/alizedebray) with [#5675](https://github.com/swisspost/design-system/pull/5675))
+
+- Added documentation outlining the mission statement of the Design System. (by [@alionazherdetska](https://github.com/alionazherdetska) and [@alizedebray](https://github.com/alizedebray) with [#3568](https://github.com/swisspost/design-system/pull/3568))
+
+- Added the `<post-linkarea>` component. (by [@veyaromain](https://github.com/veyaromain) and [@alizedebray](https://github.com/alizedebray) with [#4030](https://github.com/swisspost/design-system/pull/4030))
+
+- Added scroll buttons to `post-tabs` to allow navigating overflowing tab items. When the tabs container overflows horizontally, previous and next buttons appear to scroll through the available tabs. The buttons are labelled via the required `text-prev-tab-items` and `text-next-tab-items` props, which default to `"Previous tab items"` and `"Next tab items"` respectively. (by [@myrta2302](https://github.com/myrta2302) with [#7494](https://github.com/swisspost/design-system/pull/7494))
+
+- Renamed the loader classes from `.loader-*` to `.spinner-*`. (by [@bucknatt](https://github.com/bucknatt) with [#6194](https://github.com/swisspost/design-system/pull/6194))
+
+- Added Text Highlighted component. (by [@bashir-muhammad](https://github.com/bashir-muhammad) and [@gfellerph](https://github.com/gfellerph) with [#3586](https://github.com/swisspost/design-system/pull/3586))
+
+- Added the `post-side-navigation` component. (by [@leagrdv](https://github.com/leagrdv) and [@gfellerph](https://github.com/gfellerph) with [#7972](https://github.com/swisspost/design-system/pull/7972))
+
+- Implemented a `Divider` html/css component using tokens for styles. Divider documentation is also added to /Components/Divider page. (by [@bucknatt](https://github.com/bucknatt) with [#6783](https://github.com/swisspost/design-system/pull/6783))
+
+- Added new Menu component (`<post-menu>`, `<post-menu-trigger>`, and `<post-menu-item>`) for creating accessible dropdown menus. (by [@alionazherdetska](https://github.com/alionazherdetska) and [@alizedebray](https://github.com/alizedebray) with [#3795](https://github.com/swisspost/design-system/pull/3795))
+
+- Added the `<post-breadcrumb>` component to provide a standalone breadcrumb navigation solution. (by [@alionazherdetska](https://github.com/alionazherdetska) and [@gfellerph](https://github.com/gfellerph) with [#4065](https://github.com/swisspost/design-system/pull/4065))
+
+- Added the skiplinks component to styles and documentation. (by [@leagrdv](https://github.com/leagrdv) with [#3875](https://github.com/swisspost/design-system/pull/3875))
+
+- Documented the `<post-pagination>` component and added design-token–based styles aligned with the design. (by [@leagrdv](https://github.com/leagrdv) and [@alizedebray](https://github.com/alizedebray) with [#7163](https://github.com/swisspost/design-system/pull/7163))
+
+- Moved the base typography elements into one single `Foundations > Typography` page and the "Text Highlighted" and "List" elements into the `Components` folder to align with Figma. (by [@bucknatt](https://github.com/bucknatt) with [#6508](https://github.com/swisspost/design-system/pull/6508))
+
+- Added the `<post-closebutton>` web component. (by [@leagrdv](https://github.com/leagrdv) with [#3880](https://github.com/swisspost/design-system/pull/3880))
+
+- Added Teaser Card component. (by [@leagrdv](https://github.com/leagrdv) and [@gfellerph](https://github.com/gfellerph) with [#4460](https://github.com/swisspost/design-system/pull/4460))
+
+- Added a new App Store Badge component for promoting apps, supporting both Google Play and Apple App Store badges. (by [@alionazherdetska](https://github.com/alionazherdetska), [@Vandapanda](https://github.com/Vandapanda) and [@alizedebray](https://github.com/alizedebray) with [#3731](https://github.com/swisspost/design-system/pull/3731))
+
+- Added documentation for design principles. (by [@alionazherdetska](https://github.com/alionazherdetska) and [@alizedebray](https://github.com/alizedebray) with [#3565](https://github.com/swisspost/design-system/pull/3565))
+
+- Added paragraph element. (by [@bashir-muhammad](https://github.com/bashir-muhammad), [@alizedebray](https://github.com/alizedebray) and [@gfellerph](https://github.com/gfellerph) with [#3569](https://github.com/swisspost/design-system/pull/3569))
+
+- Removed documentation for the `<post-logo>` component, as it is not intended for standalone use outside the header. (by [@leagrdv](https://github.com/leagrdv) and [@alizedebray](https://github.com/alizedebray) with [#6165](https://github.com/swisspost/design-system/pull/6165))
+
+- Added Swiss Post Sans as the new default font. (by [@gfellerph](https://github.com/gfellerph) with [#4467](https://github.com/swisspost/design-system/pull/4467))
+
+- Added lead text component for introductory paragraphs. (by [@bashir-muhammad](https://github.com/bashir-muhammad) and [@gfellerph](https://github.com/gfellerph) with [#3575](https://github.com/swisspost/design-system/pull/3575))
+
+- Added a progressbar component used to indicate that the user's request has been received and the application is making progress toward completing the requested action. (by [@alizedebray](https://github.com/alizedebray) with [#7657](https://github.com/swisspost/design-system/pull/7657))
+
+- Added the new `components-react` package to the Getting started guide for developers. (by [@leagrdv](https://github.com/leagrdv) with [#5831](https://github.com/swisspost/design-system/pull/5831))
+
+- Added documentation describing how inputs can be combined with a datalist to offer suggested values, replacing the previous typeahead approach. (by [@alizedebray](https://github.com/alizedebray) with [#6941](https://github.com/swisspost/design-system/pull/6941))
+
+- Added guidelines page on styling shadowdom parts. (by [@myrta2302](https://github.com/myrta2302) with [#4403](https://github.com/swisspost/design-system/pull/4403))
+
+- Created a documentation page for the form hints. (by [@leagrdv](https://github.com/leagrdv) and [@alizedebray](https://github.com/alizedebray) with [#4086](https://github.com/swisspost/design-system/pull/4086))
+
+- Added color palettes to easily apply colors to a page section using predefined color sets. (by [@alizedebray](https://github.com/alizedebray) with [#3850](https://github.com/swisspost/design-system/pull/3850))
+
+- Added documentation for responsive design. (by [@leagrdv](https://github.com/leagrdv) with [#4452](https://github.com/swisspost/design-system/pull/4452))
+
+- Added the `<post-language-menu>` component that enables users to change the language of a page. (by [@leagrdv](https://github.com/leagrdv) and [@gfellerph](https://github.com/gfellerph) with [#4044](https://github.com/swisspost/design-system/pull/4044))
+
+- The `Multiple` and `Multiple Size` controls have been removed from the Form Select documentation and the Form Creation guideline. (by [@bucknatt](https://github.com/bucknatt) with [#6359](https://github.com/swisspost/design-system/pull/6359))
+
+### Patch Changes
+
+- Updated `post-tabs` component to the new Post Design. The `full-width` property has been removed as it is now enforced by design. (by [@myrta2302](https://github.com/myrta2302) with [#7494](https://github.com/swisspost/design-system/pull/7494))
+
+- Moved `Heading` documentation from components to typography section. (by [@leagrdv](https://github.com/leagrdv) with [#4655](https://github.com/swisspost/design-system/pull/4655))
+
+- Added a dedicated URL pointing to a @font-face definitions CSS file hosted on our CDN. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4865](https://github.com/swisspost/design-system/pull/4865))
+
+- Added more information on how to retrieve user data in order to build the user menu in the self-managed `post-header`. (by [@alizedebray](https://github.com/alizedebray) and [@alionazherdetska](https://github.com/alionazherdetska) with [#7885](https://github.com/swisspost/design-system/pull/7885))
+
+- Updated the package output to fit with new PrimeNg API. It is no longer overriding the CSS styles behind the hood but now exports a preset to be used as the theme of PrimeNG.  
+  To migrate, update your `app.config.ts` with the new preset:
+
+  ```typescript
+  import { providePrimeNG } from 'primeng/config';
+  import SwissPostPreset from '@swisspost/design-system-styles-primeng';
+
+  export const appConfig: ApplicationConfig = {
+    providers: [
+      providePrimeNG({
+        theme: {
+          preset: SwissPostPreset,
+        },
+      }),
+    ],
+  };
+  ```
+
+  And remove the following import from your `styles.scss`:
+
+  ````scss
+  @use '@swisspost/design-system-styles-primeng/primeng-theme';
+  ``` (by [@leagrdv](https://github.com/leagrdv) with [#7919](https://github.com/swisspost/design-system/pull/7919))
+
+  ````
+
+- Updated basic `<ul>` element docs and moved them from `Utilities/Lists` to `Foundation/Typography/Lists`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3859](https://github.com/swisspost/design-system/pull/3859))
+
+- Fixed `<post-tooltip>`, `<post-popover>` and `<post-menu>` not responding to user interactions in the Storybook docs preview on iOS. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7699](https://github.com/swisspost/design-system/pull/7699))
+
+- Removed the "Form Autocomplete" documentation page because the component is not ready for use. (by [@alizedebray](https://github.com/alizedebray) with [#7950](https://github.com/swisspost/design-system/pull/7950))
+
+- Added documentation for developing and designing accessible webpages. (by [@leagrdv](https://github.com/leagrdv) with [#4847](https://github.com/swisspost/design-system/pull/4847))
+
+- Added documentation for required and optional fields on form elements. (by [@leagrdv](https://github.com/leagrdv) with [#5622](https://github.com/swisspost/design-system/pull/5622))
+
+- Removed the Card Product component. The `.product-card` and `product-navigation` classes are no longer effective. (by [@leagrdv](https://github.com/leagrdv) with [#7503](https://github.com/swisspost/design-system/pull/7503))
+
+- Added a `side-nav` slot to the `<post-header>` component, enabling support for side navigation in the Application header. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7958](https://github.com/swisspost/design-system/pull/7958))
+
+- Removed deprecated ng-bootstrap modal documentation page. (by [@leagrdv](https://github.com/leagrdv) and [@gfellerph](https://github.com/gfellerph) with [#5309](https://github.com/swisspost/design-system/pull/5309))
+
+- Removed the deprecated ng-bootstrap custom select documentation page. (by [@leagrdv](https://github.com/leagrdv) with [#5302](https://github.com/swisspost/design-system/pull/5302))
+
+- Aligned `ngx-toastr` styling with the existing toast component and documented the integration. (by [@leagrdv](https://github.com/leagrdv) with [#7106](https://github.com/swisspost/design-system/pull/7106))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0
+  - @swisspost/design-system-components-react@10.0.0
+  - @swisspost/design-system-styles@10.0.0
+  - @swisspost/design-system-components@10.0.0
+  - @swisspost/internet-header@10.0.0
+  - @swisspost/design-system-tokens@10.0.0
+  - @swisspost/design-system-theme-ag-grid@10.0.0
+  - @swisspost/design-system-styles-primeng@10.0.0
+
+## 6.0.0-next.77
+
+### Major Changes
+
+- Removed the `post-login-widget` component. The user menu can be built using the `post-menu` component by following the "Logged in" section in the header documentation. (by [@alizedebray](https://github.com/alizedebray) with [#7883](https://github.com/swisspost/design-system/pull/7883))
+
+### Minor Changes
+
+- Added scroll buttons to `post-tabs` to allow navigating overflowing tab items. When the tabs container overflows horizontally, previous and next buttons appear to scroll through the available tabs. The buttons are labelled via the required `text-prev-tab-items` and `text-next-tab-items` props, which default to `"Previous tab items"` and `"Next tab items"` respectively. (by [@myrta2302](https://github.com/myrta2302) with [#7494](https://github.com/swisspost/design-system/pull/7494))
+
+- Added the `post-side-navigation` component. (by [@leagrdv](https://github.com/leagrdv) and [@gfellerph](https://github.com/gfellerph) with [#7972](https://github.com/swisspost/design-system/pull/7972))
+
+### Patch Changes
+
+- Updated `post-tabs` component to the new Post Design. The `full-width` property has been removed as it is now enforced by design. (by [@myrta2302](https://github.com/myrta2302) with [#7494](https://github.com/swisspost/design-system/pull/7494))
+
+- Added more information on how to retrieve user data in order to build the user menu in the self-managed `post-header`. (by [@alizedebray](https://github.com/alizedebray) and [@alionazherdetska](https://github.com/alionazherdetska) with [#7885](https://github.com/swisspost/design-system/pull/7885))
+
+- Updated the package output to fit with new PrimeNg API. It is no longer overriding the CSS styles behind the hood but now exports a preset to be used as the theme of PrimeNG.  
+  To migrate, update your `app.config.ts` with the new preset:
+
+  ```typescript
+  import { providePrimeNG } from 'primeng/config';
+  import SwissPostPreset from '@swisspost/design-system-styles-primeng';
+
+  export const appConfig: ApplicationConfig = {
+    providers: [
+      providePrimeNG({
+        theme: {
+          preset: SwissPostPreset,
+        },
+      }),
+    ],
+  };
+  ```
+
+  And remove the following import from your `styles.scss`:
+
+  ````scss
+  @use '@swisspost/design-system-styles-primeng/primeng-theme';
+  ``` (by [@leagrdv](https://github.com/leagrdv) with [#7919](https://github.com/swisspost/design-system/pull/7919))
+
+  ````
+
+- Added a `side-nav` slot to the `<post-header>` component, enabling support for side navigation in the Application header. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7958](https://github.com/swisspost/design-system/pull/7958))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.76
+  - @swisspost/design-system-components@10.0.0-next.76
+  - @swisspost/design-system-styles@10.0.0-next.76
+  - @swisspost/design-system-styles-primeng@10.0.0-next.76
+  - @swisspost/design-system-components-react@10.0.0-next.76
+  - @swisspost/internet-header@10.0.0-next.76
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.76
+  - @swisspost/design-system-tokens@10.0.0-next.76
+
+## 6.0.0-next.76
+
+### Minor Changes
+
+- Added Header variant for Internal Applications. (by [@myrta2302](https://github.com/myrta2302) and [@alizedebray](https://github.com/alizedebray) with [#7758](https://github.com/swisspost/design-system/pull/7758))
+
+### Patch Changes
+
+- Removed the "Form Autocomplete" documentation page because the component is not ready for use. (by [@alizedebray](https://github.com/alizedebray) with [#7950](https://github.com/swisspost/design-system/pull/7950))
+
+- Fixed `list-interactive-switch` not stretching to full width. Removed outdated text from the documentation. (by [@myrta2302](https://github.com/myrta2302) with [#7900](https://github.com/swisspost/design-system/pull/7900))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.75
+  - @swisspost/design-system-styles@10.0.0-next.75
+  - @swisspost/design-system-components@10.0.0-next.75
+  - @swisspost/design-system-components-react@10.0.0-next.75
+  - @swisspost/internet-header@10.0.0-next.75
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.75
+  - @swisspost/design-system-tokens@10.0.0-next.75
+
+## 6.0.0-next.75
+
+### Patch Changes
+
+- Removed all status tags. Components will no longer be tagged for status because it confused more than it helped. (by [@gfellerph](https://github.com/gfellerph) with [#7841](https://github.com/swisspost/design-system/pull/7841))
+
+- Fixed dark mode toggle for nested story previews. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7864](https://github.com/swisspost/design-system/pull/7864))
+
+- Fixed the story actions "View full screen" and "Copy deep link" in the header documentation page. Deleted the "Open in Codepen" action from all stories. (by [@alizedebray](https://github.com/alizedebray) with [#7856](https://github.com/swisspost/design-system/pull/7856))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.74
+  - @swisspost/design-system-styles@10.0.0-next.74
+  - @swisspost/internet-header@10.0.0-next.74
+  - @swisspost/design-system-components@10.0.0-next.74
+  - @swisspost/design-system-components-react@10.0.0-next.74
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.74
+  - @swisspost/design-system-tokens@10.0.0-next.74
+
+## 6.0.0-next.74
+
+### Patch Changes
+
+- Fixed `<post-tooltip>`, `<post-popover>` and `<post-menu>` not responding to user interactions in the Storybook docs preview on iOS. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7699](https://github.com/swisspost/design-system/pull/7699))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.73
+  - @swisspost/design-system-styles@10.0.0-next.73
+  - @swisspost/design-system-components-react@10.0.0-next.73
+  - @swisspost/internet-header@10.0.0-next.73
+  - @swisspost/design-system-icons@10.0.0-next.73
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.73
+  - @swisspost/design-system-tokens@10.0.0-next.73
+
+## 6.0.0-next.73
+
+### Minor Changes
+
+- Added a progressbar component used to indicate that the user's request has been received and the application is making progress toward completing the requested action. (by [@alizedebray](https://github.com/alizedebray) with [#7657](https://github.com/swisspost/design-system/pull/7657))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.72
+  - @swisspost/design-system-styles@10.0.0-next.72
+  - @swisspost/internet-header@10.0.0-next.72
+  - @swisspost/design-system-components-react@10.0.0-next.72
+  - @swisspost/design-system-icons@10.0.0-next.72
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.72
+  - @swisspost/design-system-tokens@10.0.0-next.72
+
+## 6.0.0-next.72
+
+### Minor Changes
+
+- Added a bottom-sheet variant for the dialog component. (by [@JoaoSequeira489](https://github.com/JoaoSequeira489) with [#7546](https://github.com/swisspost/design-system/pull/7546))
+
+- Increased browser coverage by adding `baseline widely available` query to the browserslistrc. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7613](https://github.com/swisspost/design-system/pull/7613))
+
+### Patch Changes
+
+- Updated the `post-login-widget`:
+  - The slot `unauthenticated` has been renamed to `login-link`.
+  - The slot `authenticated` has been renamed to `user-links` and should now only contain the links to show in the user menu (list of `post-menu-item`) when the user is authenticated. The trigger of the user menu with the avatar and user name is now handled internally by the component and should not be implemented by the consumer anymore.
+  - Added three required props for labels: `textUserMenu`, `textUserMenuTrigger` and `textCurrentUser`. (by [@leagrdv](https://github.com/leagrdv) with [#7602](https://github.com/swisspost/design-system/pull/7602))
+
+- Removed the `userId` property from the `post-avatar` component as it is no longer working. (by [@leagrdv](https://github.com/leagrdv) with [#7626](https://github.com/swisspost/design-system/pull/7626))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.71
+  - @swisspost/design-system-components@10.0.0-next.71
+  - @swisspost/design-system-styles@10.0.0-next.71
+  - @swisspost/internet-header@10.0.0-next.71
+  - @swisspost/design-system-components-react@10.0.0-next.71
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.71
+  - @swisspost/design-system-tokens@10.0.0-next.71
+
+## 6.0.0-next.71
+
+### Minor Changes
+
+- Added an optional prefooter section to the `post-footer` component. (by [@leagrdv](https://github.com/leagrdv) with [#7630](https://github.com/swisspost/design-system/pull/7630))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.70
+  - @swisspost/internet-header@10.0.0-next.70
+  - @swisspost/design-system-styles@10.0.0-next.70
+  - @swisspost/design-system-components-react@10.0.0-next.70
+  - @swisspost/design-system-icons@10.0.0-next.70
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.70
+  - @swisspost/design-system-tokens@10.0.0-next.70
+
+## 6.0.0-next.70
+
+### Patch Changes
+
+- Changed the `post-stepper` component's **text-step-number** prop format from `Step #number:` to `Step {number}:`. (by [@leagrdv](https://github.com/leagrdv) with [#7581](https://github.com/swisspost/design-system/pull/7581))
+
+- Removed palette class support from `post-tooltip`. The tooltip now always uses the accent palette and no longer requires or accepts a palette class. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7544](https://github.com/swisspost/design-system/pull/7544))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.69
+  - @swisspost/design-system-components@10.0.0-next.69
+  - @swisspost/design-system-components-react@10.0.0-next.69
+  - @swisspost/design-system-styles@10.0.0-next.69
+  - @swisspost/internet-header@10.0.0-next.69
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.69
+  - @swisspost/design-system-tokens@10.0.0-next.69
+
+## 6.0.0-next.69
+
+### Minor Changes
+
+- Added two props to the `post-breadcrumb-item`:
+  - `label`: ARIA label, screen readers will use this instead of the breadcrumb item content.
+  - `description`: ARIA description for additional context, read after the breadcrumb item content or `label`. (by [@leagrdv](https://github.com/leagrdv) with [#7271](https://github.com/swisspost/design-system/pull/7271))
+
+- Added standalone entry points for the components-react package, to provide fine grained import options. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#7559](https://github.com/swisspost/design-system/pull/7559))
+
+- Updated the `swisspost-internet-breadcrumbs` to the new config and removed the `hide-buttons` prop as well as the `toggleOverlayById` method. (by [@leagrdv](https://github.com/leagrdv) with [#7271](https://github.com/swisspost/design-system/pull/7271))
+
+- Added the `post-login-widget` component, which conditionally renders its authenticated or unauthenticated slot based on the KLP session API response. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#7580](https://github.com/swisspost/design-system/pull/7580))
+
+### Patch Changes
+
+- Updated the tag component (HTML/CSS) to match the latest design. The `.tag-danger` variant has been renamed to `.tag-error`, and the `.tag-yellow` and `.tag-white` have been removed. (by [@leagrdv](https://github.com/leagrdv) with [#7481](https://github.com/swisspost/design-system/pull/7481))
+
+- Removed the `index.scss` and `intranet.scss` files. The following entrypoints need to be used instead:
+  - For internet facing applications, use `post-default.scss` instead of `index.scss`
+  - For internal applications, use `post-compact.scss` instead of `intranet.scss` (by [@leagrdv](https://github.com/leagrdv) with [#7535](https://github.com/swisspost/design-system/pull/7535))
+
+- Updated the button group component (HTML/CSS) to match the latest design and introduced a vertical layout variant.  
+  This update adds a vertical option (`.btn-group-vertical`) along with responsive modifier classes (e.g. .`btn-group-md-vertical`, `btn-group-lg-horizontal`) to allow switching between horizontal and vertical orientations at different breakpoints. (by [@leagrdv](https://github.com/leagrdv) with [#7471](https://github.com/swisspost/design-system/pull/7471))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.68
+  - @swisspost/design-system-components@10.0.0-next.68
+  - @swisspost/design-system-styles@10.0.0-next.68
+  - @swisspost/design-system-components-react@10.0.0-next.68
+  - @swisspost/internet-header@10.0.0-next.68
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.68
+  - @swisspost/design-system-tokens@10.0.0-next.68
+
+## 6.0.0-next.68
+
+### Minor Changes
+
+- Added the `post-number-input` web component. (by [@leagrdv](https://github.com/leagrdv) with [#7415](https://github.com/swisspost/design-system/pull/7415))
+
+- Added the small variant class `.form-check-sm` to the form radio button. (by [@bucknatt](https://github.com/bucknatt) with [#6805](https://github.com/swisspost/design-system/pull/6805))
+
+- Tokenized the styles of the `.selection-card` component. (by [@leagrdv](https://github.com/leagrdv) with [#7446](https://github.com/swisspost/design-system/pull/7446))
+
+### Patch Changes
+
+- Added migration information for the Card Control component. (by [@bucknatt](https://github.com/bucknatt) with [#7220](https://github.com/swisspost/design-system/pull/7220))
+
+- Addressed inconsistencies across the form elements documentation and updated the validation guidelines for radio button elements. (by [@leagrdv](https://github.com/leagrdv) with [#7443](https://github.com/swisspost/design-system/pull/7443))
+
+- Improved the code snippets in the migration guide documentation. (by [@leagrdv](https://github.com/leagrdv) with [#7404](https://github.com/swisspost/design-system/pull/7404))
+
+- Updated the _Job_ button name and icon of the `post-header` examples to align with design. (by [@leagrdv](https://github.com/leagrdv) with [#7461](https://github.com/swisspost/design-system/pull/7461))
+
+- Removed the Card Product component. The `.product-card` and `product-navigation` classes are no longer effective. (by [@leagrdv](https://github.com/leagrdv) with [#7503](https://github.com/swisspost/design-system/pull/7503))
+
+- Fixed a bug in the migration guide where individual task checkboxes were not correctly saving their state to localStorage. (by [@leagrdv](https://github.com/leagrdv) with [#7505](https://github.com/swisspost/design-system/pull/7505))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.67
+  - @swisspost/design-system-components@10.0.0-next.67
+  - @swisspost/design-system-styles@10.0.0-next.67
+  - @swisspost/design-system-components-react@10.0.0-next.67
+  - @swisspost/internet-header@10.0.0-next.67
+  - @swisspost/design-system-theme-ag-grid@10.0.0-next.67
+  - @swisspost/design-system-tokens@10.0.0-next.67
+
 ## 6.0.0-next.67
 
 ### Minor Changes

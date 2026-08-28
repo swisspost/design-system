@@ -7,7 +7,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'eb78afcb-ce92-4990-94b6-6536d5ec6af4',
   title: 'Components/Button',
-  tags: ['package:Styles', 'status:Stable'],
+  tags: ['package:Styles'],
   parameters: {
     badges: [],
     design: {
@@ -184,6 +184,10 @@ const meta: MetaComponent = {
       name: 'Disabled',
       description:
         'When set to `true`, makes the component appear inactive and disables its functionality.<post-banner data-size="sm"><p>There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</p></post-banner>',
+      if: {
+        arg: 'tag',
+        neq: 'a',
+      },
       control: {
         type: 'boolean',
       },

@@ -5,11 +5,14 @@ import { getLabelText, getValidationMessages, VALIDATION_STATE_MAP } from '@/uti
 
 const meta: MetaComponent = {
   id: '51471f0b-1bbb-4059-951b-f89aa7339f91',
-  title: 'Components/Form Timepicker',
-  tags: ['package:Styles', 'status:Stable'],
+  title: 'Components/Form Time Picker',
+  tags: ['package:Styles'],
   render: render,
   parameters: {
-    badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=30020-144868',
+    },
   },
   args: {
     label: 'Label',

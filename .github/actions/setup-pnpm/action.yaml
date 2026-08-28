@@ -15,48 +15,20 @@ name: Setup pnpm
 description: Provides node and pnpm in a specific version.
 
 inputs:
-  node_version:
-    description: Specify the node version to install
-    type: string
-  pnpm_version:
-    description: Specify the pnpm version to install
-    type: string
   use_cache:
-    description: Specify wether to use the pnpm cache or not
+    description: Specify whether to use the pnpm cache or not
     default: true
     type: boolean
 
 runs:
   using: composite
   steps:
-    - name: Detect wanted version
-      id: wanted-versions
-      uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+    - name: Install pnpm and runtime
+      uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2
       with:
-        script: |
-          const fs = require('fs')
-          const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'))
-
-          return {
-            node: pkg.engines?.node,
-            pnpm: pkg.packageManager
-          }
-
-    - name: Install pnpm
-      uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320
-      with:
-        # If input.pnpm_version is NOT defined,
-        # the action automatically uses the "packageManager" field from the package.json file
-        # If input.pnpm_version is defined, we need to point to another package.json file, without the "packageManager" field,
-        # so we do not end up with a "Multiple versions of pnpm specified" error
-        package_json_file: ${{ inputs.pnpm_version && 'apps/documentation/package.json' || 'package.json' }}
-        version: ${{ inputs.pnpm_version || null }}
-
-    - name: Install node
-      uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f
-      with:
-        node-version: ${{ inputs.node_version || fromJSON(steps.wanted-versions.outputs.result).node }}
-        cache: ${{ inputs.use_cache == 'true' && 'pnpm' || '' }}
+        runtime: node
+        install: false
+        cache: ${{ inputs.use_cache }}
 
     - name: Summary
       shell: bash

@@ -1,13 +1,13 @@
+import { spreadArgs } from '@/utils';
+import { MetaComponent } from '@root/types';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, TemplateResult } from 'lit';
-import { MetaComponent } from '@root/types';
-import { spreadArgs } from '@/utils';
 
 const meta: MetaComponent = {
   id: '5ef3cb45-86f6-4baf-bdbf-35bd2ddf0f3d',
   title: 'Raw Components/Form Autocomplete',
   component: 'post-autocomplete',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'devOnly', 'status:New'],
   render: createAutocompleteRenderer(),
   parameters: {
     badges: [],
@@ -22,6 +22,7 @@ const meta: MetaComponent = {
   args: {
     clearable: false,
     filterThreshold: 0,
+    textAvailableSuggestions: '{count} suggestions available',
   },
   argTypes: {
     clearable: {
@@ -36,6 +37,15 @@ const meta: MetaComponent = {
       name: 'filter-threshold',
       description: 'Number of typed characters required before filtering starts.',
       control: 'number',
+      table: {
+        category: 'Props',
+      },
+    },
+    textAvailableSuggestions: {
+      name: 'text-available-suggestions',
+      description:
+        'Localized announcement template read by screen readers when the suggestion list updates. Use {count} as a placeholder for the number of available suggestions, e.g. "{count} suggestions available" or "{count} Empfehlungen verfügbar".',
+      control: 'text',
       table: {
         category: 'Props',
       },
@@ -92,6 +102,7 @@ export function createAutocompleteRenderer({ detached = false }: { detached?: bo
     const autocompleteArgs: Record<string, unknown> = {
       clearable: args.clearable,
       filterThreshold: args.filterThreshold,
+      textAvailableSuggestions: args.textAvailableSuggestions,
     };
 
     if (detached) {
@@ -142,7 +153,11 @@ export const OptionDescription: Story = {
 
     return html`
       <post-autocomplete
-        ${spreadArgs({ clearable: args.clearable, filterThreshold: args.filterThreshold })}
+        ${spreadArgs({
+          clearable: args.clearable,
+          filterThreshold: args.filterThreshold,
+          textAvailableSuggestions: args.textAvailableSuggestions,
+        })}
       >
         <div class="form-floating">
           <input class="form-control" type="text" id="${inputId}" placeholder="Select Country" />

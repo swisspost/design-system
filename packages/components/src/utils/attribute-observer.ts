@@ -1,5 +1,3 @@
-import { Build } from '@stencil/core';
-
 export function getAttributeObserver(
   attribute: string,
   handler: (element: HTMLElement, mutation?: MutationRecord) => void,
@@ -28,5 +26,5 @@ export function getAttributeObserver(
   }
 
   // Initialize a mutation observer for patching accessibility features
-  return Build.isBrowser ? new MutationObserver(observerHandler) : null;
+  return globalThis.MutationObserver ? new MutationObserver(observerHandler) : null;
 }

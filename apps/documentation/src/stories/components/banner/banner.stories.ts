@@ -14,13 +14,13 @@ const meta: MetaComponent<PostBannerControls> = {
   title: 'Components/Banner',
   tags: ['package:WebComponents'],
   component: 'post-banner',
-  render: renderBanner,
+  render: RenderBanner,
   decorators: [],
   parameters: {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=1447-8848',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-V2?node-id=33070-74194',
     },
     controls: {
       exclude: ['dismissed'],
@@ -63,7 +63,7 @@ const meta: MetaComponent<PostBannerControls> = {
 export default meta;
 
 // Renderer
-function renderBanner({ innerHTML, dismissible, dismissed, type }: PostBannerControls) {
+function RenderBanner({ innerHTML, dismissible, dismissed, type }: PostBannerControls) {
   const [, updateArgs] = useArgs();
 
   if (dismissed && !dismissible) {
@@ -82,9 +82,11 @@ function renderBanner({ innerHTML, dismissible, dismissed, type }: PostBannerCon
       type=${type === 'info' ? nothing : type}
       @postDismissed=${() => updateArgs({ dismissed: true })}
     >
-      ${dismissible
-        ? html` <post-closebutton slot="close-button"> Close </post-closebutton> `
-        : nothing}
+      ${
+        dismissible
+          ? html` <post-closebutton slot="close-button"> Close </post-closebutton> `
+          : nothing
+      }
       ${unsafeHTML(innerHTML ?? '')}
     </post-banner>
   `;
@@ -100,8 +102,8 @@ export const Contents: Story = {
     innerHTML:
       '<h4 slot="heading">Heading Title</h4>' +
       '<ul class="list-unstyled">' +
-      '<li class="d-flex gap-8"><post-icon name="moon"></post-icon>An example list item</li>' +
-      '<li class="d-flex gap-8"><post-icon name="sun"></post-icon>Another example list item</li>' +
+      '<li class="d-flex gap-8 align-items-center"><post-icon name="moon"></post-icon>An example list item</li>' +
+      '<li class="d-flex gap-8 align-items-center"><post-icon name="sun"></post-icon>Another example list item</li>' +
       '</ul>' +
       '<hr class="w-full"/>' +
       '<p>This is the banner content that provides important information to the user.</p>' +

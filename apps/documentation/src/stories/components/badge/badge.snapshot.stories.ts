@@ -20,10 +20,11 @@ export const Badge: Story = {
         <div class="d-flex flex-wrap align-items-start gap-16">
           ${bombArgs({
             showNumber: [true, false],
+            number: ['1', '24', '+1000'],
             size: context.argTypes.size.options,
-            background: context.argTypes.background.options,
           })
             .filter(args => !(!args.showNumber && args.size === 'small'))
+            .filter(args => !(!args.showNumber && args.number !== '1'))
             .map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
         </div>
       `,

@@ -1,6 +1,11 @@
 // app.tsx
-import { PostAvatar } from '@swisspost/design-system-components-react';
+import { PostAvatar, PostBanner } from '@swisspost/design-system-components-react';
 
 export default function App() {
-  return <PostAvatar firstname="Max"></PostAvatar>;
+  return (
+    <div>
+      <PostAvatar firstname="Max"></PostAvatar>
+      <PostBanner>Lorem ipsum</PostBanner>
+    </div>
+  );
 }

@@ -33,33 +33,37 @@ export class MigrationV89Component extends LitElement {
           <li>
             <h3>Package Update 🩺</h3>
             <ol>
-              ${this.angular
-                ? html`
-                    <li>
-                      <p>
-                        Use
-                        <a href="https://angular.dev/update-guide?v=18.0-19.0"
-                          >https://angular.dev/update-guide</a
-                        >
-                        to update Angular to version 19
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        <i>If used within your project</i>, upgrade PrimeNG to version 19:
-                        <code-block code=${'npm install primeng@19'}></code-block>
-                      </p>
-                    </li>
-                  `
-                : nothing}
+              ${
+                this.angular
+                  ? html`
+                      <li>
+                        <p>
+                          Use
+                          <a href="https://angular.dev/update-guide?v=18.0-19.0"
+                            >https://angular.dev/update-guide</a
+                          >
+                          to update Angular to version 19
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          <i>If used within your project</i>, upgrade PrimeNG to version 19:
+                          <code-block code=${'npm install primeng@19'}></code-block>
+                        </p>
+                      </li>
+                    `
+                  : nothing
+              }
               <li>
                 <p>
                   Update Design System styles and components packages to version 9:
                   <code-block code=${'npm install @swisspost/design-system-styles@9'}></code-block>
                   <code-block
-                    code=${this.angular
-                      ? 'npm install @swisspost/design-system-components-angular@9'
-                      : 'npm install @swisspost/design-system-components@9'}
+                    code=${
+                      this.angular
+                        ? 'npm install @swisspost/design-system-components-angular@9'
+                        : 'npm install @swisspost/design-system-components@9'
+                    }
                   ></code-block>
                 </p>
               </li>
@@ -73,7 +77,7 @@ export class MigrationV89Component extends LitElement {
                   The <code>post-tooltip</code> now has its own <code>post-tooltip-trigger</code>,
                   meaning that the attribute <code>data-tooltip-target=""</code> is no longer
                   effective.
-                  <span class="tag tag-sm tag-danger">breaking</span>
+                  <span class="tag tag-sm tag-error">breaking</span>
                 </p>
                 <p class="info">
                   Instead of using the attribute, you should now wrap your target in the
@@ -85,33 +89,35 @@ export class MigrationV89Component extends LitElement {
                   The default value of the arrow property for the
                   <code>post-tooltip</code> component has changed to <code>false</code>, meaning
                   that tooltips don't display arrows by default anymore.
-                  <span class="tag tag-sm tag-danger">breaking</span>
+                  <span class="tag tag-sm tag-error">breaking</span>
                 </p>
                 <p class="info">
                   If you want to add an arrow to your tooltip, use the
                   <code>arrow="true"</code> property on the component.
                 </p>
               </li>
-              ${this.angular
-                ? html`
-                    <li class="mb-16">
-                      <p>
-                        The <code>PrimeNGConfig</code> has been replaced by <code>PrimeNG</code> and
-                        the initial configuration is now done via the
-                        <code>providePrimeNG</code> provider during startup.
-                      </p>
-                      <p class="info">
-                        See the
-                        <a href="https://primeng.org/guides/migration">PrimeNg migration guide</a>
-                        and
-                        <a href="/?path=/docs/d2112bed-c611-4098-a1ad-e654f7d622e7--docs"
-                          >PrimeNg Styles package documentation</a
-                        >
-                        for more detailed information.
-                      </p>
-                    </li>
-                  `
-                : nothing}
+              ${
+                this.angular
+                  ? html`
+                      <li class="mb-16">
+                        <p>
+                          The <code>PrimeNGConfig</code> has been replaced by
+                          <code>PrimeNG</code> and the initial configuration is now done via the
+                          <code>providePrimeNG</code> provider during startup.
+                        </p>
+                        <p class="info">
+                          See the
+                          <a href="https://primeng.org/guides/migration">PrimeNg migration guide</a>
+                          and
+                          <a href="/?path=/docs/d2112bed-c611-4098-a1ad-e654f7d622e7--docs"
+                            >PrimeNg Styles package documentation</a
+                          >
+                          for more detailed information.
+                        </p>
+                      </li>
+                    `
+                  : nothing
+              }
             </ol>
           </li>
 
@@ -119,12 +125,16 @@ export class MigrationV89Component extends LitElement {
             <h3>Deprecation notice</h3>
             <p>
               This is the last major release that supports
-              <a href="https://getbootstrap.com/">bootstrap</a>${this.angular
-                ? html` and
-                    <a href="https://ng-bootstrap.github.io/#/home">@ng-bootstrap/ng-bootstrap</a>`
-                : nothing}.
+              <a href="https://getbootstrap.com/">bootstrap</a>${
+                this.angular
+                  ? html` and
+                      <a href="https://ng-bootstrap.github.io/#/home"
+                        >@ng-bootstrap/ng-bootstrap</a
+                      >`
+                  : nothing
+              }.
               Support for these packages will be dropped with v10. Long term support for v9 will be
-              active until the end of 2025 and will receive critical bugfixes.
+              active until mid-2027 and will receive critical bugfixes.
             </p>
             <p>
               Bootstrap will be removed as a dependency for the Design System. For easy upgrades in
@@ -137,19 +147,21 @@ export class MigrationV89Component extends LitElement {
               dependency and conditionally import the needed files. More information on this change
               will be detailed in the migration guide for v10.
             </p>
-            ${this.angular
-              ? html`<p>
-                  Any ng-bootstrap components will be replaced by web components and available for
-                  Angular users with the
-                  <a
-                    href="https://design-system.post.ch/?path=/docs/833ef689-a573-40f5-a6a6-30a999b94733--docs"
-                    >@swisspost/design-system-components-angular</a
-                  >
-                  package. With this change, we will limit our dependency on Angular to the
-                  components-angular package which allows us to ship Angular upgrades much faster in
-                  the future.
-                </p>`
-              : nothing}
+            ${
+              this.angular
+                ? html`<p>
+                    Any ng-bootstrap components will be replaced by web components and available for
+                    Angular users with the
+                    <a
+                      href="https://design-system.post.ch/?path=/docs/833ef689-a573-40f5-a6a6-30a999b94733--docs"
+                      >@swisspost/design-system-components-angular</a
+                    >
+                    package. With this change, we will limit our dependency on Angular to the
+                    components-angular package which allows us to ship Angular upgrades much faster
+                    in the future.
+                  </p>`
+                : nothing
+            }
           </li>
         </ol>
       </section>

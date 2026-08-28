@@ -28,5 +28,17 @@ a {
     &:visited {
       color: VisitedText;
     }
+
+    &.btn:not(.btn-link) {
+      border-color: ButtonBorder !important;
+    }
+
+    &.btn.btn-tertiary.px-0 {
+      border: 0 !important;
+
+      &:not(:hover) {
+        text-decoration: underline;
+      }
+    }
   }
 }

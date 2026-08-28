@@ -13,6 +13,8 @@ export const data: TwoPhasesData = setUpClassesMutations(
   arrayToMap(classNames),
   bootstrapSizeMap,
   'deprecatedGapUtilities',
+  // '1' → '4' and '4' → '24' form a chain collision: both are reported but not auto-fixed.
+  new Set(['1', '4']),
 );
 
 export const rules = createTwoPhasesClassUpdateRule({

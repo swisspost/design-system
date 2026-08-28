@@ -8,7 +8,7 @@ import { getLabelText, getValidationMessages, VALIDATION_STATE_MAP } from '@/uti
 const meta: MetaComponent = {
   id: '151242aa-a074-4a55-a81c-db597c83cdad',
   title: 'Components/Form Radio Button',
-  tags: ['package:Styles', 'status:Stable'],
+  tags: ['package:Styles'],
   parameters: {
     badges: [],
     design: {
@@ -91,10 +91,10 @@ const meta: MetaComponent = {
       table: { category: 'States' },
     },
   },
-  render: render,
+  render: Render,
 };
 
-function render(args: Args, context: StoryContext) {
+function Render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
   const radioClass = args.validation !== 'null' ? args.validation : undefined;
@@ -116,9 +116,9 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
-      aria-describedby="${args.validation != 'null'
-        ? `${args.validation}-id-${context.id}`
-        : nothing}"
+      aria-describedby="${
+        args.validation != 'null' ? `${args.validation}-id-${context.id}` : nothing
+      }"
       @change="${(e: Event) => updateArgs({ checked: (e.target as HTMLInputElement).checked })}"
       ?required="${args.requiredOptional === 'required'}"
     />
@@ -142,7 +142,7 @@ export const Default: Story = {
   },
 };
 
-export function renderGroup(args: Args, context: Partial<StoryContext>) {
+export function RenderGroup(args: Args, context: Partial<StoryContext>) {
   const [_, updateArgs] = useArgs();
 
   function onChange(e: Event, value: number) {
@@ -183,7 +183,7 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
 }
 
 export const Grouped: Story = {
-  render: renderGroup,
+  render: RenderGroup,
   parameters: {
     controls: {
       include: ['Size', 'Hidden Legend'],
@@ -202,7 +202,7 @@ export const Grouped: Story = {
 };
 
 export const Inline: Story = {
-  render: renderGroup,
+  render: RenderGroup,
   parameters: {
     controls: {
       include: ['Size', 'Hidden Legend'],

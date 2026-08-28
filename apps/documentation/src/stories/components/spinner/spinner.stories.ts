@@ -5,7 +5,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'd0e645d0-3bf2-4b00-967a-5a1343107f60',
   title: 'Components/Spinner',
-  tags: ['package:Styles', 'status:InProgress'],
+  tags: ['package:Styles'],
   render,
   decorators: [(story, context) => generateDecorators(story, context)],
   parameters: {

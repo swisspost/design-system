@@ -1,6 +1,7 @@
 import { IconLinkConfig, ImageLinkConfig, LinkListConfig, SimpleLinkConfig } from './shared.model';
 
 export interface FooterConfig {
+  prefooter?: LinkListConfig<SimpleLinkConfig>; // Prefooter for the service.
   sections?: Array<LinkListConfig<SimpleLinkConfig>>; // Main footer sections.
   socialLinks?: LinkListConfig<IconLinkConfig>; // Social media links (e.g. Facebook, LinkedIn, YouTube).
   appStoreLinks?: LinkListConfig<ImageLinkConfig>; // App store links (e.g. App Store, Google Play).

@@ -1,5 +1,5 @@
-import { Component, Element } from '@stencil/core';
 import { version } from '@root/package.json';
+import { Component, Element } from '@stencil/core';
 
 @Component({
   tag: 'post-menu-item',

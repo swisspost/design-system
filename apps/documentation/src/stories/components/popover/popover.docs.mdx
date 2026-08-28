@@ -1,6 +1,6 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as PopoverStories from './popover.stories';
-import PackageTag from '@/shared/package-tag';
+import StoryTags from '@/shared/story-tags';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={PopoverStories} />
@@ -12,10 +12,11 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 </div>
 
-<PackageTag meta={meta} />
+<StoryTags meta={meta} />
 
 <div className="lead">
-  For longer, informative messages or explanations and also simple interactive elements like links.
+  The popover provides additional context to an icon button or another UI element, such as
+  element or action descriptions, or a description of a new feature.
 </div>
 
 <Canvas sourceState="shown" of={PopoverStories.Default} />
