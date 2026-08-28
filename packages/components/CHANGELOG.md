@@ -1,5 +1,43 @@
 # @swisspost/design-system-components
 
+## 10.4.0
+
+### Patch Changes
+
+- Enabled word-break for the side navigation labels. (by [@myrta2302](https://github.com/myrta2302) with [#8362](https://github.com/swisspost/design-system/pull/8362))
+
+- Fixed a type mismatch error when binding `(postChange)` on `post-language-menu`, where `$event` was typed as `Event` instead of `CustomEvent<string>`. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8279](https://github.com/swisspost/design-system/pull/8279))
+
+- Fixed the `post-side-navigation` dialog not closing automatically after clicking a navigation link on mobile/tablet. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8275](https://github.com/swisspost/design-system/pull/8275))
+
+- Updated the `post-datepicker` component and its documentation page to demonstrate floating label support. (by [@myrta2302](https://github.com/myrta2302) with [#8054](https://github.com/swisspost/design-system/pull/8054))
+
+- Fixed a ResizeObserver loop error in `post-tooltip` when opened in constrained layouts. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8324](https://github.com/swisspost/design-system/pull/8324))
+
+- Updated Tabs component focus ring outline-offset. (by [@myrta2302](https://github.com/myrta2302) and [@swisspost-bot](https://github.com/swisspost-bot) with [#8191](https://github.com/swisspost/design-system/pull/8191))
+
+- Updated `post-footer` to ensure consistent spacing regardless of its content. (by [@alizedebray](https://github.com/alizedebray) and [@alionazherdetska](https://github.com/alionazherdetska) with [#8306](https://github.com/swisspost/design-system/pull/8306))
+
+- Implemented minor style update in the `post-breadcrumbs` component. (by [@leagrdv](https://github.com/leagrdv) with [#8349](https://github.com/swisspost/design-system/pull/8349))
+
+- Fixed the `post-breadcrumbs` component to prevent the dropdown menu from displaying when there are no hidden items and it would therefore be empty. (by [@yomonom](https://github.com/yomonom) with [#8293](https://github.com/swisspost/design-system/pull/8293))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.4.0
+  - @swisspost/design-system-styles@10.4.0
+
+## 10.3.0
+
+### Patch Changes
+
+- Fixed `post-header` not expanding back to full height when `post-language-menu-trigger` receives focus. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8263](https://github.com/swisspost/design-system/pull/8263))
+
+- Updated the `post-pagination` component to always show, but dynamically disable the navigation control buttons. (by [@yomonom](https://github.com/yomonom) with [#8276](https://github.com/swisspost/design-system/pull/8276))
+
+- Replaced deprecated `word-break: break-word` with `overflow-wrap: anywhere`, `hyphens: auto`, and `line-break: strict` for the `post-breadcrumb-item`, `post-stepper-item`, and html/css `teaser card` components. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8165](https://github.com/swisspost/design-system/pull/8165))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.3.0
+  - @swisspost/design-system-styles@10.3.0
+
 ## 10.2.0
 
 ### Patch Changes
