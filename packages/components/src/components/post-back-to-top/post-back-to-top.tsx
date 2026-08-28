@@ -38,17 +38,11 @@ export class PostBackToTop {
   async watchBelowFold(newValue: boolean) {
     this.currentAnimation?.cancel();
 
-    if (newValue) {
-      // unhide before animating in, otherwise there's nothing to animate
-      this.host.hidden = false;
-      this.currentAnimation = fadeSlide(this.host, 'in', {
-        translate: this.translateY,
-        fill: 'forwards',
-      });
-      return;
-    }
+    // host needs to be visible before we can animate, in or out
+    // hidden state gets recalculated after the animation, based on belowFold
+    this.host.hidden = false;
 
-    this.currentAnimation = fadeSlide(this.host, 'out', {
+    this.currentAnimation = fadeSlide(this.host, newValue ? 'in' : 'out', {
       translate: this.translateY,
       fill: 'forwards',
     });
