@@ -163,7 +163,7 @@ post-side-navigation {
     line-height: tokens.get('side-nav-section-title-line-height');
     color: tokens.get('side-nav-section-title-color-fg');
     border-block-end: tokens.get('side-nav-nav-element-border-width') solid
-      tokens.get('side-nav-nav-element-color-border');
+      tokens.get('side-nav-section-color-border');
   }
 
   > ul > li > .post-side-navigation-item {
@@ -268,6 +268,7 @@ post-side-navigation {
       post-icon {
         width: var(--post-side-nav-btn-icon-size);
         height: var(--post-side-nav-btn-icon-size);
+        transform-origin: unset !important;
         margin-block: 0 !important;
       }
 
@@ -380,6 +381,7 @@ post-side-navigation {
 
   post-icon[name='chevrondown'] {
     transition: transform 0.2s ease;
+    transform-origin: 50% calc(50% + (var(--post-side-nav-icon-p-block-start) / 2));
     margin-inline-start: auto;
     margin-block-start: var(--post-side-nav-icon-p-block-start);
   }
