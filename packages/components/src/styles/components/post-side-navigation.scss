@@ -59,7 +59,8 @@ post-side-navigation {
 
   @include media.min(desktop) {
     position: fixed;
-    top: var(--post-header-height);
+    top: calc(var(--post-header-height) / 2);
+    padding-block-start: calc(var(--post-header-height) / 2);
     width: tokens.get('side-nav-width');
     --post-side-nav-height: calc(100vh - var(--post-header-height));
   }
