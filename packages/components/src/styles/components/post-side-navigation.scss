@@ -9,6 +9,19 @@
   .main-container {
     margin-inline-start: var(--post-side-navigation-width);
   }
+
+  // Re-centers container within the space left along the side nav
+    .container {
+      --post-container-offset: calc(
+        var(--post-container-padding-inline) +
+          max(
+            0px,
+            calc(
+              (100vw - var(--post-side-navigation-width) - var(--post-container-max-width)) / 2
+            )
+          )
+      );
+    }
 }
 
 post-side-navigation {
