@@ -78,12 +78,12 @@ post-footer {
   }
 
   div:is(
-      [slot='socialmedia'],
-      [slot='app'],
-      [slot='businesssectors'],
-      [slot='meta'],
-      [slot='prefooter']
-    )
+    [slot='socialmedia'],
+    [slot='app'],
+    [slot='businesssectors'],
+    [slot='meta'],
+    [slot='prefooter']
+  )
     > ul {
     @include list.list-inline();
     column-gap: var(--post-footer-list-item-gap);

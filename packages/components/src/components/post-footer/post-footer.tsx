@@ -3,7 +3,7 @@ import { version } from '@root/package.json';
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 
 const GRID_SLOTS = ['grid-1', 'grid-2', 'grid-3', 'grid-4'];
-const SECTION_SLOTS = ['socialmedia', 'app', 'businesssectors', 'meta', 'copyright'];
+const SECTION_SLOTS = ['prefooter', 'socialmedia', 'app', 'businesssectors', 'meta', 'copyright'];
 
 /**
  * @slot prefooter - Slot for the pre-footer.
@@ -112,25 +112,30 @@ export class PostFooter {
   }
 
   render() {
+    const renderPrefooter = this.slotDisplayed['prefooter'];
     const renderSocialmedia = this.slotDisplayed['socialmedia'];
     const renderApp = this.slotDisplayed['app'];
     const renderBusinesssectors = this.slotDisplayed['businesssectors'];
     const renderMeta = this.slotDisplayed['meta'];
     const renderCopyright = this.slotDisplayed['copyright'];
+
     const allGridSlotsEmpty = GRID_SLOTS.every(slotName => !this.slotDisplayed[slotName]);
+    const renderMain =
+      !allGridSlotsEmpty || renderSocialmedia || renderApp || renderBusinesssectors;
+    const renderBase = renderCopyright || renderMeta;
 
     return (
       <Host data-version={version} data-color-scheme="light">
         <footer>
           <h2 class="visually-hidden">{this.textFooter}</h2>
 
-          <div class="prefooter">
+          <div class={{ 'prefooter': true, 'd-none': !renderPrefooter }}>
             <div class="footer-container">
-              <slot name="prefooter"></slot>
+              <slot onSlotchange={this.handleSlotChange} name="prefooter"></slot>
             </div>
           </div>
 
-          <div class="footer-main">
+          <div class={{ 'footer-main': true, 'd-none': !renderMain }}>
             <div class="footer-container">
               <div class={{ 'footer-grid': true, 'd-none': allGridSlotsEmpty }}>
                 {this.device === 'mobile' ? this.renderAccordion() : this.renderColumns()}
@@ -154,13 +159,17 @@ export class PostFooter {
               <div class={{ 'footer-businesssectors': true, 'd-none': !renderBusinesssectors }}>
                 <slot onSlotchange={this.handleSlotChange} name="businesssectors"></slot>
               </div>
+            </div>
+          </div>
+
+          <div class={{ 'footer-base': true, 'd-none': !renderBase }}>
+            <div class="footer-container">
+              <div class={{ 'footer-copyright': true, 'd-none': !renderCopyright }}>
+                <slot onSlotchange={this.handleSlotChange} name="copyright"></slot>
+              </div>
 
               <div class={{ 'footer-meta': true, 'd-none': !renderMeta }}>
                 <slot onSlotchange={this.handleSlotChange} name="meta"></slot>
-              </div>
-
-              <div class={{ 'footer-copyright': true, 'd-none': !renderCopyright }}>
-                <slot onSlotchange={this.handleSlotChange} name="copyright"></slot>
               </div>
             </div>
           </div>
