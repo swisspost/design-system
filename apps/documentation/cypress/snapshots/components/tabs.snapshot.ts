@@ -10,4 +10,10 @@ describe('Tabs', () => {
     cy.get('post-tab-item[data-hydrated]', { timeout: 30000 }).should('be.visible');
     cy.percySnapshot('Tabs', { widths: [320, 600, 1440] });
   });
+
+  it('page tabs with sidenav', () => {
+    cy.visit('/iframe.html?id=snapshots--page-tabs-with-sidenav');
+    cy.get('post-tab-item[data-hydrated]', { timeout: 30000 }).should('be.visible');
+    cy.percySnapshot('Tabs', { widths: [320, 600, 1440] });
+  });
 });

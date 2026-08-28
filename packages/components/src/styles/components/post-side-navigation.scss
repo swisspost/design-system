@@ -8,9 +8,8 @@
 @include media.min(desktop) {
   .main-container {
     margin-inline-start: var(--post-side-navigation-width);
-  }
 
-  // Re-centers container within the space left along the side nav
+    // Re-centers .container within the space left along the side nav
     .container {
       --post-container-offset: calc(
         var(--post-container-padding-inline) +
@@ -22,6 +21,7 @@
           )
       );
     }
+  }
 }
 
 post-side-navigation {
