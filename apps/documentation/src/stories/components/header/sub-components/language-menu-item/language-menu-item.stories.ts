@@ -42,7 +42,14 @@ export default meta;
 
 // DECORATORS
 function listContainer(story: StoryFn, context: StoryContext) {
-  return html` <div role="list">${story(context.args, context)}</div> `;
+  return html`
+    <post-language-menu
+      text-change-language="Change the language"
+      text-current-language="The currently selected language is ${context.args.name}"
+      variant="list"
+      >${story(context.args, context)}</post-language-menu
+    >
+  `;
 }
 
 // RENDERERS
