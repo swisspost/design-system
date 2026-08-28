@@ -50,8 +50,8 @@
   white-space: normal; //Allow long labels to wrap
   overflow-wrap: anywhere;
   cursor: pointer;
-  text-wrap: balance;
-  text-align: center;
+  //text-wrap: balance;
+  text-align: start;
 
   &:not(:disabled):hover {
     text-decoration: none;
