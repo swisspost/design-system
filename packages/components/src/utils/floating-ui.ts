@@ -1,3 +1,7 @@
+/**
+ * This utility is covered by the end-to-end tests under 'clipping' in `popovercontainer.cy.ts`.
+ */
+
 import { Rect } from '@floating-ui/utils';
 import { computePosition, Platform, platform as domPlatform } from '@floating-ui/dom';
 import {
@@ -80,6 +84,8 @@ export const computePositionWithSafeArea: typeof computePosition = (
   floating,
   options,
 ) => {
+  // Adapted from https://github.com/floating-ui/floating-ui/blob/27629b74ba36ab8ceb2a968051927b9b69511a3b/packages/dom/src/index.ts#L15
+
   options ??= {};
 
   return computePosition(reference, floating, {

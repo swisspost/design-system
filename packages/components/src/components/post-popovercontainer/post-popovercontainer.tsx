@@ -151,6 +151,11 @@ export class PostPopovercontainer {
   readonly safeSpace?: 'triangle' | 'trapezoid';
 
   /**
+   * Whether to automatically hide the popover when the target moves outside the scrollport.
+   */
+  @Prop() readonly autoHide?: boolean;
+
+  /**
    * Animation style
    */
   private readonly animation: AnimationName = 'pop-in';
@@ -430,14 +435,16 @@ export class PostPopovercontainer {
           });
         },
       }),
-      // Per floating-ui docs: hide should generally be placed at the end.
-      hide({
-        strategy: 'referenceHidden',
-      }),
     ];
 
     if (this.arrow) {
       middleware.push(arrow({ element: this.arrowRef, padding: gap }));
+    }
+
+    // Automatically hide the popover if the target moves outside the scrollport.
+    if (this.autoHide) {
+      // Per floating-ui docs: hide should generally be placed at the end.
+      middleware.push(hide({ strategy: 'referenceHidden' }));
     }
 
     return computePositionWithSafeArea(this.eventTarget, this.host, {
