@@ -1,7 +1,7 @@
 import { Link, LinkProps, MegaDropdown, UserMenu } from '@/components/internal';
 import { dispose, state } from '@/data/store';
 import { ActiveRouteProp, Environment } from '@/models/general.model';
-import { PostLoginConfig, UserMenuConfig } from '@/models/header.model';
+import { HeaderConfig, PostLoginConfig, UserMenuConfig } from '@/models/header.model';
 import { IconLinkConfig, LinkConfig } from '@/models/shared.model';
 import { getAlternateLinks, observeAlternateLinks } from '@/services/alternate-link.service';
 import { getLocalizedConfig, isValidProjectId } from '@/services/config.service';
@@ -268,6 +268,34 @@ export class PostInternetHeader {
     );
   }
 
+  // Local navigation with an optional close link (e.g. for online services), always rendered as its last element.
+  private renderLocalNavigation(localHeader: HeaderConfig['localHeader']) {
+    const items: Array<LinkConfig | UserMenuConfig> = [...(localHeader.navigation ?? [])];
+
+    if (localHeader.closeLink) {
+      items.push(localHeader.closeLink);
+    }
+
+    if (items.length === 0) return null;
+
+    const getProps = (navItem: LinkConfig | UserMenuConfig): LinkProps =>
+      navItem === localHeader.closeLink ? { class: 'btn-primary' } : {};
+
+    if (items.length === 1) {
+      return this.renderNavItem(items[0], { ...getProps(items[0]), slot: 'local-nav' });
+    }
+
+    return (
+      <ul slot="local-nav">
+        {items.map(navItem => (
+          <li key={'url' in navItem ? navItem.url : navItem.user.email}>
+            {this.renderNavItem(navItem, getProps(navItem))}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
   render() {
     if (!state.localizedConfig?.header) {
       console.error(new Error('Internet Header: Config cannot be loaded'));
@@ -342,7 +370,7 @@ export class PostInternetHeader {
 
           {localHeader.title && <p slot="title">{localHeader.title}</p>}
 
-          {localHeader.navigation && this.renderNavigation('local-nav', localHeader.navigation)}
+          {this.renderLocalNavigation(localHeader)}
 
           {localHeader.mainNavigation && localHeader.mainNavigation.length > 0 && (
             <post-mainnavigation slot="main-nav" textMain={this.textMain}>
