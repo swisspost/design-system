@@ -152,6 +152,9 @@ export class PostPopovercontainer {
 
   /**
    * Whether to automatically hide the popover when the target moves outside the scrollport.
+   *
+   * If the `post-header` can cover the target, the popover will also be hidden as soon as the
+   * target scrolls behind it.
    */
   @Prop() readonly autoHide?: boolean;
 
