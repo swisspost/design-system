@@ -1,4 +1,4 @@
-import { OneOf, Required } from '@/utils';
+import { findClosableTarget, OneOf, Required } from '@/utils';
 import { version } from '@root/package.json';
 import { AttachInternals, Component, Element, h, Host, Prop } from '@stencil/core';
 import { BUTTON_TYPES, ButtonType, Placement, PLACEMENT, SIZE, Size } from './types';
@@ -23,7 +23,7 @@ export class PostClosebutton {
 
   /**
    * The "type" attribute used for the close button
-  
+
    */
   @Prop()
   @OneOf(BUTTON_TYPES)
@@ -71,10 +71,10 @@ export class PostClosebutton {
     }
   }
 
-  private handleClick() {
-    if (this.buttonType === 'reset') this.internals.form?.reset();
-    this.host.closest('dialog')?.close();
-  }
+  private handleClick = () => {
+    const target = findClosableTarget(this.host);
+    target?.close();
+  };
 
   render() {
     return (
@@ -82,7 +82,7 @@ export class PostClosebutton {
         <button
           type={this.buttonType}
           class="btn btn-icon btn-secondary btn-sm"
-          onClick={() => this.handleClick()}
+          onClick={this.handleClick}
         >
           <post-icon aria-hidden="true" name="closex"></post-icon>
           <span ref={el => (this.visuallyHidden = el as HTMLSpanElement)} class="visually-hidden">
