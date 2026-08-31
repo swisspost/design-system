@@ -10,6 +10,7 @@
 | `description` | `description` | An accessible description for additional context, read after the content or `label`.                   | `string`                   | `undefined`  |
 | `label`       | `label`       | An accessible label screen readers will use this instead of the breadcrumb item content.               | `string`                   | `undefined`  |
 | `selected`    | `selected`    | Indicates that the item represents the current page, applying appropriate styling.                     | `boolean`                  | `false`      |
+| `standalone`  | `standalone`  | Indicates that this is the only visible item, applying appropriate styling.                            | `boolean`                  | `false`      |
 | `url`         | `url`         | The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text. | `URL \| string`            | `undefined`  |
 | `variant`     | `variant`     | Controls how the item is rendered, either as a standard list item or within an overflow menu.          | `"listitem" \| "menuitem"` | `'listitem'` |
 

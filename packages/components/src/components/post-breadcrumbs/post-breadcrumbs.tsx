@@ -73,8 +73,8 @@ export class PostBreadcrumbs {
   }
 
   async componentDidLoad() {
-    this.resizeObserver.observe(document.body);
-    this.mutationObserver.observe(this.host, {
+    this.resizeObserver?.observe(document.body);
+    this.mutationObserver?.observe(this.host, {
       childList: true,
       characterData: true,
       subtree: true,
@@ -86,8 +86,8 @@ export class PostBreadcrumbs {
   }
 
   disconnectedCallback() {
-    this.resizeObserver.disconnect();
-    this.mutationObserver.disconnect();
+    this.resizeObserver?.disconnect();
+    this.mutationObserver?.disconnect();
     this.debounceUpdateCollapsedItems.cancel();
   }
 
