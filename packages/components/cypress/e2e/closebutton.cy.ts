@@ -47,12 +47,15 @@ describe('Close button', () => {
     describe('rendered inside shadow DOM: <post-popover>', { baseUrl: null }, () => {
       beforeEach(() => {
         cy.visit('./cypress/fixtures/post-popover.test.html');
-        cy.get('post-popover[data-hydrated]').as('popover');
+        cy.get('post-popover[data-hydrated][id="popover-one"]').as('popover');
+        cy.get('post-popover-trigger[data-hydrated][for="popover-one"]')
+          .find('button')
+          .as('triggerButton');
         cy.get('@popover').find('post-closebutton[data-hydrated]').as('closebutton');
       });
 
       it('hides the popover using its built-in close button without any wiring', () => {
-        cy.get('post-popover-trigger[for="popover-one"]').find('button').click();
+        cy.get('@triggerButton').click();
         cy.get(POPOVER_OPEN_SELECTOR).should('have.length', 1);
 
         cy.get('@closebutton').shadow().find('button').click();
