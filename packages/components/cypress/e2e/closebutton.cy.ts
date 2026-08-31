@@ -51,12 +51,27 @@ describe('Close button', () => {
         cy.get('post-popover-trigger[data-hydrated][for="popover-one"]')
           .find('button')
           .as('triggerButton');
-        cy.get('@popover').find('post-closebutton[data-hydrated]').as('closebutton');
+        cy.get('@popover').find('post-closebutton').as('closebutton');
       });
 
       it('hides the popover using its built-in close button without any wiring', () => {
         cy.get('@triggerButton').click();
         cy.get(POPOVER_OPEN_SELECTOR).should('have.length', 1);
+
+        cy.get('@closebutton').shadow().find('button').click();
+        cy.get(POPOVER_OPEN_SELECTOR).should('not.exist');
+      });
+    });
+
+    describe('post-popovercontainer', { baseUrl: null }, () => {
+      beforeEach(() => {
+        cy.visit('./cypress/fixtures/post-closebutton.test.html');
+        cy.get('post-closebutton[data-hydrated]').as('closebutton');
+      });
+
+      it('hides the popovercontainer without any wiring', () => {
+        cy.get('#open-popovercontainer').click();
+        cy.get(POPOVER_OPEN_SELECTOR).should('have.id', 'close-button-popovercontainer');
 
         cy.get('@closebutton').shadow().find('button').click();
         cy.get(POPOVER_OPEN_SELECTOR).should('not.exist');
