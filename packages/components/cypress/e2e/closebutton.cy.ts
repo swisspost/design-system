@@ -1,4 +1,7 @@
+import { getPopoverOpenSelector } from './helper/popovercontainer';
+
 const CLOSE_BTN_ID = 'de313349-0c0b-4baf-adc6-cb8c2e36fc1a';
+const POPOVER_OPEN_SELECTOR = getPopoverOpenSelector();
 
 describe('Close button', () => {
   describe('default', () => {
@@ -21,7 +24,7 @@ describe('Close button', () => {
 
       it('closes the dialog without any wiring', () => {
         cy.get('dialog').should('not.have.attr', 'open');
-        cy.get('button').contains('Open dialog').click();
+        cy.get('button').contains('Show dialog').click();
         cy.get('dialog').should('have.attr', 'open');
 
         cy.get('@closebutton').click();
@@ -48,10 +51,16 @@ describe('Close button', () => {
 
       it('hides the popover using its built-in close button without any wiring', () => {
         cy.get('post-popover-trigger').find('button').click();
-        cy.get('post-popover').should('be.visible');
+        cy.get('post-popover')
+          .shadow()
+          .find('post-popovercontainer')
+          .should('match', POPOVER_OPEN_SELECTOR);
 
         cy.get('post-popover').find('post-closebutton').click();
-        cy.get('post-popover').should('not.be.visible');
+        cy.get('post-popover')
+          .shadow()
+          .find('post-popovercontainer')
+          .should('not.match', POPOVER_OPEN_SELECTOR);
       });
     });
 
@@ -62,10 +71,10 @@ describe('Close button', () => {
 
       it('hides the popovercontainer without any wiring', () => {
         cy.get('button').contains('Open popovercontainer').click();
-        cy.get('post-popovercontainer').should('be.visible');
+        cy.get('post-popovercontainer').should('match', POPOVER_OPEN_SELECTOR);
 
         cy.get('@closebutton').click();
-        cy.get('post-popovercontainer').should('not.be.visible');
+        cy.get('post-popovercontainer').should('not.match', POPOVER_OPEN_SELECTOR);
       });
     });
 
