@@ -170,9 +170,13 @@ export class PostAutocomplete {
     }
 
     // Always update the count if the listbox is expanded.
-    if (this.expanded) this.announceCount();
+    if (this.expanded) {
+      this.announceCount();
+    }
     // Automatically show the listbox if the query is non-empty.
-    else if (alwaysExpand || query) await this.showListBox();
+    else if (alwaysExpand || query) {
+      await this.showListBox();
+    }
   }
 
   /** Filters the listbox options based on the query, delegating to the consuming parent when possible. */
