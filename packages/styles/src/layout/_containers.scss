@@ -35,7 +35,7 @@ tokens.$default-map: components.$post-container;
   // Offset for `.container` is: padding-inline + max(0px, (100vw - container-max-width) / 2)
   --post-container-offset: calc(
     var(--post-container-padding-inline) +
-      max(0px, calc((100vw - var(--post-container-max-width)) / 2))
+    max(0px, calc((100vw - var(--post-container-max-width)) / 2))
   );
 }
 
