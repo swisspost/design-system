@@ -5,7 +5,6 @@ const VIEWPORTS: Record<string, Cypress.ViewportPreset> = {
   tablet: 'ipad-2',
   mobile: 'iphone-6',
 };
-const POPOVER_OPEN_SELECTOR = ':where(:popover-open, .popover-open)';
 
 describe('header', () => {
   function getContentTop() {
@@ -271,6 +270,49 @@ describe('header', () => {
             });
         });
 
+        describe('focus expansion with deep active element detection', () => {
+          beforeEach(() => {
+            cy.viewport(1920, 1080);
+            cy.getComponent('header', HEADER_ID);
+          });
+
+          it('should add data-expanded when a global-header element receives keyboard focus while scrolled', () => {
+            cy.scrollTo(0, 500);
+            cy.get('@header').should('not.have.attr', 'data-expanded');
+            
+            cy.get('@header')
+              .find('post-language-menu')
+              .shadow()
+              .find('button')
+              .first()
+              .as('langButton');
+
+            cy.get('@langButton').then($el => {
+              $el[0].focus();
+            });
+
+            cy.get('@header').should('have.attr', 'data-expanded');
+          });
+
+          it('should remove data-expanded once focus leaves the header', () => {
+            cy.scrollTo(0, 500);
+            cy.get('@header')
+              .getFocusableElements()
+              .then(focusableElements => {
+                const globalHeaderEl = Array.from(focusableElements).find(
+                  el => !el.closest('[slot="main-nav"]'),
+                );
+                cy.wrap(globalHeaderEl).focus();
+              });
+
+            cy.get('@header').should('have.attr', 'data-expanded');
+
+            cy.get('body').click(0, 0);
+
+            cy.get('@header').should('not.have.attr', 'data-expanded');
+          });
+        });
+
         describe('second level navigation (megadropdown)', () => {
           beforeEach(() => {
             cy.viewport('iphone-6');
@@ -519,10 +561,8 @@ describe('header', () => {
         cy.get('@langTrigger').click({ scrollBehavior: false });
 
         cy.get('@header')
-          .find('post-language-menu')
-          .shadow()
-          .find('post-popovercontainer')
-          .should('match', POPOVER_OPEN_SELECTOR);
+          .find('post-language-menu-item')
+          .should('be.visible');
       }
 
       it('should open a megadropdown on click even if the language menu was left open while scrolled, without affecting scroll position', () => {

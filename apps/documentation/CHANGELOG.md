@@ -1,5 +1,55 @@
 # @swisspost/design-system-documentation
 
+## 6.4.1
+
+### Patch Changes
+
+- Documented an example of self-managed header for online services. (by [@alizedebray](https://github.com/alizedebray) with [#8335](https://github.com/swisspost/design-system/pull/8335))
+
+- Updated the `post-datepicker` component and its documentation page to demonstrate floating label support. (by [@myrta2302](https://github.com/myrta2302) with [#8054](https://github.com/swisspost/design-system/pull/8054))
+
+- Updated the `SECURITY.md` file with information regarding v9 and v10. (by [@AndrinAAF](https://github.com/AndrinAAF), [@Copilot](https://github.com/Copilot) and [@alionazherdetska](https://github.com/alionazherdetska) with [#8256](https://github.com/swisspost/design-system/pull/8256))
+
+- Added a warning that the `v10` Internet Header requires requesting a new Portal configuration and will not work with the old `v9` format. (by [@alionazherdetska](https://github.com/alionazherdetska) and [@alizedebray](https://github.com/alizedebray) with [#8355](https://github.com/swisspost/design-system/pull/8355))
+
+- Updated `post-footer` to ensure consistent spacing regardless of its content. (by [@alizedebray](https://github.com/alizedebray) and [@alionazherdetska](https://github.com/alionazherdetska) with [#8306](https://github.com/swisspost/design-system/pull/8306))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.4.0
+  - @swisspost/design-system-components@10.4.0
+  - @swisspost/design-system-components-react@10.4.0
+  - @swisspost/design-system-styles@10.4.0
+  - @swisspost/internet-header@10.4.0
+  - @swisspost/design-system-styles-primeng@10.4.0
+  - @swisspost/design-system-theme-ag-grid@10.4.0
+  - @swisspost/design-system-tokens@10.4.0
+
+## 6.4.0
+
+### Minor Changes
+
+- Added support for customisable language links: language switch URLs can now be overridden by adding `<link rel="alternate" hreflang="..." href="...">` tags to the page `<head>`. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8298](https://github.com/swisspost/design-system/pull/8298))
+
+- Added package and peer-dependency shields with a package version history dialog, so each package's published versions and peer dependencies can be browsed directly in the documentation. (by [@oliverschuerch](https://github.com/oliverschuerch) and [@alionazherdetska](https://github.com/alionazherdetska) with [#8067](https://github.com/swisspost/design-system/pull/8067))
+
+### Patch Changes
+
+- Fixed the ngx-toastr samples to wrap `this.toastr` calls in a proper class context. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8163](https://github.com/swisspost/design-system/pull/8163))
+
+- Updated the packages displayed on the Introduction page of the documentation to link to their corresponding version tag on GitHub, rather than to the main branch. (by [@yomonom](https://github.com/yomonom) and [@alionazherdetska](https://github.com/alionazherdetska) with [#8248](https://github.com/swisspost/design-system/pull/8248))
+
+- Updated the number input documentation to use a non-empty placeholder when floating labels are enabled. (by [@alizedebray](https://github.com/alizedebray) with [#8302](https://github.com/swisspost/design-system/pull/8302))
+
+- Fixed a missing `const` in the theme-ag-grid usage sample. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8163](https://github.com/swisspost/design-system/pull/8163))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.3.0
+  - @swisspost/internet-header@10.3.0
+  - @swisspost/design-system-components@10.3.0
+  - @swisspost/design-system-styles@10.3.0
+  - @swisspost/design-system-components-react@10.3.0
+  - @swisspost/design-system-styles-primeng@10.3.0
+  - @swisspost/design-system-theme-ag-grid@10.3.0
+  - @swisspost/design-system-tokens@10.3.0
+
 ## 6.3.0
 
 ### Minor Changes

@@ -26,7 +26,8 @@ import SampleSessionSubscription from './session-subscription.sample?raw';
 <post-tabs size="large">
   <post-tab-item name="overview">Overview</post-tab-item>
   <post-tab-item name="portal">Post Portal</post-tab-item>
-  <post-tab-item name="microsite">Microsite/Online Services</post-tab-item>
+  <post-tab-item name="microsite">Microsite</post-tab-item>
+  <post-tab-item name="online-service">Online Service</post-tab-item>
   <post-tab-item name="one-pager">One Pager</post-tab-item>
   <post-tab-item name="application">Application</post-tab-item>
 <post-tab-panel for="overview" class="pt-24">
@@ -94,9 +95,17 @@ When a user is authenticated, the user menu is slotted into `post-login`. The se
 
 <post-tab-panel for="microsite" class="pt-24">
 
-The Microsite and Online Services Header is a consistently available interface element that provides a consistent navigation experience across the whole Microsite and Online Services.
+The Microsite Header is a consistently available interface element that provides a consistent navigation experience across the whole Microsite.
 
 <Canvas of={HeaderStories.Microsite} inline="false" />
+
+</post-tab-panel>
+
+<post-tab-panel for="online-service" class="pt-24">
+
+The Online Service Header is a consistently available interface element that provides a consistent navigation experience across the whole Online Service.
+
+<Canvas of={HeaderStories.OnlineService} inline="false" />
 
 </post-tab-panel>
 

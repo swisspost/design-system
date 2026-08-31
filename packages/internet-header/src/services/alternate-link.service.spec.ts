@@ -1,0 +1,207 @@
+import { getAlternateLinks, observeAlternateLinks } from './alternate-link.service';
+
+const addLink = (hreflang: string, href: string): HTMLLinkElement => {
+  const link = document.createElement('link');
+  link.rel = 'alternate';
+  link.hreflang = hreflang;
+  link.href = href;
+  document.head.appendChild(link);
+  return link;
+};
+
+const clearLinks = () => {
+  document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el => el.remove());
+};
+
+describe('alternate-link.service', () => {
+  afterEach(() => {
+    clearLinks();
+  });
+
+  describe('getAlternateLinks', () => {
+    it('returns an empty map when no alternate links exist', () => {
+      const result = getAlternateLinks();
+      expect(result.size).toBe(0);
+    });
+
+    it('returns links keyed by their lowercased hreflang value', () => {
+      addLink('de', 'https://example.com/de/page');
+      addLink('fr', 'https://example.com/fr/page');
+      addLink('it', 'https://example.com/it/page');
+      addLink('en', 'https://example.com/en/page');
+
+      const result = getAlternateLinks();
+      expect(result.size).toBe(4);
+      expect(result.get('de')).toBe('https://example.com/de/page');
+      expect(result.get('fr')).toBe('https://example.com/fr/page');
+      expect(result.get('it')).toBe('https://example.com/it/page');
+      expect(result.get('en')).toBe('https://example.com/en/page');
+    });
+
+    it('returns links for any hreflang value', () => {
+      addLink('ja', 'https://example.com/ja/page');
+      addLink('pt-BR', 'https://example.com/pt-br/page');
+
+      const result = getAlternateLinks();
+      expect(result.size).toBe(2);
+      expect(result.get('ja')).toBe('https://example.com/ja/page');
+      expect(result.get('pt-br')).toBe('https://example.com/pt-br/page');
+    });
+
+    it('keeps the full hreflang value instead of truncating it to two letters', () => {
+      addLink('de-CH', 'https://example.com/de-ch/page');
+      addLink('fr-CH', 'https://example.com/fr-ch/page');
+
+      const result = getAlternateLinks();
+      expect(result.size).toBe(2);
+      expect(result.has('de')).toBe(false);
+      expect(result.has('fr')).toBe(false);
+      expect(result.get('de-ch')).toBe('https://example.com/de-ch/page');
+      expect(result.get('fr-ch')).toBe('https://example.com/fr-ch/page');
+    });
+
+    it('lowercases the hreflang value used as the key', () => {
+      addLink('DE', 'https://example.com/de/page');
+
+      const result = getAlternateLinks();
+      expect(result.has('de')).toBe(true);
+      expect(result.get('de')).toBe('https://example.com/de/page');
+    });
+
+    it('uses the first match when duplicate hreflang values exist', () => {
+      addLink('de', 'https://example.com/de/first');
+      addLink('de', 'https://example.com/de/second');
+
+      const result = getAlternateLinks();
+      expect(result.get('de')).toBe('https://example.com/de/first');
+    });
+
+    it('ignores links without an href attribute', () => {
+      const link = document.createElement('link');
+      link.rel = 'alternate';
+      link.hreflang = 'de';
+      document.head.appendChild(link);
+
+      addLink('fr', 'https://example.com/fr/page');
+
+      const result = getAlternateLinks();
+      expect(result.has('de')).toBe(false);
+      expect(result.has('fr')).toBe(true);
+    });
+
+    it('ignores links with an empty href', () => {
+      addLink('de', '');
+      addLink('fr', 'https://example.com/fr/page');
+
+      const result = getAlternateLinks();
+      expect(result.has('de')).toBe(false);
+      expect(result.has('fr')).toBe(true);
+    });
+
+    it('ignores links without rel="alternate"', () => {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.hreflang = 'de';
+      link.href = 'https://example.com/de/page';
+      document.head.appendChild(link);
+
+      const result = getAlternateLinks();
+      expect(result.size).toBe(0);
+    });
+
+    it('ignores links without hreflang', () => {
+      const link = document.createElement('link');
+      link.rel = 'alternate';
+      link.href = 'https://example.com/page';
+      document.head.appendChild(link);
+
+      const result = getAlternateLinks();
+      expect(result.size).toBe(0);
+    });
+
+    it('resolves relative URLs against document base', () => {
+      addLink('de', '/de/page');
+
+      const result = getAlternateLinks();
+      expect(result.get('de')).toContain('/de/page');
+    });
+  });
+
+  describe('observeAlternateLinks', () => {
+    it('fires callback when an alternate link is added', async () => {
+      const callback = jest.fn();
+      const observer = observeAlternateLinks(callback);
+
+      addLink('de', 'https://example.com/de/page');
+
+      // MutationObserver is async, wait for microtask
+      await new Promise(resolve => setTimeout(resolve, 0));
+
+      expect(callback).toHaveBeenCalledTimes(1);
+      const links = callback.mock.calls[0][0] as Map<string, string>;
+      expect(links.get('de')).toBe('https://example.com/de/page');
+
+      observer.disconnect();
+    });
+
+    it('fires callback when an alternate link is removed', async () => {
+      const link = addLink('de', 'https://example.com/de/page');
+
+      const callback = jest.fn();
+      const observer = observeAlternateLinks(callback);
+
+      link.remove();
+      await new Promise(resolve => setTimeout(resolve, 0));
+
+      expect(callback).toHaveBeenCalledTimes(1);
+      const links = callback.mock.calls[0][0] as Map<string, string>;
+      expect(links.size).toBe(0);
+
+      observer.disconnect();
+    });
+
+    it('fires callback when href attribute changes', async () => {
+      const link = addLink('de', 'https://example.com/de/old');
+
+      const callback = jest.fn();
+      const observer = observeAlternateLinks(callback);
+
+      link.href = 'https://example.com/de/new';
+      await new Promise(resolve => setTimeout(resolve, 0));
+
+      expect(callback).toHaveBeenCalled();
+      const links = callback.mock.calls[0][0] as Map<string, string>;
+      expect(links.get('de')).toBe('https://example.com/de/new');
+
+      observer.disconnect();
+    });
+
+    it('does not fire callback for unrelated head changes', async () => {
+      const callback = jest.fn();
+      const observer = observeAlternateLinks(callback);
+
+      const meta = document.createElement('meta');
+      meta.name = 'description';
+      meta.content = 'test';
+      document.head.appendChild(meta);
+
+      await new Promise(resolve => setTimeout(resolve, 0));
+
+      expect(callback).not.toHaveBeenCalled();
+
+      meta.remove();
+      observer.disconnect();
+    });
+
+    it('stops firing after disconnect', async () => {
+      const callback = jest.fn();
+      const observer = observeAlternateLinks(callback);
+      observer.disconnect();
+
+      addLink('de', 'https://example.com/de/page');
+      await new Promise(resolve => setTimeout(resolve, 0));
+
+      expect(callback).not.toHaveBeenCalled();
+    });
+  });
+});
