@@ -121,7 +121,12 @@
   <nav aria-labelledby="angular-side-nav-title">
     <h2 id="angular-side-nav-title" class="post-side-navigation-heading">Section title</h2>
     <ul>
-      <li><a href="#" class="post-side-navigation-item">Sidenav link</a></li>
+      <li>
+        <a href="#" class="post-side-navigation-item">
+          <post-icon name="home" aria-hidden="true" />
+          Sidenav link
+        </a>
+      </li>
       <li>
         <a href="#" class="post-side-navigation-item">
           <post-icon name="search" aria-hidden="true" />
@@ -131,6 +136,7 @@
       <li>
         <post-collapsible-trigger for="angular-side-nav-collapsible">
           <button class="post-side-navigation-item">
+            <post-icon name="settings" aria-hidden="true" />
             Sidenav level 1
             <post-icon name="chevrondown" aria-hidden="true" />
           </button>
