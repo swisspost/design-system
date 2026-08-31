@@ -186,7 +186,7 @@ function renderPagesVariant(
       <post-tab-item name="first">
         <a href="/first" aria-current="page"><post-icon name="letter"></post-icon>First page</a>
       </post-tab-item>
-      <post-tab-item name="second">
+      <post-tab-item name="second" disabled>
         <a href="/second"><post-icon name="letter"></post-icon>Second page</a>
       </post-tab-item>
       <post-tab-item name="third">
