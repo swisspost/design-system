@@ -1,9 +1,7 @@
-import { getPopoverOpenSelector } from './helper/popovercontainer';
+import { POPOVER_OPEN_SELECTOR } from './helper/popovercontainer';
 
 const LANGUAGE_SWITCH_ID = 'decbb10c-2b39-4f47-b67d-337d8111a3ae';
 const LANGUAGE_OPTION_ID = '3753ab83-a659-47b5-a2f2-ac452ec97916';
-
-const POPOVER_OPEN_SELECTOR = getPopoverOpenSelector();
 
 describe('post-language-menu', () => {
   describe('list variant', () => {
@@ -177,7 +175,7 @@ describe('post-language-menu', () => {
   describe('Accessibility', () => {
     it('Has no detectable a11y violations for all variants', () => {
       cy.getComponent('language-menu', LANGUAGE_SWITCH_ID);
-      cy.checkA11y('#root-inner', undefined, (violations) => {
+      cy.checkA11y('#root-inner', undefined, violations => {
         expect(violations).to.have.length(0);
       });
       cy.getComponent('language-menu', LANGUAGE_SWITCH_ID);
@@ -186,7 +184,7 @@ describe('post-language-menu', () => {
         .find('post-menu-trigger')
         .find('button')
         .should('have.attr', 'aria-expanded', 'false');
-      cy.checkA11y('#root-inner', undefined, (violations) => {
+      cy.checkA11y('#root-inner', undefined, violations => {
         expect(violations).to.have.length(0);
       });
     });

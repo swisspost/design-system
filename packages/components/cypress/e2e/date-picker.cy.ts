@@ -4,7 +4,7 @@ import {
 } from '../../src/components/post-date-picker/constants';
 import { UNICODE_BIDI } from '../../src/utils/locales';
 import { LOCALES_MAP } from './helper/date-picker';
-import { getPopoverOpenSelector } from './helper/popovercontainer';
+import { POPOVER_OPEN_SELECTOR } from './helper/popovercontainer';
 
 const DATEPICKER_ID = 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e';
 
@@ -21,7 +21,6 @@ const LABEL_PROPERTIES = [
 
 describe('date-picker', { includeShadowDom: true }, () => {
   describe('default', () => {
-    const selector = getPopoverOpenSelector();
     beforeEach(() => {
       cy.getComponent('date-picker', DATEPICKER_ID);
       cy.get('@date-picker').find('input').as('input');
@@ -72,9 +71,9 @@ describe('date-picker', { includeShadowDom: true }, () => {
 
     describe('popover behavior', () => {
       it('should open calendar popover on button click', () => {
-        cy.get(selector).should('not.exist');
+        cy.get(POPOVER_OPEN_SELECTOR).should('not.exist');
         cy.get('@toggle').click().wait(500);
-        cy.get(selector).should('exist');
+        cy.get(POPOVER_OPEN_SELECTOR).should('exist');
       });
 
       it('should have correct order in navigation', () => {
