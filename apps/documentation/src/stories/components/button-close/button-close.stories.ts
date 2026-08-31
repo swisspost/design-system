@@ -2,6 +2,8 @@ import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-compo
 import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import bannerMeta, { Dismissible as BannerDismissible } from '../banner/banner.stories';
+import dialogMeta, { Default as DialogDefault } from '../dialog/dialog.stories';
 import './button-close.styles.scss';
 
 const meta: MetaComponent = {
@@ -63,4 +65,21 @@ export const AutomaticPositioning: Story = {
     const renderCloseButton = getCloseButtonRenderer();
     return html` <div class="position-relative">Closable element ${renderCloseButton(args)}</div> `;
   },
+};
+
+export const CloseDialog: Story = {
+  ...DialogDefault,
+  args: {
+    ...dialogMeta.args,
+  },
+  decorators: dialogMeta.decorators,
+};
+
+export const CloseBanner: Story = {
+  ...BannerDismissible,
+  args: {
+    ...bannerMeta.args,
+    ...BannerDismissible.args,
+  },
+  render: bannerMeta.render,
 };
