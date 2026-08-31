@@ -12,7 +12,7 @@ const meta: MetaComponent = {
     layout: 'fullscreen',
     docs: {
       story: {
-        iframeHeight: 400,
+        iframeHeight: 800,
         inline: false,
       },
       source: {
