@@ -1,4 +1,4 @@
-import { Meta, Source } from '@storybook/addon-docs/blocks';
+import { Meta, Source, Canvas } from '@storybook/addon-docs/blocks';
 import meta, * as BackToTopStories from './back-to-top.stories';
 import BackToTop from './back-to-top.sample.html?raw';
 import StoryTags from '@/shared/story-tags';
@@ -31,13 +31,6 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 ## Examples
 
-Click the button below to view a full-screen example of the Back To Top button.
+ See the embedded story below. Scroll within the example to make the `Back to Top` button appear in the bottom-right corner. Selecting it scrolls the example back to the top.
 
-<a
-  className="btn btn-primary"
-  target="_blank"
-  href={`?path=%2Fstory%2F1a1b4cab-d0a8-4b01-bd85-b70e18668cb5--default&full=true`}
-  rel="noreferrer"
->
-  Back To Top example
-</a>
+<Canvas of={BackToTopStories.Default} />
