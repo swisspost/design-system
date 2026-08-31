@@ -1,4 +1,4 @@
-import { Orientation } from '@root/src';
+import { Orientation } from './orientation';
 
 interface Bounds {
   min: number;
@@ -15,7 +15,7 @@ function isThumb(node: Node | EventTarget): node is HTMLElement {
 }
 
 function getValueNow(thumb: HTMLElement): number {
-  return parseFloat(thumb.getAttribute('aria-valuenow'));
+  return Number.parseFloat(thumb.getAttribute('aria-valuenow')!);
 }
 
 export class ActiveThumb {
@@ -47,12 +47,14 @@ export class ActiveThumb {
   }
 
   constructor(node: Node | EventTarget, track: HTMLElement, orientation: Orientation) {
-    if (!isThumb(node)) throw Error('An active thumb must be an HTML element with a slider role.');
+    if (!isThumb(node))
+      throw new Error('An active thumb must be an HTML element with a slider role.');
 
     this.el = node;
+    const { previousSibling, nextSibling } = node;
     this.neighbors = {
-      previous: isThumb(this.el.previousSibling) ? this.el.previousSibling : null,
-      next: isThumb(this.el.nextSibling) ? this.el.nextSibling : null,
+      previous: previousSibling && isThumb(previousSibling) ? previousSibling : null,
+      next: nextSibling && isThumb(nextSibling) ? nextSibling : null,
     };
 
     this.track = track;

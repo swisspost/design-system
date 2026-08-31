@@ -13,6 +13,7 @@ import { PostIconAnimation } from "./types/icon-animations";
 import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement as Placement1 } from "@floating-ui/dom";
 import { SideNavigationSize } from "./components/post-side-navigation/side-navigation-styles";
+import { Orientation } from "./components/post-slider/orientation";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { Variant } from "./components/post-breadcrumb-item/variants";
@@ -21,6 +22,7 @@ export { PostIconAnimation } from "./types/icon-animations";
 export { SwitchVariant } from "./components/post-language-menu/switch-variants";
 export { Placement as Placement1 } from "@floating-ui/dom";
 export { SideNavigationSize } from "./components/post-side-navigation/side-navigation-styles";
+export { Orientation } from "./components/post-slider/orientation";
 export namespace Components {
     interface PostAccordion {
         /**
@@ -677,6 +679,37 @@ export namespace Components {
          */
         "update": () => Promise<void>;
     }
+    interface PostSlider {
+        /**
+          * Describes how much work the task indicated by the progress element requires. Must be a valid floating point number greater than min.
+          * @default 100
+         */
+        "max": number;
+        /**
+          * The minimum value of the slider. Must be a valid floating point number less than max.
+          * @default 0
+         */
+        "min": number;
+        /**
+          * The orientation of the slider: "horizontal" or "vertical".
+          * @default 'horizontal'
+         */
+        "orient": Orientation;
+        /**
+          * If true, the slider has two thumbs allowing for range selection.
+          * @default false
+         */
+        "range": boolean;
+        /**
+          * The granularity that the value must adhere to.
+          * @default 1
+         */
+        "step": number | 'any';
+        /**
+          * Specifies how much of the task has been completed. Must be a valid floating point number between min and max. If there is no value attribute, the slider is indeterminate; this indicates that an activity is ongoing with no indication of how long it is expected to take.
+         */
+        "value"?: number | [number, number];
+    }
     interface PostStepper {
         /**
           * Defines the current step, which is the next step the user has to complete.
@@ -847,6 +880,10 @@ export interface PostRatingCustomEvent<T> extends CustomEvent<T> {
 export interface PostSideNavigationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostSideNavigationElement;
+}
+export interface PostSliderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostSliderElement;
 }
 export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1221,6 +1258,24 @@ declare global {
         prototype: HTMLPostSideNavigationTriggerElement;
         new (): HTMLPostSideNavigationTriggerElement;
     };
+    interface HTMLPostSliderElementEventMap {
+        "postInput": number | [number, number];
+        "postChange": number | [number, number];
+    }
+    interface HTMLPostSliderElement extends Components.PostSlider, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostSliderElementEventMap>(type: K, listener: (this: HTMLPostSliderElement, ev: PostSliderCustomEvent<HTMLPostSliderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostSliderElementEventMap>(type: K, listener: (this: HTMLPostSliderElement, ev: PostSliderCustomEvent<HTMLPostSliderElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostSliderElement: {
+        prototype: HTMLPostSliderElement;
+        new (): HTMLPostSliderElement;
+    };
     interface HTMLPostStepperElement extends Components.PostStepper, HTMLStencilElement {
     }
     var HTMLPostStepperElement: {
@@ -1317,6 +1372,7 @@ declare global {
         "post-rating": HTMLPostRatingElement;
         "post-side-navigation": HTMLPostSideNavigationElement;
         "post-side-navigation-trigger": HTMLPostSideNavigationTriggerElement;
+        "post-slider": HTMLPostSliderElement;
         "post-stepper": HTMLPostStepperElement;
         "post-stepper-item": HTMLPostStepperItemElement;
         "post-tab-item": HTMLPostTabItemElement;
@@ -1931,6 +1987,45 @@ declare namespace LocalJSX {
          */
         "for": string;
     }
+    interface PostSlider {
+        /**
+          * Describes how much work the task indicated by the progress element requires. Must be a valid floating point number greater than min.
+          * @default 100
+         */
+        "max"?: number;
+        /**
+          * The minimum value of the slider. Must be a valid floating point number less than max.
+          * @default 0
+         */
+        "min"?: number;
+        /**
+          * Event dispatched when a thumb is released after sliding, payload is the current value.
+         */
+        "onPostChange"?: (event: PostSliderCustomEvent<number | [number, number]>) => void;
+        /**
+          * Event dispatched while a thumb is sliding, payload is the current value.
+         */
+        "onPostInput"?: (event: PostSliderCustomEvent<number | [number, number]>) => void;
+        /**
+          * The orientation of the slider: "horizontal" or "vertical".
+          * @default 'horizontal'
+         */
+        "orient"?: Orientation;
+        /**
+          * If true, the slider has two thumbs allowing for range selection.
+          * @default false
+         */
+        "range"?: boolean;
+        /**
+          * The granularity that the value must adhere to.
+          * @default 1
+         */
+        "step"?: number | 'any';
+        /**
+          * Specifies how much of the task has been completed. Must be a valid floating point number between min and max. If there is no value attribute, the slider is indeterminate; this indicates that an activity is ongoing with no indication of how long it is expected to take.
+         */
+        "value"?: number | [number, number];
+    }
     interface PostStepper {
         /**
           * Defines the current step, which is the next step the user has to complete.
@@ -2202,6 +2297,14 @@ declare namespace LocalJSX {
     interface PostSideNavigationTriggerAttributes {
         "for": string;
     }
+    interface PostSliderAttributes {
+        "min": number;
+        "max": number;
+        "value": number | [number, number];
+        "orient": Orientation;
+        "range": boolean;
+        "step": string;
+    }
     interface PostStepperAttributes {
         "textCurrentStep": string;
         "textCompletedStep": string;
@@ -2273,6 +2376,7 @@ declare namespace LocalJSX {
         "post-rating": Omit<PostRating, keyof PostRatingAttributes> & { [K in keyof PostRating & keyof PostRatingAttributes]?: PostRating[K] } & { [K in keyof PostRating & keyof PostRatingAttributes as `attr:${K}`]?: PostRatingAttributes[K] } & { [K in keyof PostRating & keyof PostRatingAttributes as `prop:${K}`]?: PostRating[K] } & OneOf<"label", PostRating["label"], PostRatingAttributes["label"]>;
         "post-side-navigation": Omit<PostSideNavigation, keyof PostSideNavigationAttributes> & { [K in keyof PostSideNavigation & keyof PostSideNavigationAttributes]?: PostSideNavigation[K] } & { [K in keyof PostSideNavigation & keyof PostSideNavigationAttributes as `attr:${K}`]?: PostSideNavigationAttributes[K] } & { [K in keyof PostSideNavigation & keyof PostSideNavigationAttributes as `prop:${K}`]?: PostSideNavigation[K] } & OneOf<"textClose", PostSideNavigation["textClose"], PostSideNavigationAttributes["textClose"]>;
         "post-side-navigation-trigger": Omit<PostSideNavigationTrigger, keyof PostSideNavigationTriggerAttributes> & { [K in keyof PostSideNavigationTrigger & keyof PostSideNavigationTriggerAttributes]?: PostSideNavigationTrigger[K] } & { [K in keyof PostSideNavigationTrigger & keyof PostSideNavigationTriggerAttributes as `attr:${K}`]?: PostSideNavigationTriggerAttributes[K] } & { [K in keyof PostSideNavigationTrigger & keyof PostSideNavigationTriggerAttributes as `prop:${K}`]?: PostSideNavigationTrigger[K] } & OneOf<"for", PostSideNavigationTrigger["for"], PostSideNavigationTriggerAttributes["for"]>;
+        "post-slider": Omit<PostSlider, keyof PostSliderAttributes> & { [K in keyof PostSlider & keyof PostSliderAttributes]?: PostSlider[K] } & { [K in keyof PostSlider & keyof PostSliderAttributes as `attr:${K}`]?: PostSliderAttributes[K] } & { [K in keyof PostSlider & keyof PostSliderAttributes as `prop:${K}`]?: PostSlider[K] };
         "post-stepper": Omit<PostStepper, keyof PostStepperAttributes> & { [K in keyof PostStepper & keyof PostStepperAttributes]?: PostStepper[K] } & { [K in keyof PostStepper & keyof PostStepperAttributes as `attr:${K}`]?: PostStepperAttributes[K] } & { [K in keyof PostStepper & keyof PostStepperAttributes as `prop:${K}`]?: PostStepper[K] } & OneOf<"textCurrentStep", PostStepper["textCurrentStep"], PostStepperAttributes["textCurrentStep"]> & OneOf<"textCompletedStep", PostStepper["textCompletedStep"], PostStepperAttributes["textCompletedStep"]> & OneOf<"textStepNumber", PostStepper["textStepNumber"], PostStepperAttributes["textStepNumber"]>;
         "post-stepper-item": PostStepperItem;
         "post-tab-item": Omit<PostTabItem, keyof PostTabItemAttributes> & { [K in keyof PostTabItem & keyof PostTabItemAttributes]?: PostTabItem[K] } & { [K in keyof PostTabItem & keyof PostTabItemAttributes as `attr:${K}`]?: PostTabItemAttributes[K] } & { [K in keyof PostTabItem & keyof PostTabItemAttributes as `prop:${K}`]?: PostTabItem[K] } & OneOf<"name", PostTabItem["name"], PostTabItemAttributes["name"]>;
@@ -2326,6 +2430,7 @@ declare module "@stencil/core" {
             "post-rating": LocalJSX.IntrinsicElements["post-rating"] & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
             "post-side-navigation": LocalJSX.IntrinsicElements["post-side-navigation"] & JSXBase.HTMLAttributes<HTMLPostSideNavigationElement>;
             "post-side-navigation-trigger": LocalJSX.IntrinsicElements["post-side-navigation-trigger"] & JSXBase.HTMLAttributes<HTMLPostSideNavigationTriggerElement>;
+            "post-slider": LocalJSX.IntrinsicElements["post-slider"] & JSXBase.HTMLAttributes<HTMLPostSliderElement>;
             "post-stepper": LocalJSX.IntrinsicElements["post-stepper"] & JSXBase.HTMLAttributes<HTMLPostStepperElement>;
             "post-stepper-item": LocalJSX.IntrinsicElements["post-stepper-item"] & JSXBase.HTMLAttributes<HTMLPostStepperItemElement>;
             "post-tab-item": LocalJSX.IntrinsicElements["post-tab-item"] & JSXBase.HTMLAttributes<HTMLPostTabItemElement>;

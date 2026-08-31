@@ -1,14 +1,9 @@
-import { Component, Element, Event, EventEmitter, Host, h, Prop, Watch } from '@stencil/core';
-import { version } from '@root/package.json';
-import {
-  checkEmptyOrArrayOf,
-  checkEmptyOrType,
-  checkRequiredAndOneOf,
-  checkRequiredAndType,
-} from '@/utils';
-import { Orientation, ORIENTATIONS } from '@/components/post-slider/orientation';
 import { ActiveThumb } from '@/components/post-slider/active-thumb';
+import { Orientation, ORIENTATIONS } from '@/components/post-slider/orientation';
+import { CustomConstraint, GreaterThan, OneOf, Type } from '@/utils';
 import { clamp } from '@/utils/clamp';
+import { version } from '@root/package.json';
+import { Component, Element, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 
 @Component({
   tag: 'post-slider',
@@ -21,89 +16,80 @@ export class PostSlider {
   private activeThumb: ActiveThumb | null = null;
 
   /**
-   * The greatest value in the range of permitted values.
+   * The minimum value of the slider.
+   * Must be a valid floating point number less than max.
    */
-  @Prop() max = 100;
-  @Watch('max')
-  validateMax() {
-    checkRequiredAndType(this, 'max', 'number');
-  }
+  @Prop()
+  @Type('number')
+  min: number = 0;
 
   /**
-   * The lowest value in the range of permitted values.
+   * Describes how much work the task indicated by the progress element requires.
+   * Must be a valid floating point number greater than min.
    */
-  @Prop() min = 0;
-  @Watch('min')
-  validateMin() {
-    checkRequiredAndType(this, 'min', 'number');
-  }
+  @Prop()
+  @Type('number')
+  @GreaterThan('min')
+  max: number = 100;
+
+  /**
+   * Specifies how much of the task has been completed.
+   * Must be a valid floating point number between min and max.
+   * If there is no value attribute, the slider is indeterminate; this indicates that an activity is ongoing with no indication of how long it is expected to take.
+   */
+  @Prop()
+  @CustomConstraint(
+    ({ value, dependencies }) => {
+      if (dependencies.range) {
+        if (!Array.isArray(value) || value.length !== 2 || value.some(v => typeof v !== 'number')) {
+          return 'must be a tuple of two numbers when range is true';
+        }
+      } else if (typeof value !== 'number') {
+        return 'must be a number when range is false';
+      }
+    },
+    { dependsOn: ['range'] },
+  )
+  value?: number | [number, number];
 
   /**
    * The orientation of the slider: "horizontal" or "vertical".
    */
-  @Prop({ reflect: true }) orient: Orientation = 'horizontal';
-  @Watch('orient')
-  validateOrient() {
-    checkRequiredAndOneOf(this, 'orient', ORIENTATIONS);
-  }
+  @Prop({ reflect: true })
+  @OneOf(ORIENTATIONS)
+  orient: Orientation = 'horizontal';
 
   /**
    * If true, the slider has two thumbs allowing for range selection.
    */
-  @Prop() range = false;
-  @Watch('range')
-  validateRange() {
-    checkRequiredAndType(this, 'range', 'boolean');
-  }
+  @Prop()
+  @Type('boolean')
+  range = false;
 
   /**
    * The granularity that the value must adhere to.
    */
-  @Prop() step: number | 'any' = 1;
-  @Watch('step')
-  validateStep() {
-    // because of the mixed type the step is always a string, we have to parse it manually
-    if (this.step !== 'any' && typeof this.step !== 'number') {
-      this.step = parseFloat(this.step);
-      checkRequiredAndType(this, 'step', 'number');
+  @Prop()
+  @CustomConstraint(({ value }) => {
+    if (typeof value !== 'number' && value !== 'any') {
+      return 'must be a number or "any"';
     }
-  }
-
-  /**
-   * The number or range initially selected.
-   */
-  @Prop() value?: number | [number, number];
-  @Watch('value')
-  validateValue() {
-    if (this.range) {
-      checkEmptyOrArrayOf(this, 'value', 'number');
-    } else {
-      checkEmptyOrType(this, 'value', 'number');
-    }
-  }
+  })
+  step: number | 'any' = 1;
 
   /**
    * Event dispatched while a thumb is sliding, payload is the current value.
    */
-  @Event() postInput: EventEmitter<number | [number, number]>;
+  @Event() postInput!: EventEmitter<number | [number, number]>;
 
   /**
    * Event dispatched when a thumb is released after sliding, payload is the current value.
    */
-  @Event() postChange: EventEmitter<number | [number, number]>;
+  @Event() postChange!: EventEmitter<number | [number, number]>;
 
   constructor() {
     this.dragThumb = this.dragThumb.bind(this);
     this.releaseThumb = this.releaseThumb.bind(this);
-  }
-
-  componentDidLoad() {
-    this.validateMax();
-    this.validateMin();
-    this.validateOrient();
-    this.validateRange();
-    this.validateStep();
-    this.validateValue();
   }
 
   private initializeSliderValue() {
@@ -118,6 +104,8 @@ export class PostSlider {
   }
 
   private setupThumbDrag(event: PointerEvent) {
+    if (!event.target) return;
+
     this.activeThumb = new ActiveThumb(event.target, this.host, this.orient);
     this.activeThumb.el.classList.add('active');
     this.activeThumb.el.setPointerCapture(event.pointerId);
@@ -159,6 +147,8 @@ export class PostSlider {
   }
 
   private moveThumbWithKeyboard(event: KeyboardEvent) {
+    if (!event.target) return;
+
     this.activeThumb = new ActiveThumb(event.target, this.host, this.orient);
 
     const newValue = this.getNewValueFromKey(event.key, this.activeThumb.value);
@@ -266,7 +256,7 @@ export class PostSlider {
     );
 
     const customProperties = { '--post-slider-fill-end': relativePositions.pop() };
-    if (relativePositions.length) {
+    if (relativePositions.length > 0) {
       customProperties['--post-slider-fill-start'] = relativePositions.pop();
     }
 
