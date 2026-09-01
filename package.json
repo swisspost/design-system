@@ -125,33 +125,11 @@
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
   },
+  "packageManager": "pnpm@11.23.0",
   "devEngines": {
     "runtime": {
       "name": "node",
-      "version": "^24.0.0",
-      "onFail": "error"
-    },
-    "packageManager": {
-      "name": "pnpm",
-      "version": "11.20.0",
-      "onFail": "warn"
+      "version": "^24.0.0"
     }
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [],
-      "allowedVersions": {
-        "@typescript-eslint/eslint-plugin": ">=7",
-        "@typescript-eslint/parser": ">=7",
-        "zone.js": ">=0.14"
-      }
-    },
-    "overrides": {
-      "browserslist": ">=4.27.0",
-      "form-data@>=4.0.0 <4.0.4": "4.0.6"
-    },
-    "onlyBuiltDependencies": [
-      "cypress"
-    ]
   }
 }
