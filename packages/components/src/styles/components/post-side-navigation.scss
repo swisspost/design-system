@@ -45,6 +45,42 @@ tokens.$default-map: components.$post-side-navigation;
   --post-side-nav-icon-p-block-start: #{tokens.get(
       'side-nav-#{$size}-nav-element-icon-padding-block-start'
     )};
+
+  ul {
+    --post-side-nav-el-iconic-padding-inline-start: #{tokens.get(
+        'side-nav-#{$size}-nav-element-lvl-1-padding-inline-start'
+      )};
+    --post-side-nav-el-non-iconic-padding-inline-start: #{tokens.get(
+        'side-nav-#{$size}-nav-element-lvl-1-padding-inline-start'
+      )};
+  }
+
+  ul ul {
+    --post-side-nav-el-iconic-padding-inline-start: #{tokens.get(
+        'side-nav-#{$size}-iconic-nav-element-lvl-2-padding-inline-start'
+      )};
+    --post-side-nav-el-non-iconic-padding-inline-start: #{tokens.get(
+        'side-nav-#{$size}-non-iconic-nav-element-lvl-2-padding-inline-start'
+      )};
+  }
+
+  ul ul ul {
+    --post-side-nav-el-iconic-padding-inline-start: #{tokens.get(
+        'side-nav-#{$size}-iconic-nav-element-lvl-3-padding-inline-start'
+      )};
+    --post-side-nav-el-non-iconic-padding-inline-start: #{tokens.get(
+        'side-nav-#{$size}-non-iconic-nav-element-lvl-3-padding-inline-start'
+      )};
+  }
+
+  ul ul ul ul {
+    --post-side-nav-el-iconic-padding-inline-start: #{tokens.get(
+        'side-nav-#{$size}-iconic-nav-element-lvl-4-padding-inline-start'
+      )};
+    --post-side-nav-el-non-iconic-padding-inline-start: #{tokens.get(
+        'side-nav-#{$size}-non-iconic-nav-element-lvl-4-padding-inline-start'
+      )};
+  }
 }
 
 @include media.min(desktop) {
@@ -64,80 +100,8 @@ post-side-navigation {
     --post-side-nav-height: calc(100vh - var(--post-header-height));
   }
 
-  ul {
-    --post-side-nav-el-iconic-padding-inline-start: #{tokens.get(
-        'side-nav-large-nav-element-lvl-1-padding-inline-start'
-      )};
-    --post-side-nav-el-non-iconic-padding-inline-start: #{tokens.get(
-        'side-nav-large-nav-element-lvl-1-padding-inline-start'
-      )};
-  }
-
-  ul ul {
-    --post-side-nav-el-iconic-padding-inline-start: #{tokens.get(
-        'side-nav-large-iconic-nav-element-lvl-2-padding-inline-start'
-      )};
-    --post-side-nav-el-non-iconic-padding-inline-start: #{tokens.get(
-        'side-nav-large-non-iconic-nav-element-lvl-2-padding-inline-start'
-      )};
-  }
-
-  ul ul ul {
-    --post-side-nav-el-iconic-padding-inline-start: #{tokens.get(
-        'side-nav-large-iconic-nav-element-lvl-3-padding-inline-start'
-      )};
-    --post-side-nav-el-non-iconic-padding-inline-start: #{tokens.get(
-        'side-nav-large-non-iconic-nav-element-lvl-3-padding-inline-start'
-      )};
-  }
-
-  ul ul ul ul {
-    --post-side-nav-el-iconic-padding-inline-start: #{tokens.get(
-        'side-nav-large-iconic-nav-element-lvl-4-padding-inline-start'
-      )};
-    --post-side-nav-el-non-iconic-padding-inline-start: #{tokens.get(
-        'side-nav-large-non-iconic-nav-element-lvl-4-padding-inline-start'
-      )};
-  }
-
   &[size='small'] {
     @include set-size-variables(small);
-
-    ul {
-      --post-side-nav-el-iconic-padding-inline-start: #{tokens.get(
-          'side-nav-small-nav-element-lvl-1-padding-inline-start'
-        )};
-      --post-side-nav-el-non-iconic-padding-inline-start: #{tokens.get(
-          'side-nav-small-nav-element-lvl-1-padding-inline-start'
-        )};
-    }
-
-    ul ul {
-      --post-side-nav-el-iconic-padding-inline-start: #{tokens.get(
-          'side-nav-small-iconic-nav-element-lvl-2-padding-inline-start'
-        )};
-      --post-side-nav-el-non-iconic-padding-inline-start: #{tokens.get(
-          'side-nav-small-non-iconic-nav-element-lvl-2-padding-inline-start'
-        )};
-    }
-
-    ul ul ul {
-      --post-side-nav-el-iconic-padding-inline-start: #{tokens.get(
-          'side-nav-small-iconic-nav-element-lvl-3-padding-inline-start'
-        )};
-      --post-side-nav-el-non-iconic-padding-inline-start: #{tokens.get(
-          'side-nav-small-non-iconic-nav-element-lvl-3-padding-inline-start'
-        )};
-    }
-
-    ul ul ul ul {
-      --post-side-nav-el-iconic-padding-inline-start: #{tokens.get(
-          'side-nav-small-iconic-nav-element-lvl-4-padding-inline-start'
-        )};
-      --post-side-nav-el-non-iconic-padding-inline-start: #{tokens.get(
-          'side-nav-small-non-iconic-nav-element-lvl-4-padding-inline-start'
-        )};
-    }
   }
 
   nav {
@@ -306,17 +270,15 @@ post-side-navigation {
 
     // Custom inner focus
     &::after {
-      --_offset: #{tokens.get('focus-outline-offset4', helpers.$post-focus)};
-
       content: '';
       position: absolute;
       pointer-events: none;
       border: tokens.get('focus-outline-width', helpers.$post-focus) solid transparent;
       border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
-      width: calc(100% - var(--_offset) * 2);
-      height: calc(100% - var(--_offset) * 2);
-      top: var(--_offset);
-      left: var(--_offset);
+      width: calc(100% - tokens.get('focus-outline-offset4', helpers.$post-focus) * 2);
+      height: calc(100% - tokens.get('focus-outline-offset4', helpers.$post-focus) * 2);
+      top: tokens.get('focus-outline-offset4', helpers.$post-focus);
+      left: tokens.get('focus-outline-offset4', helpers.$post-focus);
     }
   }
 

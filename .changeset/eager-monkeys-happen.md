@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-components': patch
+'@swisspost/design-system-components': minor
 ---
 
 Implemented tokens for the `post-side-navigation` component.
