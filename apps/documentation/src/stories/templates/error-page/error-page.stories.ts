@@ -8,6 +8,7 @@ const contentByType: Record<
     subtitle: string;
     description: string;
     secondaryButtonLabel?: string;
+    secondaryButtonHref?: string;
   }
 > = {
   '400': {
@@ -52,6 +53,7 @@ const contentByType: Record<
       '\n' +
       'Try to reload the page, clear the browser cache or try to load the page again later. If the error persists, please inform the website operator.',
     secondaryButtonLabel: 'Contact the website operator',
+    secondaryButtonHref: 'https://www.post.ch/en/help-and-contact',
   },
   '503': {
     subtitle: 'The page you requested could not be loaded.',
@@ -102,11 +104,11 @@ const meta: Meta = {
       },
     },
   },
-  render: ({ type }) => render(type),
+  render: ({ type }) => renderErrorPages(type),
 };
 
-function render(type: ErrorType) {
-  const { subtitle, description, secondaryButtonLabel } = contentByType[type];
+function renderErrorPages(type: ErrorType) {
+  const { subtitle, description, secondaryButtonLabel, secondaryButtonHref } = contentByType[type];
   const descriptionWithLineBreaks = description
     .split('\n')
     .map((line, index, lines) => (index < lines.length - 1 ? html`${line}<br />` : line));
@@ -125,7 +127,7 @@ function render(type: ErrorType) {
               ? html`
                   <a
                     class="btn btn-secondary"
-                    href="https://www.post.ch/de/pages/suche#t=AllTab"
+                    href="${secondaryButtonHref}"
                     @click="${(e: Event) => e.preventDefault()}"
                   >
                     ${secondaryButtonLabel}
