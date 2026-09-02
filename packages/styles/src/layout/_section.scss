@@ -17,7 +17,7 @@ tokens.$default-map: components.$post-container;
     --post-section-container-width: min(#{tokens.get('grid-max-width')}, var(--post-section-width));
     --post-section-container-content-offset: calc(
       (var(--post-section-width) - var(--post-section-container-width)) * 0.5 +
-        var(--post-section-container-padding)
+      var(--post-section-container-padding)
     );
 
     @each $breakpoint in map.keys(breakpoints.$grid-breakpoints) {
