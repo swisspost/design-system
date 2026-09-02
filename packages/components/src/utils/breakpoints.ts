@@ -6,17 +6,18 @@ interface BreakpointDefinition {
   device: Device;
   key: BreakpointKey;
   minWidth: BreakpointMinWidth;
+  mediaQuery: string;
 }
 
 type BreakpointProperty = keyof BreakpointDefinition;
 
 class Breakpoint {
   private readonly breakpoints: BreakpointDefinition[] = [
-    { key: 'xl', device: 'desktop', minWidth: 1280 },
-    { key: 'lg', device: 'desktop', minWidth: 1024 },
-    { key: 'md', device: 'tablet', minWidth: 780 },
-    { key: 'sm', device: 'tablet', minWidth: 600 },
-    { key: 'xs', device: 'mobile', minWidth: 0 },
+    { key: 'xl', device: 'desktop', minWidth: 1280, mediaQuery: '(min-width: 1280px)' },
+    { key: 'lg', device: 'desktop', minWidth: 1024, mediaQuery: '(min-width: 1024px)' },
+    { key: 'md', device: 'tablet', minWidth: 780, mediaQuery: '(min-width: 780px)' },
+    { key: 'sm', device: 'tablet', minWidth: 600, mediaQuery: '(min-width: 600px)' },
+    { key: 'xs', device: 'mobile', minWidth: 0, mediaQuery: '(min-width: 0px)' },
   ];
 
   private currentBreakpoint: BreakpointDefinition;
@@ -36,7 +37,7 @@ class Breakpoint {
     const previousBreakpoint = this.currentBreakpoint;
     const newBreakpoint = this.breakpoints.find(breakpoint => {
       return globalThis.matchMedia
-        ? globalThis.matchMedia(`(min-width: ${breakpoint.minWidth}px)`).matches
+        ? globalThis.matchMedia(breakpoint.mediaQuery).matches
         : breakpoint.minWidth <= document.documentElement.clientWidth;
     });
 
@@ -47,6 +48,7 @@ class Breakpoint {
     if (!options.emitEvents) return;
 
     Object.keys(this.currentBreakpoint)
+      .filter(key => key !== 'mediaQuery')
       .filter(
         key => !previousBreakpoint || this.currentBreakpoint[key] !== previousBreakpoint[key],
       )
