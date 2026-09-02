@@ -1,5 +1,6 @@
 import { Canvas, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as ContainerStories from './containers.stories';
+import * as ScrollbarGutterDemoStories from './containers.scrollbar-gutter-demo.stories';
 import StoryTags from '@/shared/story-tags';
 
 <Meta of={ContainerStories} />
@@ -23,6 +24,7 @@ To see the difference, click the **"View full screen"** button in the examples b
 
 ## Container
 
+
 The `.container` adapts its width based on the viewport size, but it will not exceed 1200px.
 This ensures content stays centered and does not stretch too wide on large screens.
 
@@ -34,3 +36,21 @@ The `.container-fluid` spans the entire width of the viewport, regardless of its
 Use this for layouts where the content should stretch edge-to-edge, even on large screens.
 
 <Canvas sourceState="shown" of={ContainerStories.ContainerFluid} />
+
+## Scrollbar-gutter demo 
+
+### Header, footer & fake content — short (no scrollbar)
+
+<Canvas sourceState="none" of={ScrollbarGutterDemoStories.HeaderFooterShortContent} />
+
+### Header, footer & fake content — short (scrollbar-gutter: stable both-edges)
+
+<Canvas sourceState="none" of={ScrollbarGutterDemoStories.HeaderFooterShortContentBothEdges} />
+
+### Mixed components page
+
+<Canvas sourceState="none" of={ScrollbarGutterDemoStories.MixedComponents} />
+
+### Mixed components page (scrollbar-gutter: stable both-edges)
+
+<Canvas sourceState="none" of={ScrollbarGutterDemoStories.MixedComponentsBothEdges} />
