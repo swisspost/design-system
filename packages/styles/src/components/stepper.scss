@@ -128,7 +128,7 @@
     text-align: end;
   }
 
-  .stepper-item[aria-current='step'] > & {
+  .stepper-item[aria-current='step']:not(.stepper-item-current ~ *) > &{
     color: stepper.$stepper-link-current-color;
     font-weight: stepper.$stepper-link-current-font-weight;
   }
@@ -279,7 +279,7 @@
     padding-inline: 0;
   }
 
-  .stepper-item[aria-current='step']  {
+  .stepper-item[aria-current='step']:not(.stepper-item-current ~ *) {
     // using "display: contents" on the stepper-item and stepper-link so that label, indicator and progress bar can be directly placed in the grid
     display: contents;
 
