@@ -60,7 +60,7 @@ $spacer: 1.5rem;
   position: fixed;
   z-index: commons.$zindex-toast;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   gap: $spacer;
 
   .toast {
