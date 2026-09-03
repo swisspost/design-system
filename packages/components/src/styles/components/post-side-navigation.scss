@@ -335,14 +335,30 @@ post-side-navigation {
   }
 
   post-icon[name='chevrondown'] {
-    transition: transform 0.2s ease;
     margin-inline-start: auto;
+    transform: var(--post-side-navigation-chevron-initial-transform, none);
   }
 
   &[aria-expanded='true'] post-icon[name='chevrondown'],
   [aria-expanded='true'] post-icon[name='chevrondown'] {
     transform: rotate(180deg);
   }
+
+  &[aria-expanded='false'] post-icon[name='chevrondown'],
+  [aria-expanded='false'] post-icon[name='chevrondown'] {
+    transform: none;
+  }
+}
+
+// Only animate the chevron after hydration, to avoid a transition on the initial render
+post-collapsible-trigger[data-hydrated] .post-side-navigation-item post-icon[name='chevrondown'] {
+  transition: transform 0.2s ease;
+}
+
+// Pre-hydration fallback: predict the chevron orientation from the collapsed attribute
+post-collapsible-trigger:not(:has(> post-collapsible[collapsed]))
+  > .post-side-navigation-item post-icon[name='chevrondown'] {
+  --post-side-navigation-chevron-initial-transform: rotate(180deg);
 }
 
 nav > ul > li {
