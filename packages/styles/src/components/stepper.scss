@@ -3,6 +3,7 @@
 @use './../mixins/icons' as icons-mx;
 @use './../mixins/size' as size-mx;
 @use './../mixins/utilities';
+@use './../functions/icons' as icon-fn;
 
 @use './../variables/color';
 @use './../variables/commons';
@@ -286,6 +287,18 @@
       display: contents;
       &::before, &::after{ 
         z-index: 2;
+      }
+
+      &::before {
+        content: '';
+        background-image: url('#{icon-fn.get-colored-svg-url(3193, color.$white)}');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 16px;
+      }
+
+      &::after {
+        content: none;
       }
     }
 
