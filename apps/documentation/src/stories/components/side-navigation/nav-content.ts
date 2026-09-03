@@ -47,6 +47,26 @@ const largeCollapsible = `<ul>
         </li>
         <li>
           <post-collapsible-trigger>
+            <div class="post-side-navigation-item">
+              <a href="#">
+                <post-icon name="letter" aria-hidden="true"></post-icon>
+                Level 1
+              </a>
+              <button>
+                <span class="visually-hidden">Expand</span>
+                <post-icon name="chevrondown" aria-hidden="true"></post-icon>
+              </button>
+            </div>
+            <post-collapsible collapsed>
+              <ul>
+                <li><a href="#" class="post-side-navigation-item">Level 2</a></li>
+                <li><a href="#" class="post-side-navigation-item">Level 2</a></li>
+              </ul>
+            </post-collapsible>
+          </post-collapsible-trigger>
+        </li>
+        <li>
+          <post-collapsible-trigger>
             <button class="post-side-navigation-item">
               <post-icon name="letter" aria-hidden="true"></post-icon>
               Level 1

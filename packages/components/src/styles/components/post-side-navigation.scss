@@ -142,9 +142,9 @@ post-side-navigation {
     color: tokens.get('side-nav-nav-element-color-selected-fg');
   }
 
-  // Nested item indentation without icons on first level
+  // First level items with a split trigger and nested item indentation without icons on first level
   ul ul .post-side-navigation-item:not(:has(a):has(button)),
-  ul ul .post-side-navigation-item:has(a):has(button) a {
+  .post-side-navigation-item:has(a):has(button) a {
     padding-inline-start: var(--post-side-nav-el-non-iconic-padding-inline-start);
   }
 
@@ -192,7 +192,7 @@ post-side-navigation {
   box-sizing: border-box;
   border: 0;
   border-block-end: tokens.get('side-nav-nav-element-border-width') solid
-    tokens.get('side-nav-section-color-border');
+    tokens.get('side-nav-nav-element-color-border');
   border-radius: 0;
   background-color: transparent;
   color: tokens.get('side-nav-nav-element-color-enabled-fg');
@@ -357,6 +357,21 @@ post-side-navigation {
   }
 }
 
+// Hide border-bottom of trigger when collapsed
+post-collapsible-trigger:has(> post-collapsible[tabindex='-1']:not([data-animating])) {
+  > button.post-side-navigation-item,
+  > .post-side-navigation-item:has(> button) {
+    border-block-end: 0;
+  }
+}
+
+// During opening/closing animation and when opened, keep border on both button and collapsible.
+post-collapsible-trigger > post-collapsible[tabindex='-1'],
+post-collapsible-trigger > post-collapsible[data-animating] {
+  border-block-end: tokens.get('side-nav-nav-element-border-width') solid
+    tokens.get('side-nav-nav-element-color-border');
+}
+
 nav > ul > li {
   // First level specific
   & > .post-side-navigation-item,
@@ -365,9 +380,51 @@ nav > ul > li {
   }
 
   // Border color mechanism to always have the outer borders of a level 1 darker
-  & .post-side-navigation-item:has(+ ul),
-  & li:has(+ li) .post-side-navigation-item,
-  .post-side-navigation-item[aria-expanded='true'] {
-    border-color: tokens.get('side-nav-nav-element-color-border');
+
+  // Non-collapsible
+  & > .post-side-navigation-item:not(:has(+ ul)),
+  & > ul > li:last-child:not(:has(ul)) .post-side-navigation-item,
+  & > ul > li:last-child > ul:not(:has(ul)) > li:last-child .post-side-navigation-item,
+  &
+    > ul
+    > li:last-child
+    > ul
+    > li:last-child
+    > ul:not(:has(ul))
+    > li:last-child
+    .post-side-navigation-item {
+    border-block-end-color: tokens.get('side-nav-section-color-border');
+  }
+
+  // Collapsible level 1 closed or animating
+  & > post-collapsible-trigger > post-collapsible[data-animating],
+  & > post-collapsible-trigger > post-collapsible[tabindex='-1'] {
+    border-block-end-color: tokens.get('side-nav-section-color-border');
+  }
+
+  & > post-collapsible-trigger > post-collapsible {
+    // Level 2 as last item
+    & > ul > li:last-child:not(:has(ul)) > .post-side-navigation-item,
+    & > ul > li:last-child > post-collapsible-trigger > post-collapsible {
+      border-block-end-color: tokens.get('side-nav-section-color-border');
+    }
+
+    & > ul > li:last-child {
+      > post-collapsible-trigger > post-collapsible > ul > li:last-child {
+        // Level 3 as last item
+        &:not(:has(ul)) > .post-side-navigation-item,
+        & > post-collapsible-trigger > post-collapsible {
+          border-block-end-color: tokens.get('side-nav-section-color-border');
+        }
+
+        > post-collapsible-trigger > post-collapsible > ul > li:last-child {
+          // Level 4 as last item
+          &:not(:has(ul)) > .post-side-navigation-item,
+          & > post-collapsible-trigger > post-collapsible {
+            border-block-end-color: tokens.get('side-nav-section-color-border');
+          }
+        }
+      }
+    }
   }
 }
