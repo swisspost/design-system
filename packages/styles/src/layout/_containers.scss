@@ -25,9 +25,12 @@ tokens.$default-map: components.$post-container;
   // legacy HTML -> BODY overflow propagation to the viewport, AND (confirmed empirically) breaks
   // `position: sticky` descendants (like `post-header`) once `overflow: hidden` is also applied to
   // lock scrolling — regardless of which of the two elements carries which property. Because of
-  // this, `post-header`'s scroll lock does NOT use `overflow: hidden` on `<body>`/`<html>` at all;
-  // it uses a `position: fixed` + saved-scroll-offset technique instead (see `post-header.tsx`
-  // `lockBody()`), which doesn't interact with containment at all.
+  // this, `post-header`'s scroll lock (`[data-post-scroll-locked] { overflow: hidden }`, see
+  // `_post-header.scss`) is paired with a CSS rule that temporarily sets `container-type: normal`
+  // on `<html>` for as long as the lock is active, restoring it the instant it's released. This is
+  // safe because the burger menu is an opaque, full-viewport overlay while open, so the
+  // `.container`/`post-tabs` bleed-offset temporarily collapsing underneath is fully hidden from
+  // view.
   container-type: inline-size;
 }
 

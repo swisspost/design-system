@@ -13,6 +13,17 @@ body:has(post-header) {
   overflow: hidden !important;
 }
 
+// The `:root` size query container (`container-type: inline-size`, see `_containers.scss`) breaks
+// `position: sticky` descendants (like this header) once `overflow: hidden` (above) also locks
+// scroll on `<body>`. Confirmed empirically, regardless of which element carries which property.
+// Since the burger menu is an opaque, full-viewport overlay while open, it's safe to temporarily
+// disable containment for the scroll-lock's duration: any resulting `.container`/`post-tabs`
+// bleed-offset reflow underneath is fully hidden behind the menu, and this rule stops applying
+// (restoring containment) the instant `data-post-scroll-locked` is removed.
+html:has(body[data-post-scroll-locked]) {
+  container-type: normal;
+}
+
 // Added to prevent Back-to-top button from showing up before header is hydrated
 body:has(post-header:not([data-hydrated])) post-back-to-top {
   visibility: hidden !important;
