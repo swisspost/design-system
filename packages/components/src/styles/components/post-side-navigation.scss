@@ -9,14 +9,16 @@
   .main-container {
     margin-inline-start: var(--post-side-navigation-width);
 
-    // Re-centers .container within the space left along the side nav
+    // Re-centers .container within the space left along the side nav.
+    // `100cqw` (relative to the `:root` size container defined in `_containers.scss`) is used
+    // instead of `100vw` to avoid overestimating the available width by the scrollbar's width.
     .container {
       --post-container-offset: calc(
         var(--post-container-padding-inline) +
           max(
             0px,
             calc(
-              (100vw - var(--post-side-navigation-width) - var(--post-container-max-width)) / 2
+              (100cqw - var(--post-side-navigation-width) - var(--post-container-max-width)) / 2
             )
           )
       );

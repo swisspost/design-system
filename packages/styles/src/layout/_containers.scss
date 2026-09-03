@@ -9,6 +9,12 @@ tokens.$default-map: components.$post-container;
 
 :root {
   --post-container-offset: 0;
+
+  // Establishes a size query container on the root element so that descendants can read its
+  // true rendered inline size via the `cqw` unit (see `.container` below). Unlike `100vw`, this
+  // is a normal layout measurement and therefore always excludes the vertical scrollbar's width,
+  // avoiding the horizontal overflow that `100vw`-based full-bleed calculations can cause.
+  container-type: inline-size;
 }
 
 .container,
@@ -32,10 +38,12 @@ tokens.$default-map: components.$post-container;
 .container {
   --post-container-max-width: #{tokens.get('grid-max-width')};
   max-width: var(--post-container-max-width);
-  // Offset for `.container` is: padding-inline + max(0px, (100vw - container-max-width) / 2)
+  // Offset for `.container` is: padding-inline + max(0px, (100cqw - container-max-width) / 2)
+  // `100cqw` (relative to the `:root` size container, see above) is used instead of `100vw` to
+  // avoid overestimating the available width by the vertical scrollbar's width.
   --post-container-offset: calc(
     var(--post-container-padding-inline) +
-    max(0px, calc((100vw - var(--post-container-max-width)) / 2))
+    max(0px, calc((100cqw - var(--post-container-max-width)) / 2))
   );
 }
 
