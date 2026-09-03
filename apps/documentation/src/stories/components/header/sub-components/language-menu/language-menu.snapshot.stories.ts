@@ -13,7 +13,7 @@ export default {
 
 type Story = StoryObj<HTMLPostLanguageMenuElement>;
 
-export const LanguageSwitch: Story = {
+export const LanguageMenu: Story = {
   render: (
     _args: HTMLPostLanguageMenuElement,
     context: StoryContext<HTMLPostLanguageMenuElement>,

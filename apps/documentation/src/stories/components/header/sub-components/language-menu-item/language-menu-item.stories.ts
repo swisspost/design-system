@@ -69,3 +69,9 @@ function renderLanguageOption(args: Partial<HTMLPostLanguageMenuItemElement>) {
 type Story = StoryObj<HTMLPostLanguageMenuItemElement>;
 
 export const Default: Story = {};
+
+export const Anchor: Story = {
+  args: {
+    url: 'https://www.post.ch/en',
+  },
+};
