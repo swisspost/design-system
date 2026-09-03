@@ -115,9 +115,20 @@ export class PostHeader {
 
     if (this.device !== 'desktop' && burgerMenuExtended) {
       scrollParent.dataset.postScrollLocked = '';
+      // `<html>` has `container-type: inline-size` (see `_containers.scss`) so `.container` can
+      // read the page's true width via `cqw`. That containment, combined with `overflow: hidden`
+      // locking scroll on `<body>`/`<html>`, breaks `position: sticky` elements (like this header)
+      // — confirmed empirically, regardless of which of the two elements carries which property.
+      // Since the burger menu is an opaque, full-viewport overlay while open, it's safe to
+      // temporarily disable containment for the duration of the lock: any resulting reflow of
+      // `.container`s underneath is fully hidden behind the menu, and gets restored on close.
+      if (scrollParent === document.body) {
+        document.documentElement.style.setProperty('container-type', 'normal');
+      }
       this.host.addEventListener('keydown', this.keyboardHandler);
     } else {
       delete scrollParent.dataset.postScrollLocked;
+      document.documentElement.style.removeProperty('container-type');
       this.host.removeEventListener('keydown', this.keyboardHandler);
     }
   }

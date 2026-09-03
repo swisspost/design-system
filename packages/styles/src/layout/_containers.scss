@@ -9,21 +9,25 @@ tokens.$default-map: components.$post-container;
 
 :root {
   --post-container-offset: 0;
-}
 
-body {
-  // Establishes a size query container so that descendants can read the page's true rendered
-  // inline size via the `cqw` unit (see `.container` below). Unlike `100vw`, this is a normal
-  // layout measurement and therefore always excludes the vertical scrollbar's width, avoiding
-  // the horizontal overflow that `100vw`-based full-bleed calculations can cause.
+  // Establishes a size query container so that descendants (including inside shadow DOM, e.g.
+  // `post-tabs`) can read the page's true rendered inline size via the `cqw` unit (see `.container`
+  // below). Unlike `100vw`, this is a normal layout measurement and therefore always excludes the
+  // vertical scrollbar's width, avoiding the horizontal overflow that `100vw`-based full-bleed
+  // calculations can cause. `cqw` is used deliberately instead of a `calc(100vw - 100%)`-based
+  // custom property trick: percentages inside custom properties are NOT frozen at the declaration
+  // site — they re-resolve against whichever element ends up consuming the variable, so such a
+  // trick silently breaks once consumed from inside a shadow root (confirmed: `post-tabs`' full
+  // bleed lost its offset in shadow DOM when this was tried).
   //
-  // This is deliberately set on `body`, NOT on `:root`/`<html>`. Applying `container-type` (or
-  // any other `contain`-implying property) to the root `<html>` element disqualifies it from the
-  // legacy HTML -> BODY overflow propagation to the viewport, which JS-driven scroll locks (e.g.
-  // `post-header`'s burger menu, which sets `overflow: hidden` on `document.body`) rely on. Once
-  // `<html>` stops propagating, `<body>`'s `overflow: hidden` no longer clips anything, and the
-  // page becomes scrollable again despite the lock. `body`'s rendered inline size matches
-  // `:root`'s (its margin is reset to 0), so `100cqw` still resolves to the same value.
+  // NOTE: per the CSS Overflow spec (Overflow Viewport Propagation), applying any
+  // `contain`-implying property (like `container-type`) to `<html>` OR `<body>` disables the
+  // legacy HTML -> BODY overflow propagation to the viewport, AND (confirmed empirically) breaks
+  // `position: sticky` descendants (like `post-header`) once `overflow: hidden` is also applied to
+  // lock scrolling — regardless of which of the two elements carries which property. Because of
+  // this, `post-header`'s scroll lock does NOT use `overflow: hidden` on `<body>`/`<html>` at all;
+  // it uses a `position: fixed` + saved-scroll-offset technique instead (see `post-header.tsx`
+  // `lockBody()`), which doesn't interact with containment at all.
   container-type: inline-size;
 }
 
