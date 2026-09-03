@@ -75,11 +75,24 @@
   }
 
   // current and completed steps are preceded by a yellow segment (except for the first step)
-  &:not(&[aria-current='step'] ~ *, :first-child)::before,
+  &:not(&.stepper-item-current ~ *, :first-child)::before,
   // steps that are not the current step or preceded by a current step are followed by a yellow segment
-    &:not([aria-current='step'], .stepper-item[aria-current='step'] ~ *)::after {
+    &:not(.stepper-item-current, .stepper-item.stepper-item-current ~ *)::after {
     background-color: stepper.$stepper-bar-fill-color;
     z-index: 1;
+  }
+
+  .stepper:not(:has(.stepper-item-current)) &[aria-current='step']::after {
+    background-color: stepper.$stepper-bar-color;
+    z-index: auto;
+  }
+
+  .stepper:not(:has(.stepper-item-current)) .stepper-item[aria-current='step'] ~ & {
+    &::before,
+    &::after {
+      background-color: stepper.$stepper-bar-color;
+      z-index: auto;
+    }
   }
 }
 
@@ -114,7 +127,7 @@
     text-align: end;
   }
 
-  .stepper-item[aria-current='step'] > & {
+  .stepper-item.stepper-item-current > & {
     color: stepper.$stepper-link-current-color;
     font-weight: stepper.$stepper-link-current-font-weight;
   }
@@ -148,13 +161,18 @@
     margin-inline-start: auto;
   }
 
-  .stepper-item:not([aria-current='step'], .stepper-item[aria-current='step'] ~ *) > & {
+  .stepper-item:not(.stepper-item-current:not([aria-current="step"]), .stepper-item.stepper-item-current ~ *) > & {
     color: transparent;
   }
 
-  .stepper-item[aria-current='step'] ~ .stepper-item > & {
+  .stepper-item.stepper-item-current ~ .stepper-item > & {
     color: stepper.$stepper-indicator-future-color;
     background-color: stepper.$stepper-indicator-future-bg;
+  }
+
+  .stepper-item[aria-current] > & {
+    color: transparent;
+    background-color: stepper.$stepper-link-current-color;
   }
 }
 
@@ -189,8 +207,34 @@
   }
 
   // show only for completed steps
-  .stepper-item:not([aria-current='step'], .stepper-item[aria-current='step'] ~ *) > & {
+  .stepper-item:not(.stepper-item-current:not([aria-current="step"]), .stepper-item.stepper-item-current ~ *) > & {
     content: '';
+  }
+
+  .stepper-item[aria-current] > & {
+    @include icons-mx.icon(3193);
+    mask-size: 16px;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    color: stepper.$stepper-indicator-future-color;
+  }
+}
+
+.stepper-item.stepper-item-current ~ .stepper-item,
+.stepper:not(:has(.stepper-item-current)) .stepper-item[aria-current='step'] ~ .stepper-item {
+  &::before,
+  &::after {
+    background-color: stepper.$stepper-bar-color;
+    z-index: auto;
+  }
+
+  > .stepper-link::before {
+    color: stepper.$stepper-indicator-future-color;
+    background-color: stepper.$stepper-indicator-future-bg;
+  }
+
+  > .stepper-link::after {
+    content: none;
   }
 }
 
@@ -203,15 +247,21 @@
   @include utilities.focus-hover-style-custom() {
     color: stepper.$stepper-link-color;
 
-    .stepper-item[aria-current='step'] > & {
+    .stepper-item.stepper-item-current > & {
       color: stepper.$stepper-link-current-color;
     }
 
     // step indicator
     &::before,
-    .stepper-item[aria-current='step'] ~ .stepper-item > &::before {
+    .stepper-item.stepper-item-current ~ .stepper-item > &::before,
+    .stepper:not(:has(.stepper-item-current)) .stepper-item[aria-current='step'] ~ .stepper-item > &::before {
       color: stepper.$stepper-indicator-hover-color;
       background-color: stepper.$stepper-indicator-hover-bg;
+    }
+
+    .stepper-item[aria-current] > &::before {
+      color: transparent;
+      background-color: stepper.$stepper-link-current-color;
     }
 
     // check icon
@@ -228,12 +278,15 @@
     padding-inline: 0;
   }
 
-  .stepper-item[aria-current='step'] {
+  .stepper-item[aria-current='step']  {
     // using "display: contents" on the stepper-item and stepper-link so that label, indicator and progress bar can be directly placed in the grid
     display: contents;
 
     > .stepper-link {
       display: contents;
+      &::before, &::after{ 
+        z-index: 2;
+      }
     }
 
     // progress bar
@@ -301,8 +354,8 @@
       background-color: CanvasText;
     }
 
-    &:not(&[aria-current='step'] ~ &, :first-child)::before,
-    &:not([aria-current='step']:not(:last-child), &[aria-current='step'] ~ *)::after {
+    &:not(&.stepper-item-current ~ &, :first-child)::before,
+    &:not(.stepper-item-current:not(:last-child), .stepper-item.stepper-item-current ~ *)::after {
       background-color: Highlight;
     }
   }
@@ -312,15 +365,15 @@
       forced-color-adjust: none;
     }
 
-    .stepper-item[aria-current='step'] > & {
+    .stepper-item.stepper-item-current > & {
       &::before {
         background-color: Canvas;
         color: CanvasText;
       }
     }
 
-    .stepper-item[aria-current='step'] ~ .stepper-item > &,
-    .stepper-item:not([aria-current='step']) > & {
+    .stepper-item.stepper-item-current ~ .stepper-item > &,
+    .stepper-item:not(.stepper-item-current) > & {
       &::before {
         color: Canvas;
         border-color: Canvas;
@@ -334,7 +387,7 @@
   }
 
   .stepper-link:is(a[href]) {
-    .stepper-item[aria-current='step'] > & {
+    .stepper-item.stepper-item-current > & {
       @include utilities.focus-hover-style-custom() {
         &::before {
           border-color: Highlight;
@@ -342,7 +395,7 @@
       }
     }
 
-    .stepper-item[aria-current='step'] ~ .stepper-item > & {
+    .stepper-item.stepper-item-current ~ .stepper-item > & {
       &::before {
         color: Canvas;
       }
@@ -355,7 +408,7 @@
       }
     }
 
-    .stepper-item:not([aria-current='step']) > & {
+    .stepper-item:not(.stepper-item-current) > & {
       &::before {
         background-color: LinkText;
       }
