@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Close button test fixture</title>
+    <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
+  </head>
+  <body>
+    <button
+      id="open-popovercontainer"
+      class="btn btn-secondary"
+      popovertarget="close-button-popovercontainer"
+    >
+      Open popovercontainer
+    </button>
+    <post-popovercontainer id="close-button-popovercontainer">
+      <p>This popovercontainer is closed by the close button.</p>
+      <post-closebutton>Close</post-closebutton>
+    </post-popovercontainer>
+  </body>
+</html>
