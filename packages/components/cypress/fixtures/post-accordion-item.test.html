@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accordion item test fixture</title>
+    <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
+    <style>
+      post-accordion-item {
+        display: block;
+        position: relative;
+        width: 20rem;
+      }
+    </style>
+  </head>
+  <body>
+    <post-accordion-item>
+      <span slot="header">Accordion item</span>
+      <p>Content closed by the close button.</p>
+      <post-closebutton>Close</post-closebutton>
+    </post-accordion-item>
+  </body>
+</html>
