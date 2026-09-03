@@ -376,6 +376,7 @@
   .stepper-item {
     &::before,
     &::after {
+      forced-color-adjust: none;
     }
 
     &:not(&.stepper-item-current ~ &, :first-child)::before,
