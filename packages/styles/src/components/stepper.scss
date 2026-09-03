@@ -4,6 +4,7 @@
 @use './../mixins/size' as size-mx;
 @use './../mixins/utilities';
 @use './../functions/icons' as icon-fn;
+@use './../mixins/color' as color-mx;
 
 @use './../variables/color';
 @use './../variables/commons';
@@ -218,6 +219,10 @@
     mask-repeat: no-repeat;
     mask-position: center;
     color: stepper.$stepper-indicator-future-color;
+
+    @include color-mx.on-dark-background {
+      color: stepper.$stepper-indicator-color;
+    }
   }
 }
 
@@ -295,6 +300,13 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 16px;
+
+         @include color-mx.on-dark-background {
+          background-image: url(
+            '#{icon-fn.get-colored-svg-url(3193, color.$black)}'
+          );
+        }
+
       }
 
       &::after {
@@ -364,7 +376,6 @@
   .stepper-item {
     &::before,
     &::after {
-      background-color: CanvasText;
     }
 
     &:not(&.stepper-item-current ~ &, :first-child)::before,
@@ -380,8 +391,8 @@
 
     .stepper-item.stepper-item-current > & {
       &::before {
-        background-color: Canvas;
-        color: CanvasText;
+        background-color: AccentColor;
+        color: AccentColorText;
       }
     }
 
@@ -401,6 +412,8 @@
 
   .stepper-link:is(a[href]) {
     .stepper-item.stepper-item-current > & {
+
+      
       @include utilities.focus-hover-style-custom() {
         &::before {
           border-color: Highlight;
@@ -411,6 +424,7 @@
     .stepper-item.stepper-item-current ~ .stepper-item > & {
       &::before {
         color: Canvas;
+        background-color: GrayText;
       }
 
       @include utilities.focus-hover-style-custom() {
