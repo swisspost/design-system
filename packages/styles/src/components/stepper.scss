@@ -127,7 +127,7 @@
     text-align: end;
   }
 
-  .stepper-item.stepper-item-current > & {
+  .stepper-item[aria-current='step'] > & {
     color: stepper.$stepper-link-current-color;
     font-weight: stepper.$stepper-link-current-font-weight;
   }
