@@ -9,11 +9,21 @@ tokens.$default-map: components.$post-container;
 
 :root {
   --post-container-offset: 0;
+}
 
-  // Establishes a size query container on the root element so that descendants can read its
-  // true rendered inline size via the `cqw` unit (see `.container` below). Unlike `100vw`, this
-  // is a normal layout measurement and therefore always excludes the vertical scrollbar's width,
-  // avoiding the horizontal overflow that `100vw`-based full-bleed calculations can cause.
+body {
+  // Establishes a size query container so that descendants can read the page's true rendered
+  // inline size via the `cqw` unit (see `.container` below). Unlike `100vw`, this is a normal
+  // layout measurement and therefore always excludes the vertical scrollbar's width, avoiding
+  // the horizontal overflow that `100vw`-based full-bleed calculations can cause.
+  //
+  // This is deliberately set on `body`, NOT on `:root`/`<html>`. Applying `container-type` (or
+  // any other `contain`-implying property) to the root `<html>` element disqualifies it from the
+  // legacy HTML -> BODY overflow propagation to the viewport, which JS-driven scroll locks (e.g.
+  // `post-header`'s burger menu, which sets `overflow: hidden` on `document.body`) rely on. Once
+  // `<html>` stops propagating, `<body>`'s `overflow: hidden` no longer clips anything, and the
+  // page becomes scrollable again despite the lock. `body`'s rendered inline size matches
+  // `:root`'s (its margin is reset to 0), so `100cqw` still resolves to the same value.
   container-type: inline-size;
 }
 
