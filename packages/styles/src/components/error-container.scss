@@ -1,3 +1,366 @@
+@use 'sass:map';
+@use './../mixins/media';
+@use './../functions/tokens';
+@use './../tokens/elements';
+@use './../tokens/utilities';
+
+tokens.$default-map: elements.$post-heading;
+
+.error {
+  position: relative;
+
+  .error-title {
+    font-size: tokens.get('h1-font-size');
+    margin-block-end: 0;
+  }
+
+  .error-subtitle {
+    font-size: tokens.get('h4-font-size');
+    margin-block-start: 0;
+  }
+
+  .error-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: tokens.get('utility-gap-8', utilities.$post-spacing);
+    margin-block-start: tokens.get('utility-margin-72', utilities.$post-spacing);
+
+    @include media.min(lg) {
+      flex-direction: row;
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  .container::before {
+    pointer-events: none;
+  }
+
+  .error-content {
+    padding-block: 2rem;
+
+    @include media.min(md) {
+      padding-block: 2.5rem;
+    }
+
+    @include media.min(lg) {
+      max-width: calc(50% - (var(--post-grid-gutter-x) / 2));
+    }
+
+    @include media.min(xl) {
+      padding-block: 3.75rem;
+    }
+  }
+}
+
+$error-types: (
+  '400': (
+    sm-padding-block-end: 12rem,
+    md-padding-block-end: 16rem,
+    lg-padding-block-end: 20rem,
+    bg-position: bottom 2rem left 0,
+    bg-position-lg: top 0 left 80%,
+    bg-position-xl: top 0 left 75%,
+  ),
+  '401': (
+    sm-padding-block-end: 16rem,
+    md-padding-block-end: 20rem,
+    lg-padding-block-end: 24rem,
+  ),
+  '403': (
+    sm-padding-block-end: 10rem,
+    md-padding-block-end: 16rem,
+    lg-padding-block-end: 20rem,
+  ),
+  '404': (
+    sm-padding-block-end: 12rem,
+    md-padding-block-end: 16rem,
+    lg-padding-block-end: 18rem,
+  ),
+  '451': (
+    sm-padding-block-end: 12rem,
+    lg-padding-block-end: 18rem,
+  ),
+  '500': (
+    sm-padding-block-end: 18rem,
+    lg-padding-block-end: 22rem,
+  ),
+  '503': (
+    sm-padding-block-end: 18rem,
+    lg-padding-block-end: 22rem,
+  ),
+  '504': (
+    sm-padding-block-end: 12rem,
+    lg-padding-block-end: 16rem,
+  ),
+);
+
+@each $type, $config in $error-types {
+  .error-#{$type} {
+    .container {
+      @include media.max(lg) {
+        padding-block-end: map.get($config, lg-padding-block-end);
+      }
+
+      @include media.max(md) {
+        padding-block-end: map.get($config, md-padding-block-end);
+      }
+
+      @include media.max(sm) {
+        padding-block-end: map.get($config, sm-padding-block-end);
+      }
+    }
+  }
+}
+
+.error-400 {
+  &::before {
+    background-size: contain;
+    background-image: url('https://fonts.post.ch/images/error-status/v1.1/400-mobile.svg');
+    background-position: bottom 2rem left 0;
+
+    @include media.min(lg) {
+      background-image: url('https://fonts.post.ch/images/error-status/v1.1/400.svg');
+      background-position: top 0 left 80%;
+    }
+
+    @include media.min(xl) {
+      background-position-x: 75%;
+    }
+  }
+}
+
+.error-401 {
+  &::before {
+    background-size: 50%;
+    background-image: url('https://fonts.post.ch/images/error-status/v1.1/401.svg');
+    background-position: 100% 100%;
+
+    @include media.min(sm) {
+      background-size: 45%;
+    }
+
+    @include media.min(md) {
+      background-size: 40%;
+    }
+
+    @include media.min(lg) {
+      background-size: 30%;
+    }
+
+    @include media.min(xl) {
+      background-size: 440px;
+    }
+  }
+
+  .error-content {
+    @include media.min(lg) {
+      max-width: calc(58.3% - (var(--post-grid-gutter-x) / 2));
+    }
+
+    @include media.min(xl) {
+      max-width: calc(66.6% - (var(--post-grid-gutter-x) / 2));
+    }
+  }
+}
+
+.error-403 {
+  &::before {
+    background-size: 200px;
+    background-image: url('https://fonts.post.ch/images/error-status/v1.1/403.svg');
+    background-position: bottom 2rem left 50%;
+
+    @include media.min(sm) {
+      background-size: 260px;
+    }
+
+    @include media.min(md) {
+      background-size: 380px;
+    }
+
+    @include media.min(lg) {
+      background-size: 35%;
+      background-position: bottom 2rem left 95%;
+    }
+
+    @include media.min(xl) {
+      background-size: 480px;
+    }
+  }
+
+  .error-content {
+    @include media.min(lg) {
+      max-width: calc(58.3% - (var(--post-grid-gutter-x) / 2));
+    }
+  }
+}
+
+.error-404,
+.error-451,
+.error-500,
+.error-503,
+.error-504 {
+  // Set the image on the container on larger screen so that it's flush with the grid
+  .container {
+    position: relative;
+
+    &::before {
+      @include media.min(lg) {
+        content: '';
+        position: absolute;
+        background-repeat: no-repeat;
+        width: calc(100% - 2 * var(--post-container-padding-inline));
+        height: 100%;
+      }
+    }
+  }
+}
+
+.error-404 {
+  &::before {
+    @include media.max(lg) {
+      background-size: 150px;
+      background-image: url('https://fonts.post.ch/images/error-status/v1.1/404.svg');
+      background-position: bottom 2rem left 50%;
+
+      @include media.min(sm) {
+        background-size: 190px;
+      }
+
+      @include media.min(md) {
+        background-size: 210px;
+      }
+    }
+  }
+
+  .container {
+    &::before {
+      @include media.min(lg) {
+        background-size: 320px;
+        background-image: url('https://fonts.post.ch/images/error-status/v1.1/404.svg');
+        background-position: top 50% right 0;
+      }
+    }
+  }
+}
+
+.error-451 {
+  &::before {
+    @include media.max(lg) {
+      background-size: 150px;
+      background-image: url('https://fonts.post.ch/images/error-status/v1.1/451.svg');
+      background-position: bottom 0 right 1rem;
+
+      @include media.min(sm) {
+        background-size: 200px;
+      }
+
+      @include media.min(md) {
+        background-position: bottom 0 right 2.5rem;
+      }
+    }
+  }
+
+  .container {
+    &::before {
+      @include media.min(lg) {
+        background-image: url('https://fonts.post.ch/images/error-status/v1.1/451.svg');
+        background-size: 320px;
+        background-position: bottom 0.5rem left 100%;
+      }
+    }
+  }
+}
+
+.error-500 {
+  &::before {
+    @include media.max(lg) {
+      background-size: 300px;
+      background-image: url('https://fonts.post.ch/images/error-status/v1.1/500.svg');
+      background-position: bottom 2rem left 50%;
+
+      @include media.min(sm) {
+        background-size: 340px;
+      }
+    }
+  }
+
+  .container {
+    &::before {
+      @include media.min(lg) {
+        background-image: url('https://fonts.post.ch/images/error-status/v1.1/500.svg');
+        background-size: 400px;
+        background-position: bottom 1rem left 100%;
+      }
+
+      @include media.min(xl) {
+        background-size: 500px;
+      }
+    }
+  }
+}
+
+.error-503 {
+  &::before {
+    @include media.max(lg) {
+      background-size: 180px;
+      background-image: url('https://fonts.post.ch/images/error-status/v1.1/503.svg');
+      background-position: bottom 2rem left 50%;
+
+      @include media.min(sm) {
+        background-size: 220px;
+      }
+    }
+  }
+
+  .container {
+    &::before {
+      @include media.min(lg) {
+        background-image: url('https://fonts.post.ch/images/error-status/v1.1/503.svg');
+        background-size: 320px;
+        background-position: bottom 1rem left 100%;
+      }
+    }
+  }
+}
+
+.error-504 {
+  &::before {
+    @include media.max(lg) {
+      background-size: 190px;
+      background-image: url('https://fonts.post.ch/images/error-status/v1.1/504.svg');
+      background-position: bottom 2rem left 50%;
+
+      @include media.min(md) {
+        background-size: 260px;
+      }
+    }
+  }
+
+  // Set the image on the container on larger screen so that it's flush with the grid
+  .container {
+    &::before {
+      @include media.min(lg) {
+        background-image: url('https://fonts.post.ch/images/error-status/v1.1/504.svg');
+        background-size: 360px;
+        background-position: bottom 1rem left 100%;
+      }
+
+      @include media.min(xl) {
+        background-size: 400px;
+      }
+    }
+  }
+}
+
+// Deprecated
 .error-container {
   overflow-x: hidden;
 }
