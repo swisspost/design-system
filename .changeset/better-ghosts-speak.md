@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Fixed the Problem with long text in the button field. The text will now wrap into multiple lines if it is too long.
+Fixed button text wrapping into multiple lines instead of being cut off when content is too long.
