@@ -23,18 +23,18 @@
     "start": "gulp watch",
     "build": "pnpm turbo run build:force",
     "build:force": "pnpm clean && gulp build",
-    "clean": "rimraf dist src/tokens/temp src/icons/temp",
-    "lint": "stylelint src/**/*.scss !src/tokens/temp/**",
-    "lint:fix": "stylelint src/**/*.scss !src/tokens/temp/** --fix",
+    "clean": "rimraf dist",
+    "lint": "stylelint src/**/*.scss",
+    "lint:fix": "stylelint src/**/*.scss --fix",
     "format": "prettier src/**/*.scss --config ../../.prettierrc --write"
   },
   "dependencies": {
     "@popperjs/core": "2.11.8",
     "@swisspost/design-system-icons": "workspace:10.4.0",
+    "@swisspost/design-system-tokens": "workspace:10.4.0",
     "gulp-sourcemaps": "3.0.0"
   },
   "devDependencies": {
-    "@swisspost/design-system-tokens": "workspace:10.4.0",
     "@types/node": "catalog:node",
     "autoprefixer": "10.5.0",
     "copyfiles": "2.4.1",
