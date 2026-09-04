@@ -317,10 +317,6 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 16px;
-
-        @include color-mx.on-dark-background {
-          background-image: url('#{icon-fn.get-colored-svg-url(3193, color.$black)}');
-        }
       }
 
       &::after {
