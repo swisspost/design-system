@@ -51,3 +51,32 @@ you can switch to manual positioning utsing the `position="manual"` property.
 
 When `position="manual"` is used, no positioning styles are applied by the component.
 The button is rendered inline like a regular button, and you are responsible for providing any styles needed to place it.
+
+## Auto-close behavior
+
+`<post-closebutton>` automatically walks up the DOM when clicked and closes the nearest supported ancestor.
+No `onClick` handler or event listener is required on the consumer side.
+
+### Supported closable targets
+
+| Ancestor | Close method |
+|---|---|
+| `<post-banner>` | `dismiss()` |
+| `<post-popover>` | `hide()` |
+| `<post-popovercontainer>` | `hide()` |
+| `<post-collapsible>` | `toggle(false)` |
+| `<post-accordion-item>` | `toggle(false)` |
+| `<dialog>` | `close()` |
+| native `[popover]` element | `togglePopover(false)` |
+
+
+### Examples
+
+#### `<dialog>`
+
+<Canvas sourceState="shown" of={CloseButtonStories.CloseDialog} />
+
+#### `<post-banner>`
+
+<Canvas sourceState="shown" of={CloseButtonStories.CloseBanner} />
+

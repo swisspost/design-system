@@ -67,7 +67,7 @@ export class MigrationV56Component extends LitElement {
                     href="https://getbootstrap.com/docs/5.3/migration"
                     target="_blank"
                     rel="noopener noreferrer"
-                    >Bootstrap 5.3.x migration guide</a
+                    >Bootstrap 5.3.x migration guide<span class="visually-hidden">(opens in a new tab)</span></a
                   >
                   ${
                     this.angular
@@ -77,7 +77,7 @@ export class MigrationV56Component extends LitElement {
                             href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1500-2023-05-25"
                             target="_blank"
                             rel="noopener noreferrer"
-                            >ng-bootstrap 15.x.x changelog</a
+                            >ng-bootstrap 15.x.x changelog<span class="visually-hidden">(opens in a new tab)</span></a
                           >
                         `
                       : nothing

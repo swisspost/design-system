@@ -188,7 +188,7 @@ npm uninstall @swisspost/design-system-migrations`}
           href="https://getbootstrap.com/docs/5.1/migration"
           target="_blank"
           rel="noopener noreferrer"
-          >Bootstrap 5.1.x migration guide</a
+          >Bootstrap 5.1.x migration guide<span class="visually-hidden">(opens in a new tab)</span></a
         >
         ${
           this.angular
@@ -198,7 +198,7 @@ npm uninstall @swisspost/design-system-migrations`}
                   href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1400-2022-12-07"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >ng-bootstrap 12.x.x changelog</a
+                  >ng-bootstrap 12.x.x changelog<span class="visually-hidden">(opens in a new tab)</span></a
                 >
               `
             : nothing

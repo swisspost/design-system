@@ -211,7 +211,9 @@ post-side-navigation {
   text-align: start;
   text-decoration: none;
   appearance: none;
-
+  
+  @include utilities.word-break;
+  
   // Split link and button
   &:has(a):has(button) {
     padding-inline-start: 0;
