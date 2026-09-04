@@ -1,7 +1,6 @@
 import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
-import { existsSync } from 'node:fs';
-import { fileURLToPath, pathToFileURL, URL } from 'node:url';
+import { fileURLToPath, URL } from 'node:url';
 import type { StorybookConfig } from '@storybook/web-components-vite';
 import type { InlineConfig } from 'vite';
 import pkg from '@/../package.json';
@@ -13,22 +12,6 @@ const require = createRequire(import.meta.url);
 
 // Resolve node_modules from apps/documentation (one level up from .storybook/)
 const docsNodeModules = join(fileURLToPath(new URL('..', import.meta.url)), 'node_modules');
-
-/**
- * Custom Sass importer that resolves package paths (e.g. @swisspost/...) to absolute
- * file URLs. This is needed because Vite's built-in package resolver does not intercept
- * dynamic meta.load-css() calls used in the styles icon mixin.
- */
-const sassPackageImporter = {
-  findFileUrl(url: string): URL | null {
-    if (!url.startsWith('@')) return null;
-    for (const ext of ['.css', '.scss']) {
-      const candidate = join(docsNodeModules, url + ext);
-      if (existsSync(candidate)) return pathToFileURL(candidate) as URL;
-    }
-    return null;
-  },
-};
 
 const config: StorybookConfig = {
   logLevel: 'info',
@@ -109,7 +92,7 @@ const config: StorybookConfig = {
         devSourcemap: true,
         preprocessorOptions: {
           scss: {
-            importers: [sassPackageImporter],
+            loadPaths: [docsNodeModules],
           },
         },
       },
