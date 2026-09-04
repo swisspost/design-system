@@ -279,6 +279,10 @@
     .stepper-item[aria-current] > &::before {
       color: transparent;
       background-color: stepper.$stepper-link-current-color;
+
+      @include color-mx.on-dark-background {
+        border-color: Canvas;
+      }
     }
 
     // check icon
@@ -395,6 +399,12 @@
     }
   }
 
+  .stepper-item[aria-current='step'] > .stepper-link::after {
+    @include color-mx.on-dark-background {
+      color: color.$white;
+    }
+  }
+
   .stepper-link {
     &::before {
       forced-color-adjust: none;
@@ -404,6 +414,9 @@
       &::before {
         background-color: AccentColor;
         color: AccentColorText;
+        @include color-mx.on-dark-background {
+          border-color: Canvas;
+        }
       }
     }
 
@@ -412,7 +425,7 @@
       &::before {
         color: Canvas;
         border-color: Canvas;
-        background-color: CanvasText;
+        background-color: GrayText;
       }
     }
 
@@ -425,7 +438,8 @@
     .stepper-item.stepper-item-current > & {
       @include utilities.focus-hover-style-custom() {
         &::before {
-          border-color: Highlight;
+          background-color: Highlight;
+          color: HighlightText;
         }
       }
     }
