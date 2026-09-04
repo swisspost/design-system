@@ -129,7 +129,7 @@
     text-align: end;
   }
 
-  .stepper-item[aria-current='step']:not(.stepper-item-current ~ *) > &{
+  .stepper-item[aria-current='step']:not(.stepper-item-current ~ *) > & {
     color: stepper.$stepper-link-current-color;
     font-weight: stepper.$stepper-link-current-font-weight;
   }
@@ -163,7 +163,11 @@
     margin-inline-start: auto;
   }
 
-  .stepper-item:not(.stepper-item-current:not([aria-current="step"]), .stepper-item.stepper-item-current ~ *) > & {
+  .stepper-item:not(
+      .stepper-item-current:not([aria-current='step']),
+      .stepper-item.stepper-item-current ~ *
+    )
+    > & {
     color: transparent;
   }
 
@@ -209,7 +213,11 @@
   }
 
   // show only for completed steps
-  .stepper-item:not(.stepper-item-current:not([aria-current="step"]), .stepper-item.stepper-item-current ~ *) > & {
+  .stepper-item:not(
+      .stepper-item-current:not([aria-current='step']),
+      .stepper-item.stepper-item-current ~ *
+    )
+    > & {
     content: '';
   }
 
@@ -260,7 +268,10 @@
     // step indicator
     &::before,
     .stepper-item.stepper-item-current ~ .stepper-item > &::before,
-    .stepper:not(:has(.stepper-item-current)) .stepper-item[aria-current='step'] ~ .stepper-item > &::before {
+    .stepper:not(:has(.stepper-item-current))
+      .stepper-item[aria-current='step']
+      ~ .stepper-item
+      > &::before {
       color: stepper.$stepper-indicator-hover-color;
       background-color: stepper.$stepper-indicator-hover-bg;
     }
@@ -290,7 +301,9 @@
 
     > .stepper-link {
       display: contents;
-      &::before, &::after{ 
+
+      &::before,
+      &::after {
         z-index: 2;
       }
 
@@ -301,12 +314,9 @@
         background-position: center;
         background-size: 16px;
 
-         @include color-mx.on-dark-background {
-          background-image: url(
-            '#{icon-fn.get-colored-svg-url(3193, color.$black)}'
-          );
+        @include color-mx.on-dark-background {
+          background-image: url('#{icon-fn.get-colored-svg-url(3193, color.$black)}');
         }
-
       }
 
       &::after {
@@ -413,8 +423,6 @@
 
   .stepper-link:is(a[href]) {
     .stepper-item.stepper-item-current > & {
-
-      
       @include utilities.focus-hover-style-custom() {
         &::before {
           border-color: Highlight;
