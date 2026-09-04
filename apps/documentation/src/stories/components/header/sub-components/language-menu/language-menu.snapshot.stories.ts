@@ -13,22 +13,18 @@ export default {
 
 type Story = StoryObj<HTMLPostLanguageMenuElement>;
 
-export const LanguageSwitch: Story = {
+export const LanguageMenu: Story = {
   render: (
     _args: HTMLPostLanguageMenuElement,
     context: StoryContext<HTMLPostLanguageMenuElement>,
   ) => {
-    return html`
-      <div class="language-switch">
-        ${schemes(
-          () => html`
-            <div class="d-flex flex-wrap align-items-center gap-16">
-              ${meta.render?.({ ...context.args }, context)}
-              ${meta.render?.({ ...context.args, variant: 'menu' }, context)}
-            </div>
-          `,
-        )}
-      </div>
-    `;
+    return schemes(
+      () => html`
+        <div class="d-flex flex-wrap align-items-center gap-16">
+          ${meta.render?.({ ...context.args }, context)}
+          ${meta.render?.({ ...context.args, variant: 'menu' }, context)}
+        </div>
+      `,
+    );
   },
 };
