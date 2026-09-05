@@ -66,7 +66,7 @@ export class PostBreadcrumbItem {
     const href = this.url instanceof URL ? this.url.href : this.url;
     const content = this.hasSlottedAnchor ? (
       <slot onSlotchange={() => this.checkSlottedAnchor()}></slot>
-    ) : href ? (
+    ) : (href ? (
       <a
         href={href}
         aria-current={this.selected ? 'page' : undefined}
@@ -79,7 +79,7 @@ export class PostBreadcrumbItem {
       <span>
         <slot onSlotchange={() => this.checkSlottedAnchor()}></slot>
       </span>
-    );
+    ));
 
     return this.variant === 'listitem' || this.selected ? (
       <Host data-version={version} role="listitem" slot={this.selected ? 'selected' : undefined}>
