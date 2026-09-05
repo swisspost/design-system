@@ -9,6 +9,29 @@ tokens.$default-map: components.$post-container;
 
 :root {
   --post-container-offset: 0;
+
+  // Establishes a size query container so that descendants (including inside shadow DOM, e.g.
+  // `post-tabs`) can read the page's true rendered inline size via the `cqw` unit (see `.container`
+  // below). Unlike `100vw`, this is a normal layout measurement and therefore always excludes the
+  // vertical scrollbar's width, avoiding the horizontal overflow that `100vw`-based full-bleed
+  // calculations can cause. `cqw` is used deliberately instead of a `calc(100vw - 100%)`-based
+  // custom property trick: percentages inside custom properties are NOT frozen at the declaration
+  // site — they re-resolve against whichever element ends up consuming the variable, so such a
+  // trick silently breaks once consumed from inside a shadow root (confirmed: `post-tabs`' full
+  // bleed lost its offset in shadow DOM when this was tried).
+  //
+  // NOTE: per the CSS Overflow spec (Overflow Viewport Propagation), applying any
+  // `contain`-implying property (like `container-type`) to `<html>` OR `<body>` disables the
+  // legacy HTML -> BODY overflow propagation to the viewport, AND (confirmed empirically) breaks
+  // `position: sticky` descendants (like `post-header`) once `overflow: hidden` is also applied to
+  // lock scrolling — regardless of which of the two elements carries which property. Because of
+  // this, `post-header`'s scroll lock (`[data-post-scroll-locked] { overflow: hidden }`, see
+  // `_post-header.scss`) is paired with a CSS rule that temporarily sets `container-type: normal`
+  // on `<html>` for as long as the lock is active, restoring it the instant it's released. This is
+  // safe because the burger menu is an opaque, full-viewport overlay while open, so the
+  // `.container`/`post-tabs` bleed-offset temporarily collapsing underneath is fully hidden from
+  // view.
+  container-type: inline-size;
 }
 
 .container,
@@ -32,10 +55,12 @@ tokens.$default-map: components.$post-container;
 .container {
   --post-container-max-width: #{tokens.get('grid-max-width')};
   max-width: var(--post-container-max-width);
-  // Offset for `.container` is: padding-inline + max(0px, (100vw - container-max-width) / 2)
+  // Offset for `.container` is: padding-inline + max(0px, (100cqw - container-max-width) / 2)
+  // `100cqw` (relative to the `:root` size container, see above) is used instead of `100vw` to
+  // avoid overestimating the available width by the vertical scrollbar's width.
   --post-container-offset: calc(
     var(--post-container-padding-inline) +
-    max(0px, calc((100vw - var(--post-container-max-width)) / 2))
+    max(0px, calc((100cqw - var(--post-container-max-width)) / 2))
   );
 }
 

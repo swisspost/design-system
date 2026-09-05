@@ -10,7 +10,8 @@ tokens.$default-map: components.$post-breadcrumb;
   @include mixins.breadcrumb-item;
 }
 
-:is(a, span) {
+:is(a, span),
+::slotted(a) {
   white-space: var(--post-breadcrumb-item-wrap, normal) !important;
   @include utilities.word-break;
 }
@@ -18,7 +19,8 @@ tokens.$default-map: components.$post-breadcrumb;
 :host([selected]:not([selected='false'])) {
   @include mixins.breadcrumb-item;
 
-  :is(a, span) {
+  :is(a, span),
+  ::slotted(a) {
     color: tokens.get('breadcrumb-selected-fg');
     font-weight: tokens.get('breadcrumb-selected-font-weight');
     text-decoration: tokens.get('breadcrumb-link-selected-text-decoration');

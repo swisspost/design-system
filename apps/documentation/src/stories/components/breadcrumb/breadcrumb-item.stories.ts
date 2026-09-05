@@ -52,3 +52,22 @@ export default meta;
 type Story = StoryObj;
 
 export const BreadcrumbItem: Story = {};
+
+export const SlottedLink: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Slot your own `<a>` (e.g. a framework `<Link>`) instead of using the `url` prop, so client-side routing frameworks like Next.js or Angular Router can handle navigation instead of the browser doing a full page reload.',
+      },
+    },
+    controls: {
+      exclude: ['variant', 'selected', 'url'],
+    },
+  },
+  render: args => html`
+    <post-breadcrumb-item label=${args.label || nothing} description=${args.description || nothing}>
+      <a href="/section1">Section 1</a>
+    </post-breadcrumb-item>
+  `,
+};
