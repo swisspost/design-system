@@ -126,7 +126,7 @@ export namespace Components {
          */
         "selected": boolean;
         /**
-          * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
+          * The destination URL for the breadcrumb item. Ignored if an `<a>` element is slotted in. If both are omitted, the item is rendered as non-interactive text.
          */
         "url"?: string | URL;
         /**
@@ -1422,7 +1422,7 @@ declare namespace LocalJSX {
          */
         "selected"?: boolean;
         /**
-          * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
+          * The destination URL for the breadcrumb item. Ignored if an `<a>` element is slotted in. If both are omitted, the item is rendered as non-interactive text.
          */
         "url"?: string | URL;
         /**

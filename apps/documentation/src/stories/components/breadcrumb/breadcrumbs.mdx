@@ -38,3 +38,11 @@ When space is constrained, the `<post-breadcrumbs>` concatenates middle items in
 
 <Canvas of={BreadcrumbItemStories.BreadcrumbItem} sourceState="shown" />
 <Controls of={BreadcrumbItemStories.BreadcrumbItem} />
+
+## Routing with client-side frameworks
+
+By default, `<post-breadcrumb-item>` renders its own `<a>` inside the shadow DOM based on the `url` prop. Frameworks with client-side routing (e.g. Next.js, Angular Router) can't intercept clicks on that internal anchor, so navigating triggers a full page reload.
+
+To keep client-side routing working, slot your own anchor (or the framework's `<Link>` component, which renders as an `<a>`) instead of setting `url`. `<post-breadcrumb-item>` detects the slotted `<a>` and stops rendering its own anchor, leaving your link's click handling untouched.
+
+<Canvas of={BreadcrumbItemStories.SlottedLink} sourceState="shown" />

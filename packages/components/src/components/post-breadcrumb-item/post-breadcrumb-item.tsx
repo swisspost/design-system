@@ -1,10 +1,10 @@
 import { OneOf, Required, Type, Url } from '@/utils';
 import { version } from '@root/package.json';
-import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { Variant, VARIANTS } from './variants';
 
 /**
- * @slot default - The content displayed inside the breadcrumb item.
+ * @slot default - The content displayed inside the breadcrumb item. Can contain text or an <a> element, so consumers can slot their own routing-aware link (e.g. Next.js Link) instead of relying on the `url` prop.
  */
 @Component({
   tag: 'post-breadcrumb-item',
@@ -14,8 +14,12 @@ import { Variant, VARIANTS } from './variants';
 export class PostBreadcrumbItem {
   @Element() host: HTMLPostBreadcrumbItemElement;
 
+  // Whether the consumer slotted their own <a>. When true, the component renders only the
+  // <slot>, leaving the slotted anchor untouched so the host app's router can handle clicks.
+  @State() hasSlottedAnchor = false;
+
   /**
-   * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
+   * The destination URL for the breadcrumb item. Ignored if an `<a>` element is slotted in. If both are omitted, the item is rendered as non-interactive text.
    */
   @Prop({ reflect: true })
   @Url()
@@ -50,22 +54,32 @@ export class PostBreadcrumbItem {
   @Type('boolean')
   selected = false;
 
+  componentWillLoad() {
+    this.checkSlottedAnchor();
+  }
+
+  private checkSlottedAnchor() {
+    this.hasSlottedAnchor = this.host.querySelector('a') !== null;
+  }
+
   render() {
     const href = this.url instanceof URL ? this.url.href : this.url;
-    const content = href ? (
+    const content = this.hasSlottedAnchor ? (
+      <slot onSlotchange={() => this.checkSlottedAnchor()}></slot>
+    ) : (href ? (
       <a
         href={href}
         aria-current={this.selected ? 'page' : undefined}
         aria-label={this.label}
         aria-description={this.description}
       >
-        <slot></slot>
+        <slot onSlotchange={() => this.checkSlottedAnchor()}></slot>
       </a>
     ) : (
       <span>
-        <slot></slot>
+        <slot onSlotchange={() => this.checkSlottedAnchor()}></slot>
       </span>
-    );
+    ));
 
     return this.variant === 'listitem' || this.selected ? (
       <Host data-version={version} role="listitem" slot={this.selected ? 'selected' : undefined}>
