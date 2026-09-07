@@ -1,12 +1,12 @@
 import { POPOVER_OPEN_SELECTOR } from './helper/popovercontainer';
 
-const LANGUAGE_SWITCH_ID = 'decbb10c-2b39-4f47-b67d-337d8111a3ae';
+const LANGUAGE_MENU_ID = 'decbb10c-2b39-4f47-b67d-337d8111a3ae';
 const LANGUAGE_OPTION_ID = '3753ab83-a659-47b5-a2f2-ac452ec97916';
 
 describe('post-language-menu', () => {
   describe('list variant', () => {
     beforeEach(() => {
-      cy.getComponent('language-menu', LANGUAGE_SWITCH_ID);
+      cy.getComponent('language-menu', LANGUAGE_MENU_ID);
     });
 
     it('should render', () => {
@@ -65,7 +65,7 @@ describe('post-language-menu', () => {
 
   describe('menu variant', () => {
     beforeEach(() => {
-      cy.getComponent('language-menu', LANGUAGE_SWITCH_ID);
+      cy.getComponent('language-menu', LANGUAGE_MENU_ID);
       cy.get('@language-menu').invoke('prop', 'variant', 'menu');
       // Wait for post-menu-trigger to be fully hydrated after the variant re-render.
       // aria-expanded is set in componentDidLoad of post-menu-trigger — its presence
@@ -174,11 +174,11 @@ describe('post-language-menu', () => {
 
   describe('Accessibility', () => {
     it('Has no detectable a11y violations for all variants', () => {
-      cy.getComponent('language-menu', LANGUAGE_SWITCH_ID);
+      cy.getComponent('language-menu', LANGUAGE_MENU_ID);
       cy.checkA11y('#root-inner', undefined, violations => {
         expect(violations).to.have.length(0);
       });
-      cy.getComponent('language-menu', LANGUAGE_SWITCH_ID);
+      cy.getComponent('language-menu', LANGUAGE_MENU_ID);
       cy.get('post-language-menu').invoke('prop', 'variant', 'menu');
       cy.get('post-language-menu[data-hydrated]')
         .find('post-menu-trigger')
