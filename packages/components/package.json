@@ -81,6 +81,7 @@
     "start": "pnpm prebuild:script && stencil build --dev --watch --docs --docs-readme",
     "prebuild": "pnpm clean && pnpm prebuild:script",
     "build": "stencil build --docs-readme",
+    "check": "tsc --noEmit",
     "postbuild": "pnpm copy:hydrate-stub & pnpm copy:component-names & pnpm copy:styles:components-react & pnpm copy:styles:components-angular",
     "clean": "rimraf --glob dist hydrate loader loaders www src/styles/generated src/_generated ../components-react/**/stencil-generated/ ../components-angular/**/stencil-generated/",
     "unit": "stencil test --spec",

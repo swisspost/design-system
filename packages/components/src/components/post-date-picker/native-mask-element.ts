@@ -23,20 +23,20 @@ export class NativeInputMaskElement extends HTMLInputMaskElement {
     if (!e.isTrusted) e.stopImmediatePropagation();
   };
 
-  get value(): string {
+  override get value(): string {
     return nativeValueDescriptor().get!.call(this.input);
   }
 
-  set value(val: string) {
+  override set value(val: string) {
     nativeValueDescriptor().set!.call(this.input, val);
   }
 
-  bindEvents(handlers: EventHandlers): void {
+  override bindEvents(handlers: EventHandlers): void {
     this.input.addEventListener('input', this._inputEventSuppressor, true);
     super.bindEvents(handlers);
   }
 
-  unbindEvents(): void {
+  override unbindEvents(): void {
     this.input.removeEventListener('input', this._inputEventSuppressor, true);
     super.unbindEvents();
   }
