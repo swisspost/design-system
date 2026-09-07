@@ -1,12 +1,11 @@
 {
-  "extends": "@tsconfig/node24/tsconfig.json",
+  "extends": "../../configs/typescript/tsconfig.node.json",
   "ts-node": {
     "transpileOnly": true,
     "files": true
   },
   "compilerOptions": {
     "rootDir": ".",
-    "resolveJsonModule": true,
     "types": ["node", "jest"],
     "isolatedModules": true
   },

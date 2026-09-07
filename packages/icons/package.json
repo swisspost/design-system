@@ -25,6 +25,7 @@
     "play": "pnpm build && http-server ./public -o -a localhost -p 9330",
     "start": "nodemon",
     "build": "pnpm clean && ts-node src/build.ts",
+    "check": "tsc --noEmit",
     "clean": "rimraf public/post-icons public/report.json dist",
     "unit": "jest",
     "unit:watch": "jest --watch",
@@ -35,7 +36,6 @@
   },
   "devDependencies": {
     "@eslint/js": "9.18.0",
-    "@tsconfig/node24": "24.0.4",
     "@types/jest": "catalog:jest",
     "@types/mock-fs": "4.13.4",
     "@types/node": "catalog:node",

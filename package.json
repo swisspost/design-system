@@ -79,6 +79,7 @@
     "icons:play": "pnpm --filter design-system-icons play",
     "icons:start": "pnpm --filter design-system-icons start",
     "icons:build": "pnpm --filter design-system-icons build",
+    "icons:check": "pnpm --filter design-system-icons check",
     "icons:unit": "pnpm --filter design-system-icons unit",
     "icons:unit:watch": "pnpm --filter design-system-icons unit:watch",
     "icons:lint": "pnpm --filter design-system-icons lint",
