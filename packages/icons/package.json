@@ -24,7 +24,7 @@
   "scripts": {
     "play": "pnpm build && http-server ./public -o -a localhost -p 9330",
     "start": "nodemon",
-    "build": "pnpm clean && ts-node src/build.ts",
+    "build": "pnpm clean && pnpm check && ts-node src/build.ts",
     "check": "tsc --noEmit",
     "clean": "rimraf public/post-icons public/report.json dist",
     "unit": "jest",

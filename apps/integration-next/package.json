@@ -15,17 +15,17 @@
   },
   "scripts": {
     "start": "next dev",
-    "build": "pnpm run typecheck && pnpm clean && next build",
+    "build": "pnpm clean && pnpm check && next build",
     "build:serve": "pnpm build && next start",
     "analyze": "next experimental-analyze",
+    "check": "tsc --noEmit",
     "clean": "rimraf .next",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "e2e": "pnpm exec playwright test",
     "e2e:watch": "pnpm exec playwright test --ui",
     "unit": "vitest run",
-    "unit:watch": "vitest",
-    "typecheck": "tsc --noEmit"
+    "unit:watch": "vitest"
   },
   "dependencies": {
     "@swisspost/design-system-components-react": "workspace:10.4.0",

@@ -17,6 +17,7 @@
     "ng": "ng",
     "start": "ng serve --port 9210",
     "build": "ng build",
+    "check": "tsc --noEmit -p tsconfig.app.json",
     "clean": "rimraf dist .angular",
     "e2e": "playwright test",
     "e2e:ci": "playwright test",

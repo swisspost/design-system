@@ -1,25 +1,22 @@
 {
+  "extends": "../../configs/typescript/tsconfig.dom.json",
   "compilerOptions": {
+    "allowJs": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
     "paths": {
       "@root/*": ["./*"],
       "@/*": ["./src/*"]
     },
-    "target": "es2022",
-    "useDefineForClassFields": false,
-    "lib": ["DOM", "DOM.Iterable", "es2022"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "experimentalDecorators": true
+
+    // Pre-existing debt. Drop once sources are clean.
+    "noImplicitOverride": false,
+    "noImplicitReturns": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
   },
-  "include": [".storybook/*", "src", "types", "../internet-header/src/components.d.ts"],
+  "include": [".storybook/*", "src", "types"],
   "exclude": ["node_modules", "src/**/*.sample.*"]
 }
