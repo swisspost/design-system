@@ -110,6 +110,7 @@
     "apps-next:unit:watch": "pnpm --filter design-system-integration-next unit:watch",
     "tokens:build": "pnpm --filter design-system-tokens build",
     "tokens:build:verbose": "pnpm --filter design-system-tokens build:verbose",
+    "tokens:check": "pnpm --filter design-system-tokens check",
     "tokens:lint": "pnpm --filter design-system-tokens lint",
     "tokens:lint:fix": "pnpm --filter design-system-tokens lint:fix",
     "tokens:usage": "node ./utilities/token-checker.cjs",

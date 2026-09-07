@@ -15,7 +15,7 @@
     },
     "declaration": false,
 
-    // Pre-existing debt. Drop these overrides once the sources are clean.
+    // Pre-existing debt. Drop once sources are clean.
     "strict": false,
     "noImplicitReturns": false
   },

@@ -23,6 +23,7 @@
   "scripts": {
     "build": "pnpm clean && tsc -p . && node ./dist/build.js && pnpm copy-files",
     "build:verbose": "pnpm clean && tsc -p . && node ./dist/build.js --verbosity=verbose && pnpm copy-files",
+    "check": "tsc --noEmit",
     "clean": "rimraf dist",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
