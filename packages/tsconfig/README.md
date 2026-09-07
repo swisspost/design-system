@@ -15,9 +15,9 @@ Shared TypeScript configurations used across the Swiss Post Design System.
 
 ## Contribute
 
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](/CODE_OF_CONDUCT.md)
 
-Considering supporting the Swiss Post Design System with your contribution? Whether you like to contribute new patterns, fix a bug, spotted a typo or have ideas for improvement - we'd love to hear from you. Learn how you can contribute to this project in the [components contribution guidelines](./CONTRIBUTING.md) and also take a look at the [general contribution guidelines](../../CONTRIBUTING.md).
+Considering supporting the Swiss Post Design System with your contribution? Whether you like to contribute new patterns, fix a bug, spotted a typo or have ideas for improvement - we'd love to hear from you. Learn how you can contribute to this project in the [components contribution guidelines](./CONTRIBUTING.md) and also take a look at the [general contribution guidelines](/CONTRIBUTING.md).
 
 For any questions regarding the pattern library, you can reach out on the [discussions page](https://github.com/swisspost/design-system/discussions).
 
