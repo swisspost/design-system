@@ -1,5 +1,6 @@
 {
   "extends": "./tsconfig.dom.json",
+  "compileOnSave": false,
   "compilerOptions": {
     "experimentalDecorators": true,
     "importHelpers": true,

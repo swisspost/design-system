@@ -1,6 +1,5 @@
 {
   "extends": "../../configs/typescript/tsconfig.angular.json",
-  "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./out-tsc/lib",
     "declaration": true,
