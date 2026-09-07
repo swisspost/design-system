@@ -1,18 +1,10 @@
 {
+  "extends": "../../configs/typescript/tsconfig.node.json",
   "compilerOptions": {
-    "lib": ["es2022"],
     "declaration": true,
-    "module": "node16",
-    "moduleResolution": "node16",
     "noEmitOnError": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
     "rootDir": "src",
-    "outDir": "dist",
-    "strictNullChecks": true,
-    "target": "es2022",
-    "skipLibCheck": true
+    "outDir": "dist"
   },
   "include": ["src", "types"],
   "exclude": ["node_modules", "dist"]
