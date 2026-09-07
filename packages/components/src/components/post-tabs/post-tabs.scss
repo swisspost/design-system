@@ -79,9 +79,16 @@ $tabs-outline-offset: tokens.get('focus-outline-offset3', helpers.$post-focus);
 :host(.page-tabs) {
   overflow: visible !important;
 
+  // Matches the gap between `100vw` and the true scrollbar-excluded page width (confirmed via
+  // devtools: window.innerWidth vs document.documentElement.clientWidth). Keeps `.tabs-wrapper`'s
+  // real box — which positions real, clickable scroll buttons — a safe margin short of the true
+  // page edge on both sides, so it can never be pushed into genuine scrollable overflow by a
+  // --post-container-offset rounding/scrollbar-width discrepancy.
+  $safe-edge-margin: 15px;
+
   .tabs-wrapper {
     // These styles are required to stretch the bottom line to the edges of the container
-    margin-inline: calc(-1 * (var(--post-container-offset)));
+    margin-inline: calc(-1 * (var(--post-container-offset)) + #{$safe-edge-margin});
 
     button.scroll-btn {
       color: tokens.get('post-tabs-page-scroll-button-enabled-fg');
@@ -132,9 +139,20 @@ $tabs-outline-offset: tokens.get('focus-outline-offset3', helpers.$post-focus);
       width: 100%;
       height: tokens.get('post-tabs-border-width');
       background-color: tokens.get('post-tabs-page-border');
+      // .tabs-wrapper is intentionally kept $safe-edge-margin short of the true page edge on
+      // each side (see its margin-inline above). This line is purely decorative — it never
+      // holds real content or receives clicks — so unlike the wrapper, it can visually reach
+      // back out to the true edge on both sides via box-shadow, which only paints (ink overflow)
+      // and never contributes to scrollWidth/scrollable overflow the way a real box would.
+      box-shadow:
+        $safe-edge-margin 0 0 tokens.get('post-tabs-page-border'),
+        (-$safe-edge-margin) 0 0 tokens.get('post-tabs-page-border');
 
       @include utilities-mx.high-contrast-mode() {
         background-color: LinkText;
+        box-shadow:
+          $safe-edge-margin 0 0 LinkText,
+          (-$safe-edge-margin) 0 0 LinkText;
       }
     }
 
