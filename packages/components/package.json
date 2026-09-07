@@ -126,6 +126,7 @@
     "@stencil/react-output-target": "1.2.0",
     "@stencil/sass": "3.0.12",
     "@swisspost/design-system-eslint": "workspace:10.4.0",
+    "@swisspost/design-system-tsconfig": "workspace:10.4.0",
     "@types/jest": "catalog:stencil/jest",
     "@types/node": "catalog:node",
     "@typescript-eslint/parser": "7.18.0",

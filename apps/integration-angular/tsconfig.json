@@ -1,5 +1,5 @@
 {
-  "extends": "../../configs/typescript/tsconfig.angular.json",
+  "extends": "@swisspost/design-system-tsconfig/angular.tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "declaration": false

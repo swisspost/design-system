@@ -1,5 +1,5 @@
 {
-  "extends": "../../configs/typescript/tsconfig.node.json",
+  "extends": "@swisspost/design-system-tsconfig/node.tsconfig.json",
   "compilerOptions": {
     "declaration": true,
     "declarationMap": true,

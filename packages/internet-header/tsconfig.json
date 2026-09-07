@@ -1,5 +1,5 @@
 {
-  "extends": "../../configs/typescript/tsconfig.stencil.json",
+  "extends": "@swisspost/design-system-tsconfig/stencil.tsconfig.json",
   "compilerOptions": {
     "declaration": true,
     "types": ["node", "jest"],

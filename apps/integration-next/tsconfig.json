@@ -1,5 +1,5 @@
 {
-  "extends": "../../configs/typescript/tsconfig.dom.json",
+  "extends": "@swisspost/design-system-tsconfig/dom.tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
     "noEmit": true,

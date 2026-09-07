@@ -1,5 +1,6 @@
 {
-  "extends": "./tsconfig.dom.json",
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./dom.tsconfig.json",
   "compileOnSave": false,
   "compilerOptions": {
     "experimentalDecorators": true,
