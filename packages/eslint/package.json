@@ -29,6 +29,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "pnpm clean && tsc -p tsconfig.build.json",
+    "check": "tsc -p . --noEmit",
     "start": "pnpm build --watch",
     "inspect": "concurrently -n start,inspect -c cyan,green \"pnpm start\" \"eslint --c eslint.play.js --inspect-config\"",
     "lint": "eslint",
