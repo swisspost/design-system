@@ -61,6 +61,7 @@
     "components-angular:lint": "pnpm --filter design-system-components-angular lint",
     "components-angular:lint:fix": "pnpm --filter design-system-components-angular lint:fix",
     "components-react:build": "pnpm --filter design-system-components-react build",
+    "components-react:check": "pnpm --filter design-system-components-react check",
     "components-react:lint": "pnpm --filter design-system-components-react lint",
     "components-react:lint:fix": "pnpm --filter design-system-components-react lint:fix",
     "header": "pnpm header:start",

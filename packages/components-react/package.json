@@ -72,6 +72,7 @@
     "build": "pnpm clean && pnpm build:icons && tsc -p .",
     "postbuild": "pnpm copy:styles:dist",
     "build:icons": "node scripts/generate-icons.mjs",
+    "check": "tsc --noEmit",
     "clean": "rimraf dist src/icons-generated",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
