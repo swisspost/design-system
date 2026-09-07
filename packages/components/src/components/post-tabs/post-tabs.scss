@@ -79,13 +79,31 @@ $tabs-outline-offset: tokens.get('focus-outline-offset3', helpers.$post-focus);
 :host(.page-tabs) {
   overflow: visible !important;
 
-  // Keeps `.tabs-wrapper` this far short of the true page edge, so the `100vw`/scrollbar-width
-  // gap in `--post-container-offset` can never push it into horizontal overflow
-  $safe-edge-margin: 20px;
-
   .tabs-wrapper {
     // These styles are required to stretch the bottom line to the edges of the container
-    margin-inline: calc(-1 * (var(--post-container-offset)) + #{$safe-edge-margin});
+    margin-inline: calc(-1 * (var(--post-container-offset)));
+
+    @include media.min(desktop) {
+      // Keeps `.tabs-wrapper` this far short of the true page edge, so the `100vw`/scrollbar-width
+      // gap in `--post-container-offset` can never push it into horizontal overflow
+      $safe-edge-margin: 20px;
+
+      margin-inline: calc(-1 * (var(--post-container-offset)) + #{$safe-edge-margin});
+
+      &::after {
+        // Extends the line drawn by ::after to reach the true page edge, without creating
+        // horizontal overflow
+        box-shadow:
+          $safe-edge-margin 0 0 tokens.get('post-tabs-page-border'),
+          (-$safe-edge-margin) 0 0 tokens.get('post-tabs-page-border');
+
+        @include utilities-mx.high-contrast-mode() {
+          box-shadow:
+            $safe-edge-margin 0 0 LinkText,
+            (-$safe-edge-margin) 0 0 LinkText;
+        }
+      }
+    }
 
     button.scroll-btn {
       color: tokens.get('post-tabs-page-scroll-button-enabled-fg');
@@ -136,17 +154,9 @@ $tabs-outline-offset: tokens.get('focus-outline-offset3', helpers.$post-focus);
       width: 100%;
       height: tokens.get('post-tabs-border-width');
       background-color: tokens.get('post-tabs-page-border');
-      // Extends the line drawn by ::after to reach the true page edge, without creating
-      // horizontal overflow
-      box-shadow:
-        $safe-edge-margin 0 0 tokens.get('post-tabs-page-border'),
-        (-$safe-edge-margin) 0 0 tokens.get('post-tabs-page-border');
 
       @include utilities-mx.high-contrast-mode() {
         background-color: LinkText;
-        box-shadow:
-          $safe-edge-margin 0 0 LinkText,
-          (-$safe-edge-margin) 0 0 LinkText;
       }
     }
 
