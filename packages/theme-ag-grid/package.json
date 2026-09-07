@@ -26,7 +26,8 @@
   },
   "private": false,
   "scripts": {
-    "build": "npx tsc"
+    "build": "npx tsc",
+    "check": "tsc --noEmit"
   },
   "keywords": [
     "design-system",

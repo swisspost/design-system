@@ -1,13 +1,9 @@
 {
+  "extends": "../../configs/typescript/tsconfig.dom.json",
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "src",
-    "declaration": true,
-    "module": "ESNext",
-    "target": "ES2020",
-    "moduleResolution": "Bundler",
-    "strict": true,
-    "skipLibCheck": true
+    "declaration": true
   },
   "include": ["src"]
 }
