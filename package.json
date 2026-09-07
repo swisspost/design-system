@@ -68,6 +68,7 @@
     "header:play": "pnpm --filter internet-header play",
     "header:start": "pnpm --filter internet-header start",
     "header:build": "pnpm --filter internet-header build",
+    "header:check": "pnpm --filter internet-header check",
     "header:unit": "pnpm --filter internet-header unit",
     "header:unit:watch": "pnpm --filter internet-header unit:watch",
     "header:e2e": "start-server-and-test 'pnpm docs:headless' 9001 'pnpm --filter internet-header e2e'",
