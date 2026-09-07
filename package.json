@@ -57,6 +57,7 @@
     "components:vrt:safari": "pnpm --filter design-system-components build && pnpm --filter design-system-components vrt:safari",
     "components-angular:ng": "pnpm --filter design-system-components-angular ng",
     "components-angular:build": "pnpm --filter design-system-components-angular build",
+    "components-angular:check": "pnpm --filter design-system-components-angular check",
     "components-angular:lint": "pnpm --filter design-system-components-angular lint",
     "components-angular:lint:fix": "pnpm --filter design-system-components-angular lint:fix",
     "components-react:build": "pnpm --filter design-system-components-react build",

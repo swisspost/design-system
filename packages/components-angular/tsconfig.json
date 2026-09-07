@@ -1,36 +1,20 @@
 {
+  "extends": "../../configs/typescript/tsconfig.angular.json",
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./out-tsc/lib",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitOverride": false,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
-    "moduleResolution": "bundler",
-    "importHelpers": true,
-    "module": "esnext",
-    "target": "es2022",
-    "lib": ["es2022", "dom"],
     "types": []
   },
   "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
     "extendedDiagnostics": {
       "checks": {
         "nullishCoalescingNotNullable": "suppress",
         "optionalChainNotNullable": "suppress"
       }
-    },
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    }
   },
   "exclude": ["**/*.spec.ts"]
 }

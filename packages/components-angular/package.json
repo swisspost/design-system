@@ -24,6 +24,7 @@
   "scripts": {
     "ng": "ng",
     "build": "pnpm clean && ng build components",
+    "check": "tsc --noEmit",
     "postbuild": "copyfiles -f src/stencil-generated/post-components.css dist/",
     "clean": "rimraf dist .angular",
     "lint": "ng lint",
