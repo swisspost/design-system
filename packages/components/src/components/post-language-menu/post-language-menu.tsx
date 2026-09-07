@@ -73,7 +73,7 @@ export class PostLanguageMenu {
 
   componentDidLoad() {
     // Initially set variants and active language
-    // Handles cases where the language-menu is rendered after the language-options have been rendered
+    // Handles cases where the language-menu is rendered after the language-menu-items have been rendered
     this.updateChildrenVariant();
   }
 
