@@ -63,8 +63,7 @@ export class MigrationV78Component extends LitElement {
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            ng-bootstrap 17.x.x changelog
-                          </a>
+                            ng-bootstrap 17.x.x changelog<span class="visually-hidden">(opens in a new tab)</span></a>
                           for more details.
                         </div>
                       </li>

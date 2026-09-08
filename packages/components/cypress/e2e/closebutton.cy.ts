@@ -1,4 +1,7 @@
+import { getPopoverOpenSelector } from './helper/popovercontainer';
+
 const CLOSE_BTN_ID = 'de313349-0c0b-4baf-adc6-cb8c2e36fc1a';
+const POPOVER_OPEN_SELECTOR = getPopoverOpenSelector();
 
 describe('Close button', () => {
   describe('default', () => {
@@ -21,7 +24,7 @@ describe('Close button', () => {
 
       it('closes the dialog without any wiring', () => {
         cy.get('dialog').should('not.have.attr', 'open');
-        cy.get('button').contains('Open dialog').click();
+        cy.get('button').contains('Show dialog').click();
         cy.get('dialog').should('have.attr', 'open');
 
         cy.get('@closebutton').click();
@@ -41,55 +44,65 @@ describe('Close button', () => {
       });
     });
 
-    describe('rendered inside shadow DOM: <post-popover>', () => {
+    describe('rendered inside shadow DOM: <post-popover>', { baseUrl: null }, () => {
       beforeEach(() => {
-        cy.getComponent('post-closebutton', CLOSE_BTN_ID, 'close-post-popover');
+        cy.visit('./cypress/fixtures/post-popover.test.html');
+        cy.get('post-popover[data-hydrated][id="popover-one"]').as('popover');
+        cy.get('post-popover-trigger[data-hydrated][for="popover-one"]')
+          .find('button')
+          .as('triggerButton');
+        cy.get('@popover').find('post-closebutton').as('closebutton');
       });
 
       it('hides the popover using its built-in close button without any wiring', () => {
-        cy.get('post-popover-trigger').find('button').click();
-        cy.get('post-popover').should('be.visible');
+        cy.get('@triggerButton').click();
+        cy.get(POPOVER_OPEN_SELECTOR).should('have.length', 1);
 
-        cy.get('post-popover').find('post-closebutton').click();
-        cy.get('post-popover').should('not.be.visible');
+        cy.get('@closebutton').shadow().find('button').click();
+        cy.get(POPOVER_OPEN_SELECTOR).should('not.exist');
       });
     });
 
-    describe('post-popovercontainer', () => {
+    describe('post-popovercontainer', { baseUrl: null }, () => {
       beforeEach(() => {
-        cy.getComponent('post-closebutton', CLOSE_BTN_ID, 'close-post-popover-container');
+        cy.visit('./cypress/fixtures/post-closebutton.test.html');
+        cy.get('post-closebutton[data-hydrated]').as('closebutton');
       });
 
       it('hides the popovercontainer without any wiring', () => {
-        cy.get('button').contains('Open popovercontainer').click();
-        cy.get('post-popovercontainer').should('be.visible');
+        cy.get('#open-popovercontainer').click();
+        cy.get(POPOVER_OPEN_SELECTOR).should('have.id', 'close-button-popovercontainer');
 
-        cy.get('@closebutton').click();
-        cy.get('post-popovercontainer').should('not.be.visible');
+        cy.get('@closebutton').shadow().find('button').click();
+        cy.get(POPOVER_OPEN_SELECTOR).should('not.exist');
       });
     });
 
-    describe('post-collapsible', () => {
+    describe('post-collapsible', { baseUrl: null }, () => {
       beforeEach(() => {
-        cy.getComponent('post-closebutton', CLOSE_BTN_ID, 'close-collapsible');
+        cy.visit('./cypress/fixtures/post-collapsible.test.html');
+        cy.get('#close-button-target post-collapsible[data-hydrated]').as('collapsible');
+        cy.get('#close-button-target post-closebutton[data-hydrated]').as('closebutton');
       });
 
       it('collapses the collapsible without any wiring', () => {
-        cy.get('post-collapsible').should('be.visible');
-        cy.get('@closebutton').click();
-        cy.get('post-collapsible').should('be.hidden');
+        cy.get('@collapsible').should('be.visible');
+        cy.get('@closebutton').shadow().find('button').click();
+        cy.get('@collapsible').should('be.hidden');
       });
     });
 
-    describe('post-accordion-item', () => {
+    describe('post-accordion-item', { baseUrl: null }, () => {
       beforeEach(() => {
-        cy.getComponent('post-closebutton', CLOSE_BTN_ID, 'close-accordion-item');
+        cy.visit('./cypress/fixtures/post-accordion-item.test.html');
+        cy.get('post-accordion-item[data-hydrated]').as('accordion-item');
+        cy.get('@accordion-item').find('post-closebutton[data-hydrated]').as('closebutton');
       });
 
       it('collapses the accordion item without any wiring', () => {
-        cy.get('post-accordion-item').shadow().find('post-collapsible').should('be.visible');
-        cy.get('@closebutton').click();
-        cy.get('post-accordion-item').shadow().find('post-collapsible').should('be.hidden');
+        cy.get('@accordion-item').shadow().find('post-collapsible').should('be.visible');
+        cy.get('@closebutton').shadow().find('button').click();
+        cy.get('@accordion-item').shadow().find('post-collapsible').should('be.hidden');
       });
     });
   });
