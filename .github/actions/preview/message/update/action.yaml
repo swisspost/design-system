@@ -11,6 +11,10 @@ inputs:
   preview-url:
     description: The preview url to add in the comment.
     required: true
+  snapshot-story-ids:
+    description: Comma separated storybook snapshot story ids of the components changed in the pull request.
+    required: false
+    default: ''
 
 runs:
   using: composite
@@ -19,10 +23,11 @@ runs:
       env:
         ISSUE_NUMBER: ${{ inputs.issue-number }}
         PREVIEW_URL: ${{ inputs.preview-url }}
+        SNAPSHOT_STORY_IDS: ${{ inputs.snapshot-story-ids }}
       with:
         github-token: ${{ inputs.access-token }}
         script: |
-          const { ISSUE_NUMBER, PREVIEW_URL } = process.env
+          const { ISSUE_NUMBER, PREVIEW_URL, SNAPSHOT_STORY_IDS } = process.env
 
           const commentTitle = '**Related Previews**'
           const commentInitialBody = 'Preview URLs will be added here, once they are ready... ![loader](https://github.com/swisspost/design-system/assets/9716662/49a75898-7093-4ffb-9460-071ff194459d)'
@@ -49,6 +54,12 @@ runs:
               const iconHealthURL = URL.parse(PREVIEW_URL)
               iconHealthURL.searchParams.set('path', '/docs/health-icons--docs')
               updates.push(`- ${iconHealthURL.toString()}\n`)
+            }
+
+            for (const storyId of (SNAPSHOT_STORY_IDS || '').split(',').filter(Boolean)) {
+              const snapshotURL = URL.parse(PREVIEW_URL)
+              snapshotURL.searchParams.set('path', `/story/${storyId}`)
+              updates.push(`- Snapshots \`${storyId.replace('snapshots--', '')}\`: ${snapshotURL.toString()}\n`)
             }
 
             await github.rest.issues.updateComment({
