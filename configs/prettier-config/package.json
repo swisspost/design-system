@@ -1,0 +1,31 @@
+{
+  "name": "@swisspost/design-system-prettier-config",
+  "version": "10.4.0",
+  "description": "Shared Prettier configuration for the Swiss Post Design System.",
+  "author": "Swiss Post <design-system@post.ch>",
+  "license": "Apache-2.0",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git",
+    "directory": "configs/prettier-config"
+  },
+  "homepage": "https://design-system.post.ch",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
+  "exports": "./index.mjs",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "prettier": ">=3.0.0"
+  },
+  "devDependencies": {
+    "prettier": "3.9.6"
+  },
+  "keywords": [
+    "design-system",
+    "prettier"
+  ]
+}
