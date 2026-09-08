@@ -29,8 +29,10 @@ const tokenize = value =>
     .filter(Boolean)
     .map(token => token.replace(/s$/, ''));
 
+// The index is built from pull request code, so ids that could not be embedded safely are dropped.
 const stories = Object.values(storybookIndex.entries ?? {})
   .filter(entry => entry.type === 'story' && entry.title === 'Snapshots')
+  .filter(entry => /^snapshots--[a-z0-9]+(-[a-z0-9]+)*$/.test(entry.id))
   .map(entry => ({ id: entry.id, tokens: tokenize(entry.id.replace(/^snapshots--/, '')) }));
 
 function indexOfTokens(haystack, needle) {
