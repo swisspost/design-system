@@ -31,7 +31,7 @@ export class PostBanner {
 
   @Element() host: HTMLPostBannerElement;
 
-  @State() hasActions = false; // this is a test comment
+  @State() hasActions = false;
 
   /**
    * The type of the banner.
