@@ -4,8 +4,6 @@
 
 Shared Stylelint configuration used across the Swiss Post Design System.
 
-It builds on [`stylelint-config-sass-guidelines`](https://github.com/bjankord/stylelint-config-sass-guidelines) and enables the [`stylelint-scss`](https://github.com/stylelint-scss/stylelint-scss) plugin, so both are installed for you.
-
 ## Installation
 
 ```bash

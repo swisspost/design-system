@@ -736,6 +736,9 @@ importers:
       '@swisspost/design-system-eslint':
         specifier: workspace:10.4.0
         version: link:../eslint
+      '@swisspost/design-system-stylelint-config':
+        specifier: workspace:10.4.0
+        version: link:../../tooling/stylelint
       '@swisspost/design-system-tsconfig':
         specifier: workspace:10.4.0
         version: link:../../tooling/typescript
@@ -799,6 +802,9 @@ importers:
       sass:
         specifier: 1.101.0
         version: 1.101.0
+      stylelint:
+        specifier: 'catalog:'
+        version: 16.26.1(supports-color@10.2.2)(typescript@6.0.3)
       throttle-debounce:
         specifier: 5.0.2
         version: 5.0.2
