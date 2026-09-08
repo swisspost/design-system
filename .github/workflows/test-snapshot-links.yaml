@@ -1,0 +1,76 @@
+###
+#
+# TEMPORARY: verifies the snapshot preview links from the branch.
+# Unlike "Deploy Documentation Preview" this runs on pull_request, so it uses the branch version
+# of the workflow, the script and the composite action. Delete before merging.
+#
+###
+
+name: TEST Snapshot Preview Links
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  test:
+    name: TEST Snapshot Preview Links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+
+      - name: Setup
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Install documentation & dependencies
+        run: pnpm --filter design-system-documentation... install
+
+      - name: Build documentation & dependencies
+        run: pnpm --filter design-system-documentation... build
+
+      - name: Get files changed by the pull request
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        with:
+          script: |
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: Number(process.env.PR_NUMBER),
+              per_page: 100,
+            });
+
+            require('fs').writeFileSync(
+              'changed-files.json',
+              JSON.stringify(files.map(file => file.filename)),
+            );
+
+      - name: Get changed snapshot stories
+        run: |
+          STORY_IDS=$(node .github/scripts/changed-snapshot-stories.mjs \
+            changed-files.json apps/documentation/storybook-static/index.json --verbose | node -e "
+            const ids = JSON.parse(require('fs').readFileSync(0, 'utf8'));
+            console.log(ids.slice(0, 10).join(','));
+          ")
+
+          echo "SNAPSHOT_STORY_IDS=$STORY_IDS" >> $GITHUB_ENV
+
+      # The preview itself is deployed by the regular pipeline, this only rebuilds its url.
+      - name: Rebuild the preview url
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          SITE_URL=$(node -p "require('./apps/documentation/netlify.config.json').siteUrl")
+          echo "PREVIEW_URL=https://preview-${PR_NUMBER}--${SITE_URL}?devModeEnabled=true" >> $GITHUB_ENV
+
+      - name: Update preview message
+        uses: ./.github/actions/preview/message/update
+        with:
+          access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          preview-url: ${{ env.PREVIEW_URL }}
+          snapshot-story-ids: ${{ env.SNAPSHOT_STORY_IDS }}
