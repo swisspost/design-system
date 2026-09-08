@@ -574,7 +574,7 @@ export namespace Components {
          */
         "arrow"?: boolean;
         /**
-          * Whether to automatically hide the popover when the target moves outside the scrollport.
+          * Whether to automatically hide the popover when the target moves outside the scrollport.  If the `post-header` can cover the target, the popover will also be hidden as soon as the target scrolls behind it.
          */
         "autoHide"?: boolean;
         /**
@@ -1831,7 +1831,7 @@ declare namespace LocalJSX {
          */
         "arrow"?: boolean;
         /**
-          * Whether to automatically hide the popover when the target moves outside the scrollport.
+          * Whether to automatically hide the popover when the target moves outside the scrollport.  If the `post-header` can cover the target, the popover will also be hidden as soon as the target scrolls behind it.
          */
         "autoHide"?: boolean;
         /**
