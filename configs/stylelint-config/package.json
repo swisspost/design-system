@@ -1,0 +1,41 @@
+{
+  "name": "@swisspost/design-system-stylelint-config",
+  "version": "10.4.0",
+  "description": "Shared Stylelint configuration for the Swiss Post Design System.",
+  "author": "Swiss Post <design-system@post.ch>",
+  "license": "Apache-2.0",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git",
+    "directory": "configs/stylelint-config"
+  },
+  "homepage": "https://design-system.post.ch",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
+  "exports": "./index.mjs",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "stylelint-config-sass-guidelines": "13.0.0",
+    "stylelint-scss": "6.12.1"
+  },
+  "peerDependencies": {
+    "stylelint": ">=16.0.0"
+  },
+  "devDependencies": {
+    "stylelint": "catalog:"
+  },
+  "files": [
+    "index.mjs",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "keywords": [
+    "design-system",
+    "stylelint"
+  ]
+}

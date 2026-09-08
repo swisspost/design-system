@@ -6,6 +6,7 @@ packages:
 catalog:
   '@playwright/test': 1.60.0
   'prettier': 3.6.2
+  'stylelint': 16.26.1
 
 catalogs:
   cypress:
