@@ -27,7 +27,7 @@
   "private": false,
   "scripts": {
     "build": "tsc",
-    "check": "tsc --noEmit"
+    "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
     "primeng": "^21.0.0"

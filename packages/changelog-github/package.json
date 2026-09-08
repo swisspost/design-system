@@ -19,7 +19,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "build": "tsc",
-    "check": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "clean": "rimraf dist"

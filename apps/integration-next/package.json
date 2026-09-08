@@ -15,10 +15,10 @@
   },
   "scripts": {
     "start": "next dev",
-    "build": "pnpm clean && pnpm check && next build",
+    "build": "pnpm clean && pnpm typecheck && next build",
     "build:serve": "pnpm build && next start",
     "analyze": "next experimental-analyze",
-    "check": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
     "clean": "rimraf .next",
     "lint": "eslint",
     "lint:fix": "eslint --fix",

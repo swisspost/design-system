@@ -31,8 +31,8 @@
   "scripts": {
     "play": "stencil build --serve --port 9310 --watch --docs-readme --dev --config stencil.config.dev.ts",
     "start": "stencil build --watch --docs-readme",
-    "build": "pnpm clean && pnpm check && stencil build --docs-readme",
-    "check": "tsc --noEmit",
+    "build": "pnpm clean && pnpm typecheck && stencil build --docs-readme",
+    "typecheck": "tsc --noEmit",
     "clean": "rimraf www dist loader",
     "unit": "jest",
     "unit:watch": "jest --watch",

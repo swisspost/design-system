@@ -24,8 +24,8 @@
   "scripts": {
     "play": "pnpm build && http-server ./public -o -a localhost -p 9330",
     "start": "nodemon",
-    "build": "pnpm clean && pnpm check && ts-node src/build.ts",
-    "check": "tsc --noEmit",
+    "build": "pnpm clean && pnpm typecheck && ts-node src/build.ts",
+    "typecheck": "tsc --noEmit",
     "clean": "rimraf public/post-icons public/report.json dist",
     "unit": "jest",
     "unit:watch": "jest --watch",

@@ -1,7 +1,7 @@
 packages:
   - 'apps/*'
-  - 'configs/*'
   - 'packages/*'
+  - 'tooling/*'
 
 catalog:
   '@playwright/test': 1.60.0
