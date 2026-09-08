@@ -4,8 +4,8 @@ import { html } from 'lit';
 
 const meta: MetaComponent<HTMLPostLanguageMenuElement> = {
   id: 'decbb10c-2b39-4f47-b67d-337d8111a3ae',
-  title: 'Raw Components/Language Menu',
-  tags: ['package:WebComponents', 'devOnly', 'status:New'],
+  title: 'Components/Header/Sub Components/Language Menu',
+  tags: ['package:WebComponents', 'status:New'],
   component: 'post-language-menu',
   render: renderLanguageMenu,
   parameters: {
@@ -16,7 +16,6 @@ const meta: MetaComponent<HTMLPostLanguageMenuElement> = {
   },
   args: {
     variant: 'list',
-    type: 'language',
     textChangeLanguage: 'Change the language',
     textCurrentLanguage: 'The currently selected language is {name}.',
   },
@@ -29,7 +28,6 @@ function renderLanguageMenu(args: Partial<HTMLPostLanguageMenuElement>) {
     text-change-language=${args.textChangeLanguage}
     text-current-language=${args.textCurrentLanguage}
     variant=${args.variant}
-    type=${args.type}
   >
     <post-language-menu-item active="false" code="de" name="Deutsch">de</post-language-menu-item>
     <post-language-menu-item active="true" code="en" name="English">en</post-language-menu-item>
