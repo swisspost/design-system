@@ -273,7 +273,7 @@ export class PostInternetHeader {
     const items = closeLink ? [...navigation, closeLink] : navigation;
 
     return this.renderNavigation('local-nav', items, navItem =>
-      navItem === closeLink ? { class: 'btn btn-primary' } : {},
+      navItem === closeLink ? { class: 'btn-primary' } : {},
     );
   }
 
