@@ -9,7 +9,7 @@ function nativeValueDescriptor(): PropertyDescriptor {
   cachedNativeValueDescriptor ??= Object.getOwnPropertyDescriptor(
     HTMLInputElement.prototype,
     'value',
-  )!;
+  );
   return cachedNativeValueDescriptor;
 }
 
@@ -24,11 +24,11 @@ export class NativeInputMaskElement extends HTMLInputMaskElement {
   };
 
   override get value(): string {
-    return nativeValueDescriptor().get!.call(this.input);
+    return nativeValueDescriptor().get.call(this.input);
   }
 
   override set value(val: string) {
-    nativeValueDescriptor().set!.call(this.input, val);
+    nativeValueDescriptor().set.call(this.input, val);
   }
 
   override bindEvents(handlers: EventHandlers): void {
@@ -43,9 +43,9 @@ export class NativeInputMaskElement extends HTMLInputMaskElement {
 }
 
 export function getNativeValue(input: HTMLInputElement): string {
-  return nativeValueDescriptor().get!.call(input);
+  return nativeValueDescriptor().get.call(input);
 }
 
 export function setNativeValue(input: HTMLInputElement, val: string): void {
-  nativeValueDescriptor().set!.call(input, val);
+  nativeValueDescriptor().set.call(input, val);
 }
