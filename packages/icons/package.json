@@ -59,8 +59,7 @@
     "svgo": "4.0.2",
     "ts-jest": "catalog:jest",
     "ts-node": "catalog:node",
-    "typescript": "catalog:typescript",
-    "typescript-eslint": "catalog:typescript"
+    "typescript": "catalog:"
   },
   "keywords": [
     "icons",

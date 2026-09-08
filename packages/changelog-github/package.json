@@ -36,8 +36,7 @@
     "eslint": "9.26.0",
     "globals": "17.3.0",
     "rimraf": "6.1.3",
-    "typescript": "catalog:typescript",
-    "typescript-eslint": "catalog:typescript"
+    "typescript": "catalog:"
   },
   "keywords": [
     "changelog",

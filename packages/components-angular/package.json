@@ -57,8 +57,7 @@
     "ng-packagr": "catalog:angular",
     "rimraf": "6.1.3",
     "rxjs": "catalog:angular",
-    "typescript": "catalog:typescript",
-    "typescript-eslint": "catalog:typescript",
+    "typescript": "catalog:",
     "zone.js": "catalog:angular"
   },
   "keywords": [

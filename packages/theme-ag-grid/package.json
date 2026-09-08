@@ -40,6 +40,6 @@
   },
   "devDependencies": {
     "@swisspost/design-system-tsconfig": "workspace:10.4.0",
-    "typescript": "catalog:typescript"
+    "typescript": "catalog:"
   }
 }

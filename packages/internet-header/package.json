@@ -90,8 +90,7 @@
     "sass": "1.101.0",
     "start-server-and-test": "2.1.5",
     "ts-jest": "catalog:jest",
-    "typescript": "catalog:typescript",
-    "typescript-eslint": "catalog:typescript"
+    "typescript": "catalog:"
   },
   "keywords": [
     "components",

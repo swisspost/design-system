@@ -1,0 +1,46 @@
+{
+  "name": "@swisspost/design-system-eslint-config",
+  "version": "10.4.0",
+  "description": "Shared ESLint configurations for the Swiss Post Design System.",
+  "author": "Swiss Post <design-system@post.ch>",
+  "license": "Apache-2.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git",
+    "directory": "tooling/eslint"
+  },
+  "homepage": "https://design-system.post.ch",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
+  "exports": {
+    "./base": "./base.mjs",
+    "./stencil": "./stencil.mjs"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@eslint/js": "9.26.0",
+    "globals": "17.3.0",
+    "typescript-eslint": "8.62.0"
+  },
+  "devDependencies": {
+    "@swisspost/design-system-prettier-config": "workspace:10.4.0",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+    "typescript": "catalog:"
+  },
+  "prettier": "@swisspost/design-system-prettier-config",
+  "files": [
+    "*.mjs",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "keywords": [
+    "design-system",
+    "eslint"
+  ]
+}

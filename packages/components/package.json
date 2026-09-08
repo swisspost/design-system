@@ -157,8 +157,7 @@
     "throttle-debounce": "5.0.2",
     "ts-jest": "catalog:stencil/jest",
     "ts-node": "catalog:node",
-    "typescript": "catalog:typescript",
-    "typescript-eslint": "catalog:typescript"
+    "typescript": "catalog:"
   },
   "keywords": [
     "components",
