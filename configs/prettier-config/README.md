@@ -12,7 +12,7 @@ npm i -D @swisspost/design-system-prettier-config
 
 ## Usage
 
-To use the configuration, simply include it in your `package.json` file:
+To use the configuration, include it in your `package.json` file:
 
 ```json
 {

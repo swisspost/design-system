@@ -22,7 +22,7 @@ npm i -D @swisspost/design-system-tsconfig
 
 ## Usage
 
-To use one of the configurations, simply extend `tsconfig.json`.
+To use one of the configurations, extend it in your `tsconfig.json` file.
 
 For example, to use the stencil configuration:
 

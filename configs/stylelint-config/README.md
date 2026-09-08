@@ -14,15 +14,7 @@ npm i -D @swisspost/design-system-stylelint-config stylelint
 
 ## Usage
 
-To use the configuration, simply include it in your `package.json` file:
-
-```json
-{
-  "stylelint": "@swisspost/design-system-stylelint-config"
-}
-```
-
-Or extend it in your Stylelint config file, for example `.stylelintrc`:
+To use the configuration, extend it in your Stylelint config file, for example `.stylelintrc`:
 
 ```json
 {
