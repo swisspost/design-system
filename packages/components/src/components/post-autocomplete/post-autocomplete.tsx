@@ -38,7 +38,14 @@ export class PostAutocomplete {
   @Type('string')
   readonly textAvailableSuggestions!: string;
 
-  @State() inputValue: string = '';
+  /** Whether the listbox is currently expanded */
+  private expanded: boolean = false;
+
+  /** The value of the last run query */
+  private lastQuery: string = '';
+
+  /** The value of the selected listbox option */
+  @State() selectedValue: string | null = null;
 
   /** Cancelable event emitted when the input value is to be filtered */
   @Event({ cancelable: true }) postFilteringEvent: EventEmitter<string>;
@@ -87,25 +94,17 @@ export class PostAutocomplete {
     if (this.inputElement) {
       this.inputElement.addEventListener('input', this.debouncedHandleInput);
       this.inputElement.addEventListener('keydown', this.handleKeyDown);
-      this.inputElement.addEventListener('blur', this.handleOnBlur);
-      this.inputElement.addEventListener('click', this.showListBox);
-      this.inputElement.addEventListener('focus', this.handleFocus);
+      this.inputElement.addEventListener('blur', this.handleBlur);
+      this.inputElement.addEventListener('click', this.handleClick);
     }
   }
-
-  private readonly handleFocus = () => {
-    if (this.filterThreshold !== 0) return;
-    if (this.inputElement && this.inputElement.value.trim() !== '') return;
-    this.postFilteringEvent.emit('');
-  };
 
   private detachInputListeners() {
     if (this.inputElement) {
       this.inputElement.removeEventListener('input', this.debouncedHandleInput);
       this.inputElement.removeEventListener('keydown', this.handleKeyDown);
-      this.inputElement.removeEventListener('blur', this.handleOnBlur);
-      this.inputElement.removeEventListener('click', this.showListBox);
-      this.inputElement.removeEventListener('focus', this.handleFocus);
+      this.inputElement.removeEventListener('blur', this.handleBlur);
+      this.inputElement.removeEventListener('click', this.handleClick);
     }
   }
 
@@ -136,31 +135,71 @@ export class PostAutocomplete {
     );
   }
 
-  private readonly handleOnBlur = () => {
-    this.inputElement.value = this.inputValue;
-    this.listBoxElement.filter('');
+  private async showListBox() {
+    await this.listBoxElement.show();
+    this.expanded = true;
+    this.inputElement.ariaExpanded = 'true';
+    this.host.setAttribute('open', '');
+    this.announceCount();
+  }
+
+  private async hideListBox() {
+    this.clearAnnouncement();
+    this.expanded = false;
+    this.host.removeAttribute('open');
+    this.inputElement.ariaExpanded = 'false';
+    this.inputElement.removeAttribute('aria-activedescendant');
+    await this.listBoxElement.hide();
+  }
+
+  private updateSelectedValue(value: string | null) {
+    this.selectedValue = value;
+    this.inputElement.value = this.selectedValue ?? '';
+  }
+
+  /** Restores the input to the value of the selected option. */
+  private restoreSelectedValue() {
+    this.inputElement.value = this.selectedValue ?? '';
+  }
+
+  /** Runs a query, filtering the listbox options and reflecting the outcome. */
+  private async runQuery(query: string, alwaysExpand: boolean = false) {
+    // Prevent running the same query twice.
+    if (this.lastQuery !== (this.lastQuery = query)) {
+      await this.filterListBox(query);
+    }
+
+    // Always update the count if the listbox is expanded.
+    if (this.expanded) {
+      this.announceCount();
+    }
+    // Automatically show the listbox if the query is non-empty.
+    else if (alwaysExpand || query) {
+      await this.showListBox();
+    }
+  }
+
+  /** Filters the listbox options based on the query, delegating to the consuming parent when possible. */
+  private async filterListBox(query: string) {
+    // Allow for consuming parent to handle filtering (e.g. for async data) and prevent default filtering behavior.
+    if (this.postFilteringEvent.emit(query).defaultPrevented) return;
+
+    await this.listBoxElement?.filter(query);
+  }
+
+  private readonly handleClick = async () => {
+    await this.runQuery('', true);
+  };
+
+  private readonly handleBlur = () => {
+    this.restoreSelectedValue();
     this.hideListBox();
   };
 
   private readonly handleInput = async (event: Event) => {
     if (!this.listBoxElement) return;
     const value = (event.target as HTMLInputElement).value.trim();
-    const query = value.length >= this.filterThreshold ? value : '';
-    // Allow for consuming parent to handle filtering (e.g. for async data) and prevent default filtering behavior
-    const { defaultPrevented } = this.postFilteringEvent.emit(
-      query && query.length >= this.filterThreshold ? query : '',
-    );
-    if (defaultPrevented) return;
-
-    await this.listBoxElement.filter(query);
-
-    if (query) {
-      this.showListBox();
-      this.announceCount();
-    } else {
-      this.inputValue = '';
-      this.clearAnnouncement();
-    }
+    await this.runQuery(value.length >= this.filterThreshold ? value : '');
   };
 
   private readonly handleKeyDown = (event: KeyboardEvent) => {
@@ -203,8 +242,7 @@ export class PostAutocomplete {
 
   private readonly handleOptionSelected = (e: CustomEvent<string>) => {
     const value = e.detail;
-    this.inputElement.value = value;
-    this.inputValue = value;
+    this.updateSelectedValue(value);
     this.hideListBox();
   };
 
@@ -217,25 +255,9 @@ export class PostAutocomplete {
     }
   };
 
-  private readonly hideListBox = () => {
-    this.clearAnnouncement();
-    this.listBoxElement.hide();
-    this.inputElement.ariaExpanded = 'false';
-    this.host.removeAttribute('open');
-    this.inputElement.removeAttribute('aria-activedescendant');
-  };
-
-  private readonly showListBox = async () => {
-    await this.listBoxElement.show();
-    this.inputElement.ariaExpanded = 'true';
-    this.host.setAttribute('open', '');
-    this.announceCount();
-  };
-
-  private readonly clearInput = () => {
+  private readonly handleClear = () => {
     if (this.inputElement) {
-      this.inputElement.value = '';
-      this.inputValue = '';
+      this.updateSelectedValue(null);
       this.listBoxElement.clearSelection();
       this.hideListBox();
     }
@@ -245,8 +267,8 @@ export class PostAutocomplete {
     return (
       <Host data-version={version}>
         <slot />
-        {this.clearable && this.inputValue && (
-          <button type="button" class="autocomplete-clear" onClick={this.clearInput}>
+        {this.clearable && this.selectedValue !== null && (
+          <button type="button" class="autocomplete-clear" onClick={this.handleClear}>
             <post-icon aria-hidden="true" name="closex"></post-icon>
           </button>
         )}
