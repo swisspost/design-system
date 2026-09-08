@@ -19,7 +19,8 @@
       "@swisspost/design-system-styles",
       "@swisspost/design-system-styles-primeng",
       "@swisspost/design-system-theme-ag-grid",
-      "@swisspost/design-system-tokens"
+      "@swisspost/design-system-tokens",
+      "@swisspost/design-system-tsconfig"
     ]
   ],
   "linked": [],
