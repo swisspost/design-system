@@ -62,24 +62,32 @@ export class PostBreadcrumbItem {
     this.hasSlottedAnchor = Array.from(this.host.children).some(child => child.tagName === 'A');
   }
 
-  render() {
+  private renderContent() {
+    const slot = <slot onSlotchange={() => this.checkSlottedAnchor()}></slot>;
+
+    if (this.hasSlottedAnchor) {
+      return slot;
+    }
+
     const href = this.url instanceof URL ? this.url.href : this.url;
-    const content = this.hasSlottedAnchor ? (
-      <slot onSlotchange={() => this.checkSlottedAnchor()}></slot>
-    ) : href ? (
+    if (!href) {
+      return <span>{slot}</span>;
+    }
+
+    return (
       <a
         href={href}
         aria-current={this.selected ? 'page' : undefined}
         aria-label={this.label}
         aria-description={this.description}
       >
-        <slot onSlotchange={() => this.checkSlottedAnchor()}></slot>
+        {slot}
       </a>
-    ) : (
-      <span>
-        <slot onSlotchange={() => this.checkSlottedAnchor()}></slot>
-      </span>
     );
+  }
+
+  render() {
+    const content = this.renderContent();
 
     return this.variant === 'listitem' || this.selected ? (
       <Host data-version={version} role="listitem" slot={this.selected ? 'selected' : undefined}>

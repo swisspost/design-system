@@ -51,7 +51,7 @@ export default meta;
 
 type Story = StoryObj;
 
-export const BreadcrumbItem: Story = {};
+export const Default: Story = {};
 
 export const SlottedLink: Story = {
   parameters: {
