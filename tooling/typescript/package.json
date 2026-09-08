@@ -4,7 +4,7 @@
   "description": "Shared TypeScript configurations for the Swiss Post Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
-  "private": false,
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git",
