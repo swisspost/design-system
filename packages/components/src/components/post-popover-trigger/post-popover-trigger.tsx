@@ -115,7 +115,7 @@ export class PostPopoverTrigger {
   private focusTrigger() {
     // Restores focus to the trigger
     if (!this.popoverOpen && this.trigger) {
-      this.trigger.focus();
+      this.trigger.focus({ preventScroll: true });
     }
   }
 
