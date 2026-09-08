@@ -288,7 +288,13 @@ export class PostInternetHeader {
     return (
       <ul slot="local-nav">
         {items.map(navItem => (
-          <li key={'url' in navItem ? navItem.url : navItem.user.email}>
+          <li
+            key={
+              navItem === localHeader.closeLink
+                ? 'local-nav-close-link'
+                : `local-nav-item-${'url' in navItem ? navItem.url : navItem.user.email}`
+            }
+          >
             {this.renderNavItem(navItem, getProps(navItem))}
           </li>
         ))}
