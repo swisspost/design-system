@@ -270,32 +270,36 @@ export class PostInternetHeader {
 
   // Local navigation with an optional close link (e.g. for online services), always rendered as its last element.
   private renderLocalNavigation(localHeader: HeaderConfig['localHeader']) {
-    const items: Array<LinkConfig | UserMenuConfig> = [...(localHeader.navigation ?? [])];
+    const { closeLink } = localHeader;
 
-    if (localHeader.closeLink) {
-      items.push(localHeader.closeLink);
+    const items: Array<{ navItem: LinkConfig | UserMenuConfig; isCloseLink: boolean }> = (
+      localHeader.navigation ?? []
+    ).map(navItem => ({ navItem, isCloseLink: false }));
+
+    if (closeLink) {
+      items.push({ navItem: closeLink, isCloseLink: true });
     }
 
     if (items.length === 0) return null;
 
-    const getProps = (navItem: LinkConfig | UserMenuConfig): LinkProps =>
-      navItem === localHeader.closeLink ? { class: 'btn-primary' } : {};
+    const getProps = ({ isCloseLink }: { isCloseLink: boolean }): LinkProps =>
+      isCloseLink ? { class: 'btn btn-primary' } : {};
 
     if (items.length === 1) {
-      return this.renderNavItem(items[0], { ...getProps(items[0]), slot: 'local-nav' });
+      return this.renderNavItem(items[0].navItem, { ...getProps(items[0]), slot: 'local-nav' });
     }
 
     return (
       <ul slot="local-nav">
-        {items.map(navItem => (
+        {items.map(({ navItem, isCloseLink }) => (
           <li
             key={
-              navItem === localHeader.closeLink
+              isCloseLink
                 ? 'local-nav-close-link'
                 : `local-nav-item-${'url' in navItem ? navItem.url : navItem.user.email}`
             }
           >
-            {this.renderNavItem(navItem, getProps(navItem))}
+            {this.renderNavItem(navItem, getProps({ isCloseLink }))}
           </li>
         ))}
       </ul>
