@@ -1,14 +1,14 @@
 {
-  "name": "@swisspost/design-system-prettier-config",
+  "name": "@swisspost/design-system-stylelint-config",
   "version": "10.4.0",
-  "description": "Shared Prettier configuration for the Swiss Post Design System.",
+  "description": "Shared Stylelint configuration for the Swiss Post Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
-  "private": false,
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git",
-    "directory": "configs/prettier-config"
+    "directory": "configs/stylelint-config"
   },
   "homepage": "https://design-system.post.ch",
   "bugs": {
@@ -18,11 +18,15 @@
   "publishConfig": {
     "access": "public"
   },
+  "dependencies": {
+    "stylelint-config-sass-guidelines": "13.0.0",
+    "stylelint-scss": "6.12.1"
+  },
   "peerDependencies": {
-    "prettier": ">=3.0.0"
+    "stylelint": ">=16.0.0"
   },
   "devDependencies": {
-    "prettier": "catalog:"
+    "stylelint": "catalog:"
   },
   "files": [
     "index.mjs",
@@ -32,6 +36,6 @@
   ],
   "keywords": [
     "design-system",
-    "prettier"
+    "stylelint"
   ]
 }
