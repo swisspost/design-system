@@ -81,12 +81,14 @@ jobs:
 
       - name: Get files changed by the pull request
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        env:
+          PR_NUMBER: ${{ steps.build.outputs.id }}
         with:
           script: |
             const files = await github.paginate(github.rest.pulls.listFiles, {
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: Number('${{ steps.build.outputs.id }}'),
+              pull_number: Number(process.env.PR_NUMBER),
               per_page: 100,
             });
 
