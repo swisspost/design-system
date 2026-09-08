@@ -54,6 +54,7 @@
     "@storybook/addon-links": "9.0.18",
     "@storybook/web-components-vite": "9.0.18",
     "@swisspost/design-system-components-angular": "workspace:10.4.0",
+    "@swisspost/design-system-prettier-config": "workspace:10.4.0",
     "@swisspost/design-system-tsconfig": "workspace:10.4.0",
     "@types/css-modules": "1.0.5",
     "@types/mdx": "2.0.13",
@@ -83,6 +84,7 @@
     "typescript": "catalog:",
     "vite": "7.3.5"
   },
+  "prettier": "@swisspost/design-system-prettier-config",
   "keywords": [
     "storybook",
     "design-system",

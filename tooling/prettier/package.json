@@ -24,6 +24,7 @@
   "devDependencies": {
     "prettier": "catalog:"
   },
+  "prettier": "./index.mjs",
   "files": [
     "index.mjs",
     "package.json",

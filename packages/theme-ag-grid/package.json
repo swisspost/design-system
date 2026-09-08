@@ -39,7 +39,10 @@
     "ag-grid-community": "^33.3.2"
   },
   "devDependencies": {
+    "@swisspost/design-system-prettier-config": "workspace:10.4.0",
     "@swisspost/design-system-tsconfig": "workspace:10.4.0",
+    "prettier": "catalog:",
     "typescript": "catalog:"
-  }
+  },
+  "prettier": "@swisspost/design-system-prettier-config"
 }

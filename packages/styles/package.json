@@ -34,6 +34,7 @@
     "gulp-sourcemaps": "3.0.0"
   },
   "devDependencies": {
+    "@swisspost/design-system-prettier-config": "workspace:10.4.0",
     "@swisspost/design-system-stylelint-config": "workspace:10.4.0",
     "@swisspost/design-system-tokens": "workspace:10.4.0",
     "@types/node": "catalog:node",
@@ -53,6 +54,7 @@
     "typescript": "catalog:",
     "vite": "7.3.5"
   },
+  "prettier": "@swisspost/design-system-prettier-config",
   "sass": {
     "loadPaths": [
       "node_modules"

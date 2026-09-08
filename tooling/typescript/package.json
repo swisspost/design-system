@@ -27,5 +27,10 @@
     "design-system",
     "tsconfig",
     "typescript"
-  ]
+  ],
+  "devDependencies": {
+    "@swisspost/design-system-prettier-config": "workspace:10.4.0",
+    "prettier": "catalog:"
+  },
+  "prettier": "@swisspost/design-system-prettier-config"
 }

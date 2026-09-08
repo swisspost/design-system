@@ -26,8 +26,11 @@
     "stylelint": ">=16.0.0"
   },
   "devDependencies": {
+    "@swisspost/design-system-prettier-config": "workspace:10.4.0",
+    "prettier": "catalog:",
     "stylelint": "catalog:"
   },
+  "prettier": "@swisspost/design-system-prettier-config",
   "files": [
     "index.mjs",
     "package.json",
