@@ -26,14 +26,14 @@ export class PostBreadcrumbItem {
   url?: string | URL;
 
   /**
-   * An accessible label screen readers will use this instead of the breadcrumb item content.
+   * An accessible label screen readers will use this instead of the breadcrumb item content. Ignored if an `<a>` element is slotted in; set `aria-label` on the slotted `<a>` instead.
    */
   @Prop({ reflect: true })
   @Type('string')
   label?: string;
 
   /**
-   * An accessible description for additional context, read after the content or `label`.
+   * An accessible description for additional context, read after the content or `label`. Ignored if an `<a>` element is slotted in; set `aria-description` on the slotted `<a>` instead.
    */
   @Prop({ reflect: true })
   @Type('string')
@@ -47,7 +47,7 @@ export class PostBreadcrumbItem {
   variant: Variant = 'listitem';
 
   /**
-   * Indicates that the item represents the current page, applying appropriate styling.
+   * Indicates that the item represents the current page, applying appropriate styling. If an `<a>` element is slotted in, this does not set `aria-current` on it; add `aria-current="page"` to the slotted `<a>` yourself.
    */
   @Prop({ reflect: true })
   @Required()
@@ -59,14 +59,14 @@ export class PostBreadcrumbItem {
   }
 
   private checkSlottedAnchor() {
-    this.hasSlottedAnchor = this.host.querySelector('a') !== null;
+    this.hasSlottedAnchor = Array.from(this.host.children).some(child => child.tagName === 'A');
   }
 
   render() {
     const href = this.url instanceof URL ? this.url.href : this.url;
     const content = this.hasSlottedAnchor ? (
       <slot onSlotchange={() => this.checkSlottedAnchor()}></slot>
-    ) : (href ? (
+    ) : href ? (
       <a
         href={href}
         aria-current={this.selected ? 'page' : undefined}
@@ -79,7 +79,7 @@ export class PostBreadcrumbItem {
       <span>
         <slot onSlotchange={() => this.checkSlottedAnchor()}></slot>
       </span>
-    ));
+    );
 
     return this.variant === 'listitem' || this.selected ? (
       <Host data-version={version} role="listitem" slot={this.selected ? 'selected' : undefined}>

@@ -113,15 +113,15 @@ export namespace Components {
     }
     interface PostBreadcrumbItem {
         /**
-          * An accessible description for additional context, read after the content or `label`.
+          * An accessible description for additional context, read after the content or `label`. Ignored if an `<a>` element is slotted in; set `aria-description` on the slotted `<a>` instead.
          */
         "description"?: string;
         /**
-          * An accessible label screen readers will use this instead of the breadcrumb item content.
+          * An accessible label screen readers will use this instead of the breadcrumb item content. Ignored if an `<a>` element is slotted in; set `aria-label` on the slotted `<a>` instead.
          */
         "label"?: string;
         /**
-          * Indicates that the item represents the current page, applying appropriate styling.
+          * Indicates that the item represents the current page, applying appropriate styling. If an `<a>` element is slotted in, this does not set `aria-current` on it; add `aria-current="page"` to the slotted `<a>` yourself.
           * @default false
          */
         "selected": boolean;
@@ -1409,15 +1409,15 @@ declare namespace LocalJSX {
     }
     interface PostBreadcrumbItem {
         /**
-          * An accessible description for additional context, read after the content or `label`.
+          * An accessible description for additional context, read after the content or `label`. Ignored if an `<a>` element is slotted in; set `aria-description` on the slotted `<a>` instead.
          */
         "description"?: string;
         /**
-          * An accessible label screen readers will use this instead of the breadcrumb item content.
+          * An accessible label screen readers will use this instead of the breadcrumb item content. Ignored if an `<a>` element is slotted in; set `aria-label` on the slotted `<a>` instead.
          */
         "label"?: string;
         /**
-          * Indicates that the item represents the current page, applying appropriate styling.
+          * Indicates that the item represents the current page, applying appropriate styling. If an `<a>` element is slotted in, this does not set `aria-current` on it; add `aria-current="page"` to the slotted `<a>` yourself.
           * @default false
          */
         "selected"?: boolean;

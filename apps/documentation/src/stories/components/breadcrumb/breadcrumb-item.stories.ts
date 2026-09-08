@@ -71,3 +71,27 @@ export const SlottedLink: Story = {
     </post-breadcrumb-item>
   `,
 };
+
+export const SlottedLinkSelected: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The `selected` prop still applies the current-page styling to a slotted `<a>`, but it does not set `aria-current` on it. Add `aria-current="page"` to the slotted `<a>` yourself to ensure correct accessibility.',
+      },
+    },
+    controls: {
+      exclude: ['variant', 'selected', 'url'],
+    },
+  },
+  render: args => html`
+    <post-breadcrumb-item
+      label=${args.label || nothing}
+      description=${args.description || nothing}
+      selected
+    >
+      <!-- The active link must have an aria-current="page" attribute to ensure correct accessibility and styling. -->
+      <a href="/section1" aria-current="page">Section 1</a>
+    </post-breadcrumb-item>
+  `,
+};

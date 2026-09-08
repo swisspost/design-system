@@ -5,13 +5,13 @@
 
 ## Properties
 
-| Property      | Attribute     | Description                                                                                                                                                | Type                       | Default      |
-| ------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ------------ |
-| `description` | `description` | An accessible description for additional context, read after the content or `label`.                                                                       | `string`                   | `undefined`  |
-| `label`       | `label`       | An accessible label screen readers will use this instead of the breadcrumb item content.                                                                   | `string`                   | `undefined`  |
-| `selected`    | `selected`    | Indicates that the item represents the current page, applying appropriate styling.                                                                         | `boolean`                  | `false`      |
-| `url`         | `url`         | The destination URL for the breadcrumb item. Ignored if an `<a>` element is slotted in. If both are omitted, the item is rendered as non-interactive text. | `URL \| string`            | `undefined`  |
-| `variant`     | `variant`     | Controls how the item is rendered, either as a standard list item or within an overflow menu.                                                              | `"listitem" \| "menuitem"` | `'listitem'` |
+| Property      | Attribute     | Description                                                                                                                                                                                                            | Type                       | Default      |
+| ------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ------------ |
+| `description` | `description` | An accessible description for additional context, read after the content or `label`. Ignored if an `<a>` element is slotted in; set `aria-description` on the slotted `<a>` instead.                                   | `string`                   | `undefined`  |
+| `label`       | `label`       | An accessible label screen readers will use this instead of the breadcrumb item content. Ignored if an `<a>` element is slotted in; set `aria-label` on the slotted `<a>` instead.                                     | `string`                   | `undefined`  |
+| `selected`    | `selected`    | Indicates that the item represents the current page, applying appropriate styling. If an `<a>` element is slotted in, this does not set `aria-current` on it; add `aria-current="page"` to the slotted `<a>` yourself. | `boolean`                  | `false`      |
+| `url`         | `url`         | The destination URL for the breadcrumb item. Ignored if an `<a>` element is slotted in. If both are omitted, the item is rendered as non-interactive text.                                                             | `URL \| string`            | `undefined`  |
+| `variant`     | `variant`     | Controls how the item is rendered, either as a standard list item or within an overflow menu.                                                                                                                          | `"listitem" \| "menuitem"` | `'listitem'` |
 
 
 ## Slots
