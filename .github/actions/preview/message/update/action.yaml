@@ -40,11 +40,18 @@ runs:
 
           const previewComment = comments.find(c => c.user.login === 'swisspost-bot' && c.body.includes(commentTitle))
           const iconsUpdateTitle = 'chore(icons): :point_up: update icons'
-          const snapshotsStart = '<!-- snapshot-previews:start -->'
-          const snapshotsEnd = '<!-- snapshot-previews:end -->'
+
+          // Rebuilt on every run, because the components touched by the pull request change with every push.
+          const snapshotLinks = (SNAPSHOT_STORY_IDS || '').split(',').filter(Boolean).map(storyId => {
+            const snapshotURL = URL.parse(PREVIEW_URL)
+            snapshotURL.searchParams.set('path', `/story/${encodeURIComponent(storyId)}`)
+            return `- Snapshots \`${storyId.replace('snapshots--', '')}\`: ${snapshotURL.toString()}\n`
+          })
+          const snapshotSection = snapshotLinks.length ? `<!-- snapshots -->\n${snapshotLinks.join('')}<!-- /snapshots -->\n` : ''
+          const snapshotSectionPattern = /<!-- snapshots -->[\s\S]*?<!-- \/snapshots -->\n?/
 
           if (previewComment) {
-            let body = previewComment.body.replace(commentInitialBody, '')
+            let updates = [];
 
             const issue = await github.rest.issues.get({
               repo: context.repo.repo,
@@ -52,72 +59,53 @@ runs:
               issue_number: Number(ISSUE_NUMBER),
             });
 
-            if (!body.includes(PREVIEW_URL)) {
-              body = body.concat(`- ${PREVIEW_URL}\n`)
-            }
-
             if (issue?.data?.title.includes(iconsUpdateTitle)) {
-              const iconHealthURL = new URL(PREVIEW_URL)
+              const iconHealthURL = URL.parse(PREVIEW_URL)
               iconHealthURL.searchParams.set('path', '/docs/health-icons--docs')
-
-              if (!body.includes(iconHealthURL.toString())) {
-                body = body.concat(`- ${iconHealthURL.toString()}\n`)
-              }
+              updates.push(`- ${iconHealthURL.toString()}\n`)
             }
 
-            // Rebuilt on every run, because the components touched by the pull request change with every push.
-            const snapshotLinks = (SNAPSHOT_STORY_IDS || '')
-              .split(',')
-              .filter(Boolean)
-              .map(storyId => {
-                const snapshotURL = new URL(PREVIEW_URL)
-                snapshotURL.searchParams.set('path', `/story/${encodeURIComponent(storyId)}`)
-                return `- Snapshots \`${storyId.replace('snapshots--', '')}\`: ${snapshotURL.toString()}`
+            const body = previewComment.body
+              .replace(commentInitialBody, '')
+              .replace(snapshotSectionPattern, '')
+              .concat(previewComment.body.includes(PREVIEW_URL) ? '' : `- ${PREVIEW_URL}\n`)
+              .concat(updates.filter(update => !previewComment.body.includes(update)).join(''))
+              .concat(snapshotSection)
+
+            if (body === previewComment.body) return
+
+            await github.rest.issues.updateComment({
+              repo: context.repo.repo,
+              owner: context.repo.owner,
+              comment_id: previewComment.id,
+              body
+            });
+
+            const reactions = (await github.rest.reactions.listForIssueComment({
+              repo: context.repo.repo,
+              owner: context.repo.owner,
+              comment_id: previewComment.id,
+            })).data || []
+
+            const createReaction = reactions.find(r => r.user.login === 'swisspost-bot' && r.content === 'eyes')
+            const updateReaction = reactions.find(r => r.user.login === 'swisspost-bot' && r.content === 'rocket')
+
+            if (createReaction) {
+              github.rest.reactions.deleteForIssueComment({
+                repo: context.repo.repo,
+                owner: context.repo.owner,
+                comment_id: previewComment.id,
+                reaction_id: createReaction.id
               })
+            }
 
-            const snapshotSection = snapshotLinks.length
-              ? `${snapshotsStart}\n${snapshotLinks.join('\n')}\n${snapshotsEnd}\n`
-              : ''
-            const snapshotSectionPattern = new RegExp(`${snapshotsStart}[\\s\\S]*?${snapshotsEnd}\\n?`)
-
-            body = snapshotSectionPattern.test(body)
-              ? body.replace(snapshotSectionPattern, snapshotSection)
-              : body.concat(snapshotSection)
-
-            if (body !== previewComment.body) {
-              await github.rest.issues.updateComment({
+            if (!updateReaction) {
+              github.rest.reactions.createForIssueComment({
                 repo: context.repo.repo,
                 owner: context.repo.owner,
                 comment_id: previewComment.id,
-                body
-              });
-
-              const reactions = (await github.rest.reactions.listForIssueComment({
-                repo: context.repo.repo,
-                owner: context.repo.owner,
-                comment_id: previewComment.id,
-              })).data || []
-
-              const createReaction = reactions.find(r => r.user.login === 'swisspost-bot' && r.content === 'eyes')
-              const updateReaction = reactions.find(r => r.user.login === 'swisspost-bot' && r.content === 'rocket')
-
-              if (createReaction) {
-                github.rest.reactions.deleteForIssueComment({
-                  repo: context.repo.repo,
-                  owner: context.repo.owner,
-                  comment_id: previewComment.id,
-                  reaction_id: createReaction.id
-                })
-              }
-
-              if (!updateReaction) {
-                github.rest.reactions.createForIssueComment({
-                  repo: context.repo.repo,
-                  owner: context.repo.owner,
-                  comment_id: previewComment.id,
-                  content: 'rocket'
-                })
-              }
+                content: 'rocket'
+              })
             }
           } else {
             console.warn('Skipped action, because preview comment could not be found!')
