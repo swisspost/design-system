@@ -231,6 +231,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           <ul>
             <li>
               <a href="#" className="post-side-navigation-item">
+                <PostIcon name="home" aria-hidden="true"></PostIcon>
                 Sidenav link
               </a>
             </li>
@@ -243,6 +244,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
             <li>
               <PostCollapsibleTrigger for="react-side-nav-collapsible">
                 <button className="post-side-navigation-item">
+                  <PostIcon name="preferences" aria-hidden="true"></PostIcon>
                   Sidenav level 1<PostIcon name="chevrondown" aria-hidden="true"></PostIcon>
                 </button>
               </PostCollapsibleTrigger>
