@@ -56,7 +56,7 @@
   &:hover {
     color: tokens.get('breadcrumb-hover-fg', components.$post-breadcrumb);
     text-decoration: tokens.get(
-      'breadcrumb-link-enabled-text-decoration',
+      'breadcrumb-link-hover-text-decoration',
       components.$post-breadcrumb
     );
   }
