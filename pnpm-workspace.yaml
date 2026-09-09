@@ -51,8 +51,6 @@ saveExact: true
 peerDependencyRules:
   ignoreMissing: []
   allowedVersions:
-    '@typescript-eslint/eslint-plugin': '>=7'
-    '@typescript-eslint/parser': '>=7'
     zone.js: '>=0.14'
 
 overrides:
