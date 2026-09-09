@@ -23,6 +23,7 @@ const meta: MetaComponent = {
     label: 'Products section',
     description: 'This section contains all the products you can buy.',
     selected: false,
+    url: '/section1',
   },
   argTypes: {
     url: {
