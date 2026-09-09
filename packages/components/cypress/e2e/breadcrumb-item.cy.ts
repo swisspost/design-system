@@ -25,5 +25,22 @@ describe('breadcrumb-item', () => {
     it('should keep the slotted anchor in the light DOM so consumer routing can intercept clicks', () => {
       cy.get('@item').children('a').should('exist').and('have.attr', 'href');
     });
+
+    it('should not auto-apply aria-current to the slotted anchor when selected changes', () => {
+      cy.get('@item').children('a').invoke('removeAttr', 'aria-current');
+      cy.get('@item').invoke('attr', 'selected', 'false');
+      cy.get('@item').invoke('attr', 'selected', 'true');
+      cy.get('@item').children('a').should('not.have.attr', 'aria-current');
+    });
+
+    it('should react to the slotted anchor being removed after the initial render', () => {
+      cy.get('@item').invoke('attr', 'url', '/section2');
+      cy.get('@item').shadow().find('a').should('not.exist');
+
+      cy.get('@item').then($item => {
+        $item.find('a').remove();
+      });
+      cy.get('@item').shadow().find('a').should('exist');
+    });
   });
 });

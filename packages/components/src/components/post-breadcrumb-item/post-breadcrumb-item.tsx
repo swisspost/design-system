@@ -4,7 +4,7 @@ import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { Variant, VARIANTS } from './variants';
 
 /**
- * @slot default - The content displayed inside the breadcrumb item. Can contain text or an <a> element, so consumers can slot their own routing-aware link (e.g. Next.js Link) instead of relying on the `url` prop.
+ * @slot default - The content displayed inside the breadcrumb item. Can contain text or an <a> element, so consumers can slot their own routing-aware link instead of relying on the `url` prop.
  */
 @Component({
   tag: 'post-breadcrumb-item',
@@ -14,8 +14,9 @@ import { Variant, VARIANTS } from './variants';
 export class PostBreadcrumbItem {
   @Element() host: HTMLPostBreadcrumbItemElement;
 
-  // Whether the consumer slotted their own <a>. When true, the component renders only the
-  // <slot>, leaving the slotted anchor untouched so the host app's router can handle clicks.
+  /**
+   * Whether the consumer slotted their own <a>. When true, the component renders only the <slot>, leaving the slotted anchor untouched so the host app's router can handle clicks.
+   */
   @State() hasSlottedAnchor = false;
 
   /**
