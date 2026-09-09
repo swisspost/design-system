@@ -1,7 +1,5 @@
 import { PLACEMENT_TYPES } from '../../src/types';
-import { getPopoverOpenSelector } from './helper/popovercontainer';
-
-const POPOVER_OPEN_SELECTOR = getPopoverOpenSelector();
+import { POPOVER_OPEN_SELECTOR } from './helper/popovercontainer';
 
 describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
   // prettier-ignore
@@ -503,59 +501,59 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
       hideLayoutTooltip();
     });
   });
-  
+
   describe('resize loop regression (width: inherit removal)', () => {
-      beforeEach(() => {
-        cy.visit('./cypress/fixtures/post-tooltip.test.html');
-        cy.get('#target-constrained').as('targetConstrained');
-        cy.get('#tooltip-constrained').find('post-popovercontainer[popover]').as('tooltip');
+    beforeEach(() => {
+      cy.visit('./cypress/fixtures/post-tooltip.test.html');
+      cy.get('#target-constrained').as('targetConstrained');
+      cy.get('#tooltip-constrained').find('post-popovercontainer[popover]').as('tooltip');
+    });
+
+    it('does not throw a ResizeObserver loop error when opening in a width-constrained container', () => {
+      let resizeObserverLoopFired = false;
+
+      cy.on('uncaught:exception', err => {
+        if (err.message.includes('ResizeObserver loop')) {
+          resizeObserverLoopFired = true;
+          return false;
+        }
+        return true;
       });
 
-      it('does not throw a ResizeObserver loop error when opening in a width-constrained container', () => {
-        let resizeObserverLoopFired = false;
+      cy.get('@targetConstrained').focus();
+      cy.get(POPOVER_OPEN_SELECTOR).should('exist');
+      cy.wait(200);
 
-        cy.on('uncaught:exception', err => {
-          if (err.message.includes('ResizeObserver loop')) {
-            resizeObserverLoopFired = true;
-            return false;
-          }
-          return true;
-        });
-
-        cy.get('@targetConstrained').focus();
-        cy.get(POPOVER_OPEN_SELECTOR).should('exist');
-        cy.wait(200);
-
-        cy.then(() => {
-          expect(resizeObserverLoopFired, 'ResizeObserver loop error was thrown').to.equal(false);
-        });
-      });
-
-      it('settles on a stable width shortly after opening in a width-constrained container', () => {
-        cy.get('@targetConstrained').focus();
-        cy.get(POPOVER_OPEN_SELECTOR).should('exist');
-        cy.wait(100); // let the first calculatePosition pass actually run before measuring
-
-        cy.get('@tooltip').then($tooltip => {
-          const widthAfterSettle = $tooltip[0].getBoundingClientRect().width;
-          // sanity check: catches the case where we measured too early and got 0,
-          // which would otherwise make the closeTo assertion below pass vacuously
-          expect(
-            widthAfterSettle,
-            'tooltip should have a real measured width by now',
-          ).to.be.greaterThan(0);
-
-          cy.wait(150); // if width: inherit's chase were still happening, it would keep drifting here
-
-          cy.get('@tooltip').then($tooltipLater => {
-            const widthLater = $tooltipLater[0].getBoundingClientRect().width;
-            expect(widthLater).to.be.closeTo(widthAfterSettle, 1);
-          });
-        });
+      cy.then(() => {
+        expect(resizeObserverLoopFired, 'ResizeObserver loop error was thrown').to.equal(false);
       });
     });
 
-    describe('resize loop regression (width: inherit removal)', () => {
+    it('settles on a stable width shortly after opening in a width-constrained container', () => {
+      cy.get('@targetConstrained').focus();
+      cy.get(POPOVER_OPEN_SELECTOR).should('exist');
+      cy.wait(100); // let the first calculatePosition pass actually run before measuring
+
+      cy.get('@tooltip').then($tooltip => {
+        const widthAfterSettle = $tooltip[0].getBoundingClientRect().width;
+        // sanity check: catches the case where we measured too early and got 0,
+        // which would otherwise make the closeTo assertion below pass vacuously
+        expect(
+          widthAfterSettle,
+          'tooltip should have a real measured width by now',
+        ).to.be.greaterThan(0);
+
+        cy.wait(150); // if width: inherit's chase were still happening, it would keep drifting here
+
+        cy.get('@tooltip').then($tooltipLater => {
+          const widthLater = $tooltipLater[0].getBoundingClientRect().width;
+          expect(widthLater).to.be.closeTo(widthAfterSettle, 1);
+        });
+      });
+    });
+  });
+
+  describe('resize loop regression (width: inherit removal)', () => {
     beforeEach(() => {
       cy.viewport(1500, 900); // wider than the 1440px constrained container, leaving ~60px of edge space
       cy.visit('./cypress/fixtures/post-tooltip.test.html');
@@ -612,7 +610,7 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('Has no detectable a11y violations on load', () => {
-      cy.checkA11y('post-tooltip', undefined, (violations) => {
+      cy.checkA11y('post-tooltip', undefined, violations => {
         expect(violations).to.have.length(0);
       });
     });
