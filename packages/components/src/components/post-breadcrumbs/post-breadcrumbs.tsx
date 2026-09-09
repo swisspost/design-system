@@ -2,7 +2,6 @@ import { componentOnReady, nanoid, Required, Type, Url } from '@/utils';
 import { version } from '@root/package.json';
 import { Component, Element, Host, Prop, State, h } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
-import { cloneElementWithSlots } from '@/utils/clone';
 import type { HTMLStencilElement } from '@stencil/core/internal';
 
 const MAX_VISIBLE_ITEMS = 6;
@@ -168,7 +167,21 @@ export class PostBreadcrumbs {
     const shadowRoot = this.host.shadowRoot;
     if (!shadowRoot || !this.nav) return null;
 
-    const clone = cloneElementWithSlots(this.nav);
+    const clone = this.nav.cloneNode(true) as HTMLElement;
+    const slots = clone.querySelectorAll('slot');
+
+    // Deep clone the breadcrumb navigation and flatten its slots into the clone.
+    this.nav.querySelectorAll('slot').forEach((source, index) => {
+      const target = slots[index];
+
+      // Insert the assigned elements where the slot used to be, then drop the now empty slot
+      source.assignedElements().forEach(element => {
+        target.insertAdjacentElement('beforebegin', element.cloneNode(true) as Element);
+      });
+
+      target.remove();
+    });
+
     clone.classList.remove('loading');
     clone.classList.add('invisible');
 
