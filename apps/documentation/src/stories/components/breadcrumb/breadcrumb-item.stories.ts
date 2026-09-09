@@ -26,10 +26,14 @@ const meta: MetaComponent = {
     url: '/section1',
   },
   argTypes: {
+    label: {
+      control: false, // disable the control since it is not usable on the story
+    },
+    description: {
+      control: false, // disable the control since it is not usable on the story
+    },
     url: {
-      control: {
-        type: 'text',
-      },
+      control: false, // disable the control since it is not usable on the story
     },
   },
 };

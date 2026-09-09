@@ -74,7 +74,7 @@ describe('breadcrumbs', () => {
             expect(defaultCollapsedCount).to.be.greaterThan(0);
 
             cy.visit(
-              `/iframe.html?id=${BREADCRUMBS_ID}--client-side-routing&args=itemCount:15`,
+              `/iframe.html?id=${BREADCRUMBS_ID}--client-side-routing&args=itemCount:15&story=ClientSideRouting`,
             );
             cy.get('post-breadcrumb-item[data-hydrated]', { timeout: 30000 });
             cy.get('post-breadcrumb-item[variant="menuitem"]').should(
