@@ -1,43 +1,19 @@
-import js from '@eslint/js';
-import ts from 'typescript-eslint';
-import globals from 'globals';
+import { defineConfig, globalIgnores } from 'eslint/config';
 
-/** @type {import('eslint').Linter.Config[]} */
-export default [
+import post from '@swisspost/design-system-eslint-config/base';
+import postJest from '@swisspost/design-system-eslint-config/jest';
+
+export default defineConfig(
+  globalIgnores(['dist/', 'out-tsc/', 'eslint.play.js']),
+  post,
+  postJest,
+
+  // Pre-existing debt. Drop once sources are clean.
   {
-    name: 'post/global/ignores',
-    ignores: ['dist/*', 'eslint.play.js'],
-  },
-  {
-    name: 'post/defaults',
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
-    },
-  },
-  {
-    name: 'eslint/recommended',
-    ...js.configs.recommended,
-  },
-  {
-    name: 'post/ts/defaults',
-    files: ['**/*.{ts,tsx,mts,cts}'],
     rules: {
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          caughtErrors: 'none',
-          destructuredArrayIgnorePattern: '^_',
-          ignoreRestSiblings: true,
-        },
-      ],
+      '@typescript-eslint/no-unsafe-argument': 'off',
+      '@typescript-eslint/no-unsafe-enum-comparison': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
     },
   },
-  ...ts.configs.recommended,
-  {
-    files: ['**/*.{js,mjs,cjs}'],
-    ...ts.configs.disableTypeChecked,
-  },
-];
+);

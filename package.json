@@ -23,6 +23,8 @@
     "unit": "pnpm -r unit",
     "lint": "pnpm -r lint",
     "lint:fix": "pnpm -r lint:fix",
+    "format": "pnpm -r format",
+    "format:check": "pnpm -r format:check",
     "snapshots": "start-server-and-test 'pnpm docs:headless' 9001 'pnpm --filter design-system-documentation snapshots'",
     "help": "pnpm run",
     "docs:start": "pnpm --filter design-system-tokens build && pnpm --filter design-system-documentation... --parallel --stream start",
@@ -119,12 +121,15 @@
   },
   "devDependencies": {
     "@changesets/cli": "2.31.0",
+    "@swisspost/design-system-prettier-config": "workspace:10.4.0",
+    "prettier": "catalog:",
     "start-server-and-test": "2.1.5",
     "turbo": "2.10.10"
   },
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
   },
+  "prettier": "@swisspost/design-system-prettier-config",
   "packageManager": "pnpm@11.23.0",
   "devEngines": {
     "runtime": {

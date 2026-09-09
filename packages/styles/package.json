@@ -26,7 +26,8 @@
     "clean": "rimraf dist src/tokens/temp src/icons/temp",
     "lint": "stylelint src/**/*.scss !src/tokens/temp/**",
     "lint:fix": "stylelint src/**/*.scss !src/tokens/temp/** --fix",
-    "format": "prettier src/**/*.scss --config ../../.prettierrc --write"
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "dependencies": {
     "@popperjs/core": "2.11.8",
@@ -34,6 +35,8 @@
     "gulp-sourcemaps": "3.0.0"
   },
   "devDependencies": {
+    "@swisspost/design-system-prettier-config": "workspace:10.4.0",
+    "@swisspost/design-system-stylelint-config": "workspace:10.4.0",
     "@swisspost/design-system-tokens": "workspace:10.4.0",
     "@types/node": "catalog:node",
     "autoprefixer": "10.5.0",
@@ -45,16 +48,14 @@
     "gulp-sass": "6.0.1",
     "postcss": "8.5.26",
     "postcss-scss": "4.0.9",
-    "prettier": "3.6.2",
+    "prettier": "catalog:",
     "rimraf": "6.1.3",
     "sass-embedded": "1.78.0",
-    "stylelint-config-sass-guidelines": "13.0.0",
-    "stylelint": "16.26.1",
-    "stylelint-prettier": "5.0.3",
-    "stylelint-scss": "6.12.1",
-    "typescript": "catalog:typescript",
+    "stylelint": "catalog:",
+    "typescript": "catalog:",
     "vite": "7.3.5"
   },
+  "prettier": "@swisspost/design-system-prettier-config",
   "sass": {
     "loadPaths": [
       "node_modules"

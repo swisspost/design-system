@@ -34,6 +34,8 @@
     "inspect": "concurrently -n start,inspect -c cyan,green \"pnpm start\" \"eslint --c eslint.play.js --inspect-config\"",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
     "unit": "jest",
     "unit:watch": "jest --watchAll"
   },
@@ -46,22 +48,24 @@
     "parse5-htmlparser2-tree-adapter": "7.1.0"
   },
   "devDependencies": {
-    "@eslint/js": "9.19.0",
+    "@swisspost/design-system-eslint-config": "workspace:10.4.0",
+    "@swisspost/design-system-prettier-config": "workspace:10.4.0",
     "@swisspost/design-system-tsconfig": "workspace:10.4.0",
     "@types/eslint-scope": "3.7.7",
     "@types/jest": "catalog:jest",
     "@typescript-eslint/rule-tester": "8.49.0",
     "concurrently": "10.0.3",
     "domhandler": "5.0.3",
-    "eslint": "9.26.0",
-    "globals": "17.3.0",
+    "eslint": "catalog:",
     "jest": "catalog:jest",
     "parse5": "7.2.1",
+    "prettier": "catalog:",
     "rimraf": "6.1.3",
     "ts-jest": "catalog:jest",
-    "typescript": "catalog:typescript",
-    "typescript-eslint": "catalog:typescript"
+    "typescript": "catalog:",
+    "typescript-eslint": "8.62.0"
   },
+  "prettier": "@swisspost/design-system-prettier-config",
   "peerDependencies": {
     "eslint": ">=9.0.0",
     "typescript": ">=5.0.0"

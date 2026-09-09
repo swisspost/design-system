@@ -1,10 +1,10 @@
 import { defineConfig, globalIgnores } from 'eslint/config';
 
 import post from '@swisspost/design-system-eslint-config/base';
-import postAngular from '@swisspost/design-system-eslint-config/angular';
+import postReact from '@swisspost/design-system-eslint-config/react';
 
 export default defineConfig(
-  globalIgnores(['dist/', 'out-tsc/', '**/stencil-generated/']),
+  globalIgnores(['dist/', 'src/icons-generated/', 'src/stencil-generated/']),
   post,
-  postAngular,
+  postReact,
 );

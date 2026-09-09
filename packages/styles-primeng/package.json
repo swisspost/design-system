@@ -27,7 +27,9 @@
   "private": false,
   "scripts": {
     "build": "tsc",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "peerDependencies": {
     "primeng": "^21.0.0"
@@ -38,9 +40,12 @@
     "tslib": "2.8.1"
   },
   "devDependencies": {
+    "@swisspost/design-system-prettier-config": "workspace:10.4.0",
     "@swisspost/design-system-tsconfig": "workspace:10.4.0",
+    "prettier": "catalog:",
     "typescript": "5.9.3"
   },
+  "prettier": "@swisspost/design-system-prettier-config",
   "keywords": [
     "design-system",
     "primeng",
