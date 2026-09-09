@@ -56,3 +56,35 @@ export const Concatenated: Story = {
     itemCount: 15,
   },
 };
+
+export const SlottedHomeLink: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Slot your own `<a>` (e.g. a framework `<Link>`) into the `home` slot instead of using the `home-url` prop, so client-side routing frameworks like Next.js or Angular Router can handle navigation for the home item instead of the browser doing a full page reload.',
+      },
+    },
+    controls: {
+      exclude: ['itemCount', 'homeUrl'],
+    },
+  },
+  args: {
+    itemCount: 15,
+  },
+  render: args => html`
+    <post-breadcrumbs
+      text-home=${args.textHome}
+      text-breadcrumbs=${args.textBreadcrumbs}
+      text-more-items=${args.textMoreItems}
+    >
+      <a slot="home" href="/">${args.textHome}</a>
+      ${Array.from({ length: args.itemCount }).map(
+        (_, i) =>
+          html`<post-breadcrumb-item url="/section${i + 1}"
+            >Section ${i + 1}</post-breadcrumb-item
+          > `,
+      )}
+    </post-breadcrumbs>
+  `,
+};

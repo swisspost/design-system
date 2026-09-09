@@ -142,9 +142,9 @@ export namespace Components {
     }
     interface PostBreadcrumbs {
         /**
-          * The URL for the root (home) breadcrumb item.
+          * The URL for the root (home) breadcrumb item. Ignored if an `<a>` element is slotted into the `home` slot.
          */
-        "homeUrl": string;
+        "homeUrl"?: string;
         /**
           * An accessible label for the breadcrumb navigation.
          */
@@ -1447,9 +1447,9 @@ declare namespace LocalJSX {
     }
     interface PostBreadcrumbs {
         /**
-          * The URL for the root (home) breadcrumb item.
+          * The URL for the root (home) breadcrumb item. Ignored if an `<a>` element is slotted into the `home` slot.
          */
-        "homeUrl": string;
+        "homeUrl"?: string;
         /**
           * An accessible label for the breadcrumb navigation.
          */
@@ -2264,7 +2264,7 @@ declare namespace LocalJSX {
         "post-back-to-top": Omit<PostBackToTop, keyof PostBackToTopAttributes> & { [K in keyof PostBackToTop & keyof PostBackToTopAttributes]?: PostBackToTop[K] } & { [K in keyof PostBackToTop & keyof PostBackToTopAttributes as `attr:${K}`]?: PostBackToTopAttributes[K] } & { [K in keyof PostBackToTop & keyof PostBackToTopAttributes as `prop:${K}`]?: PostBackToTop[K] } & OneOf<"textBackToTop", PostBackToTop["textBackToTop"], PostBackToTopAttributes["textBackToTop"]>;
         "post-banner": Omit<PostBanner, keyof PostBannerAttributes> & { [K in keyof PostBanner & keyof PostBannerAttributes]?: PostBanner[K] } & { [K in keyof PostBanner & keyof PostBannerAttributes as `attr:${K}`]?: PostBannerAttributes[K] } & { [K in keyof PostBanner & keyof PostBannerAttributes as `prop:${K}`]?: PostBanner[K] };
         "post-breadcrumb-item": Omit<PostBreadcrumbItem, keyof PostBreadcrumbItemAttributes> & { [K in keyof PostBreadcrumbItem & keyof PostBreadcrumbItemAttributes]?: PostBreadcrumbItem[K] } & { [K in keyof PostBreadcrumbItem & keyof PostBreadcrumbItemAttributes as `attr:${K}`]?: PostBreadcrumbItemAttributes[K] } & { [K in keyof PostBreadcrumbItem & keyof PostBreadcrumbItemAttributes as `prop:${K}`]?: PostBreadcrumbItem[K] };
-        "post-breadcrumbs": Omit<PostBreadcrumbs, keyof PostBreadcrumbsAttributes> & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes]?: PostBreadcrumbs[K] } & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes as `attr:${K}`]?: PostBreadcrumbsAttributes[K] } & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes as `prop:${K}`]?: PostBreadcrumbs[K] } & OneOf<"homeUrl", PostBreadcrumbs["homeUrl"], PostBreadcrumbsAttributes["homeUrl"]> & OneOf<"textHome", PostBreadcrumbs["textHome"], PostBreadcrumbsAttributes["textHome"]> & OneOf<"textBreadcrumbs", PostBreadcrumbs["textBreadcrumbs"], PostBreadcrumbsAttributes["textBreadcrumbs"]> & OneOf<"textMoreItems", PostBreadcrumbs["textMoreItems"], PostBreadcrumbsAttributes["textMoreItems"]>;
+        "post-breadcrumbs": Omit<PostBreadcrumbs, keyof PostBreadcrumbsAttributes> & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes]?: PostBreadcrumbs[K] } & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes as `attr:${K}`]?: PostBreadcrumbsAttributes[K] } & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes as `prop:${K}`]?: PostBreadcrumbs[K] } & OneOf<"textHome", PostBreadcrumbs["textHome"], PostBreadcrumbsAttributes["textHome"]> & OneOf<"textBreadcrumbs", PostBreadcrumbs["textBreadcrumbs"], PostBreadcrumbsAttributes["textBreadcrumbs"]> & OneOf<"textMoreItems", PostBreadcrumbs["textMoreItems"], PostBreadcrumbsAttributes["textMoreItems"]>;
         "post-closebutton": Omit<PostClosebutton, keyof PostClosebuttonAttributes> & { [K in keyof PostClosebutton & keyof PostClosebuttonAttributes]?: PostClosebutton[K] } & { [K in keyof PostClosebutton & keyof PostClosebuttonAttributes as `attr:${K}`]?: PostClosebuttonAttributes[K] } & { [K in keyof PostClosebutton & keyof PostClosebuttonAttributes as `prop:${K}`]?: PostClosebutton[K] };
         "post-collapsible": Omit<PostCollapsible, keyof PostCollapsibleAttributes> & { [K in keyof PostCollapsible & keyof PostCollapsibleAttributes]?: PostCollapsible[K] } & { [K in keyof PostCollapsible & keyof PostCollapsibleAttributes as `attr:${K}`]?: PostCollapsibleAttributes[K] } & { [K in keyof PostCollapsible & keyof PostCollapsibleAttributes as `prop:${K}`]?: PostCollapsible[K] };
         "post-collapsible-trigger": Omit<PostCollapsibleTrigger, keyof PostCollapsibleTriggerAttributes> & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes]?: PostCollapsibleTrigger[K] } & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes as `attr:${K}`]?: PostCollapsibleTriggerAttributes[K] } & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes as `prop:${K}`]?: PostCollapsibleTrigger[K] };

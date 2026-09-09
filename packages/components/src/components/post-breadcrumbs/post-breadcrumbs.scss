@@ -47,7 +47,8 @@ nav {
     content: unset;
   }
 
-  post-icon {
+  post-icon,
+  ::slotted(post-icon) {
     width: tokens.get('breadcrumb-icon-home-size');
     height: tokens.get('breadcrumb-icon-home-size');
   }
