@@ -457,8 +457,8 @@ export class Search extends React.Component {
           text-last="Last page"
           ref={element => {
             if (!element) return;
-            element.removeEventListener('postChange', this.onPaginationChange as EventListener);
-            element.addEventListener('postChange', this.onPaginationChange as EventListener);
+            element.removeEventListener('postChange', this.onPaginationChange);
+            element.addEventListener('postChange', this.onPaginationChange);
           }}
         ></post-pagination>
       </div>
