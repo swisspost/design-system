@@ -1,7 +1,6 @@
-import { getPopoverOpenSelector } from './helper/popovercontainer';
+import { POPOVER_OPEN_SELECTOR } from './helper/popovercontainer';
 
 const CLOSE_BTN_ID = 'de313349-0c0b-4baf-adc6-cb8c2e36fc1a';
-const POPOVER_OPEN_SELECTOR = getPopoverOpenSelector();
 
 describe('Close button', () => {
   describe('default', () => {
@@ -111,7 +110,7 @@ describe('Close button', () => {
 describe('Accessibility', () => {
   it('Has no detectable a11y violations on load for all variants', () => {
     cy.getSnapshots('post-closebutton');
-    cy.checkA11y('#root-inner', undefined, (violations) => {
+    cy.checkA11y('#root-inner', undefined, violations => {
       expect(violations).to.have.length(0);
     });
   });
