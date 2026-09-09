@@ -15,15 +15,18 @@ tokens.$default-map: components.$post-breadcrumb;
 
 nav {
   max-width: 100%;
+  overflow: hidden;
 
   &.invisible {
-    --post-breadcrumb-item-wrap: nowrap;
-
     visibility: hidden;
-    overflow: hidden;
     position: absolute;
     inset: 0;
-    padding-inline: 1px; // Detects overflow 2px sooner to favor menu layout.
+  }
+
+  &.loading {
+    > div > :not(.home) {
+      display: none;
+    }
   }
 }
 
@@ -47,6 +50,14 @@ nav {
   post-icon {
     width: tokens.get('breadcrumb-icon-home-size');
     height: tokens.get('breadcrumb-icon-home-size');
+  }
+}
+
+.menu {
+  margin-inline-end: calc(-1 * tokens.get('breadcrumb-gap-inline-outer'));
+
+  &.empty {
+    display: none;
   }
 }
 
