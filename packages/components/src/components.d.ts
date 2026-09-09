@@ -126,6 +126,11 @@ export namespace Components {
          */
         "selected": boolean;
         /**
+          * Indicates that this is the only visible item, applying appropriate styling.
+          * @default false
+         */
+        "standalone": boolean;
+        /**
           * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
          */
         "url"?: string | URL;
@@ -574,7 +579,7 @@ export namespace Components {
          */
         "arrow"?: boolean;
         /**
-          * Whether to automatically hide the popover when the target moves outside the scrollport.
+          * Whether to automatically hide the popover when the target moves outside the scrollport.  If the `post-header` can cover the target, the popover will also be hidden as soon as the target scrolls behind it.
          */
         "autoHide"?: boolean;
         /**
@@ -1426,6 +1431,11 @@ declare namespace LocalJSX {
          */
         "selected"?: boolean;
         /**
+          * Indicates that this is the only visible item, applying appropriate styling.
+          * @default false
+         */
+        "standalone"?: boolean;
+        /**
           * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
          */
         "url"?: string | URL;
@@ -1831,7 +1841,7 @@ declare namespace LocalJSX {
          */
         "arrow"?: boolean;
         /**
-          * Whether to automatically hide the popover when the target moves outside the scrollport.
+          * Whether to automatically hide the popover when the target moves outside the scrollport.  If the `post-header` can cover the target, the popover will also be hidden as soon as the target scrolls behind it.
          */
         "autoHide"?: boolean;
         /**
@@ -2077,6 +2087,7 @@ declare namespace LocalJSX {
         "description": string;
         "variant": Variant;
         "selected": boolean;
+        "standalone": boolean;
     }
     interface PostBreadcrumbsAttributes {
         "homeUrl": string;
