@@ -126,6 +126,11 @@ export namespace Components {
          */
         "selected": boolean;
         /**
+          * Indicates that this is the only visible item, applying appropriate styling.
+          * @default false
+         */
+        "standalone": boolean;
+        /**
           * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
          */
         "url"?: string | URL;
@@ -573,6 +578,10 @@ export namespace Components {
           * @default false
          */
         "arrow"?: boolean;
+        /**
+          * Whether to automatically hide the popover when the target moves outside the scrollport.  If the `post-header` can cover the target, the popover will also be hidden as soon as the target scrolls behind it.
+         */
+        "autoHide"?: boolean;
         /**
           * Gap between the edge of the page and the popovercontainer
           * @default 8
@@ -1422,6 +1431,11 @@ declare namespace LocalJSX {
          */
         "selected"?: boolean;
         /**
+          * Indicates that this is the only visible item, applying appropriate styling.
+          * @default false
+         */
+        "standalone"?: boolean;
+        /**
           * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
          */
         "url"?: string | URL;
@@ -1827,6 +1841,10 @@ declare namespace LocalJSX {
          */
         "arrow"?: boolean;
         /**
+          * Whether to automatically hide the popover when the target moves outside the scrollport.  If the `post-header` can cover the target, the popover will also be hidden as soon as the target scrolls behind it.
+         */
+        "autoHide"?: boolean;
+        /**
           * Gap between the edge of the page and the popovercontainer
           * @default 8
          */
@@ -2069,6 +2087,7 @@ declare namespace LocalJSX {
         "description": string;
         "variant": Variant;
         "selected": boolean;
+        "standalone": boolean;
     }
     interface PostBreadcrumbsAttributes {
         "homeUrl": string;
@@ -2183,6 +2202,7 @@ declare namespace LocalJSX {
         "offset": number;
         "arrow": boolean;
         "safeSpace": 'triangle' | 'trapezoid';
+        "autoHide": boolean;
     }
     interface PostProgressbarAttributes {
         "min": number;
