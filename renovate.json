@@ -67,6 +67,11 @@
       "matchUpdateTypes": ["digest", "patch", "minor", "major"]
     },
     {
+      "groupName": "parse5",
+      "matchPackageNames": ["parse5", "/^parse5-/"],
+      "matchUpdateTypes": ["digest", "patch", "minor", "major"]
+    },
+    {
       "matchFileNames": ["packages/components/package.json"],
       "allowedVersions": "0.2.3",
       "matchPackageNames": ["@oddbird/popover-polyfill"]
