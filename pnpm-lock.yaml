@@ -390,6 +390,9 @@ importers:
       '@swisspost/design-system-components-angular':
         specifier: workspace:10.4.0
         version: link:../../packages/components-angular/dist
+      '@swisspost/design-system-tsconfig':
+        specifier: workspace:10.4.0
+        version: link:../../tooling/typescript
       '@types/css-modules':
         specifier: 1.0.5
         version: 1.0.5
@@ -535,6 +538,9 @@ importers:
       '@playwright/test':
         specifier: 'catalog:'
         version: 1.60.0
+      '@swisspost/design-system-tsconfig':
+        specifier: workspace:10.4.0
+        version: link:../../tooling/typescript
       angular-eslint:
         specifier: catalog:angular
         version: 22.2.0(chokidar@5.0.0)(eslint@9.26.0(jiti@2.6.1)(supports-color@10.2.2))(supports-color@10.2.2)(typescript-eslint@8.62.0(eslint@9.26.0(jiti@2.6.1)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(typescript@6.0.3)
@@ -584,6 +590,9 @@ importers:
       '@swisspost/design-system-components':
         specifier: workspace:10.4.0
         version: link:../../packages/components
+      '@swisspost/design-system-tsconfig':
+        specifier: workspace:10.4.0
+        version: link:../../tooling/typescript
       '@tailwindcss/postcss':
         specifier: 4.1.18
         version: 4.1.18
@@ -648,6 +657,9 @@ importers:
       '@eslint/js':
         specifier: 9.18.0
         version: 9.18.0
+      '@swisspost/design-system-tsconfig':
+        specifier: workspace:10.4.0
+        version: link:../../tooling/typescript
       eslint:
         specifier: 9.26.0
         version: 9.26.0(jiti@2.6.1)(supports-color@10.2.2)
@@ -724,6 +736,9 @@ importers:
       '@swisspost/design-system-eslint':
         specifier: workspace:10.4.0
         version: link:../eslint
+      '@swisspost/design-system-tsconfig':
+        specifier: workspace:10.4.0
+        version: link:../../tooling/typescript
       '@types/jest':
         specifier: catalog:stencil/jest
         version: 29.5.14
@@ -833,6 +848,9 @@ importers:
       '@eslint/js':
         specifier: 9.18.0
         version: 9.18.0
+      '@swisspost/design-system-tsconfig':
+        specifier: workspace:10.4.0
+        version: link:../../tooling/typescript
       angular-eslint:
         specifier: catalog:angular
         version: 22.2.0(chokidar@5.0.0)(eslint@9.26.0(jiti@2.6.1)(supports-color@10.2.2))(supports-color@10.2.2)(typescript-eslint@8.62.0(eslint@9.26.0(jiti@2.6.1)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(typescript@6.0.3)
@@ -883,6 +901,9 @@ importers:
       '@swisspost/design-system-icons':
         specifier: workspace:10.4.0
         version: link:../icons
+      '@swisspost/design-system-tsconfig':
+        specifier: workspace:10.4.0
+        version: link:../../tooling/typescript
       '@types/node':
         specifier: catalog:node
         version: 24.0.0
@@ -944,6 +965,9 @@ importers:
       '@eslint/js':
         specifier: 9.19.0
         version: 9.19.0
+      '@swisspost/design-system-tsconfig':
+        specifier: workspace:10.4.0
+        version: link:../../tooling/typescript
       '@types/eslint-scope':
         specifier: 3.7.7
         version: 3.7.7
@@ -989,9 +1013,9 @@ importers:
       '@eslint/js':
         specifier: 9.18.0
         version: 9.18.0
-      '@tsconfig/node24':
-        specifier: 24.0.4
-        version: 24.0.4
+      '@swisspost/design-system-tsconfig':
+        specifier: workspace:10.4.0
+        version: link:../../tooling/typescript
       '@types/jest':
         specifier: catalog:jest
         version: 30.0.0
@@ -1116,6 +1140,9 @@ importers:
       '@stencil/store':
         specifier: 2.0.16
         version: 2.0.16(@stencil/core@4.43.3)
+      '@swisspost/design-system-tsconfig':
+        specifier: workspace:10.4.0
+        version: link:../../tooling/typescript
       '@types/body-scroll-lock':
         specifier: 3.1.2
         version: 3.1.2
@@ -1293,6 +1320,9 @@ importers:
         specifier: 2.8.1
         version: 2.8.1
     devDependencies:
+      '@swisspost/design-system-tsconfig':
+        specifier: workspace:10.4.0
+        version: link:../../tooling/typescript
       typescript:
         specifier: 5.9.3
         version: 5.9.3
@@ -1303,6 +1333,9 @@ importers:
         specifier: ^33.3.2
         version: 33.3.2
     devDependencies:
+      '@swisspost/design-system-tsconfig':
+        specifier: workspace:10.4.0
+        version: link:../../tooling/typescript
       typescript:
         specifier: catalog:typescript
         version: 6.0.3
@@ -1312,6 +1345,9 @@ importers:
       '@eslint/js':
         specifier: 9.18.0
         version: 9.18.0
+      '@swisspost/design-system-tsconfig':
+        specifier: workspace:10.4.0
+        version: link:../../tooling/typescript
       '@tokens-studio/sd-transforms':
         specifier: 2.0.3
         version: 2.0.3(style-dictionary@5.4.4)
@@ -1340,6 +1376,8 @@ importers:
         specifier: catalog:typescript
         version: 8.62.0(eslint@9.26.0(jiti@2.6.1)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
     publishDirectory: ./dist
+
+  tooling/typescript: {}
 
 packages:
 
@@ -4640,9 +4678,6 @@ packages:
 
   '@tsconfig/node16@1.0.4':
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
-
-  '@tsconfig/node24@24.0.4':
-    resolution: {integrity: sha512-2A933l5P5oCbv6qSxHs7ckKwobs8BDAe9SJ/Xr2Hy+nDlwmLE1GhFh/g/vXGRZWgxBg9nX/5piDtHR9Dkw/XuA==}
 
   '@turbo/darwin-64@2.10.10':
     resolution: {integrity: sha512-gFDD+wRP5hWxBRghGyEbjpbLOY7aIU/wvsnKdMM7odQcp/wHMrnI83p0FyxxMRZnFH9ZD+S59MvcpOC5b+nrCA==}
@@ -16509,8 +16544,6 @@ snapshots:
   '@tsconfig/node14@1.0.3': {}
 
   '@tsconfig/node16@1.0.4': {}
-
-  '@tsconfig/node24@24.0.4': {}
 
   '@turbo/darwin-64@2.10.10':
     optional: true

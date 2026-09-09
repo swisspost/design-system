@@ -1,0 +1,31 @@
+{
+  "name": "@swisspost/design-system-tsconfig",
+  "version": "10.4.0",
+  "description": "Shared TypeScript configurations for the Swiss Post Design System.",
+  "author": "Swiss Post <design-system@post.ch>",
+  "license": "Apache-2.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git",
+    "directory": "packages/tsconfig"
+  },
+  "homepage": "https://design-system.post.ch",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "*.tsconfig.json",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "keywords": [
+    "design-system",
+    "tsconfig",
+    "typescript"
+  ]
+}

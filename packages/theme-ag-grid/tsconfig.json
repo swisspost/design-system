@@ -1,13 +1,9 @@
 {
+  "extends": "@swisspost/design-system-tsconfig/dom.tsconfig.json",
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "src",
-    "declaration": true,
-    "module": "ESNext",
-    "target": "ES2020",
-    "moduleResolution": "Bundler",
-    "strict": true,
-    "skipLibCheck": true
+    "declaration": true
   },
   "include": ["src"]
 }

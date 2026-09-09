@@ -72,6 +72,7 @@
     "build": "pnpm clean && pnpm build:icons && tsc -p .",
     "postbuild": "pnpm copy:styles:dist",
     "build:icons": "node scripts/generate-icons.mjs",
+    "typecheck": "tsc --noEmit",
     "clean": "rimraf dist src/icons-generated",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
@@ -85,6 +86,7 @@
   "devDependencies": {
     "@eslint/js": "9.18.0",
     "@swisspost/design-system-icons": "workspace:10.4.0",
+    "@swisspost/design-system-tsconfig": "workspace:10.4.0",
     "@types/node": "catalog:node",
     "@types/react": "18.3.28",
     "@types/react-dom": "18.3.7",

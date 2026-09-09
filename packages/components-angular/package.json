@@ -24,6 +24,7 @@
   "scripts": {
     "ng": "ng",
     "build": "pnpm clean && ng build components",
+    "typecheck": "tsc --noEmit",
     "postbuild": "copyfiles -f src/stencil-generated/post-components.css dist/",
     "clean": "rimraf dist .angular",
     "lint": "ng lint",
@@ -48,6 +49,7 @@
     "@angular/core": "catalog:angular",
     "@angular/forms": "catalog:angular",
     "@eslint/js": "9.18.0",
+    "@swisspost/design-system-tsconfig": "workspace:10.4.0",
     "angular-eslint": "catalog:angular",
     "copyfiles": "2.4.1",
     "eslint": "9.26.0",

@@ -31,7 +31,8 @@
   "scripts": {
     "play": "stencil build --serve --port 9310 --watch --docs-readme --dev --config stencil.config.dev.ts",
     "start": "stencil build --watch --docs-readme",
-    "build": "pnpm clean && stencil build --docs-readme",
+    "build": "pnpm clean && pnpm typecheck && stencil build --docs-readme",
+    "typecheck": "tsc --noEmit",
     "clean": "rimraf www dist loader",
     "unit": "jest",
     "unit:watch": "jest --watch",
@@ -61,6 +62,7 @@
     "@stencil/core": "4.43.3",
     "@stencil/sass": "3.0.12",
     "@stencil/store": "2.0.16",
+    "@swisspost/design-system-tsconfig": "workspace:10.4.0",
     "@types/body-scroll-lock": "3.1.2",
     "@types/iframe-resizer": "4.0.0",
     "@types/jest": "catalog:jest",
