@@ -6,20 +6,32 @@
 
 tokens.$default-map: components.$post-breadcrumb;
 
-:host(:not([variant='menuitem'])) {
-  @include mixins.breadcrumb-item;
+:host([variant='menuitem']) {
+  :is(a, span),
+  ::slotted(a) {
+    white-space: normal;
+    @include utilities.word-break;
+  }
 }
 
-:is(a, span),
-::slotted(a) {
-  white-space: var(--post-breadcrumb-item-wrap, normal) !important;
-  @include utilities.word-break;
-}
-
-:host([selected]:not([selected='false'])) {
+:host([variant='listitem']) {
   @include mixins.breadcrumb-item;
 
-  :is(a, span) {
-    @include mixins.breadcrumb-link-selected-colors;
+  ::slotted(a) {
+    white-space: nowrap;
+  }
+
+  &:host([selected]:not([selected='false'])) {
+    :is(a, span) {
+      @include mixins.breadcrumb-link-selected-colors;
+    }
+  }
+
+  &:host([standalone]:not([standalone='false'])) {
+    :is(a, span),
+    ::slotted(a) {
+      white-space: normal;
+      @include utilities.word-break;
+    }
   }
 }
