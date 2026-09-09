@@ -96,6 +96,8 @@
     "lint:es:fix": "eslint --fix",
     "lint:style": "stylelint src/**/*.scss !src/_generated",
     "lint:style:fix": "stylelint src/**/*.scss !src/_generated --fix",
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
     "vrt": "node vrt/generate-header-html.js && playwright test",
     "vrt:update": "node vrt/generate-header-html.js && playwright test --update-snapshots",
     "vrt:ui": "node vrt/generate-header-html.js playwright test --ui",

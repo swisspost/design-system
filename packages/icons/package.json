@@ -32,6 +32,8 @@
     "unit:updatesnapshots": "jest -u",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
     "fetchSVGs": "ts-node src/fetch.ts"
   },
   "devDependencies": {

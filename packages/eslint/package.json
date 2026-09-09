@@ -34,6 +34,8 @@
     "inspect": "concurrently -n start,inspect -c cyan,green \"pnpm start\" \"eslint --c eslint.play.js --inspect-config\"",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
     "unit": "jest",
     "unit:watch": "jest --watchAll"
   },

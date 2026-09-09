@@ -41,6 +41,8 @@
     "e2e:ci": "xvfb-run -a cypress run --browser chrome",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
     "generate": "stencil generate"
   },
   "dependencies": {

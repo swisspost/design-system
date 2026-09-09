@@ -22,6 +22,8 @@
     "clean": "rimraf .next",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
     "e2e": "pnpm exec playwright test",
     "e2e:watch": "pnpm exec playwright test --ui",
     "unit": "vitest run",

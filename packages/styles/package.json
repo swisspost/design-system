@@ -26,7 +26,8 @@
     "clean": "rimraf dist src/tokens/temp src/icons/temp",
     "lint": "stylelint src/**/*.scss !src/tokens/temp/**",
     "lint:fix": "stylelint src/**/*.scss !src/tokens/temp/** --fix",
-    "format": "prettier src/**/*.scss --write"
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "dependencies": {
     "@popperjs/core": "2.11.8",

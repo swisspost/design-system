@@ -76,6 +76,8 @@
     "clean": "rimraf dist src/icons-generated",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
     "copy:styles:dist": "copyfiles -f src/stencil-generated/post-components.css dist/"
   },
   "dependencies": {

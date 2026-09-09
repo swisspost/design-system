@@ -28,7 +28,9 @@
     "postbuild": "copyfiles -f src/stencil-generated/post-components.css dist/",
     "clean": "rimraf dist .angular",
     "lint": "ng lint",
-    "lint:fix": "ng lint --fix"
+    "lint:fix": "ng lint --fix",
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "dependencies": {
     "@swisspost/design-system-components": "workspace:10.4.0",

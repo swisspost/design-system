@@ -17,6 +17,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "scripts": {
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
+  },
   "files": [
     "*.tsconfig.json",
     "package.json",

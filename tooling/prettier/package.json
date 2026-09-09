@@ -8,7 +8,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git",
-    "directory": "tooling/prettier-config"
+    "directory": "tooling/prettier"
   },
   "homepage": "https://design-system.post.ch",
   "bugs": {
@@ -17,6 +17,10 @@
   "exports": "./index.mjs",
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "peerDependencies": {
     "prettier": ">=3.0.0"
