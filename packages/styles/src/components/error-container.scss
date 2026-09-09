@@ -39,10 +39,6 @@ tokens.$default-map: elements.$post-heading;
     height: 100%;
   }
 
-  .container::before {
-    pointer-events: none;
-  }
-
   .error-content {
     padding-block: 2rem;
 
@@ -65,9 +61,6 @@ $error-types: (
     sm-padding-block-end: 12rem,
     md-padding-block-end: 16rem,
     lg-padding-block-end: 20rem,
-    bg-position: bottom 2rem left 0,
-    bg-position-lg: top 0 left 80%,
-    bg-position-xl: top 0 left 75%,
   ),
   '401': (
     sm-padding-block-end: 16rem,
@@ -214,6 +207,7 @@ $error-types: (
     &::before {
       @include media.min(lg) {
         content: '';
+        pointer-events: none;
         position: absolute;
         background-repeat: no-repeat;
         width: calc(100% - 2 * var(--post-container-padding-inline));
