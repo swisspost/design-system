@@ -17,10 +17,6 @@ tokens.$default-map: components.$post-breadcrumb;
 :host([variant='listitem']) {
   @include mixins.breadcrumb-item;
 
-  ::slotted(a) {
-    white-space: nowrap;
-  }
-
   &:host([selected]:not([selected='false'])) {
     :is(a, span) {
       @include mixins.breadcrumb-link-selected-colors;

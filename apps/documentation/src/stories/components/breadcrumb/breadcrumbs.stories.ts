@@ -57,20 +57,20 @@ export const Concatenated: Story = {
   },
 };
 
-export const SlottedHomeLink: Story = {
+export const ClientSideRouting: Story = {
+  args: {
+    itemCount: 3,
+  },
   parameters: {
     docs: {
       description: {
         story:
-          'Slot your own `<a>` (e.g. a framework `<Link>`) into the `home` slot instead of using the `home-url` prop, so client-side routing frameworks like Next.js or Angular Router can handle navigation for the home item instead of the browser doing a full page reload.',
+          'Slot your own `<a>` (e.g. a framework `Link`) into the `home` slot and into each `post-breadcrumb-item`, instead of using `home-url`/`url`, so client-side routing frameworks like Next.js or Angular Router can handle navigation instead of the browser doing a full page reload.',
       },
     },
     controls: {
       exclude: ['itemCount', 'homeUrl'],
     },
-  },
-  args: {
-    itemCount: 15,
   },
   render: args => html`
     <post-breadcrumbs
@@ -78,11 +78,15 @@ export const SlottedHomeLink: Story = {
       text-breadcrumbs=${args.textBreadcrumbs}
       text-more-items=${args.textMoreItems}
     >
-      <a slot="home" href="/">${args.textHome}</a>
-      ${Array.from({ length: args.itemCount }).map(
+      <a slot="home" href="/">
+        <span class="visually-hidden">${args.textHome}</span>
+        <post-icon aria-hidden="true" name="home"></post-icon>
+      </a>
+      ${Array.from(
+        { length: args.itemCount },
         (_, i) =>
-          html`<post-breadcrumb-item url="/section${i + 1}"
-            >Section ${i + 1}</post-breadcrumb-item
+          html`<post-breadcrumb-item
+            ><a href="/section${i + 1}">Section ${i + 1}</a></post-breadcrumb-item
           > `,
       )}
     </post-breadcrumbs>

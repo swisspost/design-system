@@ -1,5 +1,5 @@
 import { MetaComponent } from '@root/types';
-import { Args } from '@storybook/web-components-vite';
+import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 
 const meta: MetaComponent = {
@@ -18,19 +18,19 @@ const meta: MetaComponent = {
       exclude: ['variant', 'selected', 'standalone'],
     },
   },
-  args: {
-    variant: 'listitem',
-    label: 'Products section',
-    description: 'This section contains all the products you can buy.',
-    selected: false,
-    url: '/section1',
-  },
   argTypes: {
     url: {
       control: {
         type: 'text',
       },
     },
+  },
+  args: {
+    variant: 'listitem',
+    label: 'Products section',
+    description: 'This section contains all the products you can buy.',
+    selected: false,
+    url: '/section1',
   },
 };
 
@@ -53,27 +53,3 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {};
-
-export const SlottedLink: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Slot your own `<a>` (e.g. a framework `<Link>`) instead of using the `url` prop, so client-side routing frameworks like Next.js or Angular Router can handle navigation instead of the browser doing a full page reload. The active link must have an `aria-current="page"` attribute to ensure correct accessibility and styling.',
-      },
-    },
-    controls: {
-      exclude: ['variant', 'selected', 'url'],
-    },
-  },
-  render: args => html`
-    <post-breadcrumb-item
-      label=${args.label || nothing}
-      description=${args.description || nothing}
-      selected
-    >
-      <!-- The active link must have an aria-current="page" attribute to ensure correct accessibility and styling. -->
-      <a href="/section1" aria-current="page">Section 1</a>
-    </post-breadcrumb-item>
-  `,
-};

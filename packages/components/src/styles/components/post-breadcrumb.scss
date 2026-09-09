@@ -1,3 +1,5 @@
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/components';
 @use '../../components/post-breadcrumb-item/mixins' as breadcrumb-item;
 @use '../../components/post-menu-item/mixins' as menu-item;
 
@@ -6,10 +8,18 @@ post-breadcrumb-item:not([variant='menuitem']) > a {
 }
 
 post-breadcrumb-item[selected]:not([selected='false']) > a {
-  @include breadcrumb-item.breadcrumb-link-colors;
   @include breadcrumb-item.breadcrumb-link-selected-colors;
 }
 
 post-breadcrumb-item[variant='menuitem']:not([selected]:not([selected='false'])) > a {
   @include menu-item.menu-item-link-appearance;
+}
+
+post-breadcrumbs > a[slot='home'] {
+  @include breadcrumb-item.breadcrumb-link-colors;
+}
+
+post-breadcrumbs > a[slot='home'] post-icon {
+  width: tokens.get('breadcrumb-icon-home-size', components.$post-breadcrumb);
+  height: tokens.get('breadcrumb-icon-home-size', components.$post-breadcrumb);
 }

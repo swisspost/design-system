@@ -11,12 +11,22 @@
   gap: tokens.get('breadcrumb-gap-inline-inner', components.$post-breadcrumb);
 
   :is(button, a) {
-    @include button.button-base;
-    font: inherit;
-    padding: unset;
-    border: unset;
-    border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+    @include breadcrumb-link-layout;
     @include breadcrumb-link-colors;
+  }
+
+  // `::slotted()` only styles the top-level slotted element, and (unlike native `a`/`button`)
+  // can't be combined with a trailing pseudo-class like `::slotted(a):focus-visible` — browsers
+  // treat that as invalid and drop the whole rule, so `:focus-visible` has to be part of the
+  // `::slotted()` argument itself. Colors are applied separately, from the light DOM (see
+  // src/styles/components/post-breadcrumb.scss), since `&:hover` there compiles to a valid
+  // trailing pseudo-class on a real DOM selector, not on `::slotted()`.
+  ::slotted(a) {
+    @include breadcrumb-link-layout;
+  }
+
+  ::slotted(a:focus-visible) {
+    outline-style: tokens.get('focus-border-style', helpers.$post-focus) !important;
   }
 
   &::before {
@@ -32,6 +42,14 @@
     );
     margin-inline: tokens.get('breadcrumb-padding-inline-icon-link', components.$post-breadcrumb);
   }
+}
+
+@mixin breadcrumb-link-layout {
+  @include button.button-base;
+  font: inherit;
+  padding: unset;
+  border: unset;
+  border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
 }
 
 @mixin breadcrumb-link-colors {

@@ -14,10 +14,10 @@ describe('breadcrumbs', () => {
       });
     });
 
-    describe('slotted link', () => {
+    describe('client-side routing (slotted anchor)', () => {
       beforeEach(() => {
-        cy.getComponent('breadcrumb-item', BREADCRUMB_ITEM_ID, 'slotted-link');
-        cy.get('post-breadcrumb-item').as('item');
+        cy.getComponent('breadcrumbs', BREADCRUMBS_ID, 'client-side-routing');
+        cy.get('post-breadcrumb-item[data-hydrated]', { timeout: 30000 }).first().as('item');
       });
 
       it('should not render an internal anchor in the shadow DOM', () => {
@@ -48,14 +48,19 @@ describe('breadcrumbs', () => {
   });
 
   describe('home link', () => {
-    describe('slotted link', () => {
+    describe('client-side routing (slotted anchor)', () => {
       beforeEach(() => {
-        cy.getComponent('breadcrumbs', BREADCRUMBS_ID, 'slotted-home-link');
-        cy.get('post-breadcrumbs').as('breadcrumbs');
+        cy.getComponent('breadcrumbs', BREADCRUMBS_ID, 'client-side-routing');
+        cy.get('post-breadcrumbs[data-hydrated]', { timeout: 30000 }).as('breadcrumbs');
       });
 
       it('should render the slotted anchor instead of the internal one built from home-url', () => {
-        cy.get('@breadcrumbs').shadow().find('a[href="/"]').should('not.exist');
+        // Scoped to the visible nav, since the off-screen clone used for overflow measurement
+        // legitimately embeds a copy of the slotted anchor to measure its width.
+        cy.get('@breadcrumbs')
+          .shadow()
+          .find('nav:not(.invisible) a[href="/"]')
+          .should('not.exist');
         cy.get('@breadcrumbs').children('a[slot="home"]').should('exist').and('have.attr', 'href');
       });
     });
@@ -68,7 +73,10 @@ describe('breadcrumbs', () => {
           .then(defaultCollapsedCount => {
             expect(defaultCollapsedCount).to.be.greaterThan(0);
 
-            cy.getComponent('breadcrumbs', BREADCRUMBS_ID, 'slotted-home-link');
+            cy.visit(
+              `/iframe.html?id=${BREADCRUMBS_ID}--client-side-routing&args=itemCount:15`,
+            );
+            cy.get('post-breadcrumb-item[data-hydrated]', { timeout: 30000 });
             cy.get('post-breadcrumb-item[variant="menuitem"]').should(
               'have.length',
               defaultCollapsedCount,
