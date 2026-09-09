@@ -32,14 +32,7 @@ import StoryTags from '@/shared/story-tags';
 
 <post-banner type="info">
   <p>
-    For more information on the dialog element, please refer to the{' '}
-    <a
-      href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <strong>MDN Web Docs: HTML &lt;dialog&gt; element</strong>
-    </a>
+    For more information on the dialog element, please refer to the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog" target="_blank" rel="noopener noreferrer"><strong>MDN Web Docs: HTML &lt;dialog&gt; element</strong><span className="visually-hidden">(opens in a new tab)</span></a>.
   </p>
 </post-banner>
 
@@ -51,6 +44,10 @@ import StoryTags from '@/shared/story-tags';
 <StylesPackageImport components={['dialog']} />
 
 ## Examples
+
+### Close button
+
+Place a `<post-closebutton>`directly inside a `<dialog>` and it will automatically call `dialog.close()` when clicked  no JavaScript wiring required. See the [Button Close docs](?path=/docs/de313349-0c0b-4baf-adc6-cb8c2e36fc1a--docs) for a runnable example.
 
 ### Bottom sheet dialog
 
