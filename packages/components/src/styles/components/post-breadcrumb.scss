@@ -1,0 +1,19 @@
+@use '../../components/post-breadcrumb-item/mixins' as breadcrumb-item;
+@use '../../components/post-menu-item/mixins' as menu-item;
+
+// Global styles for a consumer-slotted <a>: ::slotted() always loses to page styles, so style it here instead
+post-breadcrumb-item:not([variant='menuitem']) > a {
+  @include breadcrumb-item.breadcrumb-link-colors;
+}
+
+post-breadcrumb-item[selected]:not([selected='false']) > a {
+  // variant="menuitem" is set even on the selected item while collapsed, so re-apply the base colors first
+  @include breadcrumb-item.breadcrumb-link-colors;
+  @include breadcrumb-item.breadcrumb-link-selected-colors;
+}
+
+// Mirrors post-menu-item's appearance, unreachable here since it's scoped inside post-menu-item's shadow root
+// Excludes the selected item, which stays as plain text and is never wrapped in <post-menu-item>
+post-breadcrumb-item[variant='menuitem']:not([selected]:not([selected='false'])) > a {
+  @include menu-item.menu-item-link-appearance;
+}

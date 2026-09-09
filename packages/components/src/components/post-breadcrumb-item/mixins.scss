@@ -10,26 +10,13 @@
   padding-block: tokens.get('breadcrumb-padding-block-text', components.$post-breadcrumb);
   gap: tokens.get('breadcrumb-gap-inline-inner', components.$post-breadcrumb);
 
-  :is(button, a),
-  ::slotted(a) {
+  :is(button, a) {
     @include button.button-base;
     font: inherit;
     padding: unset;
     border: unset;
-    color: tokens.get('breadcrumb-enabled-fg', components.$post-breadcrumb);
     border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
-    text-decoration: tokens.get(
-      'breadcrumb-link-enabled-text-decoration',
-      components.$post-breadcrumb
-    );
-
-    &:hover {
-      color: tokens.get('breadcrumb-hover-fg', components.$post-breadcrumb);
-      text-decoration: tokens.get(
-        'breadcrumb-link-hover-text-decoration',
-        components.$post-breadcrumb
-      );
-    }
+    @include breadcrumb-link-colors;
   }
 
   &::before {
@@ -45,4 +32,30 @@
     );
     margin-inline: tokens.get('breadcrumb-padding-inline-icon-link', components.$post-breadcrumb);
   }
+}
+
+// Shared with src/styles/components/post-breadcrumb.scss, which styles a consumer-slotted <a> the same way
+@mixin breadcrumb-link-colors {
+  color: tokens.get('breadcrumb-enabled-fg', components.$post-breadcrumb);
+  text-decoration: tokens.get(
+    'breadcrumb-link-enabled-text-decoration',
+    components.$post-breadcrumb
+  );
+
+  &:hover {
+    color: tokens.get('breadcrumb-hover-fg', components.$post-breadcrumb);
+    text-decoration: tokens.get(
+      'breadcrumb-link-enabled-text-decoration',
+      components.$post-breadcrumb
+    );
+  }
+}
+
+@mixin breadcrumb-link-selected-colors {
+  color: tokens.get('breadcrumb-selected-fg', components.$post-breadcrumb);
+  font-weight: tokens.get('breadcrumb-selected-font-weight', components.$post-breadcrumb);
+  text-decoration: tokens.get(
+    'breadcrumb-link-selected-text-decoration',
+    components.$post-breadcrumb
+  );
 }
