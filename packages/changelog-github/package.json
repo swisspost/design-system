@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-changelog-github",
-  "version": "10.3.0",
+  "version": "10.4.0",
   "description": "A changelog entry generator for GitHub that links to PRs and users",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -33,7 +33,7 @@
     "@eslint/js": "9.18.0",
     "eslint": "9.26.0",
     "globals": "17.3.0",
-    "rimraf": "6.0.1",
+    "rimraf": "6.1.3",
     "typescript": "catalog:typescript",
     "typescript-eslint": "catalog:typescript"
   },

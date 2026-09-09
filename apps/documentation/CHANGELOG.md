@@ -1,5 +1,28 @@
 # @swisspost/design-system-documentation
 
+## 6.4.1
+
+### Patch Changes
+
+- Documented an example of self-managed header for online services. (by [@alizedebray](https://github.com/alizedebray) with [#8335](https://github.com/swisspost/design-system/pull/8335))
+
+- Updated the `post-datepicker` component and its documentation page to demonstrate floating label support. (by [@myrta2302](https://github.com/myrta2302) with [#8054](https://github.com/swisspost/design-system/pull/8054))
+
+- Updated the `SECURITY.md` file with information regarding v9 and v10. (by [@AndrinAAF](https://github.com/AndrinAAF), [@Copilot](https://github.com/Copilot) and [@alionazherdetska](https://github.com/alionazherdetska) with [#8256](https://github.com/swisspost/design-system/pull/8256))
+
+- Added a warning that the `v10` Internet Header requires requesting a new Portal configuration and will not work with the old `v9` format. (by [@alionazherdetska](https://github.com/alionazherdetska) and [@alizedebray](https://github.com/alizedebray) with [#8355](https://github.com/swisspost/design-system/pull/8355))
+
+- Updated `post-footer` to ensure consistent spacing regardless of its content. (by [@alizedebray](https://github.com/alizedebray) and [@alionazherdetska](https://github.com/alionazherdetska) with [#8306](https://github.com/swisspost/design-system/pull/8306))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.4.0
+  - @swisspost/design-system-components@10.4.0
+  - @swisspost/design-system-components-react@10.4.0
+  - @swisspost/design-system-styles@10.4.0
+  - @swisspost/internet-header@10.4.0
+  - @swisspost/design-system-styles-primeng@10.4.0
+  - @swisspost/design-system-theme-ag-grid@10.4.0
+  - @swisspost/design-system-tokens@10.4.0
+
 ## 6.4.0
 
 ### Minor Changes

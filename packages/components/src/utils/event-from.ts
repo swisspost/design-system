@@ -111,32 +111,39 @@ export function EventFrom(
 
 /**
  * Traverses up the DOM (including crossing shadow DOM boundaries) to find the closest ancestor
- * that matches the specified tag name.
- * @param element - The starting element
- * @param tagName - The tag name to match (e.g., 'post-accordion')
+ * matching the given predicate.
+ * @param start - The starting element
+ * @param predicate - A type guard used to test each ancestor
  * @returns The closest matching ancestor or null if none found
  */
-function findClosestParentWithTag(element: Element, tagName: string): Element | null {
-  let current: Element | null = element;
+export function findClosestAcrossShadow<T extends Element>(
+  start: Element,
+  predicate: (el: Element) => el is T,
+): T | null {
+  let current: Element | null = start;
 
   while (current) {
-    if (current.localName === tagName) {
+    if (predicate(current)) {
       return current;
     }
 
-    // Check regular parent first
     if (current.parentElement) {
       current = current.parentElement;
-    }
-    // If no parentElement, check if we're in a shadow root
-    else if (current.parentNode instanceof ShadowRoot) {
-      current = current.parentNode.host;
-    }
-    // No more parents to check
-    else {
-      current = null;
+    } else {
+      // Duck-typed ShadowRoot check (nodeType 11 + host) instead of `instanceof ShadowRoot`,
+      // since some test environments (e.g. JSDOM) only partially implement it.
+      const parent = current.parentNode;
+      if (parent !== null && parent.nodeType === 11 && 'host' in parent) {
+        current = (parent as ShadowRoot).host;
+      } else {
+        current = null;
+      }
     }
   }
 
   return null;
+}
+
+function findClosestParentWithTag(element: Element, tagName: string): Element | null {
+  return findClosestAcrossShadow(element, (el): el is Element => el.localName === tagName);
 }

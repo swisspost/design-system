@@ -1,5 +1,5 @@
 import { fade } from '@/animations';
-import { EventFrom, OneOf } from '@/utils';
+import { OneOf } from '@/utils';
 import { version } from '@root/package.json';
 import {
   Component,
@@ -8,7 +8,6 @@ import {
   EventEmitter,
   h,
   Host,
-  Listen,
   Method,
   Prop,
   State,
@@ -70,12 +69,6 @@ export class PostBanner {
 
     this.postDismissed.emit();
     this.host.remove();
-  }
-
-  @Listen('click')
-  @EventFrom('post-closebutton', { allowDescendants: true })
-  onCloseButtonClick(): void {
-    void this.dismiss();
   }
 
   private checkContent() {

@@ -1,5 +1,21 @@
 # @swisspost/design-system-icons
 
+## 10.4.0
+
+### Minor Changes
+
+- Added icons:
+  - `constructionsitelightsystem` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `hotwork` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `mobilenotification` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `okr` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `postautoelectric` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `pricescountryinformation` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `specialtransport` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `sustainablepower` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `transportmanagement` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `underconstruction` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) and [@myrta2302](https://github.com/myrta2302) with [#8356](https://github.com/swisspost/design-system/pull/8356))
+
 ## 10.3.0
 
 ### Minor Changes

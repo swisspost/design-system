@@ -1,5 +1,17 @@
 # @swisspost/design-system-styles
 
+## 10.4.0
+
+### Patch Changes
+
+- Updated the `post-datepicker` component and its documentation page to demonstrate floating label support. (by [@myrta2302](https://github.com/myrta2302) with [#8054](https://github.com/swisspost/design-system/pull/8054))
+
+- Updated the focus-style and focus-style-custom mixins to accept outline-offset and outline-color parameters. (by [@myrta2302](https://github.com/myrta2302) and [@swisspost-bot](https://github.com/swisspost-bot) with [#8191](https://github.com/swisspost/design-system/pull/8191))
+
+- Adjusted the form switch handle position. (by [@alizedebray](https://github.com/alizedebray) with [#8310](https://github.com/swisspost/design-system/pull/8310))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.4.0
+
 ## 10.3.0
 
 ### Patch Changes

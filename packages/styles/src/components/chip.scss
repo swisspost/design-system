@@ -95,7 +95,7 @@ button.chip-dismissible {
         border-color: tokens.get('chip-selectable-selected-enabled-stroke');
         padding-left: calc(
           tokens.get('chip-selectable-padding-inline') + tokens.get('chip-selectable-icon') +
-            tokens.get('chip-selectable-gap-inline-selected-icon')
+          tokens.get('chip-selectable-gap-inline-selected-icon')
         );
 
         @include utilities.high-contrast-mode() {

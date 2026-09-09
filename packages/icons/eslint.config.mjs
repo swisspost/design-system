@@ -1,9 +1,9 @@
 // this config was created using https://eslint.org/blog/2024/04/eslint-config-inspector/
 
 import js from '@eslint/js';
-import ts from 'typescript-eslint';
 import jest from 'eslint-plugin-jest';
 import globals from 'globals';
+import ts from 'typescript-eslint';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -62,6 +62,22 @@ export default [
     files: ['**/*.spec.{js,mjs,cjs,ts,mts,cts}'],
     rules: {
       ...jest.configs['flat/recommended'].rules,
+      'jest/expect-expect': [
+        'warn',
+        {
+          assertFunctionNames: [
+            'expect',
+            'expectReportJsonStructure',
+            'expectIconStructure',
+            'expectMetaStructure',
+            'expectFileStructure',
+            'expectBuildStatsStructure',
+            'expectIconStatsStructure',
+            'expectDownloadStatsStructure',
+            'expectIconsSortedByBasename',
+          ],
+        },
+      ],
     },
   },
 ];

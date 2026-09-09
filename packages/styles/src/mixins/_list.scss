@@ -6,7 +6,7 @@
   margin-block: tokens.get('list-bullet-margin-block', elements.$post-listbullet);
   padding-inline-start: calc(
     #{tokens.get('list-bullet-item-icon-size', elements.$post-listbullet)} +
-      #{tokens.get('list-bullet-item-icon-gap-inline', elements.$post-listbullet)}
+    #{tokens.get('list-bullet-item-icon-gap-inline', elements.$post-listbullet)}
   );
 
   > #{$child-selector} {
@@ -24,12 +24,12 @@
       box-sizing: content-box;
       margin-block-start: calc(
         (#{tokens.get('body-line-height', elements.$post-body)} * 0.5em) -
-          (#{tokens.get('list-bullet-item-icon-bullet-size', elements.$post-listbullet)} * 0.5)
+        (#{tokens.get('list-bullet-item-icon-bullet-size', elements.$post-listbullet)} * 0.5)
       );
       margin-inline-start: calc(
         (#{tokens.get('list-bullet-item-icon-size', elements.$post-listbullet)} * -0.5) +
-          (#{tokens.get('list-bullet-item-icon-bullet-size', elements.$post-listbullet)} * -0.5) +
-          (#{tokens.get('post-list-bullet-item-icon-gap-inline', elements.$post-listbullet)} * -1)
+        (#{tokens.get('list-bullet-item-icon-bullet-size', elements.$post-listbullet)} * -0.5) +
+        (#{tokens.get('post-list-bullet-item-icon-gap-inline', elements.$post-listbullet)} * -1)
       );
       width: tokens.get('list-bullet-item-icon-bullet-size', elements.$post-listbullet);
       height: tokens.get('list-bullet-item-icon-bullet-size', elements.$post-listbullet);
@@ -50,7 +50,7 @@
   padding-inline-end: tokens.get('list-number-item-gap-block', elements.$post-listnumber);
   padding-inline-start: calc(
     tokens.get('list-number-item-icon-size', elements.$post-listnumber) +
-      tokens.get('list-number-item-icon-gap-inline', elements.$post-listnumber)
+    tokens.get('list-number-item-icon-gap-inline', elements.$post-listnumber)
   );
 
   > #{$child-selector} {

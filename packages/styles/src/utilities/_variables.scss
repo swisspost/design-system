@@ -36,7 +36,7 @@ $utilities: (
     class: border,
     values: (
       null: var(--post-border-width, map.get(utilities_formatted.$border-default, width)) solid
-        map.get(utilities_formatted.$border-default, color),
+      map.get(utilities_formatted.$border-default, color),
       0: 0,
     ),
   ),
@@ -45,7 +45,7 @@ $utilities: (
     class: border-top,
     values: (
       null: var(--post-border-width, map.get(utilities_formatted.$border-default, width)) solid
-        map.get(utilities_formatted.$border-default, color),
+      map.get(utilities_formatted.$border-default, color),
       0: 0,
     ),
   ),
@@ -54,7 +54,7 @@ $utilities: (
     class: border-end,
     values: (
       null: var(--post-border-width, map.get(utilities_formatted.$border-default, width)) solid
-        map.get(utilities_formatted.$border-default, color),
+      map.get(utilities_formatted.$border-default, color),
       0: 0,
     ),
   ),
@@ -63,7 +63,7 @@ $utilities: (
     class: border-bottom,
     values: (
       null: var(--post-border-width, map.get(utilities_formatted.$border-default, width)) solid
-        map.get(utilities_formatted.$border-default, color),
+      map.get(utilities_formatted.$border-default, color),
       0: 0,
     ),
   ),
@@ -72,7 +72,7 @@ $utilities: (
     class: border-start,
     values: (
       null: var(--post-border-width, map.get(utilities_formatted.$border-default, width)) solid
-        map.get(utilities_formatted.$border-default, color),
+      map.get(utilities_formatted.$border-default, color),
       0: 0,
     ),
   ),
@@ -86,56 +86,56 @@ $utilities: (
     property: border-radius,
     class: rounded,
     values: map.merge(
-        utilities_formatted.$border-radius,
-        (
-          pill: 50rem,
-          circle: 50%,
-        )
-      ),
+      utilities_formatted.$border-radius,
+      (
+        pill: 50rem,
+        circle: 50%,
+      )
+    ),
   ),
   'rounded-top': (
     property: border-start-start-radius border-start-end-radius,
     class: rounded-top,
     values: map.merge(
-        utilities_formatted.$border-radius,
-        (
-          pill: 50rem,
-          circle: 50%,
-        )
-      ),
+      utilities_formatted.$border-radius,
+      (
+        pill: 50rem,
+        circle: 50%,
+      )
+    ),
   ),
   'rounded-end': (
     property: border-start-end-radius border-end-end-radius,
     class: rounded-end,
     values: map.merge(
-        utilities_formatted.$border-radius,
-        (
-          pill: 50rem,
-          circle: 50%,
-        )
-      ),
+      utilities_formatted.$border-radius,
+      (
+        pill: 50rem,
+        circle: 50%,
+      )
+    ),
   ),
   'rounded-bottom': (
     property: border-end-end-radius border-end-start-radius,
     class: rounded-bottom,
     values: map.merge(
-        utilities_formatted.$border-radius,
-        (
-          pill: 50rem,
-          circle: 50%,
-        )
-      ),
+      utilities_formatted.$border-radius,
+      (
+        pill: 50rem,
+        circle: 50%,
+      )
+    ),
   ),
   'rounded-start': (
     property: border-end-start-radius border-start-start-radius,
     class: rounded-start,
     values: map.merge(
-        utilities_formatted.$border-radius,
-        (
-          pill: 50rem,
-          circle: 50%,
-        )
-      ),
+      utilities_formatted.$border-radius,
+      (
+        pill: 50rem,
+        circle: 50%,
+      )
+    ),
   ),
   'grid-gutter-x': (
     responsive: true,
@@ -420,7 +420,7 @@ $utilities: (
     property: display,
     class: d,
     values: inline inline-block block grid inline-grid table table-row table-cell flex inline-flex
-      none,
+    none,
   ),
   'position': (
     property: position,

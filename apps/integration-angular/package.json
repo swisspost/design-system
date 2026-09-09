@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-integration-angular",
-  "version": "10.3.0",
+  "version": "10.4.0",
   "description": "Angular integration test app for the Swiss Post Design System",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -32,10 +32,10 @@
     "@angular/forms": "catalog:angular",
     "@angular/platform-browser": "catalog:angular",
     "@angular/router": "catalog:angular",
-    "@swisspost/design-system-components-angular": "workspace:10.3.0",
-    "@swisspost/design-system-icons": "workspace:10.3.0",
-    "@swisspost/design-system-styles": "workspace:10.3.0",
-    "@swisspost/design-system-styles-primeng": "workspace:10.3.0",
+    "@swisspost/design-system-components-angular": "workspace:10.4.0",
+    "@swisspost/design-system-icons": "workspace:10.4.0",
+    "@swisspost/design-system-styles": "workspace:10.4.0",
+    "@swisspost/design-system-styles-primeng": "workspace:10.4.0",
     "primeng": "21.1.9",
     "rxjs": "catalog:angular",
     "tslib": "catalog:angular",
@@ -50,7 +50,7 @@
     "angular-eslint": "catalog:angular",
     "eslint": "9.26.0",
     "globals": "17.3.0",
-    "rimraf": "6.0.1",
+    "rimraf": "6.1.3",
     "typescript": "catalog:typescript",
     "typescript-eslint": "catalog:typescript"
   }

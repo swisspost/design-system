@@ -90,6 +90,13 @@ describe('post-side-navigation', () => {
       cy.get('@side-navigation').shadow().find('dialog').should('not.have.attr', 'open');
     });
 
+    it('should close the dialog when a navigation link is clicked', () => {
+      cy.get('@side-navigation').then(([el]) => el.show());
+      cy.get('@side-navigation').shadow().find('dialog').should('have.attr', 'open');
+      cy.get('@side-navigation').find('a').first().click();
+      cy.get('@side-navigation').shadow().find('dialog').should('not.have.attr', 'open');
+    });
+
     it('should move focus into the navigation on open', () => {
       cy.get('@side-navigation').then(([el]) => el.show());
       cy.focused().then($focused => {

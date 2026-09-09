@@ -1,5 +1,13 @@
 # @swisspost/design-system-components-angular
 
+## 10.4.0
+
+### Patch Changes
+
+- Fixed a type mismatch error when binding `(postChange)` on `post-language-menu`, where `$event` was typed as `Event` instead of `CustomEvent<string>`. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8279](https://github.com/swisspost/design-system/pull/8279))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.4.0
+
 ## 10.3.0
 
 ### Patch Changes
