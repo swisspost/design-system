@@ -44,10 +44,10 @@ When space is constrained, the `<post-breadcrumbs>` concatenates middle items in
 
 ### Routing with Client-Side Frameworks
 
-By default, `<post-breadcrumb-item>` renders its own `<a>` inside the shadow DOM based on the `url` prop. Client-side routers (e.g. Next.js, Angular Router) can't intercept clicks on that internal anchor, so navigating triggers a full page reload. The same applies to the root (home) item of `<post-breadcrumbs>`, based on the `home-url` prop.
+To enable client-side routing (e.g. Next.js, Angular Router), slot your own anchor instead of using the `url`/`home-url` properties: use the default slot for `<post-breadcrumb-item>`, or the `home` slot for the root item of `<post-breadcrumbs>`. Both components detect the slotted `<a>` and stop rendering their own, leaving your link's click handling untouched.
 
-To keep client-side routing working, slot your own anchor instead (e.g. the framework's `<Link>` component): use the default slot for `<post-breadcrumb-item>`, or the `home` slot for the root item of `<post-breadcrumbs>`. Both components detect the slotted element and stop rendering their own, leaving your link's click handling untouched.
-
-The **`aria-current="page"`** attribute, which highlights the currently active page, is not set automatically on a slotted `<a>` - add it yourself alongside `selected`, which still applies the correct visual styling and controls the item's position in the breadcrumb trail.
+<post-banner type="info">
+  The `aria-current="page"` attribute is not set automatically on a slotted `<a>`. Add it yourself alongside `selected`, which still applies the correct visual styling and controls the item's position in the breadcrumb trail.
+</post-banner>
 
 <Canvas of={BreadcrumbsStories.ClientSideRouting} sourceState="shown" />
