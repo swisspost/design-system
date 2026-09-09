@@ -47,10 +47,6 @@ nav {
     content: unset;
   }
 
-  // Sizing for a consumer-slotted `<a>`'s nested `post-icon` is handled in the shared
-  // `src/styles/components/post-breadcrumb.scss` light DOM stylesheet, since `::slotted()`
-  // only matches elements directly assigned to the slot, not their descendants — the supported
-  // home slot content is an `<a>`, so a nested `post-icon` is never itself directly slotted.
   post-icon {
     width: tokens.get('breadcrumb-icon-home-size');
     height: tokens.get('breadcrumb-icon-home-size');
