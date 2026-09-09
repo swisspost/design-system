@@ -1,5 +1,5 @@
 import { MetaComponent } from '@root/types';
-import type { Args, StoryObj } from '@storybook/web-components-vite';
+import { Args } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 
 const meta: MetaComponent = {
@@ -18,19 +18,19 @@ const meta: MetaComponent = {
       exclude: ['variant', 'selected', 'standalone'],
     },
   },
-  argTypes: {
-    url: {
-      control: {
-        type: 'text',
-      },
-    },
-  },
   args: {
     variant: 'listitem',
     label: 'Products section',
     description: 'This section contains all the products you can buy.',
     selected: false,
     url: '/section1',
+  },
+  argTypes: {
+    url: {
+      control: {
+        type: 'text',
+      },
+    },
   },
 };
 

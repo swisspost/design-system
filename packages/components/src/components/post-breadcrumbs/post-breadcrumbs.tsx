@@ -29,8 +29,7 @@ export class PostBreadcrumbs {
   @State() id: string;
   @State() loaded = false;
 
-  // Whether the consumer slotted their own <a> into the `home` slot. When true, `home-url` is not
-  // required, since the internal fallback link is not rendered.
+  /** Whether the consumer slotted their own `<a>` into the `home` slot. When true, `home-url` is not required, since the internal fallback link is not rendered. */
   @State() hasSlottedHomeAnchor = false;
 
   /** The number of breadcrumb items, counted from the start, that are moved into the overflow menu. */
