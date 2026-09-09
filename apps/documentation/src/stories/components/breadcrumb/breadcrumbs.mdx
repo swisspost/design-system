@@ -45,10 +45,6 @@ By default, `<post-breadcrumb-item>` renders its own `<a>` inside the shadow DOM
 
 To keep client-side routing working, slot your own anchor instead of setting `url` (e.g. the framework's `<Link>` component, which renders as an `<a>`). `<post-breadcrumb-item>` detects the slotted element and stops rendering its own, leaving your link's click handling untouched.
 
-### Indicating the Current Page
-
-**The `aria-current="page"` attribute highlights the currently active page.**
-
-This attribute is not set automatically on a slotted `<a>`; add it yourself alongside `selected`, which still applies the correct visual styling and controls the item's position in the breadcrumb trail.
+The **`aria-current="page"`** attribute, which highlights the currently active page, is not set automatically on a slotted `<a>` — add it yourself alongside `selected`, which still applies the correct visual styling and controls the item's position in the breadcrumb trail.
 
 <Canvas of={BreadcrumbItemStories.SlottedLink} sourceState="shown" />
