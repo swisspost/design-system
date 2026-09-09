@@ -32,6 +32,7 @@ describe('collapsible', () => {
 
     it('should hide the collapsible after clicking on the trigger once', () => {
       cy.get('@trigger').click();
+      cy.get('@collapsible').should('not.have.attr', 'data-animating');
       cy.get('@collapsible').should('be.hidden');
     });
 
@@ -42,6 +43,7 @@ describe('collapsible', () => {
 
     it('should show the collapsible after clicking on the trigger twice', () => {
       cy.get('@trigger').dblclick();
+      cy.get('@collapsible').should('not.have.attr', 'data-animating');
       cy.get('@collapsible').should('be.visible');
     });
 
@@ -68,11 +70,13 @@ describe('collapsible', () => {
 
     it('should show the collapsible after clicking on the trigger once', () => {
       cy.get('@trigger').click();
+      cy.get('@collapsible').should('not.have.attr', 'data-animating');
       cy.get('@collapsible').should('be.visible');
     });
 
     it('should hide the collapsible after clicking on the trigger twice', () => {
       cy.get('@trigger').dblclick();
+      cy.get('@collapsible').should('not.have.attr', 'data-animating');
       cy.get('@collapsible').should('be.hidden');
     });
   });
@@ -111,6 +115,7 @@ describe('collapsible', () => {
 
     it('should hide the collapsible after clicking on the trigger once', () => {
       cy.get('@trigger').click();
+      cy.get('@collapsible').should('not.have.attr', 'data-animating');
       cy.get('@collapsible').should('be.hidden');
     });
 
@@ -121,6 +126,7 @@ describe('collapsible', () => {
 
     it('should show the collapsible after clicking on the trigger twice', () => {
       cy.get('@trigger').dblclick();
+      cy.get('@collapsible').should('not.have.attr', 'data-animating');
       cy.get('@collapsible').should('be.visible');
     });
 
@@ -145,6 +151,7 @@ describe('collapsible', () => {
 
       cy.get('@trigger').click();
 
+      cy.get('@collapsible').should('not.have.attr', 'data-animating');
       cy.get('@collapsible').should('be.hidden');
     });
 
@@ -162,7 +169,7 @@ describe('collapsible', () => {
 describe('Accessibility', () => {
   it('Has no detectable a11y violations on load for all variants', () => {
     cy.getSnapshots('collapsible');
-    cy.checkA11y('#root-inner', undefined, (violations) => {
+    cy.checkA11y('#root-inner', undefined, violations => {
       expect(violations).to.have.length(0);
     });
   });
