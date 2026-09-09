@@ -20,21 +20,21 @@ export class PostBreadcrumbItem {
   @State() hasSlottedAnchor = false;
 
   /**
-   * The destination URL for the breadcrumb item. Ignored if an `<a>` element is slotted in. If both are omitted, the item is rendered as non-interactive text.
+   * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
    */
   @Prop({ reflect: true })
   @Url()
   url?: string | URL;
 
   /**
-   * An accessible label screen readers will use this instead of the breadcrumb item content. Ignored if an `<a>` element is slotted in; set `aria-label` on the slotted `<a>` instead.
+   * An accessible label screen readers will use this instead of the breadcrumb item content.
    */
   @Prop({ reflect: true })
   @Type('string')
   label?: string;
 
   /**
-   * An accessible description for additional context, read after the content or `label`. Ignored if an `<a>` element is slotted in; set `aria-description` on the slotted `<a>` instead.
+   * An accessible description for additional context, read after the content or `label`.
    */
   @Prop({ reflect: true })
   @Type('string')
@@ -48,7 +48,7 @@ export class PostBreadcrumbItem {
   variant: Variant = 'listitem';
 
   /**
-   * Indicates that the item represents the current page, applying appropriate styling. If an `<a>` element is slotted in, this does not set `aria-current` on it; add `aria-current="page"` to the slotted `<a>` yourself.
+   * Indicates that the item represents the current page, applying appropriate styling.
    */
   @Prop({ reflect: true })
   @Required()

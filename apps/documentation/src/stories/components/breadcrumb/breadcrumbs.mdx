@@ -47,7 +47,7 @@ When space is constrained, the `<post-breadcrumbs>` concatenates middle items in
 To enable client-side routing (e.g. Next.js, Angular Router), slot your own anchor instead of using the `url`/`home-url` properties: use the default slot for `<post-breadcrumb-item>`, or the `home` slot for the root item of `<post-breadcrumbs>`. Both components detect the slotted `<a>` and stop rendering their own, leaving your link's click handling untouched.
 
 <post-banner type="info">
-  The `aria-current="page"` attribute is not set automatically on a slotted `<a>`. Add it yourself alongside `selected`, which still applies the correct visual styling and controls the item's position in the breadcrumb trail.
+  When slotting your own `<a>`, the `url`/`home-url`, `label`, and `description` properties are ignored, and `aria-current="page"` is not set automatically. Set these directly on the slotted `<a>` instead. `selected` still applies the correct visual styling and controls the item's position in the breadcrumb trail.
 </post-banner>
 
 <Canvas of={BreadcrumbsStories.ClientSideRouting} sourceState="shown" />

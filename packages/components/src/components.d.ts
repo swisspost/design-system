@@ -113,15 +113,15 @@ export namespace Components {
     }
     interface PostBreadcrumbItem {
         /**
-          * An accessible description for additional context, read after the content or `label`. Ignored if an `<a>` element is slotted in; set `aria-description` on the slotted `<a>` instead.
+          * An accessible description for additional context, read after the content or `label`.
          */
         "description"?: string;
         /**
-          * An accessible label screen readers will use this instead of the breadcrumb item content. Ignored if an `<a>` element is slotted in; set `aria-label` on the slotted `<a>` instead.
+          * An accessible label screen readers will use this instead of the breadcrumb item content.
          */
         "label"?: string;
         /**
-          * Indicates that the item represents the current page, applying appropriate styling. If an `<a>` element is slotted in, this does not set `aria-current` on it; add `aria-current="page"` to the slotted `<a>` yourself.
+          * Indicates that the item represents the current page, applying appropriate styling.
           * @default false
          */
         "selected": boolean;
@@ -131,7 +131,7 @@ export namespace Components {
          */
         "standalone": boolean;
         /**
-          * The destination URL for the breadcrumb item. Ignored if an `<a>` element is slotted in. If both are omitted, the item is rendered as non-interactive text.
+          * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
          */
         "url"?: string | URL;
         /**
@@ -142,7 +142,7 @@ export namespace Components {
     }
     interface PostBreadcrumbs {
         /**
-          * The URL for the root (home) breadcrumb item. Ignored if an `<a>` element is slotted into the `home` slot.
+          * The URL for the root (home) breadcrumb item.
          */
         "homeUrl"?: string;
         /**
@@ -1418,15 +1418,15 @@ declare namespace LocalJSX {
     }
     interface PostBreadcrumbItem {
         /**
-          * An accessible description for additional context, read after the content or `label`. Ignored if an `<a>` element is slotted in; set `aria-description` on the slotted `<a>` instead.
+          * An accessible description for additional context, read after the content or `label`.
          */
         "description"?: string;
         /**
-          * An accessible label screen readers will use this instead of the breadcrumb item content. Ignored if an `<a>` element is slotted in; set `aria-label` on the slotted `<a>` instead.
+          * An accessible label screen readers will use this instead of the breadcrumb item content.
          */
         "label"?: string;
         /**
-          * Indicates that the item represents the current page, applying appropriate styling. If an `<a>` element is slotted in, this does not set `aria-current` on it; add `aria-current="page"` to the slotted `<a>` yourself.
+          * Indicates that the item represents the current page, applying appropriate styling.
           * @default false
          */
         "selected"?: boolean;
@@ -1436,7 +1436,7 @@ declare namespace LocalJSX {
          */
         "standalone"?: boolean;
         /**
-          * The destination URL for the breadcrumb item. Ignored if an `<a>` element is slotted in. If both are omitted, the item is rendered as non-interactive text.
+          * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
          */
         "url"?: string | URL;
         /**
@@ -1447,7 +1447,7 @@ declare namespace LocalJSX {
     }
     interface PostBreadcrumbs {
         /**
-          * The URL for the root (home) breadcrumb item. Ignored if an `<a>` element is slotted into the `home` slot.
+          * The URL for the root (home) breadcrumb item.
          */
         "homeUrl"?: string;
         /**

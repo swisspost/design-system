@@ -5,12 +5,12 @@
 
 ## Properties
 
-| Property                       | Attribute          | Description                                                                                               | Type     | Default     |
-| ------------------------------ | ------------------ | --------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `homeUrl`                      | `home-url`         | The URL for the root (home) breadcrumb item. Ignored if an `<a>` element is slotted into the `home` slot. | `string` | `undefined` |
-| `textBreadcrumbs` _(required)_ | `text-breadcrumbs` | An accessible label for the breadcrumb navigation.                                                        | `string` | `undefined` |
-| `textHome` _(required)_        | `text-home`        | An accessible label for the root (home) breadcrumb item.                                                  | `string` | `undefined` |
-| `textMoreItems` _(required)_   | `text-more-items`  | An accessible label for the overflow menu that contains collapsed breadcrumb items.                       | `string` | `undefined` |
+| Property                       | Attribute          | Description                                                                         | Type     | Default     |
+| ------------------------------ | ------------------ | ----------------------------------------------------------------------------------- | -------- | ----------- |
+| `homeUrl`                      | `home-url`         | The URL for the root (home) breadcrumb item.                                        | `string` | `undefined` |
+| `textBreadcrumbs` _(required)_ | `text-breadcrumbs` | An accessible label for the breadcrumb navigation.                                  | `string` | `undefined` |
+| `textHome` _(required)_        | `text-home`        | An accessible label for the root (home) breadcrumb item.                            | `string` | `undefined` |
+| `textMoreItems` _(required)_   | `text-more-items`  | An accessible label for the overflow menu that contains collapsed breadcrumb items. | `string` | `undefined` |
 
 
 ## Slots

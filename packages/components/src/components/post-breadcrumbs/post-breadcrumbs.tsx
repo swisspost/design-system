@@ -42,7 +42,7 @@ export class PostBreadcrumbs {
   private hiddenNav: HTMLElement | null = null;
 
   /**
-   * The URL for the root (home) breadcrumb item. Ignored if an `<a>` element is slotted into the `home` slot.
+   * The URL for the root (home) breadcrumb item.
    */
   @Prop({ reflect: true })
   @Required({ when: 'hasSlottedHomeAnchor', truthy: false })
