@@ -1,9 +1,7 @@
-import { getPopoverOpenSelector } from './helper/popovercontainer';
+import { POPOVER_OPEN_SELECTOR } from './helper/popovercontainer';
 
 const LANGUAGE_MENU_ID = 'decbb10c-2b39-4f47-b67d-337d8111a3ae';
 const LANGUAGE_OPTION_ID = '3753ab83-a659-47b5-a2f2-ac452ec97916';
-
-const POPOVER_OPEN_SELECTOR = getPopoverOpenSelector();
 
 describe('post-language-menu', () => {
   describe('list variant', () => {

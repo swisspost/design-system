@@ -1,9 +1,7 @@
-import { getPopoverOpenSelector } from './helper/popovercontainer';
+import { POPOVER_OPEN_SELECTOR } from './helper/popovercontainer';
 
 describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
   describe('default', () => {
-    const selector = getPopoverOpenSelector();
-
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-popover.test.html');
 
@@ -50,11 +48,11 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
 
     it('should show up on click', () => {
       cy.get('@content').should('not.be.visible');
-      cy.get(selector).should('not.exist');
+      cy.get(POPOVER_OPEN_SELECTOR).should('not.exist');
       cy.get('@triggerButton').should('have.attr', 'aria-expanded', 'false');
       cy.get('@triggerButton').click();
       cy.get('@content').should('be.visible');
-      cy.get(selector).should('exist');
+      cy.get(POPOVER_OPEN_SELECTOR).should('exist');
       cy.get('@triggerButton').should('have.attr', 'aria-expanded', 'true');
 
       // Void click light dismiss does not work in cypress for closing
@@ -68,15 +66,15 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
       });
 
       cy.get('@content').should('not.be.visible');
-      cy.get(selector).should('not.exist');
+      cy.get(POPOVER_OPEN_SELECTOR).should('not.exist');
       cy.get('@triggerButton').should('have.attr', 'aria-expanded', 'false');
       cy.get('.nested-element').click();
       cy.get('@content').should('be.visible');
-      cy.get(selector).should('exist');
+      cy.get(POPOVER_OPEN_SELECTOR).should('exist');
       cy.get('@triggerButton').should('have.attr', 'aria-expanded', 'true');
       cy.get('@closebutton').click();
       cy.get('@content').should('not.be.visible');
-      cy.get(selector).should('not.exist');
+      cy.get(POPOVER_OPEN_SELECTOR).should('not.exist');
       cy.get('@triggerButton').should('have.attr', 'aria-expanded', 'false');
     });
 
@@ -94,28 +92,28 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
       });
 
       cy.get('@content').should('not.be.visible');
-      cy.get(selector).should('not.exist');
+      cy.get(POPOVER_OPEN_SELECTOR).should('not.exist');
       cy.get('.level-3').click();
       cy.get('@content').should('be.visible');
-      cy.get(selector).should('exist');
+      cy.get(POPOVER_OPEN_SELECTOR).should('exist');
       cy.get('@triggerButton').should('have.attr', 'aria-expanded', 'true');
     });
 
     it('should close on X click', () => {
       cy.get('@triggerButton').click();
       cy.get('@content').should('be.visible');
-      cy.get(selector).should('exist');
+      cy.get(POPOVER_OPEN_SELECTOR).should('exist');
       cy.get('@closebutton').click();
       cy.get('@content').should('not.be.visible');
-      cy.get(selector).should('not.exist');
+      cy.get(POPOVER_OPEN_SELECTOR).should('not.exist');
     });
 
     it('should open on enter and first focusable element should be focused', () => {
       cy.get('@content').should('not.be.visible');
-      cy.get(selector).should('not.exist');
+      cy.get(POPOVER_OPEN_SELECTOR).should('not.exist');
       cy.get('@triggerButton').focus().type('{enter}');
       cy.get('@content').should('be.visible');
-      cy.get(selector).should('exist');
+      cy.get(POPOVER_OPEN_SELECTOR).should('exist');
       // find the first focusable element (e.g., button, input, link, etc.)
       cy.get('@content')
         .find('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
@@ -126,7 +124,7 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
     it('should switch position', () => {
       cy.get('@popover').invoke('attr', 'placement', 'top');
       cy.get('@content').should('not.be.visible');
-      cy.get(selector).should('not.exist');
+      cy.get(POPOVER_OPEN_SELECTOR).should('not.exist');
 
       Promise.all([cy.get('@triggerButton'), cy.get('@content')])
         .then(
@@ -182,7 +180,7 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
     });
     it('should Open and Close with the API', () => {
       cy.get('@content').should('not.be.visible');
-      cy.get(selector).should('not.exist');
+      cy.get(POPOVER_OPEN_SELECTOR).should('not.exist');
       Promise.all([cy.get('@triggerButton'), cy.get('@popover')])
         .then(
           ([$trigger, $popover]: [JQuery<HTMLButtonElement>, JQuery<HTMLPostPopoverElement>]) => [
@@ -193,16 +191,16 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
         .then(async ([trigger, popover]: [HTMLButtonElement, HTMLPostPopoverElement]) => {
           await popover.show(trigger);
           cy.get('@content').should('be.visible');
-          cy.get(selector).should('exist');
+          cy.get(POPOVER_OPEN_SELECTOR).should('exist');
           await popover.hide();
           cy.get('@content').should('not.be.visible');
-          cy.get(selector).should('not.exist');
+          cy.get(POPOVER_OPEN_SELECTOR).should('not.exist');
           await popover.toggle(trigger);
           cy.get('@content').should('be.visible');
-          cy.get(selector).should('exist');
+          cy.get(POPOVER_OPEN_SELECTOR).should('exist');
           await popover.toggle(trigger);
           cy.get('@content').should('not.be.visible');
-          cy.get(selector).should('not.exist');
+          cy.get(POPOVER_OPEN_SELECTOR).should('not.exist');
         });
     });
   });
@@ -214,7 +212,7 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('Has no detectable a11y violations on load', () => {
-      cy.checkA11y('post-popover', undefined, (violations) => {
+      cy.checkA11y('post-popover', undefined, violations => {
         expect(violations).to.have.length(0);
       });
     });
