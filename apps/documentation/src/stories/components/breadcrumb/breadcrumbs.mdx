@@ -39,18 +39,16 @@ When space is constrained, the `<post-breadcrumbs>` concatenates middle items in
 <Canvas of={BreadcrumbItemStories.Default} sourceState="shown" />
 <Controls of={BreadcrumbItemStories.Default} />
 
-## Routing with client-side frameworks
+## Routing with Client-Side Frameworks
 
-By default, `<post-breadcrumb-item>` renders its own `<a>` inside the shadow DOM based on the `url` prop. Frameworks with client-side routing (e.g. Next.js, Angular Router) can't intercept clicks on that internal anchor, so navigating triggers a full page reload.
+By default, `<post-breadcrumb-item>` renders its own `<a>` inside the shadow DOM based on the `url` prop. Client-side routers (e.g. Next.js, Angular Router) can't intercept clicks on that internal anchor, so navigating triggers a full page reload.
 
-To keep client-side routing working, slot your own anchor (or the framework's `<Link>` component, which renders as an `<a>`) instead of setting `url`. `<post-breadcrumb-item>` detects the slotted `<a>` and stops rendering its own anchor, leaving your link's click handling untouched.
-
-<Canvas of={BreadcrumbItemStories.SlottedLink} sourceState="shown" />
+To keep client-side routing working, slot your own anchor instead of setting `url` (e.g. the framework's `<Link>` component, which renders as an `<a>`). `<post-breadcrumb-item>` detects the slotted element and stops rendering its own, leaving your link's click handling untouched.
 
 ### Indicating the Current Page
 
 **The `aria-current="page"` attribute highlights the currently active page.**
 
-This attribute is not added automatically to a slotted `<a>`; it must be set manually on it. The `selected` prop still applies the correct visual styling and controls the item's position in the breadcrumb trail, but it does not set `aria-current` on a slotted anchor, so add it yourself alongside `selected` for correct accessibility.
+This attribute is not set automatically on a slotted `<a>`; add it yourself alongside `selected`, which still applies the correct visual styling and controls the item's position in the breadcrumb trail.
 
-<Canvas of={BreadcrumbItemStories.SlottedLinkSelected} sourceState="shown" />
+<Canvas of={BreadcrumbItemStories.SlottedLink} sourceState="shown" />

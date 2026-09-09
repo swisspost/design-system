@@ -58,26 +58,7 @@ export const SlottedLink: Story = {
     docs: {
       description: {
         story:
-          'Slot your own `<a>` (e.g. a framework `<Link>`) instead of using the `url` prop, so client-side routing frameworks like Next.js or Angular Router can handle navigation instead of the browser doing a full page reload.',
-      },
-    },
-    controls: {
-      exclude: ['variant', 'selected', 'url'],
-    },
-  },
-  render: args => html`
-    <post-breadcrumb-item label=${args.label || nothing} description=${args.description || nothing}>
-      <a href="/section1">Section 1</a>
-    </post-breadcrumb-item>
-  `,
-};
-
-export const SlottedLinkSelected: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'The `selected` prop still applies the current-page styling to a slotted `<a>`, but it does not set `aria-current` on it. Add `aria-current="page"` to the slotted `<a>` yourself to ensure correct accessibility.',
+          'Slot your own `<a>` (e.g. a framework `<Link>`) instead of using the `url` prop, so client-side routing frameworks like Next.js or Angular Router can handle navigation instead of the browser doing a full page reload. The active link must have an `aria-current="page"` attribute to ensure correct accessibility and styling.',
       },
     },
     controls: {
