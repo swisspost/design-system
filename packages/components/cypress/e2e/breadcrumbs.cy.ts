@@ -2,6 +2,51 @@ const BREADCRUMB_ITEM_ID = 'b7db7391-f893-4b1e-a125-b30c6f0b028d';
 const BREADCRUMBS_ID = 'b7db7391-f893-4b1e-a125-b30c6f0b028b';
 
 describe('breadcrumbs', () => {
+  // Scans a range of widths instead of asserting at one fragile pixel value, then checks that
+  // home always collapses into its own menu at a width no narrower than where the last item
+  // starts wrapping — independent of exact pixel values. Requires a `@breadcrumbs` alias.
+  function assertHomeCollapsesNoLaterThanLastItemWraps() {
+    const widths = [500, 400, 320, 280, 240, 200, 180, 160, 140, 120, 100, 90, 80];
+    let homeCollapsedWidth: number | null = null;
+    let standaloneWidth: number | null = null;
+
+    widths.forEach(width => {
+      cy.viewport(width, 400);
+
+      cy.get('@breadcrumbs')
+        .shadow()
+        .then($shadow => {
+          if (
+            homeCollapsedWidth === null &&
+            $shadow.find('nav:not(.invisible) .home-menu').length > 0
+          ) {
+            homeCollapsedWidth = width;
+          }
+        });
+
+      cy.get('@breadcrumbs').then($breadcrumbs => {
+        const selected = $breadcrumbs
+          .find('post-breadcrumb-item[selected]:not([selected="false"])')
+          .filter((_, el) => !el.closest('.invisible'));
+        if (standaloneWidth === null && selected.is('[standalone]:not([standalone="false"])')) {
+          standaloneWidth = width;
+        }
+      });
+    });
+
+    cy.then(() => {
+      expect(
+        homeCollapsedWidth,
+        'home never collapsed across the tested width range',
+      ).to.not.equal(null);
+      expect(
+        standaloneWidth,
+        'last item never wrapped across the tested width range',
+      ).to.not.equal(null);
+      expect(homeCollapsedWidth).to.be.at.least(standaloneWidth);
+    });
+  }
+
   describe('item', () => {
     describe('default (internal anchor)', () => {
       beforeEach(() => {
@@ -109,10 +154,10 @@ describe('breadcrumbs', () => {
       });
     });
 
-    // NOTE: the viewport widths below are guesses, not verified against the real component —
-    // I don't have a way to run this live. Confirm and adjust them against the actual Storybook
-    // build before relying on this block; the assertions themselves should still hold once the
-    // widths are right, since they don't depend on exact pixel values.
+    // NOTE: the viewport widths in the skipped tests below are unverified guesses — confirm and
+    // adjust them against the real Storybook build before un-skipping. The one active test
+    // further down doesn't depend on exact widths, only on the transition order, so it already
+    // runs as-is.
     //
     // Degrade order: middle items collapse first -> home collapses into its own menu next (this
     // keeps the row single-line) -> only if that's still not enough does the last item wrap.
@@ -135,45 +180,7 @@ describe('breadcrumbs', () => {
       });
 
       it('should collapse the home item at a width no narrower than where the last item starts wrapping', () => {
-        // Rather than pin one fragile pixel value for the narrow window between "home just
-        // collapsed" and "last item starts wrapping", scan a range of widths and record where
-        // each transition first happens, then assert home always collapses first (at a wider or
-        // equal width) — the actual invariant, independent of exact pixel values.
-        const widths = [500, 400, 320, 280, 240, 200, 180, 160, 140, 120, 100, 90, 80];
-        let homeCollapsedWidth: number | null = null;
-        let standaloneWidth: number | null = null;
-
-        widths.forEach(width => {
-          cy.viewport(width, 400);
-
-          cy.get('@breadcrumbs')
-            .shadow()
-            .then($shadow => {
-              if (
-                homeCollapsedWidth === null &&
-                $shadow.find('nav:not(.invisible) .home-menu').length > 0
-              ) {
-                homeCollapsedWidth = width;
-              }
-            });
-
-          cy.get('@breadcrumbs').then($breadcrumbs => {
-            const selected = $breadcrumbs
-              .find('post-breadcrumb-item[selected]:not([selected="false"])')
-              .filter((_, el) => !el.closest('.invisible'));
-            if (standaloneWidth === null && selected.is('[standalone]:not([standalone="false"])')) {
-              standaloneWidth = width;
-            }
-          });
-        });
-
-        cy.then(() => {
-          expect(homeCollapsedWidth, 'home never collapsed across the tested width range').to.not.be
-            .null;
-          expect(standaloneWidth, 'last item never wrapped across the tested width range').to.not.be
-            .null;
-          expect(homeCollapsedWidth).to.be.at.least(standaloneWidth);
-        });
+        assertHomeCollapsesNoLaterThanLastItemWraps();
       });
 
       it.skip('should mark the last item standalone only once home has also collapsed and there is still no room', () => {
@@ -235,13 +242,16 @@ describe('breadcrumbs', () => {
       });
     });
 
+    // NOTE: like the "three-stage degrade sequence" tests above, most viewport widths below are
+    // unverified guesses — confirm and adjust them against the real Storybook build before
+    // un-skipping. The one active test further down doesn't depend on exact widths.
     describe('segment specific breadcrumbs', () => {
       beforeEach(() => {
         cy.getComponent('breadcrumbs', BREADCRUMBS_ID, 'custom-home-text');
         cy.get('post-breadcrumbs[data-hydrated]', { timeout: 30000 }).as('breadcrumbs');
       });
 
-      it.skip('should hide the home icon and display text-home visibly when show-home-text is true', () => {
+      it.skip('should hide the home icon and display text-home visibly when home-text is true', () => {
         // Wide enough that home's long text and the last item's long text both still fit
         // single-line — under the corrected collapse order, home only stays uncollapsed once
         // both fit together with no wrapping cushion from the last item.
@@ -257,9 +267,9 @@ describe('breadcrumbs', () => {
           .and('have.text', 'Private customers');
       });
 
-      it.skip('should restore the default home icon when show-home-text is set back to false', () => {
+      it.skip('should restore the default home icon when home-text is set back to false', () => {
         cy.viewport(2000, 400);
-        cy.get('@breadcrumbs').invoke('removeAttr', 'show-home-text');
+        cy.get('@breadcrumbs').invoke('removeAttr', 'home-text');
         cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home post-icon').should('exist');
         cy.get('@breadcrumbs')
           .shadow()
@@ -277,7 +287,6 @@ describe('breadcrumbs', () => {
       });
 
       it.skip('should never truncate the last (selected) segment, wrapping it instead', () => {
-        // NOTE: guess, same caveat as above.
         cy.viewport(120, 400);
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[selected]:not([selected="false"])')
@@ -289,9 +298,9 @@ describe('breadcrumbs', () => {
       });
 
       it.skip('should collapse the middle segments into the overflow menu when there is not enough space for them', () => {
-        // NOTE: guess — the story text is now realistic-length, not artificially long, so this
-        // no longer overflows at the default (wide) test viewport on its own. Needs an explicit
-        // narrow width; verify and adjust against the real component.
+        // The story text is now realistic-length rather than artificially long, so this no
+        // longer overflows at the default (wide) viewport on its own — needs an explicit
+        // narrow width.
         cy.viewport(400, 400);
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[variant="menuitem"]')
@@ -304,47 +313,10 @@ describe('breadcrumbs', () => {
       });
 
       it('should collapse the home item at a width no narrower than where the last item starts wrapping', () => {
-        // Same approach as the equivalent test in "three-stage degrade sequence" — scans a
-        // range instead of pinning one fragile pixel value, and checks the order invariant.
-        const widths = [500, 400, 320, 280, 240, 200, 180, 160, 140, 120, 100, 90, 80];
-        let homeCollapsedWidth: number | null = null;
-        let standaloneWidth: number | null = null;
-
-        widths.forEach(width => {
-          cy.viewport(width, 400);
-
-          cy.get('@breadcrumbs')
-            .shadow()
-            .then($shadow => {
-              if (
-                homeCollapsedWidth === null &&
-                $shadow.find('nav:not(.invisible) .home-menu').length > 0
-              ) {
-                homeCollapsedWidth = width;
-              }
-            });
-
-          cy.get('@breadcrumbs').then($breadcrumbs => {
-            const selected = $breadcrumbs
-              .find('post-breadcrumb-item[selected]:not([selected="false"])')
-              .filter((_, el) => !el.closest('.invisible'));
-            if (standaloneWidth === null && selected.is('[standalone]:not([standalone="false"])')) {
-              standaloneWidth = width;
-            }
-          });
-        });
-
-        cy.then(() => {
-          expect(homeCollapsedWidth, 'home never collapsed across the tested width range').to.not.be
-            .null;
-          expect(standaloneWidth, 'last item never wrapped across the tested width range').to.not.be
-            .null;
-          expect(homeCollapsedWidth).to.be.at.least(standaloneWidth);
-        });
+        assertHomeCollapsesNoLaterThanLastItemWraps();
       });
 
       it.skip('should only wrap the last item once home has also collapsed and there is still no room', () => {
-        // NOTE: guess, same caveat as above — verify against the real component.
         cy.viewport(120, 400);
 
         cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home-menu').should('exist');
