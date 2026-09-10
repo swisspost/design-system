@@ -1,5 +1,40 @@
 # @swisspost/design-system-components
 
+## 10.5.0
+
+### Minor Changes
+
+- The `<post-closebutton>` component now automatically detects and closes the nearest closable ancestor when clicked, with no explicit wiring required from the consumer.  
+  It supports the following closable ancestors:
+  - An element with a `popover` attribute
+  - `<dialog>`
+  - `<post-collapsible>`
+  - `<post-accordion-item>`
+  - `<post-popover>`
+  - `<post-popovercontainer>`
+  - `<post-banner>` (by [@hugomslv](https://github.com/hugomslv), [@Copilot](https://github.com/Copilot) and [@alizedebray](https://github.com/alizedebray) with [#8154](https://github.com/swisspost/design-system/pull/8154))
+
+- Implemented tokens for the `post-side-navigation` component. (by [@leagrdv](https://github.com/leagrdv) with [#8376](https://github.com/swisspost/design-system/pull/8376))
+
+### Patch Changes
+
+- Updated the `post-popover` to automatically hide when it is outside of view. (by [@yomonom](https://github.com/yomonom) with [#8326](https://github.com/swisspost/design-system/pull/8326))
+
+- Fixed a bug where `post-menu` items showed a focus ring when opened by mouse or touch, now the ring only appears on keyboard interaction as intended. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8385](https://github.com/swisspost/design-system/pull/8385))
+
+- Updated the `post-breadcrumbs` component so that breadcrumb items now dynamically collapse to fit the available space. (by [@yomonom](https://github.com/yomonom) with [#8363](https://github.com/swisspost/design-system/pull/8363))
+
+- Fixed `post-header` intermittently missing the mobile menu button on mobile and tablet viewports. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8357](https://github.com/swisspost/design-system/pull/8357))
+
+- Fixed the `<post-back-to-top>` component staying interactive and overlaying other page content even when it should have been hidden. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8347](https://github.com/swisspost/design-system/pull/8347))
+
+- Updated the color scheme of the popover’s close button. (by [@alizedebray](https://github.com/alizedebray) with [#8328](https://github.com/swisspost/design-system/pull/8328))
+
+- Fixed a visual glitch in the `post-side-navigation` component where the chevron icon briefly showed the wrong orientation on initial render in an SSR environment. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8394](https://github.com/swisspost/design-system/pull/8394))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.5.0
+  - @swisspost/design-system-icons@10.5.0
+
 ## 10.4.0
 
 ### Patch Changes
