@@ -60,8 +60,7 @@ export class PostBreadcrumbs {
 
   /**
    * Whether `text-home` is displayed visibly instead of the home icon, enabling segment specific
-   * breadcrumbs (like "Private customers" or "About us"). Has no effect when custom content is
-   * slotted into the `home` slot.
+   * breadcrumbs (like "Private customers" or "About us").
    */
   @Prop({ reflect: true })
   @Required()
