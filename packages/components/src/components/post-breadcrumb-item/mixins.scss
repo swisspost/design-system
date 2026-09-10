@@ -15,14 +15,6 @@
     @include breadcrumb-link-colors;
   }
 
-  ::slotted(a) {
-    @include breadcrumb-link-layout;
-  }
-
-  ::slotted(a:focus-visible) {
-    outline-style: tokens.get('focus-border-style', helpers.$post-focus) !important;
-  }
-
   &::before {
     @include icons.mask-image('chevronright');
     flex: 0 0 auto;
