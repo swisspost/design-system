@@ -11,9 +11,9 @@ tokens.$default-map: components.$post-breadcrumb;
 :host {
   display: block;
   position: relative;
-  // Floor for how narrow the last (selected) item is allowed to wrap down to before giving up and
-  // collapsing the home item into its own menu instead. Placeholder value — needs confirming with
-  // design before this ships.
+  // Floor for how narrow the last (selected) item is allowed to wrap down to — only relevant once
+  // the home item has already collapsed into its own menu. Placeholder value — needs confirming
+  // with design before this ships.
   --post-breadcrumb-selected-min-width: 96px;
 }
 
@@ -45,8 +45,10 @@ nav {
 }
 
 .home {
-  // The home item is never collapsed into the overflow menu, so its text must always stay
-  // fully visible: it wraps instead of being clipped when it does not fit on one line.
+  // Never shrinks — it's binary, either the full item renders in single-line or it swaps
+  // entirely into .home-menu below. `flex-shrink: 0` already guarantees the box is never
+  // narrower than its content, so there's nothing here to wrap or truncate — no white-space/
+  // overflow overrides needed, and no forced-single-line class needed for measurement either.
   flex: none;
 
   &::before {
@@ -61,23 +63,6 @@ nav {
       height: tokens.get('breadcrumb-icon-home-size');
     }
   }
-
-  &:not(.icon) a {
-    // `breadcrumb-item` includes button-base on the link, which defaults to single-line
-    // ellipsis truncation (`overflow: hidden` + `text-overflow: ellipsis` alongside
-    // `white-space: nowrap`). `white-space: normal` alone isn't enough to cancel that out —
-    // `overflow`/`text-overflow` need resetting too, or the last visible line still clips.
-    white-space: normal;
-    overflow: visible;
-    text-overflow: unset;
-    @include utilities.word-break;
-  }
-
-  // Off-screen measurement only: forces single-line so `scrollWidth` reflects the item's true
-  // natural width, regardless of whether it is currently wrapping live.
-  &.measuring:not(.icon) a {
-    white-space: nowrap;
-  }
 }
 
 .menu,
@@ -89,9 +74,9 @@ nav {
   display: none;
 }
 
-// The home item's own overflow menu is a last resort, only rendered once there is no room left
-// for the home item even after every middle item is collapsed and the last item has wrapped.
-// It sits in place of the regular .home item, so it never needs an .empty state of its own.
+// Rendered once there is no room left for the home item even after every middle item is
+// collapsed — this happens before the last item is ever allowed to wrap, not after. It sits in
+// place of the regular .home item, so it never needs an .empty state of its own.
 .home-menu {
   flex: none;
 }

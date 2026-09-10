@@ -36,12 +36,19 @@ export class PostBreadcrumbs {
   @State() collapsed = 0;
 
   /**
-   * Whether the home item is collapsed into its own overflow menu because there is no space left
-   * for it, even after every middle item has already been collapsed and the last (selected) item
-   * has wrapped onto multiple lines. This is the last resort: the home item never shrinks or
-   * truncates, it only ever renders in full or swaps entirely into this menu.
+   * Whether the home item is collapsed into its own overflow menu. This is checked right after
+   * the middle items, before the last item is ever allowed to wrap — collapsing home keeps the
+   * row single-line, while wrapping the last item changes the breadcrumb's height, so home gives
+   * way first. The home item never shrinks or truncates, it only ever renders in full or swaps
+   * entirely into this menu.
    */
   @State() homeCollapsed = false;
+
+  /**
+   * Whether the last (selected) item is allowed to wrap onto multiple lines. This is the final
+   * resort, checked only once the home item has already collapsed and there is still no room.
+   */
+  @State() lastItemWraps = false;
 
   /** The visible breadcrumb navigation. */
   private nav: HTMLElement | null = null;
@@ -92,9 +99,8 @@ export class PostBreadcrumbs {
   textMoreItems!: string;
 
   /**
-   * An accessible label for the overflow menu that contains the home item, shown only once there
-   * is no room left for the home item even after every middle item has been collapsed and the
-   * last (selected) item has wrapped onto multiple lines.
+   * An accessible label for the overflow menu that contains the home item, shown only once every
+   * middle item has been collapsed and there is still no room left for the home item.
    */
   @Prop({ reflect: true })
   @Required()
@@ -133,39 +139,43 @@ export class PostBreadcrumbs {
   }
 
   /**
-   * Measures the space available in the breadcrumb navigation and moves the items that do not fit
-   * into the overflow menu, then checks whether the home item still overflows even after that.
+   * Measures the space available in the breadcrumb navigation and works out, in order, how many
+   * middle items to collapse, whether the home item also has to collapse, and whether the last
+   * item still needs to wrap even after that.
    */
   private async updateCollapsedItems() {
     if (!this.nav) return;
-    const { overflowing, homeOverflows } = await this.calculateCollapsedItems();
+    const { overflowing, homeOverflows, lastItemWraps } = await this.calculateCollapsedItems();
     this.collapsed = overflowing;
     this.homeCollapsed = homeOverflows;
+    this.lastItemWraps = lastItemWraps;
   }
 
   /**
    * Determines how many items have to be collapsed, either because they do not fit the breadcrumb
-   * navigation or because they exceed the maximum number of visible items, and whether the home
-   * item overflows even once every middle item is collapsed.
+   * navigation or because they exceed the maximum number of visible items, plus the home/last-item
+   * fallback state once that isn't enough on its own.
    */
   private async calculateCollapsedItems() {
     const items = this.host.querySelectorAll('post-breadcrumb-item');
-    const { overflowing, homeOverflows } = await this.calculateOverflowingItems();
+    const { overflowing, homeOverflows, lastItemWraps } = await this.calculateOverflowingItems();
 
     // Never show more than `MAX_VISIBLE_ITEMS`, even if the nav is wide enough to fit them all.
     return {
       overflowing: Math.max(overflowing, items.length - MAX_VISIBLE_ITEMS),
       homeOverflows,
+      lastItemWraps,
     };
   }
 
   /**
-   * Determines how many items overflow the width of the breadcrumb navigation, and whether the
-   * home item still overflows once every other collapsible item has already been collapsed.
+   * Determines how many middle items overflow the width of the breadcrumb navigation, whether the
+   * home item still overflows once all of them are collapsed, and — only as a final resort —
+   * whether the last item has to wrap even with the home item already collapsed.
    */
   private async calculateOverflowingItems() {
-    // Fallback to zero/false if the hidden nav is not available for measurement.
-    if (!this.hiddenNav) return { overflowing: 0, homeOverflows: false };
+    // Fallback if the hidden nav is not available for measurement.
+    if (!this.hiddenNav) return { overflowing: 0, homeOverflows: false, lastItemWraps: false };
 
     const gap = Number.parseFloat(getComputedStyle(this.hiddenNav.firstElementChild).gap);
     const menu = this.hiddenNav.querySelector<HTMLElement>('.menu').clientWidth;
@@ -187,31 +197,32 @@ export class PostBreadcrumbs {
       width -= items[overflowing++].clientWidth + gap;
     }
 
-    // Once every middle item is already collapsed, any remaining overflow can only come from the
-    // home item — but only once the last item has also shrunk as far as it is allowed to. Credit
-    // the last item's minimum wrapped width (`--post-breadcrumb-selected-min-width`, see
-    // post-breadcrumb-item.scss) instead of its full single-line width here, so home stays fully
-    // visible for as long as the last item still has room left to wrap into.
-    const allItems = this.hiddenNav.querySelectorAll('post-breadcrumb-item');
-    const lastItem = allItems.at(-1);
-    const minWidth =
-      Number.parseFloat(
-        getComputedStyle(this.host).getPropertyValue('--post-breadcrumb-selected-min-width'),
-      ) || 0;
-    const shrinkableWidth = Math.max(lastItem.clientWidth - minWidth, 0);
-    const homeOverflows = width - shrinkableWidth > this.hiddenNav.clientWidth;
+    // Once every middle item is collapsed, `width` is just home + the last item, both single-line.
+    // If that still doesn't fit, home collapses into its own menu next — before the last item is
+    // ever allowed to wrap, since collapsing home keeps the row single-line.
+    const homeOverflows = width > this.hiddenNav.clientWidth;
 
-    return { overflowing, homeOverflows };
+    // If home also has to collapse, its own trigger takes its place in the row. That trigger is
+    // built the same way as the middle-items menu trigger (`.menu`), so its width is a reasonable
+    // stand-in without needing to render a second hidden trigger just to measure it. Only if the
+    // row still doesn't fit even with home collapsed does the last item finally get to wrap.
+    const home = this.hiddenNav.querySelector<HTMLElement>('.home');
+    const widthWithHomeCollapsed = homeOverflows ? width - home.clientWidth + menu : width;
+    const lastItemWraps = homeOverflows && widthWithHomeCollapsed > this.hiddenNav.clientWidth;
+
+    return { overflowing, homeOverflows, lastItemWraps };
   }
 
   /**
-   * Moves `collapsed` items into the overflow menu and marks the last item as selected.
+   * Moves `collapsed` items into the overflow menu, marks the last item as selected, and — only
+   * once `lastItemWraps` allows it — marks it standalone so it can wrap instead of overflowing.
    */
   private updateItems(items: NodeListOf<Element>, collapsed: number) {
     items.forEach((item, index) => {
+      const isLast = index === items.length - 1;
       item.setAttribute('variant', index < collapsed ? 'menuitem' : 'listitem');
-      item.setAttribute('selected', String(index === items.length - 1));
-      item.setAttribute('standalone', String(index === items.length - 1 && index === collapsed));
+      item.setAttribute('selected', String(isLast));
+      item.setAttribute('standalone', String(isLast && index === collapsed && this.lastItemWraps));
     });
   }
 
@@ -253,10 +264,6 @@ export class PostBreadcrumbs {
 
     clone.classList.remove('loading');
     clone.classList.add('invisible');
-
-    // Force the home item to single-line in the hidden clone, regardless of whether it is
-    // currently wrapping or truncated live, so its natural (un-wrapped) width can be measured.
-    clone.querySelector('.home')?.classList.add('measuring');
 
     // Show the overflow menu so that we can include the space it takes up in the measurement.
     clone.querySelector('.menu').classList.remove('empty');
@@ -307,9 +314,9 @@ export class PostBreadcrumbs {
   }
 
   /**
-   * Renders the home item's own overflow menu. This is the last resort, shown only once there is
-   * no room left for the home item even after every middle item is collapsed and the last item
-   * has wrapped. The home item never shrinks or truncates, it swaps entirely into this menu.
+   * Renders the home item's own overflow menu. Shown once there is no room left for the home item
+   * even after every middle item is collapsed. The home item never shrinks or truncates, it swaps
+   * entirely into this menu.
    */
   private renderHomeMenu() {
     const homeMenuId = `${this.id}-home-menu`;

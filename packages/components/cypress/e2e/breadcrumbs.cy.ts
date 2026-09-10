@@ -113,29 +113,45 @@ describe('breadcrumbs', () => {
     // I don't have a way to run this live. Confirm and adjust them against the actual Storybook
     // build before relying on this block; the assertions themselves should still hold once the
     // widths are right, since they don't depend on exact pixel values.
+    //
+    // Degrade order: middle items collapse first -> home collapses into its own menu next (this
+    // keeps the row single-line) -> only if that's still not enough does the last item wrap.
     describe('three-stage degrade sequence', () => {
       beforeEach(() => {
         cy.getComponent('breadcrumbs', BREADCRUMBS_ID, 'default');
         cy.get('post-breadcrumbs[data-hydrated]', { timeout: 30000 }).as('breadcrumbs');
       });
 
-      it('should collapse middle items before the last item is marked standalone', () => {
+      it('should collapse middle items first, before home collapses or the last item wraps', () => {
         cy.viewport(280, 400);
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[variant="menuitem"]')
           .should('have.length.greaterThan', 0);
+        cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home-menu').should('not.exist');
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[selected]:not([selected="false"])')
           .filter((_, el) => !el.closest('.invisible'))
           .should('not.match', '[standalone]:not([standalone="false"])');
       });
 
-      it('should mark the last item standalone once every middle item is collapsed', () => {
+      it('should collapse the home item once every middle item is collapsed and there is still no room', () => {
         cy.viewport(200, 400);
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[selected="false"]')
           .filter((_, el) => !el.closest('.invisible'))
           .should('have.attr', 'variant', 'menuitem');
+        cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home-menu').should('exist');
+
+        // The last item should not be wrapping yet — home collapsing is tried first.
+        cy.get('@breadcrumbs')
+          .find('post-breadcrumb-item[selected]:not([selected="false"])')
+          .filter((_, el) => !el.closest('.invisible'))
+          .should('not.match', '[standalone]:not([standalone="false"])');
+      });
+
+      it('should mark the last item standalone only once home has also collapsed and there is still no room', () => {
+        cy.viewport(120, 400);
+        cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home-menu').should('exist');
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[selected]:not([selected="false"])')
           .filter((_, el) => !el.closest('.invisible'))
@@ -143,11 +159,12 @@ describe('breadcrumbs', () => {
       });
 
       it('should restore all items once space is available again', () => {
-        cy.viewport(200, 400);
-        cy.get('@breadcrumbs').find('post-breadcrumb-item[variant="menuitem"]').should('exist');
+        cy.viewport(120, 400);
+        cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home-menu').should('exist');
 
         cy.viewport(1920, 800);
         cy.get('@breadcrumbs').find('post-breadcrumb-item[variant="menuitem"]').should('not.exist');
+        cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home-menu').should('not.exist');
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[selected]:not([selected="false"])')
           .filter((_, el) => !el.closest('.invisible'))
@@ -227,6 +244,7 @@ describe('breadcrumbs', () => {
       });
 
       it('should never truncate the last (selected) segment, wrapping it instead', () => {
+        cy.viewport(120, 400);
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[selected]:not([selected="false"])')
           .shadow()
@@ -247,7 +265,7 @@ describe('breadcrumbs', () => {
           .should('not.have.attr', 'variant', 'menuitem');
       });
 
-      it('should collapse the home item into its own separate menu as a last resort, once the last item has wrapped and there is still no room', () => {
+      it('should collapse the home item into its own separate menu once every middle item is collapsed and there is still no room', () => {
         cy.viewport(200, 400);
 
         // The home item's own menu is distinct from the middle-items menu — both exist at once.
@@ -258,10 +276,21 @@ describe('breadcrumbs', () => {
           .find('nav:not(.invisible) .home:not(.home-menu)')
           .should('not.exist');
 
-        // The last item should have already exhausted wrapping (standalone) before home gives up.
+        // Home collapses before the last item ever wraps, so it should not be standalone yet.
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[selected]:not([selected="false"])')
-          .should('have.attr', 'standalone', 'true');
+          .filter((_, el) => !el.closest('.invisible'))
+          .should('not.match', '[standalone]:not([standalone="false"])');
+      });
+
+      it('should only wrap the last item once home has also collapsed and there is still no room', () => {
+        cy.viewport(120, 400);
+
+        cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home-menu').should('exist');
+        cy.get('@breadcrumbs')
+          .find('post-breadcrumb-item[selected]:not([selected="false"])')
+          .filter((_, el) => !el.closest('.invisible'))
+          .should('match', '[standalone]:not([standalone="false"])');
       });
     });
   });

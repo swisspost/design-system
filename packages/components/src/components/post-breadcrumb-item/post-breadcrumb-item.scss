@@ -18,11 +18,8 @@ tokens.$default-map: components.$post-breadcrumb;
   @include mixins.breadcrumb-item;
 
   &:host([selected]:not([selected='false'])) {
-    // The selected item is always the last breadcrumb segment, but that alone doesn't mean it's
-    // safe to shrink or wrap yet — it might still be sharing the row with visible middle items.
-    // Keeping its natural single-line width here (instead of shrinking) is what makes the
-    // overflow measurement correctly collapse the middle items first. Wrapping is only enabled
-    // once [standalone] below is true.
+    // Keeps its natural width until [standalone] below allows wrapping — otherwise the middle
+    // items wouldn't be forced to collapse (and home to collapse) first.
     flex-shrink: 0;
 
     :is(a, span) {
@@ -31,17 +28,12 @@ tokens.$default-map: components.$post-breadcrumb;
   }
 
   &:host([standalone]:not([standalone='false'])) {
-    // Standalone means every other item has already been collapsed into the overflow menu, so
-    // this is the genuine last resort: only now can the item shrink and wrap onto multiple lines
-    // instead of being clipped. `flex-shrink: 1` + `min-width: 0` are both required to let the
-    // box narrow at all — flex items default to `min-width: auto`, which floors them at their
-    // single-line width regardless of `flex-shrink`. `breadcrumb-item` also includes button-base
-    // on the link, which defaults to single-line ellipsis truncation, so `overflow`/
-    // `text-overflow` need resetting too, or the last visible line still gets clipped even with
-    // `white-space: normal`.
+    // Final resort, set only once the home item has also already collapsed and there's still no
+    // room — flex-shrink + min-width:0 let it actually narrow enough to wrap; overflow/
+    // text-overflow undo button-base's default ellipsis truncation.
     flex-shrink: 1;
-    // Shared with the overflow calculation in post-breadcrumbs.tsx via getComputedStyle, so both
-    // stay in sync from one source of truth.
+    // Floor for how narrow this is allowed to get before wrapping — purely a readability limit,
+    // not read anywhere in JS (home has already collapsed by the time this applies).
     min-width: var(--post-breadcrumb-selected-min-width, 0);
 
     :is(a, span),
