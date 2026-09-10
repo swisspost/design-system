@@ -22,4 +22,12 @@ tokens.$default-map: components.$post-breadcrumb;
       @include mixins.breadcrumb-link-selected-colors;
     }
   }
+
+  &:host([standalone]:not([standalone='false'])) {
+    :is(a, span),
+    ::slotted(a) {
+      white-space: normal;
+      @include utilities.word-break;
+    }
+  }
 }
