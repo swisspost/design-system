@@ -1,5 +1,26 @@
 # @swisspost/design-system-documentation
 
+## 6.5.0
+
+### Minor Changes
+
+- Published the documentation for the `post-language-menu` and `post-language-menu-item` components. (by [@leagrdv](https://github.com/leagrdv) and [@myrta2302](https://github.com/myrta2302) with [#8350](https://github.com/swisspost/design-system/pull/8350))
+
+- Added the inline notification component. (by [@hugomslv](https://github.com/hugomslv), [@alizedebray](https://github.com/alizedebray) and [@alionazherdetska](https://github.com/alionazherdetska) with [#7400](https://github.com/swisspost/design-system/pull/7400))
+
+### Patch Changes
+
+- chore(documentation): Removed the non-recommended `target="_blank"` from the `post-linkarea` component markup. (by [@myrtasakellariou](https://github.com/myrtasakellariou) with [#8220](https://github.com/swisspost/design-system/pull/8220))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.5.0
+  - @swisspost/design-system-components@10.5.0
+  - @swisspost/internet-header@10.5.0
+  - @swisspost/design-system-styles-primeng@10.5.0
+  - @swisspost/design-system-components-react@10.5.0
+  - @swisspost/design-system-icons@10.5.0
+  - @swisspost/design-system-theme-ag-grid@10.5.0
+  - @swisspost/design-system-tokens@10.5.0
+
 ## 6.4.1
 
 ### Patch Changes
