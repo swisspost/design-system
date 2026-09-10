@@ -244,13 +244,20 @@ export class PostBreadcrumbs {
         target.remove();
       } else {
         // Nothing assigned: keep the slot's own fallback content (e.g. the default home link) by
-        // unwrapping the <slot> in place, instead of removing it along with its children.
-        target.replaceWith(...Array.from(target.childNodes));
+        // unwrapping the <slot> in place, move its children to where it was, then remove it.
+        const parent = target.parentNode;
+        if (parent) {
+          Array.from(target.childNodes).forEach(child => parent.insertBefore(child, target));
+          target.remove();
+        }
       }
     });
 
-    // Always measure the full, uncollapsed home item — see the method doc above.
-    clone.querySelector('.home, .home-menu')?.replaceWith(this.buildMeasurementHomeElement());
+    // Always measure the full, uncollapsed home item — see the method doc above. Uses
+    // replaceChild rather than replaceWith, since the latter isn't implemented by Stencil's
+    // mock-doc DOM used during SSR/hydration.
+    const existingHome = clone.querySelector('.home, .home-menu');
+    existingHome?.parentNode?.replaceChild(this.buildMeasurementHomeElement(), existingHome);
 
     clone.classList.remove('loading');
     clone.classList.add('invisible');
