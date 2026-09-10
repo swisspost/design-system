@@ -68,7 +68,7 @@ export const CustomHomeText: Story = {
     docs: {
       description: {
         story:
-          "Set `show-home-text` to `true` to replace the home icon with the visible text set on `text-home`, enabling segment specific breadcrumbs (e.g. to link to a segment's own home page instead of the generic site root). The first (home) and last (selected) segments are never truncated, no matter how long their text is: they wrap onto multiple lines instead of being cut off. Only the segments in between are collapsed into the overflow menu when there is not enough space.",
+          "Set `show-home-text` to `true` to replace the home icon with the visible text set on `text-home`, enabling segment specific breadcrumbs (e.g. to link to a segment's own home page instead of the generic site root). Unlike the middle segments, home and the last (selected) segment are never simply collapsed into the menu — home gets its own menu as a last resort, and the last segment wraps onto multiple lines only if that's still not enough.",
       },
     },
   },

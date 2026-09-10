@@ -11,8 +11,6 @@ tokens.$default-map: components.$post-breadcrumb;
 :host {
   display: block;
   position: relative;
-  // Floor for how narrow the last item wraps down to. Placeholder — confirm with design.
-  --post-breadcrumb-selected-min-width: 96px;
 }
 
 nav {

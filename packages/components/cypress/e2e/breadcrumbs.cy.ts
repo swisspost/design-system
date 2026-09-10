@@ -52,7 +52,7 @@ describe('breadcrumbs', () => {
         cy.getComponent('breadcrumb-item', BREADCRUMB_ITEM_ID);
       });
 
-      it.skip('should render its own anchor in the shadow DOM when the url prop is set', () => {
+      it('should render its own anchor in the shadow DOM when the url prop is set', () => {
         cy.get('post-breadcrumb-item').shadow().find('a').should('exist');
         cy.get('post-breadcrumb-item').children('a').should('not.exist');
       });
@@ -64,22 +64,22 @@ describe('breadcrumbs', () => {
         cy.get('post-breadcrumb-item[data-hydrated]', { timeout: 30000 }).first().as('item');
       });
 
-      it.skip('should not render an internal anchor in the shadow DOM', () => {
+      it('should not render an internal anchor in the shadow DOM', () => {
         cy.get('@item').shadow().find('a').should('not.exist');
       });
 
-      it.skip('should keep the slotted anchor in the light DOM so consumer routing can intercept clicks', () => {
+      it('should keep the slotted anchor in the light DOM so consumer routing can intercept clicks', () => {
         cy.get('@item').children('a').should('exist').and('have.attr', 'href');
       });
 
-      it.skip('should not auto-apply aria-current to the slotted anchor when selected changes', () => {
+      it('should not auto-apply aria-current to the slotted anchor when selected changes', () => {
         cy.get('@item').children('a').invoke('removeAttr', 'aria-current');
         cy.get('@item').invoke('attr', 'selected', 'false');
         cy.get('@item').invoke('attr', 'selected', 'true');
         cy.get('@item').children('a').should('not.have.attr', 'aria-current');
       });
 
-      it.skip('should react to the slotted anchor being removed after the initial render', () => {
+      it('should react to the slotted anchor being removed after the initial render', () => {
         cy.get('@item').invoke('attr', 'url', '/section2');
         cy.get('@item').shadow().find('a').should('not.exist');
 
@@ -98,7 +98,7 @@ describe('breadcrumbs', () => {
         cy.get('post-breadcrumbs[data-hydrated]', { timeout: 30000 }).as('breadcrumbs');
       });
 
-      it.skip('should not collapse any items when everything fits comfortably', () => {
+      it('should not collapse any items when everything fits comfortably', () => {
         cy.get('@breadcrumbs').find('post-breadcrumb-item[variant="menuitem"]').should('not.exist');
       });
     });
@@ -109,7 +109,7 @@ describe('breadcrumbs', () => {
         cy.get('post-breadcrumbs[data-hydrated]', { timeout: 30000 }).as('breadcrumbs');
       });
 
-      it.skip('should never show more than the maximum number of visible items, even with ample width', () => {
+      it('should never show more than the maximum number of visible items, even with ample width', () => {
         cy.viewport(1920, 800);
         // The off-screen measurement clone always force-expands to variant="listitem", so it
         // never matches [variant="menuitem"] and doesn't need to be filtered out here.
@@ -118,7 +118,7 @@ describe('breadcrumbs', () => {
           .should('have.length', 15 - 6); // itemCount (15, Concatenated story) minus MAX_VISIBLE_ITEMS
       });
 
-      it.skip('should collapse items starting from the earliest segment, closest to home', () => {
+      it('should collapse items starting from the earliest segment, closest to home', () => {
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item')
           // Excludes the off-screen measurement clone, which duplicates every item.
@@ -132,7 +132,7 @@ describe('breadcrumbs', () => {
           });
       });
 
-      it.skip('should not mark the last item standalone while middle items are still visible', () => {
+      it('should not mark the last item standalone while middle items are still visible', () => {
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[variant="menuitem"]')
           .should('have.length.greaterThan', 0);
@@ -144,16 +144,15 @@ describe('breadcrumbs', () => {
       });
     });
 
-    // NOTE: viewport widths in the skipped tests below are unverified guesses — confirm against
-    // a real Storybook build before un-skipping. Degrade order: middle items collapse first ->
-    // home collapses into its own menu -> only then does the last item wrap.
+    // Degrade order: middle items collapse first -> home collapses into its own menu ->
+    // only then does the last item wrap.
     describe('three-stage degrade sequence', () => {
       beforeEach(() => {
         cy.getComponent('breadcrumbs', BREADCRUMBS_ID, 'default');
         cy.get('post-breadcrumbs[data-hydrated]', { timeout: 30000 }).as('breadcrumbs');
       });
 
-      it.skip('should collapse middle items first, before home collapses or the last item wraps', () => {
+      it('should collapse middle items first, before home collapses or the last item wraps', () => {
         cy.viewport(280, 400);
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[variant="menuitem"]')
@@ -169,7 +168,7 @@ describe('breadcrumbs', () => {
         assertHomeCollapsesNoLaterThanLastItemWraps();
       });
 
-      it.skip('should mark the last item standalone only once home has also collapsed and there is still no room', () => {
+      it('should mark the last item standalone only once home has also collapsed and there is still no room', () => {
         cy.viewport(120, 400);
         cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home-menu').should('exist');
         cy.get('@breadcrumbs')
@@ -178,7 +177,7 @@ describe('breadcrumbs', () => {
           .should('match', '[standalone]:not([standalone="false"])');
       });
 
-      it.skip('should restore all items once space is available again', () => {
+      it('should restore all items once space is available again', () => {
         cy.viewport(120, 400);
         cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home-menu').should('exist');
 
@@ -200,7 +199,7 @@ describe('breadcrumbs', () => {
         cy.get('post-breadcrumbs[data-hydrated]', { timeout: 30000 }).as('breadcrumbs');
       });
 
-      it.skip('should render the slotted anchor instead of the internal one built from home-url', () => {
+      it('should render the slotted anchor instead of the internal one built from home-url', () => {
         // Scoped to the visible nav — the off-screen measurement clone also embeds a copy.
         cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) a[href="/"]').should('not.exist');
         cy.get('@breadcrumbs').children('a[slot="home"]').should('exist').and('have.attr', 'href');
@@ -208,7 +207,7 @@ describe('breadcrumbs', () => {
     });
 
     describe('overflow measurement', () => {
-      it.skip('should collapse the same number of items whether the home link is internal or slotted', () => {
+      it('should collapse the same number of items whether the home link is internal or slotted', () => {
         cy.getComponent('breadcrumbs', BREADCRUMBS_ID, 'concatenated');
         cy.get('post-breadcrumb-item[variant="menuitem"]')
           .its('length')
@@ -227,15 +226,13 @@ describe('breadcrumbs', () => {
       });
     });
 
-    // NOTE: viewport widths below are unverified guesses — confirm against a real Storybook
-    // build before un-skipping.
     describe('segment specific breadcrumbs', () => {
       beforeEach(() => {
         cy.getComponent('breadcrumbs', BREADCRUMBS_ID, 'custom-home-text');
         cy.get('post-breadcrumbs[data-hydrated]', { timeout: 30000 }).as('breadcrumbs');
       });
 
-      it.skip('should hide the home icon and display text-home visibly when home-text is true', () => {
+      it('should hide the home icon and display text-home visibly when home-text is true', () => {
         cy.viewport(2000, 400);
         cy.get('@breadcrumbs')
           .shadow()
@@ -248,7 +245,7 @@ describe('breadcrumbs', () => {
           .and('have.text', 'Private customers');
       });
 
-      it.skip('should restore the default home icon when home-text is set back to false', () => {
+      it('should restore the default home icon when home-text is set back to false', () => {
         cy.viewport(2000, 400);
         cy.get('@breadcrumbs').invoke('removeAttr', 'home-text');
         cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home post-icon').should('exist');
@@ -258,7 +255,7 @@ describe('breadcrumbs', () => {
           .should('have.class', 'visually-hidden');
       });
 
-      it.skip('should render the home item in full, not wrapped, when there is enough space for it', () => {
+      it('should render the home item in full, not wrapped, when there is enough space for it', () => {
         cy.viewport(2000, 400);
         cy.get('@breadcrumbs')
           .shadow()
@@ -267,7 +264,7 @@ describe('breadcrumbs', () => {
           .and('not.have.class', 'home-menu');
       });
 
-      it.skip('should never truncate the last (selected) segment, wrapping it instead', () => {
+      it('should never truncate the last (selected) segment, wrapping it instead', () => {
         cy.viewport(120, 400);
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[selected]:not([selected="false"])')
@@ -278,7 +275,7 @@ describe('breadcrumbs', () => {
           });
       });
 
-      it.skip('should collapse the middle segments into the overflow menu when there is not enough space for them', () => {
+      it('should collapse the middle segments into the overflow menu when there is not enough space for them', () => {
         cy.viewport(400, 400);
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[variant="menuitem"]')
@@ -293,7 +290,7 @@ describe('breadcrumbs', () => {
         assertHomeCollapsesNoLaterThanLastItemWraps();
       });
 
-      it.skip('should only wrap the last item once home has also collapsed and there is still no room', () => {
+      it('should only wrap the last item once home has also collapsed and there is still no room', () => {
         cy.viewport(120, 400);
 
         cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home-menu').should('exist');

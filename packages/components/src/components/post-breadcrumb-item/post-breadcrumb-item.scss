@@ -30,7 +30,6 @@ tokens.$default-map: components.$post-breadcrumb;
     // Last resort, once home has also collapsed. `overflow`/`text-overflow` undo
     // button-base's default ellipsis truncation.
     flex-shrink: 1;
-    min-width: var(--post-breadcrumb-selected-min-width, 0);
 
     :is(a, span),
     ::slotted(a) {
