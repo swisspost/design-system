@@ -280,7 +280,7 @@ export class PostBreadcrumbs {
       : null;
 
     if (slottedAnchor) {
-      home.append(slottedAnchor.cloneNode(true) as Element);
+      home.append(slottedAnchor.cloneNode(true));
       return home;
     }
 
