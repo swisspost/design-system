@@ -38,8 +38,12 @@ export class PostCollapsibleTrigger {
     this.setTrigger();
     if (!this.trigger) console.warn('The post-collapsible-trigger must contain a button.');
     if (!this.collapsible) {
-      const target = this.for ? `with id "${this.for}"` : 'nested inside <post-collapsible-trigger>';
-      console.warn(`No post-collapsible found ${target}. Either nest a post-collapsible inside the trigger or set the "for" attribute to the id of the collapsible.`);
+      const target = this.for
+        ? `with id "${this.for}"`
+        : 'nested inside <post-collapsible-trigger>';
+      console.warn(
+        `No post-collapsible found ${target}. Either nest a post-collapsible inside the trigger or set the "for" attribute to the id of the collapsible.`,
+      );
     }
   }
 
@@ -103,7 +107,7 @@ export class PostCollapsibleTrigger {
     // prefer a nested post-collapsible, fall back to an id reference via `for`
     const ref =
       this.host.querySelector('post-collapsible') ??
-      (this.for ? this.root?.getElementById(this.for) ?? null : null);
+      (this.for ? (this.root?.getElementById(this.for) ?? null) : null);
 
     if (ref && ref.localName === 'post-collapsible') {
       return ref as HTMLPostCollapsibleElement;

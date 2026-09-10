@@ -1,7 +1,7 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import meta, * as ToastStories from './toast.stories';
 import StylesPackageImport from '@/shared/styles-package-import';
-import PackageTag from '@/shared/package-tag';
+import StoryTags from '@/shared/story-tags';
 import NgxToastr from './ngx-toastr.sample?raw';
 import NgxToastrDismissible from './ngx-toastr-dismissible.sample?raw';
 
@@ -14,15 +14,16 @@ import NgxToastrDismissible from './ngx-toastr-dismissible.sample?raw';
 
 </div>
 
-<PackageTag meta={meta} />
+<StoryTags meta={meta} />
 
 <div className="lead">
-  Push notifications to your visitors with a <code>.toast</code> element, a lightweight and easily
-  customizable alert message.
+  The toast communicates user- or system-triggered messages that are context-related rather than
+  task-related.
 </div>
 
-Toasts are lightweight notifications designed to mimic the push notifications that have been popularized by mobile and desktop operating systems.
-They are intended to be small interruptions to your visitors or users, and therefore should contain minimal, to-the-point, non-interactive content.
+Push notifications to your visitors with a `.toast` element, a lightweight and easily customizable alert message.
+
+Toasts are designed to mimic the push notifications popularized by mobile and desktop operating systems. They are intended to be small interruptions to your visitors or users, and therefore should contain minimal, to-the-point, non-interactive content.
 
 <Canvas sourceState="shown" of={ToastStories.Default} />
 <div className="hide-col-default">

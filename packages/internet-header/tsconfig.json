@@ -5,7 +5,7 @@
     "declaration": true,
     "experimentalDecorators": true,
     "lib": ["dom", "DOM.Iterable", "es2022"],
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "module": "esnext",
     "target": "es2022",
     "noUnusedLocals": true,
@@ -15,6 +15,7 @@
     "jsxFactory": "h",
     "strictNullChecks": true,
     "skipLibCheck": true,
+    "types": ["node", "jest"],
     "paths": {
       "@/*": ["./src/*"],
       "@root/*": ["./*"]

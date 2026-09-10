@@ -3,7 +3,7 @@ import '@swisspost/design-system-components-react/post-components.css';
 
 export default function RootLayout({ children }: { readonly children: React.ReactNode }) {
   return (
-    <html data-color-scheme="light">
+    <html lang="en" data-color-scheme="light">
       <body>{children}</body>
     </html>
   );

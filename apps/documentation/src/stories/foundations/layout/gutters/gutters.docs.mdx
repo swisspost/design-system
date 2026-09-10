@@ -1,6 +1,6 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as GutterStories from './gutters.stories';
-import PackageTag from '@/shared/package-tag';
+import StoryTags from '@/shared/story-tags';
 
 export const firstBreakpoint = Object.values(GutterStories.SCSS_VARIABLES.firstBreakpoint)[0];
 export const breakpoints = Object.values(GutterStories.SCSS_VARIABLES.breakpoints).map(
@@ -11,7 +11,7 @@ export const breakpoints = Object.values(GutterStories.SCSS_VARIABLES.breakpoint
 
 # Gutters
 
-<PackageTag meta={meta} />
+<StoryTags meta={meta} />
 
 Gutters are the spaces between column content in grid elements (e.g., `.row`, `.col`, `.col-*`). They are implemented by applying an inline-padding to each column, along with matching negative margins to offset the padding at the row's edges.
 

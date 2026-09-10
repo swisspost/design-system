@@ -8,6 +8,10 @@ const meta: MetaExtended = {
   tags: ['package:Styles'],
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-V2?node-id=21-170',
+    },
   },
 };
 

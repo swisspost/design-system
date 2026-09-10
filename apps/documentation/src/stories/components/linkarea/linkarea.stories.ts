@@ -11,7 +11,7 @@ export interface PostLinkarea {
 const meta: MetaComponent<PostLinkarea> = {
   id: '1d52b794-768b-464e-90eb-4fd15774aa90',
   title: 'Components/Link Area',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:New'],
   render: renderLinkarea,
   component: 'post-linkarea',
   parameters: {
@@ -44,7 +44,7 @@ function renderLinkarea(args: Args) {
         Clicking anywhere within this <code>post-linkarea</code> will click on the link that is
         placed within the component.
       </p>
-      <a target="_blank" href="${args.linkUrl}">Link text</a>
+      <a href="${args.linkUrl}">Link text</a>
     </post-linkarea>
   `;
 }

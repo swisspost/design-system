@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
-import meta, { renderGroup } from './radio.stories';
+import meta, { RenderGroup } from './radio.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
@@ -62,7 +62,7 @@ export const Radio: Story = {
               context.id = `${scheme}-${crypto.randomUUID()}`;
               return html`
                 <div class="mt-16">
-                  ${renderGroup(
+                  ${RenderGroup(
                     {
                       label: 'Label',
                       hiddenLegend: false,

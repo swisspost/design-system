@@ -1,2 +1,7 @@
 CODEOWNERS
 pnpm-lock.yaml
+dist
+*.min.*
+packages/components/**/readme.md
+packages/internet-header/**/readme.md
+*.d.ts

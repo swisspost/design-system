@@ -11,7 +11,6 @@ export default {
       name: 'preset-default',
       params: {
         overrides: {
-          removeViewBox: false,
           mergePaths: {
             force: true,
             floatPrecision: 2,
@@ -22,6 +21,9 @@ export default {
           },
         },
       },
+    },
+    {
+      name: 'removeTitle',
     },
     {
       name: 'removeAttrs',

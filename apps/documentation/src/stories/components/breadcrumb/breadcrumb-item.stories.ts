@@ -7,7 +7,7 @@ const meta: MetaComponent = {
   title: 'Components/Breadcrumb Item',
   component: 'post-breadcrumb-item',
   render,
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'status:New'],
   parameters: {
     badges: [],
     design: {
@@ -15,7 +15,7 @@ const meta: MetaComponent = {
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=558-16158&m=dev',
     },
     controls: {
-      exclude: ['variant', 'selected'],
+      exclude: ['variant', 'selected', 'standalone'],
     },
   },
   args: {

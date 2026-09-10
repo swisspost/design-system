@@ -28,6 +28,7 @@ export const Button: Story = {
             iconPosition: context.argTypes.iconPosition.options,
           })
             .filter(args => !(args.icon === 'null' && args.iconPosition !== 'textOnly'))
+            .filter(args => !(args.tag === 'a' && args.disabled))
             .filter(args => !(args.icon !== 'null' && args.tag === 'input'))
             .map((args: Args) => (args.tag === 'input' ? { ...args, type: 'button' } : args))
             .map((args: Args) =>

@@ -18,8 +18,8 @@ import { PLACEMENT_TYPES } from '@/types';
 import {
   arrow,
   autoUpdate,
-  computePosition,
   flip,
+  hide,
   inline,
   limitShift,
   offset,
@@ -31,6 +31,7 @@ import {
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
 import { popIn } from '@/animations/pop-in';
 import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
+import { computePositionWithSafeArea } from '@/utils/floating-ui';
 
 interface PopoverElement {
   showPopover: () => void;
@@ -150,6 +151,14 @@ export class PostPopovercontainer {
   readonly safeSpace?: 'triangle' | 'trapezoid';
 
   /**
+   * Whether to automatically hide the popover when the target moves outside the scrollport.
+   *
+   * If the `post-header` can cover the target, the popover will also be hidden as soon as the
+   * target scrolls behind it.
+   */
+  @Prop() readonly autoHide?: boolean;
+
+  /**
    * Animation style
    */
   private readonly animation: AnimationName = 'pop-in';
@@ -185,13 +194,14 @@ export class PostPopovercontainer {
 
   /**
    * Programmatically display the popovercontainer
-   * @param target A focusable element inside the trigger component that controls the popover
+   * @param target The element that invokes the popover and to which it is visually anchored.
    */
   @Method()
   async show(target: HTMLElement) {
-    if (this.toggleTimeoutId) return;
+    if (this.toggleTimeoutId || !target) return;
+
     this.eventTarget = target;
-    this.calculatePosition();
+    this.updatePosition();
     this.host.showPopover();
   }
 
@@ -209,16 +219,21 @@ export class PostPopovercontainer {
 
   /**
    * Toggle popovercontainer display
-   * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
+   * @param target The element that invokes the popover and to which it is visually anchored.
    * @param force Pass true to always show or false to always hide
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
+    const isOpen = this.host.matches(':where(:popover-open, .popover-open)');
+    const willOpen = force === true || (force === undefined && !isOpen);
+
+    if (willOpen && !target) return isOpen;
+
     this.eventTarget = target;
 
     // Prevent instant double toggle
     if (!this.toggleTimeoutId) {
-      this.calculatePosition();
+      this.updatePosition();
 
       this.host.togglePopover(force);
       this.toggleTimeoutId = null;
@@ -349,25 +364,20 @@ export class PostPopovercontainer {
    */
   private startAutoupdates() {
     if (!this.eventTarget || !this.host) return;
-    this.clearAutoUpdate = autoUpdate(
-      this.eventTarget,
-      this.host,
-      this.calculatePosition.bind(this),
-    );
+    this.clearAutoUpdate = autoUpdate(this.eventTarget, this.host, this.updatePosition.bind(this));
   }
 
-  /**
-   * Retrieves the dynamic height of the header
-   */
-  private getHeaderHeight(): number {
-    const header = document.querySelector('post-header');
-    return header ? Number.parseFloat(getComputedStyle(header).height) : 0;
-  }
+  private async updatePosition() {
+    const { x, y, middlewareData, placement } = await this.calculatePosition();
 
-  private async calculatePosition() {
-    const { x, y, middlewareData, placement } = await this.computeMainPosition();
+    // Hide the popover if the target is outside the viewport
+    if (middlewareData.hide?.referenceHidden) {
+      this.host.hidePopover();
+    }
+
     const currentPlacement = placement.split('-')[0];
     this.dynamicPlacement = currentPlacement;
+
     // Position popover
     this.host.style.left = `${x}px`;
     this.host.style.top = `${y}px`;
@@ -378,9 +388,7 @@ export class PostPopovercontainer {
 
       const staticSide = PostPopovercontainer.STATIC_SIDES[currentPlacement];
 
-
       const arrowSizePx = this.arrowRef.offsetWidth;
-
 
       const halfSide = -0.5 * arrowSizePx;
 
@@ -399,14 +407,16 @@ export class PostPopovercontainer {
     }
   }
 
-  private async computeMainPosition() {
+  private async calculatePosition() {
     const gap = this.edgeGap;
     const isAligned = (this.placement || 'top').includes('-');
 
-    const flipMiddleware = flip({
-      padding: this.getHeaderHeight(),
-      crossAxis: false,
-    });
+    const flipMiddleware = [
+      // Flip the popover if the target moves outside the viewport
+      flip({ elementContext: 'reference', crossAxis: false }),
+      // Flip the popover if the popover itself moves outside the viewport
+      flip({ elementContext: 'floating', crossAxis: false }),
+    ];
 
     const shiftMiddleware = shift({
       padding: gap,
@@ -420,7 +430,7 @@ export class PostPopovercontainer {
       inline(),
       // Per floating-ui docs: for aligned placements (e.g. bottom-end),
       // flip should come before shift. For non-aligned, shift before flip.
-      ...(isAligned ? [flipMiddleware, shiftMiddleware] : [shiftMiddleware, flipMiddleware]),
+      ...(isAligned ? [...flipMiddleware, shiftMiddleware] : [shiftMiddleware, ...flipMiddleware]),
       size({
         apply({ availableWidth, elements }) {
           Object.assign(elements.floating.style, {
@@ -434,7 +444,13 @@ export class PostPopovercontainer {
       middleware.push(arrow({ element: this.arrowRef, padding: gap }));
     }
 
-    return computePosition(this.eventTarget, this.host, {
+    // Automatically hide the popover if the target moves outside the scrollport.
+    if (this.autoHide) {
+      // Per floating-ui docs: hide should generally be placed at the end.
+      middleware.push(hide({ strategy: 'referenceHidden' }));
+    }
+
+    return computePositionWithSafeArea(this.eventTarget, this.host, {
       placement: this.placement || 'top',
       strategy: 'fixed',
       middleware,

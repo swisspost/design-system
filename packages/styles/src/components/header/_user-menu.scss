@@ -1,0 +1,31 @@
+@use '../../functions/tokens';
+@use '../../tokens/components';
+
+post-header {
+  [slot='post-login'],
+  .local-login {
+    > post-menu-trigger > button.btn-link {
+      display: block;
+      border-radius: tokens.get('avatar-border-radius', components.$post-avatar);
+    }
+
+    > post-menu {
+      > [slot='header'] {
+        > p {
+          margin-block: 0;
+
+          &:first-of-type:not(:last-of-type) {
+            margin-block-end: -4px;
+            font-size: 12px;
+            font-weight: 400;
+          }
+        }
+      }
+
+      /* stylelint-disable-next-line selector-max-compound-selectors */
+      > post-menu-item > a > post-icon {
+        order: -1;
+      }
+    }
+  }
+}

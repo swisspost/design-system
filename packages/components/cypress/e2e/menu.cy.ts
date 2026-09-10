@@ -145,7 +145,10 @@ describe('menu keyboard navigation', { baseUrl: null, includeShadowDom: true }, 
 
   it('should open menu with Space key on trigger', () => {
     cy.get('@trigger').find('button').focus().type(' ');
-    cy.get('@menu').shadow().find('post-popovercontainer').should('not.have.css', 'display', 'none');
+    cy.get('@menu')
+      .shadow()
+      .find('post-popovercontainer')
+      .should('not.have.css', 'display', 'none');
   });
 
   it('should navigate menu items with Arrow Down', () => {
@@ -214,7 +217,10 @@ describe('menu keyboard navigation', { baseUrl: null, includeShadowDom: true }, 
 
   it('should close menu with Escape key', () => {
     cy.get('@trigger').click();
-    cy.get('@menu').shadow().find('post-popovercontainer').should('not.have.css', 'display', 'none');
+    cy.get('@menu')
+      .shadow()
+      .find('post-popovercontainer')
+      .should('not.have.css', 'display', 'none');
 
     cy.get('@menu').find('button, a').first().focus().type('{esc}', { force: true });
     cy.get('@menu').shadow().find('post-popovercontainer').should('have.css', 'display', 'none');

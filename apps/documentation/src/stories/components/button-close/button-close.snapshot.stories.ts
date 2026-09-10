@@ -14,6 +14,6 @@ type Story = StoryObj<HTMLPostClosebuttonElement>;
 
 export const PostClosebutton: Story = {
   render: (_args: Args, context: StoryContext<HTMLPostClosebuttonElement>) => {
-    return schemes(() => html` ${meta.render?.({ ...context.args }, context)} `);
+    return schemes(() => html` <div class="mock-element">${meta.render?.({ ...context.args }, context)} </div>`);
   },
 };

@@ -32,7 +32,7 @@ post-language-menu-item {
       &:hover {
         @include button.button-variant-def('hover', 'tertiary');
       }
-      
+
       @include utilities-mx.high-contrast-mode() {
         border: 1px solid ButtonBorder;
         color: ButtonText;

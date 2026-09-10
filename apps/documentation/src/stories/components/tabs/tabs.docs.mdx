@@ -2,7 +2,7 @@ import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import meta, * as TabStories from './tabs.stories';
 import SampleTabChange from './tabs-tab-change.sample?raw';
 import SampleCustomTrigger from './tabs-custom-trigger.sample?raw';
-import PackageTag from '@/shared/package-tag';
+import StoryTags from '@/shared/story-tags';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={TabStories} />
@@ -14,9 +14,12 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 </div>
 
-<PackageTag meta={meta} />
+<StoryTags meta={meta} />
 
-<div className="lead">Organize content across different sections that are shown one at a time.</div>
+<div className="lead">
+  The tabs are a way of grouping different but related content. They allow the user to navigate them without 
+  leaving the page. Tabs can be used to either split the full page width or parts of the content.
+</div>
 
 <Canvas sourceState="shown" of={TabStories.Default} />
 
@@ -24,7 +27,7 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <ComponentsPackageInstall component="<post-tabs>" />
 
-## Navigation Variant
+## Page Tabs
 
 ### Indicating the Current Page
 
@@ -32,11 +35,11 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 This attribute must be manually added to the anchor element that represents the current page since it is not set automatically. The component detects which link has `aria-current="page"` and applies the active styling to the parent `post-tab-item`.
 
-<Canvas of={TabStories.ActiveNavigationItem} />
+<Canvas of={TabStories.ActivePagesItem} />
 
 Navigation is handled by your application's router. When users click a tab, they navigate to the URL specified in the anchor's `href` attribute.
 
-## Panels Variant
+## Content Tabs
 
 ### Initially Active Tab
 
@@ -55,27 +58,3 @@ Use the `postChange` event to run a function anytime a new tab gets activated.
 To trigger a tab change, use the `show()` method specifying the name of the tab to activate and show its content.
 
 <Source code={SampleCustomTrigger} language="typescript" />
-
-## Full-width Tabs
-
-Setting the `full-width` property to `true` allows the tabs container to stretch across the full width of the screen. The tabs and their content remain aligned with the main page content. This property works with both variants.
-
-<div className="d-flex gap-8">
-  <a
-    className="btn btn-primary"
-    target="_blank"
-    href={`?path=%2Fstory%2Fbb1291ca-4dbb-450c-a15f-596836d9f39e--navigation-full-width&full=true`}
-    rel="noreferrer"
-  >
-    Full-width navigation example
-  </a>
-
-  <a
-    className="btn btn-primary"
-    target="_blank"
-    href={`?path=%2Fstory%2Fbb1291ca-4dbb-450c-a15f-596836d9f39e--full-width&full=true`}
-    rel="noreferrer"
-  >
-    Full-width panels example
-  </a>
-</div>

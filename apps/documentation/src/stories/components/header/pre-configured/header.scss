@@ -1,0 +1,12 @@
+#storybook-docs {
+  .header-story-wrapper {
+    .virtual-body {
+      height: 550px;
+      overflow-y: auto;
+    }
+  }
+}
+
+.paragraph {
+  margin-top: 1em;
+}

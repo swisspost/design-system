@@ -1,7 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as TextareaStories from './textarea.stories';
 import StylesPackageImport from '@/shared/styles-package-import';
-import PackageTag from '@/shared/package-tag';
+import StoryTags from '@/shared/story-tags';
 
 <Meta of={TextareaStories} />
 
@@ -12,13 +12,15 @@ import PackageTag from '@/shared/package-tag';
 
 </div>
 
-<PackageTag meta={meta} />
+<StoryTags meta={meta} />
 
 <div className="lead">
-  Customize the native `<textarea>` with CSS that changes the element’s initial appearance.
+  The text area component allows the user to enter more content than a regular
+  [input](/?path=/docs/2df77c32-5e33-402e-bd2e-54d54271ce19--docs) would provide, spanning
+  over more than one line of text.
 </div>
 
-Custom textarea elements need only the class `.form-control` to trigger the custom styles.
+Our component customizes the native `<textarea>` with CSS. Add the `.form-control` class to trigger the custom styles.
 
 <Canvas sourceState="shown" of={TextareaStories.Default} />
 <div className="hide-col-default">

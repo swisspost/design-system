@@ -1,7 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as TimepickerStories from './timepicker.stories';
 import StylesPackageImport from '@/shared/styles-package-import';
-import PackageTag from '@/shared/package-tag';
+import StoryTags from '@/shared/story-tags';
 
 <Meta of={TimepickerStories} />
 
@@ -12,14 +12,11 @@ import PackageTag from '@/shared/package-tag';
 
 </div>
 
-<PackageTag meta={meta} />
+<StoryTags meta={meta} />
 
-<div className="lead">
-  A timepicker lets users enter or select a time value in a form field. It is intended to be used in
-  forms where precise time entry is required.
-</div>
+<p className="lead">The time picker enables the user to input a specific time.</p>
 
-Customize the native `<input type="time">` with the `.form-control` class to trigger custom styles.
+It is intended to be used in forms where precise time entry is required. The native `<input type="time">` can be customized by adding the `.form-control` class.
 
 <post-banner>
   The flyout used to choose a time is the native browser control, so its appearance and interaction

@@ -94,7 +94,7 @@ export class PostMegadropdown {
   }
 
   connectedCallback() {
-    globalThis.addEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
+    globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
   }
 
   componentDidRender() {
@@ -108,7 +108,7 @@ export class PostMegadropdown {
   }
 
   disconnectedCallback() {
-    globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
+    globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange);
 
     if (PostMegadropdown.activeDropdown === this) PostMegadropdown.activeDropdown = null;
     this.removeListeners();
@@ -255,10 +255,10 @@ export class PostMegadropdown {
     this.currentAnimation = null;
   }
 
-  private breakpointChange(e: CustomEvent) {
+  private readonly breakpointChange = (e: CustomEvent) => {
     this.device = e.detail;
     this.cancelAnimation();
-  }
+  };
 
   private readonly handleClickOutside = async (event: MouseEvent) => {
     if (this.device !== 'desktop') return;

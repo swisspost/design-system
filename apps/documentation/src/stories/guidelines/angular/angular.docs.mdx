@@ -20,19 +20,19 @@ In the design-system team, we believe that the [Web Components](https://develope
 Currently, we are providing some of our packages with those technologies:
 
 <ul className="tile-wrapper" role="list">
-  {packages
+  {Object.values(packages)
     .filter(pkg => pkg.type === PackageType.Wc)
-    .map(p => (
-      <li key={p.name}>
-        <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel}>
-          <img src={p.img.src} alt={p.img.alt} />
-          <span>{p.version}</span>
+    .map(pkg => (
+      <li key={pkg.name}>
+        <ti-le title={pkg.name} href={pkg.links.docs.href} ariaLabel={pkg.links.docs.ariaLabel}>
+          <img src={pkg.image.src} alt={pkg.image.alt} />
+          <span>{pkg.version}</span>
         </ti-le>
       </li>
     ))}
 </ul>
 
-Even though, Angular support Web components technologies natively, they are less convenient to use than regular Angular components.
+Even though Angular supports Web components technologies natively, they are less convenient to use than regular Angular components.
 To mitigate the problem, we are providing packages that add Angular wrapper around Custom Elements.
 
 <table className="table caption-top">

@@ -1,6 +1,6 @@
 /**
  * Validation Script for Icon Downloads
- * 
+ *
  * Validates the icon report.json file to ensure all icons
  * were properly downloaded and meet quality standards.
  */
@@ -17,9 +17,12 @@ const EXPECTED_SOURCE_COUNTS = { ui: 6, post: 1 };
  */
 export function validateIconReport() {
   const reportPath = path.join(process.cwd(), REPORT_PATH);
-  
+
   if (!fs.existsSync(reportPath)) {
-    return createErrorResult('Report file not found', 'The report.json file was not found. The build may have failed.');
+    return createErrorResult(
+      'Report file not found',
+      'The report.json file was not found. The build may have failed.',
+    );
   }
 
   let report;
@@ -30,7 +33,10 @@ export function validateIconReport() {
   }
 
   if (!report.icons || !report.stats) {
-    return createErrorResult('Invalid report structure', 'The report.json file has an invalid structure.');
+    return createErrorResult(
+      'Invalid report structure',
+      'The report.json file has an invalid structure.',
+    );
   }
 
   const issues = collectIssues(report.icons);
@@ -39,9 +45,10 @@ export function validateIconReport() {
 
   return {
     success: totalIssues === 0,
-    message: totalIssues === 0
-      ? `✅ All ${report.stats.success} icons validated successfully!`
-      : `❌ Icon validation failed with ${totalIssues} issue(s)`,
+    message:
+      totalIssues === 0
+        ? `✅ All ${report.stats.success} icons validated successfully!`
+        : `❌ Icon validation failed with ${totalIssues} issue(s)`,
     stats: {
       total: report.icons.length,
       success: report.stats.success,
@@ -94,7 +101,7 @@ function collectIssues(icons) {
       { key: 'errored', field: 'errorCount' },
       { key: 'noSVG', field: 'count' },
       { key: 'wrongViewBox', field: 'count' },
-      { key: 'duplicates', field: 'count' }
+      { key: 'duplicates', field: 'count' },
     ];
 
     arrayIssues.forEach(({ key, field }) => {
@@ -132,11 +139,11 @@ function formatIssueSection(title, description, icons, formatter) {
 
   let section = `#### ${title} (${icons.length})\n${description}\n\n`;
   section += displayIcons.map(formatter).join('\n') + '\n';
-  
+
   if (remaining > 0) {
     section += `\n_... and ${remaining} more_\n`;
   }
-  
+
   return section + '\n';
 }
 
@@ -158,13 +165,13 @@ function buildCommentBody(result) {
  */
 function buildHeader(result) {
   let header = '## 🔍 Icon Validation Report\n\n';
-  
+
   if (result.success) {
     header += '### ✅ Validation Passed\n\nAll icons have been validated successfully!\n\n';
   } else {
     header += `### ❌ Validation Failed\n\n${result.message}\n\n`;
   }
-  
+
   return header;
 }
 
@@ -172,13 +179,15 @@ function buildHeader(result) {
  * Builds statistics table
  */
 function buildStatistics(stats) {
-  return '### 📊 Statistics\n\n' +
+  return (
+    '### 📊 Statistics\n\n' +
     '| Metric | Value |\n' +
     '|--------|-------|\n' +
     `| Total Icons | ${stats.total} |\n` +
     `| ✅ Successful | ${stats.success} |\n` +
     `| ❌ Failed | ${stats.failed} |\n` +
-    `| Pass Rate | ${stats.passRate}% |\n\n`;
+    `| Pass Rate | ${stats.passRate}% |\n\n`
+  );
 }
 
 /**
@@ -194,42 +203,43 @@ function buildIssues(issues) {
       key: 'errored',
       title: '❌ Download Errors',
       description: 'These icons failed to download from the source:',
-      formatter: icon => `- **${icon.name}** (ID: ${icon.id}) - ${icon.errorCount} error(s)`
+      formatter: icon => `- **${icon.name}** (ID: ${icon.id}) - ${icon.errorCount} error(s)`,
     },
     {
       key: 'noSVG',
       title: '❌ Missing SVG Content',
       description: 'These icons have no SVG content:',
-      formatter: icon => `- **${icon.name}** (ID: ${icon.id})`
+      formatter: icon => `- **${icon.name}** (ID: ${icon.id})`,
     },
     {
       key: 'wrongViewBox',
       title: '⚠️ Wrong ViewBox',
       description: 'These icons have incorrect viewBox dimensions:',
-      formatter: icon => `- **${icon.name}** (ID: ${icon.id})`
+      formatter: icon => `- **${icon.name}** (ID: ${icon.id})`,
     },
     {
       key: 'noKeywords',
       title: '⚠️ No Keywords',
       description: 'These icons lack keywords for searchability:',
-      formatter: icon => `- **${icon.name}** (ID: ${icon.id})`
+      formatter: icon => `- **${icon.name}** (ID: ${icon.id})`,
     },
     {
       key: 'missingSourceFiles',
       title: '❌ Missing Source Files',
       description: 'These icon groups are missing expected size variants:',
-      formatter: icon => `- **${icon.name}** (ID: ${icon.id}) - ${icon.actual}/${icon.expected} files (${icon.set} icons)`
+      formatter: icon =>
+        `- **${icon.name}** (ID: ${icon.id}) - ${icon.actual}/${icon.expected} files (${icon.set} icons)`,
     },
     {
       key: 'duplicates',
       title: '⚠️ Duplicates',
       description: 'These icons have duplicate entries:',
-      formatter: icon => `- **${icon.name}** (ID: ${icon.id}) - ${icon.count} duplicate(s)`
-    }
+      formatter: icon => `- **${icon.name}** (ID: ${icon.id}) - ${icon.count} duplicate(s)`,
+    },
   ];
 
   let body = '### ⚠️ Issues Found\n\n';
-  
+
   issueTypes.forEach(({ key, title, description, formatter }) => {
     body += formatIssueSection(title, description, issues[key], formatter);
   });
@@ -243,12 +253,14 @@ function buildIssues(issues) {
  * Builds next steps section
  */
 function buildNextSteps() {
-  return '### 🔧 Next Steps\n\n' +
+  return (
+    '### 🔧 Next Steps\n\n' +
     '1. Review the issues listed above\n' +
     '2. Re-run the icon fetch process if needed\n' +
     '3. Check the [icons health page](https://design-system.post.ch) for detailed diagnostics\n' +
     '4. Fix any source data issues in the icon management system\n' +
-    '5. Push updated icons to re-trigger validation\n';
+    '5. Push updated icons to re-trigger validation\n'
+  );
 }
 
 /**
@@ -265,7 +277,7 @@ export async function commentValidationResults(github, context, validationResult
   });
 
   const botComment = comments.find(
-    comment => comment.user.type === 'Bot' && comment.body.includes('Icon Validation Report')
+    comment => comment.user.type === 'Bot' && comment.body.includes('Icon Validation Report'),
   );
 
   const commentParams = {

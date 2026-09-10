@@ -13,6 +13,8 @@ describe('Table', () => {
             enabled: false,
           },
         },
+      }, (violations) => {
+        expect(violations).to.have.length(0);
       });
     });
   });

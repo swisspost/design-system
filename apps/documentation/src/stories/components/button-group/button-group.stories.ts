@@ -156,7 +156,7 @@ export default meta;
 
 type Story = StoryObj;
 
-function createButtonTemplate(args: Args, context: StoryContext, index: number) {
+function CreateButtonTemplate(args: Args, context: StoryContext, index: number) {
   const [_, updateArgs] = useArgs();
   const position = index + 1;
   const id = `btngroup_${context.name}_${position}`;
@@ -222,7 +222,7 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
 }
 
 function renderButtonGroup(args: Args, context: StoryContext) {
-  const buttons = Array.from({ length: 4 }).map((_, i) => createButtonTemplate(args, context, i));
+  const buttons = Array.from({ length: 4 }).map((_, i) => CreateButtonTemplate(args, context, i));
   const groupClass = args.direction === 'vertical' ? 'btn-group btn-group-vertical' : 'btn-group';
 
   if (args.element === 'radio' || args.element === 'checkbox') {
@@ -242,7 +242,7 @@ function renderButtonGroup(args: Args, context: StoryContext) {
 function renderButtonGroupDirection(args: Args, context: StoryContext) {
   return html`
     <div class="btn-group ${args.groupClass}" role="group" aria-label="Button group example">
-      ${Array.from({ length: 6 }).map((_, i) => createButtonTemplate(args, context, i))}
+      ${Array.from({ length: 6 }).map((_, i) => CreateButtonTemplate(args, context, i))}
     </div>
   `;
 }

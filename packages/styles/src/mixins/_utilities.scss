@@ -76,9 +76,12 @@
   outline: none !important;
 }
 
-@mixin focus-style($additional-selector: '') {
+@mixin focus-style(
+  $additional-selector: '',
+  $outline-offset: tokens.get('focus-outline-offset', helpers.$post-focus)
+) {
   &#{$additional-selector} {
-    outline-offset: tokens.get('focus-outline-offset', helpers.$post-focus) !important;
+    outline-offset: $outline-offset !important;
     outline: tokens.get('focus-outline-color', helpers.$post-focus) none
       tokens.get('focus-outline-width', helpers.$post-focus) !important;
   }
@@ -115,16 +118,35 @@
   }
 }
 
-@mixin focus-style-custom($additional-selector: '') {
+@mixin focus-style-custom(
+  $additional-selector: '',
+  $outline-offset: tokens.get('focus-outline-offset', helpers.$post-focus),
+  $outline-color: tokens.get('focus-outline-color', helpers.$post-focus)
+) {
+  &#{$additional-selector} {
+    outline-offset: $outline-offset !important;
+    outline: $outline-color none tokens.get('focus-outline-width', helpers.$post-focus) !important;
+  }
+
   // :has(:focus-visible) mimic a focus-visible-within pseudo-class
   &:is(:focus-visible, :has(:focus-visible), .pretend-focus)#{$additional-selector} {
+    outline-style: tokens.get('focus-border-style', helpers.$post-focus) !important;
     @content;
+
+    @include high-contrast-mode() {
+      outline-color: Highlight !important;
+    }
   }
 
   // When a browser doesn't support :has, use focus-within as a fallback. This means that focus state is displayed on focus and not on focus-visible only (except some browsers like Safari).
   @supports not selector(:has(:focus-visible)) {
     &:is(:focus-visible, :focus-within, .pretend-focus)#{$additional-selector} {
+      outline-style: tokens.get('focus-border-style', helpers.$post-focus) !important;
       @content;
+
+      @include high-contrast-mode() {
+        outline-color: Highlight !important;
+      }
     }
   }
 }
@@ -154,4 +176,10 @@
       border-color: GrayText;
     }
   }
+}
+
+@mixin word-break() {
+  overflow-wrap: anywhere;
+  hyphens: auto;
+  line-break: strict;
 }

@@ -38,11 +38,7 @@ export class MigrationV67Component extends LitElement {
               this.angular
                 ? html`
                     <li>
-                      <p>
-                        Use
-                        <a href="https://update.angular.io/">Angular Update Guide</a>
-                        to update Angular to version 17
-                      </p>
+                      <p>Use <a href="https://update.angular.io/">Angular Update Guide</a> to update Angular to version 17</p>
                     </li>
                   `
                 : nothing
@@ -63,10 +59,9 @@ export class MigrationV67Component extends LitElement {
                         <a
                           href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1600-2023-11-22"
                           target="_blank"
-                          rel="noopener noreferrer"
+                          rel="noopener noreferrer" 
                         >
-                          ng-bootstrap 16.x.x changelog
-                        </a>
+                          ng-bootstrap 16.x.x changelog<span class="visually-hidden">(opens in a new tab)</span></a>
                         for more details.
                       </p>
                     </li>

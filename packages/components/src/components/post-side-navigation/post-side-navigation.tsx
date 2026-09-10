@@ -11,7 +11,8 @@ import {
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
-import { getFocusableChildren, Required, Type } from '@/utils';
+import { getFocusableChildren, OneOf, Required, Type } from '@/utils';
+import { SIDE_NAVIGATION_SIZES, SideNavigationSize } from './side-navigation-styles';
 
 /**
  * @slot default - Slot for the navigation content (must be a `<nav>` landmark with proper heading)
@@ -35,6 +36,14 @@ export class PostSideNavigation {
   textClose!: string;
 
   /**
+   * Controls the size of the navigation items.
+   * Choose "small" for deep and long navigation, and "large" (default) for a flat and short navigation.
+   */
+  @OneOf(SIDE_NAVIGATION_SIZES)
+  @Prop()
+  size?: SideNavigationSize = 'large';
+
+  /**
    * An event emitted when the navigation is shown or hidden on mobile.
    * The payload is a boolean: `true` when the navigation opens, `false` when it closes.
    */
@@ -42,6 +51,14 @@ export class PostSideNavigation {
 
   private breakpointChange = (e: CustomEvent) => {
     this.device = e.detail;
+
+    if (this.device === 'desktop') {
+      if (this.dialog?.open) {
+        this.dialog.close();
+      }
+
+      this.postToggle.emit(false);
+    }
   };
 
   connectedCallback() {
@@ -80,6 +97,16 @@ export class PostSideNavigation {
     e.stopPropagation();
     collapsible.toggle(false);
     this.collapsibleTrigger?.querySelector<HTMLButtonElement>('button')?.focus();
+  };
+
+  /**
+   * Closes the dialog when a navigation link is clicked.
+   */
+  private handleDialogClick = (e: MouseEvent) => {
+    const path = e.composedPath() as HTMLElement[];
+    if (path.some(el => el instanceof HTMLAnchorElement)) {
+      this.dialog.close();
+    }
   };
 
   /**
@@ -143,14 +170,13 @@ export class PostSideNavigation {
   private renderDialog() {
     return (
       <dialog
+        onClick={this.handleDialogClick}
         onClose={() => {
           this.postToggle.emit(false);
         }}
       >
         <slot />
-        <post-closebutton onClick={() => this.hide()}>
-          {this.textClose}
-        </post-closebutton>
+        <post-closebutton onClick={() => this.hide()}>{this.textClose}</post-closebutton>
       </dialog>
     );
   }

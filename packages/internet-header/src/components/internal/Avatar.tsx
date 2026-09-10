@@ -1,5 +1,5 @@
+import { UserConfig } from '@/models/user.model';
 import { FunctionalComponent, h } from '@stencil/core';
-import { UserConfig } from '@/models/header.model';
 
 export interface AvatarProps {
   user: UserConfig;
@@ -8,9 +8,10 @@ export interface AvatarProps {
 
 export const Avatar: FunctionalComponent<AvatarProps> = ({ user, description }) => (
   <post-avatar
-    firstname={user.firstName}
-    lastname={user.lastName}
+    firstname={user.name}
+    lastname={user.surname}
     email={user.email}
     description={description}
+    aria-hidden={description ? undefined : 'true'}
   ></post-avatar>
 );

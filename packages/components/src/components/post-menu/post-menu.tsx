@@ -85,7 +85,8 @@ export class PostMenu {
   }
 
   /**
-   * Toggles the menu visibility based on its current state.
+   * Toggles the menu visibility based on its current state,
+   * `target` is the HTML element the menu is anchored to.
    */
   @Method()
   async toggle(target: HTMLElement) {
@@ -97,9 +98,8 @@ export class PostMenu {
   }
 
   /**
-   * Displays the popover menu, focusing the first menu item.
-   *
-   * @param target - The HTML element relative to which the popover menu should be displayed.
+   * Displays the popover menu, focusing the first menu item,
+   * `target` is the HTML element the menu is anchored to.
    */
   @Method()
   async show(target: HTMLElement) {
@@ -157,14 +157,30 @@ export class PostMenu {
     this.toggleMenu.emit(this.isVisible);
     if (this.isVisible) {
       this.lastFocusedElement = this.root?.activeElement as HTMLElement;
-      requestAnimationFrame(() => {
-        const menuItems = this.getSlottedItems();
-        if (menuItems.length > 0) {
-          (menuItems[0] as HTMLElement).focus();
-        }
-      });
+
+      // Only focus the first item if the trigger was keyboard-focus-visible
+      // that's the browser's own signal for a keyboard-driven interaction.
+      if (this.wasFocusVisible(this.lastFocusedElement)) {
+        requestAnimationFrame(() => {
+          const menuItems = this.getSlottedItems();
+          if (menuItems.length > 0) {
+            (menuItems[0] as HTMLElement).focus();
+          }
+        });
+      }
     } else if (this.lastFocusedElement) {
       this.lastFocusedElement.focus();
+    }
+  }
+
+  private wasFocusVisible(element: HTMLElement | null): boolean {
+    if (!element) return false;
+
+    try {
+      return element.matches(':focus-visible');
+    } catch {
+      // Not supported, fall back to always focusing
+      return true;
     }
   }
 

@@ -17,13 +17,16 @@ nav {
   max-width: 100%;
 
   &.invisible {
-    --post-breadcrumb-item-wrap: nowrap;
-
-    visibility: hidden;
     overflow: hidden;
+    visibility: hidden;
     position: absolute;
     inset: 0;
-    padding-inline: 1px; // Detects overflow 2px sooner to favor menu layout.
+  }
+
+  &.loading {
+    > div > :not(.home) {
+      display: none;
+    }
   }
 }
 
@@ -38,22 +41,23 @@ nav {
 }
 
 .home {
-  $home-height: tokens.get('breadcrumb-icon-size');
-  $chevron-height: 16px;
-  $chevron-margin-block: tokens.get('breadcrumb-padding-block-icon-link');
-
-  padding-block: calc((#{$chevron-height} + 2 * #{$chevron-margin-block} - #{$home-height}) / 2);
+  padding-block: tokens.get('breadcrumb-padding-block-icon-home');
 
   &::before {
     content: unset;
   }
 
   post-icon {
-    font-size: $home-height;
+    width: tokens.get('breadcrumb-icon-home-size');
+    height: tokens.get('breadcrumb-icon-home-size');
+  }
+}
 
-    @include media.only(mobile) {
-      font-size: 20px;
-    }
+.menu {
+  margin-inline-end: calc(-1 * tokens.get('breadcrumb-gap-inline-outer'));
+
+  &.empty {
+    display: none;
   }
 }
 

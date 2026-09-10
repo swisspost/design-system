@@ -8,7 +8,7 @@ const meta: MetaComponent = {
   id: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890',
   title: 'Components/Progressbar',
   component: 'post-progressbar',
-  tags: ['package:Styles', 'package:WebComponents'],
+  tags: ['package:Styles', 'package:WebComponents', 'status:New'],
   render,
   parameters: {
     badges: [],

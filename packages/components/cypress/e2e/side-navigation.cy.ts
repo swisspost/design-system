@@ -90,6 +90,13 @@ describe('post-side-navigation', () => {
       cy.get('@side-navigation').shadow().find('dialog').should('not.have.attr', 'open');
     });
 
+    it('should close the dialog when a navigation link is clicked', () => {
+      cy.get('@side-navigation').then(([el]) => el.show());
+      cy.get('@side-navigation').shadow().find('dialog').should('have.attr', 'open');
+      cy.get('@side-navigation').find('a').first().click();
+      cy.get('@side-navigation').shadow().find('dialog').should('not.have.attr', 'open');
+    });
+
     it('should move focus into the navigation on open', () => {
       cy.get('@side-navigation').then(([el]) => el.show());
       cy.focused().then($focused => {
@@ -189,7 +196,9 @@ describe('post-side-navigation-trigger', () => {
     });
 
     it('should set aria-expanded to false initially', () => {
-      cy.get('@side-navigation-trigger').find('button').should('have.attr', 'aria-expanded', 'false');
+      cy.get('@side-navigation-trigger')
+        .find('button')
+        .should('have.attr', 'aria-expanded', 'false');
     });
 
     it('should hide the trigger button on desktop', () => {
@@ -222,7 +231,9 @@ describe('post-side-navigation-trigger', () => {
     });
 
     it('should set aria-expanded to false initially', () => {
-      cy.get('@side-navigation-trigger').find('button').should('have.attr', 'aria-expanded', 'false');
+      cy.get('@side-navigation-trigger')
+        .find('button')
+        .should('have.attr', 'aria-expanded', 'false');
     });
 
     it('should open the navigation on click', () => {
@@ -232,7 +243,9 @@ describe('post-side-navigation-trigger', () => {
 
     it('should set aria-expanded to true when the navigation opens', () => {
       cy.get('@side-navigation').then(([el]) => el.show());
-      cy.get('@side-navigation-trigger').find('button').should('have.attr', 'aria-expanded', 'true');
+      cy.get('@side-navigation-trigger')
+        .find('button')
+        .should('have.attr', 'aria-expanded', 'true');
     });
 
     it('should close the navigation on second click', () => {
@@ -243,16 +256,24 @@ describe('post-side-navigation-trigger', () => {
 
     it('should set aria-expanded to false when the navigation closes', () => {
       cy.get('@side-navigation').then(([el]) => el.show());
-      cy.get('@side-navigation-trigger').find('button').should('have.attr', 'aria-expanded', 'true');
+      cy.get('@side-navigation-trigger')
+        .find('button')
+        .should('have.attr', 'aria-expanded', 'true');
       cy.get('@side-navigation').then(([el]) => el.hide());
-      cy.get('@side-navigation-trigger').find('button').should('have.attr', 'aria-expanded', 'false');
+      cy.get('@side-navigation-trigger')
+        .find('button')
+        .should('have.attr', 'aria-expanded', 'false');
     });
 
     it('should update aria-expanded when navigation is closed via the close button', () => {
       cy.get('@side-navigation').then(([el]) => el.show());
-      cy.get('@side-navigation-trigger').find('button').should('have.attr', 'aria-expanded', 'true');
+      cy.get('@side-navigation-trigger')
+        .find('button')
+        .should('have.attr', 'aria-expanded', 'true');
       cy.get('@side-navigation').shadow().find('post-closebutton').click();
-      cy.get('@side-navigation-trigger').find('button').should('have.attr', 'aria-expanded', 'false');
+      cy.get('@side-navigation-trigger')
+        .find('button')
+        .should('have.attr', 'aria-expanded', 'false');
     });
 
     it('should log a warning when mounted without a slotted button', () => {
@@ -272,6 +293,8 @@ describe('post-side-navigation-trigger', () => {
 describe('Accessibility', () => {
   it('has no detectable a11y violations on load for all variants', () => {
     cy.getSnapshots('post-side-navigation');
-    cy.checkA11y('#root-inner');
+    cy.checkA11y('#root-inner', undefined, (violations) => {
+      expect(violations).to.have.length(0);
+    });
   });
 });

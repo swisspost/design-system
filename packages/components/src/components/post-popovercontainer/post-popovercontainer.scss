@@ -56,7 +56,8 @@
   $arrow-rotation: 45deg;
   .arrow {
     $arrow-size: 0.5825rem;
-    --post-popovercontainer-arrow-border: var(--post-popovercontainer-arrow-border-width, 0px) solid var(--post-popovercontainer-arrow-border-color, transparent);
+    --post-popovercontainer-arrow-border: var(--post-popovercontainer-arrow-border-width, 0px) solid
+      var(--post-popovercontainer-arrow-border-color, transparent);
     position: absolute;
     width: $arrow-size;
     height: $arrow-size;

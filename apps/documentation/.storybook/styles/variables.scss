@@ -1,0 +1,9 @@
+$monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+// Mixin for toolbar button icons
+$toolbar-icons: (
+  '.docblock-code-toggle': 'chevrondown',
+  '.docblock-code-toggle + button': 'resizeexpand',
+  '.docblock-code-toggle + button + button': 'link',
+  '.docblock-code-toggle + button + button + button': 'code',
+);

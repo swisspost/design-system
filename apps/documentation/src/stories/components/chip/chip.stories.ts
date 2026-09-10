@@ -7,7 +7,7 @@ const meta: MetaComponent = {
   id: '12576d97-52c3-49ec-be7b-6d37728b75f5',
   title: 'Components/Chip',
   tags: ['package:Styles'],
-  render: renderChip,
+  render: RenderChip,
   parameters: {
     design: {
       type: 'figma',
@@ -97,7 +97,7 @@ const meta: MetaComponent = {
 export default meta;
 
 // DECORATORS
-function externalControl(story: StoryFn, context: StoryContext) {
+function ExternalControl(story: StoryFn, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
   const button = html`
@@ -167,7 +167,7 @@ function getDismissibleChip(args: Args, updateArgs: (args: Args) => void) {
   `;
 }
 
-function renderChip(args: Args, context: StoryContext, index?: number) {
+function RenderChip(args: Args, context: StoryContext, index?: number) {
   const [_, updateArgs] = useArgs();
 
   if (args.dismissed) return html` ${nothing} `;
@@ -181,7 +181,7 @@ function renderChip(args: Args, context: StoryContext, index?: number) {
 type Story = StoryObj;
 
 export const Default: Story = {
-  decorators: [externalControl],
+  decorators: [ExternalControl],
 };
 
 export const SelectableCheckboxChip: Story = {
@@ -196,7 +196,7 @@ export const SelectableCheckboxChip: Story = {
       <fieldset class="chip-selectable-group">
         <legend>Travel Itineraries</legend>
         ${checkboxChips.map(({ text, selected }, index) =>
-          renderChip({ ...args, text, selected }, context, index),
+          RenderChip({ ...args, text, selected }, context, index),
         )}
       </fieldset>
     `;
@@ -218,7 +218,7 @@ export const SelectableBadgeChip: Story = {
       <fieldset class="chip-selectable-group">
         <legend>Travel Itineraries</legend>
         ${checkboxChips.map(({ text, selected, badge, number }, index) =>
-          renderChip({ ...args, text, selected, badge, number }, context, index),
+          RenderChip({ ...args, text, selected, badge, number }, context, index),
         )}
       </fieldset>
     `;
@@ -241,7 +241,7 @@ export const SelectableRadioChip: Story = {
       <fieldset class="chip-selectable-group">
         <legend class="">Search Results</legend>
         ${radioChips.map(({ text, number, selected }, index) =>
-          renderChip({ ...args, text, number, selected }, context, index),
+          RenderChip({ ...args, text, number, selected }, context, index),
         )}
       </fieldset>
     `;
@@ -256,10 +256,10 @@ export const SelectableRadioChip: Story = {
 export const Dismissible: Story = {
   render: ({ dismissed, ...args }, context) => html`
     <div class="chip-dismissible-group">
-      ${renderChip({ ...args, text: 'First user input' }, context)}
-      ${renderChip({ ...args, text: 'Second user input' }, context)}
-      ${renderChip({ ...args, text: 'Third user input' }, context)}
-      ${renderChip({ ...args, text: 'Fourth user input' }, context)}
+      ${RenderChip({ ...args, text: 'First user input' }, context)}
+      ${RenderChip({ ...args, text: 'Second user input' }, context)}
+      ${RenderChip({ ...args, text: 'Third user input' }, context)}
+      ${RenderChip({ ...args, text: 'Fourth user input' }, context)}
     </div>
   `,
   args: {

@@ -46,14 +46,14 @@ post-megadropdown {
   }
 
   .post-megadropdown-overview {
-    margin-block: 0 1rem;
+    margin-block: 0 16px;
 
     @include media.only(desktop) {
       font-size: 1.25rem;
     }
 
     &:first-child {
-      margin-block-start: -0.5rem;
+      margin-block-start: -8px;
     }
   }
 

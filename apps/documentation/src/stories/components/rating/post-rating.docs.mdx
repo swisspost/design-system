@@ -1,7 +1,7 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import meta, * as RatingStories from './post-rating.stories';
 import SampleEvents from './post-rating.events.sample?raw';
-import PackageTag from '@/shared/package-tag';
+import StoryTags from '@/shared/story-tags';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={RatingStories} />
@@ -13,12 +13,12 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 </div>
 
-<PackageTag meta={meta} />
+<StoryTags meta={meta} />
 
-<p className="lead">
-  Our Rating Web Component allows you to easily integrate a customizable star rating system,
-  providing an interactive and visually appealing way to gather and display user feedback.
-</p>
+<div className="lead">
+  The rating allows users to provide feedback by selecting a visual star rating, reflecting their
+  satisfaction level or quality assessment.
+</div>
 
 <Canvas of={RatingStories.Default} sourceState="shown" />
 <Controls of={RatingStories.Default} />

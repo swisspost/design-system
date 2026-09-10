@@ -172,6 +172,16 @@ describe('stepper', { baseUrl: null }, () => {
       .should('have.text', 'Step 2: Step 2');
   });
 
+  it('should default selected step to current step when selected-index is not set', () => {
+    cy.get('post-stepper')
+      .invoke('attr', 'current-index', 2)
+      .wait(100)
+      .find('post-stepper-item')
+      .eq(2)
+      .should('have.class', 'stepper-item-selected')
+      .should('have.attr', 'aria-current', 'step');
+  });
+
   // Dynamically added/removed steps
 
   it('should add correct class and step number when a new step is added dynamically', () => {

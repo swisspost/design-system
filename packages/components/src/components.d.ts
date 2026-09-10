@@ -9,18 +9,18 @@ import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
 import { Variant } from "./components/post-breadcrumb-item/variants";
 import { ButtonType, Placement, Size } from "./components/post-closebutton/types";
-import { AirDatepickerCustomOptions } from "./components/post-date-picker/post-date-picker";
 import { PostIconAnimation } from "./types/icon-animations";
 import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement as Placement1 } from "@floating-ui/dom";
+import { SideNavigationSize } from "./components/post-side-navigation/side-navigation-styles";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { Variant } from "./components/post-breadcrumb-item/variants";
 export { ButtonType, Placement, Size } from "./components/post-closebutton/types";
-export { AirDatepickerCustomOptions } from "./components/post-date-picker/post-date-picker";
 export { PostIconAnimation } from "./types/icon-animations";
 export { SwitchVariant } from "./components/post-language-menu/switch-variants";
 export { Placement as Placement1 } from "@floating-ui/dom";
+export { SideNavigationSize } from "./components/post-side-navigation/side-navigation-styles";
 export namespace Components {
     interface PostAccordion {
         /**
@@ -51,11 +51,6 @@ export namespace Components {
           * @default false
          */
         "collapsed"?: boolean;
-        /**
-          * Defines the hierarchical level of the accordion item header within the headings structure.
-          * @deprecated set the `heading-level` property on the parent `post-accordion` instead.
-         */
-        "headingLevel"?: HeadingLevel;
         /**
           * Triggers the collapse programmatically.
          */
@@ -131,6 +126,11 @@ export namespace Components {
          */
         "selected": boolean;
         /**
+          * Indicates that this is the only visible item, applying appropriate styling.
+          * @default false
+         */
+        "standalone": boolean;
+        /**
           * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
          */
         "url"?: string | URL;
@@ -198,6 +198,13 @@ export namespace Components {
     }
     interface PostDatePicker {
         /**
+          * A callback to customize individual calendar cells, e.g. to disable specific dates or add CSS classes.
+         */
+        "cellConfig"?: (
+    date: Date,
+    cellType: 'day' | 'month' | 'year',
+  ) => { disabled?: boolean; classes?: string } | void;
+        /**
           * Hides the popover calendar.
          */
         "hide": () => Promise<void>;
@@ -216,7 +223,7 @@ export namespace Components {
          */
         "max"?: string;
         /**
-          * Minimun possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
+          * Minimum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "min"?: string;
         /**
@@ -224,18 +231,6 @@ export namespace Components {
           * @default false
          */
         "range"?: boolean;
-        /**
-          * Used to extend the existing on render cell to disable dates.
-         */
-        "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
-        /**
-          * The date picker's selected end date (for range date picker only). Must be a valid date in ISO 8601 format (YYYY-MM-DD).
-         */
-        "selectedEndDate"?: string;
-        /**
-          * The date picker's selected date. If in range mode, the selected start date. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
-         */
-        "selectedStartDate"?: string;
         /**
           * Displays the popover calendar, focusing the first calendar item.
          */
@@ -269,7 +264,7 @@ export namespace Components {
          */
         "textSwitchYear": string;
         /**
-          * Label for the toggle button that opens the calendar. It is only needed when the calendar is connected to the input.
+          * Label for the toggle button that opens the calendar. It is only needed when the calendar is not inline.
          */
         "textToggleCalendar"?: string;
     }
@@ -339,7 +334,7 @@ export namespace Components {
          */
         "textChangeLanguage": string;
         /**
-          * An accessible description text for the list of language options. The `#name` placeholder is dynamic and will be replaced with the active language name.
+          * An accessible description text for the list of language options. The `{name}` placeholder is dynamic and will be replaced with the active language name.
          */
         "textCurrentLanguage": string;
         /**
@@ -354,7 +349,7 @@ export namespace Components {
          */
         "active"?: boolean;
         /**
-          * The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
+          * The ISO 639-1 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
          */
         "code": string;
         /**
@@ -422,28 +417,6 @@ export namespace Components {
          */
         "value": string;
     }
-    interface PostLoginWidget {
-        /**
-          * Returns the current authentication state: `null` when the component is still loading, `true` when authenticated, `false` when not.
-         */
-        "isAuthenticated": () => Promise<boolean | null>;
-        /**
-          * Re-fetches the authentication state from the session API and updates the component rendering accordingly.
-         */
-        "refresh": () => Promise<void>;
-        /**
-          * Label for the "Current user is {user}" accessibility description. Use `{user}` as a placeholder — it will be replaced with the current user's name at runtime.
-         */
-        "textCurrentUser": string;
-        /**
-          * Accessible label for the dropdown menu
-         */
-        "textUserMenu": string;
-        /**
-          * Hidden label for the user menu trigger button, for accessibility purposes. It should describe the purpose of the button (e.g. "Access user links").
-         */
-        "textUserMenuTrigger": string;
-    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -508,12 +481,11 @@ export namespace Components {
          */
         "placement"?: Placement1;
         /**
-          * Displays the popover menu, focusing the first menu item.
-          * @param target - The HTML element relative to which the popover menu should be displayed.
+          * Displays the popover menu, focusing the first menu item, `target` is the HTML element the menu is anchored to.
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
-          * Toggles the menu visibility based on its current state.
+          * Toggles the menu visibility based on its current state, `target` is the HTML element the menu is anchored to.
          */
         "toggle": (target: HTMLElement) => Promise<void>;
     }
@@ -582,8 +554,7 @@ export namespace Components {
          */
         "placement"?: Placement1;
         /**
-          * Programmatically display the popover
-          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
+          * Programmatically display the popover, `target` is the HTML element the menu is anchored to.
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
@@ -591,9 +562,7 @@ export namespace Components {
          */
         "textClose": string;
         /**
-          * Toggle popover display
-          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
-          * @param force Pass true to always show or false to always hide
+          * Toggle popover display, `target` is the HTML element the menu is anchored to.
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
     }
@@ -609,6 +578,10 @@ export namespace Components {
           * @default false
          */
         "arrow"?: boolean;
+        /**
+          * Whether to automatically hide the popover when the target moves outside the scrollport.  If the `post-header` can cover the target, the popover will also be hidden as soon as the target scrolls behind it.
+         */
+        "autoHide"?: boolean;
         /**
           * Gap between the edge of the page and the popovercontainer
           * @default 8
@@ -633,12 +606,12 @@ export namespace Components {
         "safeSpace"?: 'triangle' | 'trapezoid';
         /**
           * Programmatically display the popovercontainer
-          * @param target A focusable element inside the trigger component that controls the popover
+          * @param target The element that invokes the popover and to which it is visually anchored.
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
           * Toggle popovercontainer display
-          * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
+          * @param target The element that invokes the popover and to which it is visually anchored.
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<boolean>;
@@ -690,6 +663,11 @@ export namespace Components {
          */
         "show": () => Promise<void>;
         /**
+          * Controls the size of the navigation items. Choose "small" for deep and long navigation, and "large" (default) for a flat and short navigation.
+          * @default 'large'
+         */
+        "size"?: SideNavigationSize;
+        /**
           * Accessible label for the close button shown in the mobile navigation dialog.
          */
         "textClose": string;
@@ -699,6 +677,9 @@ export namespace Components {
         "toggle": () => Promise<void>;
     }
     interface PostSideNavigationTrigger {
+        /**
+          * ID of the side navigation element that this trigger is linked to. Used to open and close the specified side navigation.
+         */
         "for": string;
         /**
           * Manually update the trigger's ARIA attributes.
@@ -732,6 +713,11 @@ export namespace Components {
     }
     interface PostTabItem {
         /**
+          * Whether the tab item is disabled.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
           * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */
         "name": string;
@@ -744,22 +730,32 @@ export namespace Components {
     }
     interface PostTabs {
         /**
-          * The name of the tab in the panel mode that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
+          * The name of the tab in the Content Tabs variant that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
          */
         "activeTab"?: string;
         /**
-          * When set to true, this property allows the tabs container to span the Changing this value after initialization has no effect. full width of the screen, from edge to edge.
-          * @default false
-         */
-        "fullWidth": boolean;
-        /**
-          * The accessible label for the tabs component in navigation mode.
+          * An accessible label for the Pages Tabs variant
          */
         "label"?: string;
         /**
           * Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
          */
         "show": (tabName: string) => Promise<void>;
+        /**
+          * The size of the tabs, corresponding to the different designs in Figma. Default is 'large'.
+          * @default 'large'
+         */
+        "size": 'small' | 'large';
+        /**
+          * An accessible label for the "next tab items" button.
+          * @default 'Next tab items'
+         */
+        "textNextTabItems": string;
+        /**
+          * An accessible label for the "previous tab items" button.
+          * @default 'Previous tab items'
+         */
+        "textPrevTabItems": string;
     }
     interface PostTogglebutton {
         /**
@@ -789,14 +785,11 @@ export namespace Components {
          */
         "placement"?: Placement1;
         /**
-          * Programmatically display the tooltip.
-          * @param target An element where the tooltip should be shown
+          * Programmatically display the tooltip, `target` is the HTML element the menu is anchored to.
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
-          * Toggle tooltip display.
-          * @param target An element where the tooltip should be shown
-          * @param force Pass true to always show or false to always hide
+          * Toggle tooltip display, `target` is the HTML element the menu is anchored to.
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
     }
@@ -824,9 +817,9 @@ export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
 }
-export interface PostDatePickerCustomEvent<T> extends CustomEvent<T> {
+export interface PostLanguageMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLPostDatePickerElement;
+    target: HTMLPostLanguageMenuElement;
 }
 export interface PostLanguageMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -839,10 +832,6 @@ export interface PostListboxCustomEvent<T> extends CustomEvent<T> {
 export interface PostListboxOptionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostListboxOptionElement;
-}
-export interface PostLoginWidgetCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLPostLoginWidgetElement;
 }
 export interface PostMegadropdownCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -972,18 +961,7 @@ declare global {
         prototype: HTMLPostCollapsibleTriggerElement;
         new (): HTMLPostCollapsibleTriggerElement;
     };
-    interface HTMLPostDatePickerElementEventMap {
-        "postUpdateDates": string | string[];
-    }
     interface HTMLPostDatePickerElement extends Components.PostDatePicker, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostDatePickerElementEventMap>(type: K, listener: (this: HTMLPostDatePickerElement, ev: PostDatePickerCustomEvent<HTMLPostDatePickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostDatePickerElementEventMap>(type: K, listener: (this: HTMLPostDatePickerElement, ev: PostDatePickerCustomEvent<HTMLPostDatePickerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostDatePickerElement: {
         prototype: HTMLPostDatePickerElement;
@@ -1010,7 +988,18 @@ declare global {
         prototype: HTMLPostIconElement;
         new (): HTMLPostIconElement;
     };
+    interface HTMLPostLanguageMenuElementEventMap {
+        "postChange": string;
+    }
     interface HTMLPostLanguageMenuElement extends Components.PostLanguageMenu, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostLanguageMenuElementEventMap>(type: K, listener: (this: HTMLPostLanguageMenuElement, ev: PostLanguageMenuCustomEvent<HTMLPostLanguageMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostLanguageMenuElementEventMap>(type: K, listener: (this: HTMLPostLanguageMenuElement, ev: PostLanguageMenuCustomEvent<HTMLPostLanguageMenuElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostLanguageMenuElement: {
         prototype: HTMLPostLanguageMenuElement;
@@ -1073,23 +1062,6 @@ declare global {
     var HTMLPostListboxOptionElement: {
         prototype: HTMLPostListboxOptionElement;
         new (): HTMLPostListboxOptionElement;
-    };
-    interface HTMLPostLoginWidgetElementEventMap {
-        "postChange": { authenticated: boolean };
-    }
-    interface HTMLPostLoginWidgetElement extends Components.PostLoginWidget, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostLoginWidgetElementEventMap>(type: K, listener: (this: HTMLPostLoginWidgetElement, ev: PostLoginWidgetCustomEvent<HTMLPostLoginWidgetElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostLoginWidgetElementEventMap>(type: K, listener: (this: HTMLPostLoginWidgetElement, ev: PostLoginWidgetCustomEvent<HTMLPostLoginWidgetElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLPostLoginWidgetElement: {
-        prototype: HTMLPostLoginWidgetElement;
-        new (): HTMLPostLoginWidgetElement;
     };
     interface HTMLPostLogoElement extends Components.PostLogo, HTMLStencilElement {
     }
@@ -1338,7 +1310,6 @@ declare global {
         "post-linkarea": HTMLPostLinkareaElement;
         "post-listbox": HTMLPostListboxElement;
         "post-listbox-option": HTMLPostListboxOptionElement;
-        "post-login-widget": HTMLPostLoginWidgetElement;
         "post-logo": HTMLPostLogoElement;
         "post-mainnavigation": HTMLPostMainnavigationElement;
         "post-megadropdown": HTMLPostMegadropdownElement;
@@ -1385,11 +1356,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "collapsed"?: boolean;
-        /**
-          * Defines the hierarchical level of the accordion item header within the headings structure.
-          * @deprecated set the `heading-level` property on the parent `post-accordion` instead.
-         */
-        "headingLevel"?: HeadingLevel;
     }
     interface PostAutocomplete {
         /**
@@ -1464,6 +1430,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "selected"?: boolean;
+        /**
+          * Indicates that this is the only visible item, applying appropriate styling.
+          * @default false
+         */
+        "standalone"?: boolean;
         /**
           * The destination URL for the breadcrumb item. If omitted, the item is rendered as non-interactive text.
          */
@@ -1540,6 +1511,13 @@ declare namespace LocalJSX {
     }
     interface PostDatePicker {
         /**
+          * A callback to customize individual calendar cells, e.g. to disable specific dates or add CSS classes.
+         */
+        "cellConfig"?: (
+    date: Date,
+    cellType: 'day' | 'month' | 'year',
+  ) => { disabled?: boolean; classes?: string } | void;
+        /**
           * Whether the calendar is inline in the page (not showing in a popover when input clicked).
           * @default false
          */
@@ -1554,30 +1532,14 @@ declare namespace LocalJSX {
          */
         "max"?: string;
         /**
-          * Minimun possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
+          * Minimum possible date to select. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
          */
         "min"?: string;
-        /**
-          * An event emitted when a date or a range of dates have been selected.
-         */
-        "onPostUpdateDates"?: (event: PostDatePickerCustomEvent<string | string[]>) => void;
         /**
           * Whether the date picker expects a range selection or a single date selection.
           * @default false
          */
         "range"?: boolean;
-        /**
-          * Used to extend the existing on render cell to disable dates.
-         */
-        "renderCellCallback"?: AirDatepickerCustomOptions['onRenderCell'];
-        /**
-          * The date picker's selected end date (for range date picker only). Must be a valid date in ISO 8601 format (YYYY-MM-DD).
-         */
-        "selectedEndDate"?: string;
-        /**
-          * The date picker's selected date. If in range mode, the selected start date. Must be a valid date in ISO 8601 format (YYYY-MM-DD).
-         */
-        "selectedStartDate"?: string;
         /**
           * Label for "Next decade" button.
          */
@@ -1607,7 +1569,7 @@ declare namespace LocalJSX {
          */
         "textSwitchYear": string;
         /**
-          * Label for the toggle button that opens the calendar. It is only needed when the calendar is connected to the input.
+          * Label for the toggle button that opens the calendar. It is only needed when the calendar is not inline.
          */
         "textToggleCalendar"?: string;
     }
@@ -1668,12 +1630,13 @@ declare namespace LocalJSX {
         "url"?: string;
     }
     interface PostLanguageMenu {
+        "onPostChange"?: (event: PostLanguageMenuCustomEvent<string>) => void;
         /**
           * A title for the list of language options
          */
         "textChangeLanguage": string;
         /**
-          * An accessible description text for the list of language options. The `#name` placeholder is dynamic and will be replaced with the active language name.
+          * An accessible description text for the list of language options. The `{name}` placeholder is dynamic and will be replaced with the active language name.
          */
         "textCurrentLanguage": string;
         /**
@@ -1688,7 +1651,7 @@ declare namespace LocalJSX {
          */
         "active"?: boolean;
         /**
-          * The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
+          * The ISO 639-1 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
          */
         "code": string;
         /**
@@ -1743,24 +1706,6 @@ declare namespace LocalJSX {
           * A value string, similar to <option value="Value 1">Value 1 description</option>
          */
         "value": string;
-    }
-    interface PostLoginWidget {
-        /**
-          * Emitted when the authentication state changes. The event payload is an object with an `authenticated` property: `true` when the user is logged in, `false` when the user is not logged in or the API request failed.
-         */
-        "onPostChange"?: (event: PostLoginWidgetCustomEvent<{ authenticated: boolean }>) => void;
-        /**
-          * Label for the "Current user is {user}" accessibility description. Use `{user}` as a placeholder — it will be replaced with the current user's name at runtime.
-         */
-        "textCurrentUser": string;
-        /**
-          * Accessible label for the dropdown menu
-         */
-        "textUserMenu": string;
-        /**
-          * Hidden label for the user menu trigger button, for accessibility purposes. It should describe the purpose of the button (e.g. "Access user links").
-         */
-        "textUserMenuTrigger": string;
     }
     interface PostLogo {
         /**
@@ -1896,6 +1841,10 @@ declare namespace LocalJSX {
          */
         "arrow"?: boolean;
         /**
+          * Whether to automatically hide the popover when the target moves outside the scrollport.  If the `post-header` can cover the target, the popover will also be hidden as soon as the target scrolls behind it.
+         */
+        "autoHide"?: boolean;
+        /**
           * Gap between the edge of the page and the popovercontainer
           * @default 8
          */
@@ -1985,11 +1934,19 @@ declare namespace LocalJSX {
          */
         "onPostToggle"?: (event: PostSideNavigationCustomEvent<boolean>) => void;
         /**
+          * Controls the size of the navigation items. Choose "small" for deep and long navigation, and "large" (default) for a flat and short navigation.
+          * @default 'large'
+         */
+        "size"?: SideNavigationSize;
+        /**
           * Accessible label for the close button shown in the mobile navigation dialog.
          */
         "textClose": string;
     }
     interface PostSideNavigationTrigger {
+        /**
+          * ID of the side navigation element that this trigger is linked to. Used to open and close the specified side navigation.
+         */
         "for": string;
     }
     interface PostStepper {
@@ -2019,6 +1976,11 @@ declare namespace LocalJSX {
     }
     interface PostTabItem {
         /**
+          * Whether the tab item is disabled.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
           * The name of the tab, used to associate it with a tab panel or identify the active tab in panel mode.
          */
         "name": string;
@@ -2031,22 +1993,32 @@ declare namespace LocalJSX {
     }
     interface PostTabs {
         /**
-          * The name of the tab in the panel mode that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
+          * The name of the tab in the Content Tabs variant that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.
          */
         "activeTab"?: string;
         /**
-          * When set to true, this property allows the tabs container to span the Changing this value after initialization has no effect. full width of the screen, from edge to edge.
-          * @default false
-         */
-        "fullWidth"?: boolean;
-        /**
-          * The accessible label for the tabs component in navigation mode.
+          * An accessible label for the Pages Tabs variant
          */
         "label"?: string;
         /**
-          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. Only emitted in panel mode.
+          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. Only emitted in Content Tabs variant.
          */
         "onPostChange"?: (event: PostTabsCustomEvent<string>) => void;
+        /**
+          * The size of the tabs, corresponding to the different designs in Figma. Default is 'large'.
+          * @default 'large'
+         */
+        "size"?: 'small' | 'large';
+        /**
+          * An accessible label for the "next tab items" button.
+          * @default 'Next tab items'
+         */
+        "textNextTabItems"?: string;
+        /**
+          * An accessible label for the "previous tab items" button.
+          * @default 'Previous tab items'
+         */
+        "textPrevTabItems"?: string;
     }
     interface PostTogglebutton {
         /**
@@ -2090,7 +2062,6 @@ declare namespace LocalJSX {
     }
     interface PostAccordionItemAttributes {
         "collapsed": boolean;
-        "headingLevel": HeadingLevel;
     }
     interface PostAutocompleteAttributes {
         "filterThreshold": number;
@@ -2116,6 +2087,7 @@ declare namespace LocalJSX {
         "description": string;
         "variant": Variant;
         "selected": boolean;
+        "standalone": boolean;
     }
     interface PostBreadcrumbsAttributes {
         "homeUrl": string;
@@ -2137,8 +2109,6 @@ declare namespace LocalJSX {
     interface PostDatePickerAttributes {
         "locale": string;
         "range": boolean;
-        "selectedStartDate": string;
-        "selectedEndDate": string;
         "min": string;
         "max": string;
         "inline": boolean;
@@ -2186,11 +2156,6 @@ declare namespace LocalJSX {
         "selected": boolean;
         "highlighted": boolean;
     }
-    interface PostLoginWidgetAttributes {
-        "textCurrentUser": string;
-        "textUserMenu": string;
-        "textUserMenuTrigger": string;
-    }
     interface PostLogoAttributes {
         "url": string | URL;
     }
@@ -2237,6 +2202,7 @@ declare namespace LocalJSX {
         "offset": number;
         "arrow": boolean;
         "safeSpace": 'triangle' | 'trapezoid';
+        "autoHide": boolean;
     }
     interface PostProgressbarAttributes {
         "min": number;
@@ -2251,6 +2217,7 @@ declare namespace LocalJSX {
     }
     interface PostSideNavigationAttributes {
         "textClose": string;
+        "size": SideNavigationSize;
     }
     interface PostSideNavigationTriggerAttributes {
         "for": string;
@@ -2264,13 +2231,16 @@ declare namespace LocalJSX {
     }
     interface PostTabItemAttributes {
         "name": string;
+        "disabled": boolean;
     }
     interface PostTabPanelAttributes {
         "for": string;
     }
     interface PostTabsAttributes {
+        "textPrevTabItems": string;
+        "textNextTabItems": string;
         "activeTab": string;
-        "fullWidth": boolean;
+        "size": 'small' | 'large';
         "label": string;
     }
     interface PostTogglebuttonAttributes {
@@ -2307,7 +2277,6 @@ declare namespace LocalJSX {
         "post-linkarea": PostLinkarea;
         "post-listbox": PostListbox;
         "post-listbox-option": Omit<PostListboxOption, keyof PostListboxOptionAttributes> & { [K in keyof PostListboxOption & keyof PostListboxOptionAttributes]?: PostListboxOption[K] } & { [K in keyof PostListboxOption & keyof PostListboxOptionAttributes as `attr:${K}`]?: PostListboxOptionAttributes[K] } & { [K in keyof PostListboxOption & keyof PostListboxOptionAttributes as `prop:${K}`]?: PostListboxOption[K] } & OneOf<"value", PostListboxOption["value"], PostListboxOptionAttributes["value"]>;
-        "post-login-widget": Omit<PostLoginWidget, keyof PostLoginWidgetAttributes> & { [K in keyof PostLoginWidget & keyof PostLoginWidgetAttributes]?: PostLoginWidget[K] } & { [K in keyof PostLoginWidget & keyof PostLoginWidgetAttributes as `attr:${K}`]?: PostLoginWidgetAttributes[K] } & { [K in keyof PostLoginWidget & keyof PostLoginWidgetAttributes as `prop:${K}`]?: PostLoginWidget[K] } & OneOf<"textCurrentUser", PostLoginWidget["textCurrentUser"], PostLoginWidgetAttributes["textCurrentUser"]> & OneOf<"textUserMenu", PostLoginWidget["textUserMenu"], PostLoginWidgetAttributes["textUserMenu"]> & OneOf<"textUserMenuTrigger", PostLoginWidget["textUserMenuTrigger"], PostLoginWidgetAttributes["textUserMenuTrigger"]>;
         "post-logo": Omit<PostLogo, keyof PostLogoAttributes> & { [K in keyof PostLogo & keyof PostLogoAttributes]?: PostLogo[K] } & { [K in keyof PostLogo & keyof PostLogoAttributes as `attr:${K}`]?: PostLogoAttributes[K] } & { [K in keyof PostLogo & keyof PostLogoAttributes as `prop:${K}`]?: PostLogo[K] };
         "post-mainnavigation": Omit<PostMainnavigation, keyof PostMainnavigationAttributes> & { [K in keyof PostMainnavigation & keyof PostMainnavigationAttributes]?: PostMainnavigation[K] } & { [K in keyof PostMainnavigation & keyof PostMainnavigationAttributes as `attr:${K}`]?: PostMainnavigationAttributes[K] } & { [K in keyof PostMainnavigation & keyof PostMainnavigationAttributes as `prop:${K}`]?: PostMainnavigation[K] } & OneOf<"textMain", PostMainnavigation["textMain"], PostMainnavigationAttributes["textMain"]>;
         "post-megadropdown": Omit<PostMegadropdown, keyof PostMegadropdownAttributes> & { [K in keyof PostMegadropdown & keyof PostMegadropdownAttributes]?: PostMegadropdown[K] } & { [K in keyof PostMegadropdown & keyof PostMegadropdownAttributes as `attr:${K}`]?: PostMegadropdownAttributes[K] } & { [K in keyof PostMegadropdown & keyof PostMegadropdownAttributes as `prop:${K}`]?: PostMegadropdown[K] } & OneOf<"textClose", PostMegadropdown["textClose"], PostMegadropdownAttributes["textClose"]> & OneOf<"textBack", PostMegadropdown["textBack"], PostMegadropdownAttributes["textBack"]>;
@@ -2361,7 +2330,6 @@ declare module "@stencil/core" {
             "post-linkarea": LocalJSX.IntrinsicElements["post-linkarea"] & JSXBase.HTMLAttributes<HTMLPostLinkareaElement>;
             "post-listbox": LocalJSX.IntrinsicElements["post-listbox"] & JSXBase.HTMLAttributes<HTMLPostListboxElement>;
             "post-listbox-option": LocalJSX.IntrinsicElements["post-listbox-option"] & JSXBase.HTMLAttributes<HTMLPostListboxOptionElement>;
-            "post-login-widget": LocalJSX.IntrinsicElements["post-login-widget"] & JSXBase.HTMLAttributes<HTMLPostLoginWidgetElement>;
             "post-logo": LocalJSX.IntrinsicElements["post-logo"] & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
             "post-mainnavigation": LocalJSX.IntrinsicElements["post-mainnavigation"] & JSXBase.HTMLAttributes<HTMLPostMainnavigationElement>;
             "post-megadropdown": LocalJSX.IntrinsicElements["post-megadropdown"] & JSXBase.HTMLAttributes<HTMLPostMegadropdownElement>;

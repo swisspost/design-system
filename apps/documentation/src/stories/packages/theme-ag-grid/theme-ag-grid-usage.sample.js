@@ -1,5 +1,6 @@
 import { swissPostTheme } from '@swisspost/design-system-theme-ag-grid';
 
-myOptions: GridOptions = {
+/** @type {GridOptions} */
+const myOptions = {
   theme: swissPostTheme,
 };

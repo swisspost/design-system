@@ -26,6 +26,20 @@ Cypress.on('uncaught:exception', err => {
   if (err.name.includes('TypeError')) {
     return false;
   }
+
+  // Storybook's waitForAnimations aborts the in-flight render when Cypress remounts the story iframe on cy.visit
+  if (err.name === 'AbortError') {
+    return false;
+  }
+});
+
+// Prevent Storybook's aborted-render rejection from surfacing as an uncaught console error
+Cypress.on('window:before:load', win => {
+  win.addEventListener('unhandledrejection', event => {
+    if (event.reason?.name === 'AbortError') {
+      event.preventDefault();
+    }
+  });
 });
 
 // cypress is inserting scripts into the html file to execute its tests, but the script is blocked by the csp, so we remove the csp for the tests.

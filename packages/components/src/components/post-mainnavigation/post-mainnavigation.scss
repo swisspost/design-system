@@ -27,8 +27,8 @@ nav {
 }
 
 .scroll-control {
-  $icon-size: 1rem;
-  $button-padding: 1rem;
+  $icon-size: 16px;
+  $button-padding: 16px;
   $button-width: $icon-size + 2 * $button-padding;
 
   z-index: 1;

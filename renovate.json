@@ -40,7 +40,6 @@
       "groupName": "all patch dependencies",
       "groupSlug": "all-patch",
       "matchPackageNames": [
-        "*",
         "!typescript",
         "!@storybook/*",
         "!storybook",
@@ -66,6 +65,16 @@
       "groupName": "Stylelint",
       "matchPackageNames": ["^stylelint"],
       "matchUpdateTypes": ["digest", "patch", "minor", "major"]
+    },
+    {
+      "groupName": "parse5",
+      "matchPackageNames": ["parse5", "/^parse5-/"],
+      "matchUpdateTypes": ["digest", "patch", "minor", "major"]
+    },
+    {
+      "description": "parse5 8.x is ESM-only and parse5-case-sensitive has no 8.x; the eslint package is CommonJS. Cap until it migrates to ESM.",
+      "matchPackageNames": ["parse5", "/^parse5-/"],
+      "allowedVersions": "<8"
     },
     {
       "matchFileNames": ["packages/components/package.json"],

@@ -4,6 +4,8 @@ import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 
+import { PALETTE_TEST_PALETTE_TYPES } from '@/shared/snapshots/palettes';
+
 const { id, ...metaWithoutId } = meta;
 
 export default {
@@ -26,7 +28,7 @@ export const Dialog: Story = {
         </style>
         <div class="d-flex flex-wrap align-items-start gap-16">
           ${bombArgs({
-            palette: ['palette-default', 'palette-accent', 'palette-alternate', 'palette-brand'],
+            palette: PALETTE_TEST_PALETTE_TYPES,
             size: context.argTypes.size.options,
             icon: ['none', '1034'],
             closeButton: [true, false],

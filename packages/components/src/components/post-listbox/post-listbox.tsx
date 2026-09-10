@@ -45,7 +45,7 @@ export class PostListbox {
       option.highlighted = false;
     });
     this.highlightedIndex = -1;
-    this.filter('');
+    this.clearActive();
   };
 
   private readonly clearActive = () => {
@@ -158,7 +158,8 @@ export class PostListbox {
     return (
       <Host data-version={version} role="listbox">
         <post-popovercontainer placement="bottom-start" ref={el => (this.popoverContainer = el)}>
-          {this.visibleOptions.length === 0 ? <slot name="blank-slate" /> : <slot />}
+          <slot name="blank-slate" />
+          <slot />
         </post-popovercontainer>
       </Host>
     );
