@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 9.15.0
+
+### Minor Changes
+
+- Updated the stepper styles to support the `selected` (`aria-current="step"`) state for any completed step and added the `.stepper-item-current` class to identify the last completed step. (by [@myrtasakellariou](https://github.com/myrtasakellariou) with [#8425](https://github.com/swisspost/design-system/pull/8425))
+
 ## 9.14.0
 
 ## 9.13.0
