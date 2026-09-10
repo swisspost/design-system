@@ -72,6 +72,13 @@ nav {
 // Shown once there is no room left for the home item even after every middle item is collapsed.
 .home-menu {
   flex: none;
+
+  // The trigger button ("...") should keep looking like a link, from .breadcrumb-item above.
+  // The home link inside the dropdown shouldn't, so we undo it here and let <post-menu-item>
+  // handle its own styling instead.
+  post-menu-item :is(a, button) {
+    all: revert;
+  }
 }
 
 .visually-hidden {

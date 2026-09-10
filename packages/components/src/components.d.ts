@@ -142,24 +142,24 @@ export namespace Components {
     }
     interface PostBreadcrumbs {
         /**
-          * Whether `text-home` is displayed visibly instead of the home icon, enabling segment specific breadcrumbs (like "Private customers" or "About us").
-          * @default false
-         */
-        "homeText": boolean;
-        /**
           * The URL for the root (home) breadcrumb item.
          */
         "homeUrl"?: string;
+        /**
+          * Whether `text-home` is displayed visibly instead of the home icon, enabling segment specific breadcrumbs (like "Private customers" or "About us").
+          * @default false
+         */
+        "showHomeText": boolean;
         /**
           * An accessible label for the breadcrumb navigation.
          */
         "textBreadcrumbs": string;
         /**
-          * An accessible label for the overflow menu that contains the home item, shown only once every middle item has been collapsed and there is still no room left for the home item.
+          * An accessible label for the overflow menu that contains the home item.
          */
         "textExpandHome": string;
         /**
-          * The label of the root (home) breadcrumb item. Displayed visibly when `home-text` is `true`, otherwise used as an accessible label alongside the home icon.
+          * The label of the root (home) breadcrumb item. Displayed visibly when `show-home-text` is `true`, otherwise used as an accessible label alongside the home icon.
          */
         "textHome": string;
         /**
@@ -1456,24 +1456,24 @@ declare namespace LocalJSX {
     }
     interface PostBreadcrumbs {
         /**
-          * Whether `text-home` is displayed visibly instead of the home icon, enabling segment specific breadcrumbs (like "Private customers" or "About us").
-          * @default false
-         */
-        "homeText"?: boolean;
-        /**
           * The URL for the root (home) breadcrumb item.
          */
         "homeUrl"?: string;
+        /**
+          * Whether `text-home` is displayed visibly instead of the home icon, enabling segment specific breadcrumbs (like "Private customers" or "About us").
+          * @default false
+         */
+        "showHomeText"?: boolean;
         /**
           * An accessible label for the breadcrumb navigation.
          */
         "textBreadcrumbs": string;
         /**
-          * An accessible label for the overflow menu that contains the home item, shown only once every middle item has been collapsed and there is still no room left for the home item.
+          * An accessible label for the overflow menu that contains the home item.
          */
         "textExpandHome": string;
         /**
-          * The label of the root (home) breadcrumb item. Displayed visibly when `home-text` is `true`, otherwise used as an accessible label alongside the home icon.
+          * The label of the root (home) breadcrumb item. Displayed visibly when `show-home-text` is `true`, otherwise used as an accessible label alongside the home icon.
          */
         "textHome": string;
         /**
@@ -2110,7 +2110,7 @@ declare namespace LocalJSX {
     interface PostBreadcrumbsAttributes {
         "homeUrl": string;
         "textHome": string;
-        "homeText": boolean;
+        "showHomeText": boolean;
         "textBreadcrumbs": string;
         "textMoreItems": string;
         "textExpandHome": string;
