@@ -155,7 +155,7 @@ export namespace Components {
          */
         "textBreadcrumbs": string;
         /**
-          * An accessible label for the overflow menu that contains the home item, shown only once there is no room left for the home item even after every middle item has been collapsed and the last (selected) item has wrapped onto multiple lines.
+          * An accessible label for the overflow menu that contains the home item, shown only once every middle item has been collapsed and there is still no room left for the home item.
          */
         "textExpandHome": string;
         /**
@@ -1469,7 +1469,7 @@ declare namespace LocalJSX {
          */
         "textBreadcrumbs": string;
         /**
-          * An accessible label for the overflow menu that contains the home item, shown only once there is no room left for the home item even after every middle item has been collapsed and the last (selected) item has wrapped onto multiple lines.
+          * An accessible label for the overflow menu that contains the home item, shown only once every middle item has been collapsed and there is still no room left for the home item.
          */
         "textExpandHome": string;
         /**

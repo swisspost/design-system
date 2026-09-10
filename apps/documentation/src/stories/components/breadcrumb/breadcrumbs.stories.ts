@@ -23,7 +23,7 @@ const meta: MetaComponent = {
     textHome: 'Home',
     textBreadcrumbs: 'Breadcrumbs',
     textMoreItems: 'More items',
-    homeText: false,
+    showHomeText: false,
     itemCount: 3,
   },
 };
@@ -35,7 +35,7 @@ function render(args: Args) {
       text-home=${args.textHome}
       text-breadcrumbs=${args.textBreadcrumbs}
       text-more-items=${args.textMoreItems}
-      ?home-text=${args.homeText}
+      ?show-home-text=${args.showHomeText}
     >
       ${Array.from({ length: args.itemCount }).map(
         (_, i) =>
@@ -61,14 +61,14 @@ export const Concatenated: Story = {
 
 export const CustomHomeText: Story = {
   args: {
-    homeText: true,
+    showHomeText: true,
     textHome: 'Private customers',
   },
   parameters: {
     docs: {
       description: {
         story:
-          "Set `home-text` to `true` to replace the home icon with the visible text set on `text-home`, enabling segment specific breadcrumbs (e.g. to link to a segment's own home page instead of the generic site root). The first (home) and last (selected) segments are never truncated, no matter how long their text is: they wrap onto multiple lines instead of being cut off. Only the segments in between are collapsed into the overflow menu when there is not enough space.",
+          "Set `show-home-text` to `true` to replace the home icon with the visible text set on `text-home`, enabling segment specific breadcrumbs (e.g. to link to a segment's own home page instead of the generic site root). The first (home) and last (selected) segments are never truncated, no matter how long their text is: they wrap onto multiple lines instead of being cut off. Only the segments in between are collapsed into the overflow menu when there is not enough space.",
       },
     },
   },
@@ -78,7 +78,7 @@ export const CustomHomeText: Story = {
       text-home=${args.textHome}
       text-breadcrumbs=${args.textBreadcrumbs}
       text-more-items=${args.textMoreItems}
-      ?home-text=${args.homeText}
+      ?show-home-text=${args.showHomeText}
     >
       <post-breadcrumb-item url="/section1">Send letters</post-breadcrumb-item>
       <post-breadcrumb-item url="/section2">Letters abroad</post-breadcrumb-item>

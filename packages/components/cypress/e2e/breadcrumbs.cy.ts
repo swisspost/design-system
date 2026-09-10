@@ -214,7 +214,7 @@ describe('breadcrumbs', () => {
         cy.get('post-breadcrumbs[data-hydrated]', { timeout: 30000 }).as('breadcrumbs');
       });
 
-      it('should hide the home icon and display text-home visibly when home-text is true', () => {
+      it('should hide the home icon and display text-home visibly when show-home-text is true', () => {
         // Wide enough that home's long text and the last item's long text both still fit
         // single-line — under the corrected collapse order, home only stays uncollapsed once
         // both fit together with no wrapping cushion from the last item.
@@ -230,9 +230,9 @@ describe('breadcrumbs', () => {
           .and('have.text', 'Private customers');
       });
 
-      it('should restore the default home icon when home-text is set back to false', () => {
+      it('should restore the default home icon when show-home-text is set back to false', () => {
         cy.viewport(2000, 400);
-        cy.get('@breadcrumbs').invoke('removeAttr', 'home-text');
+        cy.get('@breadcrumbs').invoke('removeAttr', 'show-home-text');
         cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home post-icon').should('exist');
         cy.get('@breadcrumbs')
           .shadow()

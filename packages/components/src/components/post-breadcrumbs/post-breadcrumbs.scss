@@ -11,9 +11,7 @@ tokens.$default-map: components.$post-breadcrumb;
 :host {
   display: block;
   position: relative;
-  // Floor for how narrow the last (selected) item is allowed to wrap down to — only relevant once
-  // the home item has already collapsed into its own menu. Placeholder value — needs confirming
-  // with design before this ships.
+  // Floor for how narrow the last item wraps down to. Placeholder — confirm with design.
   --post-breadcrumb-selected-min-width: 96px;
 }
 
@@ -45,10 +43,7 @@ nav {
 }
 
 .home {
-  // Never shrinks — it's binary, either the full item renders in single-line or it swaps
-  // entirely into .home-menu below. `flex-shrink: 0` already guarantees the box is never
-  // narrower than its content, so there's nothing here to wrap or truncate — no white-space/
-  // overflow overrides needed, and no forced-single-line class needed for measurement either.
+  // Never shrinks: it either renders in full or swaps entirely into .home-menu below.
   flex: none;
 
   &::before {
@@ -74,9 +69,7 @@ nav {
   display: none;
 }
 
-// Rendered once there is no room left for the home item even after every middle item is
-// collapsed — this happens before the last item is ever allowed to wrap, not after. It sits in
-// place of the regular .home item, so it never needs an .empty state of its own.
+// Shown once there is no room left for the home item even after every middle item is collapsed.
 .home-menu {
   flex: none;
 }
