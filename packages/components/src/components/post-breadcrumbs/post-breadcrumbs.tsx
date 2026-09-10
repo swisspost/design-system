@@ -193,7 +193,7 @@ export class PostBreadcrumbs {
     // post-breadcrumb-item.scss) instead of its full single-line width here, so home stays fully
     // visible for as long as the last item still has room left to wrap into.
     const allItems = this.hiddenNav.querySelectorAll('post-breadcrumb-item');
-    const lastItem = allItems[allItems.length - 1];
+    const lastItem = allItems.at(-1);
     const minWidth =
       Number.parseFloat(
         getComputedStyle(this.host).getPropertyValue('--post-breadcrumb-selected-min-width'),

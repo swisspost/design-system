@@ -67,14 +67,20 @@ describe('breadcrumbs', () => {
 
       it('should never show more than the maximum number of visible items, even with ample width', () => {
         cy.viewport(1920, 800);
+        // Counting [variant="menuitem"] directly (rather than its inverse) avoids matching the
+        // off-screen measurement clone: it always force-expands every item to variant="listitem"
+        // while measuring, so it never has anything matching [variant="menuitem"] to begin with.
         cy.get('@breadcrumbs')
-          .find('post-breadcrumb-item:not([variant="menuitem"])')
-          .should('have.length', 6);
+          .find('post-breadcrumb-item[variant="menuitem"]')
+          .should('have.length', 15 - 6); // itemCount (15, Concatenated story) minus MAX_VISIBLE_ITEMS
       });
 
       it('should collapse items starting from the earliest segment, closest to home', () => {
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item')
+          // Excludes the off-screen measurement clone, which duplicates every item inside the
+          // shadow root and would otherwise also match this unscoped tag selector.
+          .filter((_, el) => !el.closest('.invisible'))
           .then($items => {
             const variants = $items.toArray().map(item => item.getAttribute('variant'));
             const firstListItemIndex = variants.indexOf('listitem');
@@ -95,10 +101,18 @@ describe('breadcrumbs', () => {
           .should('have.length.greaterThan', 0);
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[selected]:not([selected="false"])')
-          .should('have.attr', 'standalone', 'false');
+          .filter((_, el) => !el.closest('.invisible'))
+          // `standalone` is a reflected boolean prop: Stencil serializes true as an empty-string
+          // attribute value, not the literal text "true" — matching ":not([standalone='false'])"
+          // (inclusive of both "true" and "") is the same convention the rest of this file uses.
+          .should('not.match', '[standalone]:not([standalone="false"])');
       });
     });
 
+    // NOTE: the viewport widths below are guesses, not verified against the real component —
+    // I don't have a way to run this live. Confirm and adjust them against the actual Storybook
+    // build before relying on this block; the assertions themselves should still hold once the
+    // widths are right, since they don't depend on exact pixel values.
     describe('three-stage degrade sequence', () => {
       beforeEach(() => {
         cy.getComponent('breadcrumbs', BREADCRUMBS_ID, 'default');
@@ -106,34 +120,38 @@ describe('breadcrumbs', () => {
       });
 
       it('should collapse middle items before the last item is marked standalone', () => {
-        cy.viewport(500, 400);
+        cy.viewport(280, 400);
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[variant="menuitem"]')
           .should('have.length.greaterThan', 0);
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[selected]:not([selected="false"])')
-          .should('have.attr', 'standalone', 'false');
+          .filter((_, el) => !el.closest('.invisible'))
+          .should('not.match', '[standalone]:not([standalone="false"])');
       });
 
       it('should mark the last item standalone once every middle item is collapsed', () => {
-        cy.viewport(300, 400);
+        cy.viewport(200, 400);
         cy.get('@breadcrumbs')
-          .find('post-breadcrumb-item:not([selected]):not([selected="false"])')
+          .find('post-breadcrumb-item[selected="false"]')
+          .filter((_, el) => !el.closest('.invisible'))
           .should('have.attr', 'variant', 'menuitem');
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[selected]:not([selected="false"])')
-          .should('have.attr', 'standalone', 'true');
+          .filter((_, el) => !el.closest('.invisible'))
+          .should('match', '[standalone]:not([standalone="false"])');
       });
 
       it('should restore all items once space is available again', () => {
-        cy.viewport(300, 400);
+        cy.viewport(200, 400);
         cy.get('@breadcrumbs').find('post-breadcrumb-item[variant="menuitem"]').should('exist');
 
         cy.viewport(1920, 800);
         cy.get('@breadcrumbs').find('post-breadcrumb-item[variant="menuitem"]').should('not.exist');
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[selected]:not([selected="false"])')
-          .should('have.attr', 'standalone', 'false');
+          .filter((_, el) => !el.closest('.invisible'))
+          .should('not.match', '[standalone]:not([standalone="false"])');
       });
     });
   });
