@@ -4,6 +4,7 @@
 @use '../../components/post-menu-item/mixins' as menu-item;
 
 post-breadcrumb-item:not([variant='menuitem']) > a {
+  @include breadcrumb-item.breadcrumb-link-layout;
   @include breadcrumb-item.breadcrumb-link-colors;
 }
 
@@ -16,6 +17,7 @@ post-breadcrumb-item[variant='menuitem']:not([selected]:not([selected='false']))
 }
 
 post-breadcrumbs > a[slot='home'] {
+  @include breadcrumb-item.breadcrumb-link-layout;
   @include breadcrumb-item.breadcrumb-link-colors;
 }
 
