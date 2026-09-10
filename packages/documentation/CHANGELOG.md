@@ -1,5 +1,18 @@
 # @swisspost/design-system-documentation
 
+## 5.11.2
+
+### Patch Changes
+
+- Updated the stepper styles to support the `selected` (`aria-current="step"`) state for any completed step and added the `.stepper-item-current` class to identify the last completed step. (by [@myrtasakellariou](https://github.com/myrtasakellariou) with [#8425](https://github.com/swisspost/design-system/pull/8425))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.15.0
+  - @swisspost/design-system-components@9.15.0
+  - @swisspost/internet-header@1.17.2
+  - @swisspost/design-system-components-react@9.15.0
+  - @swisspost/design-system-icons@9.15.0
+  - @swisspost/design-system-theme-ag-grid@9.15.0
+
 ## 5.11.1
 
 ### Patch Changes

@@ -22,6 +22,7 @@ const meta: MetaComponent = {
     },
   },
   args: {
+    selectedStepNumber: 2,
     currentStepNumber: 3,
     navigatableSteps: 'all',
     processName: 'Registration Form',
@@ -46,7 +47,18 @@ const meta: MetaComponent = {
     },
     currentStepNumber: {
       name: 'Current Step Number',
-      description: 'The number of the step the user is currently at in the process.',
+      description: 'The number of the last step the user has already completed.',
+      control: {
+        type: 'select',
+      },
+      options: Object.keys(defaultSteps).map(key => parseInt(key, 10) + 1),
+      table: {
+        category: 'General',
+      },
+    },
+     selectedStepNumber: {
+      name: 'Selected Step Number',
+      description: 'The number of the step that the user is currently interacting with.',
       control: {
         type: 'select',
       },
@@ -78,12 +90,15 @@ function getStepperItem(
   updateStep: (newStep: number, event: Event) => void,
 ) {
   const currentStepIndex = args.currentStepNumber - 1;
-  const isCompletedStep = index < currentStepIndex;
   const isCurrentStep = index === currentStepIndex;
+  const selectedStepIndex = args.selectedStepNumber - 1;
+  const isSelectedStep = index === selectedStepIndex;
+  const isCompletedStep = index <= currentStepIndex && index != selectedStepIndex;
   const isNextStep = index > currentStepIndex;
   const isLink =
     (isCompletedStep && args.navigatableSteps !== 'none') ||
     (isNextStep && args.navigatableSteps === 'all');
+  const isValidSelectedStep = isSelectedStep && index <= currentStepIndex;
 
   let status = 'Current';
   if (isCompletedStep) status = 'Completed';
@@ -93,7 +108,7 @@ function getStepperItem(
   const title = step !== defaultSteps[index] ? step : undefined;
 
   return html`
-    <li aria-current=${ifDefined(isCurrentStep ? 'step' : undefined)} class="stepper-item">
+    <li aria-current=${ifDefined(isValidSelectedStep ? 'step' : undefined)}  class="stepper-item ${isCurrentStep ? 'stepper-item-current' : ''}">
       ${isLink
         ? html`
             <a
