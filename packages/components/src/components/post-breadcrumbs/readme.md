@@ -16,9 +16,9 @@
 
 ## Slots
 
-| Slot     | Description                                                                                                                                                                                                                                                                                       |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `"home"` | The content of the root (home) breadcrumb item. Can contain an `<a>` element, so consumers can slot their own routing-aware link (e.g. a Next.js `Link`) instead of relying on the `home-url` prop. Falls back to an internal link built from `home-url` and `text-home` when nothing is slotted. |
+| Slot     | Description                                                                                                                                                                 |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `"home"` | The content of the root (home) breadcrumb item. Can contain an `<a>` element, so consumers can slot their own routing-aware link instead of relying on the `home-url` prop. |
 
 
 ## Dependencies

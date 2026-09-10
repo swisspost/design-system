@@ -1,5 +1,5 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
@@ -117,13 +117,14 @@ export const ClientSideRouting: Story = {
         <span class="visually-hidden">${args.textHome}</span>
         <post-icon aria-hidden="true" name="home"></post-icon>
       </a>
-      ${Array.from(
-        { length: args.itemCount },
-        (_, i) =>
-          html`<post-breadcrumb-item
-            ><a href="/section${i + 1}">Section ${i + 1}</a></post-breadcrumb-item
-          > `,
-      )}
+      ${Array.from({ length: args.itemCount }, (_, i) => {
+        const isLast = i === args.itemCount - 1;
+        return html`<post-breadcrumb-item ?selected=${isLast}
+          ><a href="/section${i + 1}" aria-current=${isLast ? 'page' : nothing}
+            >Section ${i + 1}</a
+          ></post-breadcrumb-item
+        > `;
+      })}
     </post-breadcrumbs>
   `,
 };
