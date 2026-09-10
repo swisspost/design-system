@@ -51,7 +51,7 @@ tokens.$default-map: components.$post-select;
       background-color: tokens.get('select-color-selected-bg');
       color: tokens.get('select-color-selected-fg');
       border-color: tokens.get('select-color-selected-border');
-      background-image: forms-fx.select-arrow-icon('selected');
+
       &:not([multiple]) {
         background-image: forms-fx.select-arrow-icon('selected');
       }
