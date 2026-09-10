@@ -262,7 +262,7 @@ export class PostBreadcrumbs {
           class={this.loaded ? '' : 'loading'}
         >
           <div role="list">
-            <div class={`breadcrumb-item home ${this.homeText ? '' : 'icon'}`} role="listitem">
+            <div class={`breadcrumb-item home${this.homeText ? '' : ' icon'}`} role="listitem">
               <slot name="home" onSlotchange={() => this.checkSlottedHomeAnchor()}>
                 <a href={this.homeUrl}>
                   <span class={this.homeText ? undefined : 'visually-hidden'}>{this.textHome}</span>

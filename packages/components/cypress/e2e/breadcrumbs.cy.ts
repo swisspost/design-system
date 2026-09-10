@@ -127,6 +127,17 @@ describe('breadcrumbs', () => {
             expect($selected.get(0).scrollWidth).to.be.at.most($selected.get(0).clientWidth + 1);
           });
       });
+
+      it('should collapse the middle segments into the overflow menu when the long home-text and selected segment leave no space for them', () => {
+        cy.get('@breadcrumbs')
+          .find('post-breadcrumb-item[variant="menuitem"]')
+          .should('have.length.greaterThan', 0);
+
+        // The first (home) and last (selected) segments must never be collapsed, only the middle ones.
+        cy.get('@breadcrumbs')
+          .find('post-breadcrumb-item[selected]:not([selected="false"])')
+          .should('not.have.attr', 'variant', 'menuitem');
+      });
     });
   });
 });

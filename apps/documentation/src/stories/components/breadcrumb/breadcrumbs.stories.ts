@@ -68,7 +68,7 @@ export const CustomHomeText: Story = {
     docs: {
       description: {
         story:
-          'Set `home-text` to `true` to replace the home icon with the visible text set on `text-home`, enabling segment specific breadcrumbs (e.g. to link to a segment\'s own home page instead of the generic site root). The first (home) and last (selected) segments are never truncated, no matter how long their text is: they wrap onto multiple lines instead of being cut off. Only the segments in between are collapsed into the overflow menu when there is not enough space.',
+          "Set `home-text` to `true` to replace the home icon with the visible text set on `text-home`, enabling segment specific breadcrumbs (e.g. to link to a segment's own home page instead of the generic site root). The first (home) and last (selected) segments are never truncated, no matter how long their text is: they wrap onto multiple lines instead of being cut off. Only the segments in between are collapsed into the overflow menu when there is not enough space.",
       },
     },
   },
@@ -81,7 +81,10 @@ export const CustomHomeText: Story = {
       ?home-text=${args.homeText}
     >
       <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section2"
+      <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
+      <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
+      <post-breadcrumb-item url="/section4">Section 4</post-breadcrumb-item>
+      <post-breadcrumb-item url="/section5"
         >This is a very long breadcrumb item that represents the currently selected
         page</post-breadcrumb-item
       >
