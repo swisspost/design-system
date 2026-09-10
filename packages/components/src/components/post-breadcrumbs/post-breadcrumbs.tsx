@@ -90,12 +90,14 @@ export class PostBreadcrumbs {
   textMoreItems!: string;
 
   /**
-   * An accessible label for the overflow menu that contains the home item.
+   * An accessible label for the overflow menu that contains the home item. Only required once
+   * the home item actually collapses into its own menu — a rare edge case, since home and the
+   * last (selected) item are the last to degrade under space constraints.
    */
   @Prop({ reflect: true })
-  @Required()
+  @Required({ when: 'homeCollapsed' })
   @Type('string')
-  textExpandHome!: string;
+  textExpandHome?: string;
 
   componentWillLoad() {
     this.id = this.host.id || `b${nanoid(6)}`;
