@@ -274,7 +274,6 @@ export default function Layout({ children }: { readonly children: React.ReactNod
             text-home="Home"
             text-breadcrumbs="Breadcrumbs"
             text-more-items="More items"
-            text-expand-home="Expand home"
           >
             <PostBreadcrumbItem url="/section1">Section 1</PostBreadcrumbItem>
             <PostBreadcrumbItem url="/section2">Section 2</PostBreadcrumbItem>

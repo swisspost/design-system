@@ -11,6 +11,7 @@ describe('breadcrumbs', () => {
 
     widths.forEach(width => {
       cy.viewport(width, 400);
+      cy.wait(100);
 
       cy.get('@breadcrumbs')
         .shadow()
@@ -34,14 +35,12 @@ describe('breadcrumbs', () => {
     });
 
     cy.then(() => {
-      expect(
-        homeCollapsedWidth,
-        'home never collapsed across the tested width range',
-      ).to.not.equal(null);
-      expect(
-        standaloneWidth,
-        'last item never wrapped across the tested width range',
-      ).to.not.equal(null);
+      expect(homeCollapsedWidth, 'home never collapsed across the tested width range').to.not.equal(
+        null,
+      );
+      expect(standaloneWidth, 'last item never wrapped across the tested width range').to.not.equal(
+        null,
+      );
       expect(homeCollapsedWidth).to.be.at.least(standaloneWidth);
     });
   }
