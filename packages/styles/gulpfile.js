@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 const gulp = require('gulp');
 const sass = require('sass-embedded');
 const newer = require('gulp-newer');
@@ -80,15 +80,15 @@ gulp.task('map-icons', done => {
         .map(line => line.trim())
         .join('')
         // replace double quotes
-        .replace(/"/g, "'")
+        .replaceAll('"', "'")
         // remove fill color
         .replace(/ fill='(none|currentColor)'/g, '')
         // replace special characters
-        .replace(/</g, '%3C')
-        .replace(/>/g, '%3E')
-        .replace(/#/g, '%23')
-        .replace(/\(/g, '%28')
-        .replace(/\)/g, '%29');
+        .replaceAll('<', '%3C')
+        .replaceAll('>', '%3E')
+        .replaceAll('#', '%23')
+        .replaceAll('(', '%28')
+        .replaceAll(')', '%29');
     } catch {
       throw new Error(`Icon "${iconName}" not found.`);
     }

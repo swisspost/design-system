@@ -5,49 +5,9 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
 import { ActiveRouteProp, Environment } from "./models/general.model";
-export { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
 export { ActiveRouteProp, Environment } from "./models/general.model";
 export namespace Components {
-    /**
-     * Trap the focus inside a specific container.
-     * @param active activate or deactivate the focus trap
-     */
-    interface FocusTrap {
-        /**
-          * @default false
-         */
-        "active": boolean;
-    }
-    interface PostKlpLoginWidget {
-        /**
-          * Override the logout-url provided by the portal config.
-         */
-        "logoutUrl"?: string;
-        /**
-          * Sets the focus on the login button
-         */
-        "setFocus": () => Promise<void>;
-    }
-    interface PostSkiplinks {
-    }
-    interface SwisspostInternetBreadcrumbs {
-        /**
-          * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
-         */
-        "customItems"?: string | IBreadcrumbItem[];
-        /**
-          * Hide all buttons.
-          * @default false
-         */
-        "hideButtons": boolean;
-        /**
-          * Toggle an overlay associated with a button.
-          * @param overlayId
-         */
-        "toggleOverlayById": (overlayId: IBreadcrumbOverlay["id"]) => Promise<void>;
-    }
     interface SwisspostInternetFooter {
         /**
           * Label for the "Cookie Settings" button.
@@ -63,17 +23,17 @@ export namespace Components {
           * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted. Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
           * @default 'auto'
          */
-        "activeRoute"?: ActiveRouteProp;
+        "activeRoute": ActiveRouteProp;
         /**
           * Target environment. Choose 'int01' for local testing.
           * @default 'prod'
          */
         "environment": Environment;
         /**
-          * Displays the header at full width for full-screen applications
+          * Makes the header content span the full width on screens larger than 1440px.
           * @default false
          */
-        "fullWidth"?: boolean;
+        "fullWidth": boolean;
         /**
           * Initial language to be used. Overrides automatic language detection.
          */
@@ -82,6 +42,42 @@ export namespace Components {
           * Your project id, previously passed as query string parameter serviceId.
          */
         "project": string;
+        /**
+          * Visually hidden label for the login widget trigger button.
+         */
+        "textAccessUserLinks": string;
+        /**
+          * Visually hidden label for the back button.
+         */
+        "textBack": string;
+        /**
+          * Visually hidden label for the language menu.
+         */
+        "textChangeLanguage": string;
+        /**
+          * Visually hidden label for the close button.
+         */
+        "textClose": string;
+        /**
+          * Visually hidden label for the current language. The placeholder `{name}` will be replaced with the name of the currently selected language.
+         */
+        "textCurrentLanguage": string;
+        /**
+          * Visually hidden label for the current user. The placeholder `{user}` will be replaced with the full name of the currently logged-in user.
+         */
+        "textCurrentUser": string;
+        /**
+          * Visually hidden label for the main navigation element.
+         */
+        "textMain": string;
+        /**
+          * Visually hidden label for the burger menu button.
+         */
+        "textMenu": string;
+        /**
+          * Visually hidden label for the user menu.
+         */
+        "textUserLinks": string;
     }
 }
 export interface SwisspostInternetHeaderCustomEvent<T> extends CustomEvent<T> {
@@ -89,34 +85,6 @@ export interface SwisspostInternetHeaderCustomEvent<T> extends CustomEvent<T> {
     target: HTMLSwisspostInternetHeaderElement;
 }
 declare global {
-    /**
-     * Trap the focus inside a specific container.
-     * @param active activate or deactivate the focus trap
-     */
-    interface HTMLFocusTrapElement extends Components.FocusTrap, HTMLStencilElement {
-    }
-    var HTMLFocusTrapElement: {
-        prototype: HTMLFocusTrapElement;
-        new (): HTMLFocusTrapElement;
-    };
-    interface HTMLPostKlpLoginWidgetElement extends Components.PostKlpLoginWidget, HTMLStencilElement {
-    }
-    var HTMLPostKlpLoginWidgetElement: {
-        prototype: HTMLPostKlpLoginWidgetElement;
-        new (): HTMLPostKlpLoginWidgetElement;
-    };
-    interface HTMLPostSkiplinksElement extends Components.PostSkiplinks, HTMLStencilElement {
-    }
-    var HTMLPostSkiplinksElement: {
-        prototype: HTMLPostSkiplinksElement;
-        new (): HTMLPostSkiplinksElement;
-    };
-    interface HTMLSwisspostInternetBreadcrumbsElement extends Components.SwisspostInternetBreadcrumbs, HTMLStencilElement {
-    }
-    var HTMLSwisspostInternetBreadcrumbsElement: {
-        prototype: HTMLSwisspostInternetBreadcrumbsElement;
-        new (): HTMLSwisspostInternetBreadcrumbsElement;
-    };
     interface HTMLSwisspostInternetFooterElement extends Components.SwisspostInternetFooter, HTMLStencilElement {
     }
     var HTMLSwisspostInternetFooterElement: {
@@ -141,44 +109,13 @@ declare global {
         new (): HTMLSwisspostInternetHeaderElement;
     };
     interface HTMLElementTagNameMap {
-        "focus-trap": HTMLFocusTrapElement;
-        "post-klp-login-widget": HTMLPostKlpLoginWidgetElement;
-        "post-skiplinks": HTMLPostSkiplinksElement;
-        "swisspost-internet-breadcrumbs": HTMLSwisspostInternetBreadcrumbsElement;
         "swisspost-internet-footer": HTMLSwisspostInternetFooterElement;
         "swisspost-internet-header": HTMLSwisspostInternetHeaderElement;
     }
 }
 declare namespace LocalJSX {
-    /**
-     * Trap the focus inside a specific container.
-     * @param active activate or deactivate the focus trap
-     */
-    interface FocusTrap {
-        /**
-          * @default false
-         */
-        "active"?: boolean;
-    }
-    interface PostKlpLoginWidget {
-        /**
-          * Override the logout-url provided by the portal config.
-         */
-        "logoutUrl"?: string;
-    }
-    interface PostSkiplinks {
-    }
-    interface SwisspostInternetBreadcrumbs {
-        /**
-          * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
-         */
-        "customItems"?: string | IBreadcrumbItem[];
-        /**
-          * Hide all buttons.
-          * @default false
-         */
-        "hideButtons"?: boolean;
-    }
+    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
+
     interface SwisspostInternetFooter {
         /**
           * Label for the "Cookie Settings" button.
@@ -201,7 +138,7 @@ declare namespace LocalJSX {
          */
         "environment"?: Environment;
         /**
-          * Displays the header at full width for full-screen applications
+          * Makes the header content span the full width on screens larger than 1440px.
           * @default false
          */
         "fullWidth"?: boolean;
@@ -216,31 +153,77 @@ declare namespace LocalJSX {
         /**
           * Your project id, previously passed as query string parameter serviceId.
          */
-        "project"?: string;
+        "project": string;
+        /**
+          * Visually hidden label for the login widget trigger button.
+         */
+        "textAccessUserLinks": string;
+        /**
+          * Visually hidden label for the back button.
+         */
+        "textBack": string;
+        /**
+          * Visually hidden label for the language menu.
+         */
+        "textChangeLanguage": string;
+        /**
+          * Visually hidden label for the close button.
+         */
+        "textClose": string;
+        /**
+          * Visually hidden label for the current language. The placeholder `{name}` will be replaced with the name of the currently selected language.
+         */
+        "textCurrentLanguage": string;
+        /**
+          * Visually hidden label for the current user. The placeholder `{user}` will be replaced with the full name of the currently logged-in user.
+         */
+        "textCurrentUser": string;
+        /**
+          * Visually hidden label for the main navigation element.
+         */
+        "textMain": string;
+        /**
+          * Visually hidden label for the burger menu button.
+         */
+        "textMenu": string;
+        /**
+          * Visually hidden label for the user menu.
+         */
+        "textUserLinks": string;
     }
+
+    interface SwisspostInternetFooterAttributes {
+        "textFooter": string;
+        "textCookieSettings": string;
+    }
+    interface SwisspostInternetHeaderAttributes {
+        "activeRoute": ActiveRouteProp;
+        "environment": Environment;
+        "fullWidth": boolean;
+        "language": 'de' | 'fr' | 'it' | 'en';
+        "project": string;
+        "textBack": string;
+        "textChangeLanguage": string;
+        "textClose": string;
+        "textCurrentLanguage": string;
+        "textCurrentUser": string;
+        "textMain": string;
+        "textMenu": string;
+        "textAccessUserLinks": string;
+        "textUserLinks": string;
+    }
+
     interface IntrinsicElements {
-        "focus-trap": FocusTrap;
-        "post-klp-login-widget": PostKlpLoginWidget;
-        "post-skiplinks": PostSkiplinks;
-        "swisspost-internet-breadcrumbs": SwisspostInternetBreadcrumbs;
-        "swisspost-internet-footer": SwisspostInternetFooter;
-        "swisspost-internet-header": SwisspostInternetHeader;
+        "swisspost-internet-footer": Omit<SwisspostInternetFooter, keyof SwisspostInternetFooterAttributes> & { [K in keyof SwisspostInternetFooter & keyof SwisspostInternetFooterAttributes]?: SwisspostInternetFooter[K] } & { [K in keyof SwisspostInternetFooter & keyof SwisspostInternetFooterAttributes as `attr:${K}`]?: SwisspostInternetFooterAttributes[K] } & { [K in keyof SwisspostInternetFooter & keyof SwisspostInternetFooterAttributes as `prop:${K}`]?: SwisspostInternetFooter[K] } & OneOf<"textFooter", SwisspostInternetFooter["textFooter"], SwisspostInternetFooterAttributes["textFooter"]> & OneOf<"textCookieSettings", SwisspostInternetFooter["textCookieSettings"], SwisspostInternetFooterAttributes["textCookieSettings"]>;
+        "swisspost-internet-header": Omit<SwisspostInternetHeader, keyof SwisspostInternetHeaderAttributes> & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes]?: SwisspostInternetHeader[K] } & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes as `attr:${K}`]?: SwisspostInternetHeaderAttributes[K] } & { [K in keyof SwisspostInternetHeader & keyof SwisspostInternetHeaderAttributes as `prop:${K}`]?: SwisspostInternetHeader[K] } & OneOf<"project", SwisspostInternetHeader["project"], SwisspostInternetHeaderAttributes["project"]> & OneOf<"textBack", SwisspostInternetHeader["textBack"], SwisspostInternetHeaderAttributes["textBack"]> & OneOf<"textChangeLanguage", SwisspostInternetHeader["textChangeLanguage"], SwisspostInternetHeaderAttributes["textChangeLanguage"]> & OneOf<"textClose", SwisspostInternetHeader["textClose"], SwisspostInternetHeaderAttributes["textClose"]> & OneOf<"textCurrentLanguage", SwisspostInternetHeader["textCurrentLanguage"], SwisspostInternetHeaderAttributes["textCurrentLanguage"]> & OneOf<"textCurrentUser", SwisspostInternetHeader["textCurrentUser"], SwisspostInternetHeaderAttributes["textCurrentUser"]> & OneOf<"textMain", SwisspostInternetHeader["textMain"], SwisspostInternetHeaderAttributes["textMain"]> & OneOf<"textMenu", SwisspostInternetHeader["textMenu"], SwisspostInternetHeaderAttributes["textMenu"]> & OneOf<"textAccessUserLinks", SwisspostInternetHeader["textAccessUserLinks"], SwisspostInternetHeaderAttributes["textAccessUserLinks"]> & OneOf<"textUserLinks", SwisspostInternetHeader["textUserLinks"], SwisspostInternetHeaderAttributes["textUserLinks"]>;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            /**
-             * Trap the focus inside a specific container.
-             * @param active activate or deactivate the focus trap
-             */
-            "focus-trap": LocalJSX.FocusTrap & JSXBase.HTMLAttributes<HTMLFocusTrapElement>;
-            "post-klp-login-widget": LocalJSX.PostKlpLoginWidget & JSXBase.HTMLAttributes<HTMLPostKlpLoginWidgetElement>;
-            "post-skiplinks": LocalJSX.PostSkiplinks & JSXBase.HTMLAttributes<HTMLPostSkiplinksElement>;
-            "swisspost-internet-breadcrumbs": LocalJSX.SwisspostInternetBreadcrumbs & JSXBase.HTMLAttributes<HTMLSwisspostInternetBreadcrumbsElement>;
-            "swisspost-internet-footer": LocalJSX.SwisspostInternetFooter & JSXBase.HTMLAttributes<HTMLSwisspostInternetFooterElement>;
-            "swisspost-internet-header": LocalJSX.SwisspostInternetHeader & JSXBase.HTMLAttributes<HTMLSwisspostInternetHeaderElement>;
+            "swisspost-internet-footer": LocalJSX.IntrinsicElements["swisspost-internet-footer"] & JSXBase.HTMLAttributes<HTMLSwisspostInternetFooterElement>;
+            "swisspost-internet-header": LocalJSX.IntrinsicElements["swisspost-internet-header"] & JSXBase.HTMLAttributes<HTMLSwisspostInternetHeaderElement>;
         }
     }
 }

@@ -1,6 +1,6 @@
 ###
 #
-# Build the packages/documentation storybook
+# Build the apps/documentation storybook
 #
 # This workflow does not have secrets when run from a fork.
 # Artifacts are uploaded and used in a subsequent workflow
@@ -15,6 +15,7 @@ on:
   pull_request:
     types: [opened, synchronize, edited, reopened]
     paths:
+      - 'apps/**'
       - 'packages/**'
 
 permissions:
@@ -38,10 +39,10 @@ jobs:
         run: pnpm --filter design-system-documentation... build
 
       - name: Add netlify.config.json to artifact folder
-        run: cp packages/documentation/netlify.config.json packages/documentation/storybook-static/netlify.config.json
+        run: cp apps/documentation/netlify.config.json apps/documentation/storybook-static/netlify.config.json
 
       - name: Upload documentation
         uses: ./.github/actions/artifact-upload
         with:
           name: design-system-documentation
-          folder: packages/documentation/storybook-static
+          folder: apps/documentation/storybook-static

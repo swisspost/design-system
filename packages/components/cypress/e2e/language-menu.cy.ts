@@ -1,10 +1,12 @@
-const LANGUAGE_SWITCH_ID = 'decbb10c-2b39-4f47-b67d-337d8111a3ae';
+import { POPOVER_OPEN_SELECTOR } from './helper/popovercontainer';
+
+const LANGUAGE_MENU_ID = 'decbb10c-2b39-4f47-b67d-337d8111a3ae';
 const LANGUAGE_OPTION_ID = '3753ab83-a659-47b5-a2f2-ac452ec97916';
 
 describe('post-language-menu', () => {
   describe('list variant', () => {
     beforeEach(() => {
-      cy.getComponent('language-menu', LANGUAGE_SWITCH_ID);
+      cy.getComponent('language-menu', LANGUAGE_MENU_ID);
     });
 
     it('should render', () => {
@@ -63,8 +65,15 @@ describe('post-language-menu', () => {
 
   describe('menu variant', () => {
     beforeEach(() => {
-      cy.getComponent('language-menu', LANGUAGE_SWITCH_ID);
+      cy.getComponent('language-menu', LANGUAGE_MENU_ID);
       cy.get('@language-menu').invoke('prop', 'variant', 'menu');
+      // Wait for post-menu-trigger to be fully hydrated after the variant re-render.
+      // aria-expanded is set in componentDidLoad of post-menu-trigger — its presence
+      // confirms the trigger is ready to receive clicks.
+      cy.get('@language-menu')
+        .find('post-menu-trigger')
+        .find('button')
+        .should('have.attr', 'aria-expanded', 'false');
       cy.get('@language-menu').find('post-menu-trigger').as('trigger');
     });
 
@@ -83,11 +92,13 @@ describe('post-language-menu', () => {
 
     it('should show the menu on trigger click', () => {
       cy.get('@trigger').find('button').click();
+      cy.get('@language-menu').find('post-popovercontainer').should('match', POPOVER_OPEN_SELECTOR);
       cy.get('@language-menu').find('post-language-menu-item button').should('be.visible');
     });
 
     it('should correctly switch language and hide menu on option click', () => {
       cy.get('@trigger').find('button').click();
+      cy.get('@language-menu').find('post-popovercontainer').should('match', POPOVER_OPEN_SELECTOR);
       cy.get('@language-menu').find('post-language-menu-item[code="de"]').click();
 
       cy.get('@trigger').should('contain.text', 'de');
@@ -96,6 +107,7 @@ describe('post-language-menu', () => {
 
     it('should have correct ARIA roles', () => {
       cy.get('@trigger').find('button').click();
+      cy.get('@language-menu').find('post-popovercontainer').should('match', POPOVER_OPEN_SELECTOR);
       cy.get('@language-menu').find('post-menu').should('have.attr', 'role', 'menu');
       cy.get('@language-menu')
         .find('post-language-menu-item')
@@ -161,19 +173,20 @@ describe('post-language-menu', () => {
   });
 
   describe('Accessibility', () => {
-    beforeEach(() => {
-      cy.getComponent('language-menu', LANGUAGE_SWITCH_ID);
-      cy.get('@language-menu').invoke('prop', 'variant', 'menu');
-      cy.get('@language-menu').find('post-menu-trigger').as('trigger');
-      cy.get('@language-menu').find('post-language-menu-item').as('language-options');
-    });
-
     it('Has no detectable a11y violations for all variants', () => {
-      cy.get('post-language-menu').as('languageMenu');
-      cy.get('@languageMenu').invoke('prop', 'variant', 'menu');
-      cy.checkA11y('#root-inner');
-      cy.get('@languageMenu').invoke('prop', 'variant', 'list');
-      cy.checkA11y('#root-inner');
+      cy.getComponent('language-menu', LANGUAGE_MENU_ID);
+      cy.checkA11y('#root-inner', undefined, violations => {
+        expect(violations).to.have.length(0);
+      });
+      cy.getComponent('language-menu', LANGUAGE_MENU_ID);
+      cy.get('post-language-menu').invoke('prop', 'variant', 'menu');
+      cy.get('post-language-menu[data-hydrated]')
+        .find('post-menu-trigger')
+        .find('button')
+        .should('have.attr', 'aria-expanded', 'false');
+      cy.checkA11y('#root-inner', undefined, violations => {
+        expect(violations).to.have.length(0);
+      });
     });
   });
 });

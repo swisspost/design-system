@@ -1,24 +1,25 @@
 import {
+  Build,
   Component,
   Element,
   Event,
   EventEmitter,
+  h,
   Host,
   Method,
   Prop,
-  h,
-  Watch,
   State,
 } from '@stencil/core';
 
-import { IS_BROWSER, checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
+import { OneOf, Type } from '@/utils';
 import { version } from '@root/package.json';
 
+import { PLACEMENT_TYPES } from '@/types';
 import {
   arrow,
   autoUpdate,
-  computePosition,
   flip,
+  hide,
   inline,
   limitShift,
   offset,
@@ -26,11 +27,11 @@ import {
   shift,
   size,
 } from '@floating-ui/dom';
-import { PLACEMENT_TYPES } from '@/types';
 
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
-import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
 import { popIn } from '@/animations/pop-in';
+import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
+import { computePositionWithSafeArea } from '@/utils/floating-ui';
 
 interface PopoverElement {
   showPopover: () => void;
@@ -82,8 +83,13 @@ export class PostPopovercontainer {
   private arrowRef: HTMLElement;
   private eventTarget: Element;
   private clearAutoUpdate: () => void;
-  private toggleTimeoutId: number;
+  private toggleTimeoutId: ReturnType<typeof globalThis.setTimeout> | null = null;
   private hasOpenedOnce: boolean = true;
+  private boundMouseTrackingHandler: (event: MouseEvent) => void;
+
+  constructor() {
+    this.boundMouseTrackingHandler = this.mouseTrackingHandler.bind(this);
+  }
 
   /**
    * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
@@ -115,12 +121,21 @@ export class PostPopovercontainer {
    * Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted
    * towards the viewport if they would overlap edge boundaries.
    */
-  @Prop() readonly placement?: Placement = 'top';
+  @Prop()
+  @OneOf(PLACEMENT_TYPES)
+  readonly placement?: Placement = 'top';
 
   /**
    * Gap between the edge of the page and the popovercontainer
    */
-  @Prop() readonly edgeGap?: number = 8;
+  @Prop()
+  @Type('number')
+  readonly edgeGap?: number = 8;
+
+  /**
+   * Offset for more precise placement
+   */
+  @Prop() readonly offset?: number;
 
   /**
    * Whether or not to display a little pointer arrow
@@ -131,22 +146,17 @@ export class PostPopovercontainer {
   /**
    * Enables a safespace through which the cursor can be moved without the popover being disabled
    */
-  @Prop({ reflect: true }) readonly safeSpace?: 'triangle' | 'trapezoid';
+  @Prop({ reflect: true })
+  @OneOf(['triangle', 'trapezoid'])
+  readonly safeSpace?: 'triangle' | 'trapezoid';
 
-  @Watch('placement')
-  validatePlacement() {
-    checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
-  }
-
-  @Watch('edgeGap')
-  validateEdgeGap() {
-    checkEmptyOrType(this, 'edgeGap', 'number');
-  }
-
-  @Watch('safeSpace')
-  validateSafeSpace() {
-    checkEmptyOrOneOf(this, 'safeSpace', ['triangle', 'trapezoid']);
-  }
+  /**
+   * Whether to automatically hide the popover when the target moves outside the scrollport.
+   *
+   * If the `post-header` can cover the target, the popover will also be hidden as soon as the
+   * target scrolls behind it.
+   */
+  @Prop() readonly autoHide?: boolean;
 
   /**
    * Animation style
@@ -166,15 +176,12 @@ export class PostPopovercontainer {
   private currentAnimation: Animation | null = null;
 
   connectedCallback() {
-    if (IS_BROWSER && !isSupported()) {
+    if (Build.isBrowser && !isSupported()) {
       apply();
     }
   }
 
   componentDidLoad() {
-    this.validatePlacement();
-    this.validateEdgeGap();
-    this.validateSafeSpace();
     this.host.addEventListener('beforetoggle', this.handleToggle.bind(this));
   }
 
@@ -187,13 +194,14 @@ export class PostPopovercontainer {
 
   /**
    * Programmatically display the popovercontainer
-   * @param target A focusable element inside the trigger component that controls the popover
+   * @param target The element that invokes the popover and to which it is visually anchored.
    */
   @Method()
   async show(target: HTMLElement) {
-    if (this.toggleTimeoutId) return;
+    if (this.toggleTimeoutId || !target) return;
+
     this.eventTarget = target;
-    this.calculatePosition();
+    this.updatePosition();
     this.host.showPopover();
   }
 
@@ -211,16 +219,21 @@ export class PostPopovercontainer {
 
   /**
    * Toggle popovercontainer display
-   * @param target A focusable element inside the <post-popover-trigger> component that controls the popover
+   * @param target The element that invokes the popover and to which it is visually anchored.
    * @param force Pass true to always show or false to always hide
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
+    const isOpen = this.host.matches(':where(:popover-open, .popover-open)');
+    const willOpen = force === true || (force === undefined && !isOpen);
+
+    if (willOpen && !target) return isOpen;
+
     this.eventTarget = target;
 
     // Prevent instant double toggle
     if (!this.toggleTimeoutId) {
-      this.calculatePosition();
+      this.updatePosition();
 
       this.host.togglePopover(force);
       this.toggleTimeoutId = null;
@@ -253,7 +266,7 @@ export class PostPopovercontainer {
     }
 
     if (this.safeSpace) {
-      window.addEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+      globalThis.addEventListener('mousemove', this.boundMouseTrackingHandler);
     }
   }
 
@@ -266,7 +279,7 @@ export class PostPopovercontainer {
     }
 
     if (this.safeSpace) {
-      window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
+      globalThis.removeEventListener('mousemove', this.boundMouseTrackingHandler);
     }
 
     // Cancel any running animation
@@ -335,7 +348,7 @@ export class PostPopovercontainer {
    * @param e ToggleEvent
    */
   private handleToggle(e: ToggleEvent) {
-    this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
+    this.toggleTimeoutId = globalThis.setTimeout(() => (this.toggleTimeoutId = null), 10);
     const isOpen = e.newState === 'open';
 
     if (isOpen) {
@@ -351,25 +364,20 @@ export class PostPopovercontainer {
    */
   private startAutoupdates() {
     if (!this.eventTarget || !this.host) return;
-    this.clearAutoUpdate = autoUpdate(
-      this.eventTarget,
-      this.host,
-      this.calculatePosition.bind(this),
-    );
+    this.clearAutoUpdate = autoUpdate(this.eventTarget, this.host, this.updatePosition.bind(this));
   }
 
-  /**
-   * Retrieves the dynamic height of the header
-   */
-  private getHeaderHeight(): number {
-    const header = document.querySelector('post-header');
-    return header ? parseFloat(getComputedStyle(header).height) : 0;
-  }
+  private async updatePosition() {
+    const { x, y, middlewareData, placement } = await this.calculatePosition();
 
-  private async calculatePosition() {
-    const { x, y, middlewareData, placement } = await this.computeMainPosition();
+    // Hide the popover if the target is outside the viewport
+    if (middlewareData.hide?.referenceHidden) {
+      this.host.hidePopover();
+    }
+
     const currentPlacement = placement.split('-')[0];
     this.dynamicPlacement = currentPlacement;
+
     // Position popover
     this.host.style.left = `${x}px`;
     this.host.style.top = `${y}px`;
@@ -380,16 +388,7 @@ export class PostPopovercontainer {
 
       const staticSide = PostPopovercontainer.STATIC_SIDES[currentPlacement];
 
-      const rootFontSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize);
-
-      // Calculate dynamically the half side which provides the static side offset
-      const arrowSizeValue = getComputedStyle(this.arrowRef)
-        .getPropertyValue('--arrow-size')
-        .trim();
-
-      const arrowSizePx = arrowSizeValue.endsWith('rem')
-        ? Number.parseFloat(arrowSizeValue) * rootFontSize
-        : Number.parseFloat(arrowSizeValue);
+      const arrowSizePx = this.arrowRef.offsetWidth;
 
       const halfSide = -0.5 * arrowSizePx;
 
@@ -408,19 +407,30 @@ export class PostPopovercontainer {
     }
   }
 
-  private async computeMainPosition() {
+  private async calculatePosition() {
     const gap = this.edgeGap;
+    const isAligned = (this.placement || 'top').includes('-');
+
+    const flipMiddleware = [
+      // Flip the popover if the target moves outside the viewport
+      flip({ elementContext: 'reference', crossAxis: false }),
+      // Flip the popover if the popover itself moves outside the viewport
+      flip({ elementContext: 'floating', crossAxis: false }),
+    ];
+
+    const shiftMiddleware = shift({
+      padding: gap,
+      limiter: limitShift({
+        offset: 32,
+      }),
+    });
+
     const middleware = [
-      flip({
-        padding: this.getHeaderHeight(),
-      }),
+      offset(this.offset ?? (this.arrow ? gap + 4 : gap)),
       inline(),
-      shift({
-        padding: gap,
-        limiter: limitShift({
-          offset: 32,
-        }),
-      }),
+      // Per floating-ui docs: for aligned placements (e.g. bottom-end),
+      // flip should come before shift. For non-aligned, shift before flip.
+      ...(isAligned ? [...flipMiddleware, shiftMiddleware] : [shiftMiddleware, ...flipMiddleware]),
       size({
         apply({ availableWidth, elements }) {
           Object.assign(elements.floating.style, {
@@ -428,14 +438,19 @@ export class PostPopovercontainer {
           });
         },
       }),
-      offset(this.arrow ? gap + 4 : gap),
     ];
 
     if (this.arrow) {
       middleware.push(arrow({ element: this.arrowRef, padding: gap }));
     }
 
-    return computePosition(this.eventTarget, this.host, {
+    // Automatically hide the popover if the target moves outside the scrollport.
+    if (this.autoHide) {
+      // Per floating-ui docs: hide should generally be placed at the end.
+      middleware.push(hide({ strategy: 'referenceHidden' }));
+    }
+
+    return computePositionWithSafeArea(this.eventTarget, this.host, {
       placement: this.placement || 'top',
       strategy: 'fixed',
       middleware,
@@ -532,6 +547,8 @@ export class PostPopovercontainer {
               }}
             ></span>
           )}
+          {/* exposed via ::part for consuming components to activate as a bleed mask */}
+          <span part="post-popovercontainer-border-mask"></span>
           <slot></slot>
         </div>
       </Host>

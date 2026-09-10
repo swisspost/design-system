@@ -1,0 +1,22 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks';
+import * as GettingStartedStories from './theme-ag-grid.stories';
+import Usage from './theme-ag-grid-usage.sample?raw';
+import { PackageShields } from '@root/src/shared/package-shields';
+
+<Meta of={GettingStartedStories} />
+
+# @swisspost/design-system-theme-ag-grid
+
+<PackageShields packageName="@swisspost/design-system-theme-ag-grid" />
+
+Ready-to-use theme for AG Grid.
+
+## Installation
+
+<Source code={`npm install @swisspost/design-system-theme-ag-grid`} language="bash" />
+
+## Usage
+
+To use the theme, simply import it from the package and use it within the grid options of your table.
+
+<Source code={Usage} language="javascript" />

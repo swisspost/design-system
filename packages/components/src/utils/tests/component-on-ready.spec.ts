@@ -6,8 +6,8 @@ describe('componentOnReady', () => {
   const mockSetTimeout = jest.fn();
 
   beforeAll(() => {
-    global.requestAnimationFrame = mockRequestAnimationFrame;
-    global.setTimeout = mockSetTimeout as unknown as typeof setTimeout;
+    globalThis.requestAnimationFrame = mockRequestAnimationFrame;
+    globalThis.setTimeout = mockSetTimeout as unknown as typeof setTimeout;
   });
 
   afterEach(() => {
@@ -37,7 +37,7 @@ describe('componentOnReady', () => {
   });
 
   it('should use customOnReady if componentOnReady does not exist and requestAnimationFrame is not available', async () => {
-    delete global.requestAnimationFrame;
+    delete globalThis.requestAnimationFrame;
 
     mockSetTimeout.mockImplementation(callback => callback());
 

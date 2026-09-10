@@ -1,5 +1,5 @@
-import { Component, Host, h, Prop, Element } from '@stencil/core';
 import { version } from '@root/package.json';
+import { Component, Element, h, Host, Prop } from '@stencil/core';
 
 /**
  * @slot default - Slot for the content of the button.
@@ -22,7 +22,9 @@ export class PostTogglebutton {
     // add event listener in capture phase so the toggle state is updated
     // before any parent bubble listeners react to the click.
     this.host.addEventListener('click', () => this.handleClick(), { capture: true });
-    this.host.addEventListener('keydown', (e: KeyboardEvent) => this.handleKeydown(e), { capture: true });
+    this.host.addEventListener('keydown', (e: KeyboardEvent) => this.handleKeydown(e), {
+      capture: true,
+    });
   }
 
   private handleClick = () => {

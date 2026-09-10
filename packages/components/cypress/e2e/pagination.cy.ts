@@ -33,12 +33,12 @@ describe('pagination', () => {
         .should('contain', '1');
     });
 
-    it('should hide previous button on first page', () => {
-      cy.get('.prev-button').should('not.exist');
+    it('should disable previous button on first page', () => {
+      cy.get('.prev-button').should('exist').and('be.disabled');
     });
 
-    it('should show next button on first page', () => {
-      cy.get('@nextButton').should('exist');
+    it('should enable next button on first page', () => {
+      cy.get('@nextButton').should('exist').and('be.enabled');
     });
 
     it('should navigate to next page when next button is clicked', () => {
@@ -113,7 +113,7 @@ describe('pagination', () => {
         .last()
         .invoke('text')
         .then(text => {
-          expect(parseInt(text)).to.be.greaterThan(1);
+          expect(Number.parseInt(text)).to.be.greaterThan(1);
         });
     });
 
@@ -188,12 +188,12 @@ describe('pagination', () => {
         });
     });
 
-    it('should hide next button on last page', () => {
-      cy.get('.next-button').should('not.exist');
+    it('should disable next button on last page', () => {
+      cy.get('.next-button').should('exist').and('be.disabled');
     });
 
-    it('should show previous button on last page', () => {
-      cy.get('.prev-button').should('exist');
+    it('should enable previous button on last page', () => {
+      cy.get('.prev-button').should('exist').and('be.enabled');
     });
   });
 
@@ -373,7 +373,9 @@ describe('Accessibility', () => {
   variants.forEach(variant => {
     it(`Has no detectable a11y violations for ${variant.name} variant`, () => {
       cy.getComponent('pagination', PAGINATION_ID, variant.id);
-      cy.checkA11y('#root-inner');
+      cy.checkA11y('#root-inner', undefined, violations => {
+        expect(violations).to.have.length(0);
+      });
     });
   });
 });

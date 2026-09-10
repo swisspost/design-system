@@ -1,75 +1,106 @@
-@use './../mixins/utilities' as utilities-mx;
-@use './../variables/color';
-@use './../variables/spacing';
-@use './../variables/components/button';
-@use './../variables/components/forms';
-
+@use 'sass:map';
+@use './../mixins/utilities';
 @use '../functions/tokens';
-@use '../tokens/utilities';
+@use '../tokens/components';
+@use './../variables/breakpoints';
+@use './../mixins/media';
+@use './../mixins/button-group' as bg;
+
+tokens.$default-map: components.$post-button-group;
 
 .btn-group {
-  max-width: 100%;
-  flex-wrap: wrap;
-  row-gap: tokens.get('utility-gap-4', utilities.$post-spacing);
-  padding-inline-start: button.$btn-border-width;
-  border-radius: var(--post-device-border-radius-round);
   position: relative;
-  display: inline-flex;
-  vertical-align: middle;
+  box-shadow: tokens.get('button-group-elevation');
 
-  > :not(.btn-check:first-child) + .btn,
-  > .btn-group:not(:first-child) {
-    margin-left: calc(2px * -1);
+  label,
+  button,
+  a {
+    text-decoration: none;
+    border-radius: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: tokens.get('button-group-button-border-width') solid
+      tokens.get('button-group-button-color-enabled-stroke');
+    font-weight: tokens.get('button-group-button-label-font-weight');
+    background-color: tokens.get('button-group-button-color-enabled-bg');
+    color: tokens.get('button-group-button-color-enabled-fg');
+    cursor: pointer;
+    box-shadow: none;
+
+    &:hover {
+      background-color: tokens.get('button-group-button-color-hovered-bg');
+      color: tokens.get('button-group-button-color-hovered-fg');
+      border-color: tokens.get('button-group-button-color-hovered-stroke');
+    }
   }
 
-  > .btn:not(:last-child):not(.dropdown-toggle),
-  > .btn.dropdown-toggle-split:first-child,
-  > .btn-group:not(:last-child) > .btn {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+  input:disabled + label,
+  button:disabled {
+    background-color: tokens.get('button-group-button-color-disabled-bg');
+    color: tokens.get('button-group-button-color-disabled-fg');
+    border-color: tokens.get('button-group-button-color-disabled-stroke');
+    border-style: tokens.get('button-border-style-disabled', components.$post-button);
+    cursor: default;
   }
 
-  > .btn:nth-child(n + 3),
-  > :not(.btn-check) + .btn,
-  > .btn-group:not(:first-child) > .btn {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+  // Selected
+  input:checked + label {
+    background-color: tokens.get('button-group-button-color-selected-enabled-bg');
+    color: tokens.get('button-group-button-color-selected-enabled-fg');
+    border-color: tokens.get('button-group-button-color-selected-enabled-stroke');
+
+    &:hover {
+      background-color: tokens.get('button-group-button-color-selected-hovered-bg');
+      color: tokens.get('button-group-button-color-selected-hovered-fg');
+      border-color: tokens.get('button-group-button-color-selected-hovered-stroke');
+    }
   }
 
-  > .btn-check:checked + .btn,
-  > .btn-check:focus + .btn,
-  > .btn:hover,
-  > .btn:focus,
-  > .btn:active,
-  > .btn.active {
+  input:disabled + label {
     z-index: 1;
   }
 
-  > .btn {
-    white-space: normal;
-    cursor: pointer;
-    flex: 0 1 auto;
-    margin-inline-start: -1 * button.$btn-border-width;
+  label:has(+ input:disabled) {
+    z-index: 2;
   }
 
-  > .btn-secondary {
-    border-color: color.$gray-20;
+  input:checked + label,
+  input:focus + label,
+  button:focus,
+  button:active,
+  a:focus,
+  a:active {
+    z-index: 3;
   }
 
-  > .btn-secondary.active,
-  > .btn-check:checked + .btn-secondary {
-    background-color: color.$yellow;
-    color: color.$black;
+  input {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    pointer-events: none;
+    @include utilities.focus-style('+ label');
+  }
 
-    @include utilities-mx.high-contrast-mode() {
-      background-color: Highlight;
-    }
+  // default is horizontal
+  @include bg.horizontal-variant();
+
+  &.btn-group-vertical {
+    @include bg.vertical-variant();
   }
 }
 
-.btn-check {
-  position: absolute;
-  clip: rect(0, 0, 0, 0);
-  pointer-events: none;
-  @include utilities-mx.focus-style('+ .btn');
+// Generates breakpoint classes
+@each $key, $value in breakpoints.$grid-breakpoints {
+  .btn-group.btn-group-#{$key}-horizontal {
+    @include media.min($key) {
+      @include bg.horizontal-variant;
+    }
+  }
+
+  .btn-group.btn-group-#{$key}-vertical {
+    @include media.min($key) {
+      @include bg.vertical-variant;
+    }
+  }
 }

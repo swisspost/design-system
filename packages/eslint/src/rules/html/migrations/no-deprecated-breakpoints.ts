@@ -136,16 +136,22 @@ const classesConfig: ClassesConfig = {
 };
 
 // Breakpoint changes
+// 'rg' → 'sm' and 'sm' → 'xs' are reported but not auto-fixed: after renaming 'rg' → 'sm',
+// the result would be picked up by the 'sm' → 'xs' rule and renamed to the wrong final value.
+// Only 'xxl' → 'xl' is safe to auto-fix.
 const breakpointMap: Record<string, string> = {
   sm: 'xs',
   rg: 'sm',
   xxl: 'xl',
 };
 
+// Both 'rg' and 'sm' create a chain collision when auto-fixed.
+const manualOnlyBreakpoints = new Set(['rg', 'sm']);
+
 const messagesPhase1: Record<string, string> = {};
-export const mutationsPhase1: Record<string, [string, string]> = {};
+export const mutationsPhase1: Record<string, [string, string, boolean?]> = {};
 const messagesPhase2: Record<string, string> = {};
-export const mutationsPhase2: Record<string, [string, string]> = {};
+export const mutationsPhase2: Record<string, [string, string, boolean?]> = {};
 
 let index = 0;
 const tempPrefix = '_tmp-';
@@ -159,11 +165,16 @@ for (const type in classesConfig) {
         const tempClass = `${tempPrefix}${prefix}-${breakpointMap[breakpoint]}-${suffix}`;
         const newClass = `${prefix}-${breakpointMap[breakpoint]}-${suffix}`;
 
+        const isConflicting = manualOnlyBreakpoints.has(breakpoint);
+
         const keyPhase1 = `deprecatedBreakpointsPhase1_${index}`;
 
-        messagesPhase1[keyPhase1] =
-          `The "${oldClass}" class is deprecated. Please replace it with "${newClass}".`;
-        mutationsPhase1[keyPhase1] = [oldClass, tempClass];
+        messagesPhase1[keyPhase1] = isConflicting
+          ? `The "${oldClass}" class is deprecated. Please replace it with "${newClass}". ⚠️ This cannot be auto-fixed — rename it manually to avoid a chain collision.`
+          : `The "${oldClass}" class is deprecated. Please replace it with "${newClass}".`;
+        mutationsPhase1[keyPhase1] = isConflicting
+          ? [oldClass, newClass, true]
+          : [oldClass, tempClass];
 
         const keyPhase2 = `deprecatedBreakpointsPhase2_${index}`;
 

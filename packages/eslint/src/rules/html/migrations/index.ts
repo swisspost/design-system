@@ -36,6 +36,9 @@ import noDeprecatedAlert, { name as noDeprecatedAlertName } from './no-deprecate
 import noDeprecatedPositionHelpersRule, {
   name as noDeprecatedPositionHelpersRuleName,
 } from './no-deprecated-position-helpers';
+import noDeprecatedTagDanger, {
+  name as noDeprecatedTagDangerName,
+} from './no-deprecated-tag-danger';
 
 import {
   rulePhase1 as noDeprecatedBreakpointsRulePhase1,
@@ -48,6 +51,10 @@ import noDeprecatedCssClasses, {
   name as noDeprecatedCssClassesRuleName,
 } from './no-deprecated-css-classes';
 
+import noDeprecatedResponsiveSpacingUtilitiesRule, {
+  name as noDeprecatedResponsiveSpacingUtilitiesRuleName,
+} from './no-deprecated-responsive-spacing-utilities';
+
 export const htmlMigrationRules = {
   [noDeprecatedBreakpointsRulePhase1Name]: noDeprecatedBreakpointsRulePhase1,
   [noDeprecatedBreakpointsRulePhase2Name]: noDeprecatedBreakpointsRulePhase2,
@@ -57,7 +64,7 @@ export const htmlMigrationRules = {
   [noDeprecatedSpacingUtilities[0].name]: noDeprecatedSpacingUtilities[0].rule,
   [noDeprecatedSpacingUtilities[1].name]: noDeprecatedSpacingUtilities[1].rule,
   [noDeprecatedSizingUtilities[0].name]: noDeprecatedSizingUtilities[0].rule,
-  [noDeprecatedSizingUtilities[0].name]: noDeprecatedSizingUtilities[1].rule,
+  [noDeprecatedSizingUtilities[1].name]: noDeprecatedSizingUtilities[1].rule,
   [noDeprecatedGutterUtilities[0].name]: noDeprecatedGutterUtilities[0].rule,
   [noDeprecatedGutterUtilities[1].name]: noDeprecatedGutterUtilities[1].rule,
   [noDeprecatedGapUtilities[0].name]: noDeprecatedGapUtilities[0].rule,
@@ -74,4 +81,6 @@ export const htmlMigrationRules = {
   [noDeprecatedChipFilterName]: noDeprecatedChipFilter,
   [noDeprecatedAlertName]: noDeprecatedAlert,
   [noDeprecatedCssClassesRuleName]: noDeprecatedCssClasses,
+  [noDeprecatedTagDangerName]: noDeprecatedTagDanger,
+  [noDeprecatedResponsiveSpacingUtilitiesRuleName]: noDeprecatedResponsiveSpacingUtilitiesRule,
 };

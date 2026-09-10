@@ -1,0 +1,38 @@
+import type { AirDatepickerLocale } from 'air-datepicker';
+
+export type AirDatepickerLocales = Record<string, () => Promise<{ default: AirDatepickerLocale }>>;
+
+export const airDatepickerLocales: AirDatepickerLocales = {
+  ar: () => import('air-datepicker/locale/ar'),
+  bg: () => import('air-datepicker/locale/bg'),
+  ca: () => import('air-datepicker/locale/ca'),
+  cs: () => import('air-datepicker/locale/cs'),
+  da: () => import('air-datepicker/locale/da'),
+  de: () => import('air-datepicker/locale/de'),
+  el: () => import('air-datepicker/locale/el'),
+  en: () => import('air-datepicker/locale/en'),
+  es: () => import('air-datepicker/locale/es'),
+  eu: () => import('air-datepicker/locale/eu'),
+  fi: () => import('air-datepicker/locale/fi'),
+  fr: () => import('air-datepicker/locale/fr'),
+  hr: () => import('air-datepicker/locale/hr'),
+  hu: () => import('air-datepicker/locale/hu'),
+  id: () => import('air-datepicker/locale/id'),
+  it: () => import('air-datepicker/locale/it'),
+  ja: () => import('air-datepicker/locale/ja'),
+  ko: () => import('air-datepicker/locale/ko'),
+  nb: () => import('air-datepicker/locale/nb'),
+  nl: () => import('air-datepicker/locale/nl'),
+  pl: () => import('air-datepicker/locale/pl'),
+  pt: () => import('air-datepicker/locale/pt'),
+  ro: () => import('air-datepicker/locale/ro'),
+  ru: () => import('air-datepicker/locale/ru'),
+  si: () => import('air-datepicker/locale/si'),
+  sk: () => import('air-datepicker/locale/sk'),
+  sl: () => import('air-datepicker/locale/sl'),
+  sv: () => import('air-datepicker/locale/sv'),
+  th: () => import('air-datepicker/locale/th'),
+  tr: () => import('air-datepicker/locale/tr'),
+  uk: () => import('air-datepicker/locale/uk'),
+  zh: () => import('air-datepicker/locale/zh'),
+};

@@ -15,8 +15,8 @@ const OUTPUT_DIR = path.resolve(process.cwd(), 'src/icons-generated');
  */
 const getComponentTemplate = (iconName, base64) => `/* Auto-generated file. Do not edit directly. */
 import * as React from "react";
-import { PostIcon } from "../index.server";
 import type { StencilReactComponent } from "@stencil/react-output-target/runtime";
+import { PostIcon } from "@swisspost/design-system-components-react/post-icon";
 
 export const ${iconName}: StencilReactComponent<HTMLPostIconElement> = props => (
   <PostIcon
@@ -33,7 +33,7 @@ export const ${iconName}: StencilReactComponent<HTMLPostIconElement> = props => 
  * @returns
  */
 const getIndexFileTemplate = iconNames => `/* Auto-generated file. Do not edit directly. */
-${iconNames.map(name => `export { ${name} } from './${name}';`).join('\n')}
+${iconNames.map(name => `export { ${name} } from './${name}.js';`).join('\n')}
 `;
 
 /**
@@ -83,7 +83,7 @@ const getSvgFiles = async dir => {
           Number.isNaN(Number.parseInt(entry.name)),
       )
       .map(entry => entry.name)
-      .sort()
+      .sort((a, b) => a.localeCompare(b))
   );
 };
 

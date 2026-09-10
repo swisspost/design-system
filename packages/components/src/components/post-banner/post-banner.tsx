@@ -1,19 +1,17 @@
+import { fade } from '@/animations';
+import { OneOf } from '@/utils';
+import { version } from '@root/package.json';
 import {
   Component,
   Element,
   Event,
   EventEmitter,
-  Host,
   h,
-  Listen,
+  Host,
   Method,
   Prop,
   State,
-  Watch,
 } from '@stencil/core';
-import { version } from '@root/package.json';
-import { fade } from '@/animations';
-import { checkEmptyOrOneOf, EventFrom } from '@/utils';
 import { BANNER_TYPES, BannerType } from './banner-types';
 
 /**
@@ -38,12 +36,9 @@ export class PostBanner {
   /**
    * The type of the banner.
    */
-  @Prop({ reflect: true }) readonly type: BannerType = 'info';
-
-  @Watch('type')
-  validateType() {
-    checkEmptyOrOneOf(this, 'type', BANNER_TYPES);
-  }
+  @Prop({ reflect: true })
+  @OneOf(BANNER_TYPES)
+  readonly type: BannerType = 'info';
 
   /**
    * An event emitted when the banner element is dismissed, after the transition.
@@ -57,7 +52,6 @@ export class PostBanner {
 
   componentDidLoad() {
     this.checkContent();
-    this.validateType();
   }
 
   disconnectedCallback() {
@@ -77,12 +71,6 @@ export class PostBanner {
     this.host.remove();
   }
 
-  @Listen('click')
-  @EventFrom('post-closebutton', { allowDescendants: true })
-  onCloseButtonClick(): void {
-    void this.dismiss();
-  }
-
   private checkContent() {
     this.hasActions = this.host.querySelectorAll('[slot="actions"]').length > 0;
   }
@@ -92,15 +80,17 @@ export class PostBanner {
       <Host data-version={version} role="alert" data-color-scheme="light">
         <slot name="close-button" />
 
-        <slot name="heading" />
+        <div class="post-banner-content">
+          <slot name="heading" />
 
-        <slot />
+          <slot />
 
-        {this.hasActions && (
-          <div class="actions">
-            <slot name="actions" />
-          </div>
-        )}
+          {this.hasActions && (
+            <div class="actions">
+              <slot name="actions" />
+            </div>
+          )}
+        </div>
       </Host>
     );
   }

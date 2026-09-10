@@ -1,0 +1,46 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as SelectStories from './select.stories';
+import StylesPackageImport from '@/shared/styles-package-import';
+import StoryTags from '@/shared/story-tags';
+
+<Meta of={SelectStories} />
+
+<div className="docs-title">
+  # Select
+
+<link-design of={JSON.stringify(SelectStories)}></link-design>
+
+</div>
+
+<StoryTags meta={meta} />
+
+<p className="lead">The select is a trigger element that opens a list of options the user can choose from.</p>
+
+Our component customizes the native `<select>` with CSS that overrides its initial appearance.
+
+Custom `<select>` menus need only the class `.form-select` to apply the custom styles. Due to browser limitations, these styles only affect the `<select>` element itself and cannot be extended to the `<option>` elements.
+
+<Canvas sourceState="shown" of={SelectStories.Default} />
+<div className="hide-col-default">
+  <Controls of={SelectStories.Default} />
+</div>
+
+<StylesPackageImport components={['form-select']} required={{ validation: true }} />
+
+## Concrete Examples of Application
+
+The following examples show the different characteristics of the component. These can differ in the type of visualization, the HTML structure, as well as when, how and why they are displayed.
+
+### Floating Label
+
+Wrap a pair of `<select>` and `<label>` elements in a `.form-floating` container to enable floating labels.<br/>
+But note that the `<select>` must come first, so we can ensure the correct styles.
+In order for the label to work as a placeholder, the select needs to have an empty option.
+
+<Canvas of={SelectStories.FloatingLabel} />
+
+### Small select
+
+Use `.form-select-sm` for a compact select. Floating labels are not supported with this variant.
+
+<Canvas of={SelectStories.Small} />

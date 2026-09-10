@@ -1,14 +1,10 @@
-# Swiss Post Design-System Components-Angular-Workspace
+# Swiss Post Design System - Angular Components
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
-
-## Development server
-
-Run `npm run start` for a dev server. Navigate to `http://localhost:9210/`. The application will automatically reload if you change any of the source files.
+Angular wrapper components for the Swiss Post Design System.
 
 ## Build
 
-Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `pnpm build` to build the library. The build artifacts will be stored in the `dist/` directory.
 
 ## Further help
 

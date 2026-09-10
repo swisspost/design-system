@@ -8,7 +8,9 @@
 | Property    | Attribute    | Description                                                                                                                                                                                                                                                                                                                                 | Type                                                                                                                                                                 | Default     |
 | ----------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | `arrow`     | `arrow`      | Whether or not to display a little pointer arrow                                                                                                                                                                                                                                                                                            | `boolean`                                                                                                                                                            | `false`     |
+| `autoHide`  | `auto-hide`  | Whether to automatically hide the popover when the target moves outside the scrollport.  If the `post-header` can cover the target, the popover will also be hidden as soon as the target scrolls behind it.                                                                                                                                | `boolean`                                                                                                                                                            | `undefined` |
 | `edgeGap`   | `edge-gap`   | Gap between the edge of the page and the popovercontainer                                                                                                                                                                                                                                                                                   | `number`                                                                                                                                                             | `8`         |
+| `offset`    | `offset`     | Offset for more precise placement                                                                                                                                                                                                                                                                                                           | `number`                                                                                                                                                             | `undefined` |
 | `placement` | `placement`  | Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'top'`     |
 | `safeSpace` | `safe-space` | Enables a safespace through which the cursor can be moved without the popover being disabled                                                                                                                                                                                                                                                | `"trapezoid" \| "triangle"`                                                                                                                                          | `undefined` |
 
@@ -44,7 +46,7 @@ Programmatically display the popovercontainer
 
 | Name     | Type          | Description                                                                |
 | -------- | ------------- | -------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | A focusable element inside the trigger component that controls the popover |
+| `target` | `HTMLElement` | The element that invokes the popover and to which it is visually anchored. |
 
 #### Returns
 
@@ -58,10 +60,10 @@ Toggle popovercontainer display
 
 #### Parameters
 
-| Name     | Type          | Description                                                                               |
-| -------- | ------------- | ----------------------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | A focusable element inside the <post-popover-trigger> component that controls the popover |
-| `force`  | `boolean`     | Pass true to always show or false to always hide                                          |
+| Name     | Type          | Description                                                                |
+| -------- | ------------- | -------------------------------------------------------------------------- |
+| `target` | `HTMLElement` | The element that invokes the popover and to which it is visually anchored. |
+| `force`  | `boolean`     | Pass true to always show or false to always hide                           |
 
 #### Returns
 
@@ -79,16 +81,18 @@ Type: `Promise<boolean>`
 
 ## Shadow Parts
 
-| Part                              | Description |
-| --------------------------------- | ----------- |
-| `"post-popovercontainer-content"` |             |
+| Part                                  | Description |
+| ------------------------------------- | ----------- |
+| `"post-popovercontainer-border-mask"` |             |
+| `"post-popovercontainer-content"`     |             |
 
 
 ## Dependencies
 
 ### Used by
 
- - [post-datepicker](../post-datepicker)
+ - [post-date-picker](../post-date-picker)
+ - [post-listbox](../post-listbox)
  - [post-menu](../post-menu)
  - [post-popover](../post-popover)
  - [post-tooltip](../post-tooltip)
@@ -96,7 +100,8 @@ Type: `Promise<boolean>`
 ### Graph
 ```mermaid
 graph TD;
-  post-datepicker --> post-popovercontainer
+  post-date-picker --> post-popovercontainer
+  post-listbox --> post-popovercontainer
   post-menu --> post-popovercontainer
   post-popover --> post-popovercontainer
   post-tooltip --> post-popovercontainer

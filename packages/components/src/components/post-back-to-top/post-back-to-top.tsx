@@ -1,7 +1,7 @@
-import { Component, Element, Host, State, h, Watch, Prop } from '@stencil/core';
 import { fadeSlide } from '@/animations/fade-slide';
+import { Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { checkRequiredAndType } from '@/utils';
+import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'post-back-to-top',
@@ -15,11 +15,15 @@ export class PostBackToTop {
    * The label of the back-to-top button, intended solely for accessibility purposes.
    * This label is always hidden from view.
    **/
-  @Prop({ reflect: true }) textBackToTop!: string;
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textBackToTop!: string;
 
   @State() belowFold: boolean = false;
 
   private translateY: number;
+  private currentAnimation?: Animation;
 
   private isBelowFold(): boolean {
     return window.scrollY > window.innerHeight;
@@ -29,18 +33,26 @@ export class PostBackToTop {
     this.belowFold = this.isBelowFold();
   };
 
-  @Watch('textBackToTop')
-  validateTextBackToTop() {
-    checkRequiredAndType(this, 'textBackToTop', 'string');
-  }
-
   /*Watch for changes in belowFold to show/hide the back to top button*/
   @Watch('belowFold')
-  watchBelowFold(newValue: boolean) {
-    if (newValue) {
-      fadeSlide(this.host, 'in', { translate: this.translateY, fill: 'forwards' });
-    } else {
-      fadeSlide(this.host, 'out', { translate: this.translateY, fill: 'forwards' });
+  async watchBelowFold(newValue: boolean) {
+    this.currentAnimation?.cancel();
+
+    // host needs to be visible before we can animate, in or out
+    // hidden state gets recalculated after the animation, based on belowFold
+    this.host.hidden = false;
+
+    this.currentAnimation = fadeSlide(this.host, newValue ? 'in' : 'out', {
+      translate: this.translateY,
+      fill: 'forwards',
+    });
+
+    try {
+      await this.currentAnimation.finished;
+      // only hide once the fade-out finished and we're still not below fold
+      if (!this.belowFold) this.host.hidden = true;
+    } catch {
+      // animation got canceled, nothing to do
     }
   }
 
@@ -63,7 +75,7 @@ export class PostBackToTop {
 
   private animateButton() {
     // Get the back-to-top button top postiion
-    const positionTop = window.getComputedStyle(this.host).getPropertyValue('top');
+    const positionTop = globalThis.getComputedStyle(this.host).getPropertyValue('top');
 
     const buttonElement = this.host.shadowRoot.querySelector('button');
 
@@ -80,8 +92,8 @@ export class PostBackToTop {
     // The translateY is calculated as => -100% (btt button height) - topPosition - elevationHeight
     this.translateY =
       (-1 * 100) / 100 -
-      parseFloat(positionTop.replace('px', '')) -
-      parseFloat(elevationHeight.replace('px', ''));
+      Number.parseFloat(positionTop.replace('px', '')) -
+      Number.parseFloat(elevationHeight.replace('px', ''));
 
     if (this.belowFold) {
       fadeSlide(this.host, 'in', { translate: this.translateY, fill: 'forwards' });
@@ -95,14 +107,13 @@ export class PostBackToTop {
   // Set the initial state
   componentWillLoad() {
     this.belowFold = this.isBelowFold();
+    this.host.hidden = !this.belowFold;
   }
 
   componentDidLoad() {
-    window.addEventListener('scroll', this.handleScroll, false);
+    window.addEventListener('scroll', this.handleScroll, { passive: true });
 
     this.animateButton();
-
-    this.validateTextBackToTop();
   }
 
   disconnectedCallback() {
@@ -112,12 +123,7 @@ export class PostBackToTop {
   render() {
     return (
       <Host data-version={version}>
-        <button
-          class="back-to-top"
-          aria-hidden={this.belowFold ? 'false' : 'true'}
-          tabindex={this.belowFold ? '0' : '-1'}
-          onClick={this.scrollToTop}
-        >
+        <button class="back-to-top" onClick={this.scrollToTop}>
           <post-icon aria-hidden="true" name="arrowup"></post-icon>
           <span class="visually-hidden">{this.textBackToTop}</span>
         </button>

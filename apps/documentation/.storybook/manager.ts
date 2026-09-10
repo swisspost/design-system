@@ -1,0 +1,158 @@
+import { addons } from 'storybook/manager-api';
+import { defineCustomElementPostIcon } from '@swisspost/design-system-components/components';
+import themes from './styles/themes';
+import cssIcon from '../public/assets/images/sidebar-icons/css.svg';
+import webComponentsIcon from '../public/assets/images/sidebar-icons/web_component.svg';
+import React from 'react';
+import { API_HashEntry, API_PreparedIndexEntry, StatusByTypeId } from 'storybook/internal/types';
+
+const TECH_ICONS: Record<string, string> = {
+  Styles: cssIcon,
+  WebComponents: webComponentsIcon,
+  InternetHeader: webComponentsIcon,
+};
+
+defineCustomElementPostIcon();
+
+// get param from URL
+const urlParams = new URLSearchParams(window.location.search);
+const devModeParam = urlParams.get('devModeEnabled');
+
+// first check URL param and store in local storage
+if (devModeParam !== null) {
+  localStorage.setItem('devModeEnabled', devModeParam);
+}
+
+// get mode from local storage
+const storedDevMode = localStorage.getItem('devModeEnabled');
+
+let initialEnv = process.env.NODE_ENV || 'production';
+
+if (storedDevMode !== null) {
+  // Check for 'development'/'production' value for backwards compatibility
+  initialEnv =
+    storedDevMode === 'true' || storedDevMode === 'development' ? 'development' : 'production';
+}
+
+document.documentElement.setAttribute('data-env', initialEnv);
+
+// Filter functions
+const excludeDevOnlyFilter = (
+  item: API_PreparedIndexEntry & { statuses: StatusByTypeId },
+): boolean => !(item.tags ?? []).includes('devOnly');
+const includeAllFilter = () => true;
+
+// Get the initial filter state from data-env
+const initialDevMode = document.documentElement.getAttribute('data-env') === 'development';
+const currentFilterFunction = initialDevMode ? includeAllFilter : excludeDevOnlyFilter;
+
+const renderLabel = (item: API_HashEntry) => {
+  if (item.type !== 'story' && item.type !== 'docs') {
+    return item.name;
+  }
+
+  const tags = item.tags || [];
+
+  // Show "New" icon if component is new
+  const newIcon = tags.some(tag => tag === 'status:New')
+    ? React.createElement(
+        'span',
+        { title: 'New component in v10' },
+        React.createElement('span', { 'aria-hidden': true }, '🆕'),
+        React.createElement('span', { className: 'visually-hidden' }, 'New component in v10'),
+      )
+    : null;
+
+  // Logic to get the package
+  const packageTags = tags.filter(tag => tag.startsWith('package:'));
+
+  // Production Mode: just show name
+  if (document.documentElement.getAttribute('data-env') !== 'development') {
+    return React.createElement('span', null, item.name, newIcon);
+  }
+
+  // Development Mode: show optional package icons
+  if (packageTags.length > 0) {
+    const icons = packageTags
+      .map(tag => tag.substring(8))
+      .filter(packageType => TECH_ICONS[packageType])
+      .map(packageType =>
+        React.createElement('img', {
+          key: packageType,
+          src: TECH_ICONS[packageType],
+          alt: packageType,
+        }),
+      );
+
+    if (icons.length > 0) {
+      return React.createElement(
+        'span',
+        { className: 'label-with-icon' },
+        React.createElement('span', null, item.name),
+        ...icons,
+        newIcon,
+      );
+    }
+  }
+  // Fallback where there is no package icon
+  return React.createElement('span', null, item.name, newIcon);
+};
+
+// Function to update filters in the Storybook sidebar configuration
+const applyFilter = () => {
+  addons.setConfig({
+    sidebar: {
+      filters: {
+        patterns: currentFilterFunction,
+      },
+      renderLabel: renderLabel,
+    },
+  });
+  window.location.reload();
+};
+
+// Initial Storybook UI config
+addons.setConfig({
+  panelPosition: 'right',
+  theme: themes.light,
+  sidebar: {
+    collapsedRoots: [
+      'getting-started',
+      'packages',
+      'foundations',
+      'layout',
+      'raw-components',
+      'components',
+      'utilities',
+      'templates',
+      'guidelines',
+      'accessibility-practices',
+    ],
+    filters: {
+      patterns: currentFilterFunction,
+    },
+    renderLabel: renderLabel,
+  },
+  toolbar: {
+    remount: { hidden: true }, // controls the visibility of the "Remount component" button
+    zoom: { hidden: true }, // controls the visibility of the "Zoom in", "Zoom out", and "Reset zoom" buttons
+    addons: { hidden: true }, // controls the visibility of the "Show addons" button
+    fullscreen: { hidden: true }, // controls the visibility of the "Go full screen" button
+    eject: { hidden: true }, // controls the visibility of the "Open canvas in new tab" button
+    copy: { hidden: true }, // controls the visibility of the "Copy canvas link" button
+  },
+});
+
+// Watch for data-env changes
+new MutationObserver(mutations => {
+  mutations.forEach(mutation => {
+    if (mutation.attributeName === 'data-env') {
+      const isDevMode = document.documentElement.getAttribute('data-env') === 'development';
+      localStorage.setItem('devModeEnabled', JSON.stringify(isDevMode));
+      applyFilter();
+    }
+  });
+}).observe(document.documentElement, {
+  attributes: true,
+  attributeFilter: ['data-env'],
+});

@@ -1,5 +1,6 @@
 :host {
   display: block;
   position: relative;
-  overflow: hidden;
+  overflow: var(--post-collapsible-initial-overflow, hidden);
+  height: var(--post-collapsible-initial-height, auto);
 }

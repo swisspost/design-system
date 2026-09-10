@@ -50,9 +50,9 @@ describe('Avatar', () => {
       cy.get('@initials').should('not.have.text');
     });
 
-    it('should show initials if gravatar does not exist, otherwise show img', () => {
+    it('should show initials if gravatar does not exist, otherwise show img', async () => {
       const email = 'no-gravatar-account@post.ch';
-      const url = getGravatarUrl(email);
+      const url = await getGravatarUrl(email);
 
       cy.request({
         url,
@@ -114,7 +114,9 @@ describe('Avatar', () => {
   describe('Accessibility', () => {
     it('Has no detectable a11y violations on load for all variants', () => {
       cy.getSnapshots('avatar');
-      cy.checkA11y('#root-inner');
+      cy.checkA11y('#root-inner', undefined, (violations) => {
+        expect(violations).to.have.length(0);
+      });
     });
   });
 });

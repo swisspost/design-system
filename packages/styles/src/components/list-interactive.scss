@@ -9,7 +9,6 @@ tokens.$default-map: components.$post-list;
 
 // Base class
 .list-interactive {
-  background-color: tokens.get('list-bg');
   list-style: none;
   padding: 0;
 
@@ -75,6 +74,7 @@ tokens.$default-map: components.$post-list;
 }
 
 .list-interactive-switch {
+  width: unset; // to override the width: fit-content applied from form-switch
   justify-content: space-between;
   margin-bottom: 0;
   flex-wrap: nowrap;

@@ -8,6 +8,7 @@ name: Unit tests
 on:
   pull_request:
     paths:
+      - 'apps/**'
       - 'packages/**'
 
 permissions:

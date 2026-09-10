@@ -1,5 +1,5 @@
-import rule, { name, messageId } from '../../src/rules/stencil-no-unreflected-required-props';
 import { RuleTester } from '@typescript-eslint/rule-tester';
+import rule, { messageId, name } from '../../src/rules/stencil-no-unreflected-required-props';
 
 const ruleTester = new RuleTester();
 
@@ -8,6 +8,14 @@ ruleTester.run(name, rule, {
     `
     class MyComponent {
       @Prop({ reflect: true }) readonly myProp!: string;
+    }
+    `,
+    `
+    class MyComponent {
+      @Required()
+      @OneOf(['a', 'b'])
+      @Prop({ reflect: true })
+        readonly myProp!: string;
     }
     `,
   ],

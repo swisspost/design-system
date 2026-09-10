@@ -5,3 +5,13 @@ updates:
     directory: '/'
     schedule:
       interval: 'daily'
+    groups:
+      angular:
+        patterns:
+          - '@angular/*'
+          - '@angular-devkit/*'
+          - 'angular-eslint'
+          - 'ng-packagr'
+          - 'rxjs'
+          - 'tslib'
+          - 'zone.js'

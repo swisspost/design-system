@@ -1,0 +1,57 @@
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import StoryTags from '@/shared/story-tags';
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import LandmarkCorrect from '../../../../shared/samples/landmark-placement-example.sample.html?raw';
+import meta, * as FooterStories from './footer.stories';
+import './footer.styles.scss';
+
+<Meta of={FooterStories} />
+
+<div className="docs-title">
+  # Footer
+
+<link-design of={JSON.stringify(FooterStories)}></link-design>
+
+</div>
+
+<StoryTags meta={meta} />
+
+<div className="lead">
+  The footer can be found at the bottom of almost every web page. It provides the user with
+  important information and links (contextual and across Post), but also contains critical elements
+  from a legal perspective.
+</div>
+
+Internally the `<post-footer>` component has a fix structure, but it offers a number of slots, which can be used to add your very own content, so it ultimatly fulfills everyones requirements.
+
+<Canvas of={FooterStories.Default} sourceState="shown" />
+<Controls of={FooterStories.Default} />
+
+<ComponentsPackageInstall component="<post-footer>" />
+
+## Accessibility
+
+The footer provides a **contentinfo landmark** that contains metadata about the parent document, such as copyright information, legal links, and contact details. Screen reader users can jump directly to the contentinfo using landmark navigation shortcuts.
+Each page must have **exactly one contentinfo landmark** at the top level, placed after the `<main>` element:
+
+<Source code={LandmarkCorrect} language="html" />
+
+For more information, see the [WAI-ARIA Contentinfo Landmark documentation](https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/contentinfo.html).
+
+## Examples
+
+### Full Footer
+
+<Canvas of={FooterStories.Default} />
+
+### Mid Footer
+
+<Canvas of={FooterStories.Mid} />
+
+### Minimal + Pre-Footer
+
+<Canvas of={FooterStories.MinimalPreFooter} />
+
+### Minimal Footer
+
+<Canvas of={FooterStories.Minimal} />

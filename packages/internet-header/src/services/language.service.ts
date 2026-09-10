@@ -1,20 +1,14 @@
-import { translations } from '@/assets/i18n/translations';
 import { state } from '@/data/store';
 
-export const getUserLang = (
-  supportedLanguages: string[],
-  implementorPreferredLanguage?: string,
-) => {
-  // If there are no supported languages, well...
-  if (supportedLanguages.length === 0) {
-    return 'de';
-  }
+const DEFAULT_LANGUAGE = 'de';
 
-  // If there is only one language in the config, use this
-  if (supportedLanguages.length === 1) {
-    return supportedLanguages[0];
-  }
-
+/**
+ * Determine the current user language
+ *
+ * @param implementorPreferredLanguage [optional] Preferred language
+ * @returns The resolved language code
+ */
+export const getUserLang = (implementorPreferredLanguage?: string): string => {
   const url = new URL(window.location.href);
 
   /**
@@ -29,64 +23,46 @@ export const getUserLang = (
     url.searchParams.get('lang'),
 
     // Check url pathname
-    url.pathname.split('/').find(segment => supportedLanguages.includes(segment)),
+    getPathLanguage(url.pathname),
 
     // Check document language
     document.documentElement.lang,
 
     // Check browser preferred language
-    getPreferredLanguageFromBrowser(supportedLanguages),
+    getPreferredLanguageFromBrowser(),
 
     // Check the state
     state.currentLanguage,
   ].filter((lang): lang is string => lang != null);
 
-  // Check the set of languages to see if it matches
-  // any of the supported languages. Return the first
-  // supported language if there is none set
-  const lang =
-    languagesSet.find(language => supportedLanguages.includes(language)) || supportedLanguages[0];
-
-  if (lang == null || lang.length !== 2) {
-    throw new Error(
-      `Current language could not be determined from settings or the language provided (${lang}) is not supported by the Header API.`,
-    );
-  }
-
-  return lang;
+  return extractLanguage(languagesSet[0] ?? DEFAULT_LANGUAGE);
 };
 
-const getPreferredLanguageFromBrowser = (supportedLanguages: string[]): string | null => {
+// Returns the first path segment if it's a valid language tag, e.g. "de" in "/de/products"
+const getPathLanguage = (pathname: string): string | undefined => {
+  const segment = pathname.split('/').filter(Boolean)[0];
+  if (!segment) return undefined;
+
+  try {
+    Intl.getCanonicalLocales(segment);
+    return segment;
+  } catch {
+    return undefined;
+  }
+};
+
+const getPreferredLanguageFromBrowser = (): string | null => {
   // IE & Chrome
   if (navigator.language != null) {
-    const lang = extractLanguage(navigator.language);
-    if (supportedLanguages.indexOf(lang) !== -1) {
-      return lang;
-    }
+    return extractLanguage(navigator.language);
   }
 
-  // Chrome supports a list of preferred languages: if the preferred is not supported, we go down the list.
-  if (navigator.languages != null) {
-    for (const l of navigator.languages) {
-      const lang = extractLanguage(l);
-      if (supportedLanguages.indexOf(lang) !== -1) {
-        return lang;
-      }
-    }
+  // Chrome supports a list of preferred languages: use the first one.
+  if (navigator.languages != null && navigator.languages.length > 0) {
+    return extractLanguage(navigator.languages[0]);
   }
 
   return null;
 };
 
 const extractLanguage = (language: string): string => language.substring(0, 2).toLowerCase();
-
-/**
- * Simple translate function for general header UI strings
- *
- * @param key Translation key
- * @param lang Force a language
- * @param translationObject Optionally provide translations
- * @returns Translated string or the key
- */
-export const translate = (key: string, lang?: string, translationObject = translations) =>
-  translationObject[key]?.[lang ?? state.currentLanguage ?? ''] ?? key;

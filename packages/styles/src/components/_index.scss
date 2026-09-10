@@ -7,7 +7,7 @@
 @use 'button';
 @use 'button-group';
 @use 'card';
-@use 'card-control';
+@use 'selection-card';
 @use 'chip';
 @use 'error-container';
 @use 'form-footer';
@@ -16,13 +16,13 @@
 @use 'form-textarea';
 @use 'dialog';
 @use 'divider';
-@use 'form-check';
 @use 'radio-button';
 @use 'checkbox';
 @use 'switch';
 @use 'form-hint';
 @use 'form-input';
 @use 'header';
+@use 'inline-notification';
 @use 'footer';
 @use 'icon-button';
 @use 'lead';
@@ -30,7 +30,7 @@
 @use 'list-check';
 @use 'palette';
 @use 'popover';
-@use 'product-card';
+@use 'progressbar';
 @use 'segmented-button';
 @use 'skiplinks';
 @use 'spinner';

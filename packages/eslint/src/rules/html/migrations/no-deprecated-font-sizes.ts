@@ -1,5 +1,6 @@
 import { createRule } from '../../../utils/create-rule';
 import { HtmlNode } from '../../../parsers/html/html-node';
+import { removeEmptyAttrs } from '../../../utils/empty-attrs-remover';
 
 export const name = 'no-deprecated-font-sizes';
 
@@ -77,7 +78,9 @@ export default createRule({
                         const fixedNode = $node
                           .removeClass(classMap.old)
                           .addClass(isIcon ? classMap.size : classMap.font);
-                        return fixer.replaceTextRange(node.range, fixedNode.toString());
+
+                        const fixedHtml = removeEmptyAttrs(fixedNode.toString(), context, node);
+                        return fixer.replaceTextRange(node.range, fixedHtml);
                       },
                     }
                   : {}),

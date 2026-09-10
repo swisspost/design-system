@@ -1,0 +1,11 @@
+#storybook-docs {
+  .docs-story {
+    #root-inner {
+      padding-top: 1rem;
+    }
+
+    + div {
+      height: 550px;
+    }
+  }
+}

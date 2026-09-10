@@ -20,29 +20,29 @@ export async function openMegadropdown(page: Page, dropdownId: string): Promise<
 
 export async function closeMegadropdown(page: Page, dropdownId: string): Promise<void> {
   const megadropdown = page.locator(`post-megadropdown#${dropdownId}`);
-  
+
   const closeButton = megadropdown.locator('post-closebutton').first();
   const closeButtonVisible = await closeButton.isVisible().catch(() => false);
-  
+
   if (closeButtonVisible) {
     await closeButton.click();
   } else {
     const backButton = megadropdown.locator('button.back-button').first();
     await backButton.click();
   }
-  
+
   await page.waitForTimeout(WAIT_TIMES.megadropdown);
 }
 
 export async function openLanguageMenu(page: Page): Promise<void> {
   const languageMenu = page.locator('post-language-menu').first();
-  
+
   const variant = await languageMenu.getAttribute('variant');
-  
+
   if (variant === 'list') {
     return;
   }
-  
+
   const trigger = page.locator('post-menu-trigger button.post-language-menu-trigger').first();
   await trigger.click();
   await page.waitForTimeout(WAIT_TIMES.animation);
@@ -50,8 +50,8 @@ export async function openLanguageMenu(page: Page): Promise<void> {
 
 export async function openUserMenu(page: Page): Promise<void> {
   const trigger = page.locator('post-menu-trigger[for="user-menu"] button').first();
-  const exists = await trigger.count() > 0;
-  
+  const exists = (await trigger.count()) > 0;
+
   if (exists) {
     await trigger.click();
     await page.waitForTimeout(WAIT_TIMES.animation);

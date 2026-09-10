@@ -1,6 +1,11 @@
-import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { componentOnReady, nanoid, Required, Type, Url } from '@/utils';
 import { version } from '@root/package.json';
-import { checkRequiredAndUrl, debounce, checkRequiredAndType } from '@/utils';
+import { Component, Element, Host, Prop, State, h } from '@stencil/core';
+import { throttle } from 'throttle-debounce';
+import type { HTMLStencilElement } from '@stencil/core/internal';
+
+const MAX_VISIBLE_ITEMS = 6;
+const MEASUREMENT_DEBOUNCE_MS = 50;
 
 @Component({
   tag: 'post-breadcrumbs',
@@ -8,228 +13,233 @@ import { checkRequiredAndUrl, debounce, checkRequiredAndType } from '@/utils';
   shadow: true,
 })
 export class PostBreadcrumbs {
+  private debounceUpdateCollapsedItems = throttle(
+    MEASUREMENT_DEBOUNCE_MS,
+    this.updateCollapsedItems.bind(this),
+  );
+
+  private resizeObserver = new ResizeObserver(this.debounceUpdateCollapsedItems);
+  private mutationObserver = new MutationObserver(this.updateHiddenNav.bind(this));
+
   @Element() host: HTMLPostBreadcrumbsElement;
 
-  /**
-   * The URL for the home breadcrumb item.
-   */
-  @Prop({ reflect: true }) homeUrl!: string;
+  @State() id: string;
+  @State() loaded = false;
+
+  /** The number of breadcrumb items, counted from the start, that are moved into the overflow menu. */
+  @State() collapsed = 0;
+
+  /** The visible breadcrumb navigation. */
+  private nav: HTMLElement | null = null;
+
+  /** An off-screen copy of the breadcrumb navigation used for measurement. */
+  private hiddenNav: HTMLElement | null = null;
 
   /**
-   * The text label for the home breadcrumb item.
+   * The URL for the root (home) breadcrumb item.
    */
-  @Prop({ reflect: true }) textHome!: string;
+  @Prop({ reflect: true })
+  @Required()
+  @Url()
+  homeUrl!: string;
 
   /**
-   * The accessible label for the breadcrumb component.
+   * An accessible label for the root (home) breadcrumb item.
    */
-  @Prop({ reflect: true }) textBreadcrumbs!: string;
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textHome!: string;
 
   /**
-   * The accessible label for the breadcrumb menu when breadcrumb items are concatenated.
+   * An accessible label for the breadcrumb navigation.
    */
-  @Prop({ reflect: true }) textMoreItems!: string;
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textBreadcrumbs!: string;
 
-  @State() breadcrumbItems: { url: string; text: string }[] = [];
-  @State() isConcatenated: boolean;
-  @State() lastWindowWidth: number;
-
-  private breadcrumbsNavRef?: HTMLElement;
-  private lastItem: { url: string; text: string };
-
-  @Watch('homeUrl')
-  validateHomeUrl() {
-    checkRequiredAndUrl(this, 'homeUrl');
-  }
-
-  @Watch('textHome')
-  validateTextHome() {
-    checkRequiredAndType(this, 'textHome', 'string');
-  }
-
-  @Watch('textBreadcrumbs')
-  validateTextBreadcrumbs() {
-    checkRequiredAndType(this, 'textBreadcrumbs', 'string');
-  }
-
-  @Watch('textMoreItems')
-  validateTextMoreItems() {
-    checkRequiredAndType(this, 'textMoreItems', 'string');
-  }
+  /**
+   * An accessible label for the overflow menu that contains collapsed breadcrumb items.
+   */
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textMoreItems!: string;
 
   componentWillLoad() {
-    this.updateBreadcrumbItems();
+    this.id = this.host.id || `b${nanoid(6)}`;
   }
 
-  componentDidLoad() {
-    this.validateHomeUrl();
-    this.validateTextHome();
-    this.validateTextBreadcrumbs();
-    this.validateTextMoreItems();
-    window.addEventListener('resize', this.handleResize);
-    this.waitForBreadcrumbsRef();
+  async componentDidLoad() {
+    this.resizeObserver?.observe(document.body);
+    this.mutationObserver?.observe(this.host, {
+      childList: true,
+      characterData: true,
+      subtree: true,
+    });
+
+    await this.updateHiddenNav();
+    await this.updateCollapsedItems();
+    this.loaded = true;
   }
 
   disconnectedCallback() {
-    window.removeEventListener('resize', this.handleResize);
+    this.resizeObserver?.disconnect();
+    this.mutationObserver?.disconnect();
+    this.debounceUpdateCollapsedItems.cancel();
   }
 
-  // Waits for breadcrumbs navigation reference to be available
-  private waitForBreadcrumbsRef = debounce(() => {
-    if (this.breadcrumbsNavRef?.clientWidth > 0) {
-      this.checkConcatenation();
-    } else {
-      this.waitForBreadcrumbsRef();
-    }
-  }, 50);
+  /**
+   * Measures the space available in the breadcrumb navigation and moves the items that do not fit
+   * into the overflow menu.
+   */
+  private async updateCollapsedItems() {
+    if (!this.nav) return;
+    this.collapsed = await this.calculateCollapsedItems();
+  }
 
-  // Updates breadcrumb items and sets the last item
-  private updateBreadcrumbItems() {
-    this.breadcrumbItems = Array.from(this.host.querySelectorAll('post-breadcrumb-item')).map(
-      item => ({
-        text: item.textContent || '',
-        url: item.getAttribute('url') || '',
-      }),
+  /**
+   * Determines how many items have to be collapsed, either because they do not fit the breadcrumb
+   * navigation or because they exceed the maximum number of visible items.
+   */
+  private async calculateCollapsedItems() {
+    const items = this.host.querySelectorAll('post-breadcrumb-item');
+    const overflowing = await this.calculateOverflowingItems();
+
+    // Never show more than `MAX_VISIBLE_ITEMS`, even if the nav is wide enough to fit them all.
+    return Math.max(overflowing, items.length - MAX_VISIBLE_ITEMS);
+  }
+
+  /**
+   * Determines how many items overflow the width of the breadcrumb navigation.
+   */
+  private async calculateOverflowingItems() {
+    // Fallback to zero if the hidden nav is not available for measurement.
+    if (!this.hiddenNav) return 0;
+
+    const gap = Number.parseFloat(getComputedStyle(this.hiddenNav.firstElementChild).gap);
+    const menu = this.hiddenNav.querySelector<HTMLElement>('.menu').clientWidth;
+
+    // The last item can never be collapsed, so it is ignored when measuring the width of the items.
+    const items = Array.from(this.hiddenNav.querySelectorAll('post-breadcrumb-item')).slice(0, -1);
+
+    // Start from the assumption that all items fit and that no menu is shown.
+    // Therefore, subtract the width of the overflow menu.
+    let width = this.hiddenNav.scrollWidth - menu + gap;
+    let overflowing = 0;
+
+    // Discard items from the start until the remaining ones fit the available width.
+    while (overflowing < items.length && width > this.hiddenNav.clientWidth) {
+      // The overflow menu needs to be displayed as soon as the first item is moved into it, so its
+      // width needs to be taken into account when measuring the remaining items.
+      if (overflowing === 0) width += menu;
+
+      width -= items[overflowing++].clientWidth + gap;
+    }
+
+    return overflowing;
+  }
+
+  /**
+   * Moves `collapsed` items into the overflow menu and marks the last item as selected.
+   */
+  private updateItems(items: NodeListOf<Element>, collapsed: number) {
+    items.forEach((item, index) => {
+      item.setAttribute('variant', index < collapsed ? 'menuitem' : 'listitem');
+      item.setAttribute('selected', String(index === items.length - 1));
+      item.setAttribute('standalone', String(index === items.length - 1 && index === collapsed));
+    });
+  }
+
+  /**
+   * Rebuilds the off-screen copy of the breadcrumb navigation.
+   */
+  private async updateHiddenNav() {
+    this.hiddenNav?.remove();
+    this.hiddenNav = await this.renderHiddenNav();
+  }
+
+  /**
+   * Renders an off-screen copy of the breadcrumb navigation that is used for measurements.
+   */
+  private async renderHiddenNav() {
+    const shadowRoot = this.host.shadowRoot;
+    if (!shadowRoot || !this.nav) return null;
+
+    const clone = this.nav.cloneNode(true) as HTMLElement;
+    const slots = clone.querySelectorAll('slot');
+
+    // Deep clone the breadcrumb navigation and flatten its slots into the clone.
+    this.nav.querySelectorAll('slot').forEach((source, index) => {
+      const target = slots[index];
+
+      // Insert the assigned elements where the slot used to be, then drop the now empty slot
+      source.assignedElements().forEach(element => {
+        target.insertAdjacentElement('beforebegin', element.cloneNode(true) as Element);
+      });
+
+      target.remove();
+    });
+
+    clone.classList.remove('loading');
+    clone.classList.add('invisible');
+
+    // Show the overflow menu so that we can include the space it takes up in the measurement.
+    clone.querySelector('.menu').classList.remove('empty');
+    shadowRoot.append(clone);
+
+    // Wait for all items to be fully hydrated before measuring.
+    const items = clone.querySelectorAll<HTMLStencilElement>('post-breadcrumb-item');
+    await Promise.all(Array.from(items).map(item => componentOnReady(item)));
+
+    // Move the items out of the overflow menu so that the uncollapsed layout can be measured.
+    this.updateItems(items, 0);
+
+    return clone;
+  }
+
+  private renderMenu() {
+    const menuId = `${this.id}-menu`;
+
+    return (
+      <div class={`breadcrumb-item menu ${this.collapsed === 0 ? 'empty' : ''}`} role="listitem">
+        <post-menu-trigger for={menuId}>
+          <button>
+            <span class="visually-hidden">{this.textMoreItems}</span>
+            <span aria-hidden="true">...</span>
+          </button>
+        </post-menu-trigger>
+        <post-menu id={menuId} label={this.textMoreItems} placement="bottom-start">
+          <slot name="menu" />
+        </post-menu>
+      </div>
     );
-    this.lastItem = this.breadcrumbItems[this.breadcrumbItems.length - 1];
-  }
-
-  // Handles resizing to check concatenation
-  private handleResize = () => {
-    if (window.innerWidth === this.lastWindowWidth) return;
-    this.lastWindowWidth = window.innerWidth;
-    this.checkConcatenation();
-  };
-
-  // Determines parent width for concatenation logic
-  private getParentWidth(): number {
-    let parent = this.host.parentNode;
-    while (parent && !(parent instanceof HTMLElement)) {
-      parent = parent.parentNode;
-    }
-    return parent instanceof HTMLElement ? parent.clientWidth : window.innerWidth;
-  }
-
-  private checkConcatenation() {
-    if (!this.breadcrumbsNavRef) return;
-
-    const visibleWidth = this.getParentWidth();
-
-    // Measure all hidden breadcrumb items
-    const hiddenItems = Array.from(
-      this.host.shadowRoot?.querySelectorAll('.hidden-breadcrumb-item') || [],
-    );
-
-    const totalWidth = hiddenItems.reduce((accum, element) => {
-      const rect = (element as HTMLElement).getBoundingClientRect();
-      return accum + rect.width;
-    }, 0);
-
-    this.isConcatenated = totalWidth > visibleWidth;
-  }
-
-  // Handles breadcrumb item click to open the menu
-  private handleBreadcrumbItemClick() {
-    if (this.host.shadowRoot) {
-      const menuTrigger = this.host.shadowRoot
-        ?.querySelector('.menu-trigger-wrapper')
-        ?.querySelector('button');
-      if (menuTrigger) {
-        menuTrigger.click();
-      }
-    }
   }
 
   render() {
-    const visibleItems = this.breadcrumbItems.slice(0, -1);
+    if (this.loaded) {
+      const items = this.host.querySelectorAll('post-breadcrumb-item');
+      this.updateItems(items, this.collapsed);
+    }
 
     return (
       <Host data-version={version}>
         <nav
           aria-label={this.textBreadcrumbs}
-          class="breadcrumbs-nav"
-          ref={el => (this.breadcrumbsNavRef = el)}
+          ref={el => (this.nav = el)}
+          class={this.loaded ? '' : 'loading'}
         >
-          <ol class="no-list breadcrumbs-list">
-            <li>
-              <a href={this.homeUrl} class="breadcrumb-link">
+          <div role="list">
+            <div class="breadcrumb-item home" role="listitem">
+              <a href={this.homeUrl}>
                 <span class="visually-hidden">{this.textHome}</span>
-                <post-icon name="home" class="home-icon" />
+                <post-icon aria-hidden="true" name="home" />
               </a>
-            </li>
-
-            {/* Conditionally render concatenated menu or individual breadcrumb items */}
-            {this.isConcatenated ? (
-              <li class="menu-trigger-wrapper">
-                <post-icon name="chevronright" class="breadcrumb-item-icon" />
-                <div class="actual-menu">
-                  <post-menu-trigger
-                    for="breadcrumb-menu"
-                    tabIndex={0}
-                    onKeyDown={e => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        this.handleBreadcrumbItemClick();
-                      }
-                    }}
-                  >
-                    <button class="btn" tabIndex={-1}>
-                      ...
-                    </button>
-                  </post-menu-trigger>
-                  <post-menu id="breadcrumb-menu" label={this.textMoreItems}>
-                    {visibleItems.map(item => (
-                      <post-menu-item
-                        key={item.url || item.text}
-                        class="breadcrumb-item"
-                        onKeyDown={e => {
-                          if (e.key === 'Enter' || e.key === ' ') {
-                            const linkElement = (e.currentTarget as HTMLElement).querySelector('a');
-                            linkElement?.click();
-                            e.preventDefault();
-                          }
-                        }}
-                      >
-                        {item.url ? <a href={item.url}>{item.text}</a> : <span>{item.text}</span>}
-                      </post-menu-item>
-                    ))}
-                  </post-menu>
-                </div>
-              </li>
-            ) : (
-              visibleItems.map(item => (
-                <li>
-                  <post-breadcrumb-item url={item.url} key={item.url || item.text}>
-                    {item.text}
-                  </post-breadcrumb-item>
-                </li>
-              ))
-            )}
-
-            {this.lastItem && (
-              <li aria-current="page">
-                <post-breadcrumb-item url={this.lastItem.url} tabindex={-1}>
-                  {this.lastItem.text}
-                </post-breadcrumb-item>
-              </li>
-            )}
-          </ol>
-
-          {/* Hidden items for width calculation */}
-          <div class="hidden-items">
-            <a href={this.homeUrl} class="hidden-breadcrumb-item">
-              <span class="visually-hidden">{this.textHome}</span>
-              <post-icon name="home" class="home-icon" />
-            </a>
-            {this.breadcrumbItems.map(item => (
-              <post-breadcrumb-item
-                url={item.url}
-                key={`hidden-${item.url || item.text}`}
-                class="hidden-breadcrumb-item"
-              >
-                {item.text}
-              </post-breadcrumb-item>
-            ))}
+            </div>
+            {this.renderMenu()}
+            <slot />
+            <slot name="selected" />
           </div>
         </nav>
       </Host>

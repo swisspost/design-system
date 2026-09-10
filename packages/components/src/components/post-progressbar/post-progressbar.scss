@@ -1,0 +1,39 @@
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/variables/animation';
+
+tokens.$default-map: components.$post-progressbar;
+
+:host {
+  display: block;
+  position: relative;
+  height: tokens.get('progressbar-indicator-size-height');
+  border-radius: tokens.get('progressbar-indicator-border-radius');
+  box-shadow: 0px 0px 0px tokens.get('progressbar-indicator-border-width')
+    tokens.get('progressbar-track-color-stroke') inset;
+  overflow: hidden;
+}
+
+.progress-value {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: var(--post-progressbar-value, 0);
+  border-radius: tokens.get('progressbar-indicator-border-radius');
+  background-color: var(
+    --post-progressbar-status-color,
+    tokens.get('progressbar-status-color-neutral')
+  );
+  transition: width animation.$transition-base-timing;
+}
+
+@include utilities.high-contrast-mode {
+  :host {
+    border: 1px solid Highlight;
+  }
+
+  .progress-value {
+    background-color: Highlight;
+  }
+}

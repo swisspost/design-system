@@ -1,6 +1,6 @@
-import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { Pattern, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { checkRequiredAndPattern, checkRequiredAndType } from '@/utils';
+import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'post-stepper',
@@ -25,66 +25,90 @@ export class PostStepper {
   /**
    * "Current step" label for accessibility
    */
-  @Prop({ reflect: true }) textCurrentStep!: string;
-
-  @Watch('textCurrentStep')
-  validateTextCurrentStep() {
-    checkRequiredAndType(this, 'textCurrentStep', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textCurrentStep!: string;
 
   /**
    * "Completed step" label for accessibility
    */
-  @Prop({ reflect: true }) textCompletedStep!: string;
-
-  @Watch('textCompletedStep')
-  validateTextCompletedStep() {
-    checkRequiredAndType(this, 'textCompletedStep', 'string');
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Type('string')
+  textCompletedStep!: string;
 
   /**
-   * Label for the "Step N:" indicator for mobile view.
-   * Use `#number` as a placeholder — it will be replaced with the current step number at runtime.
+   * Label for the "Step {number}:" indicator for mobile view.
+   * Use `{number}` as a placeholder — it will be replaced with the current step number at runtime.
    */
-  @Prop({ reflect: true }) textStepNumber!: string;
-
-  @Watch('textStepNumber')
-  validateTextStepNumber() {
-    checkRequiredAndPattern(this, 'textStepNumber', /#number\b/);
-    this.updateActiveStepNumber();
-  }
+  @Prop({ reflect: true })
+  @Required()
+  @Pattern(/\{number\}/)
+  textStepNumber!: string;
 
   /**
-   * Defines the currently active step
+   * Defines the current step, which is the next step the user has to complete.
    */
-  @Prop() currentIndex: number = -1;
+  @Prop()
+  @Required()
+  @Type('number')
+  currentIndex: number = -1;
 
   @Watch('currentIndex')
   validateCurrentIndex() {
-    checkRequiredAndType(this, 'currentIndex', 'number');
     if (this.stepItems) {
       this.updateSteps();
+      this.checkIndexes();
+    }
+  }
+
+  /**
+   * Defines the selected (active) step, which is the step the user is currently on.
+   * If not defined, the selected step is the current step.
+   */
+  @Prop()
+  @Type('number')
+  selectedIndex?: number;
+
+  @Watch('selectedIndex')
+  validateSelectedIndex() {
+    if (this.selectedIndex === undefined) {
+      this.selectedIndex = this.currentIndex;
+    } else {
+      this.checkIndexes();
+    }
+
+    this.updateSteps();
+  }
+
+  @Watch('textStepNumber')
+  updateActiveStepNumber() {
+    if (this.textStepNumber) {
+      const labelTemplate = this.textStepNumber;
+      this.mobileActiveStepLabel = labelTemplate.replaceAll(
+        '{number}',
+        `${this.selectedIndex + 1}`,
+      );
+      if (this.stepItems) {
+        this.updateMobileActiveStepVisibility();
+      }
     }
   }
 
   componentDidLoad() {
-    this.validateTextCompletedStep();
-    this.validateTextCurrentStep();
-    this.validateTextStepNumber();
-
     // Wait for slotchange
     setTimeout(() => {
       this.validateCurrentIndex();
+      this.validateSelectedIndex();
     });
   }
 
-  private updateActiveStepNumber() {
-    if (this.textStepNumber) {
-      const labelTemplate = this.textStepNumber;
-      this.mobileActiveStepLabel = labelTemplate.replace(/#number/g, `${this.currentIndex + 1}`);
-      if (this.stepItems) {
-        this.updateMobileActiveStepVisibility();
-      }
+  private checkIndexes() {
+    if (this.selectedIndex > this.currentIndex) {
+      console.error(
+        'The selected-index cannot be higher than the current-index, as only the current and completed steps can be selected.',
+      );
     }
   }
 
@@ -99,13 +123,17 @@ export class PostStepper {
     this.updateActiveStepNumber();
 
     this.stepItems.forEach((el, i) => {
-      if (this.currentIndex === i) {
+      // Set CSS custom property for step number (iOS compatible fix)
+      el.style.setProperty('--step-number', `"${i + 1}"`);
+
+      if (this.selectedIndex === i) {
         this.mobileActiveStepName = el.innerHTML;
       }
 
       // Update "post-stepper-item" classes to show correct status
       el.classList.toggle('stepper-item-completed', this.currentIndex > i);
       el.classList.toggle('stepper-item-current', this.currentIndex === i);
+      el.classList.toggle('stepper-item-selected', this.selectedIndex === i);
       el.classList.toggle('stepper-item-inactive', this.currentIndex < i);
       el.classList.toggle('stepper-item-after-current', i === this.currentIndex + 1);
 
@@ -116,16 +144,18 @@ export class PostStepper {
         let labelText = '';
 
         if (this.currentIndex > i) {
-          labelText = `${this.textCompletedStep}:`;
-        } else if (this.currentIndex === i) {
-          labelText = `${this.textCurrentStep}:`;
+          labelText = `${this.textCompletedStep}: `;
+        }
+
+        if (this.selectedIndex === i) {
+          labelText = `${labelText}${this.textCurrentStep}: `;
         }
 
         hiddenLabel.textContent = labelText;
       }
 
       // Update accessibility aria attributes
-      if (this.currentIndex === i) {
+      if (this.selectedIndex === i) {
         el.setAttribute('aria-current', 'step');
         el.setAttribute('aria-live', 'polite');
       } else {
@@ -138,7 +168,7 @@ export class PostStepper {
   }
 
   private updateMobileActiveStepVisibility() {
-    if (this.currentIndex >= this.stepItems.length || this.currentIndex < 0) {
+    if (this.selectedIndex >= this.stepItems.length || this.selectedIndex < 0) {
       this.mobileActiveStepLabel = '';
       this.mobileActiveStepName = '';
     }

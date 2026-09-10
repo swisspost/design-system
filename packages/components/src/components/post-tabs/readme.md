@@ -5,18 +5,20 @@
 
 ## Properties
 
-| Property    | Attribute    | Description                                                                                                                                                                | Type      | Default     |
-| ----------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
-| `activeTab` | `active-tab` | The name of the tab in the panel mode that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab.       | `string`  | `undefined` |
-| `fullWidth` | `full-width` | When set to true, this property allows the tabs container to span the Changing this value after initialization has no effect. full width of the screen, from edge to edge. | `boolean` | `false`     |
-| `label`     | `label`      | The accessible label for the tabs component in navigation mode.                                                                                                            | `string`  | `undefined` |
+| Property           | Attribute             | Description                                                                                                                                                                    | Type                 | Default                |
+| ------------------ | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------- | ---------------------- |
+| `activeTab`        | `active-tab`          | The name of the tab in the Content Tabs variant that is initially active. Changing this value after initialization has no effect. If not specified, defaults to the first tab. | `string`             | `undefined`            |
+| `label`            | `label`               | An accessible label for the Pages Tabs variant                                                                                                                                 | `string`             | `undefined`            |
+| `size`             | `size`                | The size of the tabs, corresponding to the different designs in Figma. Default is 'large'.                                                                                     | `"large" \| "small"` | `'large'`              |
+| `textNextTabItems` | `text-next-tab-items` | An accessible label for the "next tab items" button.                                                                                                                           | `string`             | `'Next tab items'`     |
+| `textPrevTabItems` | `text-prev-tab-items` | An accessible label for the "previous tab items" button.                                                                                                                       | `string`             | `'Previous tab items'` |
 
 
 ## Events
 
-| Event        | Description                                                                                                                                                                                  | Type                  |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
-| `postChange` | An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. Only emitted in panel mode. | `CustomEvent<string>` |
+| Event        | Description                                                                                                                                                                                            | Type                  |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------- |
+| `postChange` | An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab. Only emitted in Content Tabs variant. | `CustomEvent<string>` |
 
 
 ## Methods
@@ -49,11 +51,24 @@ Type: `Promise<void>`
 
 ## Shadow Parts
 
-| Part                  | Description                                                                                                 |
-| --------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `"post-tabs"`         | The container element that holds the set of tabs.                                                           |
-| `"post-tabs-content"` | The container element that displays the content of the currently active tab. Only available in panels mode. |
+| Part                  | Description                                                                                                     |
+| --------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `"post-tabs"`         | The container element that holds the set of tabs.                                                               |
+| `"post-tabs-content"` | The container element that displays the content of the currently active tab. Only available in Content variant. |
 
+
+## Dependencies
+
+### Depends on
+
+- [post-icon](../post-icon)
+
+### Graph
+```mermaid
+graph TD;
+  post-tabs --> post-icon
+  style post-tabs fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

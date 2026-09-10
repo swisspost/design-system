@@ -16,7 +16,9 @@ export interface IconLinkConfig extends SimpleLinkConfig {
   icon: string; // Icon name.
 }
 
-export interface SimpleLinkConfig extends AccessibleTextConfig {
+export type SimpleLinkConfig = AccessibleTextConfig & RouteLink;
+
+export interface RouteLink {
   url: string; // Target URL of the link.
   active?: boolean; // Whether the link represents the current page.
 }

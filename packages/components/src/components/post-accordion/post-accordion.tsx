@@ -1,7 +1,7 @@
-import { Component, Element, h, Host, Listen, Method, Prop, Watch } from '@stencil/core';
-import { version } from '@root/package.json';
 import { HEADING_LEVELS, HeadingLevel } from '@/types';
-import { checkRequiredAndOneOf, EventFrom } from '@/utils';
+import { EventFrom, OneOf, Required } from '@/utils';
+import { version } from '@root/package.json';
+import { Component, Element, h, Host, Listen, Method, Prop, Watch } from '@stencil/core';
 
 /**
  * @slot default - Slot for placing post-accordion-item components.
@@ -21,11 +21,13 @@ export class PostAccordion {
   /**
    * Defines the hierarchical level of the `post-accordion-item` headers within the headings structure.
    */
-  @Prop({ reflect: true }) readonly headingLevel!: HeadingLevel;
+  @Prop({ reflect: true })
+  @Required()
+  @OneOf(HEADING_LEVELS)
+  readonly headingLevel!: HeadingLevel;
 
   @Watch('headingLevel')
-  validateHeadingLevel() {
-    checkRequiredAndOneOf(this, 'headingLevel', HEADING_LEVELS);
+  syncHeadingLevel() {
     this.accordionItems.forEach(item => {
       item.setAttribute('heading-level', String(this.headingLevel));
     });
@@ -34,14 +36,14 @@ export class PostAccordion {
   /**
    * If `true`, multiple `post-accordion-item` can be open at the same time.
    */
-  @Prop() readonly multiple: boolean = false;
+  @Prop({ reflect: true }) readonly multiple: boolean = false;
 
   componentWillLoad() {
     this.registerAccordionItems();
   }
 
   componentDidLoad() {
-    this.validateHeadingLevel();
+    this.syncHeadingLevel();
   }
 
   @Listen('postToggle')
@@ -88,7 +90,7 @@ export class PostAccordion {
   async expandAll() {
     if (this.multiple) {
       await Promise.all(this.accordionItems.map(item => item.toggle(true)));
-    } else if (!this.expandedItems.size) {
+    } else if (this.expandedItems.size === 0) {
       await this.accordionItems[0].toggle(true);
     }
   }

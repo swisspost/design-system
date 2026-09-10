@@ -68,14 +68,14 @@ describe('repeatOnLongPress', () => {
     jest.advanceTimersByTime(300 + 100);
     expect(callback).toHaveBeenCalledTimes(2);
 
-    window.dispatchEvent(new Event('pointerup'));
+    globalThis.dispatchEvent(new Event('pointerup'));
 
     jest.advanceTimersByTime(1000);
     expect(callback).toHaveBeenCalledTimes(2);
   });
 
   it('registers pointer event listeners on window', () => {
-    const addEventListenerSpy = jest.spyOn(window, 'addEventListener');
+    const addEventListenerSpy = jest.spyOn(globalThis, 'addEventListener');
 
     const callback = jest.fn();
     repeatOnLongPress(callback);
@@ -86,7 +86,7 @@ describe('repeatOnLongPress', () => {
   });
 
   it('removes pointer listeners and stops repeating on pointerup', () => {
-    const removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
+    const removeEventListenerSpy = jest.spyOn(globalThis, 'removeEventListener');
 
     const callback = jest.fn();
 
@@ -97,7 +97,7 @@ describe('repeatOnLongPress', () => {
     jest.advanceTimersByTime(200 + 100);
     expect(callback).toHaveBeenCalledTimes(2);
 
-    window.dispatchEvent(new Event('pointerup'));
+    globalThis.dispatchEvent(new Event('pointerup'));
 
     jest.advanceTimersByTime(1000);
     expect(callback).toHaveBeenCalledTimes(2);
@@ -117,7 +117,7 @@ describe('repeatOnLongPress', () => {
     jest.advanceTimersByTime(50 + 50);
     expect(callback).toHaveBeenCalledTimes(2);
 
-    window.dispatchEvent(new Event('pointercancel'));
+    globalThis.dispatchEvent(new Event('pointercancel'));
 
     jest.advanceTimersByTime(500);
     expect(callback).toHaveBeenCalledTimes(2);
@@ -130,7 +130,7 @@ describe('repeatOnLongPress', () => {
     jest.advanceTimersByTime(50 + 50);
     expect(callback2).toHaveBeenCalledTimes(2);
 
-    window.dispatchEvent(new Event('pointerleave'));
+    globalThis.dispatchEvent(new Event('pointerleave'));
     jest.advanceTimersByTime(500);
     expect(callback2).toHaveBeenCalledTimes(2);
   });

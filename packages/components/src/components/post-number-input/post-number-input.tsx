@@ -1,11 +1,11 @@
-import { Component, Element, Host, h, State } from '@stencil/core';
-import { debounce } from 'throttle-debounce';
-import { version } from '@root/package.json';
 import { getSlottedElement, repeatOnLongPress } from '@/utils';
+import { version } from '@root/package.json';
+import { Component, Element, h, Host, State } from '@stencil/core';
+import { debounce } from 'throttle-debounce';
 
 function parseNumber(input: HTMLInputElement, key: 'value' | 'min' | 'max'): number | undefined {
-  const value = parseFloat(input[key]);
-  return isNaN(value) ? undefined : value;
+  const value = Number.parseFloat(input[key]);
+  return Number.isNaN(value) ? undefined : value;
 }
 
 function compare(
@@ -24,8 +24,10 @@ function compare(
 export class PostNumberInput {
   @Element() host: HTMLPostNumberInputElement;
 
+  @State() isDisabled = false;
   @State() isIncrementDisabled = false;
   @State() isDecrementDisabled = false;
+  @State() small = false;
   @State() input: HTMLInputElement | null;
 
   private mutationObserver: MutationObserver;
@@ -63,6 +65,9 @@ export class PostNumberInput {
 
     if (!this.input) return;
 
+    this.isDisabled = this.input.disabled;
+    this.small = this.input.classList.contains('form-control-sm');
+
     // step buttons may be disabled when the input loads
     this.updateStepButtonState();
 
@@ -99,6 +104,8 @@ export class PostNumberInput {
         stepFn.call(this.input);
       }
 
+      this.input.dispatchEvent(new Event('input', { bubbles: true }));
+
       this.updateStepButtonState();
     });
   }
@@ -118,7 +125,13 @@ export class PostNumberInput {
     const areButtonsShown = !!this.input;
 
     return (
-      <Host data-version={version}>
+      <Host
+        data-version={version}
+        class={{
+          'number-input-sm': this.small,
+          'disabled': this.isDisabled,
+        }}
+      >
         {areButtonsShown && (
           <div
             aria-hidden="true"

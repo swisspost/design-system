@@ -1,12 +1,15 @@
 {
-  "extends": "@tsconfig/node22/tsconfig.json",
+  "extends": "@tsconfig/node24/tsconfig.json",
   "ts-node": {
     "transpileOnly": true,
     "files": true
   },
   "compilerOptions": {
-    "resolveJsonModule": true
+    "rootDir": ".",
+    "resolveJsonModule": true,
+    "types": ["node", "jest"],
+    "isolatedModules": true
   },
-  "include": ["src"],
+  "include": ["src", "tests"],
   "exclude": ["node_modules", "public"]
 }

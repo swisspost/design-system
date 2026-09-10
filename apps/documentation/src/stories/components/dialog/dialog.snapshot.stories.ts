@@ -1,0 +1,76 @@
+import meta, { Default } from './dialog.stories';
+import { html } from 'lit';
+import { schemes } from '@/shared/snapshots/schemes';
+import { bombArgs } from '@/utils';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
+
+import { PALETTE_TEST_PALETTE_TYPES } from '@/shared/snapshots/palettes';
+
+const { id, ...metaWithoutId } = meta;
+
+export default {
+  ...metaWithoutId,
+  title: 'Snapshots',
+};
+
+type Story = StoryObj;
+
+export const Dialog: Story = {
+  render: (_args: Args, context: StoryContext) => {
+    return schemes(
+      () => html`
+        <style>
+          dialog {
+            position: static;
+            margin: 0;
+            transition: none !important;
+          }
+        </style>
+        <div class="d-flex flex-wrap align-items-start gap-16">
+          ${bombArgs({
+            palette: PALETTE_TEST_PALETTE_TYPES,
+            size: context.argTypes.size.options,
+            icon: ['none', '1034'],
+            closeButton: [true, false],
+            content: [
+              'Content',
+              'Contentus momentus vero siteos et accusam iretea et justo. Contentus momentus vero siteos et accusam iretea et justo.',
+            ],
+            open: [true],
+          }).map((args: Args) => Default.render?.({ ...context.args, ...args }, context))}
+        </div>
+      `,
+    );
+  },
+};
+
+export const DialogBottomSheet: Story = {
+  render: (_args: Args, context: StoryContext) => {
+    return schemes(
+      () => html`
+        <style>
+          dialog {
+            position: static;
+            margin: 0;
+            transition: none !important;
+          }
+        </style>
+        <div class="d-flex flex-wrap align-items-start gap-16">
+          ${Default.render?.(
+            {
+              ...context.args,
+              variant: 'bottom-sheet',
+              animation: 'slide-in',
+              open: true,
+              width: '',
+              content:
+                'Contentus momentus vero siteos et accusam iretea et justo. Contentus momentus vero siteos et accusam iretea et justo.',
+            },
+            context,
+          )}
+          <div class="d-flex flex-wrap align-items-start gap-16"></div>
+        </div>
+      `,
+    );
+  },
+};

@@ -1,11 +1,6 @@
 @use 'sass:math';
 @use './../color';
 
-@use './../../functions/tokens';
-@use './../../tokens/utilities';
-
-tokens.$default-map: utilities.$post-spacing;
-
 // Spinners
 
 $spinner-color-primary: color.$yellow !default;
