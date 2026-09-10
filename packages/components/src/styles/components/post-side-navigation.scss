@@ -175,6 +175,21 @@ post-side-navigation {
       inline-size: var(--post-side-nav-icon-size);
     }
   }
+
+  // Hide border-bottom of trigger when collapsed
+  post-collapsible-trigger:has(> post-collapsible[tabindex='-1']:not([data-animating])) {
+    > button.post-side-navigation-item,
+    > .post-side-navigation-item:has(> button) {
+      border-block-end: 0;
+    }
+  }
+
+  // During opening/closing animation and when opened, keep border on both button and collapsible.
+  post-collapsible-trigger > post-collapsible[tabindex='-1'],
+  post-collapsible-trigger > post-collapsible[data-animating] {
+    border-block-end: tokens.get('side-nav-nav-element-border-width') solid
+      tokens.get('side-nav-nav-element-color-border');
+  }
 }
 
 // Navigation item row (link, button, span, or collapsible wrapper)
@@ -354,23 +369,6 @@ post-side-navigation {
     transform: rotate(180deg);
     margin-block-start: 0;
     margin-block-end: var(--post-side-nav-icon-p-block-start);
-  }
-}
-
-post-side-navigation {
-  // Hide border-bottom of trigger when collapsed
-  post-collapsible-trigger:has(> post-collapsible[tabindex='-1']:not([data-animating])) {
-    > button.post-side-navigation-item,
-    > .post-side-navigation-item:has(> button) {
-      border-block-end: 0;
-    }
-  }
-
-  // During opening/closing animation and when opened, keep border on both button and collapsible.
-  post-collapsible-trigger > post-collapsible[tabindex='-1'],
-  post-collapsible-trigger > post-collapsible[data-animating] {
-    border-block-end: tokens.get('side-nav-nav-element-border-width') solid
-      tokens.get('side-nav-nav-element-color-border');
   }
 }
 
