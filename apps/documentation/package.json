@@ -38,8 +38,8 @@
     "@swisspost/design-system-theme-ag-grid": "workspace:10.5.0",
     "@swisspost/design-system-tokens": "workspace:10.5.0",
     "@swisspost/internet-header": "workspace:10.5.0",
-    "ag-charts-community": "13.2.1",
-    "ag-charts-react": "13.2.1"
+    "ag-charts-community": "14.1.0",
+    "ag-charts-react": "14.1.0"
   },
   "devDependencies": {
     "@eslint/js": "9.18.0",
