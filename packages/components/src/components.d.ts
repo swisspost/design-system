@@ -142,7 +142,7 @@ export namespace Components {
     }
     interface PostBreadcrumbs {
         /**
-          * Whether `text-home` is displayed visibly instead of the home icon, enabling segment specific breadcrumbs (like "Private customers" or "About us"). Has no effect when custom content is slotted into the `home` slot.
+          * Whether `text-home` is displayed visibly instead of the home icon, enabling segment specific breadcrumbs (like "Private customers" or "About us").
           * @default false
          */
         "homeText": boolean;
@@ -1452,7 +1452,7 @@ declare namespace LocalJSX {
     }
     interface PostBreadcrumbs {
         /**
-          * Whether `text-home` is displayed visibly instead of the home icon, enabling segment specific breadcrumbs (like "Private customers" or "About us"). Has no effect when custom content is slotted into the `home` slot.
+          * Whether `text-home` is displayed visibly instead of the home icon, enabling segment specific breadcrumbs (like "Private customers" or "About us").
           * @default false
          */
         "homeText"?: boolean;
