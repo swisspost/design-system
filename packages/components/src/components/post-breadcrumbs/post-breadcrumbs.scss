@@ -41,15 +41,26 @@ nav {
 }
 
 .home {
-  padding-block: tokens.get('breadcrumb-padding-block-icon-home');
+  // The home item is never collapsed into the overflow menu, so its text must always stay
+  // fully visible: it wraps instead of being clipped when it does not fit on one line.
+  flex: none;
 
   &::before {
     content: unset;
   }
 
-  post-icon {
-    width: tokens.get('breadcrumb-icon-home-size');
-    height: tokens.get('breadcrumb-icon-home-size');
+  &.icon {
+    padding-block: tokens.get('breadcrumb-padding-block-icon-home');
+
+    post-icon {
+      width: tokens.get('breadcrumb-icon-home-size');
+      height: tokens.get('breadcrumb-icon-home-size');
+    }
+  }
+
+  &:not(.icon) a {
+    white-space: normal;
+    @include utilities.word-break;
   }
 }
 

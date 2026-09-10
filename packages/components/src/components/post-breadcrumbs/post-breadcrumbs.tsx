@@ -50,12 +50,23 @@ export class PostBreadcrumbs {
   homeUrl?: string;
 
   /**
-   * An accessible label for the root (home) breadcrumb item.
+   * The label of the root (home) breadcrumb item. Displayed visibly when `home-text` is `true`,
+   * otherwise used as an accessible label alongside the home icon.
    */
   @Prop({ reflect: true })
   @Required()
   @Type('string')
   textHome!: string;
+
+  /**
+   * Whether `text-home` is displayed visibly instead of the home icon, enabling segment specific
+   * breadcrumbs (like "Private customers" or "About us"). Has no effect when custom content is
+   * slotted into the `home` slot.
+   */
+  @Prop({ reflect: true })
+  @Required()
+  @Type('boolean')
+  homeText = false;
 
   /**
    * An accessible label for the breadcrumb navigation.
@@ -251,11 +262,11 @@ export class PostBreadcrumbs {
           class={this.loaded ? '' : 'loading'}
         >
           <div role="list">
-            <div class="breadcrumb-item home" role="listitem">
+            <div class={`breadcrumb-item home ${this.homeText ? '' : 'icon'}`} role="listitem">
               <slot name="home" onSlotchange={() => this.checkSlottedHomeAnchor()}>
                 <a href={this.homeUrl}>
-                  <span class="visually-hidden">{this.textHome}</span>
-                  <post-icon aria-hidden="true" name="home" />
+                  <span class={this.homeText ? undefined : 'visually-hidden'}>{this.textHome}</span>
+                  {!this.homeText && <post-icon aria-hidden="true" name="home" />}
                 </a>
               </slot>
             </div>

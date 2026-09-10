@@ -36,13 +36,28 @@ The `<post-breadcrumbs>` is a container for `<post-breadcrumb-item>` components,
 
 ## Examples
 
-### Concatenated Breadcrumbs
+<post-tabs size="large">
+  <post-tab-item name="concatenated">Concatenated</post-tab-item>
+  <post-tab-item name="home-text">Segment Specific Breadcrumbs</post-tab-item>
+  <post-tab-item name="client-side-routing">Client-Side Routing</post-tab-item>
+
+<post-tab-panel for="concatenated" class="pt-24">
 
 When space is constrained, the `<post-breadcrumbs>` concatenates middle items into a dropdown menu.
 
 <Canvas of={BreadcrumbsStories.Concatenated} sourceState="shown" />
 
-### Routing with Client-Side Frameworks
+</post-tab-panel>
+
+<post-tab-panel for="home-text" class="pt-24">
+
+By default, the root (home) breadcrumb item displays a home icon, with `text-home` used only as its accessible label. Set `home-text` to `true` to display `text-home` visibly instead of the icon, enabling segment specific breadcrumbs that link to a segment's own home page (like "Private customers" or "About us") rather than the generic site root.
+
+<Canvas of={BreadcrumbsStories.CustomHomeText} sourceState="shown" />
+
+</post-tab-panel>
+
+<post-tab-panel for="client-side-routing" class="pt-24">
 
 To enable client-side routing (e.g. Next.js, Angular Router), slot your own anchor instead of using the `url`/`home-url` properties: use the default slot for `<post-breadcrumb-item>`, or the `home` slot for the root item of `<post-breadcrumbs>`. Both components detect the slotted `<a>` and stop rendering their own, leaving your link's click handling untouched.
 
@@ -56,3 +71,6 @@ To enable client-side routing (e.g. Next.js, Angular Router), slot your own anch
 </post-banner>
 
 <Canvas of={BreadcrumbsStories.ClientSideRouting} sourceState="shown" />
+
+</post-tab-panel>
+</post-tabs>

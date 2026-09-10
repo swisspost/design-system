@@ -5,12 +5,13 @@
 
 ## Properties
 
-| Property                       | Attribute          | Description                                                                         | Type     | Default     |
-| ------------------------------ | ------------------ | ----------------------------------------------------------------------------------- | -------- | ----------- |
-| `homeUrl`                      | `home-url`         | The URL for the root (home) breadcrumb item.                                        | `string` | `undefined` |
-| `textBreadcrumbs` _(required)_ | `text-breadcrumbs` | An accessible label for the breadcrumb navigation.                                  | `string` | `undefined` |
-| `textHome` _(required)_        | `text-home`        | An accessible label for the root (home) breadcrumb item.                            | `string` | `undefined` |
-| `textMoreItems` _(required)_   | `text-more-items`  | An accessible label for the overflow menu that contains collapsed breadcrumb items. | `string` | `undefined` |
+| Property                       | Attribute          | Description                                                                                                                                                                                                           | Type      | Default     |
+| ------------------------------ | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
+| `homeText`                     | `home-text`        | Whether `text-home` is displayed visibly instead of the home icon, enabling segment specific breadcrumbs (like "Private customers" or "About us"). Has no effect when custom content is slotted into the `home` slot. | `boolean` | `false`     |
+| `homeUrl`                      | `home-url`         | The URL for the root (home) breadcrumb item.                                                                                                                                                                          | `string`  | `undefined` |
+| `textBreadcrumbs` _(required)_ | `text-breadcrumbs` | An accessible label for the breadcrumb navigation.                                                                                                                                                                    | `string`  | `undefined` |
+| `textHome` _(required)_        | `text-home`        | The label of the root (home) breadcrumb item. Displayed visibly when `home-text` is `true`, otherwise used as an accessible label alongside the home icon.                                                            | `string`  | `undefined` |
+| `textMoreItems` _(required)_   | `text-more-items`  | An accessible label for the overflow menu that contains collapsed breadcrumb items.                                                                                                                                   | `string`  | `undefined` |
 
 
 ## Slots

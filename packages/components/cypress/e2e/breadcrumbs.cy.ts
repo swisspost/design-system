@@ -84,5 +84,49 @@ describe('breadcrumbs', () => {
           });
       });
     });
+
+    describe('segment specific breadcrumbs', () => {
+      beforeEach(() => {
+        cy.getComponent('breadcrumbs', BREADCRUMBS_ID, 'custom-home-text');
+        cy.get('post-breadcrumbs[data-hydrated]', { timeout: 30000 }).as('breadcrumbs');
+      });
+
+      it('should hide the home icon and display text-home visibly when home-text is true', () => {
+        cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home post-icon').should('not.exist');
+        cy.get('@breadcrumbs')
+          .shadow()
+          .find('nav:not(.invisible) .home span')
+          .should('not.have.class', 'visually-hidden')
+          .and('have.text', 'This is a very long segment name for the first breadcrumb segment');
+      });
+
+      it('should restore the default home icon when home-text is set back to false', () => {
+        cy.get('@breadcrumbs').invoke('removeAttr', 'home-text');
+        cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home post-icon').should('exist');
+        cy.get('@breadcrumbs')
+          .shadow()
+          .find('nav:not(.invisible) .home span')
+          .should('have.class', 'visually-hidden');
+      });
+
+      it('should never truncate the first (home) segment, wrapping it instead', () => {
+        cy.get('@breadcrumbs')
+          .shadow()
+          .find('nav:not(.invisible) .home a')
+          .then($home => {
+            expect($home.get(0).scrollWidth).to.be.at.most($home.get(0).clientWidth + 1);
+          });
+      });
+
+      it('should never truncate the last (selected) segment, wrapping it instead', () => {
+        cy.get('@breadcrumbs')
+          .find('post-breadcrumb-item[selected]:not([selected="false"])')
+          .shadow()
+          .find('a, span')
+          .then($selected => {
+            expect($selected.get(0).scrollWidth).to.be.at.most($selected.get(0).clientWidth + 1);
+          });
+      });
+    });
   });
 });

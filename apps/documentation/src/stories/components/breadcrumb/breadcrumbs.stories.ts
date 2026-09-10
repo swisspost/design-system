@@ -23,6 +23,7 @@ const meta: MetaComponent = {
     textHome: 'Home',
     textBreadcrumbs: 'Breadcrumbs',
     textMoreItems: 'More items',
+    homeText: false,
     itemCount: 3,
   },
 };
@@ -34,6 +35,7 @@ function render(args: Args) {
       text-home=${args.textHome}
       text-breadcrumbs=${args.textBreadcrumbs}
       text-more-items=${args.textMoreItems}
+      ?home-text=${args.homeText}
     >
       ${Array.from({ length: args.itemCount }).map(
         (_, i) =>
@@ -55,6 +57,36 @@ export const Concatenated: Story = {
   args: {
     itemCount: 15,
   },
+};
+
+export const CustomHomeText: Story = {
+  args: {
+    homeText: true,
+    textHome: 'This is a very long segment name for the first breadcrumb segment',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Set `home-text` to `true` to replace the home icon with the visible text set on `text-home`, enabling segment specific breadcrumbs (e.g. to link to a segment\'s own home page instead of the generic site root). The first (home) and last (selected) segments are never truncated, no matter how long their text is: they wrap onto multiple lines instead of being cut off. Only the segments in between are collapsed into the overflow menu when there is not enough space.',
+      },
+    },
+  },
+  render: args => html`
+    <post-breadcrumbs
+      home-url=${args.homeUrl}
+      text-home=${args.textHome}
+      text-breadcrumbs=${args.textBreadcrumbs}
+      text-more-items=${args.textMoreItems}
+      ?home-text=${args.homeText}
+    >
+      <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
+      <post-breadcrumb-item url="/section2"
+        >This is a very long breadcrumb item that represents the currently selected
+        page</post-breadcrumb-item
+      >
+    </post-breadcrumbs>
+  `,
 };
 
 export const ClientSideRouting: Story = {

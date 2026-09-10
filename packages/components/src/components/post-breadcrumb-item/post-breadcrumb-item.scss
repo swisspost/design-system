@@ -18,12 +18,15 @@ tokens.$default-map: components.$post-breadcrumb;
   @include mixins.breadcrumb-item;
 
   &:host([selected]:not([selected='false'])) {
+    // The selected item is always the last, visible breadcrumb segment and is never collapsed
+    // into the overflow menu, so its text must always stay fully visible: it wraps instead of
+    // being clipped when it does not fit on one line.
+    flex-shrink: 0;
+
     :is(a, span) {
       @include mixins.breadcrumb-link-selected-colors;
     }
-  }
 
-  &:host([standalone]:not([standalone='false'])) {
     :is(a, span),
     ::slotted(a) {
       white-space: normal;

@@ -142,6 +142,11 @@ export namespace Components {
     }
     interface PostBreadcrumbs {
         /**
+          * Whether `text-home` is displayed visibly instead of the home icon, enabling segment specific breadcrumbs (like "Private customers" or "About us"). Has no effect when custom content is slotted into the `home` slot.
+          * @default false
+         */
+        "homeText": boolean;
+        /**
           * The URL for the root (home) breadcrumb item.
          */
         "homeUrl"?: string;
@@ -150,7 +155,7 @@ export namespace Components {
          */
         "textBreadcrumbs": string;
         /**
-          * An accessible label for the root (home) breadcrumb item.
+          * The label of the root (home) breadcrumb item. Displayed visibly when `home-text` is `true`, otherwise used as an accessible label alongside the home icon.
          */
         "textHome": string;
         /**
@@ -1447,6 +1452,11 @@ declare namespace LocalJSX {
     }
     interface PostBreadcrumbs {
         /**
+          * Whether `text-home` is displayed visibly instead of the home icon, enabling segment specific breadcrumbs (like "Private customers" or "About us"). Has no effect when custom content is slotted into the `home` slot.
+          * @default false
+         */
+        "homeText"?: boolean;
+        /**
           * The URL for the root (home) breadcrumb item.
          */
         "homeUrl"?: string;
@@ -1455,7 +1465,7 @@ declare namespace LocalJSX {
          */
         "textBreadcrumbs": string;
         /**
-          * An accessible label for the root (home) breadcrumb item.
+          * The label of the root (home) breadcrumb item. Displayed visibly when `home-text` is `true`, otherwise used as an accessible label alongside the home icon.
          */
         "textHome": string;
         /**
@@ -2092,6 +2102,7 @@ declare namespace LocalJSX {
     interface PostBreadcrumbsAttributes {
         "homeUrl": string;
         "textHome": string;
+        "homeText": boolean;
         "textBreadcrumbs": string;
         "textMoreItems": string;
     }
