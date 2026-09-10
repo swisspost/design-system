@@ -254,6 +254,9 @@ tokens.$default-map: components.$post-select;
     }
 
     &[multiple] {
+      padding-block-start: calc(
+        tokens.get('select-border-width') + tokens.get('select-padding-block-start')
+      );
       padding-block-end: 0;
       height: auto;
 
