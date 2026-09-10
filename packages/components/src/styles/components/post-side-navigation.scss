@@ -357,19 +357,21 @@ post-side-navigation {
   }
 }
 
-// Hide border-bottom of trigger when collapsed
-post-collapsible-trigger:has(> post-collapsible[tabindex='-1']:not([data-animating])) {
-  > button.post-side-navigation-item,
-  > .post-side-navigation-item:has(> button) {
-    border-block-end: 0;
+post-side-navigation {
+  // Hide border-bottom of trigger when collapsed
+  post-collapsible-trigger:has(> post-collapsible[tabindex='-1']:not([data-animating])) {
+    > button.post-side-navigation-item,
+    > .post-side-navigation-item:has(> button) {
+      border-block-end: 0;
+    }
   }
-}
 
-// During opening/closing animation and when opened, keep border on both button and collapsible.
-post-collapsible-trigger > post-collapsible[tabindex='-1'],
-post-collapsible-trigger > post-collapsible[data-animating] {
-  border-block-end: tokens.get('side-nav-nav-element-border-width') solid
-    tokens.get('side-nav-nav-element-color-border');
+  // During opening/closing animation and when opened, keep border on both button and collapsible.
+  post-collapsible-trigger > post-collapsible[tabindex='-1'],
+  post-collapsible-trigger > post-collapsible[data-animating] {
+    border-block-end: tokens.get('side-nav-nav-element-border-width') solid
+      tokens.get('side-nav-nav-element-color-border');
+  }
 }
 
 nav > ul > li {
