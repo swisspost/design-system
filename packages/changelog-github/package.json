@@ -16,6 +16,7 @@
   "publishConfig": {
     "access": "public"
   },
+  "type": "module",
   "main": "./dist/index.js",
   "scripts": {
     "build": "tsc",
@@ -25,7 +26,7 @@
   },
   "dependencies": {
     "@changesets/get-github-info": "0.8.0",
-    "@changesets/types": "6.1.0",
+    "@changesets/types": "7.0.0",
     "dotenv": "17.2.3"
   },
   "devDependencies": {
