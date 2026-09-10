@@ -15,9 +15,9 @@ tokens.$default-map: components.$post-breadcrumb;
 
 nav {
   max-width: 100%;
-  overflow: hidden;
 
   &.invisible {
+    overflow: hidden;
     visibility: hidden;
     position: absolute;
     inset: 0;
