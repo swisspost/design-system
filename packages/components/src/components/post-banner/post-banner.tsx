@@ -20,7 +20,7 @@ import { BANNER_TYPES, BannerType } from './banner-types';
  * @slot close-button - Slot for placing a `post-closebutton` component to make the banner dismissible.
  * @slot default - Slot for placing the main content/message of the banner.
  */
-//DUMMY COMMENT
+
 @Component({
   tag: 'post-banner',
   styleUrl: 'post-banner.scss',
