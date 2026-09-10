@@ -11,6 +11,10 @@ tokens.$default-map: components.$post-breadcrumb;
 :host {
   display: block;
   position: relative;
+  // Floor for how narrow the last (selected) item is allowed to wrap down to before giving up and
+  // collapsing the home item into its own menu instead. Placeholder value — needs confirming with
+  // design before this ships.
+  --post-breadcrumb-selected-min-width: 96px;
 }
 
 nav {
@@ -59,17 +63,37 @@ nav {
   }
 
   &:not(.icon) a {
+    // `breadcrumb-item` includes button-base on the link, which defaults to single-line
+    // ellipsis truncation (`overflow: hidden` + `text-overflow: ellipsis` alongside
+    // `white-space: nowrap`). `white-space: normal` alone isn't enough to cancel that out —
+    // `overflow`/`text-overflow` need resetting too, or the last visible line still clips.
     white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
     @include utilities.word-break;
+  }
+
+  // Off-screen measurement only: forces single-line so `scrollWidth` reflects the item's true
+  // natural width, regardless of whether it is currently wrapping live.
+  &.measuring:not(.icon) a {
+    white-space: nowrap;
   }
 }
 
-.menu {
+.menu,
+.home-menu {
   margin-inline-end: calc(-1 * tokens.get('breadcrumb-gap-inline-outer'));
+}
 
-  &.empty {
-    display: none;
-  }
+.menu.empty {
+  display: none;
+}
+
+// The home item's own overflow menu is a last resort, only rendered once there is no room left
+// for the home item even after every middle item is collapsed and the last item has wrapped.
+// It sits in place of the regular .home item, so it never needs an .empty state of its own.
+.home-menu {
+  flex: none;
 }
 
 .visually-hidden {

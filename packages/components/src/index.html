@@ -152,32 +152,21 @@
         </ul>
       </post-mainnavigation>
     </post-header>
-
-    <h1>Components package playground</h1>
-    <p class="mb-4">
-      Use this playground for quickly developing Stencil web-components. Run
-      <code style="background-color: lightgrey; padding: 0.125rem 0.25rem; border-radius: 0.25rem"
-        >pnpm components:start</code
-      >
-      to get going.
-    </p>
-    <label for="tokens-select">Select tokens package: </label>
-    <select
-      name="tokens"
-      id="tokens-select"
-      value="default"
-      class="mb-4"
-      onchange="
-        if (['default', 'compact'].includes(this.value)) {
-          document
-            .getElementById('tokens')
-            .setAttribute('href', `/assets/css/post-tokens-${encodeURIComponent(this.value)}.css`);
-        }
-      "
+    <post-breadcrumbs
+      home-url="/"
+      text-home="This is a very long segment name for the first breadcrumb segment"
+      text-breadcrumbs="Breadcrumbs"
+      text-more-items="More items"
+      home-text=""
     >
-      <option value="default">Post default</option>
-      <option value="compact">Post compact</option>
-    </select>
-    <hr />
+      <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
+      <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
+      <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
+      <post-breadcrumb-item url="/section4">Section 4</post-breadcrumb-item>
+      <post-breadcrumb-item url="/section5"
+        >This is a very long breadcrumb item that represents the currently selected
+        page</post-breadcrumb-item
+      >
+    </post-breadcrumbs>
   </body>
 </html>

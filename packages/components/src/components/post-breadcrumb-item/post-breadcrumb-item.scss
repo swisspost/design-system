@@ -18,18 +18,37 @@ tokens.$default-map: components.$post-breadcrumb;
   @include mixins.breadcrumb-item;
 
   &:host([selected]:not([selected='false'])) {
-    // The selected item is always the last, visible breadcrumb segment and is never collapsed
-    // into the overflow menu, so its text must always stay fully visible: it wraps instead of
-    // being clipped when it does not fit on one line.
+    // The selected item is always the last breadcrumb segment, but that alone doesn't mean it's
+    // safe to shrink or wrap yet — it might still be sharing the row with visible middle items.
+    // Keeping its natural single-line width here (instead of shrinking) is what makes the
+    // overflow measurement correctly collapse the middle items first. Wrapping is only enabled
+    // once [standalone] below is true.
     flex-shrink: 0;
 
     :is(a, span) {
       @include mixins.breadcrumb-link-selected-colors;
     }
+  }
+
+  &:host([standalone]:not([standalone='false'])) {
+    // Standalone means every other item has already been collapsed into the overflow menu, so
+    // this is the genuine last resort: only now can the item shrink and wrap onto multiple lines
+    // instead of being clipped. `flex-shrink: 1` + `min-width: 0` are both required to let the
+    // box narrow at all — flex items default to `min-width: auto`, which floors them at their
+    // single-line width regardless of `flex-shrink`. `breadcrumb-item` also includes button-base
+    // on the link, which defaults to single-line ellipsis truncation, so `overflow`/
+    // `text-overflow` need resetting too, or the last visible line still gets clipped even with
+    // `white-space: normal`.
+    flex-shrink: 1;
+    // Shared with the overflow calculation in post-breadcrumbs.tsx via getComputedStyle, so both
+    // stay in sync from one source of truth.
+    min-width: var(--post-breadcrumb-selected-min-width, 0);
 
     :is(a, span),
     ::slotted(a) {
       white-space: normal;
+      overflow: visible;
+      text-overflow: unset;
       @include utilities.word-break;
     }
   }

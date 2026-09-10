@@ -47,6 +47,97 @@ describe('breadcrumbs', () => {
     });
   });
 
+  describe('concatenation', () => {
+    describe('visible item cap', () => {
+      beforeEach(() => {
+        cy.getComponent('breadcrumbs', BREADCRUMBS_ID, 'default');
+        cy.get('post-breadcrumbs[data-hydrated]', { timeout: 30000 }).as('breadcrumbs');
+      });
+
+      it('should not collapse any items when everything fits comfortably', () => {
+        cy.get('@breadcrumbs').find('post-breadcrumb-item[variant="menuitem"]').should('not.exist');
+      });
+    });
+
+    describe('collapse ordering', () => {
+      beforeEach(() => {
+        cy.getComponent('breadcrumbs', BREADCRUMBS_ID, 'concatenated');
+        cy.get('post-breadcrumbs[data-hydrated]', { timeout: 30000 }).as('breadcrumbs');
+      });
+
+      it('should never show more than the maximum number of visible items, even with ample width', () => {
+        cy.viewport(1920, 800);
+        cy.get('@breadcrumbs')
+          .find('post-breadcrumb-item:not([variant="menuitem"])')
+          .should('have.length', 6);
+      });
+
+      it('should collapse items starting from the earliest segment, closest to home', () => {
+        cy.get('@breadcrumbs')
+          .find('post-breadcrumb-item')
+          .then($items => {
+            const variants = $items.toArray().map(item => item.getAttribute('variant'));
+            const firstListItemIndex = variants.indexOf('listitem');
+
+            // Every collapsed ("menuitem") entry should come before every visible ("listitem")
+            // entry — collapsing proceeds strictly from the start, never from the middle or end.
+            expect(variants.slice(0, firstListItemIndex)).to.satisfy((v: string[]) =>
+              v.every(variant => variant === 'menuitem'),
+            );
+          });
+      });
+
+      it('should not mark the last item standalone while middle items are still visible', () => {
+        // The default cap already forces some items into the menu, but plenty of items remain
+        // visible alongside a short, easily-fitting last item — it should not be wrapping yet.
+        cy.get('@breadcrumbs')
+          .find('post-breadcrumb-item[variant="menuitem"]')
+          .should('have.length.greaterThan', 0);
+        cy.get('@breadcrumbs')
+          .find('post-breadcrumb-item[selected]:not([selected="false"])')
+          .should('have.attr', 'standalone', 'false');
+      });
+    });
+
+    describe('three-stage degrade sequence', () => {
+      beforeEach(() => {
+        cy.getComponent('breadcrumbs', BREADCRUMBS_ID, 'default');
+        cy.get('post-breadcrumbs[data-hydrated]', { timeout: 30000 }).as('breadcrumbs');
+      });
+
+      it('should collapse middle items before the last item is marked standalone', () => {
+        cy.viewport(500, 400);
+        cy.get('@breadcrumbs')
+          .find('post-breadcrumb-item[variant="menuitem"]')
+          .should('have.length.greaterThan', 0);
+        cy.get('@breadcrumbs')
+          .find('post-breadcrumb-item[selected]:not([selected="false"])')
+          .should('have.attr', 'standalone', 'false');
+      });
+
+      it('should mark the last item standalone once every middle item is collapsed', () => {
+        cy.viewport(300, 400);
+        cy.get('@breadcrumbs')
+          .find('post-breadcrumb-item:not([selected]):not([selected="false"])')
+          .should('have.attr', 'variant', 'menuitem');
+        cy.get('@breadcrumbs')
+          .find('post-breadcrumb-item[selected]:not([selected="false"])')
+          .should('have.attr', 'standalone', 'true');
+      });
+
+      it('should restore all items once space is available again', () => {
+        cy.viewport(300, 400);
+        cy.get('@breadcrumbs').find('post-breadcrumb-item[variant="menuitem"]').should('exist');
+
+        cy.viewport(1920, 800);
+        cy.get('@breadcrumbs').find('post-breadcrumb-item[variant="menuitem"]').should('not.exist');
+        cy.get('@breadcrumbs')
+          .find('post-breadcrumb-item[selected]:not([selected="false"])')
+          .should('have.attr', 'standalone', 'false');
+      });
+    });
+  });
+
   describe('home link', () => {
     describe('client-side routing (slotted anchor)', () => {
       beforeEach(() => {
@@ -57,10 +148,7 @@ describe('breadcrumbs', () => {
       it('should render the slotted anchor instead of the internal one built from home-url', () => {
         // Scoped to the visible nav, since the off-screen clone used for overflow measurement
         // legitimately embeds a copy of the slotted anchor to measure its width.
-        cy.get('@breadcrumbs')
-          .shadow()
-          .find('nav:not(.invisible) a[href="/"]')
-          .should('not.exist');
+        cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) a[href="/"]').should('not.exist');
         cy.get('@breadcrumbs').children('a[slot="home"]').should('exist').and('have.attr', 'href');
       });
     });
@@ -92,7 +180,10 @@ describe('breadcrumbs', () => {
       });
 
       it('should hide the home icon and display text-home visibly when home-text is true', () => {
-        cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home post-icon').should('not.exist');
+        cy.get('@breadcrumbs')
+          .shadow()
+          .find('nav:not(.invisible) .home post-icon')
+          .should('not.exist');
         cy.get('@breadcrumbs')
           .shadow()
           .find('nav:not(.invisible) .home span')
@@ -109,13 +200,12 @@ describe('breadcrumbs', () => {
           .should('have.class', 'visually-hidden');
       });
 
-      it('should never truncate the first (home) segment, wrapping it instead', () => {
+      it('should render the home item in full, not wrapped, when there is enough space for it', () => {
         cy.get('@breadcrumbs')
           .shadow()
-          .find('nav:not(.invisible) .home a')
-          .then($home => {
-            expect($home.get(0).scrollWidth).to.be.at.most($home.get(0).clientWidth + 1);
-          });
+          .find('nav:not(.invisible) .home')
+          .should('exist')
+          .and('not.have.class', 'home-menu');
       });
 
       it('should never truncate the last (selected) segment, wrapping it instead', () => {
@@ -137,6 +227,23 @@ describe('breadcrumbs', () => {
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[selected]:not([selected="false"])')
           .should('not.have.attr', 'variant', 'menuitem');
+      });
+
+      it('should collapse the home item into its own separate menu as a last resort, once the last item has wrapped and there is still no room', () => {
+        cy.viewport(200, 400);
+
+        // The home item's own menu is distinct from the middle-items menu — both exist at once.
+        cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home-menu').should('exist');
+        cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .menu').should('exist');
+        cy.get('@breadcrumbs')
+          .shadow()
+          .find('nav:not(.invisible) .home:not(.home-menu)')
+          .should('not.exist');
+
+        // The last item should have already exhausted wrapping (standalone) before home gives up.
+        cy.get('@breadcrumbs')
+          .find('post-breadcrumb-item[selected]:not([selected="false"])')
+          .should('have.attr', 'standalone', 'true');
       });
     });
   });
