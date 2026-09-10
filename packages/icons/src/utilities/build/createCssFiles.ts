@@ -12,12 +12,20 @@ function svgToDataUrl(svgContent: string): string {
   return `data:image/svg+xml;base64,${base64}`;
 }
 
-function removeExistingCssFiles(dir: string): number {
-  if (!fs.existsSync(dir)) return 0;
+function getExistingCssFiles(dir: string): string[] {
+  if (!fs.existsSync(dir)) return [];
 
-  const existingFiles = fs.readdirSync(dir).filter(f => f.endsWith('.css'));
-  existingFiles.forEach(file => fs.unlinkSync(path.join(dir, file)));
-  return existingFiles.length;
+  return fs.readdirSync(dir).filter(f => f.endsWith('.css'));
+}
+
+function removeStaleCssFiles(
+  dir: string,
+  existingFiles: string[],
+  generatedFiles: Set<string>,
+): number {
+  const staleFiles = existingFiles.filter(file => !generatedFiles.has(file));
+  staleFiles.forEach((file: string) => fs.unlinkSync(path.join(dir, file)));
+  return staleFiles.length;
 }
 
 export async function createCssFiles(
@@ -26,9 +34,9 @@ export async function createCssFiles(
 ): Promise<void> {
   fs.mkdirSync(cssOutputDirectory, { recursive: true });
 
-  const removedCount = removeExistingCssFiles(cssOutputDirectory);
-
+  const existingFiles = getExistingCssFiles(cssOutputDirectory);
   const svgFiles = fs.readdirSync(iconOutputDirectory).filter(f => f.endsWith('.svg'));
+  const generatedFiles = new Set<string>();
 
   let createdCount = 0;
 
@@ -36,16 +44,20 @@ export async function createCssFiles(
     svgFiles.map(async file => {
       const filePath = path.join(iconOutputDirectory, file);
       const baseName = sanitizeForCSSVariable(path.parse(file).name);
+      const cssFileName = `${baseName}.css`;
       const svgContent = fs.readFileSync(filePath, 'utf8');
 
       let cssContent = `:root, :host{ --post-icon-${baseName}: url("${svgToDataUrl(svgContent)}"); }`;
 
       cssContent = await format(cssContent, { parser: 'css' });
 
-      fs.writeFileSync(path.join(cssOutputDirectory, `${baseName}.css`), cssContent);
+      fs.writeFileSync(path.join(cssOutputDirectory, cssFileName), cssContent);
+      generatedFiles.add(cssFileName);
       createdCount++;
     }),
   );
+
+  const removedCount = removeStaleCssFiles(cssOutputDirectory, existingFiles, generatedFiles);
 
   console.log(
     coloredLogMessage(

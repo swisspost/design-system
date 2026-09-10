@@ -1,5 +1,6 @@
 import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
+import { fileURLToPath, URL } from 'node:url';
 import type { StorybookConfig } from '@storybook/web-components-vite';
 import type { InlineConfig } from 'vite';
 import pkg from '@/../package.json';
@@ -8,6 +9,9 @@ import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 const require = createRequire(import.meta.url);
+
+// Resolve node_modules from apps/documentation (one level up from .storybook/)
+const docsNodeModules = join(fileURLToPath(new URL('..', import.meta.url)), 'node_modules');
 
 const config: StorybookConfig = {
   logLevel: 'info',
@@ -86,6 +90,11 @@ const config: StorybookConfig = {
     return mergeConfig(config, {
       css: {
         devSourcemap: true,
+        preprocessorOptions: {
+          scss: {
+            loadPaths: [docsNodeModules],
+          },
+        },
       },
     });
   },

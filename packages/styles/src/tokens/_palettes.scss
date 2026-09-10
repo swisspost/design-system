@@ -1,6 +1,6 @@
 @use 'sass:map';
 @use './core';
-@use '../tokens/temp/palette';
+@use '@swisspost/design-system-tokens/palette';
 
 :root,
 .palette-default {

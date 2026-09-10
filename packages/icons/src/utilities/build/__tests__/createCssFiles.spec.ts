@@ -27,18 +27,29 @@ describe('createCssFiles', () => {
     expect(fs.mkdirSync).toHaveBeenCalledWith(mockCssOutputDirectory, { recursive: true });
   });
 
-  it('should remove existing CSS files before creating new ones', async () => {
+  it('should remove stale CSS files after creating new ones', async () => {
+    const mockSvgFiles = ['old-icon.svg'];
+
     jest.spyOn(fs, 'existsSync').mockReturnValue(true);
-    (fs.readdirSync as jest.Mock).mockReturnValue(['old-icon.css', 'another-icon.css']);
+    (fs.readdirSync as jest.Mock).mockImplementation(dir => {
+      if (dir === mockCssOutputDirectory) return ['old-icon.css', 'another-icon.css'];
+      return mockSvgFiles;
+    });
     jest.spyOn(fs, 'unlinkSync').mockImplementation(() => {});
     jest.spyOn(fs, 'mkdirSync').mockImplementation(() => undefined);
+    jest.spyOn(fs, 'readFileSync').mockReturnValue('<svg><path d="M10 10"/></svg>');
     jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
 
     await createCssFiles(mockIconOutputDirectory, mockCssOutputDirectory);
 
-    expect(fs.unlinkSync).toHaveBeenCalledWith(path.join(mockCssOutputDirectory, 'old-icon.css'));
     expect(fs.unlinkSync).toHaveBeenCalledWith(
       path.join(mockCssOutputDirectory, 'another-icon.css'),
+    );
+    expect(fs.unlinkSync).not.toHaveBeenCalledWith(
+      path.join(mockCssOutputDirectory, 'old-icon.css'),
+    );
+    expect((fs.writeFileSync as jest.Mock).mock.invocationCallOrder[0]).toBeLessThan(
+      (fs.unlinkSync as jest.Mock).mock.invocationCallOrder[0],
     );
   });
 
