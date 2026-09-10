@@ -12,6 +12,10 @@ tokens.$default-map: components.$post-breadcrumb;
     white-space: normal;
     @include utilities.word-break;
   }
+}
+
+:host([variant='listitem']) {
+  @include mixins.breadcrumb-item;
 
   &:host([selected]:not([selected='false'])) {
     :is(a, span) {
