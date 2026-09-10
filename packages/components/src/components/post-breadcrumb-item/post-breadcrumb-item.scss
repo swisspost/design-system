@@ -6,21 +6,28 @@
 
 tokens.$default-map: components.$post-breadcrumb;
 
-:host(:not([variant='menuitem'])) {
-  @include mixins.breadcrumb-item;
-}
-
-:is(a, span) {
-  white-space: var(--post-breadcrumb-item-wrap, normal) !important;
-  @include utilities.word-break;
-}
-
-:host([selected]:not([selected='false'])) {
-  @include mixins.breadcrumb-item;
-
+:host([variant='menuitem']) {
   :is(a, span) {
-    color: tokens.get('breadcrumb-selected-fg');
-    font-weight: tokens.get('breadcrumb-selected-font-weight');
-    text-decoration: tokens.get('breadcrumb-link-selected-text-decoration');
+    white-space: normal;
+    @include utilities.word-break;
+  }
+}
+
+:host([variant='listitem']) {
+  @include mixins.breadcrumb-item;
+
+  &:host([selected]:not([selected='false'])) {
+    :is(a, span) {
+      color: tokens.get('breadcrumb-selected-fg');
+      font-weight: tokens.get('breadcrumb-selected-font-weight');
+      text-decoration: tokens.get('breadcrumb-link-selected-text-decoration');
+    }
+  }
+
+  &:host([standalone]:not([standalone='false'])) {
+    :is(a, span) {
+      white-space: normal;
+      @include utilities.word-break;
+    }
   }
 }
