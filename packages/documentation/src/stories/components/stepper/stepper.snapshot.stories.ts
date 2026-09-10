@@ -26,8 +26,18 @@ export const Stepper: Story = {
           bg => html`
             <div class="${bg} d-flex flex-column gap-regular p-regular">
               ${bombArgs({
-                currentStepNumber: meta.argTypes?.currentStepNumber?.options,
-              }).map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
+                currentStepNumber: meta.argTypes?.currentStepNumber?.options
+                  ? [...meta.argTypes.currentStepNumber.options]
+                  : undefined,
+                selectedStepNumber: meta.argTypes?.selectedStepNumber?.options
+                  ? [...meta.argTypes.selectedStepNumber.options]
+                  : undefined,
+              })
+                .filter(
+                  ({ currentStepNumber, selectedStepNumber }) =>
+                    Number(selectedStepNumber) <= Number(currentStepNumber),
+                )
+                .map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
               ${meta.render?.({ ...context.args, ...{ steps: longSteps } }, context)}
             </div>
           `,
