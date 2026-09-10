@@ -28,7 +28,12 @@ tokens.$default-map: components.$post-button;
 // Type variants
 @each $variant in button.$btn-variants {
   .btn-#{$variant} {
-    $color: if($variant == 'default', 'secondary', if($variant == 'link', 'tertiary', $variant));
+    $color: $variant;
+    @if $variant == 'default' {
+      $color: 'secondary';
+    } @else if $variant == 'link' {
+      $color: 'tertiary';
+    }
 
     @if ($variant != 'link' and $variant != 'tertiary') {
       box-shadow: tokens.get('button-elevation');
