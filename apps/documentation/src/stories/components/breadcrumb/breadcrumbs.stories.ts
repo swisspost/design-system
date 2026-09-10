@@ -62,7 +62,7 @@ export const Concatenated: Story = {
 export const CustomHomeText: Story = {
   args: {
     homeText: true,
-    textHome: 'This is a very long segment name for the first breadcrumb segment',
+    textHome: 'Private customers',
   },
   parameters: {
     docs: {
@@ -80,14 +80,11 @@ export const CustomHomeText: Story = {
       text-more-items=${args.textMoreItems}
       ?home-text=${args.homeText}
     >
-      <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section4">Section 4</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section5"
-        >This is a very long breadcrumb item that represents the currently selected
-        page</post-breadcrumb-item
-      >
+      <post-breadcrumb-item url="/section1">Send letters</post-breadcrumb-item>
+      <post-breadcrumb-item url="/section2">Letters abroad</post-breadcrumb-item>
+      <post-breadcrumb-item url="/section3">Europe</post-breadcrumb-item>
+      <post-breadcrumb-item url="/section4">Neighbouring countries</post-breadcrumb-item>
+      <post-breadcrumb-item url="/section5">Letters to Switzerland</post-breadcrumb-item>
     </post-breadcrumbs>
   `,
 };

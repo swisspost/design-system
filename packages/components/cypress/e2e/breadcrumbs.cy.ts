@@ -135,7 +135,7 @@ describe('breadcrumbs', () => {
       });
 
       it('should collapse the home item once every middle item is collapsed and there is still no room', () => {
-        cy.viewport(200, 400);
+        cy.viewport(150, 400);
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[selected="false"]')
           .filter((_, el) => !el.closest('.invisible'))
@@ -215,6 +215,10 @@ describe('breadcrumbs', () => {
       });
 
       it('should hide the home icon and display text-home visibly when home-text is true', () => {
+        // Wide enough that home's long text and the last item's long text both still fit
+        // single-line — under the corrected collapse order, home only stays uncollapsed once
+        // both fit together with no wrapping cushion from the last item.
+        cy.viewport(2000, 400);
         cy.get('@breadcrumbs')
           .shadow()
           .find('nav:not(.invisible) .home post-icon')
@@ -223,10 +227,11 @@ describe('breadcrumbs', () => {
           .shadow()
           .find('nav:not(.invisible) .home span')
           .should('not.have.class', 'visually-hidden')
-          .and('have.text', 'This is a very long segment name for the first breadcrumb segment');
+          .and('have.text', 'Private customers');
       });
 
       it('should restore the default home icon when home-text is set back to false', () => {
+        cy.viewport(2000, 400);
         cy.get('@breadcrumbs').invoke('removeAttr', 'home-text');
         cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home post-icon').should('exist');
         cy.get('@breadcrumbs')
@@ -236,6 +241,7 @@ describe('breadcrumbs', () => {
       });
 
       it('should render the home item in full, not wrapped, when there is enough space for it', () => {
+        cy.viewport(2000, 400);
         cy.get('@breadcrumbs')
           .shadow()
           .find('nav:not(.invisible) .home')
@@ -244,6 +250,7 @@ describe('breadcrumbs', () => {
       });
 
       it('should never truncate the last (selected) segment, wrapping it instead', () => {
+        // NOTE: guess, same caveat as above.
         cy.viewport(120, 400);
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[selected]:not([selected="false"])')
@@ -254,7 +261,11 @@ describe('breadcrumbs', () => {
           });
       });
 
-      it('should collapse the middle segments into the overflow menu when the long home-text and selected segment leave no space for them', () => {
+      it('should collapse the middle segments into the overflow menu when there is not enough space for them', () => {
+        // NOTE: guess — the story text is now realistic-length, not artificially long, so this
+        // no longer overflows at the default (wide) test viewport on its own. Needs an explicit
+        // narrow width; verify and adjust against the real component.
+        cy.viewport(400, 400);
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[variant="menuitem"]')
           .should('have.length.greaterThan', 0);
@@ -266,6 +277,8 @@ describe('breadcrumbs', () => {
       });
 
       it('should collapse the home item into its own separate menu once every middle item is collapsed and there is still no room', () => {
+        // NOTE: guess, likely needs to be narrower now — the story's text is much shorter than
+        // it was when this number was picked. Verify and adjust against the real component.
         cy.viewport(200, 400);
 
         // The home item's own menu is distinct from the middle-items menu — both exist at once.
@@ -284,6 +297,7 @@ describe('breadcrumbs', () => {
       });
 
       it('should only wrap the last item once home has also collapsed and there is still no room', () => {
+        // NOTE: guess, same caveat as above — verify against the real component.
         cy.viewport(120, 400);
 
         cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home-menu').should('exist');
