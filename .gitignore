@@ -29,3 +29,11 @@ styles/stylelint-report.txt
 
 # Local Netlify folder
 .netlify
+
+# v10+ convenience ignores for switching branches more easily
+.turbo
+icons-generated/
+dist/
+apps/documentation/
+packages/icons/public/post-icons/
+packages/styles/src/icons/temp/
