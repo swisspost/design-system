@@ -1,17 +1,9 @@
-// Map environments to their corresponding KLP base URLs
-const KLP_BASE_URLS = {
-  dev01: 'https://n.accountint1.post.ch',
-  dev02: 'https://n.accountint1.post.ch',
-  devs1: 'https://n.accountint1.post.ch',
-  test: 'https://n.accountint1.post.ch',
-  int01: 'https://n.accountint1.post.ch',
-  int02: 'https://n.accountint2.post.ch',
-  prod: 'https://n.account.post.ch',
-};
+// Import the KLP URL configuration from the internet-header package
+import { KLP_BASE_URLS, getSessionUrl } from '@swisspost/internet-header/config/klp-urls';
 
 // Get the appropriate URL based on your environment
 const environment = 'prod'; // Change to your environment (int01, int02, etc.)
-const sessionUrl = `${KLP_BASE_URLS[environment]}/v1/session/subscribe`;
+const sessionUrl = getSessionUrl(environment as any);
 
 const response = await fetch(sessionUrl, {
   credentials: 'include',

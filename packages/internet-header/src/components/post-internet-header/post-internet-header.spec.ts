@@ -1,23 +1,5 @@
 import { Environment } from '@/models/general.model';
-
-// Define the KLP URL mapping constants the same way they are in the component
-const KLP_SESSION_ENDPOINT = '/v1/session/subscribe';
-
-const KLP_BASE_URLS: Record<Environment, string> = {
-  dev01: 'https://n.accountint1.post.ch',
-  dev02: 'https://n.accountint1.post.ch',
-  devs1: 'https://n.accountint1.post.ch',
-  test: 'https://n.accountint1.post.ch',
-  int01: 'https://n.accountint1.post.ch',
-  int02: 'https://n.accountint2.post.ch',
-  prod: 'https://n.account.post.ch',
-};
-
-// Helper function to get session URL (same logic as component)
-const getSessionUrl = (environment: Environment): string => {
-  const baseUrl = KLP_BASE_URLS[environment];
-  return `${baseUrl}${KLP_SESSION_ENDPOINT}`;
-};
+import { KLP_BASE_URLS, KLP_SESSION_ENDPOINT, getSessionUrl } from '@/config/klp-urls';
 
 describe('KLP Session URL Configuration', () => {
   // Mock fetch globally

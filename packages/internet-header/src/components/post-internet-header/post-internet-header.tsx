@@ -6,6 +6,7 @@ import { IconLinkConfig, LinkConfig } from '@/models/shared.model';
 import { getAlternateLinks, observeAlternateLinks } from '@/services/alternate-link.service';
 import { getLocalizedConfig, isValidProjectId } from '@/services/config.service';
 import { getActiveLink } from '@/services/route.service';
+import { getSessionUrl } from '@/config/klp-urls';
 import { version } from '@root/package.json';
 import {
   Component,
@@ -18,18 +19,6 @@ import {
   Watch,
 } from '@stencil/core';
 import '@swisspost/design-system-components';
-
-const KLP_SESSION_ENDPOINT = '/v1/session/subscribe';
-
-const KLP_BASE_URLS: Record<Environment, string> = {
-  dev01: 'https://n.accountint1.post.ch',
-  dev02: 'https://n.accountint1.post.ch',
-  devs1: 'https://n.accountint1.post.ch',
-  test: 'https://n.accountint1.post.ch',
-  int01: 'https://n.accountint1.post.ch',
-  int02: 'https://n.accountint2.post.ch',
-  prod: 'https://n.account.post.ch',
-};
 
 @Component({
   tag: 'swisspost-internet-header',
@@ -187,7 +176,7 @@ export class PostInternetHeader {
 
   private async fetchUserData(): Promise<void> {
     try {
-      const sessionUrl = this.getSessionUrl();
+      const sessionUrl = getSessionUrl(this.environment);
       const response = await fetch(sessionUrl, {
         credentials: 'include',
       });
@@ -199,11 +188,6 @@ export class PostInternetHeader {
     } catch {
       // In case of an error, we assume the user is not logged in and do nothing
     }
-  }
-
-  private getSessionUrl(): string {
-    const baseUrl = KLP_BASE_URLS[this.environment];
-    return `${baseUrl}${KLP_SESSION_ENDPOINT}`;
   }
 
   // Fetch and store the localized config, defaulting to the `language` prop if none is passed
