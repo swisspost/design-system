@@ -72,3 +72,5 @@ allowBuilds:
 minimumReleaseAgeExclude:
   # Renovate security update: svgo@4.1.0
   - svgo@4.1.0
+  # Renovate security update: next@16.3.3
+  - next@16.3.3
