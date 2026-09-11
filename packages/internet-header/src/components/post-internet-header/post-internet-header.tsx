@@ -19,7 +19,17 @@ import {
 } from '@stencil/core';
 import '@swisspost/design-system-components';
 
-const SESSION_URL = 'https://n.account.post.ch/v1/session/subscribe';
+const KLP_SESSION_ENDPOINT = '/v1/session/subscribe';
+
+const KLP_BASE_URLS: Record<Environment, string> = {
+  dev01: 'https://n.accountint1.post.ch',
+  dev02: 'https://n.accountint1.post.ch',
+  devs1: 'https://n.accountint1.post.ch',
+  test: 'https://n.accountint1.post.ch',
+  int01: 'https://n.accountint1.post.ch',
+  int02: 'https://n.accountint2.post.ch',
+  prod: 'https://n.account.post.ch',
+};
 
 @Component({
   tag: 'swisspost-internet-header',
@@ -177,7 +187,8 @@ export class PostInternetHeader {
 
   private async fetchUserData(): Promise<void> {
     try {
-      const response = await fetch(SESSION_URL, {
+      const sessionUrl = this.getSessionUrl();
+      const response = await fetch(sessionUrl, {
         credentials: 'include',
       });
 
@@ -188,6 +199,11 @@ export class PostInternetHeader {
     } catch {
       // In case of an error, we assume the user is not logged in and do nothing
     }
+  }
+
+  private getSessionUrl(): string {
+    const baseUrl = KLP_BASE_URLS[this.environment];
+    return `${baseUrl}${KLP_SESSION_ENDPOINT}`;
   }
 
   // Fetch and store the localized config, defaulting to the `language` prop if none is passed
