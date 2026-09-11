@@ -201,7 +201,7 @@ export class PostBreadcrumbs {
         const parent = target.parentNode;
         if (parent) {
           Array.from(target.childNodes).forEach(child => parent.insertBefore(child, target));
-          parent.removeChild(target);
+          target.remove();
         }
       }
     });
