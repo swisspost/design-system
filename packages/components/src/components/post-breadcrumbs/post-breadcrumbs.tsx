@@ -7,6 +7,9 @@ import type { HTMLStencilElement } from '@stencil/core/internal';
 const MAX_VISIBLE_ITEMS = 6;
 const MEASUREMENT_DEBOUNCE_MS = 50;
 
+/**
+ * @slot home - The content of the root (home) breadcrumb item. Can contain an `<a>` element, so consumers can slot their own routing-aware link instead of relying on the `home-url` prop.
+ */
 @Component({
   tag: 'post-breadcrumbs',
   styleUrl: 'post-breadcrumbs.scss',
@@ -26,6 +29,9 @@ export class PostBreadcrumbs {
   @State() id: string;
   @State() loaded = false;
 
+  /** Whether the consumer slotted their own `<a>` into the `home` slot. When true, `home-url` is not required, since the internal fallback link is not rendered. */
+  @State() hasSlottedHomeAnchor = false;
+
   /** The number of breadcrumb items, counted from the start, that are moved into the overflow menu. */
   @State() collapsed = 0;
 
@@ -39,9 +45,9 @@ export class PostBreadcrumbs {
    * The URL for the root (home) breadcrumb item.
    */
   @Prop({ reflect: true })
-  @Required()
+  @Required({ when: 'hasSlottedHomeAnchor', truthy: false })
   @Url()
-  homeUrl!: string;
+  homeUrl?: string;
 
   /**
    * An accessible label for the root (home) breadcrumb item.
@@ -69,6 +75,7 @@ export class PostBreadcrumbs {
 
   componentWillLoad() {
     this.id = this.host.id || `b${nanoid(6)}`;
+    this.checkSlottedHomeAnchor();
   }
 
   async componentDidLoad() {
@@ -88,6 +95,13 @@ export class PostBreadcrumbs {
     this.resizeObserver?.disconnect();
     this.mutationObserver?.disconnect();
     this.debounceUpdateCollapsedItems.cancel();
+  }
+
+  private checkSlottedHomeAnchor() {
+    const homeSlotElement = Array.from(this.host.children).find(
+      child => child.getAttribute('slot') === 'home',
+    );
+    this.hasSlottedHomeAnchor = homeSlotElement?.tagName === 'A';
   }
 
   /**
@@ -173,13 +187,23 @@ export class PostBreadcrumbs {
     // Deep clone the breadcrumb navigation and flatten its slots into the clone.
     this.nav.querySelectorAll('slot').forEach((source, index) => {
       const target = slots[index];
+      const assignedElements = source.assignedElements();
 
-      // Insert the assigned elements where the slot used to be, then drop the now empty slot
-      source.assignedElements().forEach(element => {
-        target.insertAdjacentElement('beforebegin', element.cloneNode(true) as Element);
-      });
-
-      target.remove();
+      if (assignedElements.length > 0) {
+        // Insert the assigned elements where the slot used to be, then drop the now empty slot.
+        assignedElements.forEach(element => {
+          target.insertAdjacentElement('beforebegin', element.cloneNode(true) as Element);
+        });
+        target.remove();
+      } else {
+        // Nothing assigned: keep the slot's own fallback content (e.g. the default home link) by
+        // unwrapping the <slot> in place, moving its children to where it was before removing it.
+        const parent = target.parentNode;
+        if (parent) {
+          Array.from(target.childNodes).forEach(child => parent.insertBefore(child, target));
+          target.remove();
+        }
+      }
     });
 
     clone.classList.remove('loading');
@@ -232,10 +256,12 @@ export class PostBreadcrumbs {
         >
           <div role="list">
             <div class="breadcrumb-item home" role="listitem">
-              <a href={this.homeUrl}>
-                <span class="visually-hidden">{this.textHome}</span>
-                <post-icon aria-hidden="true" name="home" />
-              </a>
+              <slot name="home" onSlotchange={() => this.checkSlottedHomeAnchor()}>
+                <a href={this.homeUrl}>
+                  <span class="visually-hidden">{this.textHome}</span>
+                  <post-icon aria-hidden="true" name="home" />
+                </a>
+              </slot>
             </div>
             {this.renderMenu()}
             <slot />

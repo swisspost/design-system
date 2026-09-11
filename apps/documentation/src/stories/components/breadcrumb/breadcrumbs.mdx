@@ -24,17 +24,40 @@ The `<post-breadcrumbs>` is a container for `<post-breadcrumb-item>` components,
 
 <Canvas of={BreadcrumbsStories.Default} sourceState="shown" />
 
+## `<post-breadcrumbs>`
+
 <Controls of={BreadcrumbsStories.Default} />
+
+## `<post-breadcrumb-item>`
+
+<Controls of={BreadcrumbItemStories.Default} />
 
 <ComponentsPackageInstall component="<post-breadcrumbs>" />
 
-## Concatenated Breadcrumbs
+## Examples
+
+### Concatenated Breadcrumbs
 
 When space is constrained, the `<post-breadcrumbs>` concatenates middle items into a dropdown menu.
 
 <Canvas of={BreadcrumbsStories.Concatenated} sourceState="shown" />
 
-## Breadcrumb Item
+### Routing with Client-Side Frameworks
 
-<Canvas of={BreadcrumbItemStories.BreadcrumbItem} sourceState="shown" />
-<Controls of={BreadcrumbItemStories.BreadcrumbItem} />
+To enable client-side routing (e.g. Next.js, Angular Router), slot your own anchor instead of using the `url`/`home-url` properties: use the default slot for `<post-breadcrumb-item>`, or the `home` slot for the root item of `<post-breadcrumbs>`. Both components detect the slotted `<a>` and stop rendering their own, leaving your link's click handling untouched.
+
+<post-banner type="info">
+  <p>
+    The slotted `<a>` must be a direct child of `<post-breadcrumb-item>` (or of `<post-breadcrumbs>`
+    for the `home` slot), not wrapped in another element, otherwise it won't be detected and the
+    component will fall back to rendering its own internal link.
+  </p>
+  <p>
+    The `url`/`home-url` properties are ignored once you slot your own `<a>`. Since the label,
+    description, and `aria-current` are no longer applied automatically, give the slotted `<a>`
+    an accessible name (via its text content or `aria-label`), and add `aria-current="page"`
+    yourself on the item that represents the current page.
+  </p>
+</post-banner>
+
+<Canvas of={BreadcrumbsStories.ClientSideRouting} sourceState="shown" />

@@ -7,10 +7,17 @@
 
 | Property                       | Attribute          | Description                                                                         | Type     | Default     |
 | ------------------------------ | ------------------ | ----------------------------------------------------------------------------------- | -------- | ----------- |
-| `homeUrl` _(required)_         | `home-url`         | The URL for the root (home) breadcrumb item.                                        | `string` | `undefined` |
+| `homeUrl`                      | `home-url`         | The URL for the root (home) breadcrumb item.                                        | `string` | `undefined` |
 | `textBreadcrumbs` _(required)_ | `text-breadcrumbs` | An accessible label for the breadcrumb navigation.                                  | `string` | `undefined` |
 | `textHome` _(required)_        | `text-home`        | An accessible label for the root (home) breadcrumb item.                            | `string` | `undefined` |
 | `textMoreItems` _(required)_   | `text-more-items`  | An accessible label for the overflow menu that contains collapsed breadcrumb items. | `string` | `undefined` |
+
+
+## Slots
+
+| Slot     | Description                                                                                                                                                                 |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `"home"` | The content of the root (home) breadcrumb item. Can contain an `<a>` element, so consumers can slot their own routing-aware link instead of relying on the `home-url` prop. |
 
 
 ## Dependencies
