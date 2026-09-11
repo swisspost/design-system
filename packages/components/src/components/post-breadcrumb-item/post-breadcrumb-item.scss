@@ -18,15 +18,24 @@ tokens.$default-map: components.$post-breadcrumb;
   @include mixins.breadcrumb-item;
 
   &:host([selected]:not([selected='false'])) {
+    // Keeps its natural width until [standalone] below allows wrapping.
+    flex-shrink: 0;
+
     :is(a, span) {
       @include mixins.breadcrumb-link-selected-colors;
     }
   }
 
   &:host([standalone]:not([standalone='false'])) {
+    // Last resort, once home has also collapsed. `overflow`/`text-overflow` undo
+    // button-base's default ellipsis truncation.
+    flex-shrink: 1;
+
     :is(a, span),
     ::slotted(a) {
       white-space: normal;
+      overflow: visible;
+      text-overflow: unset;
       @include utilities.word-break;
     }
   }

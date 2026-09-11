@@ -5,6 +5,7 @@
 @use '@swisspost/design-system-styles/mixins/media';
 
 @use '../post-breadcrumb-item/mixins' as breadcrumb-item-mx;
+@use '../post-menu-item/mixins' as menu-item-mx;
 
 tokens.$default-map: components.$post-breadcrumb;
 
@@ -41,23 +42,41 @@ nav {
 }
 
 .home {
-  padding-block: tokens.get('breadcrumb-padding-block-icon-home');
+  // Never shrinks: it either renders in full or swaps entirely into .home-menu below.
+  flex: none;
 
   &::before {
     content: unset;
   }
 
-  post-icon {
-    width: tokens.get('breadcrumb-icon-home-size');
-    height: tokens.get('breadcrumb-icon-home-size');
+  &.icon {
+    padding-block: tokens.get('breadcrumb-padding-block-icon-home');
+
+    post-icon {
+      width: tokens.get('breadcrumb-icon-home-size');
+      height: tokens.get('breadcrumb-icon-home-size');
+    }
   }
 }
 
-.menu {
+.menu,
+.home-menu {
   margin-inline-end: calc(-1 * tokens.get('breadcrumb-gap-inline-outer'));
+}
 
-  &.empty {
-    display: none;
+.menu.empty {
+  display: none;
+}
+
+// Shown once there is no room left for the home item even after every middle item is collapsed.
+.home-menu {
+  flex: none;
+
+  // The trigger button ("...") should keep looking like a link, from .breadcrumb-item above.
+  // The home link inside the dropdown shouldn't, so it's reset and given <post-menu-item>'s own appearance instead, at matching specificity so it wins.
+  post-menu-item :is(a, button) {
+    all: revert;
+    @include menu-item-mx.menu-item-link-appearance;
   }
 }
 
