@@ -351,7 +351,8 @@ export class PostInternetHeader {
 
           {localHeader.title && <p slot="title">{localHeader.title}</p>}
 
-          {localHeader.navigation && this.renderLocalNavigation(localHeader)}
+          {Boolean(localHeader.navigation?.length || localHeader.closeLink) &&
+            this.renderLocalNavigation(localHeader)}
 
           {localHeader.mainNavigation && localHeader.mainNavigation.length > 0 && (
             <post-mainnavigation slot="main-nav" textMain={this.textMain}>

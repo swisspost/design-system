@@ -251,6 +251,7 @@ describe('header', () => {
       cy.get('[slot="local-nav"] > li').as('nav-items');
 
       cy.get('@nav-items')
+        // +1 accounts for the close link, rendered as the last local navigation item.
         .should('have.length', headerConfig.localHeader.navigation.length + 1)
         .and('be.visible');
 
