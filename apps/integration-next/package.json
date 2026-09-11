@@ -30,7 +30,7 @@
   "dependencies": {
     "@swisspost/design-system-components-react": "workspace:10.5.0",
     "@swisspost/design-system-styles": "workspace:10.5.0",
-    "next": "16.2.11",
+    "next": "16.3.3",
     "react": "19.1.1",
     "react-dom": "19.1.1"
   },
@@ -53,7 +53,7 @@
     "tailwindcss": "4.3.1",
     "typescript": "catalog:typescript",
     "typescript-eslint": "catalog:typescript",
-    "vitest": "4.1.10"
+    "vitest": "4.1.11"
   },
   "keywords": [
     "nextjs",

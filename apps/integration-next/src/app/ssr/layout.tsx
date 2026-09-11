@@ -215,8 +215,8 @@ export default function Layout({ children }: { readonly children: React.ReactNod
 
         <PostSideNavigationTrigger slot="side-nav" for="header-side-nav">
           <button>
-            <span>Menu</span>
             <PostIcon aria-hidden="true" name="burger"></PostIcon>
+            Menu
           </button>
         </PostSideNavigationTrigger>
 
