@@ -85,48 +85,26 @@ describe('KLP Session URL Configuration', () => {
   });
 
   describe('Fetch call verification with URLs', () => {
-    it('should call fetch with prod URL when environment is prod', async () => {
-      const mockFetch = jest.fn().mockResolvedValue({
-        ok: true,
-        json: async () => ({ data: {} }),
-      });
-      global.fetch = mockFetch;
+    const fetchCallTestCases: Array<[Environment, string]> = [
+      ['prod', 'https://n.account.post.ch/v1/session/subscribe'],
+      ['int02', 'https://n.accountint2.post.ch/v1/session/subscribe'],
+      ['int01', 'https://n.accountint1.post.ch/v1/session/subscribe'],
+    ];
 
-      const url = getSessionUrl('prod');
-      await mockFetch(url, { credentials: 'include' });
+    fetchCallTestCases.forEach(([environment, expectedUrl]) => {
+      it(`should call fetch with ${environment} URL when environment is ${environment}`, async () => {
+        const mockFetch = jest.fn().mockResolvedValue({
+          ok: true,
+          json: async () => ({ data: {} }),
+        });
+        global.fetch = mockFetch;
 
-      expect(mockFetch).toHaveBeenCalledWith('https://n.account.post.ch/v1/session/subscribe', {
-        credentials: 'include',
-      });
-    });
+        const url = getSessionUrl(environment);
+        await mockFetch(url, { credentials: 'include' });
 
-    it('should call fetch with int02 URL when environment is int02', async () => {
-      const mockFetch = jest.fn().mockResolvedValue({
-        ok: true,
-        json: async () => ({ data: {} }),
-      });
-      global.fetch = mockFetch;
-
-      const url = getSessionUrl('int02');
-      await mockFetch(url, { credentials: 'include' });
-
-      expect(mockFetch).toHaveBeenCalledWith('https://n.accountint2.post.ch/v1/session/subscribe', {
-        credentials: 'include',
-      });
-    });
-
-    it('should call fetch with int01 URL when environment is int01', async () => {
-      const mockFetch = jest.fn().mockResolvedValue({
-        ok: true,
-        json: async () => ({ data: {} }),
-      });
-      global.fetch = mockFetch;
-
-      const url = getSessionUrl('int01');
-      await mockFetch(url, { credentials: 'include' });
-
-      expect(mockFetch).toHaveBeenCalledWith('https://n.accountint1.post.ch/v1/session/subscribe', {
-        credentials: 'include',
+        expect(mockFetch).toHaveBeenCalledWith(expectedUrl, {
+          credentials: 'include',
+        });
       });
     });
   });
@@ -149,15 +127,7 @@ describe('KLP Session URL Configuration', () => {
   });
 
   describe('URL format validation', () => {
-    const testCases: Environment[] = [
-      'prod',
-      'int02',
-      'int01',
-      'test',
-      'devs1',
-      'dev02',
-      'dev01',
-    ];
+    const testCases: Environment[] = ['prod', 'int02', 'int01', 'test', 'devs1', 'dev02', 'dev01'];
 
     testCases.forEach(environment => {
       it(`should generate valid URL for ${environment}`, () => {
@@ -179,4 +149,3 @@ describe('KLP Session URL Configuration', () => {
     });
   });
 });
-
