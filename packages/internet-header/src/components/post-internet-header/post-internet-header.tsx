@@ -6,6 +6,7 @@ import { IconLinkConfig, LinkConfig } from '@/models/shared.model';
 import { getAlternateLinks, observeAlternateLinks } from '@/services/alternate-link.service';
 import { getLocalizedConfig, isValidProjectId } from '@/services/config.service';
 import { getActiveLink } from '@/services/route.service';
+import { getSessionUrl } from '@/config/klp-urls';
 import { version } from '@root/package.json';
 import {
   Component,
@@ -18,8 +19,6 @@ import {
   Watch,
 } from '@stencil/core';
 import '@swisspost/design-system-components';
-
-const SESSION_URL = 'https://n.account.post.ch/v1/session/subscribe';
 
 @Component({
   tag: 'swisspost-internet-header',
@@ -177,7 +176,8 @@ export class PostInternetHeader {
 
   private async fetchUserData(): Promise<void> {
     try {
-      const response = await fetch(SESSION_URL, {
+      const sessionUrl = getSessionUrl(this.environment);
+      const response = await fetch(sessionUrl, {
         credentials: 'include',
       });
 
