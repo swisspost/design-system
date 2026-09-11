@@ -1,5 +1,22 @@
 # @swisspost/design-system-documentation
 
+## 6.5.1
+
+### Patch Changes
+
+- Fixed the pre-configured header story not sticking to the top when scrolling in the documentation. (by [@myrtasakellariou](https://github.com/myrtasakellariou) and [@myrta2302](https://github.com/myrta2302) with [#8412](https://github.com/swisspost/design-system/pull/8412))
+
+- Aligned all examples of the `post-side-navigation-trigger` to have a consistent implementation across the documentation. (by [@leagrdv](https://github.com/leagrdv) with [#8469](https://github.com/swisspost/design-system/pull/8469))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.5.1
+  - @swisspost/design-system-styles@10.5.1
+  - @swisspost/design-system-components-react@10.5.1
+  - @swisspost/internet-header@10.5.1
+  - @swisspost/design-system-styles-primeng@10.5.1
+  - @swisspost/design-system-icons@10.5.1
+  - @swisspost/design-system-theme-ag-grid@10.5.1
+  - @swisspost/design-system-tokens@10.5.1
+
 ## 6.5.0
 
 ### Minor Changes

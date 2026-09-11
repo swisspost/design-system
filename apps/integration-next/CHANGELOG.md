@@ -1,5 +1,13 @@
 # @swisspost/design-system-integration-next
 
+## 10.5.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.5.1
+  - @swisspost/design-system-components-react@10.5.1
+
 ## 10.5.0
 
 ### Patch Changes
