@@ -65,7 +65,7 @@ export const ClientSideRouting: Story = {
     docs: {
       description: {
         story:
-          'Slot your own `<a>` (e.g. a framework `Link`) into the `home` slot and into each `post-breadcrumb-item`, instead of using `home-url`/`url`, so client-side routing frameworks like Next.js or Angular Router can handle navigation instead of the browser doing a full page reload.',
+          'Slot your own `<a>` (e.g. a framework `Link`) into the `home` slot and into each `post-breadcrumb-item`, instead of using `home-url`/`url`, so client-side routing frameworks like Next.js or Angular Router can handle navigation instead of the browser doing a full page reload. The slotted `<a>` must be a direct child of `post-breadcrumbs`/`post-breadcrumb-item`, not wrapped in another element.',
       },
     },
     controls: {

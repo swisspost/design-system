@@ -197,8 +197,12 @@ export class PostBreadcrumbs {
         target.remove();
       } else {
         // Nothing assigned: keep the slot's own fallback content (e.g. the default home link) by
-        // unwrapping the <slot> in place, instead of removing it along with its children.
-        target.replaceWith(...Array.from(target.childNodes));
+        // unwrapping the <slot> in place, moving its children to where it was before removing it.
+        const parent = target.parentNode;
+        if (parent) {
+          Array.from(target.childNodes).forEach(child => parent.insertBefore(child, target));
+          parent.removeChild(target);
+        }
       }
     });
 

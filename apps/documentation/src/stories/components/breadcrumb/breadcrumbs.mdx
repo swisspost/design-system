@@ -48,6 +48,11 @@ To enable client-side routing (e.g. Next.js, Angular Router), slot your own anch
 
 <post-banner type="info">
   <p>
+    The slotted `<a>` must be a direct child of `<post-breadcrumb-item>` (or of `<post-breadcrumbs>`
+    for the `home` slot), not wrapped in another element, otherwise it won't be detected and the
+    component will fall back to rendering its own internal link.
+  </p>
+  <p>
     The `url`/`home-url` properties are ignored once you slot your own `<a>`. Since the label,
     description, and `aria-current` are no longer applied automatically, give the slotted `<a>`
     an accessible name (via its text content or `aria-label`), and add `aria-current="page"`
