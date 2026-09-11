@@ -5,6 +5,7 @@
 @use '@swisspost/design-system-styles/mixins/media';
 
 @use '../post-breadcrumb-item/mixins' as breadcrumb-item-mx;
+@use '../post-menu-item/mixins' as menu-item-mx;
 
 tokens.$default-map: components.$post-breadcrumb;
 
@@ -72,10 +73,10 @@ nav {
   flex: none;
 
   // The trigger button ("...") should keep looking like a link, from .breadcrumb-item above.
-  // The home link inside the dropdown shouldn't, so we undo it here and let <post-menu-item>
-  // handle its own styling instead.
+  // The home link inside the dropdown shouldn't, so it's reset and given <post-menu-item>'s own appearance instead, at matching specificity so it wins.
   post-menu-item :is(a, button) {
     all: revert;
+    @include menu-item-mx.menu-item-link-appearance;
   }
 }
 
