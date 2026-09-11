@@ -60,11 +60,11 @@ overrides:
 allowBuilds:
   '@parcel/watcher': true
   '@percy/core': true
-  core-js-pure: true
+  core-js-pure: false
   cypress: true
-  es5-ext: true
+  es5-ext: false
   esbuild: true
-  iframe-resizer: true
+  iframe-resizer: false
   lmdb: true
   msgpackr-extract: true
   sharp: true
