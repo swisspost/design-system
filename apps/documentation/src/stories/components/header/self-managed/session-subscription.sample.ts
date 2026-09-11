@@ -1,5 +1,5 @@
 // Import the KLP URL configuration from the internet-header package
-import { KLP_BASE_URLS, getSessionUrl } from '@swisspost/internet-header/config/klp-urls';
+import { getSessionUrl } from '@swisspost/internet-header/config/klp-urls';
 
 // Get the appropriate URL based on your environment
 const environment = 'prod'; // Change to your environment (int01, int02, etc.)
