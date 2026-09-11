@@ -1,5 +1,16 @@
 # @swisspost/design-system-components
 
+## 10.5.1
+
+### Patch Changes
+
+- Fixed `post-tabs` component creating horizontal page overflow on desktop when used inside a wrapper with a `.container` class. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8396](https://github.com/swisspost/design-system/pull/8396))
+
+- Hid visible space between side navigation and header when scrolling. (by [@leagrdv](https://github.com/leagrdv) with [#8397](https://github.com/swisspost/design-system/pull/8397))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.5.1
+  - @swisspost/design-system-icons@10.5.1
+
 ## 10.5.0
 
 ### Minor Changes
