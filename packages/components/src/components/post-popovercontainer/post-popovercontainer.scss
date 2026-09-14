@@ -135,29 +135,7 @@
   inset: 0;
   z-index: -1;
   pointer-events: auto;
-}
-
-:host([safe-space='triangle'])::after {
-  clip-path: polygon(
-    var(--post-safe-space-cursor-x, 0) var(--post-safe-space-cursor-y, 0),
-    var(--post-safe-space-popover-x-start, var(--post-safe-space-popover-x, 0))
-      var(--post-safe-space-popover-y, var(--post-safe-space-popover-y-start, 0)),
-    var(--post-safe-space-popover-x-end, var(--post-safe-space-popover-x, 0))
-      var(--post-safe-space-popover-y, var(--post-safe-space-popover-y-end, 0))
-  );
-}
-
-:host([safe-space='trapezoid'])::after {
-  clip-path: polygon(
-    var(--post-safe-space-trigger-x-start, var(--post-safe-space-trigger-x, 0))
-      var(--post-safe-space-trigger-y, var(--post-safe-space-trigger-y-start, 0)),
-    var(--post-safe-space-trigger-x-end, var(--post-safe-space-trigger-x, 0))
-      var(--post-safe-space-trigger-y, var(--post-safe-space-trigger-y-end, 0)),
-    var(--post-safe-space-popover-x-end, var(--post-safe-space-popover-x, 0))
-      var(--post-safe-space-popover-y, var(--post-safe-space-popover-y-end, 0)),
-    var(--post-safe-space-popover-x-start, var(--post-safe-space-popover-x, 0))
-      var(--post-safe-space-popover-y, var(--post-safe-space-popover-y-start, 0))
-  );
+  clip-path: var(--post-popovercontainer-safe-space, none);
 }
 
 :host(:not(:has(.arrow))) > div {

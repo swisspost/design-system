@@ -28,7 +28,7 @@ import {
 } from '@floating-ui/dom';
 import { getOverflowAncestors } from '@floating-ui/utils/dom';
 import { computePositionWithSafeArea } from '@/utils/floating-ui';
-import { oppositeSide, Side } from '@/utils/side';
+import { getOppositeSide, getPathAlongSide, getPolygon, Side } from './util';
 
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
 import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
@@ -52,7 +52,6 @@ export class PostPopovercontainer {
   private runningAnimation: Animation | null = null;
 
   private stopAutoUpdate: VoidFunction | null = null;
-  private mouseMoveHandler: (event: MouseEvent) => void = null;
 
   @Element() host: HTMLPostPopovercontainerElement;
 
@@ -118,11 +117,10 @@ export class PostPopovercontainer {
   @Prop() readonly arrow?: boolean = false;
 
   /**
-   * Safe space through which the mouse can move without the popover being hidden.
+   * Whether to add a space through which the mouse can move without the popover being hidden.
    */
   @Prop({ reflect: true })
-  @OneOf(['triangle', 'trapezoid'])
-  readonly safeSpace?: 'triangle' | 'trapezoid';
+  readonly safeSpace?: boolean;
 
   /**
    * Whether to automatically hide the popover when the target moves outside the scrollport.
@@ -150,9 +148,18 @@ export class PostPopovercontainer {
   }
 
   disconnectedCallback() {
+    this.cleanup();
+    this.host.removeEventListener('beforetoggle', this.handleToggle.bind(this));
+  }
+
+  private cleanup() {
     this.stopAutoUpdate?.();
     this.unlockScroll();
-    this.host.removeEventListener('beforetoggle', this.handleToggle.bind(this));
+
+    if (this.runningAnimation) {
+      this.runningAnimation.cancel();
+      this.runningAnimation = null;
+    }
   }
 
   private isOpen() {
@@ -250,18 +257,7 @@ export class PostPopovercontainer {
    * Handles the popover's state transition from showing to hidden, emitting related events.
    */
   private async handleClose() {
-    this.stopAutoUpdate?.();
-    this.unlockScroll();
-
-    if (this.mouseMoveHandler) {
-      globalThis.removeEventListener('mousemove', this.mouseMoveHandler);
-      this.mouseMoveHandler = null;
-    }
-
-    if (this.runningAnimation) {
-      this.runningAnimation.cancel();
-      this.runningAnimation = null;
-    }
+    this.cleanup();
 
     this.postBeforeToggle.emit({ willOpen: false });
     this.postToggle.emit({ isOpen: false });
@@ -294,7 +290,18 @@ export class PostPopovercontainer {
 
       this.arrowRef.style.left = data.x ? `${data.x}px` : '';
       this.arrowRef.style.top = data.y ? `${data.y}px` : '';
-      this.arrowRef.style[oppositeSide(this.side)] = `-${this.arrowRef.offsetWidth / 2}px`;
+      this.arrowRef.style[getOppositeSide(this.side)] = `-${this.arrowRef.offsetWidth / 2}px`;
+    }
+
+    // Set the safe space polygon
+    if (this.safeSpace) {
+      this.host.style.setProperty(
+        '--post-popovercontainer-safe-space',
+        getPolygon([
+          ...getPathAlongSide(this.host.getBoundingClientRect(), getOppositeSide(this.side)),
+          ...getPathAlongSide(this.anchorRef.getBoundingClientRect(), this.side),
+        ]),
+      );
     }
   }
 

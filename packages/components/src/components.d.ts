@@ -601,9 +601,9 @@ export namespace Components {
          */
         "placement"?: Placement1;
         /**
-          * Safe space through which the mouse can move without the popover being hidden.
+          * Whether to add a space through which the mouse can move without the popover being hidden.
          */
-        "safeSpace"?: 'triangle' | 'trapezoid';
+        "safeSpace"?: boolean;
         /**
           * Whether to lock the scroll of the scrollport when the popover is shown.
          */
@@ -1884,9 +1884,9 @@ declare namespace LocalJSX {
          */
         "placement"?: Placement1;
         /**
-          * Safe space through which the mouse can move without the popover being hidden.
+          * Whether to add a space through which the mouse can move without the popover being hidden.
          */
-        "safeSpace"?: 'triangle' | 'trapezoid';
+        "safeSpace"?: boolean;
         /**
           * Whether to lock the scroll of the scrollport when the popover is shown.
          */
@@ -2210,7 +2210,7 @@ declare namespace LocalJSX {
         "edgeGap": number;
         "offset": number;
         "arrow": boolean;
-        "safeSpace": 'triangle' | 'trapezoid';
+        "safeSpace": boolean;
         "autoHide": boolean;
         "scrollLock": boolean;
     }
