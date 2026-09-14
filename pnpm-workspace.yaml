@@ -69,3 +69,6 @@ allowBuilds:
   msgpackr-extract: true
   sharp: true
   unrs-resolver: true
+minimumReleaseAgeExclude:
+  # Renovate security update: svgo@4.1.0
+  - svgo@4.1.0

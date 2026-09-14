@@ -37,10 +37,8 @@ const meta: MetaComponent = {
   render: renderHeader,
   decorators: [
     story => html`
-      <div
-        class="header-story-wrapper"
-      >
-        ${story()} ${fakeContent()}
+      <div class="header-story-wrapper">
+        <div class="virtual-body">${story()} ${fakeContent()}</div>
       </div>
     `,
   ],

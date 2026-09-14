@@ -1,7 +1,9 @@
 #storybook-docs {
   .header-story-wrapper {
-    max-height: 450px !important;
-    overflow: visible !important;
+    .virtual-body {
+      height: 550px;
+      overflow-y: auto;
+    }
   }
 }
 
