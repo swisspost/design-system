@@ -8,9 +8,10 @@ export default defineConfig({
     includeShadowDom: true,
     viewportWidth: 1024,
     viewportHeight: 576,
-    env: {
-      PACKAGE_VERSION: pkg.version,
-    },
+  },
+  allowCypressEnv: false,
+  expose: {
+    PACKAGE_VERSION: pkg.version,
   },
   includeShadowDom: true,
   retries: {
