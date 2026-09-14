@@ -117,6 +117,7 @@ export class PostPopover {
           arrow={this.arrow}
           placement={this.placement}
           edgeGap={this.edgeGap}
+          autoHide
           ref={e => {
             if (e) this.popoverRef = e;
           }}

@@ -1,5 +1,13 @@
 # @swisspost/internet-header
 
+## 10.5.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.5.0
+  - @swisspost/design-system-components@10.5.0
+
 ## 10.4.0
 
 ### Patch Changes
