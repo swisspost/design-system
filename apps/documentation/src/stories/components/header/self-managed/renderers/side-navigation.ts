@@ -7,8 +7,8 @@ export function renderSideNavTrigger() {
     <!-- Side navigation trigger -->
     <post-side-navigation-trigger slot="side-nav" for="${sideNavId}">
       <button>
-        <span>Menu</span>
         <post-icon aria-hidden="true" name="burger"></post-icon>
+        Menu
       </button>
     </post-side-navigation-trigger>
   `;

@@ -1,5 +1,21 @@
 # @swisspost/design-system-styles
 
+## 10.5.0
+
+### Minor Changes
+
+- Added definitions for italic font styles for Swiss Post Sans. Italicised text will now use the real font instead of slanting the regular one. (by [@gfellerph](https://github.com/gfellerph) with [#8340](https://github.com/swisspost/design-system/pull/8340))
+
+- Added the inline notification component. (by [@hugomslv](https://github.com/hugomslv), [@alizedebray](https://github.com/alizedebray) and [@alionazherdetska](https://github.com/alionazherdetska) with [#7400](https://github.com/swisspost/design-system/pull/7400))
+
+### Patch Changes
+
+- Switched the direction of the stacked toasts in the `.toast-container` to have the newest toasts be always on top. (by [@leagrdv](https://github.com/leagrdv) with [#8395](https://github.com/swisspost/design-system/pull/8395))
+
+- Centered dialog icon with first line of dialog title across devices. (by [@myrtasakellariou](https://github.com/myrtasakellariou) with [#8372](https://github.com/swisspost/design-system/pull/8372))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.5.0
+
 ## 10.4.0
 
 ### Patch Changes
