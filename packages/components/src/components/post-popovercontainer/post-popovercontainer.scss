@@ -31,10 +31,11 @@
   // Keeps the little arrow visible
   overflow: visible;
 
-  > div {
+  [part='post-popovercontainer-content'] {
     box-shadow: elevation.$elevation-300;
     width: max-content;
-    max-width: 100%;
+    max-width: var(--post-popovercontainer-available-width);
+    max-height: var(--post-popovercontainer-available-height);
     color: var(--post-current-fg);
     background-color: var(--post-current-bg);
     border-radius: commons.$border-radius;
@@ -68,22 +69,22 @@
 
     // only the two outer sides get a border — the sides hidden under the content div stay borderless
     // fallbacks to 0px/transparent when no consumer (e.g. post-tooltip) sets the variables
-    &[dynamic-placement='top'] {
+    &[data-side='top'] {
       border-bottom-right-radius: 2px;
       border-bottom: var(--post-popovercontainer-arrow-border);
       border-right: var(--post-popovercontainer-arrow-border);
     }
-    &[dynamic-placement='right'] {
+    &[data-side='right'] {
       border-bottom-left-radius: 2px;
       border-bottom: var(--post-popovercontainer-arrow-border);
       border-left: var(--post-popovercontainer-arrow-border);
     }
-    &[dynamic-placement='bottom'] {
+    &[data-side='bottom'] {
       border-top-left-radius: 2px;
       border-top: var(--post-popovercontainer-arrow-border);
       border-left: var(--post-popovercontainer-arrow-border);
     }
-    &[dynamic-placement='left'] {
+    &[data-side='left'] {
       border-top-right-radius: 2px;
       border-top: var(--post-popovercontainer-arrow-border);
       border-right: var(--post-popovercontainer-arrow-border);
@@ -96,25 +97,25 @@
     $offset: -(math.cos($angle-rad) * $border-width-rem) - 0.5 * $arrow-size;
 
     @include utilities.high-contrast-mode {
-      &[dynamic-placement='top'] {
+      &[data-side='top'] {
         border-block-end: 2px solid transparent;
         border-inline-end: 2px solid transparent;
         bottom: #{$offset} !important;
       }
 
-      &[dynamic-placement='left'] {
+      &[data-side='left'] {
         border-block-start: 2px solid transparent;
         border-inline-end: 2px solid transparent;
         right: #{$offset} !important;
       }
 
-      &[dynamic-placement='right'] {
+      &[data-side='right'] {
         border-block-end: 2px solid transparent;
         border-inline-start: 2px solid transparent;
         left: #{$offset} !important;
       }
 
-      &[dynamic-placement='bottom'] {
+      &[data-side='bottom'] {
         border-block-start: 2px solid transparent;
         border-inline-start: 2px solid transparent;
         top: #{$offset} !important;
@@ -169,19 +170,19 @@
     drop-shadow(4px 8px 12px hsla(225, 7%, 11%, 0.15));
 }
 
-:host(:has(.arrow[dynamic-placement='top'])) > div {
+:host(:has(.arrow[data-side='top'])) > div {
   filter: drop-shadow(0px -2px 3px hsla(216, 9%, 11%, 0.15))
     drop-shadow(0px -4px 6px hsla(225, 17%, 9%, 0.15))
     drop-shadow(0px -8px 12px hsla(225, 7%, 11%, 0.15));
 }
 
-:host(:has(.arrow[dynamic-placement='left'])) > div {
+:host(:has(.arrow[data-side='left'])) > div {
   filter: drop-shadow(-2px 0px 3px hsla(216, 9%, 11%, 0.15))
     drop-shadow(-4px 0px 6px hsla(225, 17%, 9%, 0.15))
     drop-shadow(-8px 0px 12px hsla(225, 7%, 11%, 0.15));
 }
 
-:host(:has(.arrow[dynamic-placement='right'])) > div {
+:host(:has(.arrow[data-side='right'])) > div {
   filter: drop-shadow(2px 0px 3px hsla(216, 9%, 11%, 0.15))
     drop-shadow(4px 0px 6px hsla(225, 17%, 9%, 0.15))
     drop-shadow(8px 0px 12px hsla(225, 7%, 11%, 0.15));

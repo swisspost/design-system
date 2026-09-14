@@ -5,32 +5,33 @@
 
 ## Properties
 
-| Property    | Attribute    | Description                                                                                                                                                                                                                                                                                                                                 | Type                                                                                                                                                                 | Default     |
-| ----------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `arrow`     | `arrow`      | Whether or not to display a little pointer arrow                                                                                                                                                                                                                                                                                            | `boolean`                                                                                                                                                            | `false`     |
-| `autoHide`  | `auto-hide`  | Whether to automatically hide the popover when the target moves outside the scrollport.  If the `post-header` can cover the target, the popover will also be hidden as soon as the target scrolls behind it.                                                                                                                                | `boolean`                                                                                                                                                            | `undefined` |
-| `edgeGap`   | `edge-gap`   | Gap between the edge of the page and the popovercontainer                                                                                                                                                                                                                                                                                   | `number`                                                                                                                                                             | `8`         |
-| `offset`    | `offset`     | Offset for more precise placement                                                                                                                                                                                                                                                                                                           | `number`                                                                                                                                                             | `undefined` |
-| `placement` | `placement`  | Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'top'`     |
-| `safeSpace` | `safe-space` | Enables a safespace through which the cursor can be moved without the popover being disabled                                                                                                                                                                                                                                                | `"trapezoid" \| "triangle"`                                                                                                                                          | `undefined` |
+| Property     | Attribute     | Description                                                                                                                                                                                                  | Type                                                                                                                                                                 | Default     |
+| ------------ | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `arrow`      | `arrow`       | Show a little indicator arrow                                                                                                                                                                                | `boolean`                                                                                                                                                            | `false`     |
+| `autoHide`   | `auto-hide`   | Whether to automatically hide the popover when the target moves outside the scrollport.  If the `post-header` can cover the target, the popover will also be hidden as soon as the target scrolls behind it. | `boolean`                                                                                                                                                            | `undefined` |
+| `edgeGap`    | `edge-gap`    | Gap between the edge of the viewport and the popover.                                                                                                                                                        | `number`                                                                                                                                                             | `8`         |
+| `offset`     | `offset`      | Offset for more precise placement                                                                                                                                                                            | `number`                                                                                                                                                             | `undefined` |
+| `placement`  | `placement`   | Placement of the popover according to the floating-ui options.                                                                                                                                               | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'top'`     |
+| `safeSpace`  | `safe-space`  | Safe space through which the mouse can move without the popover being hidden.                                                                                                                                | `"trapezoid" \| "triangle"`                                                                                                                                          | `undefined` |
+| `scrollLock` | `scroll-lock` | Whether to lock the scroll of the scrollport when the popover is shown.                                                                                                                                      | `boolean`                                                                                                                                                            | `undefined` |
 
 
 ## Events
 
-| Event              | Description                                                                                                                                                                                                          | Type                                  |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
-| `postBeforeShow`   | Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.                                                          | `CustomEvent<{ first?: boolean; }>`   |
-| `postBeforeToggle` | Fires whenever the popovercontainer is about to be shown or hidden, passing in event.detail a `willOpen` boolean, which is true if the popovercontainer is about to be opened and false if it is about to be closed. | `CustomEvent<{ willOpen: boolean; }>` |
-| `postHide`         | Fires whenever the popovercontainer is hidden.                                                                                                                                                                       | `CustomEvent<any>`                    |
-| `postShow`         | Fires whenever the popovercontainer is shown, passing in event.detail a `first` boolean, which is true if it is shown for the first time.                                                                            | `CustomEvent<{ first?: boolean; }>`   |
-| `postToggle`       | Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing a `isOpen`boolean, which is true if the popovercontainer was opened and false if it was closed.               | `CustomEvent<{ isOpen: boolean; }>`   |
+| Event              | Description                                                                                                                                                                                      | Type                                  |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------- |
+| `postBeforeShow`   | Emitted just before the popover is shown.  The payload contains a `first` boolean, that is set to `true` when the popover is about to be shown for the first time.                               | `CustomEvent<{ first?: boolean; }>`   |
+| `postBeforeToggle` | Emitted just before the popover's state changes.  The payload contains a `willOpen` boolean, that is set to `true` when the popover is about to be shown, `false` when it is about to be hidden. | `CustomEvent<{ willOpen: boolean; }>` |
+| `postHide`         | Emitted just after the popover is hidden.                                                                                                                                                        | `CustomEvent<any>`                    |
+| `postShow`         | Emitted just after the popover is shown.  The payload contains a `first` boolean, that is set to `true` when the popover is shown for the first time.                                            | `CustomEvent<{ first?: boolean; }>`   |
+| `postToggle`       | Emitted just after the popover's state changes.  The payload contains a `isOpen` boolean, that is set to `true` when the popover is shown, `false` when it is hidden.                            | `CustomEvent<{ isOpen: boolean; }>`   |
 
 
 ## Methods
 
 ### `hide() => Promise<void>`
 
-Programmatically hide the popovercontainer
+Hides the popover.
 
 #### Returns
 
@@ -38,15 +39,15 @@ Type: `Promise<void>`
 
 
 
-### `show(target: HTMLElement) => Promise<void>`
+### `show(anchor: HTMLElement) => Promise<void>`
 
-Programmatically display the popovercontainer
+Shows the popover.
 
 #### Parameters
 
-| Name     | Type          | Description                                                                |
-| -------- | ------------- | -------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | The element that invokes the popover and to which it is visually anchored. |
+| Name     | Type          | Description                                           |
+| -------- | ------------- | ----------------------------------------------------- |
+| `anchor` | `HTMLElement` | the element that the popover is visually anchored to. |
 
 #### Returns
 
@@ -54,29 +55,32 @@ Type: `Promise<void>`
 
 
 
-### `toggle(target: HTMLElement, force?: boolean) => Promise<boolean>`
+### `toggle(anchor: HTMLElement, force?: boolean) => Promise<boolean>`
 
-Toggle popovercontainer display
+Toggles the popover's state from hidden to showing and vice versa.
+
+If `state` is specified, the popover is forced to be shown if the is set to `true`, or hidden
+if it is set to `false`.
 
 #### Parameters
 
-| Name     | Type          | Description                                                                |
-| -------- | ------------- | -------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | The element that invokes the popover and to which it is visually anchored. |
-| `force`  | `boolean`     | Pass true to always show or false to always hide                           |
+| Name     | Type          | Description                                           |
+| -------- | ------------- | ----------------------------------------------------- |
+| `anchor` | `HTMLElement` | the element that the popover is visually anchored to. |
+| `force`  | `boolean`     | the next state of the popover.                        |
 
 #### Returns
 
 Type: `Promise<boolean>`
 
-
+the new state of the popover: `true` if it is shown, `false` if it is hidden.
 
 
 ## Slots
 
-| Slot | Description                                                   |
-| ---- | ------------------------------------------------------------- |
-|      | Default slot for placing content inside the popovercontainer. |
+| Slot | Description                                          |
+| ---- | ---------------------------------------------------- |
+|      | Default slot for placing content inside the popover. |
 
 
 ## Shadow Parts
