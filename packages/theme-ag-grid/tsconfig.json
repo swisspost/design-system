@@ -1,5 +1,5 @@
 {
-  "extends": "@swisspost/design-system-tsconfig/dom.tsconfig.json",
+  "extends": "@swisspost/design-system-tsconfig/browser.tsconfig.json",
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "src",

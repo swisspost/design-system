@@ -1,5 +1,5 @@
 {
-  "extends": "@swisspost/design-system-tsconfig/dom.tsconfig.json",
+  "extends": "@swisspost/design-system-tsconfig/browser.tsconfig.json",
   "compilerOptions": {
     "declaration": true,
     "declarationDir": "dist/types",
