@@ -29,6 +29,7 @@ const TARGETS = [
   'src/legacy/klp-login-widget.js',
   'src/legacy/texts.js',
   'src/legacy/urls.js',
+  'src/legacy/storage.js',
   'src/legacy/vertx-eventbus.js',
 ];
 
@@ -162,6 +163,7 @@ const UNREACHABLE = {
   },
   'src/legacy/texts.js': {},
   'src/legacy/urls.js': {},
+  'src/legacy/storage.js': {},
   'src/legacy/vertx-eventbus.js': {},
 };
 
@@ -191,6 +193,10 @@ const CANARIES = {
   'src/legacy/control-cookie.js': {
     uncovered: [],
     covered: ['export function hash'],
+  },
+  'src/legacy/storage.js': {
+    uncovered: [],
+    covered: ['function isHTML5StorageSupported'],
   },
 };
 

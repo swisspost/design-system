@@ -17,6 +17,7 @@ import {
   hash,
   isCurrentLocationPostCh,
 } from './control-cookie';
+import { createStorage } from './storage';
 
 (function ($) {
   window.klpWidgetDev = function (
@@ -50,8 +51,6 @@ import {
     }
 
     let keepAliveID = 'klp-widget-keepalive',
-      persistedStateKey = 'klp.widget.state',
-      persistedDocumentPrefix = 'klp.widget.document.',
       eventBus,
       address,
       retrySubscribeOnFail = false,
@@ -109,15 +108,7 @@ import {
     }
 
     const controlCookie = createControlCookie({ log: message => log(message) });
-
-    function isHTML5StorageSupported() {
-      try {
-        return 'sessionStorage' in window && window.sessionStorage !== null;
-      } catch (e) {
-        log('No local storage available');
-        return false;
-      }
-    }
+    const storage = createStorage({ log: message => log(message) });
 
     function now() {
       const n = new Date();
@@ -304,30 +295,14 @@ import {
     }
 
     function persistState(ttl) {
-      if (isHTML5StorageSupported()) {
-        sessionStorage.setItem(
-          persistedStateKey,
-          JSON.stringify({
-            ttl: new Date().getTime() + ttl,
-            sessionData:
-              "If you're looking for this info, contact the Swiss Post Design System Team!",
-            address: "If you're looking for this info, contact the Swiss Post Design System Team!",
-          }),
-        );
-        log('State persisted');
+      if (storage.persistState(ttl)) {
         setControlCookie('hash', encodeURIComponent(hash(sessionData)));
-      } else {
-        log('State not persisted because HTML storage not supported');
       }
     }
 
     function removePersistedState() {
-      if (isHTML5StorageSupported()) {
-        sessionStorage.removeItem(persistedStateKey);
-        log('Persisted state removed');
+      if (storage.removePersistedState()) {
         removeControlCookie();
-      } else {
-        log('Persisted state not removed because HTML storage not supported');
       }
     }
 
@@ -344,16 +319,7 @@ import {
     }
 
     function saveDocumentOnCache(document, documentType) {
-      const key = persistedDocumentPrefix + documentType;
-      if (isHTML5StorageSupported()) {
-        sessionStorage.setItem(key, JSON.stringify(document));
-        log(
-          'Document ' +
-            documentType +
-            ' has been persisted on cached with value ' +
-            JSON.stringify(document),
-        );
-      }
+      storage.saveDocumentOnCache(document, documentType);
     }
 
     function removeAllDocumentFromCache() {
@@ -361,11 +327,7 @@ import {
     }
 
     function removeDocumentFromCache(documentType) {
-      const key = persistedDocumentPrefix + documentType;
-      if (isHTML5StorageSupported()) {
-        sessionStorage.removeItem(key);
-        log('Document ' + documentType + ' has been removed from cache');
-      }
+      storage.removeDocumentFromCache(documentType);
     }
 
     function installUserActivityHandler() {
