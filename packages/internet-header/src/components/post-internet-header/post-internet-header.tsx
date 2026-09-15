@@ -1,22 +1,13 @@
 import { Link, LinkProps, MegaDropdown, UserMenu } from '@/components/internal';
 import { dispose, state } from '@/data/store';
 import { ActiveRouteProp, Environment } from '@/models/general.model';
-import { PostLoginConfig, UserMenuConfig } from '@/models/header.model';
+import { HeaderConfig, PostLoginConfig, UserMenuConfig } from '@/models/header.model';
 import { IconLinkConfig, LinkConfig } from '@/models/shared.model';
 import { getAlternateLinks, observeAlternateLinks } from '@/services/alternate-link.service';
 import { getLocalizedConfig, isValidProjectId } from '@/services/config.service';
 import { getActiveLink } from '@/services/route.service';
 import { version } from '@root/package.json';
-import {
-  Component,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Listen,
-  Prop,
-  Watch,
-} from '@stencil/core';
+import { Component, Event, EventEmitter, h, Host, Listen, Prop, Watch } from '@stencil/core';
 import '@swisspost/design-system-components';
 
 const SESSION_URL = 'https://n.account.post.ch/v1/session/subscribe';
@@ -248,23 +239,41 @@ export class PostInternetHeader {
     );
   }
 
+  private getNavItemKey(navItem: LinkConfig | UserMenuConfig): string {
+    return 'url' in navItem ? navItem.url : navItem.user.email;
+  }
+
   private renderNavigation(
     slot: string,
-    config: (LinkConfig | UserMenuConfig)[],
-    props: LinkProps = {},
+    items: Array<LinkConfig | UserMenuConfig>,
+    props: LinkProps | ((navItem: LinkConfig | UserMenuConfig) => LinkProps) = {},
   ) {
-    if (config.length === 0) return null;
+    const getProps = typeof props === 'function' ? props : () => props;
 
-    if (config.length === 1) {
-      return this.renderNavItem(config[0], { ...props, slot });
+    if (items.length === 0) return null;
+
+    if (items.length === 1) {
+      return this.renderNavItem(items[0], { ...getProps(items[0]), slot });
     }
 
     return (
       <ul slot={slot}>
-        {config.map(navItem => (
-          <li key={'url' in navItem ? navItem.url : navItem.user.email}>{this.renderNavItem(navItem, props)}</li>
+        {items.map(navItem => (
+          <li key={this.getNavItemKey(navItem)}>
+            {this.renderNavItem(navItem, getProps(navItem))}
+          </li>
         ))}
       </ul>
+    );
+  }
+
+  // Local navigation with an optional close link (e.g. for online services), always rendered as its last element.
+  private renderLocalNavigation(localHeader: HeaderConfig['localHeader']) {
+    const { navigation = [], closeLink } = localHeader;
+    const items = closeLink ? [...navigation, closeLink] : navigation;
+
+    return this.renderNavigation('local-nav', items, navItem =>
+      navItem === closeLink ? { class: 'btn-primary' } : {},
     );
   }
 
@@ -342,7 +351,8 @@ export class PostInternetHeader {
 
           {localHeader.title && <p slot="title">{localHeader.title}</p>}
 
-          {localHeader.navigation && this.renderNavigation('local-nav', localHeader.navigation)}
+          {Boolean(localHeader.navigation?.length || localHeader.closeLink) &&
+            this.renderLocalNavigation(localHeader)}
 
           {localHeader.mainNavigation && localHeader.mainNavigation.length > 0 && (
             <post-mainnavigation slot="main-nav" textMain={this.textMain}>
