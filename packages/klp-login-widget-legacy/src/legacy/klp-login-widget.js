@@ -22,6 +22,7 @@ import { buildEndPoints, createSessionClient } from './session-client';
 import { createMessageRouter } from './message-router';
 import { createDropdown } from './dropdown';
 import * as markup from './markup';
+import { createChangeAccountDialog } from './change-account-dialog';
 
 (function ($) {
   window.klpWidgetDev = function (
@@ -114,6 +115,16 @@ import * as markup from './markup';
     const controlCookie = createControlCookie({ log: message => log(message) });
     const storage = createStorage({ log: message => log(message) });
     const dropdown = createDropdown({ id, selectFromShadowDom: () => selectFromShadowDom() });
+    const changeAccountDialogView = createChangeAccountDialog({
+      id,
+      selectFromShadowDom: () => selectFromShadowDom(),
+      labels: labels,
+      getSessionData: () => sessionData,
+      isChangeUserAndProfile: () => isChangeUserAndProfile(),
+      logoutURL: () => logoutURL(),
+      changeCompanyURL: () => changeCompanyURL(),
+      doLogout: logoutUrl => doLogout(logoutUrl),
+    });
     const sessionClient = createSessionClient({
       endPoints: platformEndPoints,
       log: message => log(message),
@@ -210,80 +221,7 @@ import * as markup from './markup';
     }
 
     function setChangeAccountDialog() {
-      selectFromShadowDom()
-        .find('#' + id + ' #klp-widget-authenticated-menu-changecompany')
-        .on('click touch', function (e) {
-          e.preventDefault();
-          selectFromShadowDom()
-            .find('#' + id + ' #klp-widget-authenticated-menu-changecompany')
-            .focus();
-          changeAccountDialog();
-          return false;
-        });
-    }
-
-    function changeAccountDialog() {
-      let body;
-      let logoutUrl;
-      if (sessionData?.support) {
-        if (isChangeUserAndProfile()) {
-          body = text('change-account-support-dialog');
-        } else {
-          body = text('change-company-support-dialog');
-        }
-        logoutUrl = logoutURL();
-      } else {
-        if (isChangeUserAndProfile()) {
-          body = text('change-account-confirm-dialog');
-        } else {
-          body = text('change-company-confirm-dialog');
-        }
-        logoutUrl = changeCompanyURL();
-      }
-      if (
-        selectFromShadowDom().find('#' + id + ' #klp-widget-authenticated-changecompanydialog')
-          .length === 0
-      ) {
-        const changecompanyDialog =
-          '<div id="changeAccountModal" class="modal"><div class="modal-content"><div class="modal-text-container row"><div class="col-12 text-align-center"><i class="pi pi-2086"></i></div><span class="close">&times;</span><div class="col-1"></div><div class="col-10 text-align-center"><p class="modal-text">' +
-          body +
-          '</div></div></div>';
-        selectFromShadowDom()
-          .find('#' + id + ' .klp-widget-authenticated')
-          .append(changecompanyDialog);
-
-        // Get the modal
-        let modal = selectFromShadowDom().find('#changeAccountModal');
-        if (modal.length && modal.length >= 1) {
-          modal = modal[0];
-        }
-        modal.style.display = 'table';
-        // Get the <span> element that closes the modal
-        const span = selectFromShadowDom().find('#changeAccountModal .close')[0];
-
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
-          modal.parentElement.removeChild(modal);
-        };
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-          if (event.target === modal) {
-            modal.parentElement.removeChild(modal);
-          }
-        };
-
-        selectFromShadowDom()
-          .find('#klp-widget-authenticated-dochangecompany')
-          .on('click touch', function (e) {
-            e.preventDefault();
-            selectFromShadowDom()
-              .find('#' + id + ' #klp-widget-authenticated-dochangecompany')
-              .focus();
-            doLogout(logoutUrl);
-            return false;
-          });
-      }
+      changeAccountDialogView.setChangeAccountDialog();
     }
 
     function changeCompanyURL() {

@@ -34,6 +34,7 @@ const TARGETS = [
   'src/legacy/message-router.js',
   'src/legacy/dropdown.js',
   'src/legacy/markup.js',
+  'src/legacy/change-account-dialog.js',
   'src/legacy/vertx-eventbus.js',
 ];
 
@@ -143,8 +144,6 @@ const UNREACHABLE = {
       'setControlCookie() is only ever called with the hash or keepalive scope',
   },
   'src/legacy/klp-login-widget.js': {
-    'changeAccountDialog: modal.parentElement.removeChild(modal);':
-      'window.onclick compares against a node inside the shadow root, and the event target is always retargeted to the host',
     'keepAliveSessionsOnInit: const now = new Date().getTime();':
       'init() tests isUserAuthenticated() before the asynchronous subscribe can set sessionData',
     "receiveMessage: log('PostMessage syncWidget received');":
@@ -173,6 +172,10 @@ const UNREACHABLE = {
       'the first menu item is the name block, which holds no anchor to fall back to',
   },
   'src/legacy/markup.js': {},
+  'src/legacy/change-account-dialog.js': {
+    'changeAccountDialog: modal.parentElement.removeChild(modal);':
+      'window.onclick compares against a node inside the shadow root, and the event target is always retargeted to the host',
+  },
   'src/legacy/vertx-eventbus.js': {},
 };
 
@@ -222,6 +225,10 @@ const CANARIES = {
   'src/legacy/markup.js': {
     uncovered: [],
     covered: ['export function anonymousWidget'],
+  },
+  'src/legacy/change-account-dialog.js': {
+    uncovered: [],
+    covered: ['function setChangeAccountDialog'],
   },
 };
 
