@@ -37,6 +37,7 @@ const TARGETS = [
   'src/legacy/change-account-dialog.js',
   'src/legacy/keep-alive.js',
   'src/legacy/event-bus-connection.js',
+  'src/legacy/notifications.js',
   'src/legacy/vertx-eventbus.js',
 ];
 
@@ -161,6 +162,7 @@ const UNREACHABLE = {
       'init() tests isUserAuthenticated() before the asynchronous subscribe can set sessionData',
   },
   'src/legacy/event-bus-connection.js': {},
+  'src/legacy/notifications.js': {},
   'src/legacy/texts.js': {},
   'src/legacy/urls.js': {},
   'src/legacy/storage.js': {},
@@ -242,6 +244,10 @@ const CANARIES = {
   'src/legacy/event-bus-connection.js': {
     uncovered: [],
     covered: ['function openCommunication'],
+  },
+  'src/legacy/notifications.js': {
+    uncovered: [],
+    covered: ['function toggleNotificationsMenu'],
   },
 };
 

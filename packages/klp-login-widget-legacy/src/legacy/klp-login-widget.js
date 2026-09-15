@@ -24,6 +24,7 @@ import * as markup from './markup';
 import { createChangeAccountDialog } from './change-account-dialog';
 import { createKeepAlive } from './keep-alive';
 import { createEventBusConnection } from './event-bus-connection';
+import { createNotifications, UNREAD_NOTIFICATIONS } from './notifications';
 
 (function ($) {
   window.klpWidgetDev = function (
@@ -63,12 +64,10 @@ import { createEventBusConnection } from './event-bus-connection';
       keepAliveCallback,
       logoutCallback,
       documentCallbacks = {},
-      documentUnreadNotifications = 'UNREAD_NOTIFICATIONS',
       currentLang = 'de',
       originUrl = '',
       startingTime = new Date().getTime(),
       version = '16.01.00.01',
-      unreadNotifications = 0,
       platformEndPoints = buildEndPoints(platform.endPoint),
       conf = {
         logoutTargetURL: '',
@@ -111,6 +110,13 @@ import { createEventBusConnection } from './event-bus-connection';
     };
     const controlCookie = createControlCookie({ log: message => log(message) });
     const storage = createStorage({ log: message => log(message) });
+    const notifications = createNotifications({
+      log: message => log(message),
+      selectFromShadowDom: () => selectFromShadowDom(),
+      getDocumentCallbacks: () => documentCallbacks,
+      saveDocumentOnCache: (document, documentType) => saveDocumentOnCache(document, documentType),
+      removeDocumentFromCache: documentType => removeDocumentFromCache(documentType),
+    });
     const connection = createEventBusConnection({
       url: platformEndPoints.eventbus,
       getDebug: () => conf.debug,
@@ -156,7 +162,7 @@ import { createEventBusConnection } from './event-bus-connection';
         logout: () => logout(),
         subscribe: () => subscribe(),
         openCommunication: () => openCommunication(),
-        removeNotificationsFromCache: () => removeDocumentFromCache(documentUnreadNotifications),
+        removeNotificationsFromCache: () => removeDocumentFromCache(UNREAD_NOTIFICATIONS),
         showDocument: (document, documentType) => showDocument(document, documentType),
         removeDocument: documentType => removeDocument(documentType),
       },
@@ -277,7 +283,7 @@ import { createEventBusConnection } from './event-bus-connection';
     }
 
     function removeAllDocumentFromCache() {
-      removeDocumentFromCache(documentUnreadNotifications);
+      removeDocumentFromCache(UNREAD_NOTIFICATIONS);
     }
 
     function removeDocumentFromCache(documentType) {
@@ -444,44 +450,11 @@ import { createEventBusConnection } from './event-bus-connection';
     }
 
     function showDocument(document, documentType) {
-      switch (documentType) {
-        case documentUnreadNotifications:
-          renderNotificationsWidget(document);
-          saveDocumentOnCache(document, documentUnreadNotifications);
-          break;
-        default:
-          log('Unknown documentType received: ' + documentType);
-      }
-      if (typeof documentCallbacks[documentType] == 'function') {
-        documentCallbacks[documentType](document);
-      }
+      notifications.showDocument(document, documentType);
     }
 
     function removeDocument(documentType) {
-      switch (documentType) {
-        case documentUnreadNotifications:
-          removeDocumentFromCache(documentUnreadNotifications);
-          break;
-        default:
-          log('Unknown documentType received: ' + documentType);
-      }
-      if (typeof documentCallbacks[documentType] == 'function') {
-        documentCallbacks[documentType](undefined);
-      }
-    }
-
-    function renderNotificationsWidget(notifications) {
-      if (
-        notifications != null &&
-        $('.notification-number').text() !== notifications.unreadNotifications
-      ) {
-        unreadNotifications = notifications.unreadNotifications;
-        if (unreadNotifications === 0) {
-          $('.notification-number').css('visibility', 'hidden');
-        } else {
-          $('.notification-number').css('visibility', 'visible');
-        }
-      }
+      notifications.removeDocument(documentType);
     }
 
     function toggleMenu() {
@@ -489,21 +462,7 @@ import { createEventBusConnection } from './event-bus-connection';
     }
 
     function toggleNotificationsMenu() {
-      if (unreadNotifications !== 0) {
-        if (unreadNotifications > 99) {
-          selectFromShadowDom()
-            .find('.notification-number-detail')
-            .css('visibility', 'visible')
-            .text('99+');
-        } else {
-          selectFromShadowDom()
-            .find('.notification-number-detail')
-            .css('visibility', 'visible')
-            .text(unreadNotifications);
-        }
-      } else {
-        selectFromShadowDom().find('.notification-number-detail').css('visibility', 'hidden');
-      }
+      notifications.toggleNotificationsMenu();
     }
 
     function isUserAuthenticated() {
