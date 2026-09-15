@@ -43,9 +43,11 @@ export namespace Components {
         "showJobsLoginWidget": boolean;
     }
     /**
-     * Shell that only exists to reproduce the DOM shape the legacy widget walks in
+     * Static reproduction of the v9 `post-internet-header` chrome (meta bar, logo, main navigation
+     * and controls) so the legacy login widget sits where it did in production. Everything here is a
+     * decoy except the `post-klp-login-widget`, which the legacy code still finds through
      * `selectFromShadowDom()`: swisspost-internet-header -> shadowRoot -> post-klp-login-widget.
-     * Renaming it breaks the legacy code, so the tag name is load-bearing.
+     * Renaming the tag breaks the legacy code, so it is load-bearing.
      */
     interface SwisspostInternetHeader {
         "config"?: ILoginWidgetOptions | string;
@@ -70,9 +72,11 @@ declare global {
         new (): HTMLPostKlpLoginWidgetElement;
     };
     /**
-     * Shell that only exists to reproduce the DOM shape the legacy widget walks in
+     * Static reproduction of the v9 `post-internet-header` chrome (meta bar, logo, main navigation
+     * and controls) so the legacy login widget sits where it did in production. Everything here is a
+     * decoy except the `post-klp-login-widget`, which the legacy code still finds through
      * `selectFromShadowDom()`: swisspost-internet-header -> shadowRoot -> post-klp-login-widget.
-     * Renaming it breaks the legacy code, so the tag name is load-bearing.
+     * Renaming the tag breaks the legacy code, so it is load-bearing.
      */
     interface HTMLSwisspostInternetHeaderElement extends Components.SwisspostInternetHeader, HTMLStencilElement {
     }
@@ -115,9 +119,11 @@ declare namespace LocalJSX {
         "showJobsLoginWidget"?: boolean;
     }
     /**
-     * Shell that only exists to reproduce the DOM shape the legacy widget walks in
+     * Static reproduction of the v9 `post-internet-header` chrome (meta bar, logo, main navigation
+     * and controls) so the legacy login widget sits where it did in production. Everything here is a
+     * decoy except the `post-klp-login-widget`, which the legacy code still finds through
      * `selectFromShadowDom()`: swisspost-internet-header -> shadowRoot -> post-klp-login-widget.
-     * Renaming it breaks the legacy code, so the tag name is load-bearing.
+     * Renaming the tag breaks the legacy code, so it is load-bearing.
      */
     interface SwisspostInternetHeader {
         "config"?: ILoginWidgetOptions | string;
@@ -162,9 +168,11 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "post-klp-login-widget": LocalJSX.IntrinsicElements["post-klp-login-widget"] & JSXBase.HTMLAttributes<HTMLPostKlpLoginWidgetElement>;
             /**
-             * Shell that only exists to reproduce the DOM shape the legacy widget walks in
+             * Static reproduction of the v9 `post-internet-header` chrome (meta bar, logo, main navigation
+             * and controls) so the legacy login widget sits where it did in production. Everything here is a
+             * decoy except the `post-klp-login-widget`, which the legacy code still finds through
              * `selectFromShadowDom()`: swisspost-internet-header -> shadowRoot -> post-klp-login-widget.
-             * Renaming it breaks the legacy code, so the tag name is load-bearing.
+             * Renaming the tag breaks the legacy code, so it is load-bearing.
              */
             "swisspost-internet-header": LocalJSX.IntrinsicElements["swisspost-internet-header"] & JSXBase.HTMLAttributes<HTMLSwisspostInternetHeaderElement>;
         }
