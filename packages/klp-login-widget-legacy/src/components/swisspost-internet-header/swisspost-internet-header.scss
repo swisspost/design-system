@@ -1,0 +1,156 @@
+@use '@swisspost/design-system-styles/variables/color';
+@use '../../utils/utils.scss';
+@use '../../utils/mixins.scss';
+@use '../../utils/variables.scss';
+
+:host {
+  display: block;
+  position: relative;
+  font-size: 1rem;
+  font-weight: 300;
+  color: color.$gray-80;
+}
+
+.visually-hidden {
+  @extend %visually-hidden;
+}
+
+.post-internet-header {
+  border-bottom: 1px solid color.$gray-10;
+  background-color: white;
+}
+
+// Meta bar: only shown from lg up, matching the v9 $meta-header-height map.
+.meta-navigation {
+  display: none;
+
+  @include mixins.min(lg) {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2rem;
+    height: 3rem;
+    padding: 0 40px;
+    border-bottom: 1px solid color.$gray-10;
+    font-size: 0.875rem;
+  }
+}
+
+.meta-links,
+.language-switch {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.meta-links a,
+.language-switch a {
+  color: color.$gray-80;
+  text-decoration: none;
+  transition: color 200ms;
+
+  &:hover,
+  &:focus {
+    color: black;
+  }
+}
+
+.language-switch {
+  gap: 0.75rem;
+}
+
+.language-switch a.active {
+  color: black;
+  font-weight: 700;
+}
+
+.main-navigation-container {
+  display: flex;
+  align-items: stretch;
+
+  @include mixins.container-padding();
+  padding-right: 0; // controls carry their own separators to the edge
+
+  @include mixins.min(lg) {
+    padding-left: 40px;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  background: color.$yellow;
+  align-self: stretch;
+
+  svg {
+    display: block;
+    width: 3.5rem;
+    height: 3.5rem;
+
+    @include mixins.min(lg) {
+      width: 4rem;
+      height: 4rem;
+    }
+  }
+}
+
+.main-navigation {
+  display: none;
+
+  @include mixins.min(lg) {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    margin-left: 2rem;
+  }
+}
+
+.nav-link {
+  color: color.$gray-80;
+  text-decoration: none;
+  font-size: 1.0625rem;
+  transition: color 200ms;
+
+  &:hover,
+  &:focus {
+    color: black;
+  }
+}
+
+.main-navigation-controls {
+  display: flex;
+  align-items: stretch;
+  margin-left: auto;
+
+  & > .control {
+    border-left: 1px solid color.$gray-10;
+    flex: 0 0 auto;
+  }
+}
+
+.search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.125rem;
+  background: none;
+  border: 0;
+  border-left: 1px solid color.$gray-10;
+  color: color.$gray-80;
+  cursor: pointer;
+  transition: color 200ms;
+
+  &:hover,
+  &:focus {
+    color: black;
+  }
+}
+
+.control-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
