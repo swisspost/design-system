@@ -18,6 +18,40 @@
       margin: 0;
       font-family: sans-serif;
     }
+
+    .playground {
+      min-height: 70vh;
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+    }
+
+    .playground__panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      text-align: center;
+    }
+
+    .playground__hint {
+      margin: 0;
+      max-width: 44ch;
+      color: #555;
+    }
+
+    .playground button {
+      font: inherit;
+      padding: 0.625rem 1.25rem;
+      border: 1px solid #1a1a1a;
+      border-radius: 2rem;
+      background: #ffcc00;
+      cursor: pointer;
+    }
+
+    .playground button.secondary {
+      background: #fff;
+    }
   </style>
 </head>
 
@@ -27,10 +61,36 @@
     <swisspost-internet-header id="header"></swisspost-internet-header>
   </header>
 
+  <main class="playground">
+    <div class="playground__panel" id="playground"></div>
+  </main>
+
   <script>
     // The Playwright suite drives the widget by setting ?config=<base64 json>&environment=...
     const params = new URLSearchParams(location.search);
     const header = document.getElementById('header');
+
+    // Dev-only "pretend to log in": `?login` (optionally `?login=b2b`) answers the platform
+    // subscribe call with a fake `sub` session, since a real one can never reach a localhost
+    // origin. Everything else falls through to the network untouched.
+    if (params.has('login')) {
+      const session =
+        params.get('login') === 'b2b'
+          ? { name: 'Bea', surname: 'Muster', email: 'bea.muster@post.ch', userType: 'B2B', authLevel: 'PASSWORD', support: false, companyName: 'Muster AG' }
+          : { name: 'Bea', surname: 'Muster', email: 'bea.muster@post.ch', userType: 'B2C', authLevel: 'PASSWORD', support: false };
+      const realFetch = window.fetch.bind(window);
+      window.fetch = (url, init) => {
+        if (String(url).includes('/v1/session/subscribe')) {
+          return Promise.resolve(
+            new Response(JSON.stringify({ typ: 'sub', adr: 'dev-fake-address', ttl: 600000, data: session }), {
+              status: 200,
+              headers: { 'Content-Type': 'application/json' },
+            }),
+          );
+        }
+        return realFetch(url, init);
+      };
+    }
 
     // The v9 internet-header test-configuration.json `loginWidgetOptions`, repointed from prod
     // post.ch/n.post.ch to int so the demo never talks to production. Used only when `start` is
@@ -75,6 +135,37 @@
     document.addEventListener('wepploginwidget_widget_ready', () => {
       window.__widgetReadyCount++;
     });
+
+    // A localhost origin can never receive a real platform session, so "logging in" means
+    // reloading with `?login`, which fakes only the subscribe response above and then lets the
+    // widget run its genuine subscribe -> `sub` -> login path, exactly as it does in production.
+    const panel = document.getElementById('playground');
+    if (params.has('login')) {
+      const kind = params.get('login') === 'b2b' ? 'business customer (B2B)' : 'private customer (B2C)';
+      const hint = document.createElement('p');
+      hint.className = 'playground__hint';
+      hint.textContent =
+        'Pretending a ' + kind + ' session. Open the avatar at the top right to see the menu.';
+      const logout = document.createElement('button');
+      logout.className = 'secondary';
+      logout.textContent = 'Log out';
+      logout.addEventListener('click', () => (location.search = ''));
+      panel.append(hint, logout);
+    } else {
+      const hint = document.createElement('p');
+      hint.className = 'playground__hint';
+      hint.textContent =
+        'No real login is possible on localhost. These buttons fake the platform subscribe ' +
+        'response so the widget runs its genuine login path.';
+      const b2c = document.createElement('button');
+      b2c.textContent = 'Pretend login (private customer)';
+      b2c.addEventListener('click', () => (location.search = '?login'));
+      const b2b = document.createElement('button');
+      b2b.className = 'secondary';
+      b2b.textContent = 'Pretend login (business customer)';
+      b2b.addEventListener('click', () => (location.search = '?login=b2b'));
+      panel.append(hint, b2c, b2b);
+    }
   </script>
 </body>
 
