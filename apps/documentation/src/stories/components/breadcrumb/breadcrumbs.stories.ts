@@ -1,5 +1,5 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
@@ -55,4 +55,41 @@ export const Concatenated: Story = {
   args: {
     itemCount: 15,
   },
+};
+
+export const ClientSideRouting: Story = {
+  args: {
+    itemCount: 3,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Slot your own `<a>` (e.g. a framework `Link`) into the `home` slot and into each `post-breadcrumb-item`, instead of using `home-url`/`url`, so client-side routing frameworks like Next.js or Angular Router can handle navigation instead of the browser doing a full page reload. The slotted `<a>` must be a direct child of `post-breadcrumbs`/`post-breadcrumb-item`, not wrapped in another element.',
+      },
+    },
+    controls: {
+      exclude: ['itemCount', 'homeUrl'],
+    },
+  },
+  render: args => html`
+    <post-breadcrumbs
+      text-home=${args.textHome}
+      text-breadcrumbs=${args.textBreadcrumbs}
+      text-more-items=${args.textMoreItems}
+    >
+      <a slot="home" href="/">
+        <span class="visually-hidden">${args.textHome}</span>
+        <post-icon aria-hidden="true" name="home"></post-icon>
+      </a>
+      ${Array.from({ length: args.itemCount }, (_, i) => {
+        const isLast = i === args.itemCount - 1;
+        return html`<post-breadcrumb-item ?selected=${isLast}
+          ><a href="/section${i + 1}" aria-current=${isLast ? 'page' : nothing}
+            >Section ${i + 1}</a
+          ></post-breadcrumb-item
+        > `;
+      })}
+    </post-breadcrumbs>
+  `,
 };
