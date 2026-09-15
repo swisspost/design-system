@@ -33,6 +33,7 @@ const TARGETS = [
   'src/legacy/session-client.js',
   'src/legacy/message-router.js',
   'src/legacy/dropdown.js',
+  'src/legacy/markup.js',
   'src/legacy/vertx-eventbus.js',
 ];
 
@@ -171,6 +172,7 @@ const UNREACHABLE = {
     'setArrowKeysListeners: dropdownToggler.click().focus();':
       'the first menu item is the name block, which holds no anchor to fall back to',
   },
+  'src/legacy/markup.js': {},
   'src/legacy/vertx-eventbus.js': {},
 };
 
@@ -216,6 +218,10 @@ const CANARIES = {
   'src/legacy/dropdown.js': {
     uncovered: [],
     covered: ['export function createDropdown'],
+  },
+  'src/legacy/markup.js': {
+    uncovered: [],
+    covered: ['export function anonymousWidget'],
   },
 };
 

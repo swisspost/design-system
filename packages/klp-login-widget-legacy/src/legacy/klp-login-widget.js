@@ -21,6 +21,7 @@ import { createStorage } from './storage';
 import { buildEndPoints, createSessionClient } from './session-client';
 import { createMessageRouter } from './message-router';
 import { createDropdown } from './dropdown';
+import * as markup from './markup';
 
 (function ($) {
   window.klpWidgetDev = function (
@@ -105,6 +106,11 @@ import { createDropdown } from './dropdown';
       conf = { ...conf, ...options };
     }
 
+    const labels = {
+      text: key => text(key),
+      accessKey: key => accessKey(key),
+      tabIndex: key => tabIndex(key),
+    };
     const controlCookie = createControlCookie({ log: message => log(message) });
     const storage = createStorage({ log: message => log(message) });
     const dropdown = createDropdown({ id, selectFromShadowDom: () => selectFromShadowDom() });
@@ -451,19 +457,7 @@ import { createDropdown } from './dropdown';
         .attr('data-custom-focus-id', 'klp-widget');
       selectFromShadowDom()
         .find('#' + id)
-        .html(
-          '<div class="klp-widget-anonymous"><div class="klp-widget-anonymous__wrapper">' +
-            '<a ' +
-            accessKey('sign-in') +
-            ' title="' +
-            text('sign-in') +
-            '" href="' +
-            loginURL() +
-            '" data-custom-focus-target="klp-widget" data-custom-focus-direction="parent" role="button"><span class="klp-widget-anonymous__text">' +
-            text('sign-in') +
-            '</span><svg class="ppm-svg-icon ppm-main-navigation__login-icon" focusable="false"><use xlink:href="#2064_arrow-enter"></use></svg></a>' +
-            '</div></div>',
-        );
+        .html(markup.anonymousWidget({ labels: labels, loginUrl: loginURL() }));
       selectFromShadowDom()
         .find('#' + id)
         .on('click touch', function (e) {
@@ -492,33 +486,13 @@ import { createDropdown } from './dropdown';
       selectFromShadowDom()
         .find('#' + id)
         .html(
-          '<div class="' +
-            authenticatedSectionClass +
-            '">' +
-            '<div class="klp-widget-authenticated-session klp-widget-menu-close">' +
-            '<a href="about:blank" role="button" class="klp-widget-authenticated-session-link klp-widget__user" title="' +
-            text('title-text-menu') +
-            '" tabindex="' +
-            tabIndex('toggle-menu') +
-            '" ' +
-            accessKey('toggle-menu') +
-            ' data-dropdown="klp-widget-authenticated-menu" aria-expanded="false" aria-controls="authenticated-menu">' +
-            '<div class="' +
-            authenticatedSessionTailNameClass +
-            '">' +
-            sessionData.name +
-            '&nbsp;' +
-            sessionData.surname +
-            '</div>' +
-            '<span class="initials-mobile">' +
-            sessionData.name.substring(0, 1) +
-            sessionData.surname.substring(0, 1) +
-            '</span>' +
-            '<span class="notification-number"></span>' +
-            '</a>' +
-            getAuthenticatedMenuLinks(authenticatedSessionTailNameClass, info, sessionData) +
-            '</div>' +
-            '</div>',
+          markup.authenticatedWidget({
+            labels: labels,
+            sessionData: sessionData,
+            sectionClass: authenticatedSectionClass,
+            nameClass: authenticatedSessionTailNameClass,
+            menu: getAuthenticatedMenuLinks(authenticatedSessionTailNameClass, info, sessionData),
+          }),
         );
       selectFromShadowDom().find('.notification-number').css('visibility', 'hidden');
       selectFromShadowDom().find('.notification-number-detail').css('visibility', 'hidden');
@@ -551,156 +525,24 @@ import { createDropdown } from './dropdown';
     }
 
     function isOldChangeCompany() {
-      return (
-        (sessionData.userType === 'B2B' &&
-          sessionData.canChangeCompany &&
-          sessionData.changeUserAndProfile == null) ||
-        (sessionData.changeUserAndProfile != null && sessionData.changeUserAndProfile === 'profile')
-      );
+      return markup.isOldChangeCompany(sessionData);
     }
 
     function isChangeUserAndProfile() {
-      return (
-        sessionData.changeUserAndProfile != null &&
-        sessionData.changeUserAndProfile === 'userAndProfile'
-      );
+      return markup.isChangeUserAndProfile(sessionData);
     }
 
     function getAuthenticatedMenuLinks(authenticatedSessionTailNameClass, info, sessionData) {
-      let menuList = '';
-      let nameClass = 'name';
-      let infoClass = 'info';
-      if (menuLinks !== undefined) {
-        if (authenticatedSessionTailNameClass.indexOf('centered') !== -1) {
-          nameClass = 'nameCentered';
-        }
-        if (info.length === 0) {
-          infoClass = 'infoHidden';
-        }
-        menuList +=
-          '<li class="name-and-surname">' +
-          '<div class="initials-circle">' +
-          '<div class="initials-container">' +
-          '<div>' +
-          sessionData.name.substring(0, 1) +
-          sessionData.surname.substring(0, 1) +
-          '</div>' +
-          '</div>' +
-          '</div>' +
-          '<div class="nameAndInfoWrapper"><span class="' +
-          nameClass +
-          '">' +
-          sessionData.name +
-          '&nbsp;' +
-          sessionData.surname +
-          '</span>' +
-          '<span class="' +
-          infoClass +
-          '">' +
-          info +
-          '</span></div>' +
-          '</li>';
-
-        $.each(menuLinks, function (index, item) {
-          menuList +=
-            '<li>' +
-            '<a class="notification-link" title="' +
-            item.description +
-            '" href="' +
-            item.url +
-            '"><div class="' +
-            item.iconclass +
-            '"></div><div class="linkContainer">' +
-            '<span class="klp-widget-notification-link-text">' +
-            item.description +
-            '</span></div></a>' +
-            '</li>';
-        });
-        menuList +=
-          '<li>' +
-          '<a class="notification-link" title="' +
-          text('title-text-notifications') +
-          '" href="' +
-          messagesUrl +
-          '"><div class="widget_icon_notification" aria-hidden></div><div class="linkContainer">' +
-          '<span class="klp-widget-notification-link-text">' +
-          text('title-text-notifications') +
-          '</span><span class="notification-number-detail"></span></div></a>' +
-          '</li>';
-      }
-
-      const settingEnvLinks = {
-        dev01: 'https://serviceint1.post.ch/kvm/app/ui',
-        dev02: 'https://serviceint1.post.ch/kvm/app/ui',
-        devs1: 'https://serviceint1.post.ch/kvm/app/ui',
-        test: 'https://serviceint1.post.ch/kvm/app/ui',
-        int01: 'https://serviceint1.post.ch/kvm/app/ui',
-        int02: 'https://serviceint2.post.ch/kvm/app/ui',
-        prod: 'https://service.post.ch/kvm/app/ui',
-      };
-      const settingsLink = `${settingEnvLinks[environment]}/settings?lang=${currentLang}`;
-
-      menuList += `
-          <li>
-            <a class="notification-link" href="${settingsLink}">
-              <div class="widget_icon_settings" aria-hidden></div>
-              <div class="linkContainer">
-                <span class="klp-widget-notification-link-text">${texts[currentLang].settings}</span>
-              </div>
-            </a>
-          </li>
-        `;
-
-      let changeCompanyEntry = '';
-      if (isOldChangeCompany()) {
-        changeCompanyEntry =
-          '<li>' +
-          '<a id="klp-widget-authenticated-menu-changecompany" class="notification-link" tabindex="' +
-          tabIndex('change-company') +
-          '" ' +
-          accessKey('change-company') +
-          ' href="about:blank" role="button" title="' +
-          text('change-company') +
-          '"><div class="widget_icon_changecompany"></div><div class="linkContainer">' +
-          '<span class="klp-widget-notification-link-text">' +
-          text('change-company') +
-          '</span></div></a>' +
-          '</li>';
-      } else if (isChangeUserAndProfile()) {
-        changeCompanyEntry =
-          '<li>' +
-          '<a id="klp-widget-authenticated-menu-changecompany" class="notification-link" tabindex="' +
-          tabIndex('change-account') +
-          '" ' +
-          accessKey('change-company') +
-          ' href="about:blank" role="button" title="' +
-          text('change-account') +
-          '"><div class="widget_icon_changecompany"></div><div class="linkContainer">' +
-          '<span class="klp-widget-notification-link-text">' +
-          text('change-account') +
-          '</span></div></a>' +
-          '</li>';
-      }
-      return (
-        '<div class="klp-widget-authenticated-menu" id="authenticated-menu" data-dropdown-toggler="klp-widget__user" style="display: none">' +
-        '<ul>' +
-        menuList +
-        changeCompanyEntry +
-        '<li>' +
-        '<a id="klp-widget-authenticated-menu-logout" class="notification-link" tabindex="' +
-        tabIndex('sign-out') +
-        '" ' +
-        accessKey('sign-out') +
-        ' title="' +
-        text('sign-out') +
-        '" href="about:blank" role="button"><div class="widget_icon_logout"></div><div class="linkContainer">' +
-        '<span class="klp-widget-notification-link-text">' +
-        text('sign-out') +
-        '</span></div></a>' +
-        '</li>' +
-        '</ul>' +
-        '</div>'
-      );
+      return markup.authenticatedMenu({
+        labels: labels,
+        sessionData: sessionData,
+        nameClass: authenticatedSessionTailNameClass,
+        info: info,
+        menuLinks: menuLinks,
+        messagesUrl: messagesUrl,
+        environment: environment,
+        lang: currentLang,
+      });
     }
 
     function showDocument(document, documentType) {
