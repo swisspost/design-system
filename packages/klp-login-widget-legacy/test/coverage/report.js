@@ -114,14 +114,25 @@ if (!seen.size) {
 const src = readFileSync(join(ROOT, TARGET), 'utf8').split('\n');
 const uncovered = [...seen].filter(n => !covered.has(n)).sort((a, b) => a - b);
 
-/** Ground truth: these only run in code paths the suite never triggers. */
+/**
+ * Ground truth in both directions. The first list can only run in code paths no browser reaches:
+ * the IE branch, and an init-time keepalive that tests `sessionData` before the asynchronous
+ * subscribe has had a chance to set it. The second list is covered by the very first smoke test,
+ * so seeing it uncovered means the mapping broke rather than the suite regressing.
+ */
 function verify() {
-  const mustBeUncovered = ['changeAccountModal', 'Running keepAliveSessionsOnInit'];
+  const mustBeUncovered = ["window.attachEvent('onmessage'", 'Running keepAliveSessionsOnInit'];
+  const mustBeCovered = ['const version =', 'function renderWidget()'];
   const problems = [];
 
   for (const needle of mustBeUncovered) {
     const line = src.findIndex(l => l.includes(needle)) + 1;
     if (line && covered.has(line)) problems.push(`${needle} (line ${line}) reported as covered`);
+  }
+
+  for (const needle of mustBeCovered) {
+    const line = src.findIndex(l => l.includes(needle)) + 1;
+    if (line && !covered.has(line)) problems.push(`${needle} (line ${line}) reported as uncovered`);
   }
 
   if (problems.length) {
@@ -138,6 +149,27 @@ for (const n of uncovered) {
   if (last && n === last[1] + 1) last[1] = n;
   else ranges.push([n, n]);
 }
+
+/**
+ * Everything the suite provably cannot reach, keyed by the first line of the range. These are not
+ * gaps in the tests: each one is either dead in any browser, or dead given how the widget is
+ * wired. Anything uncovered that is missing from this map is reported as a real gap.
+ */
+const UNREACHABLE = {
+  629: 'window.onclick compares against a node inside the shadow root, and the event target is always retargeted to the host',
+  708: "String.split() never yields an undefined first element, so the 'hash' break is dead",
+  750: 'setControlCookie() is only ever called with the hash or keepalive scope',
+  868: 'init() tests isUserAuthenticated() before the asynchronous subscribe can set sessionData',
+  895: 'receiveMessage() matches the origin host including its port against bare domain names',
+  902: 'window.attachEvent is an Internet Explorer fallback',
+  1360: 'the widget only runs on post.ch hosts, where the other branch is taken',
+  1410: 'subscribe() is only re-entered with an address by the dead iframe sync path',
+  1463: 'same as 868: no session exists yet when init() runs',
+  1500: 'closeDropdowns() inspects a retargeted event target, so the guard never matches',
+  1538: 'the menu toggler has no sibling elements to move focus to',
+  1551: 'the menu toggler has no sibling elements to move focus to',
+  1583: 'the first menu item is the name block, which holds no anchor to fall back to',
+};
 
 /** Attribute each uncovered range to the function it sits in, via the nearest declaration above. */
 const owner = line => {
@@ -169,7 +201,18 @@ for (const [fn, n] of [...byFunction].sort((a, b) => b[1] - a[1])) {
 console.log('\n  uncovered ranges:');
 for (const [from, to] of ranges) {
   const span = from === to ? `${from}` : `${from}-${to}`;
+  const why = UNREACHABLE[from];
   console.log(`    ${span.padEnd(12)} ${(src[from - 1] ?? '').trim().slice(0, 96)}`);
+  if (why) console.log(`    ${''.padEnd(12)} ^ ${why}`);
+}
+
+const unexplained = ranges.filter(([from]) => !UNREACHABLE[from]);
+if (unexplained.length) {
+  console.log('\n  uncovered but reachable, these want a test:');
+  for (const [from, to] of unexplained) {
+    console.log(`    ${(from === to ? `${from}` : `${from}-${to}`).padEnd(12)}`);
+  }
+  process.exitCode = 1;
 }
 
 verify();

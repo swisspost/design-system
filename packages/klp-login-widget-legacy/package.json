@@ -17,8 +17,7 @@
     "e2e": "stencil build && playwright test",
     "e2e:ui": "stencil build && playwright test --ui",
     "e2e:update": "stencil build && playwright test --update-snapshots",
-    "coverage": "rm -rf .coverage && stencil build --dev && KLP_COVERAGE=1 playwright test && node test/coverage/report.js",
-    "lint": "eslint"
+    "coverage": "rm -rf .coverage && stencil build --dev && KLP_COVERAGE=1 playwright test && node test/coverage/report.js"
   },
   "dependencies": {
     "@stencil/core": "4.43.3",
