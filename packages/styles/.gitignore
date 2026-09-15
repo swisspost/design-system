@@ -15,6 +15,3 @@ src/utilities/_env-variables.scss
 **/.DS_Store
 .DS_Store
 
-# Temporary files
-src/tokens/temp/
-src/icons/temp/
