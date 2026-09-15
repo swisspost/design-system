@@ -114,3 +114,52 @@ export const cookieValue = async (context: BrowserContext, name: string) => {
   const cookies = await context.cookies('https://int.post.ch/');
   return cookies.find(c => c.name === name)?.value;
 };
+
+/** Deep-merges into the base config; `options` is what overrides the widget's internal `conf`. */
+export const configWith = (overrides: {
+  options?: Record<string, unknown>;
+  platform?: Record<string, unknown>;
+  [key: string]: unknown;
+}): WidgetConfig => ({
+  ...widgetConfig,
+  ...overrides,
+  options: { ...widgetConfig.options, ...overrides.options },
+  platform: { ...widgetConfig.platform, ...overrides.platform },
+});
+
+export const disconnectEventBus = async (api: APIRequestContext) => {
+  const res = await api.post('/__control/disconnect');
+  return (await res.json()) as { closed: number };
+};
+
+export const menuToggler = (page: Page) => widget(page).locator('.klp-widget__user');
+export const menu = (page: Page) => widget(page).locator('.klp-widget-authenticated-menu');
+export const changeAccountLink = (page: Page) =>
+  widget(page).locator('#klp-widget-authenticated-menu-changecompany');
+export const logoutLink = (page: Page) =>
+  widget(page).locator('#klp-widget-authenticated-menu-logout');
+
+export const openMenu = async (page: Page) => {
+  await menuToggler(page).click();
+  await expect(menu(page)).toBeVisible();
+};
+
+/** Waits for the widget to finish registering on the EventBus address. */
+export const waitForEventBus = async (api: APIRequestContext) => {
+  await expect
+    .poll(async () => (await journal(api)).eventbus.some(e => e.event === 'register'))
+    .toBe(true);
+};
+
+export const eventBusJournal = async (api: APIRequestContext) => (await journal(api)).eventbus;
+
+/** Calls a method on the public window.OPPklpWidget API and returns its result. */
+export const callApi = <T>(page: Page, method: string, ...args: unknown[]) =>
+  page.evaluate(
+    ({ method, args }) => {
+      const api = (window as unknown as Record<string, Record<string, (...a: unknown[]) => T>>)
+        .OPPklpWidget;
+      return api[method](...args);
+    },
+    { method, args },
+  );
