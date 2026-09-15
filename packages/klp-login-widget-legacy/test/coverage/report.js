@@ -36,6 +36,7 @@ const TARGETS = [
   'src/legacy/markup.js',
   'src/legacy/change-account-dialog.js',
   'src/legacy/keep-alive.js',
+  'src/legacy/event-bus-connection.js',
   'src/legacy/vertx-eventbus.js',
 ];
 
@@ -159,6 +160,7 @@ const UNREACHABLE = {
     'keepAliveSessionsOnInit: const now = new Date().getTime();':
       'init() tests isUserAuthenticated() before the asynchronous subscribe can set sessionData',
   },
+  'src/legacy/event-bus-connection.js': {},
   'src/legacy/texts.js': {},
   'src/legacy/urls.js': {},
   'src/legacy/storage.js': {},
@@ -236,6 +238,10 @@ const CANARIES = {
   'src/legacy/keep-alive.js': {
     uncovered: ['Running keepAliveSessionsOnInit'],
     covered: ['function keepAliveTimerFunction'],
+  },
+  'src/legacy/event-bus-connection.js': {
+    uncovered: [],
+    covered: ['function openCommunication'],
   },
 };
 

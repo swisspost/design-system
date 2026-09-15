@@ -8,7 +8,6 @@
 
 import 'url-polyfill';
 import jQuery from 'jquery/dist/jquery.slim';
-import { vertx } from './vertx-eventbus';
 import { keys, texts } from './texts';
 import * as urls from './urls';
 import {
@@ -24,6 +23,7 @@ import { createDropdown } from './dropdown';
 import * as markup from './markup';
 import { createChangeAccountDialog } from './change-account-dialog';
 import { createKeepAlive } from './keep-alive';
+import { createEventBusConnection } from './event-bus-connection';
 
 (function ($) {
   window.klpWidgetDev = function (
@@ -57,9 +57,7 @@ import { createKeepAlive } from './keep-alive';
     }
 
     let keepAliveID = 'klp-widget-keepalive',
-      eventBus,
       address,
-      retrySubscribeOnFail = false,
       sessionData,
       loginCallback,
       keepAliveCallback,
@@ -113,6 +111,17 @@ import { createKeepAlive } from './keep-alive';
     };
     const controlCookie = createControlCookie({ log: message => log(message) });
     const storage = createStorage({ log: message => log(message) });
+    const connection = createEventBusConnection({
+      url: platformEndPoints.eventbus,
+      getDebug: () => conf.debug,
+      log: message => log(message),
+      getAddress: () => address,
+      onMessage: message => handleMessage(message),
+      onReconnect: () => {
+        address = undefined;
+        subscribe();
+      },
+    });
     const keepAlive = createKeepAlive({
       getConf: () => conf,
       log: message => log(message),
@@ -141,7 +150,7 @@ import { createKeepAlive } from './keep-alive';
       log: message => log(message),
       actions: {
         audit: message => audit(message),
-        setRetrySubscribeOnFail: value => (retrySubscribeOnFail = value),
+        setRetrySubscribeOnFail: value => connection.setRetryOnFail(value),
         setAddress: value => (address = value),
         login: (data, ttl, callback) => login(data, ttl, callback),
         logout: () => logout(),
@@ -260,7 +269,7 @@ import { createKeepAlive } from './keep-alive';
     }
 
     function removeControlCookie() {
-      controlCookie.removeControlCookie({ keepForRetry: retrySubscribeOnFail });
+      controlCookie.removeControlCookie({ keepForRetry: connection.getRetryOnFail() });
     }
 
     function saveDocumentOnCache(document, documentType) {
@@ -554,14 +563,6 @@ import { createKeepAlive } from './keep-alive';
       }
     }
 
-    function registerEventsHandler() {
-      if (eventBus) {
-        eventBus.registerHandler(address, function (message, replyTo) {
-          handleMessage(message);
-        });
-      }
-    }
-
     function handleMessage(message) {
       messageRouter(message);
     }
@@ -613,38 +614,7 @@ import { createKeepAlive } from './keep-alive';
     }
 
     function openCommunication() {
-      if (!eventBus) {
-        eventBus = new vertx.EventBus(platformEndPoints.eventbus, {
-          debug: conf.debug,
-          devel: conf.debug,
-        });
-        eventBus.onopen = function () {
-          log('EventBus opened');
-          registerEventsHandler();
-          $(window).on('beforeunload', closeCommunication);
-        };
-        eventBus.onclose = function () {
-          log('EventBus closed');
-          log(
-            'Communication closed with retrySubscribeOnFail=' +
-              retrySubscribeOnFail +
-              '. Retrying subscribe',
-          );
-          eventBus = null;
-          $(window).off('beforeunload', closeCommunication);
-          if (retrySubscribeOnFail) {
-            retrySubscribeOnFail = false;
-            address = undefined;
-            subscribe();
-          }
-        };
-      }
-    }
-
-    function closeCommunication() {
-      if (eventBus) {
-        eventBus.close();
-      }
+      connection.openCommunication();
     }
 
     function renderWidget() {
