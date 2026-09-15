@@ -199,6 +199,27 @@ describe('tabs', () => {
         // that postChange handlers are never called
       });
     });
+
+    describe('full-bleed edge behavior', () => {
+      // `.tabs-wrapper` stretches almost to the full page width via negative `margin-inline`,
+      // but stays a small margin short of the true edge so it can't cause a horizontal scrollbar.
+      it('should not create horizontal page overflow', () => {
+        cy.document().then(doc => {
+          expect(doc.documentElement.scrollWidth).to.be.at.most(doc.documentElement.clientWidth);
+        });
+      });
+
+      it('should keep the tabs-wrapper within the viewport on both sides', () => {
+        cy.get('@tabs')
+          .shadow()
+          .find('.tabs-wrapper')
+          .then($wrapper => {
+            const rect = $wrapper[0].getBoundingClientRect();
+            expect(rect.left).to.be.at.least(0);
+            expect(rect.right).to.be.at.most(Cypress.config('viewportWidth'));
+          });
+      });
+    });
   });
 
   describe('mode detection', () => {

@@ -246,7 +246,7 @@ export class PostBreadcrumbs {
         target.remove();
       } else {
         // Nothing assigned: keep the slot's own fallback content (e.g. the default home link) by
-        // unwrapping the <slot> in place, move its children to where it was, then remove it.
+        // unwrap the <slot> in place, move its children to where it was, then remove it.
         const parent = target.parentNode;
         if (parent) {
           Array.from(target.childNodes).forEach(child => parent.insertBefore(child, target));
