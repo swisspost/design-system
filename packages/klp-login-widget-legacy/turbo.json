@@ -3,6 +3,9 @@
   "tasks": {
     "build:force": {
       "outputs": ["dist/**", "loader/**", "www/**"]
+    },
+    "dev:force": {
+      "outputs": ["dist/**", "loader/**", "www/**"]
     }
   }
 }
