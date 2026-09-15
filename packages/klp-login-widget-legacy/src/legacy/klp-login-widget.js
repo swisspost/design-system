@@ -136,7 +136,6 @@ import { createStorage } from './storage';
       }
     }
 
-
     function audit(message) {
       const auditingEvent = JSON.stringify({
         adr: address,

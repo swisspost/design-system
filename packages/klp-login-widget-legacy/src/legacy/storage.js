@@ -13,8 +13,7 @@
 
 const PERSISTED_STATE_KEY = 'klp.widget.state';
 const PERSISTED_DOCUMENT_PREFIX = 'klp.widget.document.';
-const PLACEHOLDER =
-  "If you're looking for this info, contact the Swiss Post Design System Team!";
+const PLACEHOLDER = "If you're looking for this info, contact the Swiss Post Design System Team!";
 
 export function createStorage({ log = () => {} } = {}) {
   function isHTML5StorageSupported() {
