@@ -1,5 +1,19 @@
 # @swisspost/design-system-styles
 
+## 10.6.0
+
+### Minor Changes
+
+- Added different page templates for the following errors: 400, 401, 403, 404, 451, 500, 503 and 504.  
+  The previous 404 error page template is now deprecated. (by [@leagrdv](https://github.com/leagrdv) with [#8405](https://github.com/swisspost/design-system/pull/8405))
+
+### Patch Changes
+
+- Fix select[multiple] when an empty option is present. The floating label no longer covers the empty option. (by [@gfellerph](https://github.com/gfellerph) with [#7948](https://github.com/swisspost/design-system/pull/7948))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.6.0
+  - @swisspost/design-system-tokens@10.6.0
+
 ## 10.5.0
 
 ### Minor Changes
