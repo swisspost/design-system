@@ -25,6 +25,7 @@ const OUT_DIR = join(ROOT, '.coverage-report');
 
 /** Every module the widget is being split into, so a move between them cannot hide a gap. */
 const TARGETS = [
+  'src/legacy/control-cookie.js',
   'src/legacy/klp-login-widget.js',
   'src/legacy/texts.js',
   'src/legacy/urls.js',
@@ -130,13 +131,15 @@ for (const target of TARGETS) {
  * silently re-arm the whole list.
  */
 const UNREACHABLE = {
-  'src/legacy/klp-login-widget.js': {
-    'changeAccountDialog: modal.parentElement.removeChild(modal);':
-      'window.onclick compares against a node inside the shadow root, and the event target is always retargeted to the host',
+  'src/legacy/control-cookie.js': {
     'getControlCookieVal: break;':
       "String.split() never yields an undefined first element, so the 'hash' break is dead",
     'setControlCookie: document.cookie =':
       'setControlCookie() is only ever called with the hash or keepalive scope',
+  },
+  'src/legacy/klp-login-widget.js': {
+    'changeAccountDialog: modal.parentElement.removeChild(modal);':
+      'window.onclick compares against a node inside the shadow root, and the event target is always retargeted to the host',
     'keepAliveSessionsOnInit: const now = new Date().getTime();':
       'init() tests isUserAuthenticated() before the asynchronous subscribe can set sessionData',
     "receiveMessage: log('PostMessage syncWidget received');":
@@ -184,6 +187,10 @@ const CANARIES = {
   'src/legacy/urls.js': {
     uncovered: [],
     covered: ['export function buildLoginParameters'],
+  },
+  'src/legacy/control-cookie.js': {
+    uncovered: [],
+    covered: ['export function hash'],
   },
 };
 

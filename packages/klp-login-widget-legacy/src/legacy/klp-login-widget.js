@@ -11,6 +11,12 @@ import jQuery from 'jquery/dist/jquery.slim';
 import { vertx } from './vertx-eventbus';
 import { keys, texts } from './texts';
 import * as urls from './urls';
+import {
+  CONTROL_COOKIE_NAME,
+  createControlCookie,
+  hash,
+  isCurrentLocationPostCh,
+} from './control-cookie';
 
 (function ($) {
   window.klpWidgetDev = function (
@@ -46,10 +52,6 @@ import * as urls from './urls';
     let keepAliveID = 'klp-widget-keepalive',
       persistedStateKey = 'klp.widget.state',
       persistedDocumentPrefix = 'klp.widget.document.',
-      controlCookieName = 'NCTRL',
-      controlCookieDomain = 'post.ch',
-      controlCookieDomainRegEx = new RegExp(controlCookieDomain + '$'),
-      controlCookieRegEx = new RegExp(controlCookieName + '=([^;]+)'),
       eventBus,
       address,
       retrySubscribeOnFail = false,
@@ -105,6 +107,8 @@ import * as urls from './urls';
     if (options !== undefined) {
       conf = { ...conf, ...options };
     }
+
+    const controlCookie = createControlCookie({ log: message => log(message) });
 
     function isHTML5StorageSupported() {
       try {
@@ -327,101 +331,16 @@ import * as urls from './urls';
       }
     }
 
-    function isCurrentLocationPostCh() {
-      return controlCookieDomainRegEx.test(window.location.hostname);
-    }
-
-    function hash(s) {
-      s = JSON.stringify(s);
-      let hash = 0,
-        i,
-        chr,
-        len;
-      if (s.length === 0) return hash;
-      for (i = 0, len = s.length; i < len; i++) {
-        chr = s.charCodeAt(i);
-        hash = (hash << 5) - hash + chr;
-        hash |= 0;
-      }
-      return hash;
-    }
-
     function getControlCookieVal(scope) {
-      const cookieData = controlCookieRegEx.exec(document.cookie);
-      if (cookieData != null) {
-        const values = decodeURIComponent(cookieData[1]).split(':');
-        switch (scope) {
-          case 'hash':
-            if (values[0] != null) return values[0];
-            break;
-          case 'keepalive':
-            if (values[1] != null) return values[1];
-            break;
-          default:
-            return decodeURIComponent(cookieData[1]);
-        }
-        return null;
-      } else {
-        log('Control cookie not found');
-        return null;
-      }
+      return controlCookie.getControlCookieVal(scope);
     }
 
     function setControlCookie(scope, val) {
-      const sameSiteNoneSecure = '; SameSite=None; Secure';
-      switch (scope) {
-        case 'hash':
-          document.cookie =
-            controlCookieName +
-            '=' +
-            val +
-            ':' +
-            getControlCookieVal('keepalive') +
-            '; Path=/; domain=' +
-            controlCookieDomain +
-            sameSiteNoneSecure +
-            '; Secure';
-          break;
-        case 'keepalive':
-          document.cookie =
-            controlCookieName +
-            '=' +
-            getControlCookieVal('hash') +
-            ':' +
-            val +
-            '; Path=/; domain=' +
-            controlCookieDomain +
-            sameSiteNoneSecure +
-            '; Secure';
-          break;
-        default:
-          document.cookie =
-            controlCookieName +
-            '=' +
-            val +
-            '; Path=/; domain=' +
-            controlCookieDomain +
-            sameSiteNoneSecure +
-            '; Secure';
-          break;
-      }
+      controlCookie.setControlCookie(scope, val);
     }
 
     function removeControlCookie() {
-      if (retrySubscribeOnFail) {
-        document.cookie =
-          controlCookieName + '=' + 'sub' + '; Path=/; domain=' + controlCookieDomain;
-        log('Control cookie set to sub');
-      } else {
-        document.cookie =
-          controlCookieName +
-          '=' +
-          '' +
-          '; Path=/; Expires=Wed, 01 Apr 2014 01:00:00 GMT; domain=' +
-          controlCookieDomain +
-          '; Secure';
-        log('Control cookie removed');
-      }
+      controlCookie.removeControlCookie({ keepForRetry: retrySubscribeOnFail });
     }
 
     function saveDocumentOnCache(document, documentType) {
@@ -1015,7 +934,7 @@ import * as urls from './urls';
           log('Subscribing to get an address');
           if (globalThis.console && globalThis.console.info) {
             console.info('[klp-login-widget] subscribe attempt', {
-              hasNctrl: document.cookie.includes(controlCookieName + '='),
+              hasNctrl: document.cookie.includes(CONTROL_COOKIE_NAME + '='),
               userAgent: navigator.userAgent,
             });
           }
@@ -1034,7 +953,7 @@ import * as urls from './urls';
                   errorType: error.constructor ? error.constructor.name : typeof error,
                   errorMessage: error.message,
                   isTypeError: error instanceof TypeError,
-                  hasNctrl: document.cookie.includes(controlCookieName + '='),
+                  hasNctrl: document.cookie.includes(CONTROL_COOKIE_NAME + '='),
                   userAgent: navigator.userAgent,
                   url: globalThis.location.href,
                 });
