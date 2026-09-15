@@ -77,9 +77,11 @@ export const openWidget = async (
     showJobsLoginWidget?: boolean;
     logoutUrl?: string;
     selfAdminOrigin?: string;
+    /** Set to false for scenarios where the widget never reaches a rendered state. */
+    waitForReady?: boolean;
   } = {},
 ) => {
-  const { config = widgetConfig, environment = 'prod', ...rest } = opts;
+  const { config = widgetConfig, environment = 'prod', waitForReady = true, ...rest } = opts;
   const params = new URLSearchParams();
 
   if (config) params.set('config', Buffer.from(JSON.stringify(config)).toString('base64'));
@@ -89,7 +91,9 @@ export const openWidget = async (
   });
 
   await page.goto(`/index.html?${params}`);
-  await page.waitForFunction(() => (window as unknown as WidgetReady).__widgetReadyCount > 0);
+  if (waitForReady) {
+    await page.waitForFunction(() => (window as unknown as WidgetReady).__widgetReadyCount > 0);
+  }
 };
 
 interface WidgetReady {
@@ -150,8 +154,6 @@ export const waitForEventBus = async (api: APIRequestContext) => {
     .poll(async () => (await journal(api)).eventbus.some(e => e.event === 'register'))
     .toBe(true);
 };
-
-export const eventBusJournal = async (api: APIRequestContext) => (await journal(api)).eventbus;
 
 /** Calls a method on the public window.OPPklpWidget API and returns its result. */
 export const callApi = <T>(page: Page, method: string, ...args: unknown[]) =>

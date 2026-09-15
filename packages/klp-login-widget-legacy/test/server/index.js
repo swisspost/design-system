@@ -92,6 +92,14 @@ app.post('/__control/push', (req, res) => {
 
 app.get('/__control/journal', (_req, res) => res.json(getJournal()));
 
+/** Drops the EventBus sockets so tests can exercise the onclose / resubscribe path. */
+app.post('/__control/disconnect', (_req, res) => {
+  const targets = connections.get(getState().address);
+  const closed = targets?.size ?? 0;
+  targets?.forEach(conn => conn.close());
+  res.json({ closed });
+});
+
 /* ------------------------------------------------------------ widget api -- */
 
 app.get('/v1/session/subscribe', (req, res) => {
