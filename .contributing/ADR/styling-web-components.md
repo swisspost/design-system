@@ -6,7 +6,7 @@
 
 Reference: <https://github.com/swisspost/design-system/issues/8078>
 
-A web component host (`<post-tooltip>`) element can be styled with the `:host` selector and slotted elements can be styled via the `::slotted` pseudo-selector. The cascade order of these selectors however, is very low because the styles are applied from within the shadow DOM. Light dom styles are applied with higher specificity (see [codepen example](https://codepen.io/tuelsch/pen/pvRWvyj)), except when defined with `!important`. This has led to conflicts between project styles and Design System styles. Future unintentional overrides are very likely.
+A web component host (`<post-tooltip>`) element can be styled with the `:host` selector and slotted elements can be styled via the `::slotted` pseudo-selector. The order in the cascade of these selectors however, is very low because the styles are applied from within the shadow DOM. Light DOM styles are applied later in the cascade (see [Cascade Layers on MDN](https://mdn.github.io/shared-assets/images/diagrams/css/at-rules/layer-cascade.svg) and [codepen reproduction](https://codepen.io/tuelsch/pen/pvRWvyj)). Light DOM styles can only be overwritten with `!important`, which is undesirable to use everywhere. This has led to conflicts between project styles and Design System styles. Future unintentional overrides are very likely.
 
 ## Decision
 
@@ -15,7 +15,7 @@ A web component host (`<post-tooltip>`) element can be styled with the `:host` s
 Host styles should be:
 
 - Reduced to the minimum
-- The default display for host elements should be `contents`
+- The default display for host elements should be `inline`
 - Host styles on existing components should be moved to an element within the component
 - The `:host` selector can be used to react to component properties, e.g. `:host([variant="big"]) button { font-size: 2rem; }`
 
