@@ -65,7 +65,7 @@ export class PostBreadcrumbs {
   textHome!: string;
 
   /**
-   * Whether `text-home` is displayed visibly instead of the home icon, enabling segment specific
+   * Whether `text-home` content is displayed instead of the home icon, enabling segment specific
    * breadcrumbs (like "Private customers" or "About us").
    */
   @Prop({ reflect: true })

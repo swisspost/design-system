@@ -78,6 +78,9 @@ nav {
     all: revert;
     @include menu-item-mx.menu-item-link-appearance;
   }
+  &::before {
+    content: none;
+  }
 }
 
 .visually-hidden {

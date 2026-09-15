@@ -146,7 +146,7 @@ export namespace Components {
          */
         "homeUrl"?: string;
         /**
-          * Whether `text-home` is displayed visibly instead of the home icon, enabling segment specific breadcrumbs (like "Private customers" or "About us").
+          * Whether `text-home` content is displayed instead of the home icon, enabling segment specific breadcrumbs (like "Private customers" or "About us").
           * @default false
          */
         "showHomeText": boolean;
@@ -1460,7 +1460,7 @@ declare namespace LocalJSX {
          */
         "homeUrl"?: string;
         /**
-          * Whether `text-home` is displayed visibly instead of the home icon, enabling segment specific breadcrumbs (like "Private customers" or "About us").
+          * Whether `text-home` content is displayed instead of the home icon, enabling segment specific breadcrumbs (like "Private customers" or "About us").
           * @default false
          */
         "showHomeText"?: boolean;
