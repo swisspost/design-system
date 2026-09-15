@@ -54,6 +54,12 @@ jobs:
       - name: Test publish step
         run: pnpm -r publish --dry-run
 
+      - name: Check release packages exist on npm
+        run: |
+          trap 'rm -f changesets.json' EXIT
+          pnpm changeset status --output=changesets.json
+          node .github/workflows/scripts/check-packages-on-npm.mjs
+
       # The changeset action will behave differently based on whether there are
       # new changesets on the github.ref branch:
       #
