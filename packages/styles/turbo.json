@@ -3,7 +3,7 @@
   "tasks": {
     "build:force": {
       "inputs": ["$TURBO_DEFAULT$", "../../packages/design-system-icons/**"],
-      "outputs": ["dist/**", "src/tokens/temp/**"]
+      "outputs": ["dist/**"]
     }
   }
 }
