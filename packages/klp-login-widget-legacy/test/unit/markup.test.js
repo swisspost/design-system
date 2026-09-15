@@ -27,7 +27,10 @@ const b2b = {
 
 describe('settingsURL', () => {
   it('points at the account app of the stage the widget runs on', () => {
-    assert.equal(settingsURL('int02', 'fr'), 'https://serviceint2.post.ch/kvm/app/ui/settings?lang=fr');
+    assert.equal(
+      settingsURL('int02', 'fr'),
+      'https://serviceint2.post.ch/kvm/app/ui/settings?lang=fr',
+    );
     assert.equal(settingsURL('prod', 'de'), 'https://service.post.ch/kvm/app/ui/settings?lang=de');
   });
 });
@@ -42,10 +45,7 @@ describe('isOldChangeCompany', () => {
   });
 
   it('does not hold once the newer account switch is configured', () => {
-    assert.equal(
-      isOldChangeCompany({ ...b2b, changeUserAndProfile: 'userAndProfile' }),
-      false,
-    );
+    assert.equal(isOldChangeCompany({ ...b2b, changeUserAndProfile: 'userAndProfile' }), false);
   });
 
   it('does not hold for a business user who may not switch', () => {
@@ -101,7 +101,9 @@ describe('authenticatedWidget', () => {
 });
 
 describe('authenticatedMenu', () => {
-  const menuLinks = [{ description: 'Profile', url: '/selfadmin', iconclass: 'widget_icon_profile' }];
+  const menuLinks = [
+    { description: 'Profile', url: '/selfadmin', iconclass: 'widget_icon_profile' },
+  ];
 
   const menu = (overrides = {}) =>
     authenticatedMenu({
