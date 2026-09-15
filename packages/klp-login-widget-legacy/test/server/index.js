@@ -85,8 +85,8 @@ app.post('/__control/login', (req, res) => {
 });
 
 app.post('/__control/push', (req, res) => {
-  const { message, address = getState().address } = req.body ?? {};
-  const delivered = pushToEventBus(address, message);
+  const { message, address = getState().address, replyAddress } = req.body ?? {};
+  const delivered = pushToEventBus(address, message, replyAddress);
   res.json({ delivered });
 });
 
@@ -158,10 +158,10 @@ app.use(express.static(WWW));
 
 const connections = new Map(); // address -> Set<conn>
 
-const pushToEventBus = (address, body) => {
+const pushToEventBus = (address, body, replyAddress) => {
   const targets = connections.get(address);
   if (!targets?.size) return 0;
-  const frame = JSON.stringify({ address, body });
+  const frame = JSON.stringify({ address, body, ...(replyAddress ? { replyAddress } : {}) });
   targets.forEach(conn => conn.write(frame));
   return targets.size;
 };
@@ -179,7 +179,7 @@ eventbus.on('connection', conn => {
     } catch {
       return;
     }
-    record('eventbus', { event: msg.type, address: msg.address });
+    record('eventbus', { event: msg.type, address: msg.address, sessionID: msg.sessionID });
 
     // Vert.x 2 bridge protocol, which is what the legacy client speaks.
     if (msg.type === 'register') {
@@ -190,6 +190,14 @@ eventbus.on('connection', conn => {
     } else if (msg.type === 'unregister') {
       registered.delete(msg.address);
       connections.get(msg.address)?.delete(conn);
+    } else if (msg.type === 'send' && msg.replyAddress) {
+      // The bridge answers on the reply address, which is how the client hands the payload to the
+      // reply handler it stashed away.
+      const body =
+        msg.address === 'vertx.basicauthmanager.login'
+          ? { status: 'ok', sessionID: 'fake-session-id' }
+          : { status: 'ok', echo: msg.body };
+      conn.write(JSON.stringify({ address: msg.replyAddress, body }));
     }
   });
 

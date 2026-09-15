@@ -28,8 +28,9 @@ interface BusWindow {
   __bus: Bus;
   __events: string[];
   __received: unknown[];
-  __handler: (body: unknown) => void;
-  __second: (body: unknown) => void;
+  __handler: (body: unknown, reply?: unknown) => void;
+  __second: (body: unknown, reply?: unknown) => void;
+  __reply: (message: unknown) => void;
 }
 
 /**
@@ -112,7 +113,8 @@ test.describe('vert.x event bus shim', () => {
     }, EVENTBUS_URL);
     expect(connecting).toBe(0);
 
-    await expect.poll(() => page.evaluate(() => (window as unknown as BusWindow).__bus.readyState()))
+    await expect
+      .poll(() => page.evaluate(() => (window as unknown as BusWindow).__bus.readyState()))
       .toBe(1);
   });
 
@@ -211,7 +213,7 @@ test.describe('vert.x event bus shim', () => {
     expect(await busEvents('publish')).toHaveLength(1);
   });
 
-  test('allocates a reply address when a reply handler is passed', async ({ page }) => {
+  test('allocates a reply address and routes the answer to the reply handler', async ({ page }) => {
     await loadShim(page);
     await openBus(page);
 
@@ -220,7 +222,59 @@ test.describe('vert.x event bus shim', () => {
       w.__bus.send(address, { hello: 'with-reply' }, reply => w.__received.push(reply));
     }, ADDRESS);
 
-    await expect.poll(async () => (await busEvents('send')).length).toBe(1);
+    await expect
+      .poll(() => page.evaluate(() => (window as unknown as BusWindow).__received))
+      .toEqual([{ status: 'ok', echo: { hello: 'with-reply' } }]);
+  });
+
+  test('hands a reply function to handlers when the frame carries a reply address', async ({
+    page,
+  }) => {
+    await loadShim(page);
+    await openBus(page);
+    await page.evaluate(address => {
+      const w = window as unknown as BusWindow;
+      w.__handler = (body, reply) => {
+        w.__reply = reply as (message: unknown) => void;
+        w.__received.push({ body, canReply: typeof reply });
+      };
+      w.__bus.registerHandler(address, w.__handler);
+    }, ADDRESS);
+    await expect.poll(async () => (await busEvents('register')).length).toBe(1);
+
+    await pushEventBus(api, { typ: 'hello' }, 'some-reply-address');
+
+    await expect
+      .poll(() => page.evaluate(() => (window as unknown as BusWindow).__received))
+      .toEqual([{ body: { typ: 'hello' }, canReply: 'function' }]);
+
+    await page.evaluate(() => (window as unknown as BusWindow).__reply({ answered: true }));
+
+    await expect
+      .poll(async () => (await busEvents('send')).map(e => e.address))
+      .toEqual(['some-reply-address']);
+  });
+
+  test('login stores the session id and stamps it on later envelopes', async ({ page }) => {
+    await loadShim(page);
+    await openBus(page);
+
+    await page.evaluate(() => {
+      const w = window as unknown as BusWindow;
+      w.__bus.login('someone', 'secret', reply => w.__received.push(reply));
+    });
+    // The shim strips sessionID from the payload it forwards to the caller.
+    await expect
+      .poll(() => page.evaluate(() => (window as unknown as BusWindow).__received))
+      .toEqual([{ status: 'ok' }]);
+
+    await page.evaluate(address => {
+      (window as unknown as BusWindow).__bus.publish(address, { after: 'login' });
+    }, ADDRESS);
+
+    await expect
+      .poll(async () => (await busEvents('publish')).map(e => e.sessionID))
+      .toEqual(['fake-session-id']);
   });
 
   test('login sends credentials to the basic auth manager', async ({ page }) => {
@@ -248,9 +302,7 @@ test.describe('vert.x event bus shim', () => {
     await expect
       .poll(() => page.evaluate(() => (window as unknown as BusWindow).__events))
       .toEqual(['open', 'close']);
-    expect(
-      await page.evaluate(() => (window as unknown as BusWindow).__bus.readyState()),
-    ).toBe(3);
+    expect(await page.evaluate(() => (window as unknown as BusWindow).__bus.readyState())).toBe(3);
   });
 
   test('refuses calls made before the socket is open', async ({ page }) => {

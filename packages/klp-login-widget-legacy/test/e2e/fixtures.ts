@@ -37,8 +37,12 @@ export const setScenario = async (api: APIRequestContext, scenario: Record<strin
   await api.post('/__control/scenario', { data: scenario });
 };
 
-export const pushEventBus = async (api: APIRequestContext, message: unknown) => {
-  const res = await api.post('/__control/push', { data: { message } });
+export const pushEventBus = async (
+  api: APIRequestContext,
+  message: unknown,
+  replyAddress?: string,
+) => {
+  const res = await api.post('/__control/push', { data: { message, replyAddress } });
   return (await res.json()) as { delivered: number };
 };
 
@@ -48,7 +52,7 @@ export const journal = async (api: APIRequestContext) => {
     subscribe: unknown[];
     keepalive: unknown[];
     audit: { body: { adr?: string; evt: Record<string, unknown> } }[];
-    eventbus: { event: string; address?: string }[];
+    eventbus: { event: string; address?: string; sessionID?: string }[];
   };
 };
 
