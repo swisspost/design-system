@@ -1,0 +1,8 @@
+.stencil/
+.turbo/
+dist/
+loader/
+test-results/
+www/
+.coverage/
+.coverage-report/

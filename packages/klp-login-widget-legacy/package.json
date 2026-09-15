@@ -1,0 +1,40 @@
+{
+  "name": "@swisspost/klp",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Throwaway harness holding the v9 KLP login widget verbatim so it can be characterized, split and ported to v10. Never published. Delete once the new widget ships.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "scripts": {
+    "build": "pnpm turbo run build:force",
+    "build:force": "stencil build",
+    "start": "stencil build --dev --watch --serve",
+    "server": "node test/server/index.js",
+    "e2e": "stencil build && playwright test",
+    "e2e:ui": "stencil build && playwright test --ui",
+    "e2e:update": "stencil build && playwright test --update-snapshots",
+    "coverage": "rm -rf .coverage && stencil build --dev && KLP_COVERAGE=1 playwright test && node test/coverage/report.js",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@stencil/core": "4.43.3",
+    "@swisspost/design-system-styles": "9.15.0",
+    "jquery": "3.7.1",
+    "url-polyfill": "1.1.12"
+  },
+  "devDependencies": {
+    "@jridgewell/trace-mapping": "0.3.31",
+    "@playwright/test": "catalog:",
+    "@stencil/sass": "3.0.12",
+    "@types/node": "catalog:node",
+    "cookie-parser": "1.4.7",
+    "express": "4.21.2",
+    "selfsigned": "2.4.1",
+    "sockjs": "0.3.24",
+    "typescript": "5.9.3"
+  }
+}
