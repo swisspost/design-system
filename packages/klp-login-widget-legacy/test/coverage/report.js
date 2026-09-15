@@ -38,6 +38,7 @@ const TARGETS = [
   'src/legacy/keep-alive.js',
   'src/legacy/event-bus-connection.js',
   'src/legacy/notifications.js',
+  'src/legacy/view.js',
   'src/legacy/vertx-eventbus.js',
 ];
 
@@ -163,6 +164,7 @@ const UNREACHABLE = {
   },
   'src/legacy/event-bus-connection.js': {},
   'src/legacy/notifications.js': {},
+  'src/legacy/view.js': {},
   'src/legacy/texts.js': {},
   'src/legacy/urls.js': {},
   'src/legacy/storage.js': {},
@@ -248,6 +250,10 @@ const CANARIES = {
   'src/legacy/notifications.js': {
     uncovered: [],
     covered: ['function toggleNotificationsMenu'],
+  },
+  'src/legacy/view.js': {
+    uncovered: [],
+    covered: ['function renderWidget'],
   },
 };
 

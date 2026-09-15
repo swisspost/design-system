@@ -25,6 +25,7 @@ import { createChangeAccountDialog } from './change-account-dialog';
 import { createKeepAlive } from './keep-alive';
 import { createEventBusConnection } from './event-bus-connection';
 import { createNotifications, UNREAD_NOTIFICATIONS } from './notifications';
+import { createView, selectFromShadowDom } from './view';
 
 (function ($) {
   window.klpWidgetDev = function (
@@ -137,12 +138,30 @@ import { createNotifications, UNREAD_NOTIFICATIONS } from './notifications';
       setControlCookie: (scope, val) => setControlCookie(scope, val),
     });
     const dropdown = createDropdown({ id, selectFromShadowDom: () => selectFromShadowDom() });
+    const view = createView({
+      id,
+      keepAliveID,
+      labels: labels,
+      getSessionData: () => sessionData,
+      getLang: () => currentLang,
+      menuLinks: menuLinks,
+      messagesUrl: messagesUrl,
+      environment: environment,
+      loginURL: () => loginURL(),
+      logoutURL: () => logoutURL(),
+      doLogout: logoutUrl => doLogout(logoutUrl),
+      toggleDropdown: target => toggleDropdown(target),
+      toggleNotificationsMenu: () => toggleNotificationsMenu(),
+      setChangeAccountDialog: () => setChangeAccountDialog(),
+      setArrowKeysListeners: () => setArrowKeysListeners(),
+      onRendered: () => measureWidgetShowsUp(),
+    });
     const changeAccountDialogView = createChangeAccountDialog({
       id,
       selectFromShadowDom: () => selectFromShadowDom(),
       labels: labels,
       getSessionData: () => sessionData,
-      isChangeUserAndProfile: () => isChangeUserAndProfile(),
+      isChangeUserAndProfile: () => markup.isChangeUserAndProfile(sessionData),
       logoutURL: () => logoutURL(),
       changeCompanyURL: () => changeCompanyURL(),
       doLogout: logoutUrl => doLogout(logoutUrl),
@@ -337,128 +356,12 @@ import { createNotifications, UNREAD_NOTIFICATIONS } from './notifications';
       }
     }
 
-    function renderHiddenContainer(parentContainerSelector, containerId) {
-      selectFromShadowDom()
-        .find(parentContainerSelector)
-        .append('<div id="' + containerId + '" style="display:none;"></div>');
-    }
-
-    function selectFromShadowDom() {
-      return $(
-        document
-          .querySelector('swisspost-internet-header')
-          .shadowRoot.querySelector('post-klp-login-widget')
-          .shadowRoot.querySelector('.widget-wrapper'),
-      );
-    }
-
-    function renderAnonymousWidget() {
-      selectFromShadowDom()
-        .find('#' + id)
-        .addClass('anonymous');
-      selectFromShadowDom()
-        .find('#' + id)
-        .attr('data-custom-focus-id', 'klp-widget');
-      selectFromShadowDom()
-        .find('#' + id)
-        .html(markup.anonymousWidget({ labels: labels, loginUrl: loginURL() }));
-      selectFromShadowDom()
-        .find('#' + id)
-        .on('click touch', function (e) {
-          e.preventDefault();
-          document.location.href = loginURL();
-          return false;
-        });
-    }
-
-    function renderAuthenticatedWidget() {
-      selectFromShadowDom()
-        .find('#' + id)
-        .off('click touch');
-      let info = '',
-        authenticatedSessionTailNameClass = '';
-      if (sessionData.userType === 'B2C') {
-        authenticatedSessionTailNameClass = 'klp-widget-authenticated-session-name u_var_centered';
-      } else {
-        info = sessionData.company;
-        authenticatedSessionTailNameClass = 'klp-widget-authenticated-session-name';
-      }
-      let authenticatedSectionClass = 'klp-widget-authenticated';
-      if (sessionData.support) {
-        authenticatedSectionClass += ' klp-widget-support';
-      }
-      selectFromShadowDom()
-        .find('#' + id)
-        .html(
-          markup.authenticatedWidget({
-            labels: labels,
-            sessionData: sessionData,
-            sectionClass: authenticatedSectionClass,
-            nameClass: authenticatedSessionTailNameClass,
-            menu: getAuthenticatedMenuLinks(authenticatedSessionTailNameClass, info, sessionData),
-          }),
-        );
-      selectFromShadowDom().find('.notification-number').css('visibility', 'hidden');
-      selectFromShadowDom().find('.notification-number-detail').css('visibility', 'hidden');
-      renderHiddenContainer('#' + id, keepAliveID);
-      selectFromShadowDom()
-        .find('#' + id + ' .klp-widget__user')
-        .on('click touch', function (e) {
-          e.preventDefault();
-          selectFromShadowDom()
-            .find('#' + id + ' .klp-widget__user')
-            .focus();
-          toggleMenu();
-          toggleNotificationsMenu();
-          return false;
-        });
-      selectFromShadowDom()
-        .find('#' + id + ' #klp-widget-authenticated-menu-logout')
-        .on('click touch', function (e) {
-          e.preventDefault();
-          selectFromShadowDom()
-            .find('#' + id + ' #klp-widget-authenticated-menu-logout')
-            .focus();
-          doLogout(logoutURL());
-          return false;
-        });
-      if (isOldChangeCompany() || isChangeUserAndProfile()) {
-        setChangeAccountDialog();
-      }
-      setArrowKeysListeners();
-    }
-
-    function isOldChangeCompany() {
-      return markup.isOldChangeCompany(sessionData);
-    }
-
-    function isChangeUserAndProfile() {
-      return markup.isChangeUserAndProfile(sessionData);
-    }
-
-    function getAuthenticatedMenuLinks(authenticatedSessionTailNameClass, info, sessionData) {
-      return markup.authenticatedMenu({
-        labels: labels,
-        sessionData: sessionData,
-        nameClass: authenticatedSessionTailNameClass,
-        info: info,
-        menuLinks: menuLinks,
-        messagesUrl: messagesUrl,
-        environment: environment,
-        lang: currentLang,
-      });
-    }
-
     function showDocument(document, documentType) {
       notifications.showDocument(document, documentType);
     }
 
     function removeDocument(documentType) {
       notifications.removeDocument(documentType);
-    }
-
-    function toggleMenu() {
-      toggleDropdown(selectFromShadowDom().find('#' + id + ' .klp-widget-authenticated-menu'));
     }
 
     function toggleNotificationsMenu() {
@@ -577,13 +480,7 @@ import { createNotifications, UNREAD_NOTIFICATIONS } from './notifications';
     }
 
     function renderWidget() {
-      if (typeof sessionData !== 'undefined') {
-        renderAuthenticatedWidget();
-      } else {
-        renderAnonymousWidget();
-      }
-      document.dispatchEvent(new CustomEvent('wepploginwidget_widget_ready'));
-      measureWidgetShowsUp();
+      view.renderWidget();
     }
 
     function init() {
