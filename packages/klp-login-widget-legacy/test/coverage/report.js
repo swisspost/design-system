@@ -35,6 +35,7 @@ const TARGETS = [
   'src/legacy/dropdown.js',
   'src/legacy/markup.js',
   'src/legacy/change-account-dialog.js',
+  'src/legacy/keep-alive.js',
   'src/legacy/vertx-eventbus.js',
 ];
 
@@ -144,8 +145,6 @@ const UNREACHABLE = {
       'setControlCookie() is only ever called with the hash or keepalive scope',
   },
   'src/legacy/klp-login-widget.js': {
-    'keepAliveSessionsOnInit: const now = new Date().getTime();':
-      'init() tests isUserAuthenticated() before the asynchronous subscribe can set sessionData',
     "receiveMessage: log('PostMessage syncWidget received');":
       'receiveMessage() matches the origin host including its port against bare domain names',
     "receiveMessage: window.attachEvent('onmessage', receiveMessage);":
@@ -154,7 +153,11 @@ const UNREACHABLE = {
       'the widget only runs on post.ch hosts, where the other branch is taken',
     "subscribe: log('Address available, skipping subscription');":
       'subscribe() is only re-entered with an address by the dead iframe sync path',
-    'init: keepAliveSessionsOnInit();': 'no session exists yet when init() runs',
+    'init: keepAlive.keepAliveSessionsOnInit();': 'no session exists yet when init() runs',
+  },
+  'src/legacy/keep-alive.js': {
+    'keepAliveSessionsOnInit: const now = new Date().getTime();':
+      'init() tests isUserAuthenticated() before the asynchronous subscribe can set sessionData',
   },
   'src/legacy/texts.js': {},
   'src/legacy/urls.js': {},
@@ -187,7 +190,7 @@ const UNREACHABLE = {
  */
 const CANARIES = {
   'src/legacy/klp-login-widget.js': {
-    uncovered: ["window.attachEvent('onmessage'", 'Running keepAliveSessionsOnInit'],
+    uncovered: ["window.attachEvent('onmessage'"],
     covered: ['const version =', 'function renderWidget()'],
   },
   'src/legacy/vertx-eventbus.js': {
@@ -229,6 +232,10 @@ const CANARIES = {
   'src/legacy/change-account-dialog.js': {
     uncovered: [],
     covered: ['function setChangeAccountDialog'],
+  },
+  'src/legacy/keep-alive.js': {
+    uncovered: ['Running keepAliveSessionsOnInit'],
+    covered: ['function keepAliveTimerFunction'],
   },
 };
 

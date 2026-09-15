@@ -23,6 +23,7 @@ import { createMessageRouter } from './message-router';
 import { createDropdown } from './dropdown';
 import * as markup from './markup';
 import { createChangeAccountDialog } from './change-account-dialog';
+import { createKeepAlive } from './keep-alive';
 
 (function ($) {
   window.klpWidgetDev = function (
@@ -65,8 +66,6 @@ import { createChangeAccountDialog } from './change-account-dialog';
       logoutCallback,
       documentCallbacks = {},
       documentUnreadNotifications = 'UNREAD_NOTIFICATIONS',
-      isUserActive = true,
-      keepAliveTimer,
       currentLang = 'de',
       originUrl = '',
       startingTime = new Date().getTime(),
@@ -114,6 +113,14 @@ import { createChangeAccountDialog } from './change-account-dialog';
     };
     const controlCookie = createControlCookie({ log: message => log(message) });
     const storage = createStorage({ log: message => log(message) });
+    const keepAlive = createKeepAlive({
+      getConf: () => conf,
+      log: message => log(message),
+      isUserAuthenticated: () => isUserAuthenticated(),
+      ping: () => pingKeepAliveEndpoints(),
+      getControlCookieVal: scope => getControlCookieVal(scope),
+      setControlCookie: (scope, val) => setControlCookie(scope, val),
+    });
     const dropdown = createDropdown({ id, selectFromShadowDom: () => selectFromShadowDom() });
     const changeAccountDialogView = createChangeAccountDialog({
       id,
@@ -232,10 +239,6 @@ import { createChangeAccountDialog } from './change-account-dialog';
       });
     }
 
-    function setUserActive() {
-      isUserActive = true;
-    }
-
     function persistState(ttl) {
       if (storage.persistState(ttl)) {
         setControlCookie('hash', encodeURIComponent(hash(sessionData)));
@@ -272,78 +275,26 @@ import { createChangeAccountDialog } from './change-account-dialog';
       storage.removeDocumentFromCache(documentType);
     }
 
-    function installUserActivityHandler() {
-      if (conf.keepAliveListeningEvents.length > 0) {
-        $(document).on(conf.keepAliveListeningEvents, setUserActive);
-      }
-    }
-
-    function uninstallUserActivityHandler() {
-      if (conf.keepAliveListeningEvents.length > 0) {
-        $(document).off(conf.keepAliveListeningEvents, setUserActive);
-      }
-    }
-
-    function keepAliveTimerFunction() {
-      if (isUserActive) {
-        isUserActive = false;
-        keepAliveSessions();
-      } else {
-        log('Keepalive call canceled due to user inactivity');
-      }
-    }
-
-    function installKeepAliveTimerHandler() {
-      if (conf.keepAlive && keepAliveTimer === undefined) {
-        installUserActivityHandler();
-        keepAliveTimer = window.setInterval(
-          keepAliveTimerFunction,
-          conf.keepAliveInterval * 60 * 1000,
-        );
-      }
-    }
-
-    function uninstallKeepAliveTimerHandler() {
-      if (conf.keepAlive) {
-        uninstallUserActivityHandler();
-        if (keepAliveTimer) {
-          window.clearInterval(keepAliveTimer);
-          keepAliveTimer = undefined;
-        }
+    /** Refreshes the session on the portal and on the platform, then tells whoever asked. */
+    function pingKeepAliveEndpoints() {
+      selectFromShadowDom()
+        .find('#' + keepAliveID)
+        .html(sessionClient.keepAliveMarkup(platform.keepAliveURL));
+      if (typeof keepAliveCallback == 'function') {
+        keepAliveCallback();
       }
     }
 
     function keepAliveSessions() {
-      if (isUserAuthenticated()) {
-        selectFromShadowDom()
-          .find('#' + keepAliveID)
-          .html(sessionClient.keepAliveMarkup(platform.keepAliveURL));
-        if (typeof keepAliveCallback == 'function') {
-          keepAliveCallback();
-        }
-        setControlCookie('keepalive', new Date().getTime());
-      }
+      keepAlive.keepAliveSessions();
     }
 
-    function keepAliveSessionsOnInit() {
-      const now = new Date().getTime();
-      const lastKeepAlive = getControlCookieVal('keepalive');
-      if (
-        isNaN(lastKeepAlive) ||
-        now - parseInt(lastKeepAlive) > conf.keepAliveInterval * 60 * 1000
-      ) {
-        log('Running keepAliveSessionsOnInit');
-        keepAliveSessions();
-        return;
-      }
-      log(
-        'keepAliveSessionsOnInit not running due to [now=' +
-          now +
-          ',last=' +
-          lastKeepAlive +
-          ',interval=' +
-          conf.keepAliveInterval * 60 * 1000,
-      );
+    function installKeepAliveTimerHandler() {
+      keepAlive.installKeepAliveTimerHandler();
+    }
+
+    function uninstallKeepAliveTimerHandler() {
+      keepAlive.uninstallKeepAliveTimerHandler();
     }
 
     function initIFrameCommunication() {
@@ -709,7 +660,7 @@ import { createChangeAccountDialog } from './change-account-dialog';
     function init() {
       subscribe();
       if (conf.keepAliveOnInit && isUserAuthenticated()) {
-        keepAliveSessionsOnInit();
+        keepAlive.keepAliveSessionsOnInit();
       }
       initIFrameCommunication();
     }
