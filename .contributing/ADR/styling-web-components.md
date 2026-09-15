@@ -23,7 +23,7 @@ Slotted elements should be:
 
 - Web Components defined in the components package
 - HTML/CSS components defined in the styles package
-- HTML elements without specific class name styled in the [components global styles](https://github.com/swisspost/design-system/tree/main/packages/components/src/styles) file
+- HTML elements without specific class name styled in the [components global styles](https://github.com/swisspost/design-system/tree/main/packages/components/src/styles)
 
 ## Consequences
 
