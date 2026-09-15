@@ -574,7 +574,7 @@ export namespace Components {
     }
     interface PostPopovercontainer {
         /**
-          * Whether or not to display a little pointer arrow
+          * Show a little indicator arrow
           * @default false
          */
         "arrow"?: boolean;
@@ -583,12 +583,12 @@ export namespace Components {
          */
         "autoHide"?: boolean;
         /**
-          * Gap between the edge of the page and the popovercontainer
+          * Gap between the edge of the viewport and the popover.
           * @default 8
          */
         "edgeGap"?: number;
         /**
-          * Programmatically hide the popovercontainer
+          * Hides the popover.
          */
         "hide": () => Promise<void>;
         /**
@@ -596,25 +596,30 @@ export namespace Components {
          */
         "offset"?: number;
         /**
-          * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Placement of the popover according to the floating-ui options.
           * @default 'top'
          */
         "placement"?: Placement1;
         /**
-          * Enables a safespace through which the cursor can be moved without the popover being disabled
+          * Whether to add a space through which the mouse can move without the popover being hidden.
          */
-        "safeSpace"?: 'triangle' | 'trapezoid';
+        "safeSpace"?: boolean;
         /**
-          * Programmatically display the popovercontainer
-          * @param target The element that invokes the popover and to which it is visually anchored.
+          * Whether to lock the scroll of the scrollport when the popover is shown.
          */
-        "show": (target: HTMLElement) => Promise<void>;
+        "scrollLock"?: boolean;
         /**
-          * Toggle popovercontainer display
-          * @param target The element that invokes the popover and to which it is visually anchored.
-          * @param force Pass true to always show or false to always hide
+          * Shows the popover.
+          * @param anchor the element that the popover is visually anchored to.
          */
-        "toggle": (target: HTMLElement, force?: boolean) => Promise<boolean>;
+        "show": (anchor: HTMLElement) => Promise<void>;
+        /**
+          * Toggles the popover's state from hidden to showing and vice versa.  If `state` is specified, the popover is forced to be shown if the is set to `true`, or hidden if it is set to `false`.
+          * @param anchor the element that the popover is visually anchored to.
+          * @param force the next state of the popover.
+          * @returns the new state of the popover: `true` if it is shown, `false` if it is hidden.
+         */
+        "toggle": (anchor: HTMLElement, force?: boolean) => Promise<boolean>;
     }
     interface PostProgressbar {
         /**
@@ -1836,7 +1841,7 @@ declare namespace LocalJSX {
     }
     interface PostPopovercontainer {
         /**
-          * Whether or not to display a little pointer arrow
+          * Show a little indicator arrow
           * @default false
          */
         "arrow"?: boolean;
@@ -1845,7 +1850,7 @@ declare namespace LocalJSX {
          */
         "autoHide"?: boolean;
         /**
-          * Gap between the edge of the page and the popovercontainer
+          * Gap between the edge of the viewport and the popover.
           * @default 8
          */
         "edgeGap"?: number;
@@ -1854,34 +1859,38 @@ declare namespace LocalJSX {
          */
         "offset"?: number;
         /**
-          * Fires whenever the popovercontainer is about to be shown, passing in event.detail a `first` boolean, which is true if it is to be shown for the first time.
+          * Emitted just before the popover is shown.  The payload contains a `first` boolean, that is set to `true` when the popover is about to be shown for the first time.
          */
         "onPostBeforeShow"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
         /**
-          * Fires whenever the popovercontainer is about to be shown or hidden, passing in event.detail a `willOpen` boolean, which is true if the popovercontainer is about to be opened and false if it is about to be closed.
+          * Emitted just before the popover's state changes.  The payload contains a `willOpen` boolean, that is set to `true` when the popover is about to be shown, `false` when it is about to be hidden.
          */
         "onPostBeforeToggle"?: (event: PostPopovercontainerCustomEvent<{ willOpen: boolean }>) => void;
         /**
-          * Fires whenever the popovercontainer is hidden.
+          * Emitted just after the popover is hidden.
          */
         "onPostHide"?: (event: PostPopovercontainerCustomEvent<any>) => void;
         /**
-          * Fires whenever the popovercontainer is shown, passing in event.detail a `first` boolean, which is true if it is shown for the first time.
+          * Emitted just after the popover is shown.  The payload contains a `first` boolean, that is set to `true` when the popover is shown for the first time.
          */
         "onPostShow"?: (event: PostPopovercontainerCustomEvent<{ first?: boolean }>) => void;
         /**
-          * Fires whenever the popovercontainer gets shown or hidden, passing in event.detail an object containing a `isOpen`boolean, which is true if the popovercontainer was opened and false if it was closed.
+          * Emitted just after the popover's state changes.  The payload contains a `isOpen` boolean, that is set to `true` when the popover is shown, `false` when it is hidden.
          */
         "onPostToggle"?: (event: PostPopovercontainerCustomEvent<{ isOpen: boolean }>) => void;
         /**
-          * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Placement of the popover according to the floating-ui options.
           * @default 'top'
          */
         "placement"?: Placement1;
         /**
-          * Enables a safespace through which the cursor can be moved without the popover being disabled
+          * Whether to add a space through which the mouse can move without the popover being hidden.
          */
-        "safeSpace"?: 'triangle' | 'trapezoid';
+        "safeSpace"?: boolean;
+        /**
+          * Whether to lock the scroll of the scrollport when the popover is shown.
+         */
+        "scrollLock"?: boolean;
     }
     interface PostProgressbar {
         /**
@@ -2201,8 +2210,9 @@ declare namespace LocalJSX {
         "edgeGap": number;
         "offset": number;
         "arrow": boolean;
-        "safeSpace": 'triangle' | 'trapezoid';
+        "safeSpace": boolean;
         "autoHide": boolean;
+        "scrollLock": boolean;
     }
     interface PostProgressbarAttributes {
         "min": number;
