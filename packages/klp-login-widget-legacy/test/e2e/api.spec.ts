@@ -178,7 +178,9 @@ test.describe('keep alive', () => {
     await recordCalls(page);
     await page.evaluate(() =>
       (
-        window as unknown as { OPPklpWidget: { registerKeepAliveCallback: (c: () => void) => void } }
+        window as unknown as {
+          OPPklpWidget: { registerKeepAliveCallback: (c: () => void) => void };
+        }
       ).OPPklpWidget.registerKeepAliveCallback(() =>
         (window as unknown as { __calls: string[] }).__calls.push('keepalive'),
       ),
