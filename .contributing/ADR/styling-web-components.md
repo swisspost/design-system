@@ -49,4 +49,4 @@ Chances are that slotted elements need a little tweak here and there. The prefer
 
 _[CodePen example for passing styles as props to child components](https://codepen.io/tuelsch/pen/vEgwpzN?editors=1000)_
 
-The `<post-menu-item>` accepts a custom property that is able to override the default value like a prop on a web component. This custom property can also be documented to make it available to other users if it is necessary. This allows Design System components to override specific values contextually with a namespaced value, reducing the risk of unintentional overrides.
+The `<post-menu-item>` accepts a custom property that is able to override the default value like a prop on a web component. This custom property should also be documented to make it available to other users if it is necessary. This allows Design System components to override specific values contextually with a namespaced value, reducing the risk of unintentional overrides.
