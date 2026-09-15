@@ -5,6 +5,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KLP login widget (legacy) harness</title>
+  <!--
+    The legacy file starts with `const vertx = window.vertx || {}`, so seeding the global here
+    hands the suite a reference to the Vert.x shim it then attaches EventBus to. The widget only
+    ever uses registerHandler; the rest of the shim is only reachable this way.
+  -->
+  <script>window.vertx = {};</script>
   <script type="module" src="/build/klp-login-widget-legacy.esm.js"></script>
   <script nomodule src="/build/klp-login-widget-legacy.js"></script>
   <style>
