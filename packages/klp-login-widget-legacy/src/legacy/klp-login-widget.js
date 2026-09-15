@@ -19,6 +19,7 @@ import {
 } from './control-cookie';
 import { createStorage } from './storage';
 import { buildEndPoints, createSessionClient } from './session-client';
+import { createMessageRouter } from './message-router';
 
 (function ($) {
   window.klpWidgetDev = function (
@@ -109,6 +110,21 @@ import { buildEndPoints, createSessionClient } from './session-client';
       endPoints: platformEndPoints,
       log: message => log(message),
       logPerformanceMetric: (name, time) => logPerformanceMetric(name, time),
+    });
+    const messageRouter = createMessageRouter({
+      log: message => log(message),
+      actions: {
+        audit: message => audit(message),
+        setRetrySubscribeOnFail: value => (retrySubscribeOnFail = value),
+        setAddress: value => (address = value),
+        login: (data, ttl, callback) => login(data, ttl, callback),
+        logout: () => logout(),
+        subscribe: () => subscribe(),
+        openCommunication: () => openCommunication(),
+        removeNotificationsFromCache: () => removeDocumentFromCache(documentUnreadNotifications),
+        showDocument: (document, documentType) => showDocument(document, documentType),
+        removeDocument: documentType => removeDocument(documentType),
+      },
     });
 
     function now() {
@@ -814,42 +830,7 @@ import { buildEndPoints, createSessionClient } from './session-client';
     }
 
     function handleMessage(message) {
-      log('Message received: ' + JSON.stringify(message));
-      audit(message);
-      retrySubscribeOnFail = false;
-      switch (message.typ) {
-        case 'ukn':
-          if (message.sub) {
-            retrySubscribeOnFail = true;
-            logout();
-            subscribe();
-          } else {
-            logout();
-          }
-          break;
-        case 'sub':
-          address = message.adr;
-          login(message.data, message.ttl, false);
-          openCommunication();
-          break;
-        case 'hi':
-          login(message.data, message.ttl, true);
-          removeDocumentFromCache(documentUnreadNotifications);
-          break;
-        case 'bye':
-          logout();
-          break;
-        case 'doc':
-          showDocument(message.doc, message.doctyp);
-          break;
-        case 'rem':
-          removeDocument(message.doctyp);
-          break;
-        default:
-          log('Unknown event received: ' + message.typ);
-          logout();
-          break;
-      }
+      messageRouter(message);
     }
 
     function trySubscription() {

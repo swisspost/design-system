@@ -31,6 +31,7 @@ const TARGETS = [
   'src/legacy/urls.js',
   'src/legacy/storage.js',
   'src/legacy/session-client.js',
+  'src/legacy/message-router.js',
   'src/legacy/vertx-eventbus.js',
 ];
 
@@ -166,6 +167,7 @@ const UNREACHABLE = {
   'src/legacy/urls.js': {},
   'src/legacy/storage.js': {},
   'src/legacy/session-client.js': {},
+  'src/legacy/message-router.js': {},
   'src/legacy/vertx-eventbus.js': {},
 };
 
@@ -203,6 +205,10 @@ const CANARIES = {
   'src/legacy/session-client.js': {
     uncovered: [],
     covered: ['export function buildEndPoints'],
+  },
+  'src/legacy/message-router.js': {
+    uncovered: [],
+    covered: ["case 'sub':"],
   },
 };
 
