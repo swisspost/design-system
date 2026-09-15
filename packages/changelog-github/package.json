@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-changelog-github",
-  "version": "10.4.0",
+  "version": "10.5.0",
   "description": "A changelog entry generator for GitHub that links to PRs and users",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -16,6 +16,7 @@
   "publishConfig": {
     "access": "public"
   },
+  "type": "module",
   "main": "./dist/index.js",
   "scripts": {
     "build": "tsc",
@@ -26,7 +27,7 @@
   },
   "dependencies": {
     "@changesets/get-github-info": "0.8.0",
-    "@changesets/types": "6.1.0",
+    "@changesets/types": "7.0.0",
     "dotenv": "17.2.3"
   },
   "devDependencies": {

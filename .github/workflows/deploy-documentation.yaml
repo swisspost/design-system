@@ -79,6 +79,36 @@ jobs:
       - name: Remove netlify.config.json from artifact folder
         run: rm ${{ steps.build.outputs.folder }}/netlify.config.json
 
+      - name: Get files changed by the pull request
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        env:
+          PR_NUMBER: ${{ steps.build.outputs.id }}
+        with:
+          script: |
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: Number(process.env.PR_NUMBER),
+              per_page: 100,
+            });
+
+            require('fs').writeFileSync(
+              'changed-files.json',
+              JSON.stringify(files.map(file => file.filename)),
+            );
+
+      - name: Get changed snapshot stories
+        env:
+          FOLDER: ${{ steps.build.outputs.folder }}
+        run: |
+          STORY_IDS=$(node .github/scripts/changed-snapshot-stories.mjs \
+            changed-files.json "$FOLDER/index.json" --verbose | node -e "
+            const ids = JSON.parse(require('fs').readFileSync(0, 'utf8'));
+            console.log(ids.slice(0, 10).join(','));
+          ")
+
+          echo "SNAPSHOT_STORY_IDS=$STORY_IDS" >> $GITHUB_ENV
+
       - name: Create URL alias
         env:
           BUILD_ID: ${{ steps.build.outputs.id }}
@@ -106,6 +136,7 @@ jobs:
           access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           issue-number: ${{ steps.build.outputs.id }}
           preview-url: ${{ steps.deploy.outputs.site-url }}
+          snapshot-story-ids: ${{ env.SNAPSHOT_STORY_IDS }}
 
       - name: Create Summary
         env:
