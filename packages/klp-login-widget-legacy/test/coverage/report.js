@@ -24,7 +24,11 @@ const BUILD_DIR = join(ROOT, 'www/build');
 const OUT_DIR = join(ROOT, '.coverage-report');
 
 /** Every module the widget is being split into, so a move between them cannot hide a gap. */
-const TARGETS = ['src/legacy/klp-login-widget.js', 'src/legacy/vertx-eventbus.js'];
+const TARGETS = [
+  'src/legacy/klp-login-widget.js',
+  'src/legacy/texts.js',
+  'src/legacy/vertx-eventbus.js',
+];
 
 if (!existsSync(COVERAGE_DIR)) {
   console.error('No coverage data. Run: pnpm coverage');
@@ -118,26 +122,41 @@ for (const target of TARGETS) {
 }
 
 /**
- * Everything the suite provably cannot reach, keyed by file and by the first line of the range.
- * These are not gaps in the tests: each one is either dead in any browser, or dead given how the
- * widget is wired. Anything uncovered that is missing from here is reported as a real gap.
+ * Everything the suite provably cannot reach, keyed by file and by `owning function: source of
+ * the first line`. These are not gaps in the tests: each one is either dead in any browser, or
+ * dead given how the widget is wired. Anything uncovered that is missing from here is reported as
+ * a real gap. The key deliberately avoids line numbers, so moving code between modules does not
+ * silently re-arm the whole list.
  */
 const UNREACHABLE = {
   'src/legacy/klp-login-widget.js': {
-    444: 'window.onclick compares against a node inside the shadow root, and the event target is always retargeted to the host',
-    523: "String.split() never yields an undefined first element, so the 'hash' break is dead",
-    565: 'setControlCookie() is only ever called with the hash or keepalive scope',
-    683: 'init() tests isUserAuthenticated() before the asynchronous subscribe can set sessionData',
-    710: 'receiveMessage() matches the origin host including its port against bare domain names',
-    717: 'window.attachEvent is an Internet Explorer fallback',
-    1175: 'the widget only runs on post.ch hosts, where the other branch is taken',
-    1225: 'subscribe() is only re-entered with an address by the dead iframe sync path',
-    1278: 'same as 683: no session exists yet when init() runs',
-    1315: 'closeDropdowns() inspects a retargeted event target, so the guard never matches',
-    1353: 'the menu toggler has no sibling elements to move focus to',
-    1366: 'the menu toggler has no sibling elements to move focus to',
-    1398: 'the first menu item is the name block, which holds no anchor to fall back to',
+    'changeAccountDialog: modal.parentElement.removeChild(modal);':
+      'window.onclick compares against a node inside the shadow root, and the event target is always retargeted to the host',
+    'getControlCookieVal: break;':
+      "String.split() never yields an undefined first element, so the 'hash' break is dead",
+    'setControlCookie: document.cookie =':
+      'setControlCookie() is only ever called with the hash or keepalive scope',
+    'keepAliveSessionsOnInit: const now = new Date().getTime();':
+      'init() tests isUserAuthenticated() before the asynchronous subscribe can set sessionData',
+    "receiveMessage: log('PostMessage syncWidget received');":
+      'receiveMessage() matches the origin host including its port against bare domain names',
+    "receiveMessage: window.attachEvent('onmessage', receiveMessage);":
+      'window.attachEvent is an Internet Explorer fallback',
+    'trySubscription: return true;':
+      'the widget only runs on post.ch hosts, where the other branch is taken',
+    "subscribe: log('Address available, skipping subscription');":
+      'subscribe() is only re-entered with an address by the dead iframe sync path',
+    'init: keepAliveSessionsOnInit();': 'no session exists yet when init() runs',
+    'closeDropdowns: return;':
+      'closeDropdowns() inspects a retargeted event target, so the guard never matches',
+    "setArrowKeysListeners: parent.prev().find('a').focus();":
+      'the menu toggler has no sibling elements to move focus to',
+    "setArrowKeysListeners: parent.next().find('a').focus();":
+      'the menu toggler has no sibling elements to move focus to',
+    'setArrowKeysListeners: dropdownToggler.click().focus();':
+      'the first menu item is the name block, which holds no anchor to fall back to',
   },
+  'src/legacy/texts.js': {},
   'src/legacy/vertx-eventbus.js': {},
 };
 
@@ -156,6 +175,10 @@ const CANARIES = {
     uncovered: [],
     covered: ['that.registerHandler = function'],
   },
+  'src/legacy/texts.js': {
+    uncovered: [],
+    covered: ["'change-account': 'Benutzerkonto wechseln'"],
+  },
 };
 
 /** Attribute an uncovered range to the function it sits in, via the nearest declaration above. */
@@ -166,6 +189,9 @@ const owner = (src, line) => {
   }
   return '(top level)';
 };
+
+/** The key an UNREACHABLE entry has to carry to explain away the range starting at this line. */
+const reasonKey = (src, line) => `${owner(src, line)}: ${(src[line - 1] ?? '').trim()}`;
 
 const summary = {};
 let totalSeen = 0;
@@ -210,16 +236,17 @@ for (const target of TARGETS) {
     console.log('\n  uncovered ranges:');
     for (const [from, to] of ranges) {
       const span = from === to ? `${from}` : `${from}-${to}`;
+      const why = unreachable[reasonKey(src, from)];
       console.log(`    ${span.padEnd(12)} ${(src[from - 1] ?? '').trim().slice(0, 96)}`);
-      if (unreachable[from]) console.log(`    ${''.padEnd(12)} ^ ${unreachable[from]}`);
+      if (why) console.log(`    ${''.padEnd(12)} ^ ${why}`);
     }
   }
 
-  const unexplained = ranges.filter(([from]) => !unreachable[from]);
+  const unexplained = ranges.filter(([from]) => !unreachable[reasonKey(src, from)]);
   if (unexplained.length) {
     console.log('\n  uncovered but reachable, these want a test:');
     for (const [from, to] of unexplained) {
-      console.log(`    ${from === to ? from : `${from}-${to}`}`);
+      console.log(`    ${from === to ? from : `${from}-${to}`}  ${reasonKey(src, from)}`);
     }
     process.exitCode = 1;
   }
