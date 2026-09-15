@@ -30,6 +30,7 @@ const TARGETS = [
   'src/legacy/texts.js',
   'src/legacy/urls.js',
   'src/legacy/storage.js',
+  'src/legacy/session-client.js',
   'src/legacy/vertx-eventbus.js',
 ];
 
@@ -164,6 +165,7 @@ const UNREACHABLE = {
   'src/legacy/texts.js': {},
   'src/legacy/urls.js': {},
   'src/legacy/storage.js': {},
+  'src/legacy/session-client.js': {},
   'src/legacy/vertx-eventbus.js': {},
 };
 
@@ -197,6 +199,10 @@ const CANARIES = {
   'src/legacy/storage.js': {
     uncovered: [],
     covered: ['function isHTML5StorageSupported'],
+  },
+  'src/legacy/session-client.js': {
+    uncovered: [],
+    covered: ['export function buildEndPoints'],
   },
 };
 

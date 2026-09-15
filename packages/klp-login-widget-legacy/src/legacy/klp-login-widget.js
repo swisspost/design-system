@@ -18,6 +18,7 @@ import {
   isCurrentLocationPostCh,
 } from './control-cookie';
 import { createStorage } from './storage';
+import { buildEndPoints, createSessionClient } from './session-client';
 
 (function ($) {
   window.klpWidgetDev = function (
@@ -67,12 +68,7 @@ import { createStorage } from './storage';
       startingTime = new Date().getTime(),
       version = '16.01.00.01',
       unreadNotifications = 0,
-      platformEndPoints = {
-        audit: platform.endPoint + '/v1/audit',
-        keepalive: platform.endPoint + '/v1/session/keepalive',
-        subscribe: platform.endPoint + '/v1/session/subscribe',
-        eventbus: platform.endPoint + '/eventbus',
-      },
+      platformEndPoints = buildEndPoints(platform.endPoint),
       conf = {
         logoutTargetURL: '',
         keepAlive: true,
@@ -109,6 +105,11 @@ import { createStorage } from './storage';
 
     const controlCookie = createControlCookie({ log: message => log(message) });
     const storage = createStorage({ log: message => log(message) });
+    const sessionClient = createSessionClient({
+      endPoints: platformEndPoints,
+      log: message => log(message),
+      logPerformanceMetric: (name, time) => logPerformanceMetric(name, time),
+    });
 
     function now() {
       const n = new Date();
@@ -137,33 +138,13 @@ import { createStorage } from './storage';
     }
 
     function audit(message) {
-      const auditingEvent = JSON.stringify({
-        adr: address,
-        evt: message,
-      });
-      if (message.adt) {
-        log('Sending auditing event: ' + auditingEvent);
-        fetch(platformEndPoints.audit, {
-          method: 'POST',
-          credentials: 'include',
-          mode: 'cors',
-          body: auditingEvent,
-        }).catch(error => {
-          if (error) console.error(error);
-        });
-      } else {
-        log('Auditing disabled: ' + auditingEvent);
-      }
+      sessionClient.audit(address, message);
     }
 
     function logPerformanceMetric(methodName, executionTime) {
       if (conf.debug && window.console && window.console.log) {
         log('Method ' + methodName + ' executed on ' + executionTime + ' ms');
       }
-    }
-
-    function random() {
-      return Math.floor(Math.random() * 999999999 + 1);
     }
 
     function text(key) {
@@ -372,19 +353,9 @@ import { createStorage } from './storage';
 
     function keepAliveSessions() {
       if (isUserAuthenticated()) {
-        const html =
-          "<img src='" +
-          platform.keepAliveURL +
-          '/?' +
-          random() +
-          "'><img src='" +
-          platformEndPoints.keepalive +
-          '?' +
-          random() +
-          "'>";
         selectFromShadowDom()
           .find('#' + keepAliveID)
-          .html(html);
+          .html(sessionClient.keepAliveMarkup(platform.keepAliveURL));
         if (typeof keepAliveCallback == 'function') {
           keepAliveCallback();
         }
@@ -892,20 +863,8 @@ import { createStorage } from './storage';
     function subscribe() {
       if (!address) {
         if (trySubscription()) {
-          log('Subscribing to get an address');
-          if (globalThis.console && globalThis.console.info) {
-            console.info('[klp-login-widget] subscribe attempt', {
-              hasNctrl: document.cookie.includes(CONTROL_COOKIE_NAME + '='),
-              userAgent: navigator.userAgent,
-            });
-          }
-          const startTime = new Date().getTime();
-          fetch(platformEndPoints.subscribe, {
-            method: 'GET',
-            credentials: 'include',
-            mode: 'cors',
-          })
-            .then(message => message.json())
+          sessionClient
+            .subscribe({ hasControlCookie: document.cookie.includes(CONTROL_COOKIE_NAME + '=') })
             .then(message => handleMessage(message))
             .catch(error => {
               log('Failed to subscribe: ' + error.message);
@@ -929,7 +888,6 @@ import { createStorage } from './storage';
                 renderWidget();
               }
             });
-          logPerformanceMetric('subscribe()', new Date().getTime() - startTime);
         } else {
           log('Control cookie not found, skipping subscription');
           renderWidget();
