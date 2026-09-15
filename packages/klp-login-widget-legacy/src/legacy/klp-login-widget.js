@@ -20,6 +20,7 @@ import {
 import { createStorage } from './storage';
 import { buildEndPoints, createSessionClient } from './session-client';
 import { createMessageRouter } from './message-router';
+import { createDropdown } from './dropdown';
 
 (function ($) {
   window.klpWidgetDev = function (
@@ -106,6 +107,7 @@ import { createMessageRouter } from './message-router';
 
     const controlCookie = createControlCookie({ log: message => log(message) });
     const storage = createStorage({ log: message => log(message) });
+    const dropdown = createDropdown({ id, selectFromShadowDom: () => selectFromShadowDom() });
     const sessionClient = createSessionClient({
       endPoints: platformEndPoints,
       log: message => log(message),
@@ -933,137 +935,11 @@ import { createMessageRouter } from './message-router';
     }
 
     function toggleDropdown(dropdownToToggle) {
-      if (dropdownToToggle.is(':visible')) {
-        selectFromShadowDom()
-          .find('#' + id)
-          .removeClass('bubble');
-        closeDropdowns();
-        return;
-      }
-      closeDropdowns();
-      selectFromShadowDom()
-        .find('.' + dropdownToToggle.attr('data-dropdown-toggler'))
-        .attr('aria-expanded', true);
-      selectFromShadowDom()
-        .find('#' + id)
-        .addClass('bubble');
-      dropdownToToggle.show();
-      $(document).on('click', closeDropdowns);
-      if (dropdownToToggle.hasClass('klp-widget-authenticated-menu')) {
-        dropdownToToggle
-          .parent()
-          .removeClass('klp-widget-menu-close')
-          .addClass('klp-widget-menu-open');
-      }
-    }
-
-    function closeDropdowns(e) {
-      if (e != null) {
-        if (
-          selectFromShadowDom()
-            .find(e.target)
-            .parents('#' + id).length > 0
-        ) {
-          return;
-        }
-      }
-      selectFromShadowDom().find(document).off('click', closeDropdowns);
-      selectFromShadowDom()
-        .find('#' + id)
-        .removeClass('bubble');
-      selectFromShadowDom()
-        .find('#' + id + ' .klp-widget-authenticated-menu')
-        .hide()
-        .parent()
-        .removeClass('klp-widget-menu-open')
-        .addClass('klp-widget-menu-close');
-      selectFromShadowDom()
-        .find(
-          '.' +
-            selectFromShadowDom()
-              .find('#' + id + ' .klp-widget-authenticated-menu')
-              .attr('data-dropdown-toggler'),
-        )
-        .attr('aria-expanded', false);
+      dropdown.toggleDropdown(dropdownToToggle);
     }
 
     function setArrowKeysListeners() {
-      selectFromShadowDom()
-        .find('.klp-widget__user')
-        .on('keydown', function (event) {
-          if (event.which < 37 || event.which > 40) {
-            return;
-          }
-          event.preventDefault();
-          const parent = selectFromShadowDom().find(this).parent();
-          const dropdown = selectFromShadowDom().find(
-            '.' + selectFromShadowDom().find(this).attr('data-dropdown'),
-          );
-          switch (event.which) {
-            case 37:
-              if (parent.prev().length) {
-                parent.prev().find('a').focus();
-              }
-              if (dropdown.is(':visible')) {
-                selectFromShadowDom().find(this).click();
-              }
-              break;
-            case 38:
-              if (dropdown.is(':visible')) {
-                selectFromShadowDom().find(this).click();
-              }
-              break;
-            case 39:
-              if (parent.next().length) {
-                parent.next().find('a').focus();
-              }
-              if (dropdown.is(':visible')) {
-                selectFromShadowDom().find(this).click();
-              }
-              break;
-            case 40:
-              if (!dropdown.is(':visible')) {
-                selectFromShadowDom().find(this).click();
-              }
-              dropdown.find('li:first a').focus();
-              break;
-          }
-        });
-      selectFromShadowDom()
-        .find('.klp-widget-authenticated-menu')
-        .on('keydown', 'a', function (event) {
-          if (event.which < 37 || event.which > 40) {
-            return;
-          }
-          event.preventDefault();
-          const parent = selectFromShadowDom().find(this).parent();
-          const dropdownToggler = selectFromShadowDom().find(
-            '.' +
-              selectFromShadowDom().find(this).parents('div').first().attr('data-dropdown-toggler'),
-          );
-          switch (event.which) {
-            case 37:
-            case 38:
-              if (parent.prev('li').length > 0) {
-                parent.prev('li').find('a').focus();
-              } else {
-                dropdownToggler.click().focus();
-              }
-              break;
-            case 39:
-            case 40:
-              if (parent.next('li').length > 0) {
-                parent.next('li').find('a').focus();
-              }
-              break;
-          }
-        });
-      $('body').on('keydown', function (event) {
-        if (event.which !== 27) {
-          return;
-        }
-        closeDropdowns();
-      });
+      dropdown.setArrowKeysListeners();
     }
     init();
     return {

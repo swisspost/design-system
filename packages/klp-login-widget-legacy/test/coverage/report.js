@@ -32,6 +32,7 @@ const TARGETS = [
   'src/legacy/storage.js',
   'src/legacy/session-client.js',
   'src/legacy/message-router.js',
+  'src/legacy/dropdown.js',
   'src/legacy/vertx-eventbus.js',
 ];
 
@@ -154,6 +155,13 @@ const UNREACHABLE = {
     "subscribe: log('Address available, skipping subscription');":
       'subscribe() is only re-entered with an address by the dead iframe sync path',
     'init: keepAliveSessionsOnInit();': 'no session exists yet when init() runs',
+  },
+  'src/legacy/texts.js': {},
+  'src/legacy/urls.js': {},
+  'src/legacy/storage.js': {},
+  'src/legacy/session-client.js': {},
+  'src/legacy/message-router.js': {},
+  'src/legacy/dropdown.js': {
     'closeDropdowns: return;':
       'closeDropdowns() inspects a retargeted event target, so the guard never matches',
     "setArrowKeysListeners: parent.prev().find('a').focus();":
@@ -163,11 +171,6 @@ const UNREACHABLE = {
     'setArrowKeysListeners: dropdownToggler.click().focus();':
       'the first menu item is the name block, which holds no anchor to fall back to',
   },
-  'src/legacy/texts.js': {},
-  'src/legacy/urls.js': {},
-  'src/legacy/storage.js': {},
-  'src/legacy/session-client.js': {},
-  'src/legacy/message-router.js': {},
   'src/legacy/vertx-eventbus.js': {},
 };
 
@@ -209,6 +212,10 @@ const CANARIES = {
   'src/legacy/message-router.js': {
     uncovered: [],
     covered: ["case 'sub':"],
+  },
+  'src/legacy/dropdown.js': {
+    uncovered: [],
+    covered: ['export function createDropdown'],
   },
 };
 
