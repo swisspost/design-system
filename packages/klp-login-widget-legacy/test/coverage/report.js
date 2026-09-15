@@ -270,6 +270,7 @@ const owner = (src, line) => {
 const reasonKey = (src, line) => `${owner(src, line)}: ${(src[line - 1] ?? '').trim()}`;
 
 const summary = {};
+const htmlData = [];
 let totalSeen = 0;
 let totalCovered = 0;
 
@@ -290,6 +291,22 @@ for (const target of TARGETS) {
   totalSeen += all.size;
   totalCovered += hit.size;
   summary[target] = { total: all.size, covered: hit.size, ranges };
+
+  const noteByLine = {};
+  for (const [from] of ranges) {
+    const why = unreachable[reasonKey(src, from)];
+    if (why) noteByLine[from] = why;
+  }
+  htmlData.push({
+    target,
+    src,
+    seen: all,
+    hit,
+    noteByLine,
+    total: all.size,
+    covered: hit.size,
+    pct: (hit.size / all.size) * 100,
+  });
 
   const pct = ((hit.size / all.size) * 100).toFixed(1);
   console.log(`\n${target}`);
@@ -356,3 +373,94 @@ writeFileSync(
   join(OUT_DIR, 'uncovered.json'),
   JSON.stringify({ total: totalSeen, covered: totalCovered, files: summary }, null, 2),
 );
+
+const htmlPath = writeHtmlReport();
+console.log(`html report  ${htmlPath}\n`);
+
+/** A single self-contained page: a summary table plus each source, coloured line by line. */
+function writeHtmlReport() {
+  const esc = s => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
+  const id = target => target.replace(/[^a-z0-9]+/gi, '-');
+
+  const rows = htmlData
+    .map(
+      f =>
+        `<tr><td><a href="#${id(f.target)}">${esc(f.target)}</a></td>` +
+        `<td class="num">${f.covered}/${f.total}</td>` +
+        `<td class="num">${f.pct.toFixed(1)}%</td>` +
+        `<td><span class="bar"><span style="width:${f.pct.toFixed(1)}%"></span></span></td></tr>`,
+    )
+    .join('');
+
+  const sections = htmlData
+    .map(f => {
+      const lines = f.src
+        .map((text, i) => {
+          const ln = i + 1;
+          const cls = f.hit.has(ln) ? 'cov' : f.seen.has(ln) ? 'unc' : 'nex';
+          const row =
+            `<div class="line ${cls}"><span class="ln">${ln}</span>` +
+            `<span class="src">${esc(text) || ' '}</span></div>`;
+          const note = f.noteByLine[ln]
+            ? `<div class="line note"><span class="ln"></span>` +
+              `<span class="src">\u2191 ${esc(f.noteByLine[ln])}</span></div>`
+            : '';
+          return row + note;
+        })
+        .join('');
+      return (
+        `<details id="${id(f.target)}"><summary>` +
+        `<span class="fname">${esc(f.target)}</span>` +
+        `<span class="num">${f.covered}/${f.total} (${f.pct.toFixed(1)}%)</span>` +
+        `<span class="bar"><span style="width:${f.pct.toFixed(1)}%"></span></span>` +
+        `</summary><div class="code">${lines}</div></details>`
+      );
+    })
+    .join('');
+
+  const totalPctStr = ((totalCovered / totalSeen) * 100).toFixed(1);
+  const html =
+    `<!doctype html><html lang="en"><head><meta charset="utf-8">` +
+    `<meta name="viewport" content="width=device-width, initial-scale=1">` +
+    `<title>KLP legacy widget coverage</title><style>` +
+    `:root{--g:#e6f4ea;--gb:#34a853;--r:#fce8e6;--rb:#ea4335;--muted:#9aa0a6}` +
+    `*{box-sizing:border-box}body{font:14px/1.5 system-ui,sans-serif;margin:0;color:#202124}` +
+    `header{background:#202124;color:#fff;padding:1.25rem 1.5rem}` +
+    `header h1{margin:0;font-size:1rem;font-weight:600}` +
+    `.total{font-size:2.25rem;font-weight:700;line-height:1.1}` +
+    `.wrap{max-width:1100px;margin:0 auto;padding:1.5rem}` +
+    `.legend{display:flex;gap:1rem;margin:.5rem 0 1.5rem;color:var(--muted);font-size:12px}` +
+    `.legend span{display:inline-flex;align-items:center;gap:.35rem}` +
+    `.sw{width:12px;height:12px;border-radius:3px;display:inline-block}` +
+    `table{width:100%;border-collapse:collapse;margin-bottom:2rem}` +
+    `th,td{text-align:left;padding:.4rem .6rem;border-bottom:1px solid #eee}` +
+    `th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}` +
+    `.num{font-variant-numeric:tabular-nums;white-space:nowrap}` +
+    `.bar{position:relative;display:block;height:12px;min-width:120px;background:var(--r);` +
+    `border-radius:6px;overflow:hidden}.bar>span{position:absolute;inset:0 auto 0 0;background:var(--gb)}` +
+    `details{border:1px solid #eee;border-radius:8px;margin-bottom:.75rem;overflow:hidden}` +
+    `summary{cursor:pointer;padding:.55rem .8rem;display:flex;gap:1rem;align-items:center}` +
+    `summary .fname{font-weight:600;flex:1}details[open] summary{border-bottom:1px solid #eee}` +
+    `.code{overflow:auto;max-height:70vh}` +
+    `.line{display:flex;font:12px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre}` +
+    `.line .ln{flex:none;width:3.5rem;text-align:right;padding:0 .75rem;color:var(--muted);user-select:none}` +
+    `.line .src{flex:1;padding-right:1rem}` +
+    `.line.cov{background:var(--g)}.line.unc{background:var(--r)}` +
+    `.line.note .src{color:#8a5a00;font-style:italic}` +
+    `a{color:#1a73e8;text-decoration:none}a:hover{text-decoration:underline}` +
+    `</style></head><body>` +
+    `<header><h1>KLP legacy widget \u2014 line coverage</h1>` +
+    `<div class="total">${totalPctStr}%</div>` +
+    `<div>${totalCovered} / ${totalSeen} executable lines</div></header>` +
+    `<div class="wrap"><div class="legend">` +
+    `<span><i class="sw" style="background:var(--gb)"></i>covered</span>` +
+    `<span><i class="sw" style="background:var(--rb)"></i>uncovered</span>` +
+    `<span><i class="sw" style="background:#eee"></i>non-executable</span>` +
+    `<span>italic note = known unreachable</span></div>` +
+    `<table><thead><tr><th>File</th><th>Lines</th><th>Coverage</th><th></th></tr></thead>` +
+    `<tbody>${rows}</tbody></table>${sections}</div></body></html>`;
+
+  const out = join(OUT_DIR, 'index.html');
+  writeFileSync(out, html);
+  return out;
+}

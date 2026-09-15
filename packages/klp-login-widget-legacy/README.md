@@ -28,7 +28,8 @@ widget behaves differently anywhere else: it writes a `domain=post.ch` cookie, s
 `SameSite=None; Secure`, and skips subscribing entirely off post.ch. Only the data is faked.
 
 `pnpm coverage` needs the unminified build, hence `dev` rather than `build`: Stencil minifies
-after emitting source maps and does not remap them.
+after emitting source maps and does not remap them. It also writes a self-contained
+`.coverage-report/index.html` (summary table plus colour-coded source) you can open in a browser.
 
 Uncovered lines must be explained in `test/coverage/report.js`, which fails the run on anything
 uncovered that a test could have reached. That check is also what catches wrappers left without
