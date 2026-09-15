@@ -27,6 +27,7 @@ const OUT_DIR = join(ROOT, '.coverage-report');
 const TARGETS = [
   'src/legacy/klp-login-widget.js',
   'src/legacy/texts.js',
+  'src/legacy/urls.js',
   'src/legacy/vertx-eventbus.js',
 ];
 
@@ -157,6 +158,7 @@ const UNREACHABLE = {
       'the first menu item is the name block, which holds no anchor to fall back to',
   },
   'src/legacy/texts.js': {},
+  'src/legacy/urls.js': {},
   'src/legacy/vertx-eventbus.js': {},
 };
 
@@ -178,6 +180,10 @@ const CANARIES = {
   'src/legacy/texts.js': {
     uncovered: [],
     covered: ["'change-account': 'Benutzerkonto wechseln'"],
+  },
+  'src/legacy/urls.js': {
+    uncovered: [],
+    covered: ['export function buildLoginParameters'],
   },
 };
 

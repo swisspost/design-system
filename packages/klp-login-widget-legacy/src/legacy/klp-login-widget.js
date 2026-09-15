@@ -10,6 +10,7 @@ import 'url-polyfill';
 import jQuery from 'jquery/dist/jquery.slim';
 import { vertx } from './vertx-eventbus';
 import { keys, texts } from './texts';
+import * as urls from './urls';
 
 (function ($) {
   window.klpWidgetDev = function (
@@ -189,57 +190,16 @@ import { keys, texts } from './texts';
       return keys[key]['tab-index'] + conf.tabIndex;
     }
 
-    function join(base, query) {
-      if (query === undefined) {
-        return base;
-      }
-      if (base.indexOf('?') === -1) {
-        return base + '?' + query;
-      } else {
-        return base + '&' + query;
-      }
-    }
-
     function loginURL() {
-      return join(appLoginURL, buildLoginParameters());
-    }
-
-    function buildLoginParameters() {
-      let parameters = '';
-      $.each(
-        {
-          app: app,
-          service: service,
-          lang: currentLang,
-        },
-        function (key, value) {
-          if (appLoginURL.toLowerCase().indexOf(key.toLowerCase()) === -1) {
-            if (parameters.length > 0) {
-              parameters += '&';
-            }
-            parameters += key + '=' + value;
-          }
-        },
-      );
-      return parameters.length > 0 ? parameters : undefined;
+      return urls.loginURL(appLoginURL, { app: app, service: service, lang: currentLang });
     }
 
     function logoutURL() {
-      const serviceForLogout = 'klp';
-      const inIframe = false;
-      return join(
-        platform.logoutURL,
-        'app=' +
-          app +
-          '&lang=' +
-          currentLang +
-          '&service=' +
-          serviceForLogout +
-          '&inIframe=' +
-          inIframe +
-          '&logoutTargetURL=' +
-          conf.logoutTargetURL,
-      );
+      return urls.logoutURL(platform.logoutURL, {
+        app: app,
+        lang: currentLang,
+        logoutTargetURL: conf.logoutTargetURL,
+      });
     }
 
     function doLogout(logoutUrl) {
@@ -328,7 +288,11 @@ import { keys, texts } from './texts';
     }
 
     function changeCompanyURL() {
-      return logoutURL() + '&changecompany=true';
+      return urls.changeCompanyURL(platform.logoutURL, {
+        app: app,
+        lang: currentLang,
+        logoutTargetURL: conf.logoutTargetURL,
+      });
     }
 
     function setUserActive() {
