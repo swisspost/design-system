@@ -1,0 +1,39 @@
+name: 'Label stale review pull requests'
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '9 22 * * 0'
+
+permissions:
+  issues: write
+  pull-requests: read
+
+jobs:
+  label-stale-review-prs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Label pull requests awaiting review for 30 days
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        with:
+          script: |
+            const label = 'needs: 🏓 dev roundtable';
+            const cutoff = new Date();
+            cutoff.setDate(cutoff.getDate() - 30);
+            const date = cutoff.toISOString().slice(0, 10);
+            const query = `repo:${context.repo.owner}/${context.repo.repo} is:pr is:open draft:false review:required updated:<${date} -label:"${label}"`;
+
+            const pullRequests = await github.paginate(github.rest.search.issuesAndPullRequests, {
+              q: query,
+              per_page: 100,
+            });
+
+            for (const pullRequest of pullRequests) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pullRequest.number,
+                labels: [label],
+              });
+              core.info(`Added ${label} to #${pullRequest.number}`);
+            }
