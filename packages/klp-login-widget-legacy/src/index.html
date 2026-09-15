@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KLP login widget (legacy) harness</title>
+  <script type="module" src="/build/klp-login-widget-legacy.esm.js"></script>
+  <script nomodule src="/build/klp-login-widget-legacy.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    header {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      height: 60px;
+      border-bottom: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Light-DOM <header> so the legacy MutationObserver on h-fixed-position/h-visible has a target. -->
+  <header>
+    <swisspost-internet-header id="header"></swisspost-internet-header>
+  </header>
+
+  <script>
+    // The Playwright suite drives the widget by setting ?config=<base64 json>&environment=...
+    const params = new URLSearchParams(location.search);
+    const header = document.getElementById('header');
+
+    if (params.has('config')) {
+      header.setAttribute('config', atob(params.get('config')));
+    }
+    if (params.has('environment')) {
+      header.setAttribute('environment', params.get('environment'));
+    }
+    if (params.has('showJobsLoginWidget')) {
+      header.setAttribute('show-jobs-login-widget', '');
+    }
+    if (params.has('logoutUrl')) {
+      header.setAttribute('logout-url', params.get('logoutUrl'));
+    }
+    if (params.has('selfAdminOrigin')) {
+      header.setAttribute('self-admin-origin', params.get('selfAdminOrigin'));
+    }
+
+    window.__widgetReadyCount = 0;
+    document.addEventListener('wepploginwidget_widget_ready', () => {
+      window.__widgetReadyCount++;
+    });
+  </script>
+</body>
+
+</html>
