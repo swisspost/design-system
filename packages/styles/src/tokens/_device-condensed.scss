@@ -1,0 +1,9 @@
+@use './temp/device' as device;
+
+@use './core';
+@use './../mixins/tokens';
+
+:root,
+[data-color-scheme] {
+  @include tokens.from(device.$post-mobile);
+}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { IconButton, WithTooltip } from 'storybook/internal/components';
 
 const THEMES = ['Post', 'Cargo'] as const;
-const APPEARANCE = ['Default', 'Compact'] as const;
+const APPEARANCE = ['Default', 'Compact', 'Condensed'] as const;
 const SCHEMES = ['Light', 'Dark'] as const;
 
 /*
