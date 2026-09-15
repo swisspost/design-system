@@ -76,7 +76,7 @@
     if (params.has('login')) {
       const session =
         params.get('login') === 'b2b'
-          ? { name: 'Bea', surname: 'Muster', email: 'bea.muster@post.ch', userType: 'B2B', authLevel: 'PASSWORD', support: false, companyName: 'Muster AG' }
+          ? { name: 'Bea', surname: 'Muster', email: 'bea.muster@post.ch', userType: 'B2B', authLevel: 'PASSWORD', support: false, company: 'Post AG', canChangeCompany: true, changeUserAndProfile: null }
           : { name: 'Bea', surname: 'Muster', email: 'bea.muster@post.ch', userType: 'B2C', authLevel: 'PASSWORD', support: false };
       const realFetch = window.fetch.bind(window);
       window.fetch = (url, init) => {
