@@ -114,7 +114,7 @@ describe('Avatar', () => {
   describe('Accessibility', () => {
     it('Has no detectable a11y violations on load for all variants', () => {
       cy.getSnapshots('avatar');
-      cy.checkA11y('#root-inner', undefined, violations => {
+      cy.checkA11y('#root-inner', undefined, (violations) => {
         expect(violations).to.have.length(0);
       });
     });
