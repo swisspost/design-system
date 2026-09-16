@@ -44,14 +44,26 @@ test.describe('login URL assembly', () => {
     );
   });
 
-  test('leaves the login URL untouched when it mentions all of them', async ({ page }) => {
+  test('leaves the login URL untouched when its query mentions all of them', async ({ page }) => {
+    const appLoginUrl = 'https://int.post.ch/idp/?app=kvm&service=kvm&lang=de';
+    await openWidget(page, { appLoginUrl });
+
+    await expect(widget(page).locator('.klp-widget-anonymous a')).toHaveAttribute(
+      'href',
+      appLoginUrl,
+    );
+  });
+
+  // Was a v9 defect: names were matched against the whole url, so a path like /app/service/lang/
+  // suppressed every parameter and the visitor landed on an unparameterised login page.
+  test('appends parameters that only the path mentions', async ({ page }) => {
     await openWidget(page, {
       appLoginUrl: 'https://int.post.ch/app/service/lang/',
     });
 
     await expect(widget(page).locator('.klp-widget-anonymous a')).toHaveAttribute(
       'href',
-      'https://int.post.ch/app/service/lang/',
+      'https://int.post.ch/app/service/lang/?app=kvm&service=kvm&lang=de',
     );
   });
 

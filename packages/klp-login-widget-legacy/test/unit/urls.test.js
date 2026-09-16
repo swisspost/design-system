@@ -39,22 +39,32 @@ describe('buildLoginParameters', () => {
 
   it('returns undefined rather than an empty string when nothing is left', () => {
     assert.equal(
-      buildLoginParameters('https://example.ch/app/lang/service', { app: 'klp' }),
+      buildLoginParameters('https://example.ch/login?app=sso', { app: 'klp' }),
       undefined,
     );
   });
 
-  // Pinned v9 defect: the check is a substring match against the whole url, not against its
-  // query keys, so any host or path containing a parameter name silently drops it.
-  it('drops a parameter whose name occurs anywhere in the url', () => {
+  // Was a v9 defect: the check was a substring match against the whole url, so any host or path
+  // containing a parameter name silently dropped it.
+  it('keeps a parameter whose name only occurs in the host or path', () => {
     assert.equal(
       buildLoginParameters('https://applications.post.ch/login', { app: 'klp', lang: 'de' }),
+      'app=klp&lang=de',
+    );
+  });
+
+  it('skips a parameter the query already carries', () => {
+    assert.equal(
+      buildLoginParameters('https://example.ch/login?app=sso&next=%2F', {
+        app: 'klp',
+        lang: 'de',
+      }),
       'lang=de',
     );
   });
 
   it('matches parameter names case insensitively', () => {
-    assert.equal(buildLoginParameters('https://example.ch/APP', { app: 'klp' }), undefined);
+    assert.equal(buildLoginParameters('https://example.ch/login?APP=sso', { app: 'klp' }), undefined);
   });
 });
 

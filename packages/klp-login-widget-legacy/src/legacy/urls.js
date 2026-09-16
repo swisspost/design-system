@@ -18,15 +18,25 @@ export function join(base, query) {
   }
 }
 
-/**
- * Skips any parameter whose name already occurs in the login URL. Note that it searches the whole
- * URL, not its query keys, so a host or path containing "app" or "lang" suppresses that parameter.
- */
+/** Query parameter names already present in the url, lowercased for a case-insensitive compare. */
+function existingParamNames(appLoginURL) {
+  const query = appLoginURL.split('#')[0].split('?')[1];
+  if (!query) {
+    return [];
+  }
+  return query
+    .split('&')
+    .map(pair => pair.split('=')[0].toLowerCase())
+    .filter(Boolean);
+}
+
+/** Skips any parameter the login URL already carries, so an explicit value is never overridden. */
 export function buildLoginParameters(appLoginURL, params) {
+  const present = existingParamNames(appLoginURL);
   let parameters = '';
 
   for (const [key, value] of Object.entries(params)) {
-    if (appLoginURL.toLowerCase().indexOf(key.toLowerCase()) === -1) {
+    if (present.indexOf(key.toLowerCase()) === -1) {
       if (parameters.length > 0) {
         parameters += '&';
       }
