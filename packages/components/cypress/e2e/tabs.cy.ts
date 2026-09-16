@@ -52,6 +52,36 @@ describe('tabs', () => {
     });
   });
 
+  describe('scroll buttons', () => {
+    beforeEach(() => {
+      // The tabs overflow by less than the container width, so a single scroll reaches the end
+      cy.viewport(320, 576);
+      cy.getComponent('tabs', TABS_ID);
+      cy.get('@tabs').shadow().find('.tabs').as('container');
+      cy.get('@tabs').shadow().find('.scroll-btn-right').as('rightButton');
+      cy.get('post-tab-item').last().as('lastItem');
+    });
+
+    it('should scroll to the end, hide the right scroll button and fully show the last tab item', () => {
+      cy.get('@rightButton').should('be.visible').click();
+
+      cy.get('@rightButton').should('not.be.visible');
+      cy.get('@container').then($container => {
+        const container = $container[0];
+
+        expect(container.scrollLeft + container.clientWidth).to.be.at.least(
+          container.scrollWidth - 1,
+        );
+
+        cy.get('@lastItem').should($lastItem => {
+          expect($lastItem[0].getBoundingClientRect().right).to.be.at.most(
+            container.getBoundingClientRect().right + 1,
+          );
+        });
+      });
+    });
+  });
+
   describe('active tab', () => {
     beforeEach(() => {
       cy.getComponent('tabs', TABS_ID, 'active-tab');
