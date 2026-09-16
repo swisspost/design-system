@@ -2,7 +2,6 @@ import { APIRequestContext, Page } from '@playwright/test';
 import { expect, test } from './coverage';
 import {
   callApi,
-  configWith,
   control,
   cookieValue,
   expectAnonymous,
@@ -349,7 +348,7 @@ test.describe('configuration', () => {
     page.on('console', msg => {
       if (msg.type() === 'log') messages.push(msg.text());
     });
-    await openWidget(page, { config: configWith({ options: { debug: true } }) });
+    await openWidget(page, { options: { debug: true } });
 
     await callApi(page, 'keepAliveSessions');
 
@@ -371,7 +370,7 @@ test.describe('configuration', () => {
   });
 
   test('renders access keys when they are enabled', async ({ page }) => {
-    await openWidget(page, { config: configWith({ options: { accessKeys: true } }) });
+    await openWidget(page, { options: { accessKeys: true } });
 
     await expect(widget(page).locator('.klp-widget__user')).toHaveAttribute('accesskey', /.+/);
   });
@@ -383,7 +382,7 @@ test.describe('configuration', () => {
   });
 
   test('offsets the tab indexes by the configured base', async ({ page }) => {
-    await openWidget(page, { config: configWith({ options: { tabIndex: 10 } }) });
+    await openWidget(page, { options: { tabIndex: 10 } });
 
     await expect(widget(page).locator('.klp-widget__user')).toHaveAttribute('tabindex', '10');
     await expect(widget(page).locator('#klp-widget-authenticated-menu-logout')).toHaveAttribute(
@@ -406,7 +405,7 @@ test.describe('translations', () => {
       await signIn(context);
       await setScenario(api, { subscribeMode: 'ok', session: 'b2c' });
 
-      await openWidget(page, { config: configWith({ currentLang: lang }) });
+      await openWidget(page, { currentLang: lang });
 
       await expect(
         widget(page).locator('#klp-widget-authenticated-menu-changecompany'),

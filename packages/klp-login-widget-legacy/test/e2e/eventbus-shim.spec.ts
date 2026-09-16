@@ -1,11 +1,18 @@
 import { APIRequestContext, Page } from '@playwright/test';
 import { expect, test } from './coverage';
-import { control, journal, openWidget, pushEventBus, resetScenario } from './fixtures';
+import {
+  control,
+  journal,
+  openWidget,
+  pushEventBus,
+  resetScenario,
+  widgetConfig,
+} from './fixtures';
 
 let api: APIRequestContext;
 
 /** Matches platform.endPoint in the shared config, so the faked DNS resolves it to the harness. */
-const EVENTBUS_URL = 'https://int-n.post.ch/eventbus';
+const EVENTBUS_URL = `${widgetConfig.platform.endPoint}/eventbus`;
 /** The address the fake API hands out, and the only one it accepts a registration for. */
 const ADDRESS = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
 

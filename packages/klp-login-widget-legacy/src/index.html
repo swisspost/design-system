@@ -92,35 +92,48 @@
       };
     }
 
-    // The v9 internet-header test-configuration.json `loginWidgetOptions`, repointed from prod
-    // post.ch/n.post.ch to int so the demo never talks to production. Used only when `start` is
-    // opened without an explicit ?config; the e2e suite always passes its own.
-    const defaultConfig = {
-      applicationId: 'kvm',
-      serviceId: 'kvm',
-      appLoginUrl: 'https://int.post.ch/idp/?login&lang=de&service=kvm',
-      currentLang: 'de',
-      options: {
-        isDebugEnabled: false,
-        logoutTargetURL: 'https://int.post.ch/de/',
-      },
-      platform: {
-        endPoint: 'https://int-n.post.ch',
-        notificationsEndPoint: 'https://int.post.ch/selfadmin/messages/unreadmessages',
-        logoutURL: 'https://int.post.ch/logout/',
-        keepAliveURL: 'https://int.post.ch/keepalive',
-        autoLoginURL: 'https://int.post.ch/idp/?app=loginwidget',
-      },
+    // The v9 internet-header test-configuration.json `loginWidgetOptions`, derived entirely from
+    // the target stage so a single `environment` repoints every module. Defaults to int01 so the
+    // demo never talks to production; the e2e suite always passes its own ?config.
+    const klpBaseUrls = {
+      dev01: 'https://n.accountint1.post.ch',
+      dev02: 'https://n.accountint1.post.ch',
+      devs1: 'https://n.accountint1.post.ch',
+      test: 'https://n.accountint1.post.ch',
+      int01: 'https://n.accountint1.post.ch',
+      int02: 'https://n.accountint2.post.ch',
+      prod: 'https://n.account.post.ch',
+    };
+    const configForEnvironment = environment => {
+      const host = environment === 'prod' ? 'post.ch' : 'int.post.ch';
+      return {
+        applicationId: 'kvm',
+        serviceId: 'kvm',
+        appLoginUrl: `https://${host}/idp/?login&lang=de&service=kvm`,
+        currentLang: 'de',
+        options: {
+          isDebugEnabled: false,
+          logoutTargetURL: `https://${host}/de/`,
+        },
+        platform: {
+          endPoint: klpBaseUrls[environment] ?? klpBaseUrls.int01,
+          notificationsEndPoint: `https://${host}/selfadmin/messages/unreadmessages`,
+          logoutURL: `https://${host}/logout/`,
+          keepAliveURL: `https://${host}/keepalive`,
+          autoLoginURL: `https://${host}/idp/?app=loginwidget`,
+        },
+      };
     };
 
+    const environment = params.get('environment') || 'int01';
+
+    // A ?config stays as a manual override; otherwise the whole config follows `environment`.
     if (params.has('config')) {
       header.setAttribute('config', atob(params.get('config')));
     } else {
-      header.setAttribute('config', JSON.stringify(defaultConfig));
+      header.setAttribute('config', JSON.stringify(configForEnvironment(environment)));
     }
-    if (params.has('environment')) {
-      header.setAttribute('environment', params.get('environment'));
-    }
+    header.setAttribute('environment', environment);
     if (params.has('showJobsLoginWidget')) {
       header.setAttribute('show-jobs-login-widget', '');
     }

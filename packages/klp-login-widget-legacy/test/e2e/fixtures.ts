@@ -1,30 +1,55 @@
 import { APIRequestContext, BrowserContext, Page, expect, request } from '@playwright/test';
+import { Environment } from '../../src/models/general.model';
 
 const PORT = Number(process.env.KLP_PORT ?? 8443);
 
 /** Node-side entry point: the browser's fake DNS does not apply to Playwright's request context. */
 const CONTROL_BASE = `https://127.0.0.1:${PORT}`;
 
-/** The real v9 portal config, repointed at the fake API. No prod hostname appears here. */
-export const widgetConfig = {
-  applicationId: 'kvm',
-  serviceId: 'kvm',
-  appLoginUrl: 'https://int.post.ch/idp/?login&lang=de&service=kvm',
-  currentLang: 'de',
-  options: {
-    isDebugEnabled: false,
-    logoutTargetURL: 'https://int.post.ch/de/',
-  },
-  platform: {
-    endPoint: 'https://int-n.post.ch',
-    notificationsEndPoint: 'https://int.post.ch/selfadmin/messages/unreadmessages',
-    logoutURL: 'https://int.post.ch/logout/',
-    keepAliveURL: 'https://int.post.ch/keepalive',
-    autoLoginURL: 'https://int.post.ch/idp/?app=loginwidget',
-  },
+/** KLP session platform root per stage; the unlisted stages share int1 until their hosts are known. */
+const KLP_BASE_URLS: Record<Environment, string> = {
+  dev01: 'https://n.accountint1.post.ch',
+  dev02: 'https://n.accountint1.post.ch',
+  devs1: 'https://n.accountint1.post.ch',
+  test: 'https://n.accountint1.post.ch',
+  int01: 'https://n.accountint1.post.ch',
+  int02: 'https://n.accountint2.post.ch',
+  prod: 'https://n.account.post.ch',
 };
 
-export type WidgetConfig = typeof widgetConfig;
+/** The portal itself only tells int from prod for its own host. */
+const portalHost = (environment: Environment) =>
+  environment === 'prod' ? 'post.ch' : 'int.post.ch';
+
+/**
+ * The real v9 portal config, derived entirely from the target stage so a single `environment`
+ * switch repoints every module. Every host resolves to the fake API under the suite's faked DNS.
+ */
+export const configForEnvironment = (environment: Environment) => {
+  const host = portalHost(environment);
+  return {
+    applicationId: 'kvm',
+    serviceId: 'kvm',
+    appLoginUrl: `https://${host}/idp/?login&lang=de&service=kvm`,
+    currentLang: 'de',
+    options: {
+      isDebugEnabled: false,
+      logoutTargetURL: `https://${host}/de/`,
+    },
+    platform: {
+      endPoint: KLP_BASE_URLS[environment],
+      notificationsEndPoint: `https://${host}/selfadmin/messages/unreadmessages`,
+      logoutURL: `https://${host}/logout/`,
+      keepAliveURL: `https://${host}/keepalive`,
+      autoLoginURL: `https://${host}/idp/?app=loginwidget`,
+    },
+  };
+};
+
+/** Everything defaults to int01; pass a different `environment` to openWidget to repoint it. */
+export const widgetConfig = configForEnvironment('int01');
+
+export type WidgetConfig = ReturnType<typeof configForEnvironment>;
 
 export const control = async (): Promise<APIRequestContext> =>
   request.newContext({ baseURL: CONTROL_BASE, ignoreHTTPSErrors: true });
@@ -76,8 +101,12 @@ export const signIn = async (context: BrowserContext) => {
 export const openWidget = async (
   page: Page,
   opts: {
-    config?: WidgetConfig | null;
-    environment?: string;
+    environment?: Environment;
+    /** Non-URL toggles merged onto the stage's `options` (debug, accessKeys, tabIndex). */
+    options?: Record<string, unknown>;
+    currentLang?: string;
+    /** Narrow escape hatch for the login-URL assembly tests only. */
+    appLoginUrl?: string;
     showJobsLoginWidget?: boolean;
     logoutUrl?: string;
     selfAdminOrigin?: string;
@@ -85,12 +114,29 @@ export const openWidget = async (
     waitForReady?: boolean;
   } = {},
 ) => {
-  const { config = widgetConfig, environment = 'prod', waitForReady = true, ...rest } = opts;
-  const params = new URLSearchParams();
+  const {
+    environment = 'int01',
+    options,
+    currentLang,
+    appLoginUrl,
+    showJobsLoginWidget,
+    logoutUrl,
+    selfAdminOrigin,
+    waitForReady = true,
+  } = opts;
 
-  if (config) params.set('config', Buffer.from(JSON.stringify(config)).toString('base64'));
-  if (environment) params.set('environment', environment);
-  Object.entries(rest).forEach(([key, value]) => {
+  const base = configForEnvironment(environment);
+  const config = {
+    ...base,
+    ...(currentLang === undefined ? {} : { currentLang }),
+    ...(appLoginUrl === undefined ? {} : { appLoginUrl }),
+    ...(options === undefined ? {} : { options: { ...base.options, ...options } }),
+  };
+
+  const params = new URLSearchParams();
+  params.set('config', Buffer.from(JSON.stringify(config)).toString('base64'));
+  params.set('environment', environment);
+  Object.entries({ showJobsLoginWidget, logoutUrl, selfAdminOrigin }).forEach(([key, value]) => {
     if (value !== undefined && value !== false) params.set(key, String(value));
   });
 
@@ -122,18 +168,6 @@ export const cookieValue = async (context: BrowserContext, name: string) => {
   const cookies = await context.cookies('https://int.post.ch/');
   return cookies.find(c => c.name === name)?.value;
 };
-
-/** Deep-merges into the base config; `options` is what overrides the widget's internal `conf`. */
-export const configWith = (overrides: {
-  options?: Record<string, unknown>;
-  platform?: Record<string, unknown>;
-  [key: string]: unknown;
-}): WidgetConfig => ({
-  ...widgetConfig,
-  ...overrides,
-  options: { ...widgetConfig.options, ...overrides.options },
-  platform: { ...widgetConfig.platform, ...overrides.platform },
-});
 
 export const disconnectEventBus = async (api: APIRequestContext) => {
   const res = await api.post('/__control/disconnect');

@@ -1,7 +1,6 @@
 import { APIRequestContext } from '@playwright/test';
 import { expect, test } from './coverage';
 import {
-  configWith,
   control,
   disconnectEventBus,
   expectAnonymous,
@@ -36,7 +35,7 @@ test.describe('login URL assembly', () => {
 
   test('appends every parameter that the login URL does not already mention', async ({ page }) => {
     await openWidget(page, {
-      config: configWith({ appLoginUrl: 'https://int.post.ch/idp/' }),
+      appLoginUrl: 'https://int.post.ch/idp/',
     });
 
     await expect(widget(page).locator('.klp-widget-anonymous a')).toHaveAttribute(
@@ -47,7 +46,7 @@ test.describe('login URL assembly', () => {
 
   test('leaves the login URL untouched when it mentions all of them', async ({ page }) => {
     await openWidget(page, {
-      config: configWith({ appLoginUrl: 'https://int.post.ch/app/service/lang/' }),
+      appLoginUrl: 'https://int.post.ch/app/service/lang/',
     });
 
     await expect(widget(page).locator('.klp-widget-anonymous a')).toHaveAttribute(
