@@ -271,7 +271,8 @@ const reasonKey = (src, line) => `${owner(src, line)}: ${(src[line - 1] ?? '').t
 
 const summary = {};
 const htmlData = [];
-const uncoveredLines = [];
+const uncoveredBlocks = [];
+let uncoveredLineCount = 0;
 let totalSeen = 0;
 let totalCovered = 0;
 
@@ -297,14 +298,15 @@ for (const target of TARGETS) {
   for (const [from, to] of ranges) {
     const why = unreachable[reasonKey(src, from)];
     if (why) noteByLine[from] = why;
-    for (let n = from; n <= to; n++) {
-      uncoveredLines.push({
-        file: target,
-        line: n,
-        code: src[n - 1] ?? '',
-        explanation: why ?? '',
-      });
-    }
+    uncoveredLineCount += to - from + 1;
+    // One row per contiguous range, so a multi-line gap carries its explanation once.
+    uncoveredBlocks.push({
+      file: target,
+      from,
+      to,
+      code: src.slice(from - 1, to).join('\n'),
+      explanation: why ?? '',
+    });
   }
   htmlData.push({
     target,
@@ -387,7 +389,8 @@ const htmlPath = writeHtmlReport();
 console.log(`html report  ${htmlPath}\n`);
 
 /** A single self-contained page: a summary table, each source coloured line by line, and a
- * final table of every uncovered line. Written unminified so it reads well in an editor too. */
+ * final table of the combined uncovered code blocks. Written unminified so it reads well in an
+ * editor too. */
 function writeHtmlReport() {
   const esc = s => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
   const id = target => target.replace(/[^a-z0-9]+/gi, '-');
@@ -430,14 +433,16 @@ function writeHtmlReport() {
     );
   });
 
-  const uncoveredRows = uncoveredLines.map(
-    u =>
+  const uncoveredRows = uncoveredBlocks.map(u => {
+    const span = u.from === u.to ? `${u.from}` : `${u.from}\u2013${u.to}`;
+    return (
       `        <tr>\n` +
-      `          <td class="num"><a href="#${id(u.file)}">${esc(u.file)}</a>:${u.line}</td>\n` +
-      `          <td><code>${esc(u.code.trim()) || ' '}</code></td>\n` +
+      `          <td class="num"><a href="#${id(u.file)}">${esc(u.file)}</a>:${span}</td>\n` +
+      `          <td><code>${esc(u.code) || ' '}</code></td>\n` +
       `          <td>${u.explanation ? esc(u.explanation) : '<span class="muted">reachable \u2014 wants a test</span>'}</td>\n` +
-      `        </tr>`,
-  );
+      `        </tr>`
+    );
+  });
 
   const css = [
     ':root{--g:#e6f4ea;--gb:#34a853;--r:#fce8e6;--rb:#ea4335;--muted:#9aa0a6}',
@@ -506,7 +511,7 @@ function writeHtmlReport() {
     '      </tbody>',
     '    </table>',
     ...sections,
-    `    <h2>Uncovered lines (${uncoveredLines.length})</h2>`,
+    `    <h2>Uncovered code blocks (${uncoveredBlocks.length}, ${uncoveredLineCount} lines)</h2>`,
     '    <table class="uncovered">',
     '      <thead><tr><th>File</th><th>Code</th><th>Explanation</th></tr></thead>',
     '      <tbody>',
