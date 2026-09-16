@@ -42,11 +42,12 @@ describe('every message', () => {
     assert.equal(names()[0], 'audit');
   });
 
-  // The address is assigned after the audit, so a 'sub' is reported under the old address.
-  it('is audited before a new address is taken from it', () => {
+  // Was a v9 defect: the address was assigned after the audit, so the one audit event that could
+  // have bound the subscription went out without an adr.
+  it('takes a new address from a sub before auditing it', () => {
     const { names } = route({ typ: 'sub', adr: 'new-address' });
 
-    assert.ok(names().indexOf('audit') < names().indexOf('setAddress'));
+    assert.ok(names().indexOf('setAddress') < names().indexOf('audit'));
   });
 
   it('clears the retry flag, so an unrelated event cannot trigger a resubscribe', () => {
@@ -87,13 +88,13 @@ describe('sub', () => {
     });
 
     assert.deepEqual(names(), [
+      'setAddress',
       'audit',
       'setRetrySubscribeOnFail',
-      'setAddress',
       'login',
       'openCommunication',
     ]);
-    assert.deepEqual(calls[2], ['setAddress', 'address-1']);
+    assert.deepEqual(calls[0], ['setAddress', 'address-1']);
     // false: a restored session is not a fresh login, so consumers are not told about it.
     assert.deepEqual(calls[3], ['login', { name: 'Ada' }, 900, false]);
   });

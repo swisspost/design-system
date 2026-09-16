@@ -136,10 +136,9 @@ test.describe('audit', () => {
     await expect.poll(async () => (await journal(api)).audit.length).toBeGreaterThan(0);
     const [first] = (await journal(api)).audit;
 
-    // BUG (pinned): handleMessage() calls audit() before the 'sub' branch assigns `address`, so
-    // `adr` is undefined and JSON.stringify drops the key. The first audit event — the only one
-    // the server could use to bind the subscription — is therefore uncorrelatable.
-    expect(first.body).not.toHaveProperty('adr');
+    // Was a v9 defect: audit() ran before the 'sub' branch assigned the address, so adr was
+    // undefined and the one event the server could bind the subscription with went out anonymous.
+    expect(first.body.adr).toBe('a1b2c3d4-e5f6-7890-abcd-ef1234567890');
     expect(first.body.evt).toMatchObject({ typ: 'sub', adt: 1715180400000 });
   });
 

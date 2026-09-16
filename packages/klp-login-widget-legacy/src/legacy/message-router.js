@@ -19,7 +19,12 @@ export function createMessageRouter({ log = () => {}, actions }) {
   return function handleMessage(message) {
     log('Message received: ' + JSON.stringify(message));
 
-    // Audited before anything else, so the audit of a 'sub' still reports the old address.
+    // A 'sub' carries the address the platform just assigned us. Adopting it first is what makes
+    // the audit of that very message correlatable.
+    if (message.typ === 'sub') {
+      actions.setAddress(message.adr);
+    }
+
     actions.audit(message);
     actions.setRetrySubscribeOnFail(false);
 
@@ -35,7 +40,6 @@ export function createMessageRouter({ log = () => {}, actions }) {
         }
         break;
       case 'sub':
-        actions.setAddress(message.adr);
         actions.login(message.data, message.ttl, false);
         actions.openCommunication();
         break;
