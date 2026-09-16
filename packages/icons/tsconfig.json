@@ -1,12 +1,11 @@
 {
-  "extends": "@tsconfig/node24/tsconfig.json",
+  "extends": "@swisspost/design-system-tsconfig/node.tsconfig.json",
   "ts-node": {
     "transpileOnly": true,
     "files": true
   },
   "compilerOptions": {
     "rootDir": ".",
-    "resolveJsonModule": true,
     "types": ["node", "jest"],
     "isolatedModules": true
   },
