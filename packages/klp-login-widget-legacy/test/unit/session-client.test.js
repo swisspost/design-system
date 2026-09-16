@@ -97,21 +97,42 @@ describe('subscribe', () => {
     );
   });
 
-  // v9 quirk kept on purpose: the metric is taken while the request is still in flight, so it
-  // measures how long issuing it took and never how long the platform needed to answer.
-  it('records its performance metric before the platform has answered', () => {
+  // Was a v9 defect: the metric was taken while the request was still in flight, so it measured
+  // how long issuing it took and never how long the platform needed to answer.
+  it('records its performance metric only once the platform has answered', async () => {
     const metrics = [];
     let settle;
     stubFetch(new Promise(resolve => (settle = resolve)));
 
-    createSessionClient({
+    const pending = createSessionClient({
       endPoints,
       logPerformanceMetric: (name, time) => metrics.push([name, time]),
     }).subscribe({ hasControlCookie: true });
 
+    assert.equal(metrics.length, 0);
+
+    settle({ json: () => Promise.resolve({}) });
+    await pending;
+
     assert.equal(metrics.length, 1);
     assert.equal(metrics[0][0], 'subscribe()');
-    settle({ json: () => Promise.resolve({}) });
+  });
+
+  it('records its performance metric when the platform fails to answer', async () => {
+    const metrics = [];
+    stubFetch(Promise.reject(new TypeError('Failed to fetch')));
+
+    await assert.rejects(
+      () =>
+        createSessionClient({
+          endPoints,
+          logPerformanceMetric: (name, time) => metrics.push([name, time]),
+        }).subscribe({ hasControlCookie: true }),
+      TypeError,
+    );
+
+    assert.equal(metrics.length, 1);
+    assert.equal(metrics[0][0], 'subscribe()');
   });
 });
 

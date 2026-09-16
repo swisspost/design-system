@@ -62,16 +62,15 @@ export function createSessionClient({
     }
 
     const startTime = new Date().getTime();
-    const pending = fetch(endPoints.subscribe, {
+
+    return fetch(endPoints.subscribe, {
       method: 'GET',
       credentials: 'include',
       mode: 'cors',
-    }).then(message => message.json());
-
-    // v9 measured how long issuing the request took, not how long it took to answer.
-    logPerformanceMetric('subscribe()', new Date().getTime() - startTime);
-
-    return pending;
+    })
+      // Timed on settlement, so a failed subscribe is measured too rather than silently missing.
+      .finally(() => logPerformanceMetric('subscribe()', new Date().getTime() - startTime))
+      .then(message => message.json());
   }
 
   /** Two pixels, because the session has to be refreshed on the portal and on the platform. */
