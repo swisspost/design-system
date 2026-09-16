@@ -5,7 +5,6 @@
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
 
 $outline-offset: tokens.get('focus-outline-offset3', helpers.$post-focus);
-$outline-width: tokens.get('focus-outline-width', helpers.$post-focus);
 
 post-menu-item {
   button {

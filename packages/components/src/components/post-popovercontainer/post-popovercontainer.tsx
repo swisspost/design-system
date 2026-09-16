@@ -203,12 +203,12 @@ export class PostPopovercontainer {
   @Method()
   async toggle(anchor: HTMLElement, force?: boolean): Promise<boolean> {
     const isOpen = this.isOpen();
-    if (!this.host || !anchor || this.toggleTimeoutId) return isOpen;
+    if (!this.host || this.toggleTimeoutId) return isOpen;
 
     const shouldOpen = force === true || (force === undefined && !isOpen);
-    if (isOpen === shouldOpen) return isOpen;
+    if (isOpen === shouldOpen || (shouldOpen && !anchor)) return isOpen;
 
-    this.anchorRef = anchor;
+    this.anchorRef = shouldOpen ? anchor : null;
     this.host.togglePopover(force);
     this.toggleTimeoutId = null;
 
@@ -261,9 +261,11 @@ export class PostPopovercontainer {
    * Handles the popover's state transition from showing to hidden, emitting related events.
    */
   private async handleClose() {
-    this.cleanup();
-
     this.postBeforeToggle.emit({ willOpen: false });
+
+    this.cleanup();
+    this.host.style.removeProperty('--post-popovercontainer-safe-space');
+
     this.postToggle.emit({ isOpen: false });
     this.postHide.emit();
   }
