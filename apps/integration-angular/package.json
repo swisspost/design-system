@@ -7,7 +7,8 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/swisspost/design-system.git"
+    "url": "https://github.com/swisspost/design-system.git",
+    "directory": "apps/integration-angular"
   },
   "homepage": "https://design-system.post.ch",
   "bugs": {

@@ -7,7 +7,8 @@
   "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/swisspost/design-system"
+    "url": "https://github.com/swisspost/design-system",
+    "directory": "packages/components"
   },
   "homepage": "https://design-system.post.ch",
   "bugs": {
