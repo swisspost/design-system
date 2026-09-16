@@ -26,8 +26,7 @@
   "dependencies": {
     "@stencil/core": "4.43.3",
     "@swisspost/design-system-styles": "9.15.0",
-    "jquery": "3.7.1",
-    "url-polyfill": "1.1.12"
+    "jquery": "3.7.1"
   },
   "devDependencies": {
     "@jridgewell/trace-mapping": "0.3.31",

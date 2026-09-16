@@ -143,26 +143,18 @@ for (const target of TARGETS) {
  */
 const UNREACHABLE = {
   'src/legacy/control-cookie.js': {
-    'getControlCookieVal: break;':
-      "String.split() never yields an undefined first element, so the 'hash' break is dead",
     'setControlCookie: document.cookie =':
       'setControlCookie() is only ever called with the hash or keepalive scope',
   },
   'src/legacy/klp-login-widget.js': {
     "receiveMessage: log('PostMessage syncWidget received');":
       'receiveMessage() matches the origin host including its port against bare domain names',
-    "receiveMessage: window.attachEvent('onmessage', receiveMessage);":
-      'window.attachEvent is an Internet Explorer fallback',
     'trySubscription: return true;':
       'the widget only runs on post.ch hosts, where the other branch is taken',
     "subscribe: log('Address available, skipping subscription');":
       'subscribe() is only re-entered with an address by the dead iframe sync path',
-    'init: keepAlive.keepAliveSessionsOnInit();': 'no session exists yet when init() runs',
   },
-  'src/legacy/keep-alive.js': {
-    'keepAliveSessionsOnInit: const now = new Date().getTime();':
-      'init() tests isUserAuthenticated() before the asynchronous subscribe can set sessionData',
-  },
+  'src/legacy/keep-alive.js': {},
   'src/legacy/event-bus-connection.js': {},
   'src/legacy/notifications.js': {},
   'src/legacy/view.js': {},

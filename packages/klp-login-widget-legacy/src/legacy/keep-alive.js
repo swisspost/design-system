@@ -20,7 +20,6 @@ export function createKeepAlive({
   log = () => {},
   isUserAuthenticated,
   ping,
-  getControlCookieVal,
   setControlCookie,
 }) {
   // Starts out true so the first tick always refreshes: arriving on the page is activity enough.
@@ -76,30 +75,8 @@ export function createKeepAlive({
     }
   }
 
-  function keepAliveSessionsOnInit() {
-    const now = new Date().getTime();
-    const lastKeepAlive = getControlCookieVal('keepalive');
-    if (
-      isNaN(lastKeepAlive) ||
-      now - parseInt(lastKeepAlive) > getConf().keepAliveInterval * 60 * 1000
-    ) {
-      log('Running keepAliveSessionsOnInit');
-      keepAliveSessions();
-      return;
-    }
-    log(
-      'keepAliveSessionsOnInit not running due to [now=' +
-        now +
-        ',last=' +
-        lastKeepAlive +
-        ',interval=' +
-        getConf().keepAliveInterval * 60 * 1000,
-    );
-  }
-
   return {
     keepAliveSessions,
-    keepAliveSessionsOnInit,
     installKeepAliveTimerHandler,
     uninstallKeepAliveTimerHandler,
   };

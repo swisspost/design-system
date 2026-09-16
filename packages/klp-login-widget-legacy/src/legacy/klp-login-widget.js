@@ -6,7 +6,6 @@
  * ------------------------------------------------------------------------------------------------
  */
 
-import 'url-polyfill';
 import { keys, texts } from './texts';
 import * as urls from './urls';
 import {
@@ -136,7 +135,6 @@ import { createView, selectFromShadowDom } from './view';
       log: message => log(message),
       isUserAuthenticated: () => isUserAuthenticated(),
       ping: () => pingKeepAliveEndpoints(),
-      getControlCookieVal: scope => getControlCookieVal(scope),
       setControlCookie: (scope, val) => setControlCookie(scope, val),
     });
     const dropdown = createDropdown({ id, selectFromShadowDom: () => selectFromShadowDom() });
@@ -344,11 +342,7 @@ import { createView, selectFromShadowDom } from './view';
           subscribe();
         }
       }
-      if (window.addEventListener) {
-        window.addEventListener('message', receiveMessage);
-      } else {
-        window.attachEvent('onmessage', receiveMessage);
-      }
+      window.addEventListener('message', receiveMessage);
     }
 
     function measureWidgetShowsUp() {
@@ -487,9 +481,6 @@ import { createView, selectFromShadowDom } from './view';
 
     function init() {
       subscribe();
-      if (conf.keepAliveOnInit && isUserAuthenticated()) {
-        keepAlive.keepAliveSessionsOnInit();
-      }
       initIFrameCommunication();
     }
 

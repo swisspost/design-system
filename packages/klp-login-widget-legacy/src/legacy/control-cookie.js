@@ -41,8 +41,7 @@ export function createControlCookie({ log = () => {} } = {}) {
       const values = decodeURIComponent(cookieData[1]).split(':');
       switch (scope) {
         case 'hash':
-          if (values[0] != null) return values[0];
-          break;
+          return values[0];
         case 'keepalive':
           if (values[1] != null) return values[1];
           break;
