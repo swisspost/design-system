@@ -40,6 +40,7 @@ const TARGETS = [
   'src/legacy/notifications.js',
   'src/legacy/view.js',
   'src/legacy/vertx-eventbus.js',
+  'src/legacy/sockjs-websocket.js',
 ];
 
 if (!existsSync(COVERAGE_DIR)) {

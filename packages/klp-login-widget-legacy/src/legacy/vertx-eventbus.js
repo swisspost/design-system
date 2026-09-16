@@ -8,7 +8,7 @@
  * ------------------------------------------------------------------------------------------------
  */
 
-import './sockjs-client';
+import { SockJS } from './sockjs-websocket';
 
 /** Reusing an already seeded window.vertx is what lets the page hand the suite this shim. */
 export const vertx = window.vertx || {};

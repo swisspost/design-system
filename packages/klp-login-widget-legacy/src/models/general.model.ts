@@ -8,7 +8,6 @@ declare global {
     klpWidgetDev: (...args: unknown[]) => IKlpWidget;
     jQuery: unknown;
     $: unknown;
-    SockJS: unknown;
     vertx: unknown;
     dataLayer: unknown[];
   }
