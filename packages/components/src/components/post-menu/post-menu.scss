@@ -32,4 +32,5 @@
 post-popovercontainer::part(post-popovercontainer-content) {
   background-color: #fff;
   overflow-y: scroll;
+  overscroll-behavior: contain;
 }

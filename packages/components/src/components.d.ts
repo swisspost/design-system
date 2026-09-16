@@ -579,9 +579,13 @@ export namespace Components {
          */
         "arrow"?: boolean;
         /**
-          * Whether to automatically hide the popover when the target moves outside the scrollport.  If the `post-header` can cover the target, the popover will also be hidden as soon as the target scrolls behind it.
+          * Whether to automatically hide the popover when the anchor moves outside the scrollport.  If the `post-header` can cover the anchor, the popover will also be hidden as soon as the anchor scrolls behind it.
          */
         "autoHide"?: boolean;
+        /**
+          * Whether to automatically size the popover to fit the available space in the scrollport.
+         */
+        "autoSize"?: boolean;
         /**
           * Gap between the edge of the viewport and the popover.
           * @default 8
@@ -604,10 +608,6 @@ export namespace Components {
           * Whether to add a space through which the mouse can move without the popover being hidden.
          */
         "safeSpace"?: boolean;
-        /**
-          * Whether to lock the scroll of the scrollport when the popover is shown.
-         */
-        "scrollLock"?: boolean;
         /**
           * Shows the popover.
           * @param anchor the element that the popover is visually anchored to.
@@ -1846,9 +1846,13 @@ declare namespace LocalJSX {
          */
         "arrow"?: boolean;
         /**
-          * Whether to automatically hide the popover when the target moves outside the scrollport.  If the `post-header` can cover the target, the popover will also be hidden as soon as the target scrolls behind it.
+          * Whether to automatically hide the popover when the anchor moves outside the scrollport.  If the `post-header` can cover the anchor, the popover will also be hidden as soon as the anchor scrolls behind it.
          */
         "autoHide"?: boolean;
+        /**
+          * Whether to automatically size the popover to fit the available space in the scrollport.
+         */
+        "autoSize"?: boolean;
         /**
           * Gap between the edge of the viewport and the popover.
           * @default 8
@@ -1887,10 +1891,6 @@ declare namespace LocalJSX {
           * Whether to add a space through which the mouse can move without the popover being hidden.
          */
         "safeSpace"?: boolean;
-        /**
-          * Whether to lock the scroll of the scrollport when the popover is shown.
-         */
-        "scrollLock"?: boolean;
     }
     interface PostProgressbar {
         /**
@@ -2212,7 +2212,7 @@ declare namespace LocalJSX {
         "arrow": boolean;
         "safeSpace": boolean;
         "autoHide": boolean;
-        "scrollLock": boolean;
+        "autoSize": boolean;
     }
     interface PostProgressbarAttributes {
         "min": number;

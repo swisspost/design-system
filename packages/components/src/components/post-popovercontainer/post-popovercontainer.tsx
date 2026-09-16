@@ -26,7 +26,6 @@ import {
   size,
   offset,
 } from '@floating-ui/dom';
-import { getOverflowAncestors } from '@floating-ui/utils/dom';
 import { computePositionWithSafeArea } from '@/utils/floating-ui';
 import { getOppositeSide, getPathAlongSide, getPolygon, Side } from './util';
 
@@ -123,17 +122,17 @@ export class PostPopovercontainer {
   readonly safeSpace?: boolean;
 
   /**
-   * Whether to automatically hide the popover when the target moves outside the scrollport.
+   * Whether to automatically hide the popover when the anchor moves outside the scrollport.
    *
-   * If the `post-header` can cover the target, the popover will also be hidden as soon as the
-   * target scrolls behind it.
+   * If the `post-header` can cover the anchor, the popover will also be hidden as soon as the
+   * anchor scrolls behind it.
    */
   @Prop() readonly autoHide?: boolean;
 
   /**
-   * Whether to lock the scroll of the scrollport when the popover is shown.
+   * Whether to automatically size the popover to fit the available space in the scrollport.
    */
-  @Prop() readonly scrollLock?: boolean;
+  @Prop() readonly autoSize?: boolean;
 
   @State() side: Side;
 
@@ -154,7 +153,6 @@ export class PostPopovercontainer {
 
   private cleanup() {
     this.stopAutoUpdate?.();
-    this.unlockScroll();
 
     if (this.runningAnimation) {
       this.runningAnimation.cancel();
@@ -215,6 +213,9 @@ export class PostPopovercontainer {
     return this.isOpen();
   }
 
+  /**
+   * Handles the popover's state transition from hidden to showing and vice versa.
+   */
   private async handleToggle(event: ToggleEvent) {
     this.toggleTimeoutId = globalThis.setTimeout(() => (this.toggleTimeoutId = null), 10);
 
@@ -226,8 +227,6 @@ export class PostPopovercontainer {
    * Handles the popover's state transition from hidden to showing, emitting related events.
    */
   private async handleOpen() {
-    if (this.scrollLock) this.lockScroll();
-
     this.postBeforeToggle.emit({ willOpen: true });
     this.postBeforeShow.emit({ first: !this.hasBeenOpened });
 
@@ -245,6 +244,9 @@ export class PostPopovercontainer {
     this.hasBeenOpened = true;
   }
 
+  /**
+   * Run the open animation for the popover.
+   */
   private async runOpenAnimation() {
     const content = this.host.shadowRoot.querySelector('[part="post-popovercontainer-content"]');
     if (!content) return;
@@ -264,15 +266,25 @@ export class PostPopovercontainer {
     this.postHide.emit();
   }
 
+  /**
+   * Listen for changes that affect the popover's position and update it accordingly.
+   */
   private startAutoUpdate() {
     if (!this.host || !this.anchorRef) return;
-    this.stopAutoUpdate = autoUpdate(this.anchorRef, this.host, this.updatePosition.bind(this));
+
+    this.stopAutoUpdate = autoUpdate(this.anchorRef, this.host, () =>
+      this.updatePosition(this.autoSize),
+    );
   }
 
+  /**
+   * Updates the position of the popover based on the anchor's position and the specified placement.
+   * @param withSize whether to resize the popover based on the available space.
+   */
   private async updatePosition(withSize: boolean = false) {
     const { x, y, middlewareData, placement } = await this.computePosition(withSize);
 
-    // Hide the popover if the target is outside the viewport
+    // Hide the popover if the anchor is outside the viewport
     if (middlewareData.hide?.referenceHidden) {
       this.host.hidePopover();
       return;
@@ -331,6 +343,8 @@ export class PostPopovercontainer {
     ];
 
     if (withSize) {
+      console.log(withSize);
+
       middleware.push(
         size({
           apply({ availableWidth, availableHeight, elements }) {
@@ -351,7 +365,7 @@ export class PostPopovercontainer {
       middleware.push(arrow({ element: this.arrowRef, padding: gap }));
     }
 
-    // Automatically hide the popover if the target moves outside the scrollport.
+    // Automatically hide the popover if the anchor moves outside the scrollport.
     if (this.autoHide) {
       // Per Floating UI docs: hide should generally be placed at the end.
       middleware.push(hide({ strategy: 'referenceHidden' }));
@@ -362,26 +376,6 @@ export class PostPopovercontainer {
       strategy: 'fixed',
       middleware,
     });
-  }
-
-  private lockScroll() {
-    for (const ancestor of getOverflowAncestors(this.host)) {
-      let target: HTMLElement;
-
-      if (ancestor instanceof HTMLElement) target = ancestor;
-      else if (ancestor instanceof Window) target = ancestor.document.documentElement;
-      else continue;
-
-      target.dataset['postPopovercontainerScrollLock'] = '';
-    }
-  }
-
-  private unlockScroll() {
-    document
-      .querySelectorAll<HTMLElement>('[data-post-popovercontainer-scroll-lock]')
-      .forEach(element => {
-        delete element.dataset['postPopovercontainerScrollLock'];
-      });
   }
 
   render() {

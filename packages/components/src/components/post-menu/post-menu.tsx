@@ -255,7 +255,8 @@ export class PostMenu {
     return (
       <Host data-version={version}>
         <post-popovercontainer
-          scrollLock={true}
+          autoSize={true}
+          autoHide={true}
           onPostShow={this.handlePostShown.bind(this)}
           onPostBeforeToggle={this.handlePostBeforeToggle.bind(this)}
           placement={this.placement}
