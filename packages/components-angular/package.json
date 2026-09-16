@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components-angular",
-  "version": "10.4.0",
+  "version": "10.5.0",
   "description": "Swiss Post Design System - Angular Wrapper Components",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -33,7 +33,7 @@
     "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:10.4.0",
+    "@swisspost/design-system-components": "workspace:10.5.0",
     "tslib": "catalog:angular"
   },
   "peerDependencies": {
@@ -52,7 +52,7 @@
     "@angular/forms": "catalog:angular",
     "@swisspost/design-system-eslint-config": "workspace:10.4.0",
     "@swisspost/design-system-prettier-config": "workspace:10.4.0",
-    "@swisspost/design-system-tsconfig": "workspace:10.4.0",
+    "@swisspost/design-system-tsconfig": "workspace:10.5.0",
     "angular-eslint": "catalog:angular",
     "copyfiles": "2.4.1",
     "eslint": "catalog:",
