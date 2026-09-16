@@ -130,7 +130,9 @@ export class PostPopovercontainer {
   @Prop() readonly autoHide?: boolean;
 
   /**
-   * Whether to automatically size the popover to fit the available space in the scrollport.
+   * Whether to automatically size the popover to fit the available space in the viewport.
+   *
+   * If the `post-header` can cover the anchor, it is excluded from the available space.
    */
   @Prop() readonly autoSize?: boolean;
 
@@ -343,8 +345,6 @@ export class PostPopovercontainer {
     ];
 
     if (withSize) {
-      console.log(withSize);
-
       middleware.push(
         size({
           apply({ availableWidth, availableHeight, elements }) {

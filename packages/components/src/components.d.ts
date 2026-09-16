@@ -583,7 +583,7 @@ export namespace Components {
          */
         "autoHide"?: boolean;
         /**
-          * Whether to automatically size the popover to fit the available space in the scrollport.
+          * Whether to automatically size the popover to fit the available space in the viewport.  If the `post-header` can cover the anchor, it is excluded from the available space.
          */
         "autoSize"?: boolean;
         /**
@@ -1850,7 +1850,7 @@ declare namespace LocalJSX {
          */
         "autoHide"?: boolean;
         /**
-          * Whether to automatically size the popover to fit the available space in the scrollport.
+          * Whether to automatically size the popover to fit the available space in the viewport.  If the `post-header` can cover the anchor, it is excluded from the available space.
          */
         "autoSize"?: boolean;
         /**
