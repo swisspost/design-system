@@ -21,7 +21,7 @@ jobs:
             const cutoff = new Date();
             cutoff.setDate(cutoff.getDate() - 30);
             const date = cutoff.toISOString().slice(0, 10);
-            const query = `repo:${context.repo.owner}/${context.repo.repo} is:pr is:open draft:false review:required updated:<${date} -label:"${label}"`;
+            const query = `repo:${context.repo.owner}/${context.repo.repo} is:pr is:open updated:<${date} -label:"${label}"`;
 
             const pullRequests = await github.paginate(github.rest.search.issuesAndPullRequests, {
               q: query,
