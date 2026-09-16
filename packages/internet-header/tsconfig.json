@@ -1,25 +1,17 @@
 {
+  "extends": "@swisspost/design-system-tsconfig/stencil.tsconfig.json",
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "allowUnreachableCode": false,
     "declaration": true,
-    "experimentalDecorators": true,
-    "lib": ["dom", "DOM.Iterable", "es2022"],
-    "moduleResolution": "bundler",
-    "module": "esnext",
-    "target": "es2022",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "resolveJsonModule": true,
-    "jsx": "react",
-    "jsxFactory": "h",
-    "strictNullChecks": true,
-    "skipLibCheck": true,
     "types": ["node", "jest"],
     "paths": {
       "@/*": ["./src/*"],
       "@root/*": ["./*"]
-    }
+    },
+
+    // Pre-existing debt. Drop once sources are clean.
+    "noImplicitAny": false,
+    "strictPropertyInitialization": false,
+    "useUnknownInCatchVariables": false
   },
   "include": ["src"],
   "exclude": ["node_modules"]
