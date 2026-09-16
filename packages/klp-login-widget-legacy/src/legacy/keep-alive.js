@@ -12,9 +12,8 @@
  * ------------------------------------------------------------------------------------------------
  */
 
-import jQuery from 'jquery/dist/jquery.slim';
-
-const $ = jQuery;
+/** The config carries the activity events as one space-separated string, the way jQuery took them. */
+const activityEvents = conf => conf.keepAliveListeningEvents.split(/\s+/).filter(Boolean);
 
 export function createKeepAlive({
   getConf,
@@ -33,15 +32,11 @@ export function createKeepAlive({
   }
 
   function installUserActivityHandler() {
-    if (getConf().keepAliveListeningEvents.length > 0) {
-      $(document).on(getConf().keepAliveListeningEvents, setUserActive);
-    }
+    activityEvents(getConf()).forEach(event => document.addEventListener(event, setUserActive));
   }
 
   function uninstallUserActivityHandler() {
-    if (getConf().keepAliveListeningEvents.length > 0) {
-      $(document).off(getConf().keepAliveListeningEvents, setUserActive);
-    }
+    activityEvents(getConf()).forEach(event => document.removeEventListener(event, setUserActive));
   }
 
   function keepAliveTimerFunction() {

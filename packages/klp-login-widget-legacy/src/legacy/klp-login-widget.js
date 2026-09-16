@@ -7,7 +7,6 @@
  */
 
 import 'url-polyfill';
-import jQuery from 'jquery/dist/jquery.slim';
 import { keys, texts } from './texts';
 import * as urls from './urls';
 import {
@@ -27,7 +26,7 @@ import { createEventBusConnection } from './event-bus-connection';
 import { createNotifications, UNREAD_NOTIFICATIONS } from './notifications';
 import { createView, selectFromShadowDom } from './view';
 
-(function ($) {
+(function () {
   window.klpWidgetDev = function (
     id,
     app,
@@ -44,7 +43,10 @@ import { createView, selectFromShadowDom } from './view';
     const callback = function (mutationsList, observer) {
       for (let mutation of mutationsList) {
         if (mutation.attributeName === 'class') {
-          if ($('header').hasClass('h-fixed-position') && !$('header').hasClass('h-visible')) {
+          if (
+            headerNode.classList.contains('h-fixed-position') &&
+            !headerNode.classList.contains('h-visible')
+          ) {
             selectFromShadowDom().find('.klp-widget-authenticated-menu').css('display', 'none');
             selectFromShadowDom()
               .find('#' + id)
@@ -396,7 +398,7 @@ import { createView, selectFromShadowDom } from './view';
 
     function updateWidget(options) {
       if (options !== undefined) {
-        conf = $.extend(conf, options);
+        conf = Object.assign(conf, options);
         renderWidget();
       }
       log('Widget has been updated');
@@ -558,4 +560,4 @@ import { createView, selectFromShadowDom } from './view';
       },
     };
   };
-})(jQuery);
+})();

@@ -12,10 +12,7 @@
  * ------------------------------------------------------------------------------------------------
  */
 
-import jQuery from 'jquery/dist/jquery.slim';
 import { vertx } from './vertx-eventbus';
-
-const $ = jQuery;
 
 export function createEventBusConnection({
   url,
@@ -54,7 +51,7 @@ export function createEventBusConnection({
       eventBus.onopen = function () {
         log('EventBus opened');
         registerEventsHandler();
-        $(window).on('beforeunload', closeCommunication);
+        window.addEventListener('beforeunload', closeCommunication);
       };
 
       eventBus.onclose = function () {
@@ -65,7 +62,7 @@ export function createEventBusConnection({
             '. Retrying subscribe',
         );
         eventBus = null;
-        $(window).off('beforeunload', closeCommunication);
+        window.removeEventListener('beforeunload', closeCommunication);
 
         if (retrySubscribeOnFail) {
           retrySubscribeOnFail = false;
