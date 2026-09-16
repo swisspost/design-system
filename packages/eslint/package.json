@@ -48,8 +48,8 @@
     "parse5-htmlparser2-tree-adapter": "7.1.0"
   },
   "devDependencies": {
-    "@swisspost/design-system-eslint-config": "workspace:10.4.0",
-    "@swisspost/design-system-prettier-config": "workspace:10.4.0",
+    "@swisspost/design-system-eslint-config": "workspace:10.5.0",
+    "@swisspost/design-system-prettier-config": "workspace:10.5.0",
     "@swisspost/design-system-tsconfig": "workspace:10.5.0",
     "@types/eslint-scope": "3.7.7",
     "@types/jest": "catalog:jest",

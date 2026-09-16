@@ -36,8 +36,8 @@
     "gulp-sourcemaps": "3.0.0"
   },
   "devDependencies": {
-    "@swisspost/design-system-prettier-config": "workspace:10.4.0",
-    "@swisspost/design-system-stylelint-config": "workspace:10.4.0",
+    "@swisspost/design-system-prettier-config": "workspace:10.5.0",
+    "@swisspost/design-system-stylelint-config": "workspace:10.5.0",
     "@types/node": "catalog:node",
     "autoprefixer": "10.5.0",
     "copyfiles": "2.4.1",
