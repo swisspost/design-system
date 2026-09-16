@@ -1,7 +1,7 @@
 import { Pattern, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
-import { cryptify, GRAVATAR_BASE_URL } from './avatar-utils';
+import { getGravatarUrl } from './avatar-utils';
 
 const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -9,7 +9,6 @@ enum AvatarType {
   Slotted = 'slotted',
   Image = 'image',
   Initials = 'initials',
-  Null = null,
 }
 
 /**
@@ -21,9 +20,10 @@ enum AvatarType {
   shadow: true,
 })
 export class PostAvatar {
-  private slottedImageObserver: MutationObserver; // To watch the slotted image src.
+  private slottedImage: HTMLImageElement | null = null;
+  private slottedImageObserver?: MutationObserver; // To watch the slotted image src.
 
-  @Element() host: HTMLPostAvatarElement;
+  @Element() host!: HTMLPostAvatarElement;
 
   /**
    * Defines the users firstname.
@@ -54,14 +54,9 @@ export class PostAvatar {
   @Type('string')
   description?: string;
 
-  @State() slottedImage: HTMLImageElement;
-  @State() avatarType: AvatarType = null;
+  @State() avatarType: AvatarType = AvatarType.Initials;
   @State() imageUrl = '';
   @State() imageAlt = '';
-  @State() initials = '';
-
-  // To handle email updates and reset the storage item
-  @State() storageKey: string = '';
 
   @Watch('email')
   updateEmail() {
@@ -74,6 +69,7 @@ export class PostAvatar {
     const imageUrl = this.slottedImage?.getAttribute('src');
 
     if (!imageUrl) {
+      this.imageUrl = '';
       if (this.email?.match(emailPattern)) {
         imageLoaded = await this.getImageByProp(this.email, this.fetchImageByEmail.bind(this));
       }
@@ -81,60 +77,83 @@ export class PostAvatar {
         this.avatarType = AvatarType.Initials;
       }
     } else {
+      this.imageUrl = '';
       const slottedImageLoaded = await this.getImageByProp(
         imageUrl,
         this.fetchSlottedImage.bind(this),
+        AvatarType.Slotted,
       );
 
       if (!slottedImageLoaded) {
-        this.slottedImage.style.display = 'none';
-        this.avatarType = AvatarType.Initials;
+        this.hideSlottedImage();
       } else {
-        this.slottedImage.style.display = 'block';
+        this.showSlottedImage();
       }
     }
   }
 
-  private async getImageByProp(prop: string, fetchImage: (prop?: string) => Promise<Response>) {
+  private async getImageByProp(
+    prop: string,
+    loadImage: (prop: string) => Promise<string>,
+    avatarType = AvatarType.Image,
+  ) {
     if (!prop) return false;
-    let imageResponse: Response;
 
     try {
-      imageResponse = await fetchImage(prop);
+      const imageUrl = await loadImage(prop);
+
+      if (avatarType === AvatarType.Image) {
+        this.imageUrl = imageUrl;
+        this.imageAlt = `${this.firstname} ${this.lastname} avatar`;
+      }
+
+      this.avatarType = avatarType;
+      return true;
     } catch (error) {
       console.info('Loading avatar image failed.', error);
       return false;
     }
-
-    if (!imageResponse?.ok) {
-      return false;
-    } else {
-      this.imageUrl = imageResponse.url;
-      this.imageAlt = `${this.firstname} ${this.lastname} avatar`;
-      this.avatarType = AvatarType.Image;
-      return true;
-    }
   }
 
-  private async fetchImageByEmail() {
-    const email = await cryptify(this.email);
-    const imageUrl = GRAVATAR_BASE_URL.replace('{email}', email);
-    return await fetch(imageUrl);
+  private async fetchImageByEmail(email: string) {
+    return await this.loadImage(await getGravatarUrl(email));
   }
 
   private async fetchSlottedImage(imageUrl: string) {
-    return await fetch(imageUrl, { method: 'HEAD' });
+    return await this.loadImage(imageUrl);
   }
 
+  private loadImage(imageUrl: string) {
+    return new Promise<string>((resolve, reject) => {
+      const image = new Image();
+      image.addEventListener('load', () => resolve(imageUrl), { once: true });
+      image.addEventListener('error', () => reject(new Error(`Could not load ${imageUrl}`)), {
+        once: true,
+      });
+      image.src = imageUrl;
+    });
+  }
+
+  private showSlottedImage = () => {
+    if (!this.slottedImage) return;
+    this.slottedImage.style.display = 'block';
+    this.avatarType = AvatarType.Slotted;
+  };
+
+  private hideSlottedImage = () => {
+    if (this.slottedImage) this.slottedImage.style.display = 'none';
+    this.avatarType = AvatarType.Initials;
+  };
+
   private slotChanged() {
-    const slot = this.host.shadowRoot.querySelector('slot');
+    const slot = this.host.shadowRoot?.querySelector('slot');
     const assignedNodes = slot?.assignedNodes({ flatten: true }) || [];
 
     assignedNodes.forEach(node => {
       if (node.nodeType === Node.ELEMENT_NODE) {
         const el = node as Element;
         if (el.tagName === 'IMG') {
-          this.observeImageSrcChanges(el as HTMLImageElement);
+          this.observeSlottedImage(el as HTMLImageElement);
         }
       }
     });
@@ -143,18 +162,23 @@ export class PostAvatar {
   }
 
   // Observe the Slotted image src attribute and update the image
-  private observeImageSrcChanges(img: HTMLImageElement) {
-    if (this.slottedImageObserver) {
-      this.slottedImageObserver.disconnect();
-    }
-    this.slottedImageObserver = new MutationObserver(mutations => {
-      mutations.forEach(mutation => {
-        if (mutation.type === 'attributes' && mutation.attributeName === 'src') {
-          this.getAvatarImage();
-        }
-      });
-    });
+  private observeSlottedImage(img: HTMLImageElement) {
+    this.disconnectSlottedImage();
+
+    img.addEventListener('load', this.showSlottedImage);
+    img.addEventListener('error', this.hideSlottedImage);
+
+    this.slottedImageObserver = new MutationObserver(() => this.getAvatarImage());
     this.slottedImageObserver.observe(img, { attributes: true, attributeFilter: ['src'] });
+  }
+
+  private disconnectSlottedImage() {
+    this.slottedImageObserver?.disconnect();
+
+    if (this.slottedImage) {
+      this.slottedImage.removeEventListener('load', this.showSlottedImage);
+      this.slottedImage.removeEventListener('error', this.hideSlottedImage);
+    }
   }
 
   connectedCallback() {
@@ -163,8 +187,14 @@ export class PostAvatar {
     this.getAvatarImage();
   }
 
+  disconnectedCallback() {
+    this.disconnectSlottedImage();
+  }
+
   render() {
-    const names = [this.firstname, this.lastname].filter(Boolean).map(n => n.trim());
+    const names = [this.firstname, this.lastname]
+      .filter((name): name is string => typeof name === 'string')
+      .map(name => name.trim());
     const initials = names
       .map(n => n.charAt(0))
       .join('')
@@ -173,11 +203,11 @@ export class PostAvatar {
 
     return (
       <Host data-version={version}>
-        <span class={this.avatarType === 'slotted' ? '' : 'd-none'}>
+        <span>
           <slot onSlotchange={this.slotChanged.bind(this)}></slot>
         </span>
-        {this.avatarType === 'image' && <img src={this.imageUrl} alt={this.imageAlt} />}
-        {this.avatarType === 'initials' && (
+        {this.avatarType === AvatarType.Image && <img src={this.imageUrl} alt={this.imageAlt} />}
+        {this.avatarType === AvatarType.Initials && (
           <span class="initials">
             {initials}
             <span>{this.description ?? fullname}</span>
