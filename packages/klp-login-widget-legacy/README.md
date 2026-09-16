@@ -16,6 +16,7 @@ to v10. **Never published, never released.** Delete this package once the new wi
 | `pnpm e2e:ui` | The same suite in Playwright's UI, for stepping through a failure. |
 | `pnpm e2e:update` | The same suite, rewriting the stored snapshots. Check the diff before committing. |
 | `pnpm coverage` | `dev` build, e2e suite with V8 coverage, then the report. Fails on any uncovered line that has no explanation. |
+| `pnpm coverage:open` | Opens the generated `.coverage-report/index.html` in your browser. |
 
 ## Testing
 
