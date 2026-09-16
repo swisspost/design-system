@@ -88,6 +88,7 @@ tokens.$default-map: utilities.$post-spacing;
         top: tokens.get('utility-gap-8');
         right: tokens.get('utility-gap-8');
         color: color-mix(in srgb, var(--post-current-fg) 60%, transparent);
+        pointer-events: none;
       }
     }
   }
