@@ -6,7 +6,9 @@
 
 Reference: <https://github.com/swisspost/design-system/issues/8078>
 
-A web component host (`<post-tooltip>`) element can be styled with the `:host` selector and slotted elements can be styled via the `::slotted` pseudo-selector. The order in the cascade of these selectors however, is very low because the styles are applied from within the shadow DOM. Light DOM styles are applied later in the cascade (see [Cascade Layers on MDN](https://mdn.github.io/shared-assets/images/diagrams/css/at-rules/layer-cascade.svg) and [codepen reproduction](https://codepen.io/tuelsch/pen/pvRWvyj)). Light DOM styles can only be overwritten with `!important`, which is undesirable to use everywhere. This has led to conflicts between project styles and Design System styles. Future unintentional overrides are very likely.
+A web component host (`<post-tooltip>`) element can be styled with the `:host` selector and slotted elements can be styled via the `::slotted` pseudo-selector. The order in the cascade of these selectors is very low. Light DOM styles are applied later in the cascade which makes them win over `::slotted` or `:host` even with low specificity. This has led to conflicts between project styles and Design System styles. Future unintentional overrides are very likely. Light DOM styles can be overwritten with `!important` but this should only be used for justified exceptions.
+
+- [Cascade order on MDN](https://mdn.github.io/shared-assets/images/diagrams/css/at-rules/layer-cascade.svg)
 
 ## Decision
 
