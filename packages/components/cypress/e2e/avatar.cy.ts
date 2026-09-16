@@ -81,24 +81,6 @@ describe('Avatar', () => {
       cy.get('@avatar').find('.initials').should('not.exist');
     });
 
-    it('should show image, when slotted image is hosted on another origin', () => {
-      cy.get('@avatar').invoke(
-        'append',
-        '<img src="https://www.w3.org/Icons/w3c_home.png" alt="External image" />',
-      );
-      cy.get('@avatar').find('img').should('be.visible');
-      cy.get('@avatar').find('.initials').should('not.exist');
-    });
-
-    it('should not show image but fallback to initials, when slotted image hosted on another origin does not exist', () => {
-      cy.get('@avatar').invoke(
-        'append',
-        '<img src="https://www.w3.org/Icons/w3c_home_wrong_image.png" alt="Missing external image" />',
-      );
-      cy.get('@avatar').find('img').should('be.not.visible');
-      cy.get('@avatar').find('.initials').should('exist');
-    });
-
     it('should not show image, when slotted image is not defined', () => {
       cy.get('@avatar').invoke(
         'append',

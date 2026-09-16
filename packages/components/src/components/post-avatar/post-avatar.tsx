@@ -78,17 +78,7 @@ export class PostAvatar {
       }
     } else {
       this.imageUrl = '';
-      const slottedImageLoaded = await this.getImageByProp(
-        imageUrl,
-        this.fetchSlottedImage.bind(this),
-        AvatarType.Slotted,
-      );
-
-      if (!slottedImageLoaded) {
-        this.hideSlottedImage();
-      } else {
-        this.showSlottedImage();
-      }
+      this.updateSlottedImageVisibility();
     }
   }
 
@@ -119,8 +109,13 @@ export class PostAvatar {
     return await this.loadImage(await getGravatarUrl(email));
   }
 
-  private async fetchSlottedImage(imageUrl: string) {
-    return await this.loadImage(imageUrl);
+  // The slotted image stays hidden until it has successfully loaded.
+  private updateSlottedImageVisibility() {
+    if (this.slottedImage?.complete && this.slottedImage.naturalWidth > 0) {
+      this.showSlottedImage();
+    } else {
+      this.hideSlottedImage();
+    }
   }
 
   private loadImage(imageUrl: string) {
@@ -145,31 +140,33 @@ export class PostAvatar {
     this.avatarType = AvatarType.Initials;
   };
 
-  private slotChanged() {
-    const slot = this.host.shadowRoot?.querySelector('slot');
-    const assignedNodes = slot?.assignedNodes({ flatten: true }) || [];
+  private slotChanged(event: Event) {
+    const slot = event.target as HTMLSlotElement;
+    const image = slot
+      .assignedElements({ flatten: true })
+      .find(element => element instanceof HTMLImageElement);
 
-    assignedNodes.forEach(node => {
-      if (node.nodeType === Node.ELEMENT_NODE) {
-        const el = node as Element;
-        if (el.tagName === 'IMG') {
-          this.observeSlottedImage(el as HTMLImageElement);
-        }
-      }
-    });
+    if (image instanceof HTMLImageElement) {
+      this.observeSlottedImage(image);
+      return;
+    }
 
+    this.disconnectSlottedImage();
+    this.slottedImage = null;
     this.getAvatarImage();
   }
 
   // Observe the Slotted image src attribute and update the image
   private observeSlottedImage(img: HTMLImageElement) {
     this.disconnectSlottedImage();
+    this.slottedImage = img;
 
     img.addEventListener('load', this.showSlottedImage);
     img.addEventListener('error', this.hideSlottedImage);
 
     this.slottedImageObserver = new MutationObserver(() => this.getAvatarImage());
     this.slottedImageObserver.observe(img, { attributes: true, attributeFilter: ['src'] });
+    this.updateSlottedImageVisibility();
   }
 
   private disconnectSlottedImage() {
@@ -204,7 +201,7 @@ export class PostAvatar {
     return (
       <Host data-version={version}>
         <span>
-          <slot onSlotchange={this.slotChanged.bind(this)}></slot>
+          <slot onSlotchange={event => this.slotChanged(event)}></slot>
         </span>
         {this.avatarType === AvatarType.Image && <img src={this.imageUrl} alt={this.imageAlt} />}
         {this.avatarType === AvatarType.Initials && (
