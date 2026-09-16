@@ -17,6 +17,9 @@ const PORT = Number(process.env.KLP_PORT ?? 8443);
 const hostResolverRules = `MAP *.post.ch 127.0.0.1:${PORT}, MAP post.ch 127.0.0.1:${PORT}`;
 const useSystemHosts = process.env.KLP_HOSTS === '1';
 
+/** V8 coverage slows the page enough that the default poll budgets race the keep-alive pixels. */
+const collectingCoverage = process.env.KLP_COVERAGE === '1';
+
 export default defineConfig({
   testDir: './test/e2e',
   fullyParallel: false, // the fake API holds a single mutable scenario
@@ -24,6 +27,8 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? [['github'], ['html', { open: 'never' }]] : [['list']],
+  timeout: collectingCoverage ? 60_000 : 30_000,
+  expect: { timeout: collectingCoverage ? 15_000 : 5_000 },
 
   use: {
     baseURL: 'https://int.post.ch/',

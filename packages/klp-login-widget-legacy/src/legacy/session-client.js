@@ -63,14 +63,16 @@ export function createSessionClient({
 
     const startTime = new Date().getTime();
 
-    return fetch(endPoints.subscribe, {
-      method: 'GET',
-      credentials: 'include',
-      mode: 'cors',
-    })
-      // Timed on settlement, so a failed subscribe is measured too rather than silently missing.
-      .finally(() => logPerformanceMetric('subscribe()', new Date().getTime() - startTime))
-      .then(message => message.json());
+    return (
+      fetch(endPoints.subscribe, {
+        method: 'GET',
+        credentials: 'include',
+        mode: 'cors',
+      })
+        // Timed on settlement, so a failed subscribe is measured too rather than silently missing.
+        .finally(() => logPerformanceMetric('subscribe()', new Date().getTime() - startTime))
+        .then(message => message.json())
+    );
   }
 
   /** Two pixels, because the session has to be refreshed on the portal and on the platform. */

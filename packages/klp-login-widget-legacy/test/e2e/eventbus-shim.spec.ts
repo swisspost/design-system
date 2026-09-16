@@ -313,6 +313,9 @@ test.describe('vert.x event bus shim', () => {
   });
 
   test('refuses calls made before the socket is open', async ({ page }) => {
+    // Intercepted and never sent the open frame, so CONNECTING is guaranteed rather than raced.
+    await page.routeWebSocket(/\/eventbus\//, () => {});
+
     await loadShim(page);
     await page.evaluate(url => {
       const w = window as unknown as BusWindow;
@@ -343,5 +346,35 @@ test.describe('vert.x event bus shim', () => {
     expect(await errorFrom(page, 'bad-reply-handler')).toBe(
       'Parameter replyHandler must be of type function',
     );
+  });
+
+  // Driven through an intercepted socket because the sockjs server cannot emit a broken frame.
+  test('ignores a data frame whose payload is not json and keeps the socket usable', async ({
+    page,
+  }) => {
+    const frame = (body: unknown) =>
+      'a' + JSON.stringify([JSON.stringify({ address: ADDRESS, body })]);
+
+    await page.routeWebSocket(/\/eventbus\//, ws => {
+      ws.onMessage(raw => {
+        if (!String(raw).includes('register')) return;
+        ws.send('a[not-json');
+        ws.send(frame({ ok: true }));
+      });
+      ws.send('o');
+    });
+
+    await loadShim(page);
+    await openBus(page);
+
+    await page.evaluate(address => {
+      const w = window as unknown as BusWindow;
+      w.__bus.registerHandler(address, body => w.__received.push(body));
+    }, ADDRESS);
+
+    await expect
+      .poll(() => page.evaluate(() => (window as unknown as BusWindow).__received))
+      .toEqual([{ ok: true }]);
+    expect(await page.evaluate(() => (window as unknown as BusWindow).__bus.readyState())).toBe(1);
   });
 });

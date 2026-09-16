@@ -64,7 +64,10 @@ describe('buildLoginParameters', () => {
   });
 
   it('matches parameter names case insensitively', () => {
-    assert.equal(buildLoginParameters('https://example.ch/login?APP=sso', { app: 'klp' }), undefined);
+    assert.equal(
+      buildLoginParameters('https://example.ch/login?APP=sso', { app: 'klp' }),
+      undefined,
+    );
   });
 });
 

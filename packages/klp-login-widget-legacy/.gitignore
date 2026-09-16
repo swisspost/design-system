@@ -1,8 +1,8 @@
+.coverage/
+.coverage-report/
 .stencil/
 .turbo/
 dist/
 loader/
 test-results/
 www/
-.coverage/
-.coverage-report/
