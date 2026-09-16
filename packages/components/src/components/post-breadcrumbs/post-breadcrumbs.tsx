@@ -324,6 +324,7 @@ export class PostBreadcrumbs {
           </button>
         </post-menu-trigger>
         <post-menu id={menuId} label={this.textMoreItems} placement="bottom-start">
+          {this.homeCollapsed && <post-menu-item>{this.renderHomeContent()}</post-menu-item>}
           <slot name="menu" />
         </post-menu>
       </div>
@@ -351,25 +352,6 @@ export class PostBreadcrumbs {
     );
   }
 
-  /** Degrade stage 2, collapsed: home's own overflow menu, once there's no room left for it. */
-  private renderHomeMenu() {
-    const homeMenuId = `${this.id}-home-menu`;
-
-    return (
-      <div class="breadcrumb-item home-menu" role="listitem">
-        <post-menu-trigger for={homeMenuId}>
-          <button>
-            <span class="visually-hidden">{this.textExpandHome}</span>
-            <span aria-hidden="true">...</span>
-          </button>
-        </post-menu-trigger>
-        <post-menu id={homeMenuId} label={this.textExpandHome} placement="bottom-start">
-          <post-menu-item>{this.renderHomeContent()}</post-menu-item>
-        </post-menu>
-      </div>
-    );
-  }
-
   render() {
     if (this.loaded) {
       const items = this.host.querySelectorAll('post-breadcrumb-item');
@@ -384,7 +366,7 @@ export class PostBreadcrumbs {
           class={this.loaded ? '' : 'loading'}
         >
           <div role="list">
-            {this.homeCollapsed ? this.renderHomeMenu() : this.renderHome()}
+            {!this.homeCollapsed && this.renderHome()}
             {this.renderMenu()}
             <slot />
             <slot name="selected" />

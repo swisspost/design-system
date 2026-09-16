@@ -35,6 +35,10 @@ nav {
   display: flex;
   align-items: flex-start;
   gap: tokens.get('breadcrumb-gap-inline-outer');
+
+  & > .menu:first-child::before {
+    content: none;
+  }
 }
 
 .breadcrumb-item {
@@ -66,21 +70,6 @@ nav {
 
 .menu.empty {
   display: none;
-}
-
-// Shown once there is no room left for the home item even after every middle item is collapsed.
-.home-menu {
-  flex: none;
-
-  // The trigger button ("...") should keep looking like a link, from .breadcrumb-item above.
-  // The home link inside the dropdown shouldn't, so it's reset and given <post-menu-item>'s own appearance instead, at matching specificity so it wins.
-  post-menu-item :is(a, button) {
-    all: revert;
-    @include menu-item-mx.menu-item-link-appearance;
-  }
-  &::before {
-    content: none;
-  }
 }
 
 .visually-hidden {
