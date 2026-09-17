@@ -11,6 +11,7 @@ import { Variant } from "./components/post-breadcrumb-item/variants";
 import { ButtonType, Placement, Size } from "./components/post-closebutton/types";
 import { PostIconAnimation } from "./types/icon-animations";
 import { KlpEnvironment, KlpLoginWidgetConfig } from "./components/post-klp-login-widget/lib/klp-widget.model";
+import { KlpLink } from "./components/post-klp-login-widget/lib/klp-links.model";
 import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement as Placement1 } from "@floating-ui/dom";
 import { SideNavigationSize } from "./components/post-side-navigation/side-navigation-styles";
@@ -20,6 +21,7 @@ export { Variant } from "./components/post-breadcrumb-item/variants";
 export { ButtonType, Placement, Size } from "./components/post-closebutton/types";
 export { PostIconAnimation } from "./types/icon-animations";
 export { KlpEnvironment, KlpLoginWidgetConfig } from "./components/post-klp-login-widget/lib/klp-widget.model";
+export { KlpLink } from "./components/post-klp-login-widget/lib/klp-links.model";
 export { SwitchVariant } from "./components/post-language-menu/switch-variants";
 export { Placement as Placement1 } from "@floating-ui/dom";
 export { SideNavigationSize } from "./components/post-side-navigation/side-navigation-styles";
@@ -332,6 +334,14 @@ export namespace Components {
     }
     interface PostKlpLoginWidget {
         /**
+          * Label and target for switching account. Only rendered when the session permits it, so the consumer does not have to work out who is allowed to see it.
+         */
+        "accountSwitch"?: KlpLink | string;
+        /**
+          * Label and target for switching company. Only rendered when the session permits it.
+         */
+        "companySwitch"?: KlpLink | string;
+        /**
           * The portal login widget configuration. Accepts an object or, so the widget can be driven from plain HTML, a JSON string.
          */
         "config"?: KlpLoginWidgetConfig | string;
@@ -340,6 +350,18 @@ export namespace Components {
           * @default 'prod'
          */
         "environment": KlpEnvironment;
+        /**
+          * The link offered to anonymous visitors. Falls back to the configured `appLoginUrl`. Ignored when the `login-link` slot is filled.
+         */
+        "loginLink"?: KlpLink | string;
+        /**
+          * The link that ends the session. Ignored when the `logout-link` slot is filled.
+         */
+        "logoutLink"?: KlpLink | string;
+        /**
+          * Links shown in the user menu, in order. Takes the output of internet-header's `getUserMenuOptions()` unchanged. Ignored when the `menu-links` slot is filled.
+         */
+        "menuLinks"?: KlpLink[] | string;
     }
     interface PostLanguageMenu {
         /**
@@ -1651,6 +1673,14 @@ declare namespace LocalJSX {
     }
     interface PostKlpLoginWidget {
         /**
+          * Label and target for switching account. Only rendered when the session permits it, so the consumer does not have to work out who is allowed to see it.
+         */
+        "accountSwitch"?: KlpLink | string;
+        /**
+          * Label and target for switching company. Only rendered when the session permits it.
+         */
+        "companySwitch"?: KlpLink | string;
+        /**
           * The portal login widget configuration. Accepts an object or, so the widget can be driven from plain HTML, a JSON string.
          */
         "config"?: KlpLoginWidgetConfig | string;
@@ -1659,6 +1689,18 @@ declare namespace LocalJSX {
           * @default 'prod'
          */
         "environment"?: KlpEnvironment;
+        /**
+          * The link offered to anonymous visitors. Falls back to the configured `appLoginUrl`. Ignored when the `login-link` slot is filled.
+         */
+        "loginLink"?: KlpLink | string;
+        /**
+          * The link that ends the session. Ignored when the `logout-link` slot is filled.
+         */
+        "logoutLink"?: KlpLink | string;
+        /**
+          * Links shown in the user menu, in order. Takes the output of internet-header's `getUserMenuOptions()` unchanged. Ignored when the `menu-links` slot is filled.
+         */
+        "menuLinks"?: KlpLink[] | string;
     }
     interface PostLanguageMenu {
         "onPostChange"?: (event: PostLanguageMenuCustomEvent<string>) => void;
@@ -2172,6 +2214,11 @@ declare namespace LocalJSX {
     interface PostKlpLoginWidgetAttributes {
         "environment": KlpEnvironment;
         "config": KlpLoginWidgetConfig | string;
+        "menuLinks": KlpLink[] | string;
+        "loginLink": KlpLink | string;
+        "logoutLink": KlpLink | string;
+        "accountSwitch": KlpLink | string;
+        "companySwitch": KlpLink | string;
     }
     interface PostLanguageMenuAttributes {
         "textChangeLanguage": string;
