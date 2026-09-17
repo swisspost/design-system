@@ -21,14 +21,17 @@
     "build": "pnpm clean && pnpm prebuild:managerui --style=compressed --no-source-map & storybook build --quiet --docs",
     "typecheck": "tsc --noEmit",
     "clean": "rimraf storybook-static public/manager",
-    "e2e": "cypress run --browser chrome",
+    "e2e": "cypress run --browser chrome-for-testing",
     "e2e:watch": "cypress open",
-    "e2e:ci": "xvfb-run -a cypress run --browser chrome",
+    "e2e:ci": "xvfb-run -a cypress run --browser chrome-for-testing",
+    "e2e:install-browsers": "for v in stable; do browsers install chrome@$v --path ~/.cache/puppeteer; done",
+    "e2e:cleanup-browsers": "rm -rf ~/.cache/puppeteer",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "snapshots": "percy exec -- cypress run --config-file ./cypress.snapshot.config.js --record --key 0995e768-43ec-42bd-a127-ff944a2ad8c9",
     "unit": "echo 'No unit tests for documentation'",
-    "doctor": "storybook doctor"
+    "doctor": "storybook doctor",
+    "postinstall": "pnpm e2e:install-browsers"
   },
   "dependencies": {
     "@swisspost/design-system-components": "workspace:10.5.0",
@@ -50,6 +53,7 @@
     "@open-wc/lit-helpers": "0.7.0",
     "@percy/cli": "1.31.13",
     "@percy/cypress": "3.1.8",
+    "@puppeteer/browsers": "3.2.2",
     "@storybook/addon-docs": "9.0.18",
     "@storybook/addon-links": "9.0.18",
     "@storybook/web-components-vite": "9.0.18",
