@@ -17,7 +17,7 @@ tokens.$default-map: components.$post-breadcrumb;
 :host([variant='listitem']) {
   @include mixins.breadcrumb-item;
 
-  ::slotted(a) {
+  &:not([standalone]:not([standalone='false'])) ::slotted(a) {
     white-space: nowrap;
   }
 

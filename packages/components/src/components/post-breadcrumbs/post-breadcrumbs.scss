@@ -36,8 +36,13 @@ nav {
   align-items: flex-start;
   gap: tokens.get('breadcrumb-gap-inline-outer');
 
-  & > .menu:first-child::before {
-    content: none;
+  & > .menu:first-child {
+    // Added a margin (equal to the breadcrumbs list gap) so that the ellipsis is not flush at the edge of the container
+    margin-inline-start: tokens.get('breadcrumb-gap-inline-outer');
+
+    &::before {
+      content: none;
+    }
   }
 }
 
@@ -45,8 +50,17 @@ nav {
   @include breadcrumb-item-mx.breadcrumb-item;
 }
 
+post-menu-item > slot[name='home'] > a {
+  @include menu-item-mx.menu-item-link-appearance;
+  min-width: 0;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  @include utilities.word-break;
+}
+
 .home {
-  // Never shrinks: it either renders in full or swaps entirely into .home-menu below.
+  // Never shrinks: it either renders in full or swaps entirely into the menu.
   flex: none;
 
   &::before {
@@ -63,8 +77,7 @@ nav {
   }
 }
 
-.menu,
-.home-menu {
+.menu {
   margin-inline-end: calc(-1 * tokens.get('breadcrumb-gap-inline-outer'));
 }
 

@@ -155,10 +155,6 @@ export namespace Components {
          */
         "textBreadcrumbs": string;
         /**
-          * An accessible label for the overflow menu that contains the home item. Only required once the home item actually collapses into its own menu — a rare edge case, since home and the last (selected) item are the last to degrade under space constraints.
-         */
-        "textExpandHome"?: string;
-        /**
           * The label of the root (home) breadcrumb item. Displayed visibly when `show-home-text` is `true`, otherwise used as an accessible label alongside the home icon.
          */
         "textHome": string;
@@ -1469,10 +1465,6 @@ declare namespace LocalJSX {
          */
         "textBreadcrumbs": string;
         /**
-          * An accessible label for the overflow menu that contains the home item. Only required once the home item actually collapses into its own menu — a rare edge case, since home and the last (selected) item are the last to degrade under space constraints.
-         */
-        "textExpandHome"?: string;
-        /**
           * The label of the root (home) breadcrumb item. Displayed visibly when `show-home-text` is `true`, otherwise used as an accessible label alongside the home icon.
          */
         "textHome": string;
@@ -2113,7 +2105,6 @@ declare namespace LocalJSX {
         "showHomeText": boolean;
         "textBreadcrumbs": string;
         "textMoreItems": string;
-        "textExpandHome": string;
     }
     interface PostClosebuttonAttributes {
         "buttonType": ButtonType;

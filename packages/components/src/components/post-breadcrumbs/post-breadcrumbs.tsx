@@ -32,6 +32,9 @@ export class PostBreadcrumbs {
   /** Whether the consumer slotted their own `<a>` into the `home` slot. When true, `home-url` is not required, since the internal fallback link is not rendered. */
   @State() hasSlottedHomeAnchor = false;
 
+  /** Whether the slotted home anchor contains a post-icon. */
+  @State() hasSlottedHomeIcon = false;
+
   /** The number of breadcrumb items, counted from the start, moved into the overflow menu. */
   @State() collapsed = 0;
 
@@ -89,16 +92,6 @@ export class PostBreadcrumbs {
   @Type('string')
   textMoreItems!: string;
 
-  /**
-   * An accessible label for the overflow menu that contains the home item. Only required once
-   * the home item actually collapses into its own menu — a rare edge case, since home and the
-   * last (selected) item are the last to degrade under space constraints.
-   */
-  @Prop({ reflect: true })
-  @Required({ when: 'homeCollapsed' })
-  @Type('string')
-  textExpandHome?: string;
-
   componentWillLoad() {
     this.id = this.host.id || `b${nanoid(6)}`;
     this.checkSlottedHomeAnchor();
@@ -128,6 +121,12 @@ export class PostBreadcrumbs {
       child => child.getAttribute('slot') === 'home',
     );
     this.hasSlottedHomeAnchor = homeSlotElement?.tagName === 'A';
+    this.hasSlottedHomeIcon =
+      this.hasSlottedHomeAnchor && !!homeSlotElement?.querySelector('post-icon');
+  }
+
+  private get usesHomeText() {
+    return this.hasSlottedHomeAnchor ? !this.hasSlottedHomeIcon : this.showHomeText;
   }
 
   // Degrade order: collapse middle items -> collapse home -> wrap the last item.
@@ -172,12 +171,16 @@ export class PostBreadcrumbs {
       availableWidth,
     );
 
-    // Stage 2: home + last item, single-line. If that still doesn't fit, home collapses next.
-    const homeOverflows = remainingWidth > availableWidth;
+    // Stage 2: home + last item, single-line. Text home can collapse into the menu, while the
+    // icon-only home remains visible and lets the last item wrap instead.
+    const homeOverflows = this.usesHomeText && remainingWidth > availableWidth;
 
-    // Stage 3: home's trigger is built like the menu trigger, so `menuWidth` stands in for it.
-    const widthWithHomeCollapsed = remainingWidth - homeWidth + menuWidth;
-    const lastItemWraps = homeOverflows && widthWithHomeCollapsed > availableWidth;
+    // Stage 3: home joins the existing menu when middle items have collapsed. If no middle item
+    // collapsed, the menu needs to be added when home moves into it.
+    const widthWithHomeCollapsed = remainingWidth - homeWidth + (overflowing === 0 ? menuWidth : 0);
+    const lastItemWraps = this.usesHomeText
+      ? homeOverflows && widthWithHomeCollapsed > availableWidth
+      : remainingWidth > availableWidth;
 
     return { overflowing, homeOverflows, lastItemWraps };
   }
@@ -223,8 +226,8 @@ export class PostBreadcrumbs {
 
   /**
    * Renders an off-screen copy of the nav for measurements. `.home` is rebuilt independently (see
-   * `buildMeasurementHomeElement`) rather than cloned, since the live nav may show `.home-menu`
-   * instead if home is already collapsed.
+   * `buildMeasurementHomeElement`) rather than cloned, since the live nav may show the home item
+   * in the overflow menu instead if it is already collapsed.
    */
   private async renderHiddenNav() {
     const shadowRoot = this.host.shadowRoot;
@@ -258,7 +261,7 @@ export class PostBreadcrumbs {
     // Always measure the full, uncollapsed home item — see the method doc above. Uses
     // replaceChild rather than replaceWith, since the latter isn't implemented by Stencil's
     // mock-doc DOM used during SSR/hydration.
-    const existingHome = clone.querySelector('.home, .home-menu');
+    const existingHome = clone.querySelector('.home');
     existingHome?.parentNode?.replaceChild(this.buildMeasurementHomeElement(), existingHome);
 
     clone.classList.remove('loading');
@@ -281,7 +284,7 @@ export class PostBreadcrumbs {
   /** Builds `.home` in its full, uncollapsed form for measurement. Mirrors `renderHomeContent`, but as plain DOM since this runs outside the render cycle. */
   private buildMeasurementHomeElement(): HTMLElement {
     const home = document.createElement('div');
-    home.className = `breadcrumb-item home${this.showHomeText ? '' : ' icon'}`;
+    home.className = `breadcrumb-item home${this.usesHomeText ? '' : ' icon'}`;
     home.setAttribute('role', 'listitem');
 
     const slottedAnchor = this.hasSlottedHomeAnchor
@@ -297,11 +300,11 @@ export class PostBreadcrumbs {
     if (this.homeUrl) anchor.href = this.homeUrl;
 
     const label = document.createElement('span');
-    if (!this.showHomeText) label.className = 'visually-hidden';
+    if (!this.usesHomeText) label.className = 'visually-hidden';
     label.textContent = this.textHome;
     anchor.append(label);
 
-    if (!this.showHomeText) {
+    if (!this.usesHomeText) {
       const icon = document.createElement('post-icon');
       icon.setAttribute('aria-hidden', 'true');
       icon.setAttribute('name', 'home');
@@ -316,7 +319,10 @@ export class PostBreadcrumbs {
     const menuId = `${this.id}-menu`;
 
     return (
-      <div class={`breadcrumb-item menu ${this.collapsed === 0 ? 'empty' : ''}`} role="listitem">
+      <div
+        class={`breadcrumb-item menu ${this.collapsed === 0 && !this.homeCollapsed ? 'empty' : ''}`}
+        role="listitem"
+      >
         <post-menu-trigger for={menuId}>
           <button>
             <span class="visually-hidden">{this.textMoreItems}</span>
@@ -324,7 +330,9 @@ export class PostBreadcrumbs {
           </button>
         </post-menu-trigger>
         <post-menu id={menuId} label={this.textMoreItems} placement="bottom-start">
-          {this.homeCollapsed && <post-menu-item>{this.renderHomeContent()}</post-menu-item>}
+          {this.homeCollapsed && this.usesHomeText && (
+            <post-menu-item>{this.renderHomeContent()}</post-menu-item>
+          )}
           <slot name="menu" />
         </post-menu>
       </div>
@@ -336,8 +344,8 @@ export class PostBreadcrumbs {
     return (
       <slot name="home" onSlotchange={() => this.checkSlottedHomeAnchor()}>
         <a href={this.homeUrl}>
-          <span class={this.showHomeText ? undefined : 'visually-hidden'}>{this.textHome}</span>
-          {!this.showHomeText && <post-icon aria-hidden="true" name="home" />}
+          <span class={this.usesHomeText ? undefined : 'visually-hidden'}>{this.textHome}</span>
+          {!this.usesHomeText && <post-icon aria-hidden="true" name="home" />}
         </a>
       </slot>
     );
@@ -346,7 +354,7 @@ export class PostBreadcrumbs {
   /** Degrade stage 2: home renders in full, single-line, not yet collapsed. */
   private renderHome() {
     return (
-      <div class={`breadcrumb-item home${this.showHomeText ? '' : ' icon'}`} role="listitem">
+      <div class={`breadcrumb-item home${this.usesHomeText ? '' : ' icon'}`} role="listitem">
         {this.renderHomeContent()}
       </div>
     );
@@ -359,14 +367,17 @@ export class PostBreadcrumbs {
     }
 
     return (
-      <Host data-version={version}>
+      <Host
+        data-version={version}
+        class={this.homeCollapsed && this.usesHomeText ? 'home-collapsed' : undefined}
+      >
         <nav
           aria-label={this.textBreadcrumbs}
           ref={el => (this.nav = el)}
           class={this.loaded ? '' : 'loading'}
         >
           <div role="list">
-            {!this.homeCollapsed && this.renderHome()}
+            {(!this.homeCollapsed || !this.usesHomeText) && this.renderHome()}
             {this.renderMenu()}
             <slot />
             <slot name="selected" />
