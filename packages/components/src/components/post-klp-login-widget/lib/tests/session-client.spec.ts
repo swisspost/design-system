@@ -146,4 +146,11 @@ describe('keepAliveUrls', () => {
       client.keepAliveUrls('https://int.post.ch/keepalive'),
     );
   });
+
+  it('refreshes the platform alone when the portal has no keep-alive url', () => {
+    const urls = createSessionClient({ endPoints }).keepAliveUrls();
+
+    expect(urls).toHaveLength(1);
+    expect(urls[0]).toMatch(new RegExp(`^${endPoints.keepalive}\\?\\d+$`));
+  });
 });
