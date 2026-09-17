@@ -30596,6 +30596,306 @@
       "modifiedAt": "2026-08-10T10:45:00.000Z"
     },
     {
+      "uuid": "af34ee10-b006-11f1-94be-0050568d2654",
+      "id": 11235321,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235321/storage/MDExMjM1MzIxLzAvbWFzdGVyLy8vMTA3NjI0Njk1",
+        "keywords": [
+          "Blog"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blog_Shape_16.svg",
+        "basename": "Blog_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:36:58.000Z",
+      "modifiedAt": "2026-09-14T06:41:57.000Z"
+    },
+    {
+      "uuid": "add07c10-b006-11f1-94be-0050568d2654",
+      "id": 11235318,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235318/storage/MDExMjM1MzE4LzAvbWFzdGVyLy8vMTA3NjI0Njk5",
+        "keywords": [
+          "Blog"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blog_Shape_24.svg",
+        "basename": "Blog_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:36:55.000Z",
+      "modifiedAt": "2026-09-14T06:41:58.000Z"
+    },
+    {
+      "uuid": "ad426ce0-b006-11f1-94be-0050568d2654",
+      "id": 11235317,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235317/storage/MDExMjM1MzE3LzAvbWFzdGVyLy8vMTA3NjI0NzAz",
+        "keywords": [
+          "Blog"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blog_Shape_32.svg",
+        "basename": "Blog_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:36:54.000Z",
+      "modifiedAt": "2026-09-14T06:41:58.000Z"
+    },
+    {
+      "uuid": "acfde9d0-b006-11f1-94be-0050568d2654",
+      "id": 11235316,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235316/storage/MDExMjM1MzE2LzAvbWFzdGVyLy8vMTA3NjI0NzA3",
+        "keywords": [
+          "Blog"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blog_Shape_40.svg",
+        "basename": "Blog_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:36:54.000Z",
+      "modifiedAt": "2026-09-14T06:41:58.000Z"
+    },
+    {
+      "uuid": "ac8892c0-b006-11f1-94be-0050568d2654",
+      "id": 11235314,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235314/storage/MDExMjM1MzE0LzAvbWFzdGVyLy8vMTA3NjI0NzEy",
+        "keywords": [
+          "Blog"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blog_Shape_48.svg",
+        "basename": "Blog_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:36:53.000Z",
+      "modifiedAt": "2026-09-14T06:41:58.000Z"
+    },
+    {
+      "uuid": "ab77e610-b006-11f1-94be-0050568d2654",
+      "id": 11235313,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235313/storage/MDExMjM1MzEzLzAvbWFzdGVyLy8vMTA3NjI0MDI5",
+        "keywords": [
+          "Blog"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blog_Shape_64.svg",
+        "basename": "Blog_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:36:51.000Z",
+      "modifiedAt": "2026-09-14T06:41:12.000Z"
+    },
+    {
+      "uuid": "a9bbb720-b006-11f1-94be-0050568d2654",
+      "id": 11235310,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235310/storage/MDExMjM1MzEwLzAvbWFzdGVyLy8vMTA3NjI0NzI2",
+        "keywords": [
+          "Blog"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blog_Solid_Shape_16.svg",
+        "basename": "Blog_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:36:48.000Z",
+      "modifiedAt": "2026-09-14T06:41:57.000Z"
+    },
+    {
+      "uuid": "a9d580b0-b006-11f1-94be-0050568d2654",
+      "id": 11235311,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235311/storage/MDExMjM1MzExLzAvbWFzdGVyLy8vMTA3NjI0NzE5",
+        "keywords": [
+          "Blog"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blog_Solid_Shape_24.svg",
+        "basename": "Blog_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:36:49.000Z",
+      "modifiedAt": "2026-09-14T06:41:57.000Z"
+    },
+    {
+      "uuid": "a813ac70-b006-11f1-94be-0050568d2654",
+      "id": 11235309,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235309/storage/MDExMjM1MzA5LzAvbWFzdGVyLy8vMTA3NjI0NzMw",
+        "keywords": [
+          "Blog"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blog_Solid_Shape_32.svg",
+        "basename": "Blog_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:36:46.000Z",
+      "modifiedAt": "2026-09-14T06:41:58.000Z"
+    },
+    {
+      "uuid": "a56f1950-b006-11f1-94be-0050568d2654",
+      "id": 11235301,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235301/storage/MDExMjM1MzAxLzAvbWFzdGVyLy8vMTA3NjI0NzM4",
+        "keywords": [
+          "Blog"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blog_Solid_Shape_40.svg",
+        "basename": "Blog_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:36:41.000Z",
+      "modifiedAt": "2026-09-14T06:41:57.000Z"
+    },
+    {
+      "uuid": "a5609a60-b006-11f1-94be-0050568d2654",
+      "id": 11235300,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235300/storage/MDExMjM1MzAwLzAvbWFzdGVyLy8vMTA3NjI0NzQy",
+        "keywords": [
+          "Blog"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blog_Solid_Shape_48.svg",
+        "basename": "Blog_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:36:41.000Z",
+      "modifiedAt": "2026-09-14T06:41:58.000Z"
+    },
+    {
+      "uuid": "a5772fa0-b006-11f1-94be-0050568d2654",
+      "id": 11235303,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235303/storage/MDExMjM1MzAzLzAvbWFzdGVyLy8vMTA3NjI0NzM0",
+        "keywords": [
+          "Blog"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Blog_Solid_Shape_64.svg",
+        "basename": "Blog_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:36:41.000Z",
+      "modifiedAt": "2026-09-14T06:41:58.000Z"
+    },
+    {
       "uuid": "eb06fb60-fe8a-11ef-990c-005056873709",
       "id": 1839182,
       "type": "picture.pictogram.",
@@ -59438,6 +59738,438 @@
       "modifiedAt": "2026-07-17T07:03:03.000Z"
     },
     {
+      "uuid": "81643b80-b191-11f1-8838-0050568d2654",
+      "id": 11249370,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249370/storage/MDExMjQ5MzcwLzAvbWFzdGVyLy8vMTA3ODI4NDAz",
+        "keywords": [
+          "cycle",
+          "Kreislauf",
+          "Ciclo",
+          "Cycle",
+          "Logistik",
+          "Logistique",
+          "logistica",
+          "Logistics",
+          "Circular logistics",
+          "Kreislauflogistik",
+          "Logistique circulaire",
+          "Logistica circolare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CircularLogistics_Shape_16.svg",
+        "basename": "CircularLogistics_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:43:12.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
+      "uuid": "8091d050-b191-11f1-8838-0050568d2654",
+      "id": 11249369,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249369/storage/MDExMjQ5MzY5LzAvbWFzdGVyLy8vMTA3ODI4Mzkx",
+        "keywords": [
+          "cycle",
+          "Kreislauf",
+          "Ciclo",
+          "Cycle",
+          "Logistik",
+          "Logistique",
+          "logistica",
+          "Logistics",
+          "Circular logistics",
+          "Kreislauflogistik",
+          "Logistique circulaire",
+          "Logistica circolare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CircularLogistics_Shape_24.svg",
+        "basename": "CircularLogistics_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:43:11.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
+      "uuid": "7f919e60-b191-11f1-8838-0050568d2654",
+      "id": 11249368,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249368/storage/MDExMjQ5MzY4LzAvbWFzdGVyLy8vMTA3ODI4Mzk1",
+        "keywords": [
+          "cycle",
+          "Kreislauf",
+          "Ciclo",
+          "Cycle",
+          "Logistik",
+          "Logistique",
+          "logistica",
+          "Logistics",
+          "Circular logistics",
+          "Kreislauflogistik",
+          "Logistique circulaire",
+          "Logistica circolare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CircularLogistics_Shape_32.svg",
+        "basename": "CircularLogistics_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:43:09.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
+      "uuid": "7df02360-b191-11f1-8838-0050568d2654",
+      "id": 11249366,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249366/storage/MDExMjQ5MzY2LzAvbWFzdGVyLy8vMTA3ODI4NDEx",
+        "keywords": [
+          "cycle",
+          "Kreislauf",
+          "Ciclo",
+          "Cycle",
+          "Logistik",
+          "Logistique",
+          "logistica",
+          "Logistics",
+          "Circular logistics",
+          "Kreislauflogistik",
+          "Logistique circulaire",
+          "Logistica circolare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CircularLogistics_Shape_40.svg",
+        "basename": "CircularLogistics_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:43:06.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
+      "uuid": "7e149b50-b191-11f1-8838-0050568d2654",
+      "id": 11249367,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249367/storage/MDExMjQ5MzY3LzAvbWFzdGVyLy8vMTA3ODI4NDA3",
+        "keywords": [
+          "cycle",
+          "Kreislauf",
+          "Ciclo",
+          "Cycle",
+          "Logistik",
+          "Logistique",
+          "logistica",
+          "Logistics",
+          "Circular logistics",
+          "Kreislauflogistik",
+          "Logistique circulaire",
+          "Logistica circolare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CircularLogistics_Shape_48.svg",
+        "basename": "CircularLogistics_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:43:06.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
+      "uuid": "7c6a6dc0-b191-11f1-8838-0050568d2654",
+      "id": 11249365,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249365/storage/MDExMjQ5MzY1LzAvbWFzdGVyLy8vMTA3ODI4Mjkw",
+        "keywords": [
+          "cycle",
+          "Kreislauf",
+          "Ciclo",
+          "Cycle",
+          "Logistik",
+          "Logistique",
+          "logistica",
+          "Logistics",
+          "Circular logistics",
+          "Kreislauflogistik",
+          "Logistique circulaire",
+          "Logistica circolare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CircularLogistics_Shape_64.svg",
+        "basename": "CircularLogistics_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:43:04.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
+      "uuid": "7b36cfc0-b191-11f1-8838-0050568d2654",
+      "id": 11249364,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249364/storage/MDExMjQ5MzY0LzAvbWFzdGVyLy8vMTA3ODI4Mzg3",
+        "keywords": [
+          "cycle",
+          "Kreislauf",
+          "Ciclo",
+          "Cycle",
+          "Logistik",
+          "Logistique",
+          "logistica",
+          "Logistics",
+          "Circular logistics",
+          "Kreislauflogistik",
+          "Logistique circulaire",
+          "Logistica circolare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CircularLogistics_Solid_Shape_16.svg",
+        "basename": "CircularLogistics_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:43:02.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
+      "uuid": "7b11e2a0-b191-11f1-8838-0050568d2654",
+      "id": 11249363,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249363/storage/MDExMjQ5MzYzLzAvbWFzdGVyLy8vMTA3ODI4Mzgz",
+        "keywords": [
+          "cycle",
+          "Kreislauf",
+          "Ciclo",
+          "Cycle",
+          "Logistik",
+          "Logistique",
+          "logistica",
+          "Logistics",
+          "Circular logistics",
+          "Kreislauflogistik",
+          "Logistique circulaire",
+          "Logistica circolare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CircularLogistics_Solid_Shape_24.svg",
+        "basename": "CircularLogistics_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:43:01.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
+      "uuid": "79979eb0-b191-11f1-8838-0050568d2654",
+      "id": 11249362,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249362/storage/MDExMjQ5MzYyLzAvbWFzdGVyLy8vMTA3ODI4Mzcx",
+        "keywords": [
+          "cycle",
+          "Kreislauf",
+          "Ciclo",
+          "Cycle",
+          "Logistik",
+          "Logistique",
+          "logistica",
+          "Logistics",
+          "Circular logistics",
+          "Kreislauflogistik",
+          "Logistique circulaire",
+          "Logistica circolare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CircularLogistics_Solid_Shape_32.svg",
+        "basename": "CircularLogistics_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:42:59.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
+      "uuid": "77958d20-b191-11f1-8838-0050568d2654",
+      "id": 11249360,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249360/storage/MDExMjQ5MzYwLzAvbWFzdGVyLy8vMTA3ODI4Mzc1",
+        "keywords": [
+          "cycle",
+          "Kreislauf",
+          "Ciclo",
+          "Cycle",
+          "Logistik",
+          "Logistique",
+          "logistica",
+          "Logistics",
+          "Circular logistics",
+          "Kreislauflogistik",
+          "Logistique circulaire",
+          "Logistica circolare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CircularLogistics_Solid_Shape_40.svg",
+        "basename": "CircularLogistics_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:42:55.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
+      "uuid": "77908410-b191-11f1-8838-0050568d2654",
+      "id": 11249359,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249359/storage/MDExMjQ5MzU5LzAvbWFzdGVyLy8vMTA3ODI4Mzc5",
+        "keywords": [
+          "cycle",
+          "Kreislauf",
+          "Ciclo",
+          "Cycle",
+          "Logistik",
+          "Logistique",
+          "logistica",
+          "Logistics",
+          "Circular logistics",
+          "Kreislauflogistik",
+          "Logistique circulaire",
+          "Logistica circolare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CircularLogistics_Solid_Shape_48.svg",
+        "basename": "CircularLogistics_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:42:55.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
+      "uuid": "77a14cf0-b191-11f1-8838-0050568d2654",
+      "id": 11249361,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249361/storage/MDExMjQ5MzYxLzAvbWFzdGVyLy8vMTA3ODI4Mzk5",
+        "keywords": [
+          "cycle",
+          "Kreislauf",
+          "Ciclo",
+          "Cycle",
+          "Logistik",
+          "Logistique",
+          "logistica",
+          "Logistics",
+          "Circular logistics",
+          "Kreislauflogistik",
+          "Logistique circulaire",
+          "Logistica circolare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CircularLogistics_Solid_Shape_64.svg",
+        "basename": "CircularLogistics_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:42:56.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
       "uuid": "989d8330-e562-11ef-a15d-005056873709",
       "id": 1831589,
       "type": "picture.pictogram.",
@@ -68769,6 +69501,438 @@
       },
       "createdAt": "2025-11-12T07:42:19.000Z",
       "modifiedAt": "2025-11-12T07:46:32.000Z"
+    },
+    {
+      "uuid": "93acfa30-b190-11f1-8838-0050568d2654",
+      "id": 11249354,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249354/storage/MDExMjQ5MzU0LzAvbWFzdGVyLy8vMTA3ODI4MDM1",
+        "keywords": [
+          "relaxen",
+          "unwind",
+          "Rilassare",
+          "Se relaxer",
+          "convenience",
+          "Komfort",
+          "Confort",
+          "Comfort",
+          "Se détendre",
+          "Rilassarsi",
+          "Entspannen",
+          "Relax"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Convenience_Shape_16.svg",
+        "basename": "Convenience_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:36:33.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
+      "uuid": "92f5b820-b190-11f1-8838-0050568d2654",
+      "id": 11249353,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249353/storage/MDExMjQ5MzUzLzAvbWFzdGVyLy8vMTA3ODI3OTk1",
+        "keywords": [
+          "relaxen",
+          "unwind",
+          "Rilassare",
+          "Se relaxer",
+          "convenience",
+          "Komfort",
+          "Confort",
+          "Comfort",
+          "Se détendre",
+          "Rilassarsi",
+          "Entspannen",
+          "Relax"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Convenience_Shape_24.svg",
+        "basename": "Convenience_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:36:32.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
+      "uuid": "923d3d90-b190-11f1-8838-0050568d2654",
+      "id": 11249352,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249352/storage/MDExMjQ5MzUyLzAvbWFzdGVyLy8vMTA3ODI3OTk5",
+        "keywords": [
+          "relaxen",
+          "unwind",
+          "Rilassare",
+          "Se relaxer",
+          "convenience",
+          "Komfort",
+          "Confort",
+          "Comfort",
+          "Se détendre",
+          "Rilassarsi",
+          "Entspannen",
+          "Relax"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Convenience_Shape_32.svg",
+        "basename": "Convenience_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:36:31.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
+      "uuid": "915c5370-b190-11f1-8838-0050568d2654",
+      "id": 11249351,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249351/storage/MDExMjQ5MzUxLzAvbWFzdGVyLy8vMTA3ODI4MDAz",
+        "keywords": [
+          "relaxen",
+          "unwind",
+          "Rilassare",
+          "Se relaxer",
+          "convenience",
+          "Komfort",
+          "Confort",
+          "Comfort",
+          "Se détendre",
+          "Rilassarsi",
+          "Entspannen",
+          "Relax"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Convenience_Shape_40.svg",
+        "basename": "Convenience_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:36:29.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
+      "uuid": "9066a8d0-b190-11f1-8838-0050568d2654",
+      "id": 11249350,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249350/storage/MDExMjQ5MzUwLzAvbWFzdGVyLy8vMTA3ODI4MDA3",
+        "keywords": [
+          "relaxen",
+          "unwind",
+          "Rilassare",
+          "Se relaxer",
+          "convenience",
+          "Komfort",
+          "Confort",
+          "Comfort",
+          "Se détendre",
+          "Rilassarsi",
+          "Entspannen",
+          "Relax"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Convenience_Shape_48.svg",
+        "basename": "Convenience_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:36:28.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
+      "uuid": "8f9e01a0-b190-11f1-8838-0050568d2654",
+      "id": 11249349,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249349/storage/MDExMjQ5MzQ5LzAvbWFzdGVyLy8vMTA3ODMwNDQ0",
+        "keywords": [
+          "relaxen",
+          "unwind",
+          "Rilassare",
+          "Se relaxer",
+          "convenience",
+          "Komfort",
+          "Confort",
+          "Comfort",
+          "Se détendre",
+          "Rilassarsi",
+          "Entspannen",
+          "Relax"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Convenience_Shape_64.svg",
+        "basename": "Convenience_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:36:26.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
+      "uuid": "8e627460-b190-11f1-8838-0050568d2654",
+      "id": 11249348,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249348/storage/MDExMjQ5MzQ4LzAvbWFzdGVyLy8vMTA3ODI4MDEx",
+        "keywords": [
+          "relaxen",
+          "unwind",
+          "Rilassare",
+          "Se relaxer",
+          "convenience",
+          "Komfort",
+          "Confort",
+          "Comfort",
+          "Se détendre",
+          "Rilassarsi",
+          "Entspannen",
+          "Relax"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Convenience_Solid_Shape_16.svg",
+        "basename": "Convenience_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:36:24.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
+      "uuid": "8e4d8cd0-b190-11f1-8838-0050568d2654",
+      "id": 11249347,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249347/storage/MDExMjQ5MzQ3LzAvbWFzdGVyLy8vMTA3ODI4MDE1",
+        "keywords": [
+          "relaxen",
+          "unwind",
+          "Rilassare",
+          "Se relaxer",
+          "convenience",
+          "Komfort",
+          "Confort",
+          "Comfort",
+          "Se détendre",
+          "Rilassarsi",
+          "Entspannen",
+          "Relax"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Convenience_Solid_Shape_24.svg",
+        "basename": "Convenience_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:36:24.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
+      "uuid": "8d7220f0-b190-11f1-8838-0050568d2654",
+      "id": 11249346,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249346/storage/MDExMjQ5MzQ2LzAvbWFzdGVyLy8vMTA3ODI4MDE5",
+        "keywords": [
+          "relaxen",
+          "unwind",
+          "Rilassare",
+          "Se relaxer",
+          "convenience",
+          "Komfort",
+          "Confort",
+          "Comfort",
+          "Se détendre",
+          "Rilassarsi",
+          "Entspannen",
+          "Relax"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Convenience_Solid_Shape_32.svg",
+        "basename": "Convenience_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:36:23.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
+      "uuid": "8be9d340-b190-11f1-8838-0050568d2654",
+      "id": 11249344,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249344/storage/MDExMjQ5MzQ0LzAvbWFzdGVyLy8vMTA3ODI4MDI3",
+        "keywords": [
+          "relaxen",
+          "unwind",
+          "Rilassare",
+          "Se relaxer",
+          "convenience",
+          "Komfort",
+          "Confort",
+          "Comfort",
+          "Se détendre",
+          "Rilassarsi",
+          "Entspannen",
+          "Relax"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Convenience_Solid_Shape_40.svg",
+        "basename": "Convenience_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:36:20.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
+      "uuid": "8bedcae0-b190-11f1-8838-0050568d2654",
+      "id": 11249345,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249345/storage/MDExMjQ5MzQ1LzAvbWFzdGVyLy8vMTA3ODI4MDIz",
+        "keywords": [
+          "relaxen",
+          "unwind",
+          "Rilassare",
+          "Se relaxer",
+          "convenience",
+          "Komfort",
+          "Confort",
+          "Comfort",
+          "Se détendre",
+          "Rilassarsi",
+          "Entspannen",
+          "Relax"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Convenience_Solid_Shape_48.svg",
+        "basename": "Convenience_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:36:20.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
+    },
+    {
+      "uuid": "8bbe5670-b190-11f1-8838-0050568d2654",
+      "id": 11249343,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249343/storage/MDExMjQ5MzQzLzAvbWFzdGVyLy8vMTA3ODI4MDMx",
+        "keywords": [
+          "relaxen",
+          "unwind",
+          "Rilassare",
+          "Se relaxer",
+          "convenience",
+          "Komfort",
+          "Confort",
+          "Comfort",
+          "Se détendre",
+          "Rilassarsi",
+          "Entspannen",
+          "Relax"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Convenience_Solid_Shape_64.svg",
+        "basename": "Convenience_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:36:20.000Z",
+      "modifiedAt": "2026-09-16T07:05:03.755Z"
     },
     {
       "uuid": "985a1190-e562-11ef-a15d-005056873709",
@@ -110111,6 +111275,390 @@
       "modifiedAt": "2025-03-26T13:10:08.000Z"
     },
     {
+      "uuid": "f1631f50-b00b-11f1-94be-0050568d2654",
+      "id": 11236409,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236409/storage/MDExMjM2NDA5LzAvbWFzdGVyLy8vMTA3NjM1Njg2",
+        "keywords": [
+          "Financing and insurance",
+          "Finanzieren und Versichern",
+          "Financement et assurance",
+          "Finanziamenti e assicurazioni",
+          "financial insurance",
+          "Finanzversicherung",
+          "Assurance financière",
+          "Assicurazione finanziaria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FinancingInsurance_Shape_16.svg",
+        "basename": "FinancingInsurance_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:14:36.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "f0a2b582-b00b-11f1-94be-0050568d2654",
+      "id": 11236408,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236408/storage/MDExMjM2NDA4LzAvbWFzdGVyLy8vMTA3NjM1Njgy",
+        "keywords": [
+          "Financing and insurance",
+          "Finanzieren und Versichern",
+          "Financement et assurance",
+          "Finanziamenti e assicurazioni",
+          "financial insurance",
+          "Finanzversicherung",
+          "Assurance financière",
+          "Assicurazione finanziaria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FinancingInsurance_Shape_24.svg",
+        "basename": "FinancingInsurance_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:14:35.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "ef98bf90-b00b-11f1-94be-0050568d2654",
+      "id": 11236407,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236407/storage/MDExMjM2NDA3LzAvbWFzdGVyLy8vMTA3NjM1Njc4",
+        "keywords": [
+          "Financing and insurance",
+          "Finanzieren und Versichern",
+          "Financement et assurance",
+          "Finanziamenti e assicurazioni",
+          "financial insurance",
+          "Finanzversicherung",
+          "Assurance financière",
+          "Assicurazione finanziaria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FinancingInsurance_Shape_32.svg",
+        "basename": "FinancingInsurance_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:14:33.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "ef4632c0-b00b-11f1-94be-0050568d2654",
+      "id": 11236406,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236406/storage/MDExMjM2NDA2LzAvbWFzdGVyLy8vMTA3NjM1Njcx",
+        "keywords": [
+          "Financing and insurance",
+          "Finanzieren und Versichern",
+          "Financement et assurance",
+          "Finanziamenti e assicurazioni",
+          "financial insurance",
+          "Finanzversicherung",
+          "Assurance financière",
+          "Assicurazione finanziaria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FinancingInsurance_Shape_40.svg",
+        "basename": "FinancingInsurance_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:14:33.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "ee2b25d0-b00b-11f1-94be-0050568d2654",
+      "id": 11236405,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236405/storage/MDExMjM2NDA1LzAvbWFzdGVyLy8vMTA3NjM1NjY3",
+        "keywords": [
+          "Financing and insurance",
+          "Finanzieren und Versichern",
+          "Financement et assurance",
+          "Finanziamenti e assicurazioni",
+          "financial insurance",
+          "Finanzversicherung",
+          "Assurance financière",
+          "Assicurazione finanziaria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FinancingInsurance_Shape_48.svg",
+        "basename": "FinancingInsurance_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:14:31.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "edcc3cf0-b00b-11f1-94be-0050568d2654",
+      "id": 11236404,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236404/storage/MDExMjM2NDA0LzAvbWFzdGVyLy8vMTA3NjM1NTA0",
+        "keywords": [
+          "Financing and insurance",
+          "Finanzieren und Versichern",
+          "Financement et assurance",
+          "Finanziamenti e assicurazioni",
+          "financial insurance",
+          "Finanzversicherung",
+          "Assurance financière",
+          "Assicurazione finanziaria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FinancingInsurance_Shape_64.svg",
+        "basename": "FinancingInsurance_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:14:30.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "ec9c9690-b00b-11f1-94be-0050568d2654",
+      "id": 11236403,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236403/storage/MDExMjM2NDAzLzAvbWFzdGVyLy8vMTA3NjM1NjYz",
+        "keywords": [
+          "Financing and insurance",
+          "Finanzieren und Versichern",
+          "Financement et assurance",
+          "Finanziamenti e assicurazioni",
+          "financial insurance",
+          "Finanzversicherung",
+          "Assurance financière",
+          "Assicurazione finanziaria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FinancingInsurance_Solid_Shape_16.svg",
+        "basename": "FinancingInsurance_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:14:28.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "ec6532e0-b00b-11f1-94be-0050568d2654",
+      "id": 11236402,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236402/storage/MDExMjM2NDAyLzAvbWFzdGVyLy8vMTA3NjM1NjU5",
+        "keywords": [
+          "Financing and insurance",
+          "Finanzieren und Versichern",
+          "Financement et assurance",
+          "Finanziamenti e assicurazioni",
+          "financial insurance",
+          "Finanzversicherung",
+          "Assurance financière",
+          "Assicurazione finanziaria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FinancingInsurance_Solid_Shape_24.svg",
+        "basename": "FinancingInsurance_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:14:28.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "ebfa8a30-b00b-11f1-94be-0050568d2654",
+      "id": 11236401,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236401/storage/MDExMjM2NDAxLzAvbWFzdGVyLy8vMTA3NjM1NjU1",
+        "keywords": [
+          "Financing and insurance",
+          "Finanzieren und Versichern",
+          "Financement et assurance",
+          "Finanziamenti e assicurazioni",
+          "financial insurance",
+          "Finanzversicherung",
+          "Assurance financière",
+          "Assicurazione finanziaria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FinancingInsurance_Solid_Shape_32.svg",
+        "basename": "FinancingInsurance_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:14:27.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "ea422bd0-b00b-11f1-94be-0050568d2654",
+      "id": 11236400,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236400/storage/MDExMjM2NDAwLzAvbWFzdGVyLy8vMTA3NjM1NjUx",
+        "keywords": [
+          "Financing and insurance",
+          "Finanzieren und Versichern",
+          "Financement et assurance",
+          "Finanziamenti e assicurazioni",
+          "financial insurance",
+          "Finanzversicherung",
+          "Assurance financière",
+          "Assicurazione finanziaria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FinancingInsurance_Solid_Shape_40.svg",
+        "basename": "FinancingInsurance_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:14:24.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "ea33d3f0-b00b-11f1-94be-0050568d2654",
+      "id": 11236398,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236398/storage/MDExMjM2Mzk4LzAvbWFzdGVyLy8vMTA3NjM1NjQz",
+        "keywords": [
+          "Financing and insurance",
+          "Finanzieren und Versichern",
+          "Financement et assurance",
+          "Finanziamenti e assicurazioni",
+          "financial insurance",
+          "Finanzversicherung",
+          "Assurance financière",
+          "Assicurazione finanziaria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FinancingInsurance_Solid_Shape_48.svg",
+        "basename": "FinancingInsurance_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:14:24.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "ea39ee70-b00b-11f1-94be-0050568d2654",
+      "id": 11236399,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236399/storage/MDExMjM2Mzk5LzAvbWFzdGVyLy8vMTA3NjM1NjQ3",
+        "keywords": [
+          "Financing and insurance",
+          "Finanzieren und Versichern",
+          "Financement et assurance",
+          "Finanziamenti e assicurazioni",
+          "financial insurance",
+          "Finanzversicherung",
+          "Assurance financière",
+          "Assicurazione finanziaria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "FinancingInsurance_Solid_Shape_64.svg",
+        "basename": "FinancingInsurance_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:14:24.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
       "uuid": "847e2800-e51c-11ef-a15d-005056873709",
       "id": 1820401,
       "type": "picture.pictogram.",
@@ -125741,6 +127289,366 @@
       },
       "createdAt": "2025-10-15T05:28:19.000Z",
       "modifiedAt": "2025-10-15T05:32:20.000Z"
+    },
+    {
+      "uuid": "8c1dc9c0-b00a-11f1-94be-0050568d2654",
+      "id": 11236389,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236389/storage/MDExMjM2Mzg5LzAvbWFzdGVyLy8vMTA3NjM0MDc0",
+        "keywords": [
+          "hacker",
+          "Hacker",
+          "Hackers",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hacker_Shape_16.svg",
+        "basename": "Hacker_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:04:37.000Z",
+      "modifiedAt": "2026-09-14T07:07:24.000Z"
+    },
+    {
+      "uuid": "8c1edb32-b00a-11f1-94be-0050568d2654",
+      "id": 11236390,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236390/storage/MDExMjM2MzkwLzAvbWFzdGVyLy8vMTA3NjM0MDcw",
+        "keywords": [
+          "hacker",
+          "Hacker",
+          "Hackers",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hacker_Shape_24.svg",
+        "basename": "Hacker_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:04:37.000Z",
+      "modifiedAt": "2026-09-14T07:07:24.000Z"
+    },
+    {
+      "uuid": "8adae980-b00a-11f1-94be-0050568d2654",
+      "id": 11236388,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236388/storage/MDExMjM2Mzg4LzAvbWFzdGVyLy8vMTA3NjM0MDc4",
+        "keywords": [
+          "hacker",
+          "Hacker",
+          "Hackers",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hacker_Shape_32.svg",
+        "basename": "Hacker_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:04:35.000Z",
+      "modifiedAt": "2026-09-14T07:07:24.000Z"
+    },
+    {
+      "uuid": "89d03040-b00a-11f1-94be-0050568d2654",
+      "id": 11236386,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236386/storage/MDExMjM2Mzg2LzAvbWFzdGVyLy8vMTA3NjM0MDQ2",
+        "keywords": [
+          "hacker",
+          "Hacker",
+          "Hackers",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hacker_Shape_40.svg",
+        "basename": "Hacker_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:04:33.000Z",
+      "modifiedAt": "2026-09-14T07:07:24.000Z"
+    },
+    {
+      "uuid": "89d51240-b00a-11f1-94be-0050568d2654",
+      "id": 11236387,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236387/storage/MDExMjM2Mzg3LzAvbWFzdGVyLy8vMTA3NjM0MDQy",
+        "keywords": [
+          "hacker",
+          "Hacker",
+          "Hackers",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hacker_Shape_48.svg",
+        "basename": "Hacker_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:04:33.000Z",
+      "modifiedAt": "2026-09-14T07:07:24.000Z"
+    },
+    {
+      "uuid": "8851a690-b00a-11f1-94be-0050568d2654",
+      "id": 11236385,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236385/storage/MDExMjM2Mzg1LzAvbWFzdGVyLy8vMTA3NjMzOTU5",
+        "keywords": [
+          "hacker",
+          "Hacker",
+          "Hackers",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hacker_Shape_64.svg",
+        "basename": "Hacker_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:04:30.000Z",
+      "modifiedAt": "2026-09-14T07:06:45.000Z"
+    },
+    {
+      "uuid": "88340c70-b00a-11f1-94be-0050568d2654",
+      "id": 11236384,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236384/storage/MDExMjM2Mzg0LzAvbWFzdGVyLy8vMTA3NjM0MDUw",
+        "keywords": [
+          "hacker",
+          "Hacker",
+          "Hackers",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hacker_Solid_Shape_16.svg",
+        "basename": "Hacker_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:04:30.000Z",
+      "modifiedAt": "2026-09-14T07:07:24.000Z"
+    },
+    {
+      "uuid": "872cd5a0-b00a-11f1-94be-0050568d2654",
+      "id": 11236383,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236383/storage/MDExMjM2MzgzLzAvbWFzdGVyLy8vMTA3NjM0MDU0",
+        "keywords": [
+          "hacker",
+          "Hacker",
+          "Hackers",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hacker_Solid_Shape_24.svg",
+        "basename": "Hacker_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:04:28.000Z",
+      "modifiedAt": "2026-09-14T07:07:24.000Z"
+    },
+    {
+      "uuid": "86a1d3b0-b00a-11f1-94be-0050568d2654",
+      "id": 11236382,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236382/storage/MDExMjM2MzgyLzAvbWFzdGVyLy8vMTA3NjM0MDU4",
+        "keywords": [
+          "hacker",
+          "Hacker",
+          "Hackers",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hacker_Solid_Shape_32.svg",
+        "basename": "Hacker_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:04:28.000Z",
+      "modifiedAt": "2026-09-14T07:07:24.000Z"
+    },
+    {
+      "uuid": "84e68f20-b00a-11f1-94be-0050568d2654",
+      "id": 11236381,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236381/storage/MDExMjM2MzgxLzAvbWFzdGVyLy8vMTA3NjM0MDYy",
+        "keywords": [
+          "hacker",
+          "Hacker",
+          "Hackers",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hacker_Solid_Shape_40.svg",
+        "basename": "Hacker_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:04:25.000Z",
+      "modifiedAt": "2026-09-14T07:07:24.000Z"
+    },
+    {
+      "uuid": "84dddc90-b00a-11f1-94be-0050568d2654",
+      "id": 11236379,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236379/storage/MDExMjM2Mzc5LzAvbWFzdGVyLy8vMTA3NjM0MDM4",
+        "keywords": [
+          "hacker",
+          "Hacker",
+          "Hackers",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hacker_Solid_Shape_48.svg",
+        "basename": "Hacker_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:04:25.000Z",
+      "modifiedAt": "2026-09-14T07:07:24.000Z"
+    },
+    {
+      "uuid": "84df3c20-b00a-11f1-94be-0050568d2654",
+      "id": 11236380,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236380/storage/MDExMjM2MzgwLzAvbWFzdGVyLy8vMTA3NjM0MDY2",
+        "keywords": [
+          "hacker",
+          "Hacker",
+          "Hackers",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hacker_Solid_Shape_64.svg",
+        "basename": "Hacker_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:04:25.000Z",
+      "modifiedAt": "2026-09-14T07:07:24.000Z"
     },
     {
       "uuid": "b74a4e82-e51c-11ef-a15d-005056873709",
@@ -160813,6 +162721,366 @@
       "modifiedAt": "2025-03-26T13:09:30.000Z"
     },
     {
+      "uuid": "9d6abbf0-b00c-11f1-94be-0050568d2654",
+      "id": 11236426,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236426/storage/MDExMjM2NDI2LzAvbWFzdGVyLy8vMTA3NjM2Mzgy",
+        "keywords": [
+          "Management Report",
+          "Lagebericht",
+          "Rapport de gestion",
+          "Rapporto di gestione",
+          "ManagementReports",
+          "ManagementReport"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ManagementReport_Shape_16.svg",
+        "basename": "ManagementReport_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:19:25.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "9be183e0-b00c-11f1-94be-0050568d2654",
+      "id": 11236425,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236425/storage/MDExMjM2NDI1LzAvbWFzdGVyLy8vMTA3NjM2Mzc4",
+        "keywords": [
+          "Management Report",
+          "Lagebericht",
+          "Rapport de gestion",
+          "Rapporto di gestione",
+          "ManagementReports",
+          "ManagementReport"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ManagementReport_Shape_24.svg",
+        "basename": "ManagementReport_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:19:22.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "9bd21a90-b00c-11f1-94be-0050568d2654",
+      "id": 11236424,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236424/storage/MDExMjM2NDI0LzAvbWFzdGVyLy8vMTA3NjM2Mzc0",
+        "keywords": [
+          "Management Report",
+          "Lagebericht",
+          "Rapport de gestion",
+          "Rapporto di gestione",
+          "ManagementReports",
+          "ManagementReport"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ManagementReport_Shape_32.svg",
+        "basename": "ManagementReport_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:19:22.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "9a55dad0-b00c-11f1-94be-0050568d2654",
+      "id": 11236423,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236423/storage/MDExMjM2NDIzLzAvbWFzdGVyLy8vMTA3NjM2Mzcw",
+        "keywords": [
+          "Management Report",
+          "Lagebericht",
+          "Rapport de gestion",
+          "Rapporto di gestione",
+          "ManagementReports",
+          "ManagementReport"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ManagementReport_Shape_40.svg",
+        "basename": "ManagementReport_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:19:20.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "9a28fe71-b00c-11f1-94be-0050568d2654",
+      "id": 11236422,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236422/storage/MDExMjM2NDIyLzAvbWFzdGVyLy8vMTA3NjM2MzY2",
+        "keywords": [
+          "Management Report",
+          "Lagebericht",
+          "Rapport de gestion",
+          "Rapporto di gestione",
+          "ManagementReports",
+          "ManagementReport"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ManagementReport_Shape_48.svg",
+        "basename": "ManagementReport_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:19:19.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "991851c0-b00c-11f1-94be-0050568d2654",
+      "id": 11236421,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236421/storage/MDExMjM2NDIxLzAvbWFzdGVyLy8vMTA3NjM2Mjc0",
+        "keywords": [
+          "Management Report",
+          "Lagebericht",
+          "Rapport de gestion",
+          "Rapporto di gestione",
+          "ManagementReports",
+          "ManagementReport"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ManagementReport_Shape_64.svg",
+        "basename": "ManagementReport_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:19:17.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "9881de20-b00c-11f1-94be-0050568d2654",
+      "id": 11236420,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236420/storage/MDExMjM2NDIwLzAvbWFzdGVyLy8vMTA3NjM2MzYy",
+        "keywords": [
+          "Management Report",
+          "Lagebericht",
+          "Rapport de gestion",
+          "Rapporto di gestione",
+          "ManagementReports",
+          "ManagementReport"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ManagementReport_Solid_Shape_16.svg",
+        "basename": "ManagementReport_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:19:16.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "97b3dfc0-b00c-11f1-94be-0050568d2654",
+      "id": 11236419,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236419/storage/MDExMjM2NDE5LzAvbWFzdGVyLy8vMTA3NjM2MzU4",
+        "keywords": [
+          "Management Report",
+          "Lagebericht",
+          "Rapport de gestion",
+          "Rapporto di gestione",
+          "ManagementReports",
+          "ManagementReport"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ManagementReport_Solid_Shape_24.svg",
+        "basename": "ManagementReport_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:19:15.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "9732eff0-b00c-11f1-94be-0050568d2654",
+      "id": 11236418,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236418/storage/MDExMjM2NDE4LzAvbWFzdGVyLy8vMTA3NjM2MzU0",
+        "keywords": [
+          "Management Report",
+          "Lagebericht",
+          "Rapport de gestion",
+          "Rapporto di gestione",
+          "ManagementReports",
+          "ManagementReport"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ManagementReport_Solid_Shape_32.svg",
+        "basename": "ManagementReport_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:19:14.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "957a1c60-b00c-11f1-94be-0050568d2654",
+      "id": 11236415,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236415/storage/MDExMjM2NDE1LzAvbWFzdGVyLy8vMTA3NjM2MzQy",
+        "keywords": [
+          "Management Report",
+          "Lagebericht",
+          "Rapport de gestion",
+          "Rapporto di gestione",
+          "ManagementReports",
+          "ManagementReport"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ManagementReport_Solid_Shape_40.svg",
+        "basename": "ManagementReport_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:19:11.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "957e1400-b00c-11f1-94be-0050568d2654",
+      "id": 11236417,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236417/storage/MDExMjM2NDE3LzAvbWFzdGVyLy8vMTA3NjM2MzUw",
+        "keywords": [
+          "Management Report",
+          "Lagebericht",
+          "Rapport de gestion",
+          "Rapporto di gestione",
+          "ManagementReports",
+          "ManagementReport"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ManagementReport_Solid_Shape_48.svg",
+        "basename": "ManagementReport_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:19:11.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "957c1830-b00c-11f1-94be-0050568d2654",
+      "id": 11236416,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236416/storage/MDExMjM2NDE2LzAvbWFzdGVyLy8vMTA3NjM2MzQ2",
+        "keywords": [
+          "Management Report",
+          "Lagebericht",
+          "Rapport de gestion",
+          "Rapporto di gestione",
+          "ManagementReports",
+          "ManagementReport"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ManagementReport_Solid_Shape_64.svg",
+        "basename": "ManagementReport_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:19:11.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
       "uuid": "4b51f790-e51d-11ef-a15d-005056873709",
       "id": 1821138,
       "type": "picture.pictogram.",
@@ -178375,6 +180643,390 @@
       },
       "createdAt": "2026-06-15T11:52:25.000Z",
       "modifiedAt": "2026-06-16T11:05:10.466Z"
+    },
+    {
+      "uuid": "687111a7-b00d-11f1-94be-0050568d2654",
+      "id": 11236449,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236449/storage/MDExMjM2NDQ5LzAvbWFzdGVyLy8vMTA3NjM3MzI0",
+        "keywords": [
+          "strategic objective",
+          "Strategieziel",
+          "Objectif stratégique",
+          "Obiettivo strategico",
+          "Net Zero",
+          "Netto-Null",
+          "Zéro Net",
+          "Zero netto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NetZero_Shape_16.svg",
+        "basename": "NetZero_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:25:05.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "66fee402-b00d-11f1-94be-0050568d2654",
+      "id": 11236447,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236447/storage/MDExMjM2NDQ3LzAvbWFzdGVyLy8vMTA3NjM3MzE2",
+        "keywords": [
+          "strategic objective",
+          "Strategieziel",
+          "Objectif stratégique",
+          "Obiettivo strategico",
+          "Net Zero",
+          "Netto-Null",
+          "Zéro Net",
+          "Zero netto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NetZero_Shape_24.svg",
+        "basename": "NetZero_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:25:03.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "673eac20-b00d-11f1-94be-0050568d2654",
+      "id": 11236448,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236448/storage/MDExMjM2NDQ4LzAvbWFzdGVyLy8vMTA3NjM3MzIw",
+        "keywords": [
+          "strategic objective",
+          "Strategieziel",
+          "Objectif stratégique",
+          "Obiettivo strategico",
+          "Net Zero",
+          "Netto-Null",
+          "Zéro Net",
+          "Zero netto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NetZero_Shape_32.svg",
+        "basename": "NetZero_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:25:03.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "65ce7a50-b00d-11f1-94be-0050568d2654",
+      "id": 11236446,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236446/storage/MDExMjM2NDQ2LzAvbWFzdGVyLy8vMTA3NjM3MzEy",
+        "keywords": [
+          "strategic objective",
+          "Strategieziel",
+          "Objectif stratégique",
+          "Obiettivo strategico",
+          "Net Zero",
+          "Netto-Null",
+          "Zéro Net",
+          "Zero netto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NetZero_Shape_40.svg",
+        "basename": "NetZero_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:25:01.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "651da0e0-b00d-11f1-94be-0050568d2654",
+      "id": 11236445,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236445/storage/MDExMjM2NDQ1LzAvbWFzdGVyLy8vMTA3NjM3MzUy",
+        "keywords": [
+          "strategic objective",
+          "Strategieziel",
+          "Objectif stratégique",
+          "Obiettivo strategico",
+          "Net Zero",
+          "Netto-Null",
+          "Zéro Net",
+          "Zero netto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NetZero_Shape_48.svg",
+        "basename": "NetZero_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:25:00.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "64e83900-b00d-11f1-94be-0050568d2654",
+      "id": 11236444,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236444/storage/MDExMjM2NDQ0LzAvbWFzdGVyLy8vMTA3NjM3MTY2",
+        "keywords": [
+          "strategic objective",
+          "Strategieziel",
+          "Objectif stratégique",
+          "Obiettivo strategico",
+          "Net Zero",
+          "Netto-Null",
+          "Zéro Net",
+          "Zero netto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NetZero_Shape_64.svg",
+        "basename": "NetZero_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:24:59.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "636bf940-b00d-11f1-94be-0050568d2654",
+      "id": 11236443,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236443/storage/MDExMjM2NDQzLzAvbWFzdGVyLy8vMTA3NjM3MzQ4",
+        "keywords": [
+          "strategic objective",
+          "Strategieziel",
+          "Objectif stratégique",
+          "Obiettivo strategico",
+          "Net Zero",
+          "Netto-Null",
+          "Zéro Net",
+          "Zero netto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NetZero_Solid_Shape_16.svg",
+        "basename": "NetZero_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:24:57.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "636a72a0-b00d-11f1-94be-0050568d2654",
+      "id": 11236442,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236442/storage/MDExMjM2NDQyLzAvbWFzdGVyLy8vMTA3NjM3MzQ0",
+        "keywords": [
+          "strategic objective",
+          "Strategieziel",
+          "Objectif stratégique",
+          "Obiettivo strategico",
+          "Net Zero",
+          "Netto-Null",
+          "Zéro Net",
+          "Zero netto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NetZero_Solid_Shape_24.svg",
+        "basename": "NetZero_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:24:57.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "629f3360-b00d-11f1-94be-0050568d2654",
+      "id": 11236441,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236441/storage/MDExMjM2NDQxLzAvbWFzdGVyLy8vMTA3NjM3MzQw",
+        "keywords": [
+          "strategic objective",
+          "Strategieziel",
+          "Objectif stratégique",
+          "Obiettivo strategico",
+          "Net Zero",
+          "Netto-Null",
+          "Zéro Net",
+          "Zero netto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NetZero_Solid_Shape_32.svg",
+        "basename": "NetZero_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:24:56.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "60dfd020-b00d-11f1-94be-0050568d2654",
+      "id": 11236440,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236440/storage/MDExMjM2NDQwLzAvbWFzdGVyLy8vMTA3NjM3MzM2",
+        "keywords": [
+          "strategic objective",
+          "Strategieziel",
+          "Objectif stratégique",
+          "Obiettivo strategico",
+          "Net Zero",
+          "Netto-Null",
+          "Zéro Net",
+          "Zero netto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NetZero_Solid_Shape_40.svg",
+        "basename": "NetZero_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:24:53.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "60db1530-b00d-11f1-94be-0050568d2654",
+      "id": 11236439,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236439/storage/MDExMjM2NDM5LzAvbWFzdGVyLy8vMTA3NjM3MzMy",
+        "keywords": [
+          "strategic objective",
+          "Strategieziel",
+          "Objectif stratégique",
+          "Obiettivo strategico",
+          "Net Zero",
+          "Netto-Null",
+          "Zéro Net",
+          "Zero netto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NetZero_Solid_Shape_48.svg",
+        "basename": "NetZero_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:24:53.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
+    },
+    {
+      "uuid": "60c98900-b00d-11f1-94be-0050568d2654",
+      "id": 11236438,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236438/storage/MDExMjM2NDM4LzAvbWFzdGVyLy8vMTA3NjM3MzI4",
+        "keywords": [
+          "strategic objective",
+          "Strategieziel",
+          "Objectif stratégique",
+          "Obiettivo strategico",
+          "Net Zero",
+          "Netto-Null",
+          "Zéro Net",
+          "Zero netto"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "NetZero_Solid_Shape_64.svg",
+        "basename": "NetZero_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T07:24:53.000Z",
+      "modifiedAt": "2026-09-15T07:05:05.479Z"
     },
     {
       "uuid": "f1618150-1960-11f1-a5c3-0050568d2654",
@@ -200573,6 +203225,342 @@
       "modifiedAt": "2025-07-31T09:22:28.000Z"
     },
     {
+      "uuid": "01df29a0-b192-11f1-8838-0050568d2654",
+      "id": 11249385,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249385/storage/MDExMjQ5Mzg1LzAvbWFzdGVyLy8vMTA3ODI5NTg1",
+        "keywords": [
+          "Posthorn",
+          "post horn",
+          "Corno postale",
+          "Cor postal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Posthorn_Shape_16.svg",
+        "basename": "Posthorn_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:46:47.000Z",
+      "modifiedAt": "2026-09-16T05:49:03.000Z"
+    },
+    {
+      "uuid": "00b79990-b192-11f1-8838-0050568d2654",
+      "id": 11249384,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249384/storage/MDExMjQ5Mzg0LzAvbWFzdGVyLy8vMTA3ODI5NTgx",
+        "keywords": [
+          "Posthorn",
+          "post horn",
+          "Corno postale",
+          "Cor postal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Posthorn_Shape_24.svg",
+        "basename": "Posthorn_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:46:46.000Z",
+      "modifiedAt": "2026-09-16T05:49:03.000Z"
+    },
+    {
+      "uuid": "ffb8ee40-b191-11f1-8838-0050568d2654",
+      "id": 11249383,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249383/storage/MDExMjQ5MzgzLzAvbWFzdGVyLy8vMTA3ODI5NTc3",
+        "keywords": [
+          "Posthorn",
+          "post horn",
+          "Corno postale",
+          "Cor postal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Posthorn_Shape_32.svg",
+        "basename": "Posthorn_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:46:44.000Z",
+      "modifiedAt": "2026-09-16T05:49:03.000Z"
+    },
+    {
+      "uuid": "feb47690-b191-11f1-8838-0050568d2654",
+      "id": 11249382,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249382/storage/MDExMjQ5MzgyLzAvbWFzdGVyLy8vMTA3ODI5NTcy",
+        "keywords": [
+          "Posthorn",
+          "post horn",
+          "Corno postale",
+          "Cor postal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Posthorn_Shape_40.svg",
+        "basename": "Posthorn_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:46:42.000Z",
+      "modifiedAt": "2026-09-16T05:49:03.000Z"
+    },
+    {
+      "uuid": "fdd89580-b191-11f1-8838-0050568d2654",
+      "id": 11249381,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249381/storage/MDExMjQ5MzgxLzAvbWFzdGVyLy8vMTA3ODI5NTY4",
+        "keywords": [
+          "Posthorn",
+          "post horn",
+          "Corno postale",
+          "Cor postal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Posthorn_Shape_48.svg",
+        "basename": "Posthorn_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:46:41.000Z",
+      "modifiedAt": "2026-09-16T05:49:02.000Z"
+    },
+    {
+      "uuid": "fd07d800-b191-11f1-8838-0050568d2654",
+      "id": 11249380,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249380/storage/MDExMjQ5MzgwLzAvbWFzdGVyLy8vMTA3ODI5MTg4",
+        "keywords": [
+          "Posthorn",
+          "post horn",
+          "Corno postale",
+          "Cor postal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Posthorn_Shape_64.svg",
+        "basename": "Posthorn_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:46:39.000Z",
+      "modifiedAt": "2026-09-16T05:48:25.000Z"
+    },
+    {
+      "uuid": "fc351eb0-b191-11f1-8838-0050568d2654",
+      "id": 11249379,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249379/storage/MDExMjQ5Mzc5LzAvbWFzdGVyLy8vMTA3ODI5NTYz",
+        "keywords": [
+          "Posthorn",
+          "post horn",
+          "Corno postale",
+          "Cor postal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Posthorn_Solid_Shape_16.svg",
+        "basename": "Posthorn_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:46:38.000Z",
+      "modifiedAt": "2026-09-16T05:49:03.000Z"
+    },
+    {
+      "uuid": "fb1b9860-b191-11f1-8838-0050568d2654",
+      "id": 11249378,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249378/storage/MDExMjQ5Mzc4LzAvbWFzdGVyLy8vMTA3ODI5NTU5",
+        "keywords": [
+          "Posthorn",
+          "post horn",
+          "Corno postale",
+          "Cor postal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Posthorn_Solid_Shape_24.svg",
+        "basename": "Posthorn_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:46:36.000Z",
+      "modifiedAt": "2026-09-16T05:49:03.000Z"
+    },
+    {
+      "uuid": "fa455ca0-b191-11f1-8838-0050568d2654",
+      "id": 11249377,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249377/storage/MDExMjQ5Mzc3LzAvbWFzdGVyLy8vMTA3ODI5NTUy",
+        "keywords": [
+          "Posthorn",
+          "post horn",
+          "Corno postale",
+          "Cor postal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Posthorn_Solid_Shape_32.svg",
+        "basename": "Posthorn_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:46:35.000Z",
+      "modifiedAt": "2026-09-16T05:49:03.000Z"
+    },
+    {
+      "uuid": "f954bb10-b191-11f1-8838-0050568d2654",
+      "id": 11249376,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249376/storage/MDExMjQ5Mzc2LzAvbWFzdGVyLy8vMTA3ODI5NTQ4",
+        "keywords": [
+          "Posthorn",
+          "post horn",
+          "Corno postale",
+          "Cor postal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Posthorn_Solid_Shape_40.svg",
+        "basename": "Posthorn_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:46:33.000Z",
+      "modifiedAt": "2026-09-16T05:49:03.000Z"
+    },
+    {
+      "uuid": "f7ec9f90-b191-11f1-8838-0050568d2654",
+      "id": 11249375,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249375/storage/MDExMjQ5Mzc1LzAvbWFzdGVyLy8vMTA3ODI5NTQz",
+        "keywords": [
+          "Posthorn",
+          "post horn",
+          "Corno postale",
+          "Cor postal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Posthorn_Solid_Shape_48.svg",
+        "basename": "Posthorn_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:46:31.000Z",
+      "modifiedAt": "2026-09-16T05:49:02.000Z"
+    },
+    {
+      "uuid": "f7ddd280-b191-11f1-8838-0050568d2654",
+      "id": 11249374,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249374/storage/MDExMjQ5Mzc0LzAvbWFzdGVyLy8vMTA3ODI5NTM5",
+        "keywords": [
+          "Posthorn",
+          "post horn",
+          "Corno postale",
+          "Cor postal"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Posthorn_Solid_Shape_64.svg",
+        "basename": "Posthorn_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:46:31.000Z",
+      "modifiedAt": "2026-09-16T05:49:02.000Z"
+    },
+    {
       "uuid": "6946efd0-9387-11f0-9719-005056873709",
       "id": 6260462,
       "type": "picture.pictogram.",
@@ -208875,6 +211863,318 @@
       },
       "createdAt": "2025-02-07T06:36:27.000Z",
       "modifiedAt": "2025-12-09T08:43:10.000Z"
+    },
+    {
+      "uuid": "c156b1e0-b007-11f1-94be-0050568d2654",
+      "id": 11235985,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235985/storage/MDExMjM1OTg1LzAvbWFzdGVyLy8vMTA3NjI5OTk0",
+        "keywords": [
+          "RSS-Feed",
+          "RSSFeed"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "RSSFeed_Shape_16.svg",
+        "basename": "RSSFeed_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:44:38.000Z",
+      "modifiedAt": "2026-09-15T06:05:05.372Z"
+    },
+    {
+      "uuid": "c02c3ba0-b007-11f1-94be-0050568d2654",
+      "id": 11235981,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235981/storage/MDExMjM1OTgxLzAvbWFzdGVyLy8vMTA3NjMwMDE5",
+        "keywords": [
+          "RSS-Feed",
+          "RSSFeed"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "RSSFeed_Shape_24.svg",
+        "basename": "RSSFeed_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:44:36.000Z",
+      "modifiedAt": "2026-09-15T06:05:05.372Z"
+    },
+    {
+      "uuid": "bf2049e0-b007-11f1-94be-0050568d2654",
+      "id": 11235980,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235980/storage/MDExMjM1OTgwLzAvbWFzdGVyLy8vMTA3NjMwMDE1",
+        "keywords": [
+          "RSS-Feed",
+          "RSSFeed"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "RSSFeed_Shape_32.svg",
+        "basename": "RSSFeed_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:44:34.000Z",
+      "modifiedAt": "2026-09-15T06:05:05.372Z"
+    },
+    {
+      "uuid": "be1346b0-b007-11f1-94be-0050568d2654",
+      "id": 11235979,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235979/storage/MDExMjM1OTc5LzAvbWFzdGVyLy8vMTA3NjMwMDA4",
+        "keywords": [
+          "RSS-Feed",
+          "RSSFeed"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "RSSFeed_Shape_40.svg",
+        "basename": "RSSFeed_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:44:32.000Z",
+      "modifiedAt": "2026-09-15T06:05:05.372Z"
+    },
+    {
+      "uuid": "bc104ac0-b007-11f1-94be-0050568d2654",
+      "id": 11235977,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235977/storage/MDExMjM1OTc3LzAvbWFzdGVyLy8vMTA3NjMwMDAx",
+        "keywords": [
+          "RSS-Feed",
+          "RSSFeed"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "RSSFeed_Shape_48.svg",
+        "basename": "RSSFeed_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:44:29.000Z",
+      "modifiedAt": "2026-09-15T06:05:05.372Z"
+    },
+    {
+      "uuid": "bc02dd40-b007-11f1-94be-0050568d2654",
+      "id": 11235975,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235975/storage/MDExMjM1OTc1LzAvbWFzdGVyLy8vMTA3NjI5NDMz",
+        "keywords": [
+          "RSS-Feed",
+          "RSSFeed"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "RSSFeed_Shape_64.svg",
+        "basename": "RSSFeed_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:44:29.000Z",
+      "modifiedAt": "2026-09-15T06:05:05.372Z"
+    },
+    {
+      "uuid": "bae9a510-b007-11f1-94be-0050568d2654",
+      "id": 11235974,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235974/storage/MDExMjM1OTc0LzAvbWFzdGVyLy8vMTA3NjI5OTg2",
+        "keywords": [
+          "RSS-Feed",
+          "RSSFeed"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "RSSFeed_Solid_Shape_16.svg",
+        "basename": "RSSFeed_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:44:27.000Z",
+      "modifiedAt": "2026-09-15T06:05:05.372Z"
+    },
+    {
+      "uuid": "badde540-b007-11f1-94be-0050568d2654",
+      "id": 11235972,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235972/storage/MDExMjM1OTcyLzAvbWFzdGVyLy8vMTA3NjI5OTgx",
+        "keywords": [
+          "RSS-Feed",
+          "RSSFeed"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "RSSFeed_Solid_Shape_24.svg",
+        "basename": "RSSFeed_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:44:27.000Z",
+      "modifiedAt": "2026-09-15T06:05:05.372Z"
+    },
+    {
+      "uuid": "b95aa0a0-b007-11f1-94be-0050568d2654",
+      "id": 11235971,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235971/storage/MDExMjM1OTcxLzAvbWFzdGVyLy8vMTA3NjI5OTc3",
+        "keywords": [
+          "RSS-Feed",
+          "RSSFeed"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "RSSFeed_Solid_Shape_32.svg",
+        "basename": "RSSFeed_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:44:24.000Z",
+      "modifiedAt": "2026-09-15T06:05:05.372Z"
+    },
+    {
+      "uuid": "b633be20-b007-11f1-94be-0050568d2654",
+      "id": 11235964,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235964/storage/MDExMjM1OTY0LzAvbWFzdGVyLy8vMTA3NjI5OTY5",
+        "keywords": [
+          "RSS-Feed",
+          "RSSFeed"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "RSSFeed_Solid_Shape_40.svg",
+        "basename": "RSSFeed_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:44:19.000Z",
+      "modifiedAt": "2026-09-15T06:05:05.372Z"
+    },
+    {
+      "uuid": "b63544c0-b007-11f1-94be-0050568d2654",
+      "id": 11235965,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235965/storage/MDExMjM1OTY1LzAvbWFzdGVyLy8vMTA3NjI5OTcz",
+        "keywords": [
+          "RSS-Feed",
+          "RSSFeed"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "RSSFeed_Solid_Shape_48.svg",
+        "basename": "RSSFeed_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:44:19.000Z",
+      "modifiedAt": "2026-09-15T06:05:05.372Z"
+    },
+    {
+      "uuid": "b62b80c2-b007-11f1-94be-0050568d2654",
+      "id": 11235962,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11235962/storage/MDExMjM1OTYyLzAvbWFzdGVyLy8vMTA3NjI5OTkw",
+        "keywords": [
+          "RSS-Feed",
+          "RSSFeed"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "RSSFeed_Solid_Shape_64.svg",
+        "basename": "RSSFeed_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:44:19.000Z",
+      "modifiedAt": "2026-09-15T06:05:05.372Z"
     },
     {
       "uuid": "c2adbd40-bf8f-11f0-b1fa-0050568d2654",
@@ -232733,6 +236033,330 @@
       "modifiedAt": "2026-05-22T12:09:56.000Z"
     },
     {
+      "uuid": "621694b0-b008-11f1-94be-0050568d2654",
+      "id": 11236372,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236372/storage/MDExMjM2MzcyLzAvbWFzdGVyLy8vMTA3NjMyMTMw",
+        "keywords": [
+          "Slideshare",
+          "Diaporama",
+          "Condivisione diapositive"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Slideshare_Shape_16.svg",
+        "basename": "Slideshare_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:49:07.000Z",
+      "modifiedAt": "2026-09-14T06:53:28.000Z"
+    },
+    {
+      "uuid": "613d4bb0-b008-11f1-94be-0050568d2654",
+      "id": 11236371,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236371/storage/MDExMjM2MzcxLzAvbWFzdGVyLy8vMTA3NjMyMTI2",
+        "keywords": [
+          "Slideshare",
+          "Diaporama",
+          "Condivisione diapositive"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Slideshare_Shape_24.svg",
+        "basename": "Slideshare_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:49:06.000Z",
+      "modifiedAt": "2026-09-14T06:53:28.000Z"
+    },
+    {
+      "uuid": "6048b280-b008-11f1-94be-0050568d2654",
+      "id": 11236369,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236369/storage/MDExMjM2MzY5LzAvbWFzdGVyLy8vMTA3NjMyMTIy",
+        "keywords": [
+          "Slideshare",
+          "Diaporama",
+          "Condivisione diapositive"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Slideshare_Shape_32.svg",
+        "basename": "Slideshare_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:49:04.000Z",
+      "modifiedAt": "2026-09-14T06:53:28.000Z"
+    },
+    {
+      "uuid": "5ed9b930-b008-11f1-94be-0050568d2654",
+      "id": 11236368,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236368/storage/MDExMjM2MzY4LzAvbWFzdGVyLy8vMTA3NjMyMTE4",
+        "keywords": [
+          "Slideshare",
+          "Diaporama",
+          "Condivisione diapositive"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Slideshare_Shape_40.svg",
+        "basename": "Slideshare_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:49:02.000Z",
+      "modifiedAt": "2026-09-14T06:53:28.000Z"
+    },
+    {
+      "uuid": "5c7d79b0-b008-11f1-94be-0050568d2654",
+      "id": 11236363,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236363/storage/MDExMjM2MzYzLzAvbWFzdGVyLy8vMTA3NjMyMTE0",
+        "keywords": [
+          "Slideshare",
+          "Diaporama",
+          "Condivisione diapositive"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Slideshare_Shape_48.svg",
+        "basename": "Slideshare_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:48:58.000Z",
+      "modifiedAt": "2026-09-14T06:53:28.000Z"
+    },
+    {
+      "uuid": "5db9f150-b008-11f1-94be-0050568d2654",
+      "id": 11236365,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236365/storage/MDExMjM2MzY1LzAvbWFzdGVyLy8vMTA3NjMxNjg3",
+        "keywords": [
+          "Slideshare",
+          "Diaporama",
+          "Condivisione diapositive"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Slideshare_Shape_64.svg",
+        "basename": "Slideshare_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:49:00.000Z",
+      "modifiedAt": "2026-09-14T06:50:50.000Z"
+    },
+    {
+      "uuid": "5a780cc0-b008-11f1-94be-0050568d2654",
+      "id": 11236359,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236359/storage/MDExMjM2MzU5LzAvbWFzdGVyLy8vMTA3NjMyMTA2",
+        "keywords": [
+          "Slideshare",
+          "Diaporama",
+          "Condivisione diapositive"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Slideshare_Solid_Shape_16.svg",
+        "basename": "Slideshare_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:48:54.000Z",
+      "modifiedAt": "2026-09-14T06:53:28.000Z"
+    },
+    {
+      "uuid": "5ad4f9d0-b008-11f1-94be-0050568d2654",
+      "id": 11236360,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236360/storage/MDExMjM2MzYwLzAvbWFzdGVyLy8vMTA3NjMyMTEw",
+        "keywords": [
+          "Slideshare",
+          "Diaporama",
+          "Condivisione diapositive"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Slideshare_Solid_Shape_24.svg",
+        "basename": "Slideshare_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:48:55.000Z",
+      "modifiedAt": "2026-09-14T06:53:28.000Z"
+    },
+    {
+      "uuid": "5929bad0-b008-11f1-94be-0050568d2654",
+      "id": 11236358,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236358/storage/MDExMjM2MzU4LzAvbWFzdGVyLy8vMTA3NjMyMTAy",
+        "keywords": [
+          "Slideshare",
+          "Diaporama",
+          "Condivisione diapositive"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Slideshare_Solid_Shape_32.svg",
+        "basename": "Slideshare_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:48:52.000Z",
+      "modifiedAt": "2026-09-14T06:53:28.000Z"
+    },
+    {
+      "uuid": "56c05bf0-b008-11f1-94be-0050568d2654",
+      "id": 11236350,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236350/storage/MDExMjM2MzUwLzAvbWFzdGVyLy8vMTA3NjMyMDkw",
+        "keywords": [
+          "Slideshare",
+          "Diaporama",
+          "Condivisione diapositive"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Slideshare_Solid_Shape_40.svg",
+        "basename": "Slideshare_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:48:48.000Z",
+      "modifiedAt": "2026-09-14T06:53:28.000Z"
+    },
+    {
+      "uuid": "56cabc30-b008-11f1-94be-0050568d2654",
+      "id": 11236351,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236351/storage/MDExMjM2MzUxLzAvbWFzdGVyLy8vMTA3NjMyMDk0",
+        "keywords": [
+          "Slideshare",
+          "Diaporama",
+          "Condivisione diapositive"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Slideshare_Solid_Shape_48.svg",
+        "basename": "Slideshare_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:48:48.000Z",
+      "modifiedAt": "2026-09-14T06:53:28.000Z"
+    },
+    {
+      "uuid": "56ce1790-b008-11f1-94be-0050568d2654",
+      "id": 11236352,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11236352/storage/MDExMjM2MzUyLzAvbWFzdGVyLy8vMTA3NjMyMDk4",
+        "keywords": [
+          "Slideshare",
+          "Diaporama",
+          "Condivisione diapositive"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Slideshare_Solid_Shape_64.svg",
+        "basename": "Slideshare_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-14T06:48:48.000Z",
+      "modifiedAt": "2026-09-14T06:53:28.000Z"
+    },
+    {
       "uuid": "dcf1d4e0-1b82-11f0-990c-005056873709",
       "id": 3407854,
       "type": "picture.pictogram.",
@@ -239891,6 +243515,390 @@
       },
       "createdAt": "2025-02-07T06:37:58.000Z",
       "modifiedAt": "2025-03-26T13:27:33.000Z"
+    },
+    {
+      "uuid": "ef58a600-b18f-11f1-8838-0050568d2654",
+      "id": 11249339,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249339/storage/MDExMjQ5MzM5LzAvbWFzdGVyLy8vMTA3ODI3Njcw",
+        "keywords": [
+          "Speed",
+          "Schnelligkeit",
+          "Rapidité",
+          "Rapidità",
+          "Planung",
+          "planning",
+          "Planification",
+          "Pianificazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpeedPredictability_Shape_16.svg",
+        "basename": "SpeedPredictability_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:31:57.000Z",
+      "modifiedAt": "2026-09-16T05:35:47.000Z"
+    },
+    {
+      "uuid": "ee86d710-b18f-11f1-8838-0050568d2654",
+      "id": 11249338,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249338/storage/MDExMjQ5MzM4LzAvbWFzdGVyLy8vMTA3ODI3NjY2",
+        "keywords": [
+          "Speed",
+          "Schnelligkeit",
+          "Rapidité",
+          "Rapidità",
+          "Planung",
+          "planning",
+          "Planification",
+          "Pianificazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpeedPredictability_Shape_24.svg",
+        "basename": "SpeedPredictability_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:31:56.000Z",
+      "modifiedAt": "2026-09-16T05:35:47.000Z"
+    },
+    {
+      "uuid": "edc004a0-b18f-11f1-8838-0050568d2654",
+      "id": 11249337,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249337/storage/MDExMjQ5MzM3LzAvbWFzdGVyLy8vMTA3ODI3NjYy",
+        "keywords": [
+          "Speed",
+          "Schnelligkeit",
+          "Rapidité",
+          "Rapidità",
+          "Planung",
+          "planning",
+          "Planification",
+          "Pianificazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpeedPredictability_Shape_32.svg",
+        "basename": "SpeedPredictability_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:31:55.000Z",
+      "modifiedAt": "2026-09-16T05:35:47.000Z"
+    },
+    {
+      "uuid": "ed6cdb90-b18f-11f1-8838-0050568d2654",
+      "id": 11249336,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249336/storage/MDExMjQ5MzM2LzAvbWFzdGVyLy8vMTA3ODI3NjU4",
+        "keywords": [
+          "Speed",
+          "Schnelligkeit",
+          "Rapidité",
+          "Rapidità",
+          "Planung",
+          "planning",
+          "Planification",
+          "Pianificazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpeedPredictability_Shape_40.svg",
+        "basename": "SpeedPredictability_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:31:54.000Z",
+      "modifiedAt": "2026-09-16T05:35:47.000Z"
+    },
+    {
+      "uuid": "ecb153c0-b18f-11f1-8838-0050568d2654",
+      "id": 11249335,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249335/storage/MDExMjQ5MzM1LzAvbWFzdGVyLy8vMTA3ODI3NjU0",
+        "keywords": [
+          "Speed",
+          "Schnelligkeit",
+          "Rapidité",
+          "Rapidità",
+          "Planung",
+          "planning",
+          "Planification",
+          "Pianificazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpeedPredictability_Shape_48.svg",
+        "basename": "SpeedPredictability_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:31:53.000Z",
+      "modifiedAt": "2026-09-16T05:35:47.000Z"
+    },
+    {
+      "uuid": "ebd4fd82-b18f-11f1-8838-0050568d2654",
+      "id": 11249334,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249334/storage/MDExMjQ5MzM0LzAvbWFzdGVyLy8vMTA3ODI3NTc1",
+        "keywords": [
+          "Speed",
+          "Schnelligkeit",
+          "Rapidité",
+          "Rapidità",
+          "Planung",
+          "planning",
+          "Planification",
+          "Pianificazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpeedPredictability_Shape_64.svg",
+        "basename": "SpeedPredictability_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:31:52.000Z",
+      "modifiedAt": "2026-09-16T05:34:28.000Z"
+    },
+    {
+      "uuid": "e9ef4d90-b18f-11f1-8838-0050568d2654",
+      "id": 11249331,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249331/storage/MDExMjQ5MzMxLzAvbWFzdGVyLy8vMTA3ODI3NjQy",
+        "keywords": [
+          "Speed",
+          "Schnelligkeit",
+          "Rapidité",
+          "Rapidità",
+          "Planung",
+          "planning",
+          "Planification",
+          "Pianificazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpeedPredictability_Solid_Shape_16.svg",
+        "basename": "SpeedPredictability_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:31:48.000Z",
+      "modifiedAt": "2026-09-16T05:35:47.000Z"
+    },
+    {
+      "uuid": "e9f7d910-b18f-11f1-8838-0050568d2654",
+      "id": 11249332,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249332/storage/MDExMjQ5MzMyLzAvbWFzdGVyLy8vMTA3ODI3NjQ2",
+        "keywords": [
+          "Speed",
+          "Schnelligkeit",
+          "Rapidité",
+          "Rapidità",
+          "Planung",
+          "planning",
+          "Planification",
+          "Pianificazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpeedPredictability_Solid_Shape_24.svg",
+        "basename": "SpeedPredictability_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:31:48.000Z",
+      "modifiedAt": "2026-09-16T05:35:47.000Z"
+    },
+    {
+      "uuid": "e9fe8fd0-b18f-11f1-8838-0050568d2654",
+      "id": 11249333,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249333/storage/MDExMjQ5MzMzLzAvbWFzdGVyLy8vMTA3ODI3NjUw",
+        "keywords": [
+          "Speed",
+          "Schnelligkeit",
+          "Rapidité",
+          "Rapidità",
+          "Planung",
+          "planning",
+          "Planification",
+          "Pianificazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpeedPredictability_Solid_Shape_32.svg",
+        "basename": "SpeedPredictability_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:31:48.000Z",
+      "modifiedAt": "2026-09-16T05:35:47.000Z"
+    },
+    {
+      "uuid": "e7941f80-b18f-11f1-8838-0050568d2654",
+      "id": 11249330,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249330/storage/MDExMjQ5MzMwLzAvbWFzdGVyLy8vMTA3ODI3NjM4",
+        "keywords": [
+          "Speed",
+          "Schnelligkeit",
+          "Rapidité",
+          "Rapidità",
+          "Planung",
+          "planning",
+          "Planification",
+          "Pianificazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpeedPredictability_Solid_Shape_40.svg",
+        "basename": "SpeedPredictability_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:31:44.000Z",
+      "modifiedAt": "2026-09-16T05:35:47.000Z"
+    },
+    {
+      "uuid": "e78a0d60-b18f-11f1-8838-0050568d2654",
+      "id": 11249328,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249328/storage/MDExMjQ5MzI4LzAvbWFzdGVyLy8vMTA3ODI3NjM0",
+        "keywords": [
+          "Speed",
+          "Schnelligkeit",
+          "Rapidité",
+          "Rapidità",
+          "Planung",
+          "planning",
+          "Planification",
+          "Pianificazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpeedPredictability_Solid_Shape_48.svg",
+        "basename": "SpeedPredictability_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:31:44.000Z",
+      "modifiedAt": "2026-09-16T05:35:47.000Z"
+    },
+    {
+      "uuid": "e78fd9c0-b18f-11f1-8838-0050568d2654",
+      "id": 11249329,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11249329/storage/MDExMjQ5MzI5LzAvbWFzdGVyLy8vMTA3ODI3NjMw",
+        "keywords": [
+          "Speed",
+          "Schnelligkeit",
+          "Rapidité",
+          "Rapidità",
+          "Planung",
+          "planning",
+          "Planification",
+          "Pianificazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SpeedPredictability_Solid_Shape_64.svg",
+        "basename": "SpeedPredictability_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-09-16T05:31:44.000Z",
+      "modifiedAt": "2026-09-16T05:35:47.000Z"
     },
     {
       "uuid": "62584d90-bf92-11f0-b1fa-0050568d2654",
@@ -371372,13 +375380,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 9648,
+    "success": 9780,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 2948,
     "duplicates": 0
   },
-  "created": "2026-08-23T01:59:47.674Z",
-  "version": "10.3.0"
+  "created": "2026-09-16T07:36:22.822Z",
+  "version": "10.5.0"
 }
