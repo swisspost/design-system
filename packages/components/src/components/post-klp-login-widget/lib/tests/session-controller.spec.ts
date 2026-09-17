@@ -14,19 +14,30 @@ function mockSubscribe(message: KlpMessage) {
   return fetchMock;
 }
 
+/** Every controller installs a keep-alive interval on login; an untracked one outlives the test. */
+const running: { stop: () => void }[] = [];
+
+function track<T extends { stop: () => void }>(controller: T): T {
+  running.push(controller);
+  return controller;
+}
+
 function controllerFor(message: KlpMessage) {
   const fetchMock = mockSubscribe(message);
   const onSessionChange = jest.fn();
-  const controller = createSessionController({
-    endPoint: 'https://n.accountint1.post.ch',
-    onSessionChange,
-  });
+  const controller = track(
+    createSessionController({
+      endPoint: 'https://n.accountint1.post.ch',
+      onSessionChange,
+    }),
+  );
 
   return { controller, onSessionChange, fetchMock };
 }
 
 describe('session-controller', () => {
   afterEach(() => {
+    while (running.length > 0) running.pop().stop();
     jest.restoreAllMocks();
   });
 
@@ -97,12 +108,89 @@ describe('session-controller', () => {
   it('survives a failing subscribe without rejecting', async () => {
     globalThis.fetch = jest.fn().mockRejectedValue(new Error('offline')) as unknown as typeof fetch;
     const onSessionChange = jest.fn();
-    const controller = createSessionController({
-      endPoint: 'https://n.accountint1.post.ch',
-      onSessionChange,
-    });
+    const controller = track(
+      createSessionController({
+        endPoint: 'https://n.accountint1.post.ch',
+        onSessionChange,
+      }),
+    );
 
     await expect(controller.start()).resolves.toBeUndefined();
     expect(controller.getSession()).toBeNull();
+  });
+
+  describe('keep-alive', () => {
+    afterEach(() => {
+      jest.useRealTimers();
+    });
+
+    it('refreshes the portal and the platform once logged in', async () => {
+      jest.useFakeTimers();
+      const fetchMock = mockSubscribe({
+        typ: 'sub',
+        adr: 'address-1',
+        ttl: 60_000,
+        data: sessionData,
+      });
+      const controller = track(
+        createSessionController({
+          endPoint: 'https://n.accountint1.post.ch',
+          keepAliveUrl: 'https://int.post.ch/keepalive',
+          conf: { keepAliveInterval: 1 },
+          onSessionChange: jest.fn(),
+        }),
+      );
+
+      await controller.start();
+      fetchMock.mockClear();
+      jest.advanceTimersByTime(60 * 1000);
+
+      const pinged = fetchMock.mock.calls.map(([url]) => url as string);
+      expect(pinged).toHaveLength(2);
+      expect(pinged[0]).toContain('https://int.post.ch/keepalive');
+      expect(pinged[1]).toContain('https://n.accountint1.post.ch/v1/session/keepalive');
+    });
+
+    it('does not refresh anything while anonymous', async () => {
+      jest.useFakeTimers();
+      const fetchMock = mockSubscribe({ typ: 'ukn' });
+      const controller = track(
+        createSessionController({
+          endPoint: 'https://n.accountint1.post.ch',
+          conf: { keepAliveInterval: 1 },
+          onSessionChange: jest.fn(),
+        }),
+      );
+
+      await controller.start();
+      fetchMock.mockClear();
+      jest.advanceTimersByTime(60 * 1000 * 3);
+
+      expect(fetchMock).not.toHaveBeenCalled();
+    });
+
+    it('stops refreshing once the controller is stopped', async () => {
+      jest.useFakeTimers();
+      const fetchMock = mockSubscribe({
+        typ: 'sub',
+        adr: 'address-1',
+        ttl: 60_000,
+        data: sessionData,
+      });
+      const controller = track(
+        createSessionController({
+          endPoint: 'https://n.accountint1.post.ch',
+          conf: { keepAliveInterval: 1 },
+          onSessionChange: jest.fn(),
+        }),
+      );
+      await controller.start();
+
+      controller.stop();
+      fetchMock.mockClear();
+      jest.advanceTimersByTime(60 * 1000 * 3);
+
+      expect(fetchMock).not.toHaveBeenCalled();
+    });
   });
 });
