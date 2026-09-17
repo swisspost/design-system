@@ -10,6 +10,7 @@ import { BannerType } from "./components/post-banner/banner-types";
 import { Variant } from "./components/post-breadcrumb-item/variants";
 import { ButtonType, Placement, Size } from "./components/post-closebutton/types";
 import { PostIconAnimation } from "./types/icon-animations";
+import { KlpEnvironment, KlpLoginWidgetConfig } from "./components/post-klp-login-widget/lib/klp-widget.model";
 import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement as Placement1 } from "@floating-ui/dom";
 import { SideNavigationSize } from "./components/post-side-navigation/side-navigation-styles";
@@ -18,6 +19,7 @@ export { BannerType } from "./components/post-banner/banner-types";
 export { Variant } from "./components/post-breadcrumb-item/variants";
 export { ButtonType, Placement, Size } from "./components/post-closebutton/types";
 export { PostIconAnimation } from "./types/icon-animations";
+export { KlpEnvironment, KlpLoginWidgetConfig } from "./components/post-klp-login-widget/lib/klp-widget.model";
 export { SwitchVariant } from "./components/post-language-menu/switch-variants";
 export { Placement as Placement1 } from "@floating-ui/dom";
 export { SideNavigationSize } from "./components/post-side-navigation/side-navigation-styles";
@@ -327,6 +329,17 @@ export namespace Components {
           * A full URL to the icon file. When set, this property has the highest priority.
          */
         "url"?: string;
+    }
+    interface PostKlpLoginWidget {
+        /**
+          * The portal login widget configuration. Accepts an object or, so the widget can be driven from plain HTML, a JSON string.
+         */
+        "config"?: KlpLoginWidgetConfig | string;
+        /**
+          * The KLP platform instance to talk to. Determines every backend URL the widget uses.
+          * @default 'prod'
+         */
+        "environment": KlpEnvironment;
     }
     interface PostLanguageMenu {
         /**
@@ -988,6 +1001,12 @@ declare global {
         prototype: HTMLPostIconElement;
         new (): HTMLPostIconElement;
     };
+    interface HTMLPostKlpLoginWidgetElement extends Components.PostKlpLoginWidget, HTMLStencilElement {
+    }
+    var HTMLPostKlpLoginWidgetElement: {
+        prototype: HTMLPostKlpLoginWidgetElement;
+        new (): HTMLPostKlpLoginWidgetElement;
+    };
     interface HTMLPostLanguageMenuElementEventMap {
         "postChange": string;
     }
@@ -1305,6 +1324,7 @@ declare global {
         "post-footer": HTMLPostFooterElement;
         "post-header": HTMLPostHeaderElement;
         "post-icon": HTMLPostIconElement;
+        "post-klp-login-widget": HTMLPostKlpLoginWidgetElement;
         "post-language-menu": HTMLPostLanguageMenuElement;
         "post-language-menu-item": HTMLPostLanguageMenuItemElement;
         "post-linkarea": HTMLPostLinkareaElement;
@@ -1628,6 +1648,17 @@ declare namespace LocalJSX {
           * A full URL to the icon file. When set, this property has the highest priority.
          */
         "url"?: string;
+    }
+    interface PostKlpLoginWidget {
+        /**
+          * The portal login widget configuration. Accepts an object or, so the widget can be driven from plain HTML, a JSON string.
+         */
+        "config"?: KlpLoginWidgetConfig | string;
+        /**
+          * The KLP platform instance to talk to. Determines every backend URL the widget uses.
+          * @default 'prod'
+         */
+        "environment"?: KlpEnvironment;
     }
     interface PostLanguageMenu {
         "onPostChange"?: (event: PostLanguageMenuCustomEvent<string>) => void;
@@ -2138,6 +2169,10 @@ declare namespace LocalJSX {
         "rotate": number;
         "scale": number;
     }
+    interface PostKlpLoginWidgetAttributes {
+        "environment": KlpEnvironment;
+        "config": KlpLoginWidgetConfig | string;
+    }
     interface PostLanguageMenuAttributes {
         "textChangeLanguage": string;
         "textCurrentLanguage": string;
@@ -2272,6 +2307,7 @@ declare namespace LocalJSX {
         "post-footer": Omit<PostFooter, keyof PostFooterAttributes> & { [K in keyof PostFooter & keyof PostFooterAttributes]?: PostFooter[K] } & { [K in keyof PostFooter & keyof PostFooterAttributes as `attr:${K}`]?: PostFooterAttributes[K] } & { [K in keyof PostFooter & keyof PostFooterAttributes as `prop:${K}`]?: PostFooter[K] } & OneOf<"textFooter", PostFooter["textFooter"], PostFooterAttributes["textFooter"]>;
         "post-header": Omit<PostHeader, keyof PostHeaderAttributes> & { [K in keyof PostHeader & keyof PostHeaderAttributes]?: PostHeader[K] } & { [K in keyof PostHeader & keyof PostHeaderAttributes as `attr:${K}`]?: PostHeaderAttributes[K] } & { [K in keyof PostHeader & keyof PostHeaderAttributes as `prop:${K}`]?: PostHeader[K] } & OneOf<"textMenu", PostHeader["textMenu"], PostHeaderAttributes["textMenu"]>;
         "post-icon": Omit<PostIcon, keyof PostIconAttributes> & { [K in keyof PostIcon & keyof PostIconAttributes]?: PostIcon[K] } & { [K in keyof PostIcon & keyof PostIconAttributes as `attr:${K}`]?: PostIconAttributes[K] } & { [K in keyof PostIcon & keyof PostIconAttributes as `prop:${K}`]?: PostIcon[K] } & OneOf<"name", PostIcon["name"], PostIconAttributes["name"]>;
+        "post-klp-login-widget": Omit<PostKlpLoginWidget, keyof PostKlpLoginWidgetAttributes> & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes]?: PostKlpLoginWidget[K] } & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes as `attr:${K}`]?: PostKlpLoginWidgetAttributes[K] } & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes as `prop:${K}`]?: PostKlpLoginWidget[K] };
         "post-language-menu": Omit<PostLanguageMenu, keyof PostLanguageMenuAttributes> & { [K in keyof PostLanguageMenu & keyof PostLanguageMenuAttributes]?: PostLanguageMenu[K] } & { [K in keyof PostLanguageMenu & keyof PostLanguageMenuAttributes as `attr:${K}`]?: PostLanguageMenuAttributes[K] } & { [K in keyof PostLanguageMenu & keyof PostLanguageMenuAttributes as `prop:${K}`]?: PostLanguageMenu[K] } & OneOf<"textChangeLanguage", PostLanguageMenu["textChangeLanguage"], PostLanguageMenuAttributes["textChangeLanguage"]> & OneOf<"textCurrentLanguage", PostLanguageMenu["textCurrentLanguage"], PostLanguageMenuAttributes["textCurrentLanguage"]>;
         "post-language-menu-item": Omit<PostLanguageMenuItem, keyof PostLanguageMenuItemAttributes> & { [K in keyof PostLanguageMenuItem & keyof PostLanguageMenuItemAttributes]?: PostLanguageMenuItem[K] } & { [K in keyof PostLanguageMenuItem & keyof PostLanguageMenuItemAttributes as `attr:${K}`]?: PostLanguageMenuItemAttributes[K] } & { [K in keyof PostLanguageMenuItem & keyof PostLanguageMenuItemAttributes as `prop:${K}`]?: PostLanguageMenuItem[K] } & OneOf<"code", PostLanguageMenuItem["code"], PostLanguageMenuItemAttributes["code"]>;
         "post-linkarea": PostLinkarea;
@@ -2325,6 +2361,7 @@ declare module "@stencil/core" {
              * @class PostIcon - representing a stencil component
              */
             "post-icon": LocalJSX.IntrinsicElements["post-icon"] & JSXBase.HTMLAttributes<HTMLPostIconElement>;
+            "post-klp-login-widget": LocalJSX.IntrinsicElements["post-klp-login-widget"] & JSXBase.HTMLAttributes<HTMLPostKlpLoginWidgetElement>;
             "post-language-menu": LocalJSX.IntrinsicElements["post-language-menu"] & JSXBase.HTMLAttributes<HTMLPostLanguageMenuElement>;
             "post-language-menu-item": LocalJSX.IntrinsicElements["post-language-menu-item"] & JSXBase.HTMLAttributes<HTMLPostLanguageMenuItemElement>;
             "post-linkarea": LocalJSX.IntrinsicElements["post-linkarea"] & JSXBase.HTMLAttributes<HTMLPostLinkareaElement>;
