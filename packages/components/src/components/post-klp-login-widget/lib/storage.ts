@@ -95,3 +95,5 @@ export function createStorage({
     removeDocumentFromCache,
   };
 }
+
+export type KlpStorage = ReturnType<typeof createStorage>;
