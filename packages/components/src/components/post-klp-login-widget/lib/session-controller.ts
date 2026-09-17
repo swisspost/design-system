@@ -1,4 +1,5 @@
 import { createControlCookie, hash } from './control-cookie';
+import { createKeepAlive, KLP_KEEP_ALIVE_DEFAULTS, type KlpKeepAliveConf } from './keep-alive';
 import type { KlpRouterActions, KlpSessionData } from './klp-session.model';
 import { createMessageRouter } from './message-router';
 import { buildEndPoints, createSessionClient } from './session-client';
@@ -13,12 +14,17 @@ import { createStorage } from './storage';
 export interface KlpSessionControllerOptions {
   /** Platform base url of the selected environment. */
   endPoint: string;
+  /** The portal's own keep-alive url. Without it only the platform session is refreshed. */
+  keepAliveUrl?: string;
+  conf?: Partial<KlpKeepAliveConf>;
   log?: (message: string) => void;
   onSessionChange: (session: KlpSessionData | null) => void;
 }
 
 export function createSessionController({
   endPoint,
+  keepAliveUrl,
+  conf,
   log = () => {},
   onSessionChange,
 }: KlpSessionControllerOptions) {
@@ -26,10 +32,28 @@ export function createSessionController({
   const client = createSessionClient({ endPoints, log });
   const controlCookie = createControlCookie({ log });
   const storage = createStorage({ log });
+  const keepAliveConf: KlpKeepAliveConf = { ...KLP_KEEP_ALIVE_DEFAULTS, ...conf };
 
   let address = '';
   let sessionData: KlpSessionData | null = null;
   let retrySubscribeOnFail = false;
+
+  /** Credentialed and opaque: the refresh only has to reach the host, not report back. */
+  function ping(): void {
+    for (const url of client.keepAliveUrls(keepAliveUrl)) {
+      fetch(url, { method: 'GET', mode: 'no-cors', credentials: 'include' }).catch(error =>
+        log(`Keepalive ping failed: ${error}`),
+      );
+    }
+  }
+
+  const keepAlive = createKeepAlive({
+    getConf: () => keepAliveConf,
+    log,
+    isUserAuthenticated: () => sessionData !== null,
+    ping,
+    setControlCookie: (slot, value) => controlCookie.setControlCookie(slot, value),
+  });
 
   /** The cookie is only worth writing if the state it refers to was actually stored. */
   function persistState(ttl: number): void {
@@ -55,12 +79,14 @@ export function createSessionController({
     login: (data, ttl) => {
       sessionData = data;
       persistState(ttl);
+      keepAlive.installKeepAliveTimerHandler();
       onSessionChange(sessionData);
     },
     logout: () => {
       sessionData = null;
       address = '';
       removePersistedState();
+      keepAlive.uninstallKeepAliveTimerHandler();
       onSessionChange(null);
     },
     subscribe: () => {
@@ -86,6 +112,7 @@ export function createSessionController({
 
   return {
     start,
+    stop: () => keepAlive.uninstallKeepAliveTimerHandler(),
     getSession: () => sessionData,
     getAddress: () => address,
   };
