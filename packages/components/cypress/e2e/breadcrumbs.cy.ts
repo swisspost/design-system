@@ -2,7 +2,7 @@ const BREADCRUMB_ITEM_ID = 'b7db7391-f893-4b1e-a125-b30c6f0b028d';
 const BREADCRUMBS_ID = 'b7db7391-f893-4b1e-a125-b30c6f0b028b';
 
 describe('breadcrumbs', () => {
-  // Checks home collapses at a width no narrower than where the last item wraps, across a
+  // Checks text home joins the shared overflow menu no later than the last item wraps, across a
   // range of widths rather than one fragile pixel value. Requires a `@breadcrumbs` alias.
   function assertHomeCollapsesNoLaterThanLastItemWraps() {
     const widths = [500, 400, 320, 280, 240, 200, 180, 160, 140, 120, 100, 90, 80];
@@ -18,7 +18,7 @@ describe('breadcrumbs', () => {
         .then($shadow => {
           if (
             homeCollapsedWidth === null &&
-            $shadow.find('nav:not(.invisible) .home-menu').length > 0
+            $shadow.find('nav:not(.invisible) .menu post-menu-item .home').length > 0
           ) {
             homeCollapsedWidth = width;
           }
@@ -143,33 +143,33 @@ describe('breadcrumbs', () => {
       });
     });
 
-    // Degrade order: middle items collapse first -> home collapses into its own menu ->
-    // only then does the last item wrap.
+    // Degrade order for text home: middle items collapse first -> home joins the shared overflow
+    // menu -> only then does the last item wrap. Icon-only home remains visible throughout.
     describe('three-stage degrade sequence', () => {
       beforeEach(() => {
         cy.getComponent('breadcrumbs', BREADCRUMBS_ID, 'default');
         cy.get('post-breadcrumbs[data-hydrated]', { timeout: 30000 }).as('breadcrumbs');
       });
 
-      it('should collapse middle items first, before home collapses or the last item wraps', () => {
+      it('should collapse middle items first while icon-only home remains visible', () => {
         cy.viewport(280, 400);
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[variant="menuitem"]')
           .should('have.length.greaterThan', 0);
-        cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home-menu').should('not.exist');
+        cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home.icon').should('exist');
+        cy.get('@breadcrumbs')
+          .shadow()
+          .find('nav:not(.invisible) .menu post-menu-item .home')
+          .should('not.exist');
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[selected]:not([selected="false"])')
           .filter((_, el) => !el.closest('.invisible'))
           .should('not.match', '[standalone]:not([standalone="false"])');
       });
 
-      it('should collapse the home item at a width no narrower than where the last item starts wrapping', () => {
-        assertHomeCollapsesNoLaterThanLastItemWraps();
-      });
-
-      it('should mark the last item standalone only once home has also collapsed and there is still no room', () => {
+      it('should wrap the last item when there is no room for the icon-only home and segments', () => {
         cy.viewport(120, 400);
-        cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home-menu').should('exist');
+        cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home.icon').should('exist');
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[selected]:not([selected="false"])')
           .filter((_, el) => !el.closest('.invisible'))
@@ -178,11 +178,11 @@ describe('breadcrumbs', () => {
 
       it('should restore all items once space is available again', () => {
         cy.viewport(120, 400);
-        cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home-menu').should('exist');
+        cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home.icon').should('exist');
 
         cy.viewport(1920, 800);
         cy.get('@breadcrumbs').find('post-breadcrumb-item[variant="menuitem"]').should('not.exist');
-        cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home-menu').should('not.exist');
+        cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home.icon').should('exist');
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[selected]:not([selected="false"])')
           .filter((_, el) => !el.closest('.invisible'))
@@ -260,7 +260,11 @@ describe('breadcrumbs', () => {
           .shadow()
           .find('nav:not(.invisible) .home')
           .should('exist')
-          .and('not.have.class', 'home-menu');
+          .and('not.have.class', 'home-collapsed');
+        cy.get('@breadcrumbs')
+          .shadow()
+          .find('nav:not(.invisible) .menu post-menu-item .home')
+          .should('not.exist');
       });
 
       it('should never truncate the last (selected) segment, wrapping it instead', () => {
@@ -292,7 +296,10 @@ describe('breadcrumbs', () => {
       it('should only wrap the last item once home has also collapsed and there is still no room', () => {
         cy.viewport(120, 400);
 
-        cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home-menu').should('exist');
+        cy.get('@breadcrumbs')
+          .shadow()
+          .find('nav:not(.invisible) .menu post-menu-item .home')
+          .should('exist');
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[selected]:not([selected="false"])')
           .filter((_, el) => !el.closest('.invisible'))
