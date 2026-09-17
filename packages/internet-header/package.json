@@ -47,7 +47,6 @@
     "@swisspost/design-system-styles": "workspace:10.5.0",
     "@swisspost/design-system-components": "workspace:10.5.0",
     "body-scroll-lock": "4.0.0-beta.0",
-    "iframe-resizer": "4.4.5",
     "jquery": "3.7.1",
     "throttle-debounce": "5.0.2",
     "url-polyfill": "1.1.14"
@@ -64,7 +63,6 @@
     "@stencil/store": "2.0.16",
     "@swisspost/design-system-tsconfig": "workspace:10.5.0",
     "@types/body-scroll-lock": "3.1.2",
-    "@types/iframe-resizer": "4.0.0",
     "@types/jest": "catalog:jest",
     "@types/jquery": "3.5.34",
     "@types/node": "catalog:node",

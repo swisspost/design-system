@@ -65,7 +65,6 @@ allowBuilds:
   cypress: true
   es5-ext: false
   esbuild: true
-  iframe-resizer: false
   lmdb: true
   msgpackr-extract: true
   sharp: true

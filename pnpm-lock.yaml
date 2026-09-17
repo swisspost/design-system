@@ -904,9 +904,6 @@ importers:
       body-scroll-lock:
         specifier: 4.0.0-beta.0
         version: 4.0.0-beta.0
-      iframe-resizer:
-        specifier: 4.4.5
-        version: 4.4.5
       jquery:
         specifier: 3.7.1
         version: 3.7.1
@@ -950,9 +947,6 @@ importers:
       '@types/body-scroll-lock':
         specifier: 3.1.2
         version: 3.1.2
-      '@types/iframe-resizer':
-        specifier: 4.0.0
-        version: 4.0.0
       '@types/jest':
         specifier: catalog:jest
         version: 30.0.0
@@ -4567,9 +4561,6 @@ packages:
   '@types/hast@3.0.5':
     resolution: {integrity: sha512-rp/ezSWaD1m44dPKICGhiskI13nVr7qTloFwDa/IYkhhf5nzwP+zIQcIJh3WIFSBOy/H1PzB40jPjMDksN4F+g==}
 
-  '@types/iframe-resizer@4.0.0':
-    resolution: {integrity: sha512-RKrT4goNVtqZvf9WPkV0cUcphQWXzLVW1IE4yOIY21c1W+obJJbcHFD1lQu5ncNHm/6TeQSeedVf9bmkx2NaGQ==}
-
   '@types/is-empty@1.2.3':
     resolution: {integrity: sha512-4J1l5d79hoIvsrKh5VUKVRA1aIdsOb10Hu5j3J2VfP/msDnfTdGPmNp2E1Wg+vs97Bktzo+MZePFFXSGoykYJw==}
 
@@ -7398,10 +7389,6 @@ packages:
 
   ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
-
-  iframe-resizer@4.4.5:
-    resolution: {integrity: sha512-U8bCywf/Gh07O69RXo6dXAzTtODQrxaHGHRI7Nt4ipXsuq6EMxVsOP/jjaP43YtXz/ibESS0uSVDN3sOGCzSmw==}
-    engines: {node: '>=0.8.0'}
 
   ignore-by-default@1.0.1:
     resolution: {integrity: sha512-Ius2VYcGNk7T90CppJqcIkS5ooHUZyIQK+ClZfMfMNFEF9VSE73Fq+906u/CWu92x4gzZMWOwfFYckPObzdEbA==}
@@ -15739,8 +15726,6 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
 
-  '@types/iframe-resizer@4.0.0': {}
-
   '@types/is-empty@1.2.3': {}
 
   '@types/istanbul-lib-coverage@2.0.6': {}
@@ -19896,8 +19881,6 @@ snapshots:
       postcss: 8.5.26
 
   ieee754@1.2.1: {}
-
-  iframe-resizer@4.4.5: {}
 
   ignore-by-default@1.0.1: {}
 
