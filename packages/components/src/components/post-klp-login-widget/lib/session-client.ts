@@ -70,8 +70,10 @@ export function createSessionClient({
   }
 
   /** Two urls, because the session has to be refreshed on the portal and on the platform. */
-  function keepAliveUrls(keepAliveURL: string): string[] {
-    return [`${keepAliveURL}/?${cacheBuster()}`, `${endPoints.keepalive}?${cacheBuster()}`];
+  function keepAliveUrls(keepAliveURL?: string): string[] {
+    const platform = `${endPoints.keepalive}?${cacheBuster()}`;
+
+    return keepAliveURL ? [`${keepAliveURL}/?${cacheBuster()}`, platform] : [platform];
   }
 
   return { audit, subscribe, keepAliveUrls };
