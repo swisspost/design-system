@@ -60,6 +60,9 @@ export default defineConfig({
     },
   },
   includeShadowDom: true,
+  // Axe scans the full-variant snapshot pages, which can exceed the 4s default on CI.
+  // That's why we increase the timeout time to 15s, to reduce flaky tests!
+  defaultCommandTimeout: 15000,
   retries: {
     runMode: 1,
   },
