@@ -1,261 +1,268 @@
 <!doctype html>
 <html dir="ltr" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
-    />
-    <meta name="design-system-settings" data-post-icon-base="/assets/icons" />
-    <title>Stencil Component Starter</title>
 
-    <link id="components-global-styles" rel="stylesheet" href="/build/post-components.css" />
-    <link rel="stylesheet" href="/assets/css/post-default.css" />
-    <script>
-      /**
-       * Playground only: stands in for the KLP platform so the signed-in composition can be seen
-       * without a backend. Must run before the components module, which connects on load.
-       */
-      (() => {
-        const state = new URLSearchParams(location.search).get('session') ?? 'account';
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <meta name="design-system-settings" data-post-icon-base="/assets/icons" />
+  <title>Stencil Component Starter</title>
 
-        const sessions = {
-          account: {
-            name: 'Ada',
-            surname: 'Lovelace',
-            company: 'Analytical Engines AG',
-            userType: 'B2B',
-            authLevel: 'PASSWORD',
-            changeUserAndProfile: 'userAndProfile',
-          },
-          company: {
-            name: 'Ada',
-            surname: 'Lovelace',
-            company: 'Analytical Engines AG',
-            userType: 'B2B',
-            authLevel: 'PASSWORD',
-            canChangeCompany: true,
-          },
-        };
+  <link id="components-global-styles" rel="stylesheet" href="/build/post-components.css" />
+  <link rel="stylesheet" href="/assets/css/post-default.css" />
+  <script>
+    /**
+     * Playground only: stands in for the KLP platform so the signed-in composition can be seen
+     * without a backend. Must run before the components module, which connects on load.
+     */
+    (() => {
+      const state = new URLSearchParams(location.search).get('session') ?? 'account';
 
-        const message = sessions[state]
-          ? { typ: 'sub', adr: 'playground', ttl: 900000, data: sessions[state] }
-          : { typ: 'ukn' };
+      const sessions = {
+        account: {
+          name: 'Ada',
+          surname: 'Lovelace',
+          company: 'Analytical Engines AG',
+          userType: 'B2B',
+          authLevel: 'PASSWORD',
+          changeUserAndProfile: 'userAndProfile',
+        },
+        company: {
+          name: 'Ada',
+          surname: 'Lovelace',
+          company: 'Analytical Engines AG',
+          userType: 'B2B',
+          authLevel: 'PASSWORD',
+          canChangeCompany: true,
+        },
+      };
 
-        const json = body =>
-          Promise.resolve(
-            new Response(JSON.stringify(body), { headers: { 'content-type': 'application/json' } }),
-          );
+      const message = sessions[state]
+        ? { typ: 'sub', adr: 'playground', ttl: 900000, data: sessions[state] }
+        : { typ: 'ukn' };
 
-        const nativeFetch = window.fetch.bind(window);
-        window.fetch = (input, init) => {
-          const url = String(input.url ?? input);
+      const json = body =>
+        Promise.resolve(
+          new Response(JSON.stringify(body), { headers: { 'content-type': 'application/json' } }),
+        );
 
-          if (url.includes('/v1/session/subscribe')) return json(message);
-          if (url.includes('/v1/audit') || url.includes('/v1/session/keepalive')) {
-            return Promise.resolve(new Response(null, { status: 204 }));
-          }
+      const nativeFetch = window.fetch.bind(window);
+      window.fetch = (input, init) => {
+        const url = String(input.url ?? input);
 
-          return nativeFetch(input, init);
-        };
+        if (url.includes('/v1/session/subscribe')) return json(message);
+        if (url.includes('/v1/audit') || url.includes('/v1/session/keepalive')) {
+          return Promise.resolve(new Response(null, { status: 204 }));
+        }
 
-        // Leaves the dev server's own socket alone; only the platform event bus is answered here.
-        const NativeWebSocket = window.WebSocket;
-        window.WebSocket = function (url, protocols) {
-          if (!String(url).includes('/eventbus/')) return new NativeWebSocket(url, protocols);
+        return nativeFetch(input, init);
+      };
 
-          const socket = { close() {}, send() {} };
-          setTimeout(() => socket.onclose?.({}), 0);
-          return socket;
-        };
-      })();
-    </script>
-    <script type="module" src="/build/post-components.esm.js"></script>
-    <script nomodule src="/build/post-components.js"></script>
-  </head>
+      // Leaves the dev server's own socket alone; only the platform event bus is answered here.
+      const NativeWebSocket = window.WebSocket;
+      window.WebSocket = function (url, protocols) {
+        if (!String(url).includes('/eventbus/')) return new NativeWebSocket(url, protocols);
 
-  <body style="min-height: 200vh">
-    <post-header text-menu="Menu">
-      <!-- Logo -->
-      <post-logo slot="post-logo">Homepage</post-logo>
+        const socket = { close() { }, send() { } };
+        setTimeout(() => socket.onclose?.({}), 0);
+        return socket;
+      };
+    })();
+  </script>
+  <script type="module" src="/build/post-components.esm.js"></script>
+  <script nomodule src="/build/post-components.js"></script>
+</head>
 
-      <!-- Meta navigation -->
-      <ul slot="global-nav-secondary">
-        <li>
-          <a href="">
-            Karriere
-            <post-icon name="rocket" aria-hidden="true"></post-icon>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            Über uns
-            <post-icon name="adduser" aria-hidden="true"></post-icon>
-          </a>
-        </li>
-      </ul>
+<body style="min-height: 200vh">
+  <post-header text-menu="Menu">
+    <!-- Logo -->
+    <post-logo slot="post-logo">Homepage</post-logo>
 
-      <!-- Language switch -->
-      <post-language-menu
-        text-change-language="Change the language"
-        text-current-language="The currently selected language is {name}."
-        name="language-menu-example"
-        slot="language-menu"
-        variant="menu"
-      >
-        <post-language-menu-item code="de" name="Deutsch">DE</post-language-menu-item>
-        <post-language-menu-item code="fr" name="French">FR</post-language-menu-item>
-        <post-language-menu-item code="it" name="Italiano">IT</post-language-menu-item>
-        <post-language-menu-item active code="en" name="English">EN</post-language-menu-item>
-      </post-language-menu>
-
-      <!-- Application title (optional) -->
-      <p slot="title">Application title</p>
-
-      <!-- Portal login -->
-      <post-klp-login-widget
-        slot="post-login"
-        environment="int01"
-        text-user-menu="User menu"
-        config='{"applicationId":"playground","serviceId":"playground","appLoginUrl":"https://n.accountint1.post.ch/login","currentLang":"en"}'
-        menu-links='[{"text":"Profile","url":"#profile","icon":"profile","description":"Opens your personal data"},{"text":"Notifications","url":"#notifications","icon":"mail"}]'
-        account-switch='{"text":"Switch account","url":"#switch-account","icon":"profile"}'
-        company-switch='{"text":"Switch company","url":"#switch-company","icon":"company"}'
-        logout-link='{"text":"Logout","url":"#logout","icon":"logout"}'
-        login-link='{"text":"Login","url":"#login","icon":"login"}'
-      ></post-klp-login-widget>
-
-      <!-- Target group -->
-      <ul slot="audience">
-        <li>
-          <a href="#" aria-current="location">Private customers</a>
-        </li>
-        <li>
-          <a href="#">Business customers</a>
-        </li>
-      </ul>
-
-      <!-- Local controls (optional) -->
-      <ul slot="local-nav">
-        <li>
-          <a href="#">
-            <span>Search</span>
-            <post-icon aria-hidden="true" name="search"></post-icon>
-          </a>
-        </li>
-      </ul>
-
-      <!-- Main navigation -->
-      <post-mainnavigation slot="main-nav" text-main="Haupt">
-        <ul>
-          <!-- Link only level 1 -->
-          <li><a href="/briefe">Briefe</a></li>
-          <li><a href="/pakete">Pakete</a></li>
-
-          <!-- Level 1 with megadropdown -->
-          <li>
-            <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
-            <post-megadropdown id="briefe" text-close="Schliessen" text-back="Back">
-              <a class="post-megadropdown-overview" href="/briefe">Übersicht Briefe</a>
-              <div class="row row-cols-1 row-cols-sm-2">
-                <div class="col">
-                  <p class="post-megadropdown-list-title" id="send-letters">Briefe senden</p>
-                  <ul class="post-megadropdown-list" aria-labelledby="send-letters">
-                    <li><a href="/sch">Briefe Schweiz</a></li>
-                    <li><a href="/kl">Kleinwaren Ausland</a></li>
-                    <li><a href="">Waren Ausland</a></li>
-                    <li><a href="">Express und Kurier</a></li>
-                  </ul>
-                </div>
-                <div class="col">
-                  <a
-                    class="post-megadropdown-list-title"
-                    id="step-by-step-letters"
-                    href="/schritt-für-schritt"
-                    >Schritt für Schritt</a
-                  >
-                  <ul class="post-megadropdown-list" aria-labelledby="step-by-step-letters">
-                    <li><a href="/sch">Pakete Schweiz</a></li>
-                    <li><a href="/kl">Kleinwaren Ausland</a></li>
-                    <li><a href="">Waren Ausland</a></li>
-                    <li><a href="">Express und Kurier</a></li>
-                  </ul>
-                </div>
-              </div>
-            </post-megadropdown>
-          </li>
-          <li>
-            <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
-            <post-megadropdown id="pakete" text-close="Schliessen" text-back="Back">
-              <a class="post-megadropdown-overview" href="/pakete">Übersicht Pakete</a>
-              <div class="row row-cols-1 row-cols-sm-2">
-                <div class="col">
-                  <p class="post-megadropdown-list-title" id="send-packages">Pakete senden</p>
-                  <ul class="post-megadropdown-list" aria-labelledby="send-packages">
-                    <li><a href="/sch">Pakete Schweiz</a></li>
-                    <li><a href="/kl">Kleinwaren Ausland</a></li>
-                    <li><a href="">Waren Ausland</a></li>
-                    <li><a href="">Express und Kurier</a></li>
-                  </ul>
-                </div>
-                <div class="col">
-                  <a
-                    class="post-megadropdown-list-title"
-                    id="step-by-step-packages"
-                    href="/schritt-für-schritt"
-                    >Schritt für Schritt</a
-                  >
-                  <ul class="post-megadropdown-list" aria-labelledby="step-by-step-packages">
-                    <li><a href="/sch">Pakete Schweiz</a></li>
-                    <li><a href="/kl">Kleinwaren Ausland</a></li>
-                    <li><a href="">Waren Ausland</a></li>
-                    <li><a href="">Express und Kurier</a></li>
-                  </ul>
-                </div>
-              </div>
-            </post-megadropdown>
-          </li>
-        </ul>
-      </post-mainnavigation>
-    </post-header>
-
-    <h1>Components package playground</h1>
-    <p class="mb-4">
-      Use this playground for quickly developing Stencil web-components. Run
-      <code style="background-color: lightgrey; padding: 0.125rem 0.25rem; border-radius: 0.25rem"
-        >pnpm components:start</code
-      >
-      to get going.
-    </p>
-
-    <h2>Portal login widget</h2>
-    <p class="mb-4">
-      The KLP platform is faked in this page, so the header shows a real session. Pick who is signed
-      in:
-    </p>
-    <ul class="mb-4">
-      <li><a href="?session=anonymous">Nobody &mdash; the login link</a></li>
-      <li><a href="?session=account">A user who may switch account</a></li>
-      <li><a href="?session=company">A B2B user who may switch company</a></li>
+    <!-- Meta navigation -->
+    <ul slot="global-nav-secondary">
+      <li>
+        <a href="">
+          Karriere
+          <post-icon name="rocket" aria-hidden="true"></post-icon>
+        </a>
+      </li>
+      <li>
+        <a href="">
+          Über uns
+          <post-icon name="adduser" aria-hidden="true"></post-icon>
+        </a>
+      </li>
     </ul>
 
-    <label for="tokens-select">Select tokens package: </label>
-    <select
-      name="tokens"
-      id="tokens-select"
-      value="default"
-      class="mb-4"
-      onchange="
+    <!-- Language switch -->
+    <post-language-menu text-change-language="Change the language"
+      text-current-language="The currently selected language is {name}." name="language-menu-example"
+      slot="language-menu" variant="menu">
+      <post-language-menu-item code="de" name="Deutsch">DE</post-language-menu-item>
+      <post-language-menu-item code="fr" name="French">FR</post-language-menu-item>
+      <post-language-menu-item code="it" name="Italiano">IT</post-language-menu-item>
+      <post-language-menu-item active code="en" name="English">EN</post-language-menu-item>
+    </post-language-menu>
+
+    <!-- Application title (optional) -->
+    <p slot="title">Application title</p>
+
+    <!-- Portal login -->
+    <post-klp-login-widget slot="post-login" environment="int01" project="playground" application-id="playground"
+      language="en" text-current-user="Currently logged in: {user}" text-user-links="User links"
+      text-access-user-links="Open user links">
+      <a slot="login-link" href="#login">
+        <post-icon name="login" aria-hidden="true"></post-icon>
+        Login
+      </a>
+      <post-menu-item slot="account-switch">
+        <a href="#switch-account">
+          <post-icon name="profile" aria-hidden="true"></post-icon>
+          Switch account
+        </a>
+      </post-menu-item>
+      <post-menu-item slot="company-switch">
+        <a href="#switch-company">
+          <post-icon name="company" aria-hidden="true"></post-icon>
+          Switch company
+        </a>
+      </post-menu-item>
+      <post-menu-item slot="menu-links">
+        <a href="#profile">
+          <post-icon name="profile" aria-hidden="true"></post-icon>
+          Profile
+        </a>
+      </post-menu-item>
+      <post-menu-item slot="menu-links">
+        <a href="#notifications">
+          <post-icon name="mail" aria-hidden="true"></post-icon>
+          Notifications
+        </a>
+      </post-menu-item>
+      <post-menu-item slot="logout-link">
+        <a href="#logout">
+          <post-icon name="logout" aria-hidden="true"></post-icon>
+          Logout
+        </a>
+      </post-menu-item>
+    </post-klp-login-widget>
+
+    <!-- Target group -->
+    <ul slot="audience">
+      <li>
+        <a href="#" aria-current="location">Private customers</a>
+      </li>
+      <li>
+        <a href="#">Business customers</a>
+      </li>
+    </ul>
+
+    <!-- Local controls (optional) -->
+    <ul slot="local-nav">
+      <li>
+        <a href="#">
+          <span>Search</span>
+          <post-icon aria-hidden="true" name="search"></post-icon>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Main navigation -->
+    <post-mainnavigation slot="main-nav" text-main="Haupt">
+      <ul>
+        <!-- Link only level 1 -->
+        <li><a href="/briefe">Briefe</a></li>
+        <li><a href="/pakete">Pakete</a></li>
+
+        <!-- Level 1 with megadropdown -->
+        <li>
+          <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
+          <post-megadropdown id="briefe" text-close="Schliessen" text-back="Back">
+            <a class="post-megadropdown-overview" href="/briefe">Übersicht Briefe</a>
+            <div class="row row-cols-1 row-cols-sm-2">
+              <div class="col">
+                <p class="post-megadropdown-list-title" id="send-letters">Briefe senden</p>
+                <ul class="post-megadropdown-list" aria-labelledby="send-letters">
+                  <li><a href="/sch">Briefe Schweiz</a></li>
+                  <li><a href="/kl">Kleinwaren Ausland</a></li>
+                  <li><a href="">Waren Ausland</a></li>
+                  <li><a href="">Express und Kurier</a></li>
+                </ul>
+              </div>
+              <div class="col">
+                <a class="post-megadropdown-list-title" id="step-by-step-letters" href="/schritt-für-schritt">Schritt
+                  für Schritt</a>
+                <ul class="post-megadropdown-list" aria-labelledby="step-by-step-letters">
+                  <li><a href="/sch">Pakete Schweiz</a></li>
+                  <li><a href="/kl">Kleinwaren Ausland</a></li>
+                  <li><a href="">Waren Ausland</a></li>
+                  <li><a href="">Express und Kurier</a></li>
+                </ul>
+              </div>
+            </div>
+          </post-megadropdown>
+        </li>
+        <li>
+          <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
+          <post-megadropdown id="pakete" text-close="Schliessen" text-back="Back">
+            <a class="post-megadropdown-overview" href="/pakete">Übersicht Pakete</a>
+            <div class="row row-cols-1 row-cols-sm-2">
+              <div class="col">
+                <p class="post-megadropdown-list-title" id="send-packages">Pakete senden</p>
+                <ul class="post-megadropdown-list" aria-labelledby="send-packages">
+                  <li><a href="/sch">Pakete Schweiz</a></li>
+                  <li><a href="/kl">Kleinwaren Ausland</a></li>
+                  <li><a href="">Waren Ausland</a></li>
+                  <li><a href="">Express und Kurier</a></li>
+                </ul>
+              </div>
+              <div class="col">
+                <a class="post-megadropdown-list-title" id="step-by-step-packages" href="/schritt-für-schritt">Schritt
+                  für Schritt</a>
+                <ul class="post-megadropdown-list" aria-labelledby="step-by-step-packages">
+                  <li><a href="/sch">Pakete Schweiz</a></li>
+                  <li><a href="/kl">Kleinwaren Ausland</a></li>
+                  <li><a href="">Waren Ausland</a></li>
+                  <li><a href="">Express und Kurier</a></li>
+                </ul>
+              </div>
+            </div>
+          </post-megadropdown>
+        </li>
+      </ul>
+    </post-mainnavigation>
+  </post-header>
+
+  <h1>Components package playground</h1>
+  <p class="mb-4">
+    Use this playground for quickly developing Stencil web-components. Run
+    <code
+      style="background-color: lightgrey; padding: 0.125rem 0.25rem; border-radius: 0.25rem">pnpm components:start</code>
+    to get going.
+  </p>
+
+  <h2>Portal login widget</h2>
+  <p class="mb-4">
+    The KLP platform is faked in this page, so the header shows a real session. Pick who is signed
+    in:
+  </p>
+  <ul class="mb-4">
+    <li><a href="?session=anonymous">Nobody &mdash; the login link</a></li>
+    <li><a href="?session=account">A user who may switch account</a></li>
+    <li><a href="?session=company">A B2B user who may switch company</a></li>
+  </ul>
+
+  <label for="tokens-select">Select tokens package: </label>
+  <select name="tokens" id="tokens-select" value="default" class="mb-4" onchange="
         if (['default', 'compact'].includes(this.value)) {
           document
             .getElementById('tokens')
             .setAttribute('href', `/assets/css/post-tokens-${encodeURIComponent(this.value)}.css`);
         }
-      "
-    >
-      <option value="default">Post default</option>
-      <option value="compact">Post compact</option>
-    </select>
-    <hr />
-  </body>
+      ">
+    <option value="default">Post default</option>
+    <option value="compact">Post compact</option>
+  </select>
+  <hr />
+</body>
+
 </html>

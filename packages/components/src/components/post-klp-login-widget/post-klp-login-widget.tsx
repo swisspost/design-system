@@ -1,19 +1,21 @@
 import { version } from '@root/package.json';
-import { Build, Component, h, Host, Prop, State, Watch } from '@stencil/core';
-import {
-  parseLinkProp,
-  showAccountSwitch,
-  showCompanySwitch,
-  type KlpLink,
-} from './lib/klp-links.model';
+import { Build, Component, h, Host, Prop, State } from '@stencil/core';
 import type { KlpSessionData } from './lib/klp-session.model';
 import { klpBaseUrl } from './lib/klp-urls';
-import type { KlpEnvironment, KlpLoginWidgetConfig } from './lib/klp-widget.model';
+import type { KlpEnvironment } from './lib/klp-widget.model';
 import { createSessionController } from './lib/session-controller';
+import { showAccountSwitch, showCompanySwitch } from './lib/session-permissions';
 
 /** Scoped to the widget's own shadow root, so a constant id cannot collide across instances. */
 const MENU_ID = 'klp-user-menu';
 
+/**
+ * @slot login-link - The link offered to anonymous visitors.
+ * @slot account-switch - Entry for switching account, rendered only when the session permits it.
+ * @slot company-switch - Entry for switching company, rendered only when the session permits it.
+ * @slot menu-links - Entries of the user menu, as `post-menu-item` elements.
+ * @slot logout-link - The entry that ends the session.
+ */
 @Component({
   tag: 'post-klp-login-widget',
   styleUrl: 'post-klp-login-widget.scss',
@@ -26,54 +28,60 @@ export class PostKlpLoginWidget {
   @Prop() environment: KlpEnvironment = 'prod';
 
   /**
-   * The portal login widget configuration. Accepts an object or, so the widget can be driven from
-   * plain HTML, a JSON string.
+   * Your project id, the same one the header is given. Sent to the platform as the service id.
    */
-  @Prop() config?: KlpLoginWidgetConfig | string;
+  @Prop() project?: string;
 
   /**
-   * Links shown in the user menu, in order. Takes the output of internet-header's
-   * `getUserMenuOptions()` unchanged. Ignored when the `menu-links` slot is filled.
+   * The portal application the session belongs to.
    */
-  @Prop() menuLinks?: KlpLink[] | string;
+  @Prop() applicationId?: string;
 
   /**
-   * The link offered to anonymous visitors. Falls back to the configured `appLoginUrl`.
-   * Ignored when the `login-link` slot is filled.
+   * Language the platform should answer in.
    */
-  @Prop() loginLink?: KlpLink | string;
+  @Prop() language?: 'de' | 'fr' | 'it' | 'en';
 
   /**
-   * The link that ends the session. Ignored when the `logout-link` slot is filled.
+   * Whether the session is refreshed while the user is active on the page.
    */
-  @Prop() logoutLink?: KlpLink | string;
+  @Prop() keepAlive: boolean = true;
 
   /**
-   * Label and target for switching account. Only rendered when the session permits it, so the
-   * consumer does not have to work out who is allowed to see it.
+   * The portal's own keep-alive url. The platform session is refreshed either way.
    */
-  @Prop() accountSwitch?: KlpLink | string;
+  @Prop() keepAliveUrl?: string;
 
   /**
-   * Label and target for switching company. Only rendered when the session permits it.
+   * Minutes between two keep-alive ticks.
    */
-  @Prop() companySwitch?: KlpLink | string;
+  @Prop() keepAliveInterval: number = 9;
 
   /**
-   * Names the user menu for assistive technology.
+   * Space separated list of the events that count as user activity.
    */
-  @Prop() textUserMenu: string = 'User menu';
+  @Prop() keepAliveEvents: string = 'click touchstart keydown';
 
-  @State() private parsedConfig: KlpLoginWidgetConfig | null = null;
+  /**
+   * Visually hidden label for the current user.
+   * The placeholder `{user}` will be replaced with the full name of the currently logged-in user.
+   */
+  @Prop() textCurrentUser?: string;
+
+  /**
+   * Visually hidden label for the user menu.
+   */
+  @Prop() textUserLinks?: string;
+
+  /**
+   * Visually hidden label for the button that opens the user menu.
+   */
+  @Prop() textAccessUserLinks?: string;
 
   /** Stays null on the server: the session is only ever known to the client. */
   @State() private session: KlpSessionData | null = null;
 
   private controller?: ReturnType<typeof createSessionController>;
-
-  componentWillLoad() {
-    this.parseConfig();
-  }
 
   componentDidLoad() {
     if (!Build.isBrowser) return;
@@ -86,9 +94,8 @@ export class PostKlpLoginWidget {
   }
 
   private connect() {
-    if (!this.parsedConfig) return;
-
     const endPoint = klpBaseUrl(this.environment);
+
     if (endPoint === null) {
       console.error(
         `post-klp-login-widget: "${this.environment}" is not a known environment, the widget stays anonymous.`,
@@ -98,8 +105,12 @@ export class PostKlpLoginWidget {
 
     this.controller = createSessionController({
       endPoint,
-      keepAliveUrl: this.parsedConfig.keepAliveUrl,
-      conf: this.parsedConfig.options,
+      keepAliveUrl: this.keepAliveUrl,
+      conf: {
+        keepAlive: this.keepAlive,
+        keepAliveInterval: this.keepAliveInterval,
+        keepAliveListeningEvents: this.keepAliveEvents,
+      },
       onSessionChange: session => {
         this.session = session;
       },
@@ -108,105 +119,23 @@ export class PostKlpLoginWidget {
     void this.controller.start();
   }
 
-  @Watch('config')
-  parseConfig() {
-    this.parsedConfig = this.readConfig();
-  }
-
-  private readConfig(): KlpLoginWidgetConfig | null {
-    if (!this.config) return null;
-    if (typeof this.config !== 'string') return this.config;
-
-    try {
-      return JSON.parse(this.config) as KlpLoginWidgetConfig;
-    } catch (error) {
-      console.error('post-klp-login-widget: the `config` property is not valid JSON.', error);
-      return null;
-    }
-  }
-
-  /** `aria-describedby` rather than `aria-description`, which is not baseline available. */
-  private renderMenuItem(link: KlpLink, className: string, descriptionId?: string) {
-    return (
-      <post-menu-item>
-        <a
-          class={className}
-          href={link.url}
-          aria-label={link.label}
-          aria-current={link.active ? 'page' : null}
-          aria-describedby={link.description ? descriptionId : null}
-        >
-          {link.icon && <post-icon name={link.icon} aria-hidden="true"></post-icon>}
-          <span>{link.text}</span>
-        </a>
-        {link.description && (
-          <span class="visually-hidden" id={descriptionId}>
-            {link.description}
-          </span>
-        )}
-      </post-menu-item>
-    );
-  }
-
-  private renderLoginFallback() {
-    const link = parseLinkProp<KlpLink>(this.loginLink, 'loginLink');
-
-    if (link) {
-      return (
-        <a class="login-link" href={link.url} aria-label={link.label}>
-          {link.icon && <post-icon name={link.icon} aria-hidden="true"></post-icon>}
-          <span>{link.text}</span>
-        </a>
-      );
-    }
-
-    if (!this.parsedConfig) return null;
-
-    return (
-      <a class="login-link" href={this.parsedConfig.appLoginUrl}>
-        <slot name="login-label">Login</slot>
-      </a>
-    );
-  }
-
-  private renderMenuLinksFallback(session: KlpSessionData) {
-    const links = parseLinkProp<KlpLink[]>(this.menuLinks, 'menuLinks') ?? [];
-    const accountSwitch = showAccountSwitch(session)
-      ? parseLinkProp<KlpLink>(this.accountSwitch, 'accountSwitch')
-      : null;
-    const companySwitch = showCompanySwitch(session)
-      ? parseLinkProp<KlpLink>(this.companySwitch, 'companySwitch')
-      : null;
-    const entries = [...links, accountSwitch, companySwitch].filter(
-      (link): link is KlpLink => link !== null && link !== undefined,
-    );
-
-    return entries.map((link, index) =>
-      this.renderMenuItem(link, 'menu-link', `klp-menu-link-description-${index}`),
-    );
-  }
-
-  private renderLogoutFallback() {
-    const link = parseLinkProp<KlpLink>(this.logoutLink, 'logoutLink');
-    return link ? this.renderMenuItem(link, 'logout-link', 'klp-logout-description') : null;
-  }
-
   private renderUserMenu(session: KlpSessionData) {
     const fullName = [session.name, session.surname].filter(Boolean).join(' ');
 
     return [
       <post-menu-trigger for={MENU_ID}>
-        <button class="user-menu-trigger">
+        <button class="user-menu-trigger" type="button">
           <post-avatar
             firstname={session.name}
             lastname={session.surname}
-            aria-hidden="true"
+            description={this.textCurrentUser?.replace('{user}', fullName)}
+            aria-hidden={this.textCurrentUser ? null : 'true'}
           ></post-avatar>
-          <span class="user-name">{fullName}</span>
+          <span class="visually-hidden">{this.textAccessUserLinks}</span>
           <post-icon name="chevrondown" aria-hidden="true"></post-icon>
         </button>
       </post-menu-trigger>,
-      <post-menu id={MENU_ID} label={this.textUserMenu}>
+      <post-menu id={MENU_ID} label={this.textUserLinks}>
         <div class="user-menu-header" slot="header">
           <post-avatar
             firstname={session.name}
@@ -218,24 +147,21 @@ export class PostKlpLoginWidget {
             {session.company && <span class="user-menu-company">{session.company}</span>}
           </div>
         </div>
-        <slot name="menu-links">{this.renderMenuLinksFallback(session)}</slot>
-        <slot name="logout-link">{this.renderLogoutFallback()}</slot>
+        {showAccountSwitch(session) && <slot name="account-switch"></slot>}
+        {showCompanySwitch(session) && <slot name="company-switch"></slot>}
+        <slot name="menu-links"></slot>
+        <slot name="logout-link"></slot>
       </post-menu>,
     ];
   }
 
   render() {
-    // Every injected link lives in a named slot whose fallback is the matching property. That is
-    // the precedence rule -- a filled slot wins -- enforced by the platform rather than by us.
-    // The session is unknown until the client connects, so both server and first client render
-    // produce the anonymous shell.
+    // Every link is the consumer's markup; the widget only decides which of them the session is
+    // allowed to see. The session is unknown until the client connects, so both server and the
+    // first client render produce the anonymous shell.
     return (
       <Host data-version={version}>
-        {this.session ? (
-          this.renderUserMenu(this.session)
-        ) : (
-          <slot name="login-link">{this.renderLoginFallback()}</slot>
-        )}
+        {this.session ? this.renderUserMenu(this.session) : <slot name="login-link"></slot>}
       </Host>
     );
   }

@@ -10,13 +10,6 @@
 }
 
 // Included per selector, not as a group: the focus mixin emits broken `:is()` for grouped selectors.
-.login-link {
-  @include header-mx.nav-item-base;
-  align-items: center;
-  text-decoration: none;
-  cursor: pointer;
-}
-
 .user-menu-trigger {
   @include header-mx.nav-item-base;
   @include header-mx.nav-item-rotating-chevron;
@@ -33,11 +26,4 @@
 
 .user-menu-company {
   font-weight: normal;
-}
-
-.menu-link,
-.logout-link {
-  display: flex;
-  align-items: center;
-  gap: 8px;
 }

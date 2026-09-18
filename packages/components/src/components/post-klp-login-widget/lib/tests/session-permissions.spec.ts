@@ -1,5 +1,5 @@
-import { showAccountSwitch, showCompanySwitch, parseLinkProp } from '../klp-links.model';
 import type { KlpSessionData } from '../klp-session.model';
+import { showAccountSwitch, showCompanySwitch } from '../session-permissions';
 
 function session(overrides: Partial<KlpSessionData> = {}): KlpSessionData {
   return {
@@ -11,7 +11,7 @@ function session(overrides: Partial<KlpSessionData> = {}): KlpSessionData {
   };
 }
 
-describe('klp-links', () => {
+describe('session permissions', () => {
   describe('who may switch company', () => {
     it('lets a B2B user with the old company flag switch', () => {
       expect(showCompanySwitch(session({ userType: 'B2B', canChangeCompany: true }))).toBe(true);
@@ -59,34 +59,6 @@ describe('klp-links', () => {
 
     it('does not offer it when the platform says nothing', () => {
       expect(showAccountSwitch(session())).toBe(false);
-    });
-  });
-
-  describe('link props', () => {
-    const link = { text: 'Profile', url: 'https://int.post.ch/profile', icon: '1001' };
-
-    it('takes an object as it is', () => {
-      expect(parseLinkProp(link, 'loginLink')).toEqual(link);
-    });
-
-    it('parses a JSON string, so the widget can be driven from plain HTML', () => {
-      expect(parseLinkProp(JSON.stringify(link), 'loginLink')).toEqual(link);
-    });
-
-    it('reports malformed JSON instead of rendering a broken link', () => {
-      const error = jest.spyOn(console, 'error').mockImplementation(() => {});
-
-      expect(parseLinkProp('{not json', 'loginLink')).toBeNull();
-      expect(error).toHaveBeenCalledWith(
-        'post-klp-login-widget: the `loginLink` property is not valid JSON.',
-        expect.anything(),
-      );
-
-      error.mockRestore();
-    });
-
-    it.each([undefined, null, ''])('treats %p as no link at all', value => {
-      expect(parseLinkProp(value as undefined, 'loginLink')).toBeNull();
     });
   });
 });
