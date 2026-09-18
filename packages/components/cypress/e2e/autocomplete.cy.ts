@@ -1,8 +1,7 @@
-import { getPopoverOpenSelector } from './helper/popovercontainer';
+import { POPOVER_OPEN_SELECTOR } from './helper/popovercontainer';
 
 const FIXTURE_PATH = './cypress/fixtures/post-autocomplete.test.html';
 const DEBOUNCE_TIMEOUT = 300;
-const POPOVER_OPEN_SELECTOR = getPopoverOpenSelector();
 
 describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
   describe('nested listbox', () => {
@@ -238,7 +237,7 @@ describe('autocomplete', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('Has no detectable a11y violations on load', () => {
-      cy.checkA11y('body', undefined, (violations) => {
+      cy.checkA11y('body', undefined, violations => {
         expect(violations).to.have.length(0);
       });
     });

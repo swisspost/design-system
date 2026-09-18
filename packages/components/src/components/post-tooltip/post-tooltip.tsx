@@ -90,6 +90,7 @@ export class PostTooltip {
           role="tooltip"
           arrow={this.arrow}
           placement={this.placement}
+          autoHide
           onPostBeforeToggle={e => this.handleBeforeToggle(e)}
           ref={(el: HTMLPostPopovercontainerElement) => (this.popoverRef = el)}
         >
