@@ -360,6 +360,10 @@ export namespace Components {
          */
         "language"?: 'de' | 'fr' | 'it' | 'en';
         /**
+          * Where the messages entry points. Without it the widget shows no messages.
+         */
+        "messagesUrl"?: string;
+        /**
           * Your project id, the same one the header is given. Sent to the platform as the service id.
          */
         "project"?: string;
@@ -371,6 +375,14 @@ export namespace Components {
           * Visually hidden label for the current user. The placeholder `{user}` will be replaced with the full name of the currently logged-in user.
          */
         "textCurrentUser"?: string;
+        /**
+          * Label of the messages entry.
+         */
+        "textMessages"?: string;
+        /**
+          * Visually hidden label for the unread count. The placeholder `{count}` will be replaced with the number of unread messages.
+         */
+        "textUnreadMessages"?: string;
         /**
           * Visually hidden label for the user menu.
          */
@@ -1714,6 +1726,10 @@ declare namespace LocalJSX {
          */
         "language"?: 'de' | 'fr' | 'it' | 'en';
         /**
+          * Where the messages entry points. Without it the widget shows no messages.
+         */
+        "messagesUrl"?: string;
+        /**
           * Your project id, the same one the header is given. Sent to the platform as the service id.
          */
         "project"?: string;
@@ -1725,6 +1741,14 @@ declare namespace LocalJSX {
           * Visually hidden label for the current user. The placeholder `{user}` will be replaced with the full name of the currently logged-in user.
          */
         "textCurrentUser"?: string;
+        /**
+          * Label of the messages entry.
+         */
+        "textMessages"?: string;
+        /**
+          * Visually hidden label for the unread count. The placeholder `{count}` will be replaced with the number of unread messages.
+         */
+        "textUnreadMessages"?: string;
         /**
           * Visually hidden label for the user menu.
          */
@@ -2250,6 +2274,9 @@ declare namespace LocalJSX {
         "textCurrentUser": string;
         "textUserLinks": string;
         "textAccessUserLinks": string;
+        "messagesUrl": string;
+        "textMessages": string;
+        "textUnreadMessages": string;
     }
     interface PostLanguageMenuAttributes {
         "textChangeLanguage": string;

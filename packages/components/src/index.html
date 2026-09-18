@@ -60,14 +60,37 @@
         };
 
         // Leaves the dev server's own socket alone; only the platform event bus is answered here.
+        const unread = Number(new URLSearchParams(location.search).get('unread') ?? 3);
         const NativeWebSocket = window.WebSocket;
         window.WebSocket = function (url, protocols) {
           if (!String(url).includes('/eventbus/')) return new NativeWebSocket(url, protocols);
 
-          const socket = { close() {}, send() {} };
-          setTimeout(() => socket.onclose?.({}), 0);
+          // Speaks just enough SockJS and vert.x to push one unread-notifications document.
+          const socket = {
+            readyState: 1,
+            close() {
+              socket.onclose?.({ code: 1000, reason: '' });
+            },
+            send(data) {
+              const frame = JSON.parse(JSON.parse(data)[0]);
+              if (frame.type !== 'register') return;
+
+              const envelope = JSON.stringify({
+                address: frame.address,
+                body: {
+                  typ: 'doc',
+                  doctyp: 'UNREAD_NOTIFICATIONS',
+                  doc: { unreadNotifications: unread },
+                },
+              });
+              setTimeout(() => socket.onmessage?.({ data: `a${JSON.stringify([envelope])}` }), 0);
+            },
+          };
+
+          setTimeout(() => socket.onmessage?.({ data: 'o' }), 0);
           return socket;
         };
+        Object.assign(window.WebSocket, { CONNECTING: 0, OPEN: 1, CLOSING: 2, CLOSED: 3 });
       })();
     </script>
     <script type="module" src="/build/post-components.esm.js"></script>
@@ -118,6 +141,9 @@
         environment="int01"
         project="playground"
         language="en"
+        messages-url="#messages"
+        text-messages="Messages"
+        text-unread-messages="{count} unread"
         text-current-user="Currently logged in: {user}"
         text-user-links="User links"
         text-access-user-links="Open user links"
@@ -128,7 +154,7 @@
         </a>
         <post-menu-item slot="account-switch">
           <a href="#switch-account">
-            <post-icon name="profile" aria-hidden="true"></post-icon>
+            <post-icon name="userswitch" aria-hidden="true"></post-icon>
             Switch account
           </a>
         </post-menu-item>
@@ -141,19 +167,13 @@
         <post-menu-item slot="menu-links">
           <a href="#profile">
             <post-icon name="profile" aria-hidden="true"></post-icon>
-            Profile
+            My profile
           </a>
         </post-menu-item>
         <post-menu-item slot="menu-links">
           <a href="#settings">
             <post-icon name="gear" aria-hidden="true"></post-icon>
             Settings
-          </a>
-        </post-menu-item>
-        <post-menu-item slot="menu-links">
-          <a href="#notifications">
-            <post-icon name="alarm" aria-hidden="true"></post-icon>
-            Notifications
           </a>
         </post-menu-item>
         <post-menu-item slot="logout-link">

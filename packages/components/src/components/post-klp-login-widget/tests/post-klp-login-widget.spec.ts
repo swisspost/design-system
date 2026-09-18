@@ -175,4 +175,55 @@ describe('post-klp-login-widget', () => {
       expect(lines).toEqual(['Die Post', 'Ada Lovelace']);
     });
   });
+
+  describe('messages', () => {
+    /** The count is pushed over the event bus, which a spec has no socket to receive. */
+    async function withUnread(page: SpecPage, unread: number) {
+      (page.rootInstance as { unread: number }).unread = unread;
+      await page.waitForChanges();
+    }
+
+    const messages = `messages-url="/messages" text-messages="Messages"`;
+
+    it('leaves the entry out when no url was given', async () => {
+      const page = await render();
+      await logIn(page);
+
+      expect(shadow(page, 'post-menu-item')).toBeNull();
+    });
+
+    it('offers the entry the widget owns, because the count lives in the session', async () => {
+      const page = await render(messages);
+      await logIn(page);
+
+      expect(shadow(page, 'post-menu-item a').getAttribute('href')).toBe('/messages');
+      expect(shadow(page, 'post-menu-item span').textContent).toBe('Messages');
+    });
+
+    it('shows no count while nothing is unread', async () => {
+      const page = await render(messages);
+      await logIn(page);
+
+      expect(shadow(page, '.unread-count')).toBeNull();
+      expect(shadow(page, '.unread-badge')).toBeNull();
+    });
+
+    it('marks the trigger and counts the entry once something is unread', async () => {
+      const page = await render(`${messages} text-unread-messages="{count} unread messages"`);
+      await logIn(page);
+      await withUnread(page, 3);
+
+      expect(shadow(page, '.unread-badge')).not.toBeNull();
+      expect(shadow(page, '.unread-count [aria-hidden="true"]').textContent).toBe('3');
+      expect(shadow(page, '.unread-count .visually-hidden').textContent).toBe('3 unread messages');
+    });
+
+    it('caps the count, past which the exact number stops being worth the space', async () => {
+      const page = await render(messages);
+      await logIn(page);
+      await withUnread(page, 250);
+
+      expect(shadow(page, '.unread-count [aria-hidden="true"]').textContent).toBe('99+');
+    });
+  });
 });

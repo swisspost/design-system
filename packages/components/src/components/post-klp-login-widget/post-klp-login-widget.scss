@@ -1,6 +1,10 @@
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 
+// The menu-item rules are a global stylesheet and a global stylesheet cannot reach into this
+// shadow root, so the one entry the widget renders itself would otherwise stay unstyled.
+@use '../post-menu-item/post-menu-item.scss';
+
 :host {
   display: inline-block;
 }
@@ -15,6 +19,33 @@
   align-items: center;
   text-decoration: none;
   cursor: pointer;
+}
+
+// Anchors the badge to the avatar; the trigger itself clips whatever reaches its own edge.
+.user-menu-avatar {
+  position: relative;
+  display: inline-flex;
+}
+
+// A dot rather than a number: the toggle is too small to read one, the menu entry carries it.
+.unread-badge {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--post-scheme-color-signal-error-solo);
+}
+
+.unread-count {
+  margin-inline-start: auto;
+  padding-inline: 8px;
+  border-radius: 999px;
+  background-color: var(--post-scheme-color-signal-error-solo);
+  color: #fff;
+  font-size: 0.75rem;
+  line-height: 1.5;
 }
 
 // The header row is laid out by post-menu's `::slotted([slot='header'])`; only the reset is ours.

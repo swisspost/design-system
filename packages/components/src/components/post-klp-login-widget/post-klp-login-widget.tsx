@@ -9,6 +9,9 @@ import { showAccountSwitch, showCompanySwitch } from './lib/session-permissions'
 /** Scoped to the widget's own shadow root, so a constant id cannot collide across instances. */
 const MENU_ID = 'klp-user-menu';
 
+/** Above this the exact number stops being useful and only costs the badge its shape. */
+const MAX_SHOWN_UNREAD = 99;
+
 /**
  * @slot login-link - The link offered to anonymous visitors.
  * @slot account-switch - Entry for switching account, rendered only when the session permits it.
@@ -73,8 +76,27 @@ export class PostKlpLoginWidget {
    */
   @Prop() textAccessUserLinks?: string;
 
+  /**
+   * Where the messages entry points. Without it the widget shows no messages.
+   */
+  @Prop() messagesUrl?: string;
+
+  /**
+   * Label of the messages entry.
+   */
+  @Prop() textMessages?: string;
+
+  /**
+   * Visually hidden label for the unread count.
+   * The placeholder `{count}` will be replaced with the number of unread messages.
+   */
+  @Prop() textUnreadMessages?: string;
+
   /** Stays null on the server: the session is only ever known to the client. */
   @State() private session: KlpSessionData | null = null;
+
+  /** Pushed over the event bus, so it changes without the session changing. */
+  @State() private unread: number = 0;
 
   private controller?: ReturnType<typeof createSessionController>;
 
@@ -109,23 +131,62 @@ export class PostKlpLoginWidget {
       onSessionChange: session => {
         this.session = session;
       },
+      onUnreadChange: unread => {
+        this.unread = unread;
+      },
     });
 
     void this.controller.start();
+  }
+
+  private renderUnreadCount() {
+    if (this.unread === 0) return null;
+
+    return (
+      <span class="unread-count">
+        <span aria-hidden="true">
+          {this.unread > MAX_SHOWN_UNREAD ? `${MAX_SHOWN_UNREAD}+` : this.unread}
+        </span>
+        <span class="visually-hidden">
+          {this.textUnreadMessages?.replace('{count}', String(this.unread))}
+        </span>
+      </span>
+    );
+  }
+
+  /**
+   * The one entry the consumer cannot slot in: its unread count arrives over the event bus and
+   * would have to be written into the consumer's own markup.
+   */
+  private renderMessages() {
+    if (!this.messagesUrl) return null;
+
+    return (
+      <post-menu-item>
+        <a href={this.messagesUrl}>
+          <post-icon aria-hidden="true" name="letter"></post-icon>
+          <span>{this.textMessages}</span>
+          {this.renderUnreadCount()}
+        </a>
+      </post-menu-item>
+    );
   }
 
   private renderUserMenu(session: KlpSessionData) {
     const fullName = [session.name, session.surname].filter(Boolean).join(' ');
 
     return [
-      <post-menu-trigger for={MENU_ID}>
+      <post-menu-trigger for={MENU_ID} key={MENU_ID}>
         <button class="user-menu-trigger" type="button">
-          <post-avatar
-            firstname={session.name}
-            lastname={session.surname}
-            description={this.textCurrentUser?.replace('{user}', fullName)}
-            aria-hidden={this.textCurrentUser ? null : 'true'}
-          ></post-avatar>
+          <span class="user-menu-avatar">
+            <post-avatar
+              firstname={session.name}
+              lastname={session.surname}
+              description={this.textCurrentUser?.replace('{user}', fullName)}
+              aria-hidden={this.textCurrentUser ? null : 'true'}
+            ></post-avatar>
+            {this.unread > 0 && <span class="unread-badge" aria-hidden="true"></span>}
+          </span>
           <span class="visually-hidden">{this.textAccessUserLinks}</span>
         </button>
       </post-menu-trigger>,
@@ -142,6 +203,7 @@ export class PostKlpLoginWidget {
         {showAccountSwitch(session) && <slot name="account-switch"></slot>}
         {showCompanySwitch(session) && <slot name="company-switch"></slot>}
         <slot name="menu-links"></slot>
+        {this.renderMessages()}
         <slot name="logout-link"></slot>
       </post-menu>,
     ];
