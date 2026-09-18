@@ -54,7 +54,12 @@ jobs:
       - name: Test publish step
         run: pnpm -r publish --dry-run
 
-      - name: Check release packages exist on npm
+      # Trusted publishing on the public npm registry requires the package
+      # to already exist before we release it with the "trusted publishing" method.
+      # New packages must first be published manually with a placeholder
+      # version (e.g. 0.0.0), then configured for trusted publishing on npmjs.com.
+      # This check fails fast if a queued package hasn't been bootstrapped yet.
+      - name: Verify packages to release exist on the public npm registry
         run: |
           trap 'rm -f changesets.json' EXIT
           pnpm changeset status --output=changesets.json
