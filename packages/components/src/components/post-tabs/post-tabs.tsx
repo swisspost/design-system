@@ -36,6 +36,8 @@ export class PostTabs {
   private contentObserver?: MutationObserver;
   private resizeObserver?: ResizeObserver;
   private tabsContainer!: HTMLElement;
+  // Re-applies the last scroll whose target depends on the container width, if the container resizes
+  private pendingScroll?: () => void;
 
   @Element() host!: HTMLPostTabsElement;
 
@@ -180,9 +182,16 @@ export class PostTabs {
   }
 
   private setupResizeObserver() {
-    this.resizeObserver = new ResizeObserver(this.updateScrollButtons);
+    this.resizeObserver = new ResizeObserver(this.handleContainerResize);
     this.resizeObserver.observe(this.tabsContainer);
   }
+
+  // Showing or hiding a scroll button changes the container width, which can happen in the middle of a scroll:
+  // the scroll target has to be recomputed, otherwise the scroll stops short of the end
+  private readonly handleContainerResize = () => {
+    this.updateScrollButtons();
+    this.pendingScroll?.();
+  };
 
   private handleContentChange(mutations: MutationRecord[]) {
     const shouldRedetect = this.shouldRedetectVariant(mutations);
@@ -500,10 +509,26 @@ export class PostTabs {
     const paddingStart = Number.parseFloat(style.paddingInlineStart) || 0;
     const paddingEnd = Number.parseFloat(style.paddingInlineEnd) || 0;
     const contentWidth = this.tabsContainer.clientWidth - paddingStart - paddingEnd;
+    const maxScrollLeft = this.tabsContainer.scrollWidth - this.tabsContainer.clientWidth;
+    const reachesEnd = sign > 0 && this.tabsContainer.scrollLeft + contentWidth >= maxScrollLeft;
+
+    this.pendingScroll = reachesEnd ? () => this.scrollToEnd() : undefined;
     this.tabsContainer.scrollBy({
       left: sign * contentWidth,
       behavior: 'smooth',
     });
+  }
+
+  private scrollToEnd() {
+    const container = this.tabsContainer;
+    const maxScrollLeft = container.scrollWidth - container.clientWidth;
+
+    if (container.scrollLeft >= maxScrollLeft) {
+      this.pendingScroll = undefined;
+      return;
+    }
+
+    container.scrollTo({ left: maxScrollLeft, behavior: 'smooth' });
   }
 
   private scrollTabIntoView(tab: HTMLPostTabItemElement, behavior: ScrollBehavior = 'instant') {
@@ -516,9 +541,13 @@ export class PostTabs {
     const containerLeft = container.scrollLeft + paddingStart;
     const containerRight = containerLeft + container.clientWidth - paddingStart - paddingEnd;
 
+    // Only aligning the tab to the right edge depends on the container width
+    this.pendingScroll = undefined;
+
     if (tabLeft < containerLeft) {
       container.scrollTo({ left: tabLeft - paddingStart, behavior });
     } else if (tabRight > containerRight) {
+      this.pendingScroll = () => this.scrollTabIntoView(tab, behavior);
       container.scrollTo({ left: tabRight - container.clientWidth + paddingEnd, behavior });
     }
   }
