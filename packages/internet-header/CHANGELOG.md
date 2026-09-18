@@ -1,5 +1,14 @@
 # @swisspost/internet-header
 
+## 10.6.0
+
+### Patch Changes
+
+- Updated URL mapping for KLP subscribe calls for different environments. Testing on int should no longer cause CORS issues. (by [@gfellerph](https://github.com/gfellerph) with [#8483](https://github.com/swisspost/design-system/pull/8483))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.6.0
+  - @swisspost/design-system-styles@10.6.0
+
 ## 10.5.0
 
 ### Patch Changes
