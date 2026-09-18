@@ -43,9 +43,9 @@ export class PostKlpLoginWidget {
   @Prop() language?: 'de' | 'fr' | 'it' | 'en';
 
   /**
-   * Whether the session is refreshed while the user is active on the page.
+   * Whether to stop refreshing the session while the user is active on the page.
    */
-  @Prop() keepAlive: boolean = true;
+  @Prop() keepAliveDisabled: boolean = false;
 
   /**
    * The portal's own keep-alive url. The platform session is refreshed either way.
@@ -107,7 +107,7 @@ export class PostKlpLoginWidget {
       endPoint,
       keepAliveUrl: this.keepAliveUrl,
       conf: {
-        keepAlive: this.keepAlive,
+        keepAlive: !this.keepAliveDisabled,
         keepAliveInterval: this.keepAliveInterval,
         keepAliveListeningEvents: this.keepAliveEvents,
       },
@@ -132,7 +132,6 @@ export class PostKlpLoginWidget {
             aria-hidden={this.textCurrentUser ? null : 'true'}
           ></post-avatar>
           <span class="visually-hidden">{this.textAccessUserLinks}</span>
-          <post-icon name="chevrondown" aria-hidden="true"></post-icon>
         </button>
       </post-menu-trigger>,
       <post-menu id={MENU_ID} label={this.textUserLinks}>
@@ -143,8 +142,8 @@ export class PostKlpLoginWidget {
             aria-hidden="true"
           ></post-avatar>
           <div class="user-menu-identity">
-            <span class="user-menu-name">{fullName}</span>
             {session.company && <span class="user-menu-company">{session.company}</span>}
+            <span class="user-menu-name">{fullName}</span>
           </div>
         </div>
         {showAccountSwitch(session) && <slot name="account-switch"></slot>}

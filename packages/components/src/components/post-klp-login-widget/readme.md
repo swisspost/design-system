@@ -11,7 +11,7 @@
 | --------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ---------------------------- |
 | `applicationId`       | `application-id`         | The portal application the session belongs to.                                                                                            | `string`                                                                  | `undefined`                  |
 | `environment`         | `environment`            | The KLP platform instance to talk to. Determines every backend URL the widget uses.                                                       | `"dev01" \| "dev02" \| "devs1" \| "int01" \| "int02" \| "prod" \| "test"` | `'prod'`                     |
-| `keepAlive`           | `keep-alive`             | Whether the session is refreshed while the user is active on the page.                                                                    | `boolean`                                                                 | `true`                       |
+| `keepAliveDisabled`   | `keep-alive-disabled`    | Whether to stop refreshing the session while the user is active on the page.                                                              | `boolean`                                                                 | `false`                      |
 | `keepAliveEvents`     | `keep-alive-events`      | Space separated list of the events that count as user activity.                                                                           | `string`                                                                  | `'click touchstart keydown'` |
 | `keepAliveInterval`   | `keep-alive-interval`    | Minutes between two keep-alive ticks.                                                                                                     | `number`                                                                  | `9`                          |
 | `keepAliveUrl`        | `keep-alive-url`         | The portal's own keep-alive url. The platform session is refreshed either way.                                                            | `string`                                                                  | `undefined`                  |
@@ -39,7 +39,6 @@
 
 - [post-menu-trigger](../post-menu-trigger)
 - [post-avatar](../post-avatar)
-- [post-icon](../post-icon)
 - [post-menu](../post-menu)
 
 ### Graph
@@ -47,7 +46,6 @@
 graph TD;
   post-klp-login-widget --> post-menu-trigger
   post-klp-login-widget --> post-avatar
-  post-klp-login-widget --> post-icon
   post-klp-login-widget --> post-menu
   post-menu --> post-popovercontainer
   style post-klp-login-widget fill:#f9f,stroke:#333,stroke-width:4px

@@ -12,7 +12,6 @@
 // Included per selector, not as a group: the focus mixin emits broken `:is()` for grouped selectors.
 .user-menu-trigger {
   @include header-mx.nav-item-base;
-  @include header-mx.nav-item-rotating-chevron;
   align-items: center;
   text-decoration: none;
   cursor: pointer;

@@ -341,10 +341,10 @@ export namespace Components {
          */
         "environment": KlpEnvironment;
         /**
-          * Whether the session is refreshed while the user is active on the page.
-          * @default true
+          * Whether to stop refreshing the session while the user is active on the page.
+          * @default false
          */
-        "keepAlive": boolean;
+        "keepAliveDisabled": boolean;
         /**
           * Space separated list of the events that count as user activity.
           * @default 'click touchstart keydown'
@@ -1699,10 +1699,10 @@ declare namespace LocalJSX {
          */
         "environment"?: KlpEnvironment;
         /**
-          * Whether the session is refreshed while the user is active on the page.
-          * @default true
+          * Whether to stop refreshing the session while the user is active on the page.
+          * @default false
          */
-        "keepAlive"?: boolean;
+        "keepAliveDisabled"?: boolean;
         /**
           * Space separated list of the events that count as user activity.
           * @default 'click touchstart keydown'
@@ -2252,7 +2252,7 @@ declare namespace LocalJSX {
         "project": string;
         "applicationId": string;
         "language": 'de' | 'fr' | 'it' | 'en';
-        "keepAlive": boolean;
+        "keepAliveDisabled": boolean;
         "keepAliveUrl": string;
         "keepAliveInterval": number;
         "keepAliveEvents": string;
