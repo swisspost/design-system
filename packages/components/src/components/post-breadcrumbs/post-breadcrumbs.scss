@@ -56,6 +56,7 @@ post-menu-item > slot[name='home'] > a {
   white-space: normal;
   overflow: visible;
   text-overflow: unset;
+  justify-content: start;
   @include utilities.word-break;
 }
 
