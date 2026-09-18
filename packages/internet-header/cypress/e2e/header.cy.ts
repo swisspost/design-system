@@ -251,7 +251,8 @@ describe('header', () => {
       cy.get('[slot="local-nav"] > li').as('nav-items');
 
       cy.get('@nav-items')
-        .should('have.length', headerConfig.localHeader.navigation.length)
+        // +1 accounts for the close link, rendered as the last local navigation item.
+        .should('have.length', headerConfig.localHeader.navigation.length + 1)
         .and('be.visible');
 
       headerConfig.localHeader.navigation.forEach((item, index) => {
@@ -280,6 +281,40 @@ describe('header', () => {
             .find('post-menu-item')
             .should('have.length', expectedCount);
         }
+      });
+    });
+
+    it('should correctly show the close link as the last local navigation item', () => {
+      const closeLinkConfig = headerConfig.localHeader.closeLink;
+
+      cy.get('[slot="local-nav"] > li')
+        .last()
+        .find('a')
+        .should('be.visible')
+        .and('have.class', 'btn-primary')
+        .and('have.attr', 'href', closeLinkConfig.url)
+        .and('contain.html', 'post-icon')
+        .invoke('text')
+        .should('contain', closeLinkConfig.text);
+    });
+
+    context('without a close link', () => {
+      beforeEach(() => {
+        const noCloseLinkConfig = JSON.parse(JSON.stringify(micrositeConfiguration));
+        delete noCloseLinkConfig.header.localHeader.closeLink;
+
+        prepare(HEADER, 'Default', {
+          config: noCloseLinkConfig,
+        });
+        cy.changeArg('language', language);
+      });
+
+      it('should not render a close link', () => {
+        cy.get('[slot="local-nav"] > li')
+          .should('have.length', headerConfig.localHeader.navigation.length)
+          .last()
+          .find('a')
+          .should('not.have.class', 'btn-primary');
       });
     });
   });
