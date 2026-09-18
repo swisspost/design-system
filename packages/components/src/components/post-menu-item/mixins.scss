@@ -1,0 +1,34 @@
+@use '@swisspost/design-system-styles/mixins/media';
+
+@mixin menu-item-link-appearance {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px 8px 16px;
+  gap: 12px;
+  font-size: 0.875rem;
+  color: #050400;
+  border-radius: 0;
+  text-decoration: none;
+
+  @include media.min(md) {
+    font-size: 1rem;
+    padding-block: 12px;
+    gap: 16px;
+  }
+
+  @include media.min(lg) {
+    font-size: 1.25rem;
+    padding-block: 13px;
+  }
+
+  &:focus-visible {
+    outline-offset: 2px !important;
+    border-radius: 4px;
+  }
+
+  &:hover {
+    background-color: #504f4b;
+    color: #fff;
+  }
+}

@@ -17,9 +17,9 @@
 
 ## Slots
 
-| Slot        | Description                                       |
-| ----------- | ------------------------------------------------- |
-| `"default"` | The content displayed inside the breadcrumb item. |
+| Slot        | Description                                                                                                                                                                    |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `"default"` | The content displayed inside the breadcrumb item. Can contain text or an <a> element, so consumers can slot their own routing-aware link instead of relying on the `url` prop. |
 
 
 ## Dependencies

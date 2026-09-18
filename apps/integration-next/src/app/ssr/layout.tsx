@@ -17,6 +17,7 @@ import {
   PostMegadropdownTrigger,
 } from '@swisspost/design-system-components-react/server';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Layout({ children }: { readonly children: React.ReactNode }) {
   return (
@@ -276,7 +277,10 @@ export default function Layout({ children }: { readonly children: React.ReactNod
           >
             <PostBreadcrumbItem url="/section1">Section 1</PostBreadcrumbItem>
             <PostBreadcrumbItem url="/section2">Section 2</PostBreadcrumbItem>
-            <PostBreadcrumbItem url="/section3">Section 3</PostBreadcrumbItem>
+            {/* Slotted next/link: client-side navigation instead of a full page reload */}
+            <PostBreadcrumbItem>
+              <Link href="/csr">Section 3</Link>
+            </PostBreadcrumbItem>
           </PostBreadcrumbs>
           {children}
         </main>
