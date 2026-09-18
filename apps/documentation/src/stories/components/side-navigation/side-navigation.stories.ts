@@ -65,8 +65,8 @@ const meta: MetaComponent = {
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
         <post-side-navigation-trigger slot="side-nav" for="sidenavigation">
           <button>
-            <span>Menu</span>
             <post-icon aria-hidden="true" name="burger"></post-icon>
+            Menu
           </button>
         </post-side-navigation-trigger>
         <p slot="title">[Application Title]</p>
@@ -140,6 +140,7 @@ export const HeaderTrigger: Story = {
   <post-side-navigation-trigger slot="side-nav" for="sidenav">
     <button>
       <post-icon aria-hidden="true" name="burger"></post-icon>
+      Menu
     </button>
   </post-side-navigation-trigger>
   <p slot="title">[Application Title]</p>
