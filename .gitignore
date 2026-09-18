@@ -18,6 +18,9 @@ styles/stylelint-report.txt
 .envrc
 .secrets
 
+# TypeScript
+*.tsbuildinfo
+
 # Cypress
 **/cypress/videos/
 **/cypress/screenshots/

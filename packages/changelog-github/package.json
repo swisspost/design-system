@@ -16,21 +16,24 @@
   "publishConfig": {
     "access": "public"
   },
+  "type": "module",
   "main": "./dist/index.js",
   "scripts": {
     "build": "tsc",
+    "typecheck": "tsc --noEmit",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "clean": "rimraf dist"
   },
   "dependencies": {
     "@changesets/get-github-info": "0.8.0",
-    "@changesets/types": "6.1.0",
+    "@changesets/types": "7.0.0",
     "dotenv": "17.2.3"
   },
   "devDependencies": {
     "@changesets/parse": "0.4.3",
     "@eslint/js": "9.18.0",
+    "@swisspost/design-system-tsconfig": "workspace:10.5.0",
     "eslint": "9.26.0",
     "globals": "17.3.0",
     "rimraf": "6.1.3",
