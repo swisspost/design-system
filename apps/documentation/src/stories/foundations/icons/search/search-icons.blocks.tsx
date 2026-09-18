@@ -172,6 +172,10 @@ export class Search extends React.Component {
     this.scrollToResults();
   }
 
+  onPaginationChange = (event: Event) => {
+    this.changePage((event as CustomEvent<number>).detail);
+  };
+
   scrollToResults() {
     const resultsAnchor = document.querySelector('a[href="#results-top"]');
 
@@ -424,9 +428,12 @@ export class Search extends React.Component {
                 <span className="name">{icon.name}</span>
                 <span className="visually-hidden">{icon.keywords}</span>
                 {icon.migration ? (
-                  <post-tooltip-trigger for="tooltip-migration-hint" class="tooltip-migration-hint">
-                    <post-icon name="info"></post-icon>
-                  </post-tooltip-trigger>
+                  <>
+                    <span className="tooltip-migration-hint" aria-hidden="true">
+                      <post-icon name="info"></post-icon>
+                    </span>
+                    <span className="visually-hidden">Migration instructions available in the details panel</span>
+                  </>
                 ) : null}
               </button>
             </li>
@@ -441,47 +448,22 @@ export class Search extends React.Component {
 
     return (
       <div className="paging">
-        <ul>
-          <li>
-            <button
-              className="btn btn-sm btn-secondary"
-              disabled={this.results.paging.currentPage <= 1}
-              onClick={() => this.changePage(this.results.paging.currentPage - 1)}
-            >
-              <post-icon name="chevronleft" aria-hidden="true" />
-              <span className="visually-hidden">navigate to previous page</span>
-            </button>
-          </li>
-          {Array.from(Array(this.results.paging.totalPages).keys()).map(page => {
-            return (
-              <li key={`paging-${page}`}>
-                <button
-                  className={[
-                    'btn',
-                    'btn-sm',
-                    this.results.paging.currentPage === page + 1 ? 'btn-primary' : 'btn-secondary',
-                  ]
-                    .filter(Boolean)
-                    .join(' ')}
-                  onClick={() => this.changePage(page + 1)}
-                >
-                  {page + 1}
-                  <span className="visually-hidden">navigate to page number {page + 1}</span>
-                </button>
-              </li>
-            );
-          })}
-          <li>
-            <button
-              className="btn btn-sm btn-secondary"
-              disabled={this.results.paging.currentPage >= this.results.paging.totalPages}
-              onClick={() => this.changePage(this.results.paging.currentPage + 1)}
-            >
-              <post-icon name="chevronright" aria-hidden="true" />
-              <span className="visually-hidden">navigate to next page</span>
-            </button>
-          </li>
-        </ul>
+        <post-pagination
+          page={this.results.paging.currentPage}
+          page-size={this.results.paging.pageSize}
+          collection-size={this.results.icons.length}
+          label="Icon result pages"
+          text-previous="Previous page"
+          text-next="Next page"
+          text-page="Page"
+          text-first="First page"
+          text-last="Last page"
+          ref={element => {
+            if (!element) return;
+            element.removeEventListener('postChange', this.onPaginationChange);
+            element.addEventListener('postChange', this.onPaginationChange);
+          }}
+        ></post-pagination>
       </div>
     );
   }
@@ -497,9 +479,6 @@ export class Search extends React.Component {
           {this.paging()}
           {this.iconDetailPanel()}
         </div>
-        <post-tooltip id="tooltip-migration-hint" placement="top-end" arrow>
-          Click me for migration instructions
-        </post-tooltip>
       </div>
     );
   }
