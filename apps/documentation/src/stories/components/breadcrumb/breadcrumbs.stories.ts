@@ -23,6 +23,7 @@ const meta: MetaComponent = {
     textHome: 'Home',
     textBreadcrumbs: 'Breadcrumbs',
     textMoreItems: 'More items',
+    showHomeText: false,
     itemCount: 3,
   },
 };
@@ -34,6 +35,7 @@ function render(args: Args) {
       text-home=${args.textHome}
       text-breadcrumbs=${args.textBreadcrumbs}
       text-more-items=${args.textMoreItems}
+      ?show-home-text=${args.showHomeText}
     >
       ${Array.from({ length: args.itemCount }).map(
         (_, i) =>
@@ -55,6 +57,36 @@ export const Concatenated: Story = {
   args: {
     itemCount: 15,
   },
+};
+
+export const CustomHomeText: Story = {
+  args: {
+    showHomeText: true,
+    textHome: 'Private customers',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Set `show-home-text` to `true` to replace the home icon with the visible text set on `text-home`, enabling segment specific breadcrumbs (e.g. to link to a segment's own home page instead of the generic site root). Unlike the middle segments, home and the last (selected) segment are never simply collapsed into the menu — home gets its own menu as a last resort, and the last segment wraps onto multiple lines only if that's still not enough.",
+      },
+    },
+  },
+  render: args => html`
+    <post-breadcrumbs
+      home-url=${args.homeUrl}
+      text-home=${args.textHome}
+      text-breadcrumbs=${args.textBreadcrumbs}
+      text-more-items=${args.textMoreItems}
+      ?show-home-text=${args.showHomeText}
+    >
+      <post-breadcrumb-item url="/section1">Send letters</post-breadcrumb-item>
+      <post-breadcrumb-item url="/section2">Letters abroad</post-breadcrumb-item>
+      <post-breadcrumb-item url="/section3">Europe</post-breadcrumb-item>
+      <post-breadcrumb-item url="/section4">Neighbouring countries</post-breadcrumb-item>
+      <post-breadcrumb-item url="/section5">Letters to Switzerland</post-breadcrumb-item>
+    </post-breadcrumbs>
+  `,
 };
 
 export const ClientSideRouting: Story = {

@@ -146,11 +146,16 @@ export namespace Components {
          */
         "homeUrl"?: string;
         /**
+          * Whether `text-home` content is displayed instead of the home icon, enabling segment specific breadcrumbs (like "Private customers" or "About us").
+          * @default false
+         */
+        "showHomeText": boolean;
+        /**
           * An accessible label for the breadcrumb navigation.
          */
         "textBreadcrumbs": string;
         /**
-          * An accessible label for the root (home) breadcrumb item.
+          * The label of the root (home) breadcrumb item. Displayed visibly when `show-home-text` is `true`, otherwise used as an accessible label alongside the home icon.
          */
         "textHome": string;
         /**
@@ -1451,11 +1456,16 @@ declare namespace LocalJSX {
          */
         "homeUrl"?: string;
         /**
+          * Whether `text-home` content is displayed instead of the home icon, enabling segment specific breadcrumbs (like "Private customers" or "About us").
+          * @default false
+         */
+        "showHomeText"?: boolean;
+        /**
           * An accessible label for the breadcrumb navigation.
          */
         "textBreadcrumbs": string;
         /**
-          * An accessible label for the root (home) breadcrumb item.
+          * The label of the root (home) breadcrumb item. Displayed visibly when `show-home-text` is `true`, otherwise used as an accessible label alongside the home icon.
          */
         "textHome": string;
         /**
@@ -2092,6 +2102,7 @@ declare namespace LocalJSX {
     interface PostBreadcrumbsAttributes {
         "homeUrl": string;
         "textHome": string;
+        "showHomeText": boolean;
         "textBreadcrumbs": string;
         "textMoreItems": string;
     }
