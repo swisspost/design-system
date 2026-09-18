@@ -332,10 +332,6 @@ export namespace Components {
     }
     interface PostKlpLoginWidget {
         /**
-          * The portal application the session belongs to.
-         */
-        "applicationId"?: string;
-        /**
           * The KLP platform instance to talk to. Determines every backend URL the widget uses.
           * @default 'prod'
          */
@@ -1690,10 +1686,6 @@ declare namespace LocalJSX {
     }
     interface PostKlpLoginWidget {
         /**
-          * The portal application the session belongs to.
-         */
-        "applicationId"?: string;
-        /**
           * The KLP platform instance to talk to. Determines every backend URL the widget uses.
           * @default 'prod'
          */
@@ -2250,7 +2242,6 @@ declare namespace LocalJSX {
     interface PostKlpLoginWidgetAttributes {
         "environment": KlpEnvironment;
         "project": string;
-        "applicationId": string;
         "language": 'de' | 'fr' | 'it' | 'en';
         "keepAliveDisabled": boolean;
         "keepAliveUrl": string;

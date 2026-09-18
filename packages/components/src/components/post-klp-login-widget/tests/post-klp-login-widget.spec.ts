@@ -87,7 +87,7 @@ describe('post-klp-login-widget', () => {
       await logIn(page);
 
       expect(shadow(page, 'post-menu')).not.toBeNull();
-      expect(shadow(page, '.user-menu-name').textContent).toBe('Ada Lovelace');
+      expect(shadow(page, '[slot="header"] p').textContent).toBe('Ada Lovelace');
     });
   });
 
@@ -164,11 +164,15 @@ describe('post-klp-login-widget', () => {
       expect(avatar.getAttribute('email')).toBeNull();
     });
 
-    it('shows the company the user is acting for', async () => {
+    it('names the company above the user, as the header does', async () => {
       const page = await render();
       await logIn(page, { company: 'Die Post' });
 
-      expect(shadow(page, '.user-menu-company').textContent).toBe('Die Post');
+      const lines = [...page.root.shadowRoot.querySelectorAll('[slot="header"] p')].map(
+        line => line.textContent,
+      );
+
+      expect(lines).toEqual(['Die Post', 'Ada Lovelace']);
     });
   });
 });

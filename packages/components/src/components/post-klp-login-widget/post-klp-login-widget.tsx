@@ -33,11 +33,6 @@ export class PostKlpLoginWidget {
   @Prop() project?: string;
 
   /**
-   * The portal application the session belongs to.
-   */
-  @Prop() applicationId?: string;
-
-  /**
    * Language the platform should answer in.
    */
   @Prop() language?: 'de' | 'fr' | 'it' | 'en';
@@ -135,16 +130,14 @@ export class PostKlpLoginWidget {
         </button>
       </post-menu-trigger>,
       <post-menu id={MENU_ID} label={this.textUserLinks}>
-        <div class="user-menu-header" slot="header">
+        <div slot="header">
           <post-avatar
             firstname={session.name}
             lastname={session.surname}
             aria-hidden="true"
           ></post-avatar>
-          <div class="user-menu-identity">
-            {session.company && <span class="user-menu-company">{session.company}</span>}
-            <span class="user-menu-name">{fullName}</span>
-          </div>
+          {session.company && <p>{session.company}</p>}
+          <p>{fullName}</p>
         </div>
         {showAccountSwitch(session) && <slot name="account-switch"></slot>}
         {showCompanySwitch(session) && <slot name="company-switch"></slot>}

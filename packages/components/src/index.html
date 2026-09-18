@@ -117,7 +117,6 @@
         slot="post-login"
         environment="int01"
         project="playground"
-        application-id="playground"
         language="en"
         text-current-user="Currently logged in: {user}"
         text-user-links="User links"
@@ -146,10 +145,16 @@
           </a>
         </post-menu-item>
         <post-menu-item slot="menu-links">
-          <a href="#messages">Messages</a>
+          <a href="#settings">
+            <post-icon name="gear" aria-hidden="true"></post-icon>
+            Settings
+          </a>
         </post-menu-item>
         <post-menu-item slot="menu-links">
-          <a href="#settings">Settings</a>
+          <a href="#notifications">
+            <post-icon name="alarm" aria-hidden="true"></post-icon>
+            Notifications
+          </a>
         </post-menu-item>
         <post-menu-item slot="logout-link">
           <a href="#logout">

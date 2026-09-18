@@ -17,12 +17,7 @@
   cursor: pointer;
 }
 
-// The header row itself is laid out by post-menu; only the identity block is ours.
-.user-menu-identity {
-  display: flex;
-  flex-direction: column;
-}
-
-.user-menu-company {
-  font-weight: normal;
+// The header row is laid out by post-menu's `::slotted([slot='header'])`; only the reset is ours.
+[slot='header'] p {
+  margin: 0;
 }
