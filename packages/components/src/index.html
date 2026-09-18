@@ -11,6 +11,65 @@
 
     <link id="components-global-styles" rel="stylesheet" href="/build/post-components.css" />
     <link rel="stylesheet" href="/assets/css/post-default.css" />
+    <script>
+      /**
+       * Playground only: stands in for the KLP platform so the signed-in composition can be seen
+       * without a backend. Must run before the components module, which connects on load.
+       */
+      (() => {
+        const state = new URLSearchParams(location.search).get('session') ?? 'account';
+
+        const sessions = {
+          account: {
+            name: 'Ada',
+            surname: 'Lovelace',
+            company: 'Analytical Engines AG',
+            userType: 'B2B',
+            authLevel: 'PASSWORD',
+            changeUserAndProfile: 'userAndProfile',
+          },
+          company: {
+            name: 'Ada',
+            surname: 'Lovelace',
+            company: 'Analytical Engines AG',
+            userType: 'B2B',
+            authLevel: 'PASSWORD',
+            canChangeCompany: true,
+          },
+        };
+
+        const message = sessions[state]
+          ? { typ: 'sub', adr: 'playground', ttl: 900000, data: sessions[state] }
+          : { typ: 'ukn' };
+
+        const json = body =>
+          Promise.resolve(
+            new Response(JSON.stringify(body), { headers: { 'content-type': 'application/json' } }),
+          );
+
+        const nativeFetch = window.fetch.bind(window);
+        window.fetch = (input, init) => {
+          const url = String(input.url ?? input);
+
+          if (url.includes('/v1/session/subscribe')) return json(message);
+          if (url.includes('/v1/audit') || url.includes('/v1/session/keepalive')) {
+            return Promise.resolve(new Response(null, { status: 204 }));
+          }
+
+          return nativeFetch(input, init);
+        };
+
+        // Leaves the dev server's own socket alone; only the platform event bus is answered here.
+        const NativeWebSocket = window.WebSocket;
+        window.WebSocket = function (url, protocols) {
+          if (!String(url).includes('/eventbus/')) return new NativeWebSocket(url, protocols);
+
+          const socket = { close() {}, send() {} };
+          setTimeout(() => socket.onclose?.({}), 0);
+          return socket;
+        };
+      })();
+    </script>
     <script type="module" src="/build/post-components.esm.js"></script>
     <script nomodule src="/build/post-components.js"></script>
   </head>
@@ -53,6 +112,19 @@
       <!-- Application title (optional) -->
       <p slot="title">Application title</p>
 
+      <!-- Portal login -->
+      <post-klp-login-widget
+        slot="post-login"
+        environment="int01"
+        text-user-menu="User menu"
+        config='{"applicationId":"playground","serviceId":"playground","appLoginUrl":"https://n.accountint1.post.ch/login","currentLang":"en"}'
+        menu-links='[{"text":"Profile","url":"#profile","icon":"profile","description":"Opens your personal data"},{"text":"Notifications","url":"#notifications","icon":"mail"}]'
+        account-switch='{"text":"Switch account","url":"#switch-account","icon":"profile"}'
+        company-switch='{"text":"Switch company","url":"#switch-company","icon":"company"}'
+        logout-link='{"text":"Logout","url":"#logout","icon":"logout"}'
+        login-link='{"text":"Login","url":"#login","icon":"login"}'
+      ></post-klp-login-widget>
+
       <!-- Target group -->
       <ul slot="audience">
         <li>
@@ -69,12 +141,6 @@
           <a href="#">
             <span>Search</span>
             <post-icon aria-hidden="true" name="search"></post-icon>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span>Login</span>
-            <post-icon aria-hidden="true" name="login"></post-icon>
           </a>
         </li>
       </ul>
@@ -161,6 +227,18 @@
       >
       to get going.
     </p>
+
+    <h2>Portal login widget</h2>
+    <p class="mb-4">
+      The KLP platform is faked in this page, so the header shows a real session. Pick who is signed
+      in:
+    </p>
+    <ul class="mb-4">
+      <li><a href="?session=anonymous">Nobody &mdash; the login link</a></li>
+      <li><a href="?session=account">A user who may switch account</a></li>
+      <li><a href="?session=company">A B2B user who may switch company</a></li>
+    </ul>
+
     <label for="tokens-select">Select tokens package: </label>
     <select
       name="tokens"

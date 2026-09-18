@@ -362,6 +362,11 @@ export namespace Components {
           * Links shown in the user menu, in order. Takes the output of internet-header's `getUserMenuOptions()` unchanged. Ignored when the `menu-links` slot is filled.
          */
         "menuLinks"?: KlpLink[] | string;
+        /**
+          * Names the user menu for assistive technology.
+          * @default 'User menu'
+         */
+        "textUserMenu": string;
     }
     interface PostLanguageMenu {
         /**
@@ -1701,6 +1706,11 @@ declare namespace LocalJSX {
           * Links shown in the user menu, in order. Takes the output of internet-header's `getUserMenuOptions()` unchanged. Ignored when the `menu-links` slot is filled.
          */
         "menuLinks"?: KlpLink[] | string;
+        /**
+          * Names the user menu for assistive technology.
+          * @default 'User menu'
+         */
+        "textUserMenu"?: string;
     }
     interface PostLanguageMenu {
         "onPostChange"?: (event: PostLanguageMenuCustomEvent<string>) => void;
@@ -2219,6 +2229,7 @@ declare namespace LocalJSX {
         "logoutLink": KlpLink | string;
         "accountSwitch": KlpLink | string;
         "companySwitch": KlpLink | string;
+        "textUserMenu": string;
     }
     interface PostLanguageMenuAttributes {
         "textChangeLanguage": string;

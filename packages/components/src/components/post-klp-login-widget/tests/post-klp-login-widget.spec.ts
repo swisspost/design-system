@@ -92,7 +92,7 @@ describe('post-klp-login-widget', () => {
       );
 
       expect(loginLink(page).getAttribute('href')).toBe(link.url);
-      expect(loginLink(page).textContent).toBe('Sign in');
+      expect(loginLink(page).textContent).toContain('Sign in');
     });
 
     it('offers the prop-driven login link as the fallback of the login slot, so slotted markup wins', async () => {
@@ -121,7 +121,7 @@ describe('post-klp-login-widget', () => {
       );
       await logIn(page);
 
-      expect(shadow(page, 'ul.menu-links').parentElement).toBe(
+      expect(shadow(page, 'a.menu-link').closest('post-menu-item').parentElement).toBe(
         shadow(page, 'slot[name="menu-links"]'),
       );
     });
@@ -141,7 +141,7 @@ describe('post-klp-login-widget', () => {
       );
       await logIn(page);
 
-      expect(shadow(page, 'a.logout-link').parentElement).toBe(
+      expect(shadow(page, 'a.logout-link').closest('post-menu-item').parentElement).toBe(
         shadow(page, 'slot[name="logout-link"]'),
       );
     });
@@ -187,6 +187,65 @@ describe('post-klp-login-widget', () => {
 
     it('shows neither when the session permits neither', async () => {
       expect(await renderSwitches({ userType: 'B2C' })).toEqual([]);
+    });
+  });
+
+  describe('menu composition', () => {
+    it('points the trigger at the menu it opens', async () => {
+      const page = await render(`config='${JSON.stringify(config)}'`);
+      await logIn(page);
+
+      const trigger = shadow(page, 'post-menu-trigger');
+      const menu = shadow(page, 'post-menu');
+
+      expect(trigger.getAttribute('for')).toBe(menu.getAttribute('id'));
+    });
+
+    it('names the menu for assistive technology', async () => {
+      const page = await render(`config='${JSON.stringify(config)}' text-user-menu='Benutzermenü'`);
+      await logIn(page);
+
+      expect(shadow(page, 'post-menu').getAttribute('label')).toBe('Benutzermenü');
+    });
+
+    it('builds the avatar from the session, not from an email sent to a third party', async () => {
+      const page = await render(`config='${JSON.stringify(config)}'`);
+      await logIn(page, { email: 'ada@post.ch' });
+
+      const avatar = shadow(page, 'post-avatar');
+      expect(avatar.getAttribute('firstname')).toBe('Ada');
+      expect(avatar.getAttribute('lastname')).toBe('Lovelace');
+      expect(avatar.getAttribute('email')).toBeNull();
+    });
+
+    it('shows the company the user is acting for', async () => {
+      const page = await render(`config='${JSON.stringify(config)}'`);
+      await logIn(page, { company: 'Die Post' });
+
+      expect(shadow(page, '.user-menu-company').textContent).toBe('Die Post');
+    });
+
+    it('describes a link without stealing its accessible name', async () => {
+      const described = { ...profile, description: 'Opens your personal data' };
+      const page = await render(
+        `config='${JSON.stringify(config)}' menu-links='${JSON.stringify([described])}'`,
+      );
+      await logIn(page);
+
+      const link = shadow(page, 'a.menu-link');
+      const description = shadow(page, `#${link.getAttribute('aria-describedby')}`);
+
+      expect(description.textContent).toBe('Opens your personal data');
+      expect(link.contains(description)).toBe(false);
+    });
+
+    it('leaves aria-describedby off a link that has no description', async () => {
+      const page = await render(
+        `config='${JSON.stringify(config)}' menu-links='${JSON.stringify([profile])}'`,
+      );
+      await logIn(page);
+
+      expect(shadow(page, 'a.menu-link').getAttribute('aria-describedby')).toBeNull();
     });
   });
 });

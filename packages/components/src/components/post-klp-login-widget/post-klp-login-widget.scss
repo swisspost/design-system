@@ -1,3 +1,43 @@
+@use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
+@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
+
 :host {
   display: inline-block;
+}
+
+.visually-hidden {
+  @include utilities-mx.visuallyhidden();
+}
+
+// Included per selector, not as a group: the focus mixin emits broken `:is()` for grouped selectors.
+.login-link {
+  @include header-mx.nav-item-base;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.user-menu-trigger {
+  @include header-mx.nav-item-base;
+  @include header-mx.nav-item-rotating-chevron;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+// The header row itself is laid out by post-menu; only the identity block is ours.
+.user-menu-identity {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-menu-company {
+  font-weight: normal;
+}
+
+.menu-link,
+.logout-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
