@@ -55,6 +55,7 @@ peerDependencyRules:
     zone.js: '>=0.14'
 
 overrides:
+  '@typescript-eslint/utils': 8.62.0
   browserslist: '>=4.27.0'
   form-data@>=4.0.0 <4.0.4: 4.0.6
 

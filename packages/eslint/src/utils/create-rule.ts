@@ -13,6 +13,7 @@ const patchedRuleCreator = (
 ): ReturnType<typeof ESLintUtils.RuleCreator<RuleDocs>> => {
   return function createRule({ name, meta, defaultOptions, create }) {
     return {
+      name,
       meta: {
         ...meta,
         docs: {
@@ -22,7 +23,10 @@ const patchedRuleCreator = (
       },
       defaultOptions,
       create(context) {
-        const optionsWithDefault = ESLintUtils.applyDefault(defaultOptions, context.options);
+        const optionsWithDefault = ESLintUtils.applyDefault(
+          (meta.defaultOptions ?? defaultOptions ?? []) as typeof context.options,
+          context.options,
+        ) as typeof context.options;
         return create(context, optionsWithDefault);
       },
     };
