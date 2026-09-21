@@ -25,7 +25,7 @@ export default defineConfig({
           channel: BROWSER.channel,
           displayName: BROWSER.displayName,
           version: browser.buildId,
-          majorVersion: parseInt(browser.buildId, 10),
+          majorVersion: Number.parseInt(browser.buildId, 10),
           path: browser.executablePath,
         },
       ];

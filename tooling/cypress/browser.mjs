@@ -16,7 +16,7 @@ export const BROWSER = {
   displayName: 'Chrome for Testing',
 };
 
-const getMajorVersion = buildId => parseInt(buildId, 10);
+const getMajorVersion = buildId => Number.parseInt(buildId, 10);
 
 export async function installBrowser() {
   const platform = detectBrowserPlatform();
@@ -36,8 +36,10 @@ export async function installBrowser() {
 
     return installed
       .filter(browser => browser.browser === BROWSER.name)
-      .reduce((latest, browser) =>
-        getMajorVersion(browser.buildId) > getMajorVersion(latest.buildId) ? browser : latest,
+      .reduce(
+        (latest, browser) =>
+          getMajorVersion(browser.buildId) > getMajorVersion(latest.buildId) ? browser : latest,
+        installed[0],
       );
   }
 
