@@ -7,6 +7,6 @@ export default defineConfig({
   e2e: {
     ...post.e2e,
     baseUrl: 'http://localhost:9001',
-    specPattern: ['post/e2e/**/*.cy.{ts,tsx}'],
+    specPattern: ['cypress/e2e/**/*.cy.{ts,tsx}'],
   },
 });
