@@ -18,8 +18,8 @@ export default createRule({
     type: 'problem',
     fixable: 'code',
     schema: [],
+    defaultOptions: [] as [],
   },
-  defaultOptions: [],
   create(context) {
     return {
       tag(node: HtmlNode) {

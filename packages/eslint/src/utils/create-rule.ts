@@ -11,7 +11,7 @@ export interface RuleDocs {
 const patchedRuleCreator = (
   urlCreator: (ruleName: string, ruleDirectory: string) => string,
 ): ReturnType<typeof ESLintUtils.RuleCreator<RuleDocs>> => {
-  return function createRule({ name, meta, defaultOptions, create }) {
+  return function createRule({ name, meta, create }) {
     return {
       name,
       meta: {
@@ -21,10 +21,9 @@ const patchedRuleCreator = (
           url: urlCreator(name, meta.docs.dir),
         },
       },
-      defaultOptions,
       create(context) {
         const optionsWithDefault = ESLintUtils.applyDefault(
-          (meta.defaultOptions ?? defaultOptions ?? []) as typeof context.options,
+          meta.defaultOptions as typeof context.options,
           context.options,
         ) as typeof context.options;
         return create(context, optionsWithDefault);

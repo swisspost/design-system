@@ -18,8 +18,8 @@ export default createRule({
     },
     type: 'problem',
     schema: [],
+    defaultOptions: [] as [],
   },
-  defaultOptions: [],
 
   create(context) {
     return {
