@@ -210,7 +210,8 @@ header,
 
   .burger-menu-footer {
     background-color: #f0efed;
-    padding-block: 16px 24px;
+    padding-block-start: 16px;
+    padding-block-end: calc(24px + env(safe-area-inset-bottom, 0));
     gap: var(--post-burger-menu-footer-gap);
   }
 

@@ -173,7 +173,8 @@ footer {
 .footer-base {
   background-color: color.$yellow;
   border-block-start: 1px solid color.$sandgray-80;
-  padding-block: var(--post-footer-base-padding-block);
+  padding-block-start: var(--post-footer-base-padding-block);
+  padding-block-end: calc(var(--post-footer-base-padding-block) + env(safe-area-inset-bottom, 0));
   gap: var(--post-footer-base-gap);
 }
 
