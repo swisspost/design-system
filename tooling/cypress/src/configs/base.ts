@@ -1,5 +1,5 @@
 import { defineConfig } from 'cypress';
-import { browserPlugin } from './plugins/browser.mjs';
+import { browsersPlugin } from '../plugins/browsers.js';
 
 export default defineConfig({
   includeShadowDom: true,
@@ -12,7 +12,7 @@ export default defineConfig({
     viewportWidth: 1024,
     viewportHeight: 576,
     async setupNodeEvents(_on, config) {
-      await browserPlugin(config);
+      await browsersPlugin(config);
       return config;
     },
   },

@@ -1,13 +1,12 @@
 import { defineConfig } from 'cypress';
 
-import post from '@swisspost/design-system-cypress-config';
+import config from './cypress.config.mjs';
 
 export default defineConfig({
-  ...post,
+  ...config,
   projectId: 'f9aegu',
   e2e: {
-    ...post.e2e,
-    baseUrl: 'http://localhost:9001',
+    ...config.e2e,
     specPattern: ['cypress/**/*.snapshot.{ts,tsx}'],
   },
 });

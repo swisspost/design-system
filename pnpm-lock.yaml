@@ -584,7 +584,7 @@ importers:
         version: 17.3.0
       http-server:
         specifier: 14.1.1
-        version: 14.1.1(debug@4.4.3(supports-color@10.2.2))(supports-color@8.1.1)
+        version: 14.1.1(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
       jest:
         specifier: catalog:stencil/jest
         version: 29.7.0(@types/node@24.0.0)(supports-color@10.2.2)(ts-node@10.9.2(@types/node@24.0.0)(typescript@6.0.3))
@@ -1193,9 +1193,21 @@ importers:
         specifier: 8.0.2
         version: 8.0.2(supports-color@10.2.2)
     devDependencies:
+      '@swisspost/design-system-tsconfig':
+        specifier: workspace:10.5.0
+        version: link:../typescript
+      '@types/node':
+        specifier: catalog:node
+        version: 24.0.0
       cypress:
         specifier: catalog:cypress
         version: 15.20.1
+      rimraf:
+        specifier: 6.1.3
+        version: 6.1.3
+      typescript:
+        specifier: catalog:typescript
+        version: 6.0.3
 
   tooling/typescript: {}
 
@@ -19491,11 +19503,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  get-uri@8.0.1(supports-color@10.2.2):
+  get-uri@8.0.1(supports-color@8.1.1):
     dependencies:
       basic-ftp: 5.3.1
       data-uri-to-buffer: 8.0.0
-      debug: 4.4.3(supports-color@10.2.2)
+      debug: 4.4.3(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -19879,6 +19891,15 @@ snapshots:
       - kerberos
       - supports-color
 
+  http-proxy-agent@9.1.0(supports-color@8.1.1):
+    dependencies:
+      agent-base: 9.0.0
+      debug: 4.4.3(supports-color@8.1.1)
+      proxy-agent-negotiate: 1.1.0
+    transitivePeerDependencies:
+      - kerberos
+      - supports-color
+
   http-proxy@1.18.1(debug@4.4.3(supports-color@10.2.2)):
     dependencies:
       eventemitter3: 4.0.7
@@ -19895,7 +19916,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  http-server@14.1.1(debug@4.4.3(supports-color@10.2.2))(supports-color@8.1.1):
+  http-server@14.1.1(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2):
     dependencies:
       basic-auth: 2.0.1
       chalk: 4.1.2
@@ -19906,7 +19927,7 @@ snapshots:
       mime: 1.6.0
       minimist: 1.2.8
       opener: 1.5.2
-      portfinder: 1.0.38(supports-color@8.1.1)
+      portfinder: 1.0.38(supports-color@10.2.2)
       secure-compare: 3.0.1
       union: 0.5.0
       url-join: 4.0.1
@@ -22977,8 +22998,8 @@ snapshots:
   pac-proxy-agent@9.1.0(supports-color@10.2.2):
     dependencies:
       agent-base: 9.0.0
-      debug: 4.4.3(supports-color@10.2.2)
-      get-uri: 8.0.1(supports-color@10.2.2)
+      debug: 4.4.3(supports-color@8.1.1)
+      get-uri: 8.0.1(supports-color@8.1.1)
       http-proxy-agent: 9.1.0(supports-color@10.2.2)
       https-proxy-agent: 9.1.0(supports-color@10.2.2)
       pac-resolver: 9.0.1(quickjs-wasi@2.2.0)
@@ -23203,17 +23224,17 @@ snapshots:
 
   pluralize@8.0.0: {}
 
+  portfinder@1.0.38(supports-color@10.2.2):
+    dependencies:
+      async: 3.2.6
+      debug: 4.4.3(supports-color@10.2.2)
+    transitivePeerDependencies:
+      - supports-color
+
   portfinder@1.0.38(supports-color@5.5.0):
     dependencies:
       async: 3.2.6
       debug: 4.4.3(supports-color@5.5.0)
-    transitivePeerDependencies:
-      - supports-color
-
-  portfinder@1.0.38(supports-color@8.1.1):
-    dependencies:
-      async: 3.2.6
-      debug: 4.4.3(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -23598,8 +23619,8 @@ snapshots:
   proxy-agent@8.0.2(supports-color@10.2.2):
     dependencies:
       agent-base: 9.0.0
-      debug: 4.4.3(supports-color@10.2.2)
-      http-proxy-agent: 9.1.0(supports-color@10.2.2)
+      debug: 4.4.3(supports-color@8.1.1)
+      http-proxy-agent: 9.1.0(supports-color@8.1.1)
       https-proxy-agent: 9.1.0(supports-color@10.2.2)
       lru-cache: 7.18.3
       pac-proxy-agent: 9.1.0(supports-color@10.2.2)
