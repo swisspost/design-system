@@ -1,28 +1,38 @@
 {
-  "name": "@swisspost/design-system-tsconfig",
+  "name": "@swisspost/design-system-cypress-config",
   "version": "10.5.0",
-  "description": "Shared TypeScript configurations for the Swiss Post Design System.",
+  "description": "Shared Cypress configuration for the Swiss Post Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
   "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git",
-    "directory": "tooling/typescript"
+    "directory": "tooling/cypress"
   },
   "homepage": "https://design-system.post.ch",
   "bugs": {
     "url": "https://github.com/swisspost/design-system/issues"
   },
+  "exports": "./base.mjs",
+  "dependencies": {
+    "@puppeteer/browsers": "3.2.2",
+    "proxy-agent": "8.0.2"
+  },
+  "peerDependencies": {
+    "cypress": ">=15.0.0"
+  },
+  "devDependencies": {
+    "cypress": "catalog:cypress"
+  },
   "files": [
-    "*.tsconfig.json",
+    "*.mjs",
     "package.json",
     "LICENSE",
     "README.md"
   ],
   "keywords": [
     "design-system",
-    "tsconfig",
-    "typescript"
+    "cypress"
   ]
 }
