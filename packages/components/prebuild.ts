@@ -9,6 +9,8 @@ interface ComponentNameOutputOptions {
   // https://prettier.io/docs/options#parser
   // if formatParser is null, the parser will be derived from the "type" field above
   formatParser: 'json' | 'scss' | null;
+  // component names that must not end up in the generated output
+  excludedComponentNames: string[];
 }
 
 const DEFAULT_OUTPUT_OPTIONS: ComponentNameOutputOptions = {
@@ -16,6 +18,10 @@ const DEFAULT_OUTPUT_OPTIONS: ComponentNameOutputOptions = {
   template: '{{names}}',
   lineSeparator: ',',
   formatParser: null,
+  excludedComponentNames: [
+    // temporary, until the widget component has been created and added to the nextjs/angular integration apps
+    'post-klp-login-widget',
+  ],
 };
 
 export const componentNameOutputOptions: Partial<ComponentNameOutputOptions>[] = [
@@ -53,7 +59,10 @@ export async function createComponentNameOutput(
   await Promise.all(
     outputOptionsArray.map(async (outputOptions = {}) => {
       const options: ComponentNameOutputOptions = { ...DEFAULT_OUTPUT_OPTIONS, ...outputOptions };
-      const names = componentNames.map(n => `'${n}'`).join(options.lineSeparator);
+      const names = componentNames
+        .filter(n => !options.excludedComponentNames.includes(n))
+        .map(n => `'${n}'`)
+        .join(options.lineSeparator);
       const template = options.template.replace('{{names}}', names);
       const output = await format(template, { parser: options.formatParser || options.type });
 
