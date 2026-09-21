@@ -44,7 +44,7 @@ catalogs:
     'tslib': 2.8.1
     'zone.js': 0.16.3
 
-minimumReleaseAge: 4320
+minimumReleaseAge: 4320 # 3d * 24h * 60m = 4320m (following upstream)
 strictPeerDependencies: false
 saveExact: true
 
@@ -69,6 +69,3 @@ allowBuilds:
   msgpackr-extract: true
   sharp: true
   unrs-resolver: true
-minimumReleaseAgeExclude:
-  # Renovate security update: svgo@4.1.0
-  - svgo@4.1.0

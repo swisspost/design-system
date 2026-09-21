@@ -9,4 +9,7 @@ export default defineConfig({
   languageOptions: {
     globals: jest.environments.globals.globals,
   },
+  rules: {
+    '@typescript-eslint/require-await': 'off',
+  },
 });

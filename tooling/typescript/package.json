@@ -14,9 +14,6 @@
   "bugs": {
     "url": "https://github.com/swisspost/design-system/issues"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
     "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
     "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
