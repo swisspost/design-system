@@ -23,6 +23,7 @@ describe('prebuild', () => {
         'post-back-to-tlop': '',
         'post-breadcrumbs': '',
         'post-breadcrumbs-item': '',
+        'post-klp-login-widget': '',
         'some-other-folder': '',
       },
       'src/components/',
@@ -41,5 +42,14 @@ describe('prebuild', () => {
 
     expect(componentNamesJson).toMatchSnapshot();
     expect(componentNamesScss).toMatchSnapshot();
+  });
+
+  it('should skip excluded component folders', async () => {
+    await createComponentNameOutput([{ excludedComponentNames: ['post-avatar'] }]);
+
+    const componentNamesJson = memfs.readFileSync('src/_generated/component-names.json', 'utf8');
+
+    expect(componentNamesJson).not.toContain('post-avatar');
+    expect(componentNamesJson).toContain('post-accordion');
   });
 });
