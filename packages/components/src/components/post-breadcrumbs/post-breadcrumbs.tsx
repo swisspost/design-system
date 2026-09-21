@@ -59,7 +59,7 @@ export class PostBreadcrumbs {
   homeUrl?: string;
 
   /**
-   * The label of the root (home) breadcrumb item. Displayed visibly when `show-home-text` is
+   * The label of the root (home) breadcrumb item. Displayed visibly when `home-text-only` is
    * `true`, otherwise used as an accessible label alongside the home icon.
    */
   @Prop({ reflect: true })
@@ -74,7 +74,7 @@ export class PostBreadcrumbs {
   @Prop({ reflect: true })
   @Required()
   @Type('boolean')
-  showHomeText = false;
+  homeTextOnly = false;
 
   /**
    * An accessible label for the breadcrumb navigation.
@@ -126,7 +126,7 @@ export class PostBreadcrumbs {
   }
 
   private get usesHomeText() {
-    return this.hasSlottedHomeAnchor ? !this.hasSlottedHomeIcon : this.showHomeText;
+    return this.hasSlottedHomeAnchor ? !this.hasSlottedHomeIcon : this.homeTextOnly;
   }
 
   // Degrade order: collapse middle items -> collapse home -> wrap the last item.

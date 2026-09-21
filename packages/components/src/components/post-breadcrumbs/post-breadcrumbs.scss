@@ -37,9 +37,6 @@ nav {
   gap: tokens.get('breadcrumb-gap-inline-outer');
 
   & > .menu:first-child {
-    // Added a margin (equal to the breadcrumbs list gap) so that the ellipsis is not flush at the edge of the container
-    margin-inline-start: tokens.get('breadcrumb-gap-inline-outer');
-
     &::before {
       content: none;
     }

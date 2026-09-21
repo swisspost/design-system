@@ -38,8 +38,8 @@ The `<post-breadcrumbs>` is a container for `<post-breadcrumb-item>` components,
 
 <post-tabs size="large">
   <post-tab-item name="concatenated">Concatenated</post-tab-item>
-  <post-tab-item name="home-text">Segment Specific Breadcrumbs</post-tab-item>
   <post-tab-item name="client-side-routing">Client-Side Routing</post-tab-item>
+  <post-tab-item name="home-text">Home Text Only</post-tab-item>
 
 <post-tab-panel for="concatenated" class="pt-24">
 
@@ -49,17 +49,11 @@ When space is constrained, the `<post-breadcrumbs>` concatenates middle items in
 
 </post-tab-panel>
 
-<post-tab-panel for="home-text" class="pt-24">
-
-By default the root breadcrumb shows a home icon, with `text-home` used only as its accessible label. Set `show-home-text` to `true` to show `text-home` visibly instead — useful when the root should link to a segment's own home page (e.g. "Private customers", "About us") rather than the generic site root.
-
-<Canvas of={BreadcrumbsStories.CustomHomeText} sourceState="shown" />
-
-</post-tab-panel>
-
 <post-tab-panel for="client-side-routing" class="pt-24">
 
-To enable client-side routing (e.g. Next.js, Angular Router), slot your own anchor instead of using the `url`/`home-url` properties: use the default slot for `<post-breadcrumb-item>`, or the `home` slot for the root item of `<post-breadcrumbs>`. Both components detect the slotted `<a>` and stop rendering their own, leaving your link's click handling untouched.
+To enable client-side routing (e.g. Next.js, Angular Router), slot your own anchor instead of using the `url`/`home-url` properties: use the default slot for `<post-breadcrumb-item>`, or the `home` slot for the root item of `<post-breadcrumbs>`.
+
+Both components detect the slotted `<a>` and stop rendering their own, leaving your link's click handling untouched.
 
 <post-banner type="info">
   <p>
@@ -76,6 +70,20 @@ To enable client-side routing (e.g. Next.js, Angular Router), slot your own anch
 </post-banner>
 
 <Canvas of={BreadcrumbsStories.ClientSideRouting} sourceState="shown" />
+
+</post-tab-panel>
+
+<post-tab-panel for="home-text" class="pt-24">
+
+By default, the root breadcrumb displays a home icon and uses `text-home` as its accessible label. It is also possible to hide the icon and show text in its place, which is useful when the root breadcrumb should link to a segment-specific home page, such as "Private customers" or "About us", rather than the generic site root. There are two ways to do this, depending on how the home link is implemented.
+
+With the <b>default routing behavior</b>, set `home-text-only` to `true`. The component hides the icon and displays the `text-home` content instead.
+
+When using <b>client-side routing</b>, `home-text-only` has no effect because the home link is provided through the `home` slot. Slot a direct `<a>` element with visible text and omit the `<post-icon>`; the component detects the slotted anchor without an icon and renders it as the text-only home item.
+
+<Canvas of={BreadcrumbsStories.HomeTextOnly} sourceState="shown" />
+
+<Controls of={BreadcrumbsStories.HomeTextOnly} />
 
 </post-tab-panel>
 </post-tabs>

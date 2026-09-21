@@ -1,5 +1,6 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
+import { keyed } from 'lit/directives/keyed.js';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
@@ -23,7 +24,7 @@ const meta: MetaComponent = {
     textHome: 'Home',
     textBreadcrumbs: 'Breadcrumbs',
     textMoreItems: 'More items',
-    showHomeText: false,
+    homeTextOnly: false,
     itemCount: 3,
   },
 };
@@ -35,8 +36,16 @@ function render(args: Args) {
       text-home=${args.textHome}
       text-breadcrumbs=${args.textBreadcrumbs}
       text-more-items=${args.textMoreItems}
-      ?show-home-text=${args.showHomeText}
+      ?home-text-only=${args.homeTextOnly}
     >
+      ${args.clientSideRouting
+        ? html`
+            <a slot="home" href="/">
+              <span class="visually-hidden">${args.textHome}</span>
+              <post-icon aria-hidden="true" name="home"></post-icon>
+            </a>
+          `
+        : nothing}
       ${Array.from({ length: args.itemCount }).map(
         (_, i) =>
           html`<post-breadcrumb-item url="/section${i + 1}"
@@ -59,36 +68,6 @@ export const Concatenated: Story = {
   },
 };
 
-export const CustomHomeText: Story = {
-  args: {
-    showHomeText: true,
-    textHome: 'Private customers',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Set `show-home-text` to `true` to replace the home icon with the visible text set on `text-home`, enabling segment specific breadcrumbs (e.g. to link to a segment's own home page instead of the generic site root). Unlike the middle segments, home and the last (selected) segment are never simply collapsed into the menu — home gets its own menu as a last resort, and the last segment wraps onto multiple lines only if that's still not enough.",
-      },
-    },
-  },
-  render: args => html`
-    <post-breadcrumbs
-      home-url=${args.homeUrl}
-      text-home=${args.textHome}
-      text-breadcrumbs=${args.textBreadcrumbs}
-      text-more-items=${args.textMoreItems}
-      ?show-home-text=${args.showHomeText}
-    >
-      <post-breadcrumb-item url="/section1">Send letters</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section2">Letters abroad</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section3">Europe</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section4">Neighbouring countries</post-breadcrumb-item>
-      <post-breadcrumb-item url="/section5">Letters to Switzerland</post-breadcrumb-item>
-    </post-breadcrumbs>
-  `,
-};
-
 export const ClientSideRouting: Story = {
   args: {
     itemCount: 3,
@@ -106,7 +85,6 @@ export const ClientSideRouting: Story = {
   },
   render: args => html`
     <post-breadcrumbs
-      text-home=${args.textHome}
       text-breadcrumbs=${args.textBreadcrumbs}
       text-more-items=${args.textMoreItems}
     >
@@ -124,4 +102,55 @@ export const ClientSideRouting: Story = {
       })}
     </post-breadcrumbs>
   `,
+};
+
+export const HomeTextOnly: Story = {
+  args: {
+    homeTextOnly: true,
+    textHome: 'Private customers',
+    clientSideRouting: true,
+  },
+  argTypes: {
+    homeTextOnly: {
+      control: 'boolean',
+      if: { arg: 'clientSideRouting', truthy: false },
+      table: { category: 'Props' },
+    },
+    clientSideRouting: {
+      control: 'boolean',
+      description: 'Use a slotted home link to simulate client-side routing.',
+      table: { category: 'Routing' },
+    },
+  },
+  parameters: {
+    controls: {
+      include: ['homeTextOnly', 'clientSideRouting'],
+    },
+    docs: {
+      description: {
+        story:
+          "Set `home-text-only` to `true` to replace the home icon with the visible text set on `text-home`, enabling segment specific breadcrumbs (e.g. to link to a segment's own home page instead of the generic site root). Unlike the middle segments, home and the last (selected) segment are never simply collapsed into the menu — home gets its own menu as a last resort, and the last segment wraps onto multiple lines only if that's still not enough.",
+      },
+    },
+  },
+  render: args =>
+    keyed(
+      `${args.clientSideRouting}-${args.homeTextOnly}-${args.textHome}`,
+      html`
+        <post-breadcrumbs
+          home-url=${args.homeUrl}
+          text-home=${args.clientSideRouting ? nothing : args.textHome}
+          text-breadcrumbs=${args.textBreadcrumbs}
+          text-more-items=${args.textMoreItems}
+          ?home-text-only=${!args.clientSideRouting && args.homeTextOnly}
+        >
+          ${args.clientSideRouting ? html` <a slot="home" href="/">${args.textHome}</a> ` : nothing}
+          <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
+          <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
+          <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
+          <post-breadcrumb-item url="/section4">Section 4</post-breadcrumb-item>
+          <post-breadcrumb-item url="/section5">Section 5</post-breadcrumb-item>
+        </post-breadcrumbs>
+      `,
+    ),
 };
