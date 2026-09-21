@@ -225,7 +225,7 @@ describe('breadcrumbs', () => {
       });
     });
 
-    describe('home text only', () => {
+    describe('home text-only', () => {
       beforeEach(() => {
         cy.getComponent('breadcrumbs', BREADCRUMBS_ID, 'home-text-only');
         cy.get('post-breadcrumbs[data-hydrated]', { timeout: 30000 }).as('breadcrumbs');
