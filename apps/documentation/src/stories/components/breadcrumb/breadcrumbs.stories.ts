@@ -108,7 +108,7 @@ export const HomeTextOnly: Story = {
   args: {
     homeTextOnly: true,
     textHome: 'Private customers',
-    clientSideRouting: true,
+    clientSideRouting: false,
   },
   argTypes: {
     homeTextOnly: {
@@ -134,7 +134,7 @@ export const HomeTextOnly: Story = {
     },
   },
   render: args =>
-    keyed(
+    html`${keyed(
       `${args.clientSideRouting}-${args.homeTextOnly}-${args.textHome}`,
       html`
         <post-breadcrumbs
@@ -152,5 +152,5 @@ export const HomeTextOnly: Story = {
           <post-breadcrumb-item url="/section5">Section 5</post-breadcrumb-item>
         </post-breadcrumbs>
       `,
-    ),
+    )}`,
 };
