@@ -38,8 +38,6 @@ tokens.$default-map: components.$post-breadcrumb;
     :is(a, span),
     ::slotted(a) {
       white-space: normal;
-      overflow: visible;
-      text-overflow: unset;
       @include utilities.word-break;
     }
   }
