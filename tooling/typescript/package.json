@@ -8,11 +8,15 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git",
-    "directory": "packages/typescript"
+    "directory": "tooling/typescript"
   },
   "homepage": "https://design-system.post.ch",
   "bugs": {
     "url": "https://github.com/swisspost/design-system/issues"
+  },
+  "scripts": {
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "files": [
     "*.tsconfig.json",
@@ -24,5 +28,10 @@
     "design-system",
     "tsconfig",
     "typescript"
-  ]
+  ],
+  "devDependencies": {
+    "@swisspost/design-system-prettier-config": "workspace:10.5.0",
+    "prettier": "catalog:"
+  },
+  "prettier": "@swisspost/design-system-prettier-config"
 }
