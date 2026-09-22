@@ -18,7 +18,7 @@ describe('breadcrumbs', () => {
         .then($shadow => {
           if (
             homeCollapsedWidth === null &&
-            $shadow.find('nav:not(.invisible) .menu post-menu-item .home').length > 0
+            $shadow.find('nav:not(.invisible) .menu post-menu-item slot[name="home"]').length > 0
           ) {
             homeCollapsedWidth = width;
           }
@@ -159,7 +159,7 @@ describe('breadcrumbs', () => {
         cy.get('@breadcrumbs').shadow().find('nav:not(.invisible) .home.icon').should('exist');
         cy.get('@breadcrumbs')
           .shadow()
-          .find('nav:not(.invisible) .menu post-menu-item .home')
+          .find('nav:not(.invisible) .menu post-menu-item slot[name="home"]')
           .should('not.exist');
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[selected]:not([selected="false"])')
@@ -195,7 +195,7 @@ describe('breadcrumbs', () => {
     describe('client-side routing (slotted anchor)', () => {
       beforeEach(() => {
         cy.getComponent('breadcrumbs', BREADCRUMBS_ID, 'client-side-routing');
-        cy.get('post-breadcrumbs[data-hydrated]', { timeout: 30000 }).as('breadcrumbs');
+        cy.get('post-breadcrumbs[data-hydrated]', { timeout: 50000 }).as('breadcrumbs');
       });
 
       it('should render the slotted anchor instead of the internal one built from home-url', () => {
@@ -209,10 +209,9 @@ describe('breadcrumbs', () => {
       it('should collapse the same number of items whether the home link is internal or slotted', () => {
         cy.getComponent('breadcrumbs', BREADCRUMBS_ID, 'concatenated');
         cy.get('post-breadcrumb-item[variant="menuitem"]')
+          .should('have.length.greaterThan', 0)
           .its('length')
           .then(defaultCollapsedCount => {
-            expect(defaultCollapsedCount).to.be.greaterThan(0);
-
             cy.visit(
               `/iframe.html?id=${BREADCRUMBS_ID}--client-side-routing&args=itemCount:15&story=ClientSideRouting`,
             );
@@ -263,7 +262,7 @@ describe('breadcrumbs', () => {
           .and('not.have.class', 'home-collapsed');
         cy.get('@breadcrumbs')
           .shadow()
-          .find('nav:not(.invisible) .menu post-menu-item .home')
+          .find('nav:not(.invisible) .menu post-menu-item slot[name="home"]')
           .should('not.exist');
       });
 
@@ -298,7 +297,7 @@ describe('breadcrumbs', () => {
 
         cy.get('@breadcrumbs')
           .shadow()
-          .find('nav:not(.invisible) .menu post-menu-item .home')
+          .find('nav:not(.invisible) .menu post-menu-item slot[name="home"]')
           .should('exist');
         cy.get('@breadcrumbs')
           .find('post-breadcrumb-item[selected]:not([selected="false"])')

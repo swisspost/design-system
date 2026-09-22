@@ -22,7 +22,9 @@ export class PostBreadcrumbs {
   );
 
   private resizeObserver = new ResizeObserver(this.debounceUpdateCollapsedItems);
-  private mutationObserver = new MutationObserver(this.updateHiddenNav.bind(this));
+  private mutationObserver = new MutationObserver(() => {
+    void this.updateAfterMutation();
+  });
 
   @Element() host: HTMLPostBreadcrumbsElement;
 
@@ -63,9 +65,9 @@ export class PostBreadcrumbs {
    * `true`, otherwise used as an accessible label alongside the home icon.
    */
   @Prop({ reflect: true })
-  @Required()
+  @Required({ when: 'hasSlottedHomeAnchor', truthy: false })
   @Type('string')
-  textHome!: string;
+  textHome?: string;
 
   /**
    * Whether `text-home` content is displayed instead of the home icon, enabling segment specific
@@ -222,6 +224,11 @@ export class PostBreadcrumbs {
   private async updateHiddenNav() {
     this.hiddenNav?.remove();
     this.hiddenNav = await this.renderHiddenNav();
+  }
+
+  private async updateAfterMutation() {
+    await this.updateHiddenNav();
+    await this.updateCollapsedItems();
   }
 
   /**
