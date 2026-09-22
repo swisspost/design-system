@@ -3,6 +3,7 @@
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/tokens/helpers';
+@use '@swisspost/design-system-styles/variables/env';
 
 tokens.$default-map: components.$post-side-navigation;
 
@@ -107,8 +108,8 @@ post-side-navigation {
 
   nav {
     width: 100%;
-    padding-block: tokens.get('side-nav-padding-block-start')
-      tokens.get('side-nav-padding-block-end');
+    padding-block-start: tokens.get('side-nav-padding-block-start');
+    padding-block-end: calc(tokens.get('side-nav-padding-block-end') + env.$safe-area-inset-bottom);
     height: var(--post-side-nav-height);
     overflow-y: auto;
 

@@ -1,4 +1,5 @@
 @use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/variables/env';
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/mixins/list';
 @use '@swisspost/design-system-styles/mixins/utilities';
@@ -174,7 +175,7 @@ footer {
   background-color: color.$yellow;
   border-block-start: 1px solid color.$sandgray-80;
   padding-block-start: var(--post-footer-base-padding-block);
-  padding-block-end: calc(var(--post-footer-base-padding-block) + env(safe-area-inset-bottom, 0));
+  padding-block-end: calc(var(--post-footer-base-padding-block) + env.$safe-area-inset-bottom);
   gap: var(--post-footer-base-gap);
 }
 
