@@ -5,6 +5,10 @@ packages:
 
 catalog:
   '@playwright/test': 1.60.0
+  'eslint': 9.26.0
+  'prettier': 3.6.2
+  'stylelint': 16.26.1
+  'typescript': 6.0.3
 
 catalogs:
   cypress:
@@ -24,9 +28,6 @@ catalogs:
     'jest': 29.7.0
     'jest-cli': 29.7.0
     'ts-jest': 29.4.9
-  'typescript':
-    'typescript': 6.0.3
-    'typescript-eslint': 8.62.0
   angular:
     '@angular/build': 22.1.7
     '@angular/cli': 22.1.7
@@ -50,8 +51,6 @@ saveExact: true
 peerDependencyRules:
   ignoreMissing: []
   allowedVersions:
-    '@typescript-eslint/eslint-plugin': '>=7'
-    '@typescript-eslint/parser': '>=7'
     zone.js: '>=0.14'
 
 overrides:
