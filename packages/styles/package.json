@@ -50,7 +50,7 @@
     "stylelint": "16.26.1",
     "stylelint-config-sass-guidelines": "13.0.0",
     "stylelint-prettier": "5.0.3",
-    "stylelint-scss": "6.12.1",
+    "stylelint-scss": "7.2.0",
     "typescript": "catalog:typescript",
     "vite": "7.3.5"
   },
