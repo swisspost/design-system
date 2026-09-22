@@ -173,7 +173,8 @@ export class PostBreadcrumbs {
 
     // Stage 2: home + last item, single-line. Text home can collapse into the menu, while the
     // icon-only home remains visible and lets the last item wrap instead.
-    const homeOverflows = this.usesHomeText && remainingWidth > availableWidth;
+    const widthWithoutHome = remainingWidth - homeWidth;
+    const homeOverflows = this.usesHomeText && widthWithoutHome > availableWidth;
 
     // Stage 3: home joins the existing menu when middle items have collapsed. If no middle item
     // collapsed, the menu needs to be added when home moves into it.
