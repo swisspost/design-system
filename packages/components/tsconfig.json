@@ -1,4 +1,5 @@
 {
+  "extends": "@swisspost/design-system-tsconfig/stencil.tsconfig.json",
   "ts-node": {
     "compilerOptions": {
       "module": "node16",
@@ -12,21 +13,11 @@
       "@/*": ["./src/*"],
       "@root/*": ["./*"]
     },
-    "allowSyntheticDefaultImports": true,
-    "allowUnreachableCode": false,
     "declaration": false,
-    "experimentalDecorators": true,
-    "lib": ["dom", "es2022"],
-    "moduleResolution": "bundler",
-    "module": "esnext",
-    "target": "es2020",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "jsx": "react",
-    "jsxFactory": "h",
-    "jsxFragmentFactory": "h.Fragment",
-    "resolveJsonModule": true,
-    "skipLibCheck": true
+
+    // Pre-existing debt. Drop once sources are clean.
+    "strict": false,
+    "noImplicitReturns": false
   },
   "include": [".config/*", "src", "types", "prebuild.spec.ts", "vrt/**/*", "playwright.config.ts"],
   "exclude": ["node_modules"]
