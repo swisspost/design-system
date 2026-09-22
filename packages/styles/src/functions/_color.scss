@@ -7,9 +7,19 @@
   @if (meta.type-of($color) != color) {
     @error "Please provide a valid color for this function. Got '#{$color}'";
   }
-  $red: color.red($color);
-  $green: color.green($color);
-  $blue: color.blue($color);
+  $red: null;
+  $green: null;
+  $blue: null;
+
+  @if meta.function-exists('channel', $module: color) {
+    $red: color.channel($color, 'red', $space: rgb);
+    $green: color.channel($color, 'green', $space: rgb);
+    $blue: color.channel($color, 'blue', $space: rgb);
+  } @else {
+    $red: color.red($color);
+    $green: color.green($color);
+    $blue: color.blue($color);
+  }
 
   @return $red, $green, $blue;
 }
