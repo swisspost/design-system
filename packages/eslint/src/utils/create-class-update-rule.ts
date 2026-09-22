@@ -50,8 +50,8 @@ export const createClassUpdateRule = <T extends Record<string, string>>(
       type: config.type || 'problem',
       fixable: 'code',
       schema: [],
+      defaultOptions: [] as [],
     },
-    defaultOptions: [],
     create(context) {
       return {
         tag(node: HtmlNode) {
