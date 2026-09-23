@@ -583,9 +583,9 @@ export namespace Components {
          */
         "autoHide"?: boolean;
         /**
-          * Whether to automatically size the popover to fit the available space in the viewport.  If the `post-header` can cover the anchor, it is excluded from the available space.
+          * Whether to keep resizing the popover while it is open.  Every popover is sized once when it opens: the space available around the anchor, minus the `edgeGap`, becomes the maximum width and height of the popover. The placement is then recalculated for that size.  With `autoResize`, this happens again on every position update, for example when the anchor moves while scrolling.  If the `post-header` can cover the anchor, it is excluded from the available space.
          */
-        "autoSize"?: boolean;
+        "autoResize"?: boolean;
         /**
           * Gap between the edge of the viewport and the popover.
           * @default 8
@@ -1850,9 +1850,9 @@ declare namespace LocalJSX {
          */
         "autoHide"?: boolean;
         /**
-          * Whether to automatically size the popover to fit the available space in the viewport.  If the `post-header` can cover the anchor, it is excluded from the available space.
+          * Whether to keep resizing the popover while it is open.  Every popover is sized once when it opens: the space available around the anchor, minus the `edgeGap`, becomes the maximum width and height of the popover. The placement is then recalculated for that size.  With `autoResize`, this happens again on every position update, for example when the anchor moves while scrolling.  If the `post-header` can cover the anchor, it is excluded from the available space.
          */
-        "autoSize"?: boolean;
+        "autoResize"?: boolean;
         /**
           * Gap between the edge of the viewport and the popover.
           * @default 8
@@ -2212,7 +2212,7 @@ declare namespace LocalJSX {
         "arrow": boolean;
         "safeSpace": boolean;
         "autoHide": boolean;
-        "autoSize": boolean;
+        "autoResize": boolean;
     }
     interface PostProgressbarAttributes {
         "min": number;

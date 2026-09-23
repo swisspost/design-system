@@ -130,11 +130,16 @@ export class PostPopovercontainer {
   @Prop() readonly autoHide?: boolean;
 
   /**
-   * Whether to automatically size the popover to fit the available space in the viewport.
+   * Whether to keep resizing the popover while it is open.
    *
-   * If the `post-header` can cover the anchor, it is excluded from the available space.
+   * Every popover is sized once when it opens: the space available around the anchor, minus the
+   * `edgeGap`, becomes the maximum width and height of the popover. The placement is then
+   * recalculated for that size.
+   *
+   * With `autoResize`, the popover's size is recalculated on every position update, for example
+   * when the anchor moves while scrolling.
    */
-  @Prop() readonly autoSize?: boolean;
+  @Prop() readonly autoResize?: boolean;
 
   @State() side: Side;
 
@@ -277,7 +282,7 @@ export class PostPopovercontainer {
     if (!this.host || !this.anchorRef) return;
 
     this.stopAutoUpdate = autoUpdate(this.anchorRef, this.host, () =>
-      this.updatePosition(this.autoSize),
+      this.updatePosition(this.autoResize),
     );
   }
 
