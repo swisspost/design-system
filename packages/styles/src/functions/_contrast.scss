@@ -1,16 +1,26 @@
 @use 'sass:math';
 @use 'sass:color';
 @use 'sass:map';
+@use 'sass:meta';
 
 // From https://codetuts.dev/text-contrast-sass/
 // with updated math.pow and math.div
 
 @function luminance($color) {
-  $rgb: (
-    'red': color.red($color),
-    'green': color.green($color),
-    'blue': color.blue($color),
-  );
+  $rgb: ();
+  @if meta.function-exists('channel', $module: color) {
+    $rgb: (
+      'red': color.channel($color, 'red', $space: rgb),
+      'green': color.channel($color, 'green', $space: rgb),
+      'blue': color.channel($color, 'blue', $space: rgb),
+    );
+  } @else {
+    $rgb: (
+      'red': color.red($color),
+      'green': color.green($color),
+      'blue': color.blue($color),
+    );
+  }
 
   @each $color, $value in $rgb {
     $value: math.div($value, 255);

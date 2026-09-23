@@ -1,67 +1,15 @@
-// this config was created using https://eslint.org/blog/2024/04/eslint-config-inspector/
+import { defineConfig, globalIgnores } from 'eslint/config';
 
-import js from '@eslint/js';
-import jest from 'eslint-plugin-jest';
-import globals from 'globals';
-import ts from 'typescript-eslint';
+import post from '@swisspost/design-system-eslint-config/base';
+import postJest from '@swisspost/design-system-eslint-config/jest';
 
-/** @type {import('eslint').Linter.Config[]} */
-export default [
+export default defineConfig(
+  globalIgnores(['dist/', 'public/']),
+  post,
+  postJest,
   {
-    name: 'post/global/ignores',
-    ignores: ['public/*'],
-  },
-  {
-    name: 'post/defaults',
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
-    },
-  },
-  {
-    name: 'eslint/recommended',
-    ...js.configs.recommended,
-  },
-  {
-    name: 'post/ts/defaults',
-    files: ['**/*.{ts,mts,cts}'],
-    languageOptions: {
-      parserOptions: {
-        project: './tsconfig.eslint.json',
-      },
-    },
+    files: ['**/*.{spec,test}.{js,jsx,mjs,cjs,ts,tsx,mts,cts}'],
     rules: {
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          caughtErrors: 'none',
-          destructuredArrayIgnorePattern: '^_',
-          ignoreRestSiblings: true,
-        },
-      ],
-    },
-  },
-  ...ts.configs.recommended,
-  {
-    files: ['**/*.{js,mjs,cjs}'],
-    ...ts.configs.disableTypeChecked,
-  },
-  {
-    name: 'jest/base',
-    languageOptions: {
-      globals: jest.environments.globals.globals,
-    },
-    plugins: {
-      jest: jest,
-    },
-  },
-  {
-    name: 'jest/recommended',
-    files: ['**/*.spec.{js,mjs,cjs,ts,mts,cts}'],
-    rules: {
-      ...jest.configs['flat/recommended'].rules,
       'jest/expect-expect': [
         'warn',
         {
@@ -80,4 +28,18 @@ export default [
       ],
     },
   },
-];
+
+  // Pre-existing debt. Drop once sources are clean.
+  {
+    rules: {
+      '@typescript-eslint/no-floating-promises': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-enum-comparison': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/prefer-promise-reject-errors': 'off',
+    },
+  },
+);
