@@ -1,0 +1,30 @@
+/**
+ * @see https://stylelint.io/user-guide/configure
+ * @type {import('stylelint').Config}
+ */
+const config = {
+  plugins: ['stylelint-scss'],
+  extends: ['stylelint-config-sass-guidelines'],
+  rules: {
+    'max-nesting-depth': 5,
+    'selector-max-compound-selectors': 5,
+    'selector-max-id': 1,
+    'selector-no-qualifying-type': [true, { ignore: ['attribute', 'class'] }],
+    'function-url-quotes': null,
+    'scss/dollar-variable-colon-space-after': 'always-single-line',
+    'property-no-vendor-prefix': [
+      true,
+      {
+        ignoreProperties: [
+          'mask-size',
+          'mask-image',
+          'mask-repeat',
+          'mask-position',
+          'mask-composite',
+        ],
+      },
+    ],
+  },
+};
+
+export default config;
