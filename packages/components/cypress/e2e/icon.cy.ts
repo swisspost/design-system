@@ -206,7 +206,7 @@ describe('Icon', () => {
       cy.get('@inner').should(
         'have.css',
         'mask-image',
-        `url("https://unpkg.com/@swisspost/design-system-icons@${Cypress.env(
+        `url("https://unpkg.com/@swisspost/design-system-icons@${Cypress.expose(
           'PACKAGE_VERSION',
         )}/public/post-icons/1000.svg")`,
       );
