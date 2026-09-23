@@ -1325,6 +1325,12 @@ importers:
         specifier: 8.0.2
         version: 8.0.2(supports-color@10.2.2)
     devDependencies:
+      '@swisspost/design-system-eslint-config':
+        specifier: workspace:10.5.0
+        version: link:../eslint
+      '@swisspost/design-system-prettier-config':
+        specifier: workspace:10.5.0
+        version: link:../prettier
       '@swisspost/design-system-tsconfig':
         specifier: workspace:10.5.0
         version: link:../typescript
@@ -1334,6 +1340,12 @@ importers:
       cypress:
         specifier: catalog:cypress
         version: 15.20.1
+      eslint:
+        specifier: 'catalog:'
+        version: 9.26.0(jiti@2.6.1)(supports-color@10.2.2)
+      prettier:
+        specifier: 'catalog:'
+        version: 3.6.2
       rimraf:
         specifier: 6.1.3
         version: 6.1.3

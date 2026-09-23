@@ -22,7 +22,11 @@
     "prepare": "pnpm build",
     "build": "pnpm clean && tsc",
     "typecheck": "tsc --noEmit",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "dependencies": {
     "@puppeteer/browsers": "3.2.2",
@@ -32,12 +36,17 @@
     "cypress": ">=15.0.0"
   },
   "devDependencies": {
+    "@swisspost/design-system-eslint-config": "workspace:10.5.0",
+    "@swisspost/design-system-prettier-config": "workspace:10.5.0",
     "@swisspost/design-system-tsconfig": "workspace:10.5.0",
     "@types/node": "catalog:node",
     "cypress": "catalog:cypress",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
     "rimraf": "6.1.3",
     "typescript": "catalog:"
   },
+  "prettier": "@swisspost/design-system-prettier-config",
   "files": [
     "dist",
     "package.json",
