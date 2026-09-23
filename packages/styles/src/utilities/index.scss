@@ -9,7 +9,10 @@
 
 @each $breakpoint, $device-size in breakpoints.$grid-breakpoints {
   @include media.min($device-size) {
-    $infix: if($device-size == 0, '', '-#{$breakpoint}');
+    $infix: '-#{$breakpoint}';
+    @if $device-size == 0 {
+      $infix: '';
+    }
 
     @each $key, $utility in $utilities {
       @if meta.type-of($utility) == 'map' and (map.get($utility, responsive) or $infix == '') {
