@@ -65,14 +65,14 @@ post-menu-item {
       border-radius: calc(tokens.get('focus-border-radius', helpers.$post-focus) - $outline-offset);
     }
 
-    @include utilities-mx.focus-style-custom('::after', $outline-offset);
+    @include utilities-mx.focus-style-custom('::after', $outline-offset, #050400);
 
     &:hover {
       background-color: #504f4b;
       color: #fff;
 
       @include utilities-mx.focus-visible('::after') {
-        outline-color: tokens.get('focus-outline-color-inverted', helpers.$post-focus) !important;
+        outline-color: #fff !important;
       }
     }
   }

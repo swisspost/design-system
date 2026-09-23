@@ -583,7 +583,7 @@ export namespace Components {
          */
         "autoHide"?: boolean;
         /**
-          * Whether to keep resizing the popover while it is open.  Every popover is sized once when it opens: the space available around the anchor, minus the `edgeGap`, becomes the maximum width and height of the popover. The placement is then recalculated for that size.  With `autoResize`, this happens again on every position update, for example when the anchor moves while scrolling.  If the `post-header` can cover the anchor, it is excluded from the available space.
+          * Whether to keep resizing the popover while it is open.  Every popover is sized once when it opens: the space available around the anchor, minus the `edgeGap`, becomes the maximum width and height of the popover. The placement is then recalculated for that size.  With `autoResize`, the popover's size is recalculated on every position update, for example when the anchor moves while scrolling.
          */
         "autoResize"?: boolean;
         /**
@@ -1850,7 +1850,7 @@ declare namespace LocalJSX {
          */
         "autoHide"?: boolean;
         /**
-          * Whether to keep resizing the popover while it is open.  Every popover is sized once when it opens: the space available around the anchor, minus the `edgeGap`, becomes the maximum width and height of the popover. The placement is then recalculated for that size.  With `autoResize`, this happens again on every position update, for example when the anchor moves while scrolling.  If the `post-header` can cover the anchor, it is excluded from the available space.
+          * Whether to keep resizing the popover while it is open.  Every popover is sized once when it opens: the space available around the anchor, minus the `edgeGap`, becomes the maximum width and height of the popover. The placement is then recalculated for that size.  With `autoResize`, the popover's size is recalculated on every position update, for example when the anchor moves while scrolling.
          */
         "autoResize"?: boolean;
         /**

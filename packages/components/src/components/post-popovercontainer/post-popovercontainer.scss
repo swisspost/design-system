@@ -40,6 +40,7 @@
     background-color: var(--post-current-bg);
     border-radius: commons.$border-radius;
     position: relative;
+    display: flex;
 
     @include utilities.high-contrast-mode {
       border: 2px solid transparent; // border is needed in HCM because the shadow is not visible

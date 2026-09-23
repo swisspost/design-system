@@ -330,13 +330,23 @@ export class PostPopovercontainer {
     const gap = this.edgeGap ?? 0;
 
     const isAligned = this.placement?.includes('-');
-    const isVertical = this.placement?.startsWith('left') || this.placement?.startsWith('right');
 
     const flipMiddleware = [
       // Flip the popover if the anchor moves outside the viewport
-      flip({ elementContext: 'reference', crossAxis: false, fallbackStrategy: 'bestFit' }),
+      flip({
+        elementContext: 'reference',
+        padding: gap,
+        crossAxis: false,
+        fallbackStrategy: 'bestFit',
+      }),
       // Flip the popover if the popover itself moves outside the viewport
-      flip({ elementContext: 'floating', crossAxis: false, fallbackStrategy: 'bestFit' }),
+      flip({
+        elementContext: 'floating',
+        padding: gap,
+        crossAxis: false,
+        fallbackStrategy: 'bestFit',
+        fallbackAxisSideDirection: 'start',
+      }),
     ];
 
     const shiftMiddleware = shift({
@@ -354,7 +364,9 @@ export class PostPopovercontainer {
     if (withSize) {
       middleware.push(
         size({
-          apply({ availableWidth, availableHeight, elements }) {
+          apply({ availableWidth, availableHeight, elements, placement }) {
+            const isVertical = placement?.startsWith('left') || placement?.startsWith('right');
+
             elements.floating.style.setProperty(
               '--post-popovercontainer-available-width',
               `${availableWidth - (isVertical ? gap : gap * 2)}px`,
