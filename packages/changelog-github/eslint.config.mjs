@@ -1,50 +1,12 @@
-// this config was created using https://eslint.org/blog/2024/04/eslint-config-inspector/
+import { defineConfig, globalIgnores } from 'eslint/config';
 
-import js from '@eslint/js';
-import ts from 'typescript-eslint';
-import globals from 'globals';
+import post from '@swisspost/design-system-eslint-config/base';
 
-/** @type {import('eslint').Linter.Config[]} */
-export default [
-  {
-    name: 'post/global/ignores',
-    ignores: ['dist/*'],
+export default defineConfig(globalIgnores(['dist/', 'out-tsc/']), post, {
+  // Pre-existing debt. Drop once sources are clean.
+  rules: {
+    '@typescript-eslint/no-unsafe-argument': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
+    '@typescript-eslint/require-await': 'off',
   },
-  {
-    name: 'post/defaults',
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
-    },
-  },
-  {
-    name: 'eslint/recommended',
-    ...js.configs.recommended,
-  },
-  {
-    name: 'post/ts/defaults',
-    files: ['**/*.{ts,tsx,mts,cts}'],
-    languageOptions: {
-      parserOptions: {
-        project: './tsconfig.eslint.json',
-      },
-    },
-    rules: {
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          caughtErrors: 'none',
-          destructuredArrayIgnorePattern: '^_',
-          ignoreRestSiblings: true,
-        },
-      ],
-    },
-  },
-  ...ts.configs.recommended,
-  {
-    files: ['**/*.{js,mjs,cjs}'],
-    ...ts.configs.disableTypeChecked,
-  },
-];
+});
