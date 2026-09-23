@@ -9,7 +9,7 @@ export default defineConfig({
   e2e: {
     ...post.e2e,
     baseUrl: 'http://localhost:9001',
-    env: {
+    expose: {
       PACKAGE_VERSION: pkg.version,
     },
   },
