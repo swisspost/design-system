@@ -1,5 +1,10 @@
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/helpers';
 @use '@swisspost/design-system-styles/mixins/button';
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
+
+$outline-offset: tokens.get('focus-outline-offset3', helpers.$post-focus);
 
 post-menu-item {
   button {
@@ -47,14 +52,28 @@ post-menu-item {
       padding-block: 13px;
     }
 
-    &:focus-visible {
-      outline-offset: 2px !important;
-      border-radius: 4px;
+    @include utilities-mx.focus-visible {
+      outline: none !important;
     }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: calc(tokens.get('focus-border-radius', helpers.$post-focus) - $outline-offset);
+    }
+
+    @include utilities-mx.focus-style-custom('::after', $outline-offset);
 
     &:hover {
       background-color: #504f4b;
       color: #fff;
+
+      @include utilities-mx.focus-visible('::after') {
+        outline-color: tokens.get('focus-outline-color-inverted', helpers.$post-focus) !important;
+      }
     }
   }
 }
