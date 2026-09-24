@@ -1,5 +1,24 @@
 # @swisspost/design-system-icons
 
+## 10.6.0
+
+### Minor Changes
+
+- Added icons:
+  - `blog` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `circularlogistics` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `convenience` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `financinginsurance` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `hacker` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `managementreport` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `netzero` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `posthorn` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `rssfeed` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `slideshare` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `speedpredictability` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `wheelchairnoinfo` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `wheelchairno` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8524](https://github.com/swisspost/design-system/pull/8524))
+
 ## 10.5.0
 
 ## 10.4.0
