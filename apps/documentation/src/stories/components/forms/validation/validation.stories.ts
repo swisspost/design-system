@@ -51,16 +51,12 @@ function renderFeedback(
   validationState: string,
 ) {
   return html`
-    ${
-      validFeedbackId && validationState === 'is-valid'
-        ? html`<p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>`
-        : nothing
-    }
-    ${
-      invalidFeedbackId && validationState === 'is-invalid'
-        ? html`<p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>`
-        : nothing
-    }
+    ${validFeedbackId && validationState === 'is-valid'
+      ? html`<p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>`
+      : nothing}
+    ${invalidFeedbackId && validationState === 'is-invalid'
+      ? html`<p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>`
+      : nothing}
   `;
 }
 
@@ -330,6 +326,167 @@ export const TextArea: Story = {
         This is helpful text that provides guidance or additional information to assist the user in
         filling out this field correctly.
       </p>
+    </div>`;
+  },
+};
+
+export const TestFormAlignment: Story = {
+  render: () => {
+    return html` <div class="container-fluid">
+      <h1>Forms</h1>
+
+      <h2>Aligned end</h2>
+      <div class="row align-items-end">
+        <div class="col-6 col-sm-4 col-md-3">
+          <label class="form-label" for="1">Label</label>
+          <input id="1" class="form-control" type="text" placeholder="Placeholder" />
+        </div>
+        <div class="col-6 col-sm-4 col-md-3">
+          <div class="form-check">
+            <input type="checkbox" id="e6ecc86f-d148-413b-b796-614a89da54be--default" />
+            <label for="e6ecc86f-d148-413b-b796-614a89da54be--default">Label</label>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3">
+          <label class="form-label" for="1">Label</label>
+          <input id="1" class="form-control" type="text" placeholder="Placeholder" />
+        </div>
+      </div>
+
+      <h2>Aligned end with hint or validation</h2>
+      <div class="row align-items-end">
+        <div class="col-6 col-sm-4 col-md-3">
+          <label class="form-label" for="1">Label</label>
+          <input
+            id="1"
+            class="form-control"
+            type="text"
+            placeholder="Placeholder"
+            aria-describedby="form-hint-1"
+          />
+          <p class="form-hint" id="form-hint-1">
+            This is helpful text that provides guidance or additional information to assist the user
+            in filling out this field correctly.
+          </p>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3">
+          <div class="form-check">
+            <input type="checkbox" id="e6ecc86f-d148-413b-b796-614a89da54be--default" />
+            <label for="e6ecc86f-d148-413b-b796-614a89da54be--default">Label</label>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3">
+          <label class="form-label" for="1">Label</label>
+          <input id="1" class="form-control" type="text" placeholder="Placeholder" />
+        </div>
+        <div class="col-6 col-sm-4 col-md-3">
+          <label class="form-label" for="2df77c32-5e33-402e-bd2e-54d54271ce19--default"
+            >Label</label
+          >
+          <input
+            id="2df77c32-5e33-402e-bd2e-54d54271ce19--default"
+            class="form-control is-valid"
+            type="text"
+            placeholder="Placeholder"
+            aria-describedby="is-valid-id-2df77c32-5e33-402e-bd2e-54d54271ce19--default"
+          />
+          <p class="valid-feedback" id="is-valid-id-2df77c32-5e33-402e-bd2e-54d54271ce19--default">
+            Great success!
+          </p>
+        </div>
+        <div class="col-6 col-md-4"></div>
+        <div class="col-6 col-md-4"></div>
+        <div class="col-6 col-md-4"></div>
+      </div>
+
+      <h2>Aligned center with hint or validation</h2>
+      <div class="row align-items-center">
+        <div class="col-6 col-sm-4 col-md-3">
+          <label class="form-label" for="1">Label</label>
+          <input
+            id="1"
+            class="form-control"
+            type="text"
+            placeholder="Placeholder"
+            aria-describedby="form-hint-1"
+          />
+          <p class="form-hint" id="form-hint-1">
+            This is helpful text that provides guidance or additional information to assist the user
+            in filling out this field correctly.
+          </p>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3">
+          <div class="form-check">
+            <input type="checkbox" id="e6ecc86f-d148-413b-b796-614a89da54be--default" />
+            <label for="e6ecc86f-d148-413b-b796-614a89da54be--default">Label</label>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3">
+          <label class="form-label" for="1">Label</label>
+          <input id="1" class="form-control" type="text" placeholder="Placeholder" />
+        </div>
+        <div class="col-6 col-sm-4 col-md-3">
+          <label class="form-label" for="2df77c32-5e33-402e-bd2e-54d54271ce19--default"
+            >Label</label
+          >
+          <input
+            id="2df77c32-5e33-402e-bd2e-54d54271ce19--default"
+            class="form-control is-valid"
+            type="text"
+            placeholder="Placeholder"
+            aria-describedby="is-valid-id-2df77c32-5e33-402e-bd2e-54d54271ce19--default"
+          />
+          <p class="valid-feedback" id="is-valid-id-2df77c32-5e33-402e-bd2e-54d54271ce19--default">
+            Great success!
+          </p>
+        </div>
+        <div class="col-6 col-md-4"></div>
+        <div class="col-6 col-md-4"></div>
+        <div class="col-6 col-md-4"></div>
+      </div>
+
+      <h2>Aligned start with hint or validation</h2>
+      <div class="row align-items-start">
+        <div class="col-6 col-sm-4 col-md-3">
+          <label class="form-label" for="1">Label</label>
+          <input
+            id="1"
+            class="form-control"
+            type="text"
+            placeholder="Placeholder"
+            aria-describedby="form-hint-1"
+          />
+          <p class="form-hint" id="form-hint-1">
+            This is helpful text that provides guidance or additional information to assist the user
+            in filling out this field correctly.
+          </p>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3">
+          <div class="form-check">
+            <input type="checkbox" id="e6ecc86f-d148-413b-b796-614a89da54be--default" />
+            <label for="e6ecc86f-d148-413b-b796-614a89da54be--default">Label</label>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3">
+          <label class="form-label" for="1">Label</label>
+          <input id="1" class="form-control" type="text" placeholder="Placeholder" />
+        </div>
+        <div class="col-6 col-sm-4 col-md-3">
+          <label class="form-label" for="2df77c32-5e33-402e-bd2e-54d54271ce19--default"
+            >Label</label
+          >
+          <input
+            id="2df77c32-5e33-402e-bd2e-54d54271ce19--default"
+            class="form-control is-valid"
+            type="text"
+            placeholder="Placeholder"
+            aria-describedby="is-valid-id-2df77c32-5e33-402e-bd2e-54d54271ce19--default"
+          />
+          <p class="valid-feedback" id="is-valid-id-2df77c32-5e33-402e-bd2e-54d54271ce19--default">
+            Great success!
+          </p>
+        </div>
+      </div>
     </div>`;
   },
 };
