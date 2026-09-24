@@ -73,26 +73,24 @@ export class PostBreadcrumbItem {
 
   private renderContent() {
     const slot = <slot onSlotchange={() => this.checkSlottedAnchor()}></slot>;
+    const href = this.url instanceof URL ? this.url.href : this.url;
 
     if (this.hasSlottedAnchor) {
       return slot;
-    }
-
-    const href = this.url instanceof URL ? this.url.href : this.url;
-    if (!href) {
+    } else if (!href) {
       return <span>{slot}</span>;
+    } else {
+      return (
+        <a
+          href={href}
+          aria-current={this.selected ? 'page' : undefined}
+          aria-label={this.label}
+          aria-description={this.description}
+        >
+          {slot}
+        </a>
+      );
     }
-
-    return (
-      <a
-        href={href}
-        aria-current={this.selected ? 'page' : undefined}
-        aria-label={this.label}
-        aria-description={this.description}
-      >
-        {slot}
-      </a>
-    );
   }
 
   render() {
