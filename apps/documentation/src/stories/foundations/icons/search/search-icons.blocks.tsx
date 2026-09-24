@@ -428,12 +428,9 @@ export class Search extends React.Component {
                 <span className="name">{icon.name}</span>
                 <span className="visually-hidden">{icon.keywords}</span>
                 {icon.migration ? (
-                  <>
-                    <span className="tooltip-migration-hint" aria-hidden="true">
-                      <post-icon name="info"></post-icon>
-                    </span>
-                    <span className="visually-hidden">Migration instructions available in the details panel</span>
-                  </>
+                  <post-tooltip-trigger for="tooltip-migration-hint" class="tooltip-migration-hint">
+                    <post-icon name="info"></post-icon>
+                  </post-tooltip-trigger>
                 ) : null}
               </button>
             </li>
@@ -479,6 +476,9 @@ export class Search extends React.Component {
           {this.paging()}
           {this.iconDetailPanel()}
         </div>
+        <post-tooltip id="tooltip-migration-hint" placement="top-end" arrow>
+          Click me for migration instructions
+        </post-tooltip>
       </div>
     );
   }
