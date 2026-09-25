@@ -228,7 +228,12 @@
             }
           ]
         }
-      ]
+      ],
+      "closeLink": {
+        "text": "Schliessen",
+        "url": "#",
+        "icon": "closex"
+      }
     }
   },
   "footer": {
