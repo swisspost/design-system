@@ -22,6 +22,7 @@ enum AvatarType {
 })
 export class PostAvatar {
   private slottedImageObserver: MutationObserver; // To watch the slotted image src.
+  private imageRequestId = 0; // To ignore responses of outdated image requests.
 
   @Element() host: HTMLPostAvatarElement;
 
@@ -70,22 +71,30 @@ export class PostAvatar {
   }
 
   private async getAvatarImage() {
+    const requestId = ++this.imageRequestId;
+    const isStale = () => requestId !== this.imageRequestId;
     let imageLoaded = false;
     this.slottedImage = this.host.querySelector('img');
     const imageUrl = this.slottedImage?.getAttribute('src');
 
     if (!imageUrl) {
       if (this.email?.match(emailPattern)) {
-        imageLoaded = await this.getImageByProp(this.email, this.fetchImageByEmail.bind(this));
+        imageLoaded = await this.getImageByProp(
+          this.email,
+          this.fetchImageByEmail.bind(this),
+          isStale,
+        );
       }
-      if (!imageLoaded) {
+      if (!imageLoaded && !isStale()) {
         this.avatarType = AvatarType.Initials;
       }
     } else {
       const slottedImageLoaded = await this.getImageByProp(
         imageUrl,
         this.fetchSlottedImage.bind(this),
+        isStale,
       );
+      if (isStale()) return;
 
       if (!slottedImageLoaded) {
         this.slottedImage.style.display = 'none';
@@ -96,7 +105,11 @@ export class PostAvatar {
     }
   }
 
-  private async getImageByProp(prop: string, fetchImage: (prop?: string) => Promise<Response>) {
+  private async getImageByProp(
+    prop: string,
+    fetchImage: (prop?: string) => Promise<Response>,
+    isStale: () => boolean,
+  ) {
     if (!prop) return false;
     let imageResponse: Response;
 
@@ -107,7 +120,7 @@ export class PostAvatar {
       return false;
     }
 
-    if (!imageResponse?.ok) {
+    if (!imageResponse?.ok || isStale()) {
       return false;
     } else {
       this.imageUrl = imageResponse.url;
