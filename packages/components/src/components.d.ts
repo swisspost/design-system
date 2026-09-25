@@ -142,6 +142,11 @@ export namespace Components {
     }
     interface PostBreadcrumbs {
         /**
+          * Whether `text-home` content is displayed instead of the home icon, enabling segment specific breadcrumbs (like "Private customers" or "About us").
+          * @default false
+         */
+        "homeTextOnly": boolean;
+        /**
           * The URL for the root (home) breadcrumb item.
          */
         "homeUrl"?: string;
@@ -150,9 +155,9 @@ export namespace Components {
          */
         "textBreadcrumbs": string;
         /**
-          * An accessible label for the root (home) breadcrumb item.
+          * The label of the root (home) breadcrumb item. Displayed visibly when `home-text-only` is `true`, otherwise used as an accessible label alongside the home icon.
          */
-        "textHome": string;
+        "textHome"?: string;
         /**
           * An accessible label for the overflow menu that contains collapsed breadcrumb items.
          */
@@ -1447,6 +1452,11 @@ declare namespace LocalJSX {
     }
     interface PostBreadcrumbs {
         /**
+          * Whether `text-home` content is displayed instead of the home icon, enabling segment specific breadcrumbs (like "Private customers" or "About us").
+          * @default false
+         */
+        "homeTextOnly"?: boolean;
+        /**
           * The URL for the root (home) breadcrumb item.
          */
         "homeUrl"?: string;
@@ -1455,9 +1465,9 @@ declare namespace LocalJSX {
          */
         "textBreadcrumbs": string;
         /**
-          * An accessible label for the root (home) breadcrumb item.
+          * The label of the root (home) breadcrumb item. Displayed visibly when `home-text-only` is `true`, otherwise used as an accessible label alongside the home icon.
          */
-        "textHome": string;
+        "textHome"?: string;
         /**
           * An accessible label for the overflow menu that contains collapsed breadcrumb items.
          */
@@ -2092,6 +2102,7 @@ declare namespace LocalJSX {
     interface PostBreadcrumbsAttributes {
         "homeUrl": string;
         "textHome": string;
+        "homeTextOnly": boolean;
         "textBreadcrumbs": string;
         "textMoreItems": string;
     }
@@ -2264,7 +2275,7 @@ declare namespace LocalJSX {
         "post-back-to-top": Omit<PostBackToTop, keyof PostBackToTopAttributes> & { [K in keyof PostBackToTop & keyof PostBackToTopAttributes]?: PostBackToTop[K] } & { [K in keyof PostBackToTop & keyof PostBackToTopAttributes as `attr:${K}`]?: PostBackToTopAttributes[K] } & { [K in keyof PostBackToTop & keyof PostBackToTopAttributes as `prop:${K}`]?: PostBackToTop[K] } & OneOf<"textBackToTop", PostBackToTop["textBackToTop"], PostBackToTopAttributes["textBackToTop"]>;
         "post-banner": Omit<PostBanner, keyof PostBannerAttributes> & { [K in keyof PostBanner & keyof PostBannerAttributes]?: PostBanner[K] } & { [K in keyof PostBanner & keyof PostBannerAttributes as `attr:${K}`]?: PostBannerAttributes[K] } & { [K in keyof PostBanner & keyof PostBannerAttributes as `prop:${K}`]?: PostBanner[K] };
         "post-breadcrumb-item": Omit<PostBreadcrumbItem, keyof PostBreadcrumbItemAttributes> & { [K in keyof PostBreadcrumbItem & keyof PostBreadcrumbItemAttributes]?: PostBreadcrumbItem[K] } & { [K in keyof PostBreadcrumbItem & keyof PostBreadcrumbItemAttributes as `attr:${K}`]?: PostBreadcrumbItemAttributes[K] } & { [K in keyof PostBreadcrumbItem & keyof PostBreadcrumbItemAttributes as `prop:${K}`]?: PostBreadcrumbItem[K] };
-        "post-breadcrumbs": Omit<PostBreadcrumbs, keyof PostBreadcrumbsAttributes> & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes]?: PostBreadcrumbs[K] } & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes as `attr:${K}`]?: PostBreadcrumbsAttributes[K] } & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes as `prop:${K}`]?: PostBreadcrumbs[K] } & OneOf<"textHome", PostBreadcrumbs["textHome"], PostBreadcrumbsAttributes["textHome"]> & OneOf<"textBreadcrumbs", PostBreadcrumbs["textBreadcrumbs"], PostBreadcrumbsAttributes["textBreadcrumbs"]> & OneOf<"textMoreItems", PostBreadcrumbs["textMoreItems"], PostBreadcrumbsAttributes["textMoreItems"]>;
+        "post-breadcrumbs": Omit<PostBreadcrumbs, keyof PostBreadcrumbsAttributes> & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes]?: PostBreadcrumbs[K] } & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes as `attr:${K}`]?: PostBreadcrumbsAttributes[K] } & { [K in keyof PostBreadcrumbs & keyof PostBreadcrumbsAttributes as `prop:${K}`]?: PostBreadcrumbs[K] } & OneOf<"textBreadcrumbs", PostBreadcrumbs["textBreadcrumbs"], PostBreadcrumbsAttributes["textBreadcrumbs"]> & OneOf<"textMoreItems", PostBreadcrumbs["textMoreItems"], PostBreadcrumbsAttributes["textMoreItems"]>;
         "post-closebutton": Omit<PostClosebutton, keyof PostClosebuttonAttributes> & { [K in keyof PostClosebutton & keyof PostClosebuttonAttributes]?: PostClosebutton[K] } & { [K in keyof PostClosebutton & keyof PostClosebuttonAttributes as `attr:${K}`]?: PostClosebuttonAttributes[K] } & { [K in keyof PostClosebutton & keyof PostClosebuttonAttributes as `prop:${K}`]?: PostClosebutton[K] };
         "post-collapsible": Omit<PostCollapsible, keyof PostCollapsibleAttributes> & { [K in keyof PostCollapsible & keyof PostCollapsibleAttributes]?: PostCollapsible[K] } & { [K in keyof PostCollapsible & keyof PostCollapsibleAttributes as `attr:${K}`]?: PostCollapsibleAttributes[K] } & { [K in keyof PostCollapsible & keyof PostCollapsibleAttributes as `prop:${K}`]?: PostCollapsible[K] };
         "post-collapsible-trigger": Omit<PostCollapsibleTrigger, keyof PostCollapsibleTriggerAttributes> & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes]?: PostCollapsibleTrigger[K] } & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes as `attr:${K}`]?: PostCollapsibleTriggerAttributes[K] } & { [K in keyof PostCollapsibleTrigger & keyof PostCollapsibleTriggerAttributes as `prop:${K}`]?: PostCollapsibleTrigger[K] };
