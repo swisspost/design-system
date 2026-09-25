@@ -55,7 +55,8 @@ export class PostAvatar {
   description?: string;
 
   @State() slottedImage: HTMLImageElement;
-  @State() avatarType: AvatarType = null;
+  // Initials are the fallback while the image is still loading or delayed.
+  @State() avatarType: AvatarType = AvatarType.Initials;
   @State() imageUrl = '';
   @State() imageAlt = '';
   @State() initials = '';
@@ -157,9 +158,8 @@ export class PostAvatar {
     this.slottedImageObserver.observe(img, { attributes: true, attributeFilter: ['src'] });
   }
 
-  connectedCallback() {
-    //This provides a fallback by showing the initials while the image is still loading or delayed.
-    this.avatarType = AvatarType.Initials;
+  componentWillLoad() {
+    // Props are not yet available in `connectedCallback` on the first connection.
     this.getAvatarImage();
   }
 
