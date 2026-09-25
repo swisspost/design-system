@@ -4,6 +4,7 @@ import { IconButton, WithTooltip } from 'storybook/internal/components';
 const THEMES = ['Post', 'Cargo'] as const;
 const APPEARANCE = ['Default', 'Compact'] as const;
 const SCHEMES = ['Light', 'Dark'] as const;
+const STYLE_SWITCHER_EVENT = 'swisspost-documentation-style-change';
 
 /*
  * Stylesheets
@@ -22,7 +23,7 @@ const STORAGE_KEY_PREFIX = 'swisspost-documentation';
 const store = (key: string, value: string) => {
   return localStorage.setItem(`${STORAGE_KEY_PREFIX}-${key}`, value);
 };
-const stored = (key: string): string => {
+const stored = (key: string): string | null => {
   return localStorage.getItem(`${STORAGE_KEY_PREFIX}-${key}`);
 };
 
@@ -30,9 +31,9 @@ const stored = (key: string): string => {
  * Helpers
  */
 const debounce = <T extends unknown[]>(callback: (...args: T) => void, timeout: number) => {
-  let timer;
+  let timer: ReturnType<typeof setTimeout> | undefined;
   return (...args: T) => {
-    clearTimeout(timer);
+    if (timer) clearTimeout(timer);
     timer = setTimeout(() => {
       callback(...args);
     }, timeout);
@@ -61,7 +62,8 @@ function StylesSwitcher() {
     if (!previewIFrame) return;
 
     previewIFrame.addEventListener('load', () => {
-      setPreview((previewIFrame as HTMLIFrameElement).contentWindow.document);
+      const previewWindow = (previewIFrame as HTMLIFrameElement).contentWindow;
+      if (previewWindow) setPreview(previewWindow.document);
     });
   }, []);
 
@@ -104,6 +106,14 @@ function StylesSwitcher() {
       `<link rel="stylesheet" href="${getStylesheetUrl(currentTheme, currentAppearance)}" />`,
     );
   }, [preview, currentTheme, currentAppearance]);
+
+  useEffect(() => {
+    preview?.defaultView?.dispatchEvent(
+      new CustomEvent(STYLE_SWITCHER_EVENT, {
+        detail: { theme: currentTheme, appearance: currentAppearance },
+      }),
+    );
+  }, [preview, currentTheme, currentAppearance, stylesCodeBlocks]);
 
   /**
    * Sets the design system styles import SCSS file to the correct theme and appearance file
