@@ -1,0 +1,8 @@
+{
+  "extends": "@swisspost/design-system-tsconfig/node.tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "types": ["node"]
+  }
+}
