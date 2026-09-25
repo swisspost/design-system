@@ -8,12 +8,14 @@
 ### Used by
 
  - [post-breadcrumb-item](../post-breadcrumb-item)
+ - [post-breadcrumbs](../post-breadcrumbs)
  - [post-language-menu-item](../post-language-menu-item)
 
 ### Graph
 ```mermaid
 graph TD;
   post-breadcrumb-item --> post-menu-item
+  post-breadcrumbs --> post-menu-item
   post-language-menu-item --> post-menu-item
   style post-menu-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
