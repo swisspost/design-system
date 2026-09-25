@@ -51,22 +51,27 @@ When space is constrained, the `<post-breadcrumbs>` concatenates middle items in
 
 <post-tab-panel for="client-side-routing" class="pt-24">
 
-To enable client-side routing (e.g. Next.js, Angular Router), slot your own anchor instead of using the `url`/`home-url` properties: use the default slot for `<post-breadcrumb-item>`, or the `home` slot for the root item of `<post-breadcrumbs>`.
+To enable client-side routing, provide your own link through a slot. This works with routing
+libraries such as Next.js and Angular Router. Use the default slot for regular
+`<post-breadcrumb-item>` elements. Use the `home` slot for the root item of `<post-breadcrumbs>`.
 
-Both components detect the slotted `<a>` and stop rendering their own, leaving your link's click handling untouched.
+The component detects the slotted link and leaves it unchanged, allowing the routing library to
+handle navigation. The `url` and `home-url` properties are ignored when a slotted link is used.
 
 <post-banner type="info">
-  <p>
-    The slotted `<a>` must be a direct child of `<post-breadcrumb-item>` (or of `<post-breadcrumbs>`
-    for the `home` slot), not wrapped in another element, otherwise it won't be detected and the
-    component will fall back to rendering its own internal link.
-  </p>
-  <p>
-    The `url`/`home-url` properties are ignored once you slot your own `<a>`. Since the label,
-    description, and `aria-current` are no longer applied automatically, give the slotted `<a>`
-    an accessible name (via its text content or `aria-label`), and add `aria-current="page"`
-    yourself on the item that represents the current page.
-  </p>
+  <ul className="list-bullet"><li>
+    For regular breadcrumb items, the slotted link must be a direct child of
+    `<post-breadcrumb-item>`. For the root breadcrumb, the slotted link must be a direct child of
+    `<post-breadcrumbs>` and use the `home` slot. In both cases, if the link is wrapped in another element, it won't be
+    detected and the component will fall back to rendering its own internal link.
+  </li>
+    <li>
+      When a link is slotted, the component does not automatically apply the `label`, `description`,
+      or `aria-current` attributes. To make the link accessible:
+      (a) give it an accessible name through its text content or `aria-label` and (b) add
+      `aria-current="page"` if it represents the current page.
+    </li>
+  </ul>
 </post-banner>
 
 <Canvas of={BreadcrumbsStories.ClientSideRouting} sourceState="shown" />
