@@ -41,7 +41,7 @@ const meta: MetaComponent = {
     'imageSrc': {
       control: 'text',
       description:
-        'Define an image `src` to insert a custom image.<post-banner data-size="sm"><p>Do you need an example? Try our logo <strong>/assets/images/logo-swisspost.svg</strong>.</p></post-banner>',
+        'Define an image `src` to insert a custom image.<post-banner data-size="sm"><p>Do you need an example? Try our logo <strong>/assets/images/logo-swisspost.svg</strong>. Note that using an external image will not work on this preview.</p></post-banner>',
       table: {
         category: 'Content',
       },
