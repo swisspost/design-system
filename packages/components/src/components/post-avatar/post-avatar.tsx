@@ -176,7 +176,13 @@ export class PostAvatar {
         <span class={this.avatarType === 'slotted' ? '' : 'd-none'}>
           <slot onSlotchange={this.slotChanged.bind(this)}></slot>
         </span>
-        {this.avatarType === 'image' && <img src={this.imageUrl} alt={this.imageAlt} />}
+        {this.avatarType === 'image' && (
+          <img
+            src={this.imageUrl}
+            alt={this.imageAlt}
+            onError={() => (this.avatarType = AvatarType.Initials)}
+          />
+        )}
         {this.avatarType === 'initials' && (
           <span class="initials">
             {initials}
