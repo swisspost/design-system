@@ -179,5 +179,123 @@
       <option value="compact">Post compact</option>
     </select>
     <hr />
+
+    <p>
+      ekrjnbjenrglnlregnekrj<br />
+      nbjenrglnlregnekrjnbjenrglnlregnekrjnbjenrg<br />
+      lnlregnekrjnbjenrglnlregnekrjnbjenrgl<br />
+      nlregnekrjnbjenrglnlregnekrjnbjenrgl<br />
+      nlregnekrjnbjenrglnlregnekrjnbjenrglnlregn<br />
+      nlregnekrjnbjenrglnlregnekrjnbjenrglnlregn
+    </p>
+
+    <post-footer text-footer="Footer">
+      <!-- pre-footer -->
+      <div slot="prefooter">
+        <h3 id="prefooter">Service name</h3>
+        <ul aria-labelledby="prefooter">
+          <li><a href="#" class="btn btn-link">Pre-Footer Link 1</a></li>
+          <li><a href="#" class="btn btn-link">Pre-Footer Link 2</a></li>
+          <li><a href="#" class="btn btn-link">Pre-Footer Link 3</a></li>
+        </ul>
+      </div>
+
+      <!-- link columns -->
+      <span id="grid-1-title" slot="grid-1-title">Title 1</span>
+      <ul slot="grid-1" aria-labelledby="grid-1-title">
+        <li><a href="#">Text link 1</a></li>
+        <li><a href="#">Text link 2</a></li>
+        <li><a href="#">Text link 3</a></li>
+      </ul>
+
+      <span id="grid-2-title" slot="grid-2-title">Title 2</span>
+      <ul slot="grid-2" aria-labelledby="grid-2-title">
+        <li><a href="#">Text link 1</a></li>
+        <li><a href="#">Text link 2</a></li>
+      </ul>
+
+      <!-- social media links -->
+      <div slot="socialmedia">
+        <h3 id="socialmedia">Follow us</h3>
+        <ul aria-labelledby="socialmedia">
+          <li>
+            <a href="https://www.facebook.com/swisspost" class="btn btn-primary btn-icon">
+              <post-icon aria-hidden="true" name="facebook"></post-icon>
+              <span class="visually-hidden">Facebook</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/swisspost/" class="btn btn-primary btn-icon">
+              <post-icon aria-hidden="true" name="instagram"></post-icon>
+              <span class="visually-hidden">Instagram</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/company/swiss-post" class="btn btn-primary btn-icon">
+              <post-icon aria-hidden="true" name="linkedin"></post-icon>
+              <span class="visually-hidden">Linkedin</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- app links -->
+      <div slot="app">
+        <h3 id="app">Download app</h3>
+        <ul aria-labelledby="app">
+          <li>
+            <a
+              class="app-store-badge"
+              href="https://play.google.com/store/apps/details?id=com.nth.swisspost"
+            >
+              <img
+                src="https://next.design-system.post.ch/assets/images/google-play-badge.svg"
+                alt="Google Play Store badge"
+              />
+              <span class="visually-hidden">Download the App on Google Play</span>
+            </a>
+          </li>
+          <li>
+            <a class="app-store-badge" href="https://apps.apple.com/ch/app/die-post/id378676700">
+              <img
+                src="https://next.design-system.post.ch/assets/images/apple-store-badge.svg"
+                alt="Apple App Store badge"
+              />
+              <span class="visually-hidden">Download the App on the Apple Store</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- business sectors -->
+      <div slot="businesssectors">
+        <h3 id="businesssectors">Die Schweizerische Post AG</h3>
+        <ul aria-labelledby="businesssectors">
+          <li><a href="https://www.postauto.ch">PostAuto</a></li>
+          <li><a href="https://www.postfinance.ch">PostFinance</a></li>
+        </ul>
+      </div>
+
+      <!-- copyright -->
+      <span slot="copyright">© Copyright 2026 by Swiss Post Ltd. All rights reserved.</span>
+
+      <!-- meta links -->
+      <div slot="meta">
+        <ul aria-label="Meta">
+          <li><a href="#">Accessibility</a></li>
+          <li><a href="#">General Terms and Conditions</a></li>
+          <li><a href="#">Data protection and disclaimer</a></li>
+          <li><a href="#">Publication details</a></li>
+          <li>
+            <button
+              class="btn btn-link"
+              style="min-height: 0; border: 0 none; font-weight: inherit"
+            >
+              Cookie Settings
+            </button>
+          </li>
+        </ul>
+      </div>
+    </post-footer>
   </body>
 </html>
