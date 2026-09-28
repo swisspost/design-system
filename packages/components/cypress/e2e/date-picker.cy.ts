@@ -111,6 +111,126 @@ describe('date-picker', { includeShadowDom: true }, () => {
 
         cy.focused().should('have.prop', 'tagName', 'INPUT');
       });
+
+      it('should close the popover on Escape', () => {
+        cy.get('@toggle').click().wait(500);
+        cy.get(POPOVER_OPEN_SELECTOR).should('exist');
+
+        cy.get('@input').type('{esc}');
+        cy.get(POPOVER_OPEN_SELECTOR).should('not.exist');
+      });
+
+      it('should move focus to a nav button tabbing forward from the active grid cell, and back on shift+tab', () => {
+        cy.get('@toggle').click().wait(500);
+
+        cy.focused().should('have.attr', 'role', 'gridcell');
+        cy.focused().trigger('keydown', { key: 'Tab' });
+        cy.focused().should('match', '[data-action] button, .air-datepicker-nav--title button');
+
+        cy.focused().trigger('keydown', { key: 'Tab', shiftKey: true });
+        cy.focused().should('have.attr', 'role', 'gridcell');
+      });
+
+      it('should trap tab focus in a loop inside the popover container', () => {
+        cy.get('@toggle').click().wait(500);
+
+        const FOCUSABLE_SELECTOR = '[data-action] button, .air-datepicker-nav--title button';
+
+        cy.get('@container')
+          .find(FOCUSABLE_SELECTOR)
+          .its('length')
+          .then(navCount => {
+            const focusableCount = navCount + 1; // + the single active grid cell
+
+            cy.focused().then($initial => {
+              for (let i = 0; i < focusableCount; i++) {
+                cy.focused().trigger('keydown', { key: 'Tab' });
+              }
+              cy.focused().should($el => expect($el[0]).to.equal($initial[0]));
+
+              for (let i = 0; i < focusableCount; i++) {
+                cy.focused().trigger('keydown', { key: 'Tab', shiftKey: true });
+              }
+              cy.focused().should($el => expect($el[0]).to.equal($initial[0]));
+            });
+          });
+      });
+
+      it('should trap tab focus in a loop in the months view', () => {
+        cy.get('@toggle').click().wait(500);
+
+        // days -> years (title always jumps to years) -> pick a year -> months
+        cy.get('@navigation').find('.air-datepicker-nav--title button').click();
+        cy.get('@container').find('.air-datepicker-cell.-year-:not(.-other-decade-)').first().click();
+        cy.get('@date-picker')
+          .find('.air-datepicker-body.-months-')
+          .should('not.have.class', '-hidden-');
+
+        const FOCUSABLE_SELECTOR = '[data-action] button, .air-datepicker-nav--title button';
+
+        cy.get('@container')
+          .find(FOCUSABLE_SELECTOR)
+          .its('length')
+          .then(navCount => {
+            const focusableCount = navCount + 1; // + the single active grid cell
+
+            cy.focused().then($initial => {
+              for (let i = 0; i < focusableCount; i++) {
+                cy.focused().trigger('keydown', { key: 'Tab' });
+              }
+              cy.focused().should($el => expect($el[0]).to.equal($initial[0]));
+
+              for (let i = 0; i < focusableCount; i++) {
+                cy.focused().trigger('keydown', { key: 'Tab', shiftKey: true });
+              }
+              cy.focused().should($el => expect($el[0]).to.equal($initial[0]));
+            });
+          });
+      });
+
+      it('should trap tab focus in a loop in the years view, which has no title button', () => {
+        cy.get('@toggle').click().wait(500);
+
+        cy.get('@navigation').find('.air-datepicker-nav--title button').click();
+        cy.get('@date-picker')
+          .find('.air-datepicker-body.-years-')
+          .should('not.have.class', '-hidden-');
+        cy.get('@container').find('.air-datepicker-nav--title button').should('not.exist');
+
+        cy.get('@container')
+          .find('[data-action] button')
+          .its('length')
+          .then(navCount => {
+            const focusableCount = navCount + 1; // + the single active grid cell
+
+            cy.focused().then($initial => {
+              for (let i = 0; i < focusableCount; i++) {
+                cy.focused().trigger('keydown', { key: 'Tab' });
+              }
+              cy.focused().should($el => expect($el[0]).to.equal($initial[0]));
+
+              for (let i = 0; i < focusableCount; i++) {
+                cy.focused().trigger('keydown', { key: 'Tab', shiftKey: true });
+              }
+              cy.focused().should($el => expect($el[0]).to.equal($initial[0]));
+            });
+          });
+      });
+
+      it('should keep focus trapped in the popover container after clicking a navigation button with the mouse', () => {
+        cy.get('@toggle').click().wait(500);
+
+        cy.get('@container').find('[data-action="next"] button').click();
+        cy.focused().trigger('keydown', { key: 'Tab' });
+
+        cy.focused().should($el => {
+          const el = $el[0];
+          expect(
+            el.matches('[data-action] button, .air-datepicker-nav--title button') ||
+              el.getAttribute('role') === 'gridcell',
+          ).to.be.true;
+        });
+      });
     });
   });
 
