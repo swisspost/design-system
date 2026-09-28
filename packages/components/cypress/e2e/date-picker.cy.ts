@@ -225,10 +225,10 @@ describe('date-picker', { includeShadowDom: true }, () => {
 
         cy.focused().should($el => {
           const el = $el[0];
-          expect(
+          const isTrapped =
             el.matches('[data-action] button, .air-datepicker-nav--title button') ||
-              el.getAttribute('role') === 'gridcell',
-          ).to.be.true;
+            el.getAttribute('role') === 'gridcell';
+          expect(isTrapped).to.equal(true);
         });
       });
     });
