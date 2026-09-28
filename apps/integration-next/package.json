@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-integration-next",
-  "version": "10.5.0",
+  "version": "10.6.0",
   "description": "NextJS example integration of the Swiss Post Design System",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -31,15 +31,15 @@
     "unit:watch": "vitest"
   },
   "dependencies": {
-    "@swisspost/design-system-components-react": "workspace:10.5.0",
-    "@swisspost/design-system-styles": "workspace:10.5.0",
+    "@swisspost/design-system-components-react": "workspace:10.6.0",
+    "@swisspost/design-system-styles": "workspace:10.6.0",
     "next": "16.3.3",
     "react": "19.1.1",
     "react-dom": "19.1.1"
   },
   "devDependencies": {
     "@playwright/test": "catalog:",
-    "@swisspost/design-system-components": "workspace:10.5.0",
+    "@swisspost/design-system-components": "workspace:10.6.0",
     "@swisspost/design-system-tsconfig": "workspace:10.5.0",
     "@swisspost/design-system-eslint-config": "workspace:10.5.0",
     "@swisspost/design-system-prettier-config": "workspace:10.5.0",
