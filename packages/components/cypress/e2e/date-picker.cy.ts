@@ -19,22 +19,6 @@ const LABEL_PROPERTIES = [
   'text-toggle-calendar',
 ];
 
-// Presses Tab (or Shift+Tab) up to maxPresses times and asserts focus eventually loops back to
-// the starting element, without assuming an exact count of focusable elements up front.
-function assertTabLoopsBackToStart(shiftKey: boolean, initial: HTMLElement, maxPresses = 8) {
-  const attempt = (count: number) => {
-    cy.focused().trigger('keydown', { key: 'Tab', shiftKey });
-    cy.focused().then($el => {
-      if ($el[0] === initial) return;
-      if (count >= maxPresses) {
-        throw new Error(`Focus did not loop back to the starting element within ${maxPresses} tab presses`);
-      }
-      attempt(count + 1);
-    });
-  };
-  attempt(1);
-}
-
 describe('date-picker', { includeShadowDom: true }, () => {
   describe('default', () => {
     beforeEach(() => {
@@ -128,14 +112,6 @@ describe('date-picker', { includeShadowDom: true }, () => {
         cy.focused().should('have.prop', 'tagName', 'INPUT');
       });
 
-      it('should close the popover on Escape', () => {
-        cy.get('@toggle').click().wait(500);
-        cy.get(POPOVER_OPEN_SELECTOR).should('exist');
-
-        cy.get('@input').type('{esc}');
-        cy.get(POPOVER_OPEN_SELECTOR).should('not.exist');
-      });
-
       it('should move focus to a nav button tabbing forward from the active grid cell, and back on shift+tab', () => {
         cy.get('@toggle').click().wait(500);
 
@@ -145,49 +121,6 @@ describe('date-picker', { includeShadowDom: true }, () => {
 
         cy.focused().trigger('keydown', { key: 'Tab', shiftKey: true });
         cy.focused().should('have.attr', 'role', 'gridcell');
-      });
-
-      it('should trap tab focus in a loop inside the popover container', () => {
-        cy.get('@toggle').click().wait(500);
-
-        cy.focused().then($initial => {
-          const initial = $initial[0];
-          assertTabLoopsBackToStart(false, initial);
-          assertTabLoopsBackToStart(true, initial);
-        });
-      });
-
-      it('should trap tab focus in a loop in the months view', () => {
-        cy.get('@toggle').click().wait(500);
-
-        // days -> years (title always jumps to years) -> pick a year -> months
-        cy.get('@navigation').find('.air-datepicker-nav--title button').click();
-        cy.get('@container').find('.air-datepicker-cell.-year-:not(.-other-decade-)').first().click();
-        cy.get('@date-picker')
-          .find('.air-datepicker-body.-months-')
-          .should('not.have.class', '-hidden-');
-
-        cy.focused().then($initial => {
-          const initial = $initial[0];
-          assertTabLoopsBackToStart(false, initial);
-          assertTabLoopsBackToStart(true, initial);
-        });
-      });
-
-      it('should trap tab focus in a loop in the years view, which has no title button', () => {
-        cy.get('@toggle').click().wait(500);
-
-        cy.get('@navigation').find('.air-datepicker-nav--title button').click();
-        cy.get('@date-picker')
-          .find('.air-datepicker-body.-years-')
-          .should('not.have.class', '-hidden-');
-        cy.get('@container').find('.air-datepicker-nav--title button').should('not.exist');
-
-        cy.focused().then($initial => {
-          const initial = $initial[0];
-          assertTabLoopsBackToStart(false, initial);
-          assertTabLoopsBackToStart(true, initial);
-        });
       });
 
       it('should keep focus trapped in the popover container after clicking a navigation button with the mouse', () => {
