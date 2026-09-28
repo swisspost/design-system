@@ -34,7 +34,6 @@
   [part='post-popovercontainer-content'] {
     box-shadow: elevation.$elevation-300;
     width: max-content;
-    min-width: 160px;
     max-width: var(--post-popovercontainer-available-width);
     max-height: var(--post-popovercontainer-available-height);
     color: var(--post-current-fg);
@@ -138,6 +137,7 @@
   z-index: -1;
   pointer-events: auto;
   clip-path: var(--post-popovercontainer-safe-space, polygon(0 0, 0 0, 0 0));
+  background-color: #f00;
 }
 
 :host(:not(:has(.arrow))) > div {

@@ -24,12 +24,13 @@ import {
   shift,
   size,
   offset,
+  Middleware,
 } from '@floating-ui/dom';
 import { Side, getSide, Dimensions } from '@floating-ui/utils';
-import { computePositionWithSafeArea } from '@/utils/floating-ui/safe-area-platform';
 import { flip } from '@/utils/floating-ui/middleware/flip';
 import { getOppositeSide } from '@/utils/floating-ui/util';
-import { getPathAlongSide, getPolygon } from './util';
+import { computePositionWithSafeArea } from '@/utils/floating-ui/platform/safe-area';
+import { SAFE_SPACE_MIDDLEWARE, safeSpace } from '@/utils/floating-ui/middleware/safe-space';
 
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
 import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
@@ -330,36 +331,33 @@ export class PostPopovercontainer {
     this.host.style.top = `${y}px`;
 
     // Position the indicator arrow.
-    if (this.arrow && middlewareData.arrow) {
-      const data = middlewareData.arrow;
-
-      this.arrowRef.style.left = data.x ? `${data.x}px` : '';
-      this.arrowRef.style.top = data.y ? `${data.y}px` : '';
+    if (middlewareData.arrow) {
+      this.arrowRef.style.left = middlewareData.arrow.x ? `${middlewareData.arrow.x}px` : '';
+      this.arrowRef.style.top = middlewareData.arrow.y ? `${middlewareData.arrow.y}px` : '';
       this.arrowRef.style[getOppositeSide(this.side)] = `-${this.arrowRef.offsetWidth / 2}px`;
     }
 
     // Set the safe space polygon.
-    if (this.safeSpace) {
+    if (middlewareData[SAFE_SPACE_MIDDLEWARE]) {
       this.host.style.setProperty(
         SAFE_SPACE_PROPERTY,
-        getPolygon([
-          ...getPathAlongSide(this.host.getBoundingClientRect(), getOppositeSide(this.side)),
-          ...getPathAlongSide(this.anchorRef.getBoundingClientRect(), this.side),
-        ]),
+        middlewareData[SAFE_SPACE_MIDDLEWARE].polygon,
       );
     }
   }
 
   private async computePosition(withSize: boolean) {
     const padding = this.edgeGap ?? 0;
-    // const minSize =
 
-    const middleware = [offset(this.offset ?? (this.arrow ? padding + 4 : padding)), inline()];
+    const middleware: Middleware[] = [
+      offset(this.offset ?? (this.arrow ? padding + 4 : padding)),
+      inline(),
+    ];
 
     const flipMiddleware = flip({ padding, minSize: this.getContentMinSize() });
     const shiftMiddleware = shift({ limiter: limitShift({ offset: 32 }), padding });
 
-    // `flip` should come before 'shift' for edge-aligned placements
+    // `flip` should come before `shift` for edge-aligned placements
     // (see https://floating-ui.com/docs/flip#combining-with-shift).
     if (this.placement?.includes('-')) middleware.push(flipMiddleware, shiftMiddleware);
     else middleware.push(shiftMiddleware, flipMiddleware);
@@ -383,6 +381,7 @@ export class PostPopovercontainer {
     }
 
     if (this.arrow) middleware.push(arrow({ element: this.arrowRef, padding }));
+    if (this.safeSpace) middleware.push(safeSpace());
 
     // `hide` should generally be placed at the end of the middleware chain
     // (see https://floating-ui.com/docs/hide#order).

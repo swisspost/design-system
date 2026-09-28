@@ -3,6 +3,7 @@ import {
   detectOverflow,
   DetectOverflowOptions,
   Middleware,
+  MiddlewareState,
   Placement,
   SideObject,
 } from '@floating-ui/dom';
@@ -18,7 +19,7 @@ import {
 } from '@floating-ui/utils';
 import { getOppositeSide } from '@/utils/floating-ui/util';
 
-const NAME = 'post-flip';
+export const FLIP_MIDDLEWARE = 'post-flip';
 
 export type FlipOptions = Omit<DetectOverflowOptions, 'elementContext'> & {
   minSize?: Partial<Dimensions>;
@@ -29,12 +30,21 @@ interface FlipData {
   deficits: number[];
 }
 
+interface ReferenceMeasurement {
+  overflow: SideObject;
+  minSize: Partial<Dimensions>;
+  gap: number;
+}
+
+/**
+ * Changes the placement of the floating element to keep it in view.
+ */
 export function flip(options: FlipOptions | Derivable<FlipOptions> = {}): Middleware {
   return {
-    name: NAME,
+    name: FLIP_MIDDLEWARE,
     options,
     async fn(state) {
-      const { middlewareData, placement, platform, elements } = state;
+      const { middlewareData, placement } = state;
 
       // see https://github.com/floating-ui/floating-ui/issues/2549#issuecomment-1719601643
       if (middlewareData.arrow?.alignmentOffset) return {};
@@ -42,7 +52,7 @@ export function flip(options: FlipOptions | Derivable<FlipOptions> = {}): Middle
       const { minSize = {}, ...detectOverflowOptions } = evaluate(options, state);
 
       const gap = Math.abs(middlewareData.offset?.[getSideAxis(placement)] ?? 0);
-      const rtl = await platform.isRTL?.(elements.floating);
+      const side = getSide(placement);
 
       const referenceOverflow = await detectOverflow(state, {
         ...detectOverflowOptions,
@@ -54,56 +64,57 @@ export function flip(options: FlipOptions | Derivable<FlipOptions> = {}): Middle
         elementContext: 'floating',
       });
 
-      const side = getSide(placement);
-      const overflow = Math.max(referenceOverflow[side], floatingOverflow[side]);
+      // The floating element fits at its current placement, there is nothing left to do.
+      if (Math.max(referenceOverflow[side], floatingOverflow[side]) <= 0) return {};
 
-      // The current placement fits.
-      if (overflow <= 0) return {};
+      const previous: FlipData | undefined = middlewareData[FLIP_MIDDLEWARE];
+      const measurement: ReferenceMeasurement = { overflow: referenceOverflow, minSize, gap };
 
-      const data: FlipData = state.middlewareData[NAME] ?? {
-        placements: getPlacements(placement, referenceOverflow, minSize, gap, rtl),
-        deficits: [],
-      };
+      let deficits = previous?.deficits ?? [];
+      const placements = previous?.placements ?? (await getPlacements(state, measurement));
 
-      console.log(data);
-
-      if (data.deficits.length < data.placements.length) {
-        data.deficits.push(getDeficit(side, referenceOverflow, minSize, gap));
-        return { data, reset: { placement: data.placements[data.deficits.length] } };
+      if (deficits.length < placements.length) {
+        deficits = [...deficits, getDeficit(side, measurement)];
       }
 
-      const bestPlacement = data.placements[data.deficits.indexOf(Math.min(...data.deficits))];
-      return bestPlacement === placement ? {} : { data, reset: { placement: bestPlacement } };
+      const data = { placements, deficits };
+
+      // If there are still placements to try, move on to the next one.
+      if (deficits.length < placements.length) {
+        return { data, reset: { placement: placements[deficits.length] } };
+      }
+
+      // If none of the placements fit, fall back to the one that loses the least space.
+      const fallback = data.placements[data.deficits.indexOf(Math.min(...data.deficits))];
+      return fallback === placement ? { data } : { data, reset: { placement: fallback } };
     },
   };
 }
 
-function getDeficit(side: Side, overflow: SideObject, size: Partial<Dimensions>, gap: number) {
-  const minLength = size[getAxisLength(getSideAxis(side))] ?? 0;
-  return gap + minLength + overflow[side];
-}
+async function getPlacements(state: MiddlewareState, measurement: ReferenceMeasurement) {
+  const { placement, platform, elements } = state;
+  const { overflow } = measurement;
 
-function getPlacements(
-  placement: Placement,
-  overflow: SideObject,
-  size: Partial<Dimensions>,
-  gap: number,
-  rtl: boolean,
-) {
   const side = getSide(placement);
   const placements = [placement, getOppositePlacement(placement)];
 
-  if (
-    Math.min(
-      getDeficit(side, overflow, size, gap),
-      getDeficit(getOppositeSide(side), overflow, size, gap),
-    ) <= 0
-  )
-    return placements;
+  const mainAxisDeficit = Math.min(
+    getDeficit(side, measurement),
+    getDeficit(getOppositeSide(side), measurement),
+  );
 
-  const crossPlacements = getOppositeAxisPlacements(placement, true, 'start', rtl);
-  crossPlacements.sort((a, b) => overflow[getSide(a)] - overflow[getSide(b)]);
-  placements.push(...crossPlacements);
+  if (mainAxisDeficit <= 0) return placements;
 
-  return placements;
+  const rtl = (await platform.isRTL?.(elements.floating)) ?? false;
+  const crossAxisPlacements = getOppositeAxisPlacements(placement, true, 'start', rtl);
+
+  // Try the side with the most available space first.
+  crossAxisPlacements.sort((a, b) => overflow[getSide(a)] - overflow[getSide(b)]);
+
+  return [...placements, ...crossAxisPlacements];
+}
+
+function getDeficit(side: Side, { minSize, overflow, gap }: ReferenceMeasurement) {
+  const minLength = minSize[getAxisLength(getSideAxis(side))] ?? 0;
+  return gap + minLength + overflow[side];
 }

@@ -35,3 +35,7 @@
 post-closebutton {
   color-scheme: light;
 }
+
+post-popovercontainer::part(post-popovercontainer-content) {
+  min-width: 160px;
+}
