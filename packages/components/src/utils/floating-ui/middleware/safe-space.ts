@@ -15,6 +15,10 @@ export interface SafeSpaceData {
   polygon: string;
 }
 
+/**
+ * Computes the safe space, the area the pointer can travel through to get from the reference to
+ * the floating element.
+ */
 export function safeSpace(): Middleware {
   return {
     name: SAFE_SPACE_MIDDLEWARE,
@@ -42,6 +46,10 @@ export function safeSpace(): Middleware {
   };
 }
 
+/**
+ * Converts a rectangle from the floating element's offset parent's coordinate system to viewport
+ * coordinates.
+ */
 async function getViewportRect({ elements, platform, strategy }: MiddlewareState, rect: Rect) {
   const viewportRect = await platform.convertOffsetParentRelativeRectToViewportRelativeRect?.({
     offsetParent: await platform.getOffsetParent?.(elements.floating),

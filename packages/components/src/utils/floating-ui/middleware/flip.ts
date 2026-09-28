@@ -38,6 +38,10 @@ interface ReferenceMeasurement {
 
 /**
  * Changes the placement of the floating element to keep it in view.
+ *
+ * Unlike the Floating UI `flip` middleware, placements are measured against `minSize` rather than
+ * against the current size of the floating element, and the placement with the smallest deficit is
+ * used when none of them fits.
  */
 export function flip(options: FlipOptions | Derivable<FlipOptions> = {}): Middleware {
   return {
@@ -91,6 +95,9 @@ export function flip(options: FlipOptions | Derivable<FlipOptions> = {}): Middle
   };
 }
 
+/**
+ * Returns the placements to try, ordered from most to least promising.
+ */
 async function getPlacements(state: MiddlewareState, measurement: ReferenceMeasurement) {
   const { placement, platform, elements } = state;
   const { overflow } = measurement;
@@ -114,6 +121,10 @@ async function getPlacements(state: MiddlewareState, measurement: ReferenceMeasu
   return [...placements, ...crossAxisPlacements];
 }
 
+/**
+ * Returns the amount of space required to display the floating element at its minimum size on the
+ * given side of the reference element.
+ */
 function getDeficit(side: Side, { minSize, overflow, gap }: ReferenceMeasurement) {
   const minLength = minSize[getAxisLength(getSideAxis(side))] ?? 0;
   return gap + minLength + overflow[side];
