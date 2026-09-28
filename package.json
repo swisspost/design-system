@@ -15,14 +15,16 @@
     "bootstrap": "pnpm install && pnpm -r --filter \"!*integration*\" build",
     "start": "pnpm docs:start",
     "start:clean": "pnpm bootstrap && pnpm start",
-    "e2e": "start-server-and-test 'pnpm docs:headless' 9001 'pnpm -r --stream e2e'",
-    "e2e:ci": "start-server-and-test 'pnpm docs:headless' 9001 'pnpm --filter \"...[origin/main]\" --filter \"!design-system-integration-angular\" --stream e2e:ci'",
+    "e2e": "start-server-and-test 'pnpm docs:headless' 9001 'pnpm -r --stream --workspace-concurrency=1 e2e'",
+    "e2e:ci": "start-server-and-test 'pnpm docs:headless' 9001 'pnpm --filter \"...[origin/main]\" --filter \"!design-system-integration-angular\" --stream --workspace-concurrency=1 e2e:ci'",
     "e2e:next:ci": "pnpm install && pnpm --filter design-system-integration-next^... build",
     "e2e:angular:ci": "pnpm install && pnpm --filter design-system-integration-angular... build",
     "typecheck": "pnpm -r typecheck",
     "unit": "pnpm -r unit",
     "lint": "pnpm -r lint",
     "lint:fix": "pnpm -r lint:fix",
+    "format": "pnpm -r format",
+    "format:check": "pnpm -r format:check",
     "snapshots": "start-server-and-test 'pnpm docs:headless' 9001 'pnpm --filter design-system-documentation snapshots'",
     "help": "pnpm run",
     "docs:start": "pnpm --filter design-system-tokens build && pnpm --filter design-system-documentation... --parallel --stream start",
@@ -119,12 +121,15 @@
   },
   "devDependencies": {
     "@changesets/cli": "2.31.0",
+    "@swisspost/design-system-prettier-config": "workspace:10.5.0",
+    "prettier": "catalog:",
     "start-server-and-test": "2.1.5",
     "turbo": "2.10.10"
   },
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
   },
+  "prettier": "@swisspost/design-system-prettier-config",
   "packageManager": "pnpm@11.23.0",
   "devEngines": {
     "runtime": {
