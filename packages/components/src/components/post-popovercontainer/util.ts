@@ -1,17 +1,5 @@
-const SIDES = ['top', 'right', 'bottom', 'left'] as const;
-
-export type Side = (typeof SIDES)[number];
-
-/**
- * Returns the nth side in clockwise direction relative to the given side.
- */
-function getOtherSide(side: Side, n: number): Side {
-  return SIDES[(SIDES.indexOf(side) + n) % 4];
-}
-
-export const getNextSide = (side: Side) => getOtherSide(side, 1);
-export const getOppositeSide = (side: Side) => getOtherSide(side, 2);
-export const getPreviousSide = (side: Side) => getOtherSide(side, 3);
+import { Side } from '@floating-ui/utils';
+import { getNextSide, getPreviousSide } from '@/utils/floating-ui/util';
 
 /**
  * Returns the path along the specified side of the given rectangle.

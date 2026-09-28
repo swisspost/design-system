@@ -24,14 +24,15 @@ import {
   shift,
   size,
   offset,
-  flip,
 } from '@floating-ui/dom';
+import { Side, getSide, Dimensions } from '@floating-ui/utils';
 import { computePositionWithSafeArea } from '@/utils/floating-ui/safe-area-platform';
-import { getOppositeSide, getPathAlongSide, getPolygon, Side } from './util';
+import { flip } from '@/utils/floating-ui/middleware/flip';
+import { getOppositeSide } from '@/utils/floating-ui/util';
+import { getPathAlongSide, getPolygon } from './util';
 
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
 import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
-import { flipWithIsolatedState } from '@/utils/floating-ui/middleware/flip-with-isolated-state';
 
 const AVAILABLE_WIDTH_PROPERTY = '--post-popovercontainer-available-width';
 const AVAILABLE_HEIGHT_PROPERTY = '--post-popovercontainer-available-height';
@@ -176,6 +177,21 @@ export class PostPopovercontainer {
     return this.host?.matches(':where(:popover-open, .popover-open)');
   }
 
+  private getContent() {
+    return this.host?.shadowRoot.querySelector('[part="post-popovercontainer-content"]');
+  }
+
+  private getContentMinSize(): Partial<Dimensions> {
+    const content = this.getContent();
+    if (!content) return {};
+
+    const { minWidth, minHeight } = getComputedStyle(content);
+    return {
+      width: Number.parseFloat(minWidth) || 0,
+      height: Number.parseFloat(minHeight) || 0,
+    };
+  }
+
   /**
    * Shows the popover.
    * @param anchor the element that the popover is visually anchored to.
@@ -260,7 +276,7 @@ export class PostPopovercontainer {
    * Run the open animation for the popover.
    */
   private async runOpenAnimation() {
-    const content = this.host.shadowRoot.querySelector('[part="post-popovercontainer-content"]');
+    const content = this.getContent();
     if (!content) return;
 
     this.runningAnimation = popIn(content);
@@ -307,7 +323,7 @@ export class PostPopovercontainer {
       return;
     }
 
-    this.side = placement.split('-')[0] as Side;
+    this.side = getSide(placement);
 
     // Position the popover.
     this.host.style.left = `${x}px`;
@@ -336,53 +352,36 @@ export class PostPopovercontainer {
 
   private async computePosition(withSize: boolean) {
     const padding = this.edgeGap ?? 0;
-
-    const isAligned = this.placement?.includes('-');
-
-    const sizeMiddleware = size({
-      padding,
-      apply({ availableWidth, availableHeight, elements }) {
-        elements.floating.style.setProperty(
-          AVAILABLE_WIDTH_PROPERTY,
-          `${Math.max(0, availableWidth)}px`,
-        );
-        elements.floating.style.setProperty(
-          AVAILABLE_HEIGHT_PROPERTY,
-          `${Math.max(0, availableHeight)}px`,
-        );
-      },
-    });
-
-    const flipMiddleware = [
-      // Flip the popover if the anchor moves outside the viewport
-      flip({
-        elementContext: 'reference',
-        crossAxis: false,
-        fallbackStrategy: 'bestFit',
-        padding,
-      }),
-      // Flip the popover if the popover itself moves outside the viewport
-      flip({
-        elementContext: 'floating',
-        crossAxis: false,
-        fallbackStrategy: 'bestFit',
-        padding,
-      }),
-    ];
-
-    const shiftMiddleware = shift({
-      padding,
-      limiter: limitShift({ offset: 32 }),
-    });
+    // const minSize =
 
     const middleware = [offset(this.offset ?? (this.arrow ? padding + 4 : padding)), inline()];
 
+    const flipMiddleware = flip({ padding, minSize: this.getContentMinSize() });
+    const shiftMiddleware = shift({ limiter: limitShift({ offset: 32 }), padding });
+
     // `flip` should come before 'shift' for edge-aligned placements
     // (see https://floating-ui.com/docs/flip#combining-with-shift).
-    if (isAligned) middleware.push(...flipMiddleware, shiftMiddleware);
-    else middleware.push(shiftMiddleware, ...flipMiddleware);
+    if (this.placement?.includes('-')) middleware.push(flipMiddleware, shiftMiddleware);
+    else middleware.push(shiftMiddleware, flipMiddleware);
 
-    if (withSize) middleware.push(sizeMiddleware);
+    if (withSize) {
+      middleware.push(
+        size({
+          padding,
+          apply({ availableWidth, availableHeight, elements }) {
+            elements.floating.style.setProperty(
+              AVAILABLE_WIDTH_PROPERTY,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              AVAILABLE_HEIGHT_PROPERTY,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      );
+    }
+
     if (this.arrow) middleware.push(arrow({ element: this.arrowRef, padding }));
 
     // `hide` should generally be placed at the end of the middleware chain
