@@ -563,8 +563,9 @@ export class PostDatePicker {
   private handleTab = (e: KeyboardEvent) => {
     if (this.inline || (e.key !== 'Tab' && e.key !== 'Escape')) return;
 
-    // Let the native popover light-dismiss on Escape close it; just also move focus to the input
+    // Explicitly close the popover on Escape
     if (e.key === 'Escape') {
+      this.popoverRef?.hide();
       this.dpInput.focus();
       return;
     }
