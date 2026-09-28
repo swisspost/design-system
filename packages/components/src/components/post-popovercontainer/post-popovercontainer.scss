@@ -34,6 +34,7 @@
   [part='post-popovercontainer-content'] {
     box-shadow: elevation.$elevation-300;
     width: max-content;
+    min-width: 160px;
     max-width: var(--post-popovercontainer-available-width);
     max-height: var(--post-popovercontainer-available-height);
     color: var(--post-current-fg);

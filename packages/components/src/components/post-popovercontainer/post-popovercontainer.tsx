@@ -17,7 +17,6 @@ import { OneOf, Type } from '@/utils';
 import {
   arrow,
   autoUpdate,
-  flip,
   hide,
   inline,
   limitShift,
@@ -25,12 +24,18 @@ import {
   shift,
   size,
   offset,
+  flip,
 } from '@floating-ui/dom';
-import { computePositionWithSafeArea } from '@/utils/floating-ui';
+import { computePositionWithSafeArea } from '@/utils/floating-ui/safe-area-platform';
 import { getOppositeSide, getPathAlongSide, getPolygon, Side } from './util';
 
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
 import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
+import { flipWithIsolatedState } from '@/utils/floating-ui/middleware/flip-with-isolated-state';
+
+const AVAILABLE_WIDTH_PROPERTY = '--post-popovercontainer-available-width';
+const AVAILABLE_HEIGHT_PROPERTY = '--post-popovercontainer-available-height';
+const SAFE_SPACE_PROPERTY = '--post-popovercontainer-safe-space';
 
 /**
  * @slot - Default slot for placing content inside the popover.
@@ -269,7 +274,10 @@ export class PostPopovercontainer {
     this.postBeforeToggle.emit({ willOpen: false });
 
     this.cleanup();
-    this.host.style.removeProperty('--post-popovercontainer-safe-space');
+
+    this.host.style.removeProperty(AVAILABLE_WIDTH_PROPERTY);
+    this.host.style.removeProperty(AVAILABLE_HEIGHT_PROPERTY);
+    this.host.style.removeProperty(SAFE_SPACE_PROPERTY);
 
     this.postToggle.emit({ isOpen: false });
     this.postHide.emit();
@@ -293,7 +301,7 @@ export class PostPopovercontainer {
   private async updatePosition(withSize: boolean = false) {
     const { x, y, middlewareData, placement } = await this.computePosition(withSize);
 
-    // Hide the popover if the anchor is outside the viewport
+    // Hide the popover if the anchor is outside the scrollport.
     if (middlewareData.hide?.referenceHidden) {
       this.host.hidePopover();
       return;
@@ -301,11 +309,11 @@ export class PostPopovercontainer {
 
     this.side = placement.split('-')[0] as Side;
 
-    // Position the popover
+    // Position the popover.
     this.host.style.left = `${x}px`;
     this.host.style.top = `${y}px`;
 
-    // Position the arrow
+    // Position the indicator arrow.
     if (this.arrow && middlewareData.arrow) {
       const data = middlewareData.arrow;
 
@@ -314,10 +322,10 @@ export class PostPopovercontainer {
       this.arrowRef.style[getOppositeSide(this.side)] = `-${this.arrowRef.offsetWidth / 2}px`;
     }
 
-    // Set the safe space polygon
+    // Set the safe space polygon.
     if (this.safeSpace) {
       this.host.style.setProperty(
-        '--post-popovercontainer-safe-space',
+        SAFE_SPACE_PROPERTY,
         getPolygon([
           ...getPathAlongSide(this.host.getBoundingClientRect(), getOppositeSide(this.side)),
           ...getPathAlongSide(this.anchorRef.getBoundingClientRect(), this.side),
@@ -327,71 +335,62 @@ export class PostPopovercontainer {
   }
 
   private async computePosition(withSize: boolean) {
-    const gap = this.edgeGap ?? 0;
+    const padding = this.edgeGap ?? 0;
 
     const isAligned = this.placement?.includes('-');
+
+    const sizeMiddleware = size({
+      padding,
+      apply({ availableWidth, availableHeight, elements }) {
+        elements.floating.style.setProperty(
+          AVAILABLE_WIDTH_PROPERTY,
+          `${Math.max(0, availableWidth)}px`,
+        );
+        elements.floating.style.setProperty(
+          AVAILABLE_HEIGHT_PROPERTY,
+          `${Math.max(0, availableHeight)}px`,
+        );
+      },
+    });
 
     const flipMiddleware = [
       // Flip the popover if the anchor moves outside the viewport
       flip({
         elementContext: 'reference',
-        padding: gap,
         crossAxis: false,
         fallbackStrategy: 'bestFit',
+        padding,
       }),
       // Flip the popover if the popover itself moves outside the viewport
       flip({
         elementContext: 'floating',
-        padding: gap,
         crossAxis: false,
         fallbackStrategy: 'bestFit',
-        fallbackAxisSideDirection: 'start',
+        padding,
       }),
     ];
 
     const shiftMiddleware = shift({
-      padding: gap,
+      padding,
       limiter: limitShift({ offset: 32 }),
     });
 
-    const middleware = [
-      offset(this.offset ?? (this.arrow ? gap + 4 : gap)),
-      inline(),
-      // Per Floating UI docs: for aligned placements (e.g. bottom-end), flip should come before shift.
-      ...(isAligned ? [...flipMiddleware, shiftMiddleware] : [shiftMiddleware, ...flipMiddleware]),
-    ];
+    const middleware = [offset(this.offset ?? (this.arrow ? padding + 4 : padding)), inline()];
 
-    if (withSize) {
-      middleware.push(
-        size({
-          apply({ availableWidth, availableHeight, elements, placement }) {
-            const isVertical = placement?.startsWith('left') || placement?.startsWith('right');
+    // `flip` should come before 'shift' for edge-aligned placements
+    // (see https://floating-ui.com/docs/flip#combining-with-shift).
+    if (isAligned) middleware.push(...flipMiddleware, shiftMiddleware);
+    else middleware.push(shiftMiddleware, ...flipMiddleware);
 
-            elements.floating.style.setProperty(
-              '--post-popovercontainer-available-width',
-              `${availableWidth - (isVertical ? gap : gap * 2)}px`,
-            );
-            elements.floating.style.setProperty(
-              '--post-popovercontainer-available-height',
-              `${availableHeight - (isVertical ? gap * 2 : gap)}px`,
-            );
-          },
-        }),
-      );
-    }
+    if (withSize) middleware.push(sizeMiddleware);
+    if (this.arrow) middleware.push(arrow({ element: this.arrowRef, padding }));
 
-    if (this.arrow) {
-      middleware.push(arrow({ element: this.arrowRef, padding: gap }));
-    }
-
-    // Automatically hide the popover if the anchor moves outside the scrollport.
-    if (this.autoHide) {
-      // Per Floating UI docs: hide should generally be placed at the end.
-      middleware.push(hide({ strategy: 'referenceHidden' }));
-    }
+    // `hide` should generally be placed at the end of the middleware chain
+    // (see https://floating-ui.com/docs/hide#order).
+    if (this.autoHide) middleware.push(hide({ strategy: 'referenceHidden' }));
 
     return computePositionWithSafeArea(this.anchorRef, this.host, {
-      placement: this.placement || 'top',
+      placement: this.placement ?? 'top',
       strategy: 'fixed',
       middleware,
     });
