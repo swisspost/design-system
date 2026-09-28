@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-styles",
-  "version": "10.5.0",
+  "version": "10.6.0",
   "description": "Design System Styles for the Swiss Post web platform.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -31,8 +31,8 @@
     "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "dependencies": {
-    "@swisspost/design-system-icons": "workspace:10.5.0",
-    "@swisspost/design-system-tokens": "workspace:10.5.0"
+    "@swisspost/design-system-icons": "workspace:10.6.0",
+    "@swisspost/design-system-tokens": "workspace:10.6.0"
   },
   "devDependencies": {
     "@swisspost/design-system-prettier-config": "workspace:10.5.0",
