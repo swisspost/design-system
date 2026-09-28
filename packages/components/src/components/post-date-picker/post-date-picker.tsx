@@ -406,7 +406,8 @@ export class PostDatePicker {
         cell =>
           Number(cell.dataset.date) === date.getDate() &&
           Number(cell.dataset.month) === date.getMonth() &&
-          Number(cell.dataset.year) === date.getFullYear(),
+          Number(cell.dataset.year) === date.getFullYear() &&
+          !cell.classList.contains('-other-month-'),
       );
 
       if (!target) {

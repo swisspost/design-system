@@ -137,6 +137,26 @@ describe('date-picker', { includeShadowDom: true }, () => {
           expect(isTrapped).to.equal(true);
         });
       });
+
+      it('should keep focus trapped in the years view after clicking a navigation button with the mouse', () => {
+        cy.get('@toggle').click().wait(500);
+
+        cy.get('@navigation').find('.air-datepicker-nav--title button').click();
+        cy.get('@date-picker')
+          .find('.air-datepicker-body.-years-')
+          .should('not.have.class', '-hidden-');
+
+        cy.get('@container').find('[data-action="prev"] button').click();
+        cy.focused().trigger('keydown', { key: 'Tab' });
+
+        cy.focused().should($el => {
+          const el = $el[0];
+          const isTrapped =
+            el.matches('[data-action] button, .air-datepicker-nav--title button') ||
+            el.getAttribute('role') === 'gridcell';
+          expect(isTrapped).to.equal(true);
+        });
+      });
     });
   });
 
