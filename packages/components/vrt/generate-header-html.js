@@ -359,13 +359,22 @@ const COMPONENTS = {
 
 // Variant configurations
 const VARIANTS = {
-  'application': {
+  'application-compact': {
     components: ['logo', 'title', 'localNavApplication'],
     stylesheet: 'post-compact.css',
     replacements: {
-      '{{TITLE_TEXT}}': '[Application Title]',
+      '{{TITLE_TEXT}}': '[Application (Compact) Title]',
     },
   },
+
+  'application-condensed': {
+    components: ['logo', 'title', 'localNavApplication'],
+    stylesheet: 'post-condensed.css',
+    replacements: {
+      '{{TITLE_TEXT}}': '[Application (Condensed) Title]',
+    },
+  },
+
   'onepager': {
     components: ['logo', 'languageMenu', 'title'],
     replacements: {
