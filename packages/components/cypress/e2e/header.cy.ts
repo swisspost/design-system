@@ -477,7 +477,7 @@ describe('header', () => {
           });
       }
 
-      describe.only('desktop', () => {
+      describe('desktop', () => {
         beforeEach(() => {
           cy.viewport(1920, 1080);
           cy.getComponent('header', HEADER_ID, 'microsite');
