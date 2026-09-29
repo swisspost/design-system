@@ -1,301 +1,41 @@
 <!doctype html>
-<html dir="ltr" lang="en">
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
-    />
-    <meta name="design-system-settings" data-post-icon-base="/assets/icons" />
-    <title>Stencil Component Starter</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Styles playground</title>
 
-    <link id="components-global-styles" rel="stylesheet" href="/build/post-components.css" />
-    <link rel="stylesheet" href="/assets/css/post-default.css" />
-    <script type="module" src="/build/post-components.esm.js"></script>
-    <script nomodule src="/build/post-components.js"></script>
+    <!-- Styles -->
+    <link rel="stylesheet" id="styles" href="src/post-default.scss" />
+
+    <script src="playground.js" defer></script>
   </head>
+  <body data-color-scheme="light">
+    <aside class="palette palette-brand p-16">
+      <h1>Styles package playground</h1>
+      <fieldset id="token-selects" class="mt-16">
+        <legend class="my-8">Select tokens</legend>
+        <label for="theme-select">Theme</label>
+        <select name="theme" id="theme-select" value="post" class="mb-4 me-8">
+          <option value="post">Post</option>
+          <option value="cargo">Cargo</option>
+        </select>
+        <label for="appearance-select">Appearance</label>
+        <select name="appearance" id="appearance-select" value="default" class="mb-4 me-8">
+          <option value="default">Default</option>
+          <option value="compact">Compact</option>
+        </select>
+        <label for="scheme-select">Color scheme</label>
+        <select name="scheme" id="scheme-select" value="light" class="mb-4">
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+          <option value="">Unset</option>
+        </select>
+      </fieldset>
+    </aside>
 
-  <body>
-    <post-header text-menu="Menu">
-      <!-- Logo -->
-      <post-logo slot="post-logo">Homepage</post-logo>
-
-      <!-- Meta navigation -->
-      <ul slot="global-nav-secondary">
-        <li>
-          <a href="">
-            Karriere
-            <post-icon name="rocket" aria-hidden="true"></post-icon>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            Über uns
-            <post-icon name="adduser" aria-hidden="true"></post-icon>
-          </a>
-        </li>
-      </ul>
-
-      <!-- Language switch -->
-      <post-language-menu
-        text-change-language="Change the language"
-        text-current-language="The currently selected language is {name}."
-        name="language-menu-example"
-        slot="language-menu"
-        variant="menu"
-      >
-        <post-language-menu-item code="de" name="Deutsch">DE</post-language-menu-item>
-        <post-language-menu-item code="fr" name="French">FR</post-language-menu-item>
-        <post-language-menu-item code="it" name="Italiano">IT</post-language-menu-item>
-        <post-language-menu-item active code="en" name="English">EN</post-language-menu-item>
-      </post-language-menu>
-
-      <!-- Application title (optional) -->
-      <p slot="title">Application title</p>
-
-      <!-- Target group -->
-      <ul slot="audience">
-        <li>
-          <a href="#" aria-current="location">Private customers</a>
-        </li>
-        <li>
-          <a href="#">Business customers</a>
-        </li>
-      </ul>
-
-      <!-- Local controls (optional) -->
-      <ul slot="local-nav">
-        <li>
-          <a href="#">
-            <span>Search</span>
-            <post-icon aria-hidden="true" name="search"></post-icon>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span>Login</span>
-            <post-icon aria-hidden="true" name="login"></post-icon>
-          </a>
-        </li>
-      </ul>
-
-      <!-- Main navigation -->
-      <post-mainnavigation slot="main-nav" text-main="Haupt">
-        <ul>
-          <!-- Link only level 1 -->
-          <li><a href="/briefe">Briefe</a></li>
-          <li><a href="/pakete">Pakete</a></li>
-
-          <!-- Level 1 with megadropdown -->
-          <li>
-            <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
-            <post-megadropdown id="briefe" text-close="Schliessen" text-back="Back">
-              <a class="post-megadropdown-overview" href="/briefe">Übersicht Briefe</a>
-              <div class="row row-cols-1 row-cols-sm-2">
-                <div class="col">
-                  <p class="post-megadropdown-list-title" id="send-letters">Briefe senden</p>
-                  <ul class="post-megadropdown-list" aria-labelledby="send-letters">
-                    <li><a href="/sch">Briefe Schweiz</a></li>
-                    <li><a href="/kl">Kleinwaren Ausland</a></li>
-                    <li><a href="">Waren Ausland</a></li>
-                    <li><a href="">Express und Kurier</a></li>
-                  </ul>
-                </div>
-                <div class="col">
-                  <a
-                    class="post-megadropdown-list-title"
-                    id="step-by-step-letters"
-                    href="/schritt-für-schritt"
-                    >Schritt für Schritt</a
-                  >
-                  <ul class="post-megadropdown-list" aria-labelledby="step-by-step-letters">
-                    <li><a href="/sch">Pakete Schweiz</a></li>
-                    <li><a href="/kl">Kleinwaren Ausland</a></li>
-                    <li><a href="">Waren Ausland</a></li>
-                    <li><a href="">Express und Kurier</a></li>
-                  </ul>
-                </div>
-              </div>
-            </post-megadropdown>
-          </li>
-          <li>
-            <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
-            <post-megadropdown id="pakete" text-close="Schliessen" text-back="Back">
-              <a class="post-megadropdown-overview" href="/pakete">Übersicht Pakete</a>
-              <div class="row row-cols-1 row-cols-sm-2">
-                <div class="col">
-                  <p class="post-megadropdown-list-title" id="send-packages">Pakete senden</p>
-                  <ul class="post-megadropdown-list" aria-labelledby="send-packages">
-                    <li><a href="/sch">Pakete Schweiz</a></li>
-                    <li><a href="/kl">Kleinwaren Ausland</a></li>
-                    <li><a href="">Waren Ausland</a></li>
-                    <li><a href="">Express und Kurier</a></li>
-                  </ul>
-                </div>
-                <div class="col">
-                  <a
-                    class="post-megadropdown-list-title"
-                    id="step-by-step-packages"
-                    href="/schritt-für-schritt"
-                    >Schritt für Schritt</a
-                  >
-                  <ul class="post-megadropdown-list" aria-labelledby="step-by-step-packages">
-                    <li><a href="/sch">Pakete Schweiz</a></li>
-                    <li><a href="/kl">Kleinwaren Ausland</a></li>
-                    <li><a href="">Waren Ausland</a></li>
-                    <li><a href="">Express und Kurier</a></li>
-                  </ul>
-                </div>
-              </div>
-            </post-megadropdown>
-          </li>
-        </ul>
-      </post-mainnavigation>
-    </post-header>
-
-    <h1>Components package playground</h1>
-    <p class="mb-4">
-      Use this playground for quickly developing Stencil web-components. Run
-      <code style="background-color: lightgrey; padding: 0.125rem 0.25rem; border-radius: 0.25rem"
-        >pnpm components:start</code
-      >
-      to get going.
-    </p>
-    <label for="tokens-select">Select tokens package: </label>
-    <select
-      name="tokens"
-      id="tokens-select"
-      value="default"
-      class="mb-4"
-      onchange="
-        if (['default', 'compact'].includes(this.value)) {
-          document
-            .getElementById('tokens')
-            .setAttribute('href', `/assets/css/post-tokens-${encodeURIComponent(this.value)}.css`);
-        }
-      "
-    >
-      <option value="default">Post default</option>
-      <option value="compact">Post compact</option>
-    </select>
-    <hr />
-
-    <p>
-      ekrjnbjenrglnlregnekrj<br />
-      nbjenrglnlregnekrjnbjenrglnlregnekrjnbjenrg<br />
-      lnlregnekrjnbjenrglnlregnekrjnbjenrgl<br />
-      nlregnekrjnbjenrglnlregnekrjnbjenrgl<br />
-      nlregnekrjnbjenrglnlregnekrjnbjenrglnlregn<br />
-      nlregnekrjnbjenrglnlregnekrjnbjenrglnlregn
-    </p>
-
-    <post-footer text-footer="Footer">
-      <!-- pre-footer -->
-      <div slot="prefooter">
-        <h3 id="prefooter">Service name</h3>
-        <ul aria-labelledby="prefooter">
-          <li><a href="#" class="btn btn-link">Pre-Footer Link 1</a></li>
-          <li><a href="#" class="btn btn-link">Pre-Footer Link 2</a></li>
-          <li><a href="#" class="btn btn-link">Pre-Footer Link 3</a></li>
-        </ul>
-      </div>
-
-      <!-- link columns -->
-      <span id="grid-1-title" slot="grid-1-title">Title 1</span>
-      <ul slot="grid-1" aria-labelledby="grid-1-title">
-        <li><a href="#">Text link 1</a></li>
-        <li><a href="#">Text link 2</a></li>
-        <li><a href="#">Text link 3</a></li>
-      </ul>
-
-      <span id="grid-2-title" slot="grid-2-title">Title 2</span>
-      <ul slot="grid-2" aria-labelledby="grid-2-title">
-        <li><a href="#">Text link 1</a></li>
-        <li><a href="#">Text link 2</a></li>
-      </ul>
-
-      <!-- social media links -->
-      <div slot="socialmedia">
-        <h3 id="socialmedia">Follow us</h3>
-        <ul aria-labelledby="socialmedia">
-          <li>
-            <a href="https://www.facebook.com/swisspost" class="btn btn-primary btn-icon">
-              <post-icon aria-hidden="true" name="facebook"></post-icon>
-              <span class="visually-hidden">Facebook</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.instagram.com/swisspost/" class="btn btn-primary btn-icon">
-              <post-icon aria-hidden="true" name="instagram"></post-icon>
-              <span class="visually-hidden">Instagram</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com/company/swiss-post" class="btn btn-primary btn-icon">
-              <post-icon aria-hidden="true" name="linkedin"></post-icon>
-              <span class="visually-hidden">Linkedin</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- app links -->
-      <div slot="app">
-        <h3 id="app">Download app</h3>
-        <ul aria-labelledby="app">
-          <li>
-            <a
-              class="app-store-badge"
-              href="https://play.google.com/store/apps/details?id=com.nth.swisspost"
-            >
-              <img
-                src="https://next.design-system.post.ch/assets/images/google-play-badge.svg"
-                alt="Google Play Store badge"
-              />
-              <span class="visually-hidden">Download the App on Google Play</span>
-            </a>
-          </li>
-          <li>
-            <a class="app-store-badge" href="https://apps.apple.com/ch/app/die-post/id378676700">
-              <img
-                src="https://next.design-system.post.ch/assets/images/apple-store-badge.svg"
-                alt="Apple App Store badge"
-              />
-              <span class="visually-hidden">Download the App on the Apple Store</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- business sectors -->
-      <div slot="businesssectors">
-        <h3 id="businesssectors">Die Schweizerische Post AG</h3>
-        <ul aria-labelledby="businesssectors">
-          <li><a href="https://www.postauto.ch">PostAuto</a></li>
-          <li><a href="https://www.postfinance.ch">PostFinance</a></li>
-        </ul>
-      </div>
-
-      <!-- copyright -->
-      <span slot="copyright">© Copyright 2026 by Swiss Post Ltd. All rights reserved.</span>
-
-      <!-- meta links -->
-      <div slot="meta">
-        <ul aria-label="Meta">
-          <li><a href="#">Accessibility</a></li>
-          <li><a href="#">General Terms and Conditions</a></li>
-          <li><a href="#">Data protection and disclaimer</a></li>
-          <li><a href="#">Publication details</a></li>
-          <li>
-            <button
-              class="btn btn-link"
-              style="min-height: 0; border: 0 none; font-weight: inherit"
-            >
-              Cookie Settings
-            </button>
-          </li>
-        </ul>
-      </div>
-    </post-footer>
+    <main class="p-16">
+      <!-- Place your component markup here -->
+    </main>
   </body>
 </html>
