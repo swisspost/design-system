@@ -279,7 +279,7 @@ describe('header', () => {
           it('should add data-expanded when a global-header element receives keyboard focus while scrolled', () => {
             cy.scrollTo(0, 500);
             cy.get('@header').should('not.have.attr', 'data-expanded');
-            
+
             cy.get('@header')
               .find('post-language-menu')
               .shadow()
@@ -442,6 +442,115 @@ describe('header', () => {
         cy.get('post-megadropdown-trigger').find('button').first().focus();
 
         cy.get('@header').should('not.have.attr', 'data-expanded');
+      });
+
+      it('should remove data-expanded when focus moves from the global header to the main navigation on desktop', () => {
+        cy.scrollTo(0, 500);
+
+        cy.get('@header')
+          .find('post-language-menu')
+          .shadow()
+          .find('post-menu-trigger button')
+          .focus();
+
+        cy.get('@header').should('have.attr', 'data-expanded');
+
+        cy.get('post-megadropdown-trigger').find('button').first().focus();
+
+        cy.get('@header').should('not.have.attr', 'data-expanded');
+      });
+    });
+
+    describe('header expansion on focus (microsite)', () => {
+      function focusFirstLocalNavElement() {
+        cy.get('@header')
+          .find('[slot="local-nav"]')
+          .first()
+          .then($localNav => {
+            const localNav = $localNav[0];
+            const focusable = localNav.matches('a, button')
+              ? localNav
+              : localNav.querySelector<HTMLElement>('a, button');
+
+            expect(focusable, 'focusable element in local-nav').to.exist;
+            focusable.focus();
+          });
+      }
+
+      describe('desktop', () => {
+        beforeEach(() => {
+          cy.viewport(1920, 1080);
+          cy.getComponent('header', HEADER_ID, 'microsite');
+        });
+
+        it('should keep data-expanded while focus moves from the language menu trigger into its flyout and back', () => {
+          cy.scrollTo(0, 500);
+
+          cy.get('@header')
+            .find('post-language-menu')
+            .shadow()
+            .find('post-menu-trigger button')
+            .as('langTrigger');
+
+          // Focus the trigger: the global header expands
+          cy.get('@langTrigger').focus();
+          cy.get('@header').should('have.attr', 'data-expanded');
+
+          // Open the menu with the keyboard: focus moves to the first language option
+          cy.get('@langTrigger').trigger('keydown', { key: 'ArrowDown' });
+          cy.get('@langTrigger').should('have.attr', 'aria-expanded', 'true');
+          cy.focused().closest('post-language-menu-item').should('exist');
+
+          // The header stays expanded while focus is in the flyout
+          cy.get('@header').should('have.attr', 'data-expanded');
+
+          // Close the menu with Escape: focus goes back to the trigger
+          cy.focused().trigger('keydown', { key: 'Escape' });
+          cy.get('@langTrigger').should('have.attr', 'aria-expanded', 'false');
+
+          // The header is still expanded
+          cy.get('@header').should('have.attr', 'data-expanded');
+        });
+
+        it('should NOT add data-expanded when focus is on a local-nav element', () => {
+          cy.scrollTo(0, 500);
+
+          cy.get('@header').should('not.have.attr', 'data-expanded');
+
+          focusFirstLocalNavElement();
+
+          cy.get('@header').should('not.have.attr', 'data-expanded');
+        });
+
+        it('should handle focus on local-nav and main navigation the same way', () => {
+          cy.scrollTo(0, 500);
+
+          focusFirstLocalNavElement();
+          cy.get('@header').should('not.have.attr', 'data-expanded');
+
+          cy.get('post-megadropdown-trigger').find('button').first().focus();
+          cy.get('@header').should('not.have.attr', 'data-expanded');
+
+          focusFirstLocalNavElement();
+          cy.get('@header').should('not.have.attr', 'data-expanded');
+        });
+      });
+
+      describe('mobile', () => {
+        beforeEach(() => {
+          cy.viewport('iphone-6');
+          cy.getComponent('header', HEADER_ID, 'microsite');
+        });
+
+        it('should add data-expanded when focus is on a local-nav element in the local header', () => {
+          cy.scrollTo(0, 500);
+
+          cy.get('@header').should('not.have.attr', 'data-expanded');
+
+          focusFirstLocalNavElement();
+
+          cy.get('@header').should('have.attr', 'data-expanded');
+        });
       });
     });
   });
