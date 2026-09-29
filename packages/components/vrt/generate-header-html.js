@@ -363,7 +363,7 @@ const VARIANTS = {
     components: ['logo', 'title', 'localNavApplication'],
     stylesheet: 'post-compact.css',
     replacements: {
-      '{{TITLE_TEXT}}': '[Application (Compact) Title]',
+      '{{TITLE_TEXT}}': '[Application Title]',
     },
   },
 
@@ -371,7 +371,7 @@ const VARIANTS = {
     components: ['logo', 'title', 'localNavApplication'],
     stylesheet: 'post-condensed.css',
     replacements: {
-      '{{TITLE_TEXT}}': '[Application (Condensed) Title]',
+      '{{TITLE_TEXT}}': '[Application Title]',
     },
   },
 
