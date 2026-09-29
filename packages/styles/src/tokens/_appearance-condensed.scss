@@ -5,6 +5,7 @@
 
 :root,
 [data-color-scheme] {
-  @include tokens.from(appearance.$post-compact); // todo: there is no condensed appearance yet
+  // todo: there is no condensed appearance yet; replace after tokens are updated
+  @include tokens.from(appearance.$post-compact);
   --_post-initial-global-header-height: 2rem;
 }

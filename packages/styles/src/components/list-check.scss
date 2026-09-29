@@ -1,84 +1,49 @@
 @use '../functions/tokens';
-@use '../mixins/icons' as icons-mx;
 @use '../tokens/components';
-@use '../mixins/media';
 @use '../mixins/utilities';
+@use '../mixins/icons';
 
 tokens.$default-map: components.$post-listcheck;
+
+$icon-size: calc(tokens.get('list-check-sizing-icon') + 2 * tokens.get('list-check-padding-icon'));
+$icon-offset: calc($icon-size + tokens.get('list-check-icon-gap-inline'));
 
 ul.list-check {
   @include utilities.reset-list;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  list-style: none;
-  padding-block: tokens.get('list-check-margin-block') tokens.get('list-check-margin-block');
-  padding-inline-start: calc(
-    #{tokens.get('list-check-sizing-icon')} + 2 * #{tokens.get('list-check-padding-icon')} +
-    #{tokens.get('list-check-icon-gap-inline')} + 2 *
-    #{tokens.get('list-check-icon-container-inline')}
-  );
   gap: tokens.get('list-check-item-gap-block-text');
+  padding-block: tokens.get('list-check-margin-block');
+  padding-inline-start: calc($icon-offset + 2 * tokens.get('list-check-icon-container-inline'));
 
   > li {
     position: relative;
     color: tokens.get('list-check-color-text-fg');
     padding-block: tokens.get('list-check-text-padding');
 
-    &::before {
-      display: block;
+    &::before,
+    &::after {
       position: absolute;
-      top: 0;
-      left: 0;
-      margin-inline-start: calc(
-        -1 *
-        (
-          #{tokens.get('list-check-sizing-icon')} + 2 * #{tokens.get('list-check-padding-icon')} +
-          #{tokens.get('list-check-icon-gap-inline')} +
-          #{tokens.get('list-check-icon-container-inline')}
-        )
-      );
-      margin-block: calc(-1 * tokens.get('list-check-text-padding'));
-
-      background: tokens.get('list-check-color-icon-bg');
-      width: calc(
-        #{tokens.get('list-check-sizing-icon')} + 2 * #{tokens.get('list-check-padding-icon')}
-      );
-      height: calc(
-        #{tokens.get('list-check-sizing-icon')} + 2 * #{tokens.get('list-check-padding-icon')}
-      );
+      inset-block-start: tokens.get('list-check-icon-container-block');
+      inset-inline-start: calc(-1 * $icon-offset - tokens.get('list-check-icon-container-inline'));
       content: '';
+    }
+
+    &::before {
+      background: tokens.get('list-check-color-icon-bg');
       border-radius: 50%;
-      @include media.max(sm) {
-        margin-block: tokens.get('list-check-icon-container-block');
-        padding-inline: tokens.get('list-check-icon-container-inline');
-      }
+      width: $icon-size;
+      height: $icon-size;
     }
 
     &::after {
-      display: block;
-      position: absolute;
-      margin-inline-start: calc(
-        -1 *
-        (
-          #{tokens.get('list-check-sizing-icon')} + 2 * #{tokens.get('list-check-padding-icon')} +
-          #{tokens.get('list-check-icon-gap-inline')} +
-          #{tokens.get('list-check-icon-container-inline')}
-        )
-      );
-      margin-block: calc(-1 * tokens.get('list-check-text-padding'));
-      top: tokens.get('list-check-padding-icon');
-      left: tokens.get('list-check-padding-icon');
+      @include icons.mask-image('checkmark');
       width: tokens.get('list-check-sizing-icon');
       height: tokens.get('list-check-sizing-icon');
-      content: '';
-      @include icons-mx.mask-image('checkmark');
       color: tokens.get('list-check-color-icon-fg');
-
-      @include media.max(sm) {
-        margin-block: tokens.get('list-check-icon-container-block');
-        padding-inline: tokens.get('list-check-icon-container-inline');
-      }
+      margin-block-start: tokens.get('list-check-padding-icon');
+      margin-inline-start: tokens.get('list-check-padding-icon');
     }
   }
 }
