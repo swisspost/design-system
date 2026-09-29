@@ -152,7 +152,7 @@ describe('post-side-navigation', () => {
         cy.get('@collapsibleTrigger').click();
         cy.get('@collapsible').should('be.visible');
         cy.get('@collapsibleTrigger').focus().trigger('keydown', { key: 'Escape' });
-        cy.get('@collapsible').should('be.hidden');
+        cy.get('@collapsibleTrigger').should('have.attr', 'aria-expanded', 'false');
       });
 
       it('should keep focus on the collapsible trigger after collapsing on Escape', () => {
@@ -293,7 +293,7 @@ describe('post-side-navigation-trigger', () => {
 describe('Accessibility', () => {
   it('has no detectable a11y violations on load for all variants', () => {
     cy.getSnapshots('post-side-navigation');
-    cy.checkA11y('#root-inner', undefined, (violations) => {
+    cy.checkA11y('#root-inner', undefined, violations => {
       expect(violations).to.have.length(0);
     });
   });
