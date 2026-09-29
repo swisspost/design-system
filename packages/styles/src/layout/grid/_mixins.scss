@@ -49,7 +49,11 @@
 
 @mixin make-col-offset($size) {
   $num: math.div($size, $grid-columns);
-  margin-inline-start: if($num == 0, 0, math.percentage($num));
+  @if $num == 0 {
+    margin-inline-start: 0;
+  } @else {
+    margin-inline-start: math.percentage($num);
+  }
 }
 
 @mixin row-cols($count) {
