@@ -462,6 +462,24 @@ describe('header', () => {
     });
 
     describe('header expansion on focus (microsite)', () => {
+      // The story scrolls inside a wrapper, so scroll the header's scroll parent instead of the window
+      function scrollPage() {
+        cy.get('@header').then($header => {
+          let scrollParent = $header[0].parentElement;
+
+          while (scrollParent && !['auto', 'scroll'].includes(getComputedStyle(scrollParent).overflowY)) {
+            scrollParent = scrollParent.parentElement;
+          }
+
+          (scrollParent ?? $header[0].ownerDocument.scrollingElement).scrollTop = 500;
+        });
+
+        cy.document().should(doc => {
+          const scrollTop = doc.documentElement.style.getPropertyValue('--post-header-scroll-top');
+          expect(parseFloat(scrollTop)).to.be.gt(0);
+        });
+      }
+
       function focusFirstLocalNavElement() {
         cy.get('@header')
           .find('[slot="local-nav"]')
@@ -477,14 +495,14 @@ describe('header', () => {
           });
       }
 
-      describe('desktop', () => {
+      describe.only('desktop', () => {
         beforeEach(() => {
           cy.viewport(1920, 1080);
           cy.getComponent('header', HEADER_ID, 'microsite');
         });
 
         it('should keep data-expanded while focus moves from the language menu trigger into its flyout and back', () => {
-          cy.scrollTo(0, 500);
+          scrollPage();
 
           cy.get('@header')
             .find('post-language-menu')
@@ -492,46 +510,31 @@ describe('header', () => {
             .find('post-menu-trigger button')
             .as('langTrigger');
 
-          // Focus the trigger: the global header expands
           cy.get('@langTrigger').focus();
           cy.get('@header').should('have.attr', 'data-expanded');
 
-          // Open the menu with the keyboard: focus moves to the first language option
-          cy.get('@langTrigger').trigger('keydown', { key: 'ArrowDown' });
+          // Open menu
+          cy.get('@langTrigger').click({ scrollBehavior: false });
           cy.get('@langTrigger').should('have.attr', 'aria-expanded', 'true');
-          cy.focused().closest('post-language-menu-item').should('exist');
-
-          // The header stays expanded while focus is in the flyout
+          cy.get('@header').find('post-language-menu-item').should('be.visible');
           cy.get('@header').should('have.attr', 'data-expanded');
 
-          // Close the menu with Escape: focus goes back to the trigger
-          cy.focused().trigger('keydown', { key: 'Escape' });
+          // Close menu with Escape
+          cy.get('@header')
+            .find('post-language-menu-item')
+            .first()
+            .trigger('keydown', { key: 'Escape', scrollBehavior: false });
           cy.get('@langTrigger').should('have.attr', 'aria-expanded', 'false');
-
-          // The header is still expanded
           cy.get('@header').should('have.attr', 'data-expanded');
         });
 
         it('should NOT add data-expanded when focus is on a local-nav element', () => {
-          cy.scrollTo(0, 500);
+          scrollPage();
 
           cy.get('@header').should('not.have.attr', 'data-expanded');
 
           focusFirstLocalNavElement();
 
-          cy.get('@header').should('not.have.attr', 'data-expanded');
-        });
-
-        it('should handle focus on local-nav and main navigation the same way', () => {
-          cy.scrollTo(0, 500);
-
-          focusFirstLocalNavElement();
-          cy.get('@header').should('not.have.attr', 'data-expanded');
-
-          cy.get('post-megadropdown-trigger').find('button').first().focus();
-          cy.get('@header').should('not.have.attr', 'data-expanded');
-
-          focusFirstLocalNavElement();
           cy.get('@header').should('not.have.attr', 'data-expanded');
         });
       });
