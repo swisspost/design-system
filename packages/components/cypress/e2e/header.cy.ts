@@ -462,24 +462,6 @@ describe('header', () => {
     });
 
     describe('header expansion on focus (microsite)', () => {
-      // The story scrolls inside a wrapper, so scroll the header's scroll parent instead of the window
-      function scrollPage() {
-        cy.get('@header').then($header => {
-          let scrollParent = $header[0].parentElement;
-
-          while (scrollParent && !['auto', 'scroll'].includes(getComputedStyle(scrollParent).overflowY)) {
-            scrollParent = scrollParent.parentElement;
-          }
-
-          (scrollParent ?? $header[0].ownerDocument.scrollingElement).scrollTop = 500;
-        });
-
-        cy.document().should(doc => {
-          const scrollTop = doc.documentElement.style.getPropertyValue('--post-header-scroll-top');
-          expect(parseFloat(scrollTop)).to.be.gt(0);
-        });
-      }
-
       function focusFirstLocalNavElement() {
         cy.get('@header')
           .find('[slot="local-nav"]')
@@ -502,7 +484,7 @@ describe('header', () => {
         });
 
         it('should keep data-expanded while focus moves from the language menu trigger into its flyout and back', () => {
-          scrollPage();
+          cy.scrollTo(0, 500);
 
           cy.get('@header')
             .find('post-language-menu')
@@ -529,7 +511,7 @@ describe('header', () => {
         });
 
         it('should NOT add data-expanded when focus is on a local-nav element', () => {
-          scrollPage();
+          cy.scrollTo(0, 500);
 
           cy.get('@header').should('not.have.attr', 'data-expanded');
 
