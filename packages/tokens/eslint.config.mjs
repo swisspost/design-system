@@ -1,38 +1,21 @@
-// this config was created using https://eslint.org/blog/2024/04/eslint-config-inspector/
+import { defineConfig, globalIgnores } from 'eslint/config';
 
-import js from '@eslint/js';
-import globals from 'globals';
+import post from '@swisspost/design-system-eslint-config/base';
 
-/** @type {import('eslint').Linter.Config[]} */
-export default [
-  {
-    name: 'post/global/ignores',
-    ignores: ['dist/*'],
+export default defineConfig(globalIgnores(['dist/']), post, {
+  // Pre-existing debt. Drop once sources are clean.
+  rules: {
+    '@typescript-eslint/no-base-to-string': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-floating-promises': 'off',
+    '@typescript-eslint/no-unnecessary-type-assertion': 'off',
+    '@typescript-eslint/no-unsafe-argument': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-call': 'off',
+    '@typescript-eslint/no-unsafe-enum-comparison': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
+    '@typescript-eslint/no-unsafe-return': 'off',
+    '@typescript-eslint/restrict-template-expressions': 'off',
+    'prefer-const': 'off',
   },
-  {
-    name: 'post/defaults',
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
-    },
-  },
-  {
-    name: 'eslint/recommended',
-    ...js.configs.recommended,
-  },
-  {
-    name: 'post/recommended/overrides',
-    rules: {
-      'no-unused-vars': [
-        'error',
-        {
-          varsIgnorePattern: '^_',
-          argsIgnorePattern: '^_',
-          caughtErrorsIgnorePattern: '^_',
-        },
-      ],
-    },
-  },
-];
+});

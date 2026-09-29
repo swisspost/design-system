@@ -22,18 +22,25 @@
     @error 'No infix defined for device "#{$key}". Use a breakpoint key instead.';
   }
 
-  @return if(min-width($key) == 0, '', '-#{$key}');
+  @if min-width($key) == 0 {
+    @return '';
+  }
+
+  @return '-#{$key}';
 }
 
 /**
 * Gets the next device or breakpoint key
 */
 @function next($key) {
-  $keys: if(
-    map.has-key(breakpoints.$device-to-grid-breakpoints, $key),
-    map.keys(breakpoints.$device-to-grid-breakpoints),
-    map.keys(breakpoints.$grid-breakpoints)
-  );
+  $keys: map.keys(breakpoints.$grid-breakpoints);
+  @if map.has-key(breakpoints.$device-to-grid-breakpoints, $key) {
+    $keys: map.keys(breakpoints.$device-to-grid-breakpoints);
+  }
   $n: list.index($keys, $key);
-  @return if($n < list.length($keys), list.nth($keys, $n + 1), null);
+  @if $n < list.length($keys) {
+    @return list.nth($keys, $n + 1);
+  }
+
+  @return null;
 }
