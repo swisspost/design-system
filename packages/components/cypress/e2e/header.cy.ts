@@ -472,7 +472,7 @@ describe('header', () => {
               ? localNav
               : localNav.querySelector<HTMLElement>('a, button');
 
-            expect(focusable, 'focusable element in local-nav').to.exist;
+            expect(focusable, 'focusable element in local-nav').to.not.equal(null);
             focusable.focus();
           });
       }
