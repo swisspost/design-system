@@ -24,9 +24,23 @@ export interface VariantConfig {
 }
 
 export const HEADER_VARIANTS: Record<string, VariantConfig> = {
-  'application': {
+  'application-compact': {
     slots: ['post-logo', 'local-nav', 'title'],
     stylesheet: 'post-compact.css',
+    hasGlobalHeader: false,
+    hasUserMenu: false,
+    hasMegadropdown: false,
+    hasAudience: false,
+    hasGlobalNavSecondary: false,
+    hasGlobalNavPrimary: false,
+    hasLocalNavigation: true,
+    hasGlobalLogin: false,
+    features: [],
+  },
+
+  'application-condensed': {
+    slots: ['post-logo', 'local-nav', 'title'],
+    stylesheet: 'post-condensed.css',
     hasGlobalHeader: false,
     hasUserMenu: false,
     hasMegadropdown: false,
