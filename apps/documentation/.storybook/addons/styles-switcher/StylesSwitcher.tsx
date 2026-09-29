@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { IconButton, WithTooltip } from 'storybook/internal/components';
+import { STYLE_SWITCHER_EVENT } from './constants';
 
 const THEMES = ['Post', 'Cargo'] as const;
 const APPEARANCE = ['Default', 'Compact'] as const;
 const SCHEMES = ['Light', 'Dark'] as const;
-const STYLE_SWITCHER_EVENT = 'swisspost-documentation-style-change';
 
 /*
  * Stylesheets

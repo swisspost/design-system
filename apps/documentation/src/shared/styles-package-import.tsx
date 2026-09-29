@@ -6,8 +6,7 @@ import {
   Props,
 } from './styles-package-import-individual.sample';
 import { PostIcon } from '@swisspost/design-system-components-react';
-
-const STYLE_SWITCHER_EVENT = 'swisspost-documentation-style-change';
+import { STYLE_SWITCHER_EVENT } from '@root/.storybook/addons/styles-switcher/constants';
 
 type StyleSelection = {
   theme: string;
