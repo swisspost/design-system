@@ -53,7 +53,7 @@
     "@percy/cypress": "3.1.8",
     "@storybook/addon-docs": "9.0.18",
     "@storybook/addon-links": "9.0.18",
-    "@storybook/web-components-vite": "9.0.18",
+    "@storybook/web-components-vite": "10.6.0",
     "@swisspost/design-system-components-angular": "workspace:10.6.0",
     "@swisspost/design-system-cypress-config": "workspace:10.5.0",
     "@swisspost/design-system-tsconfig": "workspace:10.5.0",
