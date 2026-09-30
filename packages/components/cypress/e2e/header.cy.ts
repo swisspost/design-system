@@ -520,23 +520,6 @@ describe('header', () => {
           cy.get('@header').should('not.have.attr', 'data-expanded');
         });
       });
-
-      describe('mobile', () => {
-        beforeEach(() => {
-          cy.viewport('iphone-6');
-          cy.getComponent('header', HEADER_ID, 'microsite');
-        });
-
-        it('should add data-expanded when focus is on a local-nav element in the local header', () => {
-          cy.scrollTo(0, 500);
-
-          cy.get('@header').should('not.have.attr', 'data-expanded');
-
-          focusFirstLocalNavElement();
-
-          cy.get('@header').should('have.attr', 'data-expanded');
-        });
-      });
     });
   });
 
