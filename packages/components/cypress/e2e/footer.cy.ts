@@ -59,6 +59,7 @@ describe('Footer', () => {
       cy.get('@footer')
         .find('div[slot="meta"] button')
         .should('exist')
+        .scrollIntoView()
         .should('be.visible')
         .click(); // Test it's clickable
 
