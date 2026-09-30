@@ -129,7 +129,7 @@ const COMPONENTS = {
         <span class="visually-hidden">Access user links.</span>
       </button>
     </post-menu-trigger>
-    <post-menu id="user-menu" label="User links">
+    <post-menu id="user-menu" label="User links" placement="bottom-end">
       <div slot="header">
         <post-avatar firstname="John" lastname="Doe" aria-hidden="true"></post-avatar>
         John Doe
