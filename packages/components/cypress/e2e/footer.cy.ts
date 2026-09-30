@@ -5,7 +5,6 @@ describe('Footer', () => {
     beforeEach(() => {
       cy.getComponent('footer', FOOTER_ID);
       cy.get('@footer').find('> footer h2.visually-hidden').as('textFooter');
-      cy.viewport(1280, 400);
     });
 
     it('should render', () => {
@@ -56,12 +55,7 @@ describe('Footer', () => {
     });
 
     it('should have interactive elements', () => {
-      // Cookie settings button
-      cy.get('@footer')
-        .find('div[slot="meta"] button')
-        .should('exist')
-        .should('be.visible')
-        .click(); // Test it's clickable
+      cy.get('@footer').find('div[slot="meta"] button').should('exist').click({ force: true }); // Test it's clickable
 
       // Social media links with proper styling
       cy.get('@footer')

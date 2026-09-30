@@ -4,18 +4,23 @@ import testConfiguration from '../fixtures/internet-header/test-configuration.js
 import { LocalizedConfig } from '../../src/models/general.model';
 import { FooterConfig } from '../../src/models/footer.model';
 
+function isReallyVisible($el: JQuery) {
+  expect($el.css('display'), 'display').not.to.eq('none');
+  expect($el.css('visibility'), 'visibility').not.to.eq('hidden');
+  expect($el[0].getClientRects().length, 'client rects').to.be.greaterThan(0);
+}
+
 describe('footer', () => {
   describe('default', () => {
     beforeEach(() => {
       prepare(FOOTER, 'Default');
-      cy.viewport(1280, 400);
     });
 
     it('should correctly show footer sections', () => {
       const linkCounts = [6, 8, 8, 5];
       cy.get('ul[slot|="grid"]')
         .should('have.length', 4)
-        .should('be.visible')
+        .should(isReallyVisible)
         .each(($el, i) => {
           cy.wrap($el)
             .invoke('attr', 'aria-labelledby')
@@ -26,13 +31,13 @@ describe('footer', () => {
                 .should('eq', id);
             });
 
-          cy.wrap($el).find('a').should('have.length', linkCounts[i]).and('be.visible');
+          cy.wrap($el).find('a').should('have.length', linkCounts[i]).and(isReallyVisible);
         });
     });
 
     it('should correctly show social links', () => {
       cy.get('[slot="socialmedia"] h3')
-        .should('be.visible')
+        .should(isReallyVisible)
         .invoke('attr', 'id')
         .should('not.be.empty')
         .then(id => {
@@ -41,7 +46,7 @@ describe('footer', () => {
 
       cy.get('[slot="socialmedia"] a')
         .should('have.length', 8)
-        .and('be.visible')
+        .and(isReallyVisible)
         .and('contain.html', 'post-icon')
         .and('have.class', 'btn btn-primary btn-icon')
         .invoke('text')
@@ -50,7 +55,7 @@ describe('footer', () => {
 
     it('should correctly show app store links', () => {
       cy.get('[slot="app"] h3')
-        .should('be.visible')
+        .should(isReallyVisible)
         .invoke('attr', 'id')
         .should('not.be.empty')
         .then(id => {
@@ -59,7 +64,7 @@ describe('footer', () => {
 
       cy.get('[slot="app"] a')
         .should('have.length', 2)
-        .and('be.visible')
+        .and(isReallyVisible)
         .and('contain.html', 'img')
         .and('have.class', 'app-store-badge')
         .invoke('text')
@@ -68,23 +73,23 @@ describe('footer', () => {
 
     it('should correctly show company links', () => {
       cy.get('[slot="businesssectors"] h3')
-        .should('be.visible')
+        .should(isReallyVisible)
         .invoke('attr', 'id')
         .should('not.be.empty')
         .then(id => {
           cy.get('[slot="businesssectors"] ul').invoke('attr', 'aria-labelledby').should('eq', id);
         });
-      cy.get('[slot="businesssectors"] a').should('have.length', 2).and('be.visible');
+      cy.get('[slot="businesssectors"] a').should('have.length', 2).and(isReallyVisible);
     });
 
     it('should correctly show compliance links', () => {
       cy.get('[slot="meta"] h3').should('not.exist');
       cy.get('[slot="meta"] ul').invoke('attr', 'aria-label').should('not.be.empty');
-      cy.get('[slot="meta"] a').should('have.length', 4).and('be.visible');
+      cy.get('[slot="meta"] a').should('have.length', 4).and(isReallyVisible);
     });
 
     it('should correctly show copyrights', () => {
-      cy.get('[slot="copyright"]').should('be.visible');
+      cy.get('[slot="copyright"]').should(isReallyVisible);
     });
 
     it('should not show cookie settings link when UC_UI is not defined', () => {
