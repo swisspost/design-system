@@ -35,4 +35,34 @@ test.describe('components-angular (consumer-app)', () => {
     assertNoComponentErrors(errorCapture.errors, componentNames as string[]);
     expect(errorCapture.errors.length).toBe(0);
   });
+
+  test('post-logo: clicking a slotted link navigates client-side, without reloading', async ({
+    page,
+  }) => {
+    await page.evaluate(() => {
+      (window as unknown as { __markerAlive: boolean }).__markerAlive = true;
+    });
+
+    await page.getByRole('link', { name: 'Homepage' }).click();
+
+    await expect(page).toHaveURL(/\/home$/);
+    await expect(
+      page.evaluate(() => (window as unknown as { __markerAlive?: boolean }).__markerAlive),
+    ).resolves.toBe(true);
+  });
+
+  test('post-language-menu-item: clicking a slotted link navigates client-side, without reloading', async ({
+    page,
+  }) => {
+    await page.evaluate(() => {
+      (window as unknown as { __markerAlive: boolean }).__markerAlive = true;
+    });
+
+    await page.getByRole('link', { name: 'de' }).click();
+
+    await expect(page).toHaveURL(/\/primeng$/);
+    await expect(
+      page.evaluate(() => (window as unknown as { __markerAlive?: boolean }).__markerAlive),
+    ).resolves.toBe(true);
+  });
 });

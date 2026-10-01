@@ -47,3 +47,22 @@ The `post-language-menu` consists of a list of `post-language-menu-item` compone
 The language menu items can be used as links, which will navigate to a different page upon selection.
 
 <Canvas sourceState="shown" of={languageMenuStories.Links} />
+
+### Routing with Client-Side Frameworks
+
+To enable client-side routing (e.g. Next.js, Angular Router), slot your own anchor instead of using the `url` property. The component detects the slotted `<a>` and stops rendering its own, leaving your link's click handling untouched.
+
+<post-banner type="info">
+  <p>
+    The slotted `<a>` must be a direct child of `<post-language-menu-item>`, not wrapped in another
+    element, otherwise it won't be detected and the component will fall back to rendering its own
+    internal link or button.
+  </p>
+  <p>
+    The `url` property is ignored once you slot your own `<a>`. Since link attributes are no longer
+    applied automatically, give the slotted `<a>` an accessible name and add any framework-specific
+    routing attributes directly to it.
+  </p>
+</post-banner>
+
+<Canvas sourceState="shown" of={languageMenuItemStories.ClientSideRouting} />
