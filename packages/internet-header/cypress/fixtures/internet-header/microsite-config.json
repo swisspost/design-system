@@ -82,6 +82,11 @@
           }
         }
       ],
+      "closeLink": {
+        "text": "Schliessen",
+        "url": "#",
+        "icon": "closex"
+      },
       "mainNavigation": [
         {
           "text": "Briefe",

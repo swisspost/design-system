@@ -29,6 +29,7 @@ export interface HeaderConfig {
     title?: string; // Application or page title.
     mainNavigation?: MainNavigationConfig; // Main navigation for the current application.
     navigation?: Array<IconLinkConfig | UserMenuConfig>; // Optional application-specific actions (e.g. user menu, extra links).
+    closeLink?: IconLinkConfig; // Optional close button, rendered as the last element of the local navigation (e.g. to lead users of an online service back to post.ch).
   };
 }
 
