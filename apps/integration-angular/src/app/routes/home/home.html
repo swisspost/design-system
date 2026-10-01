@@ -154,13 +154,13 @@
         textCurrentLanguage="The currently selected language is {name}."
       >
         <post-language-menu-item code="de" name="German">
-          <a routerLink="/de">de</a>
+          <a routerLink="/home" [queryParams]="{ lang: 'de' }">de</a>
         </post-language-menu-item>
         <post-language-menu-item active code="fr" name="French">
-          <a routerLink="/fr">fr</a>
+          <a routerLink="/home" [queryParams]="{ lang: 'fr' }">fr</a>
         </post-language-menu-item>
         <post-language-menu-item code="en" name="English">
-          <a routerLink="/en">en</a>
+          <a routerLink="/home" [queryParams]="{ lang: 'en' }">en</a>
         </post-language-menu-item>
       </post-language-menu>
     </div>
@@ -192,13 +192,13 @@
         textCurrentLanguage="The currently selected language is {name}."
       >
         <post-language-menu-item code="de" name="German">
-          <a routerLink="/de">de</a>
+          <a routerLink="/home" [queryParams]="{ lang: 'de' }">de</a>
         </post-language-menu-item>
         <post-language-menu-item code="fr" name="French">
-          <a routerLink="/fr">fr</a>
+          <a routerLink="/home" [queryParams]="{ lang: 'fr' }">fr</a>
         </post-language-menu-item>
         <post-language-menu-item active code="en" name="English">
-          <a routerLink="/en">en</a>
+          <a routerLink="/home" [queryParams]="{ lang: 'en' }">en</a>
         </post-language-menu-item>
       </post-language-menu>
     </div>

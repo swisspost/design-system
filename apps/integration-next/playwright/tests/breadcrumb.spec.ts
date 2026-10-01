@@ -37,7 +37,7 @@ test.describe('post-logo and post-language-menu-item client-side routing', () =>
   test('clicking the logo with a slotted link navigates client-side, without reloading', async ({
     page,
   }) => {
-    await page.getByRole('link', { name: 'Homepage' }).click();
+    await page.locator('post-logo > a[href="/csr"]').click();
 
     await expect(page).toHaveURL(/\/csr$/);
     await expect(
@@ -48,9 +48,9 @@ test.describe('post-logo and post-language-menu-item client-side routing', () =>
   test('clicking a language item with a slotted link navigates client-side, without reloading', async ({
     page,
   }) => {
-    await page.getByRole('link', { name: 'de' }).click();
+    await page.locator('post-language-menu-item > a[href="/csr?lang=de"]').first().click();
 
-    await expect(page).toHaveURL(/\/csr$/);
+    await expect(page).toHaveURL(/\/csr\?lang=de$/);
     await expect(
       page.evaluate(() => (window as unknown as { __markerAlive?: boolean }).__markerAlive),
     ).resolves.toBe(true);

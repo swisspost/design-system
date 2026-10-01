@@ -117,11 +117,15 @@ export class PostLanguageMenuItem {
     // The internal anchor is a direct child in the list variant and must not count as slotted.
     this.hasSlottedAnchor = Array.from(this.host.children).some(
       child =>
-        child.tagName === 'A' && !child.hasAttribute('data-post-language-menu-item-internal'),
+        child.tagName === 'A' &&
+        (child as HTMLAnchorElement).dataset.postLanguageMenuItemInternal === undefined,
     );
   }
 
-  render() {
+  private renderInteractiveElement() {
+    const slot = <slot onSlotchange={() => this.checkSlottedAnchor()} />;
+    if (this.hasSlottedAnchor) return slot;
+
     const lang = this.code.toLowerCase();
     const emitOnKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter' || e.key === ' ') {
@@ -129,24 +133,25 @@ export class PostLanguageMenuItem {
       }
     };
 
-    const slot = <slot onSlotchange={() => this.checkSlottedAnchor()} />;
-    const interactiveElement = this.hasSlottedAnchor ? (
-      slot
-    ) : this.url ? (
-      <a
-        data-post-language-menu-item-internal
-        aria-current={this.active ? 'page' : undefined}
-        aria-description={this.description}
-        href={this.url}
-        hreflang={lang}
-        lang={lang}
-        onClick={() => this.emitChange()}
-        onKeyDown={emitOnKeyDown}
-      >
-        {slot}
-        <span class="visually-hidden">{this.name}</span>
-      </a>
-    ) : (
+    if (this.url) {
+      return (
+        <a
+          data-post-language-menu-item-internal
+          aria-current={this.active ? 'page' : undefined}
+          aria-description={this.description}
+          href={this.url}
+          hreflang={lang}
+          lang={lang}
+          onClick={() => this.emitChange()}
+          onKeyDown={emitOnKeyDown}
+        >
+          {slot}
+          <span class="visually-hidden">{this.name}</span>
+        </a>
+      );
+    }
+
+    return (
       <button
         aria-current={this.active ? 'true' : undefined}
         lang={lang}
@@ -158,6 +163,10 @@ export class PostLanguageMenuItem {
         <span class="visually-hidden">{this.name}</span>
       </button>
     );
+  }
+
+  render() {
+    const interactiveElement = this.renderInteractiveElement();
 
     return this.variant === 'list' ? (
       <Host

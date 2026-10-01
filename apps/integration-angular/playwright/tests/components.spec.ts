@@ -43,7 +43,7 @@ test.describe('components-angular (consumer-app)', () => {
       (window as unknown as { __markerAlive: boolean }).__markerAlive = true;
     });
 
-    await page.getByRole('link', { name: 'Homepage' }).click();
+    await page.locator('post-logo > a[href="/home"]').click();
 
     await expect(page).toHaveURL(/\/home$/);
     await expect(
@@ -58,9 +58,9 @@ test.describe('components-angular (consumer-app)', () => {
       (window as unknown as { __markerAlive: boolean }).__markerAlive = true;
     });
 
-    await page.getByRole('link', { name: 'de' }).click();
+    await page.locator('post-language-menu-item > a[href="/home?lang=de"]').first().click();
 
-    await expect(page).toHaveURL(/\/primeng$/);
+    await expect(page).toHaveURL(/\/home\?lang=de$/);
     await expect(
       page.evaluate(() => (window as unknown as { __markerAlive?: boolean }).__markerAlive),
     ).resolves.toBe(true);

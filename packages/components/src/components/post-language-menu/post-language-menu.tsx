@@ -31,6 +31,9 @@ export class PostLanguageMenu {
 
   @Element() host: HTMLPostLanguageMenuElement;
 
+  /**
+   * An event emitted when the active language changes. The payload is the ISO 639 code of the language.
+   */
   @Event() postChange: EventEmitter<string>;
 
   /**
