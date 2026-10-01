@@ -18,7 +18,7 @@ const meta: MetaComponent<HTMLPostCollapsibleElement> = {
     },
   },
   args: {
-    innerHTML: `<p class='border rounded p-24'>This is collapsible content that can be shown or hidden.</p>`,
+    innerHTML: `<p class='border rounded-4 p-24'>This is collapsible content that can be shown or hidden.</p>`,
     collapsed: false,
   },
 };

@@ -264,19 +264,12 @@ export const FullWidth: Story = {
       <div class="d-flex gap-12 flex-wrap">${story(context.args, context)}</div>
     `,
   ],
-  render: (args: Args) => html`
-    ${repeat(args.variants, (variant: string) =>
-      Template.render({
-        ...args,
-        text: variant.replace(/^btn-(.)/g, (_m: string, g: string) => g.toUpperCase()),
-        variant,
-      }),
-    )}
+  render: () => html`
+    <button class="btn btn-primary w-full w-md-auto">
+      <post-icon name="search"></post-icon>Primary
+    </button>
+    <button class="btn btn-primary w-full"><post-icon name="search"></post-icon>Primary</button>
   `,
-  args: {
-    variants: ['btn-primary'],
-    additionalClasses: ['w-sm-full', 'w-md-auto'],
-  },
 };
 
 export const Align: Story = {

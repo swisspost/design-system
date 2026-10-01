@@ -59,7 +59,7 @@ export const Table: Story = {
               alignment: context.argTypes.alignment.options,
             }) /*
         prevents combinations with changed borderStyle and changed
-        alignement also prevents their respective duplicate hiddens
+        alignment also prevents their respective duplicate hiddens
      */
               .filter(
                 (args: Args) =>
@@ -68,7 +68,7 @@ export const Table: Story = {
                   (args.borderStyle === 'null' || args.captionPlacement === 'bottom'),
               )
               /*
-        prevents more long text captions than neccessary
+        prevents more long text captions than necessary
    */
               .filter(
                 (args: Args) =>
