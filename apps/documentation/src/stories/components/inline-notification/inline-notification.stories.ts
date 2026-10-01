@@ -17,14 +17,22 @@ const meta: MetaComponent = {
   args: {
     variant: 'info',
     title: 'Title',
+    multiline: true,
     message: 'Message',
-    headingLevel: 'h4',
   },
   argTypes: {
     variant: {
       name: 'Variant',
-      description: 'Defines the color variant of the notification.',
-      control: 'select',
+      description: 'Defines the type variant of the notification.',
+      control: {
+        type: 'radio',
+        labels: {
+          info: 'Info',
+          success: 'Success',
+          error: 'Error',
+          warning: 'Warning',
+        },
+      },
       options: ['info', 'success', 'warning', 'error'],
       table: {
         category: 'General',
@@ -45,12 +53,20 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
-    headingLevel: {
-      name: 'Heading Level',
-      description: 'The heading tag used for the notification title.',
-      control: 'select',
-      options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
-      table: { category: 'Content' },
+    multiline: {
+      name: 'Multi-line',
+      description:
+        'Whether the notification is displayed on multiple lines or in a single line (if space allows).',
+      if: {
+        arg: 'position',
+        neq: 'fixed',
+      },
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'General',
+      },
     },
   },
 };
@@ -59,14 +75,19 @@ export default meta;
 
 // RENDERER
 function renderInlineNotification(args: Args) {
-  const { variant, title, message, headingLevel = 'h4' } = args;
-  const titleHTML = title ? `<${headingLevel}>${title}</${headingLevel}>` : '';
+  const { variant, title, message } = args;
+  const titleHTML = title ? `<div>${title}</div>` : '';
+  const messageHTML = title ? `<div>${message}</div>` : message;
   const role = variant === 'warning' || variant === 'error' ? 'alert' : 'status';
 
   return html`
-    <div class="inline-notification inline-notification-${variant}" role="${role}">
-      ${unsafeHTML(titleHTML)}
-      <p>${message}</p>
+    <div
+      class="inline-notification inline-notification-${variant}${!args.multiline
+        ? ' inline-notification-singleline'
+        : ''}"
+      role="${role}"
+    >
+      ${unsafeHTML(titleHTML)} ${unsafeHTML(messageHTML)}
     </div>
   `;
 }
@@ -84,14 +105,14 @@ export const Variants: Story = {
       renderInlineNotification({
         ...args,
         variant,
-        title: '',
+        title: 'Title',
         message: 'Message',
       }),
     )}`;
   },
 };
 
-export const MultiLine: Story = {
+export const SingleLine: Story = {
   decorators: [(story: StoryFn) => html`<div class="d-flex flex-column gap-16">${story()}</div>`],
   render: (args: Args) => {
     const variants = ['info', 'success', 'warning', 'error'];
@@ -100,9 +121,9 @@ export const MultiLine: Story = {
       renderInlineNotification({
         ...args,
         variant,
+        multiline: false,
         title: 'Title',
-        message:
-          'This is a longer notification message that wraps automatically without requiring an extra class.',
+        message: 'Message',
       }),
     )}`;
   },
