@@ -126,6 +126,86 @@
 </div>
 
 <div class="my-24">
+  <h2>Language menu</h2>
+
+  <h3>List</h3>
+
+  <div class="d-flex gx-24">
+    <div>
+      <h4>Default</h4>
+      <post-language-menu
+        variant="list"
+        textChangeLanguage="Change the language"
+        textCurrentLanguage="The currently selected language is {name}."
+      >
+        <post-language-menu-item url="/de" code="de" name="German">de</post-language-menu-item>
+        <post-language-menu-item url="/fr" code="fr" name="French">fr</post-language-menu-item>
+        <post-language-menu-item url="/en" active code="en" name="English">
+          en
+        </post-language-menu-item>
+      </post-language-menu>
+    </div>
+
+    <div>
+      <h4>Client-side routing</h4>
+      <post-language-menu
+        variant="list"
+        textChangeLanguage="Change the language"
+        textCurrentLanguage="The currently selected language is {name}."
+      >
+        <post-language-menu-item code="de" name="German">
+          <a routerLink="/home" [queryParams]="{ lang: 'de' }">de</a>
+        </post-language-menu-item>
+        <post-language-menu-item active code="fr" name="French">
+          <a routerLink="/home" [queryParams]="{ lang: 'fr' }">fr</a>
+        </post-language-menu-item>
+        <post-language-menu-item code="en" name="English">
+          <a routerLink="/home" [queryParams]="{ lang: 'en' }">en</a>
+        </post-language-menu-item>
+      </post-language-menu>
+    </div>
+  </div>
+
+  <h3>Menu</h3>
+
+  <div class="d-flex gx-24">
+    <div>
+      <h4>Default</h4>
+      <post-language-menu
+        variant="menu"
+        textChangeLanguage="Change the language"
+        textCurrentLanguage="The currently selected language is {name}."
+      >
+        <post-language-menu-item url="/de" code="de" name="German">de</post-language-menu-item>
+        <post-language-menu-item url="/fr" code="fr" name="French">fr</post-language-menu-item>
+        <post-language-menu-item url="/en" active code="en" name="English">
+          en
+        </post-language-menu-item>
+      </post-language-menu>
+    </div>
+
+    <div>
+      <h4>Client-side routing</h4>
+      <post-language-menu
+        variant="menu"
+        textChangeLanguage="Change the language"
+        textCurrentLanguage="The currently selected language is {name}."
+      >
+        <post-language-menu-item code="de" name="German">
+          <a routerLink="/home" [queryParams]="{ lang: 'de' }">de</a>
+        </post-language-menu-item>
+        <post-language-menu-item code="fr" name="French">
+          <a routerLink="/home" [queryParams]="{ lang: 'fr' }">fr</a>
+        </post-language-menu-item>
+        <post-language-menu-item active code="en" name="English">
+          <a routerLink="/home" [queryParams]="{ lang: 'en' }">en</a>
+        </post-language-menu-item>
+      </post-language-menu>
+    </div>
+  </div>
+</div>
+
+<div class="my-24">
   <h2>Linkarea</h2>
   <post-linkarea class="card">
     <div class="card-body">
@@ -134,6 +214,28 @@
       <a class="card-link" href="#test"> Ligilo teksto </a>
     </div>
   </post-linkarea>
+</div>
+
+<div class="my-24">
+  <h2>Logo</h2>
+
+  <div class="d-flex gap-40">
+    <div>
+      <h3 class="h5">Default</h3>
+      <div class="h-80">
+        <post-logo url="/">Logo of the Post</post-logo>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="h5">Client-side routing</h3>
+      <div class="h-80">
+        <post-logo>
+          <a routerLink="/home">Logo of the Post</a>
+        </post-logo>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="my-24">

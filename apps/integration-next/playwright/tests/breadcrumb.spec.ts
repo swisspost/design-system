@@ -25,3 +25,34 @@ test.describe('post-breadcrumb-item client-side routing', () => {
     expect(markerSurvived).toBe(true);
   });
 });
+
+test.describe('post-logo and post-language-menu-item client-side routing', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/ssr');
+    await page.evaluate(() => {
+      (window as unknown as { __markerAlive: boolean }).__markerAlive = true;
+    });
+  });
+
+  test('clicking the logo with a slotted link navigates client-side, without reloading', async ({
+    page,
+  }) => {
+    await page.locator('post-logo > a[href="/csr"]').click();
+
+    await expect(page).toHaveURL(/\/csr$/);
+    await expect(
+      page.evaluate(() => (window as unknown as { __markerAlive?: boolean }).__markerAlive),
+    ).resolves.toBe(true);
+  });
+
+  test('clicking a language item with a slotted link navigates client-side, without reloading', async ({
+    page,
+  }) => {
+    await page.locator('post-language-menu-item > a[href="/csr?lang=de"]').first().click();
+
+    await expect(page).toHaveURL(/\/csr\?lang=de$/);
+    await expect(
+      page.evaluate(() => (window as unknown as { __markerAlive?: boolean }).__markerAlive),
+    ).resolves.toBe(true);
+  });
+});

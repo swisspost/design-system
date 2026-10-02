@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {
   PostAccordion,
   PostAccordionItem,
@@ -10,9 +11,12 @@ import {
   PostCollapsibleTrigger,
   PostDatePicker,
   PostIcon,
+  PostLanguageMenu,
+  PostLanguageMenuItem,
   PostLinkarea,
   PostListbox,
   PostListboxOption,
+  PostLogo,
   PostMenu,
   PostMenuItem,
   PostMenuTrigger,
@@ -48,9 +52,12 @@ import {
     PostCollapsibleTrigger,
     PostDatePicker,
     PostIcon,
+    PostLanguageMenu,
+    PostLanguageMenuItem,
     PostLinkarea,
     PostListbox,
     PostListboxOption,
+    PostLogo,
     PostMenu,
     PostMenuItem,
     PostMenuTrigger,
@@ -69,6 +76,7 @@ import {
     PostTogglebutton,
     PostTooltip,
     PostTooltipTrigger,
+    RouterLink,
   ],
 })
 export class Home {
