@@ -22,6 +22,7 @@ enum AvatarType {
 })
 export class PostAvatar {
   private slottedImageObserver: MutationObserver; // To watch the slotted image src.
+  private imageRequestId = 0; // To ignore responses of outdated image requests.
 
   @Element() host: HTMLPostAvatarElement;
 
@@ -55,7 +56,8 @@ export class PostAvatar {
   description?: string;
 
   @State() slottedImage: HTMLImageElement;
-  @State() avatarType: AvatarType = null;
+  // Initials are the fallback while the image is still loading or delayed.
+  @State() avatarType: AvatarType = AvatarType.Initials;
   @State() imageUrl = '';
   @State() imageAlt = '';
   @State() initials = '';
@@ -69,22 +71,30 @@ export class PostAvatar {
   }
 
   private async getAvatarImage() {
+    const requestId = ++this.imageRequestId;
+    const isStale = () => requestId !== this.imageRequestId;
     let imageLoaded = false;
     this.slottedImage = this.host.querySelector('img');
     const imageUrl = this.slottedImage?.getAttribute('src');
 
     if (!imageUrl) {
       if (this.email?.match(emailPattern)) {
-        imageLoaded = await this.getImageByProp(this.email, this.fetchImageByEmail.bind(this));
+        imageLoaded = await this.getImageByProp(
+          this.email,
+          this.fetchImageByEmail.bind(this),
+          isStale,
+        );
       }
-      if (!imageLoaded) {
+      if (!imageLoaded && !isStale()) {
         this.avatarType = AvatarType.Initials;
       }
     } else {
       const slottedImageLoaded = await this.getImageByProp(
         imageUrl,
         this.fetchSlottedImage.bind(this),
+        isStale,
       );
+      if (isStale()) return;
 
       if (!slottedImageLoaded) {
         this.slottedImage.style.display = 'none';
@@ -95,7 +105,11 @@ export class PostAvatar {
     }
   }
 
-  private async getImageByProp(prop: string, fetchImage: (prop?: string) => Promise<Response>) {
+  private async getImageByProp(
+    prop: string,
+    fetchImage: (prop?: string) => Promise<Response>,
+    isStale: () => boolean,
+  ) {
     if (!prop) return false;
     let imageResponse: Response;
 
@@ -106,7 +120,7 @@ export class PostAvatar {
       return false;
     }
 
-    if (!imageResponse?.ok) {
+    if (!imageResponse?.ok || isStale()) {
       return false;
     } else {
       this.imageUrl = imageResponse.url;
@@ -157,9 +171,8 @@ export class PostAvatar {
     this.slottedImageObserver.observe(img, { attributes: true, attributeFilter: ['src'] });
   }
 
-  connectedCallback() {
-    //This provides a fallback by showing the initials while the image is still loading or delayed.
-    this.avatarType = AvatarType.Initials;
+  componentWillLoad() {
+    // Props are not yet available in `connectedCallback` on the first connection.
     this.getAvatarImage();
   }
 
@@ -176,7 +189,13 @@ export class PostAvatar {
         <span class={this.avatarType === 'slotted' ? '' : 'd-none'}>
           <slot onSlotchange={this.slotChanged.bind(this)}></slot>
         </span>
-        {this.avatarType === 'image' && <img src={this.imageUrl} alt={this.imageAlt} />}
+        {this.avatarType === 'image' && (
+          <img
+            src={this.imageUrl}
+            alt={this.imageAlt}
+            onError={() => (this.avatarType = AvatarType.Initials)}
+          />
+        )}
         {this.avatarType === 'initials' && (
           <span class="initials">
             {initials}

@@ -72,6 +72,18 @@ describe('Avatar', () => {
       });
     });
 
+    it('should fallback to initials, when gravatar image fails to load', () => {
+      cy.intercept('GET', 'https://www.gravatar.com/avatar/**', {
+        statusCode: 200,
+        headers: { 'content-type': 'image/png' },
+        body: 'not an image',
+      });
+
+      cy.get('@avatar').invoke('attr', 'email', 'broken-gravatar@post.ch');
+      cy.get('@avatar').find('.initials').should('exist');
+      cy.get('@avatar').find('img').should('not.exist');
+    });
+
     it('should show image, when slotted image is defined', () => {
       cy.get('@avatar').invoke(
         'append',
