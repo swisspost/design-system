@@ -1,7 +1,8 @@
 @use 'sass:map';
 @use 'sass:meta';
+@use 'sass:color';
 
-@use './color';
+@use './color' as color-fn;
 @use './utilities';
 @use '../svg-icon-map' as icon-vars;
 
@@ -15,8 +16,8 @@
     );
   }
 
-  $opacity: alpha($color);
-  $color: color.get-hex-string($color);
+  $opacity: color.alpha($color);
+  $color: color-fn.get-hex-string($color);
   $clean-color: utilities.replace('#{$color}', '#', '%23');
 
   @return set-svg-properties(
