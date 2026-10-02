@@ -7,6 +7,7 @@
 @use '../tokens/helpers';
 @use '../mixins/media';
 @use '../mixins/color-scheme';
+@use '../variables/env';
 
 tokens.$default-map: utilities.$post-spacing;
 
@@ -81,7 +82,7 @@ dialog {
 
   &[data-position='bottom'] {
     inset-block-start: auto;
-    inset-block-end: 2rem;
+    inset-block-end: calc(2rem + env.$safe-area-inset-bottom);
   }
 
   &#{$dialog-bottom-sheet-selector} {
@@ -148,7 +149,7 @@ dialog {
     background-color: inherit;
 
     &:not(:has(.dialog-controls)) {
-      padding-block-end: tokens.get('dialog-padding-block-end', components.$post-dialog);
+      padding-block-end: calc(tokens.get('dialog-padding-block-end', components.$post-dialog) + env.$safe-area-inset-bottom);
     }
   }
 }
@@ -230,7 +231,7 @@ dialog {
   inset-block-end: 0;
   z-index: 1;
   padding-block-start: tokens.get('dialog-padding-block-end', components.$post-dialog);
-  padding-block-end: tokens.get('dialog-padding-block-end', components.$post-dialog);
+  padding-block-end: calc(tokens.get('dialog-padding-block-end', components.$post-dialog) + env.$safe-area-inset-bottom);
   margin-block-end: 0;
   display: flex;
   flex-wrap: wrap;
