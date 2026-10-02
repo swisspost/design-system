@@ -15,8 +15,12 @@ import StoryTags from '@/shared/story-tags';
 <StoryTags meta={meta} />
 
 <div className="lead">
-  Inline notifications show up in task flows, to communicate the users the status of an action or system. It can also be used as a persistent element on the page to communicate information which needs higher attention than regular text.
+  Inline notifications show up in task flows, to communicate the users the status of an action or
+  system. It can also be used as a persistent element on the page to communicate information which
+  needs higher attention than regular text.
 </div>
+
+Use an inline notification when the message relates to the current task, requires no action on the user's part, and needs to remain visible at all times. It is also the appropriate choice when the user must take action and the decision is required to proceed, but is not part of the intended flow (for example, a validation error in a form).
 
 <Canvas of={InlineNotificationStories.Default} sourceState="shown" />
 <div className="hide-col-default">
@@ -25,16 +29,14 @@ import StoryTags from '@/shared/story-tags';
 
 <StylesPackageImport components={['inline-notification']} />
 
-## Color options
+## Type options
 
-Here is a quick overview of all the background colors available for this component.
+Here is a quick overview of all the different notification types available for this component.
+
 <Canvas of={InlineNotificationStories.Variants} />
 
-## Multi-line
+## Single Line
 
-Long messages and title/message combinations wrap automatically without an additional class.
-<Canvas of={InlineNotificationStories.MultiLine} />
+Use `.inline-notification-singleline` to display short messages on one line. If there isn't enough space, the content wraps automatically.
 
-## When to use
-
-Use an inline notification when the message relates to the current task, requires no action on the user's part, and needs to remain visible at all times. It is also the appropriate choice when the user must take action and the decision is required to proceed, but is not part of the intended flow (for example, a validation error in a form).
+<Canvas of={InlineNotificationStories.SingleLine} />
