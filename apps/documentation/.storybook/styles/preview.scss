@@ -66,25 +66,21 @@ tokens.$default-map: utilities.$post-spacing;
     .docs-title :is(h1, h2, h3, h4, h5, h6),
     post-tab-panel > :is(h1, h2, h3, h4, h5, h6),
     > :is(h1, h2, h3, h4, h5, h6) {
-      position: relative;
-      padding-right: 32px; // needed to add space for the link icon
+      // the link stays in the text flow, so it follows the text even when the heading wraps
+      > a {
+        padding-inline: 0.25rem;
+        font-size: 1.5rem;
+        line-height: 0;
+        vertical-align: middle;
 
-      @media (hover: hover) {
-        > a {
-          display: none;
+        @media (hover: hover) {
+          // hidden instead of removed, so revealing it doesn't reflow the heading
+          visibility: hidden;
         }
       }
 
-      > a {
-        position: absolute;
-        bottom: 0;
-        font-size: 1.5rem;
-        padding: 0.5rem;
-        line-height: 1;
-      }
-
       &:hover > a {
-        display: inline-block;
+        visibility: visible;
       }
     }
   }
