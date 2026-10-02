@@ -1,5 +1,19 @@
 # @swisspost/design-system-documentation
 
+## 6.6.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.6.1
+  - @swisspost/design-system-components-react@10.6.1
+  - @swisspost/internet-header@10.6.1
+  - @swisspost/design-system-icons@10.6.1
+  - @swisspost/design-system-styles@10.6.1
+  - @swisspost/design-system-styles-primeng@10.6.1
+  - @swisspost/design-system-theme-ag-grid@10.6.1
+  - @swisspost/design-system-tokens@10.6.1
+
 ## 6.6.0
 
 ### Minor Changes

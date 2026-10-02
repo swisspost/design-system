@@ -1,5 +1,14 @@
 # @swisspost/design-system-components
 
+## 10.6.1
+
+### Patch Changes
+
+- Fixed `post-date-picker` not trapping focus reliably inside the calendar popover. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8543](https://github.com/swisspost/design-system/pull/8543))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.6.1
+  - @swisspost/design-system-styles@10.6.1
+
 ## 10.6.0
 
 ### Minor Changes
