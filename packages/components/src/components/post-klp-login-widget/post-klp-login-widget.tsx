@@ -1,6 +1,9 @@
 import { version } from '@root/package.json';
-import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { Build, Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import type { KlpSessionData } from './lib/klp-session.model';
+import { klpBaseUrl } from './lib/klp-urls';
 import type { KlpEnvironment, KlpLoginWidgetConfig } from './lib/klp-widget.model';
+import { createSessionController } from './lib/session-controller';
 
 @Component({
   tag: 'post-klp-login-widget',
@@ -23,8 +26,38 @@ export class PostKlpLoginWidget {
 
   @State() private parsedConfig: KlpLoginWidgetConfig | null = null;
 
+  /** Stays null on the server: the session is only ever known to the client. */
+  @State() private session: KlpSessionData | null = null;
+
   componentWillLoad() {
     this.parseConfig();
+  }
+
+  componentDidLoad() {
+    if (!Build.isBrowser) return;
+
+    this.connect();
+  }
+
+  private connect() {
+    if (!this.parsedConfig) return;
+
+    const endPoint = klpBaseUrl(this.environment);
+    if (endPoint === null) {
+      console.error(
+        `post-klp-login-widget: "${this.environment}" is not a known environment, the widget stays anonymous.`,
+      );
+      return;
+    }
+
+    const controller = createSessionController({
+      endPoint,
+      onSessionChange: session => {
+        this.session = session;
+      },
+    });
+
+    void controller.start();
   }
 
   @Watch('config')
@@ -46,13 +79,19 @@ export class PostKlpLoginWidget {
 
   render() {
     // The session is unknown until the client connects, so both server and first client render
-    // produce this anonymous shell. Authenticated markup arrives in a later step.
+    // produce the anonymous shell. The authenticated chrome is composed in a later step.
     return (
       <Host data-version={version}>
-        {this.parsedConfig && (
-          <a class="login-link" href={this.parsedConfig.appLoginUrl}>
-            <slot name="login-label">Login</slot>
-          </a>
+        {this.session ? (
+          <span class="user-name">
+            {this.session.name} {this.session.surname}
+          </span>
+        ) : (
+          this.parsedConfig && (
+            <a class="login-link" href={this.parsedConfig.appLoginUrl}>
+              <slot name="login-label">Login</slot>
+            </a>
+          )
         )}
       </Host>
     );
