@@ -91,14 +91,17 @@ tokens.$default-map: components.$post-side-navigation;
 
 post-side-navigation {
   --post-side-nav-height: 100vh;
+
   @include set-size-variables(large);
 
   @include media.min(desktop) {
     position: fixed;
-    top: calc(var(--post-header-height) / 2);
-    padding-block-start: calc(var(--post-header-height) / 2);
+    top: 0;
+    left: 0;
+    padding-block-start: var(--post-header-height);
     width: tokens.get('side-nav-width');
-    --post-side-nav-height: calc(100vh - var(--post-header-height));
+    height: 100vh;
+    --post-side-nav-height: 100%;
   }
 
   &[size='small'] {
@@ -107,9 +110,9 @@ post-side-navigation {
 
   nav {
     width: 100%;
+    height: var(--post-side-nav-height);
     padding-block: tokens.get('side-nav-padding-block-start')
       tokens.get('side-nav-padding-block-end');
-    height: var(--post-side-nav-height);
     overflow-y: auto;
 
     ul {
@@ -369,7 +372,8 @@ post-collapsible-trigger[data-hydrated] .post-side-navigation-item post-icon[nam
 
 // Pre-hydration fallback: predict the chevron orientation from the collapsed attribute
 post-collapsible-trigger:not(:has(> post-collapsible[collapsed]))
-  > .post-side-navigation-item post-icon[name='chevrondown'] {
+  > .post-side-navigation-item
+  post-icon[name='chevrondown'] {
   --post-side-navigation-chevron-initial-transform: rotate(180deg);
 }
 
