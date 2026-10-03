@@ -85,7 +85,7 @@ export class PostTooltip {
     return (
       <Host data-version={version}>
         <post-popovercontainer
-          safeSpace="trapezoid"
+          safeSpace={true}
           class={popoverClass}
           role="tooltip"
           arrow={this.arrow}

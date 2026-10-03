@@ -9,6 +9,8 @@
   display: flex;
   flex-direction: column;
   padding-block: 8px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 ::slotted([slot='header']) {
