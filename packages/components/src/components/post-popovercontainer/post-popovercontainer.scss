@@ -137,7 +137,6 @@
   z-index: -1;
   pointer-events: auto;
   clip-path: var(--post-popovercontainer-safe-space, polygon(0 0, 0 0, 0 0));
-  background-color: #f00;
 }
 
 :host(:not(:has(.arrow))) > div {
