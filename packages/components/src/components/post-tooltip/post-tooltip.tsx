@@ -94,7 +94,9 @@ export class PostTooltip {
           onPostBeforeToggle={e => this.handleBeforeToggle(e)}
           ref={(el: HTMLPostPopovercontainerElement) => (this.popoverRef = el)}
         >
-          <slot></slot>
+          <div class="tooltip-content">
+            <slot></slot>
+          </div>
         </post-popovercontainer>
       </Host>
     );

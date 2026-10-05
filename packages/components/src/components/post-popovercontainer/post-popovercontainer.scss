@@ -32,6 +32,9 @@
   overflow: visible;
 
   [part='post-popovercontainer-content'] {
+    // `border-box` is needed to correctly calculate the size of the floating element
+    // (see https://floating-ui.com/docs/size#usage).
+    box-sizing: border-box;
     box-shadow: elevation.$elevation-300;
     width: max-content;
     max-width: var(--post-popovercontainer-available-width);
