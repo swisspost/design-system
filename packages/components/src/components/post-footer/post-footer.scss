@@ -9,7 +9,8 @@
 tokens.$default-map: elements.$post-heading;
 
 :host {
-  display: block;
+  position: sticky;
+  top: 100vh;
 }
 
 footer {
