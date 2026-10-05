@@ -1,5 +1,17 @@
 # @swisspost/design-system-documentation
 
+## 5.11.3
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.15.1
+  - @swisspost/design-system-components-react@9.15.1
+  - @swisspost/design-system-styles@9.15.1
+  - @swisspost/design-system-icons@9.15.1
+  - @swisspost/design-system-theme-ag-grid@9.15.1
+  - @swisspost/internet-header@1.17.3
+
 ## 5.11.2
 
 ### Patch Changes

@@ -1,5 +1,7 @@
 # @swisspost/design-system-theme-ag-grid
 
+## 9.15.1
+
 ## 9.15.0
 
 ## 9.14.0
