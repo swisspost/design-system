@@ -92,7 +92,7 @@ export const fetchConfig = async (
     } catch (error) {
       lastError = error;
       console.warn(
-        `Warning: Internet Header: API origin "${host}" not yet available! Falling back to the temporary origin until main origin is up and running.`,
+        `Internet Header: API origin "${host}" not yet available! Falling back to the temporary origin until main origin is up and running.`,
       );
     }
   }
@@ -102,14 +102,12 @@ export const fetchConfig = async (
 
 /**
  * Hosts to try, in order of preference.
- * On prod, site.post.ch is a temporary fallback until www.post.ch serves the config.
+ * On prod, www.post.ch is a fallback for the upcoming move away from site.post.ch.
  */
 const getConfigHosts = (environment: Environment): string[] => {
   const isProd = environment.toUpperCase() === 'PROD';
 
-  return isProd
-    ? ['https://www.post.ch', 'https://site.post.ch']
-    : ['https://int.post.ch', 'https://int.site.post.ch'];
+  return isProd ? ['https://site.post.ch', 'https://www.post.ch'] : ['https://int.post.ch'];
 };
 
 /**
