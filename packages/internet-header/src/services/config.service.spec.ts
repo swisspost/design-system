@@ -13,11 +13,16 @@ describe('config.service.ts', () => {
   global.fetch = jest.fn();
 
   beforeEach(() => {
+    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
     (fetch as jest.Mock).mockReset();
     (fetch as jest.Mock).mockResolvedValue({
       ok: true,
       json: () => Promise.resolve(testConfig),
     });
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
   });
 
   describe('isValidProjectId', () => {
@@ -110,6 +115,46 @@ describe('config.service.ts', () => {
         'Internet Header: fetching config failed. Network error',
       );
       expect(fetch).toHaveBeenCalledTimes(2);
+    });
+
+    it('should fall back when the first host responds with a non-ok status', async () => {
+      (fetch as jest.Mock)
+        .mockResolvedValueOnce({ ok: false, status: 404 })
+        .mockResolvedValueOnce({ ok: true, json: () => Promise.resolve(testConfig) });
+
+      const res = await fetchConfig('topos', 'prod', 'de');
+
+      expect(res).toEqual(testConfig);
+      expect(fetch).toHaveBeenNthCalledWith(
+        2,
+        'https://site.post.ch/api/header?serviceId=topos&environment=PROD&lang=de',
+      );
+    });
+
+    it('should report the last error when every host responds with a non-ok status', async () => {
+      (fetch as jest.Mock).mockResolvedValue({ ok: false, status: 500 });
+
+      await expect(fetchConfig('topos', 'prod', 'de')).rejects.toThrow(
+        'Internet Header: fetching config failed. Request failed with status 500',
+      );
+    });
+
+    it('should fall back to int.site.post.ch on int', async () => {
+      (fetch as jest.Mock)
+        .mockRejectedValueOnce(new Error('Network error'))
+        .mockResolvedValueOnce({ ok: true, json: () => Promise.resolve(testConfig) });
+
+      const res = await fetchConfig('topos', 'int01', 'de');
+
+      expect(res).toEqual(testConfig);
+      expect(fetch).toHaveBeenNthCalledWith(
+        1,
+        'https://int.post.ch/api/header?serviceId=topos&environment=INT01&lang=de',
+      );
+      expect(fetch).toHaveBeenNthCalledWith(
+        2,
+        'https://int.site.post.ch/api/header?serviceId=topos&environment=INT01&lang=de',
+      );
     });
   });
 
