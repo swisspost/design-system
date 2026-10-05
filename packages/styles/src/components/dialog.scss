@@ -7,7 +7,7 @@
 @use '../tokens/helpers';
 @use '../mixins/media';
 @use '../mixins/color-scheme';
-@use '../variables/env';
+@use '../functions/env';
 
 tokens.$default-map: utilities.$post-spacing;
 
@@ -82,7 +82,7 @@ dialog {
 
   &[data-position='bottom'] {
     inset-block-start: auto;
-    inset-block-end: max(2rem, env.$safe-area-inset-bottom);
+    inset-block-end: env.safe-area-inset(bottom, 2rem);
   }
 
   &#{$dialog-bottom-sheet-selector} {
@@ -122,9 +122,9 @@ dialog {
       max-height: 80dvh;
 
       &:not(:has(.dialog-controls)) {
-        padding-block-end: max(
-          tokens.get('dialog-padding-block-end', components.$post-dialog),
-          env.$safe-area-inset-bottom
+        padding-block-end: env.safe-area-inset(
+          bottom,
+          tokens.get('dialog-padding-block-end', components.$post-dialog)
         );
       }
 
@@ -137,9 +137,9 @@ dialog {
     }
 
     .dialog-controls {
-      padding-block-end: max(
-        tokens.get('dialog-padding-block-end', components.$post-dialog),
-        env.$safe-area-inset-bottom
+      padding-block-end: env.safe-area-inset(
+        bottom,
+        tokens.get('dialog-padding-block-end', components.$post-dialog)
       );
     }
   }

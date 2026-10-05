@@ -1,8 +1,8 @@
 @use '@swisspost/design-system-styles/mixins/button';
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/functions/env';
 @use '@swisspost/design-system-styles/variables/elevation';
-@use '@swisspost/design-system-styles/variables/env';
 
 *,
 ::before,
@@ -65,7 +65,7 @@
 
   .megadropdown-content {
     @include media.max(desktop) {
-      padding-block-end: max(24px, env.$safe-area-inset-bottom);
+      padding-block-end: env.safe-area-inset(bottom, 24px);
     }
   }
 }

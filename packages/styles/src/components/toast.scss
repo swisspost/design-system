@@ -8,7 +8,7 @@
 @use './../placeholders/button';
 @use './../variables/commons';
 @use './../variables/components/notification';
-@use './../variables/env';
+@use '../functions/env';
 @use './../tokens/components';
 @use './../tokens/utilities';
 @use './../functions/tokens';
@@ -134,7 +134,7 @@ $spacer: 1.5rem;
 .toast-bottom-full-width,
 .toast-bottom-right,
 .toast-bottom-left {
-  bottom: max($spacer, env.$safe-area-inset-bottom);
+  bottom: env.safe-area-inset(bottom, $spacer);
 }
 
 .toast-top-left,
