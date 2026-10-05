@@ -1094,9 +1094,15 @@ importers:
       '@swisspost/design-system-eslint-config':
         specifier: workspace:10.5.0
         version: link:../../tooling/eslint
+      '@swisspost/design-system-icons':
+        specifier: 10.6.0
+        version: 10.6.0
       '@swisspost/design-system-prettier-config':
         specifier: workspace:10.5.0
         version: link:../../tooling/prettier
+      '@swisspost/design-system-tokens':
+        specifier: 10.6.0
+        version: 10.6.0
       '@swisspost/design-system-tsconfig':
         specifier: workspace:10.5.0
         version: link:../../tooling/typescript
@@ -4762,6 +4768,12 @@ packages:
 
   '@swc/helpers@0.5.23':
     resolution: {integrity: sha512-5lSsMOTXURePglDfvuAQUqkGek9Hg2kksOYay2m0+XR++b2NWYL/4sWyuvVBIs8oKnJaxkdi9whaL/sqN13afw==}
+
+  '@swisspost/design-system-icons@10.6.0':
+    resolution: {integrity: sha512-ONjhYGwoM9SGeD2bZcONEHTz9dRGb2pZ0h1BhApdIlUCv3sS5mFo3jTZUuAzlstAscYpiXhjHk6YoCQS9v7/EA==}
+
+  '@swisspost/design-system-tokens@10.6.0':
+    resolution: {integrity: sha512-gX004MurPKOjE+mgvuceZHhStcb5wnk9xIPq1ybtgrm6/QLDHDMSlPyAvrgsFJ5uXdtL5Pq0KH41FCKkf/+ytA==}
 
   '@tailwindcss/node@4.1.18':
     resolution: {integrity: sha512-DoR7U1P7iYhw16qJ49fgXUlry1t4CpXeErJHnQ44JgTSKMaZUdf17cfn5mHchfJ4KRBZRFA/Coo+MUF5+gOaCQ==}
@@ -12270,18 +12282,6 @@ packages:
       utf-8-validate:
         optional: true
 
-  ws@8.21.0:
-    resolution: {integrity: sha512-Vsp28b7DRcimFQvrqu2Wek3z1iYxDCWqHYB8Qsnk/S4RfaCQzPGPyBNuVjJV3cd6UiKtUtp6sNM77gWvzcCH+g==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      bufferutil: ^4.0.1
-      utf-8-validate: '>=5.0.2'
-    peerDependenciesMeta:
-      bufferutil:
-        optional: true
-      utf-8-validate:
-        optional: true
-
   ws@8.21.3:
     resolution: {integrity: sha512-201TZ/kPWxoPr/OKWjquZR1SWKXcvxdH+e1xrx89b3YbmzLMFCLfnaG1HFIgWzJOEWZ7MvpK++odZufgYR50Rw==}
     engines: {node: '>=10.0.0'}
@@ -15689,7 +15689,7 @@ snapshots:
       pako: 2.1.0
       path-to-regexp: 6.3.0
       rimraf: 3.0.2
-      ws: 8.20.0
+      ws: 8.21.3
       yaml: 2.8.3
     optionalDependencies:
       '@percy/cli-doctor': 1.31.13(supports-color@10.2.2)(typescript@6.0.3)
@@ -15716,7 +15716,7 @@ snapshots:
       pako: 2.1.0
       path-to-regexp: 6.3.0
       rimraf: 3.0.2
-      ws: 8.20.0
+      ws: 8.21.3
       yaml: 2.8.3
     optionalDependencies:
       '@percy/cli-doctor': 1.31.13(supports-color@8.1.1)(typescript@6.0.3)
@@ -16269,6 +16269,10 @@ snapshots:
   '@swc/helpers@0.5.23':
     dependencies:
       tslib: 2.8.1
+
+  '@swisspost/design-system-icons@10.6.0': {}
+
+  '@swisspost/design-system-tokens@10.6.0': {}
 
   '@tailwindcss/node@4.1.18':
     dependencies:
@@ -21960,7 +21964,7 @@ snapshots:
       whatwg-encoding: 2.0.0
       whatwg-mimetype: 3.0.0
       whatwg-url: 11.0.0
-      ws: 8.21.0
+      ws: 8.21.3
       xml-name-validator: 4.0.0
     transitivePeerDependencies:
       - bufferutil
@@ -25889,7 +25893,7 @@ snapshots:
 
   unplugin@1.16.1:
     dependencies:
-      acorn: 8.16.0
+      acorn: 8.18.0
       webpack-virtual-modules: 0.6.2
 
   unrs-resolver@1.11.1:
@@ -26108,7 +26112,7 @@ snapshots:
       esbuild: 0.27.7
       fdir: 6.5.0(picomatch@4.0.5)
       picomatch: 4.0.5
-      postcss: 8.5.26
+      postcss: 8.5.23
       rollup: 4.60.2
       tinyglobby: 0.2.17
     optionalDependencies:
@@ -26127,7 +26131,7 @@ snapshots:
       esbuild: 0.27.7
       fdir: 6.5.0(picomatch@4.0.5)
       picomatch: 4.0.5
-      postcss: 8.5.26
+      postcss: 8.5.23
       rollup: 4.60.2
       tinyglobby: 0.2.17
     optionalDependencies:
@@ -26146,7 +26150,7 @@ snapshots:
       esbuild: 0.27.7
       fdir: 6.5.0(picomatch@4.0.5)
       picomatch: 4.0.5
-      postcss: 8.5.26
+      postcss: 8.5.23
       rollup: 4.60.2
       tinyglobby: 0.2.17
     optionalDependencies:
@@ -26521,8 +26525,6 @@ snapshots:
       signal-exit: 4.1.0
 
   ws@8.20.0: {}
-
-  ws@8.21.0: {}
 
   ws@8.21.3: {}
 
