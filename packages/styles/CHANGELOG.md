@@ -1,5 +1,7 @@
 # @swisspost/design-system-styles
 
+## 9.15.1
+
 ## 9.15.0
 
 ### Minor Changes
