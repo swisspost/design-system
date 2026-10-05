@@ -65,7 +65,7 @@
 
   .megadropdown-content {
     @include media.max(desktop) {
-      padding-block-end: calc(24px + env.$safe-area-inset-bottom);
+      padding-block-end: max(24px, env.$safe-area-inset-bottom);
     }
   }
 }
