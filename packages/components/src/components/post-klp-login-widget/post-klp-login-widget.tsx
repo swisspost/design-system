@@ -29,6 +29,8 @@ export class PostKlpLoginWidget {
   /** Stays null on the server: the session is only ever known to the client. */
   @State() private session: KlpSessionData | null = null;
 
+  private controller?: ReturnType<typeof createSessionController>;
+
   componentWillLoad() {
     this.parseConfig();
   }
@@ -37,6 +39,10 @@ export class PostKlpLoginWidget {
     if (!Build.isBrowser) return;
 
     this.connect();
+  }
+
+  disconnectedCallback() {
+    this.controller?.stop();
   }
 
   private connect() {
@@ -50,14 +56,16 @@ export class PostKlpLoginWidget {
       return;
     }
 
-    const controller = createSessionController({
+    this.controller = createSessionController({
       endPoint,
+      keepAliveUrl: this.parsedConfig.keepAliveUrl,
+      conf: this.parsedConfig.options,
       onSessionChange: session => {
         this.session = session;
       },
     });
 
-    void controller.start();
+    void this.controller.start();
   }
 
   @Watch('config')
