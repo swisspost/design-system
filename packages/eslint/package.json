@@ -43,7 +43,7 @@
     "@typescript-eslint/utils": "8.49.0",
     "cheerio": "1.0.0",
     "eslint-plugin-unicorn": "^56.0.0",
-    "eslint-scope": "8.2.0",
+    "eslint-scope": "9.1.2",
     "parse5-case-sensitive": "7.1.2-0",
     "parse5-htmlparser2-tree-adapter": "7.1.0"
   },
