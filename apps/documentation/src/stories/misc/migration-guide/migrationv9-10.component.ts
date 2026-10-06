@@ -565,6 +565,147 @@ export class MigrationV910Component extends LitElement {
                             <a href="/?path=/docs/eb77cd02-48b2-42e1-a3e4-cd8a973d431e--docs"
                               >post-date-picker</a
                             >
+                            <span class="info">
+                              <p><strong>Common migration patterns:</strong></p>
+                              <ul>
+                                <li>
+                                  <code>&lt;ngb-datepicker&gt;</code> →
+                                  <code>&lt;post-date-picker inline&gt;</code> with a slotted
+                                  <code>input</code>, which the component makes hidden.
+                                </li>
+                                <li>
+                                  <code>&lt;input ngbDatepicker&gt;</code> → <code>&lt;post-date-picker&gt;</code> with a slotted
+                                  <code>input</code>, no <code>inline</code> prop.
+                                </li>
+                                <li>
+                                  <code>(dateSelect)</code> → native <code>input</code> or
+                                  <code>change</code> on the slotted input, or an Angular form
+                                  control's <code>valueChanges</code>. Value is of ISO date format, rather than <code>NgbDate</code>.
+                                </li>
+                                <li>
+                                  <code>minDate</code>/<code>maxDate</code> →
+                                  <code>min</code>/<code>max</code> as ISO date-only strings
+                                  (<code>YYYY-MM-DD</code>). These constrain calendar selection;
+                                  add form validators for rules, typed input and
+                                  ranges.
+                                </li>
+                                <li>
+                                  <code>NgbDateStruct</code>/<code>NgbDate</code> → change to native ISO date-only
+                                  strings (<code>YYYY-MM-DD</code>) for form and API state. Compare normalized
+                                  ISO strings or use a date library instead of
+                                  <code>NgbDate.before()</code>/<code>after()</code>.
+                                </li>
+                                <li>
+                                  <code>NgbDateAdapter</code>, <code>NgbDateNativeAdapter</code>,
+                                  <code>NgbDateNativeUTCAdapter</code> → convert your
+                                  native <code>Date</code> model to and from the input's ISO value
+                                  in application code. There is no injectable date adapter. If
+                                  your API uses UTC timestamps, distinguish them from date-only
+                                  values before converting; <code>toISOString()</code> can shift
+                                  a local-midnight date by a day.
+                                </li>
+                                <li>
+                                  <code>NgbDateParserFormatter</code> → use the built-in locale
+                                  mask and ISO input value. There is no injectable parser/formatter
+                                  hook; handle nonstandard formats outside the picker.
+                                </li>
+                                <li>
+                                  <code>NgbDatepickerI18n</code> → set <code>locale</code> (or an
+                                  ancestor's <code>lang</code>) and translate the required toggle
+                                  and navigation labels in your app. The locale controls the
+                                  display format and first day of the week; there is no custom
+                                  calendar service or separate <code>firstDayOfWeek</code> prop.
+                                </li>
+                                <li>
+                                  <code>markDisabled</code> → <code>cellConfig</code>, which takes
+                                  a native <code>Date</code> and cell type and can return
+                                  <code>disabled</code> and <code>classes</code>.
+                                </li>
+                                <li>
+                                  <code>open()</code>/<code>close()</code> → <code>show()</code>/
+                                  <code>hide()</code>. There is no <code>toggle()</code>.
+                                </li>
+                                <li>
+                                  <code>container="body"</code>, placement or
+                                  <code>positionTarget</code> → no equivalent, it is placed in the top layer, and positioned at the bottom-end of the input.
+                                </li>
+                                <li>
+                                  <code>navigation</code> and <code>displayMonths</code> → no equivalent, defaults to arrow navigations and always displays 1 month.
+                                </li>
+                                <li>
+                                  <code>startDate</code> and <code>navigateTo()</code>  → no equivalent, start date defaults to today, unless a date has previously been selected.
+                                </li>
+                              </ul>
+                              <p>
+                                Bind Angular forms to the native <code>input</code>, not the
+                                <code>post-date-picker</code> host. Its <code>value</code> is an ISO
+                                date-only string, while the visible text follows
+                                <code>locale</code>. Initialize the input or control with an ISO
+                                string. With <code>range</code>, the input value is an array of
+                                ISO strings; use an application-specific adapter if your form
+                                needs a different model shape. Provide the required calendar
+                                control labels in your application's language.
+                              </p>
+                              <p><strong>Datepicker input with a reactive form:</strong></p>
+                              <code-block
+                                code=${`<!-- In a component importing ReactiveFormsModule with an appointmentDate control -->
+<form [formGroup]="form">
+  <post-date-picker
+    locale="de-CH"
+    min="2026-01-01"
+    max="2026-12-31"
+    textToggleCalendar="Open calendar"
+    ...
+  >
+    <label for="appointment-date">Appointment date</label>
+    <input id="appointment-date" class="form-control" formControlName="appointmentDate" />
+  </post-date-picker>
+</form>`}
+                              ></code-block>
+                              <p><strong>Normalize date values at the API boundary:</strong></p>
+                              <p>
+                                If your application already returns a date-only ISO value
+                                (<code>YYYY-MM-DD</code>), pass it straight to the form control; no
+                                converter is needed. For another format, parse according
+                                to that API's contract and construct the picker value directly as
+                                <code>YYYY-MM-DD</code>, without an intermediate
+                                <code>NgbDateStruct</code>. Date-only values are calendar dates,
+                                not timestamps.
+                              </p>
+                              <code-block
+                                code=${`// A date-only API field already matches the picker value.
+const pickerValue = response.appointmentDate; // e.g. "2026-05-12"
+
+// If the API returns a timestamp, require an explicit timezone and choose the
+// calendar timezone according to the API's contract. This example uses UTC.
+const apiTimestamp = '2024-12-24T23:00:00-04:00';
+apiTimestamp.slice(0, 10); // "2024-12-24" — wrong when the picker needs the UTC calendar date
+
+function utcTimestampToDatePicker(value: string): string {
+  if (!/(?:Z|[+-]\\d{2}:\\d{2})$/i.test(value)) {
+    throw new Error('Expected a timestamp with an explicit timezone.');
+  }
+  const instant = new Date(value);
+  if (Number.isNaN(instant.getTime())) throw new Error('Invalid date.');
+  return instant.toISOString().slice(0, 10);
+}
+
+utcTimestampToDatePicker(apiTimestamp); // "2024-12-25"`}
+                              ></code-block>
+                              <p><strong>Disable a recurring date range with <code>cellConfig</code>:</strong></p>
+                              <code-block
+                                code=${`<!-- Template: bind the callback property; don't write cellConfig="..." -->
+<post-date-picker [cellConfig]="disableChristmasWeek" ...>
+  <input class="form-control" />
+</post-date-picker>
+
+// Component: disable December 25–31 every year.
+readonly disableChristmasWeek = (date: Date, cellType: 'day' | 'month' | 'year') =>
+  cellType === 'day' && date.getMonth() === 11 && date.getDate() >= 25
+    ? { disabled: true }
+    : undefined;`}
+                              ></code-block>
+                            </span>
                           </label>
                         </div>
                       </li>
