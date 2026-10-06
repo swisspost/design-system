@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-cypress-config",
-  "version": "10.5.0",
+  "version": "10.7.0",
   "description": "Shared Cypress configuration for the Swiss Post Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -36,9 +36,9 @@
     "cypress": ">=15.0.0"
   },
   "devDependencies": {
-    "@swisspost/design-system-eslint-config": "workspace:10.5.0",
-    "@swisspost/design-system-prettier-config": "workspace:10.5.0",
-    "@swisspost/design-system-tsconfig": "workspace:10.5.0",
+    "@swisspost/design-system-eslint-config": "workspace:10.7.0",
+    "@swisspost/design-system-prettier-config": "workspace:10.7.0",
+    "@swisspost/design-system-tsconfig": "workspace:10.7.0",
     "@types/node": "catalog:node",
     "cypress": "catalog:cypress",
     "eslint": "catalog:",
