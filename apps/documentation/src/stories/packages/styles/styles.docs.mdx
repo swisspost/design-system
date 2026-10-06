@@ -22,7 +22,7 @@ import { PackageShields } from '@root/src/shared/package-shields';
 Import one of our stylesheets into your project (for example into your `/src/styles.scss` file).
 
 <Source
-  code={`@use '@swisspost/design-system-styles/<bundle-name>.<extension>';`}
+  code={`@use '@swisspost/design-system-styles/<bundle>.<extension>';`}
   language="scss"
 />
 
@@ -32,7 +32,7 @@ Import one of our stylesheets into your project (for example into your `/src/sty
   <table className="table">
     <thead>
       <tr>
-        <th>&lt;bundle-name&gt;</th>
+        <th>&lt;bundle&gt;</th>
         <th>&lt;extension&gt;</th>
         <th>Description</th>
       </tr>
@@ -41,22 +41,22 @@ Import one of our stylesheets into your project (for example into your `/src/sty
       <tr>
         <td>`post-default`</td>
         <td>`css`, `scss`</td>
-        <td>everything for internet-facing applications</td>
+        <td>Full styles for public websites focused on reading and browsing</td>
       </tr>
       <tr>
         <td>`post-compact`</td>
         <td>`css`, `scss`</td>
-        <td>everything for internal applications</td>
+        <td>Full styles for public or internal applications</td>
       </tr>
       <tr>
         <td>`post-condensed`</td>
         <td>`css`, `scss`</td>
-        <td>everything for internal applications with information-dense interfaces</td>
+        <td>Full styles for information-dense internal applications</td>
       </tr>
       <tr>
         <td>`basics`</td>
         <td>`css`, `scss`</td>
-        <td>atomic styles for font, buttons, lists, etc. (no component styles)</td>
+        <td>Base styles for typography, buttons, lists, etc. (excludes components)</td>
       </tr>
     </tbody>
   </table>
@@ -64,12 +64,12 @@ Import one of our stylesheets into your project (for example into your `/src/sty
 
 ### Variables, mixins, functions and placeholders
 
-Use the SCSS core for your custom styles and make sure you're always using the most up to date definitions:
+Use the SCSS core for your custom styles and make sure you're always using the most up-to-date definitions:
+
+<Source code={SampleVariable} language="scss" />
 
 <post-banner class="mb-16">
   NOTE: The core file itself, does not produce any CSS output. It only contains variables, functions
   and mixins.
 </post-banner>
-
-  <Source code={SampleVariable} language="scss" />
 </PackageDocs>
