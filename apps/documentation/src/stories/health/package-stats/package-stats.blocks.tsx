@@ -3,6 +3,7 @@ import {
   type AgChartOptions,
   BarSeriesModule,
   CategoryAxisModule,
+  CrossLinesModule,
   LegendModule,
   LineSeriesModule,
   ModuleRegistry,
@@ -19,6 +20,7 @@ ModuleRegistry.registerModules([
   CategoryAxisModule,
   TimeAxisModule,
   LegendModule,
+  CrossLinesModule,
 ]);
 
 // --- Types ---
@@ -441,7 +443,7 @@ const DownloadsPerVersionChart: React.FC<{
           yKey: 'downloads',
           yName: 'Downloads',
           label: {
-            color: 'var(--post-current-fg)',
+            color: getCurrentForegroundColor(),
             placement: 'outside-end',
             formatter: ({ value }) => {
               if (value >= 1000000) return `${(value / 1000000).toFixed(1)}M`;
@@ -510,6 +512,12 @@ const formatDate = (date: string, locale: string) =>
 
 /** Format a number using the shared locale options. */
 const formatNumber = (value: number, locale: string) => value.toLocaleString(locale, NUMBER_FORMAT);
+
+/** Resolve the current foreground token because AG Charts requires a concrete color value. */
+const getCurrentForegroundColor = () =>
+  (typeof document !== 'undefined' &&
+    getComputedStyle(document.body).getPropertyValue('--post-current-fg').trim()) ||
+  '#000000';
 
 /** Get the number of days in a given year. */
 const daysInYear = (year: number) => (new Date(year, 1, 29).getMonth() === 1 ? 366 : 365);

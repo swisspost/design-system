@@ -6,6 +6,7 @@ import {
   BUDDHIST_CALENDAR_LOCALES,
   DateValue,
   FALLBACK_LANGUAGE_CODE,
+  getFocusableChildren,
   getLocaleTextDirection,
   IsoDate,
   isValidLocale,
@@ -405,7 +406,8 @@ export class PostDatePicker {
         cell =>
           Number(cell.dataset.date) === date.getDate() &&
           Number(cell.dataset.month) === date.getMonth() &&
-          Number(cell.dataset.year) === date.getFullYear(),
+          Number(cell.dataset.year) === date.getFullYear() &&
+          !cell.classList.contains('-other-month-'),
       );
 
       if (!target) {
@@ -556,35 +558,34 @@ export class PostDatePicker {
   }
 
   /**
-   * Loop through the date picker when not in inline mode
+   * Traps focus inside the calendar popover (not used in inline mode) by always taking over Tab handling, 
+   * so focus can't escape even while a grid cell is briefly untabbable mid-render.
    */
   private handleTab = (e: KeyboardEvent) => {
     if (this.inline || (e.key !== 'Tab' && e.key !== 'Escape')) return;
 
-    // Focus on the input when escaping the calendar
+    // Explicitly close the popover on Escape
     if (e.key === 'Escape') {
+      this.popoverRef?.hide();
       this.dpInput.focus();
+      return;
     }
+
+    const focusable = getFocusableChildren(this.dpContainer);
+    if (focusable.length === 0) return;
 
     const active = this.host.shadowRoot.activeElement as HTMLElement;
+    const activeIndex = focusable.indexOf(active);
 
-    if (active === this.titleBtn && e.shiftKey) {
-      e.preventDefault();
-      const activeCell = this.getCells().find(c => c.tabIndex === 0);
-      if (activeCell) {
-        activeCell.focus();
-      }
-    }
+    // Focus is outside the tracked elements, let the browser handle it
+    if (activeIndex === -1) return;
 
-    if (active?.getAttribute('role') === 'gridcell' && !e.shiftKey) {
-      e.preventDefault();
+    e.preventDefault();
+    const nextIndex = e.shiftKey
+      ? (activeIndex - 1 + focusable.length) % focusable.length
+      : (activeIndex + 1) % focusable.length;
 
-      if (this.currentViewType === 'years') {
-        this.prevBtn.focus();
-      } else {
-        this.titleBtn.focus();
-      }
-    }
+    focusable[nextIndex].focus();
   };
 
   /**
