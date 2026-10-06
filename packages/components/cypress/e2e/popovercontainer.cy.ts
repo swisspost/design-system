@@ -1,16 +1,16 @@
 import {
   AnchorPosition,
   getPopoverElement,
-  getTriggerElement,
+  getAnchorElement,
   popoverShouldBeClosed,
   popoverShouldBeOnSide,
   popoverShouldBeOpen,
   popoverShouldFitInViewport,
   popoverShouldScrollInternally,
-  positionTrigger,
+  positionAnchor,
   preparePopoverContext,
-  scrollTrigger,
-  scrollTriggerWithin,
+  scrollAnchor,
+  scrollAnchorWithin,
 } from './helper/popovercontainer';
 import { getBoundingRect } from './utils/element';
 import { Placement, Side, sides } from '@floating-ui/utils';
@@ -23,7 +23,7 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('should open and close through interaction', () => {
-      cy.get('@trigger').click();
+      cy.get('@anchor').click();
       popoverShouldBeOpen();
 
       cy.get('@popover').find('post-closebutton').click();
@@ -31,22 +31,22 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('should open and close through API calls', () => {
-      let trigger: HTMLButtonElement;
+      let anchor: HTMLButtonElement;
       let popover: HTMLPostPopoverElement;
 
-      getTriggerElement().then(element => (trigger = element));
+      getAnchorElement().then(element => (anchor = element));
       getPopoverElement().then(element => (popover = element));
 
-      cy.then(() => popover.show(trigger));
+      cy.then(() => popover.show(anchor));
       popoverShouldBeOpen();
 
       cy.wait(10).then(() => popover.hide());
       popoverShouldBeClosed();
 
-      cy.wait(10).then(() => popover.toggle(trigger));
+      cy.wait(10).then(() => popover.toggle(anchor));
       popoverShouldBeOpen();
 
-      cy.wait(10).then(() => popover.toggle(trigger));
+      cy.wait(10).then(() => popover.toggle(anchor));
       popoverShouldBeClosed();
     });
   });
@@ -62,10 +62,10 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
 
     function runScenario(id: string, scenario: Scenario) {
       preparePopoverContext(id);
-      positionTrigger(scenario.position);
+      positionAnchor(scenario.position);
 
       cy.get('@popover').invoke('attr', 'placement', scenario.placement);
-      cy.get('@trigger').click({ scrollBehavior: false });
+      cy.get('@anchor').click({ scrollBehavior: false });
 
       popoverShouldBeOpen();
       popoverShouldBeOnSide(scenario.side);
@@ -142,10 +142,10 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
 
       sides.forEach(side => {
         it(`should be limited to the viewport and scroll internally when placed on "${side}"`, () => {
-          positionTrigger();
+          positionAnchor();
 
           cy.get('@popover').invoke('attr', 'placement', side);
-          cy.get('@trigger').click({ scrollBehavior: false });
+          cy.get('@anchor').click({ scrollBehavior: false });
 
           popoverShouldBeOpen();
           popoverShouldFitInViewport();
@@ -153,21 +153,21 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
         });
       });
 
-      it('should keep fitting into the viewport while the trigger moves', () => {
+      it('should keep fitting into the viewport while the anchor moves', () => {
         cy.scrollTo(0, 400);
-        positionTrigger({ y: 'top' });
+        positionAnchor({ y: 'top' });
 
         cy.get('@popover').invoke('attr', 'placement', 'bottom');
-        cy.get('@trigger').click({ scrollBehavior: false });
+        cy.get('@anchor').click({ scrollBehavior: false });
 
         popoverShouldBeOpen();
         popoverShouldFitInViewport();
 
-        // Scroll up, moving the trigger down and reducing the space available below it.
+        // Scroll up, moving the anchor down and reducing the space available below it.
         cy.scrollTo(0, 200);
 
         popoverShouldBeOpen();
-        // Wait for the popover to follow the trigger before checking its size.
+        // Wait for the popover to follow the anchor before checking its size.
         popoverShouldBeOnSide('bottom');
         popoverShouldFitInViewport();
         popoverShouldScrollInternally('@scrollable');
@@ -178,10 +178,10 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
       beforeEach(() => prepareSizingContext('fitting'));
 
       it('should not be resized when its content fits', () => {
-        positionTrigger({ y: 'top' });
+        positionAnchor({ y: 'top' });
 
         cy.get('@popover').invoke('attr', 'placement', 'bottom');
-        cy.get('@trigger').click({ scrollBehavior: false });
+        cy.get('@anchor').click({ scrollBehavior: false });
 
         popoverShouldBeOpen();
 
@@ -200,35 +200,35 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
     describe('outside the header', () => {
       beforeEach(() => preparePopoverContext('page'));
 
-      it('should stay open while the trigger is partially covered by the header', () => {
-        cy.get('@trigger').click();
+      it('should stay open while the anchor is partially covered by the header', () => {
+        cy.get('@anchor').click();
         popoverShouldBeOpen();
 
-        getBoundingRect('post-header').then(rect => scrollTrigger('across', rect.bottom));
+        getBoundingRect('post-header').then(rect => scrollAnchor('across', rect.bottom));
         popoverShouldBeOpen();
       });
 
-      it('should close once the trigger is fully covered by the header', () => {
-        cy.get('@trigger').click();
+      it('should close once the anchor is fully covered by the header', () => {
+        cy.get('@anchor').click();
         popoverShouldBeOpen();
 
-        getBoundingRect('post-header').then(rect => scrollTrigger('above', rect.bottom));
+        getBoundingRect('post-header').then(rect => scrollAnchor('above', rect.bottom));
         popoverShouldBeClosed();
       });
 
-      it('should stay open while the trigger is partially outside the viewport', () => {
-        cy.get('@trigger').click();
+      it('should stay open while the anchor is partially outside the viewport', () => {
+        cy.get('@anchor').click();
         popoverShouldBeOpen();
 
-        cy.window().then(window => scrollTrigger('across', window.innerHeight));
+        cy.window().then(window => scrollAnchor('across', window.innerHeight));
         popoverShouldBeOpen();
       });
 
-      it('should close once the trigger is fully outside the viewport', () => {
-        cy.get('@trigger').click();
+      it('should close once the anchor is fully outside the viewport', () => {
+        cy.get('@anchor').click();
         popoverShouldBeOpen();
 
-        cy.window().then(window => scrollTrigger('below', window.innerHeight));
+        cy.window().then(window => scrollAnchor('below', window.innerHeight));
         popoverShouldBeClosed();
       });
     });
@@ -237,7 +237,7 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
       beforeEach(() => preparePopoverContext('header'));
 
       it('should open and close through interaction', () => {
-        cy.get('@trigger').click();
+        cy.get('@anchor').click();
         popoverShouldBeOpen();
 
         cy.get('@popover').find('post-closebutton').click();
@@ -245,7 +245,7 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
       });
 
       it('should stay open while scrolling, as the header does not affect its own content', () => {
-        cy.get('@trigger').click();
+        cy.get('@anchor').click();
         popoverShouldBeOpen();
 
         cy.scrollTo('bottom');
@@ -260,46 +260,46 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
       });
 
       it('should open and close through interaction', () => {
-        cy.get('@trigger').click({ scrollBehavior: 'center' });
+        cy.get('@anchor').click({ scrollBehavior: 'center' });
         popoverShouldBeOpen();
 
         cy.get('@popover').find('post-closebutton').click();
         popoverShouldBeClosed();
       });
 
-      it("should stay open while the trigger is partially outside the container's scrollport", () => {
-        cy.get('@trigger').click({ scrollBehavior: 'center' });
+      it("should stay open while the anchor is partially outside the container's scrollport", () => {
+        cy.get('@anchor').click({ scrollBehavior: 'center' });
         popoverShouldBeOpen();
 
         getBoundingRect('@scrollable').then(rect =>
-          scrollTriggerWithin('@scrollable', 'across', rect.bottom),
+          scrollAnchorWithin('@scrollable', 'across', rect.bottom),
         );
         popoverShouldBeOpen();
       });
 
-      it("should close once the trigger is fully outside the container's scrollport", () => {
-        cy.get('@trigger').click({ scrollBehavior: 'center' });
+      it("should close once the anchor is fully outside the container's scrollport", () => {
+        cy.get('@anchor').click({ scrollBehavior: 'center' });
         popoverShouldBeOpen();
 
         getBoundingRect('@scrollable').then(rect =>
-          scrollTriggerWithin('@scrollable', 'above', rect.bottom),
+          scrollAnchorWithin('@scrollable', 'above', rect.bottom),
         );
         popoverShouldBeOpen();
       });
 
-      it('should stay open while the trigger and its container are partially outside the viewport', () => {
-        cy.get('@trigger').click({ scrollBehavior: 'center' });
+      it('should stay open while the anchor and its container are partially outside the viewport', () => {
+        cy.get('@anchor').click({ scrollBehavior: 'center' });
         popoverShouldBeOpen();
 
-        cy.window().then(window => scrollTrigger('across', window.innerHeight));
+        cy.window().then(window => scrollAnchor('across', window.innerHeight));
         popoverShouldBeOpen();
       });
 
-      it('should close once the trigger and its container are fully outside the viewport', () => {
-        cy.get('@trigger').click({ scrollBehavior: 'center' });
+      it('should close once the anchor and its container are fully outside the viewport', () => {
+        cy.get('@anchor').click({ scrollBehavior: 'center' });
         popoverShouldBeOpen();
 
-        cy.window().then(window => scrollTrigger('below', window.innerHeight));
+        cy.window().then(window => scrollAnchor('below', window.innerHeight));
         popoverShouldBeClosed();
       });
     });
@@ -316,39 +316,39 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
       });
 
       it('should open and close through interaction', () => {
-        cy.get('@trigger').click();
+        cy.get('@anchor').click();
         popoverShouldBeOpen();
 
         cy.get('@popover').find('post-closebutton').click();
         popoverShouldBeClosed();
       });
 
-      it('should stay open when the trigger overlaps the header, as the dialog is on the top layer', () => {
-        cy.get('@trigger').click();
+      it('should stay open when the anchor overlaps the header, as the dialog is on the top layer', () => {
+        cy.get('@anchor').click();
         popoverShouldBeOpen();
 
         getBoundingRect('@scrollable').then(rect =>
-          scrollTriggerWithin('@scrollable', 'below', rect.top),
+          scrollAnchorWithin('@scrollable', 'below', rect.top),
         );
         popoverShouldBeOpen();
       });
 
-      it("should stay open while the trigger is partially outside the dialog's scrollport", () => {
-        cy.get('@trigger').click();
+      it("should stay open while the anchor is partially outside the dialog's scrollport", () => {
+        cy.get('@anchor').click();
         popoverShouldBeOpen();
 
         getBoundingRect('@scrollable').then(rect =>
-          scrollTriggerWithin('@scrollable', 'across', rect.bottom),
+          scrollAnchorWithin('@scrollable', 'across', rect.bottom),
         );
         popoverShouldBeOpen();
       });
 
-      it("should close once the trigger is fully outside the dialog's scrollport", () => {
-        cy.get('@trigger').click();
+      it("should close once the anchor is fully outside the dialog's scrollport", () => {
+        cy.get('@anchor').click();
         popoverShouldBeOpen();
 
         getBoundingRect('@scrollable').then(rect =>
-          scrollTriggerWithin('@scrollable', 'below', rect.bottom),
+          scrollAnchorWithin('@scrollable', 'below', rect.bottom),
         );
         popoverShouldBeClosed();
       });

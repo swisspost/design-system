@@ -20,29 +20,30 @@ export const POPOVER_OPEN_SELECTOR = String.raw`post-popovercontainer:popover-op
  *
  * Registers the following aliases, all derived from `id`:
  *  - `@popover`: the `post-popover` element, once hydrated
- *  - `@trigger`: the button rendered inside the `post-popover-trigger` element, once hydrated
+ *  - `@popovercontainer`: the `post-popovercontainer` element rendered by `@popover`
+ *  - `@anchor`: the button rendered inside the `post-popover-trigger` element, once hydrated
  *  - `@content`: the content projected into the popover
  *
  * Asserts that the popover starts out closed, so every test begins from a known state.
  */
 export function preparePopoverContext(id: string) {
   cy.get(`#popover-${id}[data-hydrated]`).as('popover');
-  cy.get('@popover').find('post-popovercontainer').as('floating');
-  cy.get(`#popover-${id}-trigger[data-hydrated]`).children().first().as('trigger');
+  cy.get('@popover').find('post-popovercontainer').as('popovercontainer');
+  cy.get(`#popover-${id}-trigger[data-hydrated]`).children().first().as('anchor');
   cy.get(`#popover-${id}-content`).as('content');
 
   popoverShouldBeClosed();
 }
 
-/** Yields the `post-popovercontainer` DOM element for `@floating`. */
-export const getFloatingElement = () =>
-  cy.get<JQuery<HTMLPostPopovercontainerElement>>('@floating').its(0);
+/** Yields the `post-popovercontainer` DOM element for `@popovercontainer`. */
+export const getPopovercontainerElement = () =>
+  cy.get<JQuery<HTMLPostPopovercontainerElement>>('@popovercontainer').its(0);
 
 /** Yields the `post-popover` DOM element for `@popover`. */
 export const getPopoverElement = () => cy.get<JQuery<HTMLPostPopoverElement>>('@popover').its(0);
 
-/** Yields the DOM element for `@trigger`. */
-export const getTriggerElement = () => cy.get<JQuery<HTMLButtonElement>>('@trigger').its(0);
+/** Yields the DOM element for `@anchor`. */
+export const getAnchorElement = () => cy.get<JQuery<HTMLButtonElement>>('@anchor').its(0);
 
 /**
  * Asserts that `@popover` is open, and its `@content` is visible.
@@ -61,27 +62,27 @@ export function popoverShouldBeClosed() {
 }
 
 /**
- * Asserts that `@popover` is positioned on the given `side` of `@trigger`.
+ * Asserts that `@popover` is positioned on the given `side` of `@anchor`.
  */
 export function popoverShouldBeOnSide(side: Side) {
-  getTriggerElement().then(trigger => {
-    getFloatingElement().should(floating => {
-      const triggerRect = trigger.getBoundingClientRect();
-      const floatingRect = floating.getBoundingClientRect();
+  getAnchorElement().then(anchor => {
+    getPopovercontainerElement().should(popover => {
+      const anchorRect = anchor.getBoundingClientRect();
+      const popoverRect = popover.getBoundingClientRect();
 
       if (side == 'top') {
-        expect(floatingRect.bottom).to.be.lessThanOrEqual(triggerRect.top + TOLERANCE);
+        expect(popoverRect.bottom).to.be.lessThanOrEqual(anchorRect.top + TOLERANCE);
       } else if (side == 'bottom') {
-        expect(floatingRect.top).to.be.greaterThanOrEqual(triggerRect.bottom - TOLERANCE);
+        expect(popoverRect.top).to.be.greaterThanOrEqual(anchorRect.bottom - TOLERANCE);
       } else if (side == 'left') {
-        expect(floatingRect.right).to.be.lessThanOrEqual(triggerRect.left + TOLERANCE);
+        expect(popoverRect.right).to.be.lessThanOrEqual(anchorRect.left + TOLERANCE);
       } else if (side == 'right') {
-        expect(floatingRect.left).to.be.greaterThanOrEqual(triggerRect.right - TOLERANCE);
+        expect(popoverRect.left).to.be.greaterThanOrEqual(anchorRect.right - TOLERANCE);
       }
     });
   });
 
-  cy.get('@floating').find('.arrow').should('have.attr', 'data-side', side);
+  cy.get('@popovercontainer').find('.arrow').should('have.attr', 'data-side', side);
 }
 
 /**
@@ -92,14 +93,14 @@ export function popoverShouldFitInViewport() {
     const { clientWidth, clientHeight } = window.document.documentElement;
 
     getBoundingRect('post-header').then(headerRect => {
-      getFloatingElement().should(floating => {
-        const padding = floating.edgeGap ?? 0;
-        const floatingRect = floating.getBoundingClientRect();
+      getPopovercontainerElement().should(popover => {
+        const padding = popover.edgeGap ?? 0;
+        const popoverRect = popover.getBoundingClientRect();
 
-        expect(floatingRect.top, 'top').to.be.at.least(headerRect.bottom + padding - TOLERANCE);
-        expect(floatingRect.left, 'left').to.be.at.least(padding - TOLERANCE);
-        expect(floatingRect.bottom, 'bottom').to.be.at.most(clientHeight - padding + TOLERANCE);
-        expect(floatingRect.right, 'right').to.be.at.most(clientWidth - padding + TOLERANCE);
+        expect(popoverRect.top, 'top').to.be.at.least(headerRect.bottom + padding - TOLERANCE);
+        expect(popoverRect.left, 'left').to.be.at.least(padding - TOLERANCE);
+        expect(popoverRect.bottom, 'bottom').to.be.at.most(clientHeight - padding + TOLERANCE);
+        expect(popoverRect.right, 'right').to.be.at.most(clientWidth - padding + TOLERANCE);
       });
     });
   });
@@ -126,16 +127,16 @@ export function popoverShouldScrollInternally(selector: string) {
 }
 
 /**
- * Specifies where `@trigger` should end up relative to a horizontal line after scrolling.
+ * Specifies where `@anchor` should end up relative to a horizontal line after scrolling.
  */
 export type ScrollPosition = 'above' | 'below' | 'across';
 
 /**
- * Computes the distance the page or a container has to be scrolled to move `@trigger` to the
+ * Computes the distance the page or a container has to be scrolled to move `@anchor` to the
  * requested `position` relative to the line at viewport coordinate `y`.
  */
-function getTriggerScrollDistance(position: ScrollPosition, y: number) {
-  return getBoundingRect('@trigger').then(rect => {
+function getAnchorScrollDistance(position: ScrollPosition, y: number) {
+  return getBoundingRect('@anchor').then(rect => {
     if (position === 'above') return rect.bottom - y + 1;
     if (position === 'below') return rect.top - y - 1;
     return rect.top + rect.height / 2 - y;
@@ -143,21 +144,21 @@ function getTriggerScrollDistance(position: ScrollPosition, y: number) {
 }
 
 /**
- * Scrolls the window to move `@trigger` to the requested `position` relative to the line at
+ * Scrolls the window to move `@anchor` to the requested `position` relative to the line at
  * viewport coordinate `y`.
  */
-export function scrollTrigger(position: ScrollPosition, y: number) {
-  getTriggerScrollDistance(position, y).then(distance => {
+export function scrollAnchor(position: ScrollPosition, y: number) {
+  getAnchorScrollDistance(position, y).then(distance => {
     cy.window().then(window => cy.scrollTo(0, window.scrollY + distance));
   });
 }
 
 /**
- * Scrolls the container matched by `selector` to move `@trigger` to the requested `position`
+ * Scrolls the container matched by `selector` to move `@anchor` to the requested `position`
  * relative to the line at viewport coordinate `y`.
  */
-export function scrollTriggerWithin(selector: string, position: ScrollPosition, y: number) {
-  getTriggerScrollDistance(position, y).then(distance => {
+export function scrollAnchorWithin(selector: string, position: ScrollPosition, y: number) {
+  getAnchorScrollDistance(position, y).then(distance => {
     cy.get(selector)
       .its(0)
       .then(element => cy.get(selector).scrollTo(0, element.scrollTop + distance));
@@ -165,7 +166,7 @@ export function scrollTriggerWithin(selector: string, position: ScrollPosition, 
 }
 
 /**
- * Specifies where `@trigger` should be placed within the safe area of the viewport.
+ * Specifies where `@anchor` should be placed within the safe area of the viewport.
  */
 export interface AnchorPosition {
   x?: 'left' | 'center' | 'right';
@@ -173,15 +174,15 @@ export interface AnchorPosition {
 }
 
 /**
- * Moves `@trigger` to the given `position` within the safe area of the viewport.
+ * Moves `@anchor` to the given `position` within the safe area of the viewport.
  */
-export function positionTrigger(position?: AnchorPosition) {
+export function positionAnchor(position?: AnchorPosition) {
   cy.window().then(window => {
     const { clientWidth, clientHeight } = window.document.documentElement;
 
     getBoundingRect('post-header').then(headerRect => {
-      getTriggerElement().then(trigger => {
-        const { width, height } = trigger.getBoundingClientRect();
+      getAnchorElement().then(anchor => {
+        const { width, height } = anchor.getBoundingClientRect();
 
         let top: number, left: number;
 
@@ -193,8 +194,8 @@ export function positionTrigger(position?: AnchorPosition) {
         else if (position?.y === 'bottom') top = clientHeight - height;
         else top = (headerRect.bottom + clientHeight - height) / 2;
 
-        trigger.style.top = `${window.scrollY + top}px`;
-        trigger.style.left = `${window.scrollX + left}px`;
+        anchor.style.top = `${window.scrollY + top}px`;
+        anchor.style.left = `${window.scrollX + left}px`;
       });
     });
   });
