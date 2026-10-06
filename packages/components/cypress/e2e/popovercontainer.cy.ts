@@ -11,8 +11,9 @@ import {
   scrollTriggerWithin,
   popoverShouldBeOnSide,
   popoverShouldFitInViewport,
+  popoverShouldScrollInternally,
 } from './helper/popovercontainer';
-import { Placement, Side } from '@floating-ui/utils';
+import { Placement, Side, sides } from '@floating-ui/utils';
 
 describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
   describe('default', () => {
@@ -68,10 +69,10 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
 
     describe('preferred side', () => {
       const scenarios: Scenario[] = [
-        { placement: 'top', position: { x: 'left' }, side: 'right' },
-        { placement: 'top', position: { x: 'right' }, side: 'left' },
-        { placement: 'bottom', position: { x: 'left' }, side: 'right' },
-        { placement: 'bottom', position: { x: 'right' }, side: 'left' },
+        { placement: 'top', position: { y: 'bottom' }, side: 'top' },
+        { placement: 'bottom', position: { y: 'top' }, side: 'bottom' },
+        { placement: 'left', position: { x: 'right' }, side: 'left' },
+        { placement: 'right', position: { x: 'left' }, side: 'right' },
       ];
 
       scenarios.forEach(scenario => {
@@ -82,10 +83,10 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
 
     describe('opposite side', () => {
       const scenarios: Scenario[] = [
-        { placement: 'left', position: { y: 'top' }, side: 'bottom' },
-        { placement: 'left', position: { y: 'bottom' }, side: 'top' },
-        { placement: 'right', position: { y: 'top' }, side: 'bottom' },
-        { placement: 'right', position: { y: 'bottom' }, side: 'top' },
+        { placement: 'top', position: { y: 'top' }, side: 'bottom' },
+        { placement: 'bottom', position: { y: 'bottom' }, side: 'top' },
+        { placement: 'left', position: { x: 'left' }, side: 'right' },
+        { placement: 'right', position: { x: 'right' }, side: 'left' },
       ];
 
       scenarios.forEach(scenario => {
@@ -119,6 +120,69 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
       scenarios.forEach(scenario => {
         it(`should flip from "${scenario.placement}" to "${scenario.side}" when there is not enough space on either side`, () =>
           runScenario('placement-full-width', scenario));
+      });
+    });
+  });
+
+  describe('sizing', () => {
+    function prepareSizingContext(id: string) {
+      preparePopoverContext(id);
+      cy.get('@popover').find('.popover-container').as('scrollable');
+    }
+
+    describe('with overflowing content', () => {
+      beforeEach(() => prepareSizingContext('sizing'));
+
+      sides.forEach(side => {
+        it(`should be limited to the viewport and scroll internally when placed on "${side}"`, () => {
+          positionTrigger();
+
+          cy.get('@popover').invoke('attr', 'placement', side);
+          cy.get('@trigger').click({ scrollBehavior: false });
+
+          popoverShouldBeOpen();
+          popoverShouldFitInViewport();
+          popoverShouldScrollInternally('@scrollable');
+        });
+      });
+
+      it('should keep fitting into the viewport while the trigger moves', () => {
+        cy.scrollTo(0, 400);
+        positionTrigger({ y: 'top' });
+
+        cy.get('@popover').invoke('attr', 'placement', 'bottom');
+        cy.get('@trigger').click({ scrollBehavior: false });
+
+        popoverShouldBeOpen();
+        popoverShouldFitInViewport();
+
+        // Scroll up, moving the trigger down and reducing the space available below it.
+        cy.scrollTo(0, 200);
+
+        popoverShouldBeOpen();
+        // Wait for the popover to follow the trigger before checking its size.
+        popoverShouldBeOnSide('bottom');
+        popoverShouldFitInViewport();
+        popoverShouldScrollInternally('@scrollable');
+      });
+    });
+
+    describe('with fitting content', () => {
+      beforeEach(() => prepareSizingContext('placement'));
+
+      it('should not be resized when its content fits', () => {
+        positionTrigger({ y: 'top' });
+
+        cy.get('@popover').invoke('attr', 'placement', 'bottom');
+        cy.get('@trigger').click({ scrollBehavior: false });
+
+        popoverShouldBeOpen();
+
+        cy.get('@scrollable')
+          .its(0)
+          .should(element => {
+            expect(element.scrollHeight, 'scrollHeight').to.equal(element.clientHeight);
+          });
       });
     });
   });

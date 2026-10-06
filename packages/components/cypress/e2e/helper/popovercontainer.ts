@@ -73,8 +73,11 @@ function getSide(trigger: DOMRect, floating: DOMRect): Side | null {
  * Asserts that `@popover` is positioned on the given `side` of `@trigger`.
  */
 export function popoverShouldBeOnSide(side: Side) {
-  getBoundingRect('@trigger').then(triggerRect => {
-    getBoundingRect('@floating').then(floatingRect => {
+  // Positions are updated asynchronously (e.g. after scrolling), so the assertions must retry.
+  getTriggerElement().then(trigger => {
+    cy.get('@floating').should($floating => {
+      const triggerRect = trigger.getBoundingClientRect();
+      const floatingRect = $floating[0].getBoundingClientRect();
       expect(getSide(triggerRect, floatingRect), 'side').to.equal(side);
     });
   });
@@ -82,22 +85,41 @@ export function popoverShouldBeOnSide(side: Side) {
   cy.get('@floating').find('.arrow').should('have.attr', 'data-side', side);
 }
 
+/**
+ * Asserts that `@popover` fits within the safe area of the viewport, respecting its `edgeGap`.
+ */
 export function popoverShouldFitInViewport() {
-  getBoundingRect('post-header').then(headerRect => {
-    cy.window().then(window => {
-      const { clientWidth, clientHeight } = window.document.documentElement;
+  cy.get<JQuery<HTMLPostPopovercontainerElement>>('@floating').should($floating => {
+    const floating = $floating[0];
+    const { documentElement } = floating.ownerDocument;
+    const { clientWidth, clientHeight } = documentElement;
+    const headerRect = floating.ownerDocument.querySelector('post-header').getBoundingClientRect();
 
-      cy.get<JQuery<HTMLPostPopovercontainerElement>>('@floating')
-        .its(0)
-        .then(floating => {
-          const edgeGap = floating.edgeGap ?? 0;
-          const floatingRect = floating.getBoundingClientRect();
+    const edgeGap = floating.edgeGap ?? 0;
+    const floatingRect = floating.getBoundingClientRect();
 
-          expect(floatingRect.top, 'top').to.be.at.least(headerRect.bottom + edgeGap - TOLERANCE);
-          expect(floatingRect.left, 'left').to.be.at.least(edgeGap - TOLERANCE);
-          expect(floatingRect.bottom, 'bottom').to.be.at.most(clientHeight - edgeGap + TOLERANCE);
-          expect(floatingRect.right, 'right').to.be.at.most(clientWidth - edgeGap + TOLERANCE);
-        });
+    expect(floatingRect.top, 'top').to.be.at.least(headerRect.bottom + edgeGap - TOLERANCE);
+    expect(floatingRect.left, 'left').to.be.at.least(edgeGap - TOLERANCE);
+    expect(floatingRect.bottom, 'bottom').to.be.at.most(clientHeight - edgeGap + TOLERANCE);
+    expect(floatingRect.right, 'right').to.be.at.most(clientWidth - edgeGap + TOLERANCE);
+  });
+}
+
+/**
+ * Asserts that the scrollable container of `@popover` overflows, and that its `@content` can be
+ * fully revealed by scrolling it to the end.
+ */
+export function popoverShouldScrollInternally(selector: string) {
+  cy.get(selector).should($element => {
+    const element = $element[0];
+    expect(element.scrollHeight, 'scrollHeight').to.be.greaterThan(element.clientHeight);
+  });
+
+  cy.get(selector).scrollTo('bottom', { ensureScrollable: true });
+
+  getBoundingRect(selector).then(scrollableRect => {
+    getBoundingRect('@content').then(contentRect => {
+      expect(contentRect.bottom, 'bottom').to.be.at.most(scrollableRect.bottom + 1);
     });
   });
 }
@@ -152,25 +174,26 @@ export interface AnchorPosition {
 /**
  * Moves `@trigger` to the given `position` within the safe area of the viewport.
  */
-export function positionTrigger(position: AnchorPosition) {
+export function positionTrigger(position?: AnchorPosition) {
   getBoundingRect('post-header').then(headerRect => {
     cy.window().then(window => {
       const { clientWidth, clientHeight } = window.document.documentElement;
 
       getTriggerElement().then(trigger => {
+        trigger.style.position = 'absolute';
+
         const { width, height } = trigger.getBoundingClientRect();
 
         let top: number, left: number;
 
-        if (position.x === 'left') left = 0;
-        else if (position.x === 'right') left = clientWidth - width;
+        if (position?.x === 'left') left = 0;
+        else if (position?.x === 'right') left = clientWidth - width;
         else left = (clientWidth - width) / 2;
 
-        if (position.y === 'top') top = headerRect.bottom;
-        else if (position.y === 'bottom') top = clientHeight - height;
+        if (position?.y === 'top') top = headerRect.bottom;
+        else if (position?.y === 'bottom') top = clientHeight - height;
         else top = (headerRect.bottom + clientHeight - height) / 2;
 
-        trigger.style.position = 'absolute';
         trigger.style.top = `${window.scrollY + top}px`;
         trigger.style.left = `${window.scrollX + left}px`;
       });

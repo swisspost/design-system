@@ -15,6 +15,11 @@
         height: 256px;
       }
 
+      .overflowing-content {
+        width: 128px;
+        height: 200vh;
+      }
+
       .spacer {
         height: 100vh;
       }
@@ -100,6 +105,13 @@
       <button type="button" class="btn btn-secondary full-height">Popover Trigger</button>
       <post-popover text-close="Close" id="popover-placement-full-height">
         <div class="content" id="popover-placement-full-height-content"></div>
+      </post-popover>
+    </post-popover-trigger>
+
+    <post-popover-trigger id="popover-sizing-trigger">
+      <button type="button" class="btn btn-secondary">Popover Trigger</button>
+      <post-popover text-close="Close" id="popover-sizing">
+        <div class="overflowing-content" id="popover-sizing-content"></div>
       </post-popover>
     </post-popover-trigger>
 
