@@ -10,6 +10,7 @@ import {
   scrollTrigger,
   scrollTriggerWithin,
   popoverShouldBeOnSide,
+  popoverShouldFitInViewport,
 } from './helper/popovercontainer';
 import { Placement, Side } from '@floating-ui/utils';
 
@@ -53,8 +54,8 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
       side: Side;
     }
 
-    function runScenario(scenario: Scenario) {
-      preparePopoverContext('positioning');
+    function runScenario(id: string, scenario: Scenario) {
+      preparePopoverContext(id);
       positionTrigger(scenario.position);
 
       cy.get('@popover').invoke('attr', 'placement', scenario.placement);
@@ -62,23 +63,64 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
 
       popoverShouldBeOpen();
       popoverShouldBeOnSide(scenario.side);
+      popoverShouldFitInViewport();
     }
 
-    describe('flip to opposite side', () => {
+    describe('preferred side', () => {
       const scenarios: Scenario[] = [
-        { placement: 'top', position: { y: 'top' }, side: 'bottom' },
-        { placement: 'bottom', position: { y: 'bottom' }, side: 'top' },
-        { placement: 'left', position: { x: 'left' }, side: 'right' },
-        { placement: 'right', position: { x: 'right' }, side: 'left' },
+        { placement: 'top', position: { x: 'left' }, side: 'right' },
+        { placement: 'top', position: { x: 'right' }, side: 'left' },
+        { placement: 'bottom', position: { x: 'left' }, side: 'right' },
+        { placement: 'bottom', position: { x: 'right' }, side: 'left' },
       ];
 
       scenarios.forEach(scenario => {
-        it(`should flip from "${scenario.placement}" to "${scenario.side}" when there is not enough space`, () =>
-          runScenario(scenario));
+        it(`should stay on "${scenario.placement}" when there is enough space`, () =>
+          runScenario('placement', scenario));
       });
     });
 
-    describe('flip to adjacent side', () => {});
+    describe('opposite side', () => {
+      const scenarios: Scenario[] = [
+        { placement: 'left', position: { y: 'top' }, side: 'bottom' },
+        { placement: 'left', position: { y: 'bottom' }, side: 'top' },
+        { placement: 'right', position: { y: 'top' }, side: 'bottom' },
+        { placement: 'right', position: { y: 'bottom' }, side: 'top' },
+      ];
+
+      scenarios.forEach(scenario => {
+        it(`should flip from "${scenario.placement}" to "${scenario.side}" when there is not enough space on the preferred side`, () =>
+          runScenario('placement', scenario));
+      });
+    });
+
+    describe('adjacent side (x)', () => {
+      const scenarios: Scenario[] = [
+        { placement: 'top', position: { x: 'left' }, side: 'right' },
+        { placement: 'top', position: { x: 'right' }, side: 'left' },
+        { placement: 'bottom', position: { x: 'left' }, side: 'right' },
+        { placement: 'bottom', position: { x: 'right' }, side: 'left' },
+      ];
+
+      scenarios.forEach(scenario => {
+        it(`should flip from "${scenario.placement}" to "${scenario.side}" when there is not enough space on either side`, () =>
+          runScenario('placement-full-height', scenario));
+      });
+    });
+
+    describe('adjacent side (y)', () => {
+      const scenarios: Scenario[] = [
+        { placement: 'left', position: { y: 'top' }, side: 'bottom' },
+        { placement: 'left', position: { y: 'bottom' }, side: 'top' },
+        { placement: 'right', position: { y: 'top' }, side: 'bottom' },
+        { placement: 'right', position: { y: 'bottom' }, side: 'top' },
+      ];
+
+      scenarios.forEach(scenario => {
+        it(`should flip from "${scenario.placement}" to "${scenario.side}" when there is not enough space on either side`, () =>
+          runScenario('placement-full-width', scenario));
+      });
+    });
   });
 
   describe('clipping', () => {

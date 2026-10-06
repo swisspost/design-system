@@ -1,6 +1,8 @@
 import { getBoundingRect } from '../utils/element';
 import { Side } from '@floating-ui/utils';
 
+const TOLERANCE = 1;
+
 /**
  * A CSS selector that matches an open popover element.
  *
@@ -60,12 +62,10 @@ export function popoverShouldBeClosed() {
  * Returns the side of `trigger` on which `floating` is placed, or `null` if they overlap.
  */
 function getSide(trigger: DOMRect, floating: DOMRect): Side | null {
-  const tolerance = 1;
-
-  if (floating.bottom <= trigger.top + tolerance) return 'top';
-  if (floating.top >= trigger.bottom - tolerance) return 'bottom';
-  if (floating.right <= trigger.left + tolerance) return 'left';
-  if (floating.left >= trigger.right - tolerance) return 'right';
+  if (floating.bottom <= trigger.top + TOLERANCE) return 'top';
+  if (floating.top >= trigger.bottom - TOLERANCE) return 'bottom';
+  if (floating.right <= trigger.left + TOLERANCE) return 'left';
+  if (floating.left >= trigger.right - TOLERANCE) return 'right';
   return null;
 }
 
@@ -76,22 +76,28 @@ export function popoverShouldBeOnSide(side: Side) {
   getBoundingRect('@trigger').then(triggerRect => {
     getBoundingRect('@floating').then(floatingRect => {
       expect(getSide(triggerRect, floatingRect), 'side').to.equal(side);
-      cy.get('@floating').find('.arrow').should('have.attr', 'data-side', side);
     });
   });
+
+  cy.get('@floating').find('.arrow').should('have.attr', 'data-side', side);
 }
 
-export function popoverShouldFitInViewport(edgeGap = 0) {
+export function popoverShouldFitInViewport() {
   getBoundingRect('post-header').then(headerRect => {
     cy.window().then(window => {
       const { clientWidth, clientHeight } = window.document.documentElement;
 
-      getBoundingRect('@floating').then(floatingRect => {
-        expect(floatingRect.top, 'top').to.be.at.least(headerRect.bottom + edgeGap - 1);
-        expect(floatingRect.left, 'left').to.be.at.least(edgeGap - 1);
-        expect(floatingRect.bottom, 'bottom').to.be.at.most(clientHeight - edgeGap + 1);
-        expect(floatingRect.right, 'right').to.be.at.most(clientWidth - edgeGap + 1);
-      });
+      cy.get<JQuery<HTMLPostPopovercontainerElement>>('@floating')
+        .its(0)
+        .then(floating => {
+          const edgeGap = floating.edgeGap ?? 0;
+          const floatingRect = floating.getBoundingClientRect();
+
+          expect(floatingRect.top, 'top').to.be.at.least(headerRect.bottom + edgeGap - TOLERANCE);
+          expect(floatingRect.left, 'left').to.be.at.least(edgeGap - TOLERANCE);
+          expect(floatingRect.bottom, 'bottom').to.be.at.most(clientHeight - edgeGap + TOLERANCE);
+          expect(floatingRect.right, 'right').to.be.at.most(clientWidth - edgeGap + TOLERANCE);
+        });
     });
   });
 }
@@ -135,11 +141,17 @@ export function scrollTriggerWithin(selector: string, position: ScrollPosition, 
   });
 }
 
+/**
+ * Specifies where `@trigger` should be placed within the safe area of the viewport.
+ */
 export interface AnchorPosition {
   x?: 'left' | 'center' | 'right';
   y?: 'top' | 'center' | 'bottom';
 }
 
+/**
+ * Moves `@trigger` to the given `position` within the safe area of the viewport.
+ */
 export function positionTrigger(position: AnchorPosition) {
   getBoundingRect('post-header').then(headerRect => {
     cy.window().then(window => {
