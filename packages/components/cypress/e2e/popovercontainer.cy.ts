@@ -1,13 +1,17 @@
 import { getBoundingRect } from './utils/element';
 import {
+  AnchorPosition,
   getPopoverElement,
   getTriggerElement,
+  positionTrigger,
   popoverShouldBeClosed,
   popoverShouldBeOpen,
   preparePopoverContext,
   scrollTrigger,
   scrollTriggerWithin,
+  popoverShouldBeOnSide,
 } from './helper/popovercontainer';
+import { Placement, Side } from '@floating-ui/utils';
 
 describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
   describe('default', () => {
@@ -40,6 +44,41 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
       cy.wait(10).then(() => popover.toggle(trigger));
       popoverShouldBeClosed();
     });
+  });
+
+  describe('placement', () => {
+    interface Scenario {
+      position: AnchorPosition;
+      placement: Placement;
+      side: Side;
+    }
+
+    function runScenario(scenario: Scenario) {
+      preparePopoverContext('positioning');
+      positionTrigger(scenario.position);
+
+      cy.get('@popover').invoke('attr', 'placement', scenario.placement);
+      cy.get('@trigger').click({ scrollBehavior: false });
+
+      popoverShouldBeOpen();
+      popoverShouldBeOnSide(scenario.side);
+    }
+
+    describe('flip to opposite side', () => {
+      const scenarios: Scenario[] = [
+        { placement: 'top', position: { y: 'top' }, side: 'bottom' },
+        { placement: 'bottom', position: { y: 'bottom' }, side: 'top' },
+        { placement: 'left', position: { x: 'left' }, side: 'right' },
+        { placement: 'right', position: { x: 'right' }, side: 'left' },
+      ];
+
+      scenarios.forEach(scenario => {
+        it(`should flip from "${scenario.placement}" to "${scenario.side}" when there is not enough space`, () =>
+          runScenario(scenario));
+      });
+    });
+
+    describe('flip to adjacent side', () => {});
   });
 
   describe('clipping', () => {

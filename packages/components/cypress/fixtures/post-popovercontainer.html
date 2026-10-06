@@ -10,7 +10,7 @@
     />
     <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
     <style>
-      .popover-body {
+      .content {
         width: 128px;
         height: 256px;
       }
@@ -22,7 +22,7 @@
       .scrollable {
         height: 50vh;
         overflow: scroll;
-        /** Colour the background red, so the scrollable area can be identified in screenshots. */
+        /* Colour the background red, so the scrollable area can be identified in screenshots. */
         background: red;
       }
 
@@ -40,7 +40,7 @@
         <post-popover-trigger id="popover-header-trigger">
           <button type="button" class="btn btn-secondary">Popover Trigger</button>
           <post-popover text-close="Close" id="popover-header">
-            <div class="popover-body" id="popover-header-content"></div>
+            <div class="content" id="popover-header-content"></div>
           </post-popover>
         </post-popover-trigger>
       </div>
@@ -52,7 +52,7 @@
       <post-popover-trigger id="popover-page-trigger">
         <button type="button" class="btn btn-secondary">Popover Trigger</button>
         <post-popover text-close="Close" id="popover-page">
-          <div class="popover-body" id="popover-page-content"></div>
+          <div class="content" id="popover-page-content"></div>
         </post-popover>
       </post-popover-trigger>
 
@@ -64,7 +64,7 @@
         <post-popover-trigger id="popover-scrollable-trigger">
           <button type="button" class="btn btn-secondary">Popover Trigger</button>
           <post-popover text-close="Close" id="popover-scrollable">
-            <div class="popover-body" id="popover-scrollable-content"></div>
+            <div class="content" id="popover-scrollable-content"></div>
           </post-popover>
         </post-popover-trigger>
 
@@ -74,6 +74,13 @@
       <div class="spacer"></div>
     </main>
 
+    <post-popover-trigger id="popover-positioning-trigger">
+      <button type="button" class="btn btn-secondary">Popover Trigger</button>
+      <post-popover text-close="Close" id="popover-positioning">
+        <div class="content" id="popover-positioning-content"></div>
+      </post-popover>
+    </post-popover-trigger>
+
     <dialog id="dialog" data-animation="none">
       <form method="dialog" class="dialog-grid">
         <div class="dialog-body" id="dialog-scrollable">
@@ -82,7 +89,7 @@
           <post-popover-trigger id="popover-dialog-trigger">
             <button type="button" class="btn btn-secondary">Popover Trigger</button>
             <post-popover text-close="Close" id="popover-dialog">
-              <div class="popover-body" id="popover-dialog-content"></div>
+              <div class="content" id="popover-dialog-content"></div>
             </post-popover>
           </post-popover-trigger>
 
