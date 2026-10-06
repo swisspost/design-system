@@ -107,6 +107,7 @@ export const fetchConfig = async (
 const getConfigHosts = (environment: Environment): string[] => {
   const isProd = environment.toUpperCase() === 'PROD';
 
+  // remove `site.post.ch` as soon as the header API is available under `www.post.ch`!
   return isProd ? ['https://site.post.ch', 'https://www.post.ch'] : ['https://int.post.ch'];
 };
 
