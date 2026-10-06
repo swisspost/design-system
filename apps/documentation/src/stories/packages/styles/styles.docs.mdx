@@ -17,9 +17,15 @@ import { PackageShields } from '@root/src/shared/package-shields';
 
 <Source code={`npm install @swisspost/design-system-styles`} language="bash" />
 
+<post-banner class="mb-16">
+The `scss` files in our styling package make use of the latest Sass features.
+If you are planning to compile the `.scss` files in your project, make sure you use an up-to-date version of [Dart Sass](https://sass-lang.com/dart-sass). LibSass or Ruby Sass are not supported.
+If you can not meet this prerequisite, you can still use the precompiled CSS files.
+</post-banner>
+
 ## Usage
 
-Import one of our stylesheets into your project (for example into your `/src/styles.scss` file).
+Import one of our stylesheets into your project:
 
 <Source
   code={`@use '@swisspost/design-system-styles/<bundle>.<extension>';`}
@@ -58,18 +64,18 @@ Import one of our stylesheets into your project (for example into your `/src/sty
         <td>`css`, `scss`</td>
         <td>Base styles for typography, buttons, lists, etc. (excludes components)</td>
       </tr>
+      <tr>
+        <td>`core`</td>
+        <td>`scss`</td>
+        <td>Core definitions including variables, functions, and mixins (no CSS output)</td>
+      </tr>
     </tbody>
   </table>
 </div>
 
-### Variables, mixins, functions and placeholders
+### Variables, functions, and mixins
 
 Use the SCSS core for your custom styles and make sure you're always using the most up-to-date definitions:
 
 <Source code={SampleVariable} language="scss" />
-
-<post-banner class="mb-16">
-  NOTE: The core file itself, does not produce any CSS output. It only contains variables, functions
-  and mixins.
-</post-banner>
 </PackageDocs>
