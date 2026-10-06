@@ -1,5 +1,6 @@
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/functions/env';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/tokens/helpers';
@@ -111,8 +112,8 @@ post-side-navigation {
   nav {
     width: 100%;
     height: var(--post-side-nav-height);
-    padding-block: tokens.get('side-nav-padding-block-start')
-      tokens.get('side-nav-padding-block-end');
+    padding-block-start: tokens.get('side-nav-padding-block-start');
+    padding-block-end: env.safe-area-inset(bottom, tokens.get('side-nav-padding-block-end'));
     overflow-y: auto;
 
     ul {
