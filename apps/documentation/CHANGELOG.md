@@ -1,5 +1,52 @@
 # @swisspost/design-system-documentation
 
+## 6.6.0
+
+### Minor Changes
+
+- Added different page templates for the following errors: 400, 401, 403, 404, 451, 500, 503 and 504.  
+  The previous 404 error page template is now deprecated. (by [@leagrdv](https://github.com/leagrdv) with [#8405](https://github.com/swisspost/design-system/pull/8405))
+
+### Patch Changes
+
+- Updated sample script for self-managed header implementations on which URLs to use when testing on int. (by [@gfellerph](https://github.com/gfellerph) with [#8483](https://github.com/swisspost/design-system/pull/8483))
+
+- Enabled client-side routing in the `post-breadcrumbs` component by allowing a routing-aware `<a>` (e.g. a Next.js `Link`) to be slotted into `post-breadcrumb-item` and the home item, instead of relying on the `url`/`home-url` props, so navigation no longer triggers a full page reload. (by [@alionazherdetska](https://github.com/alionazherdetska), [@Copilot](https://github.com/Copilot) and [@myrtasakellariou](https://github.com/myrtasakellariou) with [#8427](https://github.com/swisspost/design-system/pull/8427))
+
+- Fixed the pre-configured header story not sticking to the top when scrolling in the documentation. (by [@myrtasakellariou](https://github.com/myrtasakellariou) and [@myrta2302](https://github.com/myrta2302) with [#8412](https://github.com/swisspost/design-system/pull/8412))
+
+- Aligned all examples of the `post-side-navigation-trigger` to have a consistent implementation across the documentation. (by [@leagrdv](https://github.com/leagrdv) with [#8469](https://github.com/swisspost/design-system/pull/8469))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.6.0
+  - @swisspost/design-system-components@10.6.0
+  - @swisspost/design-system-styles@10.6.0
+  - @swisspost/internet-header@10.6.0
+  - @swisspost/design-system-components-react@10.6.0
+  - @swisspost/design-system-styles-primeng@10.6.0
+  - @swisspost/design-system-theme-ag-grid@10.6.0
+  - @swisspost/design-system-tokens@10.6.0
+
+## 6.5.0
+
+### Minor Changes
+
+- Published the documentation for the `post-language-menu` and `post-language-menu-item` components. (by [@leagrdv](https://github.com/leagrdv) and [@myrta2302](https://github.com/myrta2302) with [#8350](https://github.com/swisspost/design-system/pull/8350))
+
+- Added the inline notification component. (by [@hugomslv](https://github.com/hugomslv), [@alizedebray](https://github.com/alizedebray) and [@alionazherdetska](https://github.com/alionazherdetska) with [#7400](https://github.com/swisspost/design-system/pull/7400))
+
+### Patch Changes
+
+- chore(documentation): Removed the non-recommended `target="_blank"` from the `post-linkarea` component markup. (by [@myrtasakellariou](https://github.com/myrtasakellariou) with [#8220](https://github.com/swisspost/design-system/pull/8220))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.5.0
+  - @swisspost/design-system-components@10.5.0
+  - @swisspost/internet-header@10.5.0
+  - @swisspost/design-system-styles-primeng@10.5.0
+  - @swisspost/design-system-components-react@10.5.0
+  - @swisspost/design-system-icons@10.5.0
+  - @swisspost/design-system-theme-ag-grid@10.5.0
+  - @swisspost/design-system-tokens@10.5.0
+
 ## 6.4.1
 
 ### Patch Changes

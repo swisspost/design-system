@@ -1,5 +1,24 @@
 # @swisspost/internet-header
 
+## 10.6.0
+
+### Patch Changes
+
+- Fixed the implemented header api origin, so the header config can be loaded also from outside the company network. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#8546](https://github.com/swisspost/design-system/pull/8546))
+
+- Updated URL mapping for KLP subscribe calls for different environments. Testing on int should no longer cause CORS issues. (by [@gfellerph](https://github.com/gfellerph) with [#8483](https://github.com/swisspost/design-system/pull/8483))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.6.0
+  - @swisspost/design-system-styles@10.6.0
+
+## 10.5.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.5.0
+  - @swisspost/design-system-components@10.5.0
+
 ## 10.4.0
 
 ### Patch Changes

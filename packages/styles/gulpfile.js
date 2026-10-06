@@ -12,40 +12,16 @@ const { globSync } = require('glob');
 const options = require('./package.json').sass;
 
 /**
- * Temporary task to copy token files from tokens package to the styles package since
- * pnpm does not correctly install dependencies of dependencies for workspace packages.
- * See https://github.com/pnpm/pnpm/issues/8338 for more information and reproduction
- */
-gulp.task('temporarily-copy-token-files', () => {
-  return gulp.src(['../tokens/dist/**/*.scss']).pipe(gulp.dest('./src/tokens/temp'));
-});
-
-/**
- * Temporary task to copy icon CSS files from icons package to the styles package since
- * pnpm does not correctly install dependencies of dependencies for workspace packages.
- */
-gulp.task('temporarily-copy-icon-files', () => {
-  return gulp.src(['../icons/dist/custom-properties/**/*.css']).pipe(gulp.dest('./src/icons/temp'));
-});
-
-/**
- * Copy icon CSS files to dist folder
- */
-gulp.task('copy-icon-files-to-dist', () => {
-  return gulp.src(['./src/icons/temp/**/*.css']).pipe(gulp.dest(`${options.outputDir}/icons/temp`));
-});
-
-/**
  * Copy task
  */
 gulp.task(
   'copy',
-  gulp.series('copy-icon-files-to-dist', () => {
+  () => {
     return gulp
       .src(['./LICENSE', './README.md', './package.json', './src/**/*.scss'])
       .pipe(newer(options.outputDir))
       .pipe(gulp.dest(options.outputDir));
-  }),
+  },
 );
 
 /**
@@ -181,12 +157,9 @@ gulp.task('sass:dev', () => {
 /**
  * Watch task for scss development
  */
-gulp.task(
-  'watch',
-  gulp.series('temporarily-copy-token-files', 'temporarily-copy-icon-files', () => {
-    return gulp.watch('./src/**/*.scss', gulp.series('copy', 'sass:dev'));
-  }),
-);
+gulp.task('watch', () => {
+  return gulp.watch('./src/**/*.scss', gulp.series('copy', 'sass:dev'));
+});
 
 /**
  * Run copy and sass task in parallel per default
@@ -198,8 +171,6 @@ exports.default = gulp.task(
     gulp.parallel(
       'map-icons',
       gulp.series(
-        'temporarily-copy-token-files',
-        'temporarily-copy-icon-files',
         'copy',
         'transform-package-json',
         'autoprefixer',

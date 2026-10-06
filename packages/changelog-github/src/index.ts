@@ -3,7 +3,7 @@
  * and updated with a custom output format
  */
 
-import { ChangelogFunctions } from '@changesets/types';
+import type { ChangelogFunctions } from '@changesets/types';
 import { config } from 'dotenv';
 
 config();
@@ -355,7 +355,7 @@ function loadCommitInfo(repo: string, commit: string): Promise<CommitInfo> {
 
 const changelogFunctions: ChangelogFunctions = {
   getDependencyReleaseLine: async (_changesets, dependenciesUpdated, options) => {
-    if (!options.repo) {
+    if (!options || !options.repo) {
       throw new Error(
         'Please provide a repo to this changelog generator like this:\n"changelog": ["@changesets/changelog-github", { "repo": "org/repo" }]',
       );
@@ -371,7 +371,8 @@ const changelogFunctions: ChangelogFunctions = {
     return [changesetLink, ...updatedDepenenciesList].join('\n');
   },
   getReleaseLine: async (changeset, _type, options) => {
-    if (!options || !options.repo) {
+    const repo = options?.repo;
+    if (typeof repo !== 'string' || !repo) {
       throw new Error(
         'Please provide a repo to this changelog generator like this:\n"changelog": ["@changesets/changelog-github", { "repo": "org/repo" }]',
       );
@@ -385,7 +386,7 @@ const changelogFunctions: ChangelogFunctions = {
       const commitToFetchFrom = changeset.commit;
       if (commitToFetchFrom) {
         try {
-          return await loadCommitInfo(options.repo, commitToFetchFrom);
+          return await loadCommitInfo(repo, commitToFetchFrom);
         } catch (error) {
           process.stderr.write(
             `\n⚠️ Changelog: could not resolve GitHub info for changeset "${firstLine}" (commit ${commitToFetchFrom}): ${

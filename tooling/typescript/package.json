@@ -1,0 +1,37 @@
+{
+  "name": "@swisspost/design-system-tsconfig",
+  "version": "10.5.0",
+  "description": "Shared TypeScript configurations for the Swiss Post Design System.",
+  "author": "Swiss Post <design-system@post.ch>",
+  "license": "Apache-2.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git",
+    "directory": "tooling/typescript"
+  },
+  "homepage": "https://design-system.post.ch",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
+  "scripts": {
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
+  },
+  "files": [
+    "*.tsconfig.json",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "keywords": [
+    "design-system",
+    "tsconfig",
+    "typescript"
+  ],
+  "devDependencies": {
+    "@swisspost/design-system-prettier-config": "workspace:10.5.0",
+    "prettier": "catalog:"
+  },
+  "prettier": "@swisspost/design-system-prettier-config"
+}

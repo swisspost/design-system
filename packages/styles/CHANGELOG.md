@@ -1,5 +1,37 @@
 # @swisspost/design-system-styles
 
+## 10.6.0
+
+### Minor Changes
+
+- Added different page templates for the following errors: 400, 401, 403, 404, 451, 500, 503 and 504.  
+  The previous 404 error page template is now deprecated. (by [@leagrdv](https://github.com/leagrdv) with [#8405](https://github.com/swisspost/design-system/pull/8405))
+
+### Patch Changes
+
+- Fixed an issue with dev dependencies accidentally installed as dependencies. gulp-sourcemaps is no longer a dependency of the styles packages. (by [@gfellerph](https://github.com/gfellerph) with [#8496](https://github.com/swisspost/design-system/pull/8496))
+
+- Fix select[multiple] when an empty option is present. The floating label no longer covers the empty option. (by [@gfellerph](https://github.com/gfellerph) with [#7948](https://github.com/swisspost/design-system/pull/7948))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.6.0
+  - @swisspost/design-system-tokens@10.6.0
+
+## 10.5.0
+
+### Minor Changes
+
+- Added definitions for italic font styles for Swiss Post Sans. Italicised text will now use the real font instead of slanting the regular one. (by [@gfellerph](https://github.com/gfellerph) with [#8340](https://github.com/swisspost/design-system/pull/8340))
+
+- Added the inline notification component. (by [@hugomslv](https://github.com/hugomslv), [@alizedebray](https://github.com/alizedebray) and [@alionazherdetska](https://github.com/alionazherdetska) with [#7400](https://github.com/swisspost/design-system/pull/7400))
+
+### Patch Changes
+
+- Switched the direction of the stacked toasts in the `.toast-container` to have the newest toasts be always on top. (by [@leagrdv](https://github.com/leagrdv) with [#8395](https://github.com/swisspost/design-system/pull/8395))
+
+- Centered dialog icon with first line of dialog title across devices. (by [@myrtasakellariou](https://github.com/myrtasakellariou) with [#8372](https://github.com/swisspost/design-system/pull/8372))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.5.0
+
 ## 10.4.0
 
 ### Patch Changes

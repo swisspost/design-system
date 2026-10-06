@@ -1,10 +1,18 @@
-$font-base-path: 'https://fonts.post.ch/swiss-post-sans/v1';
+$font-base-path: 'https://fonts.post.ch/swiss-post-sans/v1.1';
 
 @font-face {
   font-family: 'Swiss Post Sans';
   font-weight: 950;
   font-display: swap;
   src: url('#{$font-base-path}/SwissPostSans-ExtraBlack.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Swiss Post Sans';
+  font-style: italic;
+  font-weight: 950;
+  font-display: swap;
+  src: url('#{$font-base-path}/SwissPostSans-ExtraBlackIt.woff2') format('woff2');
 }
 
 @font-face {
@@ -16,6 +24,14 @@ $font-base-path: 'https://fonts.post.ch/swiss-post-sans/v1';
 
 @font-face {
   font-family: 'Swiss Post Sans';
+  font-style: italic;
+  font-weight: 900;
+  font-display: swap;
+  src: url('#{$font-base-path}/SwissPostSans-BlackIt.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Swiss Post Sans';
   font-weight: 700;
   font-display: swap;
   src: url('#{$font-base-path}/SwissPostSans-Bold.woff2') format('woff2');
@@ -23,7 +39,23 @@ $font-base-path: 'https://fonts.post.ch/swiss-post-sans/v1';
 
 @font-face {
   font-family: 'Swiss Post Sans';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url('#{$font-base-path}/SwissPostSans-BoldIt.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Swiss Post Sans';
   font-weight: 400;
   font-display: swap;
   src: url('#{$font-base-path}/SwissPostSans-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Swiss Post Sans';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('#{$font-base-path}/SwissPostSans-RegularIt.woff2') format('woff2');
 }

@@ -365,6 +365,7 @@ export const ApplicationWithSideNavigation: Story = {
   <post-side-navigation-trigger slot="side-nav" for="sidenav">
     <button>
       <post-icon aria-hidden="true" name="burger"></post-icon>
+      Menu
     </button>
   </post-side-navigation-trigger>
   <p slot="title">[Application Title]</p>

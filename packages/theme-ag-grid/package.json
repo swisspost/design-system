@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-theme-ag-grid",
-  "version": "10.4.0",
+  "version": "10.6.0",
   "description": "The Swiss Post Design System theme for AG Grid",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -8,7 +8,8 @@
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/swisspost/design-system.git"
+    "url": "https://github.com/swisspost/design-system.git",
+    "directory": "packages/theme-ag-grid"
   },
   "homepage": "https://design-system.post.ch",
   "bugs": {
@@ -26,7 +27,10 @@
   },
   "private": false,
   "scripts": {
-    "build": "npx tsc"
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "keywords": [
     "design-system",
@@ -38,6 +42,10 @@
     "ag-grid-community": "^33.3.2"
   },
   "devDependencies": {
-    "typescript": "catalog:typescript"
-  }
+    "@swisspost/design-system-prettier-config": "workspace:10.5.0",
+    "@swisspost/design-system-tsconfig": "workspace:10.5.0",
+    "prettier": "catalog:",
+    "typescript": "catalog:"
+  },
+  "prettier": "@swisspost/design-system-prettier-config"
 }

@@ -1,16 +1,13 @@
-import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as ErrorPageStories from './error-page.stories';
 
 <Meta of={ErrorPageStories} />
 
 # Error page template
 
-A generic error page pattern with an image. The image can be exchanged based on the type of error.
-
-## Assets
-
-- <a download href="/images/content/404.png">
-    Download "404 not found" image
-  </a>
+A generic error page pattern. The image is set automatically based on the container class that is set.
 
 <Canvas of={ErrorPageStories.Default} sourceState="shown" />
+<div className="hide-col-default">
+  <Controls of={ErrorPageStories.Default} />
+</div>

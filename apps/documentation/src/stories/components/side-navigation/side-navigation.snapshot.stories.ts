@@ -20,15 +20,13 @@ export const PostSideNavigation: Story = {
       <post-header text-menu="Menu">
         <post-logo slot="post-logo" url="/">Homepage</post-logo>
         <p slot="title">[Application Title]</p>
+        <post-side-navigation-trigger slot="side-nav" for="sidenavigation">
+          <button>
+            <post-icon aria-hidden="true" name="burger"></post-icon>
+            Menu
+          </button>
+        </post-side-navigation-trigger>
         <ul slot="local-nav">
-          <li>
-            <post-side-navigation-trigger for="sidenavigation">
-              <button>
-                <span>Menu</span>
-                <post-icon aria-hidden="true" name="burger"></post-icon>
-              </button>
-            </post-side-navigation-trigger>
-          </li>
           <li>
             <a href="#">
               <span>Search</span>

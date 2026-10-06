@@ -1,12 +1,13 @@
 {
   "name": "@swisspost/design-system-components-angular",
-  "version": "10.4.0",
+  "version": "10.6.0",
   "description": "Swiss Post Design System - Angular Wrapper Components",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/swisspost/design-system.git"
+    "url": "https://github.com/swisspost/design-system.git",
+    "directory": "packages/components-angular"
   },
   "homepage": "https://design-system.post.ch",
   "bugs": {
@@ -24,13 +25,16 @@
   "scripts": {
     "ng": "ng",
     "build": "pnpm clean && ng build components",
+    "typecheck": "tsc --noEmit",
     "postbuild": "copyfiles -f src/stencil-generated/post-components.css dist/",
     "clean": "rimraf dist .angular",
     "lint": "ng lint",
-    "lint:fix": "ng lint --fix"
+    "lint:fix": "ng lint --fix",
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:10.4.0",
+    "@swisspost/design-system-components": "workspace:10.6.0",
     "tslib": "catalog:angular"
   },
   "peerDependencies": {
@@ -47,18 +51,20 @@
     "@angular/compiler-cli": "catalog:angular",
     "@angular/core": "catalog:angular",
     "@angular/forms": "catalog:angular",
-    "@eslint/js": "9.18.0",
+    "@swisspost/design-system-eslint-config": "workspace:10.5.0",
+    "@swisspost/design-system-prettier-config": "workspace:10.5.0",
+    "@swisspost/design-system-tsconfig": "workspace:10.5.0",
     "angular-eslint": "catalog:angular",
     "copyfiles": "2.4.1",
-    "eslint": "9.26.0",
-    "globals": "17.3.0",
+    "eslint": "catalog:",
     "ng-packagr": "catalog:angular",
+    "prettier": "catalog:",
     "rimraf": "6.1.3",
     "rxjs": "catalog:angular",
-    "typescript": "catalog:typescript",
-    "typescript-eslint": "catalog:typescript",
+    "typescript": "catalog:",
     "zone.js": "catalog:angular"
   },
+  "prettier": "@swisspost/design-system-prettier-config",
   "keywords": [
     "angular",
     "design-system",
