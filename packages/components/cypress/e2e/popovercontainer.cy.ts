@@ -1,23 +1,26 @@
-import { getBoundingRect } from './utils/element';
 import {
   AnchorPosition,
   getPopoverElement,
   getTriggerElement,
-  positionTrigger,
   popoverShouldBeClosed,
+  popoverShouldBeOnSide,
   popoverShouldBeOpen,
+  popoverShouldFitInViewport,
+  popoverShouldScrollInternally,
+  positionTrigger,
   preparePopoverContext,
   scrollTrigger,
   scrollTriggerWithin,
-  popoverShouldBeOnSide,
-  popoverShouldFitInViewport,
-  popoverShouldScrollInternally,
 } from './helper/popovercontainer';
+import { getBoundingRect } from './utils/element';
 import { Placement, Side, sides } from '@floating-ui/utils';
 
 describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
   describe('default', () => {
-    beforeEach(() => preparePopoverContext('page'));
+    beforeEach(() => {
+      cy.visit('./cypress/fixtures/post-popovercontainer.html');
+      preparePopoverContext('page');
+    });
 
     it('should open and close through interaction', () => {
       cy.get('@trigger').click();
@@ -49,6 +52,8 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
   });
 
   describe('placement', () => {
+    beforeEach(() => cy.visit('./cypress/fixtures/post-popovercontainer-placement.html'));
+
     interface Scenario {
       position: AnchorPosition;
       placement: Placement;
@@ -125,13 +130,15 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
   });
 
   describe('sizing', () => {
+    beforeEach(() => cy.visit('./cypress/fixtures/post-popovercontainer-sizing.html'));
+
     function prepareSizingContext(id: string) {
       preparePopoverContext(id);
       cy.get('@popover').find('.popover-container').as('scrollable');
     }
 
     describe('with overflowing content', () => {
-      beforeEach(() => prepareSizingContext('sizing'));
+      beforeEach(() => prepareSizingContext('overflowing'));
 
       sides.forEach(side => {
         it(`should be limited to the viewport and scroll internally when placed on "${side}"`, () => {
@@ -168,7 +175,7 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     describe('with fitting content', () => {
-      beforeEach(() => prepareSizingContext('placement'));
+      beforeEach(() => prepareSizingContext('fitting'));
 
       it('should not be resized when its content fits', () => {
         positionTrigger({ y: 'top' });
@@ -188,6 +195,8 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
   });
 
   describe('clipping', () => {
+    beforeEach(() => cy.visit('./cypress/fixtures/post-popovercontainer-clipping.html'));
+
     describe('outside the header', () => {
       beforeEach(() => preparePopoverContext('page'));
 

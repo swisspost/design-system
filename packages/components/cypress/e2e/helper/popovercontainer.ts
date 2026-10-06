@@ -16,7 +16,7 @@ const TOLERANCE = 1;
 export const POPOVER_OPEN_SELECTOR = String.raw`post-popovercontainer:popover-open, post-popovercontainer.\:popover-open`;
 
 /**
- * Visits the popover fixture and aliases the elements of one of its popover setups.
+ * Aliases the elements of one of the popover setups in the currently visited fixture.
  *
  * Registers the following aliases, all derived from `id`:
  *  - `@popover`: the `post-popover` element, once hydrated
@@ -26,8 +26,6 @@ export const POPOVER_OPEN_SELECTOR = String.raw`post-popovercontainer:popover-op
  * Asserts that the popover starts out closed, so every test begins from a known state.
  */
 export function preparePopoverContext(id: string) {
-  cy.visit('./cypress/fixtures/post-popovercontainer.html');
-
   cy.get(`#popover-${id}[data-hydrated]`).as('popover');
   cy.get('@popover').find('post-popovercontainer').as('floating');
   cy.get(`#popover-${id}-trigger[data-hydrated]`).children().first().as('trigger');
@@ -35,6 +33,10 @@ export function preparePopoverContext(id: string) {
 
   popoverShouldBeClosed();
 }
+
+/** Yields the `post-popovercontainer` DOM element for `@floating`. */
+export const getFloatingElement = () =>
+  cy.get<JQuery<HTMLPostPopovercontainerElement>>('@floating').its(0);
 
 /** Yields the `post-popover` DOM element for `@popover`. */
 export const getPopoverElement = () => cy.get<JQuery<HTMLPostPopoverElement>>('@popover').its(0);
@@ -59,26 +61,23 @@ export function popoverShouldBeClosed() {
 }
 
 /**
- * Returns the side of `trigger` on which `floating` is placed, or `null` if they overlap.
- */
-function getSide(trigger: DOMRect, floating: DOMRect): Side | null {
-  if (floating.bottom <= trigger.top + TOLERANCE) return 'top';
-  if (floating.top >= trigger.bottom - TOLERANCE) return 'bottom';
-  if (floating.right <= trigger.left + TOLERANCE) return 'left';
-  if (floating.left >= trigger.right - TOLERANCE) return 'right';
-  return null;
-}
-
-/**
  * Asserts that `@popover` is positioned on the given `side` of `@trigger`.
  */
 export function popoverShouldBeOnSide(side: Side) {
-  // Positions are updated asynchronously (e.g. after scrolling), so the assertions must retry.
   getTriggerElement().then(trigger => {
-    cy.get('@floating').should($floating => {
+    getFloatingElement().should(floating => {
       const triggerRect = trigger.getBoundingClientRect();
-      const floatingRect = $floating[0].getBoundingClientRect();
-      expect(getSide(triggerRect, floatingRect), 'side').to.equal(side);
+      const floatingRect = floating.getBoundingClientRect();
+
+      if (side == 'top') {
+        expect(floatingRect.bottom).to.be.lessThanOrEqual(triggerRect.top + TOLERANCE);
+      } else if (side == 'bottom') {
+        expect(floatingRect.top).to.be.greaterThanOrEqual(triggerRect.bottom - TOLERANCE);
+      } else if (side == 'left') {
+        expect(floatingRect.right).to.be.lessThanOrEqual(triggerRect.left + TOLERANCE);
+      } else if (side == 'right') {
+        expect(floatingRect.left).to.be.greaterThanOrEqual(triggerRect.right - TOLERANCE);
+      }
     });
   });
 
@@ -89,19 +88,20 @@ export function popoverShouldBeOnSide(side: Side) {
  * Asserts that `@popover` fits within the safe area of the viewport, respecting its `edgeGap`.
  */
 export function popoverShouldFitInViewport() {
-  cy.get<JQuery<HTMLPostPopovercontainerElement>>('@floating').should($floating => {
-    const floating = $floating[0];
-    const { documentElement } = floating.ownerDocument;
-    const { clientWidth, clientHeight } = documentElement;
-    const headerRect = floating.ownerDocument.querySelector('post-header').getBoundingClientRect();
+  cy.window().then(window => {
+    const { clientWidth, clientHeight } = window.document.documentElement;
 
-    const edgeGap = floating.edgeGap ?? 0;
-    const floatingRect = floating.getBoundingClientRect();
+    getBoundingRect('post-header').then(headerRect => {
+      getFloatingElement().should(floating => {
+        const padding = floating.edgeGap ?? 0;
+        const floatingRect = floating.getBoundingClientRect();
 
-    expect(floatingRect.top, 'top').to.be.at.least(headerRect.bottom + edgeGap - TOLERANCE);
-    expect(floatingRect.left, 'left').to.be.at.least(edgeGap - TOLERANCE);
-    expect(floatingRect.bottom, 'bottom').to.be.at.most(clientHeight - edgeGap + TOLERANCE);
-    expect(floatingRect.right, 'right').to.be.at.most(clientWidth - edgeGap + TOLERANCE);
+        expect(floatingRect.top, 'top').to.be.at.least(headerRect.bottom + padding - TOLERANCE);
+        expect(floatingRect.left, 'left').to.be.at.least(padding - TOLERANCE);
+        expect(floatingRect.bottom, 'bottom').to.be.at.most(clientHeight - padding + TOLERANCE);
+        expect(floatingRect.right, 'right').to.be.at.most(clientWidth - padding + TOLERANCE);
+      });
+    });
   });
 }
 
@@ -110,10 +110,11 @@ export function popoverShouldFitInViewport() {
  * fully revealed by scrolling it to the end.
  */
 export function popoverShouldScrollInternally(selector: string) {
-  cy.get(selector).should($element => {
-    const element = $element[0];
-    expect(element.scrollHeight, 'scrollHeight').to.be.greaterThan(element.clientHeight);
-  });
+  cy.get(selector)
+    .its(0)
+    .should(element => {
+      expect(element.scrollHeight, 'scrollHeight').to.be.greaterThan(element.clientHeight);
+    });
 
   cy.get(selector).scrollTo('bottom', { ensureScrollable: true });
 
@@ -175,13 +176,11 @@ export interface AnchorPosition {
  * Moves `@trigger` to the given `position` within the safe area of the viewport.
  */
 export function positionTrigger(position?: AnchorPosition) {
-  getBoundingRect('post-header').then(headerRect => {
-    cy.window().then(window => {
-      const { clientWidth, clientHeight } = window.document.documentElement;
+  cy.window().then(window => {
+    const { clientWidth, clientHeight } = window.document.documentElement;
 
+    getBoundingRect('post-header').then(headerRect => {
       getTriggerElement().then(trigger => {
-        trigger.style.position = 'absolute';
-
         const { width, height } = trigger.getBoundingClientRect();
 
         let top: number, left: number;
