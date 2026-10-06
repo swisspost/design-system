@@ -1,5 +1,17 @@
 # @swisspost/internet-header
 
+## 10.7.0
+
+### Patch Changes
+
+- Updated the header API origins to support the upcoming migration. The API is currently available at `int.post.ch` in INT and `site.post.ch` in PROD. In the coming months, the PROD API is expected to move from `site.post.ch` to `www.post.ch`.
+
+  This change supports a seamless transition between the PROD hosts, while INT will stay as is. Until the API is available at `www.post.ch`, requests to that host will fail and may produce a console error before the fallback to `site.post.ch` succeeds. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#8583](https://github.com/swisspost/design-system/pull/8583))
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.7.0
+  - @swisspost/design-system-components@10.7.0
+
 ## 10.6.0
 
 ### Patch Changes
