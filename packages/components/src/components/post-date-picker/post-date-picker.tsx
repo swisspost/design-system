@@ -529,8 +529,23 @@ export class PostDatePicker {
     if (this.hasFloatingLabel()) this.setMaskLazy(true); // Hides the mask only for the floating label
   };
 
+  // Tracks whether the current focus was triggered by a pointer interaction, to avoid
+  // overriding the caret position the user clicked on
+  private isPointerDownOnInput = false;
+
+  private readonly handleInputPointerDown = () => {
+    this.isPointerDownOnInput = true;
+  };
+
   private readonly handleInputFocus = () => {
     if (this.hasFloatingLabel()) this.setMaskLazy(false); // Shows the mask only for the floating label
+
+    // On keyboard focus (e.g. Tab), place the caret at the start instead of the browser default (end),
+    // so the date can be typed right away.
+    if (!this.isPointerDownOnInput) {
+      requestAnimationFrame(() => this.dpInput.setSelectionRange(0, 0));
+    }
+    this.isPointerDownOnInput = false;
   };
 
   private hasFloatingLabel(): boolean {
@@ -1164,6 +1179,7 @@ export class PostDatePicker {
     if (!this.inline) {
       this.dpInput.addEventListener('blur', this.handleInputBlur);
       this.dpInput.addEventListener('focus', this.handleInputFocus);
+      this.dpInput.addEventListener('pointerdown', this.handleInputPointerDown);
     }
     this.dpInput.addEventListener('input', this.handleInputEvent);
   }
@@ -1206,6 +1222,7 @@ export class PostDatePicker {
     this.nextBtn?.removeEventListener('click', this.handlePrevNextClick);
     this.dpInput?.removeEventListener('focus', this.handleInputFocus);
     this.dpInput?.removeEventListener('blur', this.handleInputBlur);
+    this.dpInput?.removeEventListener('pointerdown', this.handleInputPointerDown);
     this.dpInput?.removeEventListener('input', this.handleInputEvent);
 
     this.gridObserver?.disconnect();
