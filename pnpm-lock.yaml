@@ -8658,8 +8658,8 @@ packages:
     resolution: {integrity: sha512-ekilCSN1jwRvIbgeg/57YFh8qQDNbwDb9xT/qu2DAHbFFZUicIl4ygVaAvzveMhMVr3LnpSKTNnwt8PoOfmKhQ==}
     hasBin: true
 
-  joi@18.1.1:
-    resolution: {integrity: sha512-pJkBiPtNo+o0h19LfSvUN46Y5zY+ck99AtHwch9n2HqVLNRgP0ZMyIH8FRMoP+HV8hy/+AG99dXFfwpf83iZfQ==}
+  joi@18.2.9:
+    resolution: {integrity: sha512-2mD929bUVKUhOLQQEVhlf6EZ0Mlo0DeRb5MO7cViR9AXLtBauuccEtB1py9Ocxpo/P7ucnh442iY/iOwrh3IQw==}
     engines: {node: '>= 20'}
 
   jose@6.2.2:
@@ -22282,7 +22282,7 @@ snapshots:
 
   jiti@2.6.1: {}
 
-  joi@18.1.1:
+  joi@18.2.9:
     dependencies:
       '@hapi/address': 5.1.1
       '@hapi/formula': 3.0.2
@@ -26941,7 +26941,7 @@ snapshots:
   wait-on@9.0.4(debug@4.4.3(supports-color@10.2.2)):
     dependencies:
       axios: 1.15.1(debug@4.4.3(supports-color@10.2.2))
-      joi: 18.1.1
+      joi: 18.2.9
       lodash: 4.18.1
       minimist: 1.2.8
       rxjs: 7.8.2
