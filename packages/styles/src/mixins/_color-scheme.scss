@@ -15,8 +15,8 @@
  * - https://kizu.dev/cyclic-toggles/
  *
  * This placeholder is used to output the variables only once, shared by all selectors that use
- * `set()`. It can be removed once the `light-dark()` function becomes available in across supported
- * browsers.
+ * `set()` and by the root scheme tokens (`_schemes.scss`). It can be removed once the
+ * `light-dark()` function becomes available in across supported browsers.
  */
 %color-scheme-fallback-variables {
   @include supports.light-dark(false) {
