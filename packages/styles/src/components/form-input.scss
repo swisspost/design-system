@@ -34,6 +34,7 @@ input.form-control {
   padding-inline-end: tokens.get('input-padding-inline-end');
   padding-block: tokens.get('input-standalone-padding-block');
   height: tokens.get('input-sizing-height');
+  font-size: tokens.get('input-font-size');
 
   &.form-control-sm {
     height: tokens.get('input-small-sizing-height');
@@ -171,8 +172,8 @@ input.form-control {
       &::file-selector-button {
         padding-inline-end: calc(
           #{tokens.get('input-padding-inline-end')} +
-          #{tokens.get('input-validation-icon-position-inline-end')} +
-          #{tokens.get('input-sizing-icon')}
+            #{tokens.get('input-validation-icon-position-inline-end')} +
+            #{tokens.get('input-sizing-icon')}
         );
       }
     }
@@ -339,7 +340,7 @@ input.form-control {
   padding-inline: tokens.get('input-non-floating-small-label-padding-inline');
   padding-block: tokens.get('input-non-floating-small-label-padding-block');
   font-weight: tokens.get('input-non-floating-small-label-font-weight');
-  font-size: tokens.get('input-non-floating-small-font-size');
+  font-size: tokens.get('input-non-floating-small-label-font-size');
 }
 
 .form-floating {

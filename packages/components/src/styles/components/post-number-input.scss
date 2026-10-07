@@ -12,7 +12,7 @@ tokens.$default-map: components.$post-number-input;
   padding-inline: tokens.get('number-input-non-floating-small-label-padding-inline');
   padding-block: tokens.get('number-input-non-floating-small-label-padding-block');
   font-weight: tokens.get('number-input-non-floating-small-label-font-weight');
-  font-size: tokens.get('number-input-non-floating-small-font-size');
+  font-size: tokens.get('number-input-non-floating-small-label-font-size');
 }
 
 .form-label:has(+ post-number-input.disabled) {
