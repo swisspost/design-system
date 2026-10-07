@@ -50,6 +50,8 @@ button {
       }
 
       @include utilities.focus-style-custom {
+        outline-style: none !important;
+
         &::after {
           border-color: tokens.get('focus-outline-color', helpers.$post-focus);
         }
