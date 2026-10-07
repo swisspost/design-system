@@ -1,3 +1,4 @@
+import { PostLogo } from '@swisspost/design-system-components-react';
 import {
   PostIconExplosives,
   PostIconLetter,
@@ -13,6 +14,8 @@ import {
   PostCollapsible,
   PostCollapsibleTrigger,
   PostDatePicker,
+  PostLanguageMenu,
+  PostLanguageMenuItem,
   PostLinkarea,
   PostListbox,
   PostListboxOption,
@@ -174,6 +177,92 @@ export default function Home() {
         </figure>
       </div>
 
+      <h2>Language Menu</h2>
+
+      <h3>List</h3>
+
+      <div className="d-flex gap-24">
+        <div>
+          <h4>Default</h4>
+          <PostLanguageMenu
+            variant="list"
+            text-change-language="Change the language"
+            text-current-language="The currently selected language is {name}."
+          >
+            <PostLanguageMenuItem url="/de" code="de" name="German">
+              de
+            </PostLanguageMenuItem>
+            <PostLanguageMenuItem url="/fr" code="fr" name="French">
+              fr
+            </PostLanguageMenuItem>
+            <PostLanguageMenuItem url="/en" active={true} code="en" name="English">
+              en
+            </PostLanguageMenuItem>
+          </PostLanguageMenu>
+        </div>
+
+        <div>
+          <h4>Client-side routing</h4>
+          <PostLanguageMenu
+            variant="list"
+            text-change-language="Change the language"
+            text-current-language="The currently selected language is {name}."
+          >
+            <PostLanguageMenuItem code="de" name="German">
+              <Link href="/csr?lang=de">de</Link>
+            </PostLanguageMenuItem>
+            <PostLanguageMenuItem active={true} code="fr" name="French">
+              <Link href="/csr?lang=fr">fr</Link>
+            </PostLanguageMenuItem>
+            <PostLanguageMenuItem code="en" name="English">
+              <Link href="/csr?lang=en">en</Link>
+            </PostLanguageMenuItem>
+          </PostLanguageMenu>
+        </div>
+      </div>
+
+      <h3>Menu</h3>
+
+      <div className="d-flex gap-24">
+        <div>
+          <h4>Default</h4>
+          <PostLanguageMenu
+            variant="menu"
+            text-change-language="Change the language"
+            text-current-language="The currently selected language is {name}."
+          >
+            <PostLanguageMenuItem url="/de" code="de" name="German">
+              de
+            </PostLanguageMenuItem>
+            <PostLanguageMenuItem url="/fr" code="fr" name="French">
+              fr
+            </PostLanguageMenuItem>
+            <PostLanguageMenuItem url="/en" active={true} code="en" name="English">
+              en
+            </PostLanguageMenuItem>
+          </PostLanguageMenu>
+        </div>
+
+        <div>
+          <h4>Client-side routing</h4>
+          <PostLanguageMenu
+            variant="menu"
+            text-change-language="Change the language"
+            text-current-language="The currently selected language is {name}."
+          >
+            <PostLanguageMenuItem code="de" name="German">
+              <Link href="/csr?lang=de">de</Link>
+            </PostLanguageMenuItem>
+            <PostLanguageMenuItem code="fr" name="French">
+              <Link href="/csr?lang=fr">fr</Link>
+            </PostLanguageMenuItem>
+            <PostLanguageMenuItem active={true} code="en" name="English">
+              <Link href="/csr?lang=en">en</Link>
+            </PostLanguageMenuItem>
+          </PostLanguageMenu>
+        </div>
+      </div>
+
       <h2>Linkarea</h2>
       <PostLinkarea>
         <div className="card">
@@ -186,6 +275,26 @@ export default function Home() {
           </div>
         </div>
       </PostLinkarea>
+
+      <h2>Logo</h2>
+
+      <div className="d-flex gap-40">
+        <div>
+          <h3 className="h5">Default</h3>
+          <div className="h-80">
+            <PostLogo url="/">Logo of the Post</PostLogo>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="h5">Client-side routing</h3>
+          <div className="h-80">
+            <PostLogo>
+              <Link href="/csr">Logo of the Post</Link>
+            </PostLogo>
+          </div>
+        </div>
+      </div>
 
       <h2>Menu</h2>
       {/* Throws Hydration Errors */}

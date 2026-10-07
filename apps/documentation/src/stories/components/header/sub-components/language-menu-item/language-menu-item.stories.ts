@@ -75,3 +75,19 @@ export const Anchor: Story = {
     url: 'https://www.post.ch/en',
   },
 };
+
+export const ClientSideRouting: Story = {
+  args: {
+    active: false,
+    innerHTML: '',
+  },
+  render: args =>
+    html`<post-language-menu-item
+      code=${args.code}
+      name=${args.name ? args.name : nothing}
+      active=${args.active ? args.active : nothing}
+      description=${args.description ? args.description : nothing}
+    >
+      <a href="/en">EN</a>
+    </post-language-menu-item>`,
+};

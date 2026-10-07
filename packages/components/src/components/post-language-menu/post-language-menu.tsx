@@ -1,6 +1,17 @@
 import { EventFrom, nanoid, OneOf, Pattern, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { Component, Element, EventEmitter, h, Host, Event, Listen, Prop, State, Watch } from '@stencil/core';
+import {
+  Component,
+  Element,
+  EventEmitter,
+  h,
+  Host,
+  Event,
+  Listen,
+  Prop,
+  State,
+  Watch,
+} from '@stencil/core';
 import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
 
 @Component({
@@ -19,7 +30,10 @@ export class PostLanguageMenu {
   }
 
   @Element() host: HTMLPostLanguageMenuElement;
-  
+
+  /**
+   * An event emitted when the active language changes. The payload is the ISO 639 code of the language.
+   */
   @Event() postChange: EventEmitter<string>;
 
   /**

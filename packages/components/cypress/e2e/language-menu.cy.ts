@@ -170,6 +170,27 @@ describe('post-language-menu', () => {
           .and('have.attr', 'lang', 'en');
       });
     });
+
+    describe('client-side routing (slotted anchor)', () => {
+      beforeEach(() => {
+        cy.getComponent('language-menu-item', LANGUAGE_OPTION_ID, 'client-side-routing');
+      });
+
+      it('should not render an internal button', () => {
+        cy.get('@language-menu-item').find('button').should('not.exist');
+      });
+
+      it('should emit postChange when the slotted anchor is clicked', () => {
+        cy.get('@language-menu-item').then($languageOption => {
+          $languageOption.on('postChange', cy.spy().as('postChangeSpy'));
+        });
+        cy.get('@language-menu-item').children('a').trigger('click');
+        cy.get('@postChangeSpy').should(spy => {
+          expect(spy).to.have.callCount(1);
+          expect(spy.firstCall.args[0].detail).to.eq('en');
+        });
+      });
+    });
   });
 
   describe('Accessibility', () => {

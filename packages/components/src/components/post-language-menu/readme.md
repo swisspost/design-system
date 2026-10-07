@@ -14,9 +14,9 @@
 
 ## Events
 
-| Event        | Description | Type                  |
-| ------------ | ----------- | --------------------- |
-| `postChange` |             | `CustomEvent<string>` |
+| Event        | Description                                                                                         | Type                  |
+| ------------ | --------------------------------------------------------------------------------------------------- | --------------------- |
+| `postChange` | An event emitted when the active language changes. The payload is the ISO 639 code of the language. | `CustomEvent<string>` |
 
 
 ## Dependencies

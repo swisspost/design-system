@@ -1,6 +1,6 @@
-import { Url } from '@/utils';
+import { hasSlottedAnchor, Url } from '@/utils';
 import { version } from '@root/package.json';
-import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 
 /**
  * @slot default - Slot for placing hidden descriptive text. If `url` is set, this text will serve as the accessible name of the link; otherwise, it will be used as the title of the SVG.
@@ -13,6 +13,8 @@ import { Component, Element, h, Host, Prop } from '@stencil/core';
 export class PostLogo {
   @Element() host: HTMLPostLogoElement;
 
+  @State() hasSlottedAnchor = false;
+
   /**
    * The URL to which the user is redirected upon clicking the logo.
    */
@@ -20,8 +22,16 @@ export class PostLogo {
   @Url()
   url?: string | URL;
 
+  componentWillLoad() {
+    this.checkSlottedAnchor();
+  }
+
   componentDidLoad() {
     this.checkDescription();
+  }
+
+  private checkSlottedAnchor() {
+    this.hasSlottedAnchor = hasSlottedAnchor(this.host);
   }
 
   private checkDescription() {
@@ -34,17 +44,17 @@ export class PostLogo {
 
   render() {
     const logoLink = this.url && (typeof this.url === 'string' ? this.url : this.url.href);
-    const LogoTag = logoLink ? 'a' : 'span';
+    const hasLink = this.hasSlottedAnchor || logoLink;
+    const LogoTag = logoLink && !this.hasSlottedAnchor ? 'a' : 'span';
+    const slot = <slot onSlotchange={() => this.checkSlottedAnchor()}></slot>;
 
     return (
       <Host data-version={version}>
         <LogoTag
-          class={`logo ${logoLink ? 'logo-link' : ''}`}
-          {...(logoLink ? { href: logoLink } : {})}
+          class={`logo ${hasLink ? 'logo-link' : ''} ${this.hasSlottedAnchor ? 'logo-link-slotted' : ''}`}
+          {...(logoLink && !this.hasSlottedAnchor ? { href: logoLink } : {})}
         >
-          <span class="description">
-            <slot onSlotchange={() => this.checkDescription()}></slot>
-          </span>
+          <span class="description">{this.hasSlottedAnchor ? null : slot}</span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" aria-hidden="true">
             <g id="Logo">
               <rect fill="#ffcc00" x="0" y="0" width="72" height="72" />
@@ -55,6 +65,7 @@ export class PostLogo {
               <path d="M53.56234,31.10526c0,2.41272-1.99154,4.29475-4.51723,4.29475H45.2v-8.3h3.84511C51.66802,27.1,53.56234,28.78889,53.56234,31.10526z M50.69666,19H36v34h9.2V42.9h5.49666c6.75131,0,11.9971-5.15137,11.9971-11.8057C62.69376,24.39136,57.35099,19,50.69666,19z" />
             </g>
           </svg>
+          {this.hasSlottedAnchor ? slot : null}
         </LogoTag>
       </Host>
     );
