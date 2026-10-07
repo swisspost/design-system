@@ -37,7 +37,7 @@ catalogs:
     '@angular/core': 22.1.5
     '@angular/forms': 22.1.5
     '@angular/platform-browser': 22.1.5
-    '@angular/router': 22.1.5
+    '@angular/router': 22.2.0
     'angular-eslint': 22.2.0
     'ng-packagr': 22.1.1
     'rxjs': 7.8.2
@@ -68,3 +68,6 @@ allowBuilds:
   msgpackr-extract: true
   sharp: true
   unrs-resolver: true
+minimumReleaseAgeExclude:
+  # Renovate security update: @angular/router@22.2.0
+  - "@angular/router@22.2.0"
