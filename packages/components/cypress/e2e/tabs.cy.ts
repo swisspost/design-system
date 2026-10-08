@@ -260,6 +260,34 @@ describe('Accessibility', () => {
     });
   });
 
+  describe('scroll buttons', () => {
+    ['default', 'pages-variant'].forEach(story => {
+      describe(story, () => {
+        beforeEach(() => {
+          cy.getComponent('tabs', TABS_ID, story);
+          cy.get('@tabs').shadow().find('.scroll-btn').as('scrollButtons');
+        });
+
+        it('should keep scroll buttons out of the tab sequence', () => {
+          cy.get('@scrollButtons').should('have.length', 2);
+          cy.get('@scrollButtons').each($btn => {
+            cy.wrap($btn).should('have.attr', 'tabindex', '-1');
+          });
+        });
+
+        it('should keep scroll buttons out of the tab sequence when they are shown', () => {
+          // force overflow so the right scroll button becomes visible
+          cy.get('@tabs').invoke('css', 'width', '120px');
+          cy.get('@tabs')
+            .shadow()
+            .find('.scroll-btn-right')
+            .should('not.have.attr', 'hidden')
+            .and('have.attr', 'tabindex', '-1');
+        });
+      });
+    });
+  });
+
   describe('content mode ARIA attributes', () => {
     beforeEach(() => {
       cy.getComponent('tabs', TABS_ID, 'default');
