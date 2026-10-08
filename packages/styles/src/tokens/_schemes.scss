@@ -2,11 +2,8 @@
 @use './core';
 @use '@swisspost/design-system-tokens/scheme';
 
-/**
- * Check for light-dark support was added so we don't use CSS functions that don't work anyway.
- * This check becomes obsolete when the fallback is removed.
- */
 @use '../mixins/supports';
+@use '../mixins/color-scheme';
 
 @include supports.light-dark(true) {
   :root {
@@ -19,9 +16,6 @@
 @include supports.light-dark(false) {
   :root,
   [data-color-scheme] {
-    @each $key, $light-value in scheme.$post-light {
-      --#{$key}-light: var(--post-fallback-prefers-light) #{$light-value};
-      --#{$key}: var(--#{$key}-light, #{map.get(scheme.$post-dark, $key)});
-    }
+    @extend %color-scheme-fallback-variables;
   }
 }
