@@ -94,7 +94,7 @@ export class PostAvatar {
 
       if (avatarType === AvatarType.Image) {
         this.imageUrl = imageUrl;
-        this.imageAlt = `${this.firstname} ${this.lastname} avatar`;
+        this.imageAlt = `${[this.firstname, this.lastname].filter(Boolean).join(' ')} avatar`;
       }
 
       this.avatarType = avatarType;
@@ -178,7 +178,7 @@ export class PostAvatar {
     }
   }
 
-  connectedCallback() {
+  componentWillLoad() {
     //This provides a fallback by showing the initials while the image is still loading or delayed.
     this.avatarType = AvatarType.Initials;
     this.getAvatarImage();
