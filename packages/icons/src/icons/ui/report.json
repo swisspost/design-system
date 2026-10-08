@@ -29901,6 +29901,378 @@
       "modifiedAt": "2026-08-10T05:49:59.000Z"
     },
     {
+      "uuid": "9d2d22b0-c310-11f1-9625-0050568d2654",
+      "id": 11504056,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504056/storage/MDExNTA0MDU2LzAvbWFzdGVyLy8vMTEyNjc5MDQ4",
+        "keywords": [
+          "Fahrrad",
+          "Velo",
+          "Bicycle",
+          "Bicicletta",
+          "Vélo",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservation_Shape_16.svg",
+        "basename": "BicycleReservation_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:05:54.000Z",
+      "modifiedAt": "2026-10-08T12:11:24.000Z"
+    },
+    {
+      "uuid": "9c5b2cb0-c310-11f1-9625-0050568d2654",
+      "id": 11504055,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504055/storage/MDExNTA0MDU1LzAvbWFzdGVyLy8vMTEyNjc5MDQ0",
+        "keywords": [
+          "Fahrrad",
+          "Velo",
+          "Bicycle",
+          "Bicicletta",
+          "Vélo",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservation_Shape_24.svg",
+        "basename": "BicycleReservation_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:05:53.000Z",
+      "modifiedAt": "2026-10-08T12:11:24.000Z"
+    },
+    {
+      "uuid": "9b6c86f0-c310-11f1-9625-0050568d2654",
+      "id": 11504054,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504054/storage/MDExNTA0MDU0LzAvbWFzdGVyLy8vMTEyNjc5MDQw",
+        "keywords": [
+          "Fahrrad",
+          "Velo",
+          "Bicycle",
+          "Bicicletta",
+          "Vélo",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservation_Shape_32.svg",
+        "basename": "BicycleReservation_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:05:51.000Z",
+      "modifiedAt": "2026-10-08T12:11:24.000Z"
+    },
+    {
+      "uuid": "9a8b4eb0-c310-11f1-9625-0050568d2654",
+      "id": 11504053,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504053/storage/MDExNTA0MDUzLzAvbWFzdGVyLy8vMTEyNjc5MDM2",
+        "keywords": [
+          "Fahrrad",
+          "Velo",
+          "Bicycle",
+          "Bicicletta",
+          "Vélo",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservation_Shape_40.svg",
+        "basename": "BicycleReservation_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:05:50.000Z",
+      "modifiedAt": "2026-10-08T12:11:24.000Z"
+    },
+    {
+      "uuid": "99a2ea82-c310-11f1-9625-0050568d2654",
+      "id": 11504052,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504052/storage/MDExNTA0MDUyLzAvbWFzdGVyLy8vMTEyNjc5MDMy",
+        "keywords": [
+          "Fahrrad",
+          "Velo",
+          "Bicycle",
+          "Bicicletta",
+          "Vélo",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservation_Shape_48.svg",
+        "basename": "BicycleReservation_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:05:48.000Z",
+      "modifiedAt": "2026-10-08T12:11:24.000Z"
+    },
+    {
+      "uuid": "98a29181-c310-11f1-9625-0050568d2654",
+      "id": 11504051,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504051/storage/MDExNTA0MDUxLzAvbWFzdGVyLy8vMTEyNjc4ODYz",
+        "keywords": [
+          "Fahrrad",
+          "Velo",
+          "Bicycle",
+          "Bicicletta",
+          "Vélo",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservation_Shape_64.svg",
+        "basename": "BicycleReservation_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:05:47.000Z",
+      "modifiedAt": "2026-10-08T12:10:33.000Z"
+    },
+    {
+      "uuid": "97baf0a0-c310-11f1-9625-0050568d2654",
+      "id": 11504050,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504050/storage/MDExNTA0MDUwLzAvbWFzdGVyLy8vMTEyNjc5MDI4",
+        "keywords": [
+          "Fahrrad",
+          "Velo",
+          "Bicycle",
+          "Bicicletta",
+          "Vélo",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservation_Solid_Shape_16.svg",
+        "basename": "BicycleReservation_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:05:45.000Z",
+      "modifiedAt": "2026-10-08T12:11:24.000Z"
+    },
+    {
+      "uuid": "96423350-c310-11f1-9625-0050568d2654",
+      "id": 11504048,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504048/storage/MDExNTA0MDQ4LzAvbWFzdGVyLy8vMTEyNjc5MDIw",
+        "keywords": [
+          "Fahrrad",
+          "Velo",
+          "Bicycle",
+          "Bicicletta",
+          "Vélo",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservation_Solid_Shape_24.svg",
+        "basename": "BicycleReservation_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:05:43.000Z",
+      "modifiedAt": "2026-10-08T12:11:24.000Z"
+    },
+    {
+      "uuid": "966bb450-c310-11f1-9625-0050568d2654",
+      "id": 11504049,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504049/storage/MDExNTA0MDQ5LzAvbWFzdGVyLy8vMTEyNjc5MDI0",
+        "keywords": [
+          "Fahrrad",
+          "Velo",
+          "Bicycle",
+          "Bicicletta",
+          "Vélo",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservation_Solid_Shape_32.svg",
+        "basename": "BicycleReservation_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:05:43.000Z",
+      "modifiedAt": "2026-10-08T12:11:24.000Z"
+    },
+    {
+      "uuid": "944c08a0-c310-11f1-9625-0050568d2654",
+      "id": 11504045,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504045/storage/MDExNTA0MDQ1LzAvbWFzdGVyLy8vMTEyNjc5MDA4",
+        "keywords": [
+          "Fahrrad",
+          "Velo",
+          "Bicycle",
+          "Bicicletta",
+          "Vélo",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservation_Solid_Shape_40.svg",
+        "basename": "BicycleReservation_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:05:40.000Z",
+      "modifiedAt": "2026-10-08T12:11:24.000Z"
+    },
+    {
+      "uuid": "944c2fb0-c310-11f1-9625-0050568d2654",
+      "id": 11504046,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504046/storage/MDExNTA0MDQ2LzAvbWFzdGVyLy8vMTEyNjc5MDEy",
+        "keywords": [
+          "Fahrrad",
+          "Velo",
+          "Bicycle",
+          "Bicicletta",
+          "Vélo",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservation_Solid_Shape_48.svg",
+        "basename": "BicycleReservation_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:05:40.000Z",
+      "modifiedAt": "2026-10-08T12:11:24.000Z"
+    },
+    {
+      "uuid": "944e5290-c310-11f1-9625-0050568d2654",
+      "id": 11504047,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504047/storage/MDExNTA0MDQ3LzAvbWFzdGVyLy8vMTEyNjc5MDE2",
+        "keywords": [
+          "Fahrrad",
+          "Velo",
+          "Bicycle",
+          "Bicicletta",
+          "Vélo",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservation_Solid_Shape_64.svg",
+        "basename": "BicycleReservation_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:05:40.000Z",
+      "modifiedAt": "2026-10-08T12:11:24.000Z"
+    },
+    {
       "uuid": "847409b1-92d2-11f0-9719-005056873709",
       "id": 6252423,
       "type": "picture.pictogram.",
@@ -76273,7 +76645,7 @@
         }
       },
       "createdAt": "2026-10-02T12:14:57.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "e14beea0-be5a-11f1-8f52-0050568d2654",
@@ -76305,7 +76677,7 @@
         }
       },
       "createdAt": "2026-10-02T12:14:56.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "e0513af4-be5a-11f1-8f52-0050568d2654",
@@ -76337,7 +76709,7 @@
         }
       },
       "createdAt": "2026-10-02T12:14:54.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "debe17d0-be5a-11f1-8f52-0050568d2654",
@@ -76369,7 +76741,7 @@
         }
       },
       "createdAt": "2026-10-02T12:14:51.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "deb8e7b0-be5a-11f1-8f52-0050568d2654",
@@ -76401,7 +76773,7 @@
         }
       },
       "createdAt": "2026-10-02T12:14:51.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "dd801990-be5a-11f1-8f52-0050568d2654",
@@ -76433,7 +76805,7 @@
         }
       },
       "createdAt": "2026-10-02T12:14:49.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "db807902-be5a-11f1-8f52-0050568d2654",
@@ -76465,7 +76837,7 @@
         }
       },
       "createdAt": "2026-10-02T12:14:46.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "db802ae0-be5a-11f1-8f52-0050568d2654",
@@ -76497,7 +76869,7 @@
         }
       },
       "createdAt": "2026-10-02T12:14:46.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "db7c3342-be5a-11f1-8f52-0050568d2654",
@@ -76529,7 +76901,7 @@
         }
       },
       "createdAt": "2026-10-02T12:14:46.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "da174c10-be5a-11f1-8f52-0050568d2654",
@@ -76561,7 +76933,7 @@
         }
       },
       "createdAt": "2026-10-02T12:14:44.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "da132d60-be5a-11f1-8f52-0050568d2654",
@@ -76593,7 +76965,7 @@
         }
       },
       "createdAt": "2026-10-02T12:14:44.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "da129120-be5a-11f1-8f52-0050568d2654",
@@ -76625,7 +76997,7 @@
         }
       },
       "createdAt": "2026-10-02T12:14:44.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "92029970-b0d2-11f0-8eb3-0050568d2654",
@@ -92987,6 +93359,378 @@
       },
       "createdAt": "2026-06-15T07:12:12.000Z",
       "modifiedAt": "2026-06-15T07:14:48.000Z"
+    },
+    {
+      "uuid": "fda774f0-c30c-11f1-9625-0050568d2654",
+      "id": 11504017,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504017/storage/MDExNTA0MDE3LzAvbWFzdGVyLy8vMTEyNjc2MjU2",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "Hinzufügen",
+          "Add",
+          "Aggiungere",
+          "Ajouter"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DocumentAdd_Shape_16.svg",
+        "basename": "DocumentAdd_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:39:58.000Z",
+      "modifiedAt": "2026-10-08T11:51:35.000Z"
+    },
+    {
+      "uuid": "fcdf1be0-c30c-11f1-9625-0050568d2654",
+      "id": 11504016,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504016/storage/MDExNTA0MDE2LzAvbWFzdGVyLy8vMTEyNjc2MjUy",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "Hinzufügen",
+          "Add",
+          "Aggiungere",
+          "Ajouter"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DocumentAdd_Shape_24.svg",
+        "basename": "DocumentAdd_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:39:57.000Z",
+      "modifiedAt": "2026-10-08T11:51:35.000Z"
+    },
+    {
+      "uuid": "fc092e40-c30c-11f1-9625-0050568d2654",
+      "id": 11504015,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504015/storage/MDExNTA0MDE1LzAvbWFzdGVyLy8vMTEyNjc2MjQ4",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "Hinzufügen",
+          "Add",
+          "Aggiungere",
+          "Ajouter"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DocumentAdd_Shape_32.svg",
+        "basename": "DocumentAdd_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:39:56.000Z",
+      "modifiedAt": "2026-10-08T11:51:35.000Z"
+    },
+    {
+      "uuid": "fb37ad70-c30c-11f1-9625-0050568d2654",
+      "id": 11504014,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504014/storage/MDExNTA0MDE0LzAvbWFzdGVyLy8vMTEyNjc2MjQ0",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "Hinzufügen",
+          "Add",
+          "Aggiungere",
+          "Ajouter"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DocumentAdd_Shape_40.svg",
+        "basename": "DocumentAdd_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:39:54.000Z",
+      "modifiedAt": "2026-10-08T11:51:35.000Z"
+    },
+    {
+      "uuid": "fa4f7050-c30c-11f1-9625-0050568d2654",
+      "id": 11504013,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504013/storage/MDExNTA0MDEzLzAvbWFzdGVyLy8vMTEyNjc2MjQw",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "Hinzufügen",
+          "Add",
+          "Aggiungere",
+          "Ajouter"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DocumentAdd_Shape_48.svg",
+        "basename": "DocumentAdd_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:39:53.000Z",
+      "modifiedAt": "2026-10-08T11:51:36.000Z"
+    },
+    {
+      "uuid": "f97a4600-c30c-11f1-9625-0050568d2654",
+      "id": 11504012,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504012/storage/MDExNTA0MDEyLzAvbWFzdGVyLy8vMTEyNjc2MDcy",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "Hinzufügen",
+          "Add",
+          "Aggiungere",
+          "Ajouter"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DocumentAdd_Shape_64.svg",
+        "basename": "DocumentAdd_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:39:51.000Z",
+      "modifiedAt": "2026-10-08T11:50:46.000Z"
+    },
+    {
+      "uuid": "f88f49c0-c30c-11f1-9625-0050568d2654",
+      "id": 11504011,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504011/storage/MDExNTA0MDExLzAvbWFzdGVyLy8vMTEyNjc2MjM2",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "Hinzufügen",
+          "Add",
+          "Aggiungere",
+          "Ajouter"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DocumentAdd_Solid_Shape_16.svg",
+        "basename": "DocumentAdd_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:39:50.000Z",
+      "modifiedAt": "2026-10-08T11:51:36.000Z"
+    },
+    {
+      "uuid": "f7397dc0-c30c-11f1-9625-0050568d2654",
+      "id": 11504010,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504010/storage/MDExNTA0MDEwLzAvbWFzdGVyLy8vMTEyNjc2MjMy",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "Hinzufügen",
+          "Add",
+          "Aggiungere",
+          "Ajouter"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DocumentAdd_Solid_Shape_24.svg",
+        "basename": "DocumentAdd_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:39:47.000Z",
+      "modifiedAt": "2026-10-08T11:51:36.000Z"
+    },
+    {
+      "uuid": "f7275550-c30c-11f1-9625-0050568d2654",
+      "id": 11504009,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504009/storage/MDExNTA0MDA5LzAvbWFzdGVyLy8vMTEyNjc2MjI4",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "Hinzufügen",
+          "Add",
+          "Aggiungere",
+          "Ajouter"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DocumentAdd_Solid_Shape_32.svg",
+        "basename": "DocumentAdd_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:39:47.000Z",
+      "modifiedAt": "2026-10-08T11:51:35.000Z"
+    },
+    {
+      "uuid": "f532ff60-c30c-11f1-9625-0050568d2654",
+      "id": 11504007,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504007/storage/MDExNTA0MDA3LzAvbWFzdGVyLy8vMTEyNjc2MjIw",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "Hinzufügen",
+          "Add",
+          "Aggiungere",
+          "Ajouter"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DocumentAdd_Solid_Shape_40.svg",
+        "basename": "DocumentAdd_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:39:44.000Z",
+      "modifiedAt": "2026-10-08T11:51:35.000Z"
+    },
+    {
+      "uuid": "f52e4470-c30c-11f1-9625-0050568d2654",
+      "id": 11504006,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504006/storage/MDExNTA0MDA2LzAvbWFzdGVyLy8vMTEyNjc2MjE2",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "Hinzufügen",
+          "Add",
+          "Aggiungere",
+          "Ajouter"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DocumentAdd_Solid_Shape_48.svg",
+        "basename": "DocumentAdd_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:39:44.000Z",
+      "modifiedAt": "2026-10-08T11:51:36.000Z"
+    },
+    {
+      "uuid": "f536cff0-c30c-11f1-9625-0050568d2654",
+      "id": 11504008,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504008/storage/MDExNTA0MDA4LzAvbWFzdGVyLy8vMTEyNjc2MjI0",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "Hinzufügen",
+          "Add",
+          "Aggiungere",
+          "Ajouter"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DocumentAdd_Solid_Shape_64.svg",
+        "basename": "DocumentAdd_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:39:44.000Z",
+      "modifiedAt": "2026-10-08T11:51:36.000Z"
     },
     {
       "uuid": "f7ec3890-fe8a-11ef-990c-005056873709",
@@ -186202,7 +186946,7 @@
         }
       },
       "createdAt": "2026-10-02T12:31:27.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "30555250-be5d-11f1-8f52-0050568d2654",
@@ -186234,7 +186978,7 @@
         }
       },
       "createdAt": "2026-10-02T12:31:27.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "2f7ec870-be5d-11f1-8f52-0050568d2654",
@@ -186266,7 +187010,7 @@
         }
       },
       "createdAt": "2026-10-02T12:31:26.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "2e9fb310-be5d-11f1-8f52-0050568d2654",
@@ -186298,7 +187042,7 @@
         }
       },
       "createdAt": "2026-10-02T12:31:24.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "2d245db1-be5d-11f1-8f52-0050568d2654",
@@ -186330,7 +187074,7 @@
         }
       },
       "createdAt": "2026-10-02T12:31:22.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "2d359bc0-be5d-11f1-8f52-0050568d2654",
@@ -186362,7 +187106,7 @@
         }
       },
       "createdAt": "2026-10-02T12:31:22.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "2bd98e30-be5d-11f1-8f52-0050568d2654",
@@ -186394,7 +187138,7 @@
         }
       },
       "createdAt": "2026-10-02T12:31:20.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "2ab1b000-be5d-11f1-8f52-0050568d2654",
@@ -186426,7 +187170,7 @@
         }
       },
       "createdAt": "2026-10-02T12:31:18.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "2aae0680-be5d-11f1-8f52-0050568d2654",
@@ -186458,7 +187202,7 @@
         }
       },
       "createdAt": "2026-10-02T12:31:18.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "28d88330-be5d-11f1-8f52-0050568d2654",
@@ -186490,7 +187234,7 @@
         }
       },
       "createdAt": "2026-10-02T12:31:15.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "28d9e2c0-be5d-11f1-8f52-0050568d2654",
@@ -186522,7 +187266,7 @@
         }
       },
       "createdAt": "2026-10-02T12:31:15.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "28d54ee0-be5d-11f1-8f52-0050568d2654",
@@ -186554,7 +187298,7 @@
         }
       },
       "createdAt": "2026-10-02T12:31:15.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "d9f95f80-8ca4-11f1-81f8-0050568d2654",
@@ -210686,7 +211430,7 @@
         }
       },
       "createdAt": "2026-10-02T12:20:47.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "b1894220-be5b-11f1-8f52-0050568d2654",
@@ -210713,7 +211457,7 @@
         }
       },
       "createdAt": "2026-10-02T12:20:45.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "b17b3860-be5b-11f1-8f52-0050568d2654",
@@ -210740,7 +211484,7 @@
         }
       },
       "createdAt": "2026-10-02T12:20:45.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "b099b200-be5b-11f1-8f52-0050568d2654",
@@ -210767,7 +211511,7 @@
         }
       },
       "createdAt": "2026-10-02T12:20:43.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "afbc7160-be5b-11f1-8f52-0050568d2654",
@@ -210794,7 +211538,7 @@
         }
       },
       "createdAt": "2026-10-02T12:20:42.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "af7afb90-be5b-11f1-8f52-0050568d2654",
@@ -210821,7 +211565,7 @@
         }
       },
       "createdAt": "2026-10-02T12:20:42.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "ae21ad21-be5b-11f1-8f52-0050568d2654",
@@ -210848,7 +211592,7 @@
         }
       },
       "createdAt": "2026-10-02T12:20:39.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "ae40f4f0-be5b-11f1-8f52-0050568d2654",
@@ -210875,7 +211619,7 @@
         }
       },
       "createdAt": "2026-10-02T12:20:39.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "ad4cd0f2-be5b-11f1-8f52-0050568d2654",
@@ -210902,7 +211646,7 @@
         }
       },
       "createdAt": "2026-10-02T12:20:38.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "ab8445f0-be5b-11f1-8f52-0050568d2654",
@@ -210929,7 +211673,7 @@
         }
       },
       "createdAt": "2026-10-02T12:20:35.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "ab87a150-be5b-11f1-8f52-0050568d2654",
@@ -210956,7 +211700,7 @@
         }
       },
       "createdAt": "2026-10-02T12:20:35.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "ab894f00-be5b-11f1-8f52-0050568d2654",
@@ -210983,7 +211727,7 @@
         }
       },
       "createdAt": "2026-10-02T12:20:35.000Z",
-      "modifiedAt": "2026-10-02T13:05:06.302Z"
+      "modifiedAt": "2026-10-03T12:05:01.088Z"
     },
     {
       "uuid": "adec4f40-9bbf-11f1-8c91-0050568d2654",
@@ -228458,6 +229202,390 @@
       },
       "createdAt": "2025-12-05T07:47:42.000Z",
       "modifiedAt": "2025-12-05T07:51:18.000Z"
+    },
+    {
+      "uuid": "210d7860-c310-11f1-9625-0050568d2654",
+      "id": 11504041,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504041/storage/MDExNTA0MDQxLzAvbWFzdGVyLy8vMTEyNjc4MDcw",
+        "keywords": [
+          "requirement",
+          "Bedarf",
+          "Besoin",
+          "Fabbisogno",
+          "needs assessment",
+          "Bedarfsabklärung",
+          "Identification des besoins",
+          "Analisi del fabbisogno"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Requirement_Shape_16.svg",
+        "basename": "Requirement_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:02:26.000Z",
+      "modifiedAt": "2026-10-08T12:05:05.000Z"
+    },
+    {
+      "uuid": "202d5190-c310-11f1-9625-0050568d2654",
+      "id": 11504040,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504040/storage/MDExNTA0MDQwLzAvbWFzdGVyLy8vMTEyNjc4MDY2",
+        "keywords": [
+          "requirement",
+          "Bedarf",
+          "Besoin",
+          "Fabbisogno",
+          "needs assessment",
+          "Bedarfsabklärung",
+          "Identification des besoins",
+          "Analisi del fabbisogno"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Requirement_Shape_24.svg",
+        "basename": "Requirement_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:02:25.000Z",
+      "modifiedAt": "2026-10-08T12:05:05.000Z"
+    },
+    {
+      "uuid": "1edb7d30-c310-11f1-9625-0050568d2654",
+      "id": 11504038,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504038/storage/MDExNTA0MDM4LzAvbWFzdGVyLy8vMTEyNjc4MDU4",
+        "keywords": [
+          "requirement",
+          "Bedarf",
+          "Besoin",
+          "Fabbisogno",
+          "needs assessment",
+          "Bedarfsabklärung",
+          "Identification des besoins",
+          "Analisi del fabbisogno"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Requirement_Shape_32.svg",
+        "basename": "Requirement_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:02:22.000Z",
+      "modifiedAt": "2026-10-08T12:05:05.000Z"
+    },
+    {
+      "uuid": "1ee4a4f0-c310-11f1-9625-0050568d2654",
+      "id": 11504039,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504039/storage/MDExNTA0MDM5LzAvbWFzdGVyLy8vMTEyNjc4MDYy",
+        "keywords": [
+          "requirement",
+          "Bedarf",
+          "Besoin",
+          "Fabbisogno",
+          "needs assessment",
+          "Bedarfsabklärung",
+          "Identification des besoins",
+          "Analisi del fabbisogno"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Requirement_Shape_40.svg",
+        "basename": "Requirement_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:02:23.000Z",
+      "modifiedAt": "2026-10-08T12:05:05.000Z"
+    },
+    {
+      "uuid": "1d9393e0-c310-11f1-9625-0050568d2654",
+      "id": 11504037,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504037/storage/MDExNTA0MDM3LzAvbWFzdGVyLy8vMTEyNjc4MDU0",
+        "keywords": [
+          "requirement",
+          "Bedarf",
+          "Besoin",
+          "Fabbisogno",
+          "needs assessment",
+          "Bedarfsabklärung",
+          "Identification des besoins",
+          "Analisi del fabbisogno"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Requirement_Shape_48.svg",
+        "basename": "Requirement_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:02:20.000Z",
+      "modifiedAt": "2026-10-08T12:05:05.000Z"
+    },
+    {
+      "uuid": "1c9c89b0-c310-11f1-9625-0050568d2654",
+      "id": 11504036,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504036/storage/MDExNTA0MDM2LzAvbWFzdGVyLy8vMTEyNjc3ODk0",
+        "keywords": [
+          "requirement",
+          "Bedarf",
+          "Besoin",
+          "Fabbisogno",
+          "needs assessment",
+          "Bedarfsabklärung",
+          "Identification des besoins",
+          "Analisi del fabbisogno"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Requirement_Shape_64.svg",
+        "basename": "Requirement_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:02:19.000Z",
+      "modifiedAt": "2026-10-08T12:04:12.000Z"
+    },
+    {
+      "uuid": "1c8aaf60-c310-11f1-9625-0050568d2654",
+      "id": 11504035,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504035/storage/MDExNTA0MDM1LzAvbWFzdGVyLy8vMTEyNjc4MDUw",
+        "keywords": [
+          "requirement",
+          "Bedarf",
+          "Besoin",
+          "Fabbisogno",
+          "needs assessment",
+          "Bedarfsabklärung",
+          "Identification des besoins",
+          "Analisi del fabbisogno"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Requirement_Solid_Shape_16.svg",
+        "basename": "Requirement_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:02:19.000Z",
+      "modifiedAt": "2026-10-08T12:05:05.000Z"
+    },
+    {
+      "uuid": "1ac3d210-c310-11f1-9625-0050568d2654",
+      "id": 11504034,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504034/storage/MDExNTA0MDM0LzAvbWFzdGVyLy8vMTEyNjc4MDQ2",
+        "keywords": [
+          "requirement",
+          "Bedarf",
+          "Besoin",
+          "Fabbisogno",
+          "needs assessment",
+          "Bedarfsabklärung",
+          "Identification des besoins",
+          "Analisi del fabbisogno"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Requirement_Solid_Shape_24.svg",
+        "basename": "Requirement_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:02:16.000Z",
+      "modifiedAt": "2026-10-08T12:05:05.000Z"
+    },
+    {
+      "uuid": "1ab29400-c310-11f1-9625-0050568d2654",
+      "id": 11504033,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504033/storage/MDExNTA0MDMzLzAvbWFzdGVyLy8vMTEyNjc4MDM5",
+        "keywords": [
+          "requirement",
+          "Bedarf",
+          "Besoin",
+          "Fabbisogno",
+          "needs assessment",
+          "Bedarfsabklärung",
+          "Identification des besoins",
+          "Analisi del fabbisogno"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Requirement_Solid_Shape_32.svg",
+        "basename": "Requirement_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:02:16.000Z",
+      "modifiedAt": "2026-10-08T12:05:05.000Z"
+    },
+    {
+      "uuid": "18ea0900-c310-11f1-9625-0050568d2654",
+      "id": 11504030,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504030/storage/MDExNTA0MDMwLzAvbWFzdGVyLy8vMTEyNjc4MDI3",
+        "keywords": [
+          "requirement",
+          "Bedarf",
+          "Besoin",
+          "Fabbisogno",
+          "needs assessment",
+          "Bedarfsabklärung",
+          "Identification des besoins",
+          "Analisi del fabbisogno"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Requirement_Solid_Shape_40.svg",
+        "basename": "Requirement_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:02:13.000Z",
+      "modifiedAt": "2026-10-08T12:05:05.000Z"
+    },
+    {
+      "uuid": "18edb280-c310-11f1-9625-0050568d2654",
+      "id": 11504032,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504032/storage/MDExNTA0MDMyLzAvbWFzdGVyLy8vMTEyNjc4MDM1",
+        "keywords": [
+          "requirement",
+          "Bedarf",
+          "Besoin",
+          "Fabbisogno",
+          "needs assessment",
+          "Bedarfsabklärung",
+          "Identification des besoins",
+          "Analisi del fabbisogno"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Requirement_Solid_Shape_48.svg",
+        "basename": "Requirement_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:02:13.000Z",
+      "modifiedAt": "2026-10-08T12:05:05.000Z"
+    },
+    {
+      "uuid": "18ed8b70-c310-11f1-9625-0050568d2654",
+      "id": 11504031,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504031/storage/MDExNTA0MDMxLzAvbWFzdGVyLy8vMTEyNjc4MDMx",
+        "keywords": [
+          "requirement",
+          "Bedarf",
+          "Besoin",
+          "Fabbisogno",
+          "needs assessment",
+          "Bedarfsabklärung",
+          "Identification des besoins",
+          "Analisi del fabbisogno"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Requirement_Solid_Shape_64.svg",
+        "basename": "Requirement_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T12:02:13.000Z",
+      "modifiedAt": "2026-10-08T12:05:05.000Z"
     },
     {
       "uuid": "e55ca780-0b06-11f1-afda-0050568d2654",
@@ -277890,6 +279018,306 @@
       "modifiedAt": "2026-02-17T07:05:03.212Z"
     },
     {
+      "uuid": "7d584730-c30b-11f1-9625-0050568d2654",
+      "id": 11503986,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503986/storage/MDExNTAzOTg2LzAvbWFzdGVyLy8vMTEyNjczMzI1",
+        "keywords": [
+          "Taxi"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Taxi_Shape_16.svg",
+        "basename": "Taxi_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:29:14.000Z",
+      "modifiedAt": "2026-10-08T11:31:18.000Z"
+    },
+    {
+      "uuid": "7c0142b0-c30b-11f1-9625-0050568d2654",
+      "id": 11503984,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503984/storage/MDExNTAzOTg0LzAvbWFzdGVyLy8vMTEyNjczMzE3",
+        "keywords": [
+          "Taxi"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Taxi_Shape_24.svg",
+        "basename": "Taxi_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:29:11.000Z",
+      "modifiedAt": "2026-10-08T11:31:18.000Z"
+    },
+    {
+      "uuid": "7c0dece0-c30b-11f1-9625-0050568d2654",
+      "id": 11503985,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503985/storage/MDExNTAzOTg1LzAvbWFzdGVyLy8vMTEyNjczMzIx",
+        "keywords": [
+          "Taxi"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Taxi_Shape_32.svg",
+        "basename": "Taxi_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:29:11.000Z",
+      "modifiedAt": "2026-10-08T11:31:18.000Z"
+    },
+    {
+      "uuid": "7a754b80-c30b-11f1-9625-0050568d2654",
+      "id": 11503982,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503982/storage/MDExNTAzOTgyLzAvbWFzdGVyLy8vMTEyNjczMzA2",
+        "keywords": [
+          "Taxi"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Taxi_Shape_40.svg",
+        "basename": "Taxi_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:29:09.000Z",
+      "modifiedAt": "2026-10-08T11:31:18.000Z"
+    },
+    {
+      "uuid": "7a8921a0-c30b-11f1-9625-0050568d2654",
+      "id": 11503983,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503983/storage/MDExNTAzOTgzLzAvbWFzdGVyLy8vMTEyNjczMzEw",
+        "keywords": [
+          "Taxi"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Taxi_Shape_48.svg",
+        "basename": "Taxi_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:29:09.000Z",
+      "modifiedAt": "2026-10-08T11:31:18.000Z"
+    },
+    {
+      "uuid": "798e1fd0-c30b-11f1-9625-0050568d2654",
+      "id": 11503981,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503981/storage/MDExNTAzOTgxLzAvbWFzdGVyLy8vMTEyNjczMTUw",
+        "keywords": [
+          "Taxi"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Taxi_Shape_64.svg",
+        "basename": "Taxi_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:29:07.000Z",
+      "modifiedAt": "2026-10-08T11:30:29.000Z"
+    },
+    {
+      "uuid": "78b5c130-c30b-11f1-9625-0050568d2654",
+      "id": 11503980,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503980/storage/MDExNTAzOTgwLzAvbWFzdGVyLy8vMTEyNjczMzAy",
+        "keywords": [
+          "Taxi"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Taxi_Solid_Shape_16.svg",
+        "basename": "Taxi_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:29:06.000Z",
+      "modifiedAt": "2026-10-08T11:31:18.000Z"
+    },
+    {
+      "uuid": "77b1beb0-c30b-11f1-9625-0050568d2654",
+      "id": 11503979,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503979/storage/MDExNTAzOTc5LzAvbWFzdGVyLy8vMTEyNjczMjk4",
+        "keywords": [
+          "Taxi"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Taxi_Solid_Shape_24.svg",
+        "basename": "Taxi_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:29:04.000Z",
+      "modifiedAt": "2026-10-08T11:31:18.000Z"
+    },
+    {
+      "uuid": "77a3dc00-c30b-11f1-9625-0050568d2654",
+      "id": 11503978,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503978/storage/MDExNTAzOTc4LzAvbWFzdGVyLy8vMTEyNjczMjk0",
+        "keywords": [
+          "Taxi"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Taxi_Solid_Shape_32.svg",
+        "basename": "Taxi_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:29:04.000Z",
+      "modifiedAt": "2026-10-08T11:31:18.000Z"
+    },
+    {
+      "uuid": "759a0240-c30b-11f1-9625-0050568d2654",
+      "id": 11503976,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503976/storage/MDExNTAzOTc2LzAvbWFzdGVyLy8vMTEyNjczMjg2",
+        "keywords": [
+          "Taxi"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Taxi_Solid_Shape_40.svg",
+        "basename": "Taxi_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:29:01.000Z",
+      "modifiedAt": "2026-10-08T11:31:18.000Z"
+    },
+    {
+      "uuid": "75998d10-c30b-11f1-9625-0050568d2654",
+      "id": 11503975,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503975/storage/MDExNTAzOTc1LzAvbWFzdGVyLy8vMTEyNjczMjgy",
+        "keywords": [
+          "Taxi"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Taxi_Solid_Shape_48.svg",
+        "basename": "Taxi_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:29:01.000Z",
+      "modifiedAt": "2026-10-08T11:31:18.000Z"
+    },
+    {
+      "uuid": "759b3ac0-c30b-11f1-9625-0050568d2654",
+      "id": 11503977,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503977/storage/MDExNTAzOTc3LzAvbWFzdGVyLy8vMTEyNjczMjkw",
+        "keywords": [
+          "Taxi"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Taxi_Solid_Shape_64.svg",
+        "basename": "Taxi_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:29:01.000Z",
+      "modifiedAt": "2026-10-08T11:31:18.000Z"
+    },
+    {
       "uuid": "b1b26320-4ada-11f1-bd4c-0050568d2654",
       "id": 10307390,
       "type": "picture.pictogram.",
@@ -309939,6 +311367,342 @@
       },
       "createdAt": "2025-02-07T06:40:49.000Z",
       "modifiedAt": "2026-07-15T05:19:29.000Z"
+    },
+    {
+      "uuid": "09b49710-c30c-11f1-9625-0050568d2654",
+      "id": 11504000,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11504000/storage/MDExNTA0MDAwLzAvbWFzdGVyLy8vMTEyNjc0MzM2",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "ZIP"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ZIPDownload_Shape_16.svg",
+        "basename": "ZIPDownload_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:33:09.000Z",
+      "modifiedAt": "2026-10-08T11:38:23.000Z"
+    },
+    {
+      "uuid": "08e1ddc0-c30c-11f1-9625-0050568d2654",
+      "id": 11503999,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503999/storage/MDExNTAzOTk5LzAvbWFzdGVyLy8vMTEyNjc0MzUy",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "ZIP"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ZIPDownload_Shape_24.svg",
+        "basename": "ZIPDownload_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:33:08.000Z",
+      "modifiedAt": "2026-10-08T11:38:23.000Z"
+    },
+    {
+      "uuid": "0807d170-c30c-11f1-9625-0050568d2654",
+      "id": 11503998,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503998/storage/MDExNTAzOTk4LzAvbWFzdGVyLy8vMTEyNjc0MzQ4",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "ZIP"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ZIPDownload_Shape_32.svg",
+        "basename": "ZIPDownload_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:33:06.000Z",
+      "modifiedAt": "2026-10-08T11:38:23.000Z"
+    },
+    {
+      "uuid": "0734a2f0-c30c-11f1-9625-0050568d2654",
+      "id": 11503997,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503997/storage/MDExNTAzOTk3LzAvbWFzdGVyLy8vMTEyNjc0MzQ0",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "ZIP"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ZIPDownload_Shape_40.svg",
+        "basename": "ZIPDownload_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:33:05.000Z",
+      "modifiedAt": "2026-10-08T11:38:23.000Z"
+    },
+    {
+      "uuid": "0652f580-c30c-11f1-9625-0050568d2654",
+      "id": 11503996,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503996/storage/MDExNTAzOTk2LzAvbWFzdGVyLy8vMTEyNjc0MzQw",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "ZIP"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ZIPDownload_Shape_48.svg",
+        "basename": "ZIPDownload_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:33:03.000Z",
+      "modifiedAt": "2026-10-08T11:38:23.000Z"
+    },
+    {
+      "uuid": "050c1da0-c30c-11f1-9625-0050568d2654",
+      "id": 11503995,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503995/storage/MDExNTAzOTk1LzAvbWFzdGVyLy8vMTEyNjc0MTgz",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "ZIP"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ZIPDownload_Shape_64.svg",
+        "basename": "ZIPDownload_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:33:01.000Z",
+      "modifiedAt": "2026-10-08T11:37:34.000Z"
+    },
+    {
+      "uuid": "04e311d0-c30c-11f1-9625-0050568d2654",
+      "id": 11503994,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503994/storage/MDExNTAzOTk0LzAvbWFzdGVyLy8vMTEyNjc0Mzc2",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "ZIP"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ZIPDownload_Solid_Shape_16.svg",
+        "basename": "ZIPDownload_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:33:01.000Z",
+      "modifiedAt": "2026-10-08T11:38:23.000Z"
+    },
+    {
+      "uuid": "0396e2c0-c30c-11f1-9625-0050568d2654",
+      "id": 11503993,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503993/storage/MDExNTAzOTkzLzAvbWFzdGVyLy8vMTEyNjc0Mzcy",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "ZIP"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ZIPDownload_Solid_Shape_24.svg",
+        "basename": "ZIPDownload_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:32:59.000Z",
+      "modifiedAt": "2026-10-08T11:38:23.000Z"
+    },
+    {
+      "uuid": "032227f0-c30c-11f1-9625-0050568d2654",
+      "id": 11503992,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503992/storage/MDExNTAzOTkyLzAvbWFzdGVyLy8vMTEyNjc0MzY4",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "ZIP"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ZIPDownload_Solid_Shape_32.svg",
+        "basename": "ZIPDownload_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:32:58.000Z",
+      "modifiedAt": "2026-10-08T11:38:23.000Z"
+    },
+    {
+      "uuid": "01602ca0-c30c-11f1-9625-0050568d2654",
+      "id": 11503991,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503991/storage/MDExNTAzOTkxLzAvbWFzdGVyLy8vMTEyNjc0MzY0",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "ZIP"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ZIPDownload_Solid_Shape_40.svg",
+        "basename": "ZIPDownload_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:32:55.000Z",
+      "modifiedAt": "2026-10-08T11:38:23.000Z"
+    },
+    {
+      "uuid": "015ef420-c30c-11f1-9625-0050568d2654",
+      "id": 11503990,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503990/storage/MDExNTAzOTkwLzAvbWFzdGVyLy8vMTEyNjc0MzYw",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "ZIP"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ZIPDownload_Solid_Shape_48.svg",
+        "basename": "ZIPDownload_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:32:55.000Z",
+      "modifiedAt": "2026-10-08T11:38:23.000Z"
+    },
+    {
+      "uuid": "01599cf0-c30c-11f1-9625-0050568d2654",
+      "id": 11503989,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11503989/storage/MDExNTAzOTg5LzAvbWFzdGVyLy8vMTEyNjc0MzU2",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "ZIP"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "ZIPDownload_Solid_Shape_64.svg",
+        "basename": "ZIPDownload_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-08T11:32:55.000Z",
+      "modifiedAt": "2026-10-08T11:38:23.000Z"
     },
     {
       "uuid": "daae8490-e51c-11ef-a15d-005056873709",
@@ -392828,13 +394592,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 10356,
+    "success": 10416,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 2948,
     "duplicates": 0
   },
-  "created": "2026-10-02T13:30:22.284Z",
-  "version": "10.6.0"
+  "created": "2026-10-08T12:13:03.434Z",
+  "version": "10.7.0"
 }
