@@ -89,10 +89,14 @@
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
   },
-  "engines": {
-    "node": "20"
+  "packageManager": "pnpm@11.23.0",
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "^24.0.0",
+      "onFail": "warn"
+    }
   },
-  "packageManager": "pnpm@9.6.0",
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": {},
