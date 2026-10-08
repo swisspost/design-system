@@ -138,6 +138,18 @@ describe('date-picker', { includeShadowDom: true }, () => {
         });
       });
     });
+
+    describe('input focus behavior', () => {
+      it('should place the cursor at the start of the input when focused via keyboard navigation', () => {
+        cy.get('@input').focus();
+
+        cy.get('@input').should($input => {
+          const input = $input[0] as HTMLInputElement;
+          expect(input.selectionStart).to.equal(0);
+          expect(input.selectionEnd).to.equal(0);
+        });
+      });
+    });
   });
 
   describe('i18n', () => {
