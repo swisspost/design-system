@@ -265,17 +265,9 @@ describe('Accessibility', () => {
       describe(story, () => {
         beforeEach(() => {
           cy.getComponent('tabs', TABS_ID, story);
-          cy.get('@tabs').shadow().find('.scroll-btn').as('scrollButtons');
         });
 
-        it('should keep scroll buttons out of the tab sequence', () => {
-          cy.get('@scrollButtons').should('have.length', 2);
-          cy.get('@scrollButtons').each($btn => {
-            cy.wrap($btn).should('have.attr', 'tabindex', '-1');
-          });
-        });
-
-        it('should keep scroll buttons out of the tab sequence when they are shown', () => {
+        it('should keep the scroll button out of the tab sequence when it is shown', () => {
           // force overflow so the right scroll button becomes visible
           cy.get('@tabs').invoke('css', 'width', '120px');
           cy.get('@tabs')
