@@ -85,7 +85,7 @@ export class PostTooltip {
     return (
       <Host data-version={version}>
         <post-popovercontainer
-          safeSpace="trapezoid"
+          safeSpace={true}
           class={popoverClass}
           role="tooltip"
           arrow={this.arrow}
@@ -94,7 +94,9 @@ export class PostTooltip {
           onPostBeforeToggle={e => this.handleBeforeToggle(e)}
           ref={(el: HTMLPostPopovercontainerElement) => (this.popoverRef = el)}
         >
-          <slot></slot>
+          <div class="tooltip-content">
+            <slot></slot>
+          </div>
         </post-popovercontainer>
       </Host>
     );

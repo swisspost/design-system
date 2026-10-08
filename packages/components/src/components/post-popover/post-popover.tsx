@@ -118,6 +118,7 @@ export class PostPopover {
           placement={this.placement}
           edgeGap={this.edgeGap}
           autoHide
+          autoResize
           ref={e => {
             if (e) this.popoverRef = e;
           }}

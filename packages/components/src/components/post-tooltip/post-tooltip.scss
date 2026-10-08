@@ -11,14 +11,6 @@ tokens.$default-map: components.$post-tooltip;
   display: contents;
 }
 
-// Creates a safe space around the popovercontainer for safe pointer crossing between trigger and tooltip
-post-popovercontainer[arrow]::after {
-  position: absolute;
-  content: '';
-  inset: -13px;
-  z-index: -1;
-}
-
 post-popovercontainer {
   --post-current-bg: #{tokens.get('post-tooltip-color-bg')};
   --post-current-fg: #{tokens.get('post-tooltip-color-fg')};
@@ -38,6 +30,10 @@ post-popovercontainer::part(post-popovercontainer-content) {
   border: #{tokens.get('post-tooltip-border-width')} solid
     #{tokens.get('post-tooltip-color-border')};
   border-radius: #{tokens.get('post-tooltip-border-radius')};
+}
+
+.tooltip-content {
+  box-sizing: border-box;
   padding: #{tokens.get('post-tooltip-padding-block')} #{tokens.get('post-tooltip-padding-inline')};
   font-size: #{tokens.get('post-tooltip-font-size')};
   max-width: var(--post-tooltip-max-width, 280px);
