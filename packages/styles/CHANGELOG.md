@@ -1,5 +1,32 @@
 # @swisspost/design-system-styles
 
+## 10.7.0
+
+### Patch Changes
+
+- Updated the `post-side-navigation` to always fill the entire viewport height on desktop, ensuring that no blank space appears above or below the header when rubber band scrolling. (by [@yomonom](https://github.com/yomonom) with [#8557](https://github.com/swisspost/design-system/pull/8557))
+
+- Added safe area insets to components that are anchored to the bottom edge of the viewport, ensuring their content clears the display cutout of devices such as the home indicator. This affects the footer base, the burger menu footer, the megadropdown on tablet and mobile, the side navigation, toasts and the bottom sheet variant of the dialog. (by [@yomonom](https://github.com/yomonom) with [#8534](https://github.com/swisspost/design-system/pull/8534))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.7.0
+  - @swisspost/design-system-tokens@10.7.0
+
+## 10.6.0
+
+### Minor Changes
+
+- Added different page templates for the following errors: 400, 401, 403, 404, 451, 500, 503 and 504.  
+  The previous 404 error page template is now deprecated. (by [@leagrdv](https://github.com/leagrdv) with [#8405](https://github.com/swisspost/design-system/pull/8405))
+
+### Patch Changes
+
+- Fixed an issue with dev dependencies accidentally installed as dependencies. gulp-sourcemaps is no longer a dependency of the styles packages. (by [@gfellerph](https://github.com/gfellerph) with [#8496](https://github.com/swisspost/design-system/pull/8496))
+
+- Fix select[multiple] when an empty option is present. The floating label no longer covers the empty option. (by [@gfellerph](https://github.com/gfellerph) with [#7948](https://github.com/swisspost/design-system/pull/7948))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.6.0
+  - @swisspost/design-system-tokens@10.6.0
+
 ## 10.5.0
 
 ### Minor Changes

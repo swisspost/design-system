@@ -47,6 +47,7 @@ export class PostHeader {
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
   private slottedContentObserver: MutationObserver;
+  private globalHeader: HTMLElement;
   private localHeader: HTMLElement;
   private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
 
@@ -399,18 +400,24 @@ export class PostHeader {
 
   @Listen('focusin')
   @Listen('focusout')
-  onFocusChange() {
+  onFocusChange(event: FocusEvent) {
+    // Ignore focus moving between elements of the header (e.g. into the language menu flyout)
+    if (event.type === 'focusout' && this.isWithinHeader(event.relatedTarget)) return;
+
     const isFocusVisible = this.getDeepActiveElement()?.matches(':focus-visible');
-    const isFocusedInHeader = this.host.matches(':focus-within');
+    const isFocusedInHeader = event.type === 'focusin';
 
-    const mustRemainCollapsed =
-      this.device === 'desktop'
-        ? !!this.host.querySelector('post-mainnavigation:focus-within')
-        : !!this.host.shadowRoot?.querySelector(':is(.global-header, .burger-menu):focus-within');
+    // Only expand when focus is in the part that collapses on scroll
+    const collapsiblePart = this.device === 'desktop' ? this.globalHeader : this.localHeader;
+    const isInCollapsiblePart = event.composedPath().includes(collapsiblePart);
 
-    const isHeaderExpanded = isFocusVisible && isFocusedInHeader && !mustRemainCollapsed;
+    const isHeaderExpanded = isFocusVisible && isFocusedInHeader && isInCollapsiblePart;
 
     this.host.toggleAttribute('data-expanded', isHeaderExpanded);
+  }
+
+  private isWithinHeader(target: EventTarget | null): boolean {
+    return target instanceof Node && (target === this.host || this.host.contains(target));
   }
 
   // document.activeElement stops at the outermost shadow host (e.g. post-language-menu)
@@ -465,7 +472,7 @@ export class PostHeader {
         data-menu-extended={this.burgerMenuExtended}
       >
         <header>
-          <div class="global-header">
+          <div ref={el => (this.globalHeader = el)} class="global-header">
             <div class="section">
               <div class="logo">
                 <slot name="post-logo"></slot>
