@@ -1,5 +1,20 @@
 # @swisspost/design-system-documentation
 
+## 6.6.2
+
+### Patch Changes
+
+- Fixed the styles import code block to copy the currently selected theme and appearance. (by [@leagrdv](https://github.com/leagrdv) with [#8491](https://github.com/swisspost/design-system/pull/8491))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.7.1
+  - @swisspost/design-system-components-react@10.7.1
+  - @swisspost/internet-header@10.7.1
+  - @swisspost/design-system-icons@10.7.1
+  - @swisspost/design-system-styles@10.7.1
+  - @swisspost/design-system-styles-primeng@10.7.1
+  - @swisspost/design-system-theme-ag-grid@10.7.1
+  - @swisspost/design-system-tokens@10.7.1
+
 ## 6.6.1
 
 ### Patch Changes
