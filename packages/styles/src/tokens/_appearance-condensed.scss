@@ -1,0 +1,11 @@
+@use '@swisspost/design-system-tokens/appearance';
+
+@use './core';
+@use './../mixins/tokens';
+
+:root,
+[data-color-scheme] {
+  // todo: there is no condensed appearance yet; replace after tokens are updated
+  @include tokens.from(appearance.$post-compact);
+  --_post-initial-global-header-height: 2rem;
+}
