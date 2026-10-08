@@ -1,5 +1,13 @@
 # @swisspost/design-system-styles
 
+## 10.7.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.7.1
+  - @swisspost/design-system-tokens@10.7.1
+
 ## 10.7.0
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @swisspost/design-system-components
 
+## 10.7.1
+
+### Patch Changes
+
+- Fixed a bug where `post-side-navigation` moved focus to the first navigation item when opened by mouse or touch on mobile, now focus only moves into the navigation on keyboard interaction as intended. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8586](https://github.com/swisspost/design-system/pull/8586))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.7.1
+  - @swisspost/design-system-styles@10.7.1
+
 ## 10.7.0
 
 ### Patch Changes
