@@ -281,13 +281,9 @@ describe('Accessibility', () => {
           }
           cy.press(Cypress.Keyboard.Keys.TAB);
 
-          cy.focused().then($focused => {
-            cy.get('@tabs')
-              .shadow()
-              .find('.scroll-btn-right')
-              .then($scrollBtn => {
-                expect($focused[0]).to.not.equal($scrollBtn[0]);
-              });
+          cy.get('@tabs').then($tabs => {
+            const focusedInShadow = $tabs[0].shadowRoot?.activeElement;
+            expect(focusedInShadow?.classList.contains('scroll-btn-right') ?? false).to.equal(false);
           });
         });
       });
