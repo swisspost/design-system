@@ -267,14 +267,28 @@ describe('Accessibility', () => {
           cy.getComponent('tabs', TABS_ID, story);
         });
 
-        it('should keep the scroll button out of the tab sequence when it is shown', () => {
-          // force overflow so the right scroll button becomes visible
-          cy.get('@tabs').invoke('css', 'width', '120px');
-          cy.get('@tabs')
-            .shadow()
-            .find('.scroll-btn-right')
-            .should('not.have.attr', 'hidden')
-            .and('have.attr', 'tabindex', '-1');
+        it('should keep the scroll buttons out of the tab sequence', () => {
+          cy.get('@tabs').shadow().find('.scroll-btn-left').should('have.attr', 'tabindex', '-1');
+          cy.get('@tabs').shadow().find('.scroll-btn-right').should('have.attr', 'tabindex', '-1');
+        });
+
+        it('should not move focus to the right scroll button when tabbing forward from the last focusable tab', () => {
+          // focus the last naturally tabbable element in the tablist, then simulate a real Tab key press
+          if (story === 'pages-variant') {
+            cy.get('post-tab-item').last().find('a').focus();
+          } else {
+            cy.get('post-tab-item[tabindex="0"]').focus();
+          }
+          cy.press(Cypress.Keyboard.Keys.TAB);
+
+          cy.focused().then($focused => {
+            cy.get('@tabs')
+              .shadow()
+              .find('.scroll-btn-right')
+              .then($scrollBtn => {
+                expect($focused[0]).to.not.equal($scrollBtn[0]);
+              });
+          });
         });
       });
     });
