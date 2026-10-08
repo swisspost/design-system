@@ -20,10 +20,6 @@ const meta: MetaComponent = {
     variant: 'toast-info',
     dismissible: true,
     position: 'static',
-    alignV: 'bottom',
-    alignVRestricted: 'bottom',
-    alignH: 'right',
-    alignHRestricted: 'right',
     autoClose: 0,
     show: false,
     stacked: false,
@@ -31,7 +27,7 @@ const meta: MetaComponent = {
   argTypes: {
     title: {
       name: 'Title',
-      description: 'The text to insert into the title area.',
+      description: 'The text to insert into the title area (optional).',
       control: {
         type: 'text',
       },
@@ -91,86 +87,6 @@ const meta: MetaComponent = {
         },
       },
       options: ['static', 'fixed'],
-      table: {
-        category: 'Positioning',
-      },
-    },
-    alignV: {
-      name: 'Vertical',
-      description: "When position set to `fixed`, defines the component's vertical position.",
-      if: {
-        arg: 'alignH',
-        neq: 'full-width',
-      },
-      control: {
-        type: 'radio',
-        labels: {
-          top: 'Top',
-          center: 'Center',
-          bottom: 'Bottom',
-        },
-      },
-      options: ['top', 'center', 'bottom'],
-      table: {
-        category: 'Positioning',
-      },
-    },
-    alignVRestricted: {
-      name: 'Vertical',
-      description: "When position set to `fixed`, defines the component's vertical position.",
-      if: {
-        arg: 'alignH',
-        eq: 'full-width',
-      },
-      control: {
-        type: 'radio',
-        labels: {
-          top: 'Top',
-          bottom: 'Bottom',
-        },
-      },
-      options: ['top', 'bottom'],
-      table: {
-        category: 'Positioning',
-      },
-    },
-    alignH: {
-      name: 'Horizontal',
-      description: "When position set to `fixed`, defines the component's horizontal position.",
-      if: {
-        arg: 'alignV',
-        neq: 'center',
-      },
-      control: {
-        type: 'radio',
-        labels: {
-          'left': 'Left',
-          'center': 'Center',
-          'right': 'Right',
-          'full-width': 'Full Width',
-        },
-      },
-      options: ['left', 'center', 'right', 'full-width'],
-      table: {
-        category: 'Positioning',
-      },
-    },
-    alignHRestricted: {
-      name: 'Horizontal',
-      description: "When position set to `fixed`, defines the component's horizontal position.",
-      if: {
-        arg: 'alignV',
-        eq: 'center',
-      },
-      control: {
-        type: 'radio',
-        labels: {
-          left: 'Left',
-          center: 'Center',
-          right: 'Right',
-        },
-      },
-      options: ['left', 'center', 'right'],
       table: {
         category: 'Positioning',
       },
@@ -312,8 +228,6 @@ function getDismissButton(args: Args, isFixed: boolean) {
 function Render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
-  updateAlignments(args, updateArgs);
-
   const timeoutStore =
     timeoutStores[context.name as keyof ITimeoutStores] || timeoutStores['Default'];
 
@@ -323,8 +237,6 @@ function Render(args: Args, context: StoryContext) {
     .filter(c => c && c !== 'null')
     .join(' ');
 
-  const alignV = args.alignVRestricted ?? args.alignV;
-  const alignH = args.alignHRestricted ?? args.alignH;
   let role;
   let ariaLive;
   if (isFixed) {
@@ -347,9 +259,8 @@ function Render(args: Args, context: StoryContext) {
       @mouseenter="${() => killAutoHideTimeout(timeoutStore, args)}"
       @mouseleave="${() => createAutoHideTimeout(timeoutStore, args, updateArgs)}"
     >
-      ${dismissButton}
-      <div class="toast-title">${args.title}</div>
-      ${args.content ? html` <div class="toast-message">${args.content}</div> ` : null}
+      ${dismissButton} ${args.title ? html` <div class="toast-title">${args.title}</div> ` : null}
+      <div class="toast-message">${args.content}</div>
     </div>
   `;
 
@@ -366,32 +277,10 @@ function Render(args: Args, context: StoryContext) {
     return component;
   }
   return html`
-    <div
-      aria-live="polite"
-      aria-atomic="true"
-      class="${`toast-container toast-${alignV}-${alignH}`}"
-    >
+    <div aria-live="polite" aria-atomic="true" class="toast-container toast-top-right">
       ${wrappedContent}
     </div>
   `;
-}
-
-function updateAlignments(args: Args, updateArgs: (newArgs: Partial<Args>) => void) {
-  if (args.alignH && args.alignHRestricted && args.alignH !== args.alignHRestricted) {
-    if (args.alignV === 'center') {
-      updateArgs({ alignH: args.alignHRestricted });
-    } else {
-      updateArgs({ alignHRestricted: args.alignH });
-    }
-  }
-
-  if (args.alignV && args.alignVRestricted && args.alignV !== args.alignVRestricted) {
-    if (args.alignH === 'full-width') {
-      updateArgs({ alignV: args.alignVRestricted });
-    } else {
-      updateArgs({ alignVRestricted: args.alignV });
-    }
-  }
 }
 
 export const Default: Story = {};

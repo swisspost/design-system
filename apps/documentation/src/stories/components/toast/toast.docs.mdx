@@ -4,6 +4,10 @@ import StylesPackageImport from '@/shared/styles-package-import';
 import StoryTags from '@/shared/story-tags';
 import NgxToastr from './ngx-toastr.sample?raw';
 import NgxToastrDismissible from './ngx-toastr-dismissible.sample?raw';
+import ToastComponentHtml from './toast-component-html.sample.html?raw';
+import ToastComponentTs from './toast-component-ts.sample.ts?raw';
+import ToastServiceTs from './toast-service-ts.sample.ts?raw';
+import * as ToastContainerStories from './toast-container.stories';
 
 <Meta of={ToastStories} />
 
@@ -41,22 +45,30 @@ To keep it aligned with the rest of your page content, place it inside a `.conta
 
 The following examples show the different characteristics of the component. These can differ in the type of visualization, the HTML structure, as well as when, how and why they are displayed.
 
-### Auto Close
+### Optional auto-dismissal
 
 <Canvas of={ToastStories.AutoClose} />
 
-Toasts should be closed automatically after a while, because they usually overlay the regular content.
-Each change on the screen should remain for at least 3-6 seconds for the user to perceive it.
-The longer the text in toast becomes, the longer the message should be displayed. However, 10-12 seconds should be enough.
-If the text is longer than 4 lines, you should consider using an `.alert` instead of a `.toast`.
+Keep toasts visible until users dismiss them, especially when they contain important information or
+require action. Auto-dismiss only brief, non-critical messages whose information remains available
+elsewhere.
 
-Last but not least, if the user moves the mouse or the focus to the `.toast` element, the automatic closing should be interrupted/paused and when the mouse/focus leaves the element again, the automatic closing delay should be restarted.
+When using auto-dismissal, give users a way to extend or disable the timer, and pause it while the
+toast is hovered or keyboard-focused. If the toast is the only way to access its information,
+pausing on interaction alone is not enough; users need a way to keep or retrieve that information.
 
 ### Stacked
 
 You can stack toasts by wrapping them in a `.toast-container`, which will vertically add some spacing.
+Additionally, you can add a specific class to define where on the screen the toasts should be stacked:
 
-<Canvas of={ToastStories.Stacked} />
+- `.toast-{top/bottom}-{center/left/right/full-width}`
+- `.toast-center-{center/left/right}`
+
+<Canvas of={ToastContainerStories.Default} />
+<div className="hide-col-default">
+  <Controls of={ToastContainerStories.Default} />
+</div>
 
 ## Accessibility
 
@@ -64,25 +76,63 @@ Toasts are intended to be small interruptions to your visitors or users, so to h
 
 See how to implement it on our [live regions documentation](/?path=/docs/548d973c-679c-4a02-96cd-70f82aec5f65--docs).
 
-## Integration with `ngx-toastr`
+## Angular Integration
 
-When using `ngx-toastr` in an Angular project, Design System styles can be applied to toast notifications by overriding the default `ngx-toastr` classes.
+<post-banner type="warning">
+  <p>
+    <code>ngx-toastr</code> is no longer maintained and is not compatible with Angular 22. We
+    recommend migrating to a custom toast service for your application.
+  </p>
+</post-banner>
 
-To do this, set the appropriate classes via the `toastClass` option:
+<post-tabs size="large">
+  <post-tab-item name="angular-custom-toast-service">Angular custom toast service</post-tab-item>
+  <post-tab-panel for="angular-custom-toast-service" class="pt-24">
+     Create an application-level service to manage toast messages, and a component to render them.
+     Add the component once to your root application template so messages triggered throughout the
+     app can appear in the toast container.
 
-- Information toast: `toast toast-info`
-- Success toast: `toast toast-success`
-- Warning toast: `toast toast-warning`
-- Error toast: `toast toast-error`
+     1. Implement a service that adds and dismisses toast messages, with the variants and options
+       your application needs.
 
-<Source code={NgxToastr} language="ts" />
+    <Source code={ToastServiceTs} language="ts" />
 
-#### Dismissible toasts
+     2. Create a template that renders toast messages and provides a close control. Mount the
+       component in the root application template.
 
-For dismissible toasts (i.e. `closeButton` is set to `true`), the `toast-dismissible` class must also be included in the `toastClass` configuration.
+    <Source code={ToastComponentHtml} language="html" />
 
-<Source code={NgxToastrDismissible} language="ts" />
+     3. Connect the component to the service so it renders new messages and handles dismissals.
 
-#### CSS import order
+    <Source code={ToastComponentTs} language="ts" />
 
-To ensure that Design System styles override the default `ngx-toastr` styles, the Design System CSS files must be imported <b>after</b> the `ngx-toastr` CSS files.
+  </post-tab-panel>
+
+<post-tab-item name="ngx-toastr">ngx-toastr (deprecated)</post-tab-item>
+<post-tab-panel for="ngx-toastr" class="pt-24">
+When using `ngx-toastr` in an Angular project, Design System styles can be applied to toast
+notifications by overriding the default `ngx-toastr` classes.
+
+    To do this, set the appropriate classes via the `toastClass` option:
+
+    - Information toast: `toast toast-info`
+    - Success toast: `toast toast-success`
+    - Warning toast: `toast toast-warning`
+    - Error toast: `toast toast-error`
+
+    <Source code={NgxToastr} language="ts" />
+
+    #### Dismissible toasts
+
+    For dismissible toasts (i.e. `closeButton` is set to `true`), the `toast-dismissible` class must
+    also be included in the `toastClass` configuration.
+
+    <Source code={NgxToastrDismissible} language="ts" />
+
+    #### CSS import order
+
+    To ensure that Design System styles override the default `ngx-toastr` styles, the Design System
+    CSS files must be imported <b>after</b> the `ngx-toastr` CSS files.
+
+  </post-tab-panel>
+</post-tabs>
