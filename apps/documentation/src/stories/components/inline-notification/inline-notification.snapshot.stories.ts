@@ -17,38 +17,22 @@ export const InlineNotification: Story = {
   render: (args: Args, context: StoryContext) => {
     return schemes(
       () => html`
-        <div class="d-flex flex-column gap-16 mb-32">
-          ${['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].map((headingLevel: string) =>
-            meta.render?.(
-              {
-                ...args,
-                variant: 'info',
-                headingLevel,
-                title: `Title with ${headingLevel}`,
-                message: 'The title should have the same size regardless of the heading tag.',
-              },
-              context,
-            ),
-          )}
+        <h1>Inline notifications</h1>
+        <div class="d-flex flex-column gap-16 mb-16">
+          ${bombArgs({
+            variant: context.argTypes.variant.options,
+            headingLevel: ['p', 'h2'],
+            title: ['', 'Title', 'A longer notification title to show more informations'],
+            message: [
+              'Message',
+              'A longer notification message to communicate information which needs higher attention than regular text.',
+            ],
+            multiline: [false, true],
+          })
+            .filter(args => !(args.multiline === true && args.title === ''))
+            .filter(args => !(args.headingLevel === 'h2' && args.title === ''))
+            .map((args: Args) => meta.render?.({ ...args }, context))}
         </div>
-
-        ${bombArgs({
-          variant: context.argTypes.variant.options,
-          hasTitle: [false, true],
-        }).map(
-          (bombedArgs: Args) =>
-            html`<div class="mb-16">
-              ${meta.render?.(
-                {
-                  ...args,
-                  variant: bombedArgs.variant,
-                  title: bombedArgs.hasTitle ? 'Notification Title' : '',
-                  message: 'This is a notification message.',
-                },
-                context,
-              )}
-            </div>`,
-        )}
       `,
     );
   },
