@@ -32,7 +32,7 @@ export class PostMegadropdown {
 
   private currentAnimation: Animation | null = null;
   private animatedContainer: HTMLElement;
-  private isAnimating: boolean = false;
+  private animationDirection: 'in' | 'out' | null = null;
 
   private fsAnimationOptions: Partial<FadeSlideOptions> = {
     translate: -10,
@@ -123,9 +123,9 @@ export class PostMegadropdown {
    */
   @Method()
   async toggle() {
-    if (this.isAnimating) {
+    if (this.animationDirection) {
       // If this is already animating towards a future state -> reverse intent
-      return this.isVisible ? this.show() : this.hide();
+      return this.animationDirection === 'in' ? this.hide() : this.show();
     }
 
     return this.isVisible ? this.hide() : this.show();
@@ -188,6 +188,9 @@ export class PostMegadropdown {
       return;
     }
 
+    // Already closed or already closing
+    if (!this.isVisible || this.animationDirection === 'out') return;
+
     // Update trigger state
     this.postToggleMegadropdown.emit({ isVisible: false, focusParent: focusParent });
 
@@ -227,14 +230,19 @@ export class PostMegadropdown {
 
   // Run the respective animation
   private createAnimation(direction: 'in' | 'out'): Animation {
+    // Keep the last frame of the closing animation until the container is hidden,
+    // otherwise it snaps back to full opacity for a frame before display: none is applied
+    const fill: FillMode = direction === 'out' ? 'forwards' : 'none';
+
     if (this.device === 'desktop') {
-      return fadeSlide(this.animatedContainer, direction, this.fsAnimationOptions);
+      return fadeSlide(this.animatedContainer, direction, { ...this.fsAnimationOptions, fill });
     }
 
     return slide(this.animatedContainer, direction, {
       translate: 100,
       duration: 350,
       easing: direction === 'in' ? 'ease-in' : 'ease-out',
+      fill,
     });
   }
 
@@ -242,12 +250,16 @@ export class PostMegadropdown {
     this.cancelAnimation();
     this.currentAnimation = this.createAnimation(direction);
 
-    // Flag isAnimating used to avoid toggle() de-sync
-    this.isAnimating = true;
-    await this.currentAnimation.finished;
-    this.isAnimating = false;
+    // Used to avoid toggle() de-sync and double hide() calls
+    this.animationDirection = direction;
+    try {
+      await this.currentAnimation.finished;
+    } finally {
+      if (this.animationDirection === direction) this.animationDirection = null;
+    }
 
-    this.currentAnimation = null;
+    // The closing animation is kept (fill: forwards) and cancelled by the next animate() call
+    if (direction === 'in') this.currentAnimation = null;
   }
 
   private cancelAnimation() {
@@ -270,7 +282,7 @@ export class PostMegadropdown {
     }
 
     // Ignore clicks on the trigger or its contents to prevent running hide() twice
-    if (this.megadropdownTrigger.contains(target)) {
+    if (this.megadropdownTrigger?.contains(target)) {
       return;
     }
 
@@ -327,11 +339,15 @@ export class PostMegadropdown {
   }
 
   private handleTabOutside(e: KeyboardEvent) {
-    if (e.key === 'Tab' && this.device === 'desktop') {
-      if (this.isVisible && !this.host.contains(e.target as Node)) {
-        this.hide(false);
-      }
-    }
+    if (e.key !== 'Tab' || this.device !== 'desktop' || !this.isVisible) return;
+
+    const target = e.target as Node;
+    if (this.host.contains(target)) return;
+
+    // Focus on the own trigger keeps it open, Enter / Space on the trigger closes it
+    if (this.megadropdownTrigger?.contains(target)) return;
+
+    this.hide(false);
   }
 
   /**
