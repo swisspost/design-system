@@ -5,7 +5,11 @@
   --post-global-header-top: calc(
     var(--post-global-header-reduced-height) - var(--post-global-header-expanded-height)
   );
-  --post-header-top: calc(var(--post-header-reduced-height) - var(--post-header-expanded-height));
+  // Clamped to 0px so the sticky inset can never become positive
+  --post-header-top: min(
+    calc(var(--post-header-reduced-height) - var(--post-header-expanded-height)),
+    0px
+  );
 
   --post-logo-height: calc(
     var(--post-global-header-expanded-height) - var(--post-header-scroll-top, 0px)
