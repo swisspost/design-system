@@ -54,11 +54,22 @@ tokens.$default-map: components.$post-inline-notification;
     border: 2px solid CanvasText;
   }
 
-  > *:first-child {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-weight: tokens.get('notification-inline-title-font-weight');
   }
 
-  * {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
     margin: 0;
     line-height: tokens.get('body-line-height', elements.$post-body);
     font-size: tokens.get('body-font-size', elements.$post-body);

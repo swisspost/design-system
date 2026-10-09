@@ -21,6 +21,7 @@ export const InlineNotification: Story = {
         <div class="d-flex flex-column gap-16 mb-16">
           ${bombArgs({
             variant: context.argTypes.variant.options,
+            headingLevel: ['p', 'h2'],
             title: ['', 'Title', 'A longer notification title to show more informations'],
             message: [
               'Message',
@@ -29,6 +30,7 @@ export const InlineNotification: Story = {
             multiline: [false, true],
           })
             .filter(args => !(args.multiline === true && args.title === ''))
+            .filter(args => !(args.headingLevel === 'h2' && args.title === ''))
             .map((args: Args) => meta.render?.({ ...args }, context))}
         </div>
       `,

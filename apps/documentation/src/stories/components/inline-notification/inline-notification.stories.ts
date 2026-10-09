@@ -1,6 +1,6 @@
 import type { Args, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { MetaComponent } from '@root/types';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 const meta: MetaComponent = {
@@ -19,6 +19,8 @@ const meta: MetaComponent = {
     title: 'Title',
     multiline: true,
     message: 'Message',
+    headingLevel: 'p',
+    type: 'persistent',
   },
   argTypes: {
     variant: {
@@ -45,6 +47,42 @@ const meta: MetaComponent = {
       table: {
         category: 'Content',
       },
+    },
+    headingLevel: {
+      name: 'Heading Level',
+      if: {
+        arg: 'title',
+        neq: '',
+      },
+      description:
+        'The semantic tag used for the notification title. <post-banner data-size="sm"><p>A heading tag is needed for introducing a new subsection heading, or a paragraph <code>p</code> + <code>strong</code> tag to simply highlight the content.</p></post-banner>',
+      control: {
+        type: 'select',
+        labels: {
+          h1: 'Heading 1',
+          h2: 'Heading 2',
+          h3: 'Heading 3',
+          h4: 'Heading 4',
+          h5: 'Heading 5',
+          h6: 'Heading 6',
+          p: 'Paragraph',
+        },
+      },
+      options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'],
+      table: { category: 'Content' },
+    },
+    type: {
+      name: 'Type',
+      description: 'The type of the notification',
+      control: {
+        type: 'radio',
+        labels: {
+          persistent: 'Persistent (always visible on a page)',
+          dynamic: 'Dynamic (result of an action)',
+        },
+      },
+      options: ['persistent', 'dynamic'],
+      table: { category: 'General' },
     },
     message: {
       name: 'Message',
@@ -75,10 +113,19 @@ export default meta;
 
 // RENDERER
 function renderInlineNotification(args: Args) {
-  const { variant, title, message } = args;
-  const titleHTML = title ? `<div>${title}</div>` : '';
-  const messageHTML = title ? `<div>${message}</div>` : message;
-  const role = variant === 'warning' || variant === 'error' ? 'alert' : 'status';
+  const { variant, title, message, headingLevel } = args;
+
+  let titleHTML = '';
+
+  if (title) {
+    if (headingLevel === 'p') {
+      titleHTML = `<p><strong>${title}</strong></p>`;
+    } else {
+      titleHTML = `<${headingLevel}>${title}</${headingLevel}>`;
+    }
+  }
+
+  const role = args.type === 'dynamic' ? 'status' : nothing;
 
   return html`
     <div
@@ -87,7 +134,8 @@ function renderInlineNotification(args: Args) {
         : ''}"
       role="${role}"
     >
-      ${unsafeHTML(titleHTML)} ${unsafeHTML(messageHTML)}
+      ${unsafeHTML(titleHTML)}
+      <p>${message}</p>
     </div>
   `;
 }
