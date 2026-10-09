@@ -149,7 +149,8 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
       padding: tokens.get('post-datepicker-grid-padding');
       background: tokens.get('post-datepicker-grid-color-enabled-bg');
       row-gap: tokens.get('post-datepicker-grid-gap-block');
-      border-radius: tokens.get('post-datepicker-border-radius');
+      border-end-start-radius: tokens.get('post-datepicker-border-radius');
+      border-end-end-radius: tokens.get('post-datepicker-border-radius');
 
       .a11y-row {
         display: grid;
