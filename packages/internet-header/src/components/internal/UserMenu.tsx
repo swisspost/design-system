@@ -46,7 +46,7 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
           <span class="visually-hidden">{textAccessUserLinks}</span>
         </button>
       </post-menu-trigger>
-      <post-menu id={userMenuId} label={textUserLinks}>
+      <post-menu id={userMenuId} label={textUserLinks} placement="bottom-end">
         <div slot="header">
           <Avatar user={config.user} />
           {config.user.company && <p>{config.user.company}</p>}
