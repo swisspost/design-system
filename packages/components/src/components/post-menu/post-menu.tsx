@@ -1,5 +1,5 @@
 import { PLACEMENT_TYPES } from '@/types';
-import { EventFrom, getFocusableChildren, getRoot, OneOf, Required, Type } from '@/utils';
+import { EventFrom, getFocusableChildren, getRoot, isFocusVisible, OneOf, Required, Type } from '@/utils';
 import type { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
 import {
@@ -160,7 +160,7 @@ export class PostMenu {
 
       // Only focus the first item if the trigger was keyboard-focus-visible
       // that's the browser's own signal for a keyboard-driven interaction.
-      if (this.wasFocusVisible(this.lastFocusedElement)) {
+      if (isFocusVisible(this.lastFocusedElement)) {
         requestAnimationFrame(() => {
           const menuItems = this.getSlottedItems();
           if (menuItems.length > 0) {
@@ -170,17 +170,6 @@ export class PostMenu {
       }
     } else if (this.lastFocusedElement) {
       this.lastFocusedElement.focus();
-    }
-  }
-
-  private wasFocusVisible(element: HTMLElement | null): boolean {
-    if (!element) return false;
-
-    try {
-      return element.matches(':focus-visible');
-    } catch {
-      // Not supported, fall back to always focusing
-      return true;
     }
   }
 
