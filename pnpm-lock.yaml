@@ -539,6 +539,9 @@ importers:
       cypress-axe:
         specifier: catalog:cypress
         version: 1.7.0(axe-core@4.11.3)(cypress@15.20.1)
+      cypress-real-events:
+        specifier: 1.15.1
+        version: 1.15.1(cypress@15.20.1)
       cypress-storybook:
         specifier: catalog:cypress
         version: 1.0.0(cypress@15.20.1)
@@ -6563,6 +6566,11 @@ packages:
 
   cypress-each@1.14.1:
     resolution: {integrity: sha512-evywTv0Gid5J24C2W6ajYsVoBpoXIkvNo6L5a5+6QabtKOG1pn9Fq4zO/EwrdfktDZ9PWRRWFbJBMoRh3NlrYg==}
+
+  cypress-real-events@1.15.1:
+    resolution: {integrity: sha512-BiTyqYcNHiIFWfSLRn3H+TgTvpnTGOKfl4Brz51yeSGKMxBbD60wtRQw31nII00yQ67Xg3C18mU8lqUxDN3OUA==}
+    peerDependencies:
+      cypress: ^4.x || ^5.x || ^6.x || ^7.x || ^8.x || ^9.x || ^10.x || ^11.x || ^12.x || ^13.x || ^14.x || ^15.x || ^16.x
 
   cypress-storybook@1.0.0:
     resolution: {integrity: sha512-tXEhJwkD9SNsg9o9ZKI4XReTV4bpW60bcUQA6X7+j40Oqgt7atBg+oG2nMBJFf172v9cp6LX3fNTxvv7JFGVOA==}
@@ -18684,6 +18692,10 @@ snapshots:
   cypress-each@1.14.1:
     dependencies:
       format-util: 1.0.5
+
+  cypress-real-events@1.15.1(cypress@15.20.1):
+    dependencies:
+      cypress: 15.20.1
 
   cypress-storybook@1.0.0(cypress@15.20.1):
     dependencies:

@@ -1640,6 +1640,9 @@ declare namespace LocalJSX {
         "url"?: string;
     }
     interface PostLanguageMenu {
+        /**
+          * An event emitted when the active language changes. The payload is the ISO 639 code of the newly active language.
+         */
         "onPostChange"?: (event: PostLanguageMenuCustomEvent<string>) => void;
         /**
           * A title for the list of language options
