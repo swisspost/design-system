@@ -412,6 +412,7 @@ input.form-control {
     padding-block-start: tokens.get('input-label-empty-padding-block-start');
     border: 0;
     color: tokens.get('input-color-enabled-fg');
+    font-size: tokens.get('input-font-size');
     width: auto;
     height: auto;
     max-width: calc(100% - (#{tokens.get('input-border-width')} * 2));

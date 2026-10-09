@@ -138,6 +138,7 @@ textarea.form-control {
     border: 0;
     border-top-left-radius: tokens.get('textarea-border-radius');
     color: tokens.get('textarea-enabled-fg');
+    font-size: tokens.get('textarea-font-size');
     background-color: transparent;
     height: auto;
     white-space: nowrap;
