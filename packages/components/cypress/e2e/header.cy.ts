@@ -491,7 +491,8 @@ describe('header', () => {
         getLanguageMenuTrigger().focus();
         cy.get('@header').should('have.attr', 'data-expanded');
 
-        scrollAndWait(800);
+        // 501px is the maximum scroll position of the story
+        scrollAndWait(501);
         cy.get('@header').should('have.attr', 'data-expanded');
       });
     });
@@ -504,17 +505,22 @@ describe('header', () => {
         scrollAndWait(500);
       });
 
-      it('should not add data-expanded when a global-header element is clicked while scrolled', () => {
-        getLanguageMenuTrigger().realClick();
-
-        getLanguageMenuTrigger().should('have.attr', 'aria-expanded', 'true');
-        cy.get('@header').should('not.have.attr', 'data-expanded');
-      });
+      // the global controls are moved out of view while scrolled, so the header is first expanded with the keyboard
+      function expandWithKeyboardOnLoginElement() {
+        cy.get('@header')
+          .getFocusableElements()
+          .then(focusableElements => {
+            const globalHeaderEl = Array.from(focusableElements).find(
+              el => !el.closest('[slot="main-nav"]'),
+            );
+            cy.wrap(globalHeaderEl).focus();
+          });
+        cy.get('@header').should('have.attr', 'data-expanded');
+      }
 
       // https://github.com/swisspost/design-system/issues/8592
       it('should keep data-expanded and open the language menu when clicked after keyboard expansion', () => {
-        cy.get('@header').find('[slot="post-login"]').find('a, button').first().focus();
-        cy.get('@header').should('have.attr', 'data-expanded');
+        expandWithKeyboardOnLoginElement();
 
         getLanguageMenuTrigger().realClick();
 
@@ -524,8 +530,7 @@ describe('header', () => {
       });
 
       it('should remove data-expanded on the next scroll after a click inside the expanded header', () => {
-        getLanguageMenuTrigger().focus();
-        cy.get('@header').should('have.attr', 'data-expanded');
+        expandWithKeyboardOnLoginElement();
 
         getLanguageMenuTrigger().realClick();
         cy.get('@header').should('have.attr', 'data-expanded');
@@ -535,7 +540,8 @@ describe('header', () => {
       });
 
       it('should keep data-expanded on scroll when going back to the keyboard after a click', () => {
-        getLanguageMenuTrigger().focus();
+        expandWithKeyboardOnLoginElement();
+
         getLanguageMenuTrigger().realClick();
         getLanguageMenuTrigger().should('have.attr', 'aria-expanded', 'true');
 
@@ -545,7 +551,7 @@ describe('header', () => {
         cy.press(Cypress.Keyboard.Keys.TAB);
         cy.get('@header').should('have.attr', 'data-expanded');
 
-        scrollAndWait(800);
+        scrollAndWait(501);
         cy.get('@header').should('have.attr', 'data-expanded');
       });
     });
