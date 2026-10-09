@@ -13,7 +13,7 @@ tokens.$default-map: components.$post-inline-notification;
   padding-block: tokens.get('notification-inline-padding-block');
   padding-inline-start: calc(
     tokens.get('notification-inline-padding-inline') + tokens.get('notification-inline-icon-size') +
-      tokens.get('notification-inline-gap-inline')
+    tokens.get('notification-inline-gap-inline')
   );
   padding-inline-end: tokens.get('notification-inline-padding-inline');
   border-style: tokens.get('notification-inline-border-style');
