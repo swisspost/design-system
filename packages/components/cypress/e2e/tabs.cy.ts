@@ -260,6 +260,36 @@ describe('Accessibility', () => {
     });
   });
 
+  describe('scroll buttons', () => {
+    ['default', 'pages-variant'].forEach(story => {
+      describe(story, () => {
+        beforeEach(() => {
+          cy.getComponent('tabs', TABS_ID, story);
+        });
+
+        it('should keep the scroll buttons out of the tab sequence', () => {
+          cy.get('@tabs').shadow().find('.scroll-btn-left').should('have.attr', 'tabindex', '-1');
+          cy.get('@tabs').shadow().find('.scroll-btn-right').should('have.attr', 'tabindex', '-1');
+        });
+
+        it('should not move focus to the right scroll button when tabbing forward from the last focusable tab', () => {
+          // focus the last naturally tabbable element in the tablist, then simulate a real Tab key press
+          if (story === 'pages-variant') {
+            cy.get('post-tab-item').last().find('a').focus();
+          } else {
+            cy.get('post-tab-item[tabindex="0"]').focus();
+          }
+          cy.press(Cypress.Keyboard.Keys.TAB);
+
+          cy.get('@tabs').then($tabs => {
+            const focusedInShadow = $tabs[0].shadowRoot?.activeElement;
+            expect(focusedInShadow?.classList.contains('scroll-btn-right') ?? false).to.equal(false);
+          });
+        });
+      });
+    });
+  });
+
   describe('content mode ARIA attributes', () => {
     beforeEach(() => {
       cy.getComponent('tabs', TABS_ID, 'default');
