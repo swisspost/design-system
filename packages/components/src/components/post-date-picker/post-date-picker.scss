@@ -93,7 +93,6 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
       .air-datepicker-nav--action {
         height: tokens.get('post-icon-button-small-outer', components.$post-icon-button);
         width: tokens.get('post-icon-button-small-outer', components.$post-icon-button);
-        color: tokens.get('post-datepicker-header-dropdown-color-enabled-fg');
 
         &[data-action='next'] {
           margin-inline-start: tokens.get('post-datepicker-header-chevrons-gap');
@@ -150,8 +149,7 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
       padding: tokens.get('post-datepicker-grid-padding');
       background: tokens.get('post-datepicker-grid-color-enabled-bg');
       row-gap: tokens.get('post-datepicker-grid-gap-block');
-      border-end-start-radius: tokens.get('post-datepicker-border-radius');
-      border-end-end-radius: tokens.get('post-datepicker-border-radius');
+      border-radius: tokens.get('post-datepicker-border-radius');
 
       .a11y-row {
         display: grid;
