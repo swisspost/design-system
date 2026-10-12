@@ -443,6 +443,83 @@ describe('header', () => {
 
         cy.get('@header').should('not.have.attr', 'data-expanded');
       });
+
+      it('should remove data-expanded when focus moves from the global header to the main navigation on desktop', () => {
+        cy.scrollTo(0, 500);
+
+        cy.get('@header')
+          .find('post-language-menu')
+          .shadow()
+          .find('post-menu-trigger button')
+          .focus();
+
+        cy.get('@header').should('have.attr', 'data-expanded');
+
+        cy.get('post-megadropdown-trigger').find('button').first().focus();
+
+        cy.get('@header').should('not.have.attr', 'data-expanded');
+      });
+    });
+
+    describe('header expansion on focus (microsite)', () => {
+      function focusFirstLocalNavElement() {
+        cy.get('@header')
+          .find('[slot="local-nav"]')
+          .first()
+          .then($localNav => {
+            const localNav = $localNav[0];
+            const focusable = localNav.matches('a, button')
+              ? localNav
+              : localNav.querySelector<HTMLElement>('a, button');
+
+            expect(focusable, 'focusable element in local-nav').to.not.equal(null);
+            focusable.focus();
+          });
+      }
+
+      describe('desktop', () => {
+        beforeEach(() => {
+          cy.viewport(1920, 1080);
+          cy.getComponent('header', HEADER_ID, 'microsite');
+        });
+
+        it('should keep data-expanded while focus moves from the language menu trigger into its flyout and back', () => {
+          cy.scrollTo(0, 500);
+
+          cy.get('@header')
+            .find('post-language-menu')
+            .shadow()
+            .find('post-menu-trigger button')
+            .as('langTrigger');
+
+          cy.get('@langTrigger').focus();
+          cy.get('@header').should('have.attr', 'data-expanded');
+
+          // Open menu
+          cy.get('@langTrigger').click({ scrollBehavior: false });
+          cy.get('@langTrigger').should('have.attr', 'aria-expanded', 'true');
+          cy.get('@header').find('post-language-menu-item').should('be.visible');
+          cy.get('@header').should('have.attr', 'data-expanded');
+
+          // Close menu with Escape
+          cy.get('@header')
+            .find('post-language-menu-item')
+            .first()
+            .trigger('keydown', { key: 'Escape', scrollBehavior: false });
+          cy.get('@langTrigger').should('have.attr', 'aria-expanded', 'false');
+          cy.get('@header').should('have.attr', 'data-expanded');
+        });
+
+        it('should NOT add data-expanded when focus is on a local-nav element', () => {
+          cy.scrollTo(0, 500);
+
+          cy.get('@header').should('not.have.attr', 'data-expanded');
+
+          focusFirstLocalNavElement();
+
+          cy.get('@header').should('not.have.attr', 'data-expanded');
+        });
+      });
     });
   });
 
