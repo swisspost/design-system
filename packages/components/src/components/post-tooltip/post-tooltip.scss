@@ -39,4 +39,5 @@ post-popovercontainer::part(post-popovercontainer-content) {
   max-width: var(--post-tooltip-max-width, 280px);
   word-wrap: break-word;
   white-space: normal;
+  overflow: hidden;
 }

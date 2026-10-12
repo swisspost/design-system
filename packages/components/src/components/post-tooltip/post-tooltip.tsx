@@ -77,6 +77,8 @@ export class PostTooltip {
   private handleBeforeToggle(
     e: PostPopovercontainerCustomEvent<{ willOpen: boolean; first?: boolean }>,
   ) {
+    // The 'open' attribute needs to be set synchronously for the popover to be measured correctly.
+    this.host.toggleAttribute('open', e.detail.willOpen);
     this.open = e.detail.willOpen;
   }
 
