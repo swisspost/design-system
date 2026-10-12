@@ -7,7 +7,6 @@ import NgxToastrDismissible from './ngx-toastr-dismissible.sample?raw';
 import ToastComponentHtml from './toast-component-html.sample.html?raw';
 import ToastComponentTs from './toast-component-ts.sample.ts?raw';
 import ToastServiceTs from './toast-service-ts.sample.ts?raw';
-import * as ToastContainerStories from './toast-container.stories';
 
 <Meta of={ToastStories} />
 
@@ -60,15 +59,8 @@ pausing on interaction alone is not enough; users need a way to keep or retrieve
 ### Stacked
 
 You can stack toasts by wrapping them in a `.toast-container`, which will vertically add some spacing.
-Additionally, you can add a specific class to define where on the screen the toasts should be stacked:
 
-- `.toast-{top/bottom}-{center/left/right/full-width}`
-- `.toast-center-{center/left/right}`
-
-<Canvas of={ToastContainerStories.Default} />
-<div className="hide-col-default">
-  <Controls of={ToastContainerStories.Default} />
-</div>
+<Canvas of={ToastStories.Stacked} />
 
 ## Accessibility
 
