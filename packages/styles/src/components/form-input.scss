@@ -117,12 +117,11 @@ input.form-control {
     /* stylelint-disable-next-line */
     @supports (background: -webkit-named-image(i)) {
       &::file-selector-button {
-        display: initial;
-        position: initial;
-        margin-inline: 0;
-        padding-inline: 0;
-        width: 0;
-        border: 0 none;
+        display: none;
+      }
+
+      &::-webkit-file-upload-button {
+        display: none;
       }
 
       &::after {
@@ -164,6 +163,20 @@ input.form-control {
             content: 'Choisir des fichiers';
           }
         }
+      }
+    }
+
+    @supports (-webkit-touch-callout: none) {
+      &::file-selector-button {
+        all: revert;
+      }
+
+      &::-webkit-file-upload-button {
+        all: revert;
+      }
+
+      &::after {
+        display: none;
       }
     }
 
