@@ -95,7 +95,6 @@ const meta: MetaComponent = {
         category: 'Positioning',
       },
     },
-
     alignV: {
       name: 'Vertical',
       description: "When position set to `fixed`, defines the component's vertical position.",
