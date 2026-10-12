@@ -280775,10 +280775,14 @@
         "name": "TicketSBB_Shape_16.svg",
         "basename": "TicketSBB_Shape_16",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-10-09T13:27:27.000Z",
-      "modifiedAt": "2026-10-09T13:31:27.000Z"
+      "modifiedAt": "2026-10-10T13:05:02.046Z"
     },
     {
       "uuid": "29c6af50-c3e5-11f1-98bb-0050568d2654",
@@ -280798,10 +280802,14 @@
         "name": "TicketSBB_Shape_24.svg",
         "basename": "TicketSBB_Shape_24",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-10-09T13:27:24.000Z",
-      "modifiedAt": "2026-10-09T13:31:27.000Z"
+      "modifiedAt": "2026-10-10T13:05:02.046Z"
     },
     {
       "uuid": "2ade60e0-c3e5-11f1-98bb-0050568d2654",
@@ -280821,10 +280829,14 @@
         "name": "TicketSBB_Shape_32.svg",
         "basename": "TicketSBB_Shape_32",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-10-09T13:27:25.000Z",
-      "modifiedAt": "2026-10-09T13:31:27.000Z"
+      "modifiedAt": "2026-10-10T13:05:02.046Z"
     },
     {
       "uuid": "27e51e10-c3e5-11f1-98bb-0050568d2654",
@@ -280844,10 +280856,14 @@
         "name": "TicketSBB_Shape_40.svg",
         "basename": "TicketSBB_Shape_40",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-10-09T13:27:20.000Z",
-      "modifiedAt": "2026-10-09T13:31:27.000Z"
+      "modifiedAt": "2026-10-10T13:05:02.046Z"
     },
     {
       "uuid": "28316950-c3e5-11f1-98bb-0050568d2654",
@@ -280867,10 +280883,14 @@
         "name": "TicketSBB_Shape_48.svg",
         "basename": "TicketSBB_Shape_48",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-10-09T13:27:21.000Z",
-      "modifiedAt": "2026-10-09T13:31:27.000Z"
+      "modifiedAt": "2026-10-10T13:05:02.046Z"
     },
     {
       "uuid": "26e51330-c3e5-11f1-98bb-0050568d2654",
@@ -280890,10 +280910,14 @@
         "name": "TicketSBB_Shape_64.svg",
         "basename": "TicketSBB_Shape_64",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-10-09T13:27:19.000Z",
-      "modifiedAt": "2026-10-09T13:30:30.000Z"
+      "modifiedAt": "2026-10-10T13:05:02.046Z"
     },
     {
       "uuid": "266730a0-c3e5-11f1-98bb-0050568d2654",
@@ -280913,10 +280937,14 @@
         "name": "TicketSBB_Solid_Shape_16.svg",
         "basename": "TicketSBB_Solid_Shape_16",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-10-09T13:27:18.000Z",
-      "modifiedAt": "2026-10-09T13:31:27.000Z"
+      "modifiedAt": "2026-10-10T13:05:02.046Z"
     },
     {
       "uuid": "2646fe70-c3e5-11f1-98bb-0050568d2654",
@@ -280936,10 +280964,14 @@
         "name": "TicketSBB_Solid_Shape_24.svg",
         "basename": "TicketSBB_Solid_Shape_24",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-10-09T13:27:18.000Z",
-      "modifiedAt": "2026-10-09T13:31:27.000Z"
+      "modifiedAt": "2026-10-10T13:05:02.046Z"
     },
     {
       "uuid": "2536c6f8-c3e5-11f1-98bb-0050568d2654",
@@ -280959,10 +280991,14 @@
         "name": "TicketSBB_Solid_Shape_32.svg",
         "basename": "TicketSBB_Solid_Shape_32",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-10-09T13:27:16.000Z",
-      "modifiedAt": "2026-10-09T13:31:27.000Z"
+      "modifiedAt": "2026-10-10T13:05:02.046Z"
     },
     {
       "uuid": "23656250-c3e5-11f1-98bb-0050568d2654",
@@ -280982,10 +281018,14 @@
         "name": "TicketSBB_Solid_Shape_40.svg",
         "basename": "TicketSBB_Solid_Shape_40",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-10-09T13:27:13.000Z",
-      "modifiedAt": "2026-10-09T13:31:27.000Z"
+      "modifiedAt": "2026-10-10T13:05:02.046Z"
     },
     {
       "uuid": "2360ce70-c3e5-11f1-98bb-0050568d2654",
@@ -281005,10 +281045,14 @@
         "name": "TicketSBB_Solid_Shape_48.svg",
         "basename": "TicketSBB_Solid_Shape_48",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-10-09T13:27:13.000Z",
-      "modifiedAt": "2026-10-09T13:31:27.000Z"
+      "modifiedAt": "2026-10-10T13:05:02.046Z"
     },
     {
       "uuid": "23600b20-c3e5-11f1-98bb-0050568d2654",
@@ -281028,10 +281072,14 @@
         "name": "TicketSBB_Solid_Shape_64.svg",
         "basename": "TicketSBB_Solid_Shape_64",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-10-09T13:27:13.000Z",
-      "modifiedAt": "2026-10-09T13:31:27.000Z"
+      "modifiedAt": "2026-10-10T13:05:02.046Z"
     },
     {
       "uuid": "22328410-81ac-11f1-b2d4-0050568d2654",
@@ -394875,6 +394923,6 @@
     "noKeywords": 2948,
     "duplicates": 0
   },
-  "created": "2026-10-09T13:35:40.797Z",
+  "created": "2026-10-12T12:50:20.178Z",
   "version": "10.7.0"
 }
