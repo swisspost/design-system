@@ -72,6 +72,26 @@
   }
 }
 
+@mixin focus-visible($additional-selector: '') {
+  // These selectors are deliberately kept separate and are not grouped in a single :is() selector,
+  // because Stencil's CSS minifier corrupts selector lists that repeat an :is() group containing :has().
+  // See https://github.com/stenciljs/core/issues/6894.
+  @each $focus-selector in ':focus-visible', '.pretend-focus', ':has(:focus-visible)' {
+    &#{$focus-selector}#{$additional-selector} {
+      @content;
+    }
+  }
+
+  // When a browser doesn't support :has, use focus-within as a fallback.
+  // This means that focus state is displayed on focus and not on focus-visible only (except some browsers like Safari).
+  // This list contains no nested parentheses, so it is safe to group it in a single :is() selector.
+  @supports not selector(:has(:focus-visible)) {
+    &:is(:focus-visible, :focus-within, .pretend-focus)#{$additional-selector} {
+      @content;
+    }
+  }
+}
+
 @mixin focus-style-none {
   outline: none !important;
 }
@@ -86,27 +106,13 @@
       tokens.get('focus-outline-width', helpers.$post-focus) !important;
   }
 
-  // :has(:focus-visible) mimic a focus-visible-within pseudo-class
-  &:is(:focus-visible, :has(:focus-visible), .pretend-focus)#{$additional-selector} {
+  @include focus-visible($additional-selector) {
     outline-style: tokens.get('focus-border-style', helpers.$post-focus) !important;
     // In case rules need to be slightly adjusted
     @content;
 
     @include high-contrast-mode() {
       outline-color: Highlight !important;
-    }
-  }
-
-  // When a browser doesn't support :has, use focus-within as a fallback. This means that focus state is displayed on focus and not on focus-visible only (except some browsers like Safari).
-  @supports not selector(:has(:focus-visible)) {
-    &:is(:focus-visible, :focus-within, .pretend-focus)#{$additional-selector} {
-      outline-style: tokens.get('focus-border-style', helpers.$post-focus) !important;
-      // In case rules need to be slightly adjusted
-      @content;
-
-      @include high-contrast-mode() {
-        outline-color: Highlight !important;
-      }
     }
   }
 }
@@ -128,25 +134,12 @@
     outline: $outline-color none tokens.get('focus-outline-width', helpers.$post-focus) !important;
   }
 
-  // :has(:focus-visible) mimic a focus-visible-within pseudo-class
-  &:is(:focus-visible, :has(:focus-visible), .pretend-focus)#{$additional-selector} {
+  @include focus-visible($additional-selector) {
     outline-style: tokens.get('focus-border-style', helpers.$post-focus) !important;
     @content;
 
     @include high-contrast-mode() {
       outline-color: Highlight !important;
-    }
-  }
-
-  // When a browser doesn't support :has, use focus-within as a fallback. This means that focus state is displayed on focus and not on focus-visible only (except some browsers like Safari).
-  @supports not selector(:has(:focus-visible)) {
-    &:is(:focus-visible, :focus-within, .pretend-focus)#{$additional-selector} {
-      outline-style: tokens.get('focus-border-style', helpers.$post-focus) !important;
-      @content;
-
-      @include high-contrast-mode() {
-        outline-color: Highlight !important;
-      }
     }
   }
 }

@@ -20,7 +20,9 @@ import './side-navigation.styles.scss';
   levels that can be expanded or collapsed.
 </div>
 
-<Canvas sourceState="shown" of={SideNavigationStories.Default} />
+<div className="main-story">
+  <Canvas sourceState="shown" of={SideNavigationStories.Default} />
+</div>
 <post-banner type="info" className="my-16">
   Due to `<iframe>` restrictions, the controls below will not update the side-navigation shown above. Use the table as a reference for the component API. The demo intentionally mixes different types of links (icons, collapsible, combined link and collapsible) to demonstrate what's possible. In a project, choose the link type that is most appropriate for your information architecture and use it consistently.
 </post-banner>
