@@ -22,7 +22,7 @@ export const InlineNotification: Story = {
           ${bombArgs({
             variant: context.argTypes.variant.options,
             headingLevel: ['p', 'h2'],
-            title: ['', 'Title', 'A longer notification title to show more informations'],
+            title: ['', 'Title', 'A longer notification title to show more information'],
             message: [
               'Message',
               'A longer notification message to communicate information which needs higher attention than regular text.',
