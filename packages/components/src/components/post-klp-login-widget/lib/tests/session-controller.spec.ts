@@ -34,17 +34,19 @@ function fakeEventBus() {
 function controllerFor(message: KlpMessage) {
   const fetchMock = mockSubscribe(message);
   const onSessionChange = jest.fn();
+  const onUnreadChange = jest.fn();
   const bus = fakeEventBus();
   const loadEventBus = jest.fn().mockResolvedValue(() => bus);
   const controller = track(
     createSessionController({
       endPoint: 'https://n.accountint1.post.ch',
       onSessionChange,
+      onUnreadChange,
       loadEventBus,
     }),
   );
 
-  return { controller, onSessionChange, fetchMock, bus, loadEventBus };
+  return { controller, onSessionChange, onUnreadChange, fetchMock, bus, loadEventBus };
 }
 
 describe('session-controller', () => {
@@ -320,6 +322,26 @@ describe('session-controller', () => {
       handler({ typ: 'rem', doctyp: 'UNREAD_NOTIFICATIONS' });
 
       expect(controller.getUnreadNotifications()).toBe(0);
+    });
+
+    // Polling would be the alternative, and the count changes far too rarely to be worth it.
+    it('announces every change, so the menu never has to ask', async () => {
+      const { controller, bus, onUnreadChange } = controllerFor({
+        typ: 'sub',
+        adr: 'address-1',
+        ttl: 60_000,
+        data: sessionData,
+      });
+      await controller.start();
+      await new Promise(resolve => setImmediate(resolve));
+      bus.onopen();
+      const [, handler] = bus.registerHandler.mock.calls[0];
+
+      handler({ typ: 'doc', doc: { unreadNotifications: 4 }, doctyp: 'UNREAD_NOTIFICATIONS' });
+      handler({ typ: 'rem', doctyp: 'UNREAD_NOTIFICATIONS' });
+      handler({ typ: 'bye' });
+
+      expect(onUnreadChange.mock.calls.map(([unread]) => unread)).toEqual([4, 0, 0]);
     });
   });
 });
