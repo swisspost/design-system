@@ -23,12 +23,17 @@ const meta: MetaComponent = {
     label: 'Products section',
     description: 'This section contains all the products you can buy.',
     selected: false,
+    url: '/section1',
   },
   argTypes: {
+    label: {
+      control: false, // disable the control since it is not usable on the story
+    },
+    description: {
+      control: false, // disable the control since it is not usable on the story
+    },
     url: {
-      control: {
-        type: 'text',
-      },
+      control: false, // disable the control since it is not usable on the story
     },
   },
 };
@@ -51,4 +56,4 @@ export default meta;
 
 type Story = StoryObj;
 
-export const BreadcrumbItem: Story = {};
+export const Default: Story = {};

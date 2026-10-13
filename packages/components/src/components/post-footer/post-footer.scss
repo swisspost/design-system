@@ -2,6 +2,7 @@
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/mixins/list';
 @use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/functions/env';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/elements';
 
@@ -173,7 +174,8 @@ footer {
 .footer-base {
   background-color: color.$yellow;
   border-block-start: 1px solid color.$sandgray-80;
-  padding-block: var(--post-footer-base-padding-block);
+  padding-block-start: var(--post-footer-base-padding-block);
+  padding-block-end: env.safe-area-inset(bottom, var(--post-footer-base-padding-block));
   gap: var(--post-footer-base-gap);
 }
 

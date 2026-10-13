@@ -111,6 +111,32 @@ describe('date-picker', { includeShadowDom: true }, () => {
 
         cy.focused().should('have.prop', 'tagName', 'INPUT');
       });
+
+      it('should move focus to a nav button tabbing forward from the active grid cell, and back on shift+tab', () => {
+        cy.get('@toggle').click().wait(500);
+
+        cy.focused().should('have.attr', 'role', 'gridcell');
+        cy.focused().trigger('keydown', { key: 'Tab' });
+        cy.focused().should('match', '[data-action] button, .air-datepicker-nav--title button');
+
+        cy.focused().trigger('keydown', { key: 'Tab', shiftKey: true });
+        cy.focused().should('have.attr', 'role', 'gridcell');
+      });
+
+      it('should keep focus trapped in the popover container after clicking a navigation button with the mouse', () => {
+        cy.get('@toggle').click().wait(500);
+
+        cy.get('@container').find('[data-action="next"] button').click();
+        cy.focused().trigger('keydown', { key: 'Tab' });
+
+        cy.focused().should($el => {
+          const el = $el[0];
+          const isTrapped =
+            el.matches('[data-action] button, .air-datepicker-nav--title button') ||
+            el.getAttribute('role') === 'gridcell';
+          expect(isTrapped).to.equal(true);
+        });
+      });
     });
   });
 

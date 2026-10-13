@@ -11,41 +11,46 @@ Styles for the Swiss Post web platform.
 
 ## Installation
 
-<br>
-<details>
-  <summary>Prerequisites</summary>
-
-In order to be able to use `npm` commands, [node.js](https://nodejs.org/en/) needs to be installed on your machine.
-
-The `scss` files in our styling package make use of the latest features of Sass. If you are planning to compile the .scss files in your project, be sure to use an up to date version of the latest Sass implementation ([dart-sass](https://sass-lang.com/dart-sass), `npm i sass@latest`). LibSass or Ruby Sass are not supported. If you can not meet this prerequisite, you can still use the precompiled CSS files included in the styling package.
-
-</details>
-<br>
-
 Install the styling package
 
 ```bash
-  npm install @swisspost/design-system-styles
+npm install @swisspost/design-system-styles
 ```
 
-Import the stylesheet into your project, e.g. `src/styles.scss`.
+> [!Note]
+> The `scss` files in our styling package make use of the latest Sass features.
+> If you are planning to compile the `.scss` files in your project, make sure you use an up-to-date version of [Dart Sass](https://sass-lang.com/dart-sass). LibSass or Ruby Sass are not supported.
+> If you can not meet this prerequisite, you can still use the precompiled CSS files.
+
+## Usage
+
+Import one of our stylesheets into your project:
 
 ```scss
-@use '@swisspost/design-system-styles/<bundle-name>.scss';
+@use '@swisspost/design-system-styles/<bundle>.<extension>';
 ```
 
-Available Sass entrypoints:
+### Available bundles
 
-- **post-default.scss** (internet facing applications)
-- **post-compact.scss** (internal applications)
-- **basics.scss** (atomic styles for font, buttons, lists etc.)
-- **core.scss** (variables, mixins, functions and placeholders only)
+| `<bundle>`       | `<extension>` | Description                                                                 |
+| ---------------- | ------------- | --------------------------------------------------------------------------- |
+| `post-default`   | `css`, `scss` | Full styles for public websites focused on reading and browsing             |
+| `post-compact`   | `css`, `scss` | Full styles for public or internal applications                             |
+| `post-condensed` | `css`, `scss` | Full styles for information-dense internal applications                     |
+| `basics`         | `css`, `scss` | Base styles for typography, buttons, lists, etc. (excludes components)      |
+| `core`           | `scss`        | Core definitions including variables, functions, and mixins (no CSS output) |
 
-Available CSS bundles:
+### Variables, functions, and mixins
 
-- **post-default.css** (internet facing applications)
-- **post-compact.css** (internal applications)
-- **basics.css** (atomic styles for font, buttons, lists etc.)
+Use the SCSS core for your custom styles and make sure you're always using the most up-to-date definitions:
+
+```scss
+@use '@swisspost/design-system-styles/core' as post;
+
+.my-component {
+  background-color: post.$yellow; // #FFCC00
+}
+```
 
 ## Migration guide
 

@@ -24,17 +24,71 @@ The `<post-breadcrumbs>` is a container for `<post-breadcrumb-item>` components,
 
 <Canvas of={BreadcrumbsStories.Default} sourceState="shown" />
 
+## `<post-breadcrumbs>`
+
 <Controls of={BreadcrumbsStories.Default} />
+
+## `<post-breadcrumb-item>`
+
+<Controls of={BreadcrumbItemStories.Default} />
 
 <ComponentsPackageInstall component="<post-breadcrumbs>" />
 
-## Concatenated Breadcrumbs
+## Examples
+
+<post-tabs size="large">
+  <post-tab-item name="concatenated">Concatenated</post-tab-item>
+  <post-tab-item name="client-side-routing">Client-Side Routing</post-tab-item>
+  <post-tab-item name="home-text">Home Text-Only</post-tab-item>
+
+<post-tab-panel for="concatenated" class="pt-24">
 
 When space is constrained, the `<post-breadcrumbs>` concatenates middle items into a dropdown menu.
 
 <Canvas of={BreadcrumbsStories.Concatenated} sourceState="shown" />
 
-## Breadcrumb Item
+</post-tab-panel>
 
-<Canvas of={BreadcrumbItemStories.BreadcrumbItem} sourceState="shown" />
-<Controls of={BreadcrumbItemStories.BreadcrumbItem} />
+<post-tab-panel for="client-side-routing" class="pt-24">
+
+To enable client-side routing, provide your own link through a slot. This works with routing
+libraries such as Next.js and Angular Router. Use the default slot for regular
+`<post-breadcrumb-item>` elements. Use the `home` slot for the root item of `<post-breadcrumbs>`.
+
+The component detects the slotted link and leaves it unchanged, allowing the routing library to
+handle navigation. The `url` and `home-url` properties are ignored when a slotted link is used.
+
+<post-banner type="info">
+  <ul className="list-bullet"><li>
+    For regular breadcrumb items, the slotted link must be a direct child of
+    `<post-breadcrumb-item>`. For the root breadcrumb, the slotted link must be a direct child of
+    `<post-breadcrumbs>` and use the `home` slot. In both cases, if the link is wrapped in another element, it won't be
+    detected and the component will fall back to rendering its own internal link.
+  </li>
+    <li>
+      When a link is slotted, the component does not automatically apply the `label`, `description`,
+      or `aria-current` attributes. To make the link accessible:
+      (a) give it an accessible name through its text content or `aria-label` and (b) add
+      `aria-current="page"` if it represents the current page.
+    </li>
+  </ul>
+</post-banner>
+
+<Canvas of={BreadcrumbsStories.ClientSideRouting} sourceState="shown" />
+
+</post-tab-panel>
+
+<post-tab-panel for="home-text" class="pt-24">
+
+By default, the root breadcrumb displays a home icon and uses `text-home` as its accessible label. It is also possible to hide the icon and show text in its place, which is useful when the root breadcrumb should link to a segment-specific home page, such as "Private customers" or "About us", rather than the generic site root. There are two ways to do this, depending on how the home link is implemented.
+
+With the <b>default routing behavior</b>, set `home-text-only` to `true`. The component hides the icon and displays the `text-home` content instead.
+
+When using <b>client-side routing</b>, `home-text-only` has no effect because the home link is provided through the `home` slot. Slot a direct `<a>` element with visible text and omit the `<post-icon>`; the component detects the slotted anchor without an icon and renders it as the text-only home item.
+
+<Canvas of={BreadcrumbsStories.HomeTextOnly} sourceState="shown" />
+
+<Controls of={BreadcrumbsStories.HomeTextOnly} />
+
+</post-tab-panel>
+</post-tabs>

@@ -19,7 +19,6 @@
       section {
         inline-size: 20rem;
       }
-
     </style>
   </head>
   <body>
@@ -30,7 +29,7 @@
           <button class="btn btn-secondary">Toggle</button>
         </post-collapsible-trigger>
         <post-collapsible id="collapsible-by-id">
-          <p class="border rounded p-24">Content of the id-linked collapsible.</p>
+          <p class="border rounded-4 p-24">Content of the id-linked collapsible.</p>
         </post-collapsible>
       </section>
 
@@ -39,7 +38,7 @@
         <post-collapsible-trigger>
           <button class="btn btn-secondary">Toggle</button>
           <post-collapsible>
-            <p class="border rounded p-24">Content of the nested collapsible.</p>
+            <p class="border rounded-4 p-24">Content of the nested collapsible.</p>
           </post-collapsible>
         </post-collapsible-trigger>
       </section>
@@ -48,7 +47,7 @@
       <section id="nested-inner-button">
         <post-collapsible-trigger>
           <post-collapsible>
-            <p class="border rounded p-24">Content with its own button.</p>
+            <p class="border rounded-4 p-24">Content with its own button.</p>
             <button class="btn btn-secondary">Button inside the panel</button>
           </post-collapsible>
           <button class="btn btn-secondary" data-testid="real-trigger">Toggle</button>
@@ -57,7 +56,7 @@
 
       <section id="close-button-target">
         <post-collapsible>
-          <p class="border rounded p-24">Content closed by the close button.</p>
+          <p class="border rounded-4 p-24">Content closed by the close button.</p>
           <post-closebutton>Close</post-closebutton>
         </post-collapsible>
       </section>
