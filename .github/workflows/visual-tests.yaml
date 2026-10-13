@@ -156,26 +156,47 @@ jobs:
             exit 1
           fi
 
-      # The report is deployed and linked in the pull request by the "Deploy Visual Regression Report" workflow,
-      # because this workflow has no access to secrets when it runs from a fork.
-      - name: Prepare VRT report
-        id: vrt-report
-        if: always() && github.event_name == 'pull_request' && (steps.vrt-test.outcome == 'success' || steps.vrt-test.outcome == 'failure') && hashFiles('packages/components/test-results/html-report/index.html') != ''
-        env:
-          VRT_OUTCOME: ${{ steps.vrt-test.outcome }}
-        run: |
-          if [[ "$VRT_OUTCOME" == "failure" ]]; then
-            echo "changed" > packages/components/test-results/html-report/VRT-STATUS
-          else
-            echo "passed" > packages/components/test-results/html-report/VRT-STATUS
-          fi
-
-      - name: Upload VRT report
-        if: always() && steps.vrt-report.outcome == 'success'
-        uses: ./.github/actions/artifact-upload
+      - name: Upload test results
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: vrt-report
-          folder: packages/components/test-results/html-report
+          name: playwright-report-${{ github.run_id }}
+          path: packages/components/test-results
+          retention-days: 14
+
+      - name: Upload diff screenshots
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: playwright-diffs-${{ github.run_id }}
+          path: |
+            packages/components/test-results/**/*-diff.png
+            packages/components/test-results/**/*-actual.png
+            packages/components/test-results/**/*-expected.png
+          retention-days: 14
+
+      - name: Comment PR with VRT results
+        if: github.event_name == 'pull_request' && steps.vrt-test.outcome == 'failure' && steps.check-approval.outputs.approved != 'true'
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `## Visual Regression Test Results
+
+            Visual changes detected. Review the [test artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+
+            **Action Required:**
+            1. Review the visual differences in the [test artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            2. If changes are **intentional**: Check the "Visual changes detected and approved" checkbox in the PR description, then re-run this workflow or push a new commit
+            3. If changes are **unintentional**: Update your code to match the baseline
+
+            **Note:** After merging this PR, the new screenshots will automatically become the new baseline in the \`${{ steps.baseline.outputs.branch }}\` branch.
+
+            [View detailed report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})`
+            });
 
       - name: Summary
         if: always()
