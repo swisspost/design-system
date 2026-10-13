@@ -7,35 +7,50 @@ const changesets = JSON.parse(fs.readFileSync('changesets.json', 'utf8'));
 
 // Get the list of releases from the changesets object
 const releases = changesets.releases ?? [];
-const missingPackages = [];
 
-// Check if each package exists on npm and log an error for the missing ones
-for (const release of releases) {
-  let response;
+// Check all packages concurrently to avoid serial registry requests
+const results = await Promise.all(
+  releases.map(async release => {
+    let response;
 
-  try {
-    const packageUrl = `https://registry.npmjs.org/${encodeURIComponent(release.name)}`;
-    response = await fetch(packageUrl, {
-      headers: { Accept: 'application/vnd.npm.install-v1+json' },
-    });
-  } catch (error) {
-    console.error(`::error::Could not check ${release.name} on npm: ${error.message}`);
+    try {
+      const packageUrl = `https://registry.npmjs.org/${encodeURIComponent(release.name)}`;
+      response = await fetch(packageUrl, {
+        headers: { Accept: 'application/vnd.npm.install-v1+json' },
+      });
+
+      if (response.status === 404) {
+        return { name: release.name, status: 'missing' };
+      }
+
+      if (!response.ok) {
+        return {
+          name: release.name,
+          message: `npm registry returned ${response.status}.`,
+          status: 'error',
+        };
+      }
+
+      return { name: release.name, status: 'exists' };
+    } catch (error) {
+      return { name: release.name, message: error.message, status: 'error' };
+    } finally {
+      await response?.body?.cancel();
+    }
+  }),
+);
+
+const missingPackages = results
+  .filter(result => result.status === 'missing')
+  .map(result => result.name);
+
+for (const result of results) {
+  if (result.status === 'exists') {
+    console.log(`Package exists on npm: ${result.name}`);
+  } else if (result.status === 'error') {
+    console.error(`::error::Could not check ${result.name} on npm: ${result.message}`);
     process.exitCode = 1;
-    continue;
   }
-
-  if (response.status === 404) {
-    missingPackages.push(release.name);
-  } else if (!response.ok) {
-    console.error(
-      `::error::npm registry returned ${response.status} while checking ${release.name}.`,
-    );
-    process.exitCode = 1;
-  } else {
-    console.log(`Package exists on npm: ${release.name}`);
-  }
-
-  await response.body?.cancel();
 }
 
 if (missingPackages.length > 0) {
@@ -45,5 +60,5 @@ if (missingPackages.length > 0) {
     );
   }
 
-  process.exit(1);
+  process.exitCode = 1;
 }
