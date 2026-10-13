@@ -37,7 +37,7 @@ export const Toast: Story = {
         </div>
       `,
       {
-        // dark mode is not yet implemented corretly
+        // dark mode is not yet implemented correctly
         filter: scheme => scheme === 'light',
       },
     );
