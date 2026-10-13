@@ -1043,7 +1043,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/354726/storage/MDM1NDcyNi8wL21hc3Rlci8vLzE4MDYxMjE0",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/354726/storage/MzU0NzI2LzAvbWFzdGVyLy8vMTEzNDkzMzUw",
         "businessfield": [
           "kommunikation"
         ],
@@ -1084,7 +1084,7 @@
         }
       },
       "createdAt": "2017-12-12T13:34:00.000Z",
-      "modifiedAt": "2024-12-04T15:07:02.000Z"
+      "modifiedAt": "2026-10-12T12:40:56.000Z"
     },
     {
       "uuid": "21e20ba0-df41-11e7-a943-005056a94f4a",
@@ -1092,7 +1092,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/354727/storage/MDM1NDcyNy8wL21hc3Rlci8vLzE4MDYxMjIw",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/354727/storage/MzU0NzI3LzAvbWFzdGVyLy8vMTEzNDg0NDI0",
         "businessfield": [
           "kommunikation"
         ],
@@ -1132,7 +1132,7 @@
         }
       },
       "createdAt": "2017-12-12T13:34:00.000Z",
-      "modifiedAt": "2026-05-02T19:05:02.067Z"
+      "modifiedAt": "2026-10-12T11:30:43.000Z"
     },
     {
       "uuid": "21e53ff0-df41-11e7-a943-005056a94f4a",
@@ -1140,7 +1140,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/354728/storage/MDM1NDcyOC8wL21hc3Rlci8vLzE4MDYxMjI2",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/354728/storage/MzU0NzI4LzAvbWFzdGVyLy8vMTEzNDkzNzQ0",
         "businessfield": [
           "kommunikation"
         ],
@@ -1180,7 +1180,7 @@
         }
       },
       "createdAt": "2017-12-12T13:34:00.000Z",
-      "modifiedAt": "2026-05-02T19:05:02.067Z"
+      "modifiedAt": "2026-10-12T12:43:04.000Z"
     },
     {
       "uuid": "21e82620-df41-11e7-a943-005056a94f4a",
@@ -1188,7 +1188,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/354729/storage/MDM1NDcyOS8wL21hc3Rlci8vLzE4MDYxMjMw",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/354729/storage/MzU0NzI5LzAvbWFzdGVyLy8vMTEzNDk0MDg0",
         "businessfield": [
           "kommunikation"
         ],
@@ -1222,7 +1222,7 @@
         }
       },
       "createdAt": "2017-12-12T13:34:00.000Z",
-      "modifiedAt": "2026-05-02T19:05:02.067Z"
+      "modifiedAt": "2026-10-12T12:45:26.000Z"
     },
     {
       "uuid": "21ea9720-df41-11e7-a943-005056a94f4a",
@@ -42586,6 +42586,6 @@
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2026-09-20T04:54:23.178Z",
-  "version": "10.5.0"
+  "created": "2026-10-12T12:50:20.178Z",
+  "version": "10.7.0"
 }
