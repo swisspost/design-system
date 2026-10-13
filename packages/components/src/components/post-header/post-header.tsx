@@ -317,10 +317,10 @@ export class PostHeader {
   // The header only stays expanded to keep keyboard focus visible
   // once focus is no longer keyboard focus (e.g. after a click), it can collapse on scroll
   private collapseIfNotKeyboardFocused() {
-    if (!this.host.hasAttribute('data-expanded')) return;
+    if (!('expanded' in this.host.dataset)) return;
     if (this.getDeepActiveElement()?.matches(':focus-visible')) return;
 
-    this.host.removeAttribute('data-expanded');
+    delete this.host.dataset.expanded;
   }
 
   private handleScrollEvent() {
@@ -419,7 +419,7 @@ export class PostHeader {
       // Ignore focus moving between elements of the header (e.g. into the language menu flyout)
       if (this.isWithinHeader(event.relatedTarget)) return;
 
-      this.host.removeAttribute('data-expanded');
+      delete this.host.dataset.expanded;
       return;
     }
 
