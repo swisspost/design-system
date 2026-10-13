@@ -282,9 +282,9 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
         popoverShouldBeOpen();
 
         getBoundingRect('@scrollable').then(rect =>
-          scrollAnchorWithin('@scrollable', 'above', rect.bottom),
+          scrollAnchorWithin('@scrollable', 'below', rect.bottom),
         );
-        popoverShouldBeOpen();
+        popoverShouldBeClosed();
       });
 
       it('should stay open while the anchor and its container are partially outside the viewport', () => {
