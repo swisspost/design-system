@@ -1,24 +1,4 @@
 <div class="my-24">
-  <h2>Toast</h2>
-  <div class="d-flex flex-wrap gap-16">
-    <button
-      type="button"
-      class="btn btn-secondary"
-      (click)="toastService.showToaster('An error occurred.', 'Error', { variant: 'error' })"
-    >
-      Show error toast
-    </button>
-    <button
-      type="button"
-      class="btn btn-secondary"
-      (click)="toastService.showToaster('Your changes were saved.', 'Success', { variant: 'success', autoClose: true })"
-    >
-      Show success toast
-    </button>
-  </div>
-</div>
-
-<div class="my-24">
   <h2>Accordion</h2>
   <post-accordion [headingLevel]="3">
     <post-accordion-item>
@@ -287,6 +267,26 @@
       <a href="#third" aria-current="page">Third</a>
     </post-tab-item>
   </post-tabs>
+</div>
+
+<div class="my-24">
+  <h2>Toast</h2>
+  <div class="d-flex flex-wrap gap-16">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="toastService.showToaster('An error occurred.', 'Error', { variant: 'error' })"
+    >
+      Show error toast
+    </button>
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="toastService.showToaster('Your changes were saved.', 'Success', { variant: 'success', autoClose: true })"
+    >
+      Show success toast
+    </button>
+  </div>
 </div>
 
 <div class="my-24">
