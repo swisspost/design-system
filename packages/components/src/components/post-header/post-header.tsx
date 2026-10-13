@@ -153,10 +153,10 @@ export class PostHeader {
 
   connectedCallback() {
     globalThis.addEventListener('resize', this.throttledResize, { passive: true });
-    globalThis.addEventListener('scroll', this.handleScrollEvent, {
+    globalThis.addEventListener('scroll', this.onScroll, {
       passive: true,
     });
-    this.scrollParent.addEventListener('scroll', this.handleScrollEvent, {
+    this.scrollParent.addEventListener('scroll', this.onScroll, {
       passive: true,
     });
     document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
@@ -195,8 +195,8 @@ export class PostHeader {
 
     globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange);
     globalThis.removeEventListener('resize', this.throttledResize);
-    globalThis.removeEventListener('scroll', this.handleScrollEvent);
-    if (scrollParent) scrollParent.removeEventListener('scroll', this.handleScrollEvent);
+    globalThis.removeEventListener('scroll', this.onScroll);
+    if (scrollParent) scrollParent.removeEventListener('scroll', this.onScroll);
     document.removeEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.removeEventListener('keydown', this.keyboardHandler);
     if (this.host.shadowRoot) {
@@ -309,6 +309,20 @@ export class PostHeader {
     this.megadropdownOpen = false;
   }
 
+  private readonly onScroll = () => {
+    this.handleScrollEvent();
+    this.collapseIfNotKeyboardFocused();
+  };
+
+  // The header only stays expanded to keep keyboard focus visible
+  // once focus is no longer keyboard focus (e.g. after a click), it can collapse on scroll
+  private collapseIfNotKeyboardFocused() {
+    if (!this.host.hasAttribute('data-expanded')) return;
+    if (this.getDeepActiveElement()?.matches(':focus-visible')) return;
+
+    this.host.removeAttribute('data-expanded');
+  }
+
   private handleScrollEvent() {
     const scrollTop =
       this.scrollParent === document.body ? window.scrollY : this.scrollParent.scrollTop;
@@ -401,19 +415,24 @@ export class PostHeader {
   @Listen('focusin')
   @Listen('focusout')
   onFocusChange(event: FocusEvent) {
-    // Ignore focus moving between elements of the header (e.g. into the language menu flyout)
-    if (event.type === 'focusout' && this.isWithinHeader(event.relatedTarget)) return;
+    if (event.type === 'focusout') {
+      // Ignore focus moving between elements of the header (e.g. into the language menu flyout)
+      if (this.isWithinHeader(event.relatedTarget)) return;
 
+      this.host.removeAttribute('data-expanded');
+      return;
+    }
+
+    // Mouse focus never changes the state
+    // collapsing here would move the controls away from the pointer before the click completes
     const isFocusVisible = this.getDeepActiveElement()?.matches(':focus-visible');
-    const isFocusedInHeader = event.type === 'focusin';
+    if (!isFocusVisible) return;
 
-    // Only expand when focus is in the part that collapses on scroll
+    // Keyboard focus: expanded only while focus is in the part that collapses on scroll
     const collapsiblePart = this.device === 'desktop' ? this.globalHeader : this.localHeader;
     const isInCollapsiblePart = event.composedPath().includes(collapsiblePart);
 
-    const isHeaderExpanded = isFocusVisible && isFocusedInHeader && isInCollapsiblePart;
-
-    this.host.toggleAttribute('data-expanded', isHeaderExpanded);
+    this.host.toggleAttribute('data-expanded', isInCollapsiblePart);
   }
 
   private isWithinHeader(target: EventTarget | null): boolean {
