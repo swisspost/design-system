@@ -3,6 +3,19 @@
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 
+@use '@swisspost/design-system-styles/components/avatar';
+@use '@swisspost/design-system-styles/components/badge';
+
+// The menu-item rules are a global stylesheet and a global stylesheet cannot reach into this
+// shadow root, so the one entry the widget renders itself would otherwise stay unstyled.
+@use '../post-menu-item/post-menu-item.scss';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 :host {
   display: inline-block;
 }
@@ -15,19 +28,32 @@
 // global stylesheet cannot reach.
 .user-menu-trigger {
   @include header-mx.nav-item-base;
+  padding: 0 !important;
+  background-color: transparent !important;
   align-items: center;
+  overflow: visible; // the button base clips to its pill, which would cut the unread dot in half
   border-radius: tokens.get('avatar-border-radius', components.$post-avatar);
   text-decoration: none;
   cursor: pointer;
 }
 
-// The row is laid out by post-menu's `::slotted([slot='header'])`; only the lines are ours.
-[slot='header'] > p {
+[slot='header'] p {
   margin-block: 0;
+  line-height: 1;
 
-  &:first-of-type:not(:last-of-type) {
-    margin-block-end: -4px;
+  &.company {
     font-size: 12px;
     font-weight: 400;
+  }
+}
+
+// Anchors the badge to the avatar; the trigger itself clips whatever reaches its own edge.
+.user-menu-avatar {
+  position: relative;
+
+  .badge {
+    position: absolute;
+    top: calc(50% - #{tokens.get('avatar-size', components.$post-avatar)} * 0.5);
+    right: calc(50% - #{tokens.get('avatar-size', components.$post-avatar)} * 0.5);
   }
 }
