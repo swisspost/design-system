@@ -627,7 +627,7 @@ export class MigrationV910Component extends LitElement {
                                 </li>
                                 <li>
                                   <code>container="body"</code>, placement or
-                                  <code>positionTarget</code> → no equivalent, it is placed in the top layer, and positioned at the bottom-end of the input.
+                                  <code>positionTarget</code> → no equivalent, it is placed in the top layer, and positioned at the bottom-end of the input by default, with automatic flipping or shifting when needed to fit the viewport..
                                 </li>
                                 <li>
                                   <code>navigation</code> and <code>displayMonths</code> → no equivalent, defaults to arrow navigations and always displays 1 month.
