@@ -1,3 +1,33 @@
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
+@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
+
 :host {
   display: inline-block;
+}
+
+.visually-hidden {
+  @include utilities-mx.visuallyhidden();
+}
+
+// Ported from the header's `_user-menu.scss`: the trigger now renders in this shadow root, which a
+// global stylesheet cannot reach.
+.user-menu-trigger {
+  @include header-mx.nav-item-base;
+  align-items: center;
+  border-radius: tokens.get('avatar-border-radius', components.$post-avatar);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+// The row is laid out by post-menu's `::slotted([slot='header'])`; only the lines are ours.
+[slot='header'] > p {
+  margin-block: 0;
+
+  &:first-of-type:not(:last-of-type) {
+    margin-block-end: -4px;
+    font-size: 12px;
+    font-weight: 400;
+  }
 }
