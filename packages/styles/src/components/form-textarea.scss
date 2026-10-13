@@ -24,6 +24,7 @@ textarea.form-control {
   padding-block: tokens.get('textarea-standalone-padding-block');
   min-height: tokens.get('textarea-sizing-min-height');
   resize: vertical;
+  font-size: tokens.get('textarea-font-size');
   @include utilities.focus-style;
   @include forms-mx.textarea-resizer-svg(#050400);
 
@@ -110,7 +111,7 @@ textarea.form-control {
   padding-inline: tokens.get('textarea-non-floating-small-label-padding-inline');
   padding-block: tokens.get('textarea-non-floating-small-label-padding-block');
   font-weight: tokens.get('textarea-non-floating-small-label-font-weight');
-  font-size: tokens.get('textarea-non-floating-small-font-size');
+  font-size: tokens.get('textarea-non-floating-small-label-font-size');
 }
 
 .form-floating {
@@ -137,6 +138,7 @@ textarea.form-control {
     border: 0;
     border-top-left-radius: tokens.get('textarea-border-radius');
     color: tokens.get('textarea-enabled-fg');
+    font-size: tokens.get('textarea-font-size');
     background-color: transparent;
     height: auto;
     white-space: nowrap;
