@@ -14,8 +14,11 @@
 | `keepAliveEvents`     | `keep-alive-events`      | Space separated list of the events that count as user activity.                                                                           | `string`                                                                  | `'click touchstart keydown'` |
 | `keepAliveInterval`   | `keep-alive-interval`    | Minutes between two keep-alive ticks.                                                                                                     | `number`                                                                  | `9`                          |
 | `keepAliveUrl`        | `keep-alive-url`         | The portal's own keep-alive url. The platform session is refreshed either way.                                                            | `string`                                                                  | `undefined`                  |
+| `messagesUrl`         | `messages-url`           | Where the messages entry points. Without it the widget shows no messages.                                                                 | `string`                                                                  | `undefined`                  |
 | `textAccessUserLinks` | `text-access-user-links` | Visually hidden label for the button that opens the user menu.                                                                            | `string`                                                                  | `undefined`                  |
 | `textCurrentUser`     | `text-current-user`      | Visually hidden label for the current user. The placeholder `{user}` will be replaced with the full name of the currently logged-in user. | `string`                                                                  | `undefined`                  |
+| `textMessages`        | `text-messages`          | Label of the messages entry.                                                                                                              | `string`                                                                  | `undefined`                  |
+| `textUnreadMessages`  | `text-unread-messages`   | Visually hidden label for the unread count. The placeholder `{count}` will be replaced with the number of unread messages.                | `string`                                                                  | `undefined`                  |
 | `textUserLinks`       | `text-user-links`        | Visually hidden label for the user menu.                                                                                                  | `string`                                                                  | `undefined`                  |
 
 
@@ -34,6 +37,8 @@
 
 ### Depends on
 
+- [post-menu-item](../post-menu-item)
+- [post-icon](../post-icon)
 - [post-menu-trigger](../post-menu-trigger)
 - [post-avatar](../post-avatar)
 - [post-menu](../post-menu)
@@ -41,6 +46,8 @@
 ### Graph
 ```mermaid
 graph TD;
+  post-klp-login-widget --> post-menu-item
+  post-klp-login-widget --> post-icon
   post-klp-login-widget --> post-menu-trigger
   post-klp-login-widget --> post-avatar
   post-klp-login-widget --> post-menu
