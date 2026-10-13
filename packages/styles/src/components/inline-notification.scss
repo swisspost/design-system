@@ -10,7 +10,10 @@ tokens.$default-map: components.$post-inline-notification;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  padding-block: tokens.get('notification-inline-padding-block');
+  padding-block: calc(
+    tokens.get('notification-inline-padding-block') +
+    tokens.get('notification-inline-content-padding-block')
+  );
   padding-inline-start: calc(
     tokens.get('notification-inline-padding-inline') + tokens.get('notification-inline-icon-size') +
     tokens.get('notification-inline-gap-inline')
