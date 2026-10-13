@@ -21,8 +21,11 @@
   align-items: self-start;
   padding: 8px;
 
-  min-width: 160px;
   max-width: var(--post-popover-max-width, 280px);
+  max-height: 100%;
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .popover-content {
@@ -32,4 +35,8 @@
 
 post-closebutton {
   @include color-scheme-mx.set(light);
+}
+
+post-popovercontainer::part(post-popovercontainer-content) {
+  min-width: 160px;
 }
