@@ -1,5 +1,28 @@
 # @swisspost/design-system-documentation
 
+## 6.7.0
+
+### Minor Changes
+
+- Added migration information for the `ngbDatepicker` to the new `<post-date-picker>` component. (by [@leagrdv](https://github.com/leagrdv) with [#8594](https://github.com/swisspost/design-system/pull/8594))
+
+### Patch Changes
+
+- Fixed the styles import code block to copy the currently selected theme and appearance. (by [@leagrdv](https://github.com/leagrdv) with [#8491](https://github.com/swisspost/design-system/pull/8491))
+
+- Removed the close button example in the Online Service header. (by [@leagrdv](https://github.com/leagrdv) with [#8614](https://github.com/swisspost/design-system/pull/8614))
+
+- Aligned the user menu to the right edge of the avatar button in the `<post-header>` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8558](https://github.com/swisspost/design-system/pull/8558))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.8.0
+  - @swisspost/design-system-components@10.8.0
+  - @swisspost/design-system-styles@10.8.0
+  - @swisspost/internet-header@10.8.0
+  - @swisspost/design-system-components-react@10.8.0
+  - @swisspost/design-system-styles-primeng@10.8.0
+  - @swisspost/design-system-theme-ag-grid@10.8.0
+  - @swisspost/design-system-tokens@10.8.0
+
 ## 6.6.1
 
 ### Patch Changes

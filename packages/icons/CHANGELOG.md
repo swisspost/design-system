@@ -1,5 +1,21 @@
 # @swisspost/design-system-icons
 
+## 10.8.0
+
+### Minor Changes
+
+- Added icons:
+  - `bicyclereservation` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `documentadd` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `requirement` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `taxi` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `ticketsbb` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `zipdownload` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) and [@alionazherdetska](https://github.com/alionazherdetska) with [#8628](https://github.com/swisspost/design-system/pull/8628))
+
+### Patch Changes
+
+- Updated icons: `1021`, `1022`, `1023` and `1024` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8639](https://github.com/swisspost/design-system/pull/8639))
+
 ## 10.7.0
 
 ### Minor Changes

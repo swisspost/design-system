@@ -1,5 +1,14 @@
 # @swisspost/internet-header
 
+## 10.8.0
+
+### Patch Changes
+
+- Aligned the user menu to the right edge of the avatar button in the `<post-header>` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8558](https://github.com/swisspost/design-system/pull/8558))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.8.0
+  - @swisspost/design-system-styles@10.8.0
+
 ## 10.7.0
 
 ### Patch Changes
