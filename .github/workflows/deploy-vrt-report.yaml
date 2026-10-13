@@ -4,8 +4,8 @@
 # and link it in the pull request, so differences can be reviewed in the browser
 # (diff, actual, expected, side-by-side and slider views) without downloading artifacts.
 #
-# The "Visual Regression Tests" workflow does not have secrets when run from a fork.
-# It uploads the report as an artifact, which is deployed by this workflow
+# The "Visual Regression Tests" workflow does not have secrets when run from a fork,
+# so it only uploads the report as an artifact. This workflow then deploys it
 # with more privileges. The report is only deployed, never executed.
 #
 # https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
@@ -45,7 +45,7 @@ jobs:
               name: 'vrt-report',
             });
 
-            core.setOutput('exists', data.artifacts.length > 0);
+            core.setOutput('exists', String(data.artifacts.length > 0));
 
       - name: Checkout
         if: steps.artifact.outputs.exists == 'true'
@@ -75,6 +75,8 @@ jobs:
             exit 1
           fi
 
+          # VRT-STATUS is written by the "Prepare VRT report" step of visual-tests.yaml:
+          # "changed" => visual differences detected, anything else => no differences.
           STATUS=$(cat "$FOLDER/VRT-STATUS" 2>/dev/null | tr -cd '[:alpha:]')
           if [[ "$STATUS" != "changed" ]]; then
             STATUS="passed"
@@ -108,7 +110,7 @@ jobs:
         if: steps.status.outputs.status == 'changed'
         uses: ./.github/actions/setup-netlify-cli
 
-      # Deployed as a draft (alias) of the documentation site, the production site is never touched
+      # Deployed as a draft (alias) of the documentation site, the production site is never touched.
       - name: Deploy report
         if: steps.status.outputs.status == 'changed'
         id: deploy
@@ -122,7 +124,7 @@ jobs:
           echo "report-url=https://${URL_ALIAS}--${SITE_URL}" >> $GITHUB_OUTPUT
 
       - name: Update pull request comment
-        if: steps.artifact.outputs.exists == 'true'
+        if: always() && steps.artifact.outputs.exists == 'true'
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
         env:
           PR_NUMBER: ${{ steps.report.outputs.id }}
@@ -135,6 +137,11 @@ jobs:
           script: |
             const { PR_NUMBER, STATUS, REPORT_URL, APPROVED, HEAD_SHA, RUN_URL } = process.env;
             const marker = '<!-- vrt-report -->';
+
+            if (!PR_NUMBER || Number(PR_NUMBER) <= 0) {
+              return;
+            }
+
             const footer = `<sub>Commit ${HEAD_SHA.slice(0, 7)} · [Workflow run](${RUN_URL})</sub>`;
 
             const comments = await github.paginate(github.rest.issues.listComments, {
@@ -157,11 +164,17 @@ jobs:
                     '3. If the changes are **unintentional**: update your code to match the baseline.',
                   ].join('\n');
 
+              // The deploy step may have failed or been skipped, leaving no report URL.
+              // Fall back to the workflow run so the link is never broken.
+              const reportLink = REPORT_URL
+                ? `**[Open the visual comparison report](${REPORT_URL})**, select a failed test and switch between the *Diff*, *Actual*, *Expected*, *Side by side* and *Slider* views.`
+                : `The report could not be deployed. Download the artifacts from the **[workflow run](${RUN_URL})** instead.`;
+
               body = [
                 marker,
                 '## 🧪 Visual Regression Test Results',
                 '',
-                `Visual changes detected. **[Open the visual comparison report](${REPORT_URL})**, select a failed test and switch between the *Diff*, *Actual*, *Expected*, *Side by side* and *Slider* views.`,
+                `Visual changes detected. ${reportLink}`,
                 '',
                 approval,
                 '',

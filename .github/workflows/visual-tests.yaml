@@ -158,13 +158,18 @@ jobs:
 
       # The report is deployed and linked in the pull request by the "Deploy Visual Regression Report" workflow,
       # because this workflow has no access to secrets when it runs from a fork.
+      # The VRT-STATUS file is the contract between both workflows and is read by the "Read report status"
+      # step of deploy-vrt-report.yaml ("changed" => visual differences, anything else => no differences).
       - name: Prepare VRT report
         id: vrt-report
         if: always() && github.event_name == 'pull_request' && (steps.vrt-test.outcome == 'success' || steps.vrt-test.outcome == 'failure') && hashFiles('packages/components/test-results/html-report/index.html') != ''
         env:
           VRT_OUTCOME: ${{ steps.vrt-test.outcome }}
         run: |
-          if [[ "$VRT_OUTCOME" == "failure" ]]; then
+          # A failing test run only means a real visual change when diff screenshots were produced.
+          # Without diff images the failure is an infrastructure error (e.g. a browser failing to launch),
+          # which must not be reported to authors as a visual change.
+          if [[ "$VRT_OUTCOME" == "failure" ]] && find packages/components/test-results -name '*-diff.png' -print -quit | grep -q .; then
             echo "changed" > packages/components/test-results/html-report/VRT-STATUS
           else
             echo "passed" > packages/components/test-results/html-report/VRT-STATUS
