@@ -75,7 +75,7 @@ npm run lint:fix
 
 ## Formatting
 
-[Prettier]() is used to format .scss files with this [configuration](../../.prettierrc). If your editor allows for it, we recommend to enable format on save for .scss files.
+[Prettier]() is used to format .scss files. If your editor allows for it, we recommend to enable format on save for .scss files.
 
 ```bash
 npm run format

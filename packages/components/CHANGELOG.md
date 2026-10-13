@@ -1,5 +1,35 @@
 # @swisspost/design-system-components
 
+## 10.7.0
+
+### Patch Changes
+
+- Fixed `post-date-picker` not trapping focus reliably inside the calendar popover. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8543](https://github.com/swisspost/design-system/pull/8543))
+
+- Added safe area insets to components that are anchored to the bottom edge of the viewport, ensuring their content clears the display cutout of devices such as the home indicator. This affects the footer base, the burger menu footer, the megadropdown on tablet and mobile, the side navigation, toasts and the bottom sheet variant of the dialog. (by [@yomonom](https://github.com/yomonom) with [#8534](https://github.com/swisspost/design-system/pull/8534))
+
+- Fixed the `post-header` component collapsing and expanding inconsistently when navigating it with the keyboard on a scrolled page. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8553](https://github.com/swisspost/design-system/pull/8553))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.7.0
+  - @swisspost/design-system-styles@10.7.0
+
+## 10.6.0
+
+### Minor Changes
+
+- Added a `home-text-only` property to `<post-breadcrumbs>` for segment specific breadcrumbs, displaying `text-home` as visible text instead of the home icon. The home item's own overflow menu is labelled via the new `text-expand-home` property. (by [@alionazherdetska](https://github.com/alionazherdetska), [@Copilot](https://github.com/Copilot) and [@myrtasakellariou](https://github.com/myrtasakellariou) with [#8427](https://github.com/swisspost/design-system/pull/8427))
+
+- Enabled client-side routing in the `post-breadcrumbs` component by allowing a routing-aware `<a>` (e.g. a Next.js `Link`) to be slotted into `post-breadcrumb-item` and the home item, instead of relying on the `url`/`home-url` props, so navigation no longer triggers a full page reload. (by [@alionazherdetska](https://github.com/alionazherdetska), [@Copilot](https://github.com/Copilot) and [@myrtasakellariou](https://github.com/myrtasakellariou) with [#8427](https://github.com/swisspost/design-system/pull/8427))
+
+### Patch Changes
+
+- Fixed `post-tabs` component creating horizontal page overflow on desktop when used inside a wrapper with a `.container` class. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8396](https://github.com/swisspost/design-system/pull/8396))
+
+- Hid visible space between side navigation and header when scrolling. (by [@leagrdv](https://github.com/leagrdv) with [#8397](https://github.com/swisspost/design-system/pull/8397))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.6.0
+  - @swisspost/design-system-styles@10.6.0
+
 ## 10.5.0
 
 ### Minor Changes

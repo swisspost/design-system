@@ -1,87 +1,32 @@
-// this config was created using https://eslint.org/blog/2024/04/eslint-config-inspector/
+import { defineConfig, globalIgnores } from 'eslint/config';
 
-import js from '@eslint/js';
-import ts from 'typescript-eslint';
-import sb from 'eslint-plugin-storybook';
-import * as mdx from 'eslint-plugin-mdx';
-import globals from 'globals';
-import reactPlugin from 'eslint-plugin-react';
-import pluginCypress from 'eslint-plugin-cypress/flat';
+import post from '@swisspost/design-system-eslint-config/base';
+import postCypress from '@swisspost/design-system-eslint-config/cypress';
+import postMdx from '@swisspost/design-system-eslint-config/mdx';
+import postStorybook from '@swisspost/design-system-eslint-config/storybook';
 
-/** @type {import('eslint').Linter.Config[]} */
-export default [
+export default defineConfig(
+  globalIgnores(['public/', 'storybook-static/', 'src/**/*.sample.*']),
+  post,
+  postStorybook,
+  postMdx,
+  postCypress,
+
+  // Pre-existing debt. Drop once sources are clean.
   {
-    name: 'post/global/ignores',
-    ignores: ['public/*', 'src/**/*.sample.*', 'storybook-static/*'],
-  },
-  {
-    name: 'post/defaults',
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
-    },
-  },
-  {
-    name: 'eslint/recommended',
-    ...js.configs.recommended,
-  },
-  {
-    name: 'post/ts/defaults',
-    files: ['**/*.{ts,mts,cts}'],
-    languageOptions: {
-      parserOptions: {
-        project: './tsconfig.eslint.json',
-        tsconfigRootDir: import.meta.dirname,
-      },
-    },
     rules: {
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          caughtErrors: 'none',
-          destructuredArrayIgnorePattern: '^_',
-          ignoreRestSiblings: true,
-        },
-      ],
+      '@typescript-eslint/no-floating-promises': 'off',
+      '@typescript-eslint/no-unnecessary-type-assertion': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-enum-comparison': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/require-await': 'off',
+      '@typescript-eslint/restrict-template-expressions': 'off',
+      '@typescript-eslint/unbound-method': 'off',
+      'cypress/no-unnecessary-waiting': 'off',
     },
   },
-  ...ts.configs.recommended,
-  {
-    files: ['**/*.{js,mjs,cjs}'],
-    ...ts.configs.disableTypeChecked,
-  },
-  ...sb.configs['flat/recommended'],
-  {
-    name: 'mdx/recommended',
-    ...mdx.flat,
-  },
-  {
-    name: 'mdx/codeblocks/recommended',
-    ...mdx.flatCodeBlocks,
-  },
-  {
-    name: 'mdx/react/recommended',
-    files: ['**/*.{md,mdx}'],
-    ...reactPlugin.configs.flat.recommended,
-    settings: {
-      react: {
-        version: 'detect',
-      },
-    },
-  },
-  {
-    name: 'post/mdx/react/recommended/overrides',
-    files: ['**/*.{md,mdx}'],
-    rules: {
-      'react/no-unescaped-entities': 'off',
-    },
-  },
-  {
-    name: 'cypress/config',
-    files: ['cypress/**/*.ts'],
-    ...pluginCypress.configs.recommended,
-    rules: {},
-  },
-];
+);

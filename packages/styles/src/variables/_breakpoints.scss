@@ -19,11 +19,10 @@ $grid-breakpoint-to-device: (
 
 $device-to-grid-breakpoints: () !default;
 @each $breakpoint, $device in $grid-breakpoint-to-device {
-  $breakpoint-list: if(
-    map.has-key($device-to-grid-breakpoints, $device),
-    map.get($device-to-grid-breakpoints, $device),
-    ()
-  );
+  $breakpoint-list: ();
+  @if map.has-key($device-to-grid-breakpoints, $device) {
+    $breakpoint-list: map.get($device-to-grid-breakpoints, $device);
+  }
 
   $device-to-grid-breakpoints: map.set(
     $device-to-grid-breakpoints,

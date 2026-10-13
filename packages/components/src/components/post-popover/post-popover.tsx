@@ -39,7 +39,7 @@ export class PostPopover {
   /**
    * Show a little indicator arrow
    */
-  // eslint-disable-next-line @stencil-community/ban-default-true
+  // eslint-disable-next-line stencil/ban-default-true
   @Prop() readonly arrow?: boolean = true;
 
   /**

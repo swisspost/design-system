@@ -10,6 +10,8 @@ If applicable, please add a screenshot or video to illustrate the changes.
 
 ## 🔮 Design review
 
+If visual elements have been modified or added, please ping a member of the design team to ask them for a design review.
+
 - [ ] Design review done
 - [ ] No design review needed
 
