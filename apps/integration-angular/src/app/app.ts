@@ -160,7 +160,6 @@ export class App implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.translate.setTranslation('en', { template: { header: { close: 'Close' } } });
     this.navigationRoutes = this.router.config.filter(r => r.title);
   }
 }
