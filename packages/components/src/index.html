@@ -11,6 +11,72 @@
 
     <link id="components-global-styles" rel="stylesheet" href="/build/post-components.css" />
     <link rel="stylesheet" href="/assets/css/post-default.css" />
+    <script>
+      /**
+       * Playground only: stands in for the KLP platform so the signed-in composition can be seen
+       * without a backend. Must run before the components module, which connects on load.
+       * `?session=account|company|none` picks which menu the session is allowed to see.
+       */
+      (() => {
+        const state = new URLSearchParams(location.search).get('session') ?? 'account';
+
+        const user = {
+          name: 'Ada',
+          surname: 'Lovelace',
+          company: 'Analytical Engines AG',
+          userType: 'B2B',
+          authLevel: 'PASSWORD',
+        };
+
+        const sessions = {
+          account: { ...user, changeUserAndProfile: 'userAndProfile' },
+          company: { ...user, canChangeCompany: true },
+        };
+
+        const message = sessions[state]
+          ? { typ: 'sub', adr: 'playground', ttl: 900000, data: sessions[state] }
+          : { typ: 'ukn' };
+
+        const nativeFetch = window.fetch.bind(window);
+        window.fetch = (input, init) => {
+          const url = String(input.url ?? input);
+
+          if (url.includes('/v1/session/subscribe')) {
+            return Promise.resolve(
+              new Response(JSON.stringify(message), {
+                headers: { 'content-type': 'application/json' },
+              }),
+            );
+          }
+
+          if (url.includes('/v1/audit') || url.includes('/v1/session/keepalive')) {
+            return Promise.resolve(new Response(null, { status: 204 }));
+          }
+
+          return nativeFetch(input, init);
+        };
+
+        // Leaves the dev server's own socket alone; only the platform event bus is answered here.
+        const NativeWebSocket = window.WebSocket;
+        window.WebSocket = function (url, protocols) {
+          if (!String(url).includes('/eventbus/')) return new NativeWebSocket(url, protocols);
+
+          // Speaks just enough SockJS for the widget to consider the bus open.
+          const socket = {
+            readyState: 1,
+            close() {
+              socket.onclose?.({ code: 1000, reason: '' });
+            },
+            send() {},
+          };
+
+          setTimeout(() => socket.onmessage?.({ data: 'o' }), 0);
+          return socket;
+        };
+        // The widget guards on `WebSocket.OPEN`, which a replaced constructor does not carry over.
+        Object.assign(window.WebSocket, { CONNECTING: 0, OPEN: 1, CLOSING: 2, CLOSED: 3 });
+      })();
+    </script>
     <script type="module" src="/build/post-components.esm.js"></script>
     <script nomodule src="/build/post-components.js"></script>
   </head>
@@ -52,6 +118,52 @@
 
       <!-- Application title (optional) -->
       <p slot="title">Application title</p>
+
+      <!-- Portal login -->
+      <post-klp-login-widget
+        slot="post-login"
+        environment="int01"
+        project="playground"
+        language="en"
+        text-current-user="Currently logged in: {user}"
+        text-user-links="User links"
+        text-access-user-links="Open user links"
+      >
+        <a slot="login-link" href="#login">
+          <post-icon name="login" aria-hidden="true"></post-icon>
+          Login
+        </a>
+        <post-menu-item slot="account-switch">
+          <a href="#switch-account">
+            <post-icon name="userswitch" aria-hidden="true"></post-icon>
+            Switch account
+          </a>
+        </post-menu-item>
+        <post-menu-item slot="company-switch">
+          <a href="#switch-company">
+            <post-icon name="company" aria-hidden="true"></post-icon>
+            Switch company
+          </a>
+        </post-menu-item>
+        <post-menu-item slot="menu-links">
+          <a href="#profile">
+            <post-icon name="profile" aria-hidden="true"></post-icon>
+            My profile
+          </a>
+        </post-menu-item>
+        <post-menu-item slot="menu-links">
+          <a href="#settings">
+            <post-icon name="gear" aria-hidden="true"></post-icon>
+            Settings
+          </a>
+        </post-menu-item>
+        <post-menu-item slot="logout-link">
+          <a href="#logout">
+            <post-icon name="logout" aria-hidden="true"></post-icon>
+            Logout
+          </a>
+        </post-menu-item>
+      </post-klp-login-widget>
 
       <!-- Target group -->
       <ul slot="audience">

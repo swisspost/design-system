@@ -118,7 +118,7 @@ export class PostKlpLoginWidget {
     const fullName = [session.name, session.surname].filter(Boolean).join(' ');
 
     return [
-      <post-menu-trigger for={MENU_ID} key={MENU_ID}>
+      <post-menu-trigger for={MENU_ID} key={`${MENU_ID}-trigger`}>
         <button class="user-menu-trigger" type="button">
           <post-avatar
             firstname={session.name}
@@ -129,7 +129,7 @@ export class PostKlpLoginWidget {
           <span class="visually-hidden">{this.textAccessUserLinks}</span>
         </button>
       </post-menu-trigger>,
-      <post-menu id={MENU_ID} label={this.textUserLinks}>
+      <post-menu id={MENU_ID} label={this.textUserLinks} key={`${MENU_ID}-menu`}>
         <div slot="header">
           <post-avatar
             firstname={session.name}
