@@ -6,6 +6,7 @@ tokens.$default-map: components.$post-badge;
 .badge {
   display: inline-flex;
   align-items: center;
+  gap: 0;
   justify-content: center;
   height: tokens.get('badge-large-height');
   min-width: tokens.get('badge-large-height');
