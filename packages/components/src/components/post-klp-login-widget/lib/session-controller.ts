@@ -22,6 +22,7 @@ export interface KlpSessionControllerOptions {
   conf?: Partial<KlpKeepAliveConf>;
   log?: (message: string) => void;
   onSessionChange: (session: KlpSessionData | null) => void;
+  onUnreadChange?: (unread: number) => void;
   /** Injected by the tests so the session can be exercised without a websocket. */
   loadEventBus?: () => Promise<(url: string) => KlpEventBus>;
 }
@@ -32,6 +33,7 @@ export function createSessionController({
   conf,
   log = () => {},
   onSessionChange,
+  onUnreadChange = () => {},
   loadEventBus,
 }: KlpSessionControllerOptions) {
   const endPoints = buildEndPoints(endPoint);
@@ -89,6 +91,10 @@ export function createSessionController({
     }
   }
 
+  function reportUnread(): void {
+    onUnreadChange(notifications.getUnreadNotifications());
+  }
+
   const actions: KlpRouterActions = {
     audit: message => client.audit(address, message),
     setRetrySubscribeOnFail: value => {
@@ -108,6 +114,7 @@ export function createSessionController({
       address = '';
       removePersistedState();
       notifications.removeFromCache();
+      reportUnread();
       keepAlive.uninstallKeepAliveTimerHandler();
       onSessionChange(null);
     },
@@ -115,9 +122,18 @@ export function createSessionController({
       void start();
     },
     openCommunication: () => void connection.openCommunication(),
-    removeNotificationsFromCache: () => notifications.removeFromCache(),
-    showDocument: (doc, documentType) => notifications.showDocument(doc, documentType),
-    removeDocument: documentType => notifications.removeDocument(documentType),
+    removeNotificationsFromCache: () => {
+      notifications.removeFromCache();
+      reportUnread();
+    },
+    showDocument: (doc, documentType) => {
+      notifications.showDocument(doc, documentType);
+      reportUnread();
+    },
+    removeDocument: documentType => {
+      notifications.removeDocument(documentType);
+      reportUnread();
+    },
   };
 
   const route = createMessageRouter({ log, actions });
