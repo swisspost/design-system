@@ -15,6 +15,7 @@ catalogs:
     'cypress': 15.20.1
     'cypress-each': 1.14.1
     'cypress-axe': 1.7.0
+    'cypress-real-events': 1.15.1
     'cypress-storybook': 1.0.0
   node:
     '@types/node': 24.0.0
