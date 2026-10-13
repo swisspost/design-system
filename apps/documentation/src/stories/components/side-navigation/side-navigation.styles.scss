@@ -1,3 +1,10 @@
-.docs-story > :first-child {
-  overflow: hidden;
+.docs-story {
+  & > :first-child {
+    overflow: hidden;
+  }
+
+  &:where(.main-story *) + div {
+    height: 550px;
+    resize: vertical;
+  }
 }
