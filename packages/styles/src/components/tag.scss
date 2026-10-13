@@ -1,6 +1,7 @@
 @use '../tokens/components';
 @use '../tokens/elements';
 @use '../functions/tokens';
+@use '../mixins/color-scheme';
 
 tokens.$default-map: components.$post-tag;
 
@@ -51,7 +52,7 @@ tokens.$default-map: components.$post-tag;
 
   @each $name in 'success', 'warning', 'error', 'info' {
     &.tag-#{$name} {
-      color-scheme: light;
+      @include color-scheme.set(light);
       background-color: tokens.get('tag-#{$name}-color-bg');
       color: tokens.get('tag-#{$name}-color-fg');
       border-color: tokens.get('tag-#{$name}-color-border');
