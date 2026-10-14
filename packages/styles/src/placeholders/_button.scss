@@ -21,5 +21,6 @@ tokens.$default-map: components.$post-button;
 
 %btn {
   @include button-mx.button-base;
+  @include button-mx.button-label-wrap;
   @include button-mx.button-size;
 }

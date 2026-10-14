@@ -47,11 +47,8 @@
   font-size: tokens.get('button-font-size', components.$post-button);
   font-weight: tokens.get('button-label-font-weight', components.$post-button);
   text-decoration: none;
-  white-space: normal; //Allow long labels to wrap
-  overflow-wrap: anywhere;
+  white-space: nowrap; // Long content should never break in buttons
   cursor: pointer;
-  text-wrap: pretty;
-  text-align: center;
 
   &:not(:disabled):hover {
     text-decoration: none;
@@ -73,6 +70,13 @@
       border-color: ButtonBorder !important;
     }
   }
+}
+
+@mixin button-label-wrap {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+  text-align: center;
 }
 
 @mixin button-size($size: md) {
