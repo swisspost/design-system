@@ -392,6 +392,18 @@ describe('EffectManager', () => {
         }
       });
 
+      it('should not call the callback on the trailing edge when called only once', () => {
+        const callback = createCallback<[number]>();
+        const throttled = manager.throttle(callback, 2);
+
+        throttled(1);
+        jest.advanceTimersByTime(4);
+
+        expect(callback).toHaveBeenCalledTimes(1);
+        expect(callback).toHaveBeenCalledWith(1);
+        expect(manager.activeEffects).toBe(0);
+      });
+
       it('should be reusable after the throttle window has ended', () => {
         const callback = createCallback<[number]>();
         const throttled = manager.throttle(callback, 2);
