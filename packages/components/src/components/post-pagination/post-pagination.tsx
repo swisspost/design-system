@@ -1,4 +1,4 @@
-import { debounce, nanoid, Required, Type } from '@/utils';
+import { nanoid, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
 import {
   Component,
@@ -11,10 +11,10 @@ import {
   State,
   Watch,
 } from '@stencil/core';
+import { EffectManager } from '@/utils/effect-manager';
 
 const ELLIPSIS = '...';
-const MEASUREMENT_DEBOUNCE_MS = 50;
-const RESIZE_DEBOUNCE_MS = 150;
+const MEASUREMENT_THROTTLE_MS = 50;
 const MIN_VISIBLE_PAGES = 3;
 const EDGE_ITEM_COUNT = 2; // Always show first and last page
 const MAX_ELLIPSIS_COUNT = 2; // Maximum ellipsis elements
@@ -131,13 +131,14 @@ export class PostPagination {
    */
   @Event() postChange: EventEmitter<number>;
 
+  private readonly effects = new EffectManager(this);
+
+  private readonly resizeObserver = this.effects.createResizeObserver(
+    this.effects.throttle(this.measureAndCalculateVisiblePages, MEASUREMENT_THROTTLE_MS),
+  );
+
   private navRef?: HTMLElement;
   private hiddenItemsRef?: HTMLElement;
-  private lastWindowWidth = window.innerWidth;
-  private loaded: boolean = false;
-
-  private debouncedResize = debounce(this.handleResizeInternal.bind(this), RESIZE_DEBOUNCE_MS);
-  private measurementTimeoutId: ReturnType<typeof globalThis.setTimeout> | null = null;
 
   @Watch('page')
   @Watch('pageSize')
@@ -152,53 +153,18 @@ export class PostPagination {
     this.updatePagesWithValidation();
   }
 
-  connectedCallback() {
-    window.addEventListener('resize', this.debouncedResize);
+  componentDidLoad() {
+    this.resizeObserver.observe(this.navRef);
   }
 
-  componentDidLoad() {
-    this.loaded = true;
-    this.scheduleMeasurement();
+  connectedCallback() {
+    // The navigation is not rendered on the first connection; it is observed in `componentDidLoad`
+    // instead.
+    if (this.navRef) this.resizeObserver.observe(this.navRef);
   }
 
   disconnectedCallback() {
-    this.loaded = false;
-
-    window.removeEventListener('resize', this.debouncedResize);
-
-    if (this.measurementTimeoutId !== null) {
-      clearTimeout(this.measurementTimeoutId);
-      this.measurementTimeoutId = null;
-    }
-  }
-
-  /**
-   * Schedule measurement attempt with timeout
-   */
-  private scheduleMeasurement() {
-    if (!this.loaded) return;
-
-    this.measurementTimeoutId = globalThis.setTimeout(() => {
-      const canMeasure = this.navRef?.clientWidth > 0 && this.hiddenItemsRef;
-
-      if (canMeasure) {
-        this.measureAndCalculateVisiblePages();
-      } else {
-        this.scheduleMeasurement();
-      }
-    }, MEASUREMENT_DEBOUNCE_MS);
-  }
-
-  /**
-   * Internal resize handler
-   */
-  private handleResizeInternal() {
-    if (!this.loaded) return;
-
-    if (window.innerWidth === this.lastWindowWidth) return;
-
-    this.lastWindowWidth = window.innerWidth;
-    this.measureAndCalculateVisiblePages();
+    this.effects.disconnect();
   }
 
   /**
@@ -214,7 +180,8 @@ export class PostPagination {
    * Measures actual rendered elements to determine how many pages can fit
    */
   private measureAndCalculateVisiblePages() {
-    if (!this.navRef || !this.hiddenItemsRef || !this.loaded) return;
+    // A width of 0 means the pagination is hidden. The observer measures it again once it is shown.
+    if (!this.navRef?.clientWidth || !this.hiddenItemsRef) return;
 
     const totalPages = this.getTotalPages();
     if (totalPages <= 1) return;
@@ -649,8 +616,7 @@ export class PostPagination {
    */
   private emitPageChange(newPage: number) {
     this.page = newPage;
-    requestAnimationFrame(() => this.measureAndCalculateVisiblePages());
-
+    this.effects.requestAnimationFrame(this.measureAndCalculateVisiblePages);
     this.postChange.emit(newPage);
   }
 
