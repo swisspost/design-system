@@ -252,6 +252,10 @@ export class PostDatePicker {
   private _isInternalUpdate = false;
   private _lastInputValue: string | null = null;
 
+  // Tracks whether the current focus was triggered by a pointer interaction, to avoid
+  // overriding the caret position the user clicked on
+  private isPointerDownOnInput = false;
+
   private gridObserver: MutationObserver;
   private navObserver: MutationObserver;
   private inputObserver: MutationObserver;
@@ -528,10 +532,6 @@ export class PostDatePicker {
     this.emitInputEvents();
     if (this.hasFloatingLabel()) this.setMaskLazy(true); // Hides the mask only for the floating label
   };
-
-  // Tracks whether the current focus was triggered by a pointer interaction, to avoid
-  // overriding the caret position the user clicked on
-  private isPointerDownOnInput = false;
 
   private readonly handleInputPointerDown = () => {
     this.isPointerDownOnInput = true;
