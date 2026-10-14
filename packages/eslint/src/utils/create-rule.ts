@@ -5,33 +5,8 @@ export interface RuleDocs {
   recommended?: boolean;
 }
 
-/**
- * We need to patch the RuleCreator in order to use the directory from the meta.docs object in the URL.
- */
-const patchedRuleCreator = (
-  urlCreator: (ruleName: string, ruleDirectory: string) => string,
-): ReturnType<typeof ESLintUtils.RuleCreator<RuleDocs>> => {
-  return function createRule({ name, meta, defaultOptions, create }) {
-    return {
-      meta: {
-        ...meta,
-        docs: {
-          ...meta.docs,
-          url: urlCreator(name, meta.docs.dir),
-        },
-      },
-      defaultOptions,
-      create(context) {
-        const optionsWithDefault = ESLintUtils.applyDefault(defaultOptions, context.options);
-        return create(context, optionsWithDefault);
-      },
-    };
-  };
-};
+const getDocsUrl = (ruleName: string, ruleDirectory: RuleDocs['dir']) =>
+  `https://github.com/swisspost/design-system/blob/main/packages/eslint/docs/rules/${ruleDirectory}/${ruleName}.md`;
 
-patchedRuleCreator.withoutDocs = ESLintUtils.RuleCreator.withoutDocs;
-
-export const createRule = patchedRuleCreator(
-  (ruleName: string, ruleDirectory: string) =>
-    `https://github.com/swisspost/design-system/blob/main/packages/eslint/docs/rules/${ruleDirectory}/${ruleName}.md`,
-);
+export const createRule: ReturnType<typeof ESLintUtils.RuleCreator<RuleDocs>> = rule =>
+  ESLintUtils.RuleCreator<RuleDocs>(ruleName => getDocsUrl(ruleName, rule.meta.docs.dir))(rule);

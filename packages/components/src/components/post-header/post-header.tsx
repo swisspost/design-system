@@ -47,6 +47,7 @@ export class PostHeader {
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
   private slottedContentObserver: MutationObserver;
+  private globalHeader: HTMLElement;
   private localHeader: HTMLElement;
   private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
 
@@ -152,10 +153,10 @@ export class PostHeader {
 
   connectedCallback() {
     globalThis.addEventListener('resize', this.throttledResize, { passive: true });
-    globalThis.addEventListener('scroll', this.handleScrollEvent, {
+    globalThis.addEventListener('scroll', this.onScroll, {
       passive: true,
     });
-    this.scrollParent.addEventListener('scroll', this.handleScrollEvent, {
+    this.scrollParent.addEventListener('scroll', this.onScroll, {
       passive: true,
     });
     document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
@@ -194,8 +195,8 @@ export class PostHeader {
 
     globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange);
     globalThis.removeEventListener('resize', this.throttledResize);
-    globalThis.removeEventListener('scroll', this.handleScrollEvent);
-    if (scrollParent) scrollParent.removeEventListener('scroll', this.handleScrollEvent);
+    globalThis.removeEventListener('scroll', this.onScroll);
+    if (scrollParent) scrollParent.removeEventListener('scroll', this.onScroll);
     document.removeEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.removeEventListener('keydown', this.keyboardHandler);
     if (this.host.shadowRoot) {
@@ -308,6 +309,20 @@ export class PostHeader {
     this.megadropdownOpen = false;
   }
 
+  private readonly onScroll = () => {
+    this.handleScrollEvent();
+    this.collapseIfNotKeyboardFocused();
+  };
+
+  // The header only stays expanded to keep keyboard focus visible
+  // once focus is no longer keyboard focus (e.g. after a click), it can collapse on scroll
+  private collapseIfNotKeyboardFocused() {
+    if (!('expanded' in this.host.dataset)) return;
+    if (this.getDeepActiveElement()?.matches(':focus-visible')) return;
+
+    delete this.host.dataset.expanded;
+  }
+
   private handleScrollEvent() {
     const scrollTop =
       this.scrollParent === document.body ? window.scrollY : this.scrollParent.scrollTop;
@@ -399,18 +414,29 @@ export class PostHeader {
 
   @Listen('focusin')
   @Listen('focusout')
-  onFocusChange() {
+  onFocusChange(event: FocusEvent) {
+    if (event.type === 'focusout') {
+      // Ignore focus moving between elements of the header (e.g. into the language menu flyout)
+      if (this.isWithinHeader(event.relatedTarget)) return;
+
+      delete this.host.dataset.expanded;
+      return;
+    }
+
+    // Mouse focus never changes the state
+    // collapsing here would move the controls away from the pointer before the click completes
     const isFocusVisible = this.getDeepActiveElement()?.matches(':focus-visible');
-    const isFocusedInHeader = this.host.matches(':focus-within');
+    if (!isFocusVisible) return;
 
-    const mustRemainCollapsed =
-      this.device === 'desktop'
-        ? !!this.host.querySelector('post-mainnavigation:focus-within')
-        : !!this.host.shadowRoot?.querySelector(':is(.global-header, .burger-menu):focus-within');
+    // Keyboard focus: expanded only while focus is in the part that collapses on scroll
+    const collapsiblePart = this.device === 'desktop' ? this.globalHeader : this.localHeader;
+    const isInCollapsiblePart = event.composedPath().includes(collapsiblePart);
 
-    const isHeaderExpanded = isFocusVisible && isFocusedInHeader && !mustRemainCollapsed;
+    this.host.toggleAttribute('data-expanded', isInCollapsiblePart);
+  }
 
-    this.host.toggleAttribute('data-expanded', isHeaderExpanded);
+  private isWithinHeader(target: EventTarget | null): boolean {
+    return target instanceof Node && (target === this.host || this.host.contains(target));
   }
 
   // document.activeElement stops at the outermost shadow host (e.g. post-language-menu)
@@ -465,7 +491,7 @@ export class PostHeader {
         data-menu-extended={this.burgerMenuExtended}
       >
         <header>
-          <div class="global-header">
+          <div ref={el => (this.globalHeader = el)} class="global-header">
             <div class="section">
               <div class="logo">
                 <slot name="post-logo"></slot>
