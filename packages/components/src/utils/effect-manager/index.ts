@@ -353,7 +353,9 @@ export class EffectManager<C extends object> {
   public requestAnimationFrame(
     callback: BoundCallback<C, Parameters<FrameRequestCallback>>,
   ): Cancelable {
-    if (Build.isServer) return createInertCancelable();
+    if (Build.isServer || typeof globalThis.requestAnimationFrame !== 'function') {
+      return createInertCancelable();
+    }
 
     const id = globalThis.requestAnimationFrame((...args) => {
       this.release(effect, 'completed');
