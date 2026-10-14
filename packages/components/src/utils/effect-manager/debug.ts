@@ -1,16 +1,28 @@
+/**
+ * Describes an element by its tag name and ID.
+ */
 function describeElement(element: Element): string {
   const id = element.id ? `#${element.id}` : '';
   return `<${element.localName}${id}>`;
 }
 
+/**
+ * Describes an object by its constructor name.
+ */
 function describeObject(value: object): string {
   return value.constructor?.name || 'Object';
 }
 
+/**
+ * Describes the context of an {@link EffectManager}.
+ */
 export function describeContext(context: object): string {
   return context instanceof Element ? describeElement(context) : describeObject(context);
 }
 
+/**
+ * Describes an event target.
+ */
 export function describeTarget(target: unknown): string {
   if (target === null || target === undefined) return String(target);
   if (target === globalThis) return 'window';
