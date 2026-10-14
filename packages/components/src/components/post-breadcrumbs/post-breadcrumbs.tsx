@@ -1,8 +1,8 @@
 import { componentOnReady, nanoid, Required, Type, Url } from '@/utils';
 import { version } from '@root/package.json';
-import { Component, Element, Host, Prop, State, h } from '@stencil/core';
-import { throttle } from 'throttle-debounce';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import type { HTMLStencilElement } from '@stencil/core/internal';
+import { EffectManager } from '@/utils/effect-manager';
 
 const MAX_VISIBLE_ITEMS = 6;
 const MEASUREMENT_DEBOUNCE_MS = 50;
@@ -16,15 +16,12 @@ const MEASUREMENT_DEBOUNCE_MS = 50;
   shadow: true,
 })
 export class PostBreadcrumbs {
-  private debounceUpdateCollapsedItems = throttle(
-    MEASUREMENT_DEBOUNCE_MS,
-    this.updateCollapsedItems.bind(this),
-  );
+  private readonly effects = new EffectManager(this);
 
-  private resizeObserver = new ResizeObserver(this.debounceUpdateCollapsedItems);
-  private mutationObserver = new MutationObserver(() => {
-    void this.updateAfterMutation();
-  });
+  private readonly mutationObserver = this.effects.createMutationObserver(this.updateAfterMutation);
+  private readonly resizeObserver = this.effects.createResizeObserver(
+    this.effects.throttle(this.updateCollapsedItems, MEASUREMENT_DEBOUNCE_MS),
+  );
 
   @Element() host: HTMLPostBreadcrumbsElement;
 
@@ -100,22 +97,22 @@ export class PostBreadcrumbs {
   }
 
   async componentDidLoad() {
-    this.resizeObserver?.observe(document.body);
-    this.mutationObserver?.observe(this.host, {
-      childList: true,
-      characterData: true,
-      subtree: true,
-    });
-
     await this.updateHiddenNav();
     await this.updateCollapsedItems();
     this.loaded = true;
   }
 
+  connectedCallback() {
+    this.resizeObserver.observe(document.body);
+    this.mutationObserver.observe(this.host, {
+      childList: true,
+      characterData: true,
+      subtree: true,
+    });
+  }
+
   disconnectedCallback() {
-    this.resizeObserver?.disconnect();
-    this.mutationObserver?.disconnect();
-    this.debounceUpdateCollapsedItems.cancel();
+    this.effects.disconnect();
   }
 
   private checkSlottedHomeAnchor() {
