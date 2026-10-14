@@ -1,25 +1,32 @@
 import { Build } from '@stencil/core';
+import { describeContext, describeTarget } from '@/utils/effect-manager/debug';
 import {
   createInertCallable,
   createInertCancelable,
   createInertMutationObserver,
   createInertResizeObserver,
-} from './mock';
-import { describeContext, describeTarget } from './debug';
+} from '@/utils/effect-manager/mock';
 
-type BoundCallback<C, A extends unknown[]> = (this: C, ...args: A) => unknown;
-
-type ListenerOptions = boolean | Omit<AddEventListenerOptions, 'signal'>;
+export type BoundCallback<C, A extends unknown[]> = (this: C, ...args: A) => unknown;
 
 export interface Cancelable {
   cancel(): void;
 }
 
-export type Callable<A extends unknown[]> = ((...args: A) => void) & Cancelable;
+export type Callable<C, A extends unknown[]> = BoundCallback<C, A> & Cancelable;
 
-export type Debounced<A extends unknown[]> = Callable<A>;
+/**
+ * A function whose invocation is delayed until a certain amount of time has elapsed since the last
+ * call.
+ */
+export type Debounced<C, A extends unknown[]> = Callable<C, A>;
 
-export type Throttled<A extends unknown[]> = Callable<A>;
+/**
+ * A function whose invocation is limited to at most once per a certain time interval.
+ */
+export type Throttled<C, A extends unknown[]> = Callable<C, A>;
+
+export type ListenerOptions = boolean | Omit<AddEventListenerOptions, 'signal'>;
 
 export interface ThrottleOptions {
   leading?: boolean;
@@ -35,11 +42,15 @@ export interface EffectManagerOptions {
 }
 
 interface EffectDescriptor {
-  teardown(): void;
   describe(): string;
+  teardown(): void;
 }
 
 export class EffectManager<C extends object> {
+  /**
+   * A counter that provides unique IDs shared by all manager instances, ensuring that effects are
+   * uniquely identifiable in debug logs.
+   */
   private static lastId = 0;
 
   private readonly effects = new Map<number, EffectDescriptor>();
@@ -49,6 +60,9 @@ export class EffectManager<C extends object> {
     private readonly options?: EffectManagerOptions,
   ) {}
 
+  /**
+   * The number of effects that are currently being tracked by the manager.
+   */
   public get activeEffects(): number {
     return this.effects.size;
   }
@@ -85,6 +99,22 @@ export class EffectManager<C extends object> {
     options?: ListenerOptions,
   ): Cancelable;
 
+  /**
+   * Adds an event listener to the given target, and tracks it until it is removed.
+   *
+   * The listener is removed when:
+   * - the returned handle is cancelled;
+   * - the event fires once and the `once` option is set; or
+   * - the manager is disconnected.
+   *
+   * @param target - The target to listen on.
+   * @param type - The event type to listen for.
+   * @param callback - The callback to invoke when the event fires, with `this` bound to the
+   * manager's context.
+   * @param options - The native listener options, or a boolean indicating whether to use `capture`.
+   * `signal` is not supported.
+   * @returns A handle to remove the listener.
+   */
   public addEventListener(
     target: EventTarget,
     type: string,
@@ -117,7 +147,17 @@ export class EffectManager<C extends object> {
     return this.toCancelable(effect);
   }
 
-  public setTimeout(callback: BoundCallback<C, []>, delay?: number): Cancelable {
+  /**
+   * Schedules a callback to be invoked after the given delay.
+   *
+   * The timeout is tracked until it fires, is cancelled, or the manager is disconnected.
+   *
+   * @param callback - The callback to invoke when the timeout fires, with `this` bound to the
+   * manager's context.
+   * @param delay - The delay in milliseconds.
+   * @returns A handle to clear the timeout before it fires.
+   */
+  public setTimeout(callback: BoundCallback<C, []>, delay: number): Cancelable {
     if (Build.isServer) return createInertCancelable();
 
     const timeout = globalThis.setTimeout(() => {
@@ -133,6 +173,17 @@ export class EffectManager<C extends object> {
     return this.toCancelable(effect);
   }
 
+  /**
+   * Schedules a callback to be invoked repeatedly at the given interval.
+   *
+   * An interval never completes on its own, and is tracked until it is cancelled or the manager is
+   * disconnected.
+   *
+   * @param callback - The callback to invoke when the interval fires, with `this` bound to the
+   * manager's context.
+   * @param delay - The interval in milliseconds.
+   * @returns A handle to clear the interval.
+   */
   public setInterval(callback: BoundCallback<C, []>, delay?: number): Cancelable {
     if (Build.isServer) return createInertCancelable();
 
@@ -146,12 +197,19 @@ export class EffectManager<C extends object> {
     return this.toCancelable(effect);
   }
 
+  /**
+   * Schedules a callback to be invoked on the next animation frame.
+   *
+   * The frame request is tracked until it fires, is cancelled, or the manager is disconnected.
+   *
+   * @param callback - The callback to invoke when the frame fires, with `this` bound to the
+   * manager's context.
+   * @returns A handle to cancel the frame request before it fires.
+   */
   public requestAnimationFrame(
     callback: BoundCallback<C, Parameters<FrameRequestCallback>>,
   ): Cancelable {
-    if (Build.isServer || typeof globalThis.requestAnimationFrame !== 'function') {
-      return createInertCancelable();
-    }
+    if (Build.isServer) return createInertCancelable();
 
     const id = globalThis.requestAnimationFrame((...args) => {
       this.release(effect, 'completed');
@@ -166,8 +224,20 @@ export class EffectManager<C extends object> {
     return this.toCancelable(effect);
   }
 
-  public debounce<A extends unknown[]>(callback: BoundCallback<C, A>, delay: number): Debounced<A> {
-    if (Build.isServer) return createInertCallable<A>();
+  /**
+   * Wraps a callback in a debounced function that delays its invocation until after the given delay
+   * has elapsed since the last time it was called.
+   *
+   * @param callback - The callback to invoke when the debounced function is called, with `this`
+   * bound to the manager's context.
+   * @param delay - The delay in milliseconds.
+   * @returns The debounced function, with a `cancel()` method to cancel a pending invocation.
+   */
+  public debounce<A extends unknown[]>(
+    callback: BoundCallback<C, A>,
+    delay: number,
+  ): Debounced<C, A> {
+    if (Build.isServer) return createInertCallable<C, A>();
 
     let effect: number | null = null;
 
@@ -194,15 +264,28 @@ export class EffectManager<C extends object> {
     return Object.assign(debounced, { cancel });
   }
 
+  /**
+   * Wraps a function in a throttled function whose invocation is limited to at most once per the
+   * given interval.
+   *
+   * @param callback - The callback to invoke when the throttled function is called, with `this`
+   * bound to the manager's context.
+   * @param delay - The interval in milliseconds.
+   * @param options
+   * @returns The throttled function, with a `cancel()` method to cancel a pending invocation and
+   * reset the throttle window.
+   */
   public throttle<A extends unknown[]>(
     callback: BoundCallback<C, A>,
     delay: number,
     { leading = true, trailing = true }: ThrottleOptions = {},
-  ): Throttled<A> {
-    if (Build.isServer) return createInertCallable<A>();
+  ): Throttled<C, A> {
+    if (Build.isServer) return createInertCallable<C, A>();
 
     let effect: number | null = null;
     let pending: A | null = null;
+
+    // todo: if both trailing and leading are set, the callback should only be invoked on the trailing edge if is called more than once!
 
     const queue = () => {
       const timeout = globalThis.setTimeout(() => {
@@ -245,6 +328,17 @@ export class EffectManager<C extends object> {
     return Object.assign(throttled, { cancel });
   }
 
+  /**
+   * Creates a `ResizeObserver` whose lifetime is managed by the manager.
+   *
+   * The observer is tracked as soon as it is used, i.e. on the first `observe`. It stops being
+   * tracked when `disconnect` is called, or when the manager is disconnected.
+   *
+   * @param callback - The callback to invoke when the observer fires, with `this` bound to the
+   * manager's context.
+   * @returns A native `ResizeObserver` instance, or a stub during server-side rendering or when the
+   * API isn't available.
+   */
   public createResizeObserver(
     callback: BoundCallback<C, Parameters<ResizeObserverCallback>>,
   ): ResizeObserver {
@@ -257,6 +351,17 @@ export class EffectManager<C extends object> {
     return this.trackObserver(observer, 'resize observer');
   }
 
+  /**
+   * Creates a `MutationObserver` whose lifetime is managed by the manager.
+   *
+   * The observer is tracked as soon as it is used, i.e. on the first `observe`. It stops being
+   * tracked when `disconnect` is called, or when the manager is disconnected.
+   *
+   * @param callback - The callback to invoke when the observer fires, with `this` bound to the
+   * manager's context.
+   * @returns A native `MutationObserver` instance, or a stub during server-side rendering or when
+   * the API isn't available.
+   */
   public createMutationObserver(
     callback: BoundCallback<C, Parameters<MutationCallback>>,
   ): MutationObserver {
@@ -269,6 +374,14 @@ export class EffectManager<C extends object> {
     return this.trackObserver(observer, 'mutation observer');
   }
 
+  /**
+   * Tears down all effects that are currently being tracked by the manager.
+   *
+   * This is typically called in the `disconnectedCallback` of a component. The manager remains
+   * usable afterwards, so effects can be tracked again when the component is reconnected.
+   *
+   * @throws {AggregateError} - If one or more effects throw an error during teardown.
+   */
   public disconnect(): void {
     const errors: unknown[] = [];
 
@@ -289,6 +402,12 @@ export class EffectManager<C extends object> {
     }
   }
 
+  /**
+   * Registers an effect to be tracked by the manager.
+   *
+   * @param descriptor - The descriptor of the effect to track.
+   * @returns The ID of the tracked effect.
+   */
   private track(descriptor: EffectDescriptor): number {
     const id = ++EffectManager.lastId;
     this.effects.set(id, descriptor);
@@ -297,6 +416,13 @@ export class EffectManager<C extends object> {
     return id;
   }
 
+  /**
+   * Wraps an observer in a proxy effect that is registered to be tracked by the manager.
+   *
+   * @param observer - The observer to wrap.
+   * @param label - A human-readable label for the observer, used in debug logs.
+   * @returns The wrapped observer.
+   */
   private trackObserver<O extends ResizeObserver | MutationObserver>(
     observer: O,
     label: string,
@@ -310,6 +436,7 @@ export class EffectManager<C extends object> {
       observe: (...args: Parameters<O['observe']>) => {
         nativeObserve(...args);
 
+        // Register an effect as soon as the observer is used
         effect ??= this.track({
           describe: () => label,
           teardown: () => {
@@ -320,6 +447,8 @@ export class EffectManager<C extends object> {
       },
       disconnect: () => {
         if (effect !== null) this.release(effect, 'cancelled');
+        // If no effect was registered, the observer was never used, and no additional teardown is
+        // necessary.
         else nativeDisconnect();
       },
     });
@@ -327,13 +456,28 @@ export class EffectManager<C extends object> {
     return observer;
   }
 
+  /**
+   * Wraps an effect in a `Cancelable` that cancels the effect when invoked.
+   *
+   * @param id - The ID of the effect to wrap.
+   */
   private toCancelable(id: number): Cancelable {
     return {
       cancel: () => this.release(id, 'cancelled'),
     };
   }
 
+  /**
+   * Stops tracking an effect, removing it from the manager. The effect is torn down, unless it
+   * already completed on its own.
+   *
+   * Releasing an already released effect is a no-op.
+   *
+   * @param id - The ID of the effect to release.
+   * @param reason - The reason the effect is being released.
+   */
   private release(id: number | null, reason: ReleaseReason): void {
+    // Better safe than sorry...
     if (id === null) return;
 
     const descriptor = this.effects.get(id);
@@ -345,11 +489,14 @@ export class EffectManager<C extends object> {
     if (reason !== 'completed') descriptor.teardown();
   }
 
+  /**
+   * When debugging is enabled, logs a debug message describing the lifecycle event of an effect.
+   */
   private trace(id: number, descriptor: EffectDescriptor, event: EffectLifecycleEvent): void {
     if (!this.isDebug) return;
 
     console.debug(
-      `[EffectManager ${describeContext(this.context)}#${id}] ${event} ${descriptor.describe()}`,
+      `[EffectManager ${describeContext(this.context)}] ${event} ${descriptor.describe()} (#${id})`,
     );
   }
 }
