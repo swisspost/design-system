@@ -41,6 +41,7 @@ const BASE_TEMPLATE = `<!DOCTYPE html>
     <post-header text-menu="Menu">
       {{HEADER_CONTENT}}
     </post-header>
+    {{SIBLING_CONTENT}}
     <main>
       <div class="fake-content"></div>
       <div class="fake-content"></div>
@@ -355,7 +356,143 @@ const COMPONENTS = {
         </post-menu-item>
       </post-menu>
     </li>`,
+
+  sideNavTrigger: `<!-- Side navigation trigger -->
+  <post-side-navigation-trigger slot="side-nav" for="header-sidenav">
+    <button>
+      <post-icon aria-hidden="true" name="burger"></post-icon>
+      Menu
+    </button>
+  </post-side-navigation-trigger>`,
+
+  languageMenuList: `<!-- Language menu (list variant) -->
+  <post-language-menu
+    variant="list"
+    text-change-language="Change the language"
+    text-current-language="The currently selected language is English."
+    name="language-menu-list-example"
+    slot="language-menu"
+  >
+    <post-language-menu-item code="de" name="German">de</post-language-menu-item>
+    <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
+    <post-language-menu-item code="it" name="Italian">it</post-language-menu-item>
+    <post-language-menu-item active="true" code="en" name="English">en</post-language-menu-item>
+  </post-language-menu>`,
+
+  // Main navigation with many top-level items to force the overflow scroll-button UI
+  mainNavigationOverflow: `<!-- Main navigation (overflowing) -->
+  <post-mainnavigation slot="main-nav" text-main="Main">
+    <ul>
+      <li><a href="/letters">Letters</a></li>
+      <li><a href="/packages">Packages &amp; parcels</a></li>
+      <li><a href="/business-solutions">Business solutions</a></li>
+      <li><a href="/digital-services">Digital services</a></li>
+      <li><a href="/philately">Philately &amp; stamps</a></li>
+      <li><a href="/pickup-delivery">Pickup and delivery</a></li>
+      <li><a href="/international">International shipping</a></li>
+      <li><a href="/tracking">Track and trace</a></li>
+      <li><a href="/branches">Branches and locations</a></li>
+      <li><a href="/sustainability">Sustainability</a></li>
+      <li><a href="/about">About the company</a></li>
+      <li><a href="/contact">Contact and support</a></li>
+    </ul>
+  </post-mainnavigation>`,
+
+  // Main navigation whose megadropdown contains regression-prone content:
+  // an active (aria-current) list item, a long unbreakable link and enough
+  // rows to make the dropdown panel itself scrollable on short viewports.
+  mainNavigationRich: `<!-- Main navigation (regression content) -->
+  <post-mainnavigation slot="main-nav" text-main="Main">
+    <ul>
+      <li>
+        <a href="/letters">Letters</a>
+      </li>
+      <li>
+        <a href="/packages" aria-current="page">Packages</a>
+      </li>
+      <li>
+        <post-megadropdown-trigger for="letters">Letters</post-megadropdown-trigger>
+        <post-megadropdown id="letters" text-close="Close" text-back="Back">
+          <a class="post-megadropdown-overview" href="/letters">Overview Letters</a>
+          <div class="row row-cols-1 row-cols-sm-2">
+            <div class="col">
+              <p class="post-megadropdown-list-title" id="rich-send-letters">Send letters</p>
+              <ul class="post-megadropdown-list" aria-labelledby="rich-send-letters">
+                <li>
+                  <a href="/sch" aria-current="page">Letters Switzerland</a>
+                </li>
+                <li>
+                  <a href="/long">Averylongunbreakablelinklabelthatcannotwraponnormalwordboundaries</a>
+                </li>
+                <li>
+                  <a href="/kl">Small items abroad</a>
+                </li>
+                <li>
+                  <a href="">Goods abroad</a>
+                </li>
+                <li>
+                  <a href="">Express and courier</a>
+                </li>
+                <li>
+                  <a href="">Registered mail</a>
+                </li>
+                <li>
+                  <a href="">Signature services</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col">
+              <a class="post-megadropdown-list-title" id="rich-step-letters" href="/step-by-step">Step by step</a>
+              <ul class="post-megadropdown-list" aria-labelledby="rich-step-letters">
+                <li>
+                  <a href="/sch">Prepare your shipment</a>
+                </li>
+                <li>
+                  <a href="/kl">Choose the right product</a>
+                </li>
+                <li>
+                  <a href="">Pay and print the label</a>
+                </li>
+                <li>
+                  <a href="">Drop off or schedule pickup</a>
+                </li>
+                <li>
+                  <a href="">Track your delivery</a>
+                </li>
+                <li>
+                  <a href="">Proof of delivery</a>
+                </li>
+                <li>
+                  <a href="">Returns and refunds</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </post-megadropdown>
+      </li>
+    </ul>
+  </post-mainnavigation>`,
 };
+
+// Side navigation panel, rendered as a sibling of the header (toggled by the trigger)
+const SIDE_NAV_PANEL = `<!-- Side navigation -->
+    <post-side-navigation id="header-sidenav" text-close="Close">
+      <nav aria-label="Main navigation">
+        <h2 class="post-side-navigation-heading">Section title</h2>
+        <ul>
+          <li>
+            <a href="#" class="post-side-navigation-item" aria-current="page">Level 1</a>
+            <ul>
+              <li><a href="#" class="post-side-navigation-item">Level 2</a></li>
+              <li><a href="#" class="post-side-navigation-item">Level 2</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="post-side-navigation-item">Level 1</a>
+          </li>
+        </ul>
+      </nav>
+    </post-side-navigation>`;
 
 // Variant configurations
 const VARIANTS = {
@@ -472,6 +609,62 @@ const VARIANTS = {
       '{{AUDIENCE_CURRENT}}': ' aria-current="location"',
       '{{GLOBAL_NAV_SECONDARY_CURRENT}}': '',
     },
+  },
+
+  // Overflowing main navigation to exercise the scroll-button UI (#4742, #4755, #4557)
+  'portal-overflow': {
+    components: [
+      'logo',
+      'audience',
+      'globalNavPrimary',
+      'globalNavSecondary',
+      'languageMenu',
+      'globalLogin',
+      'mainNavigationOverflow',
+    ],
+    replacements: {
+      '{{AUDIENCE_CURRENT}}': ' aria-current="location"',
+      '{{GLOBAL_NAV_SECONDARY_CURRENT}}': '',
+    },
+  },
+
+  // Regression-prone megadropdown content: active item, long link, inner scroll (#6707, #7809, #4772, #4730)
+  'portal-regression': {
+    components: [
+      'logo',
+      'audience',
+      'globalNavPrimary',
+      'globalNavSecondary',
+      'languageMenu',
+      'globalLogin',
+      'mainNavigationRich',
+    ],
+    replacements: {
+      '{{AUDIENCE_CURRENT}}': ' aria-current="location"',
+      '{{GLOBAL_NAV_SECONDARY_CURRENT}}': '',
+    },
+  },
+
+  // Language menu rendered as a list instead of a dropdown (#4718, #4720, #6558)
+  'onepager-list': {
+    components: ['logo', 'languageMenuList', 'title'],
+    replacements: {
+      '{{TITLE_TEXT}}': '[One Pager Title]',
+    },
+  },
+
+  // Application header using the side-nav slot (the only slot not otherwise covered)
+  'application-sidenav': {
+    components: ['logo', 'sideNavTrigger', 'title', 'localNavApplication'],
+    replacements: {
+      '{{TITLE_TEXT}}': '[Application Title]',
+      '{{SIBLING_CONTENT}}': SIDE_NAV_PANEL,
+    },
+  },
+
+  // Minimal header: only the logo slot, to capture the absence of all optional slots
+  'slots-minimal': {
+    components: ['logo'],
   },
 };
 
