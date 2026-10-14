@@ -27426,6 +27426,378 @@
       "modifiedAt": "2025-07-08T06:45:08.000Z"
     },
     {
+      "uuid": "89fbd660-c7bf-11f1-bea4-0050568d2654",
+      "id": 11586159,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586159/storage/MDExNTg2MTU5LzAvbWFzdGVyLy8vMTEzNzU4NzQ1",
+        "keywords": [
+          "plaster",
+          "Pflaster",
+          "pansements",
+          "Cerotto",
+          "Wundpflaster",
+          "pansements pour plaies",
+          "Cerotti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Bandage_Shape_16.svg",
+        "basename": "Bandage_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:08:09.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
+      "uuid": "8924b040-c7bf-11f1-bea4-0050568d2654",
+      "id": 11586158,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586158/storage/MDExNTg2MTU4LzAvbWFzdGVyLy8vMTEzNzU4NzQ0",
+        "keywords": [
+          "plaster",
+          "Pflaster",
+          "pansements",
+          "Cerotto",
+          "Wundpflaster",
+          "pansements pour plaies",
+          "Cerotti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Bandage_Shape_24.svg",
+        "basename": "Bandage_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:08:07.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
+      "uuid": "88496b70-c7bf-11f1-bea4-0050568d2654",
+      "id": 11586157,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586157/storage/MDExNTg2MTU3LzAvbWFzdGVyLy8vMTEzNzU4NzQz",
+        "keywords": [
+          "plaster",
+          "Pflaster",
+          "pansements",
+          "Cerotto",
+          "Wundpflaster",
+          "pansements pour plaies",
+          "Cerotti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Bandage_Shape_32.svg",
+        "basename": "Bandage_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:08:06.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
+      "uuid": "87628de1-c7bf-11f1-bea4-0050568d2654",
+      "id": 11586156,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586156/storage/MDExNTg2MTU2LzAvbWFzdGVyLy8vMTEzNzU4NzQy",
+        "keywords": [
+          "plaster",
+          "Pflaster",
+          "pansements",
+          "Cerotto",
+          "Wundpflaster",
+          "pansements pour plaies",
+          "Cerotti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Bandage_Shape_40.svg",
+        "basename": "Bandage_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:08:04.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
+      "uuid": "86726180-c7bf-11f1-bea4-0050568d2654",
+      "id": 11586155,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586155/storage/MDExNTg2MTU1LzAvbWFzdGVyLy8vMTEzNzU4NzQx",
+        "keywords": [
+          "plaster",
+          "Pflaster",
+          "pansements",
+          "Cerotto",
+          "Wundpflaster",
+          "pansements pour plaies",
+          "Cerotti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Bandage_Shape_48.svg",
+        "basename": "Bandage_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:08:03.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
+      "uuid": "858ae7b0-c7bf-11f1-bea4-0050568d2654",
+      "id": 11586154,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586154/storage/MDExNTg2MTU0LzAvbWFzdGVyLy8vMTEzNzU4NjMw",
+        "keywords": [
+          "plaster",
+          "Pflaster",
+          "pansements",
+          "Cerotto",
+          "Wundpflaster",
+          "pansements pour plaies",
+          "Cerotti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Bandage_Shape_64.svg",
+        "basename": "Bandage_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:08:01.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
+      "uuid": "84b79220-c7bf-11f1-bea4-0050568d2654",
+      "id": 11586153,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586153/storage/MDExNTg2MTUzLzAvbWFzdGVyLy8vMTEzNzU4NzQw",
+        "keywords": [
+          "plaster",
+          "Pflaster",
+          "pansements",
+          "Cerotto",
+          "Wundpflaster",
+          "pansements pour plaies",
+          "Cerotti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Bandage_Solid_Shape_16.svg",
+        "basename": "Bandage_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:08:00.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
+      "uuid": "83de9741-c7bf-11f1-bea4-0050568d2654",
+      "id": 11586152,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586152/storage/MDExNTg2MTUyLzAvbWFzdGVyLy8vMTEzNzU4NzM5",
+        "keywords": [
+          "plaster",
+          "Pflaster",
+          "pansements",
+          "Cerotto",
+          "Wundpflaster",
+          "pansements pour plaies",
+          "Cerotti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Bandage_Solid_Shape_24.svg",
+        "basename": "Bandage_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:07:59.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
+      "uuid": "830b8fd0-c7bf-11f1-bea4-0050568d2654",
+      "id": 11586151,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586151/storage/MDExNTg2MTUxLzAvbWFzdGVyLy8vMTEzNzU4NzM4",
+        "keywords": [
+          "plaster",
+          "Pflaster",
+          "pansements",
+          "Cerotto",
+          "Wundpflaster",
+          "pansements pour plaies",
+          "Cerotti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Bandage_Solid_Shape_32.svg",
+        "basename": "Bandage_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:07:57.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
+      "uuid": "812802c0-c7bf-11f1-bea4-0050568d2654",
+      "id": 11586150,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586150/storage/MDExNTg2MTUwLzAvbWFzdGVyLy8vMTEzNzU4NzM3",
+        "keywords": [
+          "plaster",
+          "Pflaster",
+          "pansements",
+          "Cerotto",
+          "Wundpflaster",
+          "pansements pour plaies",
+          "Cerotti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Bandage_Solid_Shape_40.svg",
+        "basename": "Bandage_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:07:54.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
+      "uuid": "812591c0-c7bf-11f1-bea4-0050568d2654",
+      "id": 11586149,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586149/storage/MDExNTg2MTQ5LzAvbWFzdGVyLy8vMTEzNzU4NzM2",
+        "keywords": [
+          "plaster",
+          "Pflaster",
+          "pansements",
+          "Cerotto",
+          "Wundpflaster",
+          "pansements pour plaies",
+          "Cerotti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Bandage_Solid_Shape_48.svg",
+        "basename": "Bandage_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:07:54.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
+      "uuid": "8122d2a0-c7bf-11f1-bea4-0050568d2654",
+      "id": 11586148,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586148/storage/MDExNTg2MTQ4LzAvbWFzdGVyLy8vMTEzNzU4NzM1",
+        "keywords": [
+          "plaster",
+          "Pflaster",
+          "pansements",
+          "Cerotto",
+          "Wundpflaster",
+          "pansements pour plaies",
+          "Cerotti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Bandage_Solid_Shape_64.svg",
+        "basename": "Bandage_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:07:54.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
       "uuid": "268a1160-92f9-11f0-9719-005056873709",
       "id": 6254488,
       "type": "picture.pictogram.",
@@ -147390,6 +147762,378 @@
       "modifiedAt": "2025-08-15T08:48:38.000Z"
     },
     {
+      "uuid": "09d135b0-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586174,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586174/storage/MDExNTg2MTc0LzAvbWFzdGVyLy8vMTEzNzU5MTU1",
+        "keywords": [
+          "Accident",
+          "Unfall",
+          "Infortunio",
+          "Verletzung",
+          "Injury",
+          "Traumatismo",
+          "Blessure"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Injury_Shape_16.svg",
+        "basename": "Injury_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:11:43.000Z",
+      "modifiedAt": "2026-10-14T11:14:07.000Z"
+    },
+    {
+      "uuid": "09cd1700-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586173,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586173/storage/MDExNTg2MTczLzAvbWFzdGVyLy8vMTEzNzU5MTU0",
+        "keywords": [
+          "Accident",
+          "Unfall",
+          "Infortunio",
+          "Verletzung",
+          "Injury",
+          "Traumatismo",
+          "Blessure"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Injury_Shape_24.svg",
+        "basename": "Injury_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:11:43.000Z",
+      "modifiedAt": "2026-10-14T11:14:06.000Z"
+    },
+    {
+      "uuid": "08ad7630-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586172,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586172/storage/MDExNTg2MTcyLzAvbWFzdGVyLy8vMTEzNzU5MTUz",
+        "keywords": [
+          "Accident",
+          "Unfall",
+          "Infortunio",
+          "Verletzung",
+          "Injury",
+          "Traumatismo",
+          "Blessure"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Injury_Shape_32.svg",
+        "basename": "Injury_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:11:41.000Z",
+      "modifiedAt": "2026-10-14T11:14:06.000Z"
+    },
+    {
+      "uuid": "0858c680-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586171,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586171/storage/MDExNTg2MTcxLzAvbWFzdGVyLy8vMTEzNzU5MTUy",
+        "keywords": [
+          "Accident",
+          "Unfall",
+          "Infortunio",
+          "Verletzung",
+          "Injury",
+          "Traumatismo",
+          "Blessure"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Injury_Shape_40.svg",
+        "basename": "Injury_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:11:41.000Z",
+      "modifiedAt": "2026-10-14T11:14:06.000Z"
+    },
+    {
+      "uuid": "0753b290-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586170,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586170/storage/MDExNTg2MTcwLzAvbWFzdGVyLy8vMTEzNzU5MTQ4",
+        "keywords": [
+          "Accident",
+          "Unfall",
+          "Infortunio",
+          "Verletzung",
+          "Injury",
+          "Traumatismo",
+          "Blessure"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Injury_Shape_48.svg",
+        "basename": "Injury_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:11:39.000Z",
+      "modifiedAt": "2026-10-14T11:14:06.000Z"
+    },
+    {
+      "uuid": "071745d0-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586169,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586169/storage/MDExNTg2MTY5LzAvbWFzdGVyLy8vMTEzNzU5MTI3",
+        "keywords": [
+          "Accident",
+          "Unfall",
+          "Infortunio",
+          "Verletzung",
+          "Injury",
+          "Traumatismo",
+          "Blessure"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Injury_Shape_64.svg",
+        "basename": "Injury_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:11:39.000Z",
+      "modifiedAt": "2026-10-14T11:13:32.000Z"
+    },
+    {
+      "uuid": "064bdf80-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586168,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586168/storage/MDExNTg2MTY4LzAvbWFzdGVyLy8vMTEzNzU5MTQ3",
+        "keywords": [
+          "Accident",
+          "Unfall",
+          "Infortunio",
+          "Verletzung",
+          "Injury",
+          "Traumatismo",
+          "Blessure"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Injury_Solid_Shape_16.svg",
+        "basename": "Injury_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:11:37.000Z",
+      "modifiedAt": "2026-10-14T11:14:07.000Z"
+    },
+    {
+      "uuid": "056fd760-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586167,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586167/storage/MDExNTg2MTY3LzAvbWFzdGVyLy8vMTEzNzU5MTQ2",
+        "keywords": [
+          "Accident",
+          "Unfall",
+          "Infortunio",
+          "Verletzung",
+          "Injury",
+          "Traumatismo",
+          "Blessure"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Injury_Solid_Shape_24.svg",
+        "basename": "Injury_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:11:36.000Z",
+      "modifiedAt": "2026-10-14T11:14:06.000Z"
+    },
+    {
+      "uuid": "049778c0-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586166,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586166/storage/MDExNTg2MTY2LzAvbWFzdGVyLy8vMTEzNzU5MTQ1",
+        "keywords": [
+          "Accident",
+          "Unfall",
+          "Infortunio",
+          "Verletzung",
+          "Injury",
+          "Traumatismo",
+          "Blessure"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Injury_Solid_Shape_32.svg",
+        "basename": "Injury_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:11:34.000Z",
+      "modifiedAt": "2026-10-14T11:14:06.000Z"
+    },
+    {
+      "uuid": "02f5fdc0-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586164,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586164/storage/MDExNTg2MTY0LzAvbWFzdGVyLy8vMTEzNzU5MTQz",
+        "keywords": [
+          "Accident",
+          "Unfall",
+          "Infortunio",
+          "Verletzung",
+          "Injury",
+          "Traumatismo",
+          "Blessure"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Injury_Solid_Shape_40.svg",
+        "basename": "Injury_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:11:32.000Z",
+      "modifiedAt": "2026-10-14T11:14:06.000Z"
+    },
+    {
+      "uuid": "02f1b800-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586163,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586163/storage/MDExNTg2MTYzLzAvbWFzdGVyLy8vMTEzNzU5MTQy",
+        "keywords": [
+          "Accident",
+          "Unfall",
+          "Infortunio",
+          "Verletzung",
+          "Injury",
+          "Traumatismo",
+          "Blessure"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Injury_Solid_Shape_48.svg",
+        "basename": "Injury_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:11:32.000Z",
+      "modifiedAt": "2026-10-14T11:14:06.000Z"
+    },
+    {
+      "uuid": "02f8e3f0-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586165,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586165/storage/MDExNTg2MTY1LzAvbWFzdGVyLy8vMTEzNzU5MTQ0",
+        "keywords": [
+          "Accident",
+          "Unfall",
+          "Infortunio",
+          "Verletzung",
+          "Injury",
+          "Traumatismo",
+          "Blessure"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Injury_Solid_Shape_64.svg",
+        "basename": "Injury_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:11:32.000Z",
+      "modifiedAt": "2026-10-14T11:14:06.000Z"
+    },
+    {
       "uuid": "d336e590-e51c-11ef-a15d-005056873709",
       "id": 1820726,
       "type": "picture.pictogram.",
@@ -227757,6 +228501,342 @@
       "modifiedAt": "2025-06-03T05:34:21.000Z"
     },
     {
+      "uuid": "a6e91f20-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586188,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586188/storage/MDExNTg2MTg4LzAvbWFzdGVyLy8vMTEzNzU5OTU5",
+        "keywords": [
+          "relapse",
+          "Rückfall",
+          "Repli",
+          "ricaduta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Relapse_Shape_16.svg",
+        "basename": "Relapse_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:16:07.000Z",
+      "modifiedAt": "2026-10-14T11:20:19.000Z"
+    },
+    {
+      "uuid": "a5994690-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586187,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586187/storage/MDExNTg2MTg3LzAvbWFzdGVyLy8vMTEzNzU5OTU4",
+        "keywords": [
+          "relapse",
+          "Rückfall",
+          "Repli",
+          "ricaduta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Relapse_Shape_24.svg",
+        "basename": "Relapse_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:16:05.000Z",
+      "modifiedAt": "2026-10-14T11:20:19.000Z"
+    },
+    {
+      "uuid": "a4c506a0-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586186,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586186/storage/MDExNTg2MTg2LzAvbWFzdGVyLy8vMTEzNzU5OTU3",
+        "keywords": [
+          "relapse",
+          "Rückfall",
+          "Repli",
+          "ricaduta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Relapse_Shape_32.svg",
+        "basename": "Relapse_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:16:03.000Z",
+      "modifiedAt": "2026-10-14T11:20:19.000Z"
+    },
+    {
+      "uuid": "a3aa95f0-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586185,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586185/storage/MDExNTg2MTg1LzAvbWFzdGVyLy8vMTEzNzU5OTU2",
+        "keywords": [
+          "relapse",
+          "Rückfall",
+          "Repli",
+          "ricaduta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Relapse_Shape_40.svg",
+        "basename": "Relapse_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:16:01.000Z",
+      "modifiedAt": "2026-10-14T11:20:19.000Z"
+    },
+    {
+      "uuid": "a33abd20-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586184,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586184/storage/MDExNTg2MTg0LzAvbWFzdGVyLy8vMTEzNzU5OTU1",
+        "keywords": [
+          "relapse",
+          "Rückfall",
+          "Repli",
+          "ricaduta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Relapse_Shape_48.svg",
+        "basename": "Relapse_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:16:01.000Z",
+      "modifiedAt": "2026-10-14T11:20:19.000Z"
+    },
+    {
+      "uuid": "a31581e0-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586183,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586183/storage/MDExNTg2MTgzLzAvbWFzdGVyLy8vMTEzNzU5OTEz",
+        "keywords": [
+          "relapse",
+          "Rückfall",
+          "Repli",
+          "ricaduta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Relapse_Shape_64.svg",
+        "basename": "Relapse_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:16:00.000Z",
+      "modifiedAt": "2026-10-14T11:19:47.000Z"
+    },
+    {
+      "uuid": "a1df72e0-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586182,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586182/storage/MDExNTg2MTgyLzAvbWFzdGVyLy8vMTEzNzU5OTU0",
+        "keywords": [
+          "relapse",
+          "Rückfall",
+          "Repli",
+          "ricaduta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Relapse_Solid_Shape_16.svg",
+        "basename": "Relapse_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:15:58.000Z",
+      "modifiedAt": "2026-10-14T11:20:19.000Z"
+    },
+    {
+      "uuid": "a190ddb0-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586181,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586181/storage/MDExNTg2MTgxLzAvbWFzdGVyLy8vMTEzNzU5OTUz",
+        "keywords": [
+          "relapse",
+          "Rückfall",
+          "Repli",
+          "ricaduta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Relapse_Solid_Shape_24.svg",
+        "basename": "Relapse_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:15:58.000Z",
+      "modifiedAt": "2026-10-14T11:20:19.000Z"
+    },
+    {
+      "uuid": "a0ce9f20-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586180,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586180/storage/MDExNTg2MTgwLzAvbWFzdGVyLy8vMTEzNzU5OTUy",
+        "keywords": [
+          "relapse",
+          "Rückfall",
+          "Repli",
+          "ricaduta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Relapse_Solid_Shape_32.svg",
+        "basename": "Relapse_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:15:57.000Z",
+      "modifiedAt": "2026-10-14T11:20:19.000Z"
+    },
+    {
+      "uuid": "9f1afbb0-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586177,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586177/storage/MDExNTg2MTc3LzAvbWFzdGVyLy8vMTEzNzU5OTQ2",
+        "keywords": [
+          "relapse",
+          "Rückfall",
+          "Repli",
+          "ricaduta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Relapse_Solid_Shape_40.svg",
+        "basename": "Relapse_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:15:54.000Z",
+      "modifiedAt": "2026-10-14T11:20:19.000Z"
+    },
+    {
+      "uuid": "9f2534e0-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586179,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586179/storage/MDExNTg2MTc5LzAvbWFzdGVyLy8vMTEzNzU5OTUx",
+        "keywords": [
+          "relapse",
+          "Rückfall",
+          "Repli",
+          "ricaduta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Relapse_Solid_Shape_48.svg",
+        "basename": "Relapse_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:15:54.000Z",
+      "modifiedAt": "2026-10-14T11:20:19.000Z"
+    },
+    {
+      "uuid": "9f24e6c0-c7c0-11f1-bea4-0050568d2654",
+      "id": 11586178,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586178/storage/MDExNTg2MTc4LzAvbWFzdGVyLy8vMTEzNzU5OTQ3",
+        "keywords": [
+          "relapse",
+          "Rückfall",
+          "Repli",
+          "ricaduta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Relapse_Solid_Shape_64.svg",
+        "basename": "Relapse_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:15:54.000Z",
+      "modifiedAt": "2026-10-14T11:20:19.000Z"
+    },
+    {
       "uuid": "fd4b18a0-baff-11f1-bf6c-0050568d2654",
       "id": 11346208,
       "type": "picture.pictogram.",
@@ -287948,6 +289028,438 @@
       },
       "createdAt": "2026-08-19T09:19:45.000Z",
       "modifiedAt": "2026-08-19T09:22:23.000Z"
+    },
+    {
+      "uuid": "6830cc00-c7c1-11f1-bea4-0050568d2654",
+      "id": 11586203,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586203/storage/MDExNTg2MjAzLzAvbWFzdGVyLy8vMTEzNzYwNTM0",
+        "keywords": [
+          "Elektro-Transporter",
+          "Fourgonnette électrique",
+          "Veicoli elettrici",
+          "electric transporter",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "100% Loaded",
+          "100% geladen",
+          "100% chargé",
+          "Caricato al 100%"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterBatteryLoaded_Shape_16.svg",
+        "basename": "TransporterBatteryLoaded_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:21:31.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
+      "uuid": "67461de0-c7c1-11f1-bea4-0050568d2654",
+      "id": 11586202,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586202/storage/MDExNTg2MjAyLzAvbWFzdGVyLy8vMTEzNzYwNTMz",
+        "keywords": [
+          "Elektro-Transporter",
+          "Fourgonnette électrique",
+          "Veicoli elettrici",
+          "electric transporter",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "100% Loaded",
+          "100% geladen",
+          "100% chargé",
+          "Caricato al 100%"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterBatteryLoaded_Shape_24.svg",
+        "basename": "TransporterBatteryLoaded_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:21:30.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
+      "uuid": "65f051e0-c7c1-11f1-bea4-0050568d2654",
+      "id": 11586201,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586201/storage/MDExNTg2MjAxLzAvbWFzdGVyLy8vMTEzNzYwNTMy",
+        "keywords": [
+          "Elektro-Transporter",
+          "Fourgonnette électrique",
+          "Veicoli elettrici",
+          "electric transporter",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "100% Loaded",
+          "100% geladen",
+          "100% chargé",
+          "Caricato al 100%"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterBatteryLoaded_Shape_32.svg",
+        "basename": "TransporterBatteryLoaded_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:21:27.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
+      "uuid": "65ec8152-c7c1-11f1-bea4-0050568d2654",
+      "id": 11586200,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586200/storage/MDExNTg2MjAwLzAvbWFzdGVyLy8vMTEzNzYwNTMx",
+        "keywords": [
+          "Elektro-Transporter",
+          "Fourgonnette électrique",
+          "Veicoli elettrici",
+          "electric transporter",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "100% Loaded",
+          "100% geladen",
+          "100% chargé",
+          "Caricato al 100%"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterBatteryLoaded_Shape_40.svg",
+        "basename": "TransporterBatteryLoaded_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:21:27.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
+      "uuid": "64c2f570-c7c1-11f1-bea4-0050568d2654",
+      "id": 11586199,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586199/storage/MDExNTg2MTk5LzAvbWFzdGVyLy8vMTEzNzYwNTMw",
+        "keywords": [
+          "Elektro-Transporter",
+          "Fourgonnette électrique",
+          "Veicoli elettrici",
+          "electric transporter",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "100% Loaded",
+          "100% geladen",
+          "100% chargé",
+          "Caricato al 100%"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterBatteryLoaded_Shape_48.svg",
+        "basename": "TransporterBatteryLoaded_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:21:25.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
+      "uuid": "643d4ab0-c7c1-11f1-bea4-0050568d2654",
+      "id": 11586198,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586198/storage/MDExNTg2MTk4LzAvbWFzdGVyLy8vMTEzNzYwNDE5",
+        "keywords": [
+          "Elektro-Transporter",
+          "Fourgonnette électrique",
+          "Veicoli elettrici",
+          "electric transporter",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "100% Loaded",
+          "100% geladen",
+          "100% chargé",
+          "Caricato al 100%"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterBatteryLoaded_Shape_64.svg",
+        "basename": "TransporterBatteryLoaded_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:21:24.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
+      "uuid": "630714a1-c7c1-11f1-bea4-0050568d2654",
+      "id": 11586197,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586197/storage/MDExNTg2MTk3LzAvbWFzdGVyLy8vMTEzNzYwNTI5",
+        "keywords": [
+          "Elektro-Transporter",
+          "Fourgonnette électrique",
+          "Veicoli elettrici",
+          "electric transporter",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "100% Loaded",
+          "100% geladen",
+          "100% chargé",
+          "Caricato al 100%"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterBatteryLoaded_Solid_Shape_16.svg",
+        "basename": "TransporterBatteryLoaded_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:21:22.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
+      "uuid": "62d3cfa0-c7c1-11f1-bea4-0050568d2654",
+      "id": 11586196,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586196/storage/MDExNTg2MTk2LzAvbWFzdGVyLy8vMTEzNzYwNTI4",
+        "keywords": [
+          "Elektro-Transporter",
+          "Fourgonnette électrique",
+          "Veicoli elettrici",
+          "electric transporter",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "100% Loaded",
+          "100% geladen",
+          "100% chargé",
+          "Caricato al 100%"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterBatteryLoaded_Solid_Shape_24.svg",
+        "basename": "TransporterBatteryLoaded_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:21:22.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
+      "uuid": "61f9ea60-c7c1-11f1-bea4-0050568d2654",
+      "id": 11586195,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586195/storage/MDExNTg2MTk1LzAvbWFzdGVyLy8vMTEzNzYwNTI3",
+        "keywords": [
+          "Elektro-Transporter",
+          "Fourgonnette électrique",
+          "Veicoli elettrici",
+          "electric transporter",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "100% Loaded",
+          "100% geladen",
+          "100% chargé",
+          "Caricato al 100%"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterBatteryLoaded_Solid_Shape_32.svg",
+        "basename": "TransporterBatteryLoaded_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:21:21.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
+      "uuid": "603ea5d0-c7c1-11f1-bea4-0050568d2654",
+      "id": 11586193,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586193/storage/MDExNTg2MTkzLzAvbWFzdGVyLy8vMTEzNzYwNTI1",
+        "keywords": [
+          "Elektro-Transporter",
+          "Fourgonnette électrique",
+          "Veicoli elettrici",
+          "electric transporter",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "100% Loaded",
+          "100% geladen",
+          "100% chargé",
+          "Caricato al 100%"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterBatteryLoaded_Solid_Shape_40.svg",
+        "basename": "TransporterBatteryLoaded_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:21:18.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
+      "uuid": "6038b260-c7c1-11f1-bea4-0050568d2654",
+      "id": 11586192,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586192/storage/MDExNTg2MTkyLzAvbWFzdGVyLy8vMTEzNzYwNTI0",
+        "keywords": [
+          "Elektro-Transporter",
+          "Fourgonnette électrique",
+          "Veicoli elettrici",
+          "electric transporter",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "100% Loaded",
+          "100% geladen",
+          "100% chargé",
+          "Caricato al 100%"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterBatteryLoaded_Solid_Shape_48.svg",
+        "basename": "TransporterBatteryLoaded_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:21:18.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
+    },
+    {
+      "uuid": "603fb740-c7c1-11f1-bea4-0050568d2654",
+      "id": 11586194,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586194/storage/MDExNTg2MTk0LzAvbWFzdGVyLy8vMTEzNzYwNTI2",
+        "keywords": [
+          "Elektro-Transporter",
+          "Fourgonnette électrique",
+          "Veicoli elettrici",
+          "electric transporter",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "100% Loaded",
+          "100% geladen",
+          "100% chargé",
+          "Caricato al 100%"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterBatteryLoaded_Solid_Shape_64.svg",
+        "basename": "TransporterBatteryLoaded_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T11:21:18.000Z",
+      "modifiedAt": "2026-10-14T13:05:08.572Z"
     },
     {
       "uuid": "c94b9094-600d-11f1-aef4-0050568d2654",
@@ -394916,13 +396428,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 10428,
+    "success": 10476,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 2948,
     "duplicates": 0
   },
-  "created": "2026-10-12T12:50:20.178Z",
+  "created": "2026-10-14T13:46:36.766Z",
   "version": "10.7.0"
 }
