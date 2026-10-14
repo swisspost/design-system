@@ -55,7 +55,12 @@ describe('Footer', () => {
     });
 
     it('should have interactive elements', () => {
-      cy.get('@footer').find('div[slot="meta"] button').should('exist').click({ force: true }); // Test it's clickable
+      // Cookie settings button
+      cy.get('@footer')
+        .find('div[slot="meta"] button')
+        .should('exist')
+        .should('be.visible')
+        .click(); // Test it's clickable
 
       // Social media links with proper styling
       cy.get('@footer')
