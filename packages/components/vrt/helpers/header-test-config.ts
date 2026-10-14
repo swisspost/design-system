@@ -28,12 +28,12 @@ export type BreakpointName = (typeof TEST_BREAKPOINTS)[number]['name'];
 /**
  * Handler type definitions
  */
-export type HandlerMap = Record<string, (page: Page) => Promise<void>>;
+export type StateHandler = (page: Page) => Promise<void>;
 
 /**
  * State handlers
  */
-export const STATE_HANDLERS: HandlerMap = {
+export const STATE_HANDLERS = {
   'megadropdown-open': async (page: Page) => {
     await openMegadropdown(page, 'letters');
   },
@@ -102,14 +102,20 @@ export const STATE_HANDLERS: HandlerMap = {
   'side-nav-open': async (page: Page) => {
     await openSideNav(page);
   },
-};
+} satisfies Record<string, StateHandler>;
+
+/**
+ * Union of all defined state names, derived from the handlers above so the
+ * test matrix below can only reference states that actually have a handler.
+ */
+export type StateName = keyof typeof STATE_HANDLERS;
 
 /**
  * Cleanup handlers for interactions that need closing
  */
 const closeLettersMegadropdown = (page: Page) => closeMegadropdown(page, 'letters');
 
-export const CLEANUP_HANDLERS: HandlerMap = {
+export const CLEANUP_HANDLERS: Partial<Record<StateName, StateHandler>> = {
   'megadropdown-open': closeLettersMegadropdown,
   'second-level-opened': closeLettersMegadropdown,
   'scrolled-megadropdown-open': closeLettersMegadropdown,
@@ -123,7 +129,7 @@ export const CLEANUP_HANDLERS: HandlerMap = {
  * Configuration interfaces
  */
 interface BreakpointConfig {
-  states: readonly string[];
+  states: readonly StateName[];
 }
 
 interface VariantConfig {
@@ -186,9 +192,9 @@ const SIDE_NAV = ['side-nav-open'] as const;
  * Helper for composing state configurations across breakpoints
  */
 const stateComposeHelper = (
-  desktop: readonly string[],
-  tablet?: readonly string[],
-  mobile?: readonly string[],
+  desktop: readonly StateName[],
+  tablet?: readonly StateName[],
+  mobile?: readonly StateName[],
 ) => ({
   desktop: { states: desktop },
   tablet: { states: tablet ?? desktop },
