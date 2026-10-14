@@ -1,36 +1,57 @@
-import { Build } from '@stencil/core';
+import './matchers/toHaveBeenLastCalledOn';
+
 import { EffectManager } from '@/utils/effect-manager';
+import { useBrowser, useServer } from '@/utils/tests/helpers/stencil-build';
+import { mockAnimationFrame } from '@/utils/tests/mocks/animation-frame';
+import { MockResizeObserver, mockResizeObserver } from '@/utils/tests/mocks/resize-observer';
+import { MockMutationObserver, mockMutationObserver } from '@/utils/tests/mocks/mutation-observer';
 
-class Context {
-  calls: unknown[];
-}
+type MockObserver = MockResizeObserver | MockMutationObserver;
+type MockObserverRecord = ResizeObserverEntry & MutationRecord;
+type MockObserverOptions = ResizeObserverOptions & MutationObserverInit;
 
-function createCallback<A extends unknown[] = []>() {
-  return jest.fn(function (this: Context, ..._args: A) {
-    return this;
-  });
+class Context {}
+
+const OBSERVERS = [
+  {
+    api: 'ResizeObserver',
+    method: 'createResizeObserver',
+    Mock: MockResizeObserver,
+    mock: mockResizeObserver,
+  },
+  {
+    api: 'MutationObserver',
+    method: 'createMutationObserver',
+    Mock: MockMutationObserver,
+    mock: mockMutationObserver,
+  },
+] as const;
+
+function throwError(): never {
+  throw new Error('Callback failed.');
 }
 
 describe('EffectManager', () => {
   let context: Context;
   let manager: EffectManager<Context>;
+  let callback: jest.Mock;
 
   beforeEach(() => {
     jest.useFakeTimers();
 
     context = new Context();
     manager = new EffectManager(context);
+    callback = jest.fn();
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
+    jest.useRealTimers();
     jest.restoreAllMocks();
   });
 
   describe('browser environment', () => {
     beforeEach(() => {
-      Build.isServer = false;
-      Build.isBrowser = true;
+      useBrowser();
     });
 
     describe('addEventListener', () => {
@@ -40,65 +61,51 @@ describe('EffectManager', () => {
         target = document.createElement('div');
       });
 
-      it('should call the callback with the event every time it is dispatched', () => {
-        const callback = createCallback<[Event]>();
-
+      it('should call the callback every time the event is dispatched', () => {
         manager.addEventListener(target, 'click', callback);
 
         for (let i = 1; i <= 3; i++) {
           const event = new Event('click');
-
           target.dispatchEvent(event);
 
           expect(callback).toHaveBeenCalledTimes(i);
           expect(callback).toHaveBeenLastCalledWith(event);
-          expect(callback.mock.results.at(-1).value).toBe(context);
+          expect(callback).toHaveBeenLastCalledOn(context);
           expect(manager.activeEffects).toBe(1);
         }
       });
 
-      it('should only call the callback once when the `once` option is set', () => {
-        const callback = createCallback<[Event]>();
+      it('should call the callback only once when the `once` option is set', () => {
         const event = new Event('click');
 
         manager.addEventListener(target, 'click', callback, { once: true });
         target.dispatchEvent(event);
+        target.dispatchEvent(new Event('click'));
 
-        for (let i = 0; i < 3; i++) {
-          target.dispatchEvent(new Event('click'));
-
-          expect(callback).toHaveBeenCalledTimes(1);
-          expect(callback).toHaveBeenCalledWith(event);
-          expect(callback.mock.results[0].value).toBe(context);
-          expect(manager.activeEffects).toBe(0);
-        }
+        expect(callback).toHaveBeenCalledTimes(1);
+        expect(callback).toHaveBeenLastCalledWith(event);
+        expect(manager.activeEffects).toBe(0);
       });
 
-      it('should forward the native options to the target, without the `once` option', () => {
-        const add = jest.spyOn(target, 'addEventListener');
-        const remove = jest.spyOn(target, 'removeEventListener');
+      it.each([
+        { given: 'nothing', options: undefined, expected: {} },
+        { given: 'a boolean', options: true, expected: { capture: true } },
+        {
+          given: 'an object',
+          options: { capture: true, passive: true, once: true },
+          expected: { capture: true, passive: true },
+        },
+      ])('should forward the native options when given $given', ({ options, expected }) => {
+        const addSpy = jest.spyOn(target, 'addEventListener');
+        const removeSpy = jest.spyOn(target, 'removeEventListener');
 
-        manager
-          .addEventListener(target, 'click', jest.fn(), { once: true, passive: true })
-          .cancel();
+        manager.addEventListener(target, 'click', callback, options).cancel();
 
-        expect(add).toHaveBeenCalledWith('click', expect.any(Function), { passive: true });
-        expect(remove).toHaveBeenCalledWith('click', expect.any(Function), { passive: true });
+        expect(addSpy).toHaveBeenLastCalledWith('click', expect.any(Function), expected);
+        expect(removeSpy).toHaveBeenLastCalledWith('click', addSpy.mock.calls[0][1], expected);
       });
 
-      it('should treat a boolean option as the `capture` option', () => {
-        const add = jest.spyOn(target, 'addEventListener');
-        const remove = jest.spyOn(target, 'removeEventListener');
-
-        manager.addEventListener(target, 'click', jest.fn(), true).cancel();
-
-        expect(add).toHaveBeenCalledWith('click', expect.any(Function), { capture: true });
-        expect(remove).toHaveBeenCalledWith('click', expect.any(Function), { capture: true });
-      });
-
-      it('should not call the callback when canceled', () => {
-        const callback = createCallback<[Event]>();
-
+      it('should remove the listener when cancelled', () => {
         manager.addEventListener(target, 'click', callback).cancel();
         target.dispatchEvent(new Event('click'));
 
@@ -106,97 +113,93 @@ describe('EffectManager', () => {
         expect(manager.activeEffects).toBe(0);
       });
 
-      it('should not call the callback after disconnect', () => {
-        const callback = createCallback<[Event]>();
+      it('should do nothing when cancelled after completion', () => {
+        const removeSpy = jest.spyOn(target, 'removeEventListener');
+        const effect = manager.addEventListener(target, 'click', callback, { once: true });
 
-        manager.addEventListener(target, 'click', callback);
-        manager.disconnect();
         target.dispatchEvent(new Event('click'));
+        effect.cancel();
 
-        expect(callback).not.toHaveBeenCalled();
+        expect(removeSpy).toHaveBeenCalledTimes(1);
         expect(manager.activeEffects).toBe(0);
       });
 
-      it("should not try to remove the listener when canceled after a 'once' event", () => {
-        const remove = jest.spyOn(target, 'removeEventListener');
-        const effect = manager.addEventListener(target, 'click', jest.fn(), { once: true });
+      it('should remove a `once` listener even when the callback throws', () => {
+        callback.mockImplementation(throwError);
 
+        manager.addEventListener(target, 'click', callback, { once: true });
         target.dispatchEvent(new Event('click'));
-        expect(remove).toHaveBeenCalledTimes(1);
+        target.dispatchEvent(new Event('click'));
 
-        effect.cancel();
-        expect(remove).toHaveBeenCalledTimes(1);
+        expect(callback).toHaveBeenCalledTimes(1);
+        expect(manager.activeEffects).toBe(0);
       });
     });
 
     describe('setTimeout', () => {
-      it('should call the callback after the specified delay', () => {
-        const callback = createCallback();
-
+      it('should call the callback once after the delay', () => {
         manager.setTimeout(callback, 2);
         jest.advanceTimersByTime(1);
 
         expect(callback).not.toHaveBeenCalled();
         expect(manager.activeEffects).toBe(1);
 
-        jest.advanceTimersByTime(1);
+        jest.advanceTimersByTime(3);
 
         expect(callback).toHaveBeenCalledTimes(1);
-        expect(callback.mock.results[0].value).toBe(context);
+        expect(callback).toHaveBeenLastCalledWith();
+        expect(callback).toHaveBeenLastCalledOn(context);
         expect(manager.activeEffects).toBe(0);
       });
 
-      it('should not call the callback when canceled', () => {
-        const callback = createCallback();
-
+      it('should clear the timeout when cancelled', () => {
         manager.setTimeout(callback, 2).cancel();
-        jest.advanceTimersByTime(4);
+        jest.advanceTimersByTime(2);
 
         expect(callback).not.toHaveBeenCalled();
         expect(manager.activeEffects).toBe(0);
       });
 
-      it('should not call the callback after disconnect', () => {
-        const callback = createCallback();
-
-        manager.setTimeout(callback, 2);
-        manager.disconnect();
-        jest.advanceTimersByTime(4);
-
-        expect(callback).not.toHaveBeenCalled();
-        expect(manager.activeEffects).toBe(0);
-      });
-
-      it('should not clear the timeout when canceled after completion', () => {
-        const clear = jest.spyOn(globalThis, 'clearTimeout');
-        const effect = manager.setTimeout(jest.fn(), 2);
+      it('should do nothing when cancelled after completion', () => {
+        const clearSpy = jest.spyOn(globalThis, 'clearTimeout');
+        const effect = manager.setTimeout(callback, 2);
 
         jest.advanceTimersByTime(2);
         effect.cancel();
 
-        expect(clear).not.toHaveBeenCalled();
+        expect(clearSpy).not.toHaveBeenCalled();
+        expect(manager.activeEffects).toBe(0);
+      });
+
+      it('should stop tracking the timeout even when the callback throws', () => {
+        callback.mockImplementation(throwError);
+
+        manager.setTimeout(callback, 2);
+
+        expect(() => jest.advanceTimersByTime(2)).toThrow('Callback failed.');
+        expect(manager.activeEffects).toBe(0);
       });
     });
 
     describe('setInterval', () => {
-      it('should call the callback repeatedly', () => {
-        const callback = createCallback();
-
+      it('should call the callback repeatedly at the interval', () => {
         manager.setInterval(callback, 2);
 
-        for (let i = 1; i <= 6; i++) {
+        for (let i = 1; i <= 3; i++) {
           jest.advanceTimersByTime(1);
-          expect(callback).toHaveBeenCalledTimes(Math.floor(i / 2));
-          expect(manager.activeEffects).toBe(1);
-        }
 
-        for (const result of callback.mock.results) {
-          expect(result.value).toBe(context);
+          expect(callback).toHaveBeenCalledTimes(i - 1);
+
+          jest.advanceTimersByTime(1);
+
+          expect(callback).toHaveBeenCalledTimes(i);
+          expect(callback).toHaveBeenLastCalledWith();
+          expect(callback).toHaveBeenLastCalledOn(context);
+          expect(manager.activeEffects).toBe(1);
         }
       });
 
-      it('should not call the callback when canceled', () => {
-        const callback = createCallback();
+      it('should clear the interval when cancelled', () => {
         const effect = manager.setInterval(callback, 2);
 
         jest.advanceTimersByTime(2);
@@ -206,140 +209,114 @@ describe('EffectManager', () => {
         expect(callback).toHaveBeenCalledTimes(1);
         expect(manager.activeEffects).toBe(0);
       });
-
-      it('should not call the callback after disconnect', () => {
-        const callback = createCallback();
-
-        manager.setInterval(callback, 2);
-        manager.disconnect();
-        jest.advanceTimersByTime(4);
-
-        expect(callback).not.toHaveBeenCalled();
-      });
     });
 
     describe('requestAnimationFrame', () => {
       beforeEach(() => {
-        // The mock document's animation frames are not driven by Jest's fake timers.
-        jest
-          .spyOn(globalThis, 'requestAnimationFrame')
-          .mockImplementation(callback =>
-            Number(globalThis.setTimeout(() => callback(Date.now()), 16)),
-          );
-        jest
-          .spyOn(globalThis, 'cancelAnimationFrame')
-          .mockImplementation(id => globalThis.clearTimeout(id));
+        mockAnimationFrame();
       });
 
-      it('should call the callback on the next frame', () => {
-        const callback = createCallback<[DOMHighResTimeStamp]>();
-
+      it('should call the callback once on the next frame', () => {
         manager.requestAnimationFrame(callback);
 
         expect(callback).not.toHaveBeenCalled();
         expect(manager.activeEffects).toBe(1);
 
-        jest.runOnlyPendingTimers();
+        jest.runAllTimers();
 
         expect(callback).toHaveBeenCalledTimes(1);
-        expect(callback).toHaveBeenCalledWith(expect.any(Number));
-        expect(callback.mock.results[0].value).toBe(context);
+        expect(callback).toHaveBeenLastCalledWith(expect.any(Number));
+        expect(callback).toHaveBeenLastCalledOn(context);
         expect(manager.activeEffects).toBe(0);
       });
 
-      it('should not call the callback when canceled', () => {
-        const callback = createCallback<[DOMHighResTimeStamp]>();
-
+      it('should cancel the frame request when cancelled', () => {
         manager.requestAnimationFrame(callback).cancel();
-        jest.runOnlyPendingTimers();
+        jest.runAllTimers();
 
         expect(callback).not.toHaveBeenCalled();
         expect(manager.activeEffects).toBe(0);
       });
 
-      it('should not call the callback after disconnect', () => {
-        const callback = createCallback<[DOMHighResTimeStamp]>();
+      it('should do nothing when cancelled after completion', () => {
+        const effect = manager.requestAnimationFrame(callback);
 
-        manager.requestAnimationFrame(callback);
-        manager.disconnect();
-        jest.runOnlyPendingTimers();
-
-        expect(callback).not.toHaveBeenCalled();
-        expect(manager.activeEffects).toBe(0);
-      });
-
-      it('should not try to cancel the frame when canceled after completion', () => {
-        const cancel = jest.spyOn(globalThis, 'cancelAnimationFrame');
-        const effect = manager.requestAnimationFrame(jest.fn());
-
-        jest.runOnlyPendingTimers();
+        jest.runAllTimers();
         effect.cancel();
 
-        expect(cancel).not.toHaveBeenCalled();
+        expect(globalThis.cancelAnimationFrame).not.toHaveBeenCalled();
+        expect(manager.activeEffects).toBe(0);
       });
 
-      it('should return an inert effect when `requestAnimationFrame` is not supported', () => {
-        const callback = createCallback<[DOMHighResTimeStamp]>();
+      it('should stop tracking the frame request even when the callback throws', () => {
+        callback.mockImplementation(throwError);
 
-        const spy = jest.spyOn(globalThis, 'requestAnimationFrame');
-        delete spy['requestAnimationFrame'];
+        manager.requestAnimationFrame(callback);
 
-        manager.requestAnimationFrame(callback).cancel();
+        expect(() => jest.runAllTimers()).toThrow('Callback failed.');
         expect(manager.activeEffects).toBe(0);
-
-        jest.runOnlyPendingTimers();
-        expect(callback).not.toHaveBeenCalled();
       });
     });
 
     describe('debounce', () => {
-      it('should only call the callback once with the latest arguments', () => {
-        const callback = createCallback<[number]>();
+      it('should call the callback once with the latest arguments after the delay since the last call', () => {
         const debounced = manager.debounce(callback, 2);
 
         for (let i = 1; i <= 3; i++) {
           debounced(i);
-
           jest.advanceTimersByTime(1);
+
           expect(callback).not.toHaveBeenCalled();
           expect(manager.activeEffects).toBe(1);
         }
 
-        jest.advanceTimersByTime(1);
+        jest.advanceTimersByTime(3);
 
         expect(callback).toHaveBeenCalledTimes(1);
-        expect(callback).toHaveBeenCalledWith(3);
-        expect(callback.mock.results[0].value).toBe(context);
+        expect(callback).toHaveBeenLastCalledWith(3);
+        expect(callback).toHaveBeenLastCalledOn(context);
         expect(manager.activeEffects).toBe(0);
       });
 
-      it('should be reusable after the callback has been called', () => {
-        const callback = createCallback<[number, number]>();
+      it('should call the callback again when called after the delay has elapsed', () => {
         const debounced = manager.debounce(callback, 2);
 
-        for (let i = 1; i <= 3; i++) {
-          for (let j = 1; j <= 3; j++) {
-            debounced(i, j);
+        debounced(1);
+        jest.advanceTimersByTime(2);
+        debounced(2);
 
-            jest.advanceTimersByTime(1);
-            expect(callback).toHaveBeenCalledTimes(i - 1);
-            expect(manager.activeEffects).toBe(1);
-          }
+        expect(manager.activeEffects).toBe(1);
 
-          jest.advanceTimersByTime(1);
+        jest.advanceTimersByTime(2);
 
-          expect(callback).toHaveBeenCalledTimes(i);
-          expect(callback).toHaveBeenCalledWith(i, 3);
-          expect(callback.mock.results[0].value).toBe(context);
-          expect(manager.activeEffects).toBe(0);
-        }
+        expect(callback).toHaveBeenCalledTimes(2);
+        expect(callback).toHaveBeenLastCalledWith(2);
+        expect(manager.activeEffects).toBe(0);
       });
 
-      it('should not call the callback when canceled', () => {
-        const callback = createCallback();
+      it('should track a call made from within the callback', () => {
+        const debounced = manager.debounce((n: number) => {
+          callback(n);
+          if (n === 1) debounced(2);
+        }, 2);
+
+        debounced(1);
+        jest.advanceTimersByTime(2);
+
+        expect(callback).toHaveBeenCalledTimes(1);
+        expect(manager.activeEffects).toBe(1);
+
+        debounced.cancel();
+        jest.advanceTimersByTime(2);
+
+        expect(callback).toHaveBeenCalledTimes(1);
+        expect(manager.activeEffects).toBe(0);
+      });
+
+      it('should cancel the pending call when cancelled', () => {
         const debounced = manager.debounce(callback, 2);
 
-        debounced();
+        debounced(1);
         debounced.cancel();
         jest.advanceTimersByTime(2);
 
@@ -347,27 +324,37 @@ describe('EffectManager', () => {
         expect(manager.activeEffects).toBe(0);
       });
 
-      it('should not call the callback after disconnect', () => {
-        const callback = createCallback();
+      it('should do nothing when cancelled after completion', () => {
+        const clearSpy = jest.spyOn(globalThis, 'clearTimeout');
         const debounced = manager.debounce(callback, 2);
 
-        debounced();
-        manager.disconnect();
+        debounced(1);
         jest.advanceTimersByTime(2);
+        debounced.cancel();
 
-        expect(callback).not.toHaveBeenCalled();
+        expect(clearSpy).not.toHaveBeenCalled();
+        expect(manager.activeEffects).toBe(0);
+      });
+
+      it('should stop tracking the pending call even when the callback throws', () => {
+        callback.mockImplementation(throwError);
+
+        manager.debounce(callback, 2)(1);
+
+        expect(() => jest.advanceTimersByTime(2)).toThrow('Callback failed.');
+        expect(manager.activeEffects).toBe(0);
       });
     });
 
     describe('throttle', () => {
-      it('should call the callback immediately, then once more with the latest arguments', () => {
-        const callback = createCallback<[number]>();
+      it('should call the callback immediately, then with the latest arguments at the end of the interval', () => {
         const throttled = manager.throttle(callback, 2);
 
         throttled(1);
 
         expect(callback).toHaveBeenCalledTimes(1);
         expect(callback).toHaveBeenLastCalledWith(1);
+        expect(callback).toHaveBeenLastCalledOn(context);
         expect(manager.activeEffects).toBe(1);
 
         throttled(2);
@@ -380,48 +367,33 @@ describe('EffectManager', () => {
 
         expect(callback).toHaveBeenCalledTimes(2);
         expect(callback).toHaveBeenLastCalledWith(3);
+        expect(callback).toHaveBeenLastCalledOn(context);
+
+        // The trailing call starts a new interval, which ends without a call if not called again.
         expect(manager.activeEffects).toBe(1);
 
         jest.advanceTimersByTime(2);
 
         expect(callback).toHaveBeenCalledTimes(2);
         expect(manager.activeEffects).toBe(0);
-
-        for (const result of callback.mock.results) {
-          expect(result.value).toBe(context);
-        }
       });
 
-      it('should not call the callback on the trailing edge when called only once', () => {
-        const callback = createCallback<[number]>();
+      it('should call the callback immediately again when called after the interval has elapsed', () => {
         const throttled = manager.throttle(callback, 2);
 
         throttled(1);
-        jest.advanceTimersByTime(4);
+        jest.advanceTimersByTime(2);
 
-        expect(callback).toHaveBeenCalledTimes(1);
-        expect(callback).toHaveBeenCalledWith(1);
         expect(manager.activeEffects).toBe(0);
+
+        throttled(2);
+
+        expect(callback).toHaveBeenCalledTimes(2);
+        expect(callback).toHaveBeenLastCalledWith(2);
+        expect(manager.activeEffects).toBe(1);
       });
 
-      it('should be reusable after the throttle window has ended', () => {
-        const callback = createCallback<[number]>();
-        const throttled = manager.throttle(callback, 2);
-
-        for (let i = 1; i <= 3; i++) {
-          throttled(i);
-
-          expect(callback).toHaveBeenCalledTimes(i);
-          expect(callback).toHaveBeenLastCalledWith(i);
-          expect(manager.activeEffects).toBe(1);
-
-          jest.advanceTimersByTime(2);
-          expect(manager.activeEffects).toBe(0);
-        }
-      });
-
-      it('should only call the callback at the end of the window when `leading` is disabled', () => {
-        const callback = createCallback<[number]>();
+      it('should only call the callback at the end of the interval when `leading` is disabled', () => {
         const throttled = manager.throttle(callback, 2, { leading: false });
 
         throttled(1);
@@ -434,8 +406,8 @@ describe('EffectManager', () => {
         jest.advanceTimersByTime(1);
 
         expect(callback).toHaveBeenCalledTimes(1);
-        expect(callback).toHaveBeenCalledWith(2);
-        expect(callback.mock.results[0].value).toBe(context);
+        expect(callback).toHaveBeenLastCalledWith(2);
+        expect(manager.activeEffects).toBe(1);
 
         jest.advanceTimersByTime(2);
 
@@ -443,8 +415,7 @@ describe('EffectManager', () => {
         expect(manager.activeEffects).toBe(0);
       });
 
-      it('should ignore calls during the window when `trailing` is disabled', () => {
-        const callback = createCallback<[number]>();
+      it('should ignore calls during the interval when `trailing` is disabled', () => {
         const throttled = manager.throttle(callback, 2, { trailing: false });
 
         throttled(1);
@@ -453,49 +424,257 @@ describe('EffectManager', () => {
         jest.advanceTimersByTime(1);
 
         expect(callback).toHaveBeenCalledTimes(1);
-        expect(callback).toHaveBeenCalledWith(1);
+        expect(callback).toHaveBeenLastCalledWith(1);
         expect(manager.activeEffects).toBe(0);
       });
 
-      it('should not call the callback when canceled', () => {
-        const callback = createCallback<[number]>();
+      it('should cancel the pending call and reset the interval when cancelled', () => {
         const throttled = manager.throttle(callback, 2);
 
         throttled(1);
         throttled(2);
         throttled.cancel();
-        jest.advanceTimersByTime(4);
+        jest.advanceTimersByTime(2);
 
         expect(callback).toHaveBeenCalledTimes(1);
-        expect(callback).toHaveBeenCalledWith(1);
         expect(manager.activeEffects).toBe(0);
-      });
 
-      it('should call the callback immediately again after being canceled', () => {
-        const callback = createCallback<[number]>();
-        const throttled = manager.throttle(callback, 2);
-
-        throttled(1);
-        throttled.cancel();
-        throttled(2);
+        throttled(3);
 
         expect(callback).toHaveBeenCalledTimes(2);
-        expect(callback).toHaveBeenLastCalledWith(2);
+        expect(callback).toHaveBeenLastCalledWith(3);
         expect(manager.activeEffects).toBe(1);
       });
 
-      it('should not call the callback after disconnect', () => {
-        const callback = createCallback<[number]>();
+      it('should do nothing when cancelled after completion', () => {
+        const clearSpy = jest.spyOn(globalThis, 'clearTimeout');
         const throttled = manager.throttle(callback, 2);
 
         throttled(1);
-        throttled(2);
+        jest.advanceTimersByTime(2);
+        throttled.cancel();
+
+        expect(clearSpy).not.toHaveBeenCalled();
+        expect(manager.activeEffects).toBe(0);
+      });
+    });
+
+    describe.each(OBSERVERS)('$method', ({ method, Mock, mock }) => {
+      let observeSpy: jest.SpiedFunction<MockObserver['observe']>;
+      let disconnectSpy: jest.SpiedFunction<MockObserver['disconnect']>;
+      let observer: MockObserver;
+
+      beforeEach(() => {
+        mock();
+
+        // Spy on the prototype, as the manager replaces the methods of the instance.
+        observeSpy = jest.spyOn(Mock.prototype, 'observe');
+        disconnectSpy = jest.spyOn(Mock.prototype, 'disconnect');
+        observer = manager[method](callback) as MockObserver;
+      });
+
+      it('should call the callback with the native arguments when triggered', () => {
+        const records = [{ target: document.body }] as unknown as MockObserverRecord[];
+
+        observer.observe(document.body);
+        observer.trigger(records);
+
+        expect(callback).toHaveBeenCalledTimes(1);
+        expect(callback).toHaveBeenLastCalledWith(records, observer);
+        expect(callback).toHaveBeenLastCalledOn(context);
+      });
+
+      it('should start tracking the observer once it observes a target', () => {
+        const options = { box: 'border-box', childList: true } as MockObserverOptions;
+
+        expect(manager.activeEffects).toBe(0);
+
+        for (let i = 1; i <= 2; i++) {
+          const target = document.createElement('div');
+          observer.observe(target, options);
+
+          expect(observeSpy).toHaveBeenCalledTimes(i);
+          expect(observeSpy).toHaveBeenLastCalledWith(target, options);
+          expect(manager.activeEffects).toBe(1);
+        }
+      });
+
+      it('should disconnect the native observer when disconnected', () => {
+        observer.observe(document.body);
+        observer.disconnect();
+
+        expect(disconnectSpy).toHaveBeenCalledTimes(1);
+        expect(manager.activeEffects).toBe(0);
+      });
+
+      it('should disconnect the native observer when disconnected before observing', () => {
+        observer.disconnect();
+
+        expect(disconnectSpy).toHaveBeenCalledTimes(1);
+        expect(manager.activeEffects).toBe(0);
+      });
+
+      it('should track the observer again when observing after being disconnected', () => {
+        observer.observe(document.body);
+        observer.disconnect();
+        observer.observe(document.body);
+
+        expect(observeSpy).toHaveBeenCalledTimes(2);
+        expect(manager.activeEffects).toBe(1);
+      });
+    });
+
+    describe('disconnect', () => {
+      it('should tear down all tracked effects', () => {
+        mockAnimationFrame();
+        mockResizeObserver();
+        mockMutationObserver();
+
+        const target = document.createElement('div');
+        const resizeDisconnectSpy = jest.spyOn(MockResizeObserver.prototype, 'disconnect');
+        const mutationDisconnectSpy = jest.spyOn(MockMutationObserver.prototype, 'disconnect');
+
+        manager.addEventListener(target, 'click', callback);
+        manager.setTimeout(callback, 2);
+        manager.setInterval(callback, 2);
+        manager.requestAnimationFrame(callback);
+        manager.debounce(callback, 2)();
+        manager.throttle(callback, 2, { leading: false })();
+        manager.createResizeObserver(callback).observe(target);
+        manager.createMutationObserver(callback).observe(target);
+
+        expect(manager.activeEffects).toBe(8);
+
         manager.disconnect();
-        jest.advanceTimersByTime(4);
+        target.dispatchEvent(new Event('click'));
+        jest.runAllTimers();
+
+        expect(callback).not.toHaveBeenCalled();
+        expect(resizeDisconnectSpy).toHaveBeenCalledTimes(1);
+        expect(mutationDisconnectSpy).toHaveBeenCalledTimes(1);
+        expect(manager.activeEffects).toBe(0);
+      });
+
+      it('should tear down all tracked effects and throw an aggregate error when teardowns fail', () => {
+        const errors = [new Error('first'), new Error('second')];
+        const target = document.createElement('div');
+
+        for (const error of errors) {
+          const failingTarget = document.createElement('div');
+
+          jest.spyOn(failingTarget, 'removeEventListener').mockImplementation(() => {
+            throw error;
+          });
+          manager.addEventListener(failingTarget, 'click', jest.fn());
+        }
+
+        manager.addEventListener(target, 'click', callback);
+
+        expect(() => manager.disconnect()).toThrow(
+          expect.objectContaining({ name: 'AggregateError', errors }),
+        );
+
+        target.dispatchEvent(new Event('click'));
+
+        expect(callback).not.toHaveBeenCalled();
+        expect(manager.activeEffects).toBe(0);
+      });
+
+      it('should not tear down effects tracked during teardown', () => {
+        const target = document.createElement('div');
+
+        jest.spyOn(target, 'removeEventListener').mockImplementation(() => {
+          manager.setTimeout(callback, 2);
+        });
+
+        manager.addEventListener(target, 'click', jest.fn());
+        manager.disconnect();
+
+        expect(manager.activeEffects).toBe(1);
+
+        jest.advanceTimersByTime(2);
 
         expect(callback).toHaveBeenCalledTimes(1);
         expect(manager.activeEffects).toBe(0);
       });
+
+      it('should keep the manager usable after being disconnected', () => {
+        manager.setTimeout(jest.fn(), 2);
+        manager.disconnect();
+        manager.setTimeout(callback, 2);
+
+        expect(manager.activeEffects).toBe(1);
+
+        jest.advanceTimersByTime(2);
+
+        expect(callback).toHaveBeenCalledTimes(1);
+        expect(manager.activeEffects).toBe(0);
+      });
+    });
+  });
+
+  describe('server environment', () => {
+    beforeEach(() => {
+      useServer();
+    });
+
+    it('should not add a native event listener with addEventListener', () => {
+      const target = document.createElement('div');
+      const addSpy = jest.spyOn(target, 'addEventListener');
+
+      manager.addEventListener(target, 'click', callback).cancel();
+
+      expect(addSpy).not.toHaveBeenCalled();
+      expect(manager.activeEffects).toBe(0);
+    });
+
+    it.each(['setTimeout', 'setInterval'] as const)(
+      'should not schedule a native timer with %s',
+      method => {
+        const nativeSpy = jest.spyOn(globalThis, method);
+
+        manager[method](callback, 2).cancel();
+
+        expect(nativeSpy).not.toHaveBeenCalled();
+        expect(manager.activeEffects).toBe(0);
+      },
+    );
+
+    it('should not request a native animation frame with requestAnimationFrame', () => {
+      mockAnimationFrame();
+
+      manager.requestAnimationFrame(callback).cancel();
+
+      expect(globalThis.requestAnimationFrame).not.toHaveBeenCalled();
+      expect(manager.activeEffects).toBe(0);
+    });
+
+    it.each(['debounce', 'throttle'] as const)(
+      'should not schedule a native timer with %s',
+      method => {
+        const nativeSpy = jest.spyOn(globalThis, 'setTimeout');
+        const callable = manager[method](callback, 2);
+
+        callable();
+        callable.cancel();
+
+        expect(nativeSpy).not.toHaveBeenCalled();
+        expect(callback).not.toHaveBeenCalled();
+        expect(manager.activeEffects).toBe(0);
+      },
+    );
+
+    it.each(OBSERVERS)('should not create a native $api with $method', ({ api, method, mock }) => {
+      mock();
+
+      const nativeSpy = jest.spyOn(globalThis, api);
+      const observer = manager[method](callback);
+
+      observer.observe(document.body);
+      observer.disconnect();
+
+      expect(nativeSpy).not.toHaveBeenCalled();
+      expect(manager.activeEffects).toBe(0);
     });
   });
 });
