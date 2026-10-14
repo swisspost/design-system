@@ -77,6 +77,8 @@ export class PostTooltip {
   private handleBeforeToggle(
     e: PostPopovercontainerCustomEvent<{ willOpen: boolean; first?: boolean }>,
   ) {
+    // The 'open' attribute needs to be set synchronously for the popover to be measured correctly.
+    this.host.toggleAttribute('open', e.detail.willOpen);
     this.open = e.detail.willOpen;
   }
 
@@ -85,7 +87,7 @@ export class PostTooltip {
     return (
       <Host data-version={version}>
         <post-popovercontainer
-          safeSpace="trapezoid"
+          safeSpace={true}
           class={popoverClass}
           role="tooltip"
           arrow={this.arrow}
@@ -94,7 +96,9 @@ export class PostTooltip {
           onPostBeforeToggle={e => this.handleBeforeToggle(e)}
           ref={(el: HTMLPostPopovercontainerElement) => (this.popoverRef = el)}
         >
-          <slot></slot>
+          <div class="tooltip-content">
+            <slot></slot>
+          </div>
         </post-popovercontainer>
       </Host>
     );
