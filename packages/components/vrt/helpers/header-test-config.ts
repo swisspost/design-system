@@ -5,6 +5,7 @@ import {
   closeMegadropdown,
   openLanguageMenu,
   openUserMenu,
+  scrollPageDown,
   scrollMainNavToEnd,
   hoverMegadropdownTitleLink,
   focusMegadropdownLink,
@@ -54,26 +55,22 @@ export const STATE_HANDLERS: HandlerMap = {
     await openMegadropdown(page, 'letters');
   },
 
-  'scrolled': async page => {
-    await page.evaluate(() => window.scrollTo(0, 200));
-    await page.waitForTimeout(300);
+  'scrolled': async (page: Page) => {
+    await scrollPageDown(page);
   },
 
   'scrolled-megadropdown-open': async (page: Page) => {
-    await page.evaluate(() => window.scrollTo(0, 200));
-    await page.waitForTimeout(300);
+    await scrollPageDown(page);
     await openMegadropdown(page, 'letters');
   },
 
   'scrolled-first-level-opened': async (page: Page) => {
-    await page.evaluate(() => window.scrollTo(0, 200));
-    await page.waitForTimeout(300);
+    await scrollPageDown(page);
     await openBurgerMenu(page);
   },
 
   'scrolled-second-level-opened': async (page: Page) => {
-    await page.evaluate(() => window.scrollTo(0, 200));
-    await page.waitForTimeout(300);
+    await scrollPageDown(page);
     await openBurgerMenu(page);
     await openMegadropdown(page, 'letters');
   },
@@ -110,28 +107,16 @@ export const STATE_HANDLERS: HandlerMap = {
 /**
  * Cleanup handlers for interactions that need closing
  */
+const closeLettersMegadropdown = (page: Page) => closeMegadropdown(page, 'letters');
+
 export const CLEANUP_HANDLERS: HandlerMap = {
-  'megadropdown-open': async (page: Page) => {
-    await closeMegadropdown(page, 'letters');
-  },
-  'second-level-opened': async (page: Page) => {
-    await closeMegadropdown(page, 'letters');
-  },
-  'scrolled-megadropdown-open': async (page: Page) => {
-    await closeMegadropdown(page, 'letters');
-  },
-  'scrolled-second-level-opened': async (page: Page) => {
-    await closeMegadropdown(page, 'letters');
-  },
-  'megadropdown-title-hover': async (page: Page) => {
-    await closeMegadropdown(page, 'letters');
-  },
-  'megadropdown-link-focus': async (page: Page) => {
-    await closeMegadropdown(page, 'letters');
-  },
-  'megadropdown-inner-scrolled': async (page: Page) => {
-    await closeMegadropdown(page, 'letters');
-  },
+  'megadropdown-open': closeLettersMegadropdown,
+  'second-level-opened': closeLettersMegadropdown,
+  'scrolled-megadropdown-open': closeLettersMegadropdown,
+  'scrolled-second-level-opened': closeLettersMegadropdown,
+  'megadropdown-title-hover': closeLettersMegadropdown,
+  'megadropdown-link-focus': closeLettersMegadropdown,
+  'megadropdown-inner-scrolled': closeLettersMegadropdown,
 };
 
 /**

@@ -398,9 +398,8 @@ const COMPONENTS = {
     </ul>
   </post-mainnavigation>`,
 
-  // Main navigation whose megadropdown contains regression-prone content:
-  // an active (aria-current) list item, a long unbreakable link and enough
-  // rows to make the dropdown panel itself scrollable on short viewports.
+  // Main navigation whose megadropdown contains an active item, a long
+  // unbreakable link and enough rows to make the dropdown panel scrollable.
   mainNavigationRich: `<!-- Main navigation (regression content) -->
   <post-mainnavigation slot="main-nav" text-main="Main">
     <ul>
@@ -495,6 +494,27 @@ const SIDE_NAV_PANEL = `<!-- Side navigation -->
     </post-side-navigation>`;
 
 // Variant configurations
+
+// All portal variants share the same slots and only differ by their main
+// navigation and their logged-in/out control (login link or user menu).
+const PORTAL_REPLACEMENTS = {
+  '{{AUDIENCE_CURRENT}}': ' aria-current="location"',
+  '{{GLOBAL_NAV_SECONDARY_CURRENT}}': '',
+};
+
+const portalVariant = (loginComponent, mainNavComponent) => ({
+  components: [
+    'logo',
+    'audience',
+    'globalNavPrimary',
+    'globalNavSecondary',
+    'languageMenu',
+    loginComponent,
+    mainNavComponent,
+  ],
+  replacements: PORTAL_REPLACEMENTS,
+});
+
 const VARIANTS = {
   'application-compact': {
     components: ['logo', 'title', 'localNavApplication'],
@@ -579,73 +599,17 @@ const VARIANTS = {
     },
   },
 
-  'portal-loggedout': {
-    components: [
-      'logo',
-      'audience',
-      'globalNavPrimary',
-      'globalNavSecondary',
-      'languageMenu',
-      'globalLogin',
-      'mainNavigation',
-    ],
-    replacements: {
-      '{{AUDIENCE_CURRENT}}': ' aria-current="location"',
-      '{{GLOBAL_NAV_SECONDARY_CURRENT}}': '',
-    },
-  },
+  'portal-loggedout': portalVariant('globalLogin', 'mainNavigation'),
 
-  'portal-loggedin': {
-    components: [
-      'logo',
-      'audience',
-      'globalNavPrimary',
-      'globalNavSecondary',
-      'languageMenu',
-      'globalUserMenu',
-      'mainNavigation',
-    ],
-    replacements: {
-      '{{AUDIENCE_CURRENT}}': ' aria-current="location"',
-      '{{GLOBAL_NAV_SECONDARY_CURRENT}}': '',
-    },
-  },
+  'portal-loggedin': portalVariant('globalUserMenu', 'mainNavigation'),
 
-  // Overflowing main navigation to exercise the scroll-button UI (#4742, #4755, #4557)
-  'portal-overflow': {
-    components: [
-      'logo',
-      'audience',
-      'globalNavPrimary',
-      'globalNavSecondary',
-      'languageMenu',
-      'globalLogin',
-      'mainNavigationOverflow',
-    ],
-    replacements: {
-      '{{AUDIENCE_CURRENT}}': ' aria-current="location"',
-      '{{GLOBAL_NAV_SECONDARY_CURRENT}}': '',
-    },
-  },
+  // Overflowing main navigation to exercise the scroll-button UI
+  'portal-overflow': portalVariant('globalLogin', 'mainNavigationOverflow'),
 
-  // Regression-prone megadropdown content: active item, long link, inner scroll (#6707, #7809, #4772, #4730)
-  'portal-regression': {
-    components: [
-      'logo',
-      'audience',
-      'globalNavPrimary',
-      'globalNavSecondary',
-      'languageMenu',
-      'globalLogin',
-      'mainNavigationRich',
-    ],
-    replacements: {
-      '{{AUDIENCE_CURRENT}}': ' aria-current="location"',
-      '{{GLOBAL_NAV_SECONDARY_CURRENT}}': '',
-    },
-  },
+  // Megadropdown with an active item, a long unbreakable link and inner scroll
+  'portal-regression': portalVariant('globalLogin', 'mainNavigationRich'),
 
-  // Language menu rendered as a list instead of a dropdown (#4718, #4720, #6558)
+  // Language menu rendered as a list instead of a dropdown
   'onepager-list': {
     components: ['logo', 'languageMenuList', 'title'],
     replacements: {

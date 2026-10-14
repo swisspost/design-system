@@ -58,6 +58,11 @@ export async function openUserMenu(page: Page): Promise<void> {
   }
 }
 
+export async function scrollPageDown(page: Page): Promise<void> {
+  await page.evaluate(() => window.scrollTo(0, 200));
+  await page.waitForTimeout(WAIT_TIMES.interaction);
+}
+
 export async function openBurgerMenu(page: Page): Promise<void> {
   const header = page.locator('post-header');
   const burgerButton = header.locator('post-togglebutton').last();
