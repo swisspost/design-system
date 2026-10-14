@@ -10,14 +10,14 @@ export function createInertCancelable(): Cancelable {
 }
 
 /**
- * Returns a `Callable` that never invokes anything and whose `cancel` method does nothing.
+ * Creates a `Callable` that never invokes anything and whose `cancel` method does nothing.
  */
-export function createInertCallable<C, A extends unknown[]>(): Callable<C, A> {
+export function createInertCallable<A extends unknown[]>(): Callable<A> {
   return Object.assign(noop, createInertCancelable());
 }
 
 /**
- * Returns a `ResizeObserver` that never observes anything.
+ * Creates a `ResizeObserver` that never observes anything.
  */
 export function createInertResizeObserver(): ResizeObserver {
   return {
@@ -28,7 +28,7 @@ export function createInertResizeObserver(): ResizeObserver {
 }
 
 /**
- * Returns a `MutationObserver` that never observes anything and has no pending records.
+ * Creates a `MutationObserver` that never observes anything and has no pending records.
  */
 export function createInertMutationObserver(): MutationObserver {
   return {
