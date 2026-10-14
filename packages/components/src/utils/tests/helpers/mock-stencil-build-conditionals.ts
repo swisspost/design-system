@@ -1,4 +1,4 @@
-// Mock Stencil's isBrowser and isServer to simulate a browser environment
+// Mock Stencil's build conditionals to simulate a browser environment
 
 jest.mock('@stencil/core', () => {
   const module = jest.requireActual('@stencil/core');
