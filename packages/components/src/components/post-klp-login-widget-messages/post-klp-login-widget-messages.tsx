@@ -1,6 +1,6 @@
 import { version } from '@root/package.json';
 import { Component, h, Host, Prop, State } from '@stencil/core';
-import { subscribeUnread } from '../post-klp-login-widget/lib/unread-store';
+import { subscribe } from '../post-klp-login-widget/lib/store';
 
 /** Above this the exact number stops being useful and only costs the badge its shape. */
 const MAX_SHOWN_UNREAD = 99;
@@ -32,7 +32,7 @@ export class PostKlpLoginWidgetMessages {
   private unsubscribe?: () => void;
 
   connectedCallback() {
-    this.unsubscribe = subscribeUnread(unread => {
+    this.unsubscribe = subscribe(({ unread }) => {
       this.unread = unread;
     });
   }
