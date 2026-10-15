@@ -176,7 +176,7 @@ describe('post-klp-login-widget', () => {
         line => line.textContent,
       );
 
-      expect(lines).toEqual(['Ada Lovelace', 'Die Post']);
+      expect(lines).toEqual(['Die Post', 'Ada Lovelace']);
     });
   });
 
