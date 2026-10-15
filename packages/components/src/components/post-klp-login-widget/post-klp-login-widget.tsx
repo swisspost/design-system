@@ -71,8 +71,19 @@ export class PostKlpLoginWidget {
   @Required()
   textAccessUserLinks!: string;
 
+  /**
+   * What to show before the session is known. Leave unset unless the server already knows who the
+   * visitor is: the widget then reserves a neutral avatar-sized box, which costs anonymous
+   * visitors a short placeholder but never flashes the wrong state at anyone.
+   * Set `anonymous` to render the login link right away instead.
+   */
+  @Prop() initialState?: 'anonymous' | 'authenticated';
+
   /** Stays null on the server: the session is only ever known to the client. */
   @State() private session: KlpSessionData | null = null;
+
+  /** False until the platform has answered, which is what separates "nobody" from "not yet". */
+  @State() private resolved: boolean = false;
 
   /** Mirrors the store, so the dot on the avatar follows `post-klp-login-widget-messages`. */
   @State() private unread: number = 0;
@@ -104,6 +115,7 @@ export class PostKlpLoginWidget {
       console.error(
         `post-klp-login-widget: "${this.environment}" is not a known environment, the widget stays anonymous.`,
       );
+      this.resolved = true;
       return;
     }
 
@@ -121,7 +133,10 @@ export class PostKlpLoginWidget {
       onUnreadChange: unread => setState('unread', unread),
     });
 
-    void this.controller.start();
+    // `start` never rejects, and it settles once the platform has answered either way.
+    void this.controller.start().then(() => {
+      this.resolved = true;
+    });
   }
 
   private renderUserMenu(session: KlpSessionData) {
@@ -162,13 +177,22 @@ export class PostKlpLoginWidget {
     ];
   }
 
+  private renderAnonymous() {
+    // The placeholder costs anonymous visitors a brief neutral box, but it is the only honest
+    // answer while the platform has not said who, if anyone, is signed in.
+    if (this.resolved || this.initialState === 'anonymous') {
+      return <slot name="login-link"></slot>;
+    }
+
+    return <span class="user-menu-placeholder" aria-hidden="true"></span>;
+  }
+
   render() {
     // Every link is the consumer's markup; the widget only decides which of them the session is
-    // allowed to see. The session is unknown until the client connects, so both server and the
-    // first client render produce the anonymous shell.
+    // allowed to see.
     return (
       <Host data-version={version}>
-        {this.session ? this.renderUserMenu(this.session) : <slot name="login-link"></slot>}
+        {this.session ? this.renderUserMenu(this.session) : this.renderAnonymous()}
       </Host>
     );
   }
