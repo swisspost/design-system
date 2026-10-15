@@ -21,6 +21,7 @@ const DEFAULT_OUTPUT_OPTIONS: ComponentNameOutputOptions = {
   excludedComponentNames: [
     // temporary, until the widget component has been created and added to the nextjs/angular integration apps
     'post-klp-login-widget',
+    'post-klp-login-widget-messages',
   ],
 };
 
