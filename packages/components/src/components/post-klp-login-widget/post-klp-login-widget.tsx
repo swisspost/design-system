@@ -5,7 +5,7 @@ import { klpBaseUrl } from './lib/klp-urls';
 import type { KlpEnvironment } from './lib/klp-widget.model';
 import { createSessionController } from './lib/session-controller';
 import { showAccountSwitch, showCompanySwitch } from './lib/session-permissions';
-import { setUnread, subscribeUnread } from './lib/unread-store';
+import { setState, subscribe } from './lib/store';
 
 /** Scoped to the widget's own shadow root, so a constant id cannot collide across instances. */
 const MENU_ID = 'klp-user-menu';
@@ -84,7 +84,7 @@ export class PostKlpLoginWidget {
   private unsubscribe?: () => void;
 
   connectedCallback() {
-    this.unsubscribe = subscribeUnread(unread => {
+    this.unsubscribe = subscribe(({ unread }) => {
       this.unread = unread;
     });
   }
@@ -121,7 +121,7 @@ export class PostKlpLoginWidget {
       onSessionChange: session => {
         this.session = session;
       },
-      onUnreadChange: setUnread,
+      onUnreadChange: unread => setState('unread', unread),
     });
 
     void this.controller.start();
