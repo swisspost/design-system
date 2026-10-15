@@ -75,8 +75,7 @@ export const config: Config = {
           dest: 'assets/icons',
         },
         {
-          // Outside `src`, or `dist-collection` would publish the playground fake to consumers.
-          src: '../playground',
+          src: 'playground',
           dest: 'playground',
         },
       ],
