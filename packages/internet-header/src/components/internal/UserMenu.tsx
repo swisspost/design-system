@@ -1,5 +1,6 @@
 import { UserMenuConfig } from '@/models/header.model';
 import { createIdFrom } from '@/utils/create-id-from';
+import { withReturnUrl } from '@/utils/with-return-url';
 import { FunctionalComponent, h } from '@stencil/core';
 import { Avatar } from './Avatar';
 import { Link } from './Link';
@@ -9,15 +10,6 @@ export type UserMenuProps = {
   textCurrentUser: string;
   textUserLinks: string;
   textAccessUserLinks: string;
-};
-
-// Appends/overwrites a `changeCompanyTargetURL` param on the given URL
-// The given parameter is for exclusive usage on the Account/Company switch links,
-// so that the platform can redirect back to the current page after the user has switched context.
-const changeContextTargetURL = (url: string): string => {
-  const target = new URL(url, window.location.href);
-  target.searchParams.set('changeCompanyTargetURL', window.location.href);
-  return target.toString();
 };
 
 export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenuProps> = ({
@@ -59,7 +51,7 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
             <Link
               config={{
                 text: config.accountSwitch.text,
-                url: changeContextTargetURL(config.accountSwitch.url),
+                url: withReturnUrl(config.accountSwitch.url),
                 icon: config.accountSwitch.icon,
               }}
             />
@@ -70,7 +62,7 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
             <Link
               config={{
                 text: config.companySwitch.text,
-                url: changeContextTargetURL(config.companySwitch.url),
+                url: withReturnUrl(config.companySwitch.url),
                 icon: config.companySwitch.icon,
               }}
             />
