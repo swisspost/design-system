@@ -6,18 +6,9 @@ import { IconLinkConfig, LinkConfig } from '@/models/shared.model';
 import { getAlternateLinks, observeAlternateLinks } from '@/services/alternate-link.service';
 import { getLocalizedConfig, isValidProjectId } from '@/services/config.service';
 import { getActiveLink } from '@/services/route.service';
-import { getSessionUrl } from '@/config/klp-urls';
+import { withReturnUrl } from '@/utils/with-return-url';
 import { version } from '@root/package.json';
-import {
-  Component,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Listen,
-  Prop,
-  Watch,
-} from '@stencil/core';
+import { Component, Event, EventEmitter, h, Host, Listen, Prop, Watch } from '@stencil/core';
 import '@swisspost/design-system-components';
 
 @Component({
@@ -134,7 +125,7 @@ export class PostInternetHeader {
 
   async componentWillLoad() {
     this.initAlternateLinks();
-    await Promise.all([this.fetchHeaderConfig(), this.fetchUserData()]);
+    await this.fetchHeaderConfig();
   }
 
   componentDidLoad() {
@@ -171,22 +162,6 @@ export class PostInternetHeader {
       await this.updateConfig();
     } catch (error) {
       console.error(error);
-    }
-  }
-
-  private async fetchUserData(): Promise<void> {
-    try {
-      const sessionUrl = getSessionUrl(this.environment);
-      const response = await fetch(sessionUrl, {
-        credentials: 'include',
-      });
-
-      if (response.ok) {
-        const json = await response.json();
-        state.user = json?.data;
-      }
-    } catch {
-      // In case of an error, we assume the user is not logged in and do nothing
     }
   }
 
@@ -248,6 +223,44 @@ export class PostInternetHeader {
     );
   }
 
+  private renderMenuItem(config: IconLinkConfig, slot: string) {
+    return (
+      <post-menu-item slot={slot} key={`${slot}-${config.url}`}>
+        <Link config={config} />
+      </post-menu-item>
+    );
+  }
+
+  private renderLoginWidget(postLogin: PostLoginConfig) {
+    // Everything is slotted unconditionally: the widget owns the session and decides which of
+    // these entries it may show.
+    return (
+      <post-klp-login-widget
+        slot="post-login"
+        environment={this.environment}
+        textCurrentUser={this.textCurrentUser}
+        textUserLinks={this.textUserLinks}
+        textAccessUserLinks={this.textAccessUserLinks}
+      >
+        <Link slot="login-link" config={postLogin.loginLink} />
+        {postLogin.accountSwitch &&
+          this.renderMenuItem(
+            { ...postLogin.accountSwitch, url: withReturnUrl(postLogin.accountSwitch.url) },
+            'account-switch',
+          )}
+        {postLogin.companySwitch &&
+          this.renderMenuItem(
+            { ...postLogin.companySwitch, url: withReturnUrl(postLogin.companySwitch.url) },
+            'company-switch',
+          )}
+        {this.getUserMenuOptions(postLogin).map(option =>
+          this.renderMenuItem(option, 'menu-links'),
+        )}
+        {postLogin.logoutLink && this.renderMenuItem(postLogin.logoutLink, 'logout-link')}
+      </post-klp-login-widget>
+    );
+  }
+
   private renderNavigation(
     slot: string,
     config: (LinkConfig | UserMenuConfig)[],
@@ -262,7 +275,9 @@ export class PostInternetHeader {
     return (
       <ul slot={slot}>
         {config.map(navItem => (
-          <li key={'url' in navItem ? navItem.url : navItem.user.email}>{this.renderNavItem(navItem, props)}</li>
+          <li key={'url' in navItem ? navItem.url : navItem.user.email}>
+            {this.renderNavItem(navItem, props)}
+          </li>
         ))}
       </ul>
     );
@@ -326,19 +341,7 @@ export class PostInternetHeader {
             </post-language-menu>
           )}
 
-          {globalHeader.postLogin &&
-            this.renderNavItem(
-              state.user
-                ? {
-                    user: state.user,
-                    options: this.getUserMenuOptions(globalHeader.postLogin),
-                    accountSwitch: globalHeader.postLogin.accountSwitch,
-                    companySwitch: globalHeader.postLogin.companySwitch,
-                    logoutLink: globalHeader.postLogin.logoutLink,
-                  }
-                : globalHeader.postLogin.loginLink,
-              { slot: 'post-login' },
-            )}
+          {globalHeader.postLogin && this.renderLoginWidget(globalHeader.postLogin)}
 
           {localHeader.title && <p slot="title">{localHeader.title}</p>}
 
