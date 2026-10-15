@@ -365,10 +365,6 @@ export namespace Components {
          */
         "language"?: 'de' | 'fr' | 'it' | 'en';
         /**
-          * Where the messages entry points. Without it the widget shows no messages.
-         */
-        "messagesUrl"?: string;
-        /**
           * Your project id, the same one the header is given. Sent to the platform as the service id.
          */
         "project"?: string;
@@ -381,17 +377,23 @@ export namespace Components {
          */
         "textCurrentUser"?: string;
         /**
-          * Label of the messages entry.
-         */
-        "textMessages"?: string;
-        /**
-          * Visually hidden label for the unread count. The placeholder `{count}` will be replaced with the number of unread messages.
-         */
-        "textUnreadMessages"?: string;
-        /**
           * Visually hidden label for the user menu.
          */
         "textUserLinks"?: string;
+    }
+    interface PostKlpLoginWidgetMessages {
+        /**
+          * Label of the entry.
+         */
+        "text"?: string;
+        /**
+          * Visually hidden label for the unread count. The placeholder `{count}` will be replaced with the number of unread messages.
+         */
+        "textUnread"?: string;
+        /**
+          * Where the entry points.
+         */
+        "url": string;
     }
     interface PostLanguageMenu {
         /**
@@ -1064,6 +1066,12 @@ declare global {
         prototype: HTMLPostKlpLoginWidgetElement;
         new (): HTMLPostKlpLoginWidgetElement;
     };
+    interface HTMLPostKlpLoginWidgetMessagesElement extends Components.PostKlpLoginWidgetMessages, HTMLStencilElement {
+    }
+    var HTMLPostKlpLoginWidgetMessagesElement: {
+        prototype: HTMLPostKlpLoginWidgetMessagesElement;
+        new (): HTMLPostKlpLoginWidgetMessagesElement;
+    };
     interface HTMLPostLanguageMenuElementEventMap {
         "postChange": string;
     }
@@ -1382,6 +1390,7 @@ declare global {
         "post-header": HTMLPostHeaderElement;
         "post-icon": HTMLPostIconElement;
         "post-klp-login-widget": HTMLPostKlpLoginWidgetElement;
+        "post-klp-login-widget-messages": HTMLPostKlpLoginWidgetMessagesElement;
         "post-language-menu": HTMLPostLanguageMenuElement;
         "post-language-menu-item": HTMLPostLanguageMenuItemElement;
         "post-linkarea": HTMLPostLinkareaElement;
@@ -1741,10 +1750,6 @@ declare namespace LocalJSX {
          */
         "language"?: 'de' | 'fr' | 'it' | 'en';
         /**
-          * Where the messages entry points. Without it the widget shows no messages.
-         */
-        "messagesUrl"?: string;
-        /**
           * Your project id, the same one the header is given. Sent to the platform as the service id.
          */
         "project"?: string;
@@ -1757,17 +1762,23 @@ declare namespace LocalJSX {
          */
         "textCurrentUser"?: string;
         /**
-          * Label of the messages entry.
-         */
-        "textMessages"?: string;
-        /**
-          * Visually hidden label for the unread count. The placeholder `{count}` will be replaced with the number of unread messages.
-         */
-        "textUnreadMessages"?: string;
-        /**
           * Visually hidden label for the user menu.
          */
         "textUserLinks"?: string;
+    }
+    interface PostKlpLoginWidgetMessages {
+        /**
+          * Label of the entry.
+         */
+        "text"?: string;
+        /**
+          * Visually hidden label for the unread count. The placeholder `{count}` will be replaced with the number of unread messages.
+         */
+        "textUnread"?: string;
+        /**
+          * Where the entry points.
+         */
+        "url": string;
     }
     interface PostLanguageMenu {
         /**
@@ -2297,9 +2308,11 @@ declare namespace LocalJSX {
         "textCurrentUser": string;
         "textUserLinks": string;
         "textAccessUserLinks": string;
-        "messagesUrl": string;
-        "textMessages": string;
-        "textUnreadMessages": string;
+    }
+    interface PostKlpLoginWidgetMessagesAttributes {
+        "url": string;
+        "text": string;
+        "textUnread": string;
     }
     interface PostLanguageMenuAttributes {
         "textChangeLanguage": string;
@@ -2437,6 +2450,7 @@ declare namespace LocalJSX {
         "post-header": Omit<PostHeader, keyof PostHeaderAttributes> & { [K in keyof PostHeader & keyof PostHeaderAttributes]?: PostHeader[K] } & { [K in keyof PostHeader & keyof PostHeaderAttributes as `attr:${K}`]?: PostHeaderAttributes[K] } & { [K in keyof PostHeader & keyof PostHeaderAttributes as `prop:${K}`]?: PostHeader[K] } & OneOf<"textMenu", PostHeader["textMenu"], PostHeaderAttributes["textMenu"]>;
         "post-icon": Omit<PostIcon, keyof PostIconAttributes> & { [K in keyof PostIcon & keyof PostIconAttributes]?: PostIcon[K] } & { [K in keyof PostIcon & keyof PostIconAttributes as `attr:${K}`]?: PostIconAttributes[K] } & { [K in keyof PostIcon & keyof PostIconAttributes as `prop:${K}`]?: PostIcon[K] } & OneOf<"name", PostIcon["name"], PostIconAttributes["name"]>;
         "post-klp-login-widget": Omit<PostKlpLoginWidget, keyof PostKlpLoginWidgetAttributes> & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes]?: PostKlpLoginWidget[K] } & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes as `attr:${K}`]?: PostKlpLoginWidgetAttributes[K] } & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes as `prop:${K}`]?: PostKlpLoginWidget[K] };
+        "post-klp-login-widget-messages": Omit<PostKlpLoginWidgetMessages, keyof PostKlpLoginWidgetMessagesAttributes> & { [K in keyof PostKlpLoginWidgetMessages & keyof PostKlpLoginWidgetMessagesAttributes]?: PostKlpLoginWidgetMessages[K] } & { [K in keyof PostKlpLoginWidgetMessages & keyof PostKlpLoginWidgetMessagesAttributes as `attr:${K}`]?: PostKlpLoginWidgetMessagesAttributes[K] } & { [K in keyof PostKlpLoginWidgetMessages & keyof PostKlpLoginWidgetMessagesAttributes as `prop:${K}`]?: PostKlpLoginWidgetMessages[K] } & OneOf<"url", PostKlpLoginWidgetMessages["url"], PostKlpLoginWidgetMessagesAttributes["url"]>;
         "post-language-menu": Omit<PostLanguageMenu, keyof PostLanguageMenuAttributes> & { [K in keyof PostLanguageMenu & keyof PostLanguageMenuAttributes]?: PostLanguageMenu[K] } & { [K in keyof PostLanguageMenu & keyof PostLanguageMenuAttributes as `attr:${K}`]?: PostLanguageMenuAttributes[K] } & { [K in keyof PostLanguageMenu & keyof PostLanguageMenuAttributes as `prop:${K}`]?: PostLanguageMenu[K] } & OneOf<"textChangeLanguage", PostLanguageMenu["textChangeLanguage"], PostLanguageMenuAttributes["textChangeLanguage"]> & OneOf<"textCurrentLanguage", PostLanguageMenu["textCurrentLanguage"], PostLanguageMenuAttributes["textCurrentLanguage"]>;
         "post-language-menu-item": Omit<PostLanguageMenuItem, keyof PostLanguageMenuItemAttributes> & { [K in keyof PostLanguageMenuItem & keyof PostLanguageMenuItemAttributes]?: PostLanguageMenuItem[K] } & { [K in keyof PostLanguageMenuItem & keyof PostLanguageMenuItemAttributes as `attr:${K}`]?: PostLanguageMenuItemAttributes[K] } & { [K in keyof PostLanguageMenuItem & keyof PostLanguageMenuItemAttributes as `prop:${K}`]?: PostLanguageMenuItem[K] } & OneOf<"code", PostLanguageMenuItem["code"], PostLanguageMenuItemAttributes["code"]>;
         "post-linkarea": PostLinkarea;
@@ -2491,6 +2505,7 @@ declare module "@stencil/core" {
              */
             "post-icon": LocalJSX.IntrinsicElements["post-icon"] & JSXBase.HTMLAttributes<HTMLPostIconElement>;
             "post-klp-login-widget": LocalJSX.IntrinsicElements["post-klp-login-widget"] & JSXBase.HTMLAttributes<HTMLPostKlpLoginWidgetElement>;
+            "post-klp-login-widget-messages": LocalJSX.IntrinsicElements["post-klp-login-widget-messages"] & JSXBase.HTMLAttributes<HTMLPostKlpLoginWidgetMessagesElement>;
             "post-language-menu": LocalJSX.IntrinsicElements["post-language-menu"] & JSXBase.HTMLAttributes<HTMLPostLanguageMenuElement>;
             "post-language-menu-item": LocalJSX.IntrinsicElements["post-language-menu-item"] & JSXBase.HTMLAttributes<HTMLPostLanguageMenuItemElement>;
             "post-linkarea": LocalJSX.IntrinsicElements["post-linkarea"] & JSXBase.HTMLAttributes<HTMLPostLinkareaElement>;

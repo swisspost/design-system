@@ -6,10 +6,6 @@
 @use '@swisspost/design-system-styles/components/avatar';
 @use '@swisspost/design-system-styles/components/badge';
 
-// The menu-item rules are a global stylesheet and a global stylesheet cannot reach into this
-// shadow root, so the one entry the widget renders itself would otherwise stay unstyled.
-@use '../post-menu-item/post-menu-item.scss';
-
 *,
 *::before,
 *::after {

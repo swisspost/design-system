@@ -14,10 +14,12 @@
      * Playground only: stands in for the KLP platform so the signed-in composition can be seen
      * without a backend. Must run before the components module, which connects on load.
      * `?session=account|company|none` picks which menu the session is allowed to see,
-     * `?unread=` how many messages are waiting.
+     * `?unread=` how many messages are waiting. Every other query parameter overrides the
+     * matching `KlpSessionData` field, e.g. `?surname=Hopper&userType=B2C&company=`.
      */
     (() => {
-      const state = new URLSearchParams(location.search).get('session') ?? 'account';
+      const params = new URLSearchParams(location.search);
+      const state = params.get('session') ?? 'account';
 
       const user = {
         name: 'Ada',
@@ -32,8 +34,16 @@
         company: { ...user, canChangeCompany: true },
       };
 
-      const message = sessions[state]
-        ? { typ: 'sub', adr: 'playground', ttl: 900000, data: sessions[state] }
+      const session = sessions[state];
+      for (const [field, value] of params) {
+        if (field === 'session' || field === 'unread' || !session) continue;
+        // An empty value drops the field, so optional ones can be tried out as absent.
+        if (value === '') delete session[field];
+        else session[field] = { true: true, false: false }[value] ?? value;
+      }
+
+      const message = session
+        ? { typ: 'sub', adr: 'playground', ttl: 900000, data: session }
         : { typ: 'ukn' };
 
       const nativeFetch = window.fetch.bind(window);
@@ -56,7 +66,7 @@
       };
 
       // Leaves the dev server's own socket alone; only the platform event bus is answered here.
-      const unread = Number(new URLSearchParams(location.search).get('unread') ?? 3);
+      const unread = Number(params.get('unread') ?? 3);
       const NativeWebSocket = window.WebSocket;
       window.WebSocket = function (url, protocols) {
         if (!String(url).includes('/eventbus/')) return new NativeWebSocket(url, protocols);
@@ -130,7 +140,6 @@
 
     <!-- Portal login -->
     <post-klp-login-widget slot="post-login" environment="int01" project="playground" language="en"
-      messages-url="#messages" text-messages="Messages" text-unread-messages="{count} unread messages"
       text-current-user="Currently logged in: {user}" text-user-links="User links"
       text-access-user-links="Open user links">
       <a slot="login-link" href="#login">
@@ -155,6 +164,8 @@
           My profile
         </a>
       </post-menu-item>
+      <post-klp-login-widget-messages slot="menu-links" url="#messages" text="Messages"
+        text-unread="{count} unread messages"></post-klp-login-widget-messages>
       <post-menu-item slot="menu-links">
         <a href="#settings">
           <post-icon name="gear" aria-hidden="true"></post-icon>
@@ -260,8 +271,6 @@
       </ul>
     </post-mainnavigation>
   </post-header>
-
-  <div class="badge">3</div>
 
   <h1>Components package playground</h1>
   <p class="mb-4">

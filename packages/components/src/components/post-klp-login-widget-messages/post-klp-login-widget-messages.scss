@@ -1,0 +1,17 @@
+@use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
+
+// The look of the count; the markup below is what the design system calls a badge.
+@use '@swisspost/design-system-styles/components/badge';
+
+post-klp-login-widget-messages {
+  // The menu lays out its own children; this element must not become a row of its own.
+  display: contents;
+
+  .visually-hidden {
+    @include utilities-mx.visuallyhidden();
+  }
+
+  .badge {
+    margin-inline-start: auto;
+  }
+}
