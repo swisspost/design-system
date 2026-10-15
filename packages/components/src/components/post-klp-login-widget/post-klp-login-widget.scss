@@ -13,7 +13,7 @@
 }
 
 :host {
-  display: inline-block;
+  display: inline-flex;
 }
 
 .visually-hidden {
@@ -35,7 +35,10 @@
 
 [slot='header'] p {
   margin-block: 0;
-  line-height: 1;
+
+  &:not(.company) {
+    line-height: 1;
+  }
 
   &.company {
     font-size: 12px;
@@ -49,7 +52,13 @@
 
   .badge {
     position: absolute;
-    top: calc(50% - #{tokens.get('avatar-size', components.$post-avatar)} * 0.5);
-    right: calc(50% - #{tokens.get('avatar-size', components.$post-avatar)} * 0.5);
+    top: calc(
+      50% - #{tokens.get('avatar-size', components.$post-avatar)} * 0.5 +
+        #{tokens.get('avatar-border-width', components.$post-avatar)}
+    );
+    right: calc(
+      50% - #{tokens.get('avatar-size', components.$post-avatar)} * 0.5 +
+        #{tokens.get('avatar-border-width', components.$post-avatar)}
+    );
   }
 }
