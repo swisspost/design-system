@@ -21,11 +21,13 @@ post-header {
           }
         }
       }
+    }
 
-      /* stylelint-disable-next-line selector-max-compound-selectors */
-      > post-menu-item > a > post-icon {
-        order: -1;
-      }
+    // the login widget renders its menu in a shadow root, so the consumer's items are a descendant
+    // of the host rather than a child of post-menu
+    /* stylelint-disable-next-line selector-max-compound-selectors */
+    post-menu-item > a > post-icon {
+      order: -1;
     }
   }
 }
