@@ -74,6 +74,11 @@ export const config: Config = {
           src: '../node_modules/@swisspost/design-system-icons/public/post-icons/*.svg',
           dest: 'assets/icons',
         },
+        {
+          // Outside `src`, or `dist-collection` would publish the playground fake to consumers.
+          src: '../playground',
+          dest: 'playground',
+        },
       ],
       serviceWorker: null, // disable service workers,
     },
