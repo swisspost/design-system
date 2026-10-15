@@ -180,14 +180,16 @@ describe('header', () => {
       });
 
       it('should show the login link', () => {
-        cy.get('[slot="post-login"]')
-          .should('be.visible')
-          .invoke('prop', 'localName')
-          .should('eq', 'a');
+        cy.get('post-klp-login-widget[slot="post-login"] a[slot="login-link"]').should(
+          'be.visible',
+        );
       });
 
       it('should not show the user menu', () => {
-        cy.get('[slot="post-login"] post-menu').should('not.exist');
+        cy.get('post-klp-login-widget[slot="post-login"]')
+          .shadow()
+          .find('post-menu')
+          .should('not.exist');
       });
     });
 
@@ -198,12 +200,15 @@ describe('header', () => {
       });
 
       it('should not show the login link', () => {
-        cy.get('[slot="post-login"]').invoke('prop', 'localName').should('not.eq', 'a');
+        // the widget stops rendering the login-link slot, so the anchor is never assigned to it
+        cy.get('[slot="post-login"] a[slot="login-link"]').should('not.be.visible');
       });
 
       it('should show the user menu trigger with an avatar', () => {
-        cy.get('[slot="post-login"] post-menu-trigger').should('be.visible');
-        cy.get('[slot="post-login"] post-avatar').should('be.visible');
+        cy.get('post-klp-login-widget[slot="post-login"]')
+          .shadow()
+          .find('post-menu-trigger post-avatar')
+          .should('be.visible');
       });
 
       it('should show the user menu with the correct user links', () => {
@@ -216,10 +221,14 @@ describe('header', () => {
           (postLoginConfig.userLinks?.length ?? 0) +
           (postLoginConfig.logoutLink ? 1 : 0);
 
-        cy.get('[slot="post-login"] post-menu-trigger button').click();
-        cy.get('[slot="post-login"] post-menu')
-          .find('post-menu-item')
-          .should('be.visible')
+        cy.get('post-klp-login-widget[slot="post-login"]')
+          .shadow()
+          .find('post-menu-trigger button')
+          .click();
+        // Every entry is slotted unconditionally, so the ones the session may not see stay in the
+        // dom unassigned and simply never render.
+        cy.get('post-klp-login-widget[slot="post-login"] post-menu-item')
+          .filter(':visible')
           .should('have.length', expectedCount);
       });
     });

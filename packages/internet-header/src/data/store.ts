@@ -1,6 +1,5 @@
 import { Environment, LocalizedConfig } from '@/models/general.model';
 import { RouteLink } from '@/models/shared.model';
-import { UserConfig } from '@/models/user.model';
 import { createStore } from '@stencil/store';
 
 export interface HeaderState {
@@ -10,7 +9,6 @@ export interface HeaderState {
   environment: Environment;
   activeLink: RouteLink | null;
   search: boolean;
-  user: UserConfig | null;
   alternateLinks: Map<string, string>;
 }
 
@@ -21,6 +19,5 @@ export const { state, onChange, reset, dispose } = createStore<HeaderState>({
   environment: 'prod',
   activeLink: null,
   search: true,
-  user: null,
   alternateLinks: new Map<string, string>(),
 });
