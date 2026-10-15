@@ -1,6 +1,6 @@
 import { newSpecPage, SpecPage } from '@stencil/core/testing';
 import type { KlpSessionData } from '../lib/klp-session.model';
-import { setUnread } from '../lib/unread-store';
+import { setState } from '../lib/store';
 import { PostKlpLoginWidget } from '../post-klp-login-widget';
 
 const links = `
@@ -36,7 +36,7 @@ async function logIn(page: SpecPage, overrides: Partial<KlpSessionData> = {}) {
 
 describe('post-klp-login-widget', () => {
   // The store outlives a spec page, so one test's count would otherwise leak into the next.
-  afterEach(() => setUnread(0));
+  afterEach(() => setState('unread', 0));
 
   it('offers only the login link while nobody is signed in', async () => {
     const page = await render();
@@ -191,7 +191,7 @@ describe('post-klp-login-widget', () => {
     it('marks the trigger once the store reports something unread', async () => {
       const page = await render();
       await logIn(page);
-      setUnread(3);
+      setState('unread', 3);
       await page.waitForChanges();
 
       expect(shadow(page, '.user-menu-avatar .badge')).not.toBeNull();
