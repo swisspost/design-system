@@ -47,13 +47,29 @@ runs:
       env:
         FOLDER: ${{ inputs.folder }}
       shell: bash
-      run: mkdir -p $FOLDER
+      run: mkdir -p "$FOLDER"
 
     - name: Unzip artifacts
       env:
         FOLDER: ${{ inputs.folder }}
       shell: bash
-      run: unzip ${{ runner.temp }}/artifact_download/artifacts.zip -d $FOLDER
+      run: unzip "${{ runner.temp }}/artifact_download/artifacts.zip" -d "$FOLDER"
+
+    - name: Remove symlinks from the extracted artifact
+      env:
+        FOLDER: ${{ inputs.folder }}
+      shell: bash
+      run: |
+        # The artifact is produced by an untrusted (fork) workflow. A symlink in
+        # the archive could point at a secret file on the runner (e.g. the token
+        # written to .git/config) and leak it when the folder is later deployed.
+        # Strip every symlink before the content is used.
+        LINKS=$(find "$FOLDER" -type l)
+        if [[ -n "$LINKS" ]]; then
+          echo "Warning: removing symlinks found in the artifact:"
+          echo "$LINKS"
+          find "$FOLDER" -type l -delete
+        fi
 
     - name: Validate artifact contents
       env:
@@ -71,9 +87,36 @@ runs:
         fi
 
         # Validate ID is numeric
-        EVENT_ID=$(cat $FOLDER/GHA-EVENT-ID)
+        EVENT_ID=$(cat "$FOLDER/GHA-EVENT-ID")
         if ! [[ "$EVENT_ID" =~ ^[0-9]*$ ]]; then
           echo "Error: Invalid Event ID format"
+          exit 1
+        fi
+
+    - name: Verify pull request number
+      if: ${{ github.event_name == 'workflow_run' }}
+      env:
+        FOLDER: ${{ inputs.folder }}
+        GH_TOKEN: ${{ github.token }}
+        HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        REPO: ${{ github.repository }}
+      shell: bash
+      run: |
+        # The PR number is stored inside the untrusted artifact, so a fork could
+        # claim a different (victim) PR and make this privileged workflow comment
+        # on or deploy to it. Cross-check the claimed number against the pull
+        # request that actually owns the commit which triggered this run.
+        CLAIMED_ID=$(cat "$FOLDER/GHA-EVENT-ID" | tr -cd '[:digit:]')
+
+        REAL_IDS=$(gh api "repos/${REPO}/commits/${HEAD_SHA}/pulls" --jq '.[].number' | tr -cd '0-9\n')
+
+        if [[ -z "$REAL_IDS" ]]; then
+          echo "Error: Could not resolve a pull request for commit ${HEAD_SHA}"
+          exit 1
+        fi
+
+        if ! grep -qx "$CLAIMED_ID" <<< "$REAL_IDS"; then
+          echo "Error: Artifact PR number ($CLAIMED_ID) does not match the triggering pull request(s): $(echo "$REAL_IDS" | tr '\n' ' ')"
           exit 1
         fi
 
@@ -87,8 +130,8 @@ runs:
       id: build
       shell: bash
       run: |
-        EVENT_ID=$(cat $FOLDER/GHA-EVENT-ID)
-        EVENT_ACTION=$(cat $FOLDER/GHA-EVENT-ACTION)
+        EVENT_ID=$(cat "$FOLDER/GHA-EVENT-ID")
+        EVENT_ACTION=$(cat "$FOLDER/GHA-EVENT-ACTION")
 
         SANITIZED_ID=$(echo "$EVENT_ID" | tr -cd '[:digit:]')
         SANITIZED_ACTION=$(echo "$EVENT_ACTION" | tr -cd '[:alnum:]-_')
