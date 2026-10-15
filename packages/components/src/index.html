@@ -50,12 +50,12 @@
     <p slot="title">Application title</p>
 
     <!-- Portal login -->
-    <post-klp-login-widget slot="post-login" environment="int01"
+    <post-klp-login-widget slot="post-login" environment="test"
       text-current-user="Currently logged in: {user}" text-user-links="User links"
       text-access-user-links="Open user links">
       <a slot="login-link" href="#login">
+        <span>Login</span>
         <post-icon name="login" aria-hidden="true"></post-icon>
-        Login
       </a>
       <post-menu-item slot="account-switch">
         <a href="#switch-account">
@@ -107,12 +107,6 @@
         <a href="#">
           <span>Search</span>
           <post-icon aria-hidden="true" name="search"></post-icon>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span>Login</span>
-          <post-icon aria-hidden="true" name="login"></post-icon>
         </a>
       </li>
     </ul>
@@ -201,6 +195,8 @@
     <option value="default">Post default</option>
     <option value="compact">Post compact</option>
   </select>
+
+  <p id="KLPMockContainer" class="d-flex flex-wrap align-items-center gap-16"></p>
   <hr />
 </body>
 
