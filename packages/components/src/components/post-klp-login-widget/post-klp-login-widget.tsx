@@ -153,8 +153,8 @@ export class PostKlpLoginWidget {
             aria-hidden="true"
           ></post-avatar>
           <div>
-            <p>{fullName}</p>
             {session.company && <p class="company">{session.company}</p>}
+            <p>{fullName}</p>
           </div>
         </div>
         {showAccountSwitch(session) && <slot name="account-switch"></slot>}
