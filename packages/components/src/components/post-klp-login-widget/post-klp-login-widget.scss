@@ -14,6 +14,20 @@
 
 :host {
   display: inline-flex;
+  align-items: center;
+  // the avatar is the tallest state the widget can end up in, so holding its height from the first
+  // byte keeps the header row from growing once the session resolves
+  min-block-size: tokens.get('avatar-size', components.$post-avatar);
+}
+
+// An empty avatar rather than a shimmer: same box, same colour, so the real avatar only fills in
+// its initials and nothing moves.
+.user-menu-placeholder {
+  display: block;
+  inline-size: tokens.get('avatar-size', components.$post-avatar);
+  block-size: tokens.get('avatar-size', components.$post-avatar);
+  border-radius: tokens.get('avatar-border-radius', components.$post-avatar);
+  background-color: tokens.get('avatar-enabled-bg', components.$post-avatar);
 }
 
 .visually-hidden {
