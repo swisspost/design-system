@@ -51,16 +51,12 @@ function renderFeedback(
   validationState: string,
 ) {
   return html`
-    ${
-      validFeedbackId && validationState === 'is-valid'
-        ? html`<p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>`
-        : nothing
-    }
-    ${
-      invalidFeedbackId && validationState === 'is-invalid'
-        ? html`<p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>`
-        : nothing
-    }
+    ${validFeedbackId && validationState === 'is-valid'
+      ? html`<p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>`
+      : nothing}
+    ${invalidFeedbackId && validationState === 'is-invalid'
+      ? html`<p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>`
+      : nothing}
   `;
 }
 
@@ -131,7 +127,7 @@ export const Input: Story = {
     return html`<div class="form-floating">
       <input
         id="input_1${props.validationState}${props.scheme}"
-        class="form-control form-control-lg ${props.isValidationSet ? props.validationState : ''}"
+        class="form-control ${props.isValidationSet ? props.validationState : ''}"
         aria-invalid=${props.ariaInvalid}
         aria-describedby="input_1-form-hint${props.validationState}${props.scheme} ${props.ariaDescribedBy}"
         type="text"
@@ -242,7 +238,7 @@ export const Select: Story = {
     return html`<div class="form-floating">
       <select
         id="select_1${props.validationState}${props.scheme}"
-        class="form-select form-select-lg ${props.isValidationSet ? props.validationState : ''}"
+        class="form-select ${props.isValidationSet ? props.validationState : ''}"
         aria-invalid=${props.ariaInvalid}
         aria-describedby="select_1-form-hint${props.validationState}${props.scheme} ${props.ariaDescribedBy}"
       >
@@ -318,7 +314,7 @@ export const TextArea: Story = {
         placeholder=""
         rows=""
         id="textArea_1${props.validationState}${props.scheme}"
-        class="form-control form-control-lg ${props.isValidationSet ? props.validationState : ''}"
+        class="form-control ${props.isValidationSet ? props.validationState : ''}"
         aria-invalid=${props.ariaInvalid}
         aria-describedby="textArea_1-form-hint${props.validationState}${props.scheme} ${props.ariaDescribedBy}"
       ></textarea

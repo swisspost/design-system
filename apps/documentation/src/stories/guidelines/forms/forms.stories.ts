@@ -238,8 +238,9 @@ export const Validation: Story = {
               placeholder=" "
               aria-describedby="textarea-valid-feedback"
             >
-              Value
-            </textarea>
+Value
+            </textarea
+            >
             <label class="form-label" for="form-textarea-valid">Valid Textarea</label>
             <p id="textarea-valid-feedback" class="valid-feedback">Success message (optional)</p>
           </div>
