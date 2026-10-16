@@ -1,3 +1,64 @@
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
+@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
+
+@use '@swisspost/design-system-styles/components/avatar';
+@use '@swisspost/design-system-styles/components/badge';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 :host {
-  display: inline-block;
+  display: inline-flex;
+}
+
+.visually-hidden {
+  @include utilities-mx.visuallyhidden();
+}
+
+// Ported from the header's `_user-menu.scss`: the trigger now renders in this shadow root, which a
+// global stylesheet cannot reach.
+.user-menu-trigger {
+  @include header-mx.nav-item-base;
+  padding: 0 !important;
+  background-color: transparent !important;
+  align-items: center;
+  overflow: visible; // the button base clips to its pill, which would cut the unread dot in half
+  border-radius: tokens.get('avatar-border-radius', components.$post-avatar);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+[slot='header'] p {
+  margin-block: 0;
+
+  &:not(.company) {
+    line-height: 1;
+  }
+
+  &.company {
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
+
+// Anchors the badge to the avatar; the trigger itself clips whatever reaches its own edge.
+.user-menu-avatar {
+  position: relative;
+
+  .badge {
+    position: absolute;
+    top: calc(
+      50% - #{tokens.get('avatar-size', components.$post-avatar)} * 0.5 +
+        #{tokens.get('avatar-border-width', components.$post-avatar)}
+    );
+    right: calc(
+      50% - #{tokens.get('avatar-size', components.$post-avatar)} * 0.5 +
+        #{tokens.get('avatar-border-width', components.$post-avatar)}
+    );
+  }
 }
