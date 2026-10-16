@@ -18,11 +18,7 @@ const DEFAULT_OUTPUT_OPTIONS: ComponentNameOutputOptions = {
   template: '{{names}}',
   lineSeparator: ',',
   formatParser: null,
-  excludedComponentNames: [
-    // temporary, until the widget component has been created and added to the nextjs/angular integration apps
-    'post-klp-login-widget',
-    'post-klp-login-widget-messages',
-  ],
+  excludedComponentNames: [],
 };
 
 export const componentNameOutputOptions: Partial<ComponentNameOutputOptions>[] = [

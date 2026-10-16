@@ -32,14 +32,15 @@ post-header {
   }
 }
 
-// Until the widget upgrades there is no shadow root to slot into, so every link it will later show
-// is laid out at once, full width. The component's own styles cannot reach this moment.
+// With scripting the global `:not(:defined)` utility already hides the host, so what is left here
+// is the reserved box and the no-JS case, where that utility deliberately shows the host again.
 post-klp-login-widget:not(:defined) {
   display: inline-flex;
   align-items: center;
   min-block-size: tokens.get('avatar-size', components.$post-avatar);
 
-  // The login link is the one entry that still has to work if the component never upgrades at all.
+  // Without the shadow root there is nothing to slot into, so every link the widget will later
+  // show is laid out at once. The login link is the only one that still has to work.
   > :not([slot='login-link']) {
     display: none;
   }
