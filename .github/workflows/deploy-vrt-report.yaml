@@ -130,11 +130,11 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ env.SITE_ID }}
-          URL_ALIAS: vrt-pr-${{ steps.report.outputs.id }}
+          PR_NUMBER: ${{ steps.report.outputs.id }}
           FOLDER: ${{ github.workspace }}/${{ steps.report.outputs.folder }}
         run: |
-          netlify deploy --filter @swisspost/design-system-documentation --dir "$FOLDER" --alias "$URL_ALIAS"
-          echo "report-url=https://${URL_ALIAS}--${SITE_URL}" >> $GITHUB_OUTPUT
+          netlify deploy --filter @swisspost/design-system-documentation --dir "$FOLDER" --alias "vrt-pr-${PR_NUMBER}"
+          echo "report-url=https://vrt-pr-${PR_NUMBER}--${SITE_URL}" >> $GITHUB_OUTPUT
 
       - name: Update pull request comment
         if: always() && steps.artifact.outputs.exists == 'true'
