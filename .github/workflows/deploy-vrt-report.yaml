@@ -1,0 +1,235 @@
+###
+#
+# Deploy the Playwright HTML report of the visual regression tests to Netlify
+# and link it in the pull request, so differences can be reviewed in the browser
+# (diff, actual, expected, side-by-side and slider views) without downloading artifacts.
+#
+# The "Visual Regression Tests" workflow does not have secrets when run from a fork,
+# so it only uploads the report as an artifact. This workflow then deploys it
+# with more privileges. The report is only deployed as a static upload, never executed
+# on the runner, but when the pull request comes from a fork its content is attacker-controlled:
+# it is served with hardening headers and the pull request comment marks the preview as untrusted.
+#
+# https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+#
+###
+
+name: Deploy Visual Regression Report
+on:
+  workflow_run:
+    workflows: ['Visual Regression Tests']
+    types: [completed]
+
+permissions:
+  contents: read
+  actions: read
+  pull-requests: write
+
+concurrency:
+  group: vrt-report-${{ github.event.workflow_run.head_repository.full_name }}-${{ github.event.workflow_run.head_branch }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy Visual Regression Report
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.event == 'pull_request' && (github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.conclusion == 'failure') }}
+    steps:
+      - name: Check if a report was uploaded
+        id: artifact
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        with:
+          script: |
+            const { data } = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.payload.workflow_run.id,
+              name: 'vrt-report',
+            });
+
+            core.setOutput('exists', String(data.artifacts.length > 0));
+
+      - name: Checkout
+        if: steps.artifact.outputs.exists == 'true'
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+
+      - name: Setup pnpm & node
+        if: steps.artifact.outputs.exists == 'true'
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Download report
+        if: steps.artifact.outputs.exists == 'true'
+        uses: ./.github/actions/artifact-download
+        id: report
+        with:
+          name: vrt-report
+          folder: vrt-report
+
+      - name: Read report status
+        if: steps.artifact.outputs.exists == 'true'
+        id: status
+        env:
+          FOLDER: ${{ steps.report.outputs.folder }}
+          PR_NUMBER: ${{ steps.report.outputs.id }}
+        run: |
+          if [[ -z "$PR_NUMBER" || "$PR_NUMBER" == "0" ]]; then
+            echo "Error: Missing pull request number"
+            exit 1
+          fi
+
+          # VRT-STATUS is written by the "Prepare VRT report" step of visual-tests.yaml:
+          # "changed" => visual differences detected, anything else => no differences.
+          STATUS=$(cat "$FOLDER/VRT-STATUS" 2>/dev/null | tr -cd '[:alpha:]')
+          if [[ "$STATUS" != "changed" ]]; then
+            STATUS="passed"
+          fi
+
+          rm -f "$FOLDER/VRT-STATUS" "$FOLDER/GHA-EVENT-ID" "$FOLDER/GHA-EVENT-ACTION" "$FOLDER/artifacts.zip"
+
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+
+      - name: Get and validate netlify config
+        if: steps.status.outputs.status == 'changed'
+        run: |
+          node -e "
+            const { siteId, siteUrl } = JSON.parse(require('fs').readFileSync('apps/documentation/netlify.config.json', 'utf8'));
+
+            if (!/^[a-zA-Z0-9-]+\$/.test(siteId || '')) {
+              console.error('Error: Invalid site ID format.');
+              process.exit(1);
+            }
+
+            if (!/^[a-zA-Z0-9.-]+\$/.test(siteUrl || '')) {
+              console.error('Error: Invalid site URL format.');
+              process.exit(1);
+            }
+
+            console.log('SITE_ID=' + siteId);
+            console.log('SITE_URL=' + siteUrl);
+          " >> $GITHUB_ENV
+
+      - name: Setup netlify-cli
+        if: steps.status.outputs.status == 'changed'
+        uses: ./.github/actions/setup-netlify-cli
+
+      # When the pull request comes from a fork the report content is attacker-controlled,
+      # so it is served with hardening headers. Writing the file here overwrites any
+      # attacker-supplied _headers in the artifact.
+      - name: Add security headers to the report
+        if: steps.status.outputs.status == 'changed'
+        env:
+          FOLDER: ${{ github.workspace }}/${{ steps.report.outputs.folder }}
+        run: |
+          CSP="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; form-action 'none'; frame-ancestors 'none'; base-uri 'none'; object-src 'none'"
+          printf '/*\n  X-Content-Type-Options: nosniff\n  X-Frame-Options: DENY\n  Referrer-Policy: no-referrer\n  Content-Security-Policy: %s\n' "$CSP" > "$FOLDER/_headers"
+
+      # Deployed as a draft (alias) of the documentation site, the production site is never touched.
+      - name: Deploy report
+        if: steps.status.outputs.status == 'changed'
+        id: deploy
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ env.SITE_ID }}
+          PR_NUMBER: ${{ steps.report.outputs.id }}
+          FOLDER: ${{ github.workspace }}/${{ steps.report.outputs.folder }}
+        run: |
+          netlify deploy --filter @swisspost/design-system-documentation --dir "$FOLDER" --alias "vrt-pr-${PR_NUMBER}"
+          echo "report-url=https://vrt-pr-${PR_NUMBER}--${SITE_URL}" >> $GITHUB_OUTPUT
+
+      - name: Update pull request comment
+        if: always() && steps.artifact.outputs.exists == 'true'
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        env:
+          PR_NUMBER: ${{ steps.report.outputs.id }}
+          STATUS: ${{ steps.status.outputs.status }}
+          REPORT_URL: ${{ steps.deploy.outputs.report-url }}
+          APPROVED: ${{ github.event.workflow_run.conclusion == 'success' }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+          RUN_URL: ${{ github.event.workflow_run.html_url }}
+        with:
+          script: |
+            const { PR_NUMBER, STATUS, REPORT_URL, APPROVED, HEAD_SHA, RUN_URL } = process.env;
+            const marker = '<!-- vrt-report -->';
+
+            if (!PR_NUMBER || Number(PR_NUMBER) <= 0) {
+              return;
+            }
+
+            const footer = `<sub>Commit ${HEAD_SHA.slice(0, 7)} · [Workflow run](${RUN_URL})</sub>`;
+
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: Number(PR_NUMBER),
+              per_page: 100,
+            });
+            const existing = comments.find(c => c.user.login === 'github-actions[bot]' && c.body.includes(marker));
+
+            let body;
+
+            if (STATUS === 'changed') {
+              const approval = APPROVED === 'true'
+                ? '✅ **Approved** in the pull request description.'
+                : [
+                    '⏳ **Action required:**',
+                    '1. Review the differences in the report above.',
+                    '2. If the changes are **intentional**: check the "Visual changes detected and approved" checkbox in the pull request description, then re-run the "Visual Regression Tests" workflow or push a new commit.',
+                    '3. If the changes are **unintentional**: update your code to match the baseline.',
+                  ].join('\n');
+
+              // The deploy step may have failed or been skipped, leaving no report URL.
+              // Fall back to the workflow run so the link is never broken.
+              const reportLink = REPORT_URL
+                ? `**[Open the visual comparison report](${REPORT_URL})**, select a failed test and switch between the *Diff*, *Actual*, *Expected*, *Side by side* and *Slider* views.`
+                : `The report could not be deployed. Download the artifacts from the **[workflow run](${RUN_URL})** instead.`;
+
+              body = [
+                marker,
+                '## 🧪 Visual Regression Test Results',
+                '',
+                `Visual changes detected. ${reportLink}`,
+                '',
+                '> ⚠️ The report is generated from this pull request\'s code and hosted on a preview URL. Treat it as untrusted content.',
+                '',
+                approval,
+                '',
+                'After merging, the new screenshots automatically become the baseline of the target branch.',
+                '',
+                footer,
+              ].join('\n');
+            } else if (existing) {
+              body = [
+                marker,
+                '## 🧪 Visual Regression Test Results',
+                '',
+                '✅ No visual changes detected in the latest run.',
+                '',
+                footer,
+              ].join('\n');
+            } else {
+              return;
+            }
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: Number(PR_NUMBER),
+                body,
+              });
+            }
+
+      - name: Create Summary
+        if: steps.deploy.outputs.report-url != ''
+        env:
+          REPORT_URL: ${{ steps.deploy.outputs.report-url }}
+        run: |
+          echo "# Deployed Visual Regression Report" >> $GITHUB_STEP_SUMMARY
+          echo "- Report: ${REPORT_URL}" >> $GITHUB_STEP_SUMMARY
