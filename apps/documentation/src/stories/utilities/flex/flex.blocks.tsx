@@ -1,4 +1,9 @@
-import { breakpoints } from '../spacing/spacing.docs.mdx';
+import type { JSX } from 'react';
+import { SCSS_VARIABLES } from '../spacing/spacing.stories';
+
+const breakpoints: [string, boolean][] = Object.values<string>(SCSS_VARIABLES.breakpoints).map(
+  (breakpoint, i, arr) => [breakpoint, i !== arr.length - 1],
+);
 
 const FlexDocContainer = (props: {
   children: string | JSX.Element | JSX.Element[];
