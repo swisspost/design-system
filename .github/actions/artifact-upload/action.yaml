@@ -55,7 +55,7 @@ runs:
         # leak the files they point to when the artifact is deployed from a
         # privileged job. Remove them before zipping.
         find "$FOLDER" -type l -delete
-        cd "$FOLDER" && zip artifacts.zip . -r
+        cd $FOLDER && zip artifacts.zip . -r
 
     - name: Upload artifacts
       uses: actions/upload-artifact@6027e3dd177782cd8ab9af838c04fd81a07f1d47
