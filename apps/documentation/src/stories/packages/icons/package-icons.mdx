@@ -44,12 +44,12 @@ If you want to know more about pre & post scripts and how they are handled, plea
 
   <post-tabs>
     <post-tab-item name="nodeNew">NodeJS version 16.7.0 or newer</post-tab-item>
-    <post-tab-panel for="nodeNew">
+    <post-tab-panel for="nodeNew" class="pt-16">
       <Source  code={SampleNode16} language="json"/>
     </post-tab-panel>
 
     <post-tab-item name="nodeOld">Older NodeJS versions</post-tab-item>
-    <post-tab-panel for="nodeOld">
+    <post-tab-panel for="nodeOld" class="pt-16">
       <Source code={SampleNodeOlder} language="json"/>
       <Source code={SampleNodeOlderJs} language="javascript" />
     </post-tab-panel>
@@ -66,12 +66,12 @@ You can do this with two different solutions:
 
   <post-tabs>
     <post-tab-item name="metaTag">Meta-tag solution (recommended)</post-tab-item>
-    <post-tab-panel for="metaTag">
+    <post-tab-panel for="metaTag" class="pt-16">
       <Source code={SampleIconMeta} language="html" />
     </post-tab-panel>
 
     <post-tab-item name="baseAttribute">Base-attribute solution</post-tab-item>
-    <post-tab-panel for="baseAttribute">
+    <post-tab-panel for="baseAttribute" class="pt-16">
       <Source  code={`<post-icon name="letter" base="/base-path/to/your/own/icon-folder"></post-icon>`} language="html"/>
     </post-tab-panel>
 
