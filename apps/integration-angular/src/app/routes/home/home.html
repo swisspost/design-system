@@ -126,6 +126,29 @@
 </div>
 
 <div class="my-24">
+  <h2>KLP Login Widget</h2>
+  <!-- `int01` keeps the integration app off the production platform. -->
+  <post-klp-login-widget
+    environment="int01"
+    initialState="anonymous"
+    textCurrentUser="Signed in as {user}"
+    textUserLinks="User menu"
+    textAccessUserLinks="Open the user menu"
+  >
+    <a slot="login-link" href="#login">Login</a>
+    <post-klp-login-widget-messages
+      slot="menu-links"
+      url="#messages"
+      text="Messages"
+      textUnread="{count} unread messages"
+    />
+    <post-menu-item slot="logout-link">
+      <a href="#logout">Logout</a>
+    </post-menu-item>
+  </post-klp-login-widget>
+</div>
+
+<div class="my-24">
   <h2>Linkarea</h2>
   <post-linkarea class="card">
     <div class="card-body">
