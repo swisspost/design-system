@@ -1,9 +1,12 @@
 import { createControlCookie, hash } from './control-cookie';
+import { createEventBusConnection } from './event-bus-connection';
 import { createKeepAlive, KLP_KEEP_ALIVE_DEFAULTS, type KlpKeepAliveConf } from './keep-alive';
 import type { KlpRouterActions, KlpSessionData } from './klp-session.model';
 import { createMessageRouter } from './message-router';
+import { createNotifications } from './notifications';
 import { buildEndPoints, createSessionClient } from './session-client';
 import { createStorage } from './storage';
+import type { KlpEventBus } from './vertx-event-bus';
 
 /**
  * The composition root of the v9 widget, reduced to the session. It owns the state the protocol
@@ -19,6 +22,8 @@ export interface KlpSessionControllerOptions {
   conf?: Partial<KlpKeepAliveConf>;
   log?: (message: string) => void;
   onSessionChange: (session: KlpSessionData | null) => void;
+  /** Injected by the tests so the session can be exercised without a websocket. */
+  loadEventBus?: () => Promise<(url: string) => KlpEventBus>;
 }
 
 export function createSessionController({
@@ -27,11 +32,13 @@ export function createSessionController({
   conf,
   log = () => {},
   onSessionChange,
+  loadEventBus,
 }: KlpSessionControllerOptions) {
   const endPoints = buildEndPoints(endPoint);
   const client = createSessionClient({ endPoints, log });
   const controlCookie = createControlCookie({ log });
   const storage = createStorage({ log });
+  const notifications = createNotifications({ log, storage });
   const keepAliveConf: KlpKeepAliveConf = { ...KLP_KEEP_ALIVE_DEFAULTS, ...conf };
 
   let address = '';
@@ -53,6 +60,20 @@ export function createSessionController({
     isUserAuthenticated: () => sessionData !== null,
     ping,
     setControlCookie: (slot, value) => controlCookie.setControlCookie(slot, value),
+  });
+
+  const connection = createEventBusConnection({
+    url: endPoints.eventbus,
+    log,
+    getAddress: () => address,
+    shouldRetryOnFail: () => retrySubscribeOnFail,
+    onMessage: message => route(message),
+    onReconnect: () => {
+      retrySubscribeOnFail = false;
+      address = '';
+      void start();
+    },
+    loadEventBus,
   });
 
   /** The cookie is only worth writing if the state it refers to was actually stored. */
@@ -86,17 +107,17 @@ export function createSessionController({
       sessionData = null;
       address = '';
       removePersistedState();
+      notifications.removeFromCache();
       keepAlive.uninstallKeepAliveTimerHandler();
       onSessionChange(null);
     },
     subscribe: () => {
       void start();
     },
-    // Both belong to the socket and the notification cache, which arrive in their own slices.
-    openCommunication: () => {},
-    removeNotificationsFromCache: () => {},
-    showDocument: (doc, documentType) => storage.saveDocumentOnCache(doc, documentType),
-    removeDocument: documentType => storage.removeDocumentFromCache(documentType),
+    openCommunication: () => void connection.openCommunication(),
+    removeNotificationsFromCache: () => notifications.removeFromCache(),
+    showDocument: (doc, documentType) => notifications.showDocument(doc, documentType),
+    removeDocument: documentType => notifications.removeDocument(documentType),
   };
 
   const route = createMessageRouter({ log, actions });
@@ -112,8 +133,12 @@ export function createSessionController({
 
   return {
     start,
-    stop: () => keepAlive.uninstallKeepAliveTimerHandler(),
+    stop: () => {
+      keepAlive.uninstallKeepAliveTimerHandler();
+      connection.closeCommunication();
+    },
     getSession: () => sessionData,
     getAddress: () => address,
+    getUnreadNotifications: () => notifications.getUnreadNotifications(),
   };
 }
