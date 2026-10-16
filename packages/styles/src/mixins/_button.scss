@@ -72,14 +72,25 @@
   }
 }
 
+@mixin button-label-wrap {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+  text-align: center;
+}
+
 @mixin button-size($size: md) {
-  min-height: map.get(button.$btn-height-map, $size);
+  $height: map.get(button.$btn-height-map, $size);
+
+  min-height: $height;
   gap: map.get(button.$btn-gap-x-map, $size);
   padding: 0 map.get(button.$btn-padding-x-map, $size);
+  border-radius: calc(#{$height} / 2);
 
   > post-icon {
     width: map.get(button.$btn-icon-size-map, $size);
     height: map.get(button.$btn-icon-size-map, $size);
+    flex-shrink: 0;
   }
 }
 
