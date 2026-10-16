@@ -188,6 +188,20 @@ describe('breadcrumbs', () => {
           .filter((_, el) => !el.closest('.invisible'))
           .should('not.match', '[standalone]:not([standalone="false"])');
       });
+
+      it('should keep reacting to viewport changes after being moved in the DOM', () => {
+        cy.viewport(1920, 800);
+        cy.get('@breadcrumbs').find('post-breadcrumb-item[variant="menuitem"]').should('not.exist');
+
+        cy.get('@breadcrumbs')
+          .its(0)
+          .then(element => element.parentElement.append(element));
+
+        cy.viewport(280, 400);
+        cy.get('@breadcrumbs')
+          .find('post-breadcrumb-item[variant="menuitem"]')
+          .should('have.length.greaterThan', 0);
+      });
     });
   });
 
