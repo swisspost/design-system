@@ -7,10 +7,13 @@ import {
   PostFooter,
   PostHeader,
   PostIcon,
+  PostKlpLoginWidget,
+  PostKlpLoginWidgetMessages,
   PostLanguageMenu,
   PostLanguageMenuItem,
   PostLogo,
   PostMainnavigation,
+  PostMenuItem,
   PostSideNavigation,
   PostSideNavigationTrigger,
   PostMegadropdown,
@@ -88,10 +91,29 @@ export default function Layout({ children }: { readonly children: React.ReactNod
         </PostLanguageMenu>
 
         {/* Global header login/user menu */}
-        <a href="" slot="post-login">
-          <span>Login</span>
-          <PostIcon name="login" />
-        </a>
+        {/* `int01` keeps the integration app off the production platform. */}
+        <PostKlpLoginWidget
+          slot="post-login"
+          environment="int01"
+          initialState="anonymous"
+          textCurrentUser="Signed in as {user}"
+          textUserLinks="User menu"
+          textAccessUserLinks="Open the user menu"
+        >
+          <a href="" slot="login-link">
+            <span>Login</span>
+            <PostIcon name="login" />
+          </a>
+          <PostKlpLoginWidgetMessages
+            slot="menu-links"
+            url="#messages"
+            text="Messages"
+            textUnread="{count} unread messages"
+          ></PostKlpLoginWidgetMessages>
+          <PostMenuItem slot="logout-link">
+            <a href="#logout">Logout</a>
+          </PostMenuItem>
+        </PostKlpLoginWidget>
         {/* Main navigation */}
         <PostMainnavigation slot="main-nav" text-main="Main">
           <ul>

@@ -23,7 +23,6 @@ describe('prebuild', () => {
         'post-back-to-tlop': '',
         'post-breadcrumbs': '',
         'post-breadcrumbs-item': '',
-        'post-klp-login-widget': '',
         'some-other-folder': '',
       },
       'src/components/',
