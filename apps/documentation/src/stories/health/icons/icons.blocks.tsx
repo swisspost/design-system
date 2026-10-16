@@ -4,7 +4,7 @@ import type {
   ReportSourceIcon,
   IconSetStats,
 } from '@swisspost/design-system-icons/src/models/icon.model';
-import React from 'react';
+import React, { type JSX } from 'react';
 import reportData from '@swisspost/design-system-icons/public/report.min.json';
 
 const report: Report = {
