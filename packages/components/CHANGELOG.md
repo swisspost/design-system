@@ -1,5 +1,38 @@
 # @swisspost/design-system-components
 
+## 10.8.0
+
+### Patch Changes
+
+- Fixed the header background and weekday colors of the `post-date-picker` calendar popover in the dark color scheme. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8629](https://github.com/swisspost/design-system/pull/8629))
+
+- Updated `post-tooltip`, `post-popover`, and `post-menu` so they flip to the opposite side, or to a side on the other axis, when there isn't enough space for their preferred `placement`. (by [@yomonom](https://github.com/yomonom) with [#8495](https://github.com/swisspost/design-system/pull/8495))
+
+- Reduced the size of the compiled CSS by outputting the colour scheme fallback variables only once. Also fixed the status tags, notification variants, selection card, and `post-popover` close button showing incorrect colours in browsers without `light-dark()` support. (by [@yomonom](https://github.com/yomonom) with [#8616](https://github.com/swisspost/design-system/pull/8616))
+
+- Fixed `post-megadropdown` flickering on close. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8569](https://github.com/swisspost/design-system/pull/8569))
+
+- Improved `post-side-navigation` styling for section transition borders and first-level split collapsible trigger padding. (by [@leagrdv](https://github.com/leagrdv) with [#8424](https://github.com/swisspost/design-system/pull/8424))
+
+- Updated `post-menu` and `post-popover` to no longer extend past the edge of the screen.  
+  They are now both limited to the available space in the viewport and will scroll internally if they no longer fit, ensuring their contents remain accessible.
+  Menus also now automatically close once their trigger is scrolled out of view. (by [@yomonom](https://github.com/yomonom) with [#8495](https://github.com/swisspost/design-system/pull/8495))
+
+- Fixed `post-avatar` to display slotted images hosted on a different origin, by relying on the image `load` and `error` events instead of fetching the image. (by [@leagrdv](https://github.com/leagrdv) with [#8498](https://github.com/swisspost/design-system/pull/8498))
+
+- Fixed the focus ring of `post-banner` action buttons being cut off. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8622](https://github.com/swisspost/design-system/pull/8622))
+
+- Fixed a conflict between keyboard and mouse interaction in the `post-header` that caused the header to collapse and ignore clicks after it was expanded via keyboard navigation. (by [@alionazherdetska](https://github.com/alionazherdetska) and [@Copilot](https://github.com/Copilot) with [#8625](https://github.com/swisspost/design-system/pull/8625))
+
+- Fixed a bug where `post-side-navigation` moved focus to the first navigation item when opened by mouse or touch on mobile, now focus only moves into the navigation on keyboard interaction as intended. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8586](https://github.com/swisspost/design-system/pull/8586))
+
+- Increased the font size of text inputs, text areas, selects and number inputs to `16px` on mobile to prevent iOS from automatically zooming in when a field is focused, which forced users to zoom back out to restore the page. (by [@leagrdv](https://github.com/leagrdv) with [#8613](https://github.com/swisspost/design-system/pull/8613))
+
+- Fixed an inconsistency in the `post-megadropdown` keyboard navigation, it now closes on Enter or Space instead of on trigger focus. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8569](https://github.com/swisspost/design-system/pull/8569))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.8.0
+  - @swisspost/design-system-styles@10.8.0
+
 ## 10.7.0
 
 ### Patch Changes
