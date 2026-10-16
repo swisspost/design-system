@@ -6,7 +6,9 @@
 #
 # The "Visual Regression Tests" workflow does not have secrets when run from a fork,
 # so it only uploads the report as an artifact. This workflow then deploys it
-# with more privileges. The report is only deployed, never executed.
+# with more privileges. The report is only deployed as a static upload, never executed
+# on the runner, but when the pull request comes from a fork its content is attacker-controlled:
+# it is served with hardening headers and the pull request comment marks the preview as untrusted.
 #
 # https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
 #
@@ -110,6 +112,17 @@ jobs:
         if: steps.status.outputs.status == 'changed'
         uses: ./.github/actions/setup-netlify-cli
 
+      # When the pull request comes from a fork the report content is attacker-controlled,
+      # so it is served with hardening headers. Writing the file here overwrites any
+      # attacker-supplied _headers in the artifact.
+      - name: Add security headers to the report
+        if: steps.status.outputs.status == 'changed'
+        env:
+          FOLDER: ${{ github.workspace }}/${{ steps.report.outputs.folder }}
+        run: |
+          CSP="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; form-action 'none'; frame-ancestors 'none'; base-uri 'none'; object-src 'none'"
+          printf '/*\n  X-Content-Type-Options: nosniff\n  X-Frame-Options: DENY\n  Referrer-Policy: no-referrer\n  Content-Security-Policy: %s\n' "$CSP" > "$FOLDER/_headers"
+
       # Deployed as a draft (alias) of the documentation site, the production site is never touched.
       - name: Deploy report
         if: steps.status.outputs.status == 'changed'
@@ -117,11 +130,11 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ env.SITE_ID }}
-          URL_ALIAS: vrt-pr-${{ steps.report.outputs.id }}
+          PR_NUMBER: ${{ steps.report.outputs.id }}
           FOLDER: ${{ github.workspace }}/${{ steps.report.outputs.folder }}
         run: |
-          netlify deploy --filter @swisspost/design-system-documentation --dir "$FOLDER" --alias "$URL_ALIAS"
-          echo "report-url=https://${URL_ALIAS}--${SITE_URL}" >> $GITHUB_OUTPUT
+          netlify deploy --filter @swisspost/design-system-documentation --dir "$FOLDER" --alias "vrt-pr-${PR_NUMBER}"
+          echo "report-url=https://vrt-pr-${PR_NUMBER}--${SITE_URL}" >> $GITHUB_OUTPUT
 
       - name: Update pull request comment
         if: always() && steps.artifact.outputs.exists == 'true'
@@ -175,6 +188,8 @@ jobs:
                 '## 🧪 Visual Regression Test Results',
                 '',
                 `Visual changes detected. ${reportLink}`,
+                '',
+                '> ⚠️ The report is generated from this pull request\'s code and hosted on a preview URL. Treat it as untrusted content.',
                 '',
                 approval,
                 '',
