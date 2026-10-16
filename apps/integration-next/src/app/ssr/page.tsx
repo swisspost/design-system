@@ -13,6 +13,8 @@ import {
   PostCollapsible,
   PostCollapsibleTrigger,
   PostDatePicker,
+  PostKlpLoginWidget,
+  PostKlpLoginWidgetMessages,
   PostLinkarea,
   PostListbox,
   PostListboxOption,
@@ -173,6 +175,29 @@ export default function Home() {
           <figcaption>Spinning</figcaption>
         </figure>
       </div>
+
+      <h2>KLP Login Widget</h2>
+      {/* `int01` keeps the integration app off the production platform. */}
+      <PostKlpLoginWidget
+        environment="int01"
+        initialState="anonymous"
+        textCurrentUser="Signed in as {user}"
+        textUserLinks="User menu"
+        textAccessUserLinks="Open the user menu"
+      >
+        <a slot="login-link" href="#login">
+          Login
+        </a>
+        <PostKlpLoginWidgetMessages
+          slot="menu-links"
+          url="#messages"
+          text="Messages"
+          textUnread="{count} unread messages"
+        ></PostKlpLoginWidgetMessages>
+        <PostMenuItem slot="logout-link">
+          <a href="#logout">Logout</a>
+        </PostMenuItem>
+      </PostKlpLoginWidget>
 
       <h2>Linkarea</h2>
       <PostLinkarea>
