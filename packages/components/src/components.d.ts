@@ -371,15 +371,15 @@ export namespace Components {
         /**
           * Visually hidden label for the button that opens the user menu.
          */
-        "textAccessUserLinks"?: string;
+        "textAccessUserLinks": string;
         /**
           * Visually hidden label for the current user. The placeholder `{user}` will be replaced with the full name of the currently logged-in user.
          */
-        "textCurrentUser"?: string;
+        "textCurrentUser": string;
         /**
           * Visually hidden label for the user menu.
          */
-        "textUserLinks"?: string;
+        "textUserLinks": string;
     }
     interface PostKlpLoginWidgetMessages {
         /**
@@ -1756,15 +1756,15 @@ declare namespace LocalJSX {
         /**
           * Visually hidden label for the button that opens the user menu.
          */
-        "textAccessUserLinks"?: string;
+        "textAccessUserLinks": string;
         /**
           * Visually hidden label for the current user. The placeholder `{user}` will be replaced with the full name of the currently logged-in user.
          */
-        "textCurrentUser"?: string;
+        "textCurrentUser": string;
         /**
           * Visually hidden label for the user menu.
          */
-        "textUserLinks"?: string;
+        "textUserLinks": string;
     }
     interface PostKlpLoginWidgetMessages {
         /**
@@ -2449,7 +2449,7 @@ declare namespace LocalJSX {
         "post-footer": Omit<PostFooter, keyof PostFooterAttributes> & { [K in keyof PostFooter & keyof PostFooterAttributes]?: PostFooter[K] } & { [K in keyof PostFooter & keyof PostFooterAttributes as `attr:${K}`]?: PostFooterAttributes[K] } & { [K in keyof PostFooter & keyof PostFooterAttributes as `prop:${K}`]?: PostFooter[K] } & OneOf<"textFooter", PostFooter["textFooter"], PostFooterAttributes["textFooter"]>;
         "post-header": Omit<PostHeader, keyof PostHeaderAttributes> & { [K in keyof PostHeader & keyof PostHeaderAttributes]?: PostHeader[K] } & { [K in keyof PostHeader & keyof PostHeaderAttributes as `attr:${K}`]?: PostHeaderAttributes[K] } & { [K in keyof PostHeader & keyof PostHeaderAttributes as `prop:${K}`]?: PostHeader[K] } & OneOf<"textMenu", PostHeader["textMenu"], PostHeaderAttributes["textMenu"]>;
         "post-icon": Omit<PostIcon, keyof PostIconAttributes> & { [K in keyof PostIcon & keyof PostIconAttributes]?: PostIcon[K] } & { [K in keyof PostIcon & keyof PostIconAttributes as `attr:${K}`]?: PostIconAttributes[K] } & { [K in keyof PostIcon & keyof PostIconAttributes as `prop:${K}`]?: PostIcon[K] } & OneOf<"name", PostIcon["name"], PostIconAttributes["name"]>;
-        "post-klp-login-widget": Omit<PostKlpLoginWidget, keyof PostKlpLoginWidgetAttributes> & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes]?: PostKlpLoginWidget[K] } & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes as `attr:${K}`]?: PostKlpLoginWidgetAttributes[K] } & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes as `prop:${K}`]?: PostKlpLoginWidget[K] };
+        "post-klp-login-widget": Omit<PostKlpLoginWidget, keyof PostKlpLoginWidgetAttributes> & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes]?: PostKlpLoginWidget[K] } & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes as `attr:${K}`]?: PostKlpLoginWidgetAttributes[K] } & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes as `prop:${K}`]?: PostKlpLoginWidget[K] } & OneOf<"textCurrentUser", PostKlpLoginWidget["textCurrentUser"], PostKlpLoginWidgetAttributes["textCurrentUser"]> & OneOf<"textUserLinks", PostKlpLoginWidget["textUserLinks"], PostKlpLoginWidgetAttributes["textUserLinks"]> & OneOf<"textAccessUserLinks", PostKlpLoginWidget["textAccessUserLinks"], PostKlpLoginWidgetAttributes["textAccessUserLinks"]>;
         "post-klp-login-widget-messages": Omit<PostKlpLoginWidgetMessages, keyof PostKlpLoginWidgetMessagesAttributes> & { [K in keyof PostKlpLoginWidgetMessages & keyof PostKlpLoginWidgetMessagesAttributes]?: PostKlpLoginWidgetMessages[K] } & { [K in keyof PostKlpLoginWidgetMessages & keyof PostKlpLoginWidgetMessagesAttributes as `attr:${K}`]?: PostKlpLoginWidgetMessagesAttributes[K] } & { [K in keyof PostKlpLoginWidgetMessages & keyof PostKlpLoginWidgetMessagesAttributes as `prop:${K}`]?: PostKlpLoginWidgetMessages[K] } & OneOf<"url", PostKlpLoginWidgetMessages["url"], PostKlpLoginWidgetMessagesAttributes["url"]>;
         "post-language-menu": Omit<PostLanguageMenu, keyof PostLanguageMenuAttributes> & { [K in keyof PostLanguageMenu & keyof PostLanguageMenuAttributes]?: PostLanguageMenu[K] } & { [K in keyof PostLanguageMenu & keyof PostLanguageMenuAttributes as `attr:${K}`]?: PostLanguageMenuAttributes[K] } & { [K in keyof PostLanguageMenu & keyof PostLanguageMenuAttributes as `prop:${K}`]?: PostLanguageMenu[K] } & OneOf<"textChangeLanguage", PostLanguageMenu["textChangeLanguage"], PostLanguageMenuAttributes["textChangeLanguage"]> & OneOf<"textCurrentLanguage", PostLanguageMenu["textCurrentLanguage"], PostLanguageMenuAttributes["textCurrentLanguage"]>;
         "post-language-menu-item": Omit<PostLanguageMenuItem, keyof PostLanguageMenuItemAttributes> & { [K in keyof PostLanguageMenuItem & keyof PostLanguageMenuItemAttributes]?: PostLanguageMenuItem[K] } & { [K in keyof PostLanguageMenuItem & keyof PostLanguageMenuItemAttributes as `attr:${K}`]?: PostLanguageMenuItemAttributes[K] } & { [K in keyof PostLanguageMenuItem & keyof PostLanguageMenuItemAttributes as `prop:${K}`]?: PostLanguageMenuItem[K] } & OneOf<"code", PostLanguageMenuItem["code"], PostLanguageMenuItemAttributes["code"]>;

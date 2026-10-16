@@ -62,17 +62,20 @@ export class PostKlpLoginWidget {
    * Visually hidden label for the current user.
    * The placeholder `{user}` will be replaced with the full name of the currently logged-in user.
    */
-  @Prop() textCurrentUser?: string;
+  @Prop({ reflect: true })
+  textCurrentUser!: string;
 
   /**
    * Visually hidden label for the user menu.
    */
-  @Prop() textUserLinks?: string;
+  @Prop({ reflect: true })
+  textUserLinks!: string;
 
   /**
    * Visually hidden label for the button that opens the user menu.
    */
-  @Prop() textAccessUserLinks?: string;
+  @Prop({ reflect: true })
+  textAccessUserLinks!: string;
 
   /** Stays null on the server: the session is only ever known to the client. */
   @State() private session: KlpSessionData | null = null;
