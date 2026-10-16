@@ -1,6 +1,6 @@
 import { UserMenuConfig } from '@/models/header.model';
 import { createIdFrom } from '@/utils/create-id-from';
-import { withReturnUrl } from '@/utils/with-return-url';
+import { changeContextTargetURL } from '@/utils/change-context-target-url';
 import { FunctionalComponent, h } from '@stencil/core';
 import { Avatar } from './Avatar';
 import { Link } from './Link';
@@ -51,7 +51,7 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
             <Link
               config={{
                 text: config.accountSwitch.text,
-                url: withReturnUrl(config.accountSwitch.url),
+                url: changeContextTargetURL(config.accountSwitch.url),
                 icon: config.accountSwitch.icon,
               }}
             />
@@ -62,7 +62,7 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
             <Link
               config={{
                 text: config.companySwitch.text,
-                url: withReturnUrl(config.companySwitch.url),
+                url: changeContextTargetURL(config.companySwitch.url),
                 icon: config.companySwitch.icon,
               }}
             />
