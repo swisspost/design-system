@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { parse } from '@/utils/sass-export';
 import { forEach } from '@/utils/react';
 import scss from './shared.module.scss';
