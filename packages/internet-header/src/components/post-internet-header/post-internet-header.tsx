@@ -6,7 +6,7 @@ import { IconLinkConfig, LinkConfig } from '@/models/shared.model';
 import { getAlternateLinks, observeAlternateLinks } from '@/services/alternate-link.service';
 import { getLocalizedConfig, isValidProjectId } from '@/services/config.service';
 import { getActiveLink } from '@/services/route.service';
-import { withReturnUrl } from '@/utils/with-return-url';
+import { changeContextTargetURL } from '@/utils/change-context-target-url';
 import { version } from '@root/package.json';
 import { Component, Event, EventEmitter, h, Host, Listen, Prop, Watch } from '@stencil/core';
 import '@swisspost/design-system-components';
@@ -245,12 +245,18 @@ export class PostInternetHeader {
         <Link slot="login-link" config={postLogin.loginLink} />
         {postLogin.accountSwitch &&
           this.renderMenuItem(
-            { ...postLogin.accountSwitch, url: withReturnUrl(postLogin.accountSwitch.url) },
+            {
+              ...postLogin.accountSwitch,
+              url: changeContextTargetURL(postLogin.accountSwitch.url),
+            },
             'account-switch',
           )}
         {postLogin.companySwitch &&
           this.renderMenuItem(
-            { ...postLogin.companySwitch, url: withReturnUrl(postLogin.companySwitch.url) },
+            {
+              ...postLogin.companySwitch,
+              url: changeContextTargetURL(postLogin.companySwitch.url),
+            },
             'company-switch',
           )}
         {this.getUserMenuOptions(postLogin).map(option =>
