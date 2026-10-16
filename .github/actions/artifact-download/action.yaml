@@ -60,8 +60,8 @@ runs:
         FOLDER: ${{ inputs.folder }}
       shell: bash
       run: |
-        # The artifact is produced by an untrusted (fork) workflow. A symlink in
-        # the archive could point at a secret file on the runner (e.g. the token
+        # When the pull request comes from a fork, the artifact is built from untrusted code.
+        # A symlink in the archive could point at a secret file on the runner (e.g. the token
         # written to .git/config) and leak it when the folder is later deployed.
         # Strip every symlink before the content is used.
         LINKS=$(find "$FOLDER" -type l)
@@ -102,9 +102,9 @@ runs:
         REPO: ${{ github.repository }}
       shell: bash
       run: |
-        # The PR number is stored inside the untrusted artifact, so a fork could
-        # claim a different (victim) PR and make this privileged workflow comment
-        # on or deploy to it. Cross-check the claimed number against the pull
+        # The PR number is stored inside the artifact, so when the pull request comes from
+        # a fork it could claim a different (victim) PR and make this privileged workflow
+        # comment on or deploy to it. Cross-check the claimed number against the pull
         # request that actually owns the commit which triggered this run.
         CLAIMED_ID=$(cat "$FOLDER/GHA-EVENT-ID" | tr -cd '[:digit:]')
 
