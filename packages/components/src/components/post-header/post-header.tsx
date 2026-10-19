@@ -49,7 +49,10 @@ export class PostHeader {
   private slottedContentObserver: MutationObserver;
   private globalHeader: HTMLElement;
   private localHeader: HTMLElement;
-  private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
+  private readonly throttledResize = throttle(50, () => {
+    this.refreshScrollParent();
+    this.updateLocalHeaderHeight();
+  });
 
   private get hasBurgerMenu(): boolean {
     return this.device !== 'desktop' && this.hasMainNav;
@@ -60,7 +63,18 @@ export class PostHeader {
     easing: 'headerEase',
   };
 
+  // Resolved once on connect (and on resize), not on every scroll event
+  private cachedScrollParent: HTMLElement | null = null;
+  private lastPublishedScrollTop: number | null = null;
+
   get scrollParent(): HTMLElement {
+    if (!this.cachedScrollParent?.isConnected) {
+      this.cachedScrollParent = this.resolveScrollParent();
+    }
+    return this.cachedScrollParent;
+  }
+
+  private resolveScrollParent(): HTMLElement {
     const frozenScrollParent: HTMLElement | null = document.querySelector(
       '[data-post-scroll-locked]',
     );
@@ -152,6 +166,8 @@ export class PostHeader {
   };
 
   connectedCallback() {
+    this.cachedScrollParent = this.resolveScrollParent();
+    this.lastPublishedScrollTop = null;
     globalThis.addEventListener('resize', this.throttledResize, { passive: true });
     globalThis.addEventListener('scroll', this.onScroll, {
       passive: true,
@@ -211,6 +227,7 @@ export class PostHeader {
       this.localHeaderResizeObserver.disconnect();
       this.localHeaderResizeObserver = null;
     }
+    this.cachedScrollParent = null;
     if (this.slottedContentObserver) {
       this.slottedContentObserver.disconnect();
       this.slottedContentObserver = null;
@@ -324,12 +341,34 @@ export class PostHeader {
   }
 
   private handleScrollEvent() {
-    const scrollTop =
-      this.scrollParent === document.body ? window.scrollY : this.scrollParent.scrollTop;
-    document.documentElement.style.setProperty(
-      '--post-header-scroll-top',
-      `${Math.max(scrollTop, 0)}px`,
+    const scrollParent = this.scrollParent;
+    const scrollTop = Math.max(
+      scrollParent === document.body ? window.scrollY : scrollParent.scrollTop,
+      0,
     );
+
+    // Writing on :root invalidates styles for the whole page, so skip identical values
+    if (scrollTop === this.lastPublishedScrollTop) return;
+    this.lastPublishedScrollTop = scrollTop;
+    document.documentElement.style.setProperty('--post-header-scroll-top', `${scrollTop}px`);
+  }
+
+  // The scroll container can change in SPAs (layout or route changes): rebind when it does
+  private refreshScrollParent() {
+    const previous = this.cachedScrollParent;
+    const current = this.resolveScrollParent();
+    if (previous === current) return;
+
+    previous?.removeEventListener('scroll', this.onScroll);
+    this.cachedScrollParent = current;
+    current.addEventListener('scroll', this.onScroll, { passive: true });
+
+    this.scrollParentResizeObserver?.disconnect();
+    this.scrollParentResizeObserver = new ResizeObserver(this.updateScrollParentHeight);
+    this.scrollParentResizeObserver.observe(current);
+
+    this.lastPublishedScrollTop = null;
+    this.handleScrollEvent();
   }
 
   private updateLocalHeaderHeight() {
