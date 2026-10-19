@@ -18,6 +18,9 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
   --adp-cell-background-color-in-range: unset; // needed because of ardp behavior
   --adp-hover-color: unset; // needed because of ardp behavior
   --adp-cell-border-width: 2px;
+  // Override air-datepicker's hard-coded white default so the flyout background
+  // follows the color scheme
+  --adp-background-color: #{tokens.get('post-datepicker-grid-color-enabled-bg')};
 
   font-family: inherit;
   font-size: var(--post-device-font-size-8);
