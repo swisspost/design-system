@@ -78,7 +78,7 @@ export class PostInternetFooter {
   }
 
   private hasItems(config: LinkListConfig | undefined): config is LinkListConfig {
-    return (config?.items?.length ?? 0) > 0;
+    return config !== undefined && config.items.length > 0;
   }
 
   private renderListWithTitle(
