@@ -11,10 +11,12 @@ export type UserMenuProps = {
   textAccessUserLinks: string;
 };
 
-// Appends/overwrites a returnURL param on the given URL
-const withReturnUrl = (url: string): string => {
+// Appends/overwrites a `changeCompanyTargetURL` param on the given URL
+// The given parameter is for exclusive usage on the Account/Company switch links,
+// so that the platform can redirect back to the current page after the user has switched context.
+const changeContextTargetURL = (url: string): string => {
   const target = new URL(url, window.location.href);
-  target.searchParams.set('returnURL', window.location.href);
+  target.searchParams.set('changeCompanyTargetURL', window.location.href);
   return target.toString();
 };
 
@@ -57,7 +59,7 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
             <Link
               config={{
                 text: config.accountSwitch.text,
-                url: withReturnUrl(config.accountSwitch.url),
+                url: changeContextTargetURL(config.accountSwitch.url),
                 icon: config.accountSwitch.icon,
               }}
             />
@@ -68,7 +70,7 @@ export const UserMenu: FunctionalComponent<{ config: UserMenuConfig } & UserMenu
             <Link
               config={{
                 text: config.companySwitch.text,
-                url: withReturnUrl(config.companySwitch.url),
+                url: changeContextTargetURL(config.companySwitch.url),
                 icon: config.companySwitch.icon,
               }}
             />
