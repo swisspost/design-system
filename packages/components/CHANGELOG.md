@@ -1,5 +1,18 @@
 # @swisspost/design-system-components
 
+## 10.7.0
+
+### Patch Changes
+
+- Fixed `post-date-picker` not trapping focus reliably inside the calendar popover. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8543](https://github.com/swisspost/design-system/pull/8543))
+
+- Added safe area insets to components that are anchored to the bottom edge of the viewport, ensuring their content clears the display cutout of devices such as the home indicator. This affects the footer base, the burger menu footer, the megadropdown on tablet and mobile, the side navigation, toasts and the bottom sheet variant of the dialog. (by [@yomonom](https://github.com/yomonom) with [#8534](https://github.com/swisspost/design-system/pull/8534))
+
+- Fixed the `post-header` component collapsing and expanding inconsistently when navigating it with the keyboard on a scrolled page. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8553](https://github.com/swisspost/design-system/pull/8553))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.7.0
+  - @swisspost/design-system-styles@10.7.0
+
 ## 10.6.0
 
 ### Minor Changes

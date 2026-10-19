@@ -1,12 +1,41 @@
 import { Source } from '@storybook/addon-docs/blocks';
+import { useEffect, useState } from 'react';
 import {
   getComponentStyleImports,
   getStyleImportsText,
   Props,
 } from './styles-package-import-individual.sample';
 import { PostIcon } from '@swisspost/design-system-components-react';
+import { STYLE_SWITCHER_EVENT } from '@root/.storybook/addons/styles-switcher/constants';
+
+type StyleSelection = {
+  theme: string;
+  appearance: string;
+};
+
+type StyleSelectionEvent = CustomEvent<StyleSelection>;
+
+const getAllStylesImport = ({ theme, appearance }: StyleSelection) => {
+  return `@use '@swisspost/design-system-styles/${theme.toLowerCase()}-${appearance.toLowerCase()}.scss';`;
+};
 
 export default function PackageTag(props: Props) {
+  const [styleSelection, setStyleSelection] = useState<StyleSelection>({
+    theme: 'Post',
+    appearance: 'Compact',
+  });
+  const allStylesImport = getAllStylesImport(styleSelection);
+
+  useEffect(() => {
+    const updateStyleSelection = (event: Event) => {
+      setStyleSelection((event as StyleSelectionEvent).detail);
+    };
+
+    window.addEventListener(STYLE_SWITCHER_EVENT, updateStyleSelection);
+
+    return () => window.removeEventListener(STYLE_SWITCHER_EVENT, updateStyleSelection);
+  }, []);
+
   return (
     <>
       <h2 id="style-imports" className="docs-autolink">
@@ -29,7 +58,7 @@ export default function PackageTag(props: Props) {
       </p>
       <p>To import all Design System styles:</p>
       <div className="docblock-source-all-design">
-        <Source code={`@use '@swisspost/design-system-styles/post-compact.scss';`} language="css" />
+        <Source key={allStylesImport} code={allStylesImport} language="css" />
       </div>
       <p>{getStyleImportsText(props)}</p>
       <Source code={getComponentStyleImports(props)} language="css" />

@@ -253,7 +253,7 @@ export const OnlineService: Story = {
     globalNavPrimary: false,
     globalNavSecondary: false,
     localNav: true,
-    targetGroup: false,
+    targetGroup: true,
     isLoggedIn: true,
   },
   render: (args: Args) => {
@@ -268,9 +268,9 @@ export const OnlineService: Story = {
             </a>
           </li>
           <li>
-            <a class="btn-primary" href="#">
-              <span>Close</span>
-              <post-icon aria-hidden="true" name="closex"></post-icon>
+            <a href="#">
+              <span>Local action</span>
+              <post-icon aria-hidden="true" name="component"></post-icon>
             </a>
           </li>
         </ul>
