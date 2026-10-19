@@ -29,3 +29,7 @@ one `hi` per user to sign in as that one, `new message` to raise the unread coun
 
 Only one of them ever reloads: the widget opens its socket just once it is signed in, so a `hi`
 on an anonymous page has nothing to push into and comes back as `?session=<id>` instead.
+
+The integration apps serve the same file and load it on every page, so it stays dormant until the
+URL carries `?klpmock`. The playground's own tag carries `data-always` instead, which skips that
+check.
