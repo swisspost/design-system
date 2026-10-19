@@ -2,6 +2,7 @@
 @use '@swisspost/design-system-styles/mixins/media';
 
 @use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/tokens/helpers';
 @use '@swisspost/design-system-styles/functions/tokens';
 
 tokens.$default-map: components.$post-banner;
@@ -52,10 +53,20 @@ tokens.$default-map: components.$post-banner;
 }
 
 .post-banner-content {
+  // Reserve space for focus rings clipped by the scroll container below, canceled by a negative margin
+  --post-banner-focus-room: calc(
+    #{tokens.get('focus-outline-width', helpers.$post-focus)} + #{tokens.get(
+        'focus-outline-offset',
+        helpers.$post-focus
+      )}
+  );
+
   display: grid;
   grid-template-columns: 1fr;
   row-gap: tokens.get('banner-content-gap');
   overflow-x: auto;
+  padding: var(--post-banner-focus-room);
+  margin: calc(-1 * var(--post-banner-focus-room));
 }
 
 .actions {

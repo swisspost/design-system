@@ -129,7 +129,7 @@ const COMPONENTS = {
         <span class="visually-hidden">Access user links.</span>
       </button>
     </post-menu-trigger>
-    <post-menu id="user-menu" label="User links">
+    <post-menu id="user-menu" label="User links" placement="bottom-end">
       <div slot="header">
         <post-avatar firstname="John" lastname="Doe" aria-hidden="true"></post-avatar>
         John Doe
@@ -324,7 +324,7 @@ const COMPONENTS = {
           <span class="visually-hidden">Access user links.</span>
         </button>
       </post-menu-trigger>
-      <post-menu id="user-menu-local" label="User links">
+      <post-menu id="user-menu-local" label="User links" placement="bottom-end">
         <div slot="header">
           <post-avatar firstname="John" lastname="Doe" aria-hidden="true"></post-avatar>
           John Doe
@@ -359,13 +359,22 @@ const COMPONENTS = {
 
 // Variant configurations
 const VARIANTS = {
-  'application': {
+  'application-compact': {
     components: ['logo', 'title', 'localNavApplication'],
     stylesheet: 'post-compact.css',
     replacements: {
       '{{TITLE_TEXT}}': '[Application Title]',
     },
   },
+
+  'application-condensed': {
+    components: ['logo', 'title', 'localNavApplication'],
+    stylesheet: 'post-condensed.css',
+    replacements: {
+      '{{TITLE_TEXT}}': '[Application Title]',
+    },
+  },
+
   'onepager': {
     components: ['logo', 'languageMenu', 'title'],
     replacements: {

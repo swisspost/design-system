@@ -1,5 +1,16 @@
 # @swisspost/design-system-styles
 
+## 10.7.0
+
+### Patch Changes
+
+- Updated the `post-side-navigation` to always fill the entire viewport height on desktop, ensuring that no blank space appears above or below the header when rubber band scrolling. (by [@yomonom](https://github.com/yomonom) with [#8557](https://github.com/swisspost/design-system/pull/8557))
+
+- Added safe area insets to components that are anchored to the bottom edge of the viewport, ensuring their content clears the display cutout of devices such as the home indicator. This affects the footer base, the burger menu footer, the megadropdown on tablet and mobile, the side navigation, toasts and the bottom sheet variant of the dialog. (by [@yomonom](https://github.com/yomonom) with [#8534](https://github.com/swisspost/design-system/pull/8534))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.7.0
+  - @swisspost/design-system-tokens@10.7.0
+
 ## 10.6.0
 
 ### Minor Changes

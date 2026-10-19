@@ -576,7 +576,7 @@ export class PostTabs {
             class="scroll-btn scroll-btn-left"
             type="button"
             aria-label={this.textPrevTabItems}
-            tabindex={this.showLeftScrollButton ? 0 : -1}
+            tabindex={-1}
             hidden={!this.showLeftScrollButton}
             onClick={() => this.scrollTabs('prev')}
           >
@@ -600,7 +600,7 @@ export class PostTabs {
             class="scroll-btn scroll-btn-right"
             type="button"
             aria-label={this.textNextTabItems}
-            tabindex={this.showRightScrollButton ? 0 : -1}
+            tabindex={-1}
             hidden={!this.showRightScrollButton}
             onClick={() => this.scrollTabs('next')}
           >
