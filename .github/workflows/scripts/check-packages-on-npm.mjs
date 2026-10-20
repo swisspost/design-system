@@ -5,8 +5,13 @@ import fs from 'node:fs';
 // Read the changesets.json file and parse it into an object
 const changesets = JSON.parse(fs.readFileSync('changesets.json', 'utf8'));
 
-// Gather package manifests from the workspace directories.
-const manifests = ['apps', 'packages', 'tooling'].flatMap(directory =>
+const workspaceDirectories = [
+  'packages',
+  'packages/components-angular/projects',
+  'packages/intranet-header-workspace/projects',
+  'packages/styles-primeng-workspace/projects',
+];
+const manifests = workspaceDirectories.flatMap(directory =>
   fs
     .readdirSync(directory, { withFileTypes: true })
     .filter(entry => entry.isDirectory())
