@@ -5,8 +5,27 @@ import fs from 'node:fs';
 // Read the changesets.json file and parse it into an object
 const changesets = JSON.parse(fs.readFileSync('changesets.json', 'utf8'));
 
-// Get the list of releases from the changesets object
-const releases = changesets.releases ?? [];
+// Gather package manifests from the workspace directories.
+const manifests = ['apps', 'packages', 'tooling'].flatMap(directory =>
+  fs
+    .readdirSync(directory, { withFileTypes: true })
+    .filter(entry => entry.isDirectory())
+    .map(entry => `${directory}/${entry.name}/package.json`)
+    .filter(manifestPath => fs.existsSync(manifestPath))
+    .map(manifestPath => JSON.parse(fs.readFileSync(manifestPath, 'utf8'))),
+);
+
+const packagesByName = new Map(manifests.map(manifest => [manifest.name, manifest]));
+
+const releases = (changesets.releases ?? []).filter(release => {
+  const packageJson = packagesByName.get(release.name);
+
+  if (!packageJson) {
+    throw new Error(`Cannot find workspace package: ${release.name}`);
+  }
+
+  return packageJson.private === false && packageJson.publishConfig?.access === 'public';
+});
 
 // Check all packages concurrently to avoid serial registry requests
 const results = await Promise.all(
