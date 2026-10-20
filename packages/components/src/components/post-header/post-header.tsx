@@ -49,10 +49,17 @@ export class PostHeader {
   private slottedContentObserver: MutationObserver;
   private globalHeader: HTMLElement;
   private localHeader: HTMLElement;
-  private readonly throttledResize = throttle(50, () => {
-    this.refreshScrollParent();
-    this.updateLocalHeaderHeight();
-  });
+
+  // The element the scroll listener was added to, so it is removed from the same one
+  private scrollListenerTarget: HTMLElement | null = null;
+
+  // Last value written to --post-header-scroll-top, used to skip identical writes
+  private lastPublishedScrollTop: number | null = null;
+
+  // Above this scroll position the header is fully collapsed: writing a bigger value changes nothing
+  private maxUsefulScrollTop = Infinity;
+
+  private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
 
   private get hasBurgerMenu(): boolean {
     return this.device !== 'desktop' && this.hasMainNav;
@@ -63,18 +70,7 @@ export class PostHeader {
     easing: 'headerEase',
   };
 
-  // Resolved once on connect (and on resize), not on every scroll event
-  private cachedScrollParent: HTMLElement | null = null;
-  private lastPublishedScrollTop: number | null = null;
-
   get scrollParent(): HTMLElement {
-    if (!this.cachedScrollParent?.isConnected) {
-      this.cachedScrollParent = this.resolveScrollParent();
-    }
-    return this.cachedScrollParent;
-  }
-
-  private resolveScrollParent(): HTMLElement {
     const frozenScrollParent: HTMLElement | null = document.querySelector(
       '[data-post-scroll-locked]',
     );
@@ -166,15 +162,15 @@ export class PostHeader {
   };
 
   connectedCallback() {
-    this.cachedScrollParent = this.resolveScrollParent();
-    this.lastPublishedScrollTop = null;
     globalThis.addEventListener('resize', this.throttledResize, { passive: true });
     globalThis.addEventListener('scroll', this.onScroll, {
       passive: true,
     });
-    this.scrollParent.addEventListener('scroll', this.onScroll, {
+    this.scrollListenerTarget = this.scrollParent;
+    this.scrollListenerTarget.addEventListener('scroll', this.onScroll, {
       passive: true,
     });
+    this.lastPublishedScrollTop = null;
     document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
 
@@ -207,12 +203,13 @@ export class PostHeader {
 
   // Clean up possible side effects when post-header is disconnected
   disconnectedCallback() {
-    const scrollParent = this.scrollParent;
-
     globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange);
     globalThis.removeEventListener('resize', this.throttledResize);
     globalThis.removeEventListener('scroll', this.onScroll);
-    if (scrollParent) scrollParent.removeEventListener('scroll', this.onScroll);
+
+    // The header is already detached here, so this.scrollParent would return document.body
+    this.scrollListenerTarget?.removeEventListener('scroll', this.onScroll);
+    this.scrollListenerTarget = null;
     document.removeEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.removeEventListener('keydown', this.keyboardHandler);
     if (this.host.shadowRoot) {
@@ -227,7 +224,6 @@ export class PostHeader {
       this.localHeaderResizeObserver.disconnect();
       this.localHeaderResizeObserver = null;
     }
-    this.cachedScrollParent = null;
     if (this.slottedContentObserver) {
       this.slottedContentObserver.disconnect();
       this.slottedContentObserver = null;
@@ -342,32 +338,43 @@ export class PostHeader {
 
   private handleScrollEvent() {
     const scrollParent = this.scrollParent;
-    const scrollTop = Math.max(
-      scrollParent === document.body ? window.scrollY : scrollParent.scrollTop,
-      0,
-    );
+    const position = scrollParent === document.body ? window.scrollY : scrollParent.scrollTop;
 
-    // Writing on :root invalidates styles for the whole page, so skip identical values
+    // Never negative (overscroll) and never above the point where the header is fully collapsed
+    const scrollTop = Math.min(Math.max(position, 0), this.maxUsefulScrollTop);
+
+    // Writing on :root recalculates the styles of the whole page, so identical values are skipped
     if (scrollTop === this.lastPublishedScrollTop) return;
+
     this.lastPublishedScrollTop = scrollTop;
     document.documentElement.style.setProperty('--post-header-scroll-top', `${scrollTop}px`);
   }
 
-  // The scroll container can change in SPAs (layout or route changes): rebind when it does
-  private refreshScrollParent() {
-    const previous = this.cachedScrollParent;
-    const current = this.resolveScrollParent();
-    if (previous === current) return;
+  // The scroll position after which every scroll-based formula of the header stops changing
+  private updateMaxUsefulScrollTop() {
+    const styles = getComputedStyle(document.documentElement);
+    const px = (name: string) => Number.parseFloat(styles.getPropertyValue(name));
 
-    previous?.removeEventListener('scroll', this.onScroll);
-    this.cachedScrollParent = current;
-    current.addEventListener('scroll', this.onScroll, { passive: true });
+    const globalExpanded = px('--post-global-header-expanded-height');
+    const globalReduced = px('--post-global-header-reduced-height');
+    const localExpanded = px('--post-local-header-expanded-height');
+    const localReduced = px('--post-local-header-reduced-height');
 
-    this.scrollParentResizeObserver?.disconnect();
-    this.scrollParentResizeObserver = new ResizeObserver(this.updateScrollParentHeight);
-    this.scrollParentResizeObserver.observe(current);
+    const globalShrinks = globalExpanded > globalReduced;
+    const threshold = Math.ceil(
+      Math.max(
+        globalExpanded - globalReduced, // global header and logo shrink
+        localExpanded - localReduced, // local header shrinks
+        globalShrinks ? 4 * globalReduced : 0, // global controls slide up by scroll / 4, at most by the reduced height
+      ),
+    );
 
-    this.lastPublishedScrollTop = null;
+    // If a value cannot be read, do not cap at all (same behaviour as before)
+    const maxUsefulScrollTop = Number.isFinite(threshold) ? threshold : Infinity;
+    if (maxUsefulScrollTop === this.maxUsefulScrollTop) return;
+
+    this.maxUsefulScrollTop = maxUsefulScrollTop;
+    this.lastPublishedScrollTop = null; // write again with the new limit
     this.handleScrollEvent();
   }
 
@@ -380,6 +387,9 @@ export class PostHeader {
         `${localHeaderElement.clientHeight}px`,
       );
     }
+
+    // The header sizes may have changed, so the scroll limit has to be computed again
+    this.updateMaxUsefulScrollTop();
   }
 
   private updateScrollParentHeight() {
