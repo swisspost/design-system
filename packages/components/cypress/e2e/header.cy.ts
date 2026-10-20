@@ -13,12 +13,28 @@ function getLanguageMenuTrigger() {
 }
 
 // waits until the header handled the scroll, so a "still expanded" assertion can't pass too early
+// (the page may scroll smoothly, so wait until the position is reached; the published value can't be used
+// for this, it stops changing once the header is fully collapsed)
 function scrollAndWait(y: number) {
   cy.scrollTo(0, y);
-  cy.document()
+  cy.window().should(win => {
+    expect(Math.round(win.scrollY), 'scroll position').to.eq(y);
+  });
+  // scroll events are dispatched once per frame: after two frames the header has handled the last one
+  cy.window().then(
+    win =>
+      new Cypress.Promise<void>(resolve => {
+        win.requestAnimationFrame(() => win.requestAnimationFrame(() => resolve()));
+      }),
+  );
+}
+
+function getPublishedScrollTop() {
+  return cy
+    .document()
     .its('documentElement.style')
     .invoke('getPropertyValue', '--post-header-scroll-top')
-    .should('eq', `${y}px`);
+    .then(value => Number.parseFloat(value));
 }
 
 describe('header', () => {
@@ -175,6 +191,99 @@ describe('header', () => {
 
       cy.get('@lettersTrigger').should('not.have.class', 'active');
       cy.get('@packagesTrigger').should('have.class', 'active');
+    });
+  });
+
+  describe('scroll position publishing', { viewportHeight: 1080, viewportWidth: 1920 }, () => {
+    beforeEach(() => {
+      cy.getComponent('header', HEADER_ID);
+    });
+
+    it('should publish the exact scroll position while the header is collapsing', () => {
+      scrollAndWait(20);
+      getPublishedScrollTop().should('eq', 20);
+
+      scrollAndWait(0);
+      getPublishedScrollTop().should('eq', 0);
+    });
+
+    it('should stop at the same value once the header is fully collapsed', () => {
+      scrollAndWait(400);
+
+      getPublishedScrollTop().then(limit => {
+        expect(limit, 'published value is capped').to.be.greaterThan(0).and.lessThan(400);
+
+        // 501px is the maximum scroll position of the story
+        scrollAndWait(501);
+        getPublishedScrollTop().should('eq', limit);
+      });
+    });
+
+    it('should not write the custom property while scrolling beyond the limit', () => {
+      scrollAndWait(300);
+
+      cy.document().then(doc => {
+        cy.spy(doc.documentElement.style, 'setProperty').as('setProperty');
+      });
+
+      scrollAndWait(350);
+      scrollAndWait(400);
+      scrollAndWait(450);
+
+      cy.get('@setProperty').should('not.have.been.calledWith', '--post-header-scroll-top');
+    });
+
+    it('should publish the scroll position again when scrolling back up', () => {
+      scrollAndWait(501);
+      scrollAndWait(10);
+
+      getPublishedScrollTop().should('eq', 10);
+    });
+
+    it('should look the same at the limit and further down', () => {
+      const getLogoHeight = () =>
+        cy
+          .get('@header')
+          .shadow()
+          .find('.logo')
+          .then($logo => $logo[0].getBoundingClientRect().height);
+
+      scrollAndWait(300);
+
+      getLogoHeight().then(heightAtLimit => {
+        scrollAndWait(501);
+        getLogoHeight().should('eq', heightAtLimit);
+      });
+    });
+
+    it('should stop listening to the scroll container after the header is removed', () => {
+      cy.get('@header').then($header => {
+        const doc = $header[0].ownerDocument;
+
+        const container = doc.createElement('div');
+        container.id = 'scroll-container';
+        container.style.cssText = 'height: 400px; overflow-y: auto;';
+
+        const filler = doc.createElement('div');
+        filler.style.height = '3000px';
+
+        doc.body.prepend(container);
+        container.append($header[0], filler); // reconnects the header inside the scroll container
+      });
+
+      cy.get('@header').then($header => $header[0].remove());
+
+      // a leftover listener would now publish the page position, so make it differ from the last value
+      scrollAndWait(200);
+
+      cy.document().then(doc => {
+        cy.spy(doc.documentElement.style, 'setProperty').as('setProperty');
+      });
+
+      cy.get('#scroll-container').scrollTo(0, 300);
+      cy.wait(100);
+
+      cy.get('@setProperty').should('not.have.been.calledWith', '--post-header-scroll-top');
     });
   });
 
@@ -515,13 +624,21 @@ describe('header', () => {
             cy.wrap(globalHeaderEl).focus();
           });
         cy.get('@header').should('have.attr', 'data-expanded');
+
+        // the global header slides in: realClick uses the position at call time, so wait for the transition to end
+        cy.get('@header')
+          .shadow()
+          .find('.global-header')
+          .should($globalHeader => {
+            expect($globalHeader[0].getAnimations(), 'running transitions').to.have.length(0);
+          });
       }
 
       // https://github.com/swisspost/design-system/issues/8592
       it('should keep data-expanded and open the language menu when clicked after keyboard expansion', () => {
         expandWithKeyboardOnGlobalHeaderElement();
 
-        getLanguageMenuTrigger().realClick();
+        getLanguageMenuTrigger().realClick({ scrollBehavior: false });
 
         getLanguageMenuTrigger().should('have.attr', 'aria-expanded', 'true');
         cy.get('@header').find('post-language-menu-item').should('be.visible');
@@ -531,7 +648,7 @@ describe('header', () => {
       it('should remove data-expanded on the next scroll after a click inside the expanded header', () => {
         expandWithKeyboardOnGlobalHeaderElement();
 
-        getLanguageMenuTrigger().realClick();
+        getLanguageMenuTrigger().realClick({ scrollBehavior: false });
         cy.get('@header').should('have.attr', 'data-expanded');
 
         scrollAndWait(501);
@@ -541,7 +658,7 @@ describe('header', () => {
       it('should keep data-expanded on scroll when going back to the keyboard after a click', () => {
         expandWithKeyboardOnGlobalHeaderElement();
 
-        getLanguageMenuTrigger().realClick();
+        getLanguageMenuTrigger().realClick({ scrollBehavior: false });
         getLanguageMenuTrigger().should('have.attr', 'aria-expanded', 'true');
 
         cy.realPress('Escape');
