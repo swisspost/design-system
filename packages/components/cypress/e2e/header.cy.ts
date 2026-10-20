@@ -624,13 +624,21 @@ describe('header', () => {
             cy.wrap(globalHeaderEl).focus();
           });
         cy.get('@header').should('have.attr', 'data-expanded');
+
+        // the global header slides in: realClick uses the position at call time, so wait for the transition to end
+        cy.get('@header')
+          .shadow()
+          .find('.global-header')
+          .should($globalHeader => {
+            expect($globalHeader[0].getAnimations(), 'running transitions').to.have.length(0);
+          });
       }
 
       // https://github.com/swisspost/design-system/issues/8592
       it('should keep data-expanded and open the language menu when clicked after keyboard expansion', () => {
         expandWithKeyboardOnGlobalHeaderElement();
 
-        getLanguageMenuTrigger().realClick();
+        getLanguageMenuTrigger().realClick({ scrollBehavior: false });
 
         getLanguageMenuTrigger().should('have.attr', 'aria-expanded', 'true');
         cy.get('@header').find('post-language-menu-item').should('be.visible');
@@ -640,7 +648,7 @@ describe('header', () => {
       it('should remove data-expanded on the next scroll after a click inside the expanded header', () => {
         expandWithKeyboardOnGlobalHeaderElement();
 
-        getLanguageMenuTrigger().realClick();
+        getLanguageMenuTrigger().realClick({ scrollBehavior: false });
         cy.get('@header').should('have.attr', 'data-expanded');
 
         scrollAndWait(501);
@@ -650,7 +658,7 @@ describe('header', () => {
       it('should keep data-expanded on scroll when going back to the keyboard after a click', () => {
         expandWithKeyboardOnGlobalHeaderElement();
 
-        getLanguageMenuTrigger().realClick();
+        getLanguageMenuTrigger().realClick({ scrollBehavior: false });
         getLanguageMenuTrigger().should('have.attr', 'aria-expanded', 'true');
 
         cy.realPress('Escape');
