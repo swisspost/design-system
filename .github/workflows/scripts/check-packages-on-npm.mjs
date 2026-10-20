@@ -24,6 +24,7 @@ const releases = (changesets.releases ?? []).filter(release => {
     throw new Error(`Cannot find workspace package: ${release.name}`);
   }
 
+  // `publishConfig.access = 'public'` is required for scoped packages (e.g. `@swisspost/...`), because npm defaults scoped packages to `restricted` and then the publish command would fail with 402.
   return packageJson.private === false && packageJson.publishConfig?.access === 'public';
 });
 
