@@ -4,7 +4,6 @@
   "description": "Intranet header for internal Swiss Post applications as an Angular component.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
-  "private": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git"
