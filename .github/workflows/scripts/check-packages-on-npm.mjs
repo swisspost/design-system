@@ -30,7 +30,7 @@ const releases = (changesets.releases ?? []).filter(release => {
   }
 
   // `publishConfig.access = 'public'` is required for scoped packages (e.g. `@swisspost/...`), because npm defaults scoped packages to `restricted` and then the publish command would fail with 402.
-  return packageJson.private === false && packageJson.publishConfig?.access === 'public';
+  return packageJson.private !== true && packageJson.publishConfig?.access === 'public';
 });
 
 // Check all packages concurrently to avoid serial registry requests
