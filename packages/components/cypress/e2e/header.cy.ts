@@ -13,10 +13,14 @@ function getLanguageMenuTrigger() {
 }
 
 // waits until the header handled the scroll, so a "still expanded" assertion can't pass too early
-// (scroll events are dispatched once per frame, so the header has handled it after two frames;
-// the published value can't be used for this, it stops changing once the header is fully collapsed)
+// (the page may scroll smoothly, so wait until the position is reached; the published value can't be used
+// for this, it stops changing once the header is fully collapsed)
 function scrollAndWait(y: number) {
   cy.scrollTo(0, y);
+  cy.window().should(win => {
+    expect(Math.round(win.scrollY), 'scroll position').to.eq(y);
+  });
+  // scroll events are dispatched once per frame: after two frames the header has handled the last one
   cy.window().then(
     win =>
       new Cypress.Promise<void>(resolve => {
