@@ -38,6 +38,7 @@ export class PostTabs {
   private tabsContainer!: HTMLElement;
   // Re-applies the last scroll whose target depends on the container width, if the container resizes
   private pendingScroll?: () => void;
+  private hostWidth?: number;
 
   @Element() host!: HTMLPostTabsElement;
 
@@ -182,6 +183,7 @@ export class PostTabs {
   }
 
   private setupResizeObserver() {
+    this.hostWidth = this.host.clientWidth;
     this.resizeObserver = new ResizeObserver(this.handleContainerResize);
     this.resizeObserver.observe(this.tabsContainer);
   }
@@ -190,6 +192,14 @@ export class PostTabs {
   // the scroll target has to be recomputed, otherwise the scroll stops short of the end
   private readonly handleContainerResize = () => {
     this.updateScrollButtons();
+
+    // When the whole component resizes instead (e.g. the window gets narrower), the tabs keep their position
+    const hostWidth = this.host.clientWidth;
+    if (hostWidth !== this.hostWidth) {
+      this.hostWidth = hostWidth;
+      this.pendingScroll = undefined;
+    }
+
     this.pendingScroll?.();
   };
 

@@ -82,6 +82,31 @@ describe('tabs', () => {
     });
   });
 
+  describe('scroll buttons in the Page Tabs variant', () => {
+    beforeEach(() => {
+      cy.viewport(320, 576);
+      cy.getComponent('tabs', TABS_ID, 'pages-variant');
+      cy.get('@tabs').shadow().find('.tabs').as('container');
+      cy.get('@tabs').shadow().find('.scroll-btn-right').as('rightButton');
+    });
+
+    it('should keep the scroll position when the tabs get narrower after scrolling to the end', () => {
+      cy.get('@rightButton').should('be.visible').click();
+      cy.get('@rightButton').should('not.be.visible');
+
+      cy.get('@container').then($container => {
+        const scrollLeft = $container[0].scrollLeft;
+
+        cy.viewport(300, 576);
+        // a smooth scroll back to the end would take a moment: wait before checking that the position didn't change
+        cy.wait(500);
+
+        cy.get('@container').its('0.scrollLeft').should('equal', scrollLeft);
+        cy.get('@rightButton').should('be.visible');
+      });
+    });
+  });
+
   describe('active tab', () => {
     beforeEach(() => {
       cy.getComponent('tabs', TABS_ID, 'active-tab');
