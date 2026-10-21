@@ -367,11 +367,23 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
   describe('page layout', () => {
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-tooltip.test.html');
-      // Wait for post-accordion to fully hydrate before measuring positions.
-      // The accordion runs a collapse animation on load; if snapRect() fires
-      // before it settles, the "before" coordinates are captured mid-animation
-      // and the layout-shift assertions fail even though no real shift occurs.
-      cy.get('post-accordion[data-hydrated]', { timeout: 10000 }).should('exist');
+      // Wait until every component in the layout section is hydrated before measuring positions.
+      // Components (tabs, accordion, ...) change their height while they hydrate, so if snapRect()
+      // runs too early, the "before" coordinates are taken from a page that is still changing
+      // and the layout-shift assertions fail even though the tooltip does not shift anything.
+      // Elements like post-button are only styled by CSS (no component), so they never hydrate.
+      cy.get('.tooltip-layout-container', { timeout: 10000 }).should($container => {
+        const { customElements } = $container[0].ownerDocument.defaultView;
+        const notHydrated = Array.from($container[0].querySelectorAll('*'))
+          .filter(
+            el =>
+              el.localName.startsWith('post-') &&
+              customElements.get(el.localName) &&
+              !el.hasAttribute('data-hydrated'),
+          )
+          .map(el => el.localName);
+        expect(notHydrated, 'components not hydrated yet').to.deep.equal([]);
+      });
       cy.get('#tooltip-layout').find('post-popovercontainer[popover]').as('layoutTooltip');
     });
 
