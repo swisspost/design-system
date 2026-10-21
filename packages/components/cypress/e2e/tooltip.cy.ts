@@ -370,12 +370,12 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
       // components (e.g. tabs) change the page height while hydrating: wait for them before measuring
       cy.get('.tooltip-layout-container', { timeout: 10000 }).should($container => {
         const { customElements } = $container[0].ownerDocument.defaultView;
-        const notHydrated = Array.from($container[0].querySelectorAll('*'))
+        const notHydrated = Array.from($container[0].querySelectorAll<HTMLElement>('*'))
           .filter(
             el =>
               el.localName.startsWith('post-') &&
               customElements.get(el.localName) &&
-              !el.hasAttribute('data-hydrated'),
+              el.dataset.hydrated === undefined,
           )
           .map(el => el.localName);
         expect(notHydrated, 'components not hydrated yet').to.deep.equal([]);
