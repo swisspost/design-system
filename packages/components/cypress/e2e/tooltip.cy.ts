@@ -367,11 +367,8 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
   describe('page layout', () => {
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-tooltip.test.html');
-      // Wait for post-accordion to fully hydrate before measuring positions.
-      // The accordion runs a collapse animation on load; if snapRect() fires
-      // before it settles, the "before" coordinates are captured mid-animation
-      // and the layout-shift assertions fail even though no real shift occurs.
-      cy.get('post-accordion[data-hydrated]', { timeout: 10000 }).should('exist');
+      // components change the page height while hydrating: give the layout time to settle
+      cy.wait(1000);
       cy.get('#tooltip-layout').find('post-popovercontainer[popover]').as('layoutTooltip');
     });
 
