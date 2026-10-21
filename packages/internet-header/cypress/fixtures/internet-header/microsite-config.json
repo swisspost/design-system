@@ -41,45 +41,9 @@
           "icon": "search"
         },
         {
-          "user": {
-            "name": "John",
-            "surname": "Doe",
-            "email": "john@example.com",
-            "userType": "B2C",
-            "changeUserAndProfile": "notAvailable"
-          },
-          "options": [
-            {
-              "text": "Mein Profil",
-              "url": "#",
-              "icon": "profile"
-            },
-            {
-              "text": "Nachrichten",
-              "url": "#",
-              "icon": "letter"
-            },
-            {
-              "text": "Einstellungen",
-              "url": "#",
-              "icon": "gear"
-            }
-          ],
-          "accountSwitch": {
-            "text": "Account wechseln",
-            "url": "#",
-            "icon": "userswitch"
-          },
-          "companySwitch": {
-            "text": "Firma wechseln",
-            "url": "#",
-            "icon": "company"
-          },
-          "logoutLink": {
-            "text": "Abmelden",
-            "url": "#",
-            "icon": "logout"
-          }
+          "text": "Hilfe",
+          "url": "#help",
+          "icon": "help"
         }
       ],
       "mainNavigation": [
