@@ -1,8 +1,22 @@
 @use '@swisspost/design-system-styles/core.scss' as post;
 
+.docs-container {
+  padding: 0 !important;
+  margin: 0;
+  max-width: unset;
+}
+
 migration-global-state {
+  h2 {
+    margin-block-start: 0 !important;
+  }
+
   h3 {
     margin-block-start: 0.75rem !important;
+  }
+
+  .palette > h4 {
+    margin-block-start: 0 !important;
   }
 
   .change-badge {
@@ -88,6 +102,10 @@ migration-global-state {
     }
   }
 
+  .palette-accent .info {
+    color: post.$gray-20;
+  }
+
   .todo-list-status {
     font-size: 0.875rem;
   }
@@ -97,8 +115,6 @@ migration-setup {
   .migration-options {
     margin: 1rem 0;
     padding: 1.5rem 0;
-    border-top: 1px solid post.$gray-10;
-    border-bottom: 1px solid post.$gray-10;
 
     > .row {
       --bs-gutter-y: 1.5rem;

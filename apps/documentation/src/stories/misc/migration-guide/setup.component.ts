@@ -19,7 +19,7 @@ export class SetupComponent extends LitElement {
       <section>
         <div class="row gap-24 migration-options">
           <div class="col-auto">
-            <label class="form-label fs-9 fw-bold d-block mb-12" for="docs_Default_ExampleSelect">
+            <label class="form-label fs-6 fw-bold d-block mb-12" for="docs_Default_ExampleSelect">
               What version of the Design System is your application currently using?
             </label>
             <select
@@ -53,61 +53,51 @@ export class SetupComponent extends LitElement {
           </div>
           <div class="col-12">
             <fieldset @change="${this._onEnvironmentChange}">
-              <legend class="fs-9 fw-bold">What environment is your application for?</legend>
-              <div class="form-check form-check-inline mb-0">
+              <legend class="fs-6 fw-bold">What environment is your application for?</legend>
+              <div class="btn-group">
                 <input
                   id="migration-intranet"
                   type="radio"
-                  class="form-check-input"
+                  class="btn-check"
                   name="migration-audience"
                   value="intranet"
                   ?checked="${this.environment === 'intranet'}"
                 />
-                <label for="migration-intranet" class="form-check-label">
-                  Intranet application
-                </label>
-              </div>
-              <div class="form-check form-check-inline mb-0">
+                <label for="migration-intranet"> Intranet </label>
                 <input
                   id="migration-extranet"
                   type="radio"
-                  class="form-check-input"
+                  class="btn-check"
                   name="migration-audience"
                   value="internet"
                   ?checked="${this.environment === 'internet'}"
                 />
-                <label for="migration-extranet" class="form-check-label">
-                  Extranet/Internet application
-                </label>
+                <label for="migration-extranet"> Extranet / Internet </label>
               </div>
             </fieldset>
           </div>
           <div class="col-12">
             <fieldset @change="${this._onAngularChange}">
-              <legend class="fs-9 fw-bold">What technology is your application built with?</legend>
-              <div class="form-check form-check-inline mb-0">
+              <legend class="fs-6 fw-bold">What technology is your application built with?</legend>
+              <div class="btn-group">
                 <input
                   id="migration-angular"
                   type="radio"
-                  class="form-check-input"
+                  class="btn-check"
                   name="migration-technology"
                   value="true"
                   ?checked="${this.angular}"
                 />
-                <label for="migration-angular" class="form-check-label">Angular application</label>
-              </div>
-              <div class="form-check form-check-inline mb-0">
+                <label for="migration-angular">Angular</label>
                 <input
                   id="migration-other-technology"
                   type="radio"
-                  class="form-check-input"
+                  class="btn-check"
                   name="migration-technology"
                   value="false"
                   ?checked="${!this.angular}"
                 />
-                <label for="migration-other-technology" class="form-check-label">
-                  Non-Angular application
-                </label>
+                <label for="migration-other-technology"> React / Other </label>
               </div>
             </fieldset>
           </div>
