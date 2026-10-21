@@ -108,7 +108,7 @@ export const Default: Story = {};
 
 export const Anonymous: Story = {
   parameters: inIframe(120),
-  args: { session: 'anonymous' },
+  args: { session: 'anonymous', initialState: 'anonymous' },
 };
 
 export const SignedIn: Story = {
