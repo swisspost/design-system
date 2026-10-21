@@ -54,20 +54,72 @@ and `wss:`, because the widget also opens a websocket to it.
 All links are provided by your application, as light DOM in the widget's slots. The widget decides
 which of them to show:
 
-| Slot             | Content                                           | Shown                                               |
-| ---------------- | ------------------------------------------------- | --------------------------------------------------- |
-| `login-link`     | A link to the login page.                         | To anonymous visitors.                              |
-| `account-switch` | A `post-menu-item` linking to the account switch. | When the session allows the user to switch account. |
-| `company-switch` | A `post-menu-item` linking to the company switch. | When the session allows the user to switch company. |
-| `menu-links`     | Any number of `post-menu-item` elements.          | In the user menu, in the order given.               |
-| `logout-link`    | A `post-menu-item` linking to the logout.         | Last in the user menu.                              |
+<div className="table-responsive">
+  <table className="table">
+    <caption className="visually-hidden">
+      Slots of the KLP login widget and when they are shown
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">Slot</th>
+        <th scope="col">Content</th>
+        <th scope="col">Shown</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">
+          <code>login-link</code>
+        </th>
+        <td>A link to the login page.</td>
+        <td>To anonymous visitors.</td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>account-switch</code>
+        </th>
+        <td>
+          A <code>post-menu-item</code> linking to the account switch.
+        </td>
+        <td>When the session allows the user to switch account.</td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>company-switch</code>
+        </th>
+        <td>
+          A <code>post-menu-item</code> linking to the company switch.
+        </td>
+        <td>When the session allows the user to switch company.</td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>menu-links</code>
+        </th>
+        <td>
+          Any number of <code>post-menu-item</code> elements.
+        </td>
+        <td>In the user menu, in the order given.</td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>logout-link</code>
+        </th>
+        <td>
+          A <code>post-menu-item</code> linking to the logout.
+        </td>
+        <td>Last in the user menu.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 The account switch and the company switch are never shown together.
 
 ## Signed in
 
 Once the user is signed in, the avatar opens the user menu, with the company, if any, above the
-user's name.
+user's name. Select the avatar in the examples below to open it.
 
 <Canvas of={KlpLoginWidgetStories.SignedIn} />
 
@@ -85,11 +137,39 @@ Place a `post-klp-login-widget-messages` element among the `menu-links`, whereve
 should appear. It shows the number of unread messages the platform reports, and the avatar shows a
 dot as long as there are any. Both update as messages arrive, without a reload.
 
-| Attribute     | Description                                                                 |
-| ------------- | --------------------------------------------------------------------------- |
-| `url`         | Where the entry points.                                                     |
-| `text`        | Label of the entry.                                                         |
-| `text-unread` | Visually hidden label for the count. `{count}` is replaced with the number. |
+<div className="table-responsive">
+  <table className="table">
+    <caption className="visually-hidden">Attributes of the messages entry</caption>
+    <thead>
+      <tr>
+        <th scope="col">Attribute</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">
+          <code>url</code>
+        </th>
+        <td>Where the entry points.</td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>text</code>
+        </th>
+        <td>Label of the entry.</td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>text-unread</code>
+        </th>
+        <td>
+          Visually hidden label for the count. <code>{'{count}'}</code> is replaced with the number.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ## Before the session is known
 
