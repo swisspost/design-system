@@ -1,7 +1,7 @@
-import { Link, LinkProps, MegaDropdown, UserMenu } from '@/components/internal';
+import { Link, LinkProps, MegaDropdown } from '@/components/internal';
 import { dispose, state } from '@/data/store';
 import { ActiveRouteProp, Environment } from '@/models/general.model';
-import { PostLoginConfig, UserMenuConfig } from '@/models/header.model';
+import { PostLoginConfig } from '@/models/header.model';
 import { IconLinkConfig, LinkConfig } from '@/models/shared.model';
 import { getAlternateLinks, observeAlternateLinks } from '@/services/alternate-link.service';
 import { getLocalizedConfig, isValidProjectId } from '@/services/config.service';
@@ -207,22 +207,6 @@ export class PostInternetHeader {
     return state.alternateLinks.get(code.toLowerCase()) ?? configUrl;
   }
 
-  private renderNavItem(config: LinkConfig | UserMenuConfig, props: LinkProps = {}): string {
-    if ('url' in config) {
-      return <Link {...props} config={config} />;
-    }
-
-    return (
-      <UserMenu
-        slot={props.slot}
-        config={config}
-        textCurrentUser={this.textCurrentUser}
-        textAccessUserLinks={this.textAccessUserLinks}
-        textUserLinks={this.textUserLinks}
-      />
-    );
-  }
-
   private renderMenuItem(config: IconLinkConfig, slot: string) {
     return (
       <post-menu-item slot={slot} key={`${slot}-${config.url}`}>
@@ -267,22 +251,18 @@ export class PostInternetHeader {
     );
   }
 
-  private renderNavigation(
-    slot: string,
-    config: (LinkConfig | UserMenuConfig)[],
-    props: LinkProps = {},
-  ) {
+  private renderNavigation(slot: string, config: LinkConfig[], props: LinkProps = {}) {
     if (config.length === 0) return null;
 
     if (config.length === 1) {
-      return this.renderNavItem(config[0], { ...props, slot });
+      return <Link {...props} slot={slot} config={config[0]} />;
     }
 
     return (
       <ul slot={slot}>
         {config.map(navItem => (
-          <li key={'url' in navItem ? navItem.url : navItem.user.email}>
-            {this.renderNavItem(navItem, props)}
+          <li key={navItem.url}>
+            <Link {...props} config={navItem} />
           </li>
         ))}
       </ul>
