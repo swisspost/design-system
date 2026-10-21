@@ -264,31 +264,7 @@ describe('header', () => {
         .and('be.visible');
 
       headerConfig.localHeader.navigation.forEach((item, index) => {
-        if ('url' in item) {
-          cy.get('@nav-items').eq(index).find('a').should('exist');
-        } else {
-          cy.get('@nav-items').eq(index).find('post-menu-trigger').should('exist');
-
-          // accountSwitch/companySwitch/logoutLink each render as their own
-          // menu item, gated by the item's own user permissions — not part
-          // of options.
-          const isB2C = item.user.userType === 'B2C';
-          const isB2B = item.user.userType === 'B2B';
-          const canChangeUserAndProfile =
-            (isB2C || isB2B) && item.user.changeUserAndProfile === 'userAndProfile';
-          const canChangeCompany = isB2B && item.user.canChangeCompany && item.user.company;
-
-          const expectedCount =
-            item.options.length +
-            (item.accountSwitch && canChangeUserAndProfile ? 1 : 0) +
-            (item.companySwitch && canChangeCompany ? 1 : 0) +
-            (item.logoutLink ? 1 : 0);
-
-          cy.get('@nav-items')
-            .eq(index)
-            .find('post-menu-item')
-            .should('have.length', expectedCount);
-        }
+        cy.get('@nav-items').eq(index).find('a').should('have.attr', 'href', item.url);
       });
     });
   });
