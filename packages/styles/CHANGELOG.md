@@ -1,5 +1,34 @@
 # @swisspost/design-system-styles
 
+## 10.8.0
+
+### Minor Changes
+
+- Added single-line inline notifications using the `.inline-notification-singleline` class and support for paragraph-only content when headings are unnecessary. (by [@leagrdv](https://github.com/leagrdv) with [#8573](https://github.com/swisspost/design-system/pull/8573))
+
+- Added appearance 'condensed' for information-rich interfaces. (by [@yomonom](https://github.com/yomonom) with [#8550](https://github.com/swisspost/design-system/pull/8550))
+
+### Patch Changes
+
+- Fixed button text wrapping into multiple lines instead of being cut off when content is too long. (by [@AndrinAAF](https://github.com/AndrinAAF) and [@alionazherdetska](https://github.com/alionazherdetska) with [#8354](https://github.com/swisspost/design-system/pull/8354))
+
+- Updated `post-tooltip`, `post-popover`, and `post-menu` so they flip to the opposite side, or to a side on the other axis, when there isn't enough space for their preferred `placement`. (by [@yomonom](https://github.com/yomonom) with [#8495](https://github.com/swisspost/design-system/pull/8495))
+
+- Fixed disabled button links having no visual indication in dark mode. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8631](https://github.com/swisspost/design-system/pull/8631))
+
+- Reduced the size of the compiled CSS by outputting the colour scheme fallback variables only once. Also fixed the status tags, notification variants, selection card, and `post-popover` close button showing incorrect colours in browsers without `light-dark()` support. (by [@yomonom](https://github.com/yomonom) with [#8616](https://github.com/swisspost/design-system/pull/8616))
+
+- Updated `post-menu` and `post-popover` to no longer extend past the edge of the screen.  
+  They are now both limited to the available space in the viewport and will scroll internally if they no longer fit, ensuring their contents remain accessible.
+  Menus also now automatically close once their trigger is scrolled out of view. (by [@yomonom](https://github.com/yomonom) with [#8495](https://github.com/swisspost/design-system/pull/8495))
+
+- Increased the font size of text inputs, text areas, selects and number inputs to `16px` on mobile to prevent iOS from automatically zooming in when a field is focused, which forced users to zoom back out to restore the page. (by [@leagrdv](https://github.com/leagrdv) with [#8613](https://github.com/swisspost/design-system/pull/8613))
+
+- Fix english quotation marks for blockquotes to match branding guidelines. We're now using inverted commas. (by [@gfellerph](https://github.com/gfellerph) with [#8683](https://github.com/swisspost/design-system/pull/8683))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.8.0
+  - @swisspost/design-system-tokens@10.8.0
+
 ## 10.7.0
 
 ### Patch Changes
