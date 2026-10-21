@@ -1,0 +1,107 @@
+@use '@swisspost/design-system-styles/tokens/components' as components;
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/variables/elevation';
+@use '@swisspost/design-system-styles/mixins/utilities';
+
+tokens.$default-map: components.$post-select;
+
+:host {
+  display: inline-block;
+  width: 100%;
+}
+
+select {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: tokens.get('select-sizing-height');
+  padding-block: tokens.get('select-standalone-padding-block');
+  padding-inline: tokens.get('select-padding-inline-start') tokens.get('select-padding-inline-end');
+  border: tokens.get('select-border-width') solid tokens.get('select-color-enabled-border');
+  border-radius: tokens.get('select-border-radius');
+  background-color: tokens.get('select-color-enabled-bg');
+  color: tokens.get('select-color-enabled-fg');
+  font: inherit;
+  font-size: tokens.get('select-font-size');
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background-color: tokens.get('select-color-hover-bg');
+    border-color: tokens.get('select-color-hover-border');
+  }
+
+  &:focus-visible {
+    @include utilities.focus-style;
+  }
+
+  &:disabled {
+    color: tokens.get('select-color-disabled-fg');
+    background-color: tokens.get('select-color-disabled-bg');
+    border-color: tokens.get('select-color-disabled-border');
+    cursor: not-allowed;
+  }
+}
+
+@supports (appearance: base-select) {
+  select,
+  select::picker(select) {
+    appearance: base-select;
+  }
+
+  select {
+    display: flex;
+    align-items: center;
+  }
+
+  select::picker-icon {
+    margin-inline-start: auto;
+  }
+
+  select::picker(select) {
+    box-sizing: border-box;
+    inline-size: anchor-size(width);
+    max-height: 24rem;
+    overflow: auto;
+    padding: 0;
+    border: tokens.get('select-border-width') solid tokens.get('select-color-enabled-border');
+    border-radius: tokens.get('select-border-radius');
+    background-color: tokens.get('select-color-enabled-bg');
+    box-shadow: elevation.$elevation-300;
+  }
+
+  option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0.5rem 0.75rem;
+    color: tokens.get('select-color-enabled-fg');
+    cursor: pointer;
+  }
+
+  option:hover:not(:disabled) {
+    background-color: tokens.get('select-color-hover-bg');
+  }
+
+  option:disabled {
+    color: tokens.get('select-color-disabled-fg');
+    cursor: not-allowed;
+  }
+
+  option::checkmark {
+    order: 1;
+    margin-inline-start: auto;
+  }
+
+  option post-icon,
+  selectedcontent post-icon {
+    flex: none;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  selectedcontent {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
