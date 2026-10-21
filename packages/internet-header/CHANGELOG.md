@@ -1,5 +1,16 @@
 # @swisspost/internet-header
 
+## 10.8.0
+
+### Patch Changes
+
+- Updated the account and company context-switch links in the user menu to use KLP's expected `changeCompanyTargetURL` parameter instead of `returnURL`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#8676](https://github.com/swisspost/design-system/pull/8676))
+
+- Aligned the user menu to the right edge of the avatar button in the `<post-header>` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8558](https://github.com/swisspost/design-system/pull/8558))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.8.0
+  - @swisspost/design-system-components@10.8.0
+
 ## 10.7.0
 
 ### Patch Changes
