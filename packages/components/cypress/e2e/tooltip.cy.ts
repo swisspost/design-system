@@ -367,11 +367,7 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
   describe('page layout', () => {
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-tooltip.test.html');
-      // Wait until every component in the layout section is hydrated before measuring positions.
-      // Components (tabs, accordion, ...) change their height while they hydrate, so if snapRect()
-      // runs too early, the "before" coordinates are taken from a page that is still changing
-      // and the layout-shift assertions fail even though the tooltip does not shift anything.
-      // Elements like post-button are only styled by CSS (no component), so they never hydrate.
+      // components (e.g. tabs) change the page height while hydrating: wait for them before measuring
       cy.get('.tooltip-layout-container', { timeout: 10000 }).should($container => {
         const { customElements } = $container[0].ownerDocument.defaultView;
         const notHydrated = Array.from($container[0].querySelectorAll('*'))
