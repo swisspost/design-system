@@ -1,7 +1,10 @@
 import { PLACEMENT_TYPES } from '../../src/types';
 import { POPOVER_OPEN_SELECTOR } from './helper/popovercontainer';
 
-const LAYOUT_COMPONENTS = ['post-tabs', 'post-accordion', 'post-rating', 'post-pagination'];
+const LAYOUT_COMPONENTS = [
+  'post-collapsible',
+  'post-collapsible-trigger',
+];
 
 describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
   // prettier-ignore
