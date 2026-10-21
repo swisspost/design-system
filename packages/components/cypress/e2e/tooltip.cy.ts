@@ -1,11 +1,6 @@
 import { PLACEMENT_TYPES } from '../../src/types';
 import { POPOVER_OPEN_SELECTOR } from './helper/popovercontainer';
 
-const LAYOUT_COMPONENTS = [
-  'post-collapsible',
-  'post-collapsible-trigger',
-];
-
 describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
   // prettier-ignore
   const shouldBeOpen = () => cy.get(POPOVER_OPEN_SELECTOR).should('exist');
@@ -372,10 +367,11 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
   describe('page layout', () => {
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-tooltip.test.html');
-      // components change the page height while hydrating: wait for them before measuring
-      LAYOUT_COMPONENTS.forEach(component => {
-        cy.get(`${component}[data-hydrated]`, { timeout: 10000 }).should('exist');
-      });
+      // Wait for post-accordion to fully hydrate before measuring positions.
+      // The accordion runs a collapse animation on load; if snapRect() fires
+      // before it settles, the "before" coordinates are captured mid-animation
+      // and the layout-shift assertions fail even though no real shift occurs.
+      cy.get('post-accordion[data-hydrated]', { timeout: 10000 }).should('exist');
       cy.get('#tooltip-layout').find('post-popovercontainer[popover]').as('layoutTooltip');
     });
 
