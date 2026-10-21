@@ -35,5 +35,4 @@ styles/stylelint-report.txt
 icons-generated/
 dist/
 apps/documentation/
-packages/icons/public/post-icons/
 packages/styles/src/icons/temp/
