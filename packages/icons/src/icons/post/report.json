@@ -29399,7 +29399,40 @@
         }
       },
       "createdAt": "2026-10-14T13:20:39.000Z",
-      "modifiedAt": "2026-10-14T13:24:57.000Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
+    },
+    {
+      "uuid": "7dfd69a0-cc47-11f1-aa7b-0050568d2654",
+      "id": 11661918,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11661918/storage/MDExNjYxOTE4LzAvbWFzdGVyLy8vMTE0NzQzNjg3",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2803.svg",
+        "basename": "2803",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T05:31:25.000Z",
+      "modifiedAt": "2026-10-20T06:05:05.705Z"
     },
     {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
@@ -42623,13 +42656,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1134,
+    "success": 1135,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2026-10-14T13:29:06.227Z",
+  "created": "2026-10-20T06:45:05.866Z",
   "version": "10.7.0"
 }
