@@ -5,7 +5,6 @@ import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import LandmarkCorrect from '../../../../shared/samples/landmark-placement-example.sample.html?raw';
 import meta, * as HeaderStories from './header.stories';
 import './header.styles.scss';
-import SampleSessionSubscription from './session-subscription.sample?raw';
 
 <Meta of={HeaderStories} />
 
@@ -65,29 +64,23 @@ A dedicated header for the Jobs pages within the Post Portal.
 
 ## User menu
 
-The `post-login` slot in `<post-header>` holds either a login link when no user is authenticated, or the user menu when a user is authenticated.
+The `post-login` slot in `<post-header>` holds the KLP login widget. It asks the Swiss Post customer
+login platform who is signed in and shows either the login link or the user menu. Your application
+only provides the links; there is no session to fetch and no condition to write yourself.
 
-The authentication mechanism and conditional display are handled by each project individually.
-The Design System provides the UI components, while the application manages the authentication logic and decides which content to render in the `post-login` slot.
-
-### Fetching user data
-
-One method to retrieve the current Post user session data is via the session subscription endpoint.
-The URL shown below is for the **production** environment, adapt it to match your target environment (e.g. int, test).
-
-<Source code={SampleSessionSubscription} language="typescript" />
-
-If the request fails or returns no valid `userdata`, the user is not authenticated and the login link can be displayed instead.
+See the <a href="/?path=/docs/787282bd-aea2-49e5-b98d-3bf852ca9dd7--docs">KLP Login Widget</a> for its
+properties, the links it accepts and the platform requirements.
 
 ### Logged out
 
-When no user is authenticated, a login link is slotted into `post-login`:
+When no user is authenticated, the widget shows the login link:
 
 <Canvas of={HeaderStories.LoggedOut} />
 
 ### Logged in
 
-When a user is authenticated, the user menu is slotted into `post-login`. The session data can be used to populate the avatar and menu header:
+When a user is authenticated, the widget shows the user menu, with the avatar and the menu header
+taken from the session:
 
 <Canvas of={HeaderStories.LoggedIn} />
 
