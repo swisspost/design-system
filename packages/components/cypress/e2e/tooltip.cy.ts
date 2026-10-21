@@ -1,6 +1,19 @@
 import { PLACEMENT_TYPES } from '../../src/types';
 import { POPOVER_OPEN_SELECTOR } from './helper/popovercontainer';
 
+// Components that change the page height while they hydrate (tabs, accordion, ...)
+const LAYOUT_COMPONENTS = [
+  'post-tooltip-trigger',
+  'post-tabs',
+  'post-tab-item',
+  'post-tab-panel',
+  'post-accordion',
+  'post-accordion-item',
+  'post-collapsible',
+  'post-rating',
+  'post-pagination',
+];
+
 describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
   // prettier-ignore
   const shouldBeOpen = () => cy.get(POPOVER_OPEN_SELECTOR).should('exist');
@@ -367,8 +380,10 @@ describe('post-tooltip', { baseUrl: null, includeShadowDom: true }, () => {
   describe('page layout', () => {
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-tooltip.test.html');
-      // components change the page height while hydrating: give the layout time to settle
-      cy.wait(1000);
+      // components change the page height while hydrating: wait for them before measuring
+      LAYOUT_COMPONENTS.forEach(component => {
+        cy.get(`${component}[data-hydrated]`, { timeout: 10000 }).should('exist');
+      });
       cy.get('#tooltip-layout').find('post-popovercontainer[popover]').as('layoutTooltip');
     });
 
