@@ -1,7 +1,7 @@
 import { PLACEMENT_TYPES } from '../../src/types';
 import { POPOVER_OPEN_SELECTOR } from './helper/popovercontainer';
 
-// Components that change the page height while they hydrate (tabs, accordion, ...)
+// Components that change the page height while they hydrate
 const LAYOUT_COMPONENTS = [
   'post-tooltip-trigger',
   'post-tabs',
