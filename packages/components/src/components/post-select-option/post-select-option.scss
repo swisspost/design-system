@@ -1,0 +1,44 @@
+:host {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: space-between;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--post-select-option-background, #fff);
+  color: var(--post-select-option-color, #050400);
+  cursor: pointer;
+  user-select: none;
+}
+
+:host(:hover:not([disabled])) {
+  background: var(--post-select-option-hover-background, #f0efed);
+}
+
+:host([data-active='true']) {
+  outline: 2px solid var(--post-select-option-focus-color, #050400);
+  outline-offset: -2px;
+}
+
+:host([disabled]) {
+  color: var(--post-select-option-disabled-color, #6f6e68);
+  cursor: not-allowed;
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+slot {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+}
+
+post-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: none;
+}

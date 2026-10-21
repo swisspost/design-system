@@ -1,0 +1,50 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as SelectStories from './post-select.stories';
+import StoryTags from '@/shared/story-tags';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+
+<Meta of={SelectStories} />
+
+<div className="docs-title">
+  # Non-native Select
+
+<link-design of={JSON.stringify(SelectStories)}></link-design>
+
+</div>
+
+<StoryTags meta={meta} />
+
+<div className="lead">A non-native select component for choosing one option from a list.</div>
+
+Use `<post-select>` with `<post-select-option>` elements. By default, each option displays its
+`value` as text, with an optional `icon`. To customize an option, place markup in its default slot;
+that content replaces the standard text and icon inside the option.
+
+<Canvas sourceState="shown" of={SelectStories.Default} />
+
+## `<post-select>`
+
+<Controls of={SelectStories.Default} />
+
+## Examples
+
+### Selected value
+
+Set `value` on the select to initialize the selected option. The component emits `postChange` when
+the value changes.
+
+<Canvas of={SelectStories.Selected} />
+
+### Custom option template
+
+Use the option's default slot to render more complex, non-interactive content.
+
+<Canvas of={SelectStories.CustomOptionTemplate} />
+
+### Disabled
+
+Disable the entire select or a specific option with the `disabled` attribute.
+
+<Canvas of={SelectStories.Disabled} />
+
+<ComponentsPackageInstall component="<post-select>" />

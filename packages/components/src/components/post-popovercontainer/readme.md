@@ -99,6 +99,7 @@ the new state of the popover: `true` if it is shown, `false` if it is hidden.
  - [post-listbox](../post-listbox)
  - [post-menu](../post-menu)
  - [post-popover](../post-popover)
+ - [post-select](../post-select)
  - [post-tooltip](../post-tooltip)
 
 ### Graph
@@ -108,6 +109,7 @@ graph TD;
   post-listbox --> post-popovercontainer
   post-menu --> post-popovercontainer
   post-popover --> post-popovercontainer
+  post-select --> post-popovercontainer
   post-tooltip --> post-popovercontainer
   style post-popovercontainer fill:#f9f,stroke:#333,stroke-width:4px
 ```

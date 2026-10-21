@@ -1,0 +1,64 @@
+@use '@swisspost/design-system-styles/variables/elevation';
+
+:host {
+  display: inline-block;
+  width: 100%;
+  color: var(--post-select-color, #050400);
+  font: inherit;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--post-select-border-color, #6f6e68);
+  border-radius: var(--post-select-border-radius, 0.25rem);
+  background: var(--post-select-background, #fff);
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  border-color: var(--post-select-hover-border-color, #050400);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--post-select-focus-color, #050400);
+  outline-offset: 2px;
+}
+
+button:disabled {
+  color: var(--post-select-disabled-color, #6f6e68);
+  background: var(--post-select-disabled-background, #f0efed);
+  cursor: not-allowed;
+}
+
+.selected-value {
+  flex: 1;
+  min-width: 0;
+}
+
+.chevron {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+post-popovercontainer {
+  min-width: 100%;
+  border-radius: 0.25rem;
+  background: #fff;
+  box-shadow: elevation.$elevation-300;
+}
+
+[role='listbox'] {
+  max-height: 24rem;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
