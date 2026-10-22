@@ -134,7 +134,7 @@ export class MigrationV910Component extends LitElement {
     if (!this.currentVersion || this.currentVersion > 9) return nothing;
     return html`
       <div class="container py-40">
-      <h2 id="migration-from-v9-to-v10" class="docs-autolink mb-40">
+      <h2 id="migration-from-v9-to-v10" class="docs-autolink">
         Migration from v9 to v10
         <a
           aria-hidden="true"
@@ -249,7 +249,7 @@ export class MigrationV910Component extends LitElement {
               </ul>
             </post-banner>
 
-            <h5 class="pt-16">How to use it</h5>
+            <h5>How to use it</h5>
             <ol>
               <li>
                 Follow the setup tutorial in the

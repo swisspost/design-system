@@ -19,7 +19,7 @@ export class MigrationV78Component extends LitElement {
 
     return html`
       <div class="container py-40">
-        <h2 id="migration-from-v7-to-v8" class="docs-autolink mb-40">
+        <h2 id="migration-from-v7-to-v8" class="docs-autolink">
           Migration from v7 to v8
           <a
             aria-hidden="true"

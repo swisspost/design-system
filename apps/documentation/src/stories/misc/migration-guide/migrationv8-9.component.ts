@@ -20,7 +20,7 @@ export class MigrationV89Component extends LitElement {
     return html`
       <div class="palette palette-alternate">
         <div class="container py-40">
-          <h2 id="migration-from-v8-to-v9" class="docs-autolink mb-40">
+          <h2 id="migration-from-v8-to-v9" class="docs-autolink">
             Migration from v8 to v9
             <a
               aria-hidden="true"
