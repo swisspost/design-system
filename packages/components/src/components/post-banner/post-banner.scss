@@ -1,5 +1,6 @@
 @use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/color-scheme';
 
 @use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/tokens/helpers';
@@ -52,6 +53,48 @@ tokens.$default-map: components.$post-banner;
   }
 }
 
+:host([type='grief']) {
+  min-height: calc(
+    #{tokens.get('banner-grief-icon-wrapper-size')} + (2 * #{tokens.get('banner-padding')})
+  );
+  padding-inline-start: calc(
+    #{tokens.get('banner-padding')} + #{tokens.get('banner-grief-icon-wrapper-size')} +
+      #{tokens.get('banner-gap')}
+  );
+  background-color: tokens.get('banner-grief-bg');
+  border-color: tokens.get('banner-grief-stroke');
+
+  &::before {
+    content: none;
+  }
+
+  .post-banner-content {
+    @include color-scheme.set(tokens.get('banner-grief-bg-scheme'));
+    --post-current-bg: #{tokens.get('banner-grief-bg')};
+    --post-current-fg: #{tokens.get('banner-grief-fg')};
+    color: var(--post-current-fg);
+  }
+}
+
+.grief-icon {
+  position: absolute;
+  inset-block-start: tokens.get('banner-padding');
+  inset-inline-start: tokens.get('banner-padding');
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: tokens.get('banner-grief-icon-wrapper-size');
+  width: tokens.get('banner-grief-icon-wrapper-size');
+  border-radius: tokens.get('banner-grief-icon-wrapper-border-radius');
+  background-color: tokens.get('banner-grief-icon-bg');
+  color: tokens.get('banner-grief-icon-fg');
+
+  post-icon {
+    height: tokens.get('banner-grief-icon-size');
+    width: tokens.get('banner-grief-icon-size');
+  }
+}
+
 .post-banner-content {
   // Reserve space for focus rings clipped by the scroll container below, canceled by a negative margin
   --post-banner-focus-room: calc(
@@ -94,5 +137,9 @@ tokens.$default-map: components.$post-banner;
     &::before {
       color: CanvasText;
     }
+  }
+
+  .grief-icon {
+    border: tokens.get('banner-border-width') solid CanvasText;
   }
 }

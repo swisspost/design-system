@@ -26,6 +26,7 @@ some content
  - [post-accordion-item](../post-accordion-item)
  - [post-autocomplete](../post-autocomplete)
  - [post-back-to-top](../post-back-to-top)
+ - [post-banner](../post-banner)
  - [post-breadcrumbs](../post-breadcrumbs)
  - [post-closebutton](../post-closebutton)
  - [post-date-picker](../post-date-picker)
@@ -46,6 +47,7 @@ graph TD;
   post-accordion-item --> post-icon
   post-autocomplete --> post-icon
   post-back-to-top --> post-icon
+  post-banner --> post-icon
   post-breadcrumbs --> post-icon
   post-closebutton --> post-icon
   post-date-picker --> post-icon
