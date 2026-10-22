@@ -5,11 +5,6 @@
  *
  * The widget reads `fetch` and `WebSocket` when it connects, not when it loads, so installing the
  * fake before a widget is rendered is enough.
- *
- * A docs page can show a live widget next to a faked one in the same window. The fake therefore
- * answers a single subscribe per install, the one of the widget it was installed for, and every
- * later subscribe reaches the real platform again. Render the faked widget only once
- * `otherKlpLoginWidgetsLoaded` resolves, so a live widget cannot take that subscribe instead.
  */
 
 /** Keyed by the kind of user, which is what decides the menu; the names are only sample data. */
@@ -62,8 +57,6 @@ export function installKlpPlatformFake({ user, unread = 0 }: KlpFakeOptions): vo
   const message = user
     ? { typ: 'sub', adr: 'storybook', ttl: 900000, data: { ...KLP_FAKE_USERS[user] } }
     : { typ: 'ukn' };
-  let subscribeAnswered = false;
-
   const originalFetch = globalThis.fetch;
   const nativeFetch = originalFetch.bind(globalThis);
   const NativeWebSocket = globalThis.WebSocket;
@@ -71,8 +64,7 @@ export function installKlpPlatformFake({ user, unread = 0 }: KlpFakeOptions): vo
   globalThis.fetch = (input: RequestInfo | URL, init?: RequestInit) => {
     const url = String(input instanceof Request ? input.url : input);
 
-    if (url.includes('/v1/session/subscribe') && !subscribeAnswered) {
-      subscribeAnswered = true;
+    if (url.includes('/v1/session/subscribe')) {
       return Promise.resolve(
         new Response(JSON.stringify(message), {
           headers: { 'content-type': 'application/json' },
@@ -124,14 +116,4 @@ export function installKlpPlatformFake({ user, unread = 0 }: KlpFakeOptions): vo
     globalThis.fetch = originalFetch;
     globalThis.WebSocket = NativeWebSocket;
   };
-}
-
-/**
- * Resolves once every widget already on the page has loaded, and so has sent its subscribe: the
- * widget subscribes synchronously in `componentDidLoad`, before `componentOnReady` resolves.
- */
-export async function otherKlpLoginWidgetsLoaded(): Promise<void> {
-  await customElements.whenDefined('post-klp-login-widget');
-  const widgets = Array.from(document.querySelectorAll('post-klp-login-widget'));
-  await Promise.all(widgets.map(widget => widget.componentOnReady()));
 }

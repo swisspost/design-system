@@ -30,12 +30,17 @@ application only provides the links.
 
 <Controls of={KlpLoginWidgetStories.Default} />
 
+Once the user is signed in, the avatar opens the user menu, with the company, if any, above the
+user's name. Select the avatar in the example above to open it.
+
+This user may switch account. Business users who may change company see the company switch
+instead, and users who may do neither, such as private customers, see no switch at all. Use the
+`Session` control above to see each of them.
+
 <post-banner>
   <p>
-    <b>Live session:</b> the example above asks the platform of the selected `environment` for the
-    real session. The platform only answers origins on its allowlist, so on any other origin,
-    including `localhost`, the widget stays anonymous. The [signed-in example](#signed-in) replaces
-    the platform with a fake, so the signed-in states can be seen anywhere.
+    <b>Fake session:</b> the examples on this page replace the KLP platform with a fake, so every
+    kind of user can be seen without a real session.
   </p>
 </post-banner>
 
@@ -121,23 +126,10 @@ The account switch and the company switch are never shown together.
 <post-banner>
   <p>
     <b>Link URLs:</b> the links in the examples on this page are placeholders. Which URLs your
-    application has to link to depends on how it is set up on the KLP platform, so please contact the
-    KLP team to find out how to set them.
+    application has to link to depends on how it is set up on the KLP platform, so please contact
+    the KLP team to find out how to set them.
   </p>
 </post-banner>
-
-## Signed in
-
-Once the user is signed in, the avatar opens the user menu, with the company, if any, above the
-user's name. Select the avatar in the example below to open it.
-
-<Canvas of={KlpLoginWidgetStories.SignedIn} />
-
-<Controls of={KlpLoginWidgetStories.SignedIn} include={['Session', 'Unread messages']} />
-
-This user may switch account. Business users who may change company see the company switch
-instead, and users who may do neither, such as private customers, see no switch at all. Use the
-`Session` control above to see each of them.
 
 ## Unread messages
 
