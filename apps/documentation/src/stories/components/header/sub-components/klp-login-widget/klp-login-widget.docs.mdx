@@ -34,8 +34,8 @@ application only provides the links.
   <p>
     <b>Live session:</b> the example above asks the platform of the selected `environment` for the
     real session. The platform only answers origins on its allowlist, so on any other origin,
-    including `localhost`, the widget stays anonymous. The `Session` control replaces the platform
-    with a fake, so the signed-in states can be seen anywhere.
+    including `localhost`, the widget stays anonymous. The [signed-in example](#signed-in) replaces
+    the platform with a fake, so the signed-in states can be seen anywhere.
   </p>
 </post-banner>
 
@@ -125,16 +125,17 @@ user's name. Select the avatar in the example below to open it.
 
 <Canvas of={KlpLoginWidgetStories.SignedIn} />
 
+<Controls of={KlpLoginWidgetStories.SignedIn} include={['Session', 'Unread messages']} />
+
 This user may switch account. Business users who may change company see the company switch
 instead, and users who may do neither, such as private customers, see no switch at all. Use the
-`Session` control of the first example to see each of them.
+`Session` control above to see each of them.
 
 ## Unread messages
 
 Place a `post-klp-login-widget-messages` element among the `menu-links`, wherever the messages entry
-should appear. It shows the number of unread messages the platform reports, capped at `99+`, and
+should appear. It shows the number of unread messages the platform reports, and
 the avatar shows a dot as long as there are any. Both update as messages arrive, without a reload.
-Select the avatar in the example below to see the entry.
 
 <Canvas sourceState="shown" of={KlpLoginWidgetMessagesStories.Default} />
 
