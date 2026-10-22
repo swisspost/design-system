@@ -121,17 +121,13 @@ The account switch and the company switch are never shown together.
 ## Signed in
 
 Once the user is signed in, the avatar opens the user menu, with the company, if any, above the
-user's name. Select the avatar in the examples below to open it.
+user's name. Select the avatar in the example below to open it.
 
 <Canvas of={KlpLoginWidgetStories.SignedIn} />
 
-Business users who may change company see the company switch instead of the account switch:
-
-<Canvas of={KlpLoginWidgetStories.SwitchCompany} />
-
-Users who may do neither, such as this private customer, see no switch at all:
-
-<Canvas of={KlpLoginWidgetStories.PrivateCustomer} />
+This user may switch account. Business users who may change company see the company switch
+instead, and users who may do neither, such as private customers, see no switch at all. Use the
+`Session` control of the first example to see each of them.
 
 ## Unread messages
 
