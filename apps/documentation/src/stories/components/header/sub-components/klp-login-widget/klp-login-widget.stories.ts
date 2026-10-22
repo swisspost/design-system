@@ -1,16 +1,18 @@
 import { fakeContent } from '@/utils';
 import { MetaComponent } from '@root/types';
-import type { StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
+import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
+import { html, render } from 'lit';
 import { keyed } from 'lit/directives/keyed.js';
-import { installKlpPlatformFake, KlpFakeUser, uninstallKlpPlatformFake } from './klp-platform.fake';
+import { until } from 'lit/directives/until.js';
+import {
+  installKlpPlatformFake,
+  KlpFakeUser,
+  otherKlpLoginWidgetsLoaded,
+  uninstallKlpPlatformFake,
+} from './klp-platform.fake';
 import { KLP_LOGIN_WIDGET_TEXTS, renderKlpLoginWidget } from './klp-login-widget.renderer';
 
-type Session = 'live' | 'anonymous' | KlpFakeUser;
-
-const SESSION_LABELS: Record<Session, string> = {
-  'live': 'Live (KLP platform)',
-  'anonymous': 'Anonymous',
+const USER_LABELS: Record<KlpFakeUser, string> = {
   'b2c': 'B2C user',
   'b2b-multi-account': 'B2B user (multi account)',
   'b2b-multi-company': 'B2B user (multi company)',
@@ -21,18 +23,20 @@ interface KlpLoginWidgetArgs
     HTMLPostKlpLoginWidgetElement,
     'environment' | 'textCurrentUser' | 'textUserLinks' | 'textAccessUserLinks' | 'initialState'
   > {
-  session: Session;
-  unread: number;
+  session?: KlpFakeUser | 'anonymous';
+  unread?: number;
 }
 
-/** Applies the `session` control: `live` asks the platform, everything else answers with a fake. */
-function applySession({ session, unread }: KlpLoginWidgetArgs) {
-  if (session === 'live') {
-    uninstallKlpPlatformFake();
-  } else {
-    installKlpPlatformFake({ user: session === 'anonymous' ? null : session, unread });
-  }
-}
+const renderWidget = (args: KlpLoginWidgetArgs) =>
+  renderKlpLoginWidget({
+    environment: args.environment,
+    textCurrentUser: args.textCurrentUser,
+    textUserLinks: args.textUserLinks,
+    textAccessUserLinks: args.textAccessUserLinks,
+    initialState: args.initialState,
+  });
+
+const LIT_EXPRESSION_COMMENTS = /<!--\?lit\$[0-9]+\$-->|<!--\??-->/g;
 
 const meta: MetaComponent<KlpLoginWidgetArgs> = {
   id: '787282bd-aea2-49e5-b98d-3bf852ca9dd7',
@@ -48,60 +52,23 @@ const meta: MetaComponent<KlpLoginWidgetArgs> = {
   },
   args: {
     environment: 'prod',
-    session: 'live',
-    unread: 0,
     ...KLP_LOGIN_WIDGET_TEXTS,
   },
-  argTypes: {
-    session: {
-      name: 'Session',
-      description:
-        'Not a property of the component. `Live` asks the KLP platform of the selected environment for the real session; the other options replace the platform with a fake, so each kind of user can be seen without one.',
-      control: { type: 'select', labels: SESSION_LABELS },
-      options: Object.keys(SESSION_LABELS),
-      table: { category: 'Storybook' },
-    },
-    unread: {
-      name: 'Unread messages',
-      description:
-        'Not a property of the component. Number of unread messages the fake platform pushes once the user is signed in.',
-      control: { type: 'number', min: 0 },
-      if: { arg: 'session', neq: 'live' },
-      table: { category: 'Storybook' },
-    },
-  },
-  // Restores the native `fetch` and `WebSocket` once a story is torn down, so a fake never leaks
-  // into stories rendered later in the same window.
-  beforeEach: () => uninstallKlpPlatformFake,
   decorators: [
-    (story: StoryFn, context: StoryContext<KlpLoginWidgetArgs>) => {
-      applySession(context.args);
-
-      return html`
-        <div class="header-story-wrapper">
-          <div class="virtual-body">
-            <post-header text-menu="Menu">
-              <post-logo slot="post-logo" url="/">Homepage</post-logo>
-              ${story(context.args, context)}
-            </post-header>
-            ${fakeContent()}
-          </div>
+    (story: StoryFn, context: StoryContext<KlpLoginWidgetArgs>) => html`
+      <div class="header-story-wrapper">
+        <div class="virtual-body">
+          <post-header text-menu="Menu">
+            <post-logo slot="post-logo" url="/">Homepage</post-logo>
+            ${story(context.args, context)}
+          </post-header>
+          ${fakeContent()}
         </div>
-      `;
-    },
+      </div>
+    `,
   ],
   // Keyed on the args, so a changed control mounts a new widget, which asks for the session again.
-  render: args =>
-    html`${keyed(
-      JSON.stringify(args),
-      renderKlpLoginWidget({
-        environment: args.environment,
-        textCurrentUser: args.textCurrentUser,
-        textUserLinks: args.textUserLinks,
-        textAccessUserLinks: args.textAccessUserLinks,
-        initialState: args.initialState,
-      }),
-    )}`,
+  render: (args: Args) => html`${keyed(JSON.stringify(args), renderWidget(args))}`,
 };
 
 export default meta;
@@ -109,19 +76,76 @@ export default meta;
 type Story = StoryObj<KlpLoginWidgetArgs>;
 
 /**
- * Every story but the live one installs a fake, which patches the window, so each gets a window of
- * its own. The iframe is as tall as the Default story's scroll wrapper, so all examples look alike.
+ * Replaces the platform with a fake answering as the selected `session`. The docs page shows these
+ * stories next to the live Default story, in the same window, so the widget is only rendered once
+ * every other widget on the page has asked the real platform. The fake is removed again when the
+ * story is torn down.
  */
-const IN_IFRAME = { docs: { story: { inline: false, iframeHeight: 400 } } };
+const FAKED_SESSION: Story = {
+  argTypes: {
+    session: {
+      name: 'Session',
+      description:
+        'Not a property of the component. Replaces the KLP platform with a fake answering as the selected user, so each kind of user can be seen without a real session.',
+      control: { type: 'select', labels: USER_LABELS },
+      options: Object.keys(USER_LABELS),
+      table: { category: 'Storybook' },
+    },
+    unread: {
+      name: 'Unread messages',
+      description:
+        'Not a property of the component. Number of unread messages the fake platform pushes once the user is signed in.',
+      control: { type: 'number', min: 0 },
+      table: { category: 'Storybook' },
+    },
+  },
+  parameters: {
+    docs: {
+      source: {
+        // The widget is rendered asynchronously, which the generated source cannot wait for.
+        transform: (_code: string, { args }: StoryContext<KlpLoginWidgetArgs>) => {
+          const container = document.createElement('div');
+          render(renderWidget(args), container);
+          return container.innerHTML.replace(LIT_EXPRESSION_COMMENTS, '');
+        },
+      },
+    },
+  },
+  beforeEach: () => uninstallKlpPlatformFake,
+  render: args => {
+    const widget = otherKlpLoginWidgetsLoaded().then(() => {
+      installKlpPlatformFake({
+        user: args.session === 'anonymous' ? null : (args.session ?? null),
+        unread: args.unread,
+      });
+      return renderWidget(args);
+    });
 
+    return html`${keyed(JSON.stringify(args), until(widget))}`;
+  },
+};
+
+/** The real platform of the selected environment, which only answers origins on its allowlist. */
 export const Default: Story = {};
 
+/**
+ * In a window of its own: a window holds one fake at a time, and the Signed in story already uses
+ * it. The iframe is as tall as the Default story's scroll wrapper, so all examples look alike.
+ */
 export const Anonymous: Story = {
-  parameters: IN_IFRAME,
+  ...FAKED_SESSION,
+  parameters: {
+    ...FAKED_SESSION.parameters,
+    docs: { ...FAKED_SESSION.parameters?.docs, story: { inline: false, iframeHeight: 400 } },
+  },
+  argTypes: {
+    session: { table: { disable: true } },
+    unread: { table: { disable: true } },
+  },
   args: { session: 'anonymous', initialState: 'anonymous' },
 };
 
 export const SignedIn: Story = {
-  parameters: IN_IFRAME,
-  args: { session: 'b2b-multi-account' },
+  ...FAKED_SESSION,
+  args: { session: 'b2b-multi-account', unread: 0 },
 };
