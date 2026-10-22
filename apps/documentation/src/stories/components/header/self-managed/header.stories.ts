@@ -181,7 +181,7 @@ const meta: MetaComponent = {
   decorators: [
     (story, context) => {
       const showSideNav = context.args.sideNav && context.args.title !== '';
-      installKlpPlatformFake({ user: context.args.isLoggedIn ? 'ada' : null });
+      installKlpPlatformFake({ user: context.args.isLoggedIn ? 'b2b-multi-account' : null });
 
       return html`
         <div class="header-story-wrapper">

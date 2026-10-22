@@ -1,7 +1,9 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as KlpLoginWidgetStories from './klp-login-widget.stories';
+import * as KlpLoginWidgetMessagesStories from '../klp-login-widget-messages/klp-login-widget-messages.stories';
 import StoryTags from '@/shared/story-tags';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import './klp-login-widget.styles.scss';
 
 <Meta of={KlpLoginWidgetStories} />
 
@@ -134,42 +136,33 @@ Users who may do neither, such as this private customer, see no switch at all:
 ## Unread messages
 
 Place a `post-klp-login-widget-messages` element among the `menu-links`, wherever the messages entry
-should appear. It shows the number of unread messages the platform reports, and the avatar shows a
-dot as long as there are any. Both update as messages arrive, without a reload.
+should appear. It shows the number of unread messages the platform reports, capped at `99+`, and
+the avatar shows a dot as long as there are any. Both update as messages arrive, without a reload.
+Select the avatar in the example below to see the entry.
 
-<div className="table-responsive">
-  <table className="table">
-    <caption className="visually-hidden">Attributes of the messages entry</caption>
-    <thead>
-      <tr>
-        <th scope="col">Attribute</th>
-        <th scope="col">Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">
-          <code>url</code>
-        </th>
-        <td>Where the entry points.</td>
-      </tr>
-      <tr>
-        <th scope="row">
-          <code>text</code>
-        </th>
-        <td>Label of the entry.</td>
-      </tr>
-      <tr>
-        <th scope="row">
-          <code>text-unread</code>
-        </th>
-        <td>
-          Visually hidden label for the count. <code>{'{count}'}</code> is replaced with the number.
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<Canvas sourceState="shown" of={KlpLoginWidgetMessagesStories.Default} />
+
+<Controls of={KlpLoginWidgetMessagesStories.Default} />
+
+The entry brings its own `post-menu-item` and the `letter` icon, so it only needs the
+`slot="menu-links"` attribute to sit in the user menu like the other links. The count is shared by
+every messages entry on the page, so use one KLP login widget per page.
+
+### How it works
+
+The platform only reports how many messages are unread; it never sends the messages themselves.
+They are read on the account portal, so point the entry's `url` to its messages page:
+`https://account.post.ch/selfadmin/messages/?lang=de` in production, with the language of the page
+and the account host of your environment (`accountint1.post.ch`, `accountint2.post.ch`). This is
+the same page for every type of user.
+
+<img
+  className="messages-flow"
+  src="/assets/images/klp-login-widget-messages-flow.svg"
+  alt="Flow of unread messages. Your project places the login widget and the messages entry in the header. On page load the widget asks KLP for the session: anonymous visitors see the login link, signed-in users get the user menu, and the widget opens the event bus. KLP pushes the unread count, the messages entry shows it and the avatar a dot. Selecting Messages opens the account portal's messages page, where the messages are read. The messages backend then updates the count in KLP, which pushes it again. A sign-out in another tab resets the count and shows the login link."
+  width="760"
+  height="1010"
+/>
 
 ## Before the session is known
 

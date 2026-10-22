@@ -1,0 +1,13 @@
+#storybook-docs {
+  .header-story-wrapper {
+    .virtual-body {
+      height: 300px;
+      overflow-y: auto;
+    }
+  }
+
+  .messages-flow {
+    max-width: 100%;
+    height: auto;
+  }
+}
