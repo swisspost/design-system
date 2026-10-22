@@ -112,7 +112,7 @@ type Story = StoryObj<KlpLoginWidgetArgs>;
  * Every story but the live one installs a fake, which patches the window, so each gets a window of
  * its own. The iframe is as tall as the Default story's scroll wrapper, so all examples look alike.
  */
-const IN_IFRAME = { docs: { story: { inline: false, iframeHeight: 300 } } };
+const IN_IFRAME = { docs: { story: { inline: false, iframeHeight: 400 } } };
 
 export const Default: Story = {};
 
@@ -123,15 +123,5 @@ export const Anonymous: Story = {
 
 export const SignedIn: Story = {
   parameters: IN_IFRAME,
-  args: { session: 'b2b-multi-account', unread: 3 },
-};
-
-export const SwitchCompany: Story = {
-  parameters: IN_IFRAME,
-  args: { session: 'b2b-multi-company' },
-};
-
-export const PrivateCustomer: Story = {
-  parameters: IN_IFRAME,
-  args: { session: 'b2c' },
+  args: { session: 'b2b-multi-account' },
 };
