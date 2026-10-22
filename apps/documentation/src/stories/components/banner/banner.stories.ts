@@ -117,15 +117,3 @@ export const Dismissible: Story = {
     dismissible: true,
   },
 };
-
-export const Grief: Story = {
-  args: {
-    type: 'grief',
-    dismissible: true,
-    innerHTML:
-      '<h4 slot="heading">In memoriam</h4>' +
-      '<p>We mourn the loss of a valued colleague. Our thoughts are with the family and friends.</p>' +
-      '<button slot="actions" class="btn btn-primary"><span>Read more</span></button>' +
-      '<button slot="actions" class="btn btn-secondary"><span>Book of condolence</span></button>',
-  },
-};

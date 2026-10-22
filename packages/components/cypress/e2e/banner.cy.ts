@@ -32,7 +32,8 @@ describe('banner', () => {
 
   describe('grief', () => {
     beforeEach(() => {
-      cy.getComponent('banner', BANNER_ID, 'grief');
+      cy.getComponent('banner', BANNER_ID);
+      cy.get('@banner').invoke('attr', 'type', 'grief');
     });
 
     it('should render a hidden candle icon', () => {
