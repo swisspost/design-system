@@ -1,16 +1,20 @@
+import { fakeContent } from '@/utils';
 import { MetaComponent } from '@root/types';
 import type { StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { keyed } from 'lit/directives/keyed.js';
-import {
-  installKlpPlatformFake,
-  KLP_FAKE_USERS,
-  KlpFakeUser,
-  uninstallKlpPlatformFake,
-} from './klp-platform.fake';
+import { installKlpPlatformFake, KlpFakeUser, uninstallKlpPlatformFake } from './klp-platform.fake';
 import { KLP_LOGIN_WIDGET_TEXTS, renderKlpLoginWidget } from './klp-login-widget.renderer';
 
 type Session = 'live' | 'anonymous' | KlpFakeUser;
+
+const SESSION_LABELS: Record<Session, string> = {
+  'live': 'Live (KLP platform)',
+  'anonymous': 'Anonymous',
+  'b2c': 'B2C user',
+  'b2b-multi-account': 'B2B user (multi account)',
+  'b2b-multi-company': 'B2B user (multi company)',
+};
 
 interface KlpLoginWidgetArgs
   extends Pick<
@@ -52,9 +56,9 @@ const meta: MetaComponent<KlpLoginWidgetArgs> = {
     session: {
       name: 'Session',
       description:
-        'Not a property of the component. `live` asks the KLP platform of the selected environment for the real session; the other options replace the platform with a fake, so the signed-in states can be seen without one.',
-      control: { type: 'select' },
-      options: ['live', 'anonymous', ...Object.keys(KLP_FAKE_USERS)],
+        'Not a property of the component. `Live` asks the KLP platform of the selected environment for the real session; the other options replace the platform with a fake, so each kind of user can be seen without one.',
+      control: { type: 'select', labels: SESSION_LABELS },
+      options: Object.keys(SESSION_LABELS),
       table: { category: 'Storybook' },
     },
     unread: {
@@ -74,10 +78,15 @@ const meta: MetaComponent<KlpLoginWidgetArgs> = {
       applySession(context.args);
 
       return html`
-        <post-header text-menu="Menu">
-          <post-logo slot="post-logo" url="/">Homepage</post-logo>
-          ${story(context.args, context)}
-        </post-header>
+        <div class="header-story-wrapper">
+          <div class="virtual-body">
+            <post-header text-menu="Menu">
+              <post-logo slot="post-logo" url="/">Homepage</post-logo>
+              ${story(context.args, context)}
+            </post-header>
+            ${fakeContent()}
+          </div>
+        </div>
       `;
     },
   ],
@@ -107,21 +116,21 @@ function inIframe(iframeHeight: number) {
 export const Default: Story = {};
 
 export const Anonymous: Story = {
-  parameters: inIframe(120),
+  parameters: inIframe(300),
   args: { session: 'anonymous', initialState: 'anonymous' },
 };
 
 export const SignedIn: Story = {
-  parameters: inIframe(420),
-  args: { session: 'ada', unread: 3 },
+  parameters: inIframe(460),
+  args: { session: 'b2b-multi-account', unread: 3 },
 };
 
 export const SwitchCompany: Story = {
-  parameters: inIframe(420),
-  args: { session: 'grace' },
+  parameters: inIframe(460),
+  args: { session: 'b2b-multi-company' },
 };
 
 export const PrivateCustomer: Story = {
-  parameters: inIframe(380),
-  args: { session: 'alan' },
+  parameters: inIframe(420),
+  args: { session: 'b2c' },
 };
