@@ -198,8 +198,8 @@ importers:
         specifier: 1.31.13
         version: 1.31.13(supports-color@8.1.1)(typescript@6.0.3)
       '@percy/cypress':
-        specifier: 3.1.8
-        version: 3.1.8(cypress@15.20.1)(supports-color@8.1.1)
+        specifier: 3.1.9
+        version: 3.1.9(cypress@15.20.1)(supports-color@8.1.1)
       '@storybook/addon-docs':
         specifier: 9.0.18
         version: 9.0.18(@types/react@19.2.18)(storybook@9.1.19(@testing-library/dom@10.4.2)(prettier@3.6.2)(supports-color@8.1.1)(vite@7.3.5(@types/node@26.6.5)(jiti@2.7.0)(less@4.9.1(supports-color@8.1.1))(lightningcss@1.33.0)(sass-embedded@1.104.0)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)))
@@ -514,8 +514,8 @@ importers:
         specifier: 1.31.13
         version: 1.31.13(supports-color@10.2.2)(typescript@6.0.3)
       '@percy/cypress':
-        specifier: 3.1.8
-        version: 3.1.8(cypress@15.20.1)(supports-color@10.2.2)
+        specifier: 3.1.9
+        version: 3.1.9(cypress@15.20.1)(supports-color@10.2.2)
       '@playwright/test':
         specifier: 'catalog:'
         version: 1.60.0
@@ -912,8 +912,8 @@ importers:
         specifier: 1.31.13
         version: 1.31.13(supports-color@10.2.2)(typescript@6.0.3)
       '@percy/cypress':
-        specifier: 3.1.8
-        version: 3.1.8(cypress@15.20.1)(supports-color@10.2.2)
+        specifier: 3.1.9
+        version: 3.1.9(cypress@15.20.1)(supports-color@10.2.2)
       '@stencil/core':
         specifier: 4.43.3
         version: 4.43.3
@@ -3808,8 +3808,8 @@ packages:
     resolution: {integrity: sha512-SFVw/skIpcFecn8V3emAhmqqOgsX3K9toamMhhVay9FtAoy/NmsV+WuvP3IsAvujepY8ApZe2Zi5CuzZbmDy0w==}
     engines: {node: '>=14'}
 
-  '@percy/cypress@3.1.8':
-    resolution: {integrity: sha512-0eSgzkU4S19giir/PKpWPCEnUDSqBaRrTB/flBMbkhXRv/OP2b66dZsA68Im6t/xZ8UpKYvJ4l643Bh1toSoyg==}
+  '@percy/cypress@3.1.9':
+    resolution: {integrity: sha512-wU0ED+75troq8ZQ8MC3GCv91lxFfd9sklUPq2GulU1swLzuYBjeivWjMfVO5vGmhrv9vsAYlctP89nExdkZv3w==}
     peerDependencies:
       cypress: '>=3'
 
@@ -3832,8 +3832,8 @@ packages:
     resolution: {integrity: sha512-0JW+ngBKLjkhbsI6ZD8wnWDV1U/S66X4vBrJqHLSi8t8BygQrulAwKLrtSV27DHCxz3a+zptTMBQufwFbal5gg==}
     engines: {node: '>=14'}
 
-  '@percy/sdk-utils@1.32.11':
-    resolution: {integrity: sha512-B30TcM4rkCIXFmJs7a+2f9IBRC2eSqlNbZYND8nPpcsLXk4x027PJoZSFGZ2KI7kPGfNAJC39t785VK0s2ZugQ==}
+  '@percy/sdk-utils@1.32.3-beta.1':
+    resolution: {integrity: sha512-/oD+82slu1tuV3nFkwrdBWUIZ3JdmPuh2ajlcWbumTxu0lu2hhZLKmCTE72Fc5N6UXoHl9tQzJPrkT0/W/aigQ==}
     engines: {node: '>=14'}
 
   '@percy/webdriver-utils@1.31.13':
@@ -15251,16 +15251,16 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@percy/cypress@3.1.8(cypress@15.20.1)(supports-color@10.2.2)':
+  '@percy/cypress@3.1.9(cypress@15.20.1)(supports-color@10.2.2)':
     dependencies:
-      '@percy/sdk-utils': 1.32.11(supports-color@10.2.2)
+      '@percy/sdk-utils': 1.32.3-beta.1(supports-color@10.2.2)
       cypress: 15.20.1
     transitivePeerDependencies:
       - supports-color
 
-  '@percy/cypress@3.1.8(cypress@15.20.1)(supports-color@8.1.1)':
+  '@percy/cypress@3.1.9(cypress@15.20.1)(supports-color@8.1.1)':
     dependencies:
-      '@percy/sdk-utils': 1.32.11(supports-color@8.1.1)
+      '@percy/sdk-utils': 1.32.3-beta.1(supports-color@8.1.1)
       cypress: 15.20.1
     transitivePeerDependencies:
       - supports-color
@@ -15305,13 +15305,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@percy/sdk-utils@1.32.11(supports-color@10.2.2)':
+  '@percy/sdk-utils@1.32.3-beta.1(supports-color@10.2.2)':
     dependencies:
       pac-proxy-agent: 7.2.0(supports-color@10.2.2)
     transitivePeerDependencies:
       - supports-color
 
-  '@percy/sdk-utils@1.32.11(supports-color@8.1.1)':
+  '@percy/sdk-utils@1.32.3-beta.1(supports-color@8.1.1)':
     dependencies:
       pac-proxy-agent: 7.2.0(supports-color@8.1.1)
     transitivePeerDependencies:
