@@ -7,8 +7,15 @@
  * fake before a widget is rendered is enough.
  */
 
+/** Keyed by the kind of user, which is what decides the menu; the names are only sample data. */
 export const KLP_FAKE_USERS = {
-  ada: {
+  'b2c': {
+    name: 'Alan',
+    surname: 'Turing',
+    userType: 'B2C',
+    authLevel: 'PASSWORD',
+  },
+  'b2b-multi-account': {
     name: 'Ada',
     surname: 'Lovelace',
     company: 'Analytical Engines AG',
@@ -16,19 +23,13 @@ export const KLP_FAKE_USERS = {
     authLevel: 'PASSWORD',
     changeUserAndProfile: 'userAndProfile',
   },
-  grace: {
+  'b2b-multi-company': {
     name: 'Grace',
     surname: 'Hopper',
     company: 'Naval Systems AG',
     userType: 'B2B',
     authLevel: 'PASSWORD',
     canChangeCompany: true,
-  },
-  alan: {
-    name: 'Alan',
-    surname: 'Turing',
-    userType: 'B2C',
-    authLevel: 'PASSWORD',
   },
 } as const;
 

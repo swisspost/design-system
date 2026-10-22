@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1010" width="760" height="1010" role="img" aria-labelledby="title desc" font-family="Frutiger, 'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#050400">
+  <title id="title">How unread messages reach a project's header</title>
+  <desc id="desc">The project places the login widget and the messages entry in its header. On page load the widget asks KLP for the session. Anonymous visitors see the login link. Signed-in users get the user menu, and the widget opens the event bus, over which KLP pushes the unread count. The messages entry shows the count and the avatar a dot. Selecting Messages opens the account portal's messages page, where the messages are read. The messages backend then updates the count in KLP, which pushes it again. A sign-out in another tab resets the count and shows the login link.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#050400" />
+    </marker>
+  </defs>
+
+  <rect width="760" height="1010" rx="12" fill="#ffffff" />
+
+  <g stroke="#050400" stroke-width="1.5" fill="none" marker-end="url(#arrow)">
+    <line x1="300" y1="104" x2="300" y2="142" />
+    <line x1="300" y1="204" x2="300" y2="232" />
+    <line x1="390" y1="274" x2="538" y2="274" />
+    <line x1="300" y1="314" x2="300" y2="352" />
+    <line x1="300" y1="414" x2="300" y2="452" />
+    <line x1="300" y1="514" x2="300" y2="552" />
+    <line x1="300" y1="614" x2="300" y2="652" />
+    <line x1="300" y1="698" x2="300" y2="736" />
+    <line x1="300" y1="798" x2="300" y2="836" />
+    <line x1="300" y1="882" x2="300" y2="920" />
+    <polyline points="120,952 70,952 70,484 118,484" />
+    <line x1="480" y1="384" x2="538" y2="384" stroke-dasharray="6 5" />
+  </g>
+
+  <g font-size="14">
+    <text x="452" y="266" text-anchor="middle">No</text>
+    <text x="312" y="340">Yes</text>
+    <text x="58" y="720" text-anchor="middle" transform="rotate(-90 58 720)">count changed</text>
+  </g>
+
+  <g stroke="#050400" stroke-width="1.5">
+    <rect x="120" y="20" width="360" height="84" rx="8" fill="#ffcc00" />
+    <rect x="120" y="144" width="360" height="60" rx="8" fill="#ffffff" />
+    <polygon points="300,234 390,274 300,314 210,274" fill="#ffffff" />
+    <rect x="120" y="354" width="360" height="60" rx="8" fill="#ffffff" />
+    <rect x="120" y="454" width="360" height="60" rx="8" fill="#ffffff" />
+    <rect x="120" y="554" width="360" height="60" rx="8" fill="#ffffff" />
+    <rect x="120" y="654" width="360" height="44" rx="8" fill="#ffffff" />
+    <rect x="120" y="738" width="360" height="60" rx="8" fill="#ffffff" />
+    <rect x="120" y="838" width="360" height="44" rx="8" fill="#ffffff" />
+    <rect x="120" y="922" width="360" height="60" rx="8" fill="#ffffff" />
+    <rect x="540" y="244" width="200" height="60" rx="8" fill="#ffffff" />
+    <rect x="540" y="346" width="200" height="76" rx="8" fill="#ffffff" stroke-dasharray="6 5" />
+  </g>
+
+  <g text-anchor="middle">
+    <text x="300" y="44" font-weight="bold">Your project</text>
+    <text x="300" y="66">post-klp-login-widget in post-header,</text>
+    <text x="300" y="86">post-klp-login-widget-messages in menu-links</text>
+
+    <text x="300" y="170">Page loads: the widget asks KLP</text>
+    <text x="300" y="190" font-family="Menlo, Consolas, monospace" font-size="13">GET /v1/session/subscribe</text>
+
+    <text x="300" y="279" font-weight="bold">Signed in?</text>
+
+    <text x="300" y="380">User menu shown, the widget opens</text>
+    <text x="300" y="400">the event bus (websocket)</text>
+
+    <text x="300" y="480">KLP pushes UNREAD_NOTIFICATIONS</text>
+    <text x="300" y="500" font-family="Menlo, Consolas, monospace" font-size="13">{ unreadNotifications: n }</text>
+
+    <text x="300" y="580">Messages entry shows the count (99+ max),</text>
+    <text x="300" y="600">the avatar a dot while n &gt; 0</text>
+
+    <text x="300" y="681">User selects Messages</text>
+
+    <text x="300" y="764">Browser opens your url, e.g.</text>
+    <text x="300" y="784" font-family="Menlo, Consolas, monospace" font-size="13">account.post.ch/selfadmin/messages/</text>
+
+    <text x="300" y="865">Messages are read there, outside the widget</text>
+
+    <text x="300" y="948">The messages backend updates the count</text>
+    <text x="300" y="968">in KLP (internal document API)</text>
+
+    <text x="640" y="270">Login link shown,</text>
+    <text x="640" y="290">no event bus</text>
+
+    <text x="640" y="374">Sign-out in another tab:</text>
+    <text x="640" y="394">count reset to 0,</text>
+    <text x="640" y="414">login link shown</text>
+  </g>
+</svg>

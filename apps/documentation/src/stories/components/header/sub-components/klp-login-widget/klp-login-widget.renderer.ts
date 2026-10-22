@@ -1,12 +1,19 @@
 import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
+export interface KlpLoginWidgetMessagesRenderOptions {
+  url?: string;
+  text?: string;
+  textUnread?: string;
+}
+
 export interface KlpLoginWidgetRenderOptions {
   environment?: string;
   textCurrentUser?: string;
   textUserLinks?: string;
   textAccessUserLinks?: string;
   initialState?: 'anonymous' | 'authenticated';
+  messages?: KlpLoginWidgetMessagesRenderOptions;
 }
 
 export const KLP_LOGIN_WIDGET_TEXTS = {
@@ -15,8 +22,15 @@ export const KLP_LOGIN_WIDGET_TEXTS = {
   textAccessUserLinks: 'Access user links',
 };
 
+export const KLP_LOGIN_WIDGET_MESSAGES_DEFAULTS = {
+  url: '#messages',
+  text: 'Messages',
+  textUnread: '{count} unread messages',
+};
+
 export function renderKlpLoginWidget(options: KlpLoginWidgetRenderOptions = {}) {
   const texts = { ...KLP_LOGIN_WIDGET_TEXTS, ...options };
+  const messages = { ...KLP_LOGIN_WIDGET_MESSAGES_DEFAULTS, ...options.messages };
 
   return html`
     <!-- Global header login widget -->
@@ -52,9 +66,9 @@ export function renderKlpLoginWidget(options: KlpLoginWidgetRenderOptions = {}) 
       </post-menu-item>
       <post-klp-login-widget-messages
         slot="menu-links"
-        url="#messages"
-        text="Messages"
-        text-unread="{count} unread messages"
+        url=${messages.url}
+        text=${messages.text}
+        text-unread=${messages.textUnread}
       ></post-klp-login-widget-messages>
       <post-menu-item slot="menu-links">
         <a href="#settings">
