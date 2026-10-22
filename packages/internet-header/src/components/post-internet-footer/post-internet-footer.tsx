@@ -77,11 +77,15 @@ export class PostInternetFooter {
     window['UC_UI']['showSecondLayer']();
   }
 
+  private hasItems(config: LinkListConfig | undefined): config is LinkListConfig {
+    return Array.isArray(config?.items) && config.items.length > 0;
+  }
+
   private renderListWithTitle(
     config: LinkListConfig | undefined,
     props: { titleProps?: TitleProps; listProps?: JSXBase.HTMLAttributes; linkProps?: LinkProps },
   ) {
-    if (!config) return undefined;
+    if (!this.hasItems(config)) return undefined;
 
     const { titleProps, listProps, linkProps } = props;
 
@@ -117,11 +121,14 @@ export class PostInternetFooter {
     }
 
     const footerConfig = state.localizedConfig.footer;
+    const { complianceLinks } = footerConfig;
+    const showMeta =
+      complianceLinks && (this.hasItems(complianceLinks) || this.cookieSettingsEnabled);
 
     return (
       <Host data-version={version}>
         <post-footer textFooter={this.textFooter}>
-          {footerConfig.prefooter && (
+          {this.hasItems(footerConfig.prefooter) && (
             <div slot="prefooter">
               {this.renderListWithTitle(footerConfig.prefooter, {
                 titleProps: { tag: 'h3' },
@@ -136,7 +143,7 @@ export class PostInternetFooter {
             }),
           )}
 
-          {footerConfig.socialLinks && (
+          {this.hasItems(footerConfig.socialLinks) && (
             <div slot="socialmedia">
               {this.renderListWithTitle(footerConfig.socialLinks, {
                 titleProps: { tag: 'h3' },
@@ -145,7 +152,7 @@ export class PostInternetFooter {
             </div>
           )}
 
-          {footerConfig.appStoreLinks && (
+          {this.hasItems(footerConfig.appStoreLinks) && (
             <div slot="app">
               {this.renderListWithTitle(footerConfig.appStoreLinks, {
                 titleProps: { tag: 'h3' },
@@ -154,7 +161,7 @@ export class PostInternetFooter {
             </div>
           )}
 
-          {footerConfig.companyLinks && (
+          {this.hasItems(footerConfig.companyLinks) && (
             <div slot="businesssectors">
               {this.renderListWithTitle(footerConfig.companyLinks, {
                 titleProps: { tag: 'h3' },
@@ -162,10 +169,10 @@ export class PostInternetFooter {
             </div>
           )}
 
-          {footerConfig.complianceLinks && (
+          {showMeta && (
             <div slot="meta">
-              <ul aria-label={getText(footerConfig.complianceLinks.title)}>
-                {footerConfig.complianceLinks.items.map(item => (
+              <ul aria-label={getText(complianceLinks.title)}>
+                {complianceLinks.items?.map(item => (
                   <li key={item.text}>
                     <Link config={item} />
                   </li>
