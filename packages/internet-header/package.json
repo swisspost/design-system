@@ -57,7 +57,7 @@
   "devDependencies": {
     "@babel/core": "7.29.7",
     "@percy/cli": "1.31.13",
-    "@percy/cypress": "3.1.8",
+    "@percy/cypress": "3.1.9",
     "@stencil/core": "4.43.3",
     "@stencil/sass": "3.0.12",
     "@stencil/store": "2.0.16",
