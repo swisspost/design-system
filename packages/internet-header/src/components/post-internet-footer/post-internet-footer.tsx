@@ -78,7 +78,7 @@ export class PostInternetFooter {
   }
 
   private hasItems(config: LinkListConfig | undefined): config is LinkListConfig {
-    return config !== undefined && config.items.length > 0;
+    return Array.isArray(config?.items) && config.items.length > 0;
   }
 
   private renderListWithTitle(
@@ -121,7 +121,9 @@ export class PostInternetFooter {
     }
 
     const footerConfig = state.localizedConfig.footer;
-    const showMeta = this.hasItems(footerConfig.complianceLinks) || this.cookieSettingsEnabled;
+    const { complianceLinks } = footerConfig;
+    const showMeta =
+      complianceLinks && (this.hasItems(complianceLinks) || this.cookieSettingsEnabled);
 
     return (
       <Host data-version={version}>
@@ -167,10 +169,10 @@ export class PostInternetFooter {
             </div>
           )}
 
-          {footerConfig.complianceLinks && showMeta && (
+          {showMeta && (
             <div slot="meta">
-              <ul aria-label={getText(footerConfig.complianceLinks.title)}>
-                {footerConfig.complianceLinks.items.map(item => (
+              <ul aria-label={getText(complianceLinks.title)}>
+                {complianceLinks.items?.map(item => (
                   <li key={item.text}>
                     <Link config={item} />
                   </li>
