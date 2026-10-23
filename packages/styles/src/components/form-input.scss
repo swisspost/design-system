@@ -258,15 +258,30 @@ input.form-control {
   &[type='month'],
   &[type='week'],
   &[type='time'] {
-    &::-webkit-datetime-edit-day-field:not(:focus),
-    &::-webkit-datetime-edit-month-field:not(:focus),
-    &::-webkit-datetime-edit-year-field:not(:focus),
-    &::-webkit-datetime-edit-hour-field:not(:focus),
-    &::-webkit-datetime-edit-minute-field:not(:focus),
-    &::-webkit-datetime-edit-second-field:not(:focus),
-    &::-webkit-datetime-edit-ampm-field:not(:focus),
-    &::-webkit-datetime-edit-meridiem-field:not(:focus) {
-      -webkit-text-fill-color: tokens.get('input-color-enabled-fg') !important;
+    &:not(:disabled) {
+      &::-webkit-datetime-edit-day-field:not(:focus),
+      &::-webkit-datetime-edit-month-field:not(:focus),
+      &::-webkit-datetime-edit-year-field:not(:focus),
+      &::-webkit-datetime-edit-hour-field:not(:focus),
+      &::-webkit-datetime-edit-minute-field:not(:focus),
+      &::-webkit-datetime-edit-second-field:not(:focus),
+      &::-webkit-datetime-edit-ampm-field:not(:focus),
+      &::-webkit-datetime-edit-meridiem-field:not(:focus) {
+        -webkit-text-fill-color: tokens.get('input-color-enabled-fg') !important;
+      }
+    }
+
+    &:disabled {
+      &::-webkit-datetime-edit-day-field,
+      &::-webkit-datetime-edit-month-field,
+      &::-webkit-datetime-edit-year-field,
+      &::-webkit-datetime-edit-hour-field,
+      &::-webkit-datetime-edit-minute-field,
+      &::-webkit-datetime-edit-second-field,
+      &::-webkit-datetime-edit-ampm-field,
+      &::-webkit-datetime-edit-meridiem-field {
+        -webkit-text-fill-color: tokens.get('input-color-disabled-fg') !important;
+      }
     }
 
     // Safari-specific: Override default selection styles where background and text colors

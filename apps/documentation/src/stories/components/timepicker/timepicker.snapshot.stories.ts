@@ -28,6 +28,7 @@ export const Timepicker: Story = {
                 'This is helpful text that provides guidance or additional information to assist the user in filling out this field correctly.',
               ],
               disabled: [false, true],
+              value: [null, '11:11'],
               validation: ['null', 'is-valid', 'is-invalid'],
               requiredOptional: ['null', 'required', 'optional'],
             })
