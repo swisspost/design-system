@@ -68,7 +68,6 @@ describe('Footer', () => {
         .find('div[slot="socialmedia"] a')
         .each($link => {
           cy.wrap($link)
-            .scrollIntoView()
             .should('have.class', 'btn')
             .should('have.class', 'btn-primary')
             .should('have.class', 'btn-icon');
