@@ -40,6 +40,7 @@
     "@swisspost/design-system-icons": "workspace:10.8.0",
     "@swisspost/design-system-styles": "workspace:10.8.0",
     "@swisspost/design-system-styles-primeng": "workspace:10.8.0",
+    "@swisspost/internet-header": "workspace:10.8.0",
     "primeng": "21.1.9",
     "rxjs": "catalog:angular",
     "tslib": "catalog:angular",

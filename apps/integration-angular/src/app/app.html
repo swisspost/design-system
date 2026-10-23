@@ -52,11 +52,29 @@
   </post-language-menu>
 
   <!-- Global header login/user menu -->
-
-  <a href="" slot="post-login">
-    <span>Login</span>
-    <post-icon name="login" />
-  </a>
+  <!-- `int01` keeps the integration app off the production platform. -->
+  <post-klp-login-widget
+    slot="post-login"
+    environment="int01"
+    initialState="anonymous"
+    textCurrentUser="Signed in as {user}"
+    textUserLinks="User menu"
+    textAccessUserLinks="Open the user menu"
+  >
+    <a href="" slot="login-link">
+      <span>Login</span>
+      <post-icon name="login" />
+    </a>
+    <post-klp-login-widget-messages
+      slot="menu-links"
+      url="#messages"
+      text="Messages"
+      textUnread="{count} unread messages"
+    />
+    <post-menu-item slot="logout-link">
+      <a href="#logout">Logout</a>
+    </post-menu-item>
+  </post-klp-login-widget>
 
   <!-- Main navigation -->
   <post-mainnavigation slot="main-nav" textMain="Main">
@@ -159,7 +177,7 @@
       <ul class="d-flex flex-wrap row-gap-4 column-gap-16 m-0 list-unstyled">
         @for (route of navigationRoutes; track route.path) {
         <li>
-          <a [routerLink]="route.path">{{ route.title }}</a>
+          <a [routerLink]="'/' + route.path">{{ route.title }}</a>
         </li>
         }
       </ul>

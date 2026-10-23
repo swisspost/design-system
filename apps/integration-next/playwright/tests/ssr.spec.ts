@@ -4,9 +4,11 @@ import {
   setupComponentErrorCapture,
   assertNoComponentErrors,
 } from '../support/component-error-filter';
+import { blockKlpPlatform } from '../support/klp-platform';
 
 test.describe('SSR compatibility', () => {
   test.beforeEach(async ({ page }) => {
+    await blockKlpPlatform(page);
     await page.goto('/ssr');
   });
 

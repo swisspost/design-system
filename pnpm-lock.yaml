@@ -317,6 +317,9 @@ importers:
       '@swisspost/design-system-styles-primeng':
         specifier: workspace:10.8.0
         version: link:../../packages/styles-primeng
+      '@swisspost/internet-header':
+        specifier: workspace:10.8.0
+        version: link:../../packages/internet-header
       primeng:
         specifier: 21.1.9
         version: 21.1.9(82f5c9807254e5b28873ba50367f45ab)
@@ -375,6 +378,9 @@ importers:
       '@swisspost/design-system-styles':
         specifier: workspace:10.8.0
         version: link:../../packages/styles/dist
+      '@swisspost/internet-header':
+        specifier: workspace:10.8.0
+        version: link:../../packages/internet-header
       next:
         specifier: 16.3.8
         version: 16.3.8(@babel/core@8.0.5)(@playwright/test@1.60.0)(@types/node@24.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass@1.104.0)

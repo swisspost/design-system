@@ -1,7 +1,7 @@
 /**
- * Playground only: stands in for the KLP platform so the signed-in composition can be seen without
- * a backend. Loaded as a classic script, because it must patch `fetch` and `WebSocket` before the
- * components module evaluates and connects.
+ * Development only: stands in for the KLP platform so the signed-in composition can be seen
+ * without a backend. Loaded as a classic script, because it must patch `fetch` and `WebSocket`
+ * before the components module evaluates and connects.
  *
  * `?session=` picks who is signed in — `ada`, `grace`, `alan`, or anything else for anonymous —
  * and `?unread=` how many messages are already waiting. Every other query parameter overrides the
@@ -9,8 +9,18 @@
  *
  * From there the buttons take over: they push the messages the platform would send into an open
  * session, so signing in and out needs no reload.
+ *
+ * Hosts that ship this on every page leave it dormant until the URL carries `?klpmock`. The
+ * playground marks its tag `data-always`, because that page exists for nothing else.
  */
 (() => {
+  if (
+    !document.currentScript?.hasAttribute('data-always') &&
+    !new URLSearchParams(location.search).has('klpmock')
+  ) {
+    return;
+  }
+
   const USERS = {
     ada: {
       name: 'Ada',
@@ -141,6 +151,20 @@
     }
   }
 
+  /** Falls back to a fixed bar, so a host only has to load the script. */
+  function container() {
+    const existing = document.querySelector('#KLPMockContainer');
+    if (existing) return existing;
+
+    const element = document.createElement('div');
+    element.id = 'KLPMockContainer';
+    element.style.cssText =
+      'position:fixed;inset:auto 0 0 0;z-index:1000;display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px;background:#fc0';
+    document.body.append(element);
+
+    return element;
+  }
+
   onReady(() => {
     const his = Object.entries(USERS).map(([id, user]) =>
       button(`hi ${label(user)} (${user.userType})`, () => {
@@ -159,7 +183,7 @@
       }),
     );
 
-    document.querySelector('#KLPMockContainer').append(
+    container().append(
       'KLP mock: ',
       button('logout', () => push({ typ: 'bye' })),
       ...his,
