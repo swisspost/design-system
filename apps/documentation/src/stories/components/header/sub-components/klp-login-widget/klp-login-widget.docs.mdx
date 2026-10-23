@@ -1,0 +1,185 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as KlpLoginWidgetStories from './klp-login-widget.stories';
+import * as KlpLoginWidgetMessagesStories from '../klp-login-widget-messages/klp-login-widget-messages.stories';
+import StoryTags from '@/shared/story-tags';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import './klp-login-widget.styles.scss';
+
+<Meta of={KlpLoginWidgetStories} />
+
+<div className="docs-title">
+  # KLP Login Widget
+
+<link-design of={JSON.stringify(KlpLoginWidgetStories)}></link-design>
+
+</div>
+
+<StoryTags meta={meta} />
+
+<p className="lead">
+  The KLP login widget shows the login link to anonymous visitors and the user menu to signed-in
+  users of the Swiss Post customer login platform (KLP).
+</p>
+
+It is designed to be used in the `post-login` slot of the `post-header` component. The widget owns
+the session: it asks the KLP platform who is signed in, keeps the session alive while the user is
+active, and receives unread messages and sign-ins or sign-outs from other tabs as they happen. Your
+application only provides the links.
+
+<Canvas sourceState="shown" of={KlpLoginWidgetStories.Default} />
+
+<Controls of={KlpLoginWidgetStories.Default} />
+
+Once the user is signed in, the avatar opens the user menu, with the company, if any, above the
+user's name. Select the avatar in the example above to open it.
+
+This user may switch account. Business users who may change company see the company switch
+instead, and users who may do neither, such as private customers, see no switch at all. Use the
+`Session` control above to see each of them.
+
+<post-banner>
+  <p>
+    <b>Fake session:</b> the examples on this page replace the KLP platform with a fake, so every
+    kind of user can be seen without a real session.
+  </p>
+</post-banner>
+
+<ComponentsPackageInstall component="<post-klp-login-widget>" />
+
+## Environment
+
+The `environment` property selects the KLP platform the widget talks to, and with it every URL the
+widget calls: `prod` uses `n.account.post.ch`, the other environments use the matching test
+platforms. Your page's origin has to be on that platform's allowlist, and the page has to be served
+from a `post.ch` domain, so the session cookie is sent along.
+
+If your page uses a Content Security Policy, allow the platform in `connect-src`, for both `https:`
+and `wss:`, because the widget also opens a websocket to it.
+
+## Links
+
+All links are provided by your application, as light DOM in the widget's slots. The widget decides
+which of them to show:
+
+<div className="table-responsive">
+  <table className="table">
+    <caption className="visually-hidden">
+      Slots of the KLP login widget and when they are shown
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">Slot</th>
+        <th scope="col">Content</th>
+        <th scope="col">Shown</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">
+          <code>login-link</code>
+        </th>
+        <td>A link to the login page.</td>
+        <td>To anonymous visitors.</td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>account-switch</code>
+        </th>
+        <td>
+          A <code>post-menu-item</code> linking to the account switch.
+        </td>
+        <td>When the session allows the user to switch account.</td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>company-switch</code>
+        </th>
+        <td>
+          A <code>post-menu-item</code> linking to the company switch.
+        </td>
+        <td>When the session allows the user to switch company.</td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>menu-links</code>
+        </th>
+        <td>
+          Any number of <code>post-menu-item</code> elements.
+        </td>
+        <td>In the user menu, in the order given.</td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <code>logout-link</code>
+        </th>
+        <td>
+          A <code>post-menu-item</code> linking to the logout.
+        </td>
+        <td>Last in the user menu.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+The account switch and the company switch are never shown together.
+
+<post-banner>
+  <p>
+    <b>Link URLs:</b> the links in the examples on this page are placeholders. Which URLs your
+    application has to link to depends on how it is set up on the KLP platform. To find out more,
+    talk to the KLP team or visit their documentation.
+  </p>
+</post-banner>
+
+## Unread messages
+
+Place a `post-klp-login-widget-messages` element among the `menu-links`, wherever the messages entry
+should appear. It shows the number of unread messages the platform reports, and
+the avatar shows a dot as long as there are any. Both update as messages arrive, without a reload.
+
+<Canvas sourceState="shown" of={KlpLoginWidgetMessagesStories.Default} />
+
+<Controls of={KlpLoginWidgetMessagesStories.Default} />
+
+The entry brings its own `post-menu-item` and the `letter` icon, so it only needs the
+`slot="menu-links"` attribute to sit in the user menu like the other links. The count is shared by
+every messages entry on the page, so use one KLP login widget per page.
+
+### How it works
+
+The platform only reports how many messages are unread; it never sends the messages themselves.
+They are read on the account portal, so point the entry's `url` to its messages page:
+`https://account.post.ch/selfadmin/messages/?lang=de` in production, with the language of the page
+and the account host of your environment (`accountint1.post.ch`, `accountint2.post.ch`). This is
+the same page for every type of user.
+
+<img
+  className="messages-flow"
+  src="/assets/images/klp-login-widget-messages-flow.svg"
+  alt="Flow of unread messages. Your project places the login widget and the messages entry in the header. On page load the widget asks KLP for the session: anonymous visitors see the login link, signed-in users get the user menu, and the widget opens the event bus. KLP pushes the unread count, the messages entry shows it and the avatar a dot. Selecting Messages opens the account portal's messages page, where the messages are read. The messages backend then updates the count in KLP, which pushes it again. A sign-out in another tab resets the count and shows the login link."
+  width="760"
+  height="1010"
+/>
+
+## Before the session is known
+
+Until the platform has answered, the widget reserves an avatar-sized box, so the header does not
+shift once the session is known. If your page already knows the visitor's authentication state, set
+`initial-state` accordingly (e.g. during SSR), so the widget renders in the correct state immediately.
+
+<post-banner type="info">The example below never gets an
+answer, so it keeps showing that state.</post-banner>
+
+<Canvas of={KlpLoginWidgetStories.InitialState} />
+
+## Accessibility
+
+The avatar has no visible label, so the widget relies on three texts, which must be translated
+into the page's language:
+
+- `text-current-user` describes the avatar; `{user}` is replaced with the user's full name.
+- `text-access-user-links` is the accessible name of the button opening the user menu.
+- `text-user-links` labels the user menu itself.
+
+Give the messages entry a `text-unread` as well, since its count is otherwise announced as a bare
+number.
