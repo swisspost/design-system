@@ -31,12 +31,14 @@ tokens.$default-map: components.$post-checkbox;
   @include forms-mx.form-check-base();
 
   // Grouped
-  fieldset > &:not(.form-check-inline):not(:last-of-type) {
+  fieldset > &:not(.form-check-inline):not(:last-of-type),
+  fieldset > .form-grid-control > &:not(.form-check-inline):not(:last-of-type) {
     margin-block-end: tokens.get('checkbox-gap-block-group');
   }
 
   // Grouped inline
-  fieldset > &.form-check-inline:not(:last-of-type) {
+  fieldset > &.form-check-inline:not(:last-of-type),
+  fieldset > .form-grid-control > &.form-check-inline:not(:last-of-type) {
     margin-inline-end: tokens.get('checkbox-group-items-gap-inline');
   }
 
@@ -81,12 +83,14 @@ fieldset:has(.form-check input[type='checkbox']) {
 }
 
 fieldset legend {
-  &:has(+ .form-check input[type='checkbox']) {
+  &:has(+ .form-check input[type='checkbox']),
+  &:has(+ .form-grid-control + .form-check input[type='checkbox']) {
     font-size: tokens.get('checkbox-group-legend-font-size');
     margin-block-end: tokens.get('checkbox-gap-block-group');
   }
 
-  &:has(+ .form-check.form-check-sm input[type='checkbox']) {
+  &:has(+ .form-check.form-check-sm input[type='checkbox']),
+  &:has(+ .form-grid-control .form-check.form-check-sm input[type='checkbox']) {
     margin-block-end: tokens.get('checkbox-small-group-gap-block');
   }
 }

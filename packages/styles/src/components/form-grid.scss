@@ -1,0 +1,63 @@
+@use '../functions/breakpoint';
+@use '../functions/tokens';
+@use '../layout/grid/variables' as grid;
+@use '../mixins/media';
+@use '../tokens/components';
+@use '../variables/breakpoints';
+
+.row.form-grid {
+  display: grid;
+  grid-template-columns: repeat(grid.$grid-columns, minmax(0, 1fr));
+
+  > * {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-column: span grid.$grid-columns;
+    grid-row: span 2;
+    width: auto;
+    min-width: 0;
+
+    > :is(.form-label),
+    > fieldset > legend {
+      grid-row: 1;
+      align-self: end;
+    }
+
+    > .form-grid-control,
+    > fieldset > .form-grid-control {
+      grid-row: 2;
+      min-width: 0;
+    }
+
+    > fieldset:has(> .form-grid-control) {
+      display: contents;
+    }
+  }
+
+  // Visually align form checks with inputs
+  .form-check:not(fieldset .form-check) {
+    $input-height: tokens.get('input-sizing-height', components.$post-text-input);
+    $checkbox-height: tokens.get('checkbox-icon-size', components.$post-checkbox);
+
+    padding-block-start: calc((#{$input-height} - #{$checkbox-height}) / 2);
+
+    &.form-check-sm {
+      $input-height: tokens.get('input-small-sizing-height', components.$post-text-input);
+      $checkbox-height: tokens.get('checkbox-small-icon-size', components.$post-checkbox);
+
+      padding-block-start: calc((#{$input-height} - #{$checkbox-height}) / 2);
+    }
+  }
+
+  @each $name, $value in breakpoints.$grid-breakpoints {
+    $infix: breakpoint.infix($name);
+
+    @include media.min($name) {
+      @for $size from 1 through grid.$grid-columns {
+        > .col#{$infix}-#{$size} {
+          grid-column: span $size;
+        }
+      }
+    }
+  }
+}

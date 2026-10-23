@@ -331,11 +331,13 @@ input.form-control {
   @include forms-mx.validation-icons;
 }
 
-.form-label:has(+ input.form-control[disabled]) {
+.form-label:has(+ input.form-control[disabled]),
+.form-label:has(+ .form-grid-control input.form-control[disabled]) {
   color: tokens.get('input-color-disabled-fg');
 }
 
-.form-label:has(+ input.form-control-sm) {
+.form-label:has(+ input.form-control-sm),
+.form-label:has(+ .form-grid-control input.form-control-sm) {
   display: block;
   padding-inline: tokens.get('input-non-floating-small-label-padding-inline');
   padding-block: tokens.get('input-non-floating-small-label-padding-block');
