@@ -30,6 +30,7 @@ describe('footer', () => {
     });
 
     it('should correctly show social links', () => {
+
       cy.get('[slot="socialmedia"] h3')
         .should('be.visible')
         .invoke('attr', 'id')
@@ -48,6 +49,7 @@ describe('footer', () => {
     });
 
     it('should correctly show app store links', () => {
+
       cy.get('[slot="app"] h3')
         .should('be.visible')
         .invoke('attr', 'id')
@@ -66,6 +68,7 @@ describe('footer', () => {
     });
 
     it('should correctly show company links', () => {
+
       cy.get('[slot="businesssectors"] h3')
         .should('be.visible')
         .invoke('attr', 'id')
@@ -77,6 +80,7 @@ describe('footer', () => {
     });
 
     it('should correctly show compliance links', () => {
+
       cy.get('[slot="meta"] h3').should('not.exist');
       cy.get('[slot="meta"] ul').invoke('attr', 'aria-label').should('not.be.empty');
       cy.get('[slot="meta"] a').should('have.length', 4).and('be.visible');
