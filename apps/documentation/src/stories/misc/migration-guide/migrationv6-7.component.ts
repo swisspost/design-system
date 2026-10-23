@@ -32,12 +32,11 @@ export class MigrationV67Component extends LitElement {
             </a>
           </h2>
           <section>
-          <post-accordion heading-level="3">
-            <post-accordion-item>
-              <span slot="header">1. Package Update 🩺</span>
-              <ol>
-                ${
-                  this.angular
+            <post-accordion heading-level="3">
+              <post-accordion-item>
+                <span slot="header">1. Package Update 🩺</span>
+                <ol>
+                  ${this.angular
                     ? html`
                         <li>
                           <p>
@@ -46,11 +45,8 @@ export class MigrationV67Component extends LitElement {
                           </p>
                         </li>
                       `
-                    : nothing
-                }
-
-                ${
-                  this.angular
+                    : nothing}
+                  ${this.angular
                     ? html`
                         <li>
                           <p>
@@ -74,57 +70,55 @@ export class MigrationV67Component extends LitElement {
                           </p>
                         </li>
                       `
-                    : nothing
-                }
+                    : nothing}
 
                   <li>
                     <p>
                       Update Design System style package to version 7:
-                      <code-block code=${'npm install @swisspost/design-system-styles@7'}></code-block>
+                      <code-block
+                        code=${'npm install @swisspost/design-system-styles@7'}
+                      ></code-block>
                     </p>
                   </li>
                 </ol>
               </post-accordion-item>
 
-              ${
-                this.angular
-                  ? html`
-                      <post-accordion-item>
-                        <span slot="header">2. Automatic Migration ⚙️</span>
-                        <p>
-                          For Angular application, you can take advantage of our migration
-                          schematics.
-                        </p>
-                        <ol>
-                          <li>Commit all the changes you have made so far</li>
-                          <li>Make sure you are running on a node version >= 16</li>
-                          <li>
-                            You should now be able to run the following command to apply all
-                            automatic migrations to your application:
-                            <code-block
-                              code=${`npm install @swisspost/design-system-migrations
+              ${this.angular
+                ? html`
+                    <post-accordion-item>
+                      <span slot="header">2. Automatic Migration ⚙️</span>
+                      <p>
+                        For Angular application, you can take advantage of our migration schematics.
+                      </p>
+                      <ol>
+                        <li>Commit all the changes you have made so far</li>
+                        <li>Make sure you are running on a node version >= 16</li>
+                        <li>
+                          You should now be able to run the following command to apply all automatic
+                          migrations to your application:
+                          <code-block
+                            code=${`npm install @swisspost/design-system-migrations
     npx ng update @swisspost/design-system-migrations --from=6 --to=7 --migrate-only --allow-dirty
     npm uninstall @swisspost/design-system-migrations`}
-                            ></code-block>
-                          </li>
-                        </ol>
-                      </post-accordion-item>
-                    `
-                  : nothing
-              }
+                          ></code-block>
+                        </li>
+                      </ol>
+                    </post-accordion-item>
+                  `
+                : nothing}
 
               <post-accordion-item>
-                <span slot="header">${this.angular ? html`3` : html`2`}. Component Migration 🤓</span>
-                    ${
-                      this.angular
-                        ? html`
-                            <p class="info">
-                              Changes flagged with the ⚙️ symbol should be automatically migrated
-                              with our migration tool.
-                            </p>
-                          `
-                        : nothing
-                    }
+                <span slot="header"
+                  >${this.angular ? html`3` : html`2`}. Component Migration 🤓</span
+                >
+                ${this.angular
+                  ? html`
+                      <p class="info">
+                        Changes flagged with the ⚙️ symbol should be automatically migrated with our
+                        migration tool.
+                      </p>
+                    `
+                  : nothing}
 
                 <section>
                   <h4>Styles</h4>
@@ -163,7 +157,8 @@ export class MigrationV67Component extends LitElement {
                     </li>
                     <li class="mb-16">
                       <p>
-                        Renamed the Sass variable <code>$gray-background</code> to <code>$gray</code>
+                        Renamed the Sass variable <code>$gray-background</code> to
+                        <code>$gray</code>
                         <span class="tag tag-sm tag-error">breaking</span>
                       </p>
                     </li>
@@ -187,22 +182,22 @@ export class MigrationV67Component extends LitElement {
                       <p>
                         Restricted the <em>badge</em> usage to showcasing counts exclusively ⚙️
                         <span class="tag tag-sm tag-error">breaking</span>
-                        <p class="info">
-                          Use
-                          <a href="/?path=/docs/1b1ea384-7421-4064-ad34-e3f48a36b39f--docs">tags</a>
-                          to display states, properties, or other metadata. Opt for
-                          <a href="/?path=/docs/12576d97-52c3-49ec-be7b-6d37728b75f5--docs">chips</a>
-                          when presenting dismissible or selectable information.
-                        </p>
+                      </p>
+                      <p class="info">
+                        Use
+                        <a href="/?path=/docs/1b1ea384-7421-4064-ad34-e3f48a36b39f--docs">tags</a>
+                        to display states, properties, or other metadata. Opt for
+                        <a href="/?path=/docs/12576d97-52c3-49ec-be7b-6d37728b75f5--docs">chips</a>
+                        when presenting dismissible or selectable information.
                       </p>
                     </li>
                     <li class="mb-16">
-                      <p>
-                        Updated the <em>badge</em> color to red.
-                      </p>
+                      <p>Updated the <em>badge</em> color to red.</p>
                       <p class="info">
                         Use the
-                        <a href="/?path=/docs/60852fac-a861-4415-8276-bd38d68653bb--docs">Background utility classes</a>
+                        <a href="/?path=/docs/60852fac-a861-4415-8276-bd38d68653bb--docs"
+                          >Background utility classes</a
+                        >
                         to change the badge color as needed.
                       </p>
                     </li>
@@ -225,19 +220,22 @@ export class MigrationV67Component extends LitElement {
                           <code>loader/index.cjs.js</code> to <code>dist/index.cjs.js</code>
                         </li>
                         <li>
-                          updated the <code>module</code> property from <code>loader/index.js</code> to
+                          updated the <code>module</code> property from
+                          <code>loader/index.js</code> to
                           <code>dist/loader.js</code>
                         </li>
                         <li>
-                          updated the <code>types</code> property from <code>loader/index.d.ts</code> to
+                          updated the <code>types</code> property from
+                          <code>loader/index.d.ts</code> to
                           <code>dist/types/index.d.ts</code>
                         </li>
                         <li>removed the <code>es2017</code> property</li>
                       </ul>
                       <p class="info">
-                        The usage of the <code>@swisspost/design-system-components/loader</code> entry
-                        files are still available and should be used (as documented) to get the
-                        lazy-loaded components.
+                        The usage of the
+                        <code>@swisspost/design-system-components/loader</code> entry files are
+                        still available and should be used (as documented) to get the lazy-loaded
+                        components.
                       </p>
                     </li>
                     <li class="mb-16">
@@ -251,7 +249,8 @@ export class MigrationV67Component extends LitElement {
                           <code>postDismissed</code>
                         </li>
                         <li>
-                          <em>post-collapsible</em> components <code>collapseChange</code> event became
+                          <em>post-collapsible</em> components <code>collapseChange</code> event
+                          became
                           <code>postToggle</code>
                         </li>
                         <li>
@@ -272,38 +271,36 @@ export class MigrationV67Component extends LitElement {
                   <h4>NgBootstrap</h4>
 
                   <ul>
-                    ${
-                      this.angular
-                        ? html`
-                            <li class="mb-16">
-                              <h5>
-                                ngbAccordion
-                                <span class="tag tag-sm tag-error">breaking</span>
-                              </h5>
-                              <p>
-                                The
-                                <em>ngb-accordion</em>
-                                and
-                                <em>ngb-panel</em>
-                                component have been removed from ng-bootstrap.
-                                <br />
-                                Use the <em>post-accordion</em> component from the
-                                <a href="/?path=/docs/833ef689-a573-40f5-a6a6-30a999b94733--docs"
-                                  >@swisspost/design-system-components-angular</a
-                                >
-                                package as a replacement.
-                              </p>
-                              <p class="info">
-                                See the
-                                <a href="/?path=/docs/4d1b4185-e04d-494a-ab38-2b56c1778b0b--docs"
-                                  >Accordion component documentation</a
-                                >
-                                for more detailed information.
-                              </p>
-                            </li>
-                          `
-                        : nothing
-                    }
+                    ${this.angular
+                      ? html`
+                          <li class="mb-16">
+                            <h5>
+                              ngbAccordion
+                              <span class="tag tag-sm tag-error">breaking</span>
+                            </h5>
+                            <p>
+                              The
+                              <em>ngb-accordion</em>
+                              and
+                              <em>ngb-panel</em>
+                              component have been removed from ng-bootstrap.
+                              <br />
+                              Use the <em>post-accordion</em> component from the
+                              <a href="/?path=/docs/833ef689-a573-40f5-a6a6-30a999b94733--docs"
+                                >@swisspost/design-system-components-angular</a
+                              >
+                              package as a replacement.
+                            </p>
+                            <p class="info">
+                              See the
+                              <a href="/?path=/docs/4d1b4185-e04d-494a-ab38-2b56c1778b0b--docs"
+                                >Accordion component documentation</a
+                              >
+                              for more detailed information.
+                            </p>
+                          </li>
+                        `
+                      : nothing}
                   </ul>
                 </section>
               </post-accordion-item>

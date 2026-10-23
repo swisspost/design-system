@@ -278,7 +278,7 @@ export class MigrationV910Component extends LitElement {
           <p>
             The main styles entrypoint has been renamed.
             On your application, locate the <code>@use '@swisspost/design-system-styles/${this.environment === 'intranet' ? 'intranet' : 'index'}(.scss)';</code> import and rename it to:
-            <code-block code=${this.environment === 'intranet' ? "@use '@swisspost/design-system-styles/post-compact.scss';" : "@use '@swisspost/design-system-styles/post-default.scss';"}></code>
+            <code-block code=${this.environment === 'intranet' ? "@use '@swisspost/design-system-styles/post-condensed.scss';" : "@use '@swisspost/design-system-styles/post-default.scss';"}></code-block>
           </p>
         </post-accordion-item>
         <post-accordion-item>
