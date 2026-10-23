@@ -1,5 +1,6 @@
 import { fakeContent } from '@/utils';
 import { MetaComponent } from '@root/types';
+import testConfiguration from '@swisspost/internet-header/dist/swisspost-internet-header/assets/config/test-configuration.json';
 import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { keyed } from 'lit/directives/keyed.js';
@@ -58,7 +59,13 @@ const meta: MetaComponent = {
     return html`${keyed(args.session, renderHeader(args))}`;
   },
   decorators: [
+    // The header prefers a `#PPM_HEADER_DATA` config over the API, so the page renders without any request.
     story => html`
+      <script
+        id="PPM_HEADER_DATA"
+        type="application/json"
+        .textContent=${JSON.stringify(testConfiguration)}
+      ></script>
       <div class="header-story-wrapper">
         <div class="virtual-body">${story()} ${fakeContent()}</div>
       </div>
