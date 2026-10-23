@@ -177,7 +177,7 @@
       <ul class="d-flex flex-wrap row-gap-4 column-gap-16 m-0 list-unstyled">
         @for (route of navigationRoutes; track route.path) {
         <li>
-          <a [routerLink]="route.path">{{ route.title }}</a>
+          <a [routerLink]="'/' + route.path">{{ route.title }}</a>
         </li>
         }
       </ul>
