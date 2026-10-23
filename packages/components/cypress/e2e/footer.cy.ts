@@ -66,9 +66,9 @@ describe('Footer', () => {
       // Social media links with proper styling
       cy.get('@footer')
         .find('div[slot="socialmedia"] a')
-        .scrollIntoView()
         .each($link => {
           cy.wrap($link)
+            .scrollIntoView()
             .should('have.class', 'btn')
             .should('have.class', 'btn-primary')
             .should('have.class', 'btn-icon');
