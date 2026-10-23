@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Fixed styles of a disabled fieldset containing radio buttons or checkboxes.
+Fixed styles of disabled fieldsets containing radio buttons or checkboxes.
