@@ -2,6 +2,12 @@ import { fakeContent } from '@/utils';
 import { MetaComponent } from '@root/types';
 import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
+import { keyed } from 'lit/directives/keyed.js';
+import {
+  installKlpPlatformFake,
+  KLP_FAKE_SESSION_LABELS,
+  uninstallKlpPlatformFake,
+} from '../sub-components/klp-login-widget/klp-platform.fake';
 
 const defaultArgs: Args = {
   project: 'test',
@@ -33,8 +39,24 @@ const meta: MetaComponent = {
       url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=19536-26512&mode=design&t=HksCTWa2MMccgMl4-0',
     },
   },
-  args: defaultArgs,
-  render: renderHeader,
+  args: { ...defaultArgs, session: 'anonymous' },
+  argTypes: {
+    session: {
+      name: 'Session',
+      description:
+        'Not a property of the component. Replaces the KLP platform with a fake answering as the selected user, so the user menu can be seen with the links from the configuration.',
+      control: { type: 'select', labels: KLP_FAKE_SESSION_LABELS },
+      options: Object.keys(KLP_FAKE_SESSION_LABELS),
+      table: { category: 'Storybook' },
+    },
+  },
+  // Removes the fake once a story is torn down, so it never leaks into the next one.
+  beforeEach: () => uninstallKlpPlatformFake,
+  // Keyed on the session, so a changed control mounts a new header, whose widget asks the fake again.
+  render: args => {
+    installKlpPlatformFake({ user: args.session === 'anonymous' ? null : args.session });
+    return html`${keyed(args.session, renderHeader(args))}`;
+  },
   decorators: [
     story => html`
       <div class="header-story-wrapper">

@@ -3,22 +3,20 @@ import { MetaComponent } from '@root/types';
 import type { StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { keyed } from 'lit/directives/keyed.js';
-import { installKlpPlatformFake, KlpFakeUser, uninstallKlpPlatformFake } from './klp-platform.fake';
+import {
+  installKlpPlatformFake,
+  KLP_FAKE_SESSION_LABELS,
+  KlpFakeSession,
+  uninstallKlpPlatformFake,
+} from './klp-platform.fake';
 import { KLP_LOGIN_WIDGET_TEXTS, renderKlpLoginWidget } from './klp-login-widget.renderer';
-
-const SESSION_LABELS: Record<KlpFakeUser | 'anonymous', string> = {
-  'anonymous': 'Anonymous visitor',
-  'b2c': 'B2C user',
-  'b2b-multi-account': 'B2B user (multi account)',
-  'b2b-multi-company': 'B2B user (multi company)',
-};
 
 interface KlpLoginWidgetArgs
   extends Pick<
     HTMLPostKlpLoginWidgetElement,
     'environment' | 'textCurrentUser' | 'textUserLinks' | 'textAccessUserLinks' | 'initialState'
   > {
-  session?: KlpFakeUser | 'anonymous';
+  session?: KlpFakeSession;
   unread?: number;
 }
 
@@ -54,8 +52,8 @@ const meta: MetaComponent<KlpLoginWidgetArgs> = {
       name: 'Session',
       description:
         'Not a property of the component. Replaces the KLP platform with a fake answering as the selected user, so each kind of user can be seen without a real session.',
-      control: { type: 'select', labels: SESSION_LABELS },
-      options: Object.keys(SESSION_LABELS),
+      control: { type: 'select', labels: KLP_FAKE_SESSION_LABELS },
+      options: Object.keys(KLP_FAKE_SESSION_LABELS),
       table: { category: 'Storybook' },
     },
     unread: {
