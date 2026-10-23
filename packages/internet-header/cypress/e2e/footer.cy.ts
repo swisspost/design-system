@@ -30,7 +30,6 @@ describe('footer', () => {
     });
 
     it('should correctly show social links', () => {
-      cy.get('[slot="socialmedia"]').scrollIntoView();
 
       cy.get('[slot="socialmedia"] h3')
         .should('be.visible')
@@ -50,7 +49,6 @@ describe('footer', () => {
     });
 
     it('should correctly show app store links', () => {
-      cy.get('[slot="app"]').scrollIntoView();
 
       cy.get('[slot="app"] h3')
         .should('be.visible')
@@ -70,7 +68,6 @@ describe('footer', () => {
     });
 
     it('should correctly show company links', () => {
-      cy.get('[slot="businesssectors"]').scrollIntoView();
 
       cy.get('[slot="businesssectors"] h3')
         .should('be.visible')
@@ -83,7 +80,6 @@ describe('footer', () => {
     });
 
     it('should correctly show compliance links', () => {
-      cy.get('[slot="meta"]').scrollIntoView();
 
       cy.get('[slot="meta"] h3').should('not.exist');
       cy.get('[slot="meta"] ul').invoke('attr', 'aria-label').should('not.be.empty');
@@ -91,7 +87,7 @@ describe('footer', () => {
     });
 
     it('should correctly show copyrights', () => {
-      cy.get('[slot="copyright"]').scrollIntoView().should('be.visible');
+      cy.get('[slot="copyright"]').should('be.visible');
     });
 
     it('should not show cookie settings link when UC_UI is not defined', () => {
