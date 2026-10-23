@@ -35,6 +35,16 @@ export const KLP_FAKE_USERS = {
 
 export type KlpFakeUser = keyof typeof KLP_FAKE_USERS;
 
+export type KlpFakeSession = KlpFakeUser | 'anonymous';
+
+/** Labels for a story control that picks the fake session. */
+export const KLP_FAKE_SESSION_LABELS: Record<KlpFakeSession, string> = {
+  'anonymous': 'Anonymous visitor',
+  'b2c': 'B2C user',
+  'b2b-multi-account': 'B2B user (multi account)',
+  'b2b-multi-company': 'B2B user (multi company)',
+};
+
 export interface KlpFakeOptions {
   /** Who is signed in; `null` answers as anonymous. */
   user: KlpFakeUser | null;
