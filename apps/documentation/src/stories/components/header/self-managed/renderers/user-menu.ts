@@ -34,7 +34,7 @@ export function renderUserMenu() {
         <post-menu-item>
           <a href="">
             <post-icon aria-hidden="true" name="gear"></post-icon>
-            Setting
+            Settings
           </a>
         </post-menu-item>
         <post-menu-item>
