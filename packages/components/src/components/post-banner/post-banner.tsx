@@ -78,14 +78,8 @@ export class PostBanner {
   render() {
     const isGrief = this.type === 'grief';
 
-    // The grief banner keeps the page color scheme on the host (for its border and close button)
-    // and applies its dark scheme to the content only.
     return (
-      <Host
-        data-version={version}
-        role="alert"
-        data-color-scheme={isGrief ? undefined : 'light'}
-      >
+      <Host data-version={version} role="alert" data-color-scheme={isGrief ? 'dark' : 'light'}>
         {isGrief && (
           <span class="grief-icon" aria-hidden="true">
             <post-icon name="candle"></post-icon>

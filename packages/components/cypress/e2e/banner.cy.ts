@@ -45,8 +45,8 @@ describe('banner', () => {
         .should('have.attr', 'name', 'candle');
     });
 
-    it('should not force a color scheme on the host', () => {
-      cy.get('@banner').should('not.have.attr', 'data-color-scheme');
+    it('should use the dark color scheme', () => {
+      cy.get('@banner').should('have.attr', 'data-color-scheme', 'dark');
     });
   });
 });

@@ -1,6 +1,5 @@
 @use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/mixins/media';
-@use '@swisspost/design-system-styles/mixins/color-scheme';
 
 @use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/tokens/helpers';
@@ -69,7 +68,6 @@ tokens.$default-map: components.$post-banner;
   }
 
   .post-banner-content {
-    @include color-scheme.set(tokens.get('banner-grief-bg-scheme'));
     --post-current-bg: #{tokens.get('banner-grief-bg')};
     --post-current-fg: #{tokens.get('banner-grief-fg')};
     color: var(--post-current-fg);
