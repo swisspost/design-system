@@ -126,8 +126,8 @@ The account switch and the company switch are never shown together.
 <post-banner>
   <p>
     <b>Link URLs:</b> the links in the examples on this page are placeholders. Which URLs your
-    application has to link to depends on how it is set up on the KLP platform, so please contact
-    the KLP team to find out how to set them.
+    application has to link to depends on how it is set up on the KLP platform. To find out more,
+    talk to the KLP team or visit their documentation.
   </p>
 </post-banner>
 
@@ -164,10 +164,13 @@ the same page for every type of user.
 ## Before the session is known
 
 Until the platform has answered, the widget reserves an avatar-sized box, so the header does not
-shift once the session is known. If your page already knows the visitor is anonymous, set
-`initial-state="anonymous"` to render the login link right away.
+shift once the session is known. If your page already knows the visitor's authentication state, set
+`initial-state` to render the widget accordingly (e.g. during SSR).
 
-<Canvas of={KlpLoginWidgetStories.Anonymous} />
+<post-banner type="info">The example below never gets an
+answer, so it keeps showing that state.</post-banner>
+
+<Canvas of={KlpLoginWidgetStories.InitialState} />
 
 ## Accessibility
 

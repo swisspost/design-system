@@ -44,7 +44,7 @@ const meta: MetaComponent<KlpLoginWidgetArgs> = {
     },
   },
   args: {
-    environment: 'prod',
+    environment: 'int01',
     ...KLP_LOGIN_WIDGET_TEXTS,
     session: 'anonymous',
     unread: 0,
@@ -98,16 +98,22 @@ type Story = StoryObj<KlpLoginWidgetArgs>;
 export const Default: Story = {};
 
 /**
+ * The fake never answers, so the widget keeps the state it shows before the session is known.
  * In a window of its own: a window holds one fake at a time, and the Default story already uses it.
- * The iframe is as tall as the Default story's scroll wrapper, so both examples look alike.
  */
-export const Anonymous: Story = {
+export const InitialState: Story = {
   parameters: {
-    docs: { story: { inline: false, iframeHeight: 400 } },
+    docs: { story: { inline: false, iframeHeight: 350 } },
+  },
+  args: {
+    initialState: 'authenticated',
   },
   argTypes: {
     session: { table: { disable: true } },
     unread: { table: { disable: true } },
   },
-  args: { session: 'anonymous', initialState: 'anonymous' },
+  render: args => {
+    installKlpPlatformFake({ user: null, pending: true });
+    return html`${keyed(JSON.stringify(args), renderWidget(args))}`;
+  },
 };
