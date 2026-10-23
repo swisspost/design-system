@@ -116,9 +116,9 @@ function Render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
-      aria-describedby="${
-        args.validation != 'null' ? `${args.validation}-id-${context.id}` : nothing
-      }"
+      aria-describedby="${args.validation != 'null'
+        ? `${args.validation}-id-${context.id}`
+        : nothing}"
       @change="${(e: Event) => updateArgs({ checked: (e.target as HTMLInputElement).checked })}"
       ?required="${args.requiredOptional === 'required'}"
     />
@@ -161,7 +161,7 @@ export function RenderGroup(args: Args, context: Partial<StoryContext>) {
     .join(' ');
 
   return html`
-    <fieldset>
+    <fieldset ?disabled="${args.disabled}">
       <legend class="${args.hiddenLegend ? 'visually-hidden' : nothing}">Legend</legend>
       ${Array.from({ length: 4 }, (_, i) => {
         return html`
@@ -186,7 +186,7 @@ export const Grouped: Story = {
   render: RenderGroup,
   parameters: {
     controls: {
-      include: ['Size', 'Hidden Legend'],
+      include: ['Size', 'Hidden Legend', 'Disabled'],
     },
   },
   args: {
@@ -205,7 +205,7 @@ export const Inline: Story = {
   render: RenderGroup,
   parameters: {
     controls: {
-      include: ['Size', 'Hidden Legend'],
+      include: ['Size', 'Hidden Legend', 'Disabled'],
     },
   },
   args: {

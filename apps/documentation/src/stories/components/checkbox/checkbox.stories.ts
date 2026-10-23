@@ -203,9 +203,9 @@ function RenderCheckbox(args: Args, context: StoryContext) {
         type="checkbox"
         aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
         aria-label="${ifDefined(args.hiddenLabel ? args.label : undefined)}"
-        aria-describedby="${
-          args.validation != 'null' ? `${args.validation}-id-${context.id}` : nothing
-        }"
+        aria-describedby="${args.validation != 'null'
+          ? `${args.validation}-id-${context.id}`
+          : nothing}"
         ?disabled="${args.disabled}"
         .checked="${CHECKED_STATE_MAP[args.checked]}"
         @change="${handleChange}"
@@ -232,7 +232,7 @@ export const Grouped: Story = {
   render: renderGroup,
   parameters: {
     controls: {
-      include: ['Size', 'Hidden Legend'],
+      include: ['Size', 'Hidden Legend', 'Disabled'],
     },
   },
 };
@@ -241,7 +241,7 @@ export const Inline: Story = {
   render: renderGroup,
   parameters: {
     controls: {
-      include: ['Size', 'Hidden Legend'],
+      include: ['Size', 'Hidden Legend', 'Disabled'],
     },
   },
   args: {
@@ -263,19 +263,14 @@ export function renderGroup(args: Args) {
   const labels = ['First Label', 'Second Label', 'Third Label', 'Fourth Label'];
 
   return html`
-    <fieldset>
+    <fieldset ?disabled="${args.disabled}">
       <legend class="${args.hiddenLegend ? 'visually-hidden' : undefined}">Legend</legend>
 
       ${labels.map((label, index) => {
         const id = `${uniqueSuffix}-${index}`;
         return html`
           <div class="${itemClass}">
-            <input
-              id="${id}"
-              type="checkbox"
-              ?disabled="${args.disabled}"
-              ?required="${args.requiredOptional === 'required'}"
-            />
+            <input id="${id}" type="checkbox" ?required="${args.requiredOptional === 'required'}" />
             <label for="${id}">${label}</label>
           </div>
         `;
