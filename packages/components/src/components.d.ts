@@ -342,6 +342,10 @@ export namespace Components {
          */
         "environment": KlpEnvironment;
         /**
+          * What to show before the session is known. Leave unset unless the server already knows who the visitor is: the widget then reserves a neutral avatar-sized box, which costs anonymous visitors a short placeholder but never flashes the wrong state at anyone. Set `anonymous` to render the login link right away instead.
+         */
+        "initialState"?: 'anonymous' | 'authenticated';
+        /**
           * Whether to stop refreshing the session while the user is active on the page.
           * @default false
          */
@@ -1719,6 +1723,10 @@ declare namespace LocalJSX {
          */
         "environment"?: KlpEnvironment;
         /**
+          * What to show before the session is known. Leave unset unless the server already knows who the visitor is: the widget then reserves a neutral avatar-sized box, which costs anonymous visitors a short placeholder but never flashes the wrong state at anyone. Set `anonymous` to render the login link right away instead.
+         */
+        "initialState"?: 'anonymous' | 'authenticated';
+        /**
           * Whether to stop refreshing the session while the user is active on the page.
           * @default false
          */
@@ -2290,6 +2298,7 @@ declare namespace LocalJSX {
         "textCurrentUser": string;
         "textUserLinks": string;
         "textAccessUserLinks": string;
+        "initialState": 'anonymous' | 'authenticated';
     }
     interface PostKlpLoginWidgetMessagesAttributes {
         "url": string;
