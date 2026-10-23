@@ -24,7 +24,7 @@ import {
 import { ToastComponent } from './toast/toast.component';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-self-managed-layout',
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -166,6 +166,8 @@ export class App implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.navigationRoutes = this.router.config.filter(r => r.title);
+    this.navigationRoutes = this.router.config
+      .flatMap(route => [route, ...(route.children ?? [])])
+      .filter(route => route.title);
   }
 }
