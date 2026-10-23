@@ -20,7 +20,8 @@
   },
   "files": [
     "dist/",
-    "hydrate/"
+    "hydrate/",
+    "!dist/collection/playground/"
   ],
   "sideEffects": [
     "./dist/esm/*.js",
