@@ -40,6 +40,8 @@ export interface KlpFakeOptions {
   user: KlpFakeUser | null;
   /** Unread messages, pushed once the widget registers on the event bus. */
   unread?: number;
+  /** Never answer the subscribe, so the widget keeps its state from before the platform answers. */
+  pending?: boolean;
 }
 
 type FrameListener = (event: { data: string }) => void;
@@ -51,7 +53,11 @@ export function uninstallKlpPlatformFake(): void {
   restore = null;
 }
 
-export function installKlpPlatformFake({ user, unread = 0 }: KlpFakeOptions): void {
+export function installKlpPlatformFake({
+  user,
+  unread = 0,
+  pending = false,
+}: KlpFakeOptions): void {
   uninstallKlpPlatformFake();
 
   const message = user
@@ -65,6 +71,8 @@ export function installKlpPlatformFake({ user, unread = 0 }: KlpFakeOptions): vo
     const url = String(input instanceof Request ? input.url : input);
 
     if (url.includes('/v1/session/subscribe')) {
+      if (pending) return new Promise<Response>(() => {});
+
       return Promise.resolve(
         new Response(JSON.stringify(message), {
           headers: { 'content-type': 'application/json' },
