@@ -11,7 +11,7 @@ export interface DesignParameter {
 
 @customElement('link-design')
 export class LinkDesignComponent extends LitElement {
-  @property({ type: Object }) of: ModuleExport = {};
+  @property({ type: Object }) of: ModuleExport | string = {};
 
   createRenderRoot() {
     /**
@@ -21,8 +21,9 @@ export class LinkDesignComponent extends LitElement {
   }
 
   render() {
-    const designParameter = this.of?.default?.parameters?.design as DesignParameter;
-    const titlePath = this.of?.default?.title;
+    const of: ModuleExport = typeof this.of === 'string' ? JSON.parse(this.of) : this.of;
+    const designParameter = of?.default?.parameters?.design as DesignParameter;
+    const titlePath = of?.default?.title;
 
     return designParameter?.type === 'figma' && designParameter?.url
       ? html` <a class="figma-link btn btn-primary" href="${designParameter.url}">
