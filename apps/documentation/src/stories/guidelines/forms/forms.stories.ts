@@ -67,6 +67,171 @@ export const CustomWidth: Story = {
   `,
 };
 
+export const FormGrid: Story = {
+  render: () => html`
+    <form class="row form-grid gy-16">
+      <div class="col-sm-6 col-lg-4">
+        <label class="form-label" for="grid-customer-number">Customer number</label>
+        <div class="form-grid-control">
+          <input
+            id="grid-customer-number"
+            class="form-control"
+            type="text"
+            aria-describedby="grid-customer-number-hint"
+          />
+          <p class="form-hint" id="grid-customer-number-hint">
+            You can find it in the top right corner of your invoice.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <label class="form-label" for="grid-shipment-type">Shipment type</label>
+        <div class="form-grid-control">
+          <select
+            id="grid-shipment-type"
+            class="form-select is-valid"
+            aria-describedby="grid-shipment-type-valid"
+          >
+            <option value="">Choose a shipment type</option>
+            <option value="parcel" selected>Parcel</option>
+            <option value="letter">Letter</option>
+            <option value="pallet">Pallet</option>
+          </select>
+          <p class="valid-feedback" id="grid-shipment-type-valid">Shipment type available.</p>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <label class="form-label" for="grid-parcels">Number of parcels</label>
+        <div class="form-grid-control">
+          <post-number-input>
+            <input
+              id="grid-parcels"
+              class="form-control is-invalid"
+              type="number"
+              min="1"
+              aria-invalid="true"
+              aria-describedby="grid-parcels-invalid"
+            />
+          </post-number-input>
+          <p class="invalid-feedback" id="grid-parcels-invalid">Enter at least one parcel.</p>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <label class="form-label" for="grid-weight"
+          >Total weight of all parcels in kilograms (kg)</label
+        >
+        <div class="form-grid-control">
+          <input
+            id="grid-weight"
+            class="form-control is-valid"
+            type="text"
+            value="12.5"
+            aria-describedby="grid-weight-valid grid-weight-hint"
+          />
+          <p class="form-hint" id="grid-weight-hint">The maximum weight per parcel is 30 kg.</p>
+          <p class="valid-feedback" id="grid-weight-valid">Weight within the allowed limit.</p>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <label class="form-label" for="grid-pickup-date-input">Pick-up date</label>
+        <div class="form-grid-control">
+          <post-date-picker
+            id="grid-pickup-date"
+            text-toggle-calendar="Open calendar"
+            text-next-decade="Next decade"
+            text-next-month="Next month"
+            text-next-year="Next year"
+            text-previous-decade="Previous decade"
+            text-previous-month="Previous month"
+            text-previous-year="Previous year"
+            text-switch-year="Switch to year view"
+          >
+            <input
+              id="grid-pickup-date-input"
+              class="form-control"
+              type="text"
+              aria-describedby="grid-pickup-date-hint"
+            />
+          </post-date-picker>
+          <p class="form-hint" id="grid-pickup-date-hint">
+            Pick-ups are possible Monday to Friday.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="form-grid-control">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="grid-signature" />
+            <label class="form-check-label" for="grid-signature"
+              >Signature required on delivery</label
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <label class="form-label" for="grid-instructions"
+          >Delivery instructions for the courier at the recipient's address</label
+        >
+        <div class="form-grid-control">
+          <textarea
+            id="grid-instructions"
+            class="form-control"
+            rows="3"
+            aria-describedby="grid-instructions-hint"
+          ></textarea>
+          <p class="form-hint" id="grid-instructions-hint">
+            For example, the door code or where to leave the parcel.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3">
+        <label class="form-label" for="grid-contact-language"
+          >Preferred contact language of the recipient</label
+        >
+        <div class="form-grid-control">
+          <select
+            id="grid-contact-language"
+            class="form-select is-invalid"
+            aria-invalid="true"
+            aria-describedby="grid-contact-language-invalid"
+          >
+            <option value="">Choose language</option>
+            <option value="de">German</option>
+            <option value="fr">French</option>
+            <option value="it">Italian</option>
+            <option value="en">English</option>
+          </select>
+          <p class="invalid-feedback" id="grid-contact-language-invalid">Select a language.</p>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="form-grid-control">
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="grid-notifications"
+              checked
+            />
+            <label class="form-check-label" for="grid-notifications"
+              >Send tracking notifications to the recipient</label
+            >
+          </div>
+        </div>
+      </div>
+    </form>
+  `,
+};
+
 export const VerticalSpacing: Story = {
   render: () => html`
     <div class="mb-16">
@@ -239,7 +404,8 @@ export const Validation: Story = {
               aria-describedby="textarea-valid-feedback"
             >
               Value
-            </textarea>
+            </textarea
+            >
             <label class="form-label" for="form-textarea-valid">Valid Textarea</label>
             <p id="textarea-valid-feedback" class="valid-feedback">Success message (optional)</p>
           </div>
