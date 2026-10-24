@@ -29,6 +29,30 @@ describe('banner', () => {
       cy.get('@banner').should('not.exist');
     });
   });
+
+  describe('grief', () => {
+    beforeEach(() => {
+      cy.getComponent('banner', BANNER_ID);
+      cy.get('@banner').invoke('attr', 'type', 'grief');
+    });
+
+    it('should render a hidden candle icon', () => {
+      cy.get('@banner')
+        .shadow()
+        .find('.grief-icon')
+        .should('have.attr', 'aria-hidden', 'true')
+        .find('post-icon')
+        .should('have.attr', 'name', 'candle');
+    });
+
+    it('should use the dark color scheme for its slotted content only', () => {
+      cy.get('@banner').should('not.have.attr', 'data-color-scheme');
+      cy.get('@banner')
+        .children(':not([slot="close-button"])')
+        .first()
+        .should('have.css', 'color-scheme', 'dark');
+    });
+  });
 });
 
 describe('Accessibility', () => {

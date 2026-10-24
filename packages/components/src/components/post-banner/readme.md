@@ -5,9 +5,9 @@
 
 ## Properties
 
-| Property | Attribute | Description             | Type                                          | Default  |
-| -------- | --------- | ----------------------- | --------------------------------------------- | -------- |
-| `type`   | `type`    | The type of the banner. | `"error" \| "info" \| "success" \| "warning"` | `'info'` |
+| Property | Attribute | Description             | Type                                                     | Default  |
+| -------- | --------- | ----------------------- | -------------------------------------------------------- | -------- |
+| `type`   | `type`    | The type of the banner. | `"error" \| "grief" \| "info" \| "success" \| "warning"` | `'info'` |
 
 
 ## Events
@@ -39,6 +39,19 @@ Type: `Promise<void>`
 | `"default"`      | Slot for placing the main content/message of the banner.                        |
 | `"heading"`      | Slot for placing custom content within the banner's heading.                    |
 
+
+## Dependencies
+
+### Depends on
+
+- [post-icon](../post-icon)
+
+### Graph
+```mermaid
+graph TD;
+  post-banner --> post-icon
+  style post-banner fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

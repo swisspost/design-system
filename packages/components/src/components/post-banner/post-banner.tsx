@@ -76,20 +76,30 @@ export class PostBanner {
   }
 
   render() {
+    const isGrief = this.type === 'grief';
+
     return (
-      <Host data-version={version} role="alert" data-color-scheme="light">
-        <slot name="close-button" />
-
-        <div class="post-banner-content">
-          <slot name="heading" />
-
-          <slot />
-
-          {this.hasActions && (
-            <div class="actions">
-              <slot name="actions" />
-            </div>
+      <Host data-version={version} role="alert" data-color-scheme={isGrief ? undefined : 'light'}>
+        <div class="banner">
+          {isGrief && (
+            <span class="grief-icon" aria-hidden="true">
+              <post-icon name="candle"></post-icon>
+            </span>
           )}
+
+          <slot name="close-button" />
+
+          <div class="post-banner-content">
+            <slot name="heading" />
+
+            <slot />
+
+            {this.hasActions && (
+              <div class="actions">
+                <slot name="actions" />
+              </div>
+            )}
+          </div>
         </div>
       </Host>
     );
