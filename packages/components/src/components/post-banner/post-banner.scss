@@ -8,6 +8,11 @@
 tokens.$default-map: components.$post-banner;
 
 :host {
+  display: block;
+}
+
+.banner {
+  box-sizing: border-box;
   position: relative;
   display: grid;
   grid-template-columns: 1fr;
@@ -42,7 +47,7 @@ tokens.$default-map: components.$post-banner;
 }
 
 @each $name in 'info', 'success', 'warning', 'error' {
-  :host([type='#{$name}']) {
+  :host([type='#{$name}']) .banner {
     background-color: tokens.get('banner-#{$name}-bg');
     border-color: tokens.get('banner-#{$name}-border-color');
 
@@ -53,18 +58,20 @@ tokens.$default-map: components.$post-banner;
 }
 
 :host([type='grief']) {
-  min-height: calc(
-    #{tokens.get('banner-grief-icon-wrapper-size')} + (2 * #{tokens.get('banner-padding')})
-  );
-  padding-inline-start: calc(
-    #{tokens.get('banner-padding')} + #{tokens.get('banner-grief-icon-wrapper-size')} +
-      #{tokens.get('banner-gap')}
-  );
-  background-color: tokens.get('banner-grief-bg');
-  border-color: tokens.get('banner-grief-stroke');
+  .banner {
+    min-height: calc(
+      #{tokens.get('banner-grief-icon-wrapper-size')} + (2 * #{tokens.get('banner-padding')})
+    );
+    padding-inline-start: calc(
+      #{tokens.get('banner-padding')} + #{tokens.get('banner-grief-icon-wrapper-size')} +
+        #{tokens.get('banner-gap')}
+    );
+    background-color: tokens.get('banner-grief-bg');
+    border-color: tokens.get('banner-grief-stroke');
 
-  &::before {
-    content: none;
+    &::before {
+      content: none;
+    }
   }
 
   .post-banner-content {
@@ -129,7 +136,7 @@ tokens.$default-map: components.$post-banner;
 }
 
 @include utilities.high-contrast-mode {
-  :host {
+  .banner {
     border-color: CanvasText;
 
     &::before {

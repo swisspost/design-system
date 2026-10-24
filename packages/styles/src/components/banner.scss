@@ -1,0 +1,8 @@
+@use './../mixins/color-scheme';
+
+// The grief banner has a dark background. Its slotted content is in the light DOM, so it gets the
+// dark scheme here, where the fallback for browsers without light-dark() is shared. The close
+// button sits on the banner edge and follows the page scheme.
+post-banner[type='grief'] > :not([slot='close-button']) {
+  @include color-scheme.set(dark);
+}

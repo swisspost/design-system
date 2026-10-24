@@ -45,8 +45,12 @@ describe('banner', () => {
         .should('have.attr', 'name', 'candle');
     });
 
-    it('should use the dark color scheme', () => {
-      cy.get('@banner').should('have.attr', 'data-color-scheme', 'dark');
+    it('should use the dark color scheme for its slotted content only', () => {
+      cy.get('@banner').should('not.have.attr', 'data-color-scheme');
+      cy.get('@banner')
+        .children(':not([slot="close-button"])')
+        .first()
+        .should('have.css', 'color-scheme', 'dark');
     });
   });
 });
