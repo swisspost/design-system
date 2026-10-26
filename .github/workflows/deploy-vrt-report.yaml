@@ -134,7 +134,7 @@ jobs:
           FOLDER: ${{ github.workspace }}/${{ steps.report.outputs.folder }}
         run: |
           netlify deploy --filter @swisspost/design-system-documentation --dir "$FOLDER" --alias "vrt-pr-${PR_NUMBER}"
-          echo "report-url=https://vrt-pr-${PR_NUMBER}--${SITE_URL}" >> $GITHUB_OUTPUT
+          echo "report-url=https://vrt-pr-${PR_NUMBER}--${SITE_URL}?devModeEnabled=true" >> $GITHUB_OUTPUT
 
       - name: Update pull request comment
         if: always() && steps.artifact.outputs.exists == 'true'
