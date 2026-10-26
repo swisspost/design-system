@@ -7,6 +7,7 @@
 @use '../tokens/helpers';
 @use '../mixins/media';
 @use '../mixins/color-scheme';
+@use '../functions/env';
 
 tokens.$default-map: utilities.$post-spacing;
 
@@ -81,7 +82,7 @@ dialog {
 
   &[data-position='bottom'] {
     inset-block-start: auto;
-    inset-block-end: 2rem;
+    inset-block-end: env.safe-area-inset(bottom, 2rem);
   }
 
   &#{$dialog-bottom-sheet-selector} {
@@ -119,13 +120,27 @@ dialog {
 
     > .dialog-grid {
       max-height: 80dvh;
+
+      &:not(:has(.dialog-controls)) {
+        padding-block-end: env.safe-area-inset(
+          bottom,
+          tokens.get('dialog-padding-block-end', components.$post-dialog)
+        );
+      }
+
+      > post-closebutton {
+        inset-block-start: tokens.get('dialog-padding-block-start', components.$post-dialog);
+        inset-inline-end: tokens.get('dialog-padding-inline', components.$post-dialog);
+        transform: none;
+        z-index: 2;
+      }
     }
 
-    > .dialog-grid > post-closebutton {
-      inset-block-start: tokens.get('dialog-padding-block-start', components.$post-dialog);
-      inset-inline-end: tokens.get('dialog-padding-inline', components.$post-dialog);
-      transform: none;
-      z-index: 2;
+    .dialog-controls {
+      padding-block-end: env.safe-area-inset(
+        bottom,
+        tokens.get('dialog-padding-block-end', components.$post-dialog)
+      );
     }
   }
 

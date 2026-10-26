@@ -1,5 +1,48 @@
 # @swisspost/design-system-documentation
 
+## 6.7.0
+
+### Minor Changes
+
+- Added the target group buttons on the `post-header` for Online Services. (by [@leagrdv](https://github.com/leagrdv) with [#8653](https://github.com/swisspost/design-system/pull/8653))
+
+- Updated the toast documentation with accessibility guidance and recommended a custom Angular toast service as a migration path from the unmaintained `ngx-toastr` library. (by [@leagrdv](https://github.com/leagrdv) with [#8601](https://github.com/swisspost/design-system/pull/8601))
+
+- Added migration information for the `ngbDatepicker` to the new `<post-date-picker>` component. (by [@leagrdv](https://github.com/leagrdv) with [#8594](https://github.com/swisspost/design-system/pull/8594))
+
+### Patch Changes
+
+- Fixed the styles import code block to copy the currently selected theme and appearance. (by [@leagrdv](https://github.com/leagrdv) with [#8491](https://github.com/swisspost/design-system/pull/8491))
+
+- Removed the close button example in the Online Service header. (by [@leagrdv](https://github.com/leagrdv) with [#8614](https://github.com/swisspost/design-system/pull/8614))
+
+- Added single-line inline notifications using the `.inline-notification-singleline` class and support for paragraph-only content when headings are unnecessary. (by [@leagrdv](https://github.com/leagrdv) with [#8573](https://github.com/swisspost/design-system/pull/8573))
+
+- Aligned the user menu to the right edge of the avatar button in the `<post-header>` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8558](https://github.com/swisspost/design-system/pull/8558))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.8.0
+  - @swisspost/design-system-styles@10.8.0
+  - @swisspost/design-system-components@10.8.0
+  - @swisspost/internet-header@10.8.0
+  - @swisspost/design-system-components-react@10.8.0
+  - @swisspost/design-system-styles-primeng@10.8.0
+  - @swisspost/design-system-theme-ag-grid@10.8.0
+  - @swisspost/design-system-tokens@10.8.0
+
+## 6.6.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.7.0
+  - @swisspost/design-system-styles@10.7.0
+  - @swisspost/design-system-components@10.7.0
+  - @swisspost/internet-header@10.7.0
+  - @swisspost/design-system-components-react@10.7.0
+  - @swisspost/design-system-styles-primeng@10.7.0
+  - @swisspost/design-system-theme-ag-grid@10.7.0
+  - @swisspost/design-system-tokens@10.7.0
+
 ## 6.6.0
 
 ### Minor Changes

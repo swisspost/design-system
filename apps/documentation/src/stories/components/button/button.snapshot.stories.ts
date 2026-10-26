@@ -35,6 +35,17 @@ export const Button: Story = {
               Default.render?.({ ...context.args, ...args, animated: false }, context),
             )}
         </div>
+
+        <div class="d-flex flex-wrap align-items-start gap-16 mt-24" style="max-width: 300px;">
+          ${Default.render?.(
+            {
+              ...context.args,
+              text: 'This is a very long button label that should wrap onto multiple lines',
+              animated: false,
+            },
+            context,
+          )}
+        </div>
       `,
     );
   },

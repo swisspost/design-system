@@ -6,6 +6,7 @@ import {
   BUDDHIST_CALENDAR_LOCALES,
   DateValue,
   FALLBACK_LANGUAGE_CODE,
+  getFocusableChildren,
   getLocaleTextDirection,
   IsoDate,
   isValidLocale,
@@ -251,6 +252,10 @@ export class PostDatePicker {
   private _isInternalUpdate = false;
   private _lastInputValue: string | null = null;
 
+  // Tracks whether the current focus was triggered by a pointer interaction, to avoid
+  // overriding the caret position the user clicked on
+  private isPointerDownOnInput = false;
+
   private gridObserver: MutationObserver;
   private navObserver: MutationObserver;
   private inputObserver: MutationObserver;
@@ -405,7 +410,8 @@ export class PostDatePicker {
         cell =>
           Number(cell.dataset.date) === date.getDate() &&
           Number(cell.dataset.month) === date.getMonth() &&
-          Number(cell.dataset.year) === date.getFullYear(),
+          Number(cell.dataset.year) === date.getFullYear() &&
+          !cell.classList.contains('-other-month-'),
       );
 
       if (!target) {
@@ -527,8 +533,19 @@ export class PostDatePicker {
     if (this.hasFloatingLabel()) this.setMaskLazy(true); // Hides the mask only for the floating label
   };
 
+  private readonly handleInputPointerDown = () => {
+    this.isPointerDownOnInput = true;
+  };
+
   private readonly handleInputFocus = () => {
     if (this.hasFloatingLabel()) this.setMaskLazy(false); // Shows the mask only for the floating label
+
+    // On keyboard focus (e.g. Tab), place the caret at the start instead of the browser default (end),
+    // so the date can be typed right away.
+    if (!this.isPointerDownOnInput) {
+      requestAnimationFrame(() => this.dpInput.setSelectionRange(0, 0));
+    }
+    this.isPointerDownOnInput = false;
   };
 
   private hasFloatingLabel(): boolean {
@@ -556,35 +573,34 @@ export class PostDatePicker {
   }
 
   /**
-   * Loop through the date picker when not in inline mode
+   * Traps focus inside the calendar popover (not used in inline mode) by always taking over Tab handling, 
+   * so focus can't escape even while a grid cell is briefly untabbable mid-render.
    */
   private handleTab = (e: KeyboardEvent) => {
     if (this.inline || (e.key !== 'Tab' && e.key !== 'Escape')) return;
 
-    // Focus on the input when escaping the calendar
+    // Explicitly close the popover on Escape
     if (e.key === 'Escape') {
+      this.popoverRef?.hide();
       this.dpInput.focus();
+      return;
     }
+
+    const focusable = getFocusableChildren(this.dpContainer);
+    if (focusable.length === 0) return;
 
     const active = this.host.shadowRoot.activeElement as HTMLElement;
+    const activeIndex = focusable.indexOf(active);
 
-    if (active === this.titleBtn && e.shiftKey) {
-      e.preventDefault();
-      const activeCell = this.getCells().find(c => c.tabIndex === 0);
-      if (activeCell) {
-        activeCell.focus();
-      }
-    }
+    // Focus is outside the tracked elements, let the browser handle it
+    if (activeIndex === -1) return;
 
-    if (active?.getAttribute('role') === 'gridcell' && !e.shiftKey) {
-      e.preventDefault();
+    e.preventDefault();
+    const nextIndex = e.shiftKey
+      ? (activeIndex - 1 + focusable.length) % focusable.length
+      : (activeIndex + 1) % focusable.length;
 
-      if (this.currentViewType === 'years') {
-        this.prevBtn.focus();
-      } else {
-        this.titleBtn.focus();
-      }
-    }
+    focusable[nextIndex].focus();
   };
 
   /**
@@ -1163,6 +1179,7 @@ export class PostDatePicker {
     if (!this.inline) {
       this.dpInput.addEventListener('blur', this.handleInputBlur);
       this.dpInput.addEventListener('focus', this.handleInputFocus);
+      this.dpInput.addEventListener('pointerdown', this.handleInputPointerDown);
     }
     this.dpInput.addEventListener('input', this.handleInputEvent);
   }
@@ -1205,6 +1222,7 @@ export class PostDatePicker {
     this.nextBtn?.removeEventListener('click', this.handlePrevNextClick);
     this.dpInput?.removeEventListener('focus', this.handleInputFocus);
     this.dpInput?.removeEventListener('blur', this.handleInputBlur);
+    this.dpInput?.removeEventListener('pointerdown', this.handleInputPointerDown);
     this.dpInput?.removeEventListener('input', this.handleInputEvent);
 
     this.gridObserver?.disconnect();

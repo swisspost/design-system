@@ -91,4 +91,9 @@ tokens.$default-map: components.$post-button;
   &:hover {
     color: tokens.get('link-hover-fg', elements.$post-link);
   }
+
+  &:disabled {
+    color: tokens.get('link-disabled-fg', elements.$post-link);
+    text-decoration-style: tokens.get('link-disabled-text-decoration-style', elements.$post-link);
+  }
 }

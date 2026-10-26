@@ -10,6 +10,7 @@ export * from './get-focusable-children';
 export * from './get-root';
 export * from './get-slotted-element';
 export * from './has-slotted-anchor';
+export * from './is-focus-visible';
 export * from './is-iso-date';
 export * from './is-motion-reduced';
 export * from './is-value-empty';
