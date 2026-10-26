@@ -74,3 +74,6 @@ allowBuilds:
   msgpackr-extract: true
   sharp: true
   unrs-resolver: true
+minimumReleaseAgeExclude:
+  # Renovate security update: storybook@9.1.21
+  - storybook@9.1.21
