@@ -1043,7 +1043,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/354726/storage/MzU0NzI2LzAvbWFzdGVyLy8vMTEzNDkzMzUw",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/354726/storage/MzU0NzI2LzAvbWFzdGVyLy8vMTEzNTIwMzE1",
         "businessfield": [
           "kommunikation"
         ],
@@ -1084,7 +1084,7 @@
         }
       },
       "createdAt": "2017-12-12T13:34:00.000Z",
-      "modifiedAt": "2026-10-12T12:40:56.000Z"
+      "modifiedAt": "2026-10-13T06:04:39.000Z"
     },
     {
       "uuid": "21e20ba0-df41-11e7-a943-005056a94f4a",
@@ -1092,7 +1092,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/354727/storage/MzU0NzI3LzAvbWFzdGVyLy8vMTEzNDg0NDI0",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/354727/storage/MzU0NzI3LzAvbWFzdGVyLy8vMTEzNTE5MDg2",
         "businessfield": [
           "kommunikation"
         ],
@@ -1132,7 +1132,7 @@
         }
       },
       "createdAt": "2017-12-12T13:34:00.000Z",
-      "modifiedAt": "2026-10-12T11:30:43.000Z"
+      "modifiedAt": "2026-10-13T06:03:27.000Z"
     },
     {
       "uuid": "21e53ff0-df41-11e7-a943-005056a94f4a",
@@ -1140,7 +1140,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/354728/storage/MzU0NzI4LzAvbWFzdGVyLy8vMTEzNDkzNzQ0",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/354728/storage/MzU0NzI4LzAvbWFzdGVyLy8vMTEzNTE4MDI3",
         "businessfield": [
           "kommunikation"
         ],
@@ -1180,7 +1180,7 @@
         }
       },
       "createdAt": "2017-12-12T13:34:00.000Z",
-      "modifiedAt": "2026-10-12T12:43:04.000Z"
+      "modifiedAt": "2026-10-13T06:02:22.000Z"
     },
     {
       "uuid": "21e82620-df41-11e7-a943-005056a94f4a",
@@ -1188,7 +1188,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/354729/storage/MzU0NzI5LzAvbWFzdGVyLy8vMTEzNDk0MDg0",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/354729/storage/MzU0NzI5LzAvbWFzdGVyLy8vMTEzNTE2OTI1",
         "businessfield": [
           "kommunikation"
         ],
@@ -1222,7 +1222,7 @@
         }
       },
       "createdAt": "2017-12-12T13:34:00.000Z",
-      "modifiedAt": "2026-10-12T12:45:26.000Z"
+      "modifiedAt": "2026-10-13T06:01:04.000Z"
     },
     {
       "uuid": "21ea9720-df41-11e7-a943-005056a94f4a",
@@ -29358,6 +29358,83 @@
       "modifiedAt": "2026-08-08T12:05:06.309Z"
     },
     {
+      "uuid": "0cc73f00-c7d2-11f1-bea4-0050568d2654",
+      "id": 11586226,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586226/storage/MDExNTg2MjI2LzAvbWFzdGVyLy8vMTEzNzY2MjU2",
+        "keywords": [
+          "E-Transporter",
+          "Fourgonnette électrique",
+          "Veicoli elettrici",
+          "E-transporter",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "car battery",
+          "Autobatterie",
+          "batterie de voiture",
+          "batteria per auto",
+          "Batterien",
+          "Piles",
+          "Batteries",
+          "Batterie",
+          "100% Loaded",
+          "100% geladen",
+          "100% chargé",
+          "Caricato al 100%"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2802.svg",
+        "basename": "2802",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T13:20:39.000Z",
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
+    },
+    {
+      "uuid": "7dfd69a0-cc47-11f1-aa7b-0050568d2654",
+      "id": 11661918,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11661918/storage/MDExNjYxOTE4LzAvbWFzdGVyLy8vMTE0NzQzNjg3",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2803.svg",
+        "basename": "2803",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T05:31:25.000Z",
+      "modifiedAt": "2026-10-20T06:05:05.705Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -42579,13 +42656,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1133,
+    "success": 1135,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2026-10-12T12:50:20.178Z",
+  "created": "2026-10-20T06:45:05.866Z",
   "version": "10.7.0"
 }

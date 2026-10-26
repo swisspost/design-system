@@ -33,7 +33,7 @@ jobs:
       # Trusted publishing requires npm 11.5.1 or later.
       - name: Update NPM for trusted publishing
         run: |
-          npm install -g npm@11.18.0 --ignore-scripts
+          npm install -g npm@11.19.1 --ignore-scripts
           echo "npm: $(npm -v)"
 
       - name: Install & build Dependencies
@@ -53,6 +53,17 @@ jobs:
       # before changeset magic is starting to run
       - name: Test publish step
         run: pnpm -r publish --dry-run
+
+      # Trusted publishing on the public npm registry requires the package
+      # to already exist before we release it with the "trusted publishing" method.
+      # New packages must first be published manually with a placeholder
+      # version (e.g. 0.0.0), then configured for trusted publishing on npmjs.com.
+      # This check fails fast if a queued package hasn't been bootstrapped yet.
+      - name: Verify packages to release exist on the public npm registry
+        run: |
+          trap 'rm -f changesets.json' EXIT
+          pnpm changeset status --output=changesets.json
+          node .github/workflows/scripts/check-packages-on-npm.mjs
 
       # The changeset action will behave differently based on whether there are
       # new changesets on the github.ref branch:
