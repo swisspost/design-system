@@ -5,6 +5,13 @@ import {
   closeMegadropdown,
   openLanguageMenu,
   openUserMenu,
+  scrollPageDown,
+  scrollMainNavToEnd,
+  hoverMegadropdownTitleLink,
+  focusMegadropdownLink,
+  scrollMegadropdownInner,
+  focusLanguageListItem,
+  openSideNav,
 } from './header-test-helpers';
 
 /**
@@ -21,12 +28,12 @@ export type BreakpointName = (typeof TEST_BREAKPOINTS)[number]['name'];
 /**
  * Handler type definitions
  */
-export type HandlerMap = Record<string, (page: Page) => Promise<void>>;
+export type StateHandler = (page: Page) => Promise<void>;
 
 /**
  * State handlers
  */
-export const STATE_HANDLERS: HandlerMap = {
+export const STATE_HANDLERS = {
   'megadropdown-open': async (page: Page) => {
     await openMegadropdown(page, 'letters');
   },
@@ -48,54 +55,81 @@ export const STATE_HANDLERS: HandlerMap = {
     await openMegadropdown(page, 'letters');
   },
 
-  'scrolled': async page => {
-    await page.evaluate(() => window.scrollTo(0, 200));
-    await page.waitForTimeout(300);
+  'scrolled': async (page: Page) => {
+    await scrollPageDown(page);
   },
 
   'scrolled-megadropdown-open': async (page: Page) => {
-    await page.evaluate(() => window.scrollTo(0, 200));
-    await page.waitForTimeout(300);
+    await scrollPageDown(page);
     await openMegadropdown(page, 'letters');
   },
 
   'scrolled-first-level-opened': async (page: Page) => {
-    await page.evaluate(() => window.scrollTo(0, 200));
-    await page.waitForTimeout(300);
+    await scrollPageDown(page);
     await openBurgerMenu(page);
   },
 
   'scrolled-second-level-opened': async (page: Page) => {
-    await page.evaluate(() => window.scrollTo(0, 200));
-    await page.waitForTimeout(300);
+    await scrollPageDown(page);
     await openBurgerMenu(page);
     await openMegadropdown(page, 'letters');
   },
-};
+
+  'mainnav-overflow-scrolled': async (page: Page) => {
+    await scrollMainNavToEnd(page);
+  },
+
+  'megadropdown-title-hover': async (page: Page) => {
+    await openMegadropdown(page, 'letters');
+    await hoverMegadropdownTitleLink(page, 'letters');
+  },
+
+  'megadropdown-link-focus': async (page: Page) => {
+    await openMegadropdown(page, 'letters');
+    await focusMegadropdownLink(page, 'letters');
+  },
+
+  'megadropdown-inner-scrolled': async (page: Page) => {
+    await openBurgerMenu(page);
+    await openMegadropdown(page, 'letters');
+    await scrollMegadropdownInner(page, 'letters');
+  },
+
+  'language-list-focus': async (page: Page) => {
+    await focusLanguageListItem(page);
+  },
+
+  'side-nav-open': async (page: Page) => {
+    await openSideNav(page);
+  },
+} satisfies Record<string, StateHandler>;
+
+/**
+ * Union of all defined state names, derived from the handlers above so the
+ * test matrix below can only reference states that actually have a handler.
+ */
+export type StateName = keyof typeof STATE_HANDLERS;
 
 /**
  * Cleanup handlers for interactions that need closing
  */
-export const CLEANUP_HANDLERS: HandlerMap = {
-  'megadropdown-open': async (page: Page) => {
-    await closeMegadropdown(page, 'letters');
-  },
-  'second-level-opened': async (page: Page) => {
-    await closeMegadropdown(page, 'letters');
-  },
-  'scrolled-megadropdown-open': async (page: Page) => {
-    await closeMegadropdown(page, 'letters');
-  },
-  'scrolled-second-level-opened': async (page: Page) => {
-    await closeMegadropdown(page, 'letters');
-  },
+const closeLettersMegadropdown = (page: Page) => closeMegadropdown(page, 'letters');
+
+export const CLEANUP_HANDLERS: Partial<Record<StateName, StateHandler>> = {
+  'megadropdown-open': closeLettersMegadropdown,
+  'second-level-opened': closeLettersMegadropdown,
+  'scrolled-megadropdown-open': closeLettersMegadropdown,
+  'scrolled-second-level-opened': closeLettersMegadropdown,
+  'megadropdown-title-hover': closeLettersMegadropdown,
+  'megadropdown-link-focus': closeLettersMegadropdown,
+  'megadropdown-inner-scrolled': closeLettersMegadropdown,
 };
 
 /**
  * Configuration interfaces
  */
 interface BreakpointConfig {
-  states: readonly string[];
+  states: readonly StateName[];
 }
 
 interface VariantConfig {
@@ -140,13 +174,27 @@ const BURGER_FLOW_NO_SECOND = [
   'scrolled-first-level-opened',
 ] as const;
 
+const OVERFLOW_DESKTOP = ['mainnav-overflow-scrolled'] as const;
+
+const REGRESSION_DESKTOP = [
+  'megadropdown-open',
+  'megadropdown-title-hover',
+  'megadropdown-link-focus',
+] as const;
+
+const REGRESSION_BURGER = ['second-level-opened', 'megadropdown-inner-scrolled'] as const;
+
+const LANGUAGE_LIST = ['language-list-focus'] as const;
+
+const SIDE_NAV = ['side-nav-open'] as const;
+
 /**
  * Helper for composing state configurations across breakpoints
  */
 const stateComposeHelper = (
-  desktop: readonly string[],
-  tablet?: readonly string[],
-  mobile?: readonly string[],
+  desktop: readonly StateName[],
+  tablet?: readonly StateName[],
+  mobile?: readonly StateName[],
 ) => ({
   desktop: { states: desktop },
   tablet: { states: tablet ?? desktop },
@@ -166,4 +214,9 @@ export const TEST_MATRIX: Record<string, VariantConfig> = {
   'onepager': stateComposeHelper(SCROLLED_ONLY, LANGUAGE_AND_SCROLL),
   'application-compact': stateComposeHelper(SCROLLED_ONLY, LANGUAGE_AND_SCROLL),
   'application-condensed': stateComposeHelper(SCROLLED_ONLY, LANGUAGE_AND_SCROLL),
+  'portal-overflow': stateComposeHelper(OVERFLOW_DESKTOP, [], []),
+  'portal-regression': stateComposeHelper(REGRESSION_DESKTOP, REGRESSION_BURGER),
+  'onepager-list': stateComposeHelper(LANGUAGE_LIST),
+  'application-sidenav': stateComposeHelper([], SIDE_NAV),
+  'slots-minimal': stateComposeHelper([]),
 };
