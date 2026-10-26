@@ -168,8 +168,15 @@ tokens.$default-map: utilities.$post-spacing;
       background: transparent;
 
       button {
-        &:hover {
-          background-color: post.$white;
+        // removes Storybook's blue focus underline in favor of the design system outline
+        &:focus {
+          box-shadow: none;
+        }
+
+        // prevents the next button from overlapping thefocus outline
+        &:focus-visible {
+          position: relative;
+          z-index: 1;
         }
 
         &:nth-of-type(2) {
