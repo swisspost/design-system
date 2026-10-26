@@ -173,7 +173,7 @@ tokens.$default-map: utilities.$post-spacing;
           box-shadow: none;
         }
 
-        // prevents the next button from overlapping thefocus outline
+        // prevents the next button from overlapping the focus outline
         &:focus-visible {
           position: relative;
           z-index: 1;
