@@ -18,4 +18,4 @@ With this decision, we ensure that our components comply with web standard funct
 
 ## Workaround until support for [`light-dark`](https://caniuse.com/wf-light-dark-image) is good
 
-We're using a space-toggle fallback for browsers not supporting `light-dark` with image values. If projects run into issues with browser support for custom components that set a color-scheme, we can advice them to also set `[data-color-scheme="light/dark"]` to get the needed support in older browsers.
+We're using a space-toggle fallback for browsers not supporting `light-dark` with image values. If projects run into issues with browser support for custom components that set a color-scheme, we can advise them to also set `[data-color-scheme="light/dark"]` to get the needed support in older browsers.
