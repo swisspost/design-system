@@ -54,15 +54,26 @@ To enable client-side routing (e.g. Next.js, Angular Router), slot your own anch
 
 <post-banner type="info">
   <p>
-    The slotted `<a>` must be a direct child of `<post-language-menu-item>`, not wrapped in another
-    element, otherwise it won't be detected and the component will fall back to rendering its own
-    internal link or button.
+    Slot the `<a>` directly inside `<post-language-menu-item>`. The `url` property is ignored once
+    an anchor is slotted, and the component no longer renders its own link or button.
   </p>
+</post-banner>
+
+<post-banner type="warning">
   <p>
-    The `url` property is ignored once you slot your own `<a>`. Since link attributes are no longer
-    applied automatically, give the slotted `<a>` an accessible name and add any framework-specific
-    routing attributes directly to it.
+    <b>Accessibility Note:</b> When using client-side routing, the accessibility attributes are no
+    longer applied by the component and need to be added manually to the slotted `<a>`:
   </p>
+  <ul>
+    <li>
+      the full language name as accessible name, e.g. in a `<span class="visually-hidden">`
+    </li>
+    <li>`lang` and `hreflang` set to the language code</li>
+    <li>
+      `aria-current="page"` on the active language, kept up to date when the route changes
+    </li>
+    <li>`aria-description`, if a description is needed</li>
+  </ul>
 </post-banner>
 
 <Canvas sourceState="shown" of={languageMenuItemStories.ClientSideRouting} />

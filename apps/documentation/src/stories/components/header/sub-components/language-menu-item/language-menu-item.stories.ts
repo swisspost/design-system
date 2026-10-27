@@ -78,16 +78,19 @@ export const Anchor: Story = {
 
 export const ClientSideRouting: Story = {
   args: {
-    active: false,
+    active: true,
     innerHTML: '',
   },
   render: args =>
-    html`<post-language-menu-item
-      code=${args.code}
-      name=${args.name ? args.name : nothing}
-      active=${args.active ? args.active : nothing}
-      description=${args.description ? args.description : nothing}
-    >
-      <a href="/en">EN</a>
+    html`<post-language-menu-item code=${args.code} active=${args.active ? args.active : nothing}>
+      <a
+        href="/en"
+        hreflang="en"
+        lang="en"
+        aria-current="${args.active ? 'page' : nothing}"
+        aria-description="${args.description ? args.description : nothing}"
+      >
+        EN <span class="visually-hidden">${args.name}</span>
+      </a>
     </post-language-menu-item>`,
 };

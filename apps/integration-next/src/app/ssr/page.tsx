@@ -209,13 +209,19 @@ export default function Home() {
             text-current-language="The currently selected language is {name}."
           >
             <PostLanguageMenuItem code="de" name="German">
-              <Link href="/csr?lang=de">de</Link>
+              <Link href="/csr?lang=de" hrefLang="de" lang="de">
+                de<span className="visually-hidden">German</span>
+              </Link>
             </PostLanguageMenuItem>
             <PostLanguageMenuItem active={true} code="fr" name="French">
-              <Link href="/csr?lang=fr">fr</Link>
+              <Link href="/csr?lang=fr" hrefLang="fr" lang="fr" aria-current="page">
+                fr<span className="visually-hidden">French</span>
+              </Link>
             </PostLanguageMenuItem>
             <PostLanguageMenuItem code="en" name="English">
-              <Link href="/csr?lang=en">en</Link>
+              <Link href="/csr?lang=en" hrefLang="en" lang="en">
+                en<span className="visually-hidden">English</span>
+              </Link>
             </PostLanguageMenuItem>
           </PostLanguageMenu>
         </div>
@@ -251,13 +257,19 @@ export default function Home() {
             text-current-language="The currently selected language is {name}."
           >
             <PostLanguageMenuItem code="de" name="German">
-              <Link href="/csr?lang=de">de</Link>
+              <Link href="/csr?lang=de" hrefLang="de" lang="de">
+                de<span className="visually-hidden">German</span>
+              </Link>
             </PostLanguageMenuItem>
             <PostLanguageMenuItem code="fr" name="French">
-              <Link href="/csr?lang=fr">fr</Link>
+              <Link href="/csr?lang=fr" hrefLang="fr" lang="fr">
+                fr<span className="visually-hidden">French</span>
+              </Link>
             </PostLanguageMenuItem>
             <PostLanguageMenuItem active={true} code="en" name="English">
-              <Link href="/csr?lang=en">en</Link>
+              <Link href="/csr?lang=en" hrefLang="en" lang="en" aria-current="page">
+                en<span className="visually-hidden">English</span>
+              </Link>
             </PostLanguageMenuItem>
           </PostLanguageMenu>
         </div>

@@ -1,4 +1,4 @@
-import { hasSlottedAnchor, Url } from '@/utils';
+import { Url } from '@/utils';
 import { version } from '@root/package.json';
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 
@@ -31,7 +31,7 @@ export class PostLogo {
   }
 
   private checkSlottedAnchor() {
-    this.hasSlottedAnchor = hasSlottedAnchor(this.host);
+    this.hasSlottedAnchor = Array.from(this.host.children).some(child => child.tagName === 'A');
   }
 
   private checkDescription() {
@@ -51,8 +51,12 @@ export class PostLogo {
     return (
       <Host data-version={version}>
         <LogoTag
-          class={`logo ${hasLink ? 'logo-link' : ''} ${this.hasSlottedAnchor ? 'logo-link-slotted' : ''}`}
-          {...(logoLink && !this.hasSlottedAnchor ? { href: logoLink } : {})}
+          class={{
+            'logo': true,
+            'logo-link': !!hasLink,
+            'logo-link-slotted': this.hasSlottedAnchor,
+          }}
+          href={logoLink && !this.hasSlottedAnchor ? logoLink : undefined}
         >
           <span class="description">{this.hasSlottedAnchor ? null : slot}</span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" aria-hidden="true">

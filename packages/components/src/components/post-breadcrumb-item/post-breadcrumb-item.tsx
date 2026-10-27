@@ -1,4 +1,4 @@
-import { hasSlottedAnchor, OneOf, Required, Type, Url } from '@/utils';
+import { OneOf, Required, Type, Url } from '@/utils';
 import { version } from '@root/package.json';
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { Variant, VARIANTS } from './variants';
@@ -68,7 +68,7 @@ export class PostBreadcrumbItem {
   }
 
   private checkSlottedAnchor() {
-    this.hasSlottedAnchor = hasSlottedAnchor(this.host);
+    this.hasSlottedAnchor = Array.from(this.host.children).some(child => child.tagName === 'A');
   }
 
   private renderContent() {
