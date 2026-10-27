@@ -26,3 +26,30 @@
     border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
   }
 }
+
+.logo-link-slotted {
+  position: relative;
+}
+
+// Hiding the text within the slotted link
+.logo-link-slotted > slot::slotted(a) {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  color: transparent;
+  text-indent: -9999px;
+  white-space: nowrap;
+
+  @include utilities.focus-style;
+  @include utilities.focus-inset;
+}
+
+.logo-link-slotted > slot::slotted(a:focus),
+.logo-link-slotted > slot::slotted(a:focus-visible) {
+  border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+  outline-style: tokens.get('focus-border-style', helpers.$post-focus) !important;
+
+  @include utilities.high-contrast-mode() {
+    outline-color: Highlight !important;
+  }
+}
