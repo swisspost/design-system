@@ -42,6 +42,7 @@ figure:has(.blockquote) {
 
 figcaption.blockquote-footer {
   margin-top: tokens.get('post-blockquote-gap-inline');
+  font-style: italic;
 
   cite {
     font-style: inherit;
