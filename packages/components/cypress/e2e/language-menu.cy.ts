@@ -190,6 +190,15 @@ describe('post-language-menu', () => {
           expect(spy.firstCall.args[0].detail).to.eq('en');
         });
       });
+
+      it('should not emit postChange when the slotted anchor is opened in a new tab', () => {
+        cy.get('@language-menu-item').then($languageOption => {
+          $languageOption.on('postChange', cy.spy().as('postChangeSpy'));
+        });
+        cy.get('@language-menu-item').children('a').trigger('click', { ctrlKey: true });
+        cy.get('@language-menu-item').children('a').trigger('click', { metaKey: true });
+        cy.get('@postChangeSpy').should('not.have.been.called');
+      });
     });
   });
 

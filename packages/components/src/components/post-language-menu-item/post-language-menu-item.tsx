@@ -14,7 +14,7 @@ import {
 import { SWITCH_VARIANTS, SwitchVariant } from '../post-language-menu/switch-variants';
 
 function opensLinkElsewhere(e: MouseEvent): boolean {
-  return e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0;
+  return e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button > 0;
 }
 
 /**
