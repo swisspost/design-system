@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   PostAccordion,
   PostAccordionItem,
@@ -32,6 +32,7 @@ import {
   PostTooltip,
   PostTooltipTrigger,
 } from '@swisspost/design-system-components-angular';
+import { ToastService } from '../../toast/toast.service';
 
 @Component({
   selector: 'home-page',
@@ -72,5 +73,6 @@ import {
   ],
 })
 export class Home {
+  readonly toastService = inject(ToastService);
   isCollapsed = false;
 }

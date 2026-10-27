@@ -1,5 +1,37 @@
 # @swisspost/design-system-icons
 
+## 10.8.0
+
+### Minor Changes
+
+- Added icons:
+  - `bicyclereservation` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `documentadd` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `requirement` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `taxi` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `ticketsbb` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `zipdownload` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) and [@alionazherdetska](https://github.com/alionazherdetska) with [#8628](https://github.com/swisspost/design-system/pull/8628))
+
+- Added icons: `2802` (by [@swisspost-bot](https://github.com/swisspost-bot) and [@myrtasakellariou](https://github.com/myrtasakellariou) with [#8663](https://github.com/swisspost/design-system/pull/8663))
+
+- Added icons:
+  - `bandage` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `injury` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `relapse` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `transporterbatteryloaded` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) and [@myrtasakellariou](https://github.com/myrtasakellariou) with [#8663](https://github.com/swisspost/design-system/pull/8663))
+
+- Added icons: `2803` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8688](https://github.com/swisspost/design-system/pull/8688))
+
+- Added icons:
+  - `icon` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `vinolog` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8688](https://github.com/swisspost/design-system/pull/8688))
+
+### Patch Changes
+
+- Updated icons: `1021`, `1022`, `1023` and `1024` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8639](https://github.com/swisspost/design-system/pull/8639))
+
+- Updated icons: `1021`, `1022`, `1023` and `1024` (by [@swisspost-bot](https://github.com/swisspost-bot) and [@myrtasakellariou](https://github.com/myrtasakellariou) with [#8663](https://github.com/swisspost/design-system/pull/8663))
+
 ## 10.7.0
 
 ### Minor Changes

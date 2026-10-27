@@ -253,7 +253,7 @@ export const OnlineService: Story = {
     globalNavPrimary: false,
     globalNavSecondary: false,
     localNav: true,
-    targetGroup: false,
+    targetGroup: true,
     isLoggedIn: true,
   },
   render: (args: Args) => {
