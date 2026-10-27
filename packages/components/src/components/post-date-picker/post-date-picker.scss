@@ -290,8 +290,9 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
               background-color: transparent;
             }
 
+            /* Years: Adjacent decade (shown greyed but still selectable) */
             &.-other-decade- {
-              display: none;
+              color: tokens.get('post-datepicker-grid-year-cell-element-color-disabled-fg');
             }
 
             &:not(.-disabled-) {

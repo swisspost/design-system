@@ -99,6 +99,27 @@ describe('date-picker', { includeShadowDom: true }, () => {
         cy.get('@date-picker').find('.air-datepicker-body.-days-').should('have.class', '-hidden-');
       });
 
+      it('should display the year view in complete rows of four', () => {
+        cy.get('@toggle').click().wait(500);
+
+        cy.get('@navigation').find('.air-datepicker-nav--title button').click();
+
+        // Every row is filled with exactly four year cells (no partial/orphan row).
+        cy.get('@date-picker')
+          .find('.air-datepicker-body.-years- .air-datepicker-body--cells.-years- .a11y-row')
+          .each($row => {
+            expect($row.find('.air-datepicker-cell.-year-').length).to.equal(4);
+          });
+
+        cy.get('@date-picker')
+          .find('.air-datepicker-body.-years- .air-datepicker-cell.-year-.-other-decade-')
+          .should('have.length.greaterThan', 0)
+          .each($cell => {
+            expect($cell.is(':visible')).to.equal(true);
+            expect($cell.css('pointer-events')).not.to.equal('none');
+          });
+      });
+
       it('should return focus to the input on Escape', () => {
         cy.get('@toggle').click();
 
