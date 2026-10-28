@@ -6,7 +6,7 @@ import { nothing } from 'lit';
 const meta: MetaComponent = {
   id: 'a1eef11e-b5db-4066-99a8-9723a6cdef12',
   title: 'Components/Divider',
-  tags: ['package:Styles', 'status:New'],
+  tags: ['package:Styles', 'status:New', 'alias:Separator'],
   render,
   parameters: {
     badges: [],

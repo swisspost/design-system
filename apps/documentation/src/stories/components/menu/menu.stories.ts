@@ -5,7 +5,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '8ca2bd70-56e6-4da9-b1fd-4e55388dca88',
   title: 'Components/Menu',
-  tags: ['package:WebComponents', 'status:New'],
+  tags: ['package:WebComponents', 'status:New', 'alias:Dropdown Menu', 'alias:Context Menu'],
   component: 'post-menu',
   parameters: {
     badges: [],

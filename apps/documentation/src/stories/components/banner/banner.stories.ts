@@ -12,7 +12,7 @@ type PostBannerControls = Partial<HTMLPostBannerElement> & {
 const meta: MetaComponent<PostBannerControls> = {
   id: '105e67d8-31e9-4d0b-87ff-685aba31fd4c',
   title: 'Components/Banner',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'alias:Alert'],
   component: 'post-banner',
   render: RenderBanner,
   decorators: [],

@@ -8,7 +8,7 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 const meta: MetaComponent<HTMLPostCollapsibleElement> = {
   id: '6a91848c-16ec-4a23-bc45-51c797b5b2c3',
   title: 'Components/Collapsible',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'alias:Expander'],
   component: 'post-collapsible',
   render: RenderCollapsible,
   parameters: {
