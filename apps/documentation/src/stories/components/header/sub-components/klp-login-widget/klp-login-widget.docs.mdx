@@ -30,8 +30,7 @@ application only provides the links.
 
 <Controls of={KlpLoginWidgetStories.Default} />
 
-Once the user is signed in, the avatar opens the user menu, with the company, if any, above the
-user's name. Select the avatar in the example above to open it.
+Once the user is signed in, a click on the avatar opens the user menu.
 
 This user may switch account. Business users who may change company see the company switch
 instead, and users who may do neither, such as private customers, see no switch at all. Use the
@@ -126,10 +125,21 @@ The account switch and the company switch are never shown together.
 <post-banner>
   <p>
     <b>Link URLs:</b> the links in the examples on this page are placeholders. Which URLs your
-    application has to link to depends on how it is set up on the KLP platform. To find out more,
-    talk to the KLP team or visit their documentation.
+    application has to link to depends on your projects setup and the KLP platform. To find out
+    more, talk to the KLP team or visit their documentation.
   </p>
 </post-banner>
+
+## Before the session is known
+
+Until the platform has answered, the widget shows an avatar without initials, so the header does
+not shift once the session is known. If your page already knows the visitor's authentication state, set
+`initial-state` accordingly (e.g. during SSR), so the widget renders in the correct state immediately.
+
+<post-banner type="info">The example below never gets an
+answer, so it keeps showing that state.</post-banner>
+
+<Canvas of={KlpLoginWidgetStories.InitialState} />
 
 ## Unread messages
 
@@ -160,17 +170,6 @@ the same page for every type of user.
   width="760"
   height="1010"
 />
-
-## Before the session is known
-
-Until the platform has answered, the widget reserves an avatar-sized box, so the header does not
-shift once the session is known. If your page already knows the visitor's authentication state, set
-`initial-state` accordingly (e.g. during SSR), so the widget renders in the correct state immediately.
-
-<post-banner type="info">The example below never gets an
-answer, so it keeps showing that state.</post-banner>
-
-<Canvas of={KlpLoginWidgetStories.InitialState} />
 
 ## Accessibility
 
