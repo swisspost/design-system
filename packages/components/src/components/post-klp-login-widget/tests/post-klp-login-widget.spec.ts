@@ -64,10 +64,13 @@ describe('post-klp-login-widget', () => {
     expect(shadow(page, 'post-menu')).toBeNull();
   });
 
-  it('hides the placeholder from assistive technology, as it says nothing', async () => {
+  it('holds a nameless avatar, hidden from assistive technology as it says nothing', async () => {
     const page = await render();
+    const placeholder = shadow(page, '.user-menu-placeholder');
 
-    expect(shadow(page, '.user-menu-placeholder').getAttribute('aria-hidden')).toBe('true');
+    expect(placeholder.localName).toBe('post-avatar');
+    expect(placeholder.getAttribute('firstname')).toBe(' ');
+    expect(placeholder.getAttribute('aria-hidden')).toBe('true');
   });
 
   it('offers only the login link once the platform reports nobody', async () => {
