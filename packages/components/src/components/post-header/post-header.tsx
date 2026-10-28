@@ -48,6 +48,7 @@ export class PostHeader {
   private localHeaderResizeObserver: ResizeObserver;
   private slottedContentObserver: MutationObserver;
   private localHeader: HTMLElement;
+  private scrollEventTarget: Window | HTMLElement;
   private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
 
   private get hasBurgerMenu(): boolean {
@@ -79,6 +80,14 @@ export class PostHeader {
     }
 
     return document.body;
+  }
+
+  private get scrollEventTargetCandidate(): Window | HTMLElement {
+    const scrollParent = this.scrollParent;
+
+    return scrollParent === document.body || scrollParent === document.documentElement
+      ? window
+      : scrollParent;
   }
 
   @Element() host: HTMLPostHeaderElement;
@@ -152,10 +161,8 @@ export class PostHeader {
 
   connectedCallback() {
     globalThis.addEventListener('resize', this.throttledResize, { passive: true });
-    globalThis.addEventListener('scroll', this.handleScrollEvent, {
-      passive: true,
-    });
-    this.scrollParent.addEventListener('scroll', this.handleScrollEvent, {
+    this.scrollEventTarget = this.scrollEventTargetCandidate;
+    this.scrollEventTarget.addEventListener('scroll', this.handleScrollEvent, {
       passive: true,
     });
     document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
@@ -190,12 +197,9 @@ export class PostHeader {
 
   // Clean up possible side effects when post-header is disconnected
   disconnectedCallback() {
-    const scrollParent = this.scrollParent;
-
     globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange);
     globalThis.removeEventListener('resize', this.throttledResize);
-    globalThis.removeEventListener('scroll', this.handleScrollEvent);
-    if (scrollParent) scrollParent.removeEventListener('scroll', this.handleScrollEvent);
+    this.scrollEventTarget?.removeEventListener('scroll', this.handleScrollEvent);
     document.removeEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.removeEventListener('keydown', this.keyboardHandler);
     if (this.host.shadowRoot) {
@@ -310,7 +314,9 @@ export class PostHeader {
 
   private handleScrollEvent() {
     const scrollTop =
-      this.scrollParent === document.body ? window.scrollY : this.scrollParent.scrollTop;
+      this.scrollEventTarget === window
+        ? window.scrollY
+        : ((this.scrollEventTarget as HTMLElement)?.scrollTop ?? 0);
     document.documentElement.style.setProperty(
       '--post-header-scroll-top',
       `${Math.max(scrollTop, 0)}px`,
