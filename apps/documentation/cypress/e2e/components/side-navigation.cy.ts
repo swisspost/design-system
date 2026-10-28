@@ -29,6 +29,24 @@ describe('Side Navigation docs', () => {
     cy.get('@storyNav').find('ul ul post-icon[name="letter"]').should('not.exist');
   });
 
+  it('should update the code snippet when the controls change', () => {
+    cy.get('.main-story pre').as('source');
+    cy.get('@source').should('contain.text', '<post-side-navigation text-close="Close">');
+
+    getControlRow('size').find('input[type="radio"][value="small"]').check({ force: true });
+    getControlRow('Show icons').find('input[type="checkbox"]').check({ force: true });
+    getControlRow('text-close').find('textarea').clear().type('Schliessen');
+
+    cy.get('@source').should(
+      'contain.text',
+      '<post-side-navigation size="small" text-close="Schliessen">',
+    );
+    cy.get('@source')
+      .invoke('text')
+      .then(code => code.match(/<post-icon name="letter"/g))
+      .should('have.length', 6);
+  });
+
   it('should keep the current controls when the iframe reloads', () => {
     getControlRow('size').find('input[type="radio"][value="small"]').check({ force: true });
     cy.get('@storyNav').should('have.attr', 'size', 'small');

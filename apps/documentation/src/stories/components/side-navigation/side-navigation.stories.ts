@@ -87,10 +87,10 @@ export const Default: Story = {
   parameters: {
     docs: {
       source: {
-        code: `
-  <post-side-navigation text-close="Close">
+        transform: (_snippet: string, { args }: { args: Args }) => `
+  <post-side-navigation${args.size === 'large' ? '' : ` size="${args.size}"`} text-close="${args.textClose}">
     <nav aria-label="Main navigation">
-      ${setLevel1Icons(defaultNav, false)}
+      ${setLevel1Icons(defaultNav, args.showIcons)}
     </nav>
   </post-side-navigation>
 
