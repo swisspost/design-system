@@ -113,14 +113,41 @@ export function PageLayout({
             <span>Login</span>
             <PostIcon name="login" />
           </a>
+          <PostMenuItem slot="account-switch">
+            <a href="#switch-account">
+              <PostIcon name="userswitch" aria-hidden="true" />
+              Switch account
+            </a>
+          </PostMenuItem>
+          <PostMenuItem slot="company-switch">
+            <a href="#switch-company">
+              <PostIcon name="company" aria-hidden="true" />
+              Switch company
+            </a>
+          </PostMenuItem>
+          <PostMenuItem slot="menu-links">
+            <a href="#profile">
+              <PostIcon name="profile" aria-hidden="true" />
+              My profile
+            </a>
+          </PostMenuItem>
           <PostKlpLoginWidgetMessages
             slot="menu-links"
             url="#messages"
             text="Messages"
             textUnread="{count} unread messages"
           ></PostKlpLoginWidgetMessages>
+          <PostMenuItem slot="menu-links">
+            <a href="#settings">
+              <PostIcon name="gear" aria-hidden="true" />
+              Settings
+            </a>
+          </PostMenuItem>
           <PostMenuItem slot="logout-link">
-            <a href="#logout">Logout</a>
+            <a href="#logout">
+              <PostIcon name="logout" aria-hidden="true" />
+              Logout
+            </a>
           </PostMenuItem>
         </PostKlpLoginWidget>
         {/* Main navigation */}
