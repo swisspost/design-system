@@ -14,10 +14,11 @@
  * playground marks its tag `data-always`, because that page exists for nothing else.
  */
 (() => {
-  if (
-    !document.currentScript?.hasAttribute('data-always') &&
-    !new URLSearchParams(location.search).has('klpmock')
-  ) {
+  const params = new URLSearchParams(location.search);
+  // Address bars may change the case of what was typed, so the mock's own parameters ignore it.
+  const findParam = name => [...params].find(([key]) => key.toLowerCase() === name);
+
+  if (!document.currentScript?.hasAttribute('data-always') && !findParam('klpmock')) {
     return;
   }
 
@@ -49,14 +50,13 @@
   const label = user => `${user.name} ${user.surname}`;
 
   const TTL = 900000;
-  const RESERVED = new Set(['session', 'unread']);
+  const RESERVED = new Set(['klpmock', 'session', 'unread']);
 
-  const params = new URLSearchParams(location.search);
-  const current = params.get('session') ?? 'ada';
+  const current = (findParam('session')?.[1] ?? 'ada').toLowerCase();
   const session = USERS[current] ? { ...USERS[current] } : null;
 
   for (const [field, value] of params) {
-    if (RESERVED.has(field) || !session) continue;
+    if (RESERVED.has(field.toLowerCase()) || !session) continue;
     // An empty value drops the field, so optional ones can be tried out as absent.
     if (value === '') delete session[field];
     else session[field] = { true: true, false: false }[value] ?? value;
@@ -87,7 +87,7 @@
 
   let eventBus = null;
   let address = '';
-  let waiting = Number(params.get('unread') ?? 0);
+  let waiting = Number(findParam('unread')?.[1] ?? 0);
 
   /** Hands the widget one vert.x message, wrapped in the SockJS frame it expects. */
   function push(body) {
