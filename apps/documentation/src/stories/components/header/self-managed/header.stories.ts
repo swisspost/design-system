@@ -15,7 +15,7 @@ import { getSlottedContent, SubComponentRenderers } from './utils';
 const meta: MetaComponent = {
   id: '27a2e64d-55ba-492d-ab79-5f7c5e818498',
   title: 'Components/Header/Self-Managed',
-  tags: ['package:WebComponents', 'status:New'],
+  tags: ['package:WebComponents', 'status:New', 'alias:Navbar', 'alias:Navigation Bar'],
   component: 'post-header',
   parameters: {
     layout: 'fullscreen',

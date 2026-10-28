@@ -8,7 +8,7 @@ import { getLabelText, getValidationMessages, VALIDATION_STATE_MAP } from '@/uti
 const meta: MetaComponent = {
   id: 'bc251cd0-5173-463b-8729-586bb1bf1e1a',
   title: 'Components/Form Select',
-  tags: ['package:Styles'],
+  tags: ['package:Styles', 'alias:Dropdown'],
   parameters: {
     badges: [],
     design: {
@@ -264,9 +264,7 @@ function RenderSelect(args: Args, context: StoryContext) {
 
   if (args.floatingLabel) {
     return html`
-      <div class="form-floating">
-        ${[control, label, ...contextuals].filter(el => el !== null)}
-      </div>
+      <div class="form-floating">${[control, label, ...contextuals].filter(el => el !== null)}</div>
     `;
   } else {
     return html`${[label, control, ...contextuals].filter(el => el !== null)}`;
