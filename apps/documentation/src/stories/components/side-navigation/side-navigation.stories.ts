@@ -3,7 +3,7 @@ import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
 import { fakeContent } from '@/utils';
-import { defaultNav, largeNav, smallNav } from './nav-content';
+import { defaultNav, largeNav, setLevel1Icons, smallNav } from './nav-content';
 import { forceCompactAppearance } from '../../../../.storybook/helpers';
 
 const meta: MetaComponent = {
@@ -90,7 +90,7 @@ export const Default: Story = {
         code: `
   <post-side-navigation text-close="Close">
     <nav aria-label="Main navigation">
-      ${defaultNav}
+      ${setLevel1Icons(defaultNav, false)}
     </nav>
   </post-side-navigation>
 
@@ -102,8 +102,10 @@ export const Default: Story = {
     },
   },
   render: (args: Args) => html`
-    <post-side-navigation ?size="${args.size}" id="sidenavigation" text-close="${args.textClose}">
-      <nav aria-label="Main navigation">${unsafeHTML(defaultNav)}</nav>
+    <post-side-navigation size="${args.size}" id="sidenavigation" text-close="${args.textClose}">
+      <nav aria-label="Main navigation">
+        ${unsafeHTML(setLevel1Icons(defaultNav, args.showIcons))}
+      </nav>
     </post-side-navigation>
 
     <main class="main-container flex-grow-1">${fakeContent(4)}</main>
