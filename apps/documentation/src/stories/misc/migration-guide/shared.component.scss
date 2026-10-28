@@ -12,15 +12,6 @@
     margin-block-end: 3rem;
   }
 
-  .change-badge {
-    display: inline-block;
-    padding: 0.05rem 0.3rem;
-    border-radius: 3px;
-    font-family: post.$font-family-monospace;
-    font-size: 12px;
-    vertical-align: text-bottom;
-  }
-
   em {
     color: #9e2a2f;
   }
@@ -43,16 +34,5 @@
 
   .todo-list-status {
     font-size: 0.875rem;
-  }
-}
-
-migration-setup {
-  .migration-options {
-    margin: 1rem 0;
-    padding: 1.5rem 0;
-
-    > .row {
-      --bs-gutter-y: 1.5rem;
-    }
   }
 }
