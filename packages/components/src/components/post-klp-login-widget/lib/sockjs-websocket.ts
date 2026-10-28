@@ -21,8 +21,16 @@ export interface KlpSockJsSocket {
 
 const ALPHABET = 'abcdefghijklmnopqrstuvwxyz0123456789';
 
+/** A uniform integer in [0, bound): mask to the next power of two and draw again when above. */
 function randomInt(bound: number): number {
-  return crypto.getRandomValues(new Uint32Array(1))[0] % bound;
+  // A plain `% bound` would favour the low values whenever 2^32 is not a multiple of bound.
+  const mask = 2 ** Math.ceil(Math.log2(bound)) - 1;
+  const draw = new Uint32Array(1);
+  let value: number;
+  do {
+    value = crypto.getRandomValues(draw)[0] & mask;
+  } while (value >= bound);
+  return value;
 }
 
 /** SockJS routes on /<server>/<session>/, three digits and eight characters as the server expects. */

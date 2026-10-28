@@ -57,6 +57,37 @@ describe('sockjs-websocket', () => {
     expect(first).not.toEqual(second);
   });
 
+  describe('the session ids', () => {
+    afterEach(() => jest.restoreAllMocks());
+
+    // Feeds getRandomValues a fixed sequence of 32-bit draws.
+    function drawing(...values: number[]) {
+      jest
+        .spyOn(crypto, 'getRandomValues')
+        .mockImplementation(<T extends ArrayBufferView | null>(array: T) => {
+          (array as unknown as Uint32Array)[0] = values.length > 1 ? values.shift() : values[0];
+          return array;
+        });
+      return setup().ws.url.split('/').slice(-3, -1);
+    }
+
+    it('draws again rather than fold an out-of-range value into range', () => {
+      // 1000 and 1023 exceed 999 after masking to 10 bits; 36 and 63 exceed 35 after masking to 6.
+      const [server, session] = drawing(1000, 1023, 7, 36, 63, 0, 1, 2, 3, 4, 5, 6, 35);
+
+      expect(server).toBe('007');
+      expect(session).toBe('abcdefg9');
+    });
+
+    it('uses only the low bits, whatever the high ones are', () => {
+      // Every bit above the mask set: 22 high bits for the server number, 26 for the session.
+      const [server, session] = drawing(2 ** 32 - 1024 + 999, 2 ** 32 - 64 + 35);
+
+      expect(server).toBe('999');
+      expect(session).toBe('99999999');
+    });
+  });
+
   it('reports open only once the server sends the open frame', () => {
     const { socket, ws } = setup();
     const onopen = jest.fn();
