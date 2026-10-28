@@ -174,8 +174,13 @@ tokens.$default-map: utilities.$post-spacing;
           box-shadow: none;
         }
 
-        // keeps the focus outline inside the button, so it is not hidden by the next one
+        // keeps the focus outline inside the button and above the next one
         @include utilities-mx.focus-inset;
+
+        &:focus-visible {
+          position: relative;
+          z-index: 1;
+        }
 
         &:nth-of-type(2) {
           border-top-left-radius: 4px;
