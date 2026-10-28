@@ -68,6 +68,48 @@ describe('ukn', () => {
     ]);
     expect(calls[2]).toEqual(['setRetrySubscribeOnFail', true]);
   });
+
+  describe('asking again', () => {
+    function router() {
+      const recorder = createActions();
+      const logged: string[] = [];
+      const handle = createMessageRouter({ log: m => logged.push(m), actions: recorder.actions });
+      const send = (message: unknown) => {
+        recorder.calls.length = 0;
+        handle(message as KlpMessage);
+        return recorder.names();
+      };
+      return { send, logged };
+    }
+
+    it('resubscribes once, then stays signed in instead of looping', () => {
+      const { send, logged } = router();
+
+      expect(send({ typ: 'ukn', sub: true })).toContain('subscribe');
+      expect(send({ typ: 'ukn', sub: true })).toEqual(['audit', 'setRetrySubscribeOnFail']);
+      expect(logged).toContain(
+        'Address still unknown after resubscribing, no live updates for this session',
+      );
+    });
+
+    it('may resubscribe again once a hi confirmed the address', () => {
+      const { send } = router();
+
+      send({ typ: 'ukn', sub: true });
+      send({ typ: 'hi', data: { name: 'Ada' }, ttl: 900 });
+
+      expect(send({ typ: 'ukn', sub: true })).toContain('subscribe');
+    });
+
+    it('still logs out on a plain ukn after giving up', () => {
+      const { send } = router();
+
+      send({ typ: 'ukn', sub: true });
+      send({ typ: 'ukn', sub: true });
+
+      expect(send({ typ: 'ukn' })).toContain('logout');
+    });
+  });
 });
 
 describe('sub', () => {

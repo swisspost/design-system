@@ -63,6 +63,74 @@ describe('event-bus-connection', () => {
     expect(loadEventBus).toHaveBeenCalledTimes(1);
   });
 
+  describe('after a resubscription', () => {
+    function resubscribable() {
+      let address = 'address-1';
+      const result = setup({ getAddress: () => address });
+      return { ...result, moveTo: (next: string) => (address = next) };
+    }
+
+    it('follows the new address on the socket that is already open', async () => {
+      const { connection, bus, loadEventBus, moveTo } = resubscribable();
+      await connection.openCommunication();
+      bus.onopen();
+
+      moveTo('address-2');
+      await connection.openCommunication();
+
+      expect(bus.registerHandler.mock.calls.map(([address]) => address)).toEqual([
+        'address-1',
+        'address-2',
+      ]);
+      expect(loadEventBus).toHaveBeenCalledTimes(1);
+    });
+
+    it('ignores what still arrives for the address it moved away from', async () => {
+      const { connection, bus, onMessage, moveTo } = resubscribable();
+      await connection.openCommunication();
+      bus.onopen();
+      moveTo('address-2');
+      await connection.openCommunication();
+      const [[, stale], [, fresh]] = bus.registerHandler.mock.calls;
+
+      stale({ typ: 'ukn', sub: true });
+      fresh({ typ: 'bye' });
+
+      expect(onMessage.mock.calls).toEqual([[{ typ: 'bye' }]]);
+    });
+
+    it('registers an address only once', async () => {
+      const { connection, bus } = resubscribable();
+      await connection.openCommunication();
+      bus.onopen();
+
+      await connection.openCommunication();
+
+      expect(bus.registerHandler).toHaveBeenCalledTimes(1);
+    });
+
+    it('registers only the latest address when the socket opens late', async () => {
+      const { connection, bus, moveTo } = resubscribable();
+      await connection.openCommunication();
+      moveTo('address-2');
+      await connection.openCommunication();
+
+      bus.onopen();
+
+      expect(bus.registerHandler.mock.calls.map(([address]) => address)).toEqual(['address-2']);
+    });
+
+    it('registers nothing while there is no address', async () => {
+      const { connection, bus, moveTo } = resubscribable();
+      moveTo('');
+      await connection.openCommunication();
+
+      bus.onopen();
+
+      expect(bus.registerHandler).not.toHaveBeenCalled();
+    });
+  });
+
   it('stays anonymous rather than failing when the transport cannot be loaded', async () => {
     const loadEventBus = jest.fn().mockRejectedValue(new Error('chunk 404'));
     const { connection, log } = setup({ loadEventBus });
@@ -98,8 +166,11 @@ describe('event-bus-connection', () => {
     bus.onclose();
 
     await connection.openCommunication();
+    bus.onopen();
 
     expect(loadEventBus).toHaveBeenCalledTimes(2);
+    // The new socket knows nothing of the old one's registration.
+    expect(bus.registerHandler).toHaveBeenCalledTimes(2);
   });
 
   it('closes the socket when asked', async () => {

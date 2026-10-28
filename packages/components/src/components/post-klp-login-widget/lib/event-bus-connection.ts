@@ -41,14 +41,35 @@ export function createEventBusConnection({
 }: KlpEventBusConnectionOptions) {
   let eventBus: KlpEventBus | null = null;
   let opening = false;
+  let open = false;
+  let registeredAddress = '';
 
   function closeCommunication(): void {
     eventBus?.close();
   }
 
+  /**
+   * A resubscribe hands out a new address while the socket stays open, so the socket has to follow
+   * it. v9 skipped this and kept listening on the dead address, where no `bye` ever arrives.
+   * Messages for an address we have moved away from are dropped.
+   */
+  function listen(): void {
+    const address = getAddress();
+    if (!eventBus || !open || !address || address === registeredAddress) return;
+
+    registeredAddress = address;
+    eventBus.registerHandler(address, message => {
+      if (address === registeredAddress) onMessage(message as KlpMessage);
+    });
+  }
+
   async function openCommunication(): Promise<void> {
+    if (eventBus) {
+      listen();
+      return;
+    }
     // A second 'sub' while the first socket is still being fetched must not open a second one.
-    if (eventBus || opening) return;
+    if (opening) return;
     opening = true;
 
     try {
@@ -63,7 +84,8 @@ export function createEventBusConnection({
 
     eventBus.onopen = () => {
       log('EventBus opened');
-      eventBus?.registerHandler(getAddress(), message => onMessage(message as KlpMessage));
+      open = true;
+      listen();
       globalThis.addEventListener('beforeunload', closeCommunication);
     };
 
@@ -71,6 +93,8 @@ export function createEventBusConnection({
       const retry = shouldRetryOnFail();
       log(`EventBus closed with retrySubscribeOnFail=${retry}`);
       eventBus = null;
+      open = false;
+      registeredAddress = '';
       globalThis.removeEventListener('beforeunload', closeCommunication);
 
       if (retry) onReconnect();

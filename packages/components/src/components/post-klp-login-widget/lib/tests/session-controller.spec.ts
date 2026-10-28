@@ -266,6 +266,61 @@ describe('session-controller', () => {
 
       expect(bus.close).toHaveBeenCalled();
     });
+
+    describe('when the platform asks for a new subscription', () => {
+      const sub = (adr: string): KlpMessage => ({
+        typ: 'sub',
+        adr,
+        ttl: 60_000,
+        data: sessionData,
+      });
+
+      async function openOn(...answers: KlpMessage[]) {
+        const setup = controllerFor(answers[0]);
+        const fetchMock = jest.fn();
+        for (const answer of answers) fetchMock.mockResolvedValueOnce({ json: async () => answer });
+        globalThis.fetch = fetchMock as unknown as typeof fetch;
+
+        await setup.controller.start();
+        await settled();
+        setup.bus.onopen();
+
+        const handlerFor = (address: string) =>
+          setup.bus.registerHandler.mock.calls.find(([registered]) => registered === address)?.[1];
+
+        return { ...setup, fetchMock, handlerFor };
+      }
+
+      // Was a v9 defect: the socket stayed on the stale address, so a logout elsewhere went unheard.
+      it('listens on the new address and hears the logout there', async () => {
+        const { controller, bus, handlerFor } = await openOn(sub('stale'), sub('fresh'));
+
+        handlerFor('stale')({ typ: 'ukn', sub: true });
+        await settled();
+
+        expect(bus.registerHandler.mock.calls.map(([address]) => address)).toEqual([
+          'stale',
+          'fresh',
+        ]);
+        expect(controller.getSession()).toEqual(sessionData);
+
+        handlerFor('fresh')({ typ: 'bye' });
+        expect(controller.getSession()).toBeNull();
+      });
+
+      // INT2 in 2026-10 handed out a new address on every subscribe and accepted none of them.
+      it('stays signed in rather than loop when no address is ever accepted', async () => {
+        const { controller, fetchMock, handlerFor } = await openOn(sub('a'), sub('b'), sub('c'));
+
+        handlerFor('a')({ typ: 'ukn', sub: true });
+        await settled();
+        handlerFor('b')({ typ: 'ukn', sub: true });
+        await settled();
+
+        expect(fetchMock).toHaveBeenCalledTimes(2);
+        expect(controller.getSession()).toEqual(sessionData);
+      });
+    });
   });
 
   describe('notifications', () => {
