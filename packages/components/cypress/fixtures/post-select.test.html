@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Select Test</title>
+    <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
+    <style>
+      body {
+        margin: 0;
+      }
+
+      main {
+        display: grid;
+        gap: 2rem;
+        padding: 1.5rem;
+      }
+
+      section {
+        inline-size: 20rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section>
+        <label id="country-label">Country</label>
+        <post-select id="country-select" aria-labelledby="country-label" value="Switzerland">
+          <post-select-option value="Switzerland" icon="checkmark"></post-select-option>
+          <post-select-option value="Germany"></post-select-option>
+          <post-select-option value="France"></post-select-option>
+          <post-select-option value="Italy" disabled></post-select-option>
+        </post-select>
+      </section>
+
+      <section>
+        <post-select id="custom-select" aria-label="Shipping service">
+          <post-select-option value="express">
+            <span><strong>Express</strong> <small>Next working day</small></span>
+          </post-select-option>
+          <post-select-option value="standard">
+            <span><strong>Standard</strong> <small>Within three working days</small></span>
+          </post-select-option>
+        </post-select>
+      </section>
+
+      <section>
+        <post-select id="disabled-select" aria-label="Disabled select" disabled>
+          <post-select-option value="One"></post-select-option>
+        </post-select>
+      </section>
+    </main>
+  </body>
+</html>

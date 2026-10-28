@@ -663,6 +663,55 @@ export namespace Components {
          */
         "stars": number;
     }
+    interface PostSelect {
+        /**
+          * Accessible name for the select. Prefer an associated visible label where possible.
+         */
+        "accessibleLabel"?: string;
+        /**
+          * ID of the visible label that names the select.
+         */
+        "ariaLabelledby"?: string;
+        /**
+          * Disables the select.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Text displayed when no option is selected.
+          * @default 'Select an option'
+         */
+        "placeholder": string;
+        /**
+          * The selected option value.
+         */
+        "value"?: string;
+    }
+    interface PostSelectOption {
+        /**
+          * Prevents this option from being selected.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Whether the option is highlighted by keyboard navigation.
+          * @default false
+         */
+        "highlighted": boolean;
+        /**
+          * Optional icon displayed before the option label.
+         */
+        "icon"?: string;
+        /**
+          * Whether the option is selected.
+          * @default false
+         */
+        "selected": boolean;
+        /**
+          * Value associated with this option. Also used as its default label.
+         */
+        "value": string;
+    }
     interface PostSideNavigation {
         /**
           * Closes the navigation programmatically. No-op on desktop.
@@ -862,6 +911,14 @@ export interface PostPopovercontainerCustomEvent<T> extends CustomEvent<T> {
 export interface PostRatingCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostRatingElement;
+}
+export interface PostSelectCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostSelectElement;
+}
+export interface PostSelectOptionCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostSelectOptionElement;
 }
 export interface PostSideNavigationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1217,6 +1274,40 @@ declare global {
         prototype: HTMLPostRatingElement;
         new (): HTMLPostRatingElement;
     };
+    interface HTMLPostSelectElementEventMap {
+        "postChange": string;
+    }
+    interface HTMLPostSelectElement extends Components.PostSelect, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostSelectElementEventMap>(type: K, listener: (this: HTMLPostSelectElement, ev: PostSelectCustomEvent<HTMLPostSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostSelectElementEventMap>(type: K, listener: (this: HTMLPostSelectElement, ev: PostSelectCustomEvent<HTMLPostSelectElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostSelectElement: {
+        prototype: HTMLPostSelectElement;
+        new (): HTMLPostSelectElement;
+    };
+    interface HTMLPostSelectOptionElementEventMap {
+        "postOptionSelected": string;
+    }
+    interface HTMLPostSelectOptionElement extends Components.PostSelectOption, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostSelectOptionElementEventMap>(type: K, listener: (this: HTMLPostSelectOptionElement, ev: PostSelectOptionCustomEvent<HTMLPostSelectOptionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostSelectOptionElementEventMap>(type: K, listener: (this: HTMLPostSelectOptionElement, ev: PostSelectOptionCustomEvent<HTMLPostSelectOptionElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostSelectOptionElement: {
+        prototype: HTMLPostSelectOptionElement;
+        new (): HTMLPostSelectOptionElement;
+    };
     interface HTMLPostSideNavigationElementEventMap {
         "postToggle": boolean;
     }
@@ -1334,6 +1425,8 @@ declare global {
         "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-progressbar": HTMLPostProgressbarElement;
         "post-rating": HTMLPostRatingElement;
+        "post-select": HTMLPostSelectElement;
+        "post-select-option": HTMLPostSelectOptionElement;
         "post-side-navigation": HTMLPostSideNavigationElement;
         "post-side-navigation-trigger": HTMLPostSideNavigationTriggerElement;
         "post-stepper": HTMLPostStepperElement;
@@ -1950,6 +2043,63 @@ declare namespace LocalJSX {
          */
         "stars"?: number;
     }
+    interface PostSelect {
+        /**
+          * Accessible name for the select. Prefer an associated visible label where possible.
+         */
+        "accessibleLabel"?: string;
+        /**
+          * ID of the visible label that names the select.
+         */
+        "ariaLabelledby"?: string;
+        /**
+          * Disables the select.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Emitted when the selected value changes.
+         */
+        "onPostChange"?: (event: PostSelectCustomEvent<string>) => void;
+        /**
+          * Text displayed when no option is selected.
+          * @default 'Select an option'
+         */
+        "placeholder"?: string;
+        /**
+          * The selected option value.
+         */
+        "value"?: string;
+    }
+    interface PostSelectOption {
+        /**
+          * Prevents this option from being selected.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Whether the option is highlighted by keyboard navigation.
+          * @default false
+         */
+        "highlighted"?: boolean;
+        /**
+          * Optional icon displayed before the option label.
+         */
+        "icon"?: string;
+        /**
+          * Emitted when the option is selected. Bubbles to the parent select.
+         */
+        "onPostOptionSelected"?: (event: PostSelectOptionCustomEvent<string>) => void;
+        /**
+          * Whether the option is selected.
+          * @default false
+         */
+        "selected"?: boolean;
+        /**
+          * Value associated with this option. Also used as its default label.
+         */
+        "value": string;
+    }
     interface PostSideNavigation {
         /**
           * An event emitted when the navigation is shown or hidden on mobile. The payload is a boolean: `true` when the navigation opens, `false` when it closes.
@@ -2239,6 +2389,20 @@ declare namespace LocalJSX {
         "currentRating": number;
         "readonly": boolean;
     }
+    interface PostSelectAttributes {
+        "value": string;
+        "placeholder": string;
+        "disabled": boolean;
+        "accessibleLabel": string;
+        "ariaLabelledby": string;
+    }
+    interface PostSelectOptionAttributes {
+        "value": string;
+        "icon": string;
+        "selected": boolean;
+        "highlighted": boolean;
+        "disabled": boolean;
+    }
     interface PostSideNavigationAttributes {
         "textClose": string;
         "size": SideNavigationSize;
@@ -2315,6 +2479,8 @@ declare namespace LocalJSX {
         "post-popovercontainer": Omit<PostPopovercontainer, keyof PostPopovercontainerAttributes> & { [K in keyof PostPopovercontainer & keyof PostPopovercontainerAttributes]?: PostPopovercontainer[K] } & { [K in keyof PostPopovercontainer & keyof PostPopovercontainerAttributes as `attr:${K}`]?: PostPopovercontainerAttributes[K] } & { [K in keyof PostPopovercontainer & keyof PostPopovercontainerAttributes as `prop:${K}`]?: PostPopovercontainer[K] };
         "post-progressbar": Omit<PostProgressbar, keyof PostProgressbarAttributes> & { [K in keyof PostProgressbar & keyof PostProgressbarAttributes]?: PostProgressbar[K] } & { [K in keyof PostProgressbar & keyof PostProgressbarAttributes as `attr:${K}`]?: PostProgressbarAttributes[K] } & { [K in keyof PostProgressbar & keyof PostProgressbarAttributes as `prop:${K}`]?: PostProgressbar[K] };
         "post-rating": Omit<PostRating, keyof PostRatingAttributes> & { [K in keyof PostRating & keyof PostRatingAttributes]?: PostRating[K] } & { [K in keyof PostRating & keyof PostRatingAttributes as `attr:${K}`]?: PostRatingAttributes[K] } & { [K in keyof PostRating & keyof PostRatingAttributes as `prop:${K}`]?: PostRating[K] } & OneOf<"label", PostRating["label"], PostRatingAttributes["label"]>;
+        "post-select": Omit<PostSelect, keyof PostSelectAttributes> & { [K in keyof PostSelect & keyof PostSelectAttributes]?: PostSelect[K] } & { [K in keyof PostSelect & keyof PostSelectAttributes as `attr:${K}`]?: PostSelectAttributes[K] } & { [K in keyof PostSelect & keyof PostSelectAttributes as `prop:${K}`]?: PostSelect[K] };
+        "post-select-option": Omit<PostSelectOption, keyof PostSelectOptionAttributes> & { [K in keyof PostSelectOption & keyof PostSelectOptionAttributes]?: PostSelectOption[K] } & { [K in keyof PostSelectOption & keyof PostSelectOptionAttributes as `attr:${K}`]?: PostSelectOptionAttributes[K] } & { [K in keyof PostSelectOption & keyof PostSelectOptionAttributes as `prop:${K}`]?: PostSelectOption[K] } & OneOf<"value", PostSelectOption["value"], PostSelectOptionAttributes["value"]>;
         "post-side-navigation": Omit<PostSideNavigation, keyof PostSideNavigationAttributes> & { [K in keyof PostSideNavigation & keyof PostSideNavigationAttributes]?: PostSideNavigation[K] } & { [K in keyof PostSideNavigation & keyof PostSideNavigationAttributes as `attr:${K}`]?: PostSideNavigationAttributes[K] } & { [K in keyof PostSideNavigation & keyof PostSideNavigationAttributes as `prop:${K}`]?: PostSideNavigation[K] } & OneOf<"textClose", PostSideNavigation["textClose"], PostSideNavigationAttributes["textClose"]>;
         "post-side-navigation-trigger": Omit<PostSideNavigationTrigger, keyof PostSideNavigationTriggerAttributes> & { [K in keyof PostSideNavigationTrigger & keyof PostSideNavigationTriggerAttributes]?: PostSideNavigationTrigger[K] } & { [K in keyof PostSideNavigationTrigger & keyof PostSideNavigationTriggerAttributes as `attr:${K}`]?: PostSideNavigationTriggerAttributes[K] } & { [K in keyof PostSideNavigationTrigger & keyof PostSideNavigationTriggerAttributes as `prop:${K}`]?: PostSideNavigationTrigger[K] } & OneOf<"for", PostSideNavigationTrigger["for"], PostSideNavigationTriggerAttributes["for"]>;
         "post-stepper": Omit<PostStepper, keyof PostStepperAttributes> & { [K in keyof PostStepper & keyof PostStepperAttributes]?: PostStepper[K] } & { [K in keyof PostStepper & keyof PostStepperAttributes as `attr:${K}`]?: PostStepperAttributes[K] } & { [K in keyof PostStepper & keyof PostStepperAttributes as `prop:${K}`]?: PostStepper[K] } & OneOf<"textCurrentStep", PostStepper["textCurrentStep"], PostStepperAttributes["textCurrentStep"]> & OneOf<"textCompletedStep", PostStepper["textCompletedStep"], PostStepperAttributes["textCompletedStep"]> & OneOf<"textStepNumber", PostStepper["textStepNumber"], PostStepperAttributes["textStepNumber"]>;
@@ -2368,6 +2534,8 @@ declare module "@stencil/core" {
             "post-popovercontainer": LocalJSX.IntrinsicElements["post-popovercontainer"] & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-progressbar": LocalJSX.IntrinsicElements["post-progressbar"] & JSXBase.HTMLAttributes<HTMLPostProgressbarElement>;
             "post-rating": LocalJSX.IntrinsicElements["post-rating"] & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
+            "post-select": LocalJSX.IntrinsicElements["post-select"] & JSXBase.HTMLAttributes<HTMLPostSelectElement>;
+            "post-select-option": LocalJSX.IntrinsicElements["post-select-option"] & JSXBase.HTMLAttributes<HTMLPostSelectOptionElement>;
             "post-side-navigation": LocalJSX.IntrinsicElements["post-side-navigation"] & JSXBase.HTMLAttributes<HTMLPostSideNavigationElement>;
             "post-side-navigation-trigger": LocalJSX.IntrinsicElements["post-side-navigation-trigger"] & JSXBase.HTMLAttributes<HTMLPostSideNavigationTriggerElement>;
             "post-stepper": LocalJSX.IntrinsicElements["post-stepper"] & JSXBase.HTMLAttributes<HTMLPostStepperElement>;
