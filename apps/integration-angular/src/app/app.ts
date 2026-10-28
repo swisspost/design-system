@@ -22,6 +22,7 @@ import {
   PostSideNavigationTrigger,
 } from '@swisspost/design-system-components-angular';
 import { ToastComponent } from './toast/toast.component';
+import { getKlpInitialState } from './klp-mock';
 
 @Component({
   selector: 'app-self-managed-layout',
@@ -57,6 +58,9 @@ export class App implements OnInit {
   private router = inject(Router);
 
   navigationRoutes: Route[] = [];
+
+  // The app only renders in the browser, so the URL of the first load can be read directly.
+  readonly klpInitialState = getKlpInitialState(new URLSearchParams(location.search));
 
   // Shared links for megadropdown sections (Header)
   private megadropdownLinks = {
