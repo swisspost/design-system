@@ -1,13 +1,13 @@
 /**
- * Docs stories rendered with `parameters.docs.story.inline: false` live in a nested
- * `iframe.html?id=<storyId>&viewMode=story`. That nested preview only talks to its parent window,
- * so the arg updates made through the docs page controls never reach it.
- * Upstream issue: https://github.com/storybookjs/storybook/issues/11908
+ * Keeps the controls of a docs page in sync with the stories it renders in an iframe.
  *
- * This bridge forwards the args from the docs preview (parent) to the nested story preview (child):
- * - the parent sends the latest args of a story to every iframe rendering that story,
- * - the child applies the args it receives and asks for the latest args once its story is prepared,
- *   so iframes that are loaded lazily or reloaded still get the current state of the controls.
+ * Stories with `docs.story.inline: false` are rendered in their own `iframe.html` inside the docs page.
+ * Storybook only sends the control changes to the docs page itself, so the story in the iframe never updates.
+ *
+ * This helper connects the two windows with `postMessage`:
+ * - the docs page sends the current args of a story to every iframe rendering that story,
+ * - the iframe applies the received args to its story and asks for the current args once the story is ready,
+ *   so iframes that load late or reload still show the current state of the controls.
  */
 import type { Args } from '@storybook/web-components-vite';
 import type { Channel } from 'storybook/internal/channels';
@@ -104,6 +104,7 @@ function postArgs(target: Window | null, storyId: string, { args, omittedKeys }:
   }
 }
 
+// Runs in the docs page
 function setupParent(channel: Channel) {
   channel.on(STORY_ARGS_UPDATED, ({ storyId, args }: { storyId: string; args: Args }) => {
     if (getViewMode(window) !== 'docs') return;
@@ -134,8 +135,9 @@ function setupParent(channel: Channel) {
   });
 }
 
+// Runs in the story iframe
 function setupChild(channel: Channel) {
-  // No `window.parent === window` guard: the args are only requested from a parent in docs mode
+  // `window.parent === window` is not checked on purpose, Cypress rewrites this comparison in tests
   const params = new URLSearchParams(window.location.search);
   const storyId = params.get('id');
   if (!storyId || params.get('viewMode') !== 'story') return;
