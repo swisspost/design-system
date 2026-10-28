@@ -73,8 +73,8 @@ export class PostKlpLoginWidget {
 
   /**
    * What to show before the session is known. Leave unset unless the server already knows who the
-   * visitor is: the widget then reserves a neutral avatar-sized box, which costs anonymous
-   * visitors a short placeholder but never flashes the wrong state at anyone.
+   * visitor is: the widget then shows an avatar without initials, which costs anonymous visitors
+   * a short placeholder but never flashes the wrong state at anyone.
    * Set `anonymous` to render the login link right away instead.
    */
   @Prop() initialState?: 'anonymous' | 'authenticated';
@@ -178,13 +178,17 @@ export class PostKlpLoginWidget {
   }
 
   private renderAnonymous() {
-    // The placeholder costs anonymous visitors a brief neutral box, but it is the only honest
+    // The placeholder costs anonymous visitors a brief empty avatar, but it is the only honest
     // answer while the platform has not said who, if anyone, is signed in.
     if (this.resolved || this.initialState === 'anonymous') {
       return <slot name="login-link"></slot>;
     }
 
-    return <span class="user-menu-placeholder" aria-hidden="true"></span>;
+    // A nameless avatar: the signed-in state only fills in the initials. The name is blank rather
+    // than empty, since `firstname` is required; the avatar trims it to no initials.
+    return (
+      <post-avatar class="user-menu-placeholder" firstname=" " aria-hidden="true"></post-avatar>
+    );
   }
 
   render() {
