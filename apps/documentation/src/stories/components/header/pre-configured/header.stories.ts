@@ -53,18 +53,19 @@ const meta: MetaComponent = {
   },
   // Removes the fake once a story is torn down, so it never leaks into the next one.
   beforeEach: () => uninstallKlpPlatformFake,
-  // Keyed on the session, so a changed control mounts a new header, whose widget asks the fake again.
+  // Keyed on the session and the language, so a changed control mounts a new header: its widget asks the
+  // fake again and its language menu picks up the newly active language.
   render: args => {
     installKlpPlatformFake({ user: args.session === 'anonymous' ? null : args.session });
-    return html`${keyed(args.session, renderHeader(args))}`;
+    return html`${keyed(`${args.session}-${args.language}`, renderHeader(args))}`;
   },
   decorators: [
     // The header prefers a `#PPM_HEADER_DATA` config over the API, so the page renders without any request.
-    story => html`
+    (story, { args }) => html`
       <script
         id="PPM_HEADER_DATA"
         type="application/json"
-        .textContent=${JSON.stringify(testConfiguration)}
+        .textContent=${JSON.stringify(getLocalizedTestConfiguration(args.language))}
       ></script>
       <div class="header-story-wrapper">
         <div class="virtual-body">${story()} ${fakeContent()}</div>
@@ -72,6 +73,26 @@ const meta: MetaComponent = {
     `,
   ],
 };
+
+// The API returns one config per language. The test configuration only exists once, so it is
+// localized by marking the requested language as the active one in the language menu.
+function getLocalizedTestConfiguration(language: string) {
+  const { header } = testConfiguration;
+
+  return {
+    ...testConfiguration,
+    header: {
+      ...header,
+      globalHeader: {
+        ...header.globalHeader,
+        languages: header.globalHeader.languages.map(lang => ({
+          ...lang,
+          active: lang.code.split('-')[0] === language,
+        })),
+      },
+    },
+  };
+}
 
 export function renderHeader({ innerHMTL, ...args }: Args = defaultArgs) {
   return html`
