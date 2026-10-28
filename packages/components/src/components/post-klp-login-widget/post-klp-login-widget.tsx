@@ -179,11 +179,15 @@ export class PostKlpLoginWidget {
       <Host data-version={version}>
         {this.session ? (
           [
-            <span class="user-name">
+            <span key="user-name" class="user-name">
               {this.session.name} {this.session.surname}
             </span>,
-            <slot name="menu-links">{this.renderMenuLinksFallback(this.session)}</slot>,
-            <slot name="logout-link">{this.renderLogoutFallback()}</slot>,
+            <slot key="menu-links" name="menu-links">
+              {this.renderMenuLinksFallback(this.session)}
+            </slot>,
+            <slot key="logout-link" name="logout-link">
+              {this.renderLogoutFallback()}
+            </slot>,
           ]
         ) : (
           <slot name="login-link">{this.renderLoginFallback()}</slot>
