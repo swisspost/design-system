@@ -6,6 +6,7 @@ import type { KlpEnvironment } from './lib/klp-widget.model';
 import { createSessionController } from './lib/session-controller';
 import { showAccountSwitch, showCompanySwitch } from './lib/session-permissions';
 import { setState, subscribe } from './lib/store';
+import { Required } from '@/utils/property-decorators';
 
 /** Scoped to the widget's own shadow root, so a constant id cannot collide across instances. */
 const MENU_ID = 'klp-user-menu';
@@ -53,18 +54,21 @@ export class PostKlpLoginWidget {
    * The placeholder `{user}` will be replaced with the full name of the currently logged-in user.
    */
   @Prop({ reflect: true })
+  @Required()
   textCurrentUser!: string;
 
   /**
    * Visually hidden label for the user menu.
    */
   @Prop({ reflect: true })
+  @Required()
   textUserLinks!: string;
 
   /**
    * Visually hidden label for the button that opens the user menu.
    */
   @Prop({ reflect: true })
+  @Required()
   textAccessUserLinks!: string;
 
   /** Stays null on the server: the session is only ever known to the client. */
