@@ -33,3 +33,33 @@ on an anonymous page has nothing to push into and comes back as `?session=<id>` 
 The integration apps serve the same file and load it on every page, so it stays dormant until the
 URL carries `?klpmock`. The playground's own tag carries `data-always` instead, which skips that
 check.
+
+## `klp-real.html`
+
+Runs the login widget against the real KLP platform, without the mock, at
+`/playground/klp-real.html`. `klp-real.js` sets the environment, the initial state and the
+platform routes on every slot before the widget upgrades.
+
+| Query parameter  | Effect                                                                  |
+| ---------------- | ----------------------------------------------------------------------- |
+| `?env=`          | The widget's `environment`. Default `int02`.                            |
+| `?lang=`         | Language of the platform pages. Default `de`.                           |
+| `?initialState=` | `anonymous` or `authenticated`, passed on as `initial-state`.           |
+| `?app=`          | The KLP app the login link goes through. Default `kvm`, empty for none. |
+| `?widgets=2`     | Renders a second widget below the header.                               |
+
+The platform only answers pages served over `https://` from a `*.post.ch` host on port 443, so
+`localhost:9200` does not work. To test locally:
+
+1. Map a host to your machine, e.g. `127.0.0.1 local.post.ch` in `/etc/hosts`.
+2. Put a TLS proxy with a certificate your browser trusts on port 443 in front of the dev server,
+   e.g. Caddy with `tls internal` proxying `local.post.ch` to `localhost:9200`. Live reload may
+   not pass through the proxy; reload by hand then.
+3. If you are behind a proxy, exclude `local.post.ch` from it, but keep the platform hosts
+   (`n.account*.post.ch`) going through it.
+4. Open `https://local.post.ch/playground/klp-real.html`.
+
+To sign in, follow the login link and sign in with a test user of that environment. KLP sends you
+to the app's page afterwards, not back here, so open the test page again yourself. All
+environments share the session cookie on `post.ch`, and a widget of one environment ends the
+session of another, so use one browser profile per environment.
