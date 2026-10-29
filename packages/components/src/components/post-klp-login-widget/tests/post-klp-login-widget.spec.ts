@@ -11,10 +11,22 @@ const links = `
   <post-menu-item slot="logout-link"><a href="/logout">Logout</a></post-menu-item>
 `;
 
-async function render(attributes = '', children = links) {
+const requiredTexts = {
+  'text-current-user': 'Currently signed in: {user}',
+  'text-user-links': 'User links',
+  'text-access-user-links': 'Open user links',
+};
+
+/** Pass `null` to leave an attribute out. */
+async function render(attributes: Record<string, string | null> = {}, children = links) {
+  const serialized = Object.entries({ ...requiredTexts, ...attributes })
+    .filter(([, value]) => value !== null)
+    .map(([name, value]) => `${name}="${value}"`)
+    .join(' ');
+
   return newSpecPage({
     components: [PostKlpLoginWidget],
-    html: `<post-klp-login-widget ${attributes}>${children}</post-klp-login-widget>`,
+    html: `<post-klp-login-widget ${serialized}>${children}</post-klp-login-widget>`,
   });
 }
 
@@ -63,7 +75,7 @@ describe('post-klp-login-widget', () => {
   it('reports an unknown environment instead of contacting a guessed one', async () => {
     const error = jest.spyOn(console, 'error').mockImplementation(() => {});
     const fetch = jest.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('offline'));
-    const page = await render(`environment="nope"`);
+    const page = await render({ environment: 'nope' });
 
     // The connection is a browser-only branch, so a spec has to ask for it.
     (page.rootInstance as { connect(): void }).connect();
@@ -87,7 +99,7 @@ describe('post-klp-login-widget', () => {
     });
 
     it('keeps the menu usable when the consumer slots nothing at all', async () => {
-      const page = await render('', '');
+      const page = await render({}, '');
       await logIn(page);
 
       expect(shadow(page, 'post-menu')).not.toBeNull();
@@ -133,29 +145,36 @@ describe('post-klp-login-widget', () => {
     });
 
     it('names the menu and its trigger for assistive technology', async () => {
-      const page = await render(
-        `text-user-links="User links" text-access-user-links="Open user links"`,
-      );
+      const page = await render({
+        'text-user-links': 'Menu of the user',
+        'text-access-user-links': 'Open the menu of the user',
+      });
       await logIn(page);
 
-      expect(shadow(page, 'post-menu').getAttribute('label')).toBe('User links');
-      expect(shadow(page, '.visually-hidden').textContent).toBe('Open user links');
+      expect(shadow(page, 'post-menu').getAttribute('label')).toBe('Menu of the user');
+      expect(shadow(page, '.visually-hidden').textContent).toBe('Open the menu of the user');
     });
 
     it('names the avatar after the user it depicts', async () => {
-      const page = await render(`text-current-user="Currently signed in: {user}"`);
+      const page = await render({ 'text-current-user': 'Signed in as {user}' });
       await logIn(page);
 
       expect(shadow(page, 'post-avatar').getAttribute('description')).toBe(
-        'Currently signed in: Ada Lovelace',
+        'Signed in as Ada Lovelace',
       );
     });
 
     it('hides the avatar from assistive technology when it carries no description', async () => {
-      const page = await render();
+      const error = jest.spyOn(console, 'error').mockImplementation(() => {});
+      const page = await render({ 'text-current-user': null });
       await logIn(page);
 
       expect(shadow(page, 'post-avatar').getAttribute('aria-hidden')).toBe('true');
+      expect(error).toHaveBeenCalledWith(
+        expect.stringContaining('Property "textCurrentUser" is required'),
+        expect.anything(),
+      );
+      jest.restoreAllMocks();
     });
 
     it('builds the avatar from the name, not from an email sent to a third party', async () => {
