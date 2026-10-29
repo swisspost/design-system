@@ -24,13 +24,26 @@
 // global stylesheet cannot reach.
 .user-menu-trigger {
   @include header-mx.nav-item-base;
-  padding: 0 !important;
-  background-color: transparent !important;
+  padding: 0;
   align-items: center;
   overflow: visible; // the button base clips to its pill, which would cut the unread dot in half
   border-radius: tokens.get('avatar-border-radius', components.$post-avatar);
   text-decoration: none;
   cursor: pointer;
+
+  // The avatar is the button's surface, so it never gets the nav item's background: repeat the
+  // base mixin's own state selectors, which then win by source order.
+  &,
+  &:hover {
+    background-color: transparent;
+  }
+
+  @include header-mx.active-state {
+    &,
+    &:hover {
+      background-color: transparent;
+    }
+  }
 }
 
 [slot='header'] p {
