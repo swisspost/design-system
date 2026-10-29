@@ -30273,6 +30273,366 @@
       "modifiedAt": "2026-08-10T05:49:59.000Z"
     },
     {
+      "uuid": "0c50c800-d36e-11f1-93b0-0050568d2654",
+      "id": 11810043,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810043/storage/MDExODEwMDQzLzAvbWFzdGVyLy8vMTE2NTIzMzM2",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Shape_16.svg",
+        "basename": "BicycleReservationMandatory_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:55:03.000Z",
+      "modifiedAt": "2026-10-29T07:57:58.000Z"
+    },
+    {
+      "uuid": "0b668f10-d36e-11f1-93b0-0050568d2654",
+      "id": 11810041,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810041/storage/MDExODEwMDQxLzAvbWFzdGVyLy8vMTE2NTIzMzM0",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Shape_24.svg",
+        "basename": "BicycleReservationMandatory_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:55:01.000Z",
+      "modifiedAt": "2026-10-29T07:57:58.000Z"
+    },
+    {
+      "uuid": "0b903720-d36e-11f1-93b0-0050568d2654",
+      "id": 11810042,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810042/storage/MDExODEwMDQyLzAvbWFzdGVyLy8vMTE2NTIzMzM1",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Shape_32.svg",
+        "basename": "BicycleReservationMandatory_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:55:01.000Z",
+      "modifiedAt": "2026-10-29T07:57:58.000Z"
+    },
+    {
+      "uuid": "096a49e0-d36e-11f1-93b0-0050568d2654",
+      "id": 11810038,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810038/storage/MDExODEwMDM4LzAvbWFzdGVyLy8vMTE2NTIzMzMy",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Shape_40.svg",
+        "basename": "BicycleReservationMandatory_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:54:58.000Z",
+      "modifiedAt": "2026-10-29T07:57:58.000Z"
+    },
+    {
+      "uuid": "09fd6220-d36e-11f1-93b0-0050568d2654",
+      "id": 11810039,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810039/storage/MDExODEwMDM5LzAvbWFzdGVyLy8vMTE2NTIzMzMz",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Shape_48.svg",
+        "basename": "BicycleReservationMandatory_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:54:59.000Z",
+      "modifiedAt": "2026-10-29T07:57:58.000Z"
+    },
+    {
+      "uuid": "07e7a180-d36e-11f1-93b0-0050568d2654",
+      "id": 11810037,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810037/storage/MDExODEwMDM3LzAvbWFzdGVyLy8vMTE2NTIyNjk5",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Shape_64.svg",
+        "basename": "BicycleReservationMandatory_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:54:55.000Z",
+      "modifiedAt": "2026-10-29T07:57:06.000Z"
+    },
+    {
+      "uuid": "077d6e00-d36e-11f1-93b0-0050568d2654",
+      "id": 11810035,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810035/storage/MDExODEwMDM1LzAvbWFzdGVyLy8vMTE2NTIzMzMx",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Solid_Shape_16.svg",
+        "basename": "BicycleReservationMandatory_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:54:55.000Z",
+      "modifiedAt": "2026-10-29T07:57:58.000Z"
+    },
+    {
+      "uuid": "05c8e030-d36e-11f1-93b0-0050568d2654",
+      "id": 11810032,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810032/storage/MDExODEwMDMyLzAvbWFzdGVyLy8vMTE2NTIzMzMw",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Solid_Shape_24.svg",
+        "basename": "BicycleReservationMandatory_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:54:52.000Z",
+      "modifiedAt": "2026-10-29T07:57:58.000Z"
+    },
+    {
+      "uuid": "05089d70-d36e-11f1-93b0-0050568d2654",
+      "id": 11810030,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810030/storage/MDExODEwMDMwLzAvbWFzdGVyLy8vMTE2NTIzMzI5",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Solid_Shape_32.svg",
+        "basename": "BicycleReservationMandatory_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:54:50.000Z",
+      "modifiedAt": "2026-10-29T07:57:58.000Z"
+    },
+    {
+      "uuid": "026d8032-d36e-11f1-93b0-0050568d2654",
+      "id": 11810025,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810025/storage/MDExODEwMDI1LzAvbWFzdGVyLy8vMTE2NTIzMzI4",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Solid_Shape_40.svg",
+        "basename": "BicycleReservationMandatory_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:54:46.000Z",
+      "modifiedAt": "2026-10-29T07:57:58.000Z"
+    },
+    {
+      "uuid": "02634700-d36e-11f1-93b0-0050568d2654",
+      "id": 11810023,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810023/storage/MDExODEwMDIzLzAvbWFzdGVyLy8vMTE2NTIzMzI3",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Solid_Shape_48.svg",
+        "basename": "BicycleReservationMandatory_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:54:46.000Z",
+      "modifiedAt": "2026-10-29T07:57:58.000Z"
+    },
+    {
+      "uuid": "0254ef20-d36e-11f1-93b0-0050568d2654",
+      "id": 11810022,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810022/storage/MDExODEwMDIyLzAvbWFzdGVyLy8vMTE2NTIzMzI2",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Solid_Shape_64.svg",
+        "basename": "BicycleReservationMandatory_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:54:46.000Z",
+      "modifiedAt": "2026-10-29T07:57:58.000Z"
+    },
+    {
       "uuid": "9d2d22b0-c310-11f1-9625-0050568d2654",
       "id": 11504056,
       "type": "picture.pictogram.",
@@ -83033,6 +83393,678 @@
       "modifiedAt": "2026-02-10T11:05:02.359Z"
     },
     {
+      "uuid": "bd2fe4b0-d36b-11f1-93b0-0050568d2654",
+      "id": 11808542,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808542/storage/MDExODA4NTQyLzAvbWFzdGVyLy8vMTE2NTA3NTE3",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Shape_16.svg",
+        "basename": "DataProcessing_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:31.000Z",
+      "modifiedAt": "2026-10-29T07:40:37.000Z"
+    },
+    {
+      "uuid": "bb4293a2-d36b-11f1-93b0-0050568d2654",
+      "id": 11808536,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808536/storage/MDExODA4NTM2LzAvbWFzdGVyLy8vMTE2NTA3NTEy",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Shape_24.svg",
+        "basename": "DataProcessing_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:28.000Z",
+      "modifiedAt": "2026-10-29T07:40:36.000Z"
+    },
+    {
+      "uuid": "bb4fb300-d36b-11f1-93b0-0050568d2654",
+      "id": 11808537,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808537/storage/MDExODA4NTM3LzAvbWFzdGVyLy8vMTE2NTA3NTEz",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Shape_32.svg",
+        "basename": "DataProcessing_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:28.000Z",
+      "modifiedAt": "2026-10-29T07:40:37.000Z"
+    },
+    {
+      "uuid": "b962b010-d36b-11f1-93b0-0050568d2654",
+      "id": 11808534,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808534/storage/MDExODA4NTM0LzAvbWFzdGVyLy8vMTE2NTA3NTEx",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Shape_40.svg",
+        "basename": "DataProcessing_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:25.000Z",
+      "modifiedAt": "2026-10-29T07:40:36.000Z"
+    },
+    {
+      "uuid": "b946eab0-d36b-11f1-93b0-0050568d2654",
+      "id": 11808533,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808533/storage/MDExODA4NTMzLzAvbWFzdGVyLy8vMTE2NTA3NTEw",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Shape_48.svg",
+        "basename": "DataProcessing_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:24.000Z",
+      "modifiedAt": "2026-10-29T07:40:36.000Z"
+    },
+    {
+      "uuid": "b8315c00-d36b-11f1-93b0-0050568d2654",
+      "id": 11808530,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808530/storage/MDExODA4NTMwLzAvbWFzdGVyLy8vMTE2NTA2NjIz",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Shape_64.svg",
+        "basename": "DataProcessing_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:23.000Z",
+      "modifiedAt": "2026-10-29T07:39:38.000Z"
+    },
+    {
+      "uuid": "b59f8d90-d36b-11f1-93b0-0050568d2654",
+      "id": 11808523,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808523/storage/MDExODA4NTIzLzAvbWFzdGVyLy8vMTE2NTA3NTA3",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Solid_Shape_16.svg",
+        "basename": "DataProcessing_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:18.000Z",
+      "modifiedAt": "2026-10-29T07:40:36.000Z"
+    },
+    {
+      "uuid": "b5a1b070-d36b-11f1-93b0-0050568d2654",
+      "id": 11808525,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808525/storage/MDExODA4NTI1LzAvbWFzdGVyLy8vMTE2NTA3NTA5",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Solid_Shape_24.svg",
+        "basename": "DataProcessing_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:18.000Z",
+      "modifiedAt": "2026-10-29T07:40:36.000Z"
+    },
+    {
+      "uuid": "b5a11430-d36b-11f1-93b0-0050568d2654",
+      "id": 11808524,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808524/storage/MDExODA4NTI0LzAvbWFzdGVyLy8vMTE2NTA3NTA4",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Solid_Shape_32.svg",
+        "basename": "DataProcessing_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:18.000Z",
+      "modifiedAt": "2026-10-29T07:40:36.000Z"
+    },
+    {
+      "uuid": "af7cd030-d36b-11f1-93b0-0050568d2654",
+      "id": 11808508,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808508/storage/MDExODA4NTA4LzAvbWFzdGVyLy8vMTE2NTA3NDk5",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Solid_Shape_40.svg",
+        "basename": "DataProcessing_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:08.000Z",
+      "modifiedAt": "2026-10-29T07:40:37.000Z"
+    },
+    {
+      "uuid": "af7e2fc0-d36b-11f1-93b0-0050568d2654",
+      "id": 11808509,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808509/storage/MDExODA4NTA5LzAvbWFzdGVyLy8vMTE2NTA3NTAz",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Solid_Shape_48.svg",
+        "basename": "DataProcessing_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:08.000Z",
+      "modifiedAt": "2026-10-29T07:40:37.000Z"
+    },
+    {
+      "uuid": "af7a3820-d36b-11f1-93b0-0050568d2654",
+      "id": 11808507,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808507/storage/MDExODA4NTA3LzAvbWFzdGVyLy8vMTE2NTA3NDk4",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Solid_Shape_64.svg",
+        "basename": "DataProcessing_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:08.000Z",
+      "modifiedAt": "2026-10-29T07:40:37.000Z"
+    },
+    {
+      "uuid": "50c848d2-d37a-11f1-93b0-0050568d2654",
+      "id": 11817283,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817283/storage/MDExODE3MjgzLzAvbWFzdGVyLy8vMTE2NTk0MjY2",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Shape_16.svg",
+        "basename": "DataRequest_Shape_16",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-10-29T09:22:51.000Z",
+      "modifiedAt": "2026-10-29T09:25:11.000Z"
+    },
+    {
+      "uuid": "50d58f40-d37a-11f1-93b0-0050568d2654",
+      "id": 11817284,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817284/storage/MDExODE3Mjg0LzAvbWFzdGVyLy8vMTE2NTk0MjY3",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Shape_24.svg",
+        "basename": "DataRequest_Shape_24",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-10-29T09:22:52.000Z",
+      "modifiedAt": "2026-10-29T09:25:11.000Z"
+    },
+    {
+      "uuid": "50c7ac90-d37a-11f1-93b0-0050568d2654",
+      "id": 11817282,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817282/storage/MDExODE3MjgyLzAvbWFzdGVyLy8vMTE2NTk0MjY1",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Shape_32.svg",
+        "basename": "DataRequest_Shape_32",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-10-29T09:22:51.000Z",
+      "modifiedAt": "2026-10-29T09:25:11.000Z"
+    },
+    {
+      "uuid": "4d732a68-d37a-11f1-93b0-0050568d2654",
+      "id": 11817280,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817280/storage/MDExODE3MjgwLzAvbWFzdGVyLy8vMTE2NTk0MjYz",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Shape_40.svg",
+        "basename": "DataRequest_Shape_40",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-10-29T09:22:46.000Z",
+      "modifiedAt": "2026-10-29T09:25:11.000Z"
+    },
+    {
+      "uuid": "4ec992a0-d37a-11f1-93b0-0050568d2654",
+      "id": 11817281,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817281/storage/MDExODE3MjgxLzAvbWFzdGVyLy8vMTE2NTk0MjY0",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Shape_48.svg",
+        "basename": "DataRequest_Shape_48",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-10-29T09:22:48.000Z",
+      "modifiedAt": "2026-10-29T09:25:12.000Z"
+    },
+    {
+      "uuid": "4c7b5ce0-d37a-11f1-93b0-0050568d2654",
+      "id": 11817279,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817279/storage/MDExODE3Mjc5LzAvbWFzdGVyLy8vMTE2NTk0MTgz",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Shape_64.svg",
+        "basename": "DataRequest_Shape_64",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-10-29T09:22:44.000Z",
+      "modifiedAt": "2026-10-29T09:24:22.000Z"
+    },
+    {
+      "uuid": "4b2bab60-d37a-11f1-93b0-0050568d2654",
+      "id": 11817278,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817278/storage/MDExODE3Mjc4LzAvbWFzdGVyLy8vMTE2NTk0MjYy",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Solid_Shape_16.svg",
+        "basename": "DataRequest_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-10-29T09:22:42.000Z",
+      "modifiedAt": "2026-10-29T09:25:12.000Z"
+    },
+    {
+      "uuid": "4af30f30-d37a-11f1-93b0-0050568d2654",
+      "id": 11817277,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817277/storage/MDExODE3Mjc3LzAvbWFzdGVyLy8vMTE2NTk0MjU4",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Solid_Shape_24.svg",
+        "basename": "DataRequest_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-10-29T09:22:42.000Z",
+      "modifiedAt": "2026-10-29T09:25:12.000Z"
+    },
+    {
+      "uuid": "4a063e30-d37a-11f1-93b0-0050568d2654",
+      "id": 11817276,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817276/storage/MDExODE3Mjc2LzAvbWFzdGVyLy8vMTE2NTk0MjU3",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Solid_Shape_32.svg",
+        "basename": "DataRequest_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-10-29T09:22:40.000Z",
+      "modifiedAt": "2026-10-29T09:25:12.000Z"
+    },
+    {
+      "uuid": "47e2c1f0-d37a-11f1-93b0-0050568d2654",
+      "id": 11817275,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817275/storage/MDExODE3Mjc1LzAvbWFzdGVyLy8vMTE2NTk0MjU2",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Solid_Shape_40.svg",
+        "basename": "DataRequest_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-10-29T09:22:37.000Z",
+      "modifiedAt": "2026-10-29T09:25:12.000Z"
+    },
+    {
+      "uuid": "47d9e850-d37a-11f1-93b0-0050568d2654",
+      "id": 11817273,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817273/storage/MDExODE3MjczLzAvbWFzdGVyLy8vMTE2NTk0MjU0",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Solid_Shape_48.svg",
+        "basename": "DataRequest_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-10-29T09:22:37.000Z",
+      "modifiedAt": "2026-10-29T09:25:11.000Z"
+    },
+    {
+      "uuid": "47e09f10-d37a-11f1-93b0-0050568d2654",
+      "id": 11817274,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817274/storage/MDExODE3Mjc0LzAvbWFzdGVyLy8vMTE2NTk0MjU1",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Solid_Shape_64.svg",
+        "basename": "DataRequest_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {}
+      },
+      "createdAt": "2026-10-29T09:22:37.000Z",
+      "modifiedAt": "2026-10-29T09:25:11.000Z"
+    },
+    {
       "uuid": "98457820-e562-11ef-a15d-005056873709",
       "id": 1831433,
       "type": "picture.pictogram.",
@@ -133985,6 +135017,331 @@
       },
       "createdAt": "2025-10-15T05:28:19.000Z",
       "modifiedAt": "2025-10-15T05:32:20.000Z"
+    },
+    {
+      "uuid": "0be0a870-d36b-11f1-93b0-0050568d2654",
+      "id": 11808064,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808064/storage/MDExODA4MDY0LzAvbWFzdGVyLy8vMTE2NTAyOTU1",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Line_64.svg",
+        "basename": "Hackademy_Line_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:33.000Z",
+      "modifiedAt": "2026-10-29T07:35:56.000Z"
+    },
+    {
+      "uuid": "0abfa810-d36b-11f1-93b0-0050568d2654",
+      "id": 11808063,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808063/storage/MDExODA4MDYzLzAvbWFzdGVyLy8vMTE2NTAyOTU0",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Shape_16.svg",
+        "basename": "Hackademy_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:32.000Z",
+      "modifiedAt": "2026-10-29T07:35:55.000Z"
+    },
+    {
+      "uuid": "09bf2800-d36b-11f1-93b0-0050568d2654",
+      "id": 11808060,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808060/storage/MDExODA4MDYwLzAvbWFzdGVyLy8vMTE2NTAyOTUz",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Shape_24.svg",
+        "basename": "Hackademy_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:30.000Z",
+      "modifiedAt": "2026-10-29T07:35:55.000Z"
+    },
+    {
+      "uuid": "08a9c060-d36b-11f1-93b0-0050568d2654",
+      "id": 11808058,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808058/storage/MDExODA4MDU4LzAvbWFzdGVyLy8vMTE2NTAyOTUy",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Shape_32.svg",
+        "basename": "Hackademy_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:28.000Z",
+      "modifiedAt": "2026-10-29T07:35:55.000Z"
+    },
+    {
+      "uuid": "07954320-d36b-11f1-93b0-0050568d2654",
+      "id": 11808056,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808056/storage/MDExODA4MDU2LzAvbWFzdGVyLy8vMTE2NTAyOTQ1",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Shape_40.svg",
+        "basename": "Hackademy_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:26.000Z",
+      "modifiedAt": "2026-10-29T07:35:55.000Z"
+    },
+    {
+      "uuid": "061d7030-d36b-11f1-93b0-0050568d2654",
+      "id": 11808053,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808053/storage/MDExODA4MDUzLzAvbWFzdGVyLy8vMTE2NTAyOTU2",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Shape_48.svg",
+        "basename": "Hackademy_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:24.000Z",
+      "modifiedAt": "2026-10-29T07:35:55.000Z"
+    },
+    {
+      "uuid": "04a241e0-d36b-11f1-93b0-0050568d2654",
+      "id": 11808050,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808050/storage/MDExODA4MDUwLzAvbWFzdGVyLy8vMTE2NTAyMzA5",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Shape_64.svg",
+        "basename": "Hackademy_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:21.000Z",
+      "modifiedAt": "2026-10-29T07:35:02.000Z"
+    },
+    {
+      "uuid": "037a3ca0-d36b-11f1-93b0-0050568d2654",
+      "id": 11808045,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808045/storage/MDExODA4MDQ1LzAvbWFzdGVyLy8vMTE2NTAyOTQz",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Solid_Shape_16.svg",
+        "basename": "Hackademy_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:19.000Z",
+      "modifiedAt": "2026-10-29T07:35:55.000Z"
+    },
+    {
+      "uuid": "038204d0-d36b-11f1-93b0-0050568d2654",
+      "id": 11808046,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808046/storage/MDExODA4MDQ2LzAvbWFzdGVyLy8vMTE2NTAyOTQ0",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Solid_Shape_24.svg",
+        "basename": "Hackademy_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:19.000Z",
+      "modifiedAt": "2026-10-29T07:35:55.000Z"
+    },
+    {
+      "uuid": "024e3fc0-d36b-11f1-93b0-0050568d2654",
+      "id": 11808042,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808042/storage/MDExODA4MDQyLzAvbWFzdGVyLy8vMTE2NTAyOTM5",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Solid_Shape_32.svg",
+        "basename": "Hackademy_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:17.000Z",
+      "modifiedAt": "2026-10-29T07:35:55.000Z"
+    },
+    {
+      "uuid": "fe143f90-d36a-11f1-93b0-0050568d2654",
+      "id": 11808031,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808031/storage/MDExODA4MDMxLzAvbWFzdGVyLy8vMTE2NTAyOTM3",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Solid_Shape_40.svg",
+        "basename": "Hackademy_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:10.000Z",
+      "modifiedAt": "2026-10-29T07:35:55.000Z"
+    },
+    {
+      "uuid": "fdf4d0b0-d36a-11f1-93b0-0050568d2654",
+      "id": 11808030,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808030/storage/MDExODA4MDMwLzAvbWFzdGVyLy8vMTE2NTAyOTM2",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Solid_Shape_48.svg",
+        "basename": "Hackademy_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:10.000Z",
+      "modifiedAt": "2026-10-29T07:35:55.000Z"
+    },
+    {
+      "uuid": "fdf40d60-d36a-11f1-93b0-0050568d2654",
+      "id": 11808029,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808029/storage/MDExODA4MDI5LzAvbWFzdGVyLy8vMTE2NTAyOTM1",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Solid_Shape_64.svg",
+        "basename": "Hackademy_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:10.000Z",
+      "modifiedAt": "2026-10-29T07:35:55.000Z"
     },
     {
       "uuid": "8c1dc9c0-b00a-11f1-94be-0050568d2654",
@@ -218288,6 +219645,342 @@
       "modifiedAt": "2025-03-26T13:37:26.000Z"
     },
     {
+      "uuid": "9279caa0-d36c-11f1-93b0-0050568d2654",
+      "id": 11809083,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809083/storage/MDExODA5MDgzLzAvbWFzdGVyLy8vMTE2NTEzMjY1",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Shape_16.svg",
+        "basename": "PrivacyPolicy_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:29.000Z",
+      "modifiedAt": "2026-10-29T07:46:51.000Z"
+    },
+    {
+      "uuid": "91b912b0-d36c-11f1-93b0-0050568d2654",
+      "id": 11809082,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809082/storage/MDExODA5MDgyLzAvbWFzdGVyLy8vMTE2NTEzMjY0",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Shape_24.svg",
+        "basename": "PrivacyPolicy_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:27.000Z",
+      "modifiedAt": "2026-10-29T07:46:51.000Z"
+    },
+    {
+      "uuid": "927efac0-d36c-11f1-93b0-0050568d2654",
+      "id": 11809084,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809084/storage/MDExODA5MDg0LzAvbWFzdGVyLy8vMTE2NTEzMjY2",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Shape_32.svg",
+        "basename": "PrivacyPolicy_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:29.000Z",
+      "modifiedAt": "2026-10-29T07:46:51.000Z"
+    },
+    {
+      "uuid": "90e288d0-d36c-11f1-93b0-0050568d2654",
+      "id": 11809081,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809081/storage/MDExODA5MDgxLzAvbWFzdGVyLy8vMTE2NTEzMjgx",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Shape_40.svg",
+        "basename": "PrivacyPolicy_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:26.000Z",
+      "modifiedAt": "2026-10-29T07:46:51.000Z"
+    },
+    {
+      "uuid": "8fbad1b0-d36c-11f1-93b0-0050568d2654",
+      "id": 11809079,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809079/storage/MDExODA5MDc5LzAvbWFzdGVyLy8vMTE2NTEzMjgw",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Shape_48.svg",
+        "basename": "PrivacyPolicy_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:24.000Z",
+      "modifiedAt": "2026-10-29T07:46:51.000Z"
+    },
+    {
+      "uuid": "8fba0e60-d36c-11f1-93b0-0050568d2654",
+      "id": 11809078,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809078/storage/MDExODA5MDc4LzAvbWFzdGVyLy8vMTE2NTEyNjQz",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Shape_64.svg",
+        "basename": "PrivacyPolicy_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:24.000Z",
+      "modifiedAt": "2026-10-29T07:46:04.000Z"
+    },
+    {
+      "uuid": "8d375b20-d36c-11f1-93b0-0050568d2654",
+      "id": 11809075,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809075/storage/MDExODA5MDc1LzAvbWFzdGVyLy8vMTE2NTEzMjc4",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Solid_Shape_16.svg",
+        "basename": "PrivacyPolicy_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:20.000Z",
+      "modifiedAt": "2026-10-29T07:46:51.000Z"
+    },
+    {
+      "uuid": "8d7b6900-d36c-11f1-93b0-0050568d2654",
+      "id": 11809077,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809077/storage/MDExODA5MDc3LzAvbWFzdGVyLy8vMTE2NTEzMjc5",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Solid_Shape_24.svg",
+        "basename": "PrivacyPolicy_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:20.000Z",
+      "modifiedAt": "2026-10-29T07:46:51.000Z"
+    },
+    {
+      "uuid": "8c134d82-d36c-11f1-93b0-0050568d2654",
+      "id": 11809073,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809073/storage/MDExODA5MDczLzAvbWFzdGVyLy8vMTE2NTEzMjc0",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Solid_Shape_32.svg",
+        "basename": "PrivacyPolicy_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:18.000Z",
+      "modifiedAt": "2026-10-29T07:46:51.000Z"
+    },
+    {
+      "uuid": "891a7fe0-d36c-11f1-93b0-0050568d2654",
+      "id": 11809066,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809066/storage/MDExODA5MDY2LzAvbWFzdGVyLy8vMTE2NTEzMjY4",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Solid_Shape_40.svg",
+        "basename": "PrivacyPolicy_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:13.000Z",
+      "modifiedAt": "2026-10-29T07:46:51.000Z"
+    },
+    {
+      "uuid": "892d6ba0-d36c-11f1-93b0-0050568d2654",
+      "id": 11809068,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809068/storage/MDExODA5MDY4LzAvbWFzdGVyLy8vMTE2NTEzMjcw",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Solid_Shape_48.svg",
+        "basename": "PrivacyPolicy_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:13.000Z",
+      "modifiedAt": "2026-10-29T07:46:51.000Z"
+    },
+    {
+      "uuid": "891c54a0-d36c-11f1-93b0-0050568d2654",
+      "id": 11809067,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809067/storage/MDExODA5MDY3LzAvbWFzdGVyLy8vMTE2NTEzMjY5",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Solid_Shape_64.svg",
+        "basename": "PrivacyPolicy_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:13.000Z",
+      "modifiedAt": "2026-10-29T07:46:51.000Z"
+    },
+    {
       "uuid": "a8e385f0-9e9e-11f0-b04a-005056873709",
       "id": 6481398,
       "type": "picture.pictogram.",
@@ -244853,6 +246546,774 @@
       },
       "createdAt": "2025-02-07T06:37:03.000Z",
       "modifiedAt": "2025-12-03T08:22:28.000Z"
+    },
+    {
+      "uuid": "09bd6860-d36d-11f1-93b0-0050568d2654",
+      "id": 11809391,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809391/storage/MDExODA5MzkxLzAvbWFzdGVyLy8vMTE2NTE2NjE5",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Shape_16.svg",
+        "basename": "SeatReservationMandatory_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:49.000Z",
+      "modifiedAt": "2026-10-29T09:05:03.781Z"
+    },
+    {
+      "uuid": "09940e70-d36d-11f1-93b0-0050568d2654",
+      "id": 11809390,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809390/storage/MDExODA5MzkwLzAvbWFzdGVyLy8vMTE2NTE2NjE4",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Shape_24.svg",
+        "basename": "SeatReservationMandatory_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:49.000Z",
+      "modifiedAt": "2026-10-29T09:05:03.781Z"
+    },
+    {
+      "uuid": "084a9e80-d36d-11f1-93b0-0050568d2654",
+      "id": 11809388,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809388/storage/MDExODA5Mzg4LzAvbWFzdGVyLy8vMTE2NTE2NjE3",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Shape_32.svg",
+        "basename": "SeatReservationMandatory_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:46.000Z",
+      "modifiedAt": "2026-10-29T09:05:03.781Z"
+    },
+    {
+      "uuid": "0735ac10-d36d-11f1-93b0-0050568d2654",
+      "id": 11809385,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809385/storage/MDExODA5Mzg1LzAvbWFzdGVyLy8vMTE2NTE2NjE1",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Shape_40.svg",
+        "basename": "SeatReservationMandatory_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:45.000Z",
+      "modifiedAt": "2026-10-29T09:05:03.781Z"
+    },
+    {
+      "uuid": "0610db20-d36d-11f1-93b0-0050568d2654",
+      "id": 11809383,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809383/storage/MDExODA5MzgzLzAvbWFzdGVyLy8vMTE2NTE2NjE0",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Shape_48.svg",
+        "basename": "SeatReservationMandatory_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:43.000Z",
+      "modifiedAt": "2026-10-29T09:05:03.781Z"
+    },
+    {
+      "uuid": "04f4e3d0-d36d-11f1-93b0-0050568d2654",
+      "id": 11809382,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809382/storage/MDExODA5MzgyLzAvbWFzdGVyLy8vMTE2NTE2MDQ2",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Shape_64.svg",
+        "basename": "SeatReservationMandatory_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:41.000Z",
+      "modifiedAt": "2026-10-29T09:05:03.781Z"
+    },
+    {
+      "uuid": "03eebe71-d36d-11f1-93b0-0050568d2654",
+      "id": 11809379,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809379/storage/MDExODA5Mzc5LzAvbWFzdGVyLy8vMTE2NTE2NjEz",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Solid_Shape_16.svg",
+        "basename": "SeatReservationMandatory_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:39.000Z",
+      "modifiedAt": "2026-10-29T09:05:03.781Z"
+    },
+    {
+      "uuid": "02b1aa90-d36d-11f1-93b0-0050568d2654",
+      "id": 11809378,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809378/storage/MDExODA5Mzc4LzAvbWFzdGVyLy8vMTE2NTE2NjEy",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Solid_Shape_24.svg",
+        "basename": "SeatReservationMandatory_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:37.000Z",
+      "modifiedAt": "2026-10-29T09:05:03.781Z"
+    },
+    {
+      "uuid": "00307df2-d36d-11f1-93b0-0050568d2654",
+      "id": 11809376,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809376/storage/MDExODA5Mzc2LzAvbWFzdGVyLy8vMTE2NTE2NjEx",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Solid_Shape_32.svg",
+        "basename": "SeatReservationMandatory_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:33.000Z",
+      "modifiedAt": "2026-10-29T09:05:03.781Z"
+    },
+    {
+      "uuid": "fc4e61c0-d36c-11f1-93b0-0050568d2654",
+      "id": 11809365,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809365/storage/MDExODA5MzY1LzAvbWFzdGVyLy8vMTE2NTE2NjA1",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Solid_Shape_40.svg",
+        "basename": "SeatReservationMandatory_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:26.000Z",
+      "modifiedAt": "2026-10-29T09:05:03.781Z"
+    },
+    {
+      "uuid": "fc65e160-d36c-11f1-93b0-0050568d2654",
+      "id": 11809367,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809367/storage/MDExODA5MzY3LzAvbWFzdGVyLy8vMTE2NTE2NjA3",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Solid_Shape_48.svg",
+        "basename": "SeatReservationMandatory_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:26.000Z",
+      "modifiedAt": "2026-10-29T09:05:03.781Z"
+    },
+    {
+      "uuid": "fc5c6b80-d36c-11f1-93b0-0050568d2654",
+      "id": 11809366,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809366/storage/MDExODA5MzY2LzAvbWFzdGVyLy8vMTE2NTE2NjA2",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Solid_Shape_64.svg",
+        "basename": "SeatReservationMandatory_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:26.000Z",
+      "modifiedAt": "2026-10-29T09:05:03.781Z"
+    },
+    {
+      "uuid": "94c17b40-d36d-11f1-93b0-0050568d2654",
+      "id": 11809738,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809738/storage/MDExODA5NzM4LzAvbWFzdGVyLy8vMTE2NTE5ODYw",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Shape_16.svg",
+        "basename": "SeatReservationPossible_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:42.000Z",
+      "modifiedAt": "2026-10-29T07:54:05.000Z"
+    },
+    {
+      "uuid": "946159e0-d36d-11f1-93b0-0050568d2654",
+      "id": 11809736,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809736/storage/MDExODA5NzM2LzAvbWFzdGVyLy8vMTE2NTE5ODU4",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Shape_24.svg",
+        "basename": "SeatReservationPossible_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:41.000Z",
+      "modifiedAt": "2026-10-29T07:54:05.000Z"
+    },
+    {
+      "uuid": "948de820-d36d-11f1-93b0-0050568d2654",
+      "id": 11809737,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809737/storage/MDExODA5NzM3LzAvbWFzdGVyLy8vMTE2NTE5ODU5",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Shape_32.svg",
+        "basename": "SeatReservationPossible_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:42.000Z",
+      "modifiedAt": "2026-10-29T07:54:05.000Z"
+    },
+    {
+      "uuid": "9282aed0-d36d-11f1-93b0-0050568d2654",
+      "id": 11809734,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809734/storage/MDExODA5NzM0LzAvbWFzdGVyLy8vMTE2NTE5ODUz",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Shape_40.svg",
+        "basename": "SeatReservationPossible_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:38.000Z",
+      "modifiedAt": "2026-10-29T07:54:05.000Z"
+    },
+    {
+      "uuid": "92cbc5c0-d36d-11f1-93b0-0050568d2654",
+      "id": 11809735,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809735/storage/MDExODA5NzM1LzAvbWFzdGVyLy8vMTE2NTE5ODU3",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Shape_48.svg",
+        "basename": "SeatReservationPossible_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:39.000Z",
+      "modifiedAt": "2026-10-29T07:54:05.000Z"
+    },
+    {
+      "uuid": "90b3e240-d36d-11f1-93b0-0050568d2654",
+      "id": 11809732,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809732/storage/MDExODA5NzMyLzAvbWFzdGVyLy8vMTE2NTE5MzIy",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Shape_64.svg",
+        "basename": "SeatReservationPossible_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:35.000Z",
+      "modifiedAt": "2026-10-29T07:53:26.000Z"
+    },
+    {
+      "uuid": "916caaf0-d36d-11f1-93b0-0050568d2654",
+      "id": 11809733,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809733/storage/MDExODA5NzMzLzAvbWFzdGVyLy8vMTE2NTE5ODQ5",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Solid_Shape_16.svg",
+        "basename": "SeatReservationPossible_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:36.000Z",
+      "modifiedAt": "2026-10-29T07:54:05.000Z"
+    },
+    {
+      "uuid": "8f70b3e0-d36d-11f1-93b0-0050568d2654",
+      "id": 11809730,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809730/storage/MDExODA5NzMwLzAvbWFzdGVyLy8vMTE2NTE5ODQ4",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Solid_Shape_24.svg",
+        "basename": "SeatReservationPossible_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:33.000Z",
+      "modifiedAt": "2026-10-29T07:54:05.000Z"
+    },
+    {
+      "uuid": "8eae7550-d36d-11f1-93b0-0050568d2654",
+      "id": 11809728,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809728/storage/MDExODA5NzI4LzAvbWFzdGVyLy8vMTE2NTE5ODQ3",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Solid_Shape_32.svg",
+        "basename": "SeatReservationPossible_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:32.000Z",
+      "modifiedAt": "2026-10-29T07:54:05.000Z"
+    },
+    {
+      "uuid": "8bf2b0b2-d36d-11f1-93b0-0050568d2654",
+      "id": 11809722,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809722/storage/MDExODA5NzIyLzAvbWFzdGVyLy8vMTE2NTE5ODQ2",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Solid_Shape_40.svg",
+        "basename": "SeatReservationPossible_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:27.000Z",
+      "modifiedAt": "2026-10-29T07:54:05.000Z"
+    },
+    {
+      "uuid": "8be59150-d36d-11f1-93b0-0050568d2654",
+      "id": 11809720,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809720/storage/MDExODA5NzIwLzAvbWFzdGVyLy8vMTE2NTE5ODQ0",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Solid_Shape_48.svg",
+        "basename": "SeatReservationPossible_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:27.000Z",
+      "modifiedAt": "2026-10-29T07:54:05.000Z"
+    },
+    {
+      "uuid": "8bea4c40-d36d-11f1-93b0-0050568d2654",
+      "id": 11809721,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809721/storage/MDExODA5NzIxLzAvbWFzdGVyLy8vMTE2NTE5ODQ1",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Solid_Shape_64.svg",
+        "basename": "SeatReservationPossible_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:27.000Z",
+      "modifiedAt": "2026-10-29T07:54:05.000Z"
     },
     {
       "uuid": "ac392122-55db-11f1-97f7-0050568d2654",
@@ -397184,13 +399645,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 10500,
+    "success": 10585,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 2948,
     "duplicates": 0
   },
-  "created": "2026-10-27T07:51:35.913Z",
+  "created": "2026-10-29T09:30:27.393Z",
   "version": "10.8.0"
 }
