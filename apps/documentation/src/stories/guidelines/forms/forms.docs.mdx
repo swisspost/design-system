@@ -29,7 +29,7 @@ To add space between input, you can use [margin utilities](/?path=/docs/facaacfd
 ## Rows'n'cols
 
 If you want a form field to span the whole available width, you don't need a row nor a col. You
-only need those, if you want to place two things next to each other.
+only need those if you want to place two things next to each other.
 
 Simply use `.row` and `.col` to have the width distributed evenly between all inputs.
 To make it responsive, you can add `.row-cols-*` classes to the row (see [Grid page](/?path=/docs/7240f2ef-216a-490e-9bd8-c0cef19f7b31--docs#row-columns)).
@@ -49,6 +49,29 @@ be one of those cases. Two `.col` next to each other will have equal width. If o
 width. With this setup, we can define a max-width on the input field to shrink it.
 
 <Canvas of={FormGuidelinesStories.CustomWidth} sourceState="shown" />
+
+## One field per row or multiple columns ?
+
+### External applications
+
+In external-facing applications, place one form field per row whenever possible.
+Only place fields next to each other when they are closely related and make sense together, such as the zip code and the city.
+
+### Internal applications
+
+Internal applications often need a more condensed layout, which means placing several fields next to each other in columns.
+In that case, labels can have different lengths and some fields, such as checkboxes and switches, have no label above them at all, which can cause the fields to be misaligned.
+
+To keep all form fields aligned:
+
+- Add the `.form-grid` class to the outer `.row`.
+- Set the width of each column with the `.col-*` classes (e.g. `.col-6`, `.col-md-4`). The `.col`, `.col-auto` and `.row-cols-*` classes are not supported inside a `.form-grid`; columns without a `.col-*` class span the full width.
+- Wrap the form field and everything below it (validation messages and hints) in a `.form-grid-control` element. The `.form-label` stays outside of it, as a direct child of the column.
+- For radio button groups, place the `<fieldset>` inside the column, with the `<legend>` followed by the `.form-grid-control` wrapper. The legend then aligns with the other labels.
+
+This way, all form fields in a row start at the same height, no matter how long their labels are or whether they have a label at all.
+
+<Canvas of={FormGuidelinesStories.FormGrid} sourceState="shown" />
 
 ## Form buttons
 
