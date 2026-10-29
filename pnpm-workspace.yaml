@@ -50,6 +50,10 @@ catalogs:
     '@types/react': 19.2.18
     '@types/react-dom': 19.2.7
 
+# Keep this value lower than or equal to the `minimumReleaseAge` in /renovate.json.
+# If Renovate proposed a version younger than this cooldown, pnpm would refuse to
+# update the lock file and the pull request would fail with an artifact error.
+# Single versions can be exempted through `minimumReleaseAgeExclude`.
 minimumReleaseAge: 4320 # 3d * 24h * 60m = 4320m (following upstream)
 strictPeerDependencies: false
 saveExact: true
