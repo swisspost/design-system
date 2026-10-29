@@ -137,8 +137,8 @@
                   "url": "#manage-consignments"
                 },
                 {
-                  "text": "Manage consignement permanently",
-                  "url": "#manage-consignement-permanently"
+                  "text": "Manage consignment permanently",
+                  "url": "#manage-consignment-permanently"
                 },
                 {
                   "text": "Collection note",
@@ -161,12 +161,12 @@
                   "url": "#authorization-at-swiss-post"
                 },
                 {
-                  "text": "Consigments against signature",
-                  "url": "#consigments-against-signature"
+                  "text": "Consignments against signature",
+                  "url": "#consignments-against-signature"
                 },
                 {
-                  "text": "Consigments from abroad",
-                  "url": "#consigments-from-abroad"
+                  "text": "Consignments from abroad",
+                  "url": "#consignments-from-abroad"
                 }
               ]
             }
@@ -197,7 +197,7 @@
                   "url": "#certified-copy-of-id"
                 },
                 {
-                  "text": "Copying &amp; printing",
+                  "text": "Copying & printing",
                   "url": "#copying-and-printing"
                 }
               ]
@@ -213,7 +213,7 @@
                   "url": "#post-visa-prepaid"
                 },
                 {
-                  "text": "Post Mobile, Internet &amp; TV",
+                  "text": "Post Mobile, Internet & TV",
                   "url": "#post-mobile-internet-tv"
                 },
                 {
