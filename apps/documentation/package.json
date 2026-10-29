@@ -78,7 +78,7 @@
     "sass-embedded": "1.104.0",
     "storybook": "9.1.21",
     "typescript": "catalog:",
-    "vite": "7.3.7"
+    "vite": "8.1.6"
   },
   "prettier": "@swisspost/design-system-prettier-config",
   "keywords": [
