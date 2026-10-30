@@ -10,7 +10,7 @@ import { getAttributeObserver } from '@/utils/attribute-observer';
 let popoverInstances = 0;
 const popoverTargetAttribute = 'data-popover-target';
 
-const globalToggleHandler = (e: PointerEvent | KeyboardEvent) => {
+const globalToggleHandler = (e: MouseEvent | KeyboardEvent) => {
   let currentElement = e.target as HTMLElement;
 
   // Traverse up the DOM tree to find if any parent has the popover target attribute
@@ -21,6 +21,10 @@ const globalToggleHandler = (e: PointerEvent | KeyboardEvent) => {
 
   const popoverTarget = currentElement?.getAttribute(popoverTargetAttribute);
   if (!popoverTarget || ('key' in e && e.key !== 'Enter')) return;
+
+  // Prevent the native click on Enter, otherwise the popover is toggled twice
+  if ('key' in e) e.preventDefault();
+
   const popover = document.getElementById(popoverTarget) as HTMLPostPopoverElement;
   popover?.toggle(currentElement);
 };
@@ -66,7 +70,8 @@ export class PostPopover {
   connectedCallback() {
     // Set up accessibility patcher and event listeners for the first component
     if (popoverInstances === 0) {
-      window.addEventListener('pointerup', globalToggleHandler);
+      // Listen to click instead of pointerup, otherwise the light dismiss in Chromium 154+ closes the popover immediately
+      window.addEventListener('click', globalToggleHandler);
       window.addEventListener('keydown', globalToggleHandler);
       triggerObserver.observe(document.body, {
         subtree: true,
@@ -89,7 +94,7 @@ export class PostPopover {
 
     // Remove listeners and observer after the last popover has been destructed
     if (popoverInstances === 0) {
-      window.removeEventListener('pointerup', globalToggleHandler);
+      window.removeEventListener('click', globalToggleHandler);
       window.removeEventListener('keydown', globalToggleHandler);
       triggerObserver.disconnect();
     }

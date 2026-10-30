@@ -1,5 +1,13 @@
 # @swisspost/design-system-components
 
+## 9.15.1
+
+### Patch Changes
+
+- Fixed an issue where the `post-popover` did not open in Chromium-based browsers from version 154 onward. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8578](https://github.com/swisspost/design-system/pull/8578))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.15.1
+
 ## 9.15.0
 
 ### Patch Changes

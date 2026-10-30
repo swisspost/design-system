@@ -1088,7 +1088,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352106/storage/MDM1NDcyNi8wL21hc3Rlci8vLzE4MDYxMjE0",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352106/storage/MzU0NzI2LzAvbWFzdGVyLy8vMTEzNTIwMzE1",
         "businessfield": [
           "kommunikation"
         ],
@@ -1129,7 +1129,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-11-29T13:53:12.000Z"
+      "modifiedAt": "2026-10-13T06:04:10.000Z"
     },
     {
       "uuid": "86de8550-c5fc-11e7-a943-005056a94f4a",
@@ -1137,7 +1137,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352107/storage/MDM1NDcyNy8wL21hc3Rlci8vLzE4MDYxMjIw",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352107/storage/MzU0NzI3LzAvbWFzdGVyLy8vMTEzNTE5MDg2",
         "businessfield": [
           "kommunikation"
         ],
@@ -1177,7 +1177,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2026-05-02T19:05:02.067Z"
+      "modifiedAt": "2026-10-13T06:03:04.000Z"
     },
     {
       "uuid": "86e34040-c5fc-11e7-a943-005056a94f4a",
@@ -1185,7 +1185,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352108/storage/MDM1NDcyOC8wL21hc3Rlci8vLzE4MDYxMjI2",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352108/storage/MzU0NzI4LzAvbWFzdGVyLy8vMTEzNTE4MDI3",
         "businessfield": [
           "kommunikation"
         ],
@@ -1251,7 +1251,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2026-05-02T19:05:02.067Z"
+      "modifiedAt": "2026-10-13T06:02:00.000Z"
     },
     {
       "uuid": "86ec40f0-c5fc-11e7-a943-005056a94f4a",
@@ -1259,7 +1259,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352109/storage/MDM1NDcyOS8wL21hc3Rlci8vLzE4MDYxMjMw",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352109/storage/MzU0NzI5LzAvbWFzdGVyLy8vMTEzNTE2OTI1",
         "businessfield": [
           "kommunikation"
         ],
@@ -1293,7 +1293,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2026-05-02T19:05:02.067Z"
+      "modifiedAt": "2026-10-13T06:00:29.000Z"
     },
     {
       "uuid": "86f17110-c5fc-11e7-a943-005056a94f4a",
@@ -34121,7 +34121,11 @@
         "name": "2799.svg",
         "basename": "2799",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T12:13:44.000Z",
       "modifiedAt": "2026-08-08T12:05:06.309Z"
@@ -34145,7 +34149,11 @@
         "name": "2800.svg",
         "basename": "2800",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T12:19:54.000Z",
       "modifiedAt": "2026-08-07T12:21:41.000Z"
@@ -34169,10 +34177,91 @@
         "name": "2801.svg",
         "basename": "2801",
         "ext": ".svg",
-        "size": {}
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
       },
       "createdAt": "2026-08-07T12:23:11.000Z",
       "modifiedAt": "2026-08-07T12:25:44.000Z"
+    },
+    {
+      "uuid": "0cfe0670-c7d2-11f1-bea4-0050568d2654",
+      "id": 11586227,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11586227/storage/MDExNTg2MjI2LzAvbWFzdGVyLy8vMTEzNzY2MjU2",
+        "keywords": [
+          "E-Transporter",
+          "Fourgonnette électrique",
+          "Veicoli elettrici",
+          "E-transporter",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "100% Loaded",
+          "100% geladen",
+          "100% chargé",
+          "Caricato al 100%",
+          "car battery",
+          "Autobatterie",
+          "batterie de voiture",
+          "batteria per auto",
+          "Batterien",
+          "Piles",
+          "Batteries",
+          "Batterie"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2802.svg",
+        "basename": "2802",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-14T13:20:40.000Z",
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
+    },
+    {
+      "uuid": "7e24c7c0-cc47-11f1-aa7b-0050568d2654",
+      "id": 11661919,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11661919/storage/MDExNjYxOTE4LzAvbWFzdGVyLy8vMTE0NzQzNjg3",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2803.svg",
+        "basename": "2803",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T05:31:25.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
     },
     {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
@@ -46590,37 +46679,6 @@
   "wrongViewBox": [],
   "noKeywords": [
     {
-      "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
-      "id": 352314,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352314/storage/MDUzNzIyNC8wL21hc3Rlci8vLzE4MDY0MDY3",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3073.svg",
-        "basename": "3073",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-11-29T13:53:43.000Z"
-    },
-    {
       "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
       "id": 352299,
       "type": "picture.pictogram.",
@@ -46650,6 +46708,37 @@
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
       "modifiedAt": "2024-11-29T13:53:42.000Z"
+    },
+    {
+      "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
+      "id": 352314,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352314/storage/MDUzNzIyNC8wL21hc3Rlci8vLzE4MDY0MDY3",
+        "businessfield": [
+          "kommunikation"
+        ],
+        "keywords": [
+          ""
+        ],
+        "year": [
+          "2017"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "3073.svg",
+        "basename": "3073",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2017-11-10T10:11:07.000Z",
+      "modifiedAt": "2024-11-29T13:53:43.000Z"
     },
     {
       "uuid": "6b09bf30-9901-11eb-935b-005056873709",
@@ -46763,11 +46852,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2026-08-09T02:35:57.018Z",
+  "created": "2026-10-21T07:02:41.047Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 1131
+    "success": 1133
   },
-  "version": "9.13.0"
+  "version": "9.15.1"
 }

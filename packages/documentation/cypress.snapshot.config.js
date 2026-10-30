@@ -2,6 +2,7 @@ const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
   projectId: 'f9aegu',
+  defaultBrowser: 'chrome',
   e2e: {
     baseUrl: 'http://localhost:9001',
     specPattern: ['cypress/**/*.snapshot.{ts,tsx}'],
