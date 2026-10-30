@@ -9,6 +9,7 @@
 
  - [post-breadcrumb-item](../post-breadcrumb-item)
  - [post-breadcrumbs](../post-breadcrumbs)
+ - [post-klp-login-widget-messages](../post-klp-login-widget-messages)
  - [post-language-menu-item](../post-language-menu-item)
 
 ### Graph
@@ -16,6 +17,7 @@
 graph TD;
   post-breadcrumb-item --> post-menu-item
   post-breadcrumbs --> post-menu-item
+  post-klp-login-widget-messages --> post-menu-item
   post-language-menu-item --> post-menu-item
   style post-menu-item fill:#f9f,stroke:#333,stroke-width:4px
 ```

@@ -7,16 +7,46 @@
 
 ## Properties
 
-| Property        | Attribute        | Description                                                                                                                                                   | Type                                                                      | Default     |
-| --------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------- |
-| `accountSwitch` | `account-switch` | Label and target for switching account. Only rendered when the session permits it, so the consumer does not have to work out who is allowed to see it.        | `KlpLink \| string`                                                       | `undefined` |
-| `companySwitch` | `company-switch` | Label and target for switching company. Only rendered when the session permits it.                                                                            | `KlpLink \| string`                                                       | `undefined` |
-| `config`        | `config`         | The portal login widget configuration. Accepts an object or, so the widget can be driven from plain HTML, a JSON string.                                      | `KlpLoginWidgetConfig \| string`                                          | `undefined` |
-| `environment`   | `environment`    | The KLP platform instance to talk to. Determines every backend URL the widget uses.                                                                           | `"dev01" \| "dev02" \| "devs1" \| "int01" \| "int02" \| "prod" \| "test"` | `'prod'`    |
-| `loginLink`     | `login-link`     | The link offered to anonymous visitors. Falls back to the configured `appLoginUrl`. Ignored when the `login-link` slot is filled.                             | `KlpLink \| string`                                                       | `undefined` |
-| `logoutLink`    | `logout-link`    | The link that ends the session. Ignored when the `logout-link` slot is filled.                                                                                | `KlpLink \| string`                                                       | `undefined` |
-| `menuLinks`     | `menu-links`     | Links shown in the user menu, in order. Takes the output of internet-header's `getUserMenuOptions()` unchanged. Ignored when the `menu-links` slot is filled. | `KlpLink[] \| string`                                                     | `undefined` |
+| Property                           | Attribute                | Description                                                                                                                               | Type                                                                      | Default                      |
+| ---------------------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ---------------------------- |
+| `environment`                      | `environment`            | The KLP platform instance to talk to. Determines every backend URL the widget uses.                                                       | `"dev01" \| "dev02" \| "devs1" \| "int01" \| "int02" \| "prod" \| "test"` | `'prod'`                     |
+| `keepAliveDisabled`                | `keep-alive-disabled`    | Whether to stop refreshing the session while the user is active on the page.                                                              | `boolean`                                                                 | `false`                      |
+| `keepAliveEvents`                  | `keep-alive-events`      | Space separated list of the events that count as user activity.                                                                           | `string`                                                                  | `'click touchstart keydown'` |
+| `keepAliveInterval`                | `keep-alive-interval`    | Minutes between two keep-alive ticks.                                                                                                     | `number`                                                                  | `9`                          |
+| `keepAliveUrl`                     | `keep-alive-url`         | The portal's own keep-alive url. The platform session is refreshed either way.                                                            | `string`                                                                  | `undefined`                  |
+| `textAccessUserLinks` _(required)_ | `text-access-user-links` | Visually hidden label for the button that opens the user menu.                                                                            | `string`                                                                  | `undefined`                  |
+| `textCurrentUser` _(required)_     | `text-current-user`      | Visually hidden label for the current user. The placeholder `{user}` will be replaced with the full name of the currently logged-in user. | `string`                                                                  | `undefined`                  |
+| `textUserLinks` _(required)_       | `text-user-links`        | Visually hidden label for the user menu.                                                                                                  | `string`                                                                  | `undefined`                  |
 
+
+## Slots
+
+| Slot               | Description                                                             |
+| ------------------ | ----------------------------------------------------------------------- |
+| `"account-switch"` | Entry for switching account, rendered only when the session permits it. |
+| `"company-switch"` | Entry for switching company, rendered only when the session permits it. |
+| `"login-link"`     | The link offered to anonymous visitors.                                 |
+| `"logout-link"`    | The entry that ends the session.                                        |
+| `"menu-links"`     | Entries of the user menu, as `post-menu-item` elements.                 |
+
+
+## Dependencies
+
+### Depends on
+
+- [post-menu-trigger](../post-menu-trigger)
+- [post-avatar](../post-avatar)
+- [post-menu](../post-menu)
+
+### Graph
+```mermaid
+graph TD;
+  post-klp-login-widget --> post-menu-trigger
+  post-klp-login-widget --> post-avatar
+  post-klp-login-widget --> post-menu
+  post-menu --> post-popovercontainer
+  style post-klp-login-widget fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 
