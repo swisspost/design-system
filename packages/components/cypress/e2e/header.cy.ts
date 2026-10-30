@@ -682,7 +682,7 @@ describe('header', () => {
       });
 
       it('should visually hide the login label without removing it from the DOM', () => {
-        cy.get('@header').find('[slot="post-login"]').first().as('loginControl');
+        cy.get('@header').find('[slot="post-login"] [slot="login-link"]').as('loginControl');
 
         cy.get('@loginControl').find('span').should('exist').and('contain.text', 'Login');
 
@@ -701,7 +701,7 @@ describe('header', () => {
       });
 
       it('should keep the login label accessible to screen readers', () => {
-        cy.get('@header').find('[slot="post-login"]').first().as('loginControl');
+        cy.get('@header').find('[slot="post-login"] [slot="login-link"]').as('loginControl');
 
         cy.get('@loginControl').should('not.have.attr', 'aria-hidden', 'true');
         cy.get('@loginControl').find('span').should('not.have.attr', 'aria-hidden', 'true');
