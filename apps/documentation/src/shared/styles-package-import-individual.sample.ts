@@ -1,28 +1,39 @@
+const requiredImports = {
+  'icon-button': {
+    label: 'required if you use icon-only buttons',
+    files: ['components/icon-button'],
+  },
+  'validation': {
+    label: 'required if you use validation feedbacks',
+    files: ['components/validation', 'icons/signal-icons'],
+  },
+  'signal-icons': {
+    label: 'required for the status icons (info, success, warning, error)',
+    files: ['icons/signal-icons'],
+  },
+};
+
 export interface Props {
   components: string[];
-  required?: { icons: boolean; floatingLabel: boolean; formFeedback: boolean };
+  required?: Partial<Record<keyof typeof requiredImports, boolean>>;
   importText?: string;
 }
 
-const requiredLabels: { [key: string]: string } = {
-  'icons': 'required if you use icons',
-  'floating-label': 'required if you use floating-labels',
-  'validation': 'required if you use validation feedbacks',
-};
+export function getComponentStyleImports(props: Props, tokens: string) {
+  const generateImport = (path: string) => `@use '@swisspost/design-system-styles/${path}.scss';`;
+  const components = props.components.map(name => generateImport(`components/${name}`)).join('\n');
 
-export function getComponentStyleImports(props: Props) {
-  const basics = `@use '@swisspost/design-system-styles/basics.scss';`;
-  const generateComponentLine = (name: string) =>
-    `@use '@swisspost/design-system-styles/components/${name}.scss';`;
-  const components = props.components.map(generateComponentLine).join('\n');
+  const required = (Object.keys(requiredImports) as Array<keyof typeof requiredImports>)
+    .filter(name => props.required?.[name])
+    .map(name => {
+      const { label, files } = requiredImports[name];
+      return `// ${label}\n${files.map(generateImport).join('\n')}`;
+    })
+    .join('\n');
 
-  const required = Object.keys(props?.required || {}).reduce(
-    (acc: string, curr: string) =>
-      `${acc}\n// ${requiredLabels[curr]}\n${generateComponentLine(curr)}`,
-    '',
-  );
-
-  return `${basics}\n${components}\n${required}`;
+  return [`${generateImport(tokens)}\n${generateImport('basics')}`, components, required]
+    .filter(Boolean)
+    .join('\n');
 }
 
 export function getStyleImportsText(props: Props): string {

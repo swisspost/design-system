@@ -18,19 +18,17 @@ import { PackageShields } from '@root/src/shared/package-shields';
 <Source code={`npm install @swisspost/design-system-styles`} language="bash" />
 
 <post-banner class="mb-16">
-The `scss` files in our styling package make use of the latest Sass features.
-If you are planning to compile the `.scss` files in your project, make sure you use an up-to-date version of [Dart Sass](https://sass-lang.com/dart-sass). LibSass or Ruby Sass are not supported.
-If you can not meet this prerequisite, you can still use the precompiled CSS files.
+  The `scss` files in our styling package make use of the latest Sass features. If you are planning
+  to compile the `.scss` files in your project, make sure you use an up-to-date version of [Dart
+  Sass](https://sass-lang.com/dart-sass). LibSass or Ruby Sass are not supported. If you can not
+  meet this prerequisite, you can still use the precompiled CSS files.
 </post-banner>
 
 ## Usage
 
 Import one of our stylesheets into your project:
 
-<Source
-  code={`@use '@swisspost/design-system-styles/<bundle>.<extension>';`}
-  language="scss"
-/>
+<Source code={`@use '@swisspost/design-system-styles/<bundle>.<extension>';`} language="scss" />
 
 ### Available bundles
 
@@ -45,24 +43,35 @@ Import one of our stylesheets into your project:
     </thead>
     <tbody>
       <tr>
-        <td>`post-default`</td>
+        <td>`(post|cargo)-default`</td>
         <td>`css`, `scss`</td>
         <td>Full styles for public websites focused on reading and browsing</td>
       </tr>
       <tr>
-        <td>`post-compact`</td>
+        <td>`(post|cargo)-compact`</td>
         <td>`css`, `scss`</td>
         <td>Full styles for public or internal applications</td>
       </tr>
       <tr>
-        <td>`post-condensed`</td>
+        <td>`(post|cargo)-condensed`</td>
         <td>`css`, `scss`</td>
         <td>Full styles for information-dense internal applications</td>
       </tr>
       <tr>
+        <td>`(post|cargo)-tokens-(default|compact|condensed)`</td>
+        <td>`css`, `scss`</td>
+        <td>
+          Design tokens (CSS custom properties) only, without any styles. Required next to `basics`
+          and the individual component styles
+        </td>
+      </tr>
+      <tr>
         <td>`basics`</td>
         <td>`css`, `scss`</td>
-        <td>Base styles for typography, buttons, lists, etc. (excludes components)</td>
+        <td>
+          Base styles for layout, typography, lists, utilities, etc. (excludes components). Does not
+          work without one of the tokens files
+        </td>
       </tr>
       <tr>
         <td>`core`</td>
@@ -72,6 +81,22 @@ Import one of our stylesheets into your project:
     </tbody>
   </table>
 </div>
+
+### Importing only what you need
+
+If you do not want the full styles, combine one tokens file with `basics` and the styles of the components you use.
+The `basics` file alone does not work: without a tokens file, the design tokens it relies on are missing.
+
+<Source
+  code={`@use '@swisspost/design-system-styles/post-tokens-default.scss';
+@use '@swisspost/design-system-styles/basics.scss';
+@use '@swisspost/design-system-styles/components/<component>.scss';`}
+  language="scss"
+/>
+
+Components located in a folder (e.g. `header`, `footer`, `tabs`) have to be imported through their index file, e.g. `components/header/index.scss`.
+The status icons (info, success, warning, error) used by validation, notifications, etc. are defined in `icons/signal-icons.scss`, which is not part of `basics` nor of the component files.
+The required files for each component are listed in the "Style Imports" section of its documentation page.
 
 ### Variables, functions, and mixins
 

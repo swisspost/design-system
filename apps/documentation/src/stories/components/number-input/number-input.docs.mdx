@@ -1,6 +1,8 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as NumberInputStories from './number-input.stories';
 import StoryTags from '@/shared/story-tags';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import StylesPackageImport from '@/shared/styles-package-import';
 
 <Meta of={NumberInputStories} />
 
@@ -14,12 +16,16 @@ import StoryTags from '@/shared/story-tags';
 <StoryTags meta={meta} />
 
 <div className="lead">
-  The number input (formerly known as Spin button) is a component that allows users to increase
-  or decrease a numeric value step-wise via buttons.
+  The number input (formerly known as Spin button) is a component that allows users to increase or
+  decrease a numeric value step-wise via buttons.
 </div>
 
 <Canvas of={NumberInputStories.Default} sourceState="shown" />
 <Controls of={NumberInputStories.Default} />
+
+<ComponentsPackageInstall component="<post-number-input>" />
+
+<StylesPackageImport components={['form-input', 'form-hint']} required={{ validation: true }} />
 
 ## Examples
 
