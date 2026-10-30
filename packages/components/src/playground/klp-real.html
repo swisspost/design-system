@@ -1,0 +1,103 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <meta name="robots" content="noindex" />
+    <meta name="design-system-settings" data-post-icon-base="/assets/icons" />
+    <title>KLP login widget against the real platform</title>
+
+    <link id="components-global-styles" rel="stylesheet" href="/build/post-components.css" />
+    <link rel="stylesheet" href="/assets/css/post-default.css" />
+    <!-- Deferred, so it runs after parsing but before the components module defines the widget. -->
+    <script defer src="/playground/klp-real.js"></script>
+    <script type="module" src="/build/post-components.esm.js"></script>
+    <script nomodule src="/build/post-components.js"></script>
+  </head>
+
+  <body>
+    <post-header text-menu="Menu">
+      <post-logo slot="post-logo">Homepage</post-logo>
+
+      <p slot="title">KLP real platform</p>
+
+      <post-klp-login-widget
+        slot="post-login"
+        text-current-user="Currently logged in: {user}"
+        text-user-links="User links"
+        text-access-user-links="Open user links"
+      >
+        <a slot="login-link" data-klp-route="login">
+          <span>Login</span>
+          <post-icon name="login" aria-hidden="true"></post-icon>
+        </a>
+        <post-menu-item slot="account-switch">
+          <a data-klp-route="switch">
+            <post-icon name="userswitch" aria-hidden="true"></post-icon>
+            Switch account
+          </a>
+        </post-menu-item>
+        <post-menu-item slot="company-switch">
+          <a data-klp-route="switch">
+            <post-icon name="company" aria-hidden="true"></post-icon>
+            Switch company
+          </a>
+        </post-menu-item>
+        <post-menu-item slot="menu-links">
+          <a data-klp-route="profile">
+            <post-icon name="profile" aria-hidden="true"></post-icon>
+            My profile
+          </a>
+        </post-menu-item>
+        <post-klp-login-widget-messages
+          slot="menu-links"
+          data-klp-route="messages"
+          text="Messages"
+          text-unread="{count} unread messages"
+        ></post-klp-login-widget-messages>
+        <post-menu-item slot="menu-links">
+          <a data-klp-route="settings">
+            <post-icon name="gear" aria-hidden="true"></post-icon>
+            Settings
+          </a>
+        </post-menu-item>
+        <post-menu-item slot="logout-link">
+          <a data-klp-route="logout">
+            <post-icon name="logout" aria-hidden="true"></post-icon>
+            Logout
+          </a>
+        </post-menu-item>
+      </post-klp-login-widget>
+    </post-header>
+
+    <main class="container">
+      <h1>KLP login widget against the real platform</h1>
+      <p>
+        No mock on this page: the widget talks to the KLP platform of the selected environment. It
+        only answers pages served over <code>https://</code> from a <code>*.post.ch</code> host on
+        port 443, see <code>readme.md</code> next to this file.
+      </p>
+
+      <dl id="klp-real-setup"></dl>
+
+      <h2>Query parameters</h2>
+      <ul>
+        <li>
+          <code>?env=</code> the widget's <code>environment</code>, default <code>int02</code>
+        </li>
+        <li><code>?lang=</code> language of the platform pages, default <code>de</code></li>
+        <li><code>?initialState=</code> <code>anonymous</code> or <code>authenticated</code></li>
+        <li>
+          <code>?app=</code> the KLP app the login link goes through, default <code>kvm</code>;
+          empty for none
+        </li>
+        <li><code>?widgets=2</code> renders a second widget below</li>
+      </ul>
+
+      <div id="klp-real-second-widget"></div>
+    </main>
+  </body>
+</html>
