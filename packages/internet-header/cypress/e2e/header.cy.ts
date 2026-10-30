@@ -102,6 +102,8 @@ describe('header', () => {
 
     context('active route', () => {
       const activeRouteConfig = copyConfig();
+      // Without a match, the header falls back to the links marked active in the config, so none is marked here
+      activeRouteConfig!.header.globalHeader.audience![0].active = false;
       activeRouteConfig!.header.globalHeader.audience![0].url = '/audience-private';
       activeRouteConfig!.header.globalHeader.secondaryNavigation![0].url = '/jobs';
 
