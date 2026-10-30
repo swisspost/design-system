@@ -56,12 +56,12 @@ jobs:
               process.exit(1);
             }
 
-            if (!/^[a-zA-Z0-9-]+\$/.test(siteId)) {
+            if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\$/.test(siteId)) {
               console.error('Error: Invalid site ID format.');
               process.exit(1);
             }
 
-            if (!/^[a-zA-Z0-9.-]+\$/.test(siteUrl)) {
+            if (!/^[a-zA-Z0-9.-]+\.netlify\.app\$/.test(siteUrl)) {
               console.error('Error: Invalid site URL format.');
               process.exit(1);
             }

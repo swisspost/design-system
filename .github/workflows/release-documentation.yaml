@@ -70,7 +70,17 @@ jobs:
         with:
           script: |
             const fs = require('fs')
-            return JSON.parse(fs.readFileSync('./apps/documentation/netlify.config.json', 'utf8'))
+            const config = JSON.parse(fs.readFileSync('./apps/documentation/netlify.config.json', 'utf8'))
+
+            if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(config.siteId || '')) {
+              throw new Error('Invalid site ID format.')
+            }
+
+            if (!/^[a-zA-Z0-9.-]+\.netlify\.app$/.test(config.siteUrl || '')) {
+              throw new Error('Invalid site URL format.')
+            }
+
+            return config
 
       - name: Publish documentation to netlify
         id: deploy
