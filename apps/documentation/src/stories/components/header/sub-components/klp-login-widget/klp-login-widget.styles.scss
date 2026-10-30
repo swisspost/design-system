@@ -1,0 +1,19 @@
+#storybook-docs {
+  .header-story-wrapper {
+    .virtual-body {
+      height: 350px;
+      overflow-y: auto;
+    }
+  }
+
+  // Storybook's container around an iframe story ends up a few pixels taller than the iframe and
+  // scrolls too; the iframe already scrolls its own content.
+  .docs-story > :first-child {
+    overflow: hidden;
+  }
+
+  .messages-flow {
+    max-width: 100%;
+    height: auto;
+  }
+}

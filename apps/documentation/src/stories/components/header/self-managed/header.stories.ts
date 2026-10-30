@@ -1,15 +1,18 @@
 import {
-  renderLoginLink,
+  renderLoginWidget,
   renderMainnavigation,
   renderSideNavigation,
   renderTitle,
-  renderUserMenu,
 } from '@/stories/components/header/self-managed/renderers';
 import { fakeContent } from '@/utils';
 import { MetaComponent } from '@root/types';
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { forceCompactAppearance } from '../../../../../.storybook/helpers';
+import {
+  installKlpPlatformFake,
+  uninstallKlpPlatformFake,
+} from '../sub-components/klp-login-widget/klp-platform.fake';
 import { getSlottedContent, SubComponentRenderers } from './utils';
 
 const meta: MetaComponent = {
@@ -146,7 +149,8 @@ const meta: MetaComponent = {
     },
     isLoggedIn: {
       name: 'Is logged in',
-      description: 'Whether the user is logged in or not.',
+      description:
+        'Whether the user is logged in or not. The login widget gets its session from a fake KLP platform, so both states can be shown without one.',
       control: {
         type: 'boolean',
       },
@@ -171,17 +175,23 @@ const meta: MetaComponent = {
       },
     },
   },
+  // Restores the native `fetch` and `WebSocket` once a story is torn down, so the fake platform
+  // never leaks into stories rendered later in the same window.
+  beforeEach: () => uninstallKlpPlatformFake,
   decorators: [
     (story, context) => {
       const showSideNav = context.args.sideNav && context.args.title !== '';
+      installKlpPlatformFake({ user: context.args.isLoggedIn ? 'b2b-multi-account' : null });
+      // The header changes on scroll, so the page needs enough content to scroll on any viewport.
+      const content = fakeContent(6);
 
       return html`
         <div class="header-story-wrapper">
           <div class="virtual-body">
             ${story()}
             ${showSideNav
-              ? html`<main class="main-container">${fakeContent()}</main>`
-              : html`<div>${fakeContent()}</div>`}
+              ? html`<main class="main-container">${content}</main>`
+              : html`<div>${content}</div>`}
           </div>
         </div>
       `;
@@ -395,13 +405,13 @@ export const LoggedIn: Story = {
   decorators: [
     (story: StoryFn, context: StoryContext) => {
       const renderHeader = getHeaderRenderer({
-        renderUserMenu: () => html` ${story(context.args, context)} `,
+        renderLoginWidget: () => html` ${story(context.args, context)} `,
         renderMainnavigation: () => renderMainnavigation({ showMegadropdown: false }),
       });
       return renderHeader(context.args);
     },
   ],
-  render: () => renderUserMenu(),
+  render: (args: Args) => renderLoginWidget(args),
 };
 
 // User is logged out
@@ -413,11 +423,11 @@ export const LoggedOut: Story = {
   decorators: [
     (story: StoryFn, context: StoryContext) => {
       const renderHeader = getHeaderRenderer({
-        renderLoginLink: () => html` ${story(context.args, context)} `,
+        renderLoginWidget: () => html` ${story(context.args, context)} `,
         renderMainnavigation: () => renderMainnavigation({ showMegadropdown: false }),
       });
       return renderHeader(context.args);
     },
   ],
-  render: () => renderLoginLink(),
+  render: (args: Args) => renderLoginWidget(args),
 };
