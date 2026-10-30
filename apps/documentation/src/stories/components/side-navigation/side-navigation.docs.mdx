@@ -20,6 +20,12 @@ import './side-navigation.styles.scss';
   levels that can be expanded or collapsed.
 </div>
 
+<post-tabs size="large">
+  <post-tab-item name="overview">Overview</post-tab-item>
+  <post-tab-item name="accessibility">Accessibility</post-tab-item>
+
+<post-tab-panel for="overview" class="pt-24">
+
 <div className="main-story">
   <Canvas sourceState="shown" of={SideNavigationStories.Default} />
 </div>
@@ -71,12 +77,19 @@ The side navigation comes with two size variants:
 
 <Canvas of={SideNavigationStories.Large} />
 
-## Accessibility
+</post-tab-panel>
+
+<post-tab-panel for="accessibility" class="pt-24">
 
 ### Links and disclosure buttons
 
-Use `<a>` for links and a `<button>` inside `<post-collapsible-trigger>` for collapsible sections. A link navigates, a button discloses; never nest one inside the other.
+- Use `<a>` for links and a `<button>` inside `<post-collapsible-trigger>` for collapsible sections. A link navigates, a button discloses; never nest one inside the other.
+- Mark the current page link with `aria-current="page"`.
 
 ### Focus management
 
-On mobile, focus moves into the navigation when the dialog opens and returns to the trigger when it closes. The rest of the page is inert while the dialog is open.
+- On mobile, focus moves into the navigation when the dialog opens and returns to the trigger when it closes.
+- The rest of the page is inert while the dialog is open.
+
+</post-tab-panel>
+</post-tabs>
