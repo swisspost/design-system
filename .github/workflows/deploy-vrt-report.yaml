@@ -9,6 +9,7 @@
 # with more privileges. The report is only deployed as a static upload, never executed
 # on the runner, but when the pull request comes from a fork its content is attacker-controlled:
 # it is served with hardening headers and the pull request comment marks the preview as untrusted.
+# The pull request number is never read from the artifact, it is resolved from the workflow_run event.
 #
 # https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
 #
@@ -49,16 +50,50 @@ jobs:
 
             core.setOutput('exists', String(data.artifacts.length > 0));
 
-      - name: Checkout
+      # The pull request number is resolved from the trusted workflow_run payload instead of the
+      # artifact, so a fork cannot target another pull request (comment or deploy alias).
+      # workflow_run.pull_requests is empty for forks, so fall back to looking up the open
+      # pull request by head repository, branch and commit.
+      - name: Resolve pull request number
         if: steps.artifact.outputs.exists == 'true'
+        id: pr
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        with:
+          script: |
+            const run = context.payload.workflow_run;
+            const baseRepo = `${context.repo.owner}/${context.repo.repo}`;
+            const matches = pr => pr.head.sha === run.head_sha && pr.base.repo.full_name === baseRepo;
+
+            let pr = (run.pull_requests || []).find(p => p.head.sha === run.head_sha && p.base.repo.id === context.payload.repository.id);
+
+            if (!pr) {
+              const pulls = await github.paginate(github.rest.pulls.list, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: 'open',
+                head: `${run.head_repository.owner.login}:${run.head_branch}`,
+                per_page: 100,
+              });
+              pr = pulls.find(matches);
+            }
+
+            if (!pr) {
+              core.notice(`No open pull request found for commit ${run.head_sha} (outdated or closed), skipping.`);
+              return;
+            }
+
+            core.setOutput('number', String(pr.number));
+
+      - name: Checkout
+        if: steps.pr.outputs.number != ''
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
 
       - name: Setup pnpm & node
-        if: steps.artifact.outputs.exists == 'true'
+        if: steps.pr.outputs.number != ''
         uses: ./.github/actions/setup-pnpm
 
       - name: Download report
-        if: steps.artifact.outputs.exists == 'true'
+        if: steps.pr.outputs.number != ''
         uses: ./.github/actions/artifact-download
         id: report
         with:
@@ -66,17 +101,11 @@ jobs:
           folder: vrt-report
 
       - name: Read report status
-        if: steps.artifact.outputs.exists == 'true'
+        if: steps.pr.outputs.number != ''
         id: status
         env:
           FOLDER: ${{ steps.report.outputs.folder }}
-          PR_NUMBER: ${{ steps.report.outputs.id }}
         run: |
-          if [[ -z "$PR_NUMBER" || "$PR_NUMBER" == "0" ]]; then
-            echo "Error: Missing pull request number"
-            exit 1
-          fi
-
           # VRT-STATUS is written by the "Prepare VRT report" step of visual-tests.yaml:
           # "changed" => visual differences detected, anything else => no differences.
           STATUS=$(cat "$FOLDER/VRT-STATUS" 2>/dev/null | tr -cd '[:alpha:]')
@@ -130,17 +159,17 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ env.SITE_ID }}
-          PR_NUMBER: ${{ steps.report.outputs.id }}
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
           FOLDER: ${{ github.workspace }}/${{ steps.report.outputs.folder }}
         run: |
           netlify deploy --filter @swisspost/design-system-documentation --dir "$FOLDER" --alias "vrt-pr-${PR_NUMBER}"
           echo "report-url=https://vrt-pr-${PR_NUMBER}--${SITE_URL}?devModeEnabled=true" >> $GITHUB_OUTPUT
 
       - name: Update pull request comment
-        if: always() && steps.artifact.outputs.exists == 'true'
+        if: always() && steps.pr.outputs.number != ''
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
         env:
-          PR_NUMBER: ${{ steps.report.outputs.id }}
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
           STATUS: ${{ steps.status.outputs.status }}
           REPORT_URL: ${{ steps.deploy.outputs.report-url }}
           APPROVED: ${{ github.event.workflow_run.conclusion == 'success' }}
