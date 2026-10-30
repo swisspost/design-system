@@ -1,6 +1,5 @@
 import * as testConfig from '@/assets/config/test-configuration.json';
 import { state } from '@/data/store';
-import { MainNavigationConfig } from '@/models/header.model';
 import { IconLinkConfig } from '@/models/shared.model';
 import { compareRoutes, getActiveLink, getSimilarityScore } from './route.service';
 
@@ -91,12 +90,18 @@ describe('route.service.ts', () => {
   });
 
   describe('getActiveLink', () => {
+    // The test configuration links to anchors, which all resolve to the current page, so these
+    // tests use their own path-based navigation.
     beforeEach(() => {
-      const config = [...testConfig.header.localHeader.mainNavigation] as MainNavigationConfig;
       state.localizedConfig = {
         header: {
-          ...testConfig.header,
-          localHeader: { ...testConfig.header.localHeader, mainNavigation: config },
+          globalHeader: { postLogo: { text: 'Home', url: '/' } },
+          localHeader: {
+            mainNavigation: [
+              { text: 'Letters', url: '/letters' },
+              { text: 'Packages', url: '/packages' },
+            ],
+          },
         },
       };
     });

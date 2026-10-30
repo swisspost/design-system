@@ -1,0 +1,40 @@
+<swisspost-internet-header
+  project="design-system"
+  environment="int02"
+  language="en"
+  text-main="Main"
+  text-menu="Menu"
+  text-change-language="Change the language"
+  text-current-language="The currently selected language is {name}."
+  text-current-user="Current user is {user}."
+  text-access-user-links="Access user links"
+  text-user-links="User links"
+  text-close="Close"
+  text-back="Back"
+></swisspost-internet-header>
+
+<main class="container py-36">
+  @if (configSource === 'script') {
+  <h1>Pre-configured header: config from a script tag</h1>
+  <p>
+    The header reads its config from the <code>#PPM_HEADER_DATA</code> script tag, which holds the
+    header's test configuration.
+  </p>
+  } @else {
+  <h1>Pre-configured header: config from the header API</h1>
+  <p>
+    The header fetches the config of the <code>design-system</code> project from the
+    <code>int02</code> header API.
+  </p>
+  }
+  <p>Add <code>?klpmock</code> to the URL to see the user menu of a signed-in user.</p>
+
+  <nav aria-labelledby="pre-configured-header-nav">
+    <h2 id="pre-configured-header-nav">Pre-configured header examples</h2>
+    <ul>
+      <li><a routerLink="/pre-configured-header/script-config">Config from a script tag</a></li>
+      <li><a routerLink="/pre-configured-header/api-config">Config from the header API</a></li>
+      <li><a routerLink="/home">Self-managed header</a></li>
+    </ul>
+  </nav>
+</main>
