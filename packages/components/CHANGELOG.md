@@ -1,5 +1,14 @@
 # @swisspost/design-system-components
 
+## 10.9.0
+
+### Patch Changes
+
+- Fixed a double outline appearing on the megadropdown trigger button when focused. (by [@leagrdv](https://github.com/leagrdv) and [@alionazherdetska](https://github.com/alionazherdetska) with [#8619](https://github.com/swisspost/design-system/pull/8619))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.9.0
+  - @swisspost/design-system-styles@10.9.0
+
 ## 10.8.0
 
 ### Patch Changes
