@@ -8,7 +8,7 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 <div className="docs-title">
   # Button Close
 
-<link-design of={JSON.stringify(CloseButtonStories)}></link-design>
+<story-links of={JSON.stringify(CloseButtonStories)}></story-links>
 
 </div>
 
@@ -59,16 +59,15 @@ No `onClick` handler or event listener is required on the consumer side.
 
 ### Supported closable targets
 
-| Ancestor | Close method |
-|---|---|
-| `<post-banner>` | `dismiss()` |
-| `<post-popover>` | `hide()` |
-| `<post-popovercontainer>` | `hide()` |
-| `<post-collapsible>` | `toggle(false)` |
-| `<post-accordion-item>` | `toggle(false)` |
-| `<dialog>` | `close()` |
+| Ancestor                   | Close method           |
+| -------------------------- | ---------------------- |
+| `<post-banner>`            | `dismiss()`            |
+| `<post-popover>`           | `hide()`               |
+| `<post-popovercontainer>`  | `hide()`               |
+| `<post-collapsible>`       | `toggle(false)`        |
+| `<post-accordion-item>`    | `toggle(false)`        |
+| `<dialog>`                 | `close()`              |
 | native `[popover]` element | `togglePopover(false)` |
-
 
 ### Examples
 
@@ -79,4 +78,3 @@ No `onClick` handler or event listener is required on the consumer side.
 #### `<post-banner>`
 
 <Canvas sourceState="shown" of={CloseButtonStories.CloseBanner} />
-

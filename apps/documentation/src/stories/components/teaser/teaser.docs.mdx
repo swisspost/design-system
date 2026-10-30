@@ -7,16 +7,16 @@ import StoryTags from '@/shared/story-tags';
 <div className="docs-title">
   # Card Teaser
 
-<link-design of={JSON.stringify(TeaserStories)}></link-design>
+<story-links of={JSON.stringify(TeaserStories)}></story-links>
 
 </div>
 
 <StoryTags meta={meta} />
 
 <div className="lead">
-  The teaser card is a clickable preview that leads to detailed content, providing a convenient entry
-  point for users to access more information. It contains maximum one interactive element (button)
-  which links to the same location as the card.
+  The teaser card is a clickable preview that leads to detailed content, providing a convenient
+  entry point for users to access more information. It contains maximum one interactive element
+  (button) which links to the same location as the card.
 </div>
 
 <Canvas sourceState="shown" of={TeaserStories.Default} />
