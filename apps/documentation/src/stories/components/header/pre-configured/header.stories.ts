@@ -40,8 +40,13 @@ const meta: MetaComponent = {
       url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=19536-26512&mode=design&t=HksCTWa2MMccgMl4-0',
     },
   },
-  args: { ...defaultArgs, session: 'anonymous' },
+  args: { ...defaultArgs, session: 'anonymous', localData: true },
   argTypes: {
+    // The internet-header e2e tests turn it off, so the header requests its config and session
+    // itself and the tests can answer both with their own fixtures.
+    localData: {
+      table: { disable: true },
+    },
     session: {
       name: 'Session',
       description:
@@ -53,21 +58,28 @@ const meta: MetaComponent = {
   },
   // Removes the fake once a story is torn down, so it never leaks into the next one.
   beforeEach: () => uninstallKlpPlatformFake,
-  // Keyed on the session and the language, so a changed control mounts a new header: its widget asks the
-  // fake again and its language menu picks up the newly active language.
+  // With local data, keyed on the session and the language, so a changed control mounts a new header: its
+  // widget asks the fake again and its language menu picks up the newly active language.
+  // Without it (e2e), the header stays mounted and handles its changed props itself, like in a real app.
   render: args => {
-    const key = `${args.session}-${args.language}`;
-    installKlpPlatformFake({ user: args.session === 'anonymous' ? null : args.session });
+    const key = args.localData ? `local-${args.session}-${args.language}` : 'api';
+    if (args.localData) {
+      installKlpPlatformFake({ user: args.session === 'anonymous' ? null : args.session });
+    } else {
+      uninstallKlpPlatformFake();
+    }
     return html`${keyed(key, renderHeader(args))}`;
   },
   decorators: [
     // The header prefers a `#PPM_HEADER_DATA` config over the API, so the page renders without any request.
     (story, { args }) => html`
-      <script
-        id="PPM_HEADER_DATA"
-        type="application/json"
-        .textContent=${JSON.stringify(getLocalizedTestConfiguration(args.language))}
-      ></script>
+      ${args.localData
+        ? html`<script
+            id="PPM_HEADER_DATA"
+            type="application/json"
+            .textContent=${JSON.stringify(getLocalizedTestConfiguration(args.language))}
+          ></script>`
+        : nothing}
       <div class="header-story-wrapper">
         <div class="virtual-body">${story()} ${fakeContent()}</div>
       </div>
