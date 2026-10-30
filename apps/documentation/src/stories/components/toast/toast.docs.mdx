@@ -24,6 +24,12 @@ import ToastServiceTs from './toast-service-ts.sample.ts?raw';
   task-related.
 </div>
 
+<post-tabs size="large">
+  <post-tab-item name="overview">Overview</post-tab-item>
+  <post-tab-item name="accessibility">Accessibility</post-tab-item>
+
+<post-tab-panel for="overview" class="pt-24">
+
 Push notifications to your visitors with a `.toast` element, a lightweight and easily customizable alert message.
 
 Toasts are designed to mimic the push notifications popularized by mobile and desktop operating systems. They are intended to be small interruptions to your visitors or users, and therefore should contain minimal, to-the-point, non-interactive content.
@@ -61,12 +67,6 @@ pausing on interaction alone is not enough; users need a way to keep or retrieve
 You can stack toasts by wrapping them in a `.toast-container`, which will vertically add some spacing.
 
 <Canvas of={ToastStories.Stacked} />
-
-## Accessibility
-
-Toasts are intended to be small interruptions to your visitors or users, so to help those with screen readers and similar assistive technologies, you should wrap your toasts in an Live region.
-
-See how to implement it on our [live regions documentation](/?path=/docs/548d973c-679c-4a02-96cd-70f82aec5f65--docs).
 
 ## Angular Integration
 
@@ -127,4 +127,18 @@ notifications by overriding the default `ngx-toastr` classes.
     CSS files must be imported <b>after</b> the `ngx-toastr` CSS files.
 
   </post-tab-panel>
+</post-tabs>
+
+</post-tab-panel>
+
+<post-tab-panel for="accessibility" class="pt-24">
+
+### Live region
+
+- Toasts are intended to be small interruptions to your visitors or users, so to help those with screen readers and similar assistive technologies, you should wrap your toasts in a live region.
+- Render the live region before adding toasts to it.
+
+See how to implement it on our [live regions documentation](/?path=/docs/548d973c-679c-4a02-96cd-70f82aec5f65--docs).
+
+</post-tab-panel>
 </post-tabs>
