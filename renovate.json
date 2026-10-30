@@ -1,11 +1,26 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": [
+    "Renovate is the only bot managing dependency version updates in this repository (npm/pnpm and GitHub Actions). Dependabot version updates are intentionally not configured, to avoid duplicate and conflicting pull requests. Dependabot security alerts remain enabled through the repository settings.",
+    "`minimumReleaseAge` must stay greater than or equal to the `minimumReleaseAge` in `pnpm-workspace.yaml`. If Renovate proposed a version younger than pnpm's cooldown, pnpm would refuse to update the lock file and the pull request would fail with an artifact error. Should the two values ever be brought closer together, set `minimumReleaseAgeBuffer` as well, to cover companion packages that are published slightly later than the main package.",
+    "The `schedule` is written in the `@breejs/later` text syntax and is equivalent to the cron expression `* 0-3 * * 1`, interpreted in the configured `timezone`. Renovate plans to remove the text syntax in a future major release, at which point this needs to be migrated to cron syntax or to the `schedule:earlyMondays` preset."
+  ],
   "extends": ["config:best-practices"],
   "labels": ["⛓️ dependencies"],
   "timezone": "Europe/Zurich",
-  "schedule": ["before 4am on the first day of the month"],
+  "schedule": ["before 4am on monday"],
   "minimumReleaseAge": "7 days",
+  "prConcurrentLimit": 20,
+  "branchConcurrentLimit": 20,
+  "prHourlyLimit": 6,
   "packageRules": [
+    {
+      "description": "Surface dependencies declared in the pnpm workspace file (catalogs and overrides) as one reviewable pull request. Must stay the first rule so the more specific monorepo and patch groups below can still take precedence.",
+      "matchFileNames": ["pnpm-workspace.yaml"],
+      "matchUpdateTypes": ["digest", "patch", "minor"],
+      "groupName": "pnpm workspace",
+      "groupSlug": "pnpm-workspace"
+    },
     {
       "extends": [
         "monorepo:angular",
