@@ -3,3 +3,15 @@ packages:
   - 'packages/components-angular/projects/*'
   - 'packages/intranet-header-workspace/projects/*'
   - 'packages/styles-primeng-workspace/projects/*'
+allowBuilds:
+  '@bundled-es-modules/glob': true
+  '@parcel/watcher': true
+  '@percy/core': true
+  cypress: true
+  esbuild: true
+  iframe-resizer: true
+  lmdb: true
+  msgpackr-extract: true
+  nx: true
+  style-dictionary: true
+  unrs-resolver: true
