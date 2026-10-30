@@ -15,7 +15,10 @@ $nav-block-padding-inline-end: 12px;
  */
 @mixin interactive-elements {
   &:where(#{$interactive-elements-selector}),
-  &:where(ul) > li > :where(#{$interactive-elements-selector}) {
+  &:where(ul) > li > :where(#{$interactive-elements-selector}),
+  // the widget slots the consumer's login link into its shadow root, but the link itself stays
+  // in the light dom, so only the combinator chain needs the extra step
+  &:where(post-klp-login-widget) > :where(#{$interactive-elements-selector}) {
     @content;
   }
 }
