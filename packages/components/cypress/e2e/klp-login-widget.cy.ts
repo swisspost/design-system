@@ -27,6 +27,12 @@ function getMenu() {
   return cy.get('@widget').shadow().find('post-menu');
 }
 
+// The trigger only renders once the session is known, after the widget is hydrated, and
+// `post-menu-trigger` wires its button on load: `aria-haspopup` is set right before its listeners.
+function aliasTrigger() {
+  getTrigger().should('have.attr', 'aria-haspopup', 'menu').as('trigger');
+}
+
 function checkWidgetA11y() {
   cy.checkA11y('post-klp-login-widget', undefined, violations => {
     expect(violations).to.have.length(0);
@@ -75,7 +81,7 @@ describe('klp login widget', () => {
     describe(`signed in as ${session}`, () => {
       beforeEach(() => {
         visitStory(KLP_LOGIN_WIDGET_ID, 'default', { session });
-        getTrigger().as('trigger');
+        aliasTrigger();
       });
 
       it('names the trigger after the user and the menu it opens', () => {
@@ -127,7 +133,7 @@ describe('klp login widget', () => {
   describe('unread messages', () => {
     beforeEach(() => {
       visitStory(KLP_LOGIN_WIDGET_MESSAGES_ID, 'default', { unread: 3 });
-      getTrigger().as('trigger');
+      aliasTrigger();
     });
 
     it('announces the count in the messages entry, not on the trigger', () => {
