@@ -1,5 +1,11 @@
 # @swisspost/design-system-icons
 
+## 10.9.0
+
+### Minor Changes
+
+- Added icons: `2804`, `2805`, `2806` and `2807` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8742](https://github.com/swisspost/design-system/pull/8742))
+
 ## 10.8.0
 
 ### Minor Changes
