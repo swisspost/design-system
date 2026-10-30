@@ -27454,7 +27454,7 @@
         }
       },
       "createdAt": "2026-10-14T11:08:09.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "8924b040-c7bf-11f1-bea4-0050568d2654",
@@ -27485,7 +27485,7 @@
         }
       },
       "createdAt": "2026-10-14T11:08:07.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "88496b70-c7bf-11f1-bea4-0050568d2654",
@@ -27516,7 +27516,7 @@
         }
       },
       "createdAt": "2026-10-14T11:08:06.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "87628de1-c7bf-11f1-bea4-0050568d2654",
@@ -27547,7 +27547,7 @@
         }
       },
       "createdAt": "2026-10-14T11:08:04.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "86726180-c7bf-11f1-bea4-0050568d2654",
@@ -27578,7 +27578,7 @@
         }
       },
       "createdAt": "2026-10-14T11:08:03.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "858ae7b0-c7bf-11f1-bea4-0050568d2654",
@@ -27609,7 +27609,7 @@
         }
       },
       "createdAt": "2026-10-14T11:08:01.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "84b79220-c7bf-11f1-bea4-0050568d2654",
@@ -27640,7 +27640,7 @@
         }
       },
       "createdAt": "2026-10-14T11:08:00.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "83de9741-c7bf-11f1-bea4-0050568d2654",
@@ -27671,7 +27671,7 @@
         }
       },
       "createdAt": "2026-10-14T11:07:59.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "830b8fd0-c7bf-11f1-bea4-0050568d2654",
@@ -27702,7 +27702,7 @@
         }
       },
       "createdAt": "2026-10-14T11:07:57.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "812802c0-c7bf-11f1-bea4-0050568d2654",
@@ -27733,7 +27733,7 @@
         }
       },
       "createdAt": "2026-10-14T11:07:54.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "812591c0-c7bf-11f1-bea4-0050568d2654",
@@ -27764,7 +27764,7 @@
         }
       },
       "createdAt": "2026-10-14T11:07:54.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "8122d2a0-c7bf-11f1-bea4-0050568d2654",
@@ -27795,7 +27795,7 @@
         }
       },
       "createdAt": "2026-10-14T11:07:54.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "268a1160-92f9-11f0-9719-005056873709",
@@ -145207,6 +145207,366 @@
       },
       "createdAt": "2025-11-12T06:58:29.000Z",
       "modifiedAt": "2025-11-13T06:05:01.415Z"
+    },
+    {
+      "uuid": "974b4ae0-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665472,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665472/storage/MDExNjY1NDcyLzAvbWFzdGVyLy8vMTE0NzgyNTM0",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Shape_16.svg",
+        "basename": "Icon_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:33.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
+    },
+    {
+      "uuid": "9656b1b0-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665471,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665471/storage/MDExNjY1NDcxLzAvbWFzdGVyLy8vMTE0NzgyNTM4",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Shape_24.svg",
+        "basename": "Icon_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:31.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
+    },
+    {
+      "uuid": "95451aa0-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665470,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665470/storage/MDExNjY1NDcwLzAvbWFzdGVyLy8vMTE0NzgyNTQy",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Shape_32.svg",
+        "basename": "Icon_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:29.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
+    },
+    {
+      "uuid": "943187c0-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665468,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665468/storage/MDExNjY1NDY4LzAvbWFzdGVyLy8vMTE0NzgyNTUw",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Shape_40.svg",
+        "basename": "Icon_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:28.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
+    },
+    {
+      "uuid": "94839f60-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665469,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665469/storage/MDExNjY1NDY5LzAvbWFzdGVyLy8vMTE0NzgyNTQ2",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Shape_48.svg",
+        "basename": "Icon_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:28.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
+    },
+    {
+      "uuid": "93064e30-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665467,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665467/storage/MDExNjY1NDY3LzAvbWFzdGVyLy8vMTE0NzgyNDI3",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Shape_64.svg",
+        "basename": "Icon_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:26.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
+    },
+    {
+      "uuid": "91a4e970-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665465,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665465/storage/MDExNjY1NDY1LzAvbWFzdGVyLy8vMTE0NzgyNTU4",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Solid_Shape_16.svg",
+        "basename": "Icon_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:23.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
+    },
+    {
+      "uuid": "91b0d050-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665466,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665466/storage/MDExNjY1NDY2LzAvbWFzdGVyLy8vMTE0NzgyNTU0",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Solid_Shape_24.svg",
+        "basename": "Icon_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:23.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
+    },
+    {
+      "uuid": "8ff25770-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665464,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665464/storage/MDExNjY1NDY0LzAvbWFzdGVyLy8vMTE0NzgyNTYy",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Solid_Shape_32.svg",
+        "basename": "Icon_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:20.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
+    },
+    {
+      "uuid": "8da72ef0-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665461,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665461/storage/MDExNjY1NDYxLzAvbWFzdGVyLy8vMTE0NzgyNTc0",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Solid_Shape_40.svg",
+        "basename": "Icon_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:17.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
+    },
+    {
+      "uuid": "8dad2260-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665462,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665462/storage/MDExNjY1NDYyLzAvbWFzdGVyLy8vMTE0NzgyNTcw",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Solid_Shape_48.svg",
+        "basename": "Icon_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:17.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
+    },
+    {
+      "uuid": "8db2eec0-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665463,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665463/storage/MDExNjY1NDYzLzAvbWFzdGVyLy8vMTE0NzgyNTY2",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Solid_Shape_64.svg",
+        "basename": "Icon_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:17.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
     },
     {
       "uuid": "5fe6f5a0-7e93-11f1-8560-0050568d2654",
@@ -289063,7 +289423,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:31.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "67461de0-c7c1-11f1-bea4-0050568d2654",
@@ -289099,7 +289459,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:30.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "65f051e0-c7c1-11f1-bea4-0050568d2654",
@@ -289135,7 +289495,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:27.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "65ec8152-c7c1-11f1-bea4-0050568d2654",
@@ -289171,7 +289531,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:27.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "64c2f570-c7c1-11f1-bea4-0050568d2654",
@@ -289207,7 +289567,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:25.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "643d4ab0-c7c1-11f1-bea4-0050568d2654",
@@ -289243,7 +289603,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:24.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "630714a1-c7c1-11f1-bea4-0050568d2654",
@@ -289279,7 +289639,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:22.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "62d3cfa0-c7c1-11f1-bea4-0050568d2654",
@@ -289315,7 +289675,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:22.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "61f9ea60-c7c1-11f1-bea4-0050568d2654",
@@ -289351,7 +289711,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:21.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "603ea5d0-c7c1-11f1-bea4-0050568d2654",
@@ -289387,7 +289747,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:18.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "6038b260-c7c1-11f1-bea4-0050568d2654",
@@ -289423,7 +289783,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:18.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "603fb740-c7c1-11f1-bea4-0050568d2654",
@@ -289459,7 +289819,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:18.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "c94b9094-600d-11f1-aef4-0050568d2654",
@@ -302759,6 +303119,402 @@
       },
       "createdAt": "2026-01-07T07:17:54.000Z",
       "modifiedAt": "2026-01-08T07:05:08.531Z"
+    },
+    {
+      "uuid": "24395370-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665487,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665487/storage/MDExNjY1NDg3LzAvbWFzdGVyLy8vMTE0NzgzMzMy",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Shape_16.svg",
+        "basename": "VinoLog_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:29.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "235d4b50-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665486,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665486/storage/MDExNjY1NDg2LzAvbWFzdGVyLy8vMTE0NzgzMzI4",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Shape_24.svg",
+        "basename": "VinoLog_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:28.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "2321c8f0-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665485,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665485/storage/MDExNjY1NDg1LzAvbWFzdGVyLy8vMTE0NzgzMzI0",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Shape_32.svg",
+        "basename": "VinoLog_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:27.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "21f94e80-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665484,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665484/storage/MDExNjY1NDg0LzAvbWFzdGVyLy8vMTE0NzgzMzIw",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Shape_40.svg",
+        "basename": "VinoLog_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:25.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "215d83b0-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665483,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665483/storage/MDExNjY1NDgzLzAvbWFzdGVyLy8vMTE0NzgzMzE2",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Shape_48.svg",
+        "basename": "VinoLog_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:24.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "201fac80-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665482,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665482/storage/MDExNjY1NDgyLzAvbWFzdGVyLy8vMTE0NzgzMTM5",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Shape_64.svg",
+        "basename": "VinoLog_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:22.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "1f812290-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665481,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665481/storage/MDExNjY1NDgxLzAvbWFzdGVyLy8vMTE0NzgzMzEy",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Solid_Shape_16.svg",
+        "basename": "VinoLog_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:21.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "1f5e5850-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665480,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665480/storage/MDExNjY1NDgwLzAvbWFzdGVyLy8vMTE0NzgzMzA4",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Solid_Shape_24.svg",
+        "basename": "VinoLog_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:21.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "1e53c620-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665479,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665479/storage/MDExNjY1NDc5LzAvbWFzdGVyLy8vMTE0NzgzMzA0",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Solid_Shape_32.svg",
+        "basename": "VinoLog_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:19.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "1c4d95e0-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665477,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665477/storage/MDExNjY1NDc3LzAvbWFzdGVyLy8vMTE0NzgzMjk2",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Solid_Shape_40.svg",
+        "basename": "VinoLog_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:16.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "1c56e4b0-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665478,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665478/storage/MDExNjY1NDc4LzAvbWFzdGVyLy8vMTE0NzgzMzAw",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Solid_Shape_48.svg",
+        "basename": "VinoLog_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:16.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "1c47f090-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665476,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665476/storage/MDExNjY1NDc2LzAvbWFzdGVyLy8vMTE0NzgzMjky",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Solid_Shape_64.svg",
+        "basename": "VinoLog_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:16.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
     },
     {
       "uuid": "62e06f30-e51e-11ef-a15d-005056873709",
@@ -396428,13 +397184,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 10476,
+    "success": 10500,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 2948,
     "duplicates": 0
   },
-  "created": "2026-10-14T13:29:06.227Z",
-  "version": "10.7.0"
+  "created": "2026-10-27T07:51:35.913Z",
+  "version": "10.8.0"
 }

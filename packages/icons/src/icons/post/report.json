@@ -29399,7 +29399,156 @@
         }
       },
       "createdAt": "2026-10-14T13:20:39.000Z",
-      "modifiedAt": "2026-10-14T13:24:57.000Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
+    },
+    {
+      "uuid": "7dfd69a0-cc47-11f1-aa7b-0050568d2654",
+      "id": 11661918,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11661918/storage/MDExNjYxOTE4LzAvbWFzdGVyLy8vMTE0NzQzNjg3",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2803.svg",
+        "basename": "2803",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T05:31:25.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "62761b70-d1d6-11f1-8309-0050568d2654",
+      "id": 11710565,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11710565/storage/MDExNzEwNTY1LzAvbWFzdGVyLy8vMTE1MzgyOTkx",
+        "keywords": [
+          "convenience",
+          "Komfort",
+          "Confort",
+          "Comfort",
+          "Convenient delivery",
+          "Komfortable Lieferung",
+          "Livraison confortable",
+          "Consegna comoda"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2804.svg",
+        "basename": "2804",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-27T07:16:53.000Z",
+      "modifiedAt": "2026-10-27T07:20:55.000Z"
+    },
+    {
+      "uuid": "0b7ab140-d1d7-11f1-8309-0050568d2654",
+      "id": 11711021,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11711021/storage/MDExNzExMDIxLzAvbWFzdGVyLy8vMTE1Mzg1OTky",
+        "keywords": [
+          "Sustainable delivery",
+          "Nachhaltige Lieferung",
+          "Livraison durable",
+          "Consegna sostenibile"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2805.svg",
+        "basename": "2805",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-27T07:21:36.000Z",
+      "modifiedAt": "2026-10-27T07:24:10.000Z"
+    },
+    {
+      "uuid": "8ec91540-d1d8-11f1-8309-0050568d2654",
+      "id": 11711974,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11711974/storage/MDExNzExOTc0LzAvbWFzdGVyLy8vMTE1Mzk2ODM2",
+        "keywords": [
+          "Speed and predictability",
+          "Schnelligkeit und Planbarkeit",
+          "Rapidité et planification",
+          "Rapidità e pianificabilità"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2806.svg",
+        "basename": "2806",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-27T07:32:26.000Z",
+      "modifiedAt": "2026-10-27T07:36:16.000Z"
+    },
+    {
+      "uuid": "3bfe8380-d1d9-11f1-8309-0050568d2654",
+      "id": 11712428,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11712428/storage/MDExNzEyNDI4LzAvbWFzdGVyLy8vMTE1Mzk5OTU2",
+        "keywords": [
+          "Circular logistics",
+          "Kreislauflogistik",
+          "Logistique circulaire",
+          "Logistica circolare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2807.svg",
+        "basename": "2807",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-27T07:37:16.000Z",
+      "modifiedAt": "2026-10-27T07:39:39.000Z"
     },
     {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
@@ -42623,13 +42772,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1134,
+    "success": 1139,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2026-10-14T13:29:06.227Z",
-  "version": "10.7.0"
+  "created": "2026-10-27T07:51:35.913Z",
+  "version": "10.8.0"
 }
