@@ -17,6 +17,7 @@ $tabs-outline-offset: tokens.get('focus-outline-offset3', helpers.$post-focus);
     position: relative;
     display: flex;
     align-items: center;
+    z-index: 0;
 
     // Scroll buttons
     button.scroll-btn {
@@ -48,8 +49,7 @@ $tabs-outline-offset: tokens.get('focus-outline-offset3', helpers.$post-focus);
         display: none;
       }
 
-    @include utilities-mx.focus-style($outline-offset: $tabs-outline-offset) {
-
+      @include utilities-mx.focus-style($outline-offset: $tabs-outline-offset) {
         @include utilities-mx.high-contrast-mode() {
           transition: none;
 
@@ -86,7 +86,7 @@ $tabs-outline-offset: tokens.get('focus-outline-offset3', helpers.$post-focus);
     @include media.min(desktop) {
       // Keeps `.tabs-wrapper` this far short of the true page edge, so the `100vw`/scrollbar-width
       // gap in `--post-container-offset` can never push it into horizontal overflow
-      $safe-edge-margin: 20px;
+      $safe-edge-margin: var(--post-tabs-safe-edge-margin, 20px);
 
       margin-inline: calc(-1 * (var(--post-container-offset)) + #{$safe-edge-margin});
 
@@ -100,7 +100,7 @@ $tabs-outline-offset: tokens.get('focus-outline-offset3', helpers.$post-focus);
         @include utilities-mx.high-contrast-mode() {
           box-shadow:
             $safe-edge-margin 0 0 LinkText,
-            (-$safe-edge-margin) 0 0 LinkText;
+            calc(-1 * #{$safe-edge-margin}) 0 0 LinkText;
         }
       }
     }

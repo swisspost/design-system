@@ -79,7 +79,9 @@ export default function Home() {
       </PostBanner>
 
       <h2>Close Button</h2>
-      <PostClosebutton>Close button</PostClosebutton>
+      <div className="position-relative">
+        <PostClosebutton>Close button</PostClosebutton>
+      </div>
 
       <h2>Collapsible</h2>
       {/* The aria attributes need to be defined on the button already, otherwise nextjs will report a hydration error */}

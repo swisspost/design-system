@@ -2,6 +2,7 @@
   container-type: inline-size;
 
   post-tabs {
+    --post-tabs-safe-edge-margin: 0px;
     --post-container-offset: calc(
       var(--post-container-padding-inline, 0px) +
         max(0px, calc((100cqw - var(--post-container-max-width, 100cqw)) / 2))
