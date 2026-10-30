@@ -79,7 +79,9 @@ export default function Home() {
       </PostBanner>
 
       <h2>Close Button</h2>
-      <PostClosebutton>Close button</PostClosebutton>
+      <div className="position-relative">
+        <PostClosebutton>Close button</PostClosebutton>
+      </div>
 
       <h2>Collapsible</h2>
       {/* The aria attributes need to be defined on the button already, otherwise nextjs will report a hydration error */}
@@ -277,6 +279,7 @@ export default function Home() {
       </PostStepper>
 
       <h2>Tabs - Panel Variant</h2>
+
       <PostTabs>
         <PostTabItem name="unua">Unua langeto</PostTabItem>
         <PostTabItem name="dua">Dua langeto</PostTabItem>
@@ -294,19 +297,21 @@ export default function Home() {
       </PostTabs>
 
       <h2>Tabs - Navigation Variant</h2>
-      <PostTabs label="Tabs navigation">
-        <PostTabItem name="nav-first">
-          <a href="#first" aria-current="page">
-            First
-          </a>
-        </PostTabItem>
-        <PostTabItem name="nav-second">
-          <a href="#second">Second</a>
-        </PostTabItem>
-        <PostTabItem name="nav-third">
-          <a href="#third">Third</a>
-        </PostTabItem>
-      </PostTabs>
+      <div className="post-tabs-container">
+        <PostTabs label="Tabs navigation">
+          <PostTabItem name="nav-first">
+            <a href="#first" aria-current="page">
+              First
+            </a>
+          </PostTabItem>
+          <PostTabItem name="nav-second">
+            <a href="#second">Second</a>
+          </PostTabItem>
+          <PostTabItem name="nav-third">
+            <a href="#third">Third</a>
+          </PostTabItem>
+        </PostTabs>
+      </div>
 
       <h2>Toggle Button</h2>
       <PostTogglebutton className="btn btn-primary">
