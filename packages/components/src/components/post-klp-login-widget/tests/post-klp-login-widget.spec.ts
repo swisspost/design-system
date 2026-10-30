@@ -46,12 +46,61 @@ async function logIn(page: SpecPage, overrides: Partial<KlpSessionData> = {}) {
   await page.waitForChanges();
 }
 
+/** Stands in for the platform having answered, whichever way it answered. */
+async function resolve(page: SpecPage) {
+  (page.rootInstance as { resolved: boolean }).resolved = true;
+  await page.waitForChanges();
+}
+
 describe('post-klp-login-widget', () => {
   // The store outlives a spec page, so one test's count would otherwise leak into the next.
   afterEach(() => setState('unread', 0));
 
-  it('offers only the login link while nobody is signed in', async () => {
+  it('holds a neutral box while the platform has not answered yet', async () => {
     const page = await render();
+
+    expect(shadow(page, '.user-menu-placeholder')).not.toBeNull();
+    expect(shadow(page, 'slot[name="login-link"]')).toBeNull();
+    expect(shadow(page, 'post-menu')).toBeNull();
+  });
+
+  it('holds a nameless avatar, hidden from assistive technology as it says nothing', async () => {
+    const page = await render();
+    const placeholder = shadow(page, '.user-menu-placeholder');
+
+    expect(placeholder.localName).toBe('post-avatar');
+    expect(placeholder.getAttribute('firstname')).toBe(' ');
+    expect(placeholder.getAttribute('aria-hidden')).toBe('true');
+  });
+
+  it('offers only the login link once the platform reports nobody', async () => {
+    const page = await render();
+    await resolve(page);
+
+    expect(shadow(page, 'slot[name="login-link"]')).not.toBeNull();
+    expect(shadow(page, '.user-menu-placeholder')).toBeNull();
+    expect(shadow(page, 'post-menu')).toBeNull();
+  });
+
+  it('skips the placeholder when the consumer knows the visitor is anonymous', async () => {
+    const page = await render({ 'initial-state': 'anonymous' });
+
+    expect(shadow(page, 'slot[name="login-link"]')).not.toBeNull();
+    expect(shadow(page, '.user-menu-placeholder')).toBeNull();
+  });
+
+  it('keeps the placeholder when the consumer knows a session exists', async () => {
+    const page = await render({ 'initial-state': 'authenticated' });
+
+    expect(shadow(page, '.user-menu-placeholder')).not.toBeNull();
+    expect(shadow(page, 'slot[name="login-link"]')).toBeNull();
+  });
+
+  it('falls back to the login link when the session ends', async () => {
+    const page = await render();
+    await logIn(page);
+    (page.rootInstance as { session: KlpSessionData | null }).session = null;
+    await resolve(page);
 
     expect(shadow(page, 'slot[name="login-link"]')).not.toBeNull();
     expect(shadow(page, 'post-menu')).toBeNull();

@@ -14,6 +14,10 @@
 
 :host {
   display: inline-flex;
+  align-items: center;
+  // the avatar is the tallest state the widget can end up in, so holding its height from the first
+  // byte keeps the header row from growing once the session resolves
+  min-block-size: tokens.get('avatar-size', components.$post-avatar);
 }
 
 .visually-hidden {
