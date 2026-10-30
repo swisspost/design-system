@@ -10,7 +10,17 @@ export interface KlpMessageRouterOptions {
   actions: KlpRouterActions;
 }
 
+/**
+ * The platform answers a register with 'ukn' + 'sub' when the address is not the session's: a stale
+ * address after a login elsewhere, which one more subscription fixes. A platform that never keeps
+ * the address (INT2 in 2026-10 handed out a new one on every subscribe) would make that a loop.
+ */
+const MAX_RESUBSCRIBES = 1;
+
 export function createMessageRouter({ log = () => {}, actions }: KlpMessageRouterOptions) {
+  // Resubscriptions since the platform last accepted our address with a 'hi'.
+  let resubscribes = 0;
+
   return function handleMessage(message: KlpMessage): void {
     log(`Message received: ${JSON.stringify(message)}`);
 
@@ -25,11 +35,15 @@ export function createMessageRouter({ log = () => {}, actions }: KlpMessageRoute
 
     switch (message.typ) {
       case 'ukn':
-        if (message.sub) {
+        if (message.sub && resubscribes < MAX_RESUBSCRIBES) {
+          resubscribes++;
           // Ask again, but remember that a dropped socket should not be the end of it.
           actions.setRetrySubscribeOnFail(true);
           actions.logout();
           actions.subscribe();
+        } else if (message.sub) {
+          // The session is valid, only its address is not. Stay signed in, without live updates.
+          log('Address still unknown after resubscribing, no live updates for this session');
         } else {
           actions.logout();
         }
@@ -39,6 +53,7 @@ export function createMessageRouter({ log = () => {}, actions }: KlpMessageRoute
         actions.openCommunication();
         break;
       case 'hi':
+        resubscribes = 0;
         actions.login(message.data, message.ttl, true);
         actions.removeNotificationsFromCache();
         break;

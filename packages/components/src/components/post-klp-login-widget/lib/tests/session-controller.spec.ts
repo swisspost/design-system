@@ -22,17 +22,29 @@ function track<T extends { stop: () => void }>(controller: T): T {
   return controller;
 }
 
+function fakeEventBus() {
+  return {
+    onopen: null as (() => void) | null,
+    onclose: null as (() => void) | null,
+    registerHandler: jest.fn(),
+    close: jest.fn(),
+  };
+}
+
 function controllerFor(message: KlpMessage) {
   const fetchMock = mockSubscribe(message);
   const onSessionChange = jest.fn();
+  const bus = fakeEventBus();
+  const loadEventBus = jest.fn().mockResolvedValue(() => bus);
   const controller = track(
     createSessionController({
       endPoint: 'https://n.accountint1.post.ch',
       onSessionChange,
+      loadEventBus,
     }),
   );
 
-  return { controller, onSessionChange, fetchMock };
+  return { controller, onSessionChange, fetchMock, bus, loadEventBus };
 }
 
 describe('session-controller', () => {
@@ -191,6 +203,178 @@ describe('session-controller', () => {
       jest.advanceTimersByTime(60 * 1000 * 3);
 
       expect(fetchMock).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('the live connection', () => {
+    /** openCommunication awaits the transport chunk, so the socket exists a microtask later. */
+    const settled = () => new Promise(resolve => setImmediate(resolve));
+
+    it('opens once a session exists', async () => {
+      const { controller, loadEventBus } = controllerFor({
+        typ: 'sub',
+        adr: 'address-1',
+        ttl: 60_000,
+        data: sessionData,
+      });
+
+      await controller.start();
+      await settled();
+
+      expect(loadEventBus).toHaveBeenCalledTimes(1);
+    });
+
+    it('is never loaded for a visitor who is not logged in', async () => {
+      const { controller, loadEventBus } = controllerFor({ typ: 'ukn' });
+
+      await controller.start();
+      await settled();
+
+      expect(loadEventBus).not.toHaveBeenCalled();
+    });
+
+    it('routes what the platform pushes over it', async () => {
+      const { controller, onSessionChange, bus } = controllerFor({
+        typ: 'sub',
+        adr: 'address-1',
+        ttl: 60_000,
+        data: sessionData,
+      });
+      await controller.start();
+      await settled();
+      bus.onopen();
+
+      const [address, handler] = bus.registerHandler.mock.calls[0];
+      handler({ typ: 'bye' });
+
+      expect(address).toBe('address-1');
+      expect(controller.getSession()).toBeNull();
+      expect(onSessionChange).toHaveBeenLastCalledWith(null);
+    });
+
+    it('is closed together with the widget', async () => {
+      const { controller, bus } = controllerFor({
+        typ: 'sub',
+        adr: 'address-1',
+        ttl: 60_000,
+        data: sessionData,
+      });
+      await controller.start();
+      await settled();
+
+      controller.stop();
+
+      expect(bus.close).toHaveBeenCalled();
+    });
+
+    describe('when the platform asks for a new subscription', () => {
+      const sub = (adr: string): KlpMessage => ({
+        typ: 'sub',
+        adr,
+        ttl: 60_000,
+        data: sessionData,
+      });
+
+      async function openOn(...answers: KlpMessage[]) {
+        const setup = controllerFor(answers[0]);
+        const fetchMock = jest.fn();
+        for (const answer of answers) fetchMock.mockResolvedValueOnce({ json: async () => answer });
+        globalThis.fetch = fetchMock as unknown as typeof fetch;
+
+        await setup.controller.start();
+        await settled();
+        setup.bus.onopen();
+
+        const handlerFor = (address: string) =>
+          setup.bus.registerHandler.mock.calls.find(([registered]) => registered === address)?.[1];
+
+        return { ...setup, fetchMock, handlerFor };
+      }
+
+      // Was a v9 defect: the socket stayed on the stale address, so a logout elsewhere went unheard.
+      it('listens on the new address and hears the logout there', async () => {
+        const { controller, bus, handlerFor } = await openOn(sub('stale'), sub('fresh'));
+
+        handlerFor('stale')({ typ: 'ukn', sub: true });
+        await settled();
+
+        expect(bus.registerHandler.mock.calls.map(([address]) => address)).toEqual([
+          'stale',
+          'fresh',
+        ]);
+        expect(controller.getSession()).toEqual(sessionData);
+
+        handlerFor('fresh')({ typ: 'bye' });
+        expect(controller.getSession()).toBeNull();
+      });
+
+      // INT2 in 2026-10 handed out a new address on every subscribe and accepted none of them.
+      it('stays signed in rather than loop when no address is ever accepted', async () => {
+        const { controller, fetchMock, handlerFor } = await openOn(sub('a'), sub('b'), sub('c'));
+
+        handlerFor('a')({ typ: 'ukn', sub: true });
+        await settled();
+        handlerFor('b')({ typ: 'ukn', sub: true });
+        await settled();
+
+        expect(fetchMock).toHaveBeenCalledTimes(2);
+        expect(controller.getSession()).toEqual(sessionData);
+      });
+    });
+  });
+
+  describe('notifications', () => {
+    it('keeps the count the platform pushes', async () => {
+      const { controller, bus } = controllerFor({
+        typ: 'sub',
+        adr: 'address-1',
+        ttl: 60_000,
+        data: sessionData,
+      });
+      await controller.start();
+      await new Promise(resolve => setImmediate(resolve));
+      bus.onopen();
+      const [, handler] = bus.registerHandler.mock.calls[0];
+
+      handler({ typ: 'doc', doc: { unreadNotifications: 4 }, doctyp: 'UNREAD_NOTIFICATIONS' });
+
+      expect(controller.getUnreadNotifications()).toBe(4);
+    });
+
+    it('forgets the count on logout, so the next user never sees it', async () => {
+      const { controller, bus } = controllerFor({
+        typ: 'sub',
+        adr: 'address-1',
+        ttl: 60_000,
+        data: sessionData,
+      });
+      await controller.start();
+      await new Promise(resolve => setImmediate(resolve));
+      bus.onopen();
+      const [, handler] = bus.registerHandler.mock.calls[0];
+      handler({ typ: 'doc', doc: { unreadNotifications: 4 }, doctyp: 'UNREAD_NOTIFICATIONS' });
+
+      handler({ typ: 'bye' });
+
+      expect(controller.getUnreadNotifications()).toBe(0);
+    });
+
+    it('drops a withdrawn document', async () => {
+      const { controller, bus } = controllerFor({
+        typ: 'sub',
+        adr: 'address-1',
+        ttl: 60_000,
+        data: sessionData,
+      });
+      await controller.start();
+      await new Promise(resolve => setImmediate(resolve));
+      bus.onopen();
+      const [, handler] = bus.registerHandler.mock.calls[0];
+      handler({ typ: 'doc', doc: { unreadNotifications: 4 }, doctyp: 'UNREAD_NOTIFICATIONS' });
+
+      handler({ typ: 'rem', doctyp: 'UNREAD_NOTIFICATIONS' });
+
+      expect(controller.getUnreadNotifications()).toBe(0);
     });
   });
 });
