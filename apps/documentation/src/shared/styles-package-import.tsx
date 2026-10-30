@@ -19,6 +19,9 @@ const getAllStylesImport = ({ theme, appearance }: StyleSelection) => {
   return `@use '@swisspost/design-system-styles/${theme.toLowerCase()}-${appearance.toLowerCase()}.scss';`;
 };
 
+const getTokensFile = ({ theme, appearance }: StyleSelection) =>
+  `${theme.toLowerCase()}-tokens-${appearance.toLowerCase()}`;
+
 export default function PackageTag(props: Props) {
   const [styleSelection, setStyleSelection] = useState<StyleSelection>({
     theme: 'Post',
@@ -61,7 +64,17 @@ export default function PackageTag(props: Props) {
         <Source key={allStylesImport} code={allStylesImport} language="css" />
       </div>
       <p>{getStyleImportsText(props)}</p>
-      <Source code={getComponentStyleImports(props)} language="css" />
+      <Source
+        code={getComponentStyleImports(props, getTokensFile(styleSelection))}
+        language="css"
+      />
+      <p>
+        <small>
+          The <code>basics</code> file does not work on its own. It always needs one of the{' '}
+          <code>(post|cargo)-tokens-(default|compact|condensed).scss</code> files, which provide the
+          design tokens (CSS custom properties) used by all styles.
+        </small>
+      </p>
     </>
   );
 }

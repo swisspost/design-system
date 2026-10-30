@@ -1,4 +1,6 @@
 import StoryTags from '@/shared/story-tags';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import StylesPackageImport from '@/shared/styles-package-import';
 import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import DatePickerDisableSample from './date-picker-disable.sample?raw';
 import meta, * as DatePickerStories from './date-picker.stories';
@@ -15,8 +17,8 @@ import meta, * as DatePickerStories from './date-picker.stories';
 <StoryTags meta={meta} />
 
 <div className="lead mb-16">
-  The date picker enables the user to input a single date or a date range via regular text input
-  or selection within a fly-out calendar.
+  The date picker enables the user to input a single date or a date range via regular text input or
+  selection within a fly-out calendar.
 </div>
 
 It is built on top of the AirDatepicker library and provides full keyboard navigation and accessible markup to ensure usability for all users.
@@ -25,6 +27,10 @@ It is built on top of the AirDatepicker library and provides full keyboard navig
 <div className="hide-col-default">
   <Controls of={DatePickerStories.Default} />
 </div>
+
+<ComponentsPackageInstall component="<post-date-picker>" />
+
+<StylesPackageImport components={['form-input', 'form-hint']} required={{ validation: true }} />
 
 ## Examples
 
