@@ -117,12 +117,25 @@ input.form-control {
     /* stylelint-disable-next-line */
     @supports (background: -webkit-named-image(i)) {
       &::file-selector-button {
-        display: initial;
-        position: initial;
-        margin-inline: 0;
-        padding-inline: 0;
+        display: inline-block;
+        position: static;
         width: 0;
-        border: 0 none;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 0;
+        opacity: 0;
+      }
+
+      &::-webkit-file-upload-button {
+        display: inline-block;
+        position: static;
+        width: 0;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 0;
+        opacity: 0;
       }
 
       &::after {
@@ -152,6 +165,17 @@ input.form-control {
         }
       }
 
+      &.is-valid,
+      &.is-invalid {
+        &::after {
+          padding-inline-end: calc(
+            #{tokens.get('input-padding-inline-end')} +
+              #{tokens.get('input-validation-icon-position-inline-end')} +
+              #{tokens.get('input-sizing-icon')}
+          );
+        }
+      }
+
       &[multiple] {
         &::after {
           content: 'Choose Files';
@@ -164,6 +188,20 @@ input.form-control {
             content: 'Choisir des fichiers';
           }
         }
+      }
+    }
+
+    @supports (-webkit-touch-callout: none) {
+      &::file-selector-button {
+        all: revert;
+      }
+
+      &::-webkit-file-upload-button {
+        all: revert;
+      }
+
+      &::after {
+        display: none;
       }
     }
 
@@ -382,7 +420,7 @@ input.form-control {
       --post-form-floating-validation-icon-inline-end,
       #{tokens.get('input-validation-icon-position-inline-end')}
     );
-    z-index: 1;
+    z-index: 2;
     pointer-events: none;
     background-image: var(--post-signal-icon-error);
   }
