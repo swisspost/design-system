@@ -1,4 +1,3 @@
-import { UserConfig } from '@/models/user.model';
 import {
   AccessibleTextConfig,
   IconLinkConfig,
@@ -28,7 +27,7 @@ export interface HeaderConfig {
   localHeader: {
     title?: string; // Application or page title.
     mainNavigation?: MainNavigationConfig; // Main navigation for the current application.
-    navigation?: Array<IconLinkConfig | UserMenuConfig>; // Optional application-specific actions (e.g. user menu, extra links).
+    navigation?: Array<IconLinkConfig>; // Optional application-specific links.
   };
 }
 
@@ -58,17 +57,6 @@ export interface MegadropdownConfig {
   trigger: AccessibleTextConfig; // Text used for the clickable trigger in the header.
   overview?: SimpleLinkConfig; // Optional overview link for the dropdown.
   sections: Array<LinkListConfig<SimpleLinkConfig>>; // Sections inside the dropdown.
-}
-
-/**
- * Menu displayed when a user is authenticated.
- */
-export interface UserMenuConfig {
-  user: UserConfig; // Logged-in user's profile information.
-  options: Array<IconLinkConfig>; // Actions available to the user (e.g. "Profile", "Settings", additional userLinks).
-  accountSwitch?: IconLinkConfig; // Optional account switch link, shown before userLinks when the user has permission to switch accounts.
-  companySwitch?: IconLinkConfig; // Optional company switch link, shown when the user has permission to switch companies.
-  logoutLink?: IconLinkConfig; // Optional logout link.
 }
 
 /**

@@ -229,33 +229,5 @@ describe('route.service.ts', () => {
       expect(result).toBe(secondaryLink);
       expect(result).not.toBe(mainNavigationLink);
     });
-
-    it('Includes user-menu options in localHeader.navigation', () => {
-      const optionLink = { text: 'Profile', url: '/profile', icon: 'profile' };
-
-      state.localizedConfig = {
-        header: {
-          ...testConfig.header,
-          localHeader: {
-            ...testConfig.header.localHeader,
-            navigation: [
-              {
-                user: {
-                  name: 'Jane',
-                  surname: 'Doe',
-                  email: 'jane.doe@example.com',
-                  userType: 'B2C',
-                  changeUserAndProfile: 'notAvailable',
-                },
-                options: [optionLink],
-              },
-            ],
-          },
-        },
-      };
-
-      const result = getActiveLink(`${document.location.origin}/profile`);
-      expect(result).toBe(optionLink);
-    });
   });
 });

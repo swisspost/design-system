@@ -180,14 +180,16 @@ describe('header', () => {
       });
 
       it('should show the login link', () => {
-        cy.get('[slot="post-login"]')
-          .should('be.visible')
-          .invoke('prop', 'localName')
-          .should('eq', 'a');
+        cy.get('post-klp-login-widget[slot="post-login"] a[slot="login-link"]').should(
+          'be.visible',
+        );
       });
 
       it('should not show the user menu', () => {
-        cy.get('[slot="post-login"] post-menu').should('not.exist');
+        cy.get('post-klp-login-widget[slot="post-login"]')
+          .shadow()
+          .find('post-menu')
+          .should('not.exist');
       });
     });
 
@@ -198,12 +200,15 @@ describe('header', () => {
       });
 
       it('should not show the login link', () => {
-        cy.get('[slot="post-login"]').invoke('prop', 'localName').should('not.eq', 'a');
+        // the widget stops rendering the login-link slot, so the anchor is never assigned to it
+        cy.get('[slot="post-login"] a[slot="login-link"]').should('not.be.visible');
       });
 
       it('should show the user menu trigger with an avatar', () => {
-        cy.get('[slot="post-login"] post-menu-trigger').should('be.visible');
-        cy.get('[slot="post-login"] post-avatar').should('be.visible');
+        cy.get('post-klp-login-widget[slot="post-login"]')
+          .shadow()
+          .find('post-menu-trigger post-avatar')
+          .should('be.visible');
       });
 
       it('should show the user menu with the correct user links', () => {
@@ -216,10 +221,14 @@ describe('header', () => {
           (postLoginConfig.userLinks?.length ?? 0) +
           (postLoginConfig.logoutLink ? 1 : 0);
 
-        cy.get('[slot="post-login"] post-menu-trigger button').click();
-        cy.get('[slot="post-login"] post-menu')
-          .find('post-menu-item')
-          .should('be.visible')
+        cy.get('post-klp-login-widget[slot="post-login"]')
+          .shadow()
+          .find('post-menu-trigger button')
+          .click();
+        // Every entry is slotted unconditionally, so the ones the session may not see stay in the
+        // dom unassigned and simply never render.
+        cy.get('post-klp-login-widget[slot="post-login"] post-menu-item')
+          .filter(':visible')
           .should('have.length', expectedCount);
       });
     });
@@ -255,31 +264,7 @@ describe('header', () => {
         .and('be.visible');
 
       headerConfig.localHeader.navigation.forEach((item, index) => {
-        if ('url' in item) {
-          cy.get('@nav-items').eq(index).find('a').should('exist');
-        } else {
-          cy.get('@nav-items').eq(index).find('post-menu-trigger').should('exist');
-
-          // accountSwitch/companySwitch/logoutLink each render as their own
-          // menu item, gated by the item's own user permissions — not part
-          // of options.
-          const isB2C = item.user.userType === 'B2C';
-          const isB2B = item.user.userType === 'B2B';
-          const canChangeUserAndProfile =
-            (isB2C || isB2B) && item.user.changeUserAndProfile === 'userAndProfile';
-          const canChangeCompany = isB2B && item.user.canChangeCompany && item.user.company;
-
-          const expectedCount =
-            item.options.length +
-            (item.accountSwitch && canChangeUserAndProfile ? 1 : 0) +
-            (item.companySwitch && canChangeCompany ? 1 : 0) +
-            (item.logoutLink ? 1 : 0);
-
-          cy.get('@nav-items')
-            .eq(index)
-            .find('post-menu-item')
-            .should('have.length', expectedCount);
-        }
+        cy.get('@nav-items').eq(index).find('a').should('have.attr', 'href', item.url);
       });
     });
   });
