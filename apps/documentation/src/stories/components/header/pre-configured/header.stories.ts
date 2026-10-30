@@ -56,8 +56,9 @@ const meta: MetaComponent = {
   // Keyed on the session and the language, so a changed control mounts a new header: its widget asks the
   // fake again and its language menu picks up the newly active language.
   render: args => {
+    const key = `${args.session}-${args.language}`;
     installKlpPlatformFake({ user: args.session === 'anonymous' ? null : args.session });
-    return html`${keyed(`${args.session}-${args.language}`, renderHeader(args))}`;
+    return html`${keyed(key, renderHeader(args))}`;
   },
   decorators: [
     // The header prefers a `#PPM_HEADER_DATA` config over the API, so the page renders without any request.
