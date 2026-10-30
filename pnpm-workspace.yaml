@@ -74,3 +74,6 @@ allowBuilds:
   msgpackr-extract: true
   sharp: true
   unrs-resolver: true
+minimumReleaseAgeExclude:
+  # Renovate security update: vite@8.3.3
+  - vite@8.3.3
