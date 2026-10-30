@@ -8,6 +8,11 @@
 tokens.$default-map: components.$post-banner;
 
 :host {
+  display: block;
+}
+
+.banner {
+  box-sizing: border-box;
   position: relative;
   display: grid;
   grid-template-columns: 1fr;
@@ -42,13 +47,56 @@ tokens.$default-map: components.$post-banner;
 }
 
 @each $name in 'info', 'success', 'warning', 'error' {
-  :host([type='#{$name}']) {
+  :host([type='#{$name}']) .banner {
     background-color: tokens.get('banner-#{$name}-bg');
     border-color: tokens.get('banner-#{$name}-border-color');
 
     &::before {
       background-image: var(--post-signal-icon-#{$name});
     }
+  }
+}
+
+:host([type='grief']) {
+  .banner {
+    min-height: calc(
+      #{tokens.get('banner-grief-icon-wrapper-size')} + (2 * #{tokens.get('banner-padding')})
+    );
+    padding-inline-start: calc(
+      #{tokens.get('banner-padding')} + #{tokens.get('banner-grief-icon-wrapper-size')} +
+        #{tokens.get('banner-gap')}
+    );
+    background-color: tokens.get('banner-grief-bg');
+    border-color: tokens.get('banner-grief-stroke');
+
+    &::before {
+      content: none;
+    }
+  }
+
+  .post-banner-content {
+    --post-current-bg: #{tokens.get('banner-grief-bg')};
+    --post-current-fg: #{tokens.get('banner-grief-fg')};
+    color: var(--post-current-fg);
+  }
+}
+
+.grief-icon {
+  position: absolute;
+  inset-block-start: tokens.get('banner-padding');
+  inset-inline-start: tokens.get('banner-padding');
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: tokens.get('banner-grief-icon-wrapper-size');
+  width: tokens.get('banner-grief-icon-wrapper-size');
+  border-radius: tokens.get('banner-grief-icon-wrapper-border-radius');
+  background-color: tokens.get('banner-grief-icon-bg');
+  color: tokens.get('banner-grief-icon-fg');
+
+  post-icon {
+    height: tokens.get('banner-grief-icon-size');
+    width: tokens.get('banner-grief-icon-size');
   }
 }
 
@@ -88,11 +136,15 @@ tokens.$default-map: components.$post-banner;
 }
 
 @include utilities.high-contrast-mode {
-  :host {
+  .banner {
     border-color: CanvasText;
 
     &::before {
       color: CanvasText;
     }
+  }
+
+  .grief-icon {
+    border: tokens.get('banner-border-width') solid CanvasText;
   }
 }

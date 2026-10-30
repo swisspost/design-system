@@ -34,7 +34,7 @@ function RenderBanner() {
     () => html`
       <div class="d-flex flex-column gap-16 flex-wrap">
         ${bombArgs({
-          type: ['success', 'error', 'warning', 'info'],
+          type: ['success', 'error', 'warning', 'info', 'grief'],
           dismissible: [true, false],
           hasButtons: [true, false],
         }).map((bannerArgs, index) => {
