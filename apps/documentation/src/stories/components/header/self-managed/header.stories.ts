@@ -182,14 +182,16 @@ const meta: MetaComponent = {
     (story, context) => {
       const showSideNav = context.args.sideNav && context.args.title !== '';
       installKlpPlatformFake({ user: context.args.isLoggedIn ? 'b2b-multi-account' : null });
+      // The header changes on scroll, so the page needs enough content to scroll on any viewport.
+      const content = fakeContent(6);
 
       return html`
         <div class="header-story-wrapper">
           <div class="virtual-body">
             ${story()}
             ${showSideNav
-              ? html`<main class="main-container">${fakeContent()}</main>`
-              : html`<div>${fakeContent()}</div>`}
+              ? html`<main class="main-container">${content}</main>`
+              : html`<div>${content}</div>`}
           </div>
         </div>
       `;
