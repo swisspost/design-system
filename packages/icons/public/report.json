@@ -34264,6 +34264,122 @@
       "modifiedAt": "2026-10-21T05:05:03.719Z"
     },
     {
+      "uuid": "62a086d0-d1d6-11f1-8309-0050568d2654",
+      "id": 11710567,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11710567/storage/MDExNzEwNTY1LzAvbWFzdGVyLy8vMTE1MzgyOTkx",
+        "keywords": [
+          "convenience",
+          "Komfort",
+          "Confort",
+          "Comfort",
+          "Convenient delivery",
+          "Komfortable Lieferung",
+          "Livraison confortable",
+          "Consegna comoda"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2804.svg",
+        "basename": "2804",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-27T07:16:53.000Z",
+      "modifiedAt": "2026-10-28T07:05:07.325Z"
+    },
+    {
+      "uuid": "0bc06cd0-d1d7-11f1-8309-0050568d2654",
+      "id": 11711023,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11711023/storage/MDExNzExMDIxLzAvbWFzdGVyLy8vMTE1Mzg1OTky",
+        "keywords": [
+          "Sustainable delivery",
+          "Nachhaltige Lieferung",
+          "Livraison durable",
+          "Consegna sostenibile"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2805.svg",
+        "basename": "2805",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-27T07:21:37.000Z",
+      "modifiedAt": "2026-10-27T07:23:05.000Z"
+    },
+    {
+      "uuid": "8f0f1ef0-d1d8-11f1-8309-0050568d2654",
+      "id": 11711975,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11711975/storage/MDExNzExOTc0LzAvbWFzdGVyLy8vMTE1Mzk2ODM2",
+        "keywords": [
+          "Speed and predictability",
+          "Schnelligkeit und Planbarkeit",
+          "Rapidité et planification",
+          "Rapidità e pianificabilità"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2806.svg",
+        "basename": "2806",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-27T07:32:26.000Z",
+      "modifiedAt": "2026-10-27T07:33:50.000Z"
+    },
+    {
+      "uuid": "3c2c2330-d1d9-11f1-8309-0050568d2654",
+      "id": 11712430,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11712430/storage/MDExNzEyNDI4LzAvbWFzdGVyLy8vMTE1Mzk5OTU2",
+        "keywords": [
+          "Circular logistics",
+          "Kreislauflogistik",
+          "Logistique circulaire",
+          "Logistica circolare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2807.svg",
+        "basename": "2807",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-27T07:37:17.000Z",
+      "modifiedAt": "2026-10-27T07:38:44.000Z"
+    },
+    {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
       "id": 352241,
       "type": "picture.pictogram.",
@@ -46852,11 +46968,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2026-10-21T07:02:41.047Z",
+  "created": "2026-11-01T06:42:39.320Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 1133
+    "success": 1137
   },
   "version": "9.15.1"
 }
