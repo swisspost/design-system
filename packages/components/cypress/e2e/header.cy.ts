@@ -29,10 +29,12 @@ function scrollAndWait(y: number) {
   });
 }
 
+// retries, because the header also writes the value when its scroll max changes (ResizeObserver callback)
 function getScrollTopProperty() {
   return cy
     .document()
-    .then(doc => doc.documentElement.style.getPropertyValue('--post-header-scroll-top'));
+    .its('documentElement.style')
+    .invoke('getPropertyValue', '--post-header-scroll-top');
 }
 
 function getScrollMax() {
@@ -85,17 +87,6 @@ describe('header', () => {
           cy.viewport(viewportPreset);
           cy.get('@header').should('have.attr', 'data-hydrated');
 
-          const getHeaderGeometry = () =>
-            cy.get('@header').then($header => {
-              const header = $header[0];
-              return JSON.stringify(
-                [header, ...header.shadowRoot.querySelectorAll('*')].map(el => {
-                  const { top, left, width, height } = el.getBoundingClientRect();
-                  return [top, left, width, height].map(n => Math.round(n));
-                }),
-              );
-            });
-
           getScrollMax().then(scrollMax => {
             // the page must be scrollable beyond the max, otherwise the last assertions would pass without testing anything
             cy.document().then(doc => {
@@ -112,10 +103,36 @@ describe('header', () => {
             scrollAndWait(scrollMax);
             getScrollTopProperty().should('eq', `${scrollMax}px`);
 
-            getHeaderGeometry().then(reducedGeometry => {
-              scrollAndWait(scrollMax + 300);
-              getScrollTopProperty().should('eq', `${scrollMax}px`);
-              getHeaderGeometry().should('eq', reducedGeometry);
+            scrollAndWait(scrollMax + 300);
+            getScrollTopProperty().should('eq', `${scrollMax}px`);
+
+            // a larger value must not change the header, otherwise the scroll max is too small
+            // both values are measured synchronously without transitions, so loading content can't change the result
+            cy.get('@header').then($header => {
+              const header = $header[0];
+              const rootStyle = header.ownerDocument.documentElement.style;
+              const noTransitions = new (header.ownerDocument.defaultView.CSSStyleSheet)();
+              noTransitions.replaceSync('*, :host { transition: none !important; }');
+              header.shadowRoot.adoptedStyleSheets = [
+                ...header.shadowRoot.adoptedStyleSheets,
+                noTransitions,
+              ];
+
+              const getHeaderGeometry = (scrollTop: number) => {
+                rootStyle.setProperty('--post-header-scroll-top', `${scrollTop}px`);
+                return JSON.stringify(
+                  [header, ...header.shadowRoot.querySelectorAll('*')].map(el => {
+                    const { top, left, width, height } = el.getBoundingClientRect();
+                    return [top, left, width, height].map(n => Math.round(n));
+                  }),
+                );
+              };
+
+              const reducedGeometry = getHeaderGeometry(scrollMax);
+              const beyondGeometry = getHeaderGeometry(scrollMax + 300);
+              rootStyle.setProperty('--post-header-scroll-top', `${scrollMax}px`);
+
+              expect(beyondGeometry).to.eq(reducedGeometry);
             });
           });
         });
@@ -590,16 +607,32 @@ describe('header', () => {
             const globalHeaderEl = Array.from(focusableElements).find(
               el => !el.closest('[slot="main-nav"]'),
             );
-            cy.wrap(globalHeaderEl).focus();
+
+            // focusing an element that is out of view scrolls the page
+            // wait for that scroll event, otherwise it can collapse the header after the next click
+            cy.window().then(win => {
+              const scrollY = win.scrollY;
+              globalHeaderEl.focus();
+              if (win.scrollY === scrollY) return;
+
+              return new Cypress.Promise<void>(resolve => {
+                win.addEventListener('scroll', () => resolve(), { once: true });
+              });
+            });
           });
         cy.get('@header').should('have.attr', 'data-expanded');
+      }
+
+      // the trigger is visible in the expanded header, scrolling it into view would fire a scroll event after the click
+      function clickLanguageMenuTrigger() {
+        getLanguageMenuTrigger().realClick({ scrollBehavior: false });
       }
 
       // https://github.com/swisspost/design-system/issues/8592
       it('should keep data-expanded and open the language menu when clicked after keyboard expansion', () => {
         expandWithKeyboardOnGlobalHeaderElement();
 
-        getLanguageMenuTrigger().realClick();
+        clickLanguageMenuTrigger();
 
         getLanguageMenuTrigger().should('have.attr', 'aria-expanded', 'true');
         cy.get('@header').find('post-language-menu-item').should('be.visible');
@@ -609,7 +642,7 @@ describe('header', () => {
       it('should remove data-expanded on the next scroll after a click inside the expanded header', () => {
         expandWithKeyboardOnGlobalHeaderElement();
 
-        getLanguageMenuTrigger().realClick();
+        clickLanguageMenuTrigger();
         cy.get('@header').should('have.attr', 'data-expanded');
 
         scrollAndWait(501);
@@ -619,7 +652,7 @@ describe('header', () => {
       it('should keep data-expanded on scroll when going back to the keyboard after a click', () => {
         expandWithKeyboardOnGlobalHeaderElement();
 
-        getLanguageMenuTrigger().realClick();
+        clickLanguageMenuTrigger();
         getLanguageMenuTrigger().should('have.attr', 'aria-expanded', 'true');
 
         cy.realPress('Escape');
