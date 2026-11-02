@@ -46,9 +46,13 @@ export class PostHeader {
   private burgerMenuAnimation: Animation;
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
+  private scrollMaxResizeObserver: ResizeObserver;
   private slottedContentObserver: MutationObserver;
   private globalHeader: HTMLElement;
   private localHeader: HTMLElement;
+  private scrollMaxElement: HTMLElement;
+  private scrollMax = Infinity;
+  private lastScrollTop: number;
   private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
 
   private get hasBurgerMenu(): boolean {
@@ -127,6 +131,7 @@ export class PostHeader {
     this.handleScrollEvent = this.handleScrollEvent.bind(this);
     this.updateScrollParentHeight = this.updateScrollParentHeight.bind(this);
     this.updateLocalHeaderHeight = this.updateLocalHeaderHeight.bind(this);
+    this.updateScrollMax = this.updateScrollMax.bind(this);
     this.keyboardHandler = this.keyboardHandler.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
     this.checkSlottedContent = this.checkSlottedContent.bind(this);
@@ -175,6 +180,7 @@ export class PostHeader {
   componentDidRender() {
     this.getFocusableElements();
     this.handleLocalHeaderResize();
+    this.handleScrollMaxResize();
 
     // When a megadropdown is open on desktop and the user resizes to mobile, we set
     // burgerMenuExtended = true but burgerMenuButton doesn't exist yet — it only renders
@@ -211,6 +217,11 @@ export class PostHeader {
       this.localHeaderResizeObserver.disconnect();
       this.localHeaderResizeObserver = null;
     }
+    if (this.scrollMaxResizeObserver) {
+      this.scrollMaxResizeObserver.disconnect();
+      this.scrollMaxResizeObserver = null;
+    }
+    this.lastScrollTop = undefined;
     if (this.slottedContentObserver) {
       this.slottedContentObserver.disconnect();
       this.slottedContentObserver = null;
@@ -326,10 +337,28 @@ export class PostHeader {
   private handleScrollEvent() {
     const scrollTop =
       this.scrollParent === document.body ? window.scrollY : this.scrollParent.scrollTop;
-    document.documentElement.style.setProperty(
-      '--post-header-scroll-top',
-      `${Math.max(scrollTop, 0)}px`,
-    );
+
+    // Beyond scrollMax the header is fully collapsed: writing the value again would only
+    // trigger a style recalculation of the whole document without any visual change
+    const value = Math.min(Math.max(scrollTop, 0), this.scrollMax);
+    if (value === this.lastScrollTop) return;
+
+    this.lastScrollTop = value;
+    document.documentElement.style.setProperty('--post-header-scroll-top', `${value}px`);
+  }
+
+  private updateScrollMax() {
+    if (!this.scrollMaxElement) return;
+
+    // Without the styles package custom property, never clamp the scroll value
+    const isScrollMaxDefined =
+      getComputedStyle(this.host).getPropertyValue('--post-header-scroll-max').trim() !== '';
+
+    this.scrollMax = isScrollMaxDefined
+      ? this.scrollMaxElement.getBoundingClientRect().width
+      : Infinity;
+
+    this.handleScrollEvent();
   }
 
   private updateLocalHeaderHeight() {
@@ -386,6 +415,15 @@ export class PostHeader {
       this.localHeaderResizeObserver = new ResizeObserver(this.updateLocalHeaderHeight);
       this.localHeaderResizeObserver.observe(localHeader);
     }
+  }
+
+  private handleScrollMaxResize() {
+    if (!this.scrollMaxElement || this.scrollMaxResizeObserver) return;
+
+    // ResizeObserver does not report an initial 0px size (e.g. mobile), so read it once now
+    this.updateScrollMax();
+    this.scrollMaxResizeObserver = new ResizeObserver(this.updateScrollMax);
+    this.scrollMaxResizeObserver.observe(this.scrollMaxElement);
   }
 
   private handleSlottedContentChanges() {
@@ -490,6 +528,11 @@ export class PostHeader {
         data-burger-menu={this.hasBurgerMenu}
         data-menu-extended={this.burgerMenuExtended}
       >
+        <span
+          class="scroll-max"
+          aria-hidden="true"
+          ref={el => (this.scrollMaxElement = el)}
+        ></span>
         <header>
           <div ref={el => (this.globalHeader = el)} class="global-header">
             <div class="section">

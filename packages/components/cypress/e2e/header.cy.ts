@@ -13,12 +13,34 @@ function getLanguageMenuTrigger() {
 }
 
 // waits until the header handled the scroll, so a "still expanded" assertion can't pass too early
+// the header's scroll listener is registered before this one, so it has already run when this one fires
 function scrollAndWait(y: number) {
-  cy.scrollTo(0, y);
-  cy.document()
-    .its('documentElement.style')
-    .invoke('getPropertyValue', '--post-header-scroll-top')
-    .should('eq', `${y}px`);
+  cy.window().then(win => {
+    const { scrollHeight, clientHeight } = win.document.scrollingElement;
+    const target = Math.min(y, scrollHeight - clientHeight);
+
+    // no scroll event is fired when the position does not change
+    if (Math.round(win.scrollY) === target) return;
+
+    return new Cypress.Promise<void>(resolve => {
+      win.addEventListener('scroll', () => resolve(), { once: true });
+      win.scrollTo({ top: target, behavior: 'instant' });
+    });
+  });
+}
+
+function getScrollTopProperty() {
+  return cy
+    .document()
+    .then(doc => doc.documentElement.style.getPropertyValue('--post-header-scroll-top'));
+}
+
+function getScrollMax() {
+  return cy
+    .get('@header')
+    .shadow()
+    .find('.scroll-max')
+    .then($el => $el[0].getBoundingClientRect().width);
 }
 
 describe('header', () => {
@@ -57,6 +79,39 @@ describe('header', () => {
         it(`should not shift layout on ${viewportName}`, () => {
           cy.viewport(viewportPreset);
           checkLayoutShift();
+        });
+
+        it(`should stop updating the scroll position once fully reduced on ${viewportName}`, () => {
+          cy.viewport(viewportPreset);
+          cy.get('@header').should('have.attr', 'data-hydrated');
+
+          const getHeaderGeometry = () =>
+            cy.get('@header').then($header => {
+              const header = $header[0];
+              return JSON.stringify(
+                [header, ...header.shadowRoot.querySelectorAll('*')].map(el => {
+                  const { top, left, width, height } = el.getBoundingClientRect();
+                  return [top, left, width, height].map(n => Math.round(n));
+                }),
+              );
+            });
+
+          getScrollMax().then(scrollMax => {
+            if (scrollMax > 1) {
+              const below = Math.floor(scrollMax / 2);
+              scrollAndWait(below);
+              getScrollTopProperty().should('eq', `${below}px`);
+            }
+
+            scrollAndWait(scrollMax);
+            getScrollTopProperty().should('eq', `${scrollMax}px`);
+
+            getHeaderGeometry().then(reducedGeometry => {
+              scrollAndWait(scrollMax + 300);
+              getScrollTopProperty().should('eq', `${scrollMax}px`);
+              getHeaderGeometry().should('eq', reducedGeometry);
+            });
+          });
         });
       });
     });
