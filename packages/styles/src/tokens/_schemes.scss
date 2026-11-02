@@ -2,10 +2,11 @@
 @use './core';
 @use '@swisspost/design-system-tokens/scheme';
 
+@use '../icons/signal-icons' as *;
 @use '../mixins/supports';
 @use '../mixins/color-scheme';
 
-@include supports.light-dark(true) {
+@include supports.light-dark-color(true) {
   :root {
     @each $key, $light-value in scheme.$post-light {
       --#{$key}: light-dark(#{$light-value}, #{map.get(scheme.$post-dark, $key)});
@@ -13,9 +14,19 @@
   }
 }
 
-@include supports.light-dark(false) {
-  :root,
-  [data-color-scheme] {
-    @extend %color-scheme-fallback-variables;
+@include supports.light-dark(true) {
+  :root {
+    @each $key in $signal-icons {
+      --post-signal-icon-#{$key}: light-dark(
+        var(--post-signal-icon-#{$key}-light),
+        var(--post-signal-icon-#{$key}-dark)
+      );
+    }
   }
+}
+
+// The placeholder guards the fallbacks with the relevant `@supports` checks.
+:root,
+[data-color-scheme] {
+  @extend %color-scheme-fallback-variables;
 }
