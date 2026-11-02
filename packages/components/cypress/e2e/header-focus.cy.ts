@@ -1,5 +1,5 @@
 import 'cypress-real-events';
-import { getLanguageMenuTrigger, HEADER_ID, scrollAndWait } from './helper/header';
+import { HEADER_ID, getLanguageMenuTrigger, scrollAndWait } from './helper/header';
 
 describe('header', () => {
   describe('focus and keyboard navigation', () => {
@@ -336,16 +336,32 @@ describe('header', () => {
             const globalHeaderEl = Array.from(focusableElements).find(
               el => !el.closest('[slot="main-nav"]'),
             );
-            cy.wrap(globalHeaderEl).focus();
+
+            // focusing an element that is out of view scrolls the page
+            // wait for that scroll event, otherwise it can collapse the header after the next click
+            cy.window().then(win => {
+              const scrollY = win.scrollY;
+              globalHeaderEl.focus();
+              if (win.scrollY === scrollY) return;
+
+              return new Cypress.Promise<void>(resolve => {
+                win.addEventListener('scroll', () => resolve(), { once: true });
+              });
+            });
           });
         cy.get('@header').should('have.attr', 'data-expanded');
+      }
+
+      // the trigger is visible in the expanded header, scrolling it into view would fire a scroll event after the click
+      function clickLanguageMenuTrigger() {
+        getLanguageMenuTrigger().realClick({ scrollBehavior: false });
       }
 
       // https://github.com/swisspost/design-system/issues/8592
       it('should keep data-expanded and open the language menu when clicked after keyboard expansion', () => {
         expandWithKeyboardOnGlobalHeaderElement();
 
-        getLanguageMenuTrigger().realClick();
+        clickLanguageMenuTrigger();
 
         getLanguageMenuTrigger().should('have.attr', 'aria-expanded', 'true');
         cy.get('@header').find('post-language-menu-item').should('be.visible');
@@ -355,7 +371,7 @@ describe('header', () => {
       it('should remove data-expanded on the next scroll after a click inside the expanded header', () => {
         expandWithKeyboardOnGlobalHeaderElement();
 
-        getLanguageMenuTrigger().realClick();
+        clickLanguageMenuTrigger();
         cy.get('@header').should('have.attr', 'data-expanded');
 
         scrollAndWait(501);
@@ -365,7 +381,7 @@ describe('header', () => {
       it('should keep data-expanded on scroll when going back to the keyboard after a click', () => {
         expandWithKeyboardOnGlobalHeaderElement();
 
-        getLanguageMenuTrigger().realClick();
+        clickLanguageMenuTrigger();
         getLanguageMenuTrigger().should('have.attr', 'aria-expanded', 'true');
 
         cy.realPress('Escape');

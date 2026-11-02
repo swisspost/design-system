@@ -1,5 +1,12 @@
 # @swisspost/design-system-styles-primeng
 
+## 10.8.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.8.0
+
 ## 10.7.0
 
 ### Patch Changes

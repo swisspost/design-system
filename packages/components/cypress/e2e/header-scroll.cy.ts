@@ -1,198 +1,107 @@
-import { HEADER_ID, scrollAndWait } from './helper/header';
+import { HEADER_ID, getScrollMax, getScrollTopProperty, scrollAndWait } from './helper/header';
+
+const HEADER_CONFIGS = ['portal', 'microsite', 'one-pager'];
+const VIEWPORTS: Record<string, Cypress.ViewportPreset> = {
+  desktop: 'macbook-15',
+  tablet: 'ipad-2',
+  mobile: 'iphone-6',
+};
 
 describe('header', () => {
-  describe('scroll performance', { viewportHeight: 800, viewportWidth: 1920 }, () => {
-    const SCROLL_VAR = '--post-header-scroll-top';
-
-    // counts the writes of the scroll custom property on :root
-    function spyOnScrollVarWrites() {
-      cy.document().then(doc => {
-        cy.spy(doc.documentElement.style, 'setProperty').as('setProperty');
-      });
-    }
-
-    function scrollVarWrites(spy: sinon.SinonSpy) {
-      return spy.getCalls().filter(call => call.args[0] === SCROLL_VAR).length;
-    }
-
-    function dispatchScrollEvents(times: number) {
-      cy.window().then(win => {
-        for (let i = 0; i < times; i++) win.dispatchEvent(new Event('scroll'));
-      });
-    }
-
-    beforeEach(() => {
-      cy.getComponent('header', HEADER_ID);
-    });
-
-    describe('scroll position publishing', () => {
-      it('should publish the scroll position on :root', () => {
-        scrollAndWait(120);
-        scrollAndWait(0);
+  HEADER_CONFIGS.forEach(config => {
+    describe(config.replace('-', ' '), () => {
+      beforeEach(() => {
+        cy.visit(`/iframe.html?id=${HEADER_ID}--${config}`);
+        cy.get('post-header').as('header');
       });
 
-      it('should follow the scroll position up and down', () => {
-        scrollAndWait(300);
-        scrollAndWait(40);
-        scrollAndWait(700);
-        scrollAndWait(0);
-      });
+      Object.entries(VIEWPORTS).forEach(([viewportName, viewportPreset]) => {
+        it(`should stop updating the scroll position once fully reduced on ${viewportName}`, () => {
+          cy.viewport(viewportPreset);
+          cy.get('@header').should('have.attr', 'data-hydrated');
 
-      it('should not write the custom property again when the scroll position is unchanged', () => {
-        scrollAndWait(200);
-        spyOnScrollVarWrites();
-
-        dispatchScrollEvents(30);
-
-        cy.get<sinon.SinonSpy>('@setProperty').then(spy => {
-          expect(scrollVarWrites(spy)).to.eq(0);
-        });
-      });
-
-      it('should write the custom property only once per distinct scroll position', () => {
-        scrollAndWait(100);
-        spyOnScrollVarWrites();
-
-        cy.scrollTo(0, 250);
-        cy.document()
-          .its('documentElement.style')
-          .invoke('getPropertyValue', SCROLL_VAR)
-          .should('eq', '250px');
-        dispatchScrollEvents(30);
-
-        cy.get<sinon.SinonSpy>('@setProperty').then(spy => {
-          expect(scrollVarWrites(spy)).to.eq(1);
-        });
-      });
-
-      it('should never publish a negative scroll position', () => {
-        scrollAndWait(50);
-        cy.window().then(win => {
-          cy.stub(win, 'scrollY').value(-30);
-          win.dispatchEvent(new Event('scroll'));
-        });
-        cy.document()
-          .its('documentElement.style')
-          .invoke('getPropertyValue', SCROLL_VAR)
-          .should('eq', '0px');
-      });
-    });
-
-    describe('scroll parent resolution', () => {
-      it('should not walk the ancestors of the header while scrolling', () => {
-        cy.get('@header').then($header => {
-          const header = $header[0];
-          const ancestors = new Set<Element>();
-          for (let el = header.parentElement; el; el = el.parentElement) ancestors.add(el);
-
-          cy.window().then(win => {
-            const original = win.getComputedStyle.bind(win);
-            const calls: Element[] = [];
-            cy.stub(win, 'getComputedStyle').callsFake((el: Element, pseudo?: string | null) => {
-              calls.push(el);
-              return original(el, pseudo);
+          getScrollMax().then(scrollMax => {
+            // the page must be scrollable beyond the max, otherwise the last assertions would pass without testing anything
+            cy.document().then(doc => {
+              const { scrollHeight, clientHeight } = doc.scrollingElement;
+              expect(scrollHeight - clientHeight).to.be.greaterThan(scrollMax + 300);
             });
 
-            dispatchScrollEvents(30);
-            cy.scrollTo(0, 400);
+            if (scrollMax > 1) {
+              const below = Math.floor(scrollMax / 2);
+              scrollAndWait(below);
+              getScrollTopProperty().should('eq', `${below}px`);
+            }
 
-            cy.wrap(null).then(() => {
-              expect(calls.filter(el => ancestors.has(el))).to.have.length(0);
+            scrollAndWait(scrollMax);
+            getScrollTopProperty().should('eq', `${scrollMax}px`);
+
+            scrollAndWait(scrollMax + 300);
+            getScrollTopProperty().should('eq', `${scrollMax}px`);
+
+            // a larger value must not change the header, otherwise the scroll max is too small
+            // both values are measured synchronously without transitions, so loading content can't change the result
+            cy.get('@header').then($header => {
+              const header = $header[0];
+              const rootStyle = header.ownerDocument.documentElement.style;
+              const noTransitions = new header.ownerDocument.defaultView.CSSStyleSheet();
+              noTransitions.replaceSync('*, :host { transition: none !important; }');
+              header.shadowRoot.adoptedStyleSheets = [
+                ...header.shadowRoot.adoptedStyleSheets,
+                noTransitions,
+              ];
+
+              const getHeaderGeometry = (scrollTop: number) => {
+                rootStyle.setProperty('--post-header-scroll-top', `${scrollTop}px`);
+                return JSON.stringify(
+                  [header, ...header.shadowRoot.querySelectorAll('*')].map(el => {
+                    const { top, left, width, height } = el.getBoundingClientRect();
+                    return [top, left, width, height].map(n => Math.round(n));
+                  }),
+                );
+              };
+
+              const reducedGeometry = getHeaderGeometry(scrollMax);
+              const beyondGeometry = getHeaderGeometry(scrollMax + 300);
+              rootStyle.setProperty('--post-header-scroll-top', `${scrollMax}px`);
+
+              expect(beyondGeometry).to.eq(reducedGeometry);
             });
           });
         });
       });
+    });
+  });
 
-      it('should not query the document for a locked scroll parent while scrolling', () => {
+  describe('DOM reattachment', { viewportHeight: 1000, viewportWidth: 400 }, () => {
+    beforeEach(() => {
+      cy.getComponent('header', HEADER_ID);
+    });
+
+    const removeAndReattachHeader = () => {
+      cy.get('@header').then($header => {
+        const headerElement = $header[0];
+        headerElement.remove();
         cy.document().then(doc => {
-          cy.spy(doc, 'querySelector').as('querySelector');
-        });
-
-        dispatchScrollEvents(30);
-
-        cy.get<sinon.SinonSpy>('@querySelector').then(spy => {
-          const lockLookups = spy
-            .getCalls()
-            .filter(call => String(call.args[0]).includes('data-post-scroll-locked'));
-          expect(lockLookups).to.have.length(0);
+          doc.body.prepend(headerElement);
         });
       });
+    };
 
-      it('should keep working after the header is removed and reattached', () => {
-        cy.get('@header').then($header => {
-          const header = $header[0];
-          header.remove();
-          cy.document().then(doc => doc.body.prepend(header));
-        });
+    it('should keep updating the scroll position limit after reattaching header', () => {
+      removeAndReattachHeader();
 
-        scrollAndWait(180);
-        scrollAndWait(0);
-      });
+      // the header does not shrink on mobile, but it does on desktop
+      cy.viewport(1440, 1000);
+      cy.get('@header')
+        .shadow()
+        .find('.scroll-max')
+        .should($el => expect($el[0].getBoundingClientRect().width).to.be.greaterThan(1));
 
-      it('should stop reacting to scroll once the header is removed', () => {
-        scrollAndWait(100);
-        cy.get('@header').then($header => $header[0].remove());
-        spyOnScrollVarWrites();
-
-        cy.scrollTo(0, 300);
-        dispatchScrollEvents(5);
-
-        cy.get<sinon.SinonSpy>('@setProperty').then(spy => {
-          expect(scrollVarWrites(spy)).to.eq(0);
-        });
-      });
-
-      it('should follow a scroll container that becomes the scroll parent after a resize', () => {
-        cy.get('@header').then($header => {
-          const container = $header[0].parentElement as HTMLElement;
-          container.dataset.testScrollContainer = '';
-          container.style.height = '400px';
-          container.style.overflowY = 'auto';
-        });
-
-        cy.viewport(1900, 800);
-
-        cy.get('[data-test-scroll-container]').then($container => {
-          const container = $container[0];
-          // make sure there is something to scroll
-          const filler = container.ownerDocument.createElement('div');
-          filler.style.height = '3000px';
-          container.append(filler);
-          container.scrollTop = 150;
-        });
-
-        cy.document()
-          .its('documentElement.style')
-          .invoke('getPropertyValue', SCROLL_VAR)
-          .should('eq', '150px');
-      });
-
-      it('should go back to following the page once the container no longer scrolls', () => {
-        cy.get('@header').then($header => {
-          const container = $header[0].parentElement as HTMLElement;
-          container.dataset.testScrollContainer = '';
-          container.style.height = '400px';
-          container.style.overflowY = 'auto';
-          const filler = container.ownerDocument.createElement('div');
-          filler.style.height = '3000px';
-          container.append(filler);
-        });
-
-        cy.viewport(1900, 800);
-        cy.get('[data-test-scroll-container]').then($c => ($c[0].scrollTop = 90));
-        cy.document()
-          .its('documentElement.style')
-          .invoke('getPropertyValue', SCROLL_VAR)
-          .should('eq', '90px');
-
-        // back to the page as scroll container
-        cy.get('[data-test-scroll-container]').then($c => {
-          $c[0].style.overflowY = 'visible';
-          $c[0].style.height = '';
-          $c[0].scrollTop = 0;
-        });
-        cy.viewport(1920, 800);
-        scrollAndWait(60);
+      getScrollMax().then(scrollMax => {
+        const below = Math.floor(scrollMax / 2);
+        scrollAndWait(below);
+        getScrollTopProperty().should('eq', `${below}px`);
       });
     });
   });

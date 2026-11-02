@@ -2,16 +2,22 @@ import { LitElement, nothing } from 'lit';
 import { html } from 'lit/static-html.js';
 import { customElement, property } from 'lit/decorators.js';
 import { getTitleFromPath } from '@/utils';
-import { ModuleExport } from 'storybook/internal/types';
 
 export interface DesignParameter {
   type: 'figma';
   url: string;
 }
 
+interface StoriesModule {
+  default?: {
+    title?: string;
+    parameters?: { design?: DesignParameter };
+  };
+}
+
 @customElement('link-design')
 export class LinkDesignComponent extends LitElement {
-  @property({ type: Object }) of: ModuleExport = {};
+  @property({ type: Object }) of: StoriesModule | string = {};
 
   createRenderRoot() {
     /**
@@ -21,8 +27,9 @@ export class LinkDesignComponent extends LitElement {
   }
 
   render() {
-    const designParameter = this.of?.default?.parameters?.design as DesignParameter;
-    const titlePath = this.of?.default?.title;
+    const of: StoriesModule = typeof this.of === 'string' ? JSON.parse(this.of) : this.of;
+    const designParameter = of?.default?.parameters?.design;
+    const titlePath = of?.default?.title ?? '';
 
     return designParameter?.type === 'figma' && designParameter?.url
       ? html` <a class="figma-link btn btn-primary" href="${designParameter.url}">

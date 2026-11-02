@@ -1,3 +1,4 @@
+import 'cypress-real-events';
 import { HEADER_ID } from './helper/header';
 
 const HEADER_CONFIGS = ['portal', 'microsite', 'one-pager'];

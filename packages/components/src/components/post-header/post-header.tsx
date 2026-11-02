@@ -46,13 +46,14 @@ export class PostHeader {
   private burgerMenuAnimation: Animation;
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
+  private scrollMaxResizeObserver: ResizeObserver;
   private slottedContentObserver: MutationObserver;
   private globalHeader: HTMLElement;
   private localHeader: HTMLElement;
-  private readonly throttledResize = throttle(50, () => {
-    this.refreshScrollParent();
-    this.updateLocalHeaderHeight();
-  });
+  private scrollMaxElement: HTMLElement;
+  private scrollMax = Infinity;
+  private lastScrollTop: number;
+  private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
 
   private get hasBurgerMenu(): boolean {
     return this.device !== 'desktop' && this.hasMainNav;
@@ -63,18 +64,7 @@ export class PostHeader {
     easing: 'headerEase',
   };
 
-  // Resolved once on connect (and on resize), not on every scroll event
-  private cachedScrollParent: HTMLElement | null = null;
-  private lastPublishedScrollTop: number | null = null;
-
   get scrollParent(): HTMLElement {
-    if (!this.cachedScrollParent?.isConnected) {
-      this.cachedScrollParent = this.resolveScrollParent();
-    }
-    return this.cachedScrollParent;
-  }
-
-  private resolveScrollParent(): HTMLElement {
     const frozenScrollParent: HTMLElement | null = document.querySelector(
       '[data-post-scroll-locked]',
     );
@@ -141,6 +131,7 @@ export class PostHeader {
     this.handleScrollEvent = this.handleScrollEvent.bind(this);
     this.updateScrollParentHeight = this.updateScrollParentHeight.bind(this);
     this.updateLocalHeaderHeight = this.updateLocalHeaderHeight.bind(this);
+    this.updateScrollMax = this.updateScrollMax.bind(this);
     this.keyboardHandler = this.keyboardHandler.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
     this.checkSlottedContent = this.checkSlottedContent.bind(this);
@@ -166,8 +157,6 @@ export class PostHeader {
   };
 
   connectedCallback() {
-    this.cachedScrollParent = this.resolveScrollParent();
-    this.lastPublishedScrollTop = null;
     globalThis.addEventListener('resize', this.throttledResize, { passive: true });
     globalThis.addEventListener('scroll', this.onScroll, {
       passive: true,
@@ -179,6 +168,7 @@ export class PostHeader {
     globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
 
     this.handleScrollParentResize();
+    this.handleScrollMaxResize();
     this.lockBody(false, this.burgerMenuExtended, 'burgerMenuExtended');
   }
 
@@ -191,6 +181,7 @@ export class PostHeader {
   componentDidRender() {
     this.getFocusableElements();
     this.handleLocalHeaderResize();
+    this.handleScrollMaxResize();
 
     // When a megadropdown is open on desktop and the user resizes to mobile, we set
     // burgerMenuExtended = true but burgerMenuButton doesn't exist yet — it only renders
@@ -227,7 +218,11 @@ export class PostHeader {
       this.localHeaderResizeObserver.disconnect();
       this.localHeaderResizeObserver = null;
     }
-    this.cachedScrollParent = null;
+    if (this.scrollMaxResizeObserver) {
+      this.scrollMaxResizeObserver.disconnect();
+      this.scrollMaxResizeObserver = null;
+    }
+    this.lastScrollTop = undefined;
     if (this.slottedContentObserver) {
       this.slottedContentObserver.disconnect();
       this.slottedContentObserver = null;
@@ -341,33 +336,29 @@ export class PostHeader {
   }
 
   private handleScrollEvent() {
-    const scrollParent = this.scrollParent;
-    const scrollTop = Math.max(
-      scrollParent === document.body ? window.scrollY : scrollParent.scrollTop,
-      0,
-    );
+    const scrollTop =
+      this.scrollParent === document.body ? window.scrollY : this.scrollParent.scrollTop;
 
-    // Writing on :root invalidates styles for the whole page, so skip identical values
-    if (scrollTop === this.lastPublishedScrollTop) return;
-    this.lastPublishedScrollTop = scrollTop;
-    document.documentElement.style.setProperty('--post-header-scroll-top', `${scrollTop}px`);
+    // Once the header is fully reduced, writing a new value would only trigger
+    // a style recalculation of the whole page without any visual change
+    const value = Math.min(Math.max(scrollTop, 0), this.scrollMax);
+    if (value === this.lastScrollTop) return;
+
+    this.lastScrollTop = value;
+    document.documentElement.style.setProperty('--post-header-scroll-top', `${value}px`);
   }
 
-  // The scroll container can change in SPAs (layout or route changes): rebind when it does
-  private refreshScrollParent() {
-    const previous = this.cachedScrollParent;
-    const current = this.resolveScrollParent();
-    if (previous === current) return;
+  private updateScrollMax() {
+    if (!this.scrollMaxElement) return;
 
-    previous?.removeEventListener('scroll', this.onScroll);
-    this.cachedScrollParent = current;
-    current.addEventListener('scroll', this.onScroll, { passive: true });
+    // Never limit the scroll value when the header styles are not loaded
+    const isScrollMaxDefined =
+      getComputedStyle(this.host).getPropertyValue('--post-header-scroll-max').trim() !== '';
 
-    this.scrollParentResizeObserver?.disconnect();
-    this.scrollParentResizeObserver = new ResizeObserver(this.updateScrollParentHeight);
-    this.scrollParentResizeObserver.observe(current);
+    this.scrollMax = isScrollMaxDefined
+      ? Math.ceil(this.scrollMaxElement.getBoundingClientRect().width)
+      : Infinity;
 
-    this.lastPublishedScrollTop = null;
     this.handleScrollEvent();
   }
 
@@ -425,6 +416,15 @@ export class PostHeader {
       this.localHeaderResizeObserver = new ResizeObserver(this.updateLocalHeaderHeight);
       this.localHeaderResizeObserver.observe(localHeader);
     }
+  }
+
+  private handleScrollMaxResize() {
+    if (!this.scrollMaxElement || this.scrollMaxResizeObserver) return;
+
+    // The ResizeObserver is not called for an initial size of 0px (e.g. on mobile)
+    this.updateScrollMax();
+    this.scrollMaxResizeObserver = new ResizeObserver(this.updateScrollMax);
+    this.scrollMaxResizeObserver.observe(this.scrollMaxElement);
   }
 
   private handleSlottedContentChanges() {
@@ -529,6 +529,11 @@ export class PostHeader {
         data-burger-menu={this.hasBurgerMenu}
         data-menu-extended={this.burgerMenuExtended}
       >
+        <span
+          class="scroll-max"
+          aria-hidden="true"
+          ref={el => (this.scrollMaxElement = el)}
+        ></span>
         <header>
           <div ref={el => (this.globalHeader = el)} class="global-header">
             <div class="section">
