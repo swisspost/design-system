@@ -1,0 +1,13 @@
+<div class="toast-container toast-top-right" aria-atomic="true" role="status" aria-live="polite">
+  @for (toast of toastService.toasts(); track toast.id) {
+  <div [class]="'toast toast-' + toast.variant + (toast.dismissible ? ' toast-dismissible' : '')">
+    @if (toast.dismissible) {
+    <post-closebutton (click)="toastService.close(toast.id)">
+      {{ 'template.header.close' | translate }}
+    </post-closebutton>
+    }
+    <div class="toast-title">{{ toast.title }}</div>
+    <div class="toast-message">{{ toast.message }}</div>
+  </div>
+  }
+</div>

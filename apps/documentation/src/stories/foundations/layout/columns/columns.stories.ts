@@ -43,7 +43,7 @@ const meta: MetaExtended = {
       options: ['no self alignment', 'align-self-start', 'align-self-center', 'align-self-end'],
     },
     justifyContent: {
-      name: 'Horizontal Alignement',
+      name: 'Horizontal Alignment',
       description: 'Aligns the Items horizontally.',
       control: {
         type: 'select',
@@ -163,7 +163,7 @@ export const VerticalExample: Story = {
 export const HorizontalExample: Story = {
   parameters: {
     controls: {
-      include: ['Horizontal Alignement'],
+      include: ['Horizontal Alignment'],
     },
   },
   render: (args: Args) => html`

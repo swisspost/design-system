@@ -7,7 +7,7 @@
 
 {
   "extends": "../tsconfig.json",
-  "include": ["**/*.cy.ts", "**/*.snapshot.ts"],
+  "include": ["**/*.ts"],
   "compilerOptions": {
     "types": [
       "cypress",

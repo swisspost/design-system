@@ -133,6 +133,7 @@ export class MigrationV910Component extends LitElement {
   render() {
     if (!this.currentVersion || this.currentVersion > 9) return nothing;
     return html`
+      <div class="container py-40">
       <h2 id="migration-from-v9-to-v10" class="docs-autolink">
         Migration from v9 to v10
         <a
@@ -144,10 +145,9 @@ export class MigrationV910Component extends LitElement {
         </a>
       </h2>
 
-      <section>
-        <ol class="bubble-tea">
-          <li>
-            <h3>Introduction</h3>
+      <post-accordion heading-level="3">
+        <post-accordion-item>
+          <span slot="header">1. Introduction</span>
             <p>
               Version 10 comes with a <b>new look and cleaner codebase</b> — and yes, a few breaking
               changes, all for good reason.
@@ -187,16 +187,17 @@ export class MigrationV910Component extends LitElement {
             <p>
               Oh, and yes — there's a
               <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uilight">
-                >brand-new icon set</a
+                brand-new icon set</a
               >
               too 🖼️.
             </p>
-          </li>
-          <li>
-            <h3>Package Update 🩺</h3>
+        </post-accordion-item>
+
+        <post-accordion-item>
+          <span slot="header">2. Package Update 🩺</span>
             <p>
               Update Design System styles and components packages to version 10 by running these two
-              commands in your project root:
+              commands in your project root:</p>
               <code-block code=${'npm install @swisspost/design-system-styles@10'}></code-block>
               <code-block
                 code=${
@@ -220,9 +221,11 @@ export class MigrationV910Component extends LitElement {
                     `
                   : nothing
               }
-          <li>
-            <h3 class="d-flex align-items-center gap-8">AI-assisted migration 🤖 <span class="tag tag-sm tag-info">optional</span></h3>
-            <p>
+        </post-accordion-item>
+
+        <post-accordion-item>
+          <span slot="header">3. AI-assisted migration 🤖 <span class="tag tag-sm tag-info">optional</span></span>
+                      <p>
               There are <b>two ways</b> to handle this migration: do it
               <b>manually</b> by skipping this AI-assisted migration part and following the steps below, or let the
               <b>AI skill</b> do most of the work for you. Either way, you should still go through
@@ -246,7 +249,7 @@ export class MigrationV910Component extends LitElement {
               </ul>
             </post-banner>
 
-            <h5 class="pt-16">How to use it</h5>
+            <h5>How to use it</h5>
             <ol>
               <li>
                 Follow the setup tutorial in the
@@ -268,70 +271,69 @@ export class MigrationV910Component extends LitElement {
                 was applied correctly, then finish with the clean up.
               </li>
             </ol>
-          </li>
-            </p>
-          </li>
-          <li>
-            <h3>Styles entrypoint</h3>
-            <p>
-              The main styles entrypoint has been renamed.
-              On your application, locate the <code>@use '@swisspost/design-system-styles/${this.environment === 'intranet' ? 'intranet' : 'index'}(.scss)';</code> import and rename it to:
-              <code-block code=${this.environment === 'intranet' ? "@use '@swisspost/design-system-styles/post-compact.scss';" : "@use '@swisspost/design-system-styles/post-default.scss';"}></code>
-            </p>
-          </li>
-          <li>
-            <h3>Removed unused CSS entry files</h3>
-            <p>
-              The top-level entry files <code>fonts.css</code> and <code>elements.css</code> have been removed from the <code>@swisspost/design-system-styles</code> package.
-            </p>
-            <ul>
-              <li>
-                <strong>fonts.css</strong>: Use the fonts component file instead.
-                <code-block code=${"@use '@swisspost/design-system-styles/components/fonts';"}></code-block>
-              </li>
-              <li>
-                <strong>elements.css</strong>: Import elements styles directly from the elements directory.
-                <code-block code=${"@use '@swisspost/design-system-styles/elements';"}></code-block>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <h3>Run Automigration Scripts 🪄</h3>
-            <p>
-              Many breaking changes can be fixed automatically using the
-              <code>@swisspost/design-system-eslint</code> package. Our very own, custom migration
-              rules scan your HTML and TypeScript files and apply fixes where possible. Each item
-              marked with <span class="tag tag-sm tag-info">🪄 migration rule</span> in the
-              checklist below is covered by one of them.
-            </p>
-            <ol>
-              <li>
-                Install the Design System ESLint package as a dev dependency:
-                <code-block
-                  code=${'npm install @swisspost/design-system-eslint --save-dev'}
-                ></code-block>
-              </li>
-              <li>
-                Run the migration rules using the official ESLint runner with the --fix flag at the
-                root of your project:
-                <code-block
-                  code=${'npx eslint --config node_modules/@swisspost/design-system-eslint/dist/migrations.js --fix'}
-                ></code-block>
-                <span class="info">
-                  💡 This command applies migration rules using the official ESLint package without
-                  installing it as a project dependency or modifying your existing ESLint
-                  configuration.
-                </span>
-              </li>
-              <li>
-                Review the changes applied by the script and make sure every automatic
-                <span class="tag tag-sm tag-info">🪄 migration rule</span> was applied correctly.
-              </li>
-            </ol>
-          </li>
-          <li>
-            <h3>Component Migration 🤓</h3>
-            <div class="my-16">
+        </post-accordion-item>
+
+        <post-accordion-item>
+          <span slot="header">4. Styles entrypoint</span>
+          <p>
+            The main styles entrypoint has been renamed.
+            On your application, locate the <code>@use '@swisspost/design-system-styles/${this.environment === 'intranet' ? 'intranet' : 'index'}(.scss)';</code> import and rename it to:
+            <code-block code=${this.environment === 'intranet' ? "@use '@swisspost/design-system-styles/post-condensed.scss';" : "@use '@swisspost/design-system-styles/post-default.scss';"}></code-block>
+          </p>
+        </post-accordion-item>
+        <post-accordion-item>
+          <span slot="header">5. Remove unused CSS entry files</span>
+          <p>
+            The top-level entry files <code>fonts.css</code> and <code>elements.css</code> have been removed from the <code>@swisspost/design-system-styles</code> package.
+          </p>
+          <ul>
+            <li>
+              <strong>fonts.css</strong>: Use the fonts component file instead.
+              <code-block code=${"@use '@swisspost/design-system-styles/components/fonts';"}></code-block>
+            </li>
+            <li>
+              <strong>elements.css</strong>: Import elements styles directly from the elements directory.
+              <code-block code=${"@use '@swisspost/design-system-styles/elements';"}></code-block>
+            </li>
+          </ul>
+        </post-accordion-item>
+        <post-accordion-item>
+          <span slot="header">6. Run Automigration Scripts 🪄</span>
+          <p>
+            Many breaking changes can be fixed automatically using the
+            <code>@swisspost/design-system-eslint</code> package. Our very own, custom migration
+            rules scan your HTML and TypeScript files and apply fixes where possible. Each item
+            marked with <span class="tag tag-sm tag-info">🪄 migration rule</span> in the
+            checklist below is covered by one of them.
+          </p>
+          <ol>
+            <li>
+              Install the Design System ESLint package as a dev dependency:
+              <code-block
+                code=${'npm install @swisspost/design-system-eslint --save-dev'}
+              ></code-block>
+            </li>
+            <li>
+              Run the migration rules using the official ESLint runner with the --fix flag at the
+              root of your project:
+              <code-block
+                code=${'npx eslint --config node_modules/@swisspost/design-system-eslint/dist/migrations.js --fix'}
+              ></code-block>
+              <span class="info">
+                💡 This command applies migration rules using the official ESLint package without
+                installing it as a project dependency or modifying your existing ESLint
+                configuration.
+              </span>
+            </li>
+            <li>
+              Review the changes applied by the script and make sure every automatic
+              <span class="tag tag-sm tag-info">🪄 migration rule</span> was applied correctly.
+            </li>
+          </ol>
+        </post-accordion-item>
+        <post-accordion-item>
+          <span slot="header">7. Component Migration 🤓</span>
+          <div class="my-16">
               <div class="form-check">
                 <input
                   id="general-hide_automigration"
@@ -379,7 +381,7 @@ export class MigrationV910Component extends LitElement {
             </post-banner>
 
             <div @change="${this._onChange}">
-              <section>
+              <section class="palette palette-alternate mt-40 p-16 p-lg-40">
                 <h4>Ng-Bootstrap</h4>
                 <ul class="list-unstyled">
                   <li>
@@ -565,6 +567,147 @@ export class MigrationV910Component extends LitElement {
                             <a href="/?path=/docs/eb77cd02-48b2-42e1-a3e4-cd8a973d431e--docs"
                               >post-date-picker</a
                             >
+                            <span class="info">
+                              <p><strong>Common migration patterns:</strong></p>
+                              <ul>
+                                <li>
+                                  <code>&lt;ngb-datepicker&gt;</code> →
+                                  <code>&lt;post-date-picker inline&gt;</code> with a slotted
+                                  <code>input</code>, which the component makes hidden.
+                                </li>
+                                <li>
+                                  <code>&lt;input ngbDatepicker&gt;</code> → <code>&lt;post-date-picker&gt;</code> with a slotted
+                                  <code>input</code>, no <code>inline</code> prop.
+                                </li>
+                                <li>
+                                  <code>(dateSelect)</code> → native <code>input</code> or
+                                  <code>change</code> on the slotted input, or an Angular form
+                                  control's <code>valueChanges</code>. Value is of ISO date format, rather than <code>NgbDate</code>.
+                                </li>
+                                <li>
+                                  <code>minDate</code>/<code>maxDate</code> →
+                                  <code>min</code>/<code>max</code> as ISO date-only strings
+                                  (<code>YYYY-MM-DD</code>). These constrain calendar selection;
+                                  add form validators for rules, typed input and
+                                  ranges.
+                                </li>
+                                <li>
+                                  <code>NgbDateStruct</code>/<code>NgbDate</code> → change to native ISO date-only
+                                  strings (<code>YYYY-MM-DD</code>) for form and API state. Compare normalized
+                                  ISO strings or use a date library instead of
+                                  <code>NgbDate.before()</code>/<code>after()</code>.
+                                </li>
+                                <li>
+                                  <code>NgbDateAdapter</code>, <code>NgbDateNativeAdapter</code>,
+                                  <code>NgbDateNativeUTCAdapter</code> → convert your
+                                  native <code>Date</code> model to and from the input's ISO value
+                                  in application code. There is no injectable date adapter. If
+                                  your API uses UTC timestamps, distinguish them from date-only
+                                  values before converting; <code>toISOString()</code> can shift
+                                  a local-midnight date by a day.
+                                </li>
+                                <li>
+                                  <code>NgbDateParserFormatter</code> → use the built-in locale
+                                  mask and ISO input value. There is no injectable parser/formatter
+                                  hook; handle nonstandard formats outside the picker.
+                                </li>
+                                <li>
+                                  <code>NgbDatepickerI18n</code> → set <code>locale</code> (or an
+                                  ancestor's <code>lang</code>) and translate the required toggle
+                                  and navigation labels in your app. The locale controls the
+                                  display format and first day of the week; there is no custom
+                                  calendar service or separate <code>firstDayOfWeek</code> prop.
+                                </li>
+                                <li>
+                                  <code>markDisabled</code> → <code>cellConfig</code>, which takes
+                                  a native <code>Date</code> and cell type and can return
+                                  <code>disabled</code> and <code>classes</code>.
+                                </li>
+                                <li>
+                                  <code>open()</code>/<code>close()</code> → <code>show()</code>/
+                                  <code>hide()</code>. There is no <code>toggle()</code>.
+                                </li>
+                                <li>
+                                  <code>container="body"</code>, placement or
+                                  <code>positionTarget</code> → no equivalent, it is placed in the top layer, and positioned at the bottom-end of the input by default, with automatic flipping or shifting when needed to fit the viewport..
+                                </li>
+                                <li>
+                                  <code>navigation</code> and <code>displayMonths</code> → no equivalent, defaults to arrow navigations and always displays 1 month.
+                                </li>
+                                <li>
+                                  <code>startDate</code> and <code>navigateTo()</code>  → no equivalent, start date defaults to today, unless a date has previously been selected.
+                                </li>
+                              </ul>
+                              <p>
+                                Bind Angular forms to the native <code>input</code>, not the
+                                <code>post-date-picker</code> host. Its <code>value</code> is an ISO
+                                date-only string, while the visible text follows
+                                <code>locale</code>. Initialize the input or control with an ISO
+                                string. With <code>range</code>, the input value is an array of
+                                ISO strings; use an application-specific adapter if your form
+                                needs a different model shape. Provide the required calendar
+                                control labels in your application's language.
+                              </p>
+                              <p><strong>Datepicker input with a reactive form:</strong></p>
+                              <code-block
+                                code=${`<!-- In a component importing ReactiveFormsModule with an appointmentDate control -->
+<form [formGroup]="form">
+  <post-date-picker
+    locale="de-CH"
+    min="2026-01-01"
+    max="2026-12-31"
+    textToggleCalendar="Open calendar"
+    ...
+  >
+    <label for="appointment-date">Appointment date</label>
+    <input id="appointment-date" class="form-control" formControlName="appointmentDate" />
+  </post-date-picker>
+</form>`}
+                              ></code-block>
+                              <p><strong>Normalize date values at the API boundary:</strong></p>
+                              <p>
+                                If your application already returns a date-only ISO value
+                                (<code>YYYY-MM-DD</code>), pass it straight to the form control; no
+                                converter is needed. For another format, parse according
+                                to that API's contract and construct the picker value directly as
+                                <code>YYYY-MM-DD</code>, without an intermediate
+                                <code>NgbDateStruct</code>. Date-only values are calendar dates,
+                                not timestamps.
+                              </p>
+                              <code-block
+                                code=${`// A date-only API field already matches the picker value.
+const pickerValue = response.appointmentDate; // e.g. "2026-05-12"
+
+// If the API returns a timestamp, require an explicit timezone and choose the
+// calendar timezone according to the API's contract. This example uses UTC.
+const apiTimestamp = '2024-12-24T23:00:00-04:00';
+apiTimestamp.slice(0, 10); // "2024-12-24" — wrong when the picker needs the UTC calendar date
+
+function utcTimestampToDatePicker(value: string): string {
+  if (!/(?:Z|[+-]\\d{2}:\\d{2})$/i.test(value)) {
+    throw new Error('Expected a timestamp with an explicit timezone.');
+  }
+  const instant = new Date(value);
+  if (Number.isNaN(instant.getTime())) throw new Error('Invalid date.');
+  return instant.toISOString().slice(0, 10);
+}
+
+utcTimestampToDatePicker(apiTimestamp); // "2024-12-25"`}
+                              ></code-block>
+                              <p><strong>Disable a recurring date range with <code>cellConfig</code>:</strong></p>
+                              <code-block
+                                code=${`<!-- Template: bind the callback property; don't write cellConfig="..." -->
+<post-date-picker [cellConfig]="disableChristmasWeek" ...>
+  <input class="form-control" />
+</post-date-picker>
+
+// Component: disable December 25–31 every year.
+readonly disableChristmasWeek = (date: Date, cellType: 'day' | 'month' | 'year') =>
+  cellType === 'day' && date.getMonth() === 11 && date.getDate() >= 25
+    ? { disabled: true }
+    : undefined;`}
+                              ></code-block>
+                            </span>
                           </label>
                         </div>
                       </li>
@@ -1067,223 +1210,8 @@ export class MyComponent {
                   </li>
                 </ul>
               </section>
-              ${
-                this.environment === 'intranet'
-                  ? html`
-                      <section>
-                        <h4>Intranet header</h4>
-                        <p>
-                          The <code>sp-intranet-header</code> no longer exists. In this new version,
-                          both internet and intranet use the same
-                          <a href="/?path=/docs/27a2e64d-55ba-492d-ab79-5f7c5e818498--docs"
-                            ><code>post-header</code></a
-                          >
-                          component and compose content through slots. For intranet applications,
-                          this means using the
-                          <a
-                            href="/?path=/docs/27a2e64d-55ba-492d-ab79-5f7c5e818498--docs#application"
-                            >application header</a
-                          >
-                          variant. If you were also using a sidebar, migrate it to the
-                          <a href="/?path=/docs/9f26d86e-7edb-5804-ac96-92g22f91c9d9--docs"
-                            >post-side-navigation</a
-                          >
-                          component.
-                        </p>
 
-                        <ul class="list-unstyled">
-                          <li class="mb-16">
-                            <div class="form-check">
-                              <input
-                                id="intranet_header-migration"
-                                class="form-check-input"
-                                type="checkbox"
-                                ?checked="${this.state.intranet_header.migration}"
-                              />
-                              <label class="form-check-label" for="intranet_header-migration">
-                                Migrate old intranet header properties to the new
-                                <code>post-header</code> structure
-                                <span class="info">
-                                  <p><strong>Migration mapping:</strong></p>
-                                  <ul>
-                                    <li>
-                                      <code>siteTitle</code> → move to the
-                                      <code>slot="title"</code>.
-                                    </li>
-                                    <li>
-                                      <code>showIntranetSearch</code> → there is no longer a search
-                                      within the header itself, you can add a link to your search
-                                      page on the <code>slot="local-nav"</code>.
-                                    </li>
-                                    <li>
-                                      <code>languages</code> and <code>lang</code> → use
-                                      <code>post-language-menu</code> in
-                                      <code>slot="local-nav"</code>. The <code>lang</code> is
-                                      replaced with setting <code>active="true"</code> on the
-                                      currently active language entry. Keep language switching and
-                                      persistence logic in your application code.
-                                    </li>
-                                    <li>
-                                      <code>currentUserId</code> and <code>displayName</code> → map
-                                      to your authenticated user state and render user UI in
-                                      <code>slot="post-login"</code>. When no user is authenticated,
-                                      render a login link in the same slot.
-                                    </li>
-                                    <li>
-                                      <code>additionalInfo</code> and
-                                      <code>optionDropdownContent</code> → move content into the
-                                      user <code>post-menu</code>..
-                                    </li>
-                                    <li>
-                                      <code>optionHeaderContent</code> → no longer available. If
-                                      needed on the header, the content can be manually appended to
-                                      the title area.
-                                    </li>
-                                    <li>
-                                      <code>navigation</code> → move links to
-                                      <code>slot="local-nav"</code>. If there are many, or if
-                                      nesting/dropdowns are needed, migrate to
-                                      <code>post-side-navigation</code>. If you need two different
-                                      navigations (navigation links + side navigation), you can move
-                                      those links into the <code>post-mainnavigation</code>.
-                                    </li>
-                                    <li>
-                                      <code>logoUrl</code> → set URL directly on
-                                      <code>post-logo</code> in <code>slot="post-logo"</code>.
-                                    </li>
-                                  </ul>
-                                  <p>
-                                    <strong>Accessibility reminders</strong>: set
-                                    <code>aria-current="page"</code> on active navigation links.
-                                  </p>
-                                </span>
-                                <code-block
-                                  code=${`<post-header>
-  <div slot="title">
-    My Application <!-- Previous siteTitle -->
-    <small class="d-block">INT / v10.0.0</small> <!-- Previous optionHeaderContent -->
-  </div>
-  <a slot="post-logo" href="/">
-    <post-logo url="/home"></post-logo> <!-- Previous logoUrl → url prop -->
-  </a>
-
-  <ul slot="local-nav" class="d-flex align-items-center gap-8">
-    <li><a href="/search">Search</a></li> <!-- Previous showIntranetSearch → Link to search page -->
-    <li><a href="/dashboard" aria-current="page">Dashboard</a></li>
-    <li>
-      <!-- Previous languages and lang → Implement language menu component -->
-      <post-language-menu
-        text-change-language="Change the language"
-        text-current-language="The currently selected language is {name}."
-        name="header-language"
-      >
-        <post-language-menu-item code="de" name="German" active="true">de</post-language-menu-item>
-        <post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
-        <post-language-menu-item code="it" name="Italian">it</post-language-menu-item>
-        <post-language-menu-item code="en" name="English">en</post-language-menu-item>
-      </post-language-menu>
-    </li>
-  </ul>
-
-  <div slot="post-login">
-    <post-menu-trigger for="user-menu">
-      <button class="btn btn-link" type="button">
-        <!-- currentUserId → Render user UI in post-avatar -->
-        <post-avatar
-          firstname="Jane"
-          lastname="Doe"
-          description="Current user is Jane Doe."
-        ></post-avatar>
-        <span class="visually-hidden">Access user links.</span>
-      </button>
-    </post-menu-trigger>
-    <post-menu id="user-menu" label="User links">
-      <div slot="header">
-        <post-avatar firstname="Jane" lastname="Doe" aria-hidden="true"></post-avatar>
-        <p>Jane Doe</p> <!-- displayName -->
-      </div>
-      <!-- Previous optionDropdownContent and additionalInfo -->
-      <post-menu-item>
-        <a href="/profile">
-          <post-icon aria-hidden="true" name="profile"></post-icon>
-          My Profile
-        </a>
-      </post-menu-item>
-      ...
-      <post-menu-item>
-        <button type="button">
-          <post-icon aria-hidden="true" name="logout"></post-icon>
-          Logout
-        </button>
-      </post-menu-item>
-    </post-menu>
-  </div>
-</post-header>`}
-                                ></code-block>
-                                <span class="info">
-                                  <p>
-                                    <strong
-                                      >Sidebar migration example (.sidebar →
-                                      post-side-navigation)</strong
-                                    >
-                                  </p>
-                                </span>
-                                <code-block
-                                  code=${`<!-- v9 -->
-<nav class="col-md-3 col-lg-2 d-md-flex bg-light sidebar p-md-3" id="sidebar">
-  ...
-</nav>
-
-<!-- v10 -->
-<post-side-navigation text-close="Close navigation">
-  <nav aria-label="Side navigation">
-    <h2 class="post-side-navigation-heading">Section title (optional)</h2>
-    <ul>
-      <li>
-        <a href="/" class="post-side-navigation-item">
-          <post-icon name="letter" aria-hidden="true"></post-icon>
-          Home
-        </a>
-      </li>
-      <li>
-        <post-collapsible-trigger>
-          <button class="post-side-navigation-item">
-            <post-icon name="letter" aria-hidden="true"></post-icon>
-            Menu Text
-            <post-icon name="chevrondown" aria-hidden="true"></post-icon>
-          </button>
-          <post-collapsible>
-            <ul>
-              <li>
-                <a href="#" class="post-side-navigation-item" aria-current="page"
-                  >Link 1 (active)</a
-                >
-              </li>
-              <li><a href="#" class="post-side-navigation-item">Link 2</a></li>
-              <li><a href="#" class="post-side-navigation-item">Link 3</a></li>
-              <li><a href="#" class="post-side-navigation-item">Link 4</a></li>
-              <li><a href="#" class="post-side-navigation-item">Link 5</a></li>
-            </ul>
-          </post-collapsible>
-        </post-collapsible-trigger>
-      </li>
-    </ul>
-  </nav>
-</post-side-navigation>
-
-<main class="main-container">
-  <!-- page content -->
-</main>`}
-                                ></code-block>
-                              </label>
-                            </div>
-                          </li>
-                        </ul>
-                      </section>
-                    `
-                  : nothing
-              }
-              <section>
+              <section class="palette palette-default p-16 p-lg-40">
                 <h4>Components</h4>
 
                 <ul class="list-unstyled">
@@ -1443,206 +1371,7 @@ export class MyComponent {
                 </ul>
               </section>
 
-              ${
-                this.environment !== 'intranet'
-                  ? html`
-                      <section>
-                        <h4>Internet Header (@swisspost/internet-header)</h4>
-                        <post-banner type="warning" class="mb-16">
-                          <p>
-                            Version 10 uses a <strong>new configuration format</strong>. Your
-                            existing v9 Portal configuration will not work with the v10 Internet
-                            Header and will cause errors at runtime. You must request a
-                            configuration migration <strong>before</strong> upgrading the package.
-                          </p>
-                        </post-banner>
-                        <ul class="list-unstyled">
-                          <li class="mb-16">
-                            <div class="form-check">
-                              <input
-                                id="internet_header-request_config"
-                                class="form-check-input"
-                                type="checkbox"
-                                ?checked="${this.state.internet_header.request_config}"
-                              />
-                              <label class="form-check-label" for="internet_header-request_config">
-                                Request a configuration migration to the v10 format
-                                <span class="info">
-                                  <p>
-                                    Contact the Post Portal Team at
-                                    <a href="mailto:dm-tec@post.ch">dm-tec@post.ch</a> to request a
-                                    configuration migration. Provide your
-                                    <code>serviceId</code> (project ID) and the environments you
-                                    need migrated (e.g. <code>int01</code>, <code>int02</code>,
-                                    <code>prod</code>).
-                                  </p>
-                                  <p>
-                                    Do not upgrade the <code>@swisspost/internet-header</code>
-                                    package until the new configuration is in place.
-                                  </p>
-                                </span>
-                              </label>
-                            </div>
-                          </li>
-                          <li class="mb-16">
-                            <div class="form-check">
-                              <input
-                                id="internet_header-update_package"
-                                class="form-check-input"
-                                type="checkbox"
-                                ?checked="${this.state.internet_header.update_package}"
-                              />
-                              <label class="form-check-label" for="internet_header-update_package">
-                                Update the <code>@swisspost/internet-header</code> package to
-                                version 10
-                                <code-block
-                                  code=${'npm install @swisspost/internet-header@10'}
-                                ></code-block>
-                              </label>
-                            </div>
-                          </li>
-                          <li class="mb-16">
-                            <div class="form-check">
-                              <input
-                                id="internet_header-add_text_props"
-                                class="form-check-input"
-                                type="checkbox"
-                                ?checked="${this.state.internet_header.add_text_props}"
-                              />
-                              <label class="form-check-label" for="internet_header-add_text_props">
-                                Add the new required <code>text-*</code> props to your
-                                <code>swisspost-internet-header</code> element
-                                <span class="info">
-                                  Version 10 requires these props for accessibility — they provide
-                                  visually hidden labels for interactive elements. The component
-                                  will throw an error if any are missing.
-                                </span>
-                                <code-block
-                                  code=${'<swisspost-internet-header\n    project="your-service-id"\n    text-menu="Menu"\n    text-back="Back"\n    text-close="Close"\n    text-current-language="The currently selected language is {name}."\n    text-change-language="Change the language"\n    text-main="Main navigation"\n    text-current-user="Current user is {user}."\n    text-user-links="User links"\n  ></swisspost-internet-header>'}
-                                ></code-block>
-                              </label>
-                            </div>
-                          </li>
-                          <li class="mb-16">
-                            <div class="form-check">
-                              <input
-                                id="internet_header-remove_props"
-                                class="form-check-input"
-                                type="checkbox"
-                                ?checked="${this.state.internet_header.remove_props}"
-                              />
-                              <label class="form-check-label" for="internet_header-remove_props">
-                                Remove props and runtime assignments that no longer exist
-                                <span class="info">
-                                  The following props have been removed and have no effect in v10:
-                                  <code>stickyness</code>, <code>meta</code>, <code>login</code>,
-                                  <code>search</code>, <code>skiplinks</code>,
-                                  <code>config-proxy</code>, <code>language-cookie-key</code>,
-                                  <code>language-local-storage-key</code>, <code>logout-url</code>,
-                                  <code>self-admin-origin</code>, <code>os-flyout-overrides</code>,
-                                  <code>custom-config</code>,
-                                  <code>language-switch-overrides</code>. Only
-                                  <code>language</code> and <code>active-route</code> remain
-                                  reactive at runtime.
-                                </span>
-                              </label>
-                            </div>
-                          </li>
-                          <li class="mb-16">
-                            <div class="form-check">
-                              <input
-                                id="internet_header-language_switch_migration"
-                                class="form-check-input"
-                                type="checkbox"
-                                ?checked="${this.state.internet_header.language_switch_migration}"
-                              />
-                              <label
-                                class="form-check-label"
-                                for="internet_header-language_switch_migration"
-                              >
-                                Migrate from <code>language-switch-overrides</code> prop to
-                                <code>&lt;link rel="alternate"&gt;</code> tags
-                                <span class="info">
-                                  The <code>language-switch-overrides</code> prop has been removed.
-                                  Use standard <code>&lt;link rel="alternate"&gt;</code> tags in
-                                  your <code>&lt;head&gt;</code> instead. The header reads these
-                                  tags automatically and updates the language switch URLs.
-                                  More information on the
-                                  <a href="/?path=/docs/ebb11274-091b-4cb7-9a3f-3e0451c9a865--docs#dynamic-updates"
-                                    >language switch overrides docs</a
-                                  >.
-                              </label>
-                            </div>
-                          </li>
-                          <li class="mb-16">
-                            <div class="form-check">
-                              <input
-                                id="internet_header-breadcrumb_migration"
-                                class="form-check-input"
-                                type="checkbox"
-                                ?checked="${this.state.internet_header.breadcrumb_migration}"
-                              />
-                              <label
-                                class="form-check-label"
-                                for="internet_header-breadcrumb_migration"
-                              >
-                                Migrate from <code>&lt;swisspost-internet-breadcrumbs&gt;</code> to
-                                <code>&lt;post-breadcrumbs&gt;</code>
-                                <span class="info">
-                                  The <code>&lt;swisspost-internet-breadcrumbs&gt;</code> component
-                                  has been removed, as breadcrumbs are not included in the online
-                                  service header. Migrate to the self-managed
-                                  <code>&lt;post-breadcrumbs&gt;</code> and
-                                  <code>&lt;post-breadcrumb-item&gt;</code> components instead.
-                                  <br /><br />
-                                  The old component generated its trail automatically from the
-                                  header config, usually requiring no props. The new components
-                                  require manual setup:
-                                  <ul>
-                                    <li>
-                                      Set <code>home-url</code>, <code>text-home</code>,
-                                      <code>text-breadcrumbs</code>, and
-                                      <code>text-more-items</code> props on
-                                      <code>&lt;post-breadcrumbs&gt;</code>
-                                    </li>
-                                    <li>
-                                      Set <code>url</code> and <code>label</code>/<code
-                                        >description</code
-                                      >
-                                      on each <code>&lt;post-breadcrumbs-item&gt;</code>
-                                    </li>
-                                  </ul>
-                                  The <code>hide-buttons</code> prop and
-                                  <code>toggleOverlayById()</code>
-                                  method have no equivalent.
-
-                                  <p>
-                                    <strong>Before (v9 — part of Internet Header package)</strong>
-                                  </p>
-                                  <code-block
-                                    code=${'<swisspost-internet-breadcrumbs></swisspost-internet-breadcrumbs>'}
-                                  ></code-block>
-
-                                  <p><strong>After (v10 — part of Components package)</strong></p>
-                                  <code-block
-                                    code=${'<post-breadcrumbs\n  home-url="/"\n  text-home="Home"\n  text-breadcrumbs="Breadcrumbs"\n  text-more-items="More items"\n>\n  <post-breadcrumb-item url="/my-post">My Post</post-breadcrumb-item>\n  <post-breadcrumb-item url="/locations">Locations</post-breadcrumb-item>\n  <post-breadcrumb-item selected>Current Page</post-breadcrumb-item>\n</post-breadcrumbs>'}
-                                  ></code-block>
-
-                                  More information on the
-                                  <a href="/?path=/docs/b7db7391-f893-4b1e-a125-b30c6f0b028b--docs"
-                                    >breadcrumbs docs</a
-                                  >.
-                                </span>
-                              </label>
-                            </div>
-                          </li>
-                        </ul>
-                      </section>
-                    `
-                  : nothing
-              }
-
-              <section>
+              <section class="palette palette-accent p-16 p-lg-40">
                 <h4>Styles</h4>
 
                 <h5>✍️ Forms</h5>
@@ -2976,10 +2705,427 @@ export class MyComponent {
                   </li>
                 </ul>
               </section>
+
+              ${
+                this.environment === 'intranet'
+                  ? html`
+                      <section class="palette palette-default p-16 p-lg-40">
+                        <h4>Intranet header</h4>
+                        <p>
+                          The <code>sp-intranet-header</code> no longer exists. In this new version,
+                          both internet and intranet use the same
+                          <a href="/?path=/docs/27a2e64d-55ba-492d-ab79-5f7c5e818498--docs"
+                            ><code>post-header</code></a
+                          >
+                          component and compose content through slots. For intranet applications,
+                          this means using the
+                          <a
+                            href="/?path=/docs/27a2e64d-55ba-492d-ab79-5f7c5e818498--docs#application"
+                            >application header</a
+                          >
+                          variant. If you were also using a sidebar, migrate it to the
+                          <a href="/?path=/docs/9f26d86e-7edb-5804-ac96-92g22f91c9d9--docs"
+                            >post-side-navigation</a
+                          >
+                          component.
+                        </p>
+
+                        <ul class="list-unstyled">
+                          <li class="mb-16">
+                            <div class="form-check">
+                              <input
+                                id="intranet_header-migration"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.intranet_header.migration}"
+                              />
+                              <label class="form-check-label" for="intranet_header-migration">
+                                Migrate old intranet header properties to the new
+                                <code>post-header</code> structure
+                                <span class="info">
+                                  <p><strong>Migration mapping:</strong></p>
+                                  <ul>
+                                    <li>
+                                      <code>siteTitle</code> → move to the
+                                      <code>slot="title"</code>.
+                                    </li>
+                                    <li>
+                                      <code>showIntranetSearch</code> → there is no longer a search
+                                      within the header itself, you can add a link to your search
+                                      page on the <code>slot="local-nav"</code>.
+                                    </li>
+                                    <li>
+                                      <code>languages</code> and <code>lang</code> → use
+                                      <code>post-language-menu</code> in
+                                      <code>slot="local-nav"</code>. The <code>lang</code> is
+                                      replaced with setting <code>active="true"</code> on the
+                                      currently active language entry. Keep language switching and
+                                      persistence logic in your application code.
+                                    </li>
+                                    <li>
+                                      <code>currentUserId</code> and <code>displayName</code> → map
+                                      to your authenticated user state and render user UI in
+                                      <code>slot="post-login"</code>. When no user is authenticated,
+                                      render a login link in the same slot.
+                                    </li>
+                                    <li>
+                                      <code>additionalInfo</code> and
+                                      <code>optionDropdownContent</code> → move content into the
+                                      user <code>post-menu</code>..
+                                    </li>
+                                    <li>
+                                      <code>optionHeaderContent</code> → no longer available. If
+                                      needed on the header, the content can be manually appended to
+                                      the title area.
+                                    </li>
+                                    <li>
+                                      <code>navigation</code> → move links to
+                                      <code>slot="local-nav"</code>. If there are many, or if
+                                      nesting/dropdowns are needed, migrate to
+                                      <code>post-side-navigation</code>. If you need two different
+                                      navigations (navigation links + side navigation), you can move
+                                      those links into the <code>post-mainnavigation</code>.
+                                    </li>
+                                    <li>
+                                      <code>logoUrl</code> → set URL directly on
+                                      <code>post-logo</code> in <code>slot="post-logo"</code>.
+                                    </li>
+                                  </ul>
+                                  <p>
+                                    <strong>Accessibility reminders</strong>: set
+                                    <code>aria-current="page"</code> on active navigation links.
+                                  </p>
+                                </span>
+                                <code-block
+                                  code=${`<post-header>
+<div slot="title">
+My Application <!-- Previous siteTitle -->
+<small class="d-block">INT / v10.0.0</small> <!-- Previous optionHeaderContent -->
+</div>
+<a slot="post-logo" href="/">
+<post-logo url="/home"></post-logo> <!-- Previous logoUrl → url prop -->
+</a>
+
+<ul slot="local-nav" class="d-flex align-items-center gap-8">
+<li><a href="/search">Search</a></li> <!-- Previous showIntranetSearch → Link to search page -->
+<li><a href="/dashboard" aria-current="page">Dashboard</a></li>
+<li>
+<!-- Previous languages and lang → Implement language menu component -->
+<post-language-menu
+text-change-language="Change the language"
+text-current-language="The currently selected language is {name}."
+name="header-language"
+>
+<post-language-menu-item code="de" name="German" active="true">de</post-language-menu-item>
+<post-language-menu-item code="fr" name="French">fr</post-language-menu-item>
+<post-language-menu-item code="it" name="Italian">it</post-language-menu-item>
+<post-language-menu-item code="en" name="English">en</post-language-menu-item>
+</post-language-menu>
+</li>
+</ul>
+
+<div slot="post-login">
+<post-menu-trigger for="user-menu">
+<button class="btn btn-link" type="button">
+<!-- currentUserId → Render user UI in post-avatar -->
+<post-avatar
+firstname="Jane"
+lastname="Doe"
+description="Current user is Jane Doe."
+></post-avatar>
+<span class="visually-hidden">Access user links.</span>
+</button>
+</post-menu-trigger>
+<post-menu id="user-menu" label="User links" placement="bottom-end">
+<div slot="header">
+<post-avatar firstname="Jane" lastname="Doe" aria-hidden="true"></post-avatar>
+<p>Jane Doe</p> <!-- displayName -->
+</div>
+<!-- Previous optionDropdownContent and additionalInfo -->
+<post-menu-item>
+<a href="/profile">
+<post-icon aria-hidden="true" name="profile"></post-icon>
+My Profile
+</a>
+</post-menu-item>
+...
+<post-menu-item>
+<button type="button">
+<post-icon aria-hidden="true" name="logout"></post-icon>
+Logout
+</button>
+</post-menu-item>
+</post-menu>
+</div>
+</post-header>`}
+                                ></code-block>
+                                <span class="info">
+                                  <p>
+                                    <strong
+                                      >Sidebar migration example (.sidebar →
+                                      post-side-navigation)</strong
+                                    >
+                                  </p>
+                                </span>
+                                <code-block
+                                  code=${`<!-- v9 -->
+<nav class="col-md-3 col-lg-2 d-md-flex bg-light sidebar p-md-3" id="sidebar">
+...
+</nav>
+
+<!-- v10 -->
+<post-side-navigation text-close="Close navigation">
+<nav aria-label="Side navigation">
+<h2 class="post-side-navigation-heading">Section title (optional)</h2>
+<ul>
+<li>
+<a href="/" class="post-side-navigation-item">
+<post-icon name="letter" aria-hidden="true"></post-icon>
+Home
+</a>
+</li>
+<li>
+<post-collapsible-trigger>
+<button class="post-side-navigation-item">
+<post-icon name="letter" aria-hidden="true"></post-icon>
+Menu Text
+<post-icon name="chevrondown" aria-hidden="true"></post-icon>
+</button>
+<post-collapsible>
+<ul>
+<li>
+  <a href="#" class="post-side-navigation-item" aria-current="page"
+    >Link 1 (active)</a
+  >
+</li>
+<li><a href="#" class="post-side-navigation-item">Link 2</a></li>
+<li><a href="#" class="post-side-navigation-item">Link 3</a></li>
+<li><a href="#" class="post-side-navigation-item">Link 4</a></li>
+<li><a href="#" class="post-side-navigation-item">Link 5</a></li>
+</ul>
+</post-collapsible>
+</post-collapsible-trigger>
+</li>
+</ul>
+</nav>
+</post-side-navigation>
+
+<main class="main-container">
+<!-- page content -->
+</main>`}
+                                ></code-block>
+                              </label>
+                            </div>
+                          </li>
+                        </ul>
+                      </section>
+                    `
+                  : nothing
+              }
+
+              ${
+                this.environment !== 'intranet'
+                  ? html`
+                      <section class="palette palette-default p-16 p-lg-40">
+                        <h4>Internet Header (@swisspost/internet-header)</h4>
+                        <post-banner type="warning" class="mb-16">
+                          <p>
+                            Version 10 uses a <strong>new configuration format</strong>. Your
+                            existing v9 Portal configuration will not work with the v10 Internet
+                            Header and will cause errors at runtime. You must request a
+                            configuration migration <strong>before</strong> upgrading the package.
+                          </p>
+                        </post-banner>
+                        <ul class="list-unstyled">
+                          <li class="mb-16">
+                            <div class="form-check">
+                              <input
+                                id="internet_header-request_config"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.internet_header.request_config}"
+                              />
+                              <label class="form-check-label" for="internet_header-request_config">
+                                Request a configuration migration to the v10 format
+                                <span class="info">
+                                  <p>
+                                    Contact the Post Portal Team at
+                                    <a href="mailto:dm-tec@post.ch">dm-tec@post.ch</a> to request a
+                                    configuration migration. Provide your
+                                    <code>serviceId</code> (project ID) and the environments you
+                                    need migrated (e.g. <code>int01</code>, <code>int02</code>,
+                                    <code>prod</code>).
+                                  </p>
+                                  <p>
+                                    Do not upgrade the <code>@swisspost/internet-header</code>
+                                    package until the new configuration is in place.
+                                  </p>
+                                </span>
+                              </label>
+                            </div>
+                          </li>
+                          <li class="mb-16">
+                            <div class="form-check">
+                              <input
+                                id="internet_header-update_package"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.internet_header.update_package}"
+                              />
+                              <label class="form-check-label" for="internet_header-update_package">
+                                Update the <code>@swisspost/internet-header</code> package to
+                                version 10
+                                <code-block
+                                  code=${'npm install @swisspost/internet-header@10'}
+                                ></code-block>
+                              </label>
+                            </div>
+                          </li>
+                          <li class="mb-16">
+                            <div class="form-check">
+                              <input
+                                id="internet_header-add_text_props"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.internet_header.add_text_props}"
+                              />
+                              <label class="form-check-label" for="internet_header-add_text_props">
+                                Add the new required <code>text-*</code> props to your
+                                <code>swisspost-internet-header</code> element
+                                <span class="info">
+                                  Version 10 requires these props for accessibility — they provide
+                                  visually hidden labels for interactive elements. The component
+                                  will throw an error if any are missing.
+                                </span>
+                                <code-block
+                                  code=${'<swisspost-internet-header\n    project="your-service-id"\n    text-menu="Menu"\n    text-back="Back"\n    text-close="Close"\n    text-current-language="The currently selected language is {name}."\n    text-change-language="Change the language"\n    text-main="Main navigation"\n    text-current-user="Current user is {user}."\n    text-user-links="User links"\n  ></swisspost-internet-header>'}
+                                ></code-block>
+                              </label>
+                            </div>
+                          </li>
+                          <li class="mb-16">
+                            <div class="form-check">
+                              <input
+                                id="internet_header-remove_props"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.internet_header.remove_props}"
+                              />
+                              <label class="form-check-label" for="internet_header-remove_props">
+                                Remove props and runtime assignments that no longer exist
+                                <span class="info">
+                                  The following props have been removed and have no effect in v10:
+                                  <code>stickyness</code>, <code>meta</code>, <code>login</code>,
+                                  <code>search</code>, <code>skiplinks</code>,
+                                  <code>config-proxy</code>, <code>language-cookie-key</code>,
+                                  <code>language-local-storage-key</code>, <code>logout-url</code>,
+                                  <code>self-admin-origin</code>, <code>os-flyout-overrides</code>,
+                                  <code>custom-config</code>,
+                                  <code>language-switch-overrides</code>. Only
+                                  <code>language</code> and <code>active-route</code> remain
+                                  reactive at runtime.
+                                </span>
+                              </label>
+                            </div>
+                          </li>
+                          <li class="mb-16">
+                            <div class="form-check">
+                              <input
+                                id="internet_header-language_switch_migration"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.internet_header.language_switch_migration}"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="internet_header-language_switch_migration"
+                              >
+                                Migrate from <code>language-switch-overrides</code> prop to
+                                <code>&lt;link rel="alternate"&gt;</code> tags
+                                <span class="info">
+                                  The <code>language-switch-overrides</code> prop has been removed.
+                                  Use standard <code>&lt;link rel="alternate"&gt;</code> tags in
+                                  your <code>&lt;head&gt;</code> instead. The header reads these
+                                  tags automatically and updates the language switch URLs.
+                                  More information on the
+                                  <a href="/?path=/docs/ebb11274-091b-4cb7-9a3f-3e0451c9a865--docs#dynamic-updates"
+                                    >language switch overrides docs</a
+                                  >.
+                              </label>
+                            </div>
+                          </li>
+                          <li class="mb-16">
+                            <div class="form-check">
+                              <input
+                                id="internet_header-breadcrumb_migration"
+                                class="form-check-input"
+                                type="checkbox"
+                                ?checked="${this.state.internet_header.breadcrumb_migration}"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="internet_header-breadcrumb_migration"
+                              >
+                                Migrate from <code>&lt;swisspost-internet-breadcrumbs&gt;</code> to
+                                <code>&lt;post-breadcrumbs&gt;</code>
+                                <span class="info">
+                                  The <code>&lt;swisspost-internet-breadcrumbs&gt;</code> component
+                                  has been removed, as breadcrumbs are not included in the online
+                                  service header. Migrate to the self-managed
+                                  <code>&lt;post-breadcrumbs&gt;</code> and
+                                  <code>&lt;post-breadcrumb-item&gt;</code> components instead.
+                                  <br /><br />
+                                  The old component generated its trail automatically from the
+                                  header config, usually requiring no props. The new components
+                                  require manual setup:
+                                  <ul>
+                                    <li>
+                                      Set <code>home-url</code>, <code>text-home</code>,
+                                      <code>text-breadcrumbs</code>, and
+                                      <code>text-more-items</code> props on
+                                      <code>&lt;post-breadcrumbs&gt;</code>
+                                    </li>
+                                    <li>
+                                      Set <code>url</code> and <code>label</code>/<code
+                                        >description</code
+                                      >
+                                      on each <code>&lt;post-breadcrumbs-item&gt;</code>
+                                    </li>
+                                  </ul>
+                                  The <code>hide-buttons</code> prop and
+                                  <code>toggleOverlayById()</code>
+                                  method have no equivalent.
+
+                                  <p>
+                                    <strong>Before (v9 — part of Internet Header package)</strong>
+                                  </p>
+                                  <code-block
+                                    code=${'<swisspost-internet-breadcrumbs></swisspost-internet-breadcrumbs>'}
+                                  ></code-block>
+
+                                  <p><strong>After (v10 — part of Components package)</strong></p>
+                                  <code-block
+                                    code=${'<post-breadcrumbs\n  home-url="/"\n  text-home="Home"\n  text-breadcrumbs="Breadcrumbs"\n  text-more-items="More items"\n>\n  <post-breadcrumb-item url="/my-post">My Post</post-breadcrumb-item>\n  <post-breadcrumb-item url="/locations">Locations</post-breadcrumb-item>\n  <post-breadcrumb-item selected>Current Page</post-breadcrumb-item>\n</post-breadcrumbs>'}
+                                  ></code-block>
+
+                                  More information on the
+                                  <a href="/?path=/docs/b7db7391-f893-4b1e-a125-b30c6f0b028b--docs"
+                                    >breadcrumbs docs</a
+                                  >.
+                                </span>
+                              </label>
+                            </div>
+                          </li>
+                        </ul>
+                      </section>
+                    `
+                  : nothing
+              }
+
             </div>
-          </li>
-          <li>
-            <h3>Icons Migration 🖼️</h3>
+        </post-accordion-item>
+        <post-accordion-item>
+          <span slot="header">8. Icons Migration 🖼️</span>
             <p>Beside the <strong><a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=post">Post Icon Set</a></strong>, there is now a brand new
               <strong>UI Icon Set</strong>, available as <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uilight">line</a> or <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uisolid">solid</a> icons.</p>
             <p>Using the new icons is as easy as before, simply replace the icon number with the icon name, and you're done.</p>
@@ -2994,46 +3140,46 @@ export class MyComponent {
             <h4>Icon Mapping</h4>
 
             <icons-migration-map></icons-migration-map>
-          </li>
-          <li>
-            <h3>Clean up 🧹</h3>
-            <p>
-              You're almost done! After completing the migration steps above, you can now remove all
-              remaining references to
-              <strong>Bootstrap</strong> and <strong>Ng-Bootstrap</strong> from your project. The
-              steps below help ensure that no deprecated imports or dependencies remain.
-            </p>
-            <ol>
-              <li>
-                Search your CSS or SCSS files for any occurrences of
-                <code>@import 'bootstrap/...';</code> and remove them.
-              </li>
-              <li>
-                Check your TypeScript files for Ng-Bootstrap imports such as
-                <code>import { ... } from '@ng-bootstrap/ng-bootstrap';</code> and delete them.
-                <span class="info">
-                  💡 <em>Note:</em> Your project might also use Ng-Bootstrap components that were
-                  not previously styled by the Design System. In that case, verify whether an
-                  equivalent component exists in the Design System. If no equivalent is available
-                  yet, you may need to keep <strong>Ng-Bootstrap</strong> temporarily until a
-                  replacement is provided.
-                </span>
-              </li>
-              <li>
-                Once you've verified that your project builds and displays correctly, uninstall the
-                packages by running:
-                <code-block
-                  code=${
-                    this.angular
-                      ? 'npm uninstall bootstrap @ng-bootstrap/ng-bootstrap'
-                      : 'npm uninstall bootstrap'
-                  }
-                ></code-block>
-              </li>
-            </ol>
-          </li>
-        </ol>
-      </section>
+        </post-accordion-item>
+        <post-accordion-item>
+          <span slot="header">9. Clean up 🧹</span>
+          <p>
+            You're almost done! After completing the migration steps above, you can now remove all
+            remaining references to
+            <strong>Bootstrap</strong> and <strong>Ng-Bootstrap</strong> from your project. The
+            steps below help ensure that no deprecated imports or dependencies remain.
+          </p>
+          <ol>
+            <li>
+              Search your CSS or SCSS files for any occurrences of
+              <code>@import 'bootstrap/...';</code> and remove them.
+            </li>
+            <li>
+              Check your TypeScript files for Ng-Bootstrap imports such as
+              <code>import { ... } from '@ng-bootstrap/ng-bootstrap';</code> and delete them.
+              <span class="info">
+                💡 <em>Note:</em> Your project might also use Ng-Bootstrap components that were
+                not previously styled by the Design System. In that case, verify whether an
+                equivalent component exists in the Design System. If no equivalent is available
+                yet, you may need to keep <strong>Ng-Bootstrap</strong> temporarily until a
+                replacement is provided.
+              </span>
+            </li>
+            <li>
+              Once you've verified that your project builds and displays correctly, uninstall the
+              packages by running:
+              <code-block
+                code=${
+                  this.angular
+                    ? 'npm uninstall bootstrap @ng-bootstrap/ng-bootstrap'
+                    : 'npm uninstall bootstrap'
+                }
+              ></code-block>
+            </li>
+          </ol>
+        </post-accordion-item>
+      </post-accordion>
+      </div>
     `;
   }
 

@@ -1,0 +1,3 @@
+{
+  "extends": "@swisspost/design-system-stylelint-config"
+}

@@ -18,6 +18,7 @@ import {
   PostSideNavigation,
   PostSideNavigationTrigger,
 } from '@swisspost/design-system-components-angular';
+import { ToastComponent } from './toast/toast.component';
 
 @Component({
   selector: 'app-root',
@@ -43,6 +44,7 @@ import {
     PostMegadropdownTrigger,
     PostSideNavigation,
     PostSideNavigationTrigger,
+    ToastComponent,
   ],
 })
 export class App implements OnInit {

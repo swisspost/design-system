@@ -26,6 +26,11 @@ tokens.$default-map: components.$post-side-navigation;
     transition-duration: 350ms;
     box-shadow: tokens.get('side-nav-elevation');
 
+    &:focus,
+    &:focus-visible {
+      outline: none;
+    }
+
     &[open] {
       transform: translateX(0);
 

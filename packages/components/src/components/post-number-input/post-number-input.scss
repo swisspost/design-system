@@ -21,6 +21,7 @@ tokens.$default-map: components.$post-number-input;
     padding-inline: tokens.get('number-input-field-padding-inline');
     padding-block-start: tokens.get('number-input-field-padding-block-start');
     padding-block-end: tokens.get('number-input-field-padding-block-end');
+    font-size: tokens.get('number-input-font-size');
   }
 
   ::slotted(input[type='number']:focus) {

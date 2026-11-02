@@ -1,0 +1,10 @@
+@use '@swisspost/design-system-tokens/device' as device;
+
+@use './core';
+@use './../mixins/tokens';
+@use './../mixins/media';
+
+:root,
+[data-color-scheme] {
+  @include tokens.from(device.$post-mobile);
+}

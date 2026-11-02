@@ -1,5 +1,6 @@
 @use '../mixins/forms' as forms-mx;
 @use '../mixins/utilities' as utility-mx;
+@use '../mixins/color-scheme' as color-scheme-mx;
 @use '../functions/tokens';
 @use '../tokens/components';
 
@@ -83,7 +84,7 @@ fieldset:has(.selection-card) {
 
   > * {
     // HINT: keeping the color-scheme on the child elements, prevents the focus-outline from having the wrong color in some cases.
-    color-scheme: var(--post-selection-card-scheme);
+    @include color-scheme-mx.set(var(--post-selection-card-scheme));
 
     // every custom-content is located on: row 2, column 'label' to 'icon'
     grid-row: 2;

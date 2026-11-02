@@ -36,7 +36,7 @@ There are different ways how to consume our web-components, and it depends on yo
 
   <post-tabs>
     <post-tab-item name="library">Component Library</post-tab-item>
-    <post-tab-panel for="library">
+    <post-tab-panel for="library" class="pt-16">
       ### The Library approach
 
       Best, if you don't want to handle lazy-loading yourself.
@@ -70,12 +70,12 @@ There are different ways how to consume our web-components, and it depends on yo
 
       <post-tabs>
         <post-tab-item name="jsdelivr">jsDelivr</post-tab-item>
-        <post-tab-panel for="jsdelivr">
+        <post-tab-panel for="jsdelivr" class="pt-16">
           <Source code={SampleLibraryCdnJsdelivr} language="html" />
         </post-tab-panel>
 
         <post-tab-item name="unpkg">unpkg</post-tab-item>
-        <post-tab-panel for="unpkg">
+        <post-tab-panel for="unpkg" class="pt-16">
           <Source code={SampleLibraryCdnUnpkg} language="html" />
         </post-tab-panel>
       </post-tabs>
@@ -86,7 +86,7 @@ There are different ways how to consume our web-components, and it depends on yo
     </post-tab-panel>
 
     <post-tab-item name="standalone">Standalone Components</post-tab-item>
-    <post-tab-panel for="standalone">
+    <post-tab-panel for="standalone" class="pt-16">
         ### The Standalone approach
         {/* stencil dist-custom-elements output-target */}
 
@@ -116,12 +116,12 @@ There are different ways how to consume our web-components, and it depends on yo
 
         <post-tabs>
           <post-tab-item name="jsdelivr">jsDelivr</post-tab-item>
-          <post-tab-panel for="jsdelivr">
+          <post-tab-panel for="jsdelivr" class="pt-16">
             <Source code={SampleStandaloneCdnJsdelivr} language="html" />
           </post-tab-panel>
 
           <post-tab-item name="unpkg">unpkg</post-tab-item>
-          <post-tab-panel for="unpkg">
+          <post-tab-panel for="unpkg" class="pt-16">
             <Source code={SampleStandaloneCdnUnpkg} language="html" />
           </post-tab-panel>
         </post-tabs>

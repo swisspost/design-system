@@ -17,12 +17,18 @@ import { PackageShields } from '@root/src/shared/package-shields';
 
 <Source code={`npm install @swisspost/design-system-styles`} language="bash" />
 
+<post-banner class="mb-16">
+The `scss` files in our styling package make use of the latest Sass features.
+If you are planning to compile the `.scss` files in your project, make sure you use an up-to-date version of [Dart Sass](https://sass-lang.com/dart-sass). LibSass or Ruby Sass are not supported.
+If you can not meet this prerequisite, you can still use the precompiled CSS files.
+</post-banner>
+
 ## Usage
 
-Import one of our stylesheets into your project (for example into your `/src/styles.scss` file).
+Import one of our stylesheets into your project:
 
 <Source
-  code={`@use '@swisspost/design-system-styles/<bundle-name>.<extension>';`}
+  code={`@use '@swisspost/design-system-styles/<bundle>.<extension>';`}
   language="scss"
 />
 
@@ -32,7 +38,7 @@ Import one of our stylesheets into your project (for example into your `/src/sty
   <table className="table">
     <thead>
       <tr>
-        <th>&lt;bundle-name&gt;</th>
+        <th>&lt;bundle&gt;</th>
         <th>&lt;extension&gt;</th>
         <th>Description</th>
       </tr>
@@ -41,30 +47,35 @@ Import one of our stylesheets into your project (for example into your `/src/sty
       <tr>
         <td>`post-default`</td>
         <td>`css`, `scss`</td>
-        <td>everything for internet facing applications</td>
+        <td>Full styles for public websites focused on reading and browsing</td>
       </tr>
       <tr>
         <td>`post-compact`</td>
         <td>`css`, `scss`</td>
-        <td>everything for internal applications</td>
+        <td>Full styles for public or internal applications</td>
+      </tr>
+      <tr>
+        <td>`post-condensed`</td>
+        <td>`css`, `scss`</td>
+        <td>Full styles for information-dense internal applications</td>
       </tr>
       <tr>
         <td>`basics`</td>
         <td>`css`, `scss`</td>
-        <td>atomic styles for font, buttons, lists, etc. (no component styles)</td>
+        <td>Base styles for typography, buttons, lists, etc. (excludes components)</td>
+      </tr>
+      <tr>
+        <td>`core`</td>
+        <td>`scss`</td>
+        <td>Core definitions including variables, functions, and mixins (no CSS output)</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-### Variables, mixins, functions and placeholders
+### Variables, functions, and mixins
 
-Use the SCSS core for your custom styles and make sure you're always using the most up to date definitions:
+Use the SCSS core for your custom styles and make sure you're always using the most up-to-date definitions:
 
-<post-banner class="mb-16">
-  NOTE: The core file itself, does not produce any CSS output. It only contains variables, functions
-  and mixins.
-</post-banner>
-
-  <Source code={SampleVariable} language="scss" />
+<Source code={SampleVariable} language="scss" />
 </PackageDocs>

@@ -2,6 +2,7 @@
 @use 'sass:list';
 
 @use './utilities' as utilities-mx;
+@use './color-scheme' as color-scheme-mx;
 
 @use './../variables/components/notification';
 @use '../tokens/components';
@@ -80,7 +81,7 @@
 @mixin notification-variant($color, $icon, $border-color, $icon-color, $scheme) {
   background-color: $color;
   border-color: $border-color;
-  color-scheme: $scheme;
+  @include color-scheme-mx.set($scheme);
 
   &::before {
     background-image: #{$icon};

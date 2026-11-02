@@ -11,7 +11,7 @@ import {
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { breakpoint, Device } from '@/utils/breakpoints';
-import { getFocusableChildren, OneOf, Required, Type } from '@/utils';
+import { getFocusableChildren, isFocusVisible, OneOf, Required, Type } from '@/utils';
 import { SIDE_NAVIGATION_SIZES, SideNavigationSize } from './side-navigation-styles';
 
 /**
@@ -128,9 +128,14 @@ export class PostSideNavigation {
   async show() {
     if (this.device === 'desktop') return;
 
+    // Only move focus into the nav if the trigger was keyboard-focus-visible;
+    // that's the browser's own signal for a keyboard-driven interaction.
+    const wasTriggerFocusVisible = isFocusVisible(document.activeElement);
+
     this.dialog.showModal();
     this.postToggle.emit(true);
-    this.focusNav();
+
+    if (wasTriggerFocusVisible) this.focusNav();
   }
 
   /**

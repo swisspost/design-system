@@ -26,6 +26,7 @@ tokens.$default-map: components.$post-select;
   border-radius: tokens.get('select-border-radius');
   color: tokens.get('select-color-enabled-fg');
   background-image: forms-fx.select-arrow-icon('enabled');
+  font-size: tokens.get('select-font-size');
 
   &.form-select-sm {
     min-height: tokens.get('select-small-sizing-height');
@@ -192,7 +193,7 @@ tokens.$default-map: components.$post-select;
   padding-inline: tokens.get('select-non-floating-small-label-padding-inline');
   padding-block: tokens.get('select-non-floating-small-label-padding-block');
   font-weight: tokens.get('select-non-floating-small-label-font-weight');
-  font-size: tokens.get('select-non-floating-small-font-size');
+  font-size: tokens.get('select-non-floating-small-label-font-size');
 }
 
 .form-floating {
@@ -249,7 +250,7 @@ tokens.$default-map: components.$post-select;
     &.form-select-empty {
       ~ label {
         padding-block-start: tokens.get('select-label-empty-padding-block-start');
-        font-size: unset;
+        font-size: tokens.get('select-font-size');
       }
     }
 

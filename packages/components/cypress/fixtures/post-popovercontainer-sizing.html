@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="../../node_modules/@swisspost/design-system-styles/post-default.css"
+      rel="stylesheet"
+    />
+    <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
+    <style>
+      .content {
+        width: 128px;
+        height: 256px;
+      }
+
+      .overflowing-content {
+        width: 128px;
+        height: 200vh;
+      }
+
+      .spacer {
+        height: 100vh;
+      }
+
+      post-popover-trigger > .btn {
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <post-header text-menu="Menu">
+      <post-logo slot="post-logo" url="/">Homepage</post-logo>
+    </post-header>
+
+    <main>
+      <div class="spacer"></div>
+
+      <post-popover-trigger id="popover-overflowing-trigger">
+        <button type="button" class="btn btn-secondary">Popover Trigger</button>
+        <post-popover text-close="Close" id="popover-overflowing">
+          <div class="overflowing-content" id="popover-overflowing-content"></div>
+        </post-popover>
+      </post-popover-trigger>
+
+      <post-popover-trigger id="popover-fitting-trigger">
+        <button type="button" class="btn btn-secondary">Popover Trigger</button>
+        <post-popover text-close="Close" id="popover-fitting">
+          <div class="content" id="popover-fitting-content"></div>
+        </post-popover>
+      </post-popover-trigger>
+
+      <!-- Make the page scrollable, so the trigger can be moved by scrolling. -->
+      <div class="spacer"></div>
+    </main>
+  </body>
+</html>

@@ -80,14 +80,35 @@ export const fetchConfig = async (
     environment = 'int01';
   }
 
-  const url = generateConfigUrl(projectId, environment, lang);
+  let lastError: unknown;
 
-  try {
-    const res = await fetch(url);
-    return (await res.json()) as LocalizedConfig;
-  } catch (error) {
-    throw new Error(`Internet Header: fetching config failed. ${error.message}`);
+  for (const host of getConfigHosts(environment)) {
+    const url = generateConfigUrl(projectId, environment, lang, host);
+
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`Request failed with status ${res.status}`);
+      return (await res.json()) as LocalizedConfig;
+    } catch (error) {
+      lastError = error;
+      console.warn(
+        `Internet Header: API origin "${host}" not yet available! Falling back to the temporary origin until main origin is up and running.`,
+      );
+    }
   }
+
+  throw new Error(`Internet Header: fetching config failed. ${(lastError as Error)?.message}`);
+};
+
+/**
+ * Hosts to try, in order of preference.
+ * On prod, www.post.ch is a fallback for the upcoming move away from site.post.ch.
+ */
+const getConfigHosts = (environment: Environment): string[] => {
+  const isProd = environment.toUpperCase() === 'PROD';
+
+  // remove `site.post.ch` as soon as the header API is available under `www.post.ch`!
+  return isProd ? ['https://site.post.ch', 'https://www.post.ch'] : ['https://int.post.ch'];
 };
 
 /**
@@ -96,20 +117,19 @@ export const fetchConfig = async (
  * @param projectId string
  * @param environment int01, int02 or prod
  * @param lang currently selected language
+ * @param host base host to request the config from
  * @returns URL pointing to the project config
  */
 export const generateConfigUrl = (
   projectId: string,
   environment: Environment,
   lang: string,
+  host: string = getConfigHosts(environment)[0],
 ): string => {
   if (projectId === 'test') return 'assets/config/test-configuration.json';
 
   const parsedEnvironment = environment.toUpperCase();
   const parsedLang = lang.toLowerCase();
-  const isProd = parsedEnvironment === 'PROD';
-  // NOTE: use preview.post.ch for local testing
-  const host = `https://${isProd ? '' : 'int.'}preview.post.ch`;
 
   try {
     const query = new URLSearchParams({

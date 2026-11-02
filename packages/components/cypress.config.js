@@ -1,20 +1,16 @@
 import { defineConfig } from 'cypress';
+
+import post from '@swisspost/design-system-cypress-config';
+
 import pkg from './package.json' with { type: 'json' };
 
 export default defineConfig({
+  ...post,
   e2e: {
+    ...post.e2e,
     baseUrl: 'http://localhost:9001',
-    specPattern: ['cypress/e2e/**/*.cy.{ts,tsx}'],
-    includeShadowDom: true,
-    viewportWidth: 1024,
-    viewportHeight: 576,
-    env: {
+    expose: {
       PACKAGE_VERSION: pkg.version,
     },
   },
-  includeShadowDom: true,
-  retries: {
-    runMode: 1,
-  },
-  video: false,
 });

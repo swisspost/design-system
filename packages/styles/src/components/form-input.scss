@@ -34,6 +34,7 @@ input.form-control {
   padding-inline-end: tokens.get('input-padding-inline-end');
   padding-block: tokens.get('input-standalone-padding-block');
   height: tokens.get('input-sizing-height');
+  font-size: tokens.get('input-font-size');
 
   &.form-control-sm {
     height: tokens.get('input-small-sizing-height');
@@ -339,7 +340,7 @@ input.form-control {
   padding-inline: tokens.get('input-non-floating-small-label-padding-inline');
   padding-block: tokens.get('input-non-floating-small-label-padding-block');
   font-weight: tokens.get('input-non-floating-small-label-font-weight');
-  font-size: tokens.get('input-non-floating-small-font-size');
+  font-size: tokens.get('input-non-floating-small-label-font-size');
 }
 
 .form-floating {
@@ -411,6 +412,7 @@ input.form-control {
     padding-block-start: tokens.get('input-label-empty-padding-block-start');
     border: 0;
     color: tokens.get('input-color-enabled-fg');
+    font-size: tokens.get('input-font-size');
     width: auto;
     height: auto;
     max-width: calc(100% - (#{tokens.get('input-border-width')} * 2));

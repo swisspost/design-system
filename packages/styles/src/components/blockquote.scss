@@ -30,8 +30,11 @@ figure:has(.blockquote) {
     q {
       quotes: '\00ab' '\00bb' '\2039' '\203A';
 
+      /* Using inverted commas according to
+         https://www.experience-hub.ch/document/2777/en#/general-regulations/typography-conventions-1686663630/inverted-commas
+      */
       &:lang(en) {
-        quotes: '\0022' '\0022' '\0027' '\0027';
+        quotes: '\201C' '\201D' '\2018' '\2019';
       }
     }
   }
@@ -39,6 +42,7 @@ figure:has(.blockquote) {
 
 figcaption.blockquote-footer {
   margin-top: tokens.get('post-blockquote-gap-inline');
+  font-style: italic;
 
   cite {
     font-style: inherit;

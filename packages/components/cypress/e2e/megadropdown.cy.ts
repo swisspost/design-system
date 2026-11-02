@@ -1,5 +1,39 @@
 const MEGADROPDOWN_ID = '212efc4e-875b-4497-912d-d28c6baf32f5';
 
+function waitForAnimationsToFinish() {
+  cy.get('@megadropdown-container').should($container => {
+    const running = $container
+      .get(0)
+      .getAnimations()
+      .filter(animation => animation.playState === 'running');
+    expect(running).to.have.length(0);
+  });
+}
+
+function recordOpacityUntilHidden() {
+  cy.get('@megadropdown-container').then($container => {
+    const container = $container.get(0);
+    const win = container.ownerDocument.defaultView;
+    const opacities: number[] = [];
+
+    const record = () => {
+      const style = win.getComputedStyle(container);
+      if (style.display === 'none') return;
+      opacities.push(Number(style.opacity));
+      win.requestAnimationFrame(record);
+    };
+    win.requestAnimationFrame(record);
+
+    cy.wrap(opacities).as('opacities');
+  });
+}
+
+function dispatchTabKeyup(el: Element, shiftKey = false) {
+  el.dispatchEvent(
+    new KeyboardEvent('keyup', { key: 'Tab', shiftKey, bubbles: true, composed: true }),
+  );
+}
+
 describe('megadropdown', () => {
   describe('default', () => {
     describe('desktop', () => {
@@ -40,6 +74,74 @@ describe('megadropdown', () => {
         cy.get('@megadropdown-trigger').click({ force: true });
         cy.get('@close-btn').click();
         cy.get('@megadropdown-container').should('be.hidden');
+      });
+
+      it('should close on click outside without flickering', () => {
+        cy.get('@megadropdown-trigger').click({ force: true });
+        waitForAnimationsToFinish();
+
+        recordOpacityUntilHidden();
+        cy.get('body').trigger('mousedown');
+
+        cy.get('@megadropdown-container').should('be.hidden');
+        cy.get<number[]>('@opacities').should(opacities => {
+          opacities.slice(1).forEach((opacity, i) => {
+            expect(opacity).to.be.at.most(opacities[i] + 0.01);
+          });
+        });
+      });
+
+      it('should stay open when the focus moves back to the trigger', () => {
+        cy.get('@megadropdown-trigger').click({ force: true });
+        waitForAnimationsToFinish();
+
+        cy.get('@megadropdown-trigger').focus();
+        cy.get('@megadropdown-trigger').then($trigger => dispatchTabKeyup($trigger.get(0), true));
+
+        waitForAnimationsToFinish();
+        cy.get('@megadropdown-container').should('be.visible');
+        cy.get('@megadropdown-trigger').should('have.attr', 'aria-expanded', 'true');
+      });
+
+      ['Enter', ' '].forEach(key => {
+        it(`should close without flickering when pressing "${key}" on the trigger`, () => {
+          cy.get('@megadropdown-trigger').click({ force: true });
+          waitForAnimationsToFinish();
+
+          cy.get('@megadropdown-trigger').focus();
+          cy.get('@megadropdown-trigger').then($trigger => dispatchTabKeyup($trigger.get(0), true));
+
+          recordOpacityUntilHidden();
+          cy.get('@megadropdown-trigger').trigger('keydown', { key });
+
+          cy.get('@megadropdown-container').should('be.hidden');
+          cy.get('@megadropdown-trigger').should('have.attr', 'aria-expanded', 'false');
+          cy.get<number[]>('@opacities').should(opacities => {
+            opacities.slice(1).forEach((opacity, i) => {
+              expect(opacity).to.be.at.most(opacities[i] + 0.01);
+            });
+          });
+        });
+      });
+
+      it('should close when the focus moves outside', () => {
+        cy.get('@megadropdown-trigger').click({ force: true });
+        waitForAnimationsToFinish();
+
+        cy.get('body').then($body => dispatchTabKeyup($body.get(0)));
+
+        cy.get('@megadropdown-container').should('be.hidden');
+      });
+
+      it('should open again after being closed', () => {
+        cy.get('@megadropdown-trigger').click({ force: true });
+        waitForAnimationsToFinish();
+        cy.get('body').trigger('mousedown');
+        cy.get('@megadropdown-container').should('be.hidden');
+
+        cy.get('@megadropdown-trigger').click({ force: true });
+        waitForAnimationsToFinish();
+        cy.get('@megadropdown-container').should('be.visible').and('have.css', 'opacity', '1');
       });
     });
 

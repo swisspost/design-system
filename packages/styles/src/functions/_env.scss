@@ -1,0 +1,12 @@
+@use 'sass:list';
+
+$_sides: top, right, bottom, left;
+
+// stylelint-disable-next-line length-zero-no-unit -- a unitless zero would invalidate the surrounding `max()`
+@function safe-area-inset($side, $min-value: 0px) {
+  @if not list.index($_sides, $side) {
+    @error 'Invalid safe area side "#{$side}". Expected one of: #{$_sides}.';
+  }
+
+  @return max(#{$min-value}, env(safe-area-inset-#{$side}, 0px));
+}

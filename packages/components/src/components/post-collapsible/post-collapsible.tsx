@@ -68,8 +68,13 @@ export class PostCollapsible {
       const animation = isExpanded ? expand(this.host) : collapse(this.host);
       this.postToggle.emit(isExpanded);
 
-      await animation.finished;
-      animation.commitStyles();
+      this.host.toggleAttribute('data-animating', true);
+      try {
+        await animation.finished;
+        animation.commitStyles();
+      } finally {
+        this.host.toggleAttribute('data-animating', false);
+      }
 
       this.updateTriggers();
     }

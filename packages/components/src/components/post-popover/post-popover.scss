@@ -1,5 +1,6 @@
 @use '@swisspost/design-system-styles/core' as post;
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
+@use '@swisspost/design-system-styles/mixins/color-scheme' as color-scheme-mx;
 
 * {
   box-sizing: border-box;
@@ -20,8 +21,11 @@
   align-items: self-start;
   padding: 8px;
 
-  min-width: 160px;
   max-width: var(--post-popover-max-width, 280px);
+  max-height: 100%;
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .popover-content {
@@ -30,5 +34,9 @@
 }
 
 post-closebutton {
-  color-scheme: light;
+  @include color-scheme-mx.set(light);
+}
+
+post-popovercontainer::part(post-popovercontainer-content) {
+  min-width: 160px;
 }

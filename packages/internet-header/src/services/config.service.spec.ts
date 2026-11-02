@@ -10,14 +10,19 @@ import {
 const testConfig: LocalizedConfig = testConfigRaw;
 
 describe('config.service.ts', () => {
-  global.fetch = jest.fn(() => {
-    return Promise.resolve({
-      json: () => Promise.resolve(testConfig),
-    }) as Promise<Response>;
-  });
+  global.fetch = jest.fn();
 
   beforeEach(() => {
-    (fetch as jest.Mock).mockClear();
+    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    (fetch as jest.Mock).mockReset();
+    (fetch as jest.Mock).mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve(testConfig),
+    });
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
   });
 
   describe('isValidProjectId', () => {
@@ -48,32 +53,32 @@ describe('config.service.ts', () => {
 
     it('should return an int URL', () => {
       expect(generateConfigUrl('topos', 'int01', 'de')).toEqual(
-        'https://int.preview.post.ch/api/header?serviceId=topos&environment=INT01&lang=de',
+        'https://int.post.ch/api/header?serviceId=topos&environment=INT01&lang=de',
       );
     });
 
     it('should include environment even on prod', () => {
       expect(generateConfigUrl('topos', 'prod', 'de')).toEqual(
-        'https://preview.post.ch/api/header?serviceId=topos&environment=PROD&lang=de',
+        'https://site.post.ch/api/header?serviceId=topos&environment=PROD&lang=de',
       );
     });
 
     it('should reduce XSS risk', () => {
       expect(generateConfigUrl('<script>alert()</script>', 'prod', 'de')).toEqual(
-        'https://preview.post.ch/api/header?serviceId=%3Cscript%3Ealert%28%29%3C%2Fscript%3E&environment=PROD&lang=de',
+        'https://site.post.ch/api/header?serviceId=%3Cscript%3Ealert%28%29%3C%2Fscript%3E&environment=PROD&lang=de',
       );
     });
 
     it('should uppercase the environment param', () => {
       // @ts-expect-error second argument should be of type 'dev01' | 'dev02' | 'devs1' | 'test' | 'int01' | 'int02' | 'prod'
       expect(generateConfigUrl('whatever', 'INT01', 'de')).toEqual(
-        'https://int.preview.post.ch/api/header?serviceId=whatever&environment=INT01&lang=de',
+        'https://int.post.ch/api/header?serviceId=whatever&environment=INT01&lang=de',
       );
     });
 
     it('should lowercase the lang param', () => {
       expect(generateConfigUrl('topos', 'int01', 'DE')).toEqual(
-        'https://int.preview.post.ch/api/header?serviceId=topos&environment=INT01&lang=de',
+        'https://int.post.ch/api/header?serviceId=topos&environment=INT01&lang=de',
       );
     });
   });
@@ -82,6 +87,64 @@ describe('config.service.ts', () => {
     it('should fetch config', async () => {
       const res = await fetchConfig('test', 'int01', 'de');
       expect(res).toEqual(testConfig);
+      expect(fetch).toHaveBeenCalledTimes(1);
+    });
+
+    it('should fall back to www.post.ch when site.post.ch is unreachable', async () => {
+      (fetch as jest.Mock)
+        .mockRejectedValueOnce(new Error('Network error'))
+        .mockResolvedValueOnce({ ok: true, json: () => Promise.resolve(testConfig) });
+
+      const res = await fetchConfig('topos', 'prod', 'de');
+
+      expect(res).toEqual(testConfig);
+      expect(fetch).toHaveBeenNthCalledWith(
+        1,
+        'https://site.post.ch/api/header?serviceId=topos&environment=PROD&lang=de',
+      );
+      expect(fetch).toHaveBeenNthCalledWith(
+        2,
+        'https://www.post.ch/api/header?serviceId=topos&environment=PROD&lang=de',
+      );
+    });
+
+    it('should throw when all hosts fail', async () => {
+      (fetch as jest.Mock).mockRejectedValue(new Error('Network error'));
+
+      await expect(fetchConfig('topos', 'prod', 'de')).rejects.toThrow(
+        'Internet Header: fetching config failed. Network error',
+      );
+      expect(fetch).toHaveBeenCalledTimes(2);
+    });
+
+    it('should fall back when the first host responds with a non-ok status', async () => {
+      (fetch as jest.Mock)
+        .mockResolvedValueOnce({ ok: false, status: 404 })
+        .mockResolvedValueOnce({ ok: true, json: () => Promise.resolve(testConfig) });
+
+      const res = await fetchConfig('topos', 'prod', 'de');
+
+      expect(res).toEqual(testConfig);
+      expect(fetch).toHaveBeenNthCalledWith(
+        2,
+        'https://www.post.ch/api/header?serviceId=topos&environment=PROD&lang=de',
+      );
+    });
+
+    it('should report the last error when every host responds with a non-ok status', async () => {
+      (fetch as jest.Mock).mockResolvedValue({ ok: false, status: 500 });
+
+      await expect(fetchConfig('topos', 'prod', 'de')).rejects.toThrow(
+        'Internet Header: fetching config failed. Request failed with status 500',
+      );
+    });
+
+    it('should not retry on int, which has a single host', async () => {
+      (fetch as jest.Mock).mockRejectedValue(new Error('Network error'));
+
+      await expect(fetchConfig('topos', 'int01', 'de')).rejects.toThrow(
+        'Internet Header: fetching config failed. Network error',
+      );
       expect(fetch).toHaveBeenCalledTimes(1);
     });
   });
