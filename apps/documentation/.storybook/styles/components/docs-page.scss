@@ -1,0 +1,45 @@
+@use '@swisspost/design-system-styles/core.scss' as post;
+
+// Building blocks for full-width documentation pages (see `src/shared/docs-page/`).
+
+// A page containing `.docs-band` elements spans the full docs width; each band provides its own `.container`.
+#storybook-docs .docs-container:has(.docs-band) {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+}
+
+.docs-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: linear-gradient(
+      233deg,
+      rgba(post.$black, 0) 28.68%,
+      rgba(post.$black, 0.4) 70.84%
+    );
+  }
+
+  h1 {
+    color: post.$yellow;
+
+    post-icon {
+      color: post.$white;
+    }
+  }
+}
+
+.docs-hero-image {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

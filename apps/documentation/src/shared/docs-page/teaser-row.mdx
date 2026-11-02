@@ -1,0 +1,27 @@
+{/* Full-width band with an icon, title, description and one call-to-action link. */}
+{/* Props: palette (default | alternate | brand | accent), icon, title, description, href, linkText, */}
+{/* headingLevel (2 or 3, defaults to 3; the heading always looks like an h3). */}
+
+<div className={`docs-band palette palette-${props.palette ?? 'default'} py-32 py-md-48`}>
+  <div className="container d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-16">
+    <div className="d-flex align-items-start align-items-md-center gap-16">
+      <post-icon
+        name={props.icon}
+        className="w-48 h-48 w-md-64 h-md-64 flex-shrink-0"
+        aria-hidden="true"
+      ></post-icon>
+      <div>
+        {props.headingLevel === 2 ? (
+          <h2 className="h3 m-0">{props.title}</h2>
+        ) : (
+          <h3 className="m-0">{props.title}</h3>
+        )}
+        <p className="mb-0">{props.description}</p>
+      </div>
+    </div>
+    <a className="btn btn-secondary btn-sm flex-shrink-0" href={props.href} rel="noopener">
+      {props.linkText}
+      <post-icon name="arrowright" aria-hidden="true"></post-icon>
+    </a>
+  </div>
+</div>

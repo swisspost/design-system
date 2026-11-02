@@ -1,33 +1,200 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import * as DesignerStories from './designer.stories';
-import '../../../shared/tile/tile.component';
+import Hero from '@/shared/docs-page/hero.mdx';
+import ResourceCard from '@/shared/docs-page/resource-card.mdx';
+import TeaserRow from '@/shared/docs-page/teaser-row.mdx';
 
 <Meta of={DesignerStories} />
 
-# Getting Started as a Designer
+{/* Text inside JSX is written as {'…'} expressions so that MDX does not wrap it in <p> elements. */}
 
-<p className="lead">Welcome to the Swiss Post Design System world!</p>
+<Hero title="SPDS for Designers" icon="icondesign" image="/assets/images/designer-header.jpg" />
 
-This page provides links to essential resources that will help you design components,
-follow system guidelines, and ensure consistency across our work.
+<section
+  className="docs-band palette palette-default py-48"
+  aria-labelledby="designer-getting-started"
+>
+  <div className="container">
+    <h2 id="designer-getting-started" className="mt-0">
+      {'Getting Started as a Designer'}
+    </h2>
+    <p className="lead">{'Welcome to the Swiss Post Design System world!'}</p>
+    <p className="mb-0">
+      {
+        'This page provides links to essential resources that will help you design components, follow system guidelines, and ensure consistency across our work.'
+      }
+    </p>
+  </div>
+</section>
 
-## Figma Resources
+<section
+  className="docs-band palette palette-alternate py-48"
+  aria-labelledby="designer-collaboration"
+>
+  <div className="container">
+    <h2 id="designer-collaboration" className="mt-0">
+      {'Collaboration with the Design System'}
+    </h2>
+    <p className="mb-0">
+      {
+        'The Swiss Post Design System brings designers and developers together. Use the resources on this page to create consistent, accessible experiences and to collaborate throughout the design and implementation process.'
+      }
+    </p>
+  </div>
+</section>
 
-Here are the key Figma files that you will need to create and document your designs:
+<section className="docs-band palette palette-brand py-48" aria-labelledby="designer-onboarding">
+  <div className="container">
+    <h2 id="designer-onboarding" className="mt-0 d-flex align-items-center gap-16">
+      <post-icon name="plane" className="w-48 h-48 flex-shrink-0" aria-hidden="true"></post-icon>
+      {'SPDS Onboarding'}
+    </h2>
+    <p>
+      {
+        'New to the Swiss Post Design System? Join an onboarding session to learn how to use our Figma files, components and design guidelines.'
+      }
+    </p>
+    <a
+      className="btn btn-primary w-full w-sm-auto"
+      href="mailto:ux@post.ch?subject=SPDS%20Onboarding"
+    >
+      {'Register for SPDS Onboarding'}
+      <post-icon name="arrowright" aria-hidden="true"></post-icon>
+    </a>
+  </div>
+</section>
 
-- [**Foundations & Components**](https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=26-45&node-type=canvas&t=KgHJQrU7azeYeisY-0) -
-  Access the core components and design building blocks used throughout the system.
+<section className="docs-band palette palette-default py-48" aria-labelledby="designer-figma-resources">
+  <div className="container">
+    <h2 id="designer-figma-resources" className="mt-0">{'Figma Resources'}</h2>
+    <p>{'Here are the key Figma files that you will need to create and document your designs:'}</p>
+    <div className="row gy-16">
+      <div className="col-12 col-lg-4">
+        <ResourceCard
+          icon="component"
+          title="Foundations & Components"
+          description="Access the core components and design building blocks used throughout the system."
+          href="https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=26-45&node-type=canvas&t=KgHJQrU7azeYeisY-0"
+          linkText="SPDS Figma"
+          linkContext=": Foundations & Components"
+        />
+      </div>
+      <div className="col-12 col-lg-4">
+        <ResourceCard
+          icon="icon"
+          title="Icons"
+          description="Explore our icon set and learn how to integrate them into your designs."
+          href="https://www.figma.com/design/q57uYXNspU7G1pYEnDGTyM/Icons-Next-Level?node-id=0-1&node-type=canvas&t=gp3LWYP1tnC6I8Lb-0"
+          linkText="SPDS Figma"
+          linkContext=": Icons"
+        />
+      </div>
+      <div className="col-12 col-lg-4">
+        <ResourceCard
+          icon="icondesign"
+          title="Layout Examples"
+          description="View layout patterns and examples that demonstrate best practices and consistency."
+          href="https://www.figma.com/design/1U0tACfFegz2s1ThIr4M06/Layout-Examples-Editorial-Next-Level?node-id=2132-12618&node-type=canvas&t=CruHFQfJ7SFf2tXo-0"
+          linkText="SPDS Figma"
+          linkContext=": Layout Examples"
+        />
+      </div>
+    </div>
+    <div className="inline-notification inline-notification-info mt-24">
+      <p>
+        <strong>{'Note'}</strong>
+      </p>
+      <p>
+        {
+          <>
+            A Figma login is required to access these files. You can log in with your Post account, or{' '}
+            <a href="mailto:ux@post.ch?subject=I need access to Figma&body=Hello%2C%20I%20need%20access%20to%20Figma%20%0A%E2%80%A2%20%20Project%20name%3A%20%0A%E2%80%A2%20Project%20Owner%20at%20the%20Post%20Office%20%28email%29%3A%20%0A%E2%80%A2%20Project%20Start%20Date%3A%20%0A%E2%80%A2%20Email%20address%20to%20be%20authorized%3A%20">
+              send an email for access
+            </a>
+            .
+          </>
+        }
+      </p>
+    </div>
 
-- [**Icons**](https://www.figma.com/design/q57uYXNspU7G1pYEnDGTyM/Icons-Next-Level?node-id=0-1&node-type=canvas&t=gp3LWYP1tnC6I8Lb-0) -
-  Explore our icon set and learn how to integrate them into your designs.
+## Which Figma seat suits me?
 
-- [**Layout Examples**](https://www.figma.com/design/1U0tACfFegz2s1ThIr4M06/Layout-Examples-Editorial-Next-Level?node-id=2132-12618&node-type=canvas&t=CruHFQfJ7SFf2tXo-0) -
-  View layout patterns and examples that demonstrate best practices and consistency across designs.
+Choose a seat based on how you need to work with Figma.
 
-> **Note:** Figma login is required to access these files.
-> You can log in with your Post account, or <a href="mailto:ux@post.ch?subject=I need access to Figma&body=Hello%2C%20I%20need%20access%20to%20Figma%20%0A%E2%80%A2%20%20Project%20name%3A%20%0A%E2%80%A2%20Project%20Owner%20at%20the%20Post%20Office%20%28email%29%3A%20%0A%E2%80%A2%20Project%20Start%20Date%3A%20%0A%E2%80%A2%20Email%20address%20to%20be%20authorized%3A%20">send an email for access</a>.
+### Figma «Full Seat»
 
-## Visual Design Guidelines
+For designers, product managers and team members who actively create designs, prototypes and
+collaborate within the team.
 
-For detailed guidance on visual design, including how to create and document components in Figma,
-refer to your internal design guidelines or get in touch with the design team for further assistance.
+### Figma «Dev Seat»
+
+For developers working on the implementation of designs in code. Inspect designs and access the
+specifications needed to build them.
+
+### Figma «View Seat»
+
+For users who only need to view and give feedback on existing design projects, without editing or
+creating content.
+
+### Figma «Guest Seat»
+
+For guests who need temporary access to a project. Guests must be activated by an administrator.
+
+    <a
+      className="btn btn-primary mt-16 w-full w-sm-auto"
+      href="mailto:ux@post.ch?subject=Figma%20seat%20request"
+    >
+      {'Request a Figma seat'}
+      <post-icon name="shop" aria-hidden="true"></post-icon>
+    </a>
+
+  </div>
+</section>
+
+<section
+  className="docs-band palette palette-alternate py-32"
+  aria-labelledby="designer-other-resources"
+>
+  <div className="container">
+    <h2 id="designer-other-resources" className="m-0">
+      {'Other resources'}
+    </h2>
+  </div>
+</section>
+
+<TeaserRow
+  icon="process"
+  title="Origination process for components & modules"
+  description="Learn how contributions to the Design System are made."
+  href="https://github.com/swisspost/design-system/blob/main/CONTRIBUTING.md"
+  linkText="View process"
+/>
+
+<TeaserRow
+  palette="alternate"
+  icon="info"
+  title="More information on working with Figma"
+  description="Find guides and answers in the Figma Help Center."
+  href="https://help.figma.com/hc/en-us"
+  linkText="Figma Help"
+/>
+
+<TeaserRow
+  palette="brand"
+  headingLevel={2}
+  icon="experiencehub"
+  title="The Post Brand Experience"
+  description="Visit the Experience Hub for more information about our brand. Login required."
+  href="https://www.experience-hub.ch/document/2803"
+  linkText="Visit Experience Hub"
+/>
+
+<TeaserRow
+  palette="accent"
+  headingLevel={2}
+  icon="help"
+  title="Questions about Design?"
+  description="Get in touch with the Design System team."
+  href="mailto:ux@post.ch?subject=Design%20question"
+  linkText="Contact the design team"
+/>
