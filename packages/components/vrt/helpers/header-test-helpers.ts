@@ -58,9 +58,66 @@ export async function openUserMenu(page: Page): Promise<void> {
   }
 }
 
+export async function scrollPageDown(page: Page): Promise<void> {
+  await page.evaluate(() => window.scrollTo(0, 200));
+  await page.waitForTimeout(WAIT_TIMES.interaction);
+}
+
 export async function openBurgerMenu(page: Page): Promise<void> {
   const header = page.locator('post-header');
   const burgerButton = header.locator('post-togglebutton').last();
   await burgerButton.click();
+  await page.waitForTimeout(WAIT_TIMES.animation);
+}
+
+export async function scrollMainNavToEnd(page: Page): Promise<void> {
+  const nav = page.locator('post-mainnavigation').first();
+  await nav.evaluate(el => {
+    const scroller = el.shadowRoot?.querySelector('nav');
+    if (scroller) {
+      scroller.scrollLeft = scroller.scrollWidth;
+      scroller.dispatchEvent(new Event('scrollend'));
+    }
+  });
+  await page.waitForTimeout(WAIT_TIMES.interaction);
+}
+
+export async function hoverMegadropdownTitleLink(page: Page, dropdownId: string): Promise<void> {
+  const link = page
+    .locator(`post-megadropdown#${dropdownId} a.post-megadropdown-list-title`)
+    .first();
+  await link.hover();
+  await page.waitForTimeout(WAIT_TIMES.interaction);
+}
+
+export async function focusMegadropdownLink(page: Page, dropdownId: string): Promise<void> {
+  const link = page.locator(`post-megadropdown#${dropdownId} .post-megadropdown-list a`).first();
+  await link.focus();
+  await page.waitForTimeout(WAIT_TIMES.interaction);
+}
+
+export async function scrollMegadropdownInner(page: Page, dropdownId: string): Promise<void> {
+  const megadropdown = page.locator(`post-megadropdown#${dropdownId}`);
+  await megadropdown.evaluate(el => {
+    const panel = el.shadowRoot?.querySelector('.megadropdown') as HTMLElement | null;
+    if (panel) {
+      panel.scrollTop = panel.scrollHeight;
+    }
+  });
+  await page.waitForTimeout(WAIT_TIMES.interaction);
+}
+
+export async function focusLanguageListItem(page: Page): Promise<void> {
+  const item = page.locator('post-language-menu-item').first();
+  await item.evaluate(el => {
+    const focusable = (el.shadowRoot?.querySelector('a, button') as HTMLElement | null) ?? el;
+    focusable.focus();
+  });
+  await page.waitForTimeout(WAIT_TIMES.interaction);
+}
+
+export async function openSideNav(page: Page): Promise<void> {
+  const trigger = page.locator('post-side-navigation-trigger button').first();
+  await trigger.click();
   await page.waitForTimeout(WAIT_TIMES.animation);
 }

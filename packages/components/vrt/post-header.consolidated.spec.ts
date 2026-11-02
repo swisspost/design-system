@@ -5,13 +5,14 @@ import {
   TEST_MATRIX,
   STATE_HANDLERS,
   CLEANUP_HANDLERS,
+  StateName,
 } from './helpers/header-test-config';
 
 const BREAKPOINT_KEYS = ['desktop', 'tablet', 'mobile'] as const;
 
 async function executeTest(
   page: Page,
-  state: string,
+  state: StateName,
   variant: string,
   breakpoint: string,
 ): Promise<void> {
