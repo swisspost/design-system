@@ -1,12 +1,16 @@
-@use '@swisspost/design-system-styles/core.scss' as post;
-
 // Building blocks for full-width documentation pages (see `src/shared/docs-page/`).
 
 // A page containing `.docs-band` elements spans the full docs width; each band provides its own `.container`.
+// `.sbdocs-wrapper` is needed to outrank the `.docs-container` padding defined later in `preview.scss`.
 #storybook-docs .sbdocs-wrapper .docs-container:has(.docs-band) {
   margin: 0;
   padding: 0;
   max-width: none;
+}
+
+// The band padding defines the vertical spacing, so the last element must not add any.
+.docs-band > .container > :last-child {
+  margin-block-end: 0;
 }
 
 .docs-hero {
@@ -21,16 +25,17 @@
     z-index: -1;
     background-image: linear-gradient(
       233deg,
-      rgba(post.$black, 0) 28.68%,
-      rgba(post.$black, 0.4) 70.84%
+      transparent 28.68%,
+      var(--post-core-color-brand-black) 70.84%
     );
+    opacity: 0.4;
   }
 
   h1 {
-    color: post.$yellow;
+    color: var(--post-core-color-brand-postyellow);
 
     post-icon {
-      color: post.$white;
+      color: var(--post-current-fg);
     }
   }
 }
