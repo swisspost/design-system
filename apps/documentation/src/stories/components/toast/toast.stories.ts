@@ -31,7 +31,7 @@ const meta: MetaComponent = {
   argTypes: {
     title: {
       name: 'Title',
-      description: 'The text to insert into the title area.',
+      description: 'The text to insert into the title area (optional).',
       control: {
         type: 'text',
       },
@@ -347,9 +347,8 @@ function Render(args: Args, context: StoryContext) {
       @mouseenter="${() => killAutoHideTimeout(timeoutStore, args)}"
       @mouseleave="${() => createAutoHideTimeout(timeoutStore, args, updateArgs)}"
     >
-      ${dismissButton}
-      <div class="toast-title">${args.title}</div>
-      ${args.content ? html` <div class="toast-message">${args.content}</div> ` : null}
+      ${dismissButton} ${args.title ? html` <div class="toast-title">${args.title}</div> ` : null}
+      <div class="toast-message">${args.content}</div>
     </div>
   `;
 

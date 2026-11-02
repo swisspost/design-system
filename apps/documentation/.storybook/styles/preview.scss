@@ -5,6 +5,7 @@
 @use '@swisspost/design-system-styles/core.scss' as post;
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
 @use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/tokens/utilities';
 @use './variables' as sb;
@@ -15,8 +16,7 @@ tokens.$default-map: utilities.$post-spacing;
 #storybook-root,
 #storybook-docs {
   .sbdocs-content *:not(.section) > .container >,
-  .sbdocs-content *:not(.section) > .container > post-tabs > post-tab-panel >,
-  .sbdocs-content *:not(.section) > .container > migration-global-state {
+  .sbdocs-content *:not(.section) > .container > post-tabs > post-tab-panel > {
     // Target content headings only
     h1 {
       margin-block: 5rem 1rem;
@@ -168,8 +168,17 @@ tokens.$default-map: utilities.$post-spacing;
       background: transparent;
 
       button {
-        &:hover {
-          background-color: post.$white;
+        // removes Storybook's blue focus underline in favor of the design system outline
+        &:focus {
+          box-shadow: none;
+        }
+
+        // keeps the focus outline inside the button and above the next one
+        @include utilities-mx.focus-inset;
+
+        &:focus-visible {
+          position: relative;
+          z-index: 1;
         }
 
         &:nth-of-type(2) {

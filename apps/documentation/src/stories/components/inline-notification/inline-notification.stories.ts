@@ -1,6 +1,6 @@
 import type { Args, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { MetaComponent } from '@root/types';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 const meta: MetaComponent = {
@@ -17,14 +17,24 @@ const meta: MetaComponent = {
   args: {
     variant: 'info',
     title: 'Title',
+    multiline: true,
     message: 'Message',
-    headingLevel: 'h4',
+    headingLevel: 'p',
+    type: 'persistent',
   },
   argTypes: {
     variant: {
       name: 'Variant',
-      description: 'Defines the color variant of the notification.',
-      control: 'select',
+      description: 'Defines the type variant of the notification.',
+      control: {
+        type: 'radio',
+        labels: {
+          info: 'Info',
+          success: 'Success',
+          error: 'Error',
+          warning: 'Warning',
+        },
+      },
       options: ['info', 'success', 'warning', 'error'],
       table: {
         category: 'General',
@@ -38,6 +48,42 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
+    headingLevel: {
+      name: 'Heading Level',
+      if: {
+        arg: 'title',
+        neq: '',
+      },
+      description:
+        'The semantic tag used for the notification title. <post-banner data-size="sm"><p>A heading tag is needed for introducing a new subsection heading, or a paragraph <code>p</code> + <code>strong</code> tag to simply highlight the content.</p></post-banner>',
+      control: {
+        type: 'select',
+        labels: {
+          h1: 'Heading 1',
+          h2: 'Heading 2',
+          h3: 'Heading 3',
+          h4: 'Heading 4',
+          h5: 'Heading 5',
+          h6: 'Heading 6',
+          p: 'Paragraph',
+        },
+      },
+      options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'],
+      table: { category: 'Content' },
+    },
+    type: {
+      name: 'Type',
+      description: 'The type of the notification',
+      control: {
+        type: 'radio',
+        labels: {
+          persistent: 'Persistent (always visible on a page)',
+          dynamic: 'Dynamic (result of an action)',
+        },
+      },
+      options: ['persistent', 'dynamic'],
+      table: { category: 'General' },
+    },
     message: {
       name: 'Message',
       control: 'text',
@@ -45,12 +91,20 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
-    headingLevel: {
-      name: 'Heading Level',
-      description: 'The heading tag used for the notification title.',
-      control: 'select',
-      options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
-      table: { category: 'Content' },
+    multiline: {
+      name: 'Multi-line',
+      description:
+        'Whether the notification is displayed on multiple lines or in a single line (if space allows).',
+      if: {
+        arg: 'position',
+        neq: 'fixed',
+      },
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'General',
+      },
     },
   },
 };
@@ -59,12 +113,27 @@ export default meta;
 
 // RENDERER
 function renderInlineNotification(args: Args) {
-  const { variant, title, message, headingLevel = 'h4' } = args;
-  const titleHTML = title ? `<${headingLevel}>${title}</${headingLevel}>` : '';
-  const role = variant === 'warning' || variant === 'error' ? 'alert' : 'status';
+  const { variant, title, message, headingLevel } = args;
+
+  let titleHTML = '';
+
+  if (title) {
+    if (headingLevel === 'p') {
+      titleHTML = `<p><strong>${title}</strong></p>`;
+    } else {
+      titleHTML = `<${headingLevel}>${title}</${headingLevel}>`;
+    }
+  }
+
+  const role = args.type === 'dynamic' ? 'status' : nothing;
 
   return html`
-    <div class="inline-notification inline-notification-${variant}" role="${role}">
+    <div
+      class="inline-notification inline-notification-${variant}${!args.multiline
+        ? ' inline-notification-singleline'
+        : ''}"
+      role="${role}"
+    >
       ${unsafeHTML(titleHTML)}
       <p>${message}</p>
     </div>
@@ -84,14 +153,14 @@ export const Variants: Story = {
       renderInlineNotification({
         ...args,
         variant,
-        title: '',
+        title: 'Title',
         message: 'Message',
       }),
     )}`;
   },
 };
 
-export const MultiLine: Story = {
+export const SingleLine: Story = {
   decorators: [(story: StoryFn) => html`<div class="d-flex flex-column gap-16">${story()}</div>`],
   render: (args: Args) => {
     const variants = ['info', 'success', 'warning', 'error'];
@@ -100,9 +169,9 @@ export const MultiLine: Story = {
       renderInlineNotification({
         ...args,
         variant,
+        multiline: false,
         title: 'Title',
-        message:
-          'This is a longer notification message that wraps automatically without requiring an extra class.',
+        message: 'Message',
       }),
     )}`;
   },
