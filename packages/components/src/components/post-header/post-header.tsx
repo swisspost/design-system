@@ -168,6 +168,7 @@ export class PostHeader {
     globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
 
     this.handleScrollParentResize();
+    this.handleScrollMaxResize();
     this.lockBody(false, this.burgerMenuExtended, 'burgerMenuExtended');
   }
 
@@ -338,8 +339,8 @@ export class PostHeader {
     const scrollTop =
       this.scrollParent === document.body ? window.scrollY : this.scrollParent.scrollTop;
 
-    // Beyond scrollMax the header is fully collapsed: writing the value again would only
-    // trigger a style recalculation of the whole document without any visual change
+    // Once the header is fully reduced, writing a new value would only trigger
+    // a style recalculation of the whole page without any visual change
     const value = Math.min(Math.max(scrollTop, 0), this.scrollMax);
     if (value === this.lastScrollTop) return;
 
@@ -350,7 +351,7 @@ export class PostHeader {
   private updateScrollMax() {
     if (!this.scrollMaxElement) return;
 
-    // Without the styles package custom property, never clamp the scroll value
+    // Never limit the scroll value when the header styles are not loaded
     const isScrollMaxDefined =
       getComputedStyle(this.host).getPropertyValue('--post-header-scroll-max').trim() !== '';
 
@@ -420,7 +421,7 @@ export class PostHeader {
   private handleScrollMaxResize() {
     if (!this.scrollMaxElement || this.scrollMaxResizeObserver) return;
 
-    // ResizeObserver does not report an initial 0px size (e.g. mobile), so read it once now
+    // The ResizeObserver is not called for an initial size of 0px (e.g. on mobile)
     this.updateScrollMax();
     this.scrollMaxResizeObserver = new ResizeObserver(this.updateScrollMax);
     this.scrollMaxResizeObserver.observe(this.scrollMaxElement);

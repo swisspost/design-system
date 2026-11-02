@@ -13,7 +13,7 @@ function getLanguageMenuTrigger() {
 }
 
 // waits until the header handled the scroll, so a "still expanded" assertion can't pass too early
-// the header's scroll listener is registered before this one, so it has already run when this one fires
+// the header listens to scroll events before this function, so it already handled the scroll when the promise resolves
 function scrollAndWait(y: number) {
   cy.window().then(win => {
     const { scrollHeight, clientHeight } = win.document.scrollingElement;
@@ -151,6 +151,23 @@ describe('header', () => {
       removeAndReattachHeader();
 
       cy.get('[data-post-scroll-locked]').should('not.exist');
+    });
+
+    it('should keep updating the scroll position limit after reattaching header', () => {
+      removeAndReattachHeader();
+
+      // the header does not shrink on mobile, but it does on desktop
+      cy.viewport(1440, 1000);
+      cy.get('@header')
+        .shadow()
+        .find('.scroll-max')
+        .should($el => expect($el[0].getBoundingClientRect().width).to.be.greaterThan(1));
+
+      getScrollMax().then(scrollMax => {
+        const below = Math.floor(scrollMax / 2);
+        scrollAndWait(below);
+        getScrollTopProperty().should('eq', `${below}px`);
+      });
     });
 
     it('should log an error if the textMenu prop is not set', () => {

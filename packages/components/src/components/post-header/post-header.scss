@@ -47,7 +47,7 @@ header,
   }
 }
 
-// Resolves --post-header-scroll-max to a px value the component can read
+// Converts --post-header-scroll-max to a px value that can be read by the component
 .scroll-max {
   position: absolute;
   inset-block-start: 0;

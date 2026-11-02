@@ -191,17 +191,16 @@ post-header:not(:has([slot='main-nav'])) {
   --post-header-height: calc(var(--post-global-header-height) + var(--post-local-header-height));
 
   // --- Scroll max ---
-  // Scroll offset after which no header property depends on --post-header-scroll-top anymore,
-  // the header stops updating --post-header-scroll-top beyond this value.
-  // Must cover every consumer of --post-header-scroll-top:
-  // global header & logo, local header, and the sliding controls (--post-global-controls-top)
+  // Scroll position from which the header is fully reduced,
+  // --post-header-scroll-top is not updated beyond this value
+  // The min() covers the sliding controls (see --post-global-controls-top) and is 0 when the global header does not shrink
   --post-header-scroll-max: max(
     0px,
     var(--post-global-header-expanded-height) - var(--post-global-header-reduced-height),
     var(--post-local-header-expanded-height) - var(--post-local-header-reduced-height),
     min(
       4 * var(--post-global-header-reduced-height),
-      4000 * (var(--post-global-header-expanded-height) - var(--post-global-header-reduced-height))
+      1000 * (var(--post-global-header-expanded-height) - var(--post-global-header-reduced-height))
     )
   );
 
