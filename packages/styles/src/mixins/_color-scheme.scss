@@ -1,8 +1,8 @@
 @use 'sass:map';
 @use '@swisspost/design-system-tokens/scheme';
 
-@use '../icons/signal-icons' as *;
 @use '../mixins/supports';
+@use '../variables/icons';
 
 /**
  * Fallback for browsers without `light-dark()` support, based on space toggles.
@@ -28,7 +28,7 @@
   }
 
   @include supports.light-dark(false) {
-    @each $key in $signal-icons {
+    @each $key in icons.$signal-icon-names {
       --post-signal-icon-#{$key}-fallback-light: var(--post-fallback-prefers-light)
         var(--post-signal-icon-#{$key}-light);
       --post-signal-icon-#{$key}: var(
