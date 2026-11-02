@@ -3,7 +3,7 @@
 // Building blocks for full-width documentation pages (see `src/shared/docs-page/`).
 
 // A page containing `.docs-band` elements spans the full docs width; each band provides its own `.container`.
-#storybook-docs .docs-container:has(.docs-band) {
+#storybook-docs .sbdocs-wrapper .docs-container:has(.docs-band) {
   margin: 0;
   padding: 0;
   max-width: none;
