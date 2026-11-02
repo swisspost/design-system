@@ -19,23 +19,23 @@ export class MigrationV56Component extends LitElement {
     if (!this.currentVersion || this.currentVersion > 5) return nothing;
 
     return html`
-      <h2 id="migration-from-v5-to-v6" class="docs-autolink">
-        Migration from v5 to v6
-        <a
-          aria-hidden="true"
-          tabindex="-1"
-          href="/?path=/docs/c23b1d0b-76b3-4e38-aa76-b10c29bb873f--docs#migration-from-v5-to-v6"
-        >
-          <post-icon name="link"></post-icon>
-        </a>
-      </h2>
-      <section>
-        <ol class="bubble-tea">
-          <li>
-            <h3>Package Update 🩺</h3>
-            <ol>
-              ${
-                this.angular
+      <div class="container py-40">
+        <h2 id="migration-from-v5-to-v6" class="docs-autolink">
+          Migration from v5 to v6
+          <a
+            aria-hidden="true"
+            tabindex="-1"
+            href="/?path=/docs/c23b1d0b-76b3-4e38-aa76-b10c29bb873f--docs#migration-from-v5-to-v6"
+          >
+            <post-icon name="link"></post-icon>
+          </a>
+        </h2>
+        <section>
+          <post-accordion heading-level="3">
+            <post-accordion-item>
+              <span slot="header">1. Package Update 🩺</span>
+              <ol>
+                ${this.angular
                   ? html`
                       <li>
                         <p>
@@ -45,59 +45,59 @@ export class MigrationV56Component extends LitElement {
                         </p>
                       </li>
                     `
-                  : nothing
-              }
+                  : nothing}
 
-              <li>
-                <div>
-                  Update Bootstrap to version
-                  5.3.x${this.angular ? html` and ng-bootstrap to version 15.x.x` : nothing}:
-                  <code-block
-                    code=${
-                      this.angular
+                <li>
+                  <div>
+                    Update Bootstrap to version
+                    5.3.x${this.angular ? html` and ng-bootstrap to version 15.x.x` : nothing}:
+                    <code-block
+                      code=${this.angular
                         ? 'npm install bootstrap@5.3 @ng-bootstrap/ng-bootstrap@15'
-                        : 'npm install bootstrap@5.3'
-                    }
-                  ></code-block>
-                </div>
+                        : 'npm install bootstrap@5.3'}
+                    ></code-block>
+                  </div>
 
-                <div class="mt-2">
-                  See the
-                  <a
-                    href="https://getbootstrap.com/docs/5.3/migration"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >Bootstrap 5.3.x migration guide<span class="visually-hidden">(opens in a new tab)</span></a
-                  >
-                  ${
-                    this.angular
+                  <div class="mt-2">
+                    See the
+                    <a
+                      href="https://getbootstrap.com/docs/5.3/migration"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Bootstrap 5.3.x migration guide<span class="visually-hidden"
+                        >(opens in a new tab)</span
+                      ></a
+                    >
+                    ${this.angular
                       ? html`
                           and
                           <a
                             href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1500-2023-05-25"
                             target="_blank"
                             rel="noopener noreferrer"
-                            >ng-bootstrap 15.x.x changelog<span class="visually-hidden">(opens in a new tab)</span></a
+                            >ng-bootstrap 15.x.x changelog<span class="visually-hidden"
+                              >(opens in a new tab)</span
+                            ></a
                           >
                         `
-                      : nothing
-                  }
-                  for more details.
-                </div>
-              </li>
-              <li>
-                <p>
-                  Update Design System style package to version 6:
-                  <code-block code=${'npm install @swisspost/design-system-styles@6'}></code-block>
-                </p>
-              </li>
-            </ol>
-          </li>
-          ${
-            this.angular
+                      : nothing}
+                    for more details.
+                  </div>
+                </li>
+                <li>
+                  <p>
+                    Update Design System style package to version 6:
+                    <code-block
+                      code=${'npm install @swisspost/design-system-styles@6'}
+                    ></code-block>
+                  </p>
+                </li>
+              </ol>
+            </post-accordion-item>
+            ${this.angular
               ? html`
-                  <li>
-                    <h3>Automatic Migration ⚙️</h3>
+                  <post-accordion-item>
+                    <span slot="header">2. Automatic Migration ⚙️</span>
                     <p>
                       For Angular application, you can take advantage of our migration schematics.
                     </p>
@@ -109,58 +109,57 @@ export class MigrationV56Component extends LitElement {
                         migrations to your application:
                         <code-block
                           code=${`npm install @swisspost/design-system-migrations
-npx ng update @swisspost/design-system-migrations --from=5 --to=6 --migrate-only --allow-dirty
-npm uninstall @swisspost/design-system-migrations`}
+  npx ng update @swisspost/design-system-migrations --from=5 --to=6 --migrate-only --allow-dirty
+  npm uninstall @swisspost/design-system-migrations`}
                         ></code-block>
                       </li>
                     </ol>
-                  </li>
+                  </post-accordion-item>
                 `
-              : nothing
-          }
-          <li>
-            <h3>Component Migration 🤓</h3>
-            ${
-              this.angular
+              : nothing}
+
+            <post-accordion-item>
+              <span slot="header">${this.angular ? html`3` : html`2`}. Component Migration 🤓</span>
+              ${this.angular
                 ? html`
                     <p class="info">
                       Changes flagged with the ⚙️ symbol should be automatically migrated with our
                       migration tool.
                     </p>
                   `
-                : nothing
-            }
-            <h4>Accessibility</h4>
-            <ul>
-              <li>
-                <h5>
-                  Stepper
-                  <span class="tag tag-sm tag-error">breaking</span>
-                </h5>
-                <p>
-                  The markup of the
-                  <a href="https://archive.design-system.post.ch/#/post-samples/stepper">Stepper</a>
-                  component has been changed in order to be more accessible.
-                </p>
-                <ul>
-                  <li>
-                    ${this._templateAutoIconAngular()} The stepper container no longer has an
-                    aria-label attribute but contains a hidden header instead
-                  </li>
-                  <li>
-                    ${this._templateAutoIconAngular()} The progress bar is hidden and no longer
-                    requires a type attribute
-                  </li>
-                  <li>${this._templateAutoIconAngular()} The stepper has a list role</li>
-                  <li>Completed steps require an additional hidden "Completed: " text</li>
-                  <li>Current and incomplete steps should not be links</li>
-                </ul>
-              </li>
-            </ul>
-            <h4>Deprecations</h4>
-            <ul>
-              ${
-                this.angular
+                : nothing}
+              <h4>Accessibility</h4>
+              <ul>
+                <li>
+                  <h5>
+                    Stepper
+                    <span class="tag tag-sm tag-error">breaking</span>
+                  </h5>
+                  <p>
+                    The markup of the
+                    <a href="https://archive.design-system.post.ch/#/post-samples/stepper"
+                      >Stepper</a
+                    >
+                    component has been changed in order to be more accessible.
+                  </p>
+                  <ul>
+                    <li>
+                      ${this._templateAutoIconAngular()} The stepper container no longer has an
+                      aria-label attribute but contains a hidden header instead
+                    </li>
+                    <li>
+                      ${this._templateAutoIconAngular()} The progress bar is hidden and no longer
+                      requires a type attribute
+                    </li>
+                    <li>${this._templateAutoIconAngular()} The stepper has a list role</li>
+                    <li>Completed steps require an additional hidden "Completed: " text</li>
+                    <li>Current and incomplete steps should not be links</li>
+                  </ul>
+                </li>
+              </ul>
+              <h4>Deprecations</h4>
+              <ul>
+                ${this.angular
                   ? html`
                       <li>
                         <h5>
@@ -186,25 +185,25 @@ npm uninstall @swisspost/design-system-migrations`}
                         </p>
                       </li>
                     `
-                  : nothing
-              }
-              <li>
-                <h5>
-                  Removed variables
-                  <span class="tag tag-sm tag-error">breaking</span>
-                </h5>
-                <p>
-                  The following Sass variables have been removed because they are not being used
-                  anymore.
-                </p>
-                <ul>
-                  <li><code>$table-head-bg</code></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ol>
-      </section>
+                  : nothing}
+                <li>
+                  <h5>
+                    Removed variables
+                    <span class="tag tag-sm tag-error">breaking</span>
+                  </h5>
+                  <p>
+                    The following Sass variables have been removed because they are not being used
+                    anymore.
+                  </p>
+                  <ul>
+                    <li><code>$table-head-bg</code></li>
+                  </ul>
+                </li>
+              </ul>
+            </post-accordion-item>
+          </post-accordion>
+        </section>
+      </div>
     `;
   }
 
