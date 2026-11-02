@@ -44,6 +44,40 @@ describe('logo', () => {
     });
   });
 
+  describe('client-side routing', () => {
+    beforeEach(() => {
+      cy.getComponent('logo', LOGO_ID, 'client-side-routing');
+    });
+
+    it('should keep the slotted link in the light DOM', () => {
+      cy.get('@logo').children('a').should('have.attr', 'href', '/');
+      cy.get('@logo').shadow().find('a').should('not.exist');
+    });
+
+    it('should use the slotted link text as accessible name', () => {
+      cy.get('@logo').children('a').invoke('text').should('not.be.empty');
+    });
+
+    it('should visually hide the slotted link text', () => {
+      cy.get('@logo')
+        .children('a')
+        .should('have.css', 'position', 'absolute')
+        .and('have.css', 'overflow', 'hidden')
+        .and('have.css', 'text-indent', '-9999px');
+    });
+
+    it('should let the slotted link receive clicks on the whole logo', () => {
+      cy.get('@logo').then($logo => {
+        const { left, top, width, height } = $logo[0].getBoundingClientRect();
+
+        cy.document().then(doc => {
+          const target = doc.elementFromPoint(left + width / 2, top + height / 2);
+          expect(target).to.equal($logo[0].querySelector(':scope > a'));
+        });
+      });
+    });
+  });
+
   describe('custom height', () => {
     beforeEach(() => {
       cy.getComponent('logo', LOGO_ID, 'height');
@@ -67,7 +101,7 @@ describe('logo', () => {
 describe('Accessibility', () => {
   it('Has no detectable a11y violations on load for all variants', () => {
     cy.getSnapshots('post-logo');
-    cy.checkA11y('#root-inner', undefined, (violations) => {
+    cy.checkA11y('#root-inner', undefined, violations => {
       expect(violations).to.have.length(0);
     });
   });

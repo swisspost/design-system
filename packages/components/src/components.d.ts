@@ -362,7 +362,7 @@ export namespace Components {
          */
         "description"?: string;
         /**
-          * The full name of the language. For example, "Deutsch".
+          * The full name of the language. For example, "Deutsch". Required when the language code alone is displayed, unless an anchor is slotted.
          */
         "name"?: string;
         /**
@@ -1677,7 +1677,7 @@ declare namespace LocalJSX {
          */
         "description"?: string;
         /**
-          * The full name of the language. For example, "Deutsch".
+          * The full name of the language. For example, "Deutsch". Required when the language code alone is displayed, unless an anchor is slotted.
          */
         "name"?: string;
         /**

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {
   PostAccordion,
   PostAccordionItem,
@@ -10,9 +11,12 @@ import {
   PostCollapsibleTrigger,
   PostDatePicker,
   PostIcon,
+  PostLanguageMenu,
+  PostLanguageMenuItem,
   PostLinkarea,
   PostListbox,
   PostListboxOption,
+  PostLogo,
   PostMenu,
   PostMenuItem,
   PostMenuTrigger,
@@ -49,9 +53,12 @@ import { ToastService } from '../../toast/toast.service';
     PostCollapsibleTrigger,
     PostDatePicker,
     PostIcon,
+    PostLanguageMenu,
+    PostLanguageMenuItem,
     PostLinkarea,
     PostListbox,
     PostListboxOption,
+    PostLogo,
     PostMenu,
     PostMenuItem,
     PostMenuTrigger,
@@ -70,6 +77,7 @@ import { ToastService } from '../../toast/toast.service';
     PostTogglebutton,
     PostTooltip,
     PostTooltipTrigger,
+    RouterLink,
   ],
 })
 export class Home {
