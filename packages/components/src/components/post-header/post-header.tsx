@@ -356,7 +356,7 @@ export class PostHeader {
       getComputedStyle(this.host).getPropertyValue('--post-header-scroll-max').trim() !== '';
 
     this.scrollMax = isScrollMaxDefined
-      ? this.scrollMaxElement.getBoundingClientRect().width
+      ? Math.ceil(this.scrollMaxElement.getBoundingClientRect().width)
       : Infinity;
 
     this.handleScrollEvent();

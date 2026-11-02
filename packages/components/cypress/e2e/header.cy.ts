@@ -40,7 +40,7 @@ function getScrollMax() {
     .get('@header')
     .shadow()
     .find('.scroll-max')
-    .then($el => $el[0].getBoundingClientRect().width);
+    .then($el => Math.ceil($el[0].getBoundingClientRect().width));
 }
 
 describe('header', () => {
@@ -97,6 +97,12 @@ describe('header', () => {
             });
 
           getScrollMax().then(scrollMax => {
+            // the page must be scrollable beyond the max, otherwise the last assertions would pass without testing anything
+            cy.document().then(doc => {
+              const { scrollHeight, clientHeight } = doc.scrollingElement;
+              expect(scrollHeight - clientHeight).to.be.greaterThan(scrollMax + 300);
+            });
+
             if (scrollMax > 1) {
               const below = Math.floor(scrollMax / 2);
               scrollAndWait(below);
