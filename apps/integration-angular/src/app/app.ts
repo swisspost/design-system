@@ -145,7 +145,7 @@ export class App implements OnInit {
       url: '#linkedin',
       icon: 'linkedin-solid',
     },
-    { name: 'Xing', url: '#xing', icon: 'xing' },
+    { name: 'Xing', url: '#xing', icon: 'xing-solid' },
     {
       name: 'Kununu',
       url: '#kununu',

@@ -464,7 +464,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
               </li>
               <li>
                 <a href="#xing" className="btn btn-primary btn-icon">
-                  <PostIcon aria-hidden="true" name="xing"></PostIcon>
+                  <PostIcon aria-hidden="true" name="xing-solid"></PostIcon>
                   <span className="visually-hidden">Xing</span>
                 </a>
               </li>

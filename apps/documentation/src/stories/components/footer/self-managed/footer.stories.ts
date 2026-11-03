@@ -174,7 +174,7 @@ function render(args: Args) {
                   href="https://www.xing.com/companies/dieschweizerischepost"
                   class="btn btn-primary btn-icon"
                 >
-                  <post-icon aria-hidden="true" name="xing"></post-icon>
+                  <post-icon aria-hidden="true" name="xing-solid"></post-icon>
                   <span class="visually-hidden">Xing</span>
                 </a>
               </li>
