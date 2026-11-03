@@ -4,6 +4,7 @@ import * as ListboxStories from './listbox.stories';
 import * as ListboxOptionStories from './listbox-option.stories';
 import StoryTags from '@/shared/story-tags';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import StylesPackageImport from '@/shared/styles-package-import';
 
 <Meta of={AutocompleteStories} />
 
@@ -17,7 +18,8 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 <StoryTags meta={meta} />
 
 <div className="lead">
-  The autocomplete combines a text input with a listbox to help users quickly find and select an option.
+  The autocomplete combines a text input with a listbox to help users quickly find and select an
+  option.
 </div>
 
 The `<post-autocomplete>` component enhances a slotted `<input>` element and works together with a
@@ -42,6 +44,8 @@ results asynchronously or apply your own filtering logic, you can listen to the 
 <Controls of={ListboxOptionStories.Default} />
 
 <ComponentsPackageInstall component="<post-autocomplete>" />
+
+<StylesPackageImport components={['form-input']} />
 
 ## Examples
 

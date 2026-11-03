@@ -4,6 +4,7 @@ import SampleTabChange from './tabs-tab-change.sample?raw';
 import SampleCustomTrigger from './tabs-custom-trigger.sample?raw';
 import StoryTags from '@/shared/story-tags';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import StylesPackageImport from '@/shared/styles-package-import';
 
 <Meta of={TabStories} />
 
@@ -17,8 +18,9 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 <StoryTags meta={meta} />
 
 <div className="lead">
-  The tabs are a way of grouping different but related content. They allow the user to navigate them without 
-  leaving the page. Tabs can be used to either split the full page width or parts of the content.
+  The tabs are a way of grouping different but related content. They allow the user to navigate them
+  without leaving the page. Tabs can be used to either split the full page width or parts of the
+  content.
 </div>
 
 <Canvas sourceState="shown" of={TabStories.Default} />
@@ -27,11 +29,14 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <ComponentsPackageInstall component="<post-tabs>" />
 
+<StylesPackageImport components={['tabs/index']} />
+
 ## Unavailable Tabs
 
 Tabs should not be disabled. If a tab's content is currently unavailable, do not render the tab.
 
 <post-banner type="info">
+  {/* prettier-ignore */}
   <p>
     Disabled tabs are confusing because they give no information about why the content is unavailable
     and may be skipped by keyboard and screen reader users. Please also read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.

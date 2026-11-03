@@ -2,6 +2,7 @@ import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as megadropdownStories from './megadropdown.stories';
 import StoryTags from '@/shared/story-tags';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import StylesPackageImport from '@/shared/styles-package-import';
 
 <Meta of={megadropdownStories} />
 
@@ -23,3 +24,5 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 <Controls of={megadropdownStories.Default} />
 
 <ComponentsPackageInstall component="<post-megadropdown>" />
+
+<StylesPackageImport components={['header/index']} />
