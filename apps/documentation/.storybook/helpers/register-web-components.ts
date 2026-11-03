@@ -4,7 +4,7 @@ import { setStencilDocJson } from '@kurbar/storybook-addon-docs-stencil';
 import { StencilJsonDocs } from '@kurbar/storybook-addon-docs-stencil/dist/types';
 import postComponentsDocJson from '@swisspost/design-system-components/dist/docs.json';
 import internetHeaderDocJson from '@swisspost/internet-header/dist/docs.json';
-import '../../src/shared/link-design/link-design.component';
+import '../../src/shared/story-links/story-links.component';
 
 defineHeader();
 

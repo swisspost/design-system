@@ -98,8 +98,8 @@ tokens.$default-map: utilities.$post-spacing;
     gap: tokens.get('utility-gap-8');
   }
 
-  // aligns figma button to the title
-  .docs-title > link-design,
+  // aligns figma and snapshot buttons to the title
+  .docs-title > story-links,
   .docs-title > .buttons-container {
     margin-block-end: tokens.get('h1-margin-block-end', elements.$post-heading);
   }
@@ -112,7 +112,7 @@ tokens.$default-map: utilities.$post-spacing;
   .docs-title {
     margin-bottom: tokens.get('utility-gap-8');
 
-    :first-child {
+    > :first-child {
       margin-right: auto;
     }
   }
