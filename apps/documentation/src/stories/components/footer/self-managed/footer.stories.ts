@@ -135,19 +135,19 @@ function render(args: Args) {
             <ul aria-labelledby="socialmedia">
               <li>
                 <a href="https://www.facebook.com/swisspost" class="btn btn-primary btn-icon">
-                  <post-icon aria-hidden="true" name="facebook"></post-icon>
+                  <post-icon aria-hidden="true" name="facebook-solid"></post-icon>
                   <span class="visually-hidden">Facebook</span>
                 </a>
               </li>
               <li>
                 <a href="https://www.instagram.com/swisspost/" class="btn btn-primary btn-icon">
-                  <post-icon aria-hidden="true" name="instagram"></post-icon>
+                  <post-icon aria-hidden="true" name="instagram-solid"></post-icon>
                   <span class="visually-hidden">Instagram</span>
                 </a>
               </li>
               <li>
                 <a href="http://www.youtube.com/swisspost" class="btn btn-primary btn-icon">
-                  <post-icon aria-hidden="true" name="youtube"></post-icon>
+                  <post-icon aria-hidden="true" name="youtube-solid"></post-icon>
                   <span class="visually-hidden">Youtube</span>
                 </a>
               </li>
@@ -156,14 +156,8 @@ function render(args: Args) {
                   href="https://www.snapchat.com/add/swisspostjobs"
                   class="btn btn-primary btn-icon"
                 >
-                  <post-icon aria-hidden="true" name="snapchat"></post-icon>
+                  <post-icon aria-hidden="true" name="snapchat-solid"></post-icon>
                   <span class="visually-hidden">Snapchat</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://twitter.com/PostSchweiz" class="btn btn-primary btn-icon">
-                  <post-icon aria-hidden="true" name="twitterx"></post-icon>
-                  <span class="visually-hidden">Twitter X</span>
                 </a>
               </li>
               <li>
@@ -171,7 +165,7 @@ function render(args: Args) {
                   href="https://www.linkedin.com/company/swiss-post"
                   class="btn btn-primary btn-icon"
                 >
-                  <post-icon aria-hidden="true" name="linkedin"></post-icon>
+                  <post-icon aria-hidden="true" name="linkedin-solid"></post-icon>
                   <span class="visually-hidden">Linkedin</span>
                 </a>
               </li>
@@ -185,8 +179,47 @@ function render(args: Args) {
                 </a>
               </li>
               <li>
+                <a
+                  href="https://www.kununu.com/ch/die-schweizerische-post"
+                  class="btn btn-primary btn-icon"
+                >
+                  <post-icon aria-hidden="true" name="kununu-solid"></post-icon>
+                  <span class="visually-hidden">Kununu</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.tiktok.com/@swisspost" class="btn btn-primary btn-icon">
+                  <post-icon aria-hidden="true" name="tiktok-solid"></post-icon>
+                  <span class="visually-hidden">TikTok</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://swisspost-digital.ch/en/digital-blog"
+                  class="btn btn-primary btn-icon"
+                >
+                  <post-icon aria-hidden="true" name="blog-solid"></post-icon>
+                  <span class="visually-hidden">Blog</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="btn btn-primary btn-icon">
+                  <post-icon aria-hidden="true" name="rssfeed-solid"></post-icon>
+                  <span class="visually-hidden">RSS</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://fr.slideshare.net/slideshow/business-with-swiss-post-solutions/5038697"
+                  class="btn btn-primary btn-icon"
+                >
+                  <post-icon aria-hidden="true" name="slideshare-solid"></post-icon>
+                  <span class="visually-hidden">Slideshare</span>
+                </a>
+              </li>
+              <li>
                 <a href="mailto:noreply@post.ch" class="btn btn-primary btn-icon">
-                  <post-icon aria-hidden="true" name="letter"></post-icon>
+                  <post-icon aria-hidden="true" name="letter-solid" class="h-16 w-16"></post-icon>
                   <span class="visually-hidden">E-Mail</span>
                 </a>
               </li>

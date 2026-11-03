@@ -218,7 +218,12 @@
         @for (social of socialMediaLinks; track social.name) {
         <li>
           <a [href]="social.url" class="btn btn-primary btn-icon">
-            <post-icon aria-hidden="true" [name]="social.icon" />
+            <post-icon
+              aria-hidden="true"
+              [name]="social.icon"
+              [class.h-16]="social.icon === 'letter-solid'"
+              [class.w-16]="social.icon === 'letter-solid'"
+            />
             <span class="visually-hidden">{{ social.name }}</span>
           </a>
         </li>

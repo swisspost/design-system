@@ -292,30 +292,50 @@
     "socialLinks": {
       "title": "Folgen Sie uns",
       "items": [
-        { "text": "Facebook", "url": "https://www.facebook.com/swisspost", "icon": "facebook" },
+        {
+          "text": "Facebook",
+          "url": "https://www.facebook.com/swisspost",
+          "icon": "facebook-solid"
+        },
         {
           "text": "Instagram",
           "url": "https://www.instagram.com/swisspost/",
-          "icon": "instagram"
+          "icon": "instagram-solid"
         },
-        { "text": "Youtube", "url": "http://www.youtube.com/swisspost", "icon": "youtube" },
+        { "text": "Youtube", "url": "http://www.youtube.com/swisspost", "icon": "youtube-solid" },
         {
           "text": "Snapchat",
           "url": "https://www.snapchat.com/add/swisspostjobs",
-          "icon": "snapchat"
+          "icon": "snapchat-solid"
         },
-        { "text": "Twitter X", "url": "https://twitter.com/PostSchweiz", "icon": "twitterx" },
         {
           "text": "Linkedin",
           "url": "https://www.linkedin.com/company/swiss-post",
-          "icon": "linkedin"
+          "icon": "linkedin-solid"
         },
         {
           "text": "Xing",
           "url": "https://www.xing.com/companies/dieschweizerischepost",
           "icon": "xing"
         },
-        { "text": "E-Mail", "url": "mailto:noreply@post.ch", "icon": "letter" }
+        {
+          "text": "Kununu",
+          "url": "https://www.kununu.com/ch/die-schweizerische-post",
+          "icon": "kununu-solid"
+        },
+        { "text": "TikTok", "url": "https://www.tiktok.com/@swisspost", "icon": "tiktok-solid" },
+        {
+          "text": "Blog",
+          "url": "https://swisspost-digital.ch/en/digital-blog",
+          "icon": "blog-solid"
+        },
+        { "text": "RSS", "url": "#", "icon": "rssfeed-solid" },
+        {
+          "text": "Slideshare",
+          "url": "https://fr.slideshare.net/slideshow/business-with-swiss-post-solutions/5038697",
+          "icon": "slideshare-solid"
+        },
+        { "text": "E-Mail", "url": "mailto:noreply@post.ch", "icon": "letter-solid" }
       ]
     },
     "appStoreLinks": {
