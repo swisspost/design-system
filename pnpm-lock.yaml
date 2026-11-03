@@ -1200,8 +1200,8 @@ importers:
         specifier: 9.26.0
         version: 9.26.0
       '@next/eslint-plugin-next':
-        specifier: 15.1.5
-        version: 15.1.5
+        specifier: 16.4.3
+        version: 16.4.3(eslint@9.26.0(jiti@2.7.0)(supports-color@10.2.2))
       '@stencil/eslint-plugin':
         specifier: 1.4.0
         version: 1.4.0(@stencil/core@4.43.3)(@typescript-eslint/eslint-plugin@8.62.0(@typescript-eslint/parser@8.62.0(eslint@9.26.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@9.26.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/parser@8.62.0(eslint@9.26.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-react@7.37.5(eslint@9.26.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@9.26.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
@@ -2294,6 +2294,12 @@ packages:
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
 
+  '@eslint-community/eslint-utils@4.9.1':
+    resolution: {integrity: sha512-phrYmNiYppR7znFEdqgfWHXR6NCkZEK7hwWDHZUjit/2/U0r6XvkDl0SYnoM51Hq7FhCGdLDT6zxCCOY1hexsQ==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
+
   '@eslint-community/regexpp@4.12.2':
     resolution: {integrity: sha512-EriSTlt5OC9/7SXkRSCAhfSxxoSUgBm33OH+IkwbdpgoqsSsUg7y3uh+IICI/Qg4BBWr3U2i39RpmycbxMq4ew==}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
@@ -3238,8 +3244,8 @@ packages:
   '@next/env@16.4.2':
     resolution: {integrity: sha512-nTUTFH7G5/J/fmpkjVLegOkqyKOP0CEsJcMsyO4UCYeN1su+YMW/MfaSErnJskL7XM+UDK6aTvslxsRCyya/sA==}
 
-  '@next/eslint-plugin-next@15.1.5':
-    resolution: {integrity: sha512-3cCrXBybsqe94UxD6DBQCYCCiP9YohBMgZ5IzzPYHmPzj8oqNlhBii5b6o1HDDaRHdz2pVnSsAROCtrczy8O0g==}
+  '@next/eslint-plugin-next@16.4.3':
+    resolution: {integrity: sha512-oxuC06wt/71h6ACYCV9GbKOfnf5a7VlRe/p80YHTut15TNgDEmynDnaq8t/xhy5rlvk7dhItIPs6H3rvIM4kyw==}
 
   '@next/swc-darwin-arm64@15.5.28':
     resolution: {integrity: sha512-dPoQYXcfSIqx5o+TOXVXO7kONK5qbtNRDeiTfII0bT3puGIT6VF5e0QwmxNZfEZ5Zety5f3m9P/p4xqwfiLlPg==}
@@ -13146,6 +13152,11 @@ snapshots:
       eslint: 9.26.0(jiti@2.7.0)(supports-color@8.1.1)
       eslint-visitor-keys: 3.4.3
 
+  '@eslint-community/eslint-utils@4.9.1(eslint@9.26.0(jiti@2.7.0)(supports-color@10.2.2))':
+    dependencies:
+      eslint: 9.26.0(jiti@2.7.0)(supports-color@10.2.2)
+      eslint-visitor-keys: 3.4.3
+
   '@eslint-community/regexpp@4.12.2': {}
 
   '@eslint/config-array@0.20.1(supports-color@10.2.2)':
@@ -14391,9 +14402,12 @@ snapshots:
 
   '@next/env@16.4.2': {}
 
-  '@next/eslint-plugin-next@15.1.5':
+  '@next/eslint-plugin-next@16.4.3(eslint@9.26.0(jiti@2.7.0)(supports-color@10.2.2))':
     dependencies:
+      '@eslint-community/eslint-utils': 4.9.1(eslint@9.26.0(jiti@2.7.0)(supports-color@10.2.2))
       fast-glob: 3.3.1
+    transitivePeerDependencies:
+      - eslint
 
   '@next/swc-darwin-arm64@15.5.28':
     optional: true
@@ -15800,7 +15814,7 @@ snapshots:
   '@typescript-eslint/project-service@8.62.0(supports-color@10.2.2)(typescript@6.0.3)':
     dependencies:
       '@typescript-eslint/tsconfig-utils': 8.62.0(typescript@6.0.3)
-      '@typescript-eslint/types': 8.62.0
+      '@typescript-eslint/types': 8.72.0
       debug: 4.4.3(supports-color@10.2.2)
       typescript: 6.0.3
     transitivePeerDependencies:
