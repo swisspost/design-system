@@ -500,7 +500,7 @@ export default function Layout({ children }: { readonly children: React.ReactNod
               </li>
               <li>
                 <a href="mailto:noreply@post.ch" className="btn btn-primary btn-icon">
-                  <PostIcon aria-hidden="true" name="letter-solid" className="h-16 w-16"></PostIcon>
+                  <PostIcon aria-hidden="true" name="letter-solid"></PostIcon>
                   <span className="visually-hidden">E-Mail</span>
                 </a>
               </li>
