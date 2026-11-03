@@ -1,7 +1,7 @@
-{/* Card with an icon, title, description and one call-to-action link. Place it inside a grid column. */}
+{/* Interactive card (the whole card is clickable) with an icon, title, description and one call-to-action link. Place it inside a grid column. */}
 {/* Props: icon, title, description, href, linkText, linkContext (optional, read by screen readers only). */}
 
-<div className="card h-full">
+<post-linkarea className="card h-full">
   <div className="card-body h-full d-flex flex-column flex-sm-row flex-lg-column align-items-center align-items-sm-start align-items-lg-center gap-16 text-center text-sm-start text-lg-center">
     <post-icon name={props.icon} className="w-48 h-48 flex-shrink-0" aria-hidden="true"></post-icon>
     <div className="d-flex flex-column flex-grow-1 align-items-center align-items-sm-start align-items-lg-center gap-8">
@@ -14,4 +14,4 @@
       </a>
     </div>
   </div>
-</div>
+</post-linkarea>
