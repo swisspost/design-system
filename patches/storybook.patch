@@ -1,0 +1,43 @@
+Storybook sidebar search: find components by alias.
+Usage: add `alias:<Name>` to a component's `meta.tags`, e.g. `tags: ['alias:Modal']`.
+Storybook has no option to configure the searched fields, so its built (minified) file is patched.
+Re-check this patch on every Storybook upgrade (`pnpm patch storybook`).
+
+diff --git a/dist/manager/runtime.js b/dist/manager/runtime.js
+index 3c736acf850a9decb4d5a612f12a6c580e8cc0a8..dff6277151f1f3948cd96c9e8b1e0954ef415ff2 100644
+--- a/dist/manager/runtime.js
++++ b/dist/manager/runtime.js
+@@ -11131,8 +11131,10 @@ var { document: CI } = se, $s = 50, _I = {
+   maxPatternLength: 32,
+   minMatchCharLength: 1,
+   keys: [
+-    { name: "name", weight: 0.7 },
+-    { name: "path", weight: 0.3 }
++    // also search the `aliases` field; Fuse requires the weights to sum to at most 1
++    { name: "name", weight: 0.5 },
++    { name: "path", weight: 0.2 },
++    { name: "aliases", weight: 0.3 }
+   ]
+ }, kI = I.div({
+   display: "flex",
+@@ -11236,6 +11238,10 @@ var { document: CI } = se, $s = 50, _I = {
+           let D = T?.[P.id], M = D ? Ho(Object.values(D).map((N) => N.value)) : null;
+           return {
+             ...Ki(P, o.hash[_]),
++            // `P` is the sidebar entry: expose its `alias:*` tags, without the prefix, to the search
++            aliases: (P.tags ?? [])
++              .filter((tag) => tag.startsWith("alias:"))
++              .map((tag) => tag.slice("alias:".length)),
+             status: M ?? O[P.id] ?? null
+           };
+         })
+@@ -12104,7 +12110,8 @@ var vS = "tags-filter", xS = /* @__PURE__ */ new Set([
+     e.experimental_setFilter(vS, (y) => r.length === 0 ? !0 : r.some((m) => y.tags?.includes(m)));
+   }, [e, r]);
+   let d = Object.values(t.entries).reduce((y, m) => (m.tags?.forEach((b) => {
+-    xS.has(b) || y.add(b);
++    // `b` is a tag and `xS` the built-in hidden tags: also hide `alias:*` tags from the tag filter menu
++    xS.has(b) || b.startsWith("alias:") || y.add(b);
+   }), y), /* @__PURE__ */ new Set()), p = A(
+     (y) => {
+       r.includes(y) ? n(r.filter((m) => m !== y)) : n([...r, y]);

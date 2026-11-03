@@ -74,3 +74,6 @@ allowBuilds:
   msgpackr-extract: true
   sharp: true
   unrs-resolver: true
+
+patchedDependencies:
+  storybook: patches/storybook.patch

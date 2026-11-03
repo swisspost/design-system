@@ -5,7 +5,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '7dc546d9-e248-4d06-befe-3ad62fcd310f',
   title: 'Components/Stepper',
-  tags: ['package:WebComponents', 'status:New'],
+  tags: ['package:WebComponents', 'status:New', 'alias:Wizard', 'alias:Steps'],
   component: 'post-stepper',
   render,
   parameters: {
@@ -88,7 +88,9 @@ function render(args: Args) {
       text-current-step="${args.textCurrentStep}"
       text-step-number="${args.textStepNumber}"
       current-index="${args.currentIndex}"
-      selected-index="${args.selectedIndex !== undefined && args.selectedIndex !== args.currentIndex ? args.selectedIndex : nothing}"
+      selected-index="${args.selectedIndex !== undefined && args.selectedIndex !== args.currentIndex
+        ? args.selectedIndex
+        : nothing}"
     >
       ${Array.from({ length: args.stepsAmount }).map(
         (a, i) => html` <post-stepper-item> Step ${i + 1} label</post-stepper-item> `,
