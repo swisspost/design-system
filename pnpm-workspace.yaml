@@ -74,3 +74,6 @@ allowBuilds:
   msgpackr-extract: true
   sharp: true
   unrs-resolver: true
+minimumReleaseAgeExclude:
+  # Renovate security update: glob@14.0.2
+  - glob@14.0.2
