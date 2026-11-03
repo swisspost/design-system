@@ -1,5 +1,4 @@
 ---
-'@swisspost/internet-header': minor
 '@swisspost/design-system-documentation': minor
 ---
 
