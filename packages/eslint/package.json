@@ -40,7 +40,7 @@
     "unit:watch": "jest --watchAll"
   },
   "dependencies": {
-    "@typescript-eslint/utils": "8.62.0",
+    "@typescript-eslint/utils": "8.72.1",
     "cheerio": "1.0.0",
     "eslint-plugin-unicorn": "^56.0.0",
     "eslint-scope": "9.1.2",
