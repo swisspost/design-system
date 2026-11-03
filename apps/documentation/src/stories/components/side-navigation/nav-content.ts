@@ -143,6 +143,38 @@ const largeCollapsible = `<ul>
         </li>
       </ul>`;
 
+const LEVEL_1_ICON_NAME = 'letter';
+
+/**
+ * Icons must be used on all level-1 items or none of them, never on deeper levels.
+ */
+export function setLevel1Icons(nav: string, showIcons: boolean): string {
+  const template = document.createElement('template');
+  template.innerHTML = nav;
+
+  template.content
+    .querySelectorAll(`post-icon[name="${LEVEL_1_ICON_NAME}"]`)
+    .forEach(icon => icon.remove());
+
+  if (showIcons) {
+    Array.from(template.content.children)
+      .filter(element => element.tagName === 'UL')
+      .flatMap(list => Array.from(list.children))
+      .forEach(item => {
+        const navItem = item.querySelector('.post-side-navigation-item');
+        // Combined link and collapsible items carry the icon on the link
+        const iconContainer = navItem?.matches('div') ? navItem.querySelector('a') : navItem;
+
+        const icon = document.createElement('post-icon');
+        icon.setAttribute('name', LEVEL_1_ICON_NAME);
+        icon.setAttribute('aria-hidden', 'true');
+        iconContainer?.prepend(icon);
+      });
+  }
+
+  return template.innerHTML;
+}
+
 export const defaultNav = `
       <h2 class="post-side-navigation-heading">Always expanded</h2>
 
