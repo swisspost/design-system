@@ -18,6 +18,6 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false
   },
-  "include": [".storybook/**/*", "src", "types"],
+  "include": ["module.d.ts", ".storybook/**/*", "src", "types"],
   "exclude": ["node_modules", "src/**/*.sample.*"]
 }
