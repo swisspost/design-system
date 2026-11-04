@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-cypress-config",
-  "version": "10.7.0",
+  "version": "10.8.0",
   "description": "Shared Cypress configuration for the Swiss Post Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -29,16 +29,16 @@
     "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "dependencies": {
-    "@puppeteer/browsers": "3.2.2",
+    "@puppeteer/browsers": "3.2.6",
     "proxy-agent": "8.0.2"
   },
   "peerDependencies": {
     "cypress": ">=15.0.0"
   },
   "devDependencies": {
-    "@swisspost/design-system-eslint-config": "workspace:10.7.0",
-    "@swisspost/design-system-prettier-config": "workspace:10.7.0",
-    "@swisspost/design-system-tsconfig": "workspace:10.7.0",
+    "@swisspost/design-system-eslint-config": "workspace:10.8.0",
+    "@swisspost/design-system-prettier-config": "workspace:10.8.0",
+    "@swisspost/design-system-tsconfig": "workspace:10.8.0",
     "@types/node": "catalog:node",
     "cypress": "catalog:cypress",
     "eslint": "catalog:",

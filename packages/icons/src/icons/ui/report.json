@@ -27454,7 +27454,7 @@
         }
       },
       "createdAt": "2026-10-14T11:08:09.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "8924b040-c7bf-11f1-bea4-0050568d2654",
@@ -27485,7 +27485,7 @@
         }
       },
       "createdAt": "2026-10-14T11:08:07.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "88496b70-c7bf-11f1-bea4-0050568d2654",
@@ -27516,7 +27516,7 @@
         }
       },
       "createdAt": "2026-10-14T11:08:06.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "87628de1-c7bf-11f1-bea4-0050568d2654",
@@ -27547,7 +27547,7 @@
         }
       },
       "createdAt": "2026-10-14T11:08:04.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "86726180-c7bf-11f1-bea4-0050568d2654",
@@ -27578,7 +27578,7 @@
         }
       },
       "createdAt": "2026-10-14T11:08:03.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "858ae7b0-c7bf-11f1-bea4-0050568d2654",
@@ -27609,7 +27609,7 @@
         }
       },
       "createdAt": "2026-10-14T11:08:01.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "84b79220-c7bf-11f1-bea4-0050568d2654",
@@ -27640,7 +27640,7 @@
         }
       },
       "createdAt": "2026-10-14T11:08:00.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "83de9741-c7bf-11f1-bea4-0050568d2654",
@@ -27671,7 +27671,7 @@
         }
       },
       "createdAt": "2026-10-14T11:07:59.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "830b8fd0-c7bf-11f1-bea4-0050568d2654",
@@ -27702,7 +27702,7 @@
         }
       },
       "createdAt": "2026-10-14T11:07:57.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "812802c0-c7bf-11f1-bea4-0050568d2654",
@@ -27733,7 +27733,7 @@
         }
       },
       "createdAt": "2026-10-14T11:07:54.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "812591c0-c7bf-11f1-bea4-0050568d2654",
@@ -27764,7 +27764,7 @@
         }
       },
       "createdAt": "2026-10-14T11:07:54.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "8122d2a0-c7bf-11f1-bea4-0050568d2654",
@@ -27795,7 +27795,7 @@
         }
       },
       "createdAt": "2026-10-14T11:07:54.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "268a1160-92f9-11f0-9719-005056873709",
@@ -30271,6 +30271,366 @@
       },
       "createdAt": "2026-08-10T05:46:48.000Z",
       "modifiedAt": "2026-08-10T05:49:59.000Z"
+    },
+    {
+      "uuid": "0c50c800-d36e-11f1-93b0-0050568d2654",
+      "id": 11810043,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810043/storage/MDExODEwMDQzLzAvbWFzdGVyLy8vMTE2NTIzMzM2",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Shape_16.svg",
+        "basename": "BicycleReservationMandatory_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:55:03.000Z",
+      "modifiedAt": "2026-10-29T07:57:58.000Z"
+    },
+    {
+      "uuid": "0b668f10-d36e-11f1-93b0-0050568d2654",
+      "id": 11810041,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810041/storage/MDExODEwMDQxLzAvbWFzdGVyLy8vMTE2NTIzMzM0",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Shape_24.svg",
+        "basename": "BicycleReservationMandatory_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:55:01.000Z",
+      "modifiedAt": "2026-10-29T07:57:58.000Z"
+    },
+    {
+      "uuid": "0b903720-d36e-11f1-93b0-0050568d2654",
+      "id": 11810042,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810042/storage/MDExODEwMDQyLzAvbWFzdGVyLy8vMTE2NTIzMzM1",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Shape_32.svg",
+        "basename": "BicycleReservationMandatory_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:55:01.000Z",
+      "modifiedAt": "2026-10-29T07:57:58.000Z"
+    },
+    {
+      "uuid": "096a49e0-d36e-11f1-93b0-0050568d2654",
+      "id": 11810038,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810038/storage/MDExODEwMDM4LzAvbWFzdGVyLy8vMTE2NTIzMzMy",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Shape_40.svg",
+        "basename": "BicycleReservationMandatory_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:54:58.000Z",
+      "modifiedAt": "2026-10-29T07:57:58.000Z"
+    },
+    {
+      "uuid": "09fd6220-d36e-11f1-93b0-0050568d2654",
+      "id": 11810039,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810039/storage/MDExODEwMDM5LzAvbWFzdGVyLy8vMTE2NTIzMzMz",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Shape_48.svg",
+        "basename": "BicycleReservationMandatory_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:54:59.000Z",
+      "modifiedAt": "2026-10-29T07:57:58.000Z"
+    },
+    {
+      "uuid": "07e7a180-d36e-11f1-93b0-0050568d2654",
+      "id": 11810037,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810037/storage/MDExODEwMDM3LzAvbWFzdGVyLy8vMTE2NTIyNjk5",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Shape_64.svg",
+        "basename": "BicycleReservationMandatory_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:54:55.000Z",
+      "modifiedAt": "2026-10-29T07:57:06.000Z"
+    },
+    {
+      "uuid": "077d6e00-d36e-11f1-93b0-0050568d2654",
+      "id": 11810035,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810035/storage/MDExODEwMDM1LzAvbWFzdGVyLy8vMTE2NTIzMzMx",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Solid_Shape_16.svg",
+        "basename": "BicycleReservationMandatory_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:54:55.000Z",
+      "modifiedAt": "2026-10-29T07:57:58.000Z"
+    },
+    {
+      "uuid": "05c8e030-d36e-11f1-93b0-0050568d2654",
+      "id": 11810032,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810032/storage/MDExODEwMDMyLzAvbWFzdGVyLy8vMTE2NTIzMzMw",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Solid_Shape_24.svg",
+        "basename": "BicycleReservationMandatory_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:54:52.000Z",
+      "modifiedAt": "2026-10-29T07:57:58.000Z"
+    },
+    {
+      "uuid": "05089d70-d36e-11f1-93b0-0050568d2654",
+      "id": 11810030,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810030/storage/MDExODEwMDMwLzAvbWFzdGVyLy8vMTE2NTIzMzI5",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Solid_Shape_32.svg",
+        "basename": "BicycleReservationMandatory_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:54:50.000Z",
+      "modifiedAt": "2026-10-29T07:57:58.000Z"
+    },
+    {
+      "uuid": "026d8032-d36e-11f1-93b0-0050568d2654",
+      "id": 11810025,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810025/storage/MDExODEwMDI1LzAvbWFzdGVyLy8vMTE2NTIzMzI4",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Solid_Shape_40.svg",
+        "basename": "BicycleReservationMandatory_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:54:46.000Z",
+      "modifiedAt": "2026-10-29T07:57:58.000Z"
+    },
+    {
+      "uuid": "02634700-d36e-11f1-93b0-0050568d2654",
+      "id": 11810023,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810023/storage/MDExODEwMDIzLzAvbWFzdGVyLy8vMTE2NTIzMzI3",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Solid_Shape_48.svg",
+        "basename": "BicycleReservationMandatory_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:54:46.000Z",
+      "modifiedAt": "2026-10-29T07:57:58.000Z"
+    },
+    {
+      "uuid": "0254ef20-d36e-11f1-93b0-0050568d2654",
+      "id": 11810022,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11810022/storage/MDExODEwMDIyLzAvbWFzdGVyLy8vMTE2NTIzMzI2",
+        "keywords": [
+          "Prenotazione",
+          "Réservation",
+          "Booking",
+          "Reservation",
+          "Veloreservation obligatorisch",
+          "Veloreservation obbligatorio"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "BicycleReservationMandatory_Solid_Shape_64.svg",
+        "basename": "BicycleReservationMandatory_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:54:46.000Z",
+      "modifiedAt": "2026-10-29T07:57:58.000Z"
     },
     {
       "uuid": "9d2d22b0-c310-11f1-9625-0050568d2654",
@@ -83033,6 +83393,1062 @@
       "modifiedAt": "2026-02-10T11:05:02.359Z"
     },
     {
+      "uuid": "de90b0f0-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860127,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860127/storage/MDExODYwMTI3LzAvbWFzdGVyLy8vMTE3MjExMjU4",
+        "keywords": [
+          "Daten",
+          "Data",
+          "Dati",
+          "Données"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataDelete_Shape_16.svg",
+        "basename": "DataDelete_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:14:55.000Z",
+      "modifiedAt": "2026-11-02T09:17:02.000Z"
+    },
+    {
+      "uuid": "ddf5f790-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860126,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860126/storage/MDExODYwMTI2LzAvbWFzdGVyLy8vMTE3MjExMjU0",
+        "keywords": [
+          "Daten",
+          "Data",
+          "Dati",
+          "Données"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataDelete_Shape_24.svg",
+        "basename": "DataDelete_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:14:54.000Z",
+      "modifiedAt": "2026-11-02T09:17:03.000Z"
+    },
+    {
+      "uuid": "dd78d850-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860125,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860125/storage/MDExODYwMTI1LzAvbWFzdGVyLy8vMTE3MjExMjUw",
+        "keywords": [
+          "Daten",
+          "Data",
+          "Dati",
+          "Données"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataDelete_Shape_32.svg",
+        "basename": "DataDelete_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:14:53.000Z",
+      "modifiedAt": "2026-11-02T09:17:02.000Z"
+    },
+    {
+      "uuid": "db787470-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860123,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860123/storage/MDExODYwMTIzLzAvbWFzdGVyLy8vMTE3MjExMjQy",
+        "keywords": [
+          "Daten",
+          "Data",
+          "Dati",
+          "Données"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataDelete_Shape_40.svg",
+        "basename": "DataDelete_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:14:50.000Z",
+      "modifiedAt": "2026-11-02T09:17:02.000Z"
+    },
+    {
+      "uuid": "db974710-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860124,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860124/storage/MDExODYwMTI0LzAvbWFzdGVyLy8vMTE3MjExMjQ2",
+        "keywords": [
+          "Daten",
+          "Data",
+          "Dati",
+          "Données"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataDelete_Shape_48.svg",
+        "basename": "DataDelete_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:14:50.000Z",
+      "modifiedAt": "2026-11-02T09:17:02.000Z"
+    },
+    {
+      "uuid": "d99e8450-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860122,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860122/storage/MDExODYwMTIyLzAvbWFzdGVyLy8vMTE3MjEwOTcx",
+        "keywords": [
+          "Daten",
+          "Data",
+          "Dati",
+          "Données"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataDelete_Shape_64.svg",
+        "basename": "DataDelete_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:14:47.000Z",
+      "modifiedAt": "2026-11-02T09:16:23.000Z"
+    },
+    {
+      "uuid": "d8e93e10-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860121,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860121/storage/MDExODYwMTIxLzAvbWFzdGVyLy8vMTE3MjExMjM4",
+        "keywords": [
+          "Daten",
+          "Data",
+          "Dati",
+          "Données"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataDelete_Solid_Shape_16.svg",
+        "basename": "DataDelete_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:14:46.000Z",
+      "modifiedAt": "2026-11-02T09:17:02.000Z"
+    },
+    {
+      "uuid": "d79b6150-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860120,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860120/storage/MDExODYwMTIwLzAvbWFzdGVyLy8vMTE3MjExMjM0",
+        "keywords": [
+          "Daten",
+          "Data",
+          "Dati",
+          "Données"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataDelete_Solid_Shape_24.svg",
+        "basename": "DataDelete_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:14:44.000Z",
+      "modifiedAt": "2026-11-02T09:17:02.000Z"
+    },
+    {
+      "uuid": "d6d07030-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860119,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860119/storage/MDExODYwMTE5LzAvbWFzdGVyLy8vMTE3MjExMjMw",
+        "keywords": [
+          "Daten",
+          "Data",
+          "Dati",
+          "Données"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataDelete_Solid_Shape_32.svg",
+        "basename": "DataDelete_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:14:42.000Z",
+      "modifiedAt": "2026-11-02T09:17:02.000Z"
+    },
+    {
+      "uuid": "d445cdb0-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860117,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860117/storage/MDExODYwMTE3LzAvbWFzdGVyLy8vMTE3MjExMjIy",
+        "keywords": [
+          "Daten",
+          "Data",
+          "Dati",
+          "Données"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataDelete_Solid_Shape_40.svg",
+        "basename": "DataDelete_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:14:38.000Z",
+      "modifiedAt": "2026-11-02T09:17:02.000Z"
+    },
+    {
+      "uuid": "d445f4c0-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860118,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860118/storage/MDExODYwMTE4LzAvbWFzdGVyLy8vMTE3MjExMjI2",
+        "keywords": [
+          "Daten",
+          "Data",
+          "Dati",
+          "Données"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataDelete_Solid_Shape_48.svg",
+        "basename": "DataDelete_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:14:38.000Z",
+      "modifiedAt": "2026-11-02T09:17:02.000Z"
+    },
+    {
+      "uuid": "d43700a0-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860116,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860116/storage/MDExODYwMTE2LzAvbWFzdGVyLy8vMTE3MjExMjE4",
+        "keywords": [
+          "Daten",
+          "Data",
+          "Dati",
+          "Données"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataDelete_Solid_Shape_64.svg",
+        "basename": "DataDelete_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:14:38.000Z",
+      "modifiedAt": "2026-11-02T09:17:02.000Z"
+    },
+    {
+      "uuid": "bd2fe4b0-d36b-11f1-93b0-0050568d2654",
+      "id": 11808542,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808542/storage/MDExODA4NTQyLzAvbWFzdGVyLy8vMTE2NTA3NTE3",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Shape_16.svg",
+        "basename": "DataProcessing_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:31.000Z",
+      "modifiedAt": "2026-10-29T07:40:37.000Z"
+    },
+    {
+      "uuid": "bb4293a2-d36b-11f1-93b0-0050568d2654",
+      "id": 11808536,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808536/storage/MDExODA4NTM2LzAvbWFzdGVyLy8vMTE2NTA3NTEy",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Shape_24.svg",
+        "basename": "DataProcessing_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:28.000Z",
+      "modifiedAt": "2026-10-29T07:40:36.000Z"
+    },
+    {
+      "uuid": "bb4fb300-d36b-11f1-93b0-0050568d2654",
+      "id": 11808537,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808537/storage/MDExODA4NTM3LzAvbWFzdGVyLy8vMTE2NTA3NTEz",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Shape_32.svg",
+        "basename": "DataProcessing_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:28.000Z",
+      "modifiedAt": "2026-10-29T07:40:37.000Z"
+    },
+    {
+      "uuid": "b962b010-d36b-11f1-93b0-0050568d2654",
+      "id": 11808534,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808534/storage/MDExODA4NTM0LzAvbWFzdGVyLy8vMTE2NTA3NTEx",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Shape_40.svg",
+        "basename": "DataProcessing_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:25.000Z",
+      "modifiedAt": "2026-10-29T07:40:36.000Z"
+    },
+    {
+      "uuid": "b946eab0-d36b-11f1-93b0-0050568d2654",
+      "id": 11808533,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808533/storage/MDExODA4NTMzLzAvbWFzdGVyLy8vMTE2NTA3NTEw",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Shape_48.svg",
+        "basename": "DataProcessing_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:24.000Z",
+      "modifiedAt": "2026-10-29T07:40:36.000Z"
+    },
+    {
+      "uuid": "b8315c00-d36b-11f1-93b0-0050568d2654",
+      "id": 11808530,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808530/storage/MDExODA4NTMwLzAvbWFzdGVyLy8vMTE2NTA2NjIz",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Shape_64.svg",
+        "basename": "DataProcessing_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:23.000Z",
+      "modifiedAt": "2026-10-29T07:39:38.000Z"
+    },
+    {
+      "uuid": "b59f8d90-d36b-11f1-93b0-0050568d2654",
+      "id": 11808523,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808523/storage/MDExODA4NTIzLzAvbWFzdGVyLy8vMTE2NTA3NTA3",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Solid_Shape_16.svg",
+        "basename": "DataProcessing_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:18.000Z",
+      "modifiedAt": "2026-10-29T07:40:36.000Z"
+    },
+    {
+      "uuid": "b5a1b070-d36b-11f1-93b0-0050568d2654",
+      "id": 11808525,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808525/storage/MDExODA4NTI1LzAvbWFzdGVyLy8vMTE2NTA3NTA5",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Solid_Shape_24.svg",
+        "basename": "DataProcessing_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:18.000Z",
+      "modifiedAt": "2026-10-29T07:40:36.000Z"
+    },
+    {
+      "uuid": "b5a11430-d36b-11f1-93b0-0050568d2654",
+      "id": 11808524,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808524/storage/MDExODA4NTI0LzAvbWFzdGVyLy8vMTE2NTA3NTA4",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Solid_Shape_32.svg",
+        "basename": "DataProcessing_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:18.000Z",
+      "modifiedAt": "2026-10-29T07:40:36.000Z"
+    },
+    {
+      "uuid": "af7cd030-d36b-11f1-93b0-0050568d2654",
+      "id": 11808508,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808508/storage/MDExODA4NTA4LzAvbWFzdGVyLy8vMTE2NTA3NDk5",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Solid_Shape_40.svg",
+        "basename": "DataProcessing_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:08.000Z",
+      "modifiedAt": "2026-10-29T07:40:37.000Z"
+    },
+    {
+      "uuid": "af7e2fc0-d36b-11f1-93b0-0050568d2654",
+      "id": 11808509,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808509/storage/MDExODA4NTA5LzAvbWFzdGVyLy8vMTE2NTA3NTAz",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Solid_Shape_48.svg",
+        "basename": "DataProcessing_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:08.000Z",
+      "modifiedAt": "2026-10-29T07:40:37.000Z"
+    },
+    {
+      "uuid": "af7a3820-d36b-11f1-93b0-0050568d2654",
+      "id": 11808507,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808507/storage/MDExODA4NTA3LzAvbWFzdGVyLy8vMTE2NTA3NDk4",
+        "keywords": [
+          "data processing",
+          "Datenverarbeitung",
+          "Traitement des données",
+          "Elaborazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataProcessing_Solid_Shape_64.svg",
+        "basename": "DataProcessing_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:38:08.000Z",
+      "modifiedAt": "2026-10-29T07:40:37.000Z"
+    },
+    {
+      "uuid": "50c848d2-d37a-11f1-93b0-0050568d2654",
+      "id": 11817283,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817283/storage/MDExODE3MjgzLzAvbWFzdGVyLy8vMTE2NTk0MjY2",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Shape_16.svg",
+        "basename": "DataRequest_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T09:22:51.000Z",
+      "modifiedAt": "2026-10-29T09:25:11.000Z"
+    },
+    {
+      "uuid": "50d58f40-d37a-11f1-93b0-0050568d2654",
+      "id": 11817284,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817284/storage/MDExODE3Mjg0LzAvbWFzdGVyLy8vMTE2NTk0MjY3",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Shape_24.svg",
+        "basename": "DataRequest_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T09:22:52.000Z",
+      "modifiedAt": "2026-10-29T09:25:11.000Z"
+    },
+    {
+      "uuid": "50c7ac90-d37a-11f1-93b0-0050568d2654",
+      "id": 11817282,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817282/storage/MDExODE3MjgyLzAvbWFzdGVyLy8vMTE2NTk0MjY1",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Shape_32.svg",
+        "basename": "DataRequest_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T09:22:51.000Z",
+      "modifiedAt": "2026-10-29T09:25:11.000Z"
+    },
+    {
+      "uuid": "4d732a68-d37a-11f1-93b0-0050568d2654",
+      "id": 11817280,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817280/storage/MDExODE3MjgwLzAvbWFzdGVyLy8vMTE2NTk0MjYz",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Shape_40.svg",
+        "basename": "DataRequest_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T09:22:46.000Z",
+      "modifiedAt": "2026-10-29T09:25:11.000Z"
+    },
+    {
+      "uuid": "4ec992a0-d37a-11f1-93b0-0050568d2654",
+      "id": 11817281,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817281/storage/MDExODE3MjgxLzAvbWFzdGVyLy8vMTE2NTk0MjY0",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Shape_48.svg",
+        "basename": "DataRequest_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T09:22:48.000Z",
+      "modifiedAt": "2026-10-29T09:25:12.000Z"
+    },
+    {
+      "uuid": "4c7b5ce0-d37a-11f1-93b0-0050568d2654",
+      "id": 11817279,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817279/storage/MDExODE3Mjc5LzAvbWFzdGVyLy8vMTE2NTk0MTgz",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Shape_64.svg",
+        "basename": "DataRequest_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T09:22:44.000Z",
+      "modifiedAt": "2026-10-29T09:24:22.000Z"
+    },
+    {
+      "uuid": "4b2bab60-d37a-11f1-93b0-0050568d2654",
+      "id": 11817278,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817278/storage/MDExODE3Mjc4LzAvbWFzdGVyLy8vMTE2NTk0MjYy",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Solid_Shape_16.svg",
+        "basename": "DataRequest_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T09:22:42.000Z",
+      "modifiedAt": "2026-10-29T09:25:12.000Z"
+    },
+    {
+      "uuid": "4af30f30-d37a-11f1-93b0-0050568d2654",
+      "id": 11817277,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817277/storage/MDExODE3Mjc3LzAvbWFzdGVyLy8vMTE2NTk0MjU4",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Solid_Shape_24.svg",
+        "basename": "DataRequest_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T09:22:42.000Z",
+      "modifiedAt": "2026-10-29T09:25:12.000Z"
+    },
+    {
+      "uuid": "4a063e30-d37a-11f1-93b0-0050568d2654",
+      "id": 11817276,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817276/storage/MDExODE3Mjc2LzAvbWFzdGVyLy8vMTE2NTk0MjU3",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Solid_Shape_32.svg",
+        "basename": "DataRequest_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T09:22:40.000Z",
+      "modifiedAt": "2026-10-29T09:25:12.000Z"
+    },
+    {
+      "uuid": "47e2c1f0-d37a-11f1-93b0-0050568d2654",
+      "id": 11817275,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817275/storage/MDExODE3Mjc1LzAvbWFzdGVyLy8vMTE2NTk0MjU2",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Solid_Shape_40.svg",
+        "basename": "DataRequest_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T09:22:37.000Z",
+      "modifiedAt": "2026-10-29T09:25:12.000Z"
+    },
+    {
+      "uuid": "47d9e850-d37a-11f1-93b0-0050568d2654",
+      "id": 11817273,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817273/storage/MDExODE3MjczLzAvbWFzdGVyLy8vMTE2NTk0MjU0",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Solid_Shape_48.svg",
+        "basename": "DataRequest_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T09:22:37.000Z",
+      "modifiedAt": "2026-10-29T09:25:11.000Z"
+    },
+    {
+      "uuid": "47e09f10-d37a-11f1-93b0-0050568d2654",
+      "id": 11817274,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11817274/storage/MDExODE3Mjc0LzAvbWFzdGVyLy8vMTE2NTk0MjU1",
+        "keywords": [
+          "Import data",
+          "Daten Importieren",
+          "Importer les données",
+          "Importare dati",
+          "Data alignment",
+          "Datenabgleich",
+          "Synchronisation des données",
+          "Sincronizzazione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "DataRequest_Solid_Shape_64.svg",
+        "basename": "DataRequest_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T09:22:37.000Z",
+      "modifiedAt": "2026-10-29T09:25:11.000Z"
+    },
+    {
       "uuid": "98457820-e562-11ef-a15d-005056873709",
       "id": 1831433,
       "type": "picture.pictogram.",
@@ -133987,6 +135403,306 @@
       "modifiedAt": "2025-10-15T05:32:20.000Z"
     },
     {
+      "uuid": "0abfa810-d36b-11f1-93b0-0050568d2654",
+      "id": 11808063,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808063/storage/MDExODA4MDYzLzAvbWFzdGVyLy8vMTE2NTAyOTU0",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Shape_16.svg",
+        "basename": "Hackademy_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:32.000Z",
+      "modifiedAt": "2026-10-29T07:35:55.000Z"
+    },
+    {
+      "uuid": "09bf2800-d36b-11f1-93b0-0050568d2654",
+      "id": 11808060,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808060/storage/MDExODA4MDYwLzAvbWFzdGVyLy8vMTE2NTAyOTUz",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Shape_24.svg",
+        "basename": "Hackademy_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:30.000Z",
+      "modifiedAt": "2026-10-29T07:35:55.000Z"
+    },
+    {
+      "uuid": "08a9c060-d36b-11f1-93b0-0050568d2654",
+      "id": 11808058,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808058/storage/MDExODA4MDU4LzAvbWFzdGVyLy8vMTE2NTAyOTUy",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Shape_32.svg",
+        "basename": "Hackademy_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:28.000Z",
+      "modifiedAt": "2026-10-29T07:35:55.000Z"
+    },
+    {
+      "uuid": "07954320-d36b-11f1-93b0-0050568d2654",
+      "id": 11808056,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808056/storage/MDExODA4MDU2LzAvbWFzdGVyLy8vMTE2NTAyOTQ1",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Shape_40.svg",
+        "basename": "Hackademy_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:26.000Z",
+      "modifiedAt": "2026-10-29T07:35:55.000Z"
+    },
+    {
+      "uuid": "061d7030-d36b-11f1-93b0-0050568d2654",
+      "id": 11808053,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808053/storage/MDExODA4MDUzLzAvbWFzdGVyLy8vMTE2NTAyOTU2",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Shape_48.svg",
+        "basename": "Hackademy_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:24.000Z",
+      "modifiedAt": "2026-10-29T07:35:55.000Z"
+    },
+    {
+      "uuid": "04a241e0-d36b-11f1-93b0-0050568d2654",
+      "id": 11808050,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808050/storage/MDExODA4MDUwLzAvbWFzdGVyLy8vMTE2NTk2NTI4",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Shape_64.svg",
+        "basename": "Hackademy_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:21.000Z",
+      "modifiedAt": "2026-10-29T09:41:53.000Z"
+    },
+    {
+      "uuid": "037a3ca0-d36b-11f1-93b0-0050568d2654",
+      "id": 11808045,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808045/storage/MDExODA4MDQ1LzAvbWFzdGVyLy8vMTE2NTAyOTQz",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Solid_Shape_16.svg",
+        "basename": "Hackademy_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:19.000Z",
+      "modifiedAt": "2026-10-29T07:35:55.000Z"
+    },
+    {
+      "uuid": "038204d0-d36b-11f1-93b0-0050568d2654",
+      "id": 11808046,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808046/storage/MDExODA4MDQ2LzAvbWFzdGVyLy8vMTE2NTAyOTQ0",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Solid_Shape_24.svg",
+        "basename": "Hackademy_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:19.000Z",
+      "modifiedAt": "2026-10-29T07:35:55.000Z"
+    },
+    {
+      "uuid": "024e3fc0-d36b-11f1-93b0-0050568d2654",
+      "id": 11808042,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808042/storage/MDExODA4MDQyLzAvbWFzdGVyLy8vMTE2NTAyOTM5",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Solid_Shape_32.svg",
+        "basename": "Hackademy_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:17.000Z",
+      "modifiedAt": "2026-10-29T07:35:55.000Z"
+    },
+    {
+      "uuid": "fe143f90-d36a-11f1-93b0-0050568d2654",
+      "id": 11808031,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808031/storage/MDExODA4MDMxLzAvbWFzdGVyLy8vMTE2NTAyOTM3",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Solid_Shape_40.svg",
+        "basename": "Hackademy_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:10.000Z",
+      "modifiedAt": "2026-10-29T07:35:55.000Z"
+    },
+    {
+      "uuid": "fdf4d0b0-d36a-11f1-93b0-0050568d2654",
+      "id": 11808030,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808030/storage/MDExODA4MDMwLzAvbWFzdGVyLy8vMTE2NTAyOTM2",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Solid_Shape_48.svg",
+        "basename": "Hackademy_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:10.000Z",
+      "modifiedAt": "2026-10-29T07:35:55.000Z"
+    },
+    {
+      "uuid": "fdf40d60-d36a-11f1-93b0-0050568d2654",
+      "id": 11808029,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11808029/storage/MDExODA4MDI5LzAvbWFzdGVyLy8vMTE2NTAyOTM1",
+        "keywords": [
+          "Hackademy"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Hackademy_Solid_Shape_64.svg",
+        "basename": "Hackademy_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:33:10.000Z",
+      "modifiedAt": "2026-10-29T07:35:55.000Z"
+    },
+    {
       "uuid": "8c1dc9c0-b00a-11f1-94be-0050568d2654",
       "id": 11236389,
       "type": "picture.pictogram.",
@@ -145207,6 +146923,366 @@
       },
       "createdAt": "2025-11-12T06:58:29.000Z",
       "modifiedAt": "2025-11-13T06:05:01.415Z"
+    },
+    {
+      "uuid": "974b4ae0-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665472,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665472/storage/MDExNjY1NDcyLzAvbWFzdGVyLy8vMTE0NzgyNTM0",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Shape_16.svg",
+        "basename": "Icon_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:33.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
+    },
+    {
+      "uuid": "9656b1b0-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665471,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665471/storage/MDExNjY1NDcxLzAvbWFzdGVyLy8vMTE0NzgyNTM4",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Shape_24.svg",
+        "basename": "Icon_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:31.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
+    },
+    {
+      "uuid": "95451aa0-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665470,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665470/storage/MDExNjY1NDcwLzAvbWFzdGVyLy8vMTE0NzgyNTQy",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Shape_32.svg",
+        "basename": "Icon_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:29.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
+    },
+    {
+      "uuid": "943187c0-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665468,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665468/storage/MDExNjY1NDY4LzAvbWFzdGVyLy8vMTE0NzgyNTUw",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Shape_40.svg",
+        "basename": "Icon_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:28.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
+    },
+    {
+      "uuid": "94839f60-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665469,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665469/storage/MDExNjY1NDY5LzAvbWFzdGVyLy8vMTE0NzgyNTQ2",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Shape_48.svg",
+        "basename": "Icon_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:28.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
+    },
+    {
+      "uuid": "93064e30-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665467,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665467/storage/MDExNjY1NDY3LzAvbWFzdGVyLy8vMTE0NzgyNDI3",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Shape_64.svg",
+        "basename": "Icon_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:26.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
+    },
+    {
+      "uuid": "91a4e970-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665465,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665465/storage/MDExNjY1NDY1LzAvbWFzdGVyLy8vMTE0NzgyNTU4",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Solid_Shape_16.svg",
+        "basename": "Icon_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:23.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
+    },
+    {
+      "uuid": "91b0d050-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665466,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665466/storage/MDExNjY1NDY2LzAvbWFzdGVyLy8vMTE0NzgyNTU0",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Solid_Shape_24.svg",
+        "basename": "Icon_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:23.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
+    },
+    {
+      "uuid": "8ff25770-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665464,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665464/storage/MDExNjY1NDY0LzAvbWFzdGVyLy8vMTE0NzgyNTYy",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Solid_Shape_32.svg",
+        "basename": "Icon_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:20.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
+    },
+    {
+      "uuid": "8da72ef0-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665461,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665461/storage/MDExNjY1NDYxLzAvbWFzdGVyLy8vMTE0NzgyNTc0",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Solid_Shape_40.svg",
+        "basename": "Icon_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:17.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
+    },
+    {
+      "uuid": "8dad2260-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665462,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665462/storage/MDExNjY1NDYyLzAvbWFzdGVyLy8vMTE0NzgyNTcw",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Solid_Shape_48.svg",
+        "basename": "Icon_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:17.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
+    },
+    {
+      "uuid": "8db2eec0-cc50-11f1-aa7b-0050568d2654",
+      "id": 11665463,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665463/storage/MDExNjY1NDYzLzAvbWFzdGVyLy8vMTE0NzgyNTY2",
+        "keywords": [
+          "Piktogram",
+          "pictogram",
+          "Piktogramm",
+          "Pictogramme",
+          "Pittogramma",
+          "Ikone"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Icon_Solid_Shape_64.svg",
+        "basename": "Icon_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:36:17.000Z",
+      "modifiedAt": "2026-10-21T06:05:03.814Z"
     },
     {
       "uuid": "5fe6f5a0-7e93-11f1-8560-0050568d2654",
@@ -217928,6 +220004,342 @@
       "modifiedAt": "2025-03-26T13:37:26.000Z"
     },
     {
+      "uuid": "9279caa0-d36c-11f1-93b0-0050568d2654",
+      "id": 11809083,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809083/storage/MDExODA5MDgzLzAvbWFzdGVyLy8vMTE2NTEzMjY1",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Shape_16.svg",
+        "basename": "PrivacyPolicy_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:29.000Z",
+      "modifiedAt": "2026-10-29T07:46:51.000Z"
+    },
+    {
+      "uuid": "91b912b0-d36c-11f1-93b0-0050568d2654",
+      "id": 11809082,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809082/storage/MDExODA5MDgyLzAvbWFzdGVyLy8vMTE2NTEzMjY0",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Shape_24.svg",
+        "basename": "PrivacyPolicy_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:27.000Z",
+      "modifiedAt": "2026-10-29T07:46:51.000Z"
+    },
+    {
+      "uuid": "927efac0-d36c-11f1-93b0-0050568d2654",
+      "id": 11809084,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809084/storage/MDExODA5MDg0LzAvbWFzdGVyLy8vMTE2NTEzMjY2",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Shape_32.svg",
+        "basename": "PrivacyPolicy_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:29.000Z",
+      "modifiedAt": "2026-10-29T07:46:51.000Z"
+    },
+    {
+      "uuid": "90e288d0-d36c-11f1-93b0-0050568d2654",
+      "id": 11809081,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809081/storage/MDExODA5MDgxLzAvbWFzdGVyLy8vMTE2NTEzMjgx",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Shape_40.svg",
+        "basename": "PrivacyPolicy_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:26.000Z",
+      "modifiedAt": "2026-10-29T07:46:51.000Z"
+    },
+    {
+      "uuid": "8fbad1b0-d36c-11f1-93b0-0050568d2654",
+      "id": 11809079,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809079/storage/MDExODA5MDc5LzAvbWFzdGVyLy8vMTE2NTEzMjgw",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Shape_48.svg",
+        "basename": "PrivacyPolicy_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:24.000Z",
+      "modifiedAt": "2026-10-29T07:46:51.000Z"
+    },
+    {
+      "uuid": "8fba0e60-d36c-11f1-93b0-0050568d2654",
+      "id": 11809078,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809078/storage/MDExODA5MDc4LzAvbWFzdGVyLy8vMTE2NTEyNjQz",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Shape_64.svg",
+        "basename": "PrivacyPolicy_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:24.000Z",
+      "modifiedAt": "2026-10-29T07:46:04.000Z"
+    },
+    {
+      "uuid": "8d375b20-d36c-11f1-93b0-0050568d2654",
+      "id": 11809075,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809075/storage/MDExODA5MDc1LzAvbWFzdGVyLy8vMTE2NTEzMjc4",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Solid_Shape_16.svg",
+        "basename": "PrivacyPolicy_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:20.000Z",
+      "modifiedAt": "2026-10-29T07:46:51.000Z"
+    },
+    {
+      "uuid": "8d7b6900-d36c-11f1-93b0-0050568d2654",
+      "id": 11809077,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809077/storage/MDExODA5MDc3LzAvbWFzdGVyLy8vMTE2NTEzMjc5",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Solid_Shape_24.svg",
+        "basename": "PrivacyPolicy_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:20.000Z",
+      "modifiedAt": "2026-10-29T07:46:51.000Z"
+    },
+    {
+      "uuid": "8c134d82-d36c-11f1-93b0-0050568d2654",
+      "id": 11809073,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809073/storage/MDExODA5MDczLzAvbWFzdGVyLy8vMTE2NTEzMjc0",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Solid_Shape_32.svg",
+        "basename": "PrivacyPolicy_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:18.000Z",
+      "modifiedAt": "2026-10-29T07:46:51.000Z"
+    },
+    {
+      "uuid": "891a7fe0-d36c-11f1-93b0-0050568d2654",
+      "id": 11809066,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809066/storage/MDExODA5MDY2LzAvbWFzdGVyLy8vMTE2NTEzMjY4",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Solid_Shape_40.svg",
+        "basename": "PrivacyPolicy_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:13.000Z",
+      "modifiedAt": "2026-10-29T07:46:51.000Z"
+    },
+    {
+      "uuid": "892d6ba0-d36c-11f1-93b0-0050568d2654",
+      "id": 11809068,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809068/storage/MDExODA5MDY4LzAvbWFzdGVyLy8vMTE2NTEzMjcw",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Solid_Shape_48.svg",
+        "basename": "PrivacyPolicy_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:13.000Z",
+      "modifiedAt": "2026-10-29T07:46:51.000Z"
+    },
+    {
+      "uuid": "891c54a0-d36c-11f1-93b0-0050568d2654",
+      "id": 11809067,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809067/storage/MDExODA5MDY3LzAvbWFzdGVyLy8vMTE2NTEzMjY5",
+        "keywords": [
+          "Data protection",
+          "Datenschutz",
+          "Protection des données",
+          "Protezione dei dati"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "PrivacyPolicy_Solid_Shape_64.svg",
+        "basename": "PrivacyPolicy_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:44:13.000Z",
+      "modifiedAt": "2026-10-29T07:46:51.000Z"
+    },
+    {
       "uuid": "a8e385f0-9e9e-11f0-b04a-005056873709",
       "id": 6481398,
       "type": "picture.pictogram.",
@@ -244493,6 +246905,774 @@
       },
       "createdAt": "2025-02-07T06:37:03.000Z",
       "modifiedAt": "2025-12-03T08:22:28.000Z"
+    },
+    {
+      "uuid": "09bd6860-d36d-11f1-93b0-0050568d2654",
+      "id": 11809391,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809391/storage/MDExODA5MzkxLzAvbWFzdGVyLy8vMTE2NTE2NjE5",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Shape_16.svg",
+        "basename": "SeatReservationMandatory_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:49.000Z",
+      "modifiedAt": "2026-10-30T07:05:01.211Z"
+    },
+    {
+      "uuid": "09940e70-d36d-11f1-93b0-0050568d2654",
+      "id": 11809390,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809390/storage/MDExODA5MzkwLzAvbWFzdGVyLy8vMTE2NTE2NjE4",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Shape_24.svg",
+        "basename": "SeatReservationMandatory_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:49.000Z",
+      "modifiedAt": "2026-10-30T07:05:01.211Z"
+    },
+    {
+      "uuid": "084a9e80-d36d-11f1-93b0-0050568d2654",
+      "id": 11809388,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809388/storage/MDExODA5Mzg4LzAvbWFzdGVyLy8vMTE2NTE2NjE3",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Shape_32.svg",
+        "basename": "SeatReservationMandatory_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:46.000Z",
+      "modifiedAt": "2026-10-30T07:05:01.211Z"
+    },
+    {
+      "uuid": "0735ac10-d36d-11f1-93b0-0050568d2654",
+      "id": 11809385,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809385/storage/MDExODA5Mzg1LzAvbWFzdGVyLy8vMTE2NTE2NjE1",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Shape_40.svg",
+        "basename": "SeatReservationMandatory_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:45.000Z",
+      "modifiedAt": "2026-10-30T07:05:01.211Z"
+    },
+    {
+      "uuid": "0610db20-d36d-11f1-93b0-0050568d2654",
+      "id": 11809383,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809383/storage/MDExODA5MzgzLzAvbWFzdGVyLy8vMTE2NTE2NjE0",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Shape_48.svg",
+        "basename": "SeatReservationMandatory_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:43.000Z",
+      "modifiedAt": "2026-10-30T07:05:01.211Z"
+    },
+    {
+      "uuid": "04f4e3d0-d36d-11f1-93b0-0050568d2654",
+      "id": 11809382,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809382/storage/MDExODA5MzgyLzAvbWFzdGVyLy8vMTE2NTE2MDQ2",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Shape_64.svg",
+        "basename": "SeatReservationMandatory_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:41.000Z",
+      "modifiedAt": "2026-10-30T07:05:01.211Z"
+    },
+    {
+      "uuid": "03eebe71-d36d-11f1-93b0-0050568d2654",
+      "id": 11809379,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809379/storage/MDExODA5Mzc5LzAvbWFzdGVyLy8vMTE2NTE2NjEz",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Solid_Shape_16.svg",
+        "basename": "SeatReservationMandatory_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:39.000Z",
+      "modifiedAt": "2026-10-30T07:05:01.211Z"
+    },
+    {
+      "uuid": "02b1aa90-d36d-11f1-93b0-0050568d2654",
+      "id": 11809378,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809378/storage/MDExODA5Mzc4LzAvbWFzdGVyLy8vMTE2NTE2NjEy",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Solid_Shape_24.svg",
+        "basename": "SeatReservationMandatory_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:37.000Z",
+      "modifiedAt": "2026-10-30T07:05:01.211Z"
+    },
+    {
+      "uuid": "00307df2-d36d-11f1-93b0-0050568d2654",
+      "id": 11809376,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809376/storage/MDExODA5Mzc2LzAvbWFzdGVyLy8vMTE2NTE2NjEx",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Solid_Shape_32.svg",
+        "basename": "SeatReservationMandatory_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:33.000Z",
+      "modifiedAt": "2026-10-30T07:05:01.211Z"
+    },
+    {
+      "uuid": "fc4e61c0-d36c-11f1-93b0-0050568d2654",
+      "id": 11809365,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809365/storage/MDExODA5MzY1LzAvbWFzdGVyLy8vMTE2NTE2NjA1",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Solid_Shape_40.svg",
+        "basename": "SeatReservationMandatory_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:26.000Z",
+      "modifiedAt": "2026-10-30T07:05:01.211Z"
+    },
+    {
+      "uuid": "fc65e160-d36c-11f1-93b0-0050568d2654",
+      "id": 11809367,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809367/storage/MDExODA5MzY3LzAvbWFzdGVyLy8vMTE2NTE2NjA3",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Solid_Shape_48.svg",
+        "basename": "SeatReservationMandatory_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:26.000Z",
+      "modifiedAt": "2026-10-30T07:05:01.211Z"
+    },
+    {
+      "uuid": "fc5c6b80-d36c-11f1-93b0-0050568d2654",
+      "id": 11809366,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809366/storage/MDExODA5MzY2LzAvbWFzdGVyLy8vMTE2NTE2NjA2",
+        "keywords": [
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti",
+          "Seat reservation mandatory",
+          "Platzreservation obligatorisch",
+          "Réservation obligatoire",
+          "Prenotazione obbligatoria"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationMandatory_Solid_Shape_64.svg",
+        "basename": "SeatReservationMandatory_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:47:26.000Z",
+      "modifiedAt": "2026-10-30T07:05:01.211Z"
+    },
+    {
+      "uuid": "94c17b40-d36d-11f1-93b0-0050568d2654",
+      "id": 11809738,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809738/storage/MDExODA5NzM4LzAvbWFzdGVyLy8vMTE2NTE5ODYw",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Shape_16.svg",
+        "basename": "SeatReservationPossible_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:42.000Z",
+      "modifiedAt": "2026-10-29T07:54:05.000Z"
+    },
+    {
+      "uuid": "946159e0-d36d-11f1-93b0-0050568d2654",
+      "id": 11809736,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809736/storage/MDExODA5NzM2LzAvbWFzdGVyLy8vMTE2NTE5ODU4",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Shape_24.svg",
+        "basename": "SeatReservationPossible_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:41.000Z",
+      "modifiedAt": "2026-10-29T07:54:05.000Z"
+    },
+    {
+      "uuid": "948de820-d36d-11f1-93b0-0050568d2654",
+      "id": 11809737,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809737/storage/MDExODA5NzM3LzAvbWFzdGVyLy8vMTE2NTE5ODU5",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Shape_32.svg",
+        "basename": "SeatReservationPossible_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:42.000Z",
+      "modifiedAt": "2026-10-29T07:54:05.000Z"
+    },
+    {
+      "uuid": "9282aed0-d36d-11f1-93b0-0050568d2654",
+      "id": 11809734,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809734/storage/MDExODA5NzM0LzAvbWFzdGVyLy8vMTE2NTE5ODUz",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Shape_40.svg",
+        "basename": "SeatReservationPossible_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:38.000Z",
+      "modifiedAt": "2026-10-29T07:54:05.000Z"
+    },
+    {
+      "uuid": "92cbc5c0-d36d-11f1-93b0-0050568d2654",
+      "id": 11809735,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809735/storage/MDExODA5NzM1LzAvbWFzdGVyLy8vMTE2NTE5ODU3",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Shape_48.svg",
+        "basename": "SeatReservationPossible_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:39.000Z",
+      "modifiedAt": "2026-10-29T07:54:05.000Z"
+    },
+    {
+      "uuid": "90b3e240-d36d-11f1-93b0-0050568d2654",
+      "id": 11809732,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809732/storage/MDExODA5NzMyLzAvbWFzdGVyLy8vMTE2NTE5MzIy",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Shape_64.svg",
+        "basename": "SeatReservationPossible_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:35.000Z",
+      "modifiedAt": "2026-10-29T07:53:26.000Z"
+    },
+    {
+      "uuid": "916caaf0-d36d-11f1-93b0-0050568d2654",
+      "id": 11809733,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809733/storage/MDExODA5NzMzLzAvbWFzdGVyLy8vMTE2NTE5ODQ5",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Solid_Shape_16.svg",
+        "basename": "SeatReservationPossible_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:36.000Z",
+      "modifiedAt": "2026-10-29T07:54:05.000Z"
+    },
+    {
+      "uuid": "8f70b3e0-d36d-11f1-93b0-0050568d2654",
+      "id": 11809730,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809730/storage/MDExODA5NzMwLzAvbWFzdGVyLy8vMTE2NTE5ODQ4",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Solid_Shape_24.svg",
+        "basename": "SeatReservationPossible_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:33.000Z",
+      "modifiedAt": "2026-10-29T07:54:05.000Z"
+    },
+    {
+      "uuid": "8eae7550-d36d-11f1-93b0-0050568d2654",
+      "id": 11809728,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809728/storage/MDExODA5NzI4LzAvbWFzdGVyLy8vMTE2NTE5ODQ3",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Solid_Shape_32.svg",
+        "basename": "SeatReservationPossible_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:32.000Z",
+      "modifiedAt": "2026-10-29T07:54:05.000Z"
+    },
+    {
+      "uuid": "8bf2b0b2-d36d-11f1-93b0-0050568d2654",
+      "id": 11809722,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809722/storage/MDExODA5NzIyLzAvbWFzdGVyLy8vMTE2NTE5ODQ2",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Solid_Shape_40.svg",
+        "basename": "SeatReservationPossible_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:27.000Z",
+      "modifiedAt": "2026-10-29T07:54:05.000Z"
+    },
+    {
+      "uuid": "8be59150-d36d-11f1-93b0-0050568d2654",
+      "id": 11809720,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809720/storage/MDExODA5NzIwLzAvbWFzdGVyLy8vMTE2NTE5ODQ0",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Solid_Shape_48.svg",
+        "basename": "SeatReservationPossible_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:27.000Z",
+      "modifiedAt": "2026-10-29T07:54:05.000Z"
+    },
+    {
+      "uuid": "8bea4c40-d36d-11f1-93b0-0050568d2654",
+      "id": 11809721,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11809721/storage/MDExODA5NzIxLzAvbWFzdGVyLy8vMTE2NTE5ODQ1",
+        "keywords": [
+          "Seat reservations possible",
+          "Platzreservation möglich",
+          "Réservation de place possible ö",
+          "Prenotazione ö",
+          "seat reservation",
+          "Platzreservation",
+          "Réservation de place",
+          "Prenotazione dei posti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "SeatReservationPossible_Solid_Shape_64.svg",
+        "basename": "SeatReservationPossible_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-29T07:51:27.000Z",
+      "modifiedAt": "2026-10-29T07:54:05.000Z"
     },
     {
       "uuid": "ac392122-55db-11f1-97f7-0050568d2654",
@@ -289063,7 +292243,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:31.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "67461de0-c7c1-11f1-bea4-0050568d2654",
@@ -289099,7 +292279,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:30.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "65f051e0-c7c1-11f1-bea4-0050568d2654",
@@ -289135,7 +292315,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:27.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "65ec8152-c7c1-11f1-bea4-0050568d2654",
@@ -289171,7 +292351,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:27.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "64c2f570-c7c1-11f1-bea4-0050568d2654",
@@ -289207,7 +292387,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:25.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "643d4ab0-c7c1-11f1-bea4-0050568d2654",
@@ -289243,7 +292423,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:24.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "630714a1-c7c1-11f1-bea4-0050568d2654",
@@ -289279,7 +292459,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:22.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "62d3cfa0-c7c1-11f1-bea4-0050568d2654",
@@ -289315,7 +292495,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:22.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "61f9ea60-c7c1-11f1-bea4-0050568d2654",
@@ -289351,7 +292531,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:21.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "603ea5d0-c7c1-11f1-bea4-0050568d2654",
@@ -289387,7 +292567,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:18.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "6038b260-c7c1-11f1-bea4-0050568d2654",
@@ -289423,7 +292603,7 @@
         }
       },
       "createdAt": "2026-10-14T11:21:18.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
     },
     {
       "uuid": "603fb740-c7c1-11f1-bea4-0050568d2654",
@@ -289459,7 +292639,655 @@
         }
       },
       "createdAt": "2026-10-14T11:21:18.000Z",
-      "modifiedAt": "2026-10-14T13:05:08.572Z"
+      "modifiedAt": "2026-10-15T11:05:01.730Z"
+    },
+    {
+      "uuid": "77147e30-d69c-11f1-a4d7-0050568d2654",
+      "id": 11860094,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860094/storage/MDExODYwMDk0LzAvbWFzdGVyLy8vMTE3MjA5MzU0",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrofahrzeug",
+          "Elektrofahrzeuge",
+          "Electric vehicles",
+          "Veicoli elettrici",
+          "Véhicules électriques",
+          "E-Lieferwagen",
+          "Véhicules de livraison électriques",
+          "Furgoni elettrici",
+          "Electric delivery vans",
+          "Lieferwagen",
+          "Delivery van",
+          "Furgone",
+          "Véhicule de livraison",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterElectric_Shape_16.svg",
+        "basename": "TransporterElectric_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:04:52.000Z",
+      "modifiedAt": "2026-11-02T09:08:41.000Z"
+    },
+    {
+      "uuid": "761cb0b0-d69c-11f1-a4d7-0050568d2654",
+      "id": 11860093,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860093/storage/MDExODYwMDkzLzAvbWFzdGVyLy8vMTE3MjA5MzUw",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrofahrzeug",
+          "Elektrofahrzeuge",
+          "Electric vehicles",
+          "Veicoli elettrici",
+          "Véhicules électriques",
+          "E-Lieferwagen",
+          "Véhicules de livraison électriques",
+          "Furgoni elettrici",
+          "Electric delivery vans",
+          "Lieferwagen",
+          "Delivery van",
+          "Furgone",
+          "Véhicule de livraison",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterElectric_Shape_24.svg",
+        "basename": "TransporterElectric_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:04:51.000Z",
+      "modifiedAt": "2026-11-02T09:08:40.000Z"
+    },
+    {
+      "uuid": "751ca5d0-d69c-11f1-a4d7-0050568d2654",
+      "id": 11860092,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860092/storage/MDExODYwMDkyLzAvbWFzdGVyLy8vMTE3MjA5MzQ2",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrofahrzeug",
+          "Elektrofahrzeuge",
+          "Electric vehicles",
+          "Veicoli elettrici",
+          "Véhicules électriques",
+          "E-Lieferwagen",
+          "Véhicules de livraison électriques",
+          "Furgoni elettrici",
+          "Electric delivery vans",
+          "Lieferwagen",
+          "Delivery van",
+          "Furgone",
+          "Véhicule de livraison",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterElectric_Shape_32.svg",
+        "basename": "TransporterElectric_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:04:49.000Z",
+      "modifiedAt": "2026-11-02T09:08:41.000Z"
+    },
+    {
+      "uuid": "74080180-d69c-11f1-a4d7-0050568d2654",
+      "id": 11860091,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860091/storage/MDExODYwMDkxLzAvbWFzdGVyLy8vMTE3MjA5MzQy",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrofahrzeug",
+          "Elektrofahrzeuge",
+          "Electric vehicles",
+          "Veicoli elettrici",
+          "Véhicules électriques",
+          "E-Lieferwagen",
+          "Véhicules de livraison électriques",
+          "Furgoni elettrici",
+          "Electric delivery vans",
+          "Lieferwagen",
+          "Delivery van",
+          "Furgone",
+          "Véhicule de livraison",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterElectric_Shape_40.svg",
+        "basename": "TransporterElectric_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:04:47.000Z",
+      "modifiedAt": "2026-11-02T09:08:40.000Z"
+    },
+    {
+      "uuid": "72f9ece0-d69c-11f1-a4d7-0050568d2654",
+      "id": 11860090,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860090/storage/MDExODYwMDkwLzAvbWFzdGVyLy8vMTE3MjA5MzM4",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrofahrzeug",
+          "Elektrofahrzeuge",
+          "Electric vehicles",
+          "Veicoli elettrici",
+          "Véhicules électriques",
+          "E-Lieferwagen",
+          "Véhicules de livraison électriques",
+          "Furgoni elettrici",
+          "Electric delivery vans",
+          "Lieferwagen",
+          "Delivery van",
+          "Furgone",
+          "Véhicule de livraison",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterElectric_Shape_48.svg",
+        "basename": "TransporterElectric_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:04:45.000Z",
+      "modifiedAt": "2026-11-02T09:08:40.000Z"
+    },
+    {
+      "uuid": "71e7e0a0-d69c-11f1-a4d7-0050568d2654",
+      "id": 11860089,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860089/storage/MDExODYwMDg5LzAvbWFzdGVyLy8vMTE3MjA5MTQ4",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrofahrzeug",
+          "Elektrofahrzeuge",
+          "Electric vehicles",
+          "Veicoli elettrici",
+          "Véhicules électriques",
+          "E-Lieferwagen",
+          "Véhicules de livraison électriques",
+          "Furgoni elettrici",
+          "Electric delivery vans",
+          "Lieferwagen",
+          "Delivery van",
+          "Furgone",
+          "Véhicule de livraison",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterElectric_Shape_64.svg",
+        "basename": "TransporterElectric_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:04:43.000Z",
+      "modifiedAt": "2026-11-02T09:07:53.000Z"
+    },
+    {
+      "uuid": "70c66b10-d69c-11f1-a4d7-0050568d2654",
+      "id": 11860088,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860088/storage/MDExODYwMDg4LzAvbWFzdGVyLy8vMTE3MjA5MzM0",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrofahrzeug",
+          "Elektrofahrzeuge",
+          "Electric vehicles",
+          "Veicoli elettrici",
+          "Véhicules électriques",
+          "E-Lieferwagen",
+          "Véhicules de livraison électriques",
+          "Furgoni elettrici",
+          "Electric delivery vans",
+          "Lieferwagen",
+          "Delivery van",
+          "Furgone",
+          "Véhicule de livraison",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterElectric_Solid_Shape_16.svg",
+        "basename": "TransporterElectric_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:04:42.000Z",
+      "modifiedAt": "2026-11-02T09:08:40.000Z"
+    },
+    {
+      "uuid": "6eba2050-d69c-11f1-a4d7-0050568d2654",
+      "id": 11860087,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860087/storage/MDExODYwMDg3LzAvbWFzdGVyLy8vMTE3MjA5MzMw",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrofahrzeug",
+          "Elektrofahrzeuge",
+          "Electric vehicles",
+          "Veicoli elettrici",
+          "Véhicules électriques",
+          "E-Lieferwagen",
+          "Véhicules de livraison électriques",
+          "Furgoni elettrici",
+          "Electric delivery vans",
+          "Lieferwagen",
+          "Delivery van",
+          "Furgone",
+          "Véhicule de livraison",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterElectric_Solid_Shape_24.svg",
+        "basename": "TransporterElectric_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:04:38.000Z",
+      "modifiedAt": "2026-11-02T09:08:40.000Z"
+    },
+    {
+      "uuid": "6eb78840-d69c-11f1-a4d7-0050568d2654",
+      "id": 11860086,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860086/storage/MDExODYwMDg2LzAvbWFzdGVyLy8vMTE3MjA5MzI2",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrofahrzeug",
+          "Elektrofahrzeuge",
+          "Electric vehicles",
+          "Veicoli elettrici",
+          "Véhicules électriques",
+          "E-Lieferwagen",
+          "Véhicules de livraison électriques",
+          "Furgoni elettrici",
+          "Electric delivery vans",
+          "Lieferwagen",
+          "Delivery van",
+          "Furgone",
+          "Véhicule de livraison",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterElectric_Solid_Shape_32.svg",
+        "basename": "TransporterElectric_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:04:38.000Z",
+      "modifiedAt": "2026-11-02T09:08:40.000Z"
+    },
+    {
+      "uuid": "6c2fcbf0-d69c-11f1-a4d7-0050568d2654",
+      "id": 11860083,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860083/storage/MDExODYwMDgzLzAvbWFzdGVyLy8vMTE3MjA5MzE0",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrofahrzeug",
+          "Elektrofahrzeuge",
+          "Electric vehicles",
+          "Veicoli elettrici",
+          "Véhicules électriques",
+          "E-Lieferwagen",
+          "Véhicules de livraison électriques",
+          "Furgoni elettrici",
+          "Electric delivery vans",
+          "Lieferwagen",
+          "Delivery van",
+          "Furgone",
+          "Véhicule de livraison",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterElectric_Solid_Shape_40.svg",
+        "basename": "TransporterElectric_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:04:34.000Z",
+      "modifiedAt": "2026-11-02T09:08:41.000Z"
+    },
+    {
+      "uuid": "6c31c7c0-d69c-11f1-a4d7-0050568d2654",
+      "id": 11860085,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860085/storage/MDExODYwMDg1LzAvbWFzdGVyLy8vMTE3MjA5MzIy",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrofahrzeug",
+          "Elektrofahrzeuge",
+          "Electric vehicles",
+          "Veicoli elettrici",
+          "Véhicules électriques",
+          "E-Lieferwagen",
+          "Véhicules de livraison électriques",
+          "Furgoni elettrici",
+          "Electric delivery vans",
+          "Lieferwagen",
+          "Delivery van",
+          "Furgone",
+          "Véhicule de livraison",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterElectric_Solid_Shape_48.svg",
+        "basename": "TransporterElectric_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:04:34.000Z",
+      "modifiedAt": "2026-11-02T09:08:41.000Z"
+    },
+    {
+      "uuid": "6c301a10-d69c-11f1-a4d7-0050568d2654",
+      "id": 11860084,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860084/storage/MDExODYwMDg0LzAvbWFzdGVyLy8vMTE3MjA5MzE4",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrofahrzeug",
+          "Elektrofahrzeuge",
+          "Electric vehicles",
+          "Veicoli elettrici",
+          "Véhicules électriques",
+          "E-Lieferwagen",
+          "Véhicules de livraison électriques",
+          "Furgoni elettrici",
+          "Electric delivery vans",
+          "Lieferwagen",
+          "Delivery van",
+          "Furgone",
+          "Véhicule de livraison",
+          "Transporter",
+          "Van",
+          "Trasportatore",
+          "Fourgonnette",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TransporterElectric_Solid_Shape_64.svg",
+        "basename": "TransporterElectric_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:04:34.000Z",
+      "modifiedAt": "2026-11-02T09:08:41.000Z"
     },
     {
       "uuid": "c94b9094-600d-11f1-aef4-0050568d2654",
@@ -291313,6 +295141,714 @@
       },
       "createdAt": "2026-02-09T12:07:41.000Z",
       "modifiedAt": "2026-02-09T12:11:50.000Z"
+    },
+    {
+      "uuid": "268388c2-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860111,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860111/storage/MDExODYwMTExLzAvbWFzdGVyLy8vMTE3MjA5OTk3",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Electric delivery vehicle",
+          "Elektrisches Lieferfahrzeug",
+          "Véhicule de livraison électrique",
+          "Veicolo di consegna elettrico",
+          "Elektro-Fahrzeug",
+          "Electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrolastwagen",
+          "Electric truck",
+          "Autocarro elettrico",
+          "Camion électrique",
+          "poids lourd",
+          "truck",
+          "Lastwagen",
+          "automezzo pesante",
+          "LKW",
+          "Truck",
+          "Autocarro",
+          "Camion",
+          "waggon",
+          "Wagen",
+          "Chariot",
+          "Carrello",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckElectric_Shape_16.svg",
+        "basename": "TruckElectric_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:09:46.000Z",
+      "modifiedAt": "2026-11-02T09:13:36.000Z"
+    },
+    {
+      "uuid": "25850480-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860110,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860110/storage/MDExODYwMTEwLzAvbWFzdGVyLy8vMTE3MjA5OTkz",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Electric delivery vehicle",
+          "Elektrisches Lieferfahrzeug",
+          "Véhicule de livraison électrique",
+          "Veicolo di consegna elettrico",
+          "Elektro-Fahrzeug",
+          "Electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrolastwagen",
+          "Electric truck",
+          "Autocarro elettrico",
+          "Camion électrique",
+          "poids lourd",
+          "truck",
+          "Lastwagen",
+          "automezzo pesante",
+          "LKW",
+          "Truck",
+          "Autocarro",
+          "Camion",
+          "waggon",
+          "Wagen",
+          "Chariot",
+          "Carrello",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckElectric_Shape_24.svg",
+        "basename": "TruckElectric_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:09:45.000Z",
+      "modifiedAt": "2026-11-02T09:13:37.000Z"
+    },
+    {
+      "uuid": "24839a10-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860109,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860109/storage/MDExODYwMTA5LzAvbWFzdGVyLy8vMTE3MjA5OTgz",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Electric delivery vehicle",
+          "Elektrisches Lieferfahrzeug",
+          "Véhicule de livraison électrique",
+          "Veicolo di consegna elettrico",
+          "Elektro-Fahrzeug",
+          "Electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrolastwagen",
+          "Electric truck",
+          "Autocarro elettrico",
+          "Camion électrique",
+          "poids lourd",
+          "truck",
+          "Lastwagen",
+          "automezzo pesante",
+          "LKW",
+          "Truck",
+          "Autocarro",
+          "Camion",
+          "waggon",
+          "Wagen",
+          "Chariot",
+          "Carrello",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckElectric_Shape_32.svg",
+        "basename": "TruckElectric_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:09:43.000Z",
+      "modifiedAt": "2026-11-02T09:13:37.000Z"
+    },
+    {
+      "uuid": "238d2c20-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860108,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860108/storage/MDExODYwMTA4LzAvbWFzdGVyLy8vMTE3MjA5OTc5",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Electric delivery vehicle",
+          "Elektrisches Lieferfahrzeug",
+          "Véhicule de livraison électrique",
+          "Veicolo di consegna elettrico",
+          "Elektro-Fahrzeug",
+          "Electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrolastwagen",
+          "Electric truck",
+          "Autocarro elettrico",
+          "Camion électrique",
+          "poids lourd",
+          "truck",
+          "Lastwagen",
+          "automezzo pesante",
+          "LKW",
+          "Truck",
+          "Autocarro",
+          "Camion",
+          "waggon",
+          "Wagen",
+          "Chariot",
+          "Carrello",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckElectric_Shape_40.svg",
+        "basename": "TruckElectric_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:09:41.000Z",
+      "modifiedAt": "2026-11-02T09:13:37.000Z"
+    },
+    {
+      "uuid": "228e32b1-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860107,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860107/storage/MDExODYwMTA3LzAvbWFzdGVyLy8vMTE3MjA5OTY5",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Electric delivery vehicle",
+          "Elektrisches Lieferfahrzeug",
+          "Véhicule de livraison électrique",
+          "Veicolo di consegna elettrico",
+          "Elektro-Fahrzeug",
+          "Electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrolastwagen",
+          "Electric truck",
+          "Autocarro elettrico",
+          "Camion électrique",
+          "poids lourd",
+          "truck",
+          "Lastwagen",
+          "automezzo pesante",
+          "LKW",
+          "Truck",
+          "Autocarro",
+          "Camion",
+          "waggon",
+          "Wagen",
+          "Chariot",
+          "Carrello",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckElectric_Shape_48.svg",
+        "basename": "TruckElectric_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:09:40.000Z",
+      "modifiedAt": "2026-11-02T09:13:37.000Z"
+    },
+    {
+      "uuid": "215eb360-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860106,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860106/storage/MDExODYwMTA2LzAvbWFzdGVyLy8vMTE3MjA5NTAw",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Electric delivery vehicle",
+          "Elektrisches Lieferfahrzeug",
+          "Véhicule de livraison électrique",
+          "Veicolo di consegna elettrico",
+          "Elektro-Fahrzeug",
+          "Electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrolastwagen",
+          "Electric truck",
+          "Autocarro elettrico",
+          "Camion électrique",
+          "poids lourd",
+          "truck",
+          "Lastwagen",
+          "automezzo pesante",
+          "LKW",
+          "Truck",
+          "Autocarro",
+          "Camion",
+          "waggon",
+          "Wagen",
+          "Chariot",
+          "Carrello",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckElectric_Shape_64.svg",
+        "basename": "TruckElectric_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:09:38.000Z",
+      "modifiedAt": "2026-11-02T09:12:43.000Z"
+    },
+    {
+      "uuid": "2075b2f0-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860105,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860105/storage/MDExODYwMTA1LzAvbWFzdGVyLy8vMTE3MjA5OTU5",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Electric delivery vehicle",
+          "Elektrisches Lieferfahrzeug",
+          "Véhicule de livraison électrique",
+          "Veicolo di consegna elettrico",
+          "Elektro-Fahrzeug",
+          "Electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrolastwagen",
+          "Electric truck",
+          "Autocarro elettrico",
+          "Camion électrique",
+          "poids lourd",
+          "truck",
+          "Lastwagen",
+          "automezzo pesante",
+          "LKW",
+          "Truck",
+          "Autocarro",
+          "Camion",
+          "waggon",
+          "Wagen",
+          "Chariot",
+          "Carrello",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckElectric_Solid_Shape_16.svg",
+        "basename": "TruckElectric_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:09:36.000Z",
+      "modifiedAt": "2026-11-02T09:13:37.000Z"
+    },
+    {
+      "uuid": "1f8c1640-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860104,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860104/storage/MDExODYwMTA0LzAvbWFzdGVyLy8vMTE3MjA5OTQ5",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Electric delivery vehicle",
+          "Elektrisches Lieferfahrzeug",
+          "Véhicule de livraison électrique",
+          "Veicolo di consegna elettrico",
+          "Elektro-Fahrzeug",
+          "Electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrolastwagen",
+          "Electric truck",
+          "Autocarro elettrico",
+          "Camion électrique",
+          "poids lourd",
+          "truck",
+          "Lastwagen",
+          "automezzo pesante",
+          "LKW",
+          "Truck",
+          "Autocarro",
+          "Camion",
+          "waggon",
+          "Wagen",
+          "Chariot",
+          "Carrello",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckElectric_Solid_Shape_24.svg",
+        "basename": "TruckElectric_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:09:35.000Z",
+      "modifiedAt": "2026-11-02T09:13:37.000Z"
+    },
+    {
+      "uuid": "1e9c3802-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860103,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860103/storage/MDExODYwMTAzLzAvbWFzdGVyLy8vMTE3MjA5OTQ1",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Electric delivery vehicle",
+          "Elektrisches Lieferfahrzeug",
+          "Véhicule de livraison électrique",
+          "Veicolo di consegna elettrico",
+          "Elektro-Fahrzeug",
+          "Electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrolastwagen",
+          "Electric truck",
+          "Autocarro elettrico",
+          "Camion électrique",
+          "poids lourd",
+          "truck",
+          "Lastwagen",
+          "automezzo pesante",
+          "LKW",
+          "Truck",
+          "Autocarro",
+          "Camion",
+          "waggon",
+          "Wagen",
+          "Chariot",
+          "Carrello",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckElectric_Solid_Shape_32.svg",
+        "basename": "TruckElectric_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:09:33.000Z",
+      "modifiedAt": "2026-11-02T09:13:37.000Z"
+    },
+    {
+      "uuid": "1c43f020-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860102,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860102/storage/MDExODYwMTAyLzAvbWFzdGVyLy8vMTE3MjA5OTM1",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Electric delivery vehicle",
+          "Elektrisches Lieferfahrzeug",
+          "Véhicule de livraison électrique",
+          "Veicolo di consegna elettrico",
+          "Elektro-Fahrzeug",
+          "Electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrolastwagen",
+          "Electric truck",
+          "Autocarro elettrico",
+          "Camion électrique",
+          "poids lourd",
+          "truck",
+          "Lastwagen",
+          "automezzo pesante",
+          "LKW",
+          "Truck",
+          "Autocarro",
+          "Camion",
+          "waggon",
+          "Wagen",
+          "Chariot",
+          "Carrello",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckElectric_Solid_Shape_40.svg",
+        "basename": "TruckElectric_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:09:29.000Z",
+      "modifiedAt": "2026-11-02T09:13:37.000Z"
+    },
+    {
+      "uuid": "1c3bd9d0-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860100,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860100/storage/MDExODYwMTAwLzAvbWFzdGVyLy8vMTE3MjA5OTIx",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Electric delivery vehicle",
+          "Elektrisches Lieferfahrzeug",
+          "Véhicule de livraison électrique",
+          "Veicolo di consegna elettrico",
+          "Elektro-Fahrzeug",
+          "Electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrolastwagen",
+          "Electric truck",
+          "Autocarro elettrico",
+          "Camion électrique",
+          "poids lourd",
+          "truck",
+          "Lastwagen",
+          "automezzo pesante",
+          "LKW",
+          "Truck",
+          "Autocarro",
+          "Camion",
+          "waggon",
+          "Wagen",
+          "Chariot",
+          "Carrello",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckElectric_Solid_Shape_48.svg",
+        "basename": "TruckElectric_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:09:29.000Z",
+      "modifiedAt": "2026-11-02T09:13:37.000Z"
+    },
+    {
+      "uuid": "1c3e23c2-d69d-11f1-a4d7-0050568d2654",
+      "id": 11860101,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11860101/storage/MDExODYwMTAxLzAvbWFzdGVyLy8vMTE3MjA5OTI1",
+        "keywords": [
+          "E-Fahrzeug",
+          "Véhicule électrique",
+          "Veicolo elettrico",
+          "electric vehicle",
+          "Electric delivery vehicle",
+          "Elektrisches Lieferfahrzeug",
+          "Véhicule de livraison électrique",
+          "Veicolo di consegna elettrico",
+          "Elektro-Fahrzeug",
+          "Electric vehicle",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Elektrolastwagen",
+          "Electric truck",
+          "Autocarro elettrico",
+          "Camion électrique",
+          "poids lourd",
+          "truck",
+          "Lastwagen",
+          "automezzo pesante",
+          "LKW",
+          "Truck",
+          "Autocarro",
+          "Camion",
+          "waggon",
+          "Wagen",
+          "Chariot",
+          "Carrello",
+          "Laster",
+          "Elektroantrieb",
+          "Motori elettrici",
+          "electric drive",
+          "Propulsion électrique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "TruckElectric_Solid_Shape_64.svg",
+        "basename": "TruckElectric_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-02T09:09:29.000Z",
+      "modifiedAt": "2026-11-02T09:13:37.000Z"
     },
     {
       "uuid": "8b571742-9222-11f1-a720-0050568d2654",
@@ -302759,6 +307295,402 @@
       },
       "createdAt": "2026-01-07T07:17:54.000Z",
       "modifiedAt": "2026-01-08T07:05:08.531Z"
+    },
+    {
+      "uuid": "24395370-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665487,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665487/storage/MDExNjY1NDg3LzAvbWFzdGVyLy8vMTE0NzgzMzMy",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Shape_16.svg",
+        "basename": "VinoLog_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:29.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "235d4b50-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665486,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665486/storage/MDExNjY1NDg2LzAvbWFzdGVyLy8vMTE0NzgzMzI4",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Shape_24.svg",
+        "basename": "VinoLog_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:28.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "2321c8f0-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665485,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665485/storage/MDExNjY1NDg1LzAvbWFzdGVyLy8vMTE0NzgzMzI0",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Shape_32.svg",
+        "basename": "VinoLog_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:27.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "21f94e80-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665484,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665484/storage/MDExNjY1NDg0LzAvbWFzdGVyLy8vMTE0NzgzMzIw",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Shape_40.svg",
+        "basename": "VinoLog_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:25.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "215d83b0-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665483,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665483/storage/MDExNjY1NDgzLzAvbWFzdGVyLy8vMTE0NzgzMzE2",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Shape_48.svg",
+        "basename": "VinoLog_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:24.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "201fac80-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665482,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665482/storage/MDExNjY1NDgyLzAvbWFzdGVyLy8vMTE0NzgzMTM5",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Shape_64.svg",
+        "basename": "VinoLog_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:22.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "1f812290-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665481,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665481/storage/MDExNjY1NDgxLzAvbWFzdGVyLy8vMTE0NzgzMzEy",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Solid_Shape_16.svg",
+        "basename": "VinoLog_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:21.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "1f5e5850-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665480,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665480/storage/MDExNjY1NDgwLzAvbWFzdGVyLy8vMTE0NzgzMzA4",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Solid_Shape_24.svg",
+        "basename": "VinoLog_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:21.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "1e53c620-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665479,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665479/storage/MDExNjY1NDc5LzAvbWFzdGVyLy8vMTE0NzgzMzA0",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Solid_Shape_32.svg",
+        "basename": "VinoLog_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:19.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "1c4d95e0-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665477,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665477/storage/MDExNjY1NDc3LzAvbWFzdGVyLy8vMTE0NzgzMjk2",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Solid_Shape_40.svg",
+        "basename": "VinoLog_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:16.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "1c56e4b0-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665478,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665478/storage/MDExNjY1NDc4LzAvbWFzdGVyLy8vMTE0NzgzMzAw",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Solid_Shape_48.svg",
+        "basename": "VinoLog_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:16.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
+    },
+    {
+      "uuid": "1c47f090-cc51-11f1-aa7b-0050568d2654",
+      "id": 11665476,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11665476/storage/MDExNjY1NDc2LzAvbWFzdGVyLy8vMTE0NzgzMjky",
+        "keywords": [
+          "Vinolog",
+          "wine shipment",
+          "Weinversand",
+          "Expédition de vin",
+          "Spedizione di vino",
+          "Drinks shipping",
+          "Getränkeversand",
+          "Envoi de boissons",
+          "Spedizione di bevande"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "VinoLog_Solid_Shape_64.svg",
+        "basename": "VinoLog_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-10-20T06:40:16.000Z",
+      "modifiedAt": "2026-10-21T05:05:03.719Z"
     },
     {
       "uuid": "62e06f30-e51e-11ef-a15d-005056873709",
@@ -396428,13 +401360,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 10476,
+    "success": 10620,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 2948,
     "duplicates": 0
   },
-  "created": "2026-10-14T13:29:06.227Z",
-  "version": "10.7.0"
+  "created": "2026-11-02T10:03:39.682Z",
+  "version": "10.8.0"
 }
