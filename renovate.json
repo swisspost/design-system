@@ -8,8 +8,8 @@
   "extends": ["config:best-practices"],
   "labels": ["⛓️ dependencies"],
   "timezone": "Europe/Zurich",
-  "schedule": ["before 4am on monday"],
-  "minimumReleaseAge": "7 days",
+  "schedule": ["* 0-3 * * 1"],
+  "minimumReleaseAge": "3 days",
   "prConcurrentLimit": 20,
   "branchConcurrentLimit": 20,
   "prHourlyLimit": 6,
@@ -29,6 +29,19 @@
         "monorepo:jasmine"
       ],
       "groupName": "Angular",
+      "matchUpdateTypes": ["digest", "patch", "minor", "major"]
+    },
+    {
+      "groupName": "Angular",
+      "matchPackageNames": [
+        "@angular/*",
+        "@angular-devkit/*",
+        "angular-eslint",
+        "ng-packagr",
+        "rxjs",
+        "tslib",
+        "zone.js"
+      ],
       "matchUpdateTypes": ["digest", "patch", "minor", "major"]
     },
     {
