@@ -116,8 +116,10 @@ const applyFilter = () => {
 
 // Initial Storybook UI config
 addons.setConfig({
-  panelPosition: 'right',
   theme: themes.light,
+  layout: {
+    panelPosition: 'right',
+  },
   sidebar: {
     collapsedRoots: [
       'getting-started',
