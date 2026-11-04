@@ -63,32 +63,40 @@ export class Search extends React.Component {
   form = {
     text: '',
     set: {
-      current: 'post',
-      options: [
-        {
-          text: 'Post Icons',
-          value: 'post',
-        },
-        {
-          text: 'UI Icons (line)',
-          value: 'uiLight',
-        },
-        {
-          text: 'UI Icons (solid)',
-          value: 'uiSolid',
-        },
-      ],
+      current: 'uiLight',
     },
+    groups: [
+      {
+        text: 'UI Icons',
+        value: 'ui',
+      },
+      {
+        text: 'Post Icons (Legacy)',
+        value: 'post',
+      },
+    ],
+    uiVariants: [
+      {
+        text: 'Line Icons',
+        value: 'uiLight',
+      },
+      {
+        text: 'Solid Icons',
+        value: 'uiSolid',
+      },
+    ],
   };
+
+  uiVariant = 'uiLight';
 
   activeIcon: Icon | null = null;
 
   results = {
-    icons: ICON_SETS.post,
+    icons: ICON_SETS.uiLight,
     paging: {
       pageSize: PAGE_SIZE,
       currentPage: 1,
-      totalPages: Math.ceil(ICON_SETS.post.length / PAGE_SIZE),
+      totalPages: Math.ceil(ICON_SETS.uiLight.length / PAGE_SIZE),
     },
   };
 
@@ -127,7 +135,10 @@ export class Search extends React.Component {
     const setName = this.normalizeSetName(this.getSearchParam(params, 'spds-iconset'));
     const query = this.getSearchParam(params, 'spds-query');
 
-    if (setName) this.form.set.current = setName;
+    if (setName) {
+      this.form.set.current = setName;
+      if (setName !== 'post') this.uiVariant = setName;
+    }
 
     if (query) {
       this.search(query);
@@ -164,6 +175,16 @@ export class Search extends React.Component {
   changeIconSet(setName: string) {
     this.form.set.current = setName;
     this.search('');
+  }
+
+  changeIconGroup(group: string) {
+    this.changeIconSet(group === 'post' ? 'post' : this.uiVariant);
+  }
+
+  changeUiVariant(variant: string) {
+    this.uiVariant = variant;
+    this.form.set.current = variant;
+    this.search(this.form.text);
   }
 
   changePage(page: number) {
@@ -345,60 +366,116 @@ export class Search extends React.Component {
   }
 
   searchForm() {
+    const isUiGroup = this.form.set.current !== 'post';
+
     return (
       <>
-        <div className="sets segmented-button-container">
+        <div className="sets py-24 segmented-button-container">
           <fieldset className="segmented-button">
             <legend>Choose the icon set you want to browse</legend>
 
-            {this.form.set.options.map(option => {
+            {this.form.groups.map(group => {
               return (
-                <label className="segmented-button-label" key={`set-${option.value}`}>
+                <label className="segmented-button-label" key={`group-${group.value}`}>
                   <input
                     type="radio"
-                    name="IconSearchSetCurrent"
-                    value={option.value}
-                    checked={option.value === this.form.set.current}
-                    onChange={() => this.changeIconSet(option.value)}
+                    name="IconSearchSetGroup"
+                    value={group.value}
+                    checked={(group.value === 'ui') === isUiGroup}
+                    onChange={() => this.changeIconGroup(group.value)}
                   />
-                  {option.text}
+                  {group.text}
                 </label>
               );
             })}
           </fieldset>
         </div>
 
-        <div className="search-text">
-          <div className="search-input form-floating">
-            <input
-              id="IconSearchText"
-              className="form-control"
-              placeholder="Icon ID or keyword"
-              type="search"
-              value={this.form.text}
-              onChange={e => this.search(e.target.value)}
-            />
-            <label className="form-label" htmlFor="IconSearchText">
-              Search for icons
-            </label>
+        <p>
+          <strong>
+            {isUiGroup
+              ? `
+          The UI icon library is an icon library specially designed for digital applications in
+          Swiss Post’s new design language. The icons are optically optimized and scalable from 16
+          px to 64 px. Line icons should generally be used. Solid icons may only be used in
+          exceptional cases and after consultation with the SPDS team.
+          `
+              : `
+          The Swiss Post icon legacy library is primarily used in analogue applications, such as in
+          control systems or for labelling terminals. Swiss Post icons can also be used in
+          PowerPoint presentations. If a required icon is missing from the UI icon library, it can
+          be requested from the SPDS team.`}
+          </strong>
+        </p>
 
-            <button
-              className="delete-button"
-              aria-label="Clear search"
-              onClick={() => this.search('')}
-            >
-              <post-icon name="closex"></post-icon>
-            </button>
+        <div className="mt-40 vw-full position-relative start-50 translate-middle-x palette palette-alternate">
+          <div className="container py-32">
+            <div className="search-text">
+              <div className="search-input form-floating">
+                <input
+                  id="IconSearchText"
+                  className="form-control"
+                  placeholder="Icon ID or keyword"
+                  type="search"
+                  value={this.form.text}
+                  onChange={e => this.search(e.target.value)}
+                />
+                <label className="form-label" htmlFor="IconSearchText">
+                  Search for icons
+                </label>
 
-            <button className="search-button" aria-label="Search">
-              <post-icon name="search"></post-icon>
-            </button>
+                <button
+                  className="delete-button"
+                  aria-label="Clear search"
+                  onClick={() => this.search('')}
+                >
+                  <post-icon name="closex"></post-icon>
+                </button>
+
+                <button className="search-button" aria-label="Search">
+                  <post-icon name="search"></post-icon>
+                </button>
+              </div>
+
+              <p className="form-hint">
+                Showing {this.results.icons.length} of{' '}
+                {ICON_SETS[this.form.set.current as keyof IconSets].length} icons.
+              </p>
+
+              {isUiGroup && (
+                <div className="ui-variants">
+                  <fieldset>
+                    <legend className="visually-hidden">Choose the style of the UI icons</legend>
+
+                    {this.form.uiVariants.map(variant => {
+                      return (
+                        <div
+                          className="form-check form-check-inline"
+                          key={`variant-${variant.value}`}
+                        >
+                          <input
+                            id={`IconSearchUiVariant-${variant.value}`}
+                            className="form-check-input"
+                            type="radio"
+                            name="IconSearchUiVariant"
+                            value={variant.value}
+                            checked={variant.value === this.form.set.current}
+                            onChange={() => this.changeUiVariant(variant.value)}
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor={`IconSearchUiVariant-${variant.value}`}
+                          >
+                            {variant.text}
+                          </label>
+                        </div>
+                      );
+                    })}
+                  </fieldset>
+                </div>
+              )}
+            </div>
           </div>
-
-          <p className="form-hint">
-            Showing {this.results.icons.length} of{' '}
-            {ICON_SETS[this.form.set.current as keyof IconSets].length} icons.
-          </p>
         </div>
       </>
     );
@@ -467,18 +544,22 @@ export class Search extends React.Component {
 
   render() {
     return (
-      <div className="container" data-iconset={this.form.set.current}>
+      <div data-iconset={this.form.set.current}>
         <div className="search-form">{this.searchForm()}</div>
-        <div className="search-results">
-          <a href="#results-top" aria-hidden="true" tabindex="-1"></a>
-          {this.paging()}
-          {this.resultsList()}
-          {this.paging()}
-          {this.iconDetailPanel()}
+        <div className="vw-full position-relative start-50 translate-middle-x palette palette-alternate">
+          <div className="container py-16">
+            <div className="search-results">
+              <a href="#results-top" aria-hidden="true" tabindex="-1"></a>
+              {this.paging()}
+              {this.resultsList()}
+              {this.paging()}
+              {this.iconDetailPanel()}
+            </div>
+            <post-tooltip id="tooltip-migration-hint" placement="top-end" arrow>
+              Click me for migration instructions
+            </post-tooltip>
+          </div>
         </div>
-        <post-tooltip id="tooltip-migration-hint" placement="top-end" arrow>
-          Click me for migration instructions
-        </post-tooltip>
       </div>
     );
   }
