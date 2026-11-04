@@ -1,19 +1,16 @@
-import { createRequire } from 'node:module';
-import { dirname, join } from 'node:path';
+import { join } from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
 import type { StorybookConfig } from '@storybook/web-components-vite';
 import type { InlineConfig } from 'vite';
-import pkg from '@/../package.json';
+import pkg from '../package.json' with { type: 'json' };
 import { mergeConfig } from 'vite';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
-const require = createRequire(import.meta.url);
-
 // Resolve node_modules from apps/documentation (one level up from .storybook/)
 const docsNodeModules = join(fileURLToPath(new URL('..', import.meta.url)), 'node_modules');
 
-const config: StorybookConfig = {
+export default {
   logLevel: 'info',
 
   core: {
@@ -21,7 +18,7 @@ const config: StorybookConfig = {
   },
 
   framework: {
-    name: getAbsolutePath('@storybook/web-components-vite'),
+    name: '@storybook/web-components-vite',
     options: {},
   },
 
@@ -34,7 +31,7 @@ const config: StorybookConfig = {
 
   addons: [
     {
-      name: getAbsolutePath('@storybook/addon-docs'),
+      name: '@storybook/addon-docs',
       options: {
         mdxPluginOptions: {
           mdxCompileOptions: {
@@ -57,10 +54,8 @@ const config: StorybookConfig = {
         },
       },
     },
-    getAbsolutePath('@storybook/addon-links'),
-    getAbsolutePath('@kurbar/storybook-addon-docs-stencil'),
-    './addons/styles-switcher/register',
-    './addons/version-switcher/register',
+    '@storybook/addon-links',
+    '@kurbar/storybook-addon-docs-stencil',
   ],
 
   staticDirs: [
@@ -112,10 +107,4 @@ const config: StorybookConfig = {
     measure: false,
     viewport: false,
   },
-};
-
-export default config;
-
-function getAbsolutePath(value: string): string {
-  return dirname(require.resolve(join(value, 'package.json')));
-}
+} satisfies StorybookConfig;

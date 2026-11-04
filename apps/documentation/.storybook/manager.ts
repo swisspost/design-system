@@ -6,6 +6,9 @@ import webComponentsIcon from '../public/assets/images/sidebar-icons/web_compone
 import React from 'react';
 import { API_HashEntry, API_PreparedIndexEntry, StatusByTypeId } from 'storybook/internal/types';
 
+import './addons/styles-switcher/register';
+import './addons/version-switcher/register';
+
 const TECH_ICONS: Record<string, string> = {
   Styles: cssIcon,
   WebComponents: webComponentsIcon,
