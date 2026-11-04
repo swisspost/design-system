@@ -179,8 +179,8 @@ importers:
         specifier: workspace:10.8.0
         version: link:../../packages/internet-header
       ag-charts-community:
-        specifier: 14.1.0
-        version: 14.1.0
+        specifier: 14.2.0
+        version: 14.2.0
       ag-charts-react:
         specifier: 14.1.0
         version: 14.1.0(react@19.2.8)
@@ -4949,11 +4949,20 @@ packages:
   ag-charts-community@14.1.0:
     resolution: {integrity: sha512-J5S2Gag/nEJy7WzX/esAguqkuNHBYB3nly4vItMM/DggnnOYCopjLBEtkXXZZt1If1IQstnU4sKaUTmteAoj1Q==}
 
+  ag-charts-community@14.2.0:
+    resolution: {integrity: sha512-AQ9u5jJGjCGWY19XMehZFhC5db6e9J5DGCurSGjm1h9MUkfTQfj9KMDHLhTQqdNhVvTXI7J4OB8ZNbWMh3TJug==}
+
   ag-charts-core@14.1.0:
     resolution: {integrity: sha512-lkjDoudYOiUncHQ0FaDv8CaQ+TsOK16vUZnkJNPIaC92opRP95pryDbWQ6VDWzCLCqsJbAGPx2xlsTor+WgA2A==}
 
+  ag-charts-core@14.2.0:
+    resolution: {integrity: sha512-te4u0sFYMNuzfZMU/uh3nVEctIFpsAfLFBJIJtlMqBKI8otYdB3y4M5Ax8KAAg888X6G1lDaBW8FoNGzX3caSg==}
+
   ag-charts-locale@14.1.0:
     resolution: {integrity: sha512-5UFnL7JoOj491LtqZmlCdbxDvXqE12qz664CZFBK4Tzlh8n48pN9yWfVqhlmkJWEC/wugG3Yf6/i3WGxL5qljw==}
+
+  ag-charts-locale@14.2.0:
+    resolution: {integrity: sha512-zoG9yxh193FKc7jvx9FFp8oWUTcYIzHJLNmq1+54KCIe0us9Ay5odkp31y7WJX5gDtty8hKq+uyOEBPXtE9GHw==}
 
   ag-charts-react@14.1.0:
     resolution: {integrity: sha512-gEyLSBsCzBNcJRJ2Ux9k6oVryOLUhJ16u0HH27K+9Y0Xtt2AypvZ3cQIKpJIywsffbrYZwcYAbEbIoKR2qWJow==}
@@ -4965,6 +4974,9 @@ packages:
 
   ag-charts-types@14.1.0:
     resolution: {integrity: sha512-mmzkng88c0l+Z9PvCMowMilhVeNgDU/iMuMemcOQD4BG/qO4vbkxWvyQO0iqju8Dx7YOY81PNzC/RmElQNiVkA==}
+
+  ag-charts-types@14.2.0:
+    resolution: {integrity: sha512-4pDV6/4zbzPN7t607Gr1o6DO9RhmPafQGr+hIpTJBaerbaMoC+WOO3v/wkxFbvCNrHKOexEKSfNTH7PaAR4UzA==}
 
   ag-grid-community@33.3.2:
     resolution: {integrity: sha512-9bx0e/+ykOyLvUxHqmdy0cRVANH6JAtv0yZdnBZEXYYqBAwN+G5a4NY+2I1KvoOCYzbk8SnStG7y4hCdVAAWOQ==}
@@ -16053,11 +16065,23 @@ snapshots:
       ag-charts-locale: 14.1.0
       ag-charts-types: 14.1.0
 
+  ag-charts-community@14.2.0:
+    dependencies:
+      ag-charts-core: 14.2.0
+      ag-charts-locale: 14.2.0
+      ag-charts-types: 14.2.0
+
   ag-charts-core@14.1.0:
     dependencies:
       ag-charts-types: 14.1.0
 
+  ag-charts-core@14.2.0:
+    dependencies:
+      ag-charts-types: 14.2.0
+
   ag-charts-locale@14.1.0: {}
+
+  ag-charts-locale@14.2.0: {}
 
   ag-charts-react@14.1.0(react@19.2.8):
     dependencies:
@@ -16067,6 +16091,8 @@ snapshots:
   ag-charts-types@11.3.2: {}
 
   ag-charts-types@14.1.0: {}
+
+  ag-charts-types@14.2.0: {}
 
   ag-grid-community@33.3.2:
     dependencies:
