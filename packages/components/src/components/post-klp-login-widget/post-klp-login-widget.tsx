@@ -152,6 +152,11 @@ export class PostKlpLoginWidget {
               description={this.textCurrentUser?.replace('{user}', fullName)}
               aria-hidden={this.textCurrentUser ? null : 'true'}
             ></post-avatar>
+            {session.support ? (
+              <div class="support-user">
+                <post-icon flip-h name="customercenter"></post-icon>
+              </div>
+            ) : null}
             {this.unread > 0 && <span class="badge" aria-hidden="true"></span>}
           </span>
           <span class="visually-hidden">{this.textAccessUserLinks}</span>

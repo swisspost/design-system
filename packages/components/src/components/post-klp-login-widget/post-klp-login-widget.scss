@@ -28,12 +28,31 @@
 // global stylesheet cannot reach.
 .user-menu-trigger {
   @include header-mx.nav-item-base;
+  position: relative;
   padding: 0;
   align-items: center;
   overflow: visible; // the button base clips to its pill, which would cut the unread dot in half
   border-radius: tokens.get('avatar-border-radius', components.$post-avatar);
   text-decoration: none;
   cursor: pointer;
+
+  .support-user {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.2em;
+    background-color: #50f;
+    border-radius: 1.2em;
+    transform: translate(-45%, -45%);
+    font-size: 1.1em;
+    color: #fff;
+    z-index: 2;
+
+    post-icon {
+      display: block;
+    }
+  }
 
   // The avatar is the button's surface, so it never gets the nav item's background: repeat the
   // base mixin's own state selectors, which then win by source order.
@@ -66,6 +85,7 @@
 // Anchors the badge to the avatar; the trigger itself clips whatever reaches its own edge.
 .user-menu-avatar {
   position: relative;
+  z-index: 1;
 
   .badge {
     position: absolute;

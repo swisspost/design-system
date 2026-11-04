@@ -24,8 +24,9 @@ Stands in for the KLP platform, so the login widget can be driven without a back
 
 The query parameters only decide what the page starts with. From there the buttons at the bottom
 of the page push the messages the platform would send into an open session — `bye` to sign out,
-one `hi` per user to sign in as that one, `new message` to raise the unread count by one and
-`no messages` to clear it.
+one `hi` per user to sign in as that one, `support flag` to sign the current user in again with
+the `support` flag turned on or off (disabled while signed out; `?support=true` presets it),
+`new message` to raise the unread count by one and `no messages` to clear it.
 
 Only one of them ever reloads: the widget opens its socket just once it is signed in, so a `hi`
 on an anonymous page has nothing to push into and comes back as `?session=<id>` instead.

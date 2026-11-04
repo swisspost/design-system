@@ -30,6 +30,7 @@ some content
  - [post-closebutton](../post-closebutton)
  - [post-date-picker](../post-date-picker)
  - [post-header](../post-header)
+ - [post-klp-login-widget](../post-klp-login-widget)
  - [post-klp-login-widget-messages](../post-klp-login-widget-messages)
  - [post-language-menu](../post-language-menu)
  - [post-listbox-option](../post-listbox-option)
@@ -51,6 +52,7 @@ graph TD;
   post-closebutton --> post-icon
   post-date-picker --> post-icon
   post-header --> post-icon
+  post-klp-login-widget --> post-icon
   post-klp-login-widget-messages --> post-icon
   post-language-menu --> post-icon
   post-listbox-option --> post-icon

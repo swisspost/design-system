@@ -5,7 +5,7 @@
  *
  * `?session=` picks who is signed in — `ada`, `grace`, `alan`, or anything else for anonymous —
  * and `?unread=` how many messages are already waiting. Every other query parameter overrides the
- * matching `KlpSessionData` field, e.g. `?surname=Hopper&userType=B2C&company=`.
+ * matching `KlpSessionData` field, e.g. `?surname=Hopper&userType=B2C&company=` or `?support=true`.
  *
  * From there the buttons take over: they push the messages the platform would send into an open
  * session, so signing in and out needs no reload.
@@ -65,6 +65,9 @@
   const message = session
     ? { typ: 'sub', adr: 'playground', ttl: TTL, data: session }
     : { typ: 'ukn' };
+
+  // What the open session currently carries, so the support toggle can flip just that one field.
+  let signedIn = session;
 
   const nativeFetch = globalThis.fetch.bind(globalThis);
   globalThis.fetch = (input, init) => {
@@ -177,16 +180,36 @@
           return;
         }
 
-        push({ typ: 'hi', ttl: TTL, data: user });
-        // `hi` empties the notification cache, so the count has to arrive again.
-        pushUnread();
+        signIn({ ...user });
       }),
     );
 
+    const support = button('', () => signIn({ ...signedIn, support: !signedIn.support }));
+
+    // Flags only an open session; while signed out, `?support=true` presets it for the next one.
+    function update() {
+      support.textContent = `support flag: ${signedIn?.support ? 'on' : 'off'}`;
+      support.disabled = !signedIn;
+    }
+
+    function signIn(data) {
+      signedIn = data;
+      update();
+      push({ typ: 'hi', ttl: TTL, data });
+      // `hi` empties the notification cache, so the count has to arrive again.
+      pushUnread();
+    }
+
+    update();
     container().append(
       'KLP mock: ',
-      button('logout', () => push({ typ: 'bye' })),
+      button('logout', () => {
+        signedIn = null;
+        update();
+        push({ typ: 'bye' });
+      }),
       ...his,
+      support,
       button('new message', deliver),
       button('no messages', () => {
         waiting = 0;

@@ -37,6 +37,7 @@
 
 - [post-menu-trigger](../post-menu-trigger)
 - [post-avatar](../post-avatar)
+- [post-icon](../post-icon)
 - [post-menu](../post-menu)
 
 ### Graph
@@ -44,6 +45,7 @@
 graph TD;
   post-klp-login-widget --> post-menu-trigger
   post-klp-login-widget --> post-avatar
+  post-klp-login-widget --> post-icon
   post-klp-login-widget --> post-menu
   post-menu --> post-popovercontainer
   style post-klp-login-widget fill:#f9f,stroke:#333,stroke-width:4px

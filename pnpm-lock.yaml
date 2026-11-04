@@ -3282,7 +3282,6 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
 
   '@next/swc-linux-arm64-gnu@16.4.2':
     resolution: {integrity: sha512-xhwFTAncJyaCNy5KqKKuKaIIdCy1/1ZV1s5S1G0hhT7wGMkDTlfJ6aQbfRFnIG/s3/kDrxQ8aycVe+c5QnP8ow==}
@@ -3296,7 +3295,6 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
 
   '@next/swc-linux-arm64-musl@16.4.2':
     resolution: {integrity: sha512-T1PNmfbPcxr5ndtWUL/3wQtLXsz808lq6sc2GrNT5k2oquF7UyqZddHSuAewHVsWsGXe6nsl9HoN1YNriVjuSg==}
@@ -3310,7 +3308,6 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
 
   '@next/swc-linux-x64-gnu@16.4.2':
     resolution: {integrity: sha512-N9cDUOCGtkJG5PNKDFZUF3xXndrJJcpLp121uAGjIGvO/U2p9tfdNOM9htj7+5f72l0m8rMw/cvYacUJBQoudg==}
@@ -3324,7 +3321,6 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
 
   '@next/swc-linux-x64-musl@16.4.2':
     resolution: {integrity: sha512-yY2uh1YhX6ufuYy2FCbw1dqblbhI57GLYAJfCkqD9auTv6pLrH67Uccjc3QMKBeCYAG6lkgu08ExmX1bbjejjQ==}
@@ -9636,10 +9632,6 @@ packages:
 
   postcss@8.5.23:
     resolution: {integrity: sha512-g50586zr4bZmwFiTlflMu8E0bDTb5I5gertgwAKmsdUlTQIhZtunzUlD1WSzwcVWPoAVpsrA6vlfCD7oXvRwgg==}
-    engines: {node: ^10 || ^12 || >=14}
-
-  postcss@8.5.31:
-    resolution: {integrity: sha512-YUbWYCgErwnMAVkjUnYa+KlMBzGpHwiIt/DE7f0G33AuX2LH9UcTk6KgWxd3zRU+pN3u/C+Xl3EnMLM4Hea7Sg==}
     engines: {node: ^10 || ^12 || >=14}
 
   postcss@8.5.32:
@@ -21767,7 +21759,7 @@ snapshots:
       jsonc-parser: 3.3.1
       less: 4.9.1(supports-color@10.2.2)
       ora: 9.4.1
-      postcss: 8.5.31
+      postcss: 8.5.32
       rolldown: 1.2.15
       rolldown-plugin-dts: 0.28.8(rolldown@1.2.15)(typescript@6.0.3)
       rxjs: 7.8.2
@@ -22581,12 +22573,6 @@ snapshots:
       source-map-js: 1.2.2
 
   postcss@8.5.23:
-    dependencies:
-      nanoid: 3.3.20
-      picocolors: 1.1.1
-      source-map-js: 1.2.2
-
-  postcss@8.5.31:
     dependencies:
       nanoid: 3.3.20
       picocolors: 1.1.1
@@ -24888,7 +24874,7 @@ snapshots:
       esbuild: 0.25.12
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
-      postcss: 8.5.31
+      postcss: 8.5.32
       rollup: 4.65.0
       tinyglobby: 0.2.17
     optionalDependencies:
@@ -24964,7 +24950,7 @@ snapshots:
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.7
-      postcss: 8.5.31
+      postcss: 8.5.32
       rolldown: 1.2.15
       tinyglobby: 0.2.17
     optionalDependencies:
@@ -24982,7 +24968,7 @@ snapshots:
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.7
-      postcss: 8.5.31
+      postcss: 8.5.32
       rolldown: 1.2.15
       tinyglobby: 0.2.17
     optionalDependencies:
