@@ -42,7 +42,7 @@
     "eslint-plugin-mdx": "3.6.2",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.0.1",
-    "eslint-plugin-storybook": "9.0.10",
+    "eslint-plugin-storybook": "10.6.5",
     "eslint-plugin-unicorn": "56.0.1",
     "globals": "17.3.0",
     "typescript-eslint": "8.62.0"
