@@ -130,6 +130,23 @@ describe('date-picker', { includeShadowDom: true }, () => {
           });
       });
 
+      it('should not focus a hidden adjacent-decade year', () => {
+        cy.get('@input').then($input => {
+          ($input[0] as HTMLInputElement).value = '2030-06-15';
+        });
+
+        cy.get('@toggle').click().wait(500);
+        cy.get('@navigation').find('.air-datepicker-nav--title button').click();
+
+        // In the 2020s, the selected year 2030 is rendered as a hidden adjacent-decade cell
+        cy.get('@navigation').find('[data-action="prev"] button').click();
+
+        cy.get('@date-picker')
+          .find('.air-datepicker-cell.-year-[tabindex="0"]')
+          .should('not.have.class', '-other-decade-')
+          .and('be.visible');
+      });
+
       it('should return focus to the input on Escape', () => {
         cy.get('@toggle').click();
 
