@@ -111,12 +111,22 @@ describe('date-picker', { includeShadowDom: true }, () => {
             expect($row.find('.air-datepicker-cell.-year-').length).to.equal(4);
           });
 
+        // The first year of the decade starts in the second column, after the hidden previous-decade year.
+        cy.get('@date-picker')
+          .find('.air-datepicker-body.-years- .a11y-row')
+          .first()
+          .find('.air-datepicker-cell.-year-')
+          .then($cells => {
+            expect($cells.eq(0)).to.have.class('-other-decade-');
+            expect($cells.eq(1)).not.to.have.class('-other-decade-');
+            expect(Number($cells.eq(1).attr('data-year')) % 10).to.equal(0);
+          });
+
         cy.get('@date-picker')
           .find('.air-datepicker-body.-years- .air-datepicker-cell.-year-.-other-decade-')
           .should('have.length.greaterThan', 0)
           .each($cell => {
-            expect($cell.is(':visible')).to.equal(true);
-            expect($cell.css('pointer-events')).not.to.equal('none');
+            expect($cell.css('visibility')).to.equal('hidden');
           });
       });
 
