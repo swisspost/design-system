@@ -6,6 +6,7 @@
     "jsx": "react-jsx",
     "experimentalDecorators": true,
     "useDefineForClassFields": false,
+    "types": ["vite/client", "react-syntax-highlighter"],
     "paths": {
       "@root/*": ["./*"],
       "@/*": ["./src/*"]
