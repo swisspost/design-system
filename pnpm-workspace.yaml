@@ -64,6 +64,7 @@ overrides:
   form-data@>=4.0.0 <4.0.4: 4.0.6
 
 allowBuilds:
+  '@bundled-es-modules/glob': false
   '@parcel/watcher': true
   '@percy/core': true
   core-js-pure: false
@@ -73,4 +74,5 @@ allowBuilds:
   lmdb: true
   msgpackr-extract: true
   sharp: true
+  style-dictionary: false
   unrs-resolver: true
