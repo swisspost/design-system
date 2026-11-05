@@ -44,6 +44,14 @@ describe('banner', () => {
         .find('post-icon')
         .should('have.attr', 'name', 'candle');
     });
+
+    it('should use the dark color scheme for its content only', () => {
+      cy.get('@banner').should('have.css', 'color-scheme', 'light');
+      cy.get('@banner')
+        .shadow()
+        .find('.post-banner-content')
+        .should('have.css', 'color-scheme', 'dark');
+    });
   });
 });
 
