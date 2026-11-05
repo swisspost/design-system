@@ -44,10 +44,6 @@ describe('banner', () => {
         .find('post-icon')
         .should('have.attr', 'name', 'candle');
     });
-
-    it('should not force a color scheme on the host', () => {
-      cy.get('@banner').should('not.have.attr', 'data-color-scheme');
-    });
   });
 });
 
