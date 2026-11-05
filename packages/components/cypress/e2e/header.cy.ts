@@ -527,6 +527,16 @@ describe('header', () => {
         cy.get('@header').should('have.attr', 'data-expanded');
       });
 
+      it('should keep the scroll position when a global-header element receives keyboard focus', () => {
+        scrollAndWait(500);
+        cy.get('@header').should('not.have.attr', 'data-expanded');
+
+        cy.realPress('Tab');
+
+        cy.get('@header').should('have.attr', 'data-expanded');
+        cy.window().its('scrollY').should('eq', 500);
+      });
+
       it('should remove data-expanded once focus leaves the header', () => {
         cy.scrollTo(0, 500);
 

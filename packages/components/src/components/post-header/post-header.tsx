@@ -53,6 +53,7 @@ export class PostHeader {
   private scrollMaxElement: HTMLElement;
   private scrollMax = Infinity;
   private lastScrollTop: number;
+  private scrollPosition = 0;
   private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
 
   private get hasBurgerMenu(): boolean {
@@ -335,9 +336,23 @@ export class PostHeader {
     delete this.host.dataset.expanded;
   }
 
+  private getScrollPosition(scrollParent = this.scrollParent): number {
+    return scrollParent === document.body ? window.scrollY : scrollParent.scrollTop;
+  }
+
+  // Browsers scroll a newly focused element into view before dispatching the focus events,
+  // so focusing a control of the collapsed header (positioned out of view) makes the page jump.
+  // Scrolling is not skipped when the position is unchanged: with `scroll-behavior: smooth`
+  // the browser scroll is still pending, and an instant scroll is what cancels it.
+  private restoreScrollPosition() {
+    const scrollParent = this.scrollParent;
+    const scrollContainer = scrollParent === document.body ? window : scrollParent;
+    scrollContainer.scrollTo({ top: this.scrollPosition, behavior: 'instant' });
+  }
+
   private handleScrollEvent() {
-    const scrollTop =
-      this.scrollParent === document.body ? window.scrollY : this.scrollParent.scrollTop;
+    const scrollTop = this.getScrollPosition();
+    this.scrollPosition = scrollTop;
 
     // Once the header is fully reduced, writing a new value would only trigger
     // a style recalculation of the whole page without any visual change
@@ -472,6 +487,9 @@ export class PostHeader {
     const isInCollapsiblePart = event.composedPath().includes(collapsiblePart);
 
     this.host.toggleAttribute('data-expanded', isInCollapsiblePart);
+
+    // The header is now expanded, so the focused control stays visible at the previous position
+    if (isInCollapsiblePart) this.restoreScrollPosition();
   }
 
   private isWithinHeader(target: EventTarget | null): boolean {
