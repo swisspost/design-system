@@ -292,30 +292,50 @@
     "socialLinks": {
       "title": "Folgen Sie uns",
       "items": [
-        { "text": "Facebook", "url": "https://www.facebook.com/swisspost", "icon": "facebook" },
+        {
+          "text": "Facebook",
+          "url": "#facebook",
+          "icon": "facebook-solid"
+        },
         {
           "text": "Instagram",
-          "url": "https://www.instagram.com/swisspost/",
-          "icon": "instagram"
+          "url": "#instagram",
+          "icon": "instagram-solid"
         },
-        { "text": "Youtube", "url": "http://www.youtube.com/swisspost", "icon": "youtube" },
+        { "text": "Youtube", "url": "#youtube", "icon": "youtube-solid" },
         {
           "text": "Snapchat",
-          "url": "https://www.snapchat.com/add/swisspostjobs",
-          "icon": "snapchat"
+          "url": "#snapchat",
+          "icon": "snapchat-solid"
         },
-        { "text": "Twitter X", "url": "https://twitter.com/PostSchweiz", "icon": "twitterx" },
         {
           "text": "Linkedin",
-          "url": "https://www.linkedin.com/company/swiss-post",
-          "icon": "linkedin"
+          "url": "#linkedin",
+          "icon": "linkedin-solid"
         },
         {
           "text": "Xing",
-          "url": "https://www.xing.com/companies/dieschweizerischepost",
-          "icon": "xing"
+          "url": "#xing",
+          "icon": "xing-solid"
         },
-        { "text": "E-Mail", "url": "mailto:noreply@post.ch", "icon": "letter" }
+        {
+          "text": "Kununu",
+          "url": "#kununu",
+          "icon": "kununu-solid"
+        },
+        { "text": "TikTok", "url": "#tiktok", "icon": "tiktok-solid" },
+        {
+          "text": "Blog",
+          "url": "#blog",
+          "icon": "blog-solid"
+        },
+        { "text": "RSS", "url": "#", "icon": "rssfeed-solid" },
+        {
+          "text": "Slideshare",
+          "url": "#slideshare",
+          "icon": "slideshare-solid"
+        },
+        { "text": "E-Mail", "url": "mailto:noreply@post.ch", "icon": "letter-solid" }
       ]
     },
     "appStoreLinks": {
