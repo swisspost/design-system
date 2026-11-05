@@ -197,27 +197,31 @@ describe('header', () => {
       });
     });
 
-    it('should keep the scroll position on keyboard focus after reattaching header', () => {
-      // the header only collapses on desktop
-      cy.viewport(1920, 1080);
-      scrollAndWait(500);
+    // the header only collapses on desktop
+    // the page is loaded at that size, so the header doesn't depend on a device change event while it is detached
+    it(
+      'should keep the scroll position on keyboard focus after reattaching header',
+      { viewportWidth: 1920, viewportHeight: 1080 },
+      () => {
+        scrollAndWait(500);
 
-      removeAndReattachHeader();
-      cy.get('@header').should('have.attr', 'data-hydrated');
+        removeAndReattachHeader();
+        cy.get('@header').should('have.attr', 'data-hydrated');
 
-      // removing the header shortens the page, the scroll position may have changed in the meantime
-      cy.window().then(win => {
-        const scrollY = win.scrollY;
+        // removing the header shortens the page, the scroll position may have changed in the meantime
+        cy.window().then(win => {
+          const scrollY = win.scrollY;
 
-        focusFirstMainNavigationLink();
-        cy.get('@header').should('not.have.attr', 'data-expanded');
+          focusFirstMainNavigationLink();
+          cy.get('@header').should('not.have.attr', 'data-expanded');
 
-        cy.realPress(['Shift', 'Tab']);
+          cy.realPress(['Shift', 'Tab']);
 
-        cy.get('@header').should('have.attr', 'data-expanded');
-        cy.window().its('scrollY').should('equal', scrollY);
-      });
-    });
+          cy.get('@header').should('have.attr', 'data-expanded');
+          cy.window().its('scrollY').should('equal', scrollY);
+        });
+      },
+    );
 
     it('should log an error if the textMenu prop is not set', () => {
       cy.window().then(win => {
@@ -676,6 +680,14 @@ describe('header', () => {
             });
           });
         cy.get('@header').should('have.attr', 'data-expanded');
+
+        // the controls slide into view when the header expands, a click during the transition would miss them
+        cy.get('@header').should($header => {
+          const header = $header[0];
+          expect([...header.getAnimations(), ...header.shadowRoot.getAnimations()]).to.have.length(
+            0,
+          );
+        });
       }
 
       // the trigger is visible in the expanded header, scrolling it into view would fire a scroll event after the click
