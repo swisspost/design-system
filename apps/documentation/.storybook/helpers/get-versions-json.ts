@@ -32,19 +32,22 @@ interface VersionsStore {
 }
 
 /**
- * The versions helper is evaluated in two separate Storybook realms: the manager
- * window (version switcher addon) and the preview iframe (package shields). As both
- * run on the same origin, we keep a single cache and in-flight request on the top
- * window so versions.json is fetched only once across all contexts.
+ * The versions helper is evaluated in several windows: the documentation shell (version
+ * menu) and the preview iframes (package shields). When they run on the same origin
+ * (production, `vite preview`), we keep a single cache and in-flight request on the top
+ * window so versions.json is fetched only once across all contexts. In the two-port dev
+ * setup the shell runs on another origin; each preview window then keeps its own cache.
  */
 function getVersionsStore(): VersionsStore {
   let host: unknown = globalThis;
 
   if (globalThis.window !== undefined) {
     try {
-      host = globalThis.window.top ?? globalThis.window;
+      const top = globalThis.window.top ?? globalThis.window;
+      // reading `window.top` itself never throws, but reading from it does when it has another origin
+      void top.location.href;
+      host = top;
     } catch {
-      // Accessing window.top may throw when framed cross-origin; fall back locally.
       host = globalThis.window;
     }
   }

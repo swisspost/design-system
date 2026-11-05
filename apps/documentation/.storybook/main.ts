@@ -3,7 +3,6 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
 import type { StorybookConfig } from '@storybook/web-components-vite';
 import type { InlineConfig } from 'vite';
-import pkg from '@/../package.json';
 import { mergeConfig } from 'vite';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -59,8 +58,6 @@ const config: StorybookConfig = {
     },
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@kurbar/storybook-addon-docs-stencil'),
-    './addons/styles-switcher/register',
-    './addons/version-switcher/register',
   ],
 
   staticDirs: [
@@ -77,19 +74,6 @@ const config: StorybookConfig = {
       to: '/post-icons',
     },
   ],
-
-  env: (config: Record<string, string> | undefined) => ({
-    ...config,
-    STORYBOOK_GTM_KEY: 'GTM-WKSKHGJ',
-    STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_LANGUAGE: 'en',
-    STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_GEO_REGION: 'national',
-    STORYBOOK_GTM_PAGE_CONTEXT_SOURCE_CODE_VERSION: pkg.version,
-    STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_DEV: 'localhost',
-    STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_INT: 'preview-',
-    STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_PROD: 'design-system.post.ch',
-    STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_FALLBACK: 'dev',
-    STORYBOOK_BASE_URL: 'https://design-system.post.ch',
-  }),
 
   async viteFinal(config: InlineConfig) {
     return mergeConfig(config, {

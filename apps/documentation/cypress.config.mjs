@@ -7,6 +7,8 @@ export default defineConfig({
   e2e: {
     ...post.e2e,
     baseUrl: 'http://localhost:9001',
+    // run against the built documentation with `cypress.shell.config.mjs`
+    excludeSpecPattern: ['cypress/e2e/shell/**'],
     // Axe scans the full-variant snapshot pages, which can exceed the 4s default on CI.
     // That's why we increase the timeout time to 15s, to reduce flaky tests!
     defaultCommandTimeout: 15000,

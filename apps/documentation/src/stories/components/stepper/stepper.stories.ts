@@ -5,7 +5,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '7dc546d9-e248-4d06-befe-3ad62fcd310f',
   title: 'Components/Stepper',
-  tags: ['package:WebComponents', 'status:New'],
+  tags: ['package:WebComponents', 'status:New', 'alias:Wizard', 'alias:Steps'],
   component: 'post-stepper',
   render,
   parameters: {
