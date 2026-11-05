@@ -337,7 +337,7 @@ export class PostHeader {
   }
 
   private getScrollPosition(scrollParent = this.scrollParent): number {
-    return scrollParent === document.body ? window.scrollY : scrollParent.scrollTop;
+    return scrollParent === document.body ? globalThis.scrollY : scrollParent.scrollTop;
   }
 
   // Browsers scroll a newly focused element into view before dispatching the focus events,
@@ -346,7 +346,7 @@ export class PostHeader {
   // the browser scroll is still pending, and an instant scroll is what cancels it.
   private restoreScrollPosition() {
     const scrollParent = this.scrollParent;
-    const scrollContainer = scrollParent === document.body ? window : scrollParent;
+    const scrollContainer = scrollParent === document.body ? globalThis : scrollParent;
     scrollContainer.scrollTo({ top: this.scrollPosition, behavior: 'instant' });
   }
 
