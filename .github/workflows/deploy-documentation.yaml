@@ -38,44 +38,26 @@ jobs:
           issue-number: ${{ steps.build.outputs.id }}
 
       - name: Get and validate netlify config
-        run: |
-          if [[ ! -f "${{ steps.build.outputs.folder }}/netlify.config.json" ]]; then
-              echo "Error: Netlify config file missing"
-              exit 1
-          fi
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          FOLDER: ${{ steps.build.outputs.folder }}
+        with:
+          script: |
+            const fs = require('fs')
+            const { parseNetlifyConfig } = require('.github/workflows/scripts/netlify-config.mjs')
 
-          CONFIG_CONTENT=$(cat "${{ steps.build.outputs.folder }}/netlify.config.json")
+            const configPath = `${process.env.FOLDER}/netlify.config.json`
 
-          node -e "
-          try {
-            const config = JSON.parse(process.argv[1]);
-            const { siteId, siteUrl } = config;
-
-            if (!siteId || !siteUrl) {
-              console.error('Error: Missing siteId or siteUrl in netlify config');
-              process.exit(1);
+            if (!fs.existsSync(configPath)) {
+              throw new Error('Netlify config file missing.')
             }
 
-            if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\$/.test(siteId)) {
-              console.error('Error: Invalid site ID format.');
-              process.exit(1);
-            }
+            const { siteId, siteUrl } = parseNetlifyConfig(fs.readFileSync(configPath, 'utf8'))
 
-            if (!/^[a-zA-Z0-9.-]+\.netlify\.app\$/.test(siteUrl)) {
-              console.error('Error: Invalid site URL format.');
-              process.exit(1);
-            }
+            // Export the validated values as environment variables for the subsequent steps
+            core.exportVariable('SITE_ID', siteId)
+            core.exportVariable('SITE_URL', siteUrl)
 
-          // Export environment variables for subsequent workflow steps
-          // These console.log outputs get redirected to GITHUB_ENV via >> operator
-          console.log('SITE_ID=' + siteId);
-          console.log('SITE_URL=' + siteUrl);
-
-          } catch (error) {
-            console.error('JSON parsing error:', error.message);
-            process.exit(1);
-          }
-          " "$CONFIG_CONTENT" >> $GITHUB_ENV
       - name: Remove netlify.config.json from artifact folder
         run: rm ${{ steps.build.outputs.folder }}/netlify.config.json
 
