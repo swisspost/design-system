@@ -3,6 +3,7 @@ import {
   DOCS_GLOBALS,
   DocsGlobals,
   GLOBAL_NAMES,
+  getGlobalsQueryParams,
   normalizeGlobals,
   parseGlobalsParam,
 } from '../storybook/docs-globals';
@@ -36,10 +37,10 @@ export function readGlobalsFromUrl(url: URL): DocsGlobals | null {
 export function writeGlobalsToUrl(url: URL, globals: DocsGlobals): URL {
   const result = new URL(url);
   result.searchParams.delete('globals');
-  GLOBAL_NAMES.forEach(name => {
-    if (globals[name] === DEFAULT_GLOBALS[name]) result.searchParams.delete(name);
-    else result.searchParams.set(name, globals[name]);
-  });
+  GLOBAL_NAMES.forEach(name => result.searchParams.delete(name));
+  Object.entries(getGlobalsQueryParams(globals)).forEach(([name, value]) =>
+    result.searchParams.set(name, value),
+  );
   return result;
 }
 

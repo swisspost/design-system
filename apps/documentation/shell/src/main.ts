@@ -6,8 +6,11 @@ import { defineCustomElement as definePostLogo } from '@swisspost/design-system-
 import { defineCustomElement as definePostMenu } from '@swisspost/design-system-components/components/post-menu.js';
 import { defineCustomElement as definePostMenuItem } from '@swisspost/design-system-components/components/post-menu-item.js';
 import { defineCustomElement as definePostMenuTrigger } from '@swisspost/design-system-components/components/post-menu-trigger.js';
+import { initAnalytics } from './analytics';
 import './styles/shell.scss';
 import './docs-shell';
+
+initAnalytics();
 
 definePostCollapsible();
 definePostCollapsibleTrigger();

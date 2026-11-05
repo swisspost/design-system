@@ -1,5 +1,6 @@
 import { LitElement, html, nothing } from 'lit';
 import { customElement, query, state } from 'lit/decorators.js';
+import { trackPage } from './analytics';
 import { SIDEBAR_QUERY } from './config';
 import { SearchEntry, buildSearchIndex } from './search/search-index';
 import { Catalog } from './state/catalog';
@@ -10,8 +11,8 @@ import {
   storeGlobals,
   writeGlobalsToUrl,
 } from './state/globals';
-import { Resolution, buildPreviewUrl, resolveUrl } from './state/url';
-import { KeyPress, PreviewBridge, SelectStoryPayload } from './storybook/bridge';
+import { Resolution, buildPreviewUrl, getPageParams, resolveUrl } from './state/url';
+import { KeyPress, PreviewBridge, PreviewPage, SelectStoryPayload } from './storybook/bridge';
 import type { DocsPage } from './storybook';
 import { DocsGlobals, sameGlobals, stringifyGlobalsParam } from './storybook/docs-globals';
 import { FLAT_ROOTS, HOME_ROOT } from './sidebar/config';
@@ -21,9 +22,13 @@ import type { DocsSidebar } from './sidebar/docs-sidebar';
 import './sidebar/docs-sidebar';
 import './sidebar/docs-nav-mobile';
 import './topbar/docs-topbar';
+import type { PreviewLoading } from './preview/docs-preview';
 import './preview/docs-preview';
 
 const SITE_TITLE = 'Swiss Post Design System';
+
+/** The preview is shown even if it never reports the page as rendered */
+const LOADING_TIMEOUT = 10_000;
 
 type ShownRoute = Exclude<Resolution, { type: 'redirect' }>;
 
@@ -39,6 +44,7 @@ export class DocsShell extends LitElement {
   @state() private route?: ShownRoute;
   @state() private previewSrc = '';
   @state() private loadError = false;
+  @state() private previewLoading?: PreviewLoading;
   /** The mobile navigation panel covers the page; the page must not take focus meanwhile */
   @state() private mobileNavOpen = false;
 
@@ -49,9 +55,11 @@ export class DocsShell extends LitElement {
   private searchEntries: SearchEntry[] = [];
   /** Hash to scroll to once the preview has rendered the page that is being opened */
   private pendingHash: string | null = null;
+  private loadingTimeout?: ReturnType<typeof setTimeout>;
 
   private readonly bridge = new PreviewBridge({
-    onDocsRendered: id => this.onDocsRendered(id),
+    onPageRendered: id => this.onPageRendered(id),
+    onPreviewError: () => this.setPreviewLoading(undefined),
     onNavigateUrl: url => this.navigate(new URL(url, location.href)),
     onSelectStory: payload => this.onSelectStory(payload),
     onPreviewKeydown: key => this.onShortcut(key),
@@ -123,7 +131,11 @@ export class DocsShell extends LitElement {
             )
           : nothing}
         ${this.previewSrc
-          ? html`<docs-preview .src=${this.previewSrc} ?hidden=${notFound}></docs-preview>`
+          ? html`<docs-preview
+              .src=${this.previewSrc}
+              .loading=${this.previewLoading}
+              ?hidden=${notFound}
+            ></docs-preview>`
           : nothing}
       </main>
     `;
@@ -187,20 +199,46 @@ export class DocsShell extends LitElement {
     const { page, hash } = resolution;
     document.title = `${page.segments.at(-1)} · ${SITE_TITLE}`;
 
+    const previewPage: PreviewPage = {
+      id: page.id,
+      url: `${location.origin}${page.path}`,
+      params: getPageParams(new URL(address, location.href).searchParams),
+    };
+    const previousPage = previous?.type === 'page' ? previous : undefined;
+    const samePage = previousPage?.page.id === page.id;
+    if (!samePage) trackPage();
+
     if (!this.previewSrc) {
       this.pendingHash = hash;
-      this.bridge.setInitialState(page.id, this.globals);
+      this.setPreviewLoading('first');
+      this.bridge.setInitialState(previewPage, this.globals);
       const globalsParam = stringifyGlobalsParam(this.globals);
       this.previewSrc = buildPreviewUrl(
         page.id,
         'docs',
-        new URLSearchParams(globalsParam ? { globals: globalsParam } : {}),
+        new URLSearchParams({
+          ...(globalsParam ? { globals: globalsParam } : {}),
+          ...previewPage.params,
+        }),
       );
-    } else if (previous?.type === 'page' && previous.page.id === page.id) {
-      if (hash !== previous.hash || !fromHistory) this.bridge.scrollToHash(hash);
+    } else if (samePage) {
+      this.bridge.updatePage(previewPage);
+      if (hash !== previousPage?.hash || !fromHistory) this.bridge.scrollToHash(hash);
     } else {
       this.pendingHash = hash;
-      this.bridge.showPage(page.id);
+      this.setPreviewLoading('page');
+      this.bridge.showPage(previewPage);
+    }
+  }
+
+  /**
+   * Covers the preview while a page is being rendered; see `docs-preview`.
+   */
+  private setPreviewLoading(loading: PreviewLoading | undefined) {
+    clearTimeout(this.loadingTimeout);
+    this.previewLoading = loading;
+    if (loading) {
+      this.loadingTimeout = setTimeout(() => (this.previewLoading = undefined), LOADING_TIMEOUT);
     }
   }
 
@@ -224,10 +262,11 @@ export class DocsShell extends LitElement {
     history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
   };
 
-  private onDocsRendered(id: string) {
-    if (this.pendingHash === null || this.route?.type !== 'page' || this.route.page.id !== id) {
-      return;
-    }
+  private onPageRendered(id: string) {
+    if (this.route?.type !== 'page' || this.route.page.id !== id) return;
+
+    this.setPreviewLoading(undefined);
+    if (this.pendingHash === null) return;
 
     this.bridge.scrollToHash(this.pendingHash);
     this.pendingHash = null;

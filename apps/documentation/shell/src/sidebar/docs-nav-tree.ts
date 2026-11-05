@@ -45,16 +45,18 @@ export class DocsNavTree extends LitElement {
   }
 
   /**
-   * Opens the folders that lead to the current page and scrolls it into view.
-   * A hidden tree (e.g. the closed mobile sheet) is skipped: `post-collapsible` cannot animate
-   * elements that are not rendered, so its owner calls this again once the tree is shown.
+   * Opens the section and folders that lead to the current page and scrolls it into view once they
+   * are open. A hidden tree (e.g. the closed mobile sheet, or the sidebar while the search shows
+   * results) is skipped: `post-collapsible` cannot animate elements that are not rendered, so its
+   * owner calls this again once the tree is shown.
    */
-  revealActive() {
+  async revealActive() {
     if (!this.activeId || this.getClientRects().length === 0) return;
 
-    getAncestorKeys(this.sections, this.activeId).forEach(key => {
-      this.querySelector<HTMLPostCollapsibleElement>(`#${this.collapsibleId(key)}`)?.toggle(true);
-    });
+    const collapsibles = getAncestorKeys(this.sections, this.activeId)
+      .map(key => this.querySelector<HTMLPostCollapsibleElement>(`#${this.collapsibleId(key)}`))
+      .filter(collapsible => collapsible !== null);
+    await Promise.all(collapsibles.map(collapsible => collapsible.toggle(true)));
 
     this.querySelector('[aria-current="page"]')?.scrollIntoView({ block: 'nearest' });
   }
@@ -93,7 +95,8 @@ export class DocsNavTree extends LitElement {
           )}
           ${this.renderCollapsible(
             section.key,
-            true,
+            // collapsed like the old Storybook sidebar; the section of the current page opens (`willUpdate`)
+            false,
             section.nodes.map(node => this.renderNode(node)),
           )}
         </li>`;

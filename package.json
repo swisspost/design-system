@@ -33,6 +33,8 @@
     "docs:only": "pnpm --filter design-system-documentation start",
     "docs:e2e": "start-server-and-test 'pnpm docs:headless' 9001 'pnpm --filter design-system-documentation e2e'",
     "docs:e2e:watch": "start-server-and-test 'pnpm docs:headless' 9001 'pnpm --filter design-system-documentation e2e:watch'",
+    "docs:e2e:shell": "pnpm docs:build && start-server-and-test 'pnpm --filter design-system-documentation preview' http://localhost:9000 'pnpm --filter design-system-documentation e2e:shell'",
+    "docs:e2e:shell:ci": "start-server-and-test 'pnpm --filter design-system-documentation preview' http://localhost:9000 'pnpm --filter design-system-documentation e2e:shell:ci'",
     "docs:lint": "pnpm --filter design-system-documentation lint",
     "docs:lint:fix": "pnpm --filter design-system-documentation lint:fix",
     "styles": "pnpm styles:start",

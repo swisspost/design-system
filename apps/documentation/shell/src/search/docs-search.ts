@@ -10,7 +10,8 @@ const IS_APPLE = /Mac|iPhone|iPad/.test(navigator.userAgent);
  * A combobox: the results replace the navigation below the field while there is a query.
  * Results are links, so opening one goes through the shell's link handling like any other link.
  *
- * The host reflects `active` while results are shown, so its container can hide the navigation.
+ * The host reflects `active` while results are shown, so its container can hide the navigation,
+ * and fires `search-active-change` (detail: `active`) when that changes.
  */
 @customElement('docs-search')
 export class DocsSearch extends LitElement {
@@ -50,6 +51,11 @@ export class DocsSearch extends LitElement {
   }
 
   protected updated(changed: Map<string, unknown>) {
+    if (changed.has('active') && changed.get('active') !== undefined) {
+      this.dispatchEvent(
+        new CustomEvent('search-active-change', { detail: this.active, bubbles: true }),
+      );
+    }
     if (changed.has('activeIndex')) {
       this.querySelector('[role="option"][aria-selected="true"]')?.scrollIntoView({
         block: 'nearest',

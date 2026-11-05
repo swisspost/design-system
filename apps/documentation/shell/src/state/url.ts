@@ -1,6 +1,6 @@
 import type { DocsPage } from '../storybook';
 import { PREVIEW_ORIGIN } from '../config';
-import { DocsGlobals, stringifyGlobalsParam } from '../storybook/docs-globals';
+import { DocsGlobals, GLOBAL_NAMES, stringifyGlobalsParam } from '../storybook/docs-globals';
 import type { Catalog } from './catalog';
 
 export type Resolution =
@@ -15,6 +15,14 @@ const MANAGER_PARAMS = ['path', 'full', 'nav', 'panel', 'addons', 'shortcuts', '
 
 /** Query params that are forwarded to the bare preview when an old story URL is opened. */
 const STORY_PARAMS = ['args'];
+
+/** Query params the shell itself reads: the globals (also in the old `globals` form) and dev mode. */
+const SHELL_PARAMS = new Set<string>([
+  ...GLOBAL_NAMES,
+  'globals',
+  'devModeEnabled',
+  ...MANAGER_PARAMS,
+]);
 
 /**
  * Maps a URL to what the shell shows.
@@ -37,6 +45,18 @@ export function resolveUrl(url: URL, catalog: Catalog, globals: DocsGlobals): Re
   if (!page) return { type: 'not-found' };
 
   return pageResolution(page, url, page.path !== url.pathname);
+}
+
+/**
+ * The query params of a shell URL that belong to the page content, e.g. `story` and `args` of a deep
+ * link or `spds-iconset` of the icon search. They are forwarded to the preview.
+ */
+export function getPageParams(search: URLSearchParams): Record<string, string> {
+  const params: Record<string, string> = {};
+  search.forEach((value, name) => {
+    if (!SHELL_PARAMS.has(name)) params[name] = value;
+  });
+  return params;
 }
 
 /**
@@ -101,7 +121,17 @@ function resolveLegacyPath(
   }
 
   const page = catalog.getById(id);
-  return page ? pageResolution(page, url, true) : notFound();
+  if (!page) return notFound();
+
+  // old deep links ("Copy deep link") end with the story id; the story's element is `story--<id>`
+  const storyId = decodeURIComponent(url.hash.slice(1));
+  if (storyId && catalog.isStory(storyId)) {
+    const withStoryHash = new URL(url);
+    withStoryHash.hash = `story--${storyId}`;
+    return pageResolution(page, withStoryHash, true);
+  }
+
+  return pageResolution(page, url, true);
 }
 
 function notFound(): Resolution {

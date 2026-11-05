@@ -607,6 +607,7 @@ docs-nav-tree post-collapsible-trigger:has(> .nav-toggle) {
 /* Preview */
 
 docs-preview {
+  position: relative;
   display: block;
   height: 100%;
 
@@ -620,6 +621,33 @@ docs-preview {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+// Covers the preview until the page and its stories are rendered, so the page appears in one piece
+// (not designed; the design-system spinner, as the old docs showed while the preview loaded).
+.preview-loading {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--post-scheme-color-surface-default-bg);
+
+  docs-preview[loading] & {
+    display: flex;
+  }
+
+  // on a page change the spinner appears only after a moment, so quick changes show none
+  docs-preview[loading='page'] & > * {
+    animation: preview-spinner-delay 300ms;
+  }
+}
+
+@keyframes preview-spinner-delay {
+  from,
+  to {
+    visibility: hidden;
+  }
 }
 
 .shell-message {

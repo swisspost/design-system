@@ -69,6 +69,19 @@ export function parseGlobalsParam(value: string): Record<string, string> {
 }
 
 /**
+ * The globals that differ from the defaults, as the query params of a shell URL
+ * (`?theme=cargo&scheme=dark`).
+ */
+export function getGlobalsQueryParams(globals: DocsGlobals): Record<string, string> {
+  return Object.fromEntries(
+    GLOBAL_NAMES.filter(name => globals[name] !== DEFAULT_GLOBALS[name]).map(name => [
+      name,
+      globals[name],
+    ]),
+  );
+}
+
+/**
  * Serializes the globals that differ from the defaults in Storybook's `globals` URL param format.
  */
 export function stringifyGlobalsParam(globals: DocsGlobals): string {

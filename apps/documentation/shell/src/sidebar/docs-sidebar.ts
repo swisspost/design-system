@@ -2,6 +2,7 @@ import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import type { SearchEntry } from '../search/search-index';
 import type { DocsSearch } from '../search/docs-search';
+import type { DocsNavTree } from './docs-nav-tree';
 import type { SidebarSection } from './tree';
 import '../search/docs-search';
 import './docs-nav-tree';
@@ -25,7 +26,11 @@ export class DocsSidebar extends LitElement {
       <div class="sidebar-header">
         <post-logo url="/">Swiss Post Design System, go to the homepage</post-logo>
       </div>
-      <docs-search id-prefix="sidebar-search" .entries=${this.searchEntries}></docs-search>
+      <docs-search
+        id-prefix="sidebar-search"
+        .entries=${this.searchEntries}
+        @search-active-change=${this.onSearchActiveChange}
+      ></docs-search>
       <nav class="sidebar-nav" aria-label="Documentation">
         <docs-nav-tree
           id-prefix="sidebar"
@@ -39,6 +44,14 @@ export class DocsSidebar extends LitElement {
   focusSearch() {
     this.querySelector<DocsSearch>('docs-search')?.focus();
   }
+
+  /**
+   * The tree is hidden while the search shows results, so a page opened from them is revealed
+   * (its section and folders opened) once the tree is back.
+   */
+  private readonly onSearchActiveChange = (event: CustomEvent<boolean>) => {
+    if (!event.detail) this.querySelector<DocsNavTree>('docs-nav-tree')?.revealActive();
+  };
 }
 
 declare global {

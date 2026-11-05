@@ -51,6 +51,10 @@ jobs:
       - name: Run tests
         run: pnpm e2e:ci
 
+      # The shell specs need the built documentation (shell and preview on one origin), built above
+      - name: Run documentation shell tests
+        run: pnpm docs:e2e:shell:ci
+
       - name: Upload screenshots
         uses: actions/upload-artifact@6027e3dd177782cd8ab9af838c04fd81a07f1d47
         if: failure()
