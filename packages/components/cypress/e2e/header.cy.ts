@@ -45,6 +45,10 @@ function getScrollMax() {
     .then($el => Math.ceil($el[0].getBoundingClientRect().width));
 }
 
+function focusFirstMainNavigationLink() {
+  cy.get('@header').find('post-mainnavigation a').first().focus();
+}
+
 describe('header', () => {
   function getContentTop() {
     return cy.get('.container').then($container => Math.round($container.position().top));
@@ -111,7 +115,7 @@ describe('header', () => {
             cy.get('@header').then($header => {
               const header = $header[0];
               const rootStyle = header.ownerDocument.documentElement.style;
-              const noTransitions = new (header.ownerDocument.defaultView.CSSStyleSheet)();
+              const noTransitions = new header.ownerDocument.defaultView.CSSStyleSheet();
               noTransitions.replaceSync('*, :host { transition: none !important; }');
               header.shadowRoot.adoptedStyleSheets = [
                 ...header.shadowRoot.adoptedStyleSheets,
@@ -190,6 +194,28 @@ describe('header', () => {
         const below = Math.floor(scrollMax / 2);
         scrollAndWait(below);
         getScrollTopProperty().should('eq', `${below}px`);
+      });
+    });
+
+    it('should keep the scroll position on keyboard focus after reattaching header', () => {
+      // the header only collapses on desktop
+      cy.viewport(1920, 1080);
+      scrollAndWait(500);
+
+      removeAndReattachHeader();
+      cy.get('@header').should('have.attr', 'data-hydrated');
+
+      // removing the header shortens the page, the scroll position may have changed in the meantime
+      cy.window().then(win => {
+        const scrollY = win.scrollY;
+
+        focusFirstMainNavigationLink();
+        cy.get('@header').should('not.have.attr', 'data-expanded');
+
+        cy.realPress(['Shift', 'Tab']);
+
+        cy.get('@header').should('have.attr', 'data-expanded');
+        cy.window().its('scrollY').should('equal', scrollY);
       });
     });
 
@@ -389,7 +415,7 @@ describe('header', () => {
           it('should add data-expanded when a global-header element receives keyboard focus while scrolled', () => {
             cy.scrollTo(0, 500);
             cy.get('@header').should('not.have.attr', 'data-expanded');
-            
+
             cy.get('@header')
               .find('post-language-menu')
               .shadow()
@@ -527,16 +553,6 @@ describe('header', () => {
         cy.get('@header').should('have.attr', 'data-expanded');
       });
 
-      it('should keep the scroll position when a global-header element receives keyboard focus', () => {
-        scrollAndWait(500);
-        cy.get('@header').should('not.have.attr', 'data-expanded');
-
-        cy.realPress('Tab');
-
-        cy.get('@header').should('have.attr', 'data-expanded');
-        cy.window().its('scrollY').should('eq', 500);
-      });
-
       it('should remove data-expanded once focus leaves the header', () => {
         cy.scrollTo(0, 500);
 
@@ -600,6 +616,37 @@ describe('header', () => {
         scrollAndWait(501);
         cy.get('@header').should('have.attr', 'data-expanded');
       });
+
+      // the first tab stop is the logo, which stays visible in the reduced header
+      // tabbing back from the main navigation lands on a control that is out of view
+      it('should keep the scroll position when a global-header element receives keyboard focus', () => {
+        scrollAndWait(500);
+
+        focusFirstMainNavigationLink();
+        cy.get('@header').should('not.have.attr', 'data-expanded');
+
+        cy.realPress(['Shift', 'Tab']);
+
+        cy.get('@header').should('have.attr', 'data-expanded');
+        cy.window().its('scrollY').should('equal', 500);
+      });
+
+      it('should keep the scroll position when a global-header element receives keyboard focus and the page scrolls smoothly', () => {
+        scrollAndWait(500);
+        cy.document().then(doc => {
+          doc.documentElement.style.scrollBehavior = 'smooth';
+        });
+
+        focusFirstMainNavigationLink();
+        cy.get('@header').should('not.have.attr', 'data-expanded');
+
+        cy.realPress(['Shift', 'Tab']);
+
+        cy.get('@header').should('have.attr', 'data-expanded');
+        // the smooth scroll is animated, without waiting the assertion would pass before the page moves
+        cy.wait(500);
+        cy.window().its('scrollY').should('equal', 500);
+      });
     });
 
     // real mouse events are needed here: synthetic clicks don't change the :focus-visible heuristic
@@ -618,15 +665,13 @@ describe('header', () => {
               el => !el.closest('[slot="main-nav"]'),
             );
 
-            // focusing an element that is out of view scrolls the page
-            // wait for that scroll event, otherwise it can collapse the header after the next click
+            // focusing an element hidden by the reduced header scrolls the page and the header scrolls it back
+            // wait for the scroll event on the next frame, otherwise it can collapse the header after the next click
             cy.window().then(win => {
-              const scrollY = win.scrollY;
               globalHeaderEl.focus();
-              if (win.scrollY === scrollY) return;
 
               return new Cypress.Promise<void>(resolve => {
-                win.addEventListener('scroll', () => resolve(), { once: true });
+                win.requestAnimationFrame(() => resolve());
               });
             });
           });
@@ -852,9 +897,7 @@ describe('header', () => {
 
         cy.get('@langTrigger').click({ scrollBehavior: false });
 
-        cy.get('@header')
-          .find('post-language-menu-item')
-          .should('be.visible');
+        cy.get('@header').find('post-language-menu-item').should('be.visible');
       }
 
       it('should open a megadropdown on click even if the language menu was left open while scrolled, without affecting scroll position', () => {

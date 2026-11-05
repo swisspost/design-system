@@ -336,12 +336,14 @@ export class PostHeader {
     delete this.host.dataset.expanded;
   }
 
-  private getScrollPosition(scrollParent = this.scrollParent): number {
+  private getScrollPosition(): number {
+    const scrollParent = this.scrollParent;
     return scrollParent === document.body ? globalThis.scrollY : scrollParent.scrollTop;
   }
 
   // Browsers scroll a newly focused element into view before dispatching the focus events,
   // so focusing a control of the collapsed header (positioned out of view) makes the page jump.
+  // The scroll event of that jump is not dispatched yet, so scrollPosition is still the position before the focus.
   // Scrolling is not skipped when the position is unchanged: with `scroll-behavior: smooth`
   // the browser scroll is still pending, and an instant scroll is what cancels it.
   private restoreScrollPosition() {
@@ -547,11 +549,7 @@ export class PostHeader {
         data-burger-menu={this.hasBurgerMenu}
         data-menu-extended={this.burgerMenuExtended}
       >
-        <span
-          class="scroll-max"
-          aria-hidden="true"
-          ref={el => (this.scrollMaxElement = el)}
-        ></span>
+        <span class="scroll-max" aria-hidden="true" ref={el => (this.scrollMaxElement = el)}></span>
         <header>
           <div ref={el => (this.globalHeader = el)} class="global-header">
             <div class="section">
