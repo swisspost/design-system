@@ -61,8 +61,9 @@ body {
 }
 
 .shell-nav-mobile {
-  grid-area: nav;
-  z-index: 1;
+  // its bar and panel are placed in the shell grid: the panel covers the main area, like the burger
+  // menu of `post-header`, which opens below the header
+  display: contents;
 
   @include media.min(md) {
     display: none;
@@ -85,8 +86,7 @@ body {
 }
 
 .sidebar-header,
-.shell-topbar,
-.nav-sheet-header {
+.shell-topbar {
   post-logo {
     height: $bar-height;
   }
@@ -100,8 +100,110 @@ body {
   }
 }
 
+/* Toolbar */
+
 .topbar-controls {
   flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--post-core-dimension-16);
+
+  // the four controls do not fit next to the logo: wherever the sidebar is replaced by the mobile
+  // navigation, they are in its panel
+  @include media.max(md) {
+    display: none;
+  }
+
+  // the Figma frames below 1024 px show the values only; the label stays available to assistive technologies
+  .toolbar-trigger-label {
+    @include media.max(lg) {
+      @include utilities.visuallyhidden;
+    }
+  }
+}
+
+.topbar-version {
+  flex: none;
+  display: flex;
+  margin-inline-start: auto;
+
+  @include media.max(md) {
+    padding-inline-end: var(--post-core-dimension-16);
+  }
+}
+
+.nav-panel-settings {
+  flex: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--post-core-dimension-12) var(--post-core-dimension-24);
+  padding: var(--post-core-dimension-16);
+  border-block-end: var(--post-core-dimension-1) solid var(--post-scheme-color-divider-border);
+}
+
+.toolbar-trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--post-core-dimension-8);
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: var(--post-core-font-size-14);
+  line-height: var(--post-core-dimension-18);
+  white-space: nowrap;
+
+  @include utilities.focus-style;
+
+  post-icon {
+    flex: none;
+    width: var(--post-core-dimension-16);
+    height: var(--post-core-dimension-16);
+  }
+
+  strong {
+    font-weight: var(--post-device-font-weight-bold);
+  }
+
+  &:hover .toolbar-trigger-text {
+    text-decoration: underline;
+  }
+}
+
+.toolbar-menu {
+  // the menu opens in the top layer; its host must not take part in the toolbar layout
+  display: contents;
+
+  &::part(post-menu) {
+    min-width: 10rem;
+  }
+
+  .toolbar-menu-text {
+    flex: 1 1 auto;
+    text-align: start;
+  }
+
+  .toolbar-menu-detail {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--post-core-dimension-4) var(--post-core-dimension-12);
+    font-size: var(--post-core-font-size-12);
+  }
+
+  .toolbar-menu-dependency {
+    display: flex;
+    align-items: center;
+    gap: var(--post-core-dimension-2);
+    white-space: nowrap;
+
+    img {
+      display: block;
+      height: 1.1em;
+    }
+  }
 }
 
 /* Sidebar */
@@ -153,6 +255,8 @@ docs-nav-tree {
   line-height: 1.5;
   text-align: start;
   text-decoration: none;
+  // rectangular as in the Figma; the design-system link styles round links for their focus ring
+  border-radius: 0;
 
   @include utilities.focus-style;
   @include utilities.focus-inset;
@@ -202,6 +306,7 @@ docs-nav-tree {
   display: flex;
   align-items: center;
   gap: var(--post-core-dimension-8);
+  border-radius: 0;
   color: inherit;
   text-decoration: none;
 
@@ -246,6 +351,8 @@ docs-nav-tree post-collapsible-trigger:has(> .nav-toggle) {
 /* Mobile navigation */
 
 .nav-mobile-bar {
+  grid-area: nav;
+  z-index: 2; // its shadow falls on the open panel
   display: flex;
   align-items: center;
   gap: var(--post-core-dimension-8);
@@ -272,6 +379,18 @@ docs-nav-tree post-collapsible-trigger:has(> .nav-toggle) {
   }
 }
 
+.nav-mobile-chevron {
+  transition: transform 150ms ease;
+
+  [aria-expanded='true'] > & {
+    transform: rotate(180deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
 .nav-mobile-location {
   flex: 1 1 auto;
   min-width: 0;
@@ -280,55 +399,24 @@ docs-nav-tree post-collapsible-trigger:has(> .nav-toggle) {
   white-space: nowrap;
 }
 
-.nav-sheet {
-  width: 100%;
-  max-width: none;
-  height: 100%;
-  max-height: none;
-  margin: 0;
-  border: 0;
-  padding: 0;
+.nav-panel {
+  grid-area: main;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
   background-color: var(--post-scheme-color-surface-alternate-bg);
   color: var(--post-scheme-color-surface-alternate-fg);
 
-  &[open] {
-    display: flex;
-    flex-direction: column;
-  }
-
-  &::backdrop {
-    background-color: var(--post-core-color-sandgrey-alpha-darksand-20);
+  &[hidden] {
+    display: none;
   }
 }
 
-.nav-sheet-header {
-  flex: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--post-scheme-color-surface-brand-bg);
-  color: var(--post-scheme-color-surface-brand-fg);
-}
-
-.nav-sheet-close {
-  display: flex;
-  margin-inline-end: var(--post-core-dimension-8);
-  border: 0;
-  padding: var(--post-core-dimension-8);
-  background: none;
-  color: inherit;
-
-  @include utilities.focus-style;
-
-  post-icon {
-    width: var(--post-core-dimension-24);
-    height: var(--post-core-dimension-24);
-  }
-}
-
-.nav-sheet-body {
+.nav-panel-body {
   flex: 1 1 auto;
   overflow-y: auto;
+  overscroll-behavior: contain;
   padding-block: var(--post-core-dimension-16) var(--post-core-dimension-40);
 }
 

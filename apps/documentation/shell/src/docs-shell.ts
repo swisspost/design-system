@@ -2,9 +2,16 @@ import { LitElement, html, nothing } from 'lit';
 import { customElement, query, state } from 'lit/decorators.js';
 import { Catalog } from './state/catalog';
 import { readDevMode } from './state/dev-mode';
+import {
+  loadStoredGlobals,
+  readGlobalsFromUrl,
+  storeGlobals,
+  writeGlobalsToUrl,
+} from './state/globals';
 import { Resolution, buildPreviewUrl, resolveUrl } from './state/url';
 import { PreviewBridge, SelectStoryPayload } from './storybook/bridge';
 import type { DocsPage } from './storybook';
+import { DocsGlobals, sameGlobals, stringifyGlobalsParam } from './storybook/docs-globals';
 import { FLAT_ROOTS, HOME_ROOT } from './sidebar/config';
 import { SidebarSection, buildSidebar } from './sidebar/tree';
 import type { DocsNavMobile } from './sidebar/docs-nav-mobile';
@@ -25,9 +32,12 @@ type ShownRoute = Exclude<Resolution, { type: 'redirect' }>;
 export class DocsShell extends LitElement {
   @state() private catalog?: Catalog;
   @state() private devMode = false;
+  @state() private globals: DocsGlobals = loadStoredGlobals();
   @state() private route?: ShownRoute;
   @state() private previewSrc = '';
   @state() private loadError = false;
+  /** The mobile navigation panel covers the page; the page must not take focus meanwhile */
+  @state() private mobileNavOpen = false;
 
   @query('docs-nav-mobile') private mobileNav?: DocsNavMobile;
 
@@ -74,14 +84,21 @@ export class DocsShell extends LitElement {
         .sections=${this.sections}
         .activeId=${page?.id}
       ></docs-sidebar>
-      <docs-topbar class="shell-topbar"></docs-topbar>
+      <docs-topbar
+        class="shell-topbar"
+        .globals=${this.globals}
+        @globals-change=${this.onGlobalsChange}
+      ></docs-topbar>
       <docs-nav-mobile
         class="shell-nav-mobile"
         .sections=${this.sections}
         .activeId=${page?.id}
         location=${page ? getLocationLabel(page) : ''}
+        .globals=${this.globals}
+        @globals-change=${this.onGlobalsChange}
+        @nav-mobile-toggle=${(event: CustomEvent<boolean>) => (this.mobileNavOpen = event.detail)}
       ></docs-nav-mobile>
-      <main class="shell-main">
+      <main class="shell-main" ?inert=${this.mobileNavOpen}>
         ${this.loadError
           ? this.renderMessage(
               'The documentation could not be loaded',
@@ -123,14 +140,17 @@ export class DocsShell extends LitElement {
 
   /**
    * Shows the page for the given URL and updates the address bar.
+   * A URL without globals keeps the current ones (on the first load: the stored ones).
    */
   private navigate(target: URL, { replace = false, fromHistory = false } = {}) {
     if (!this.catalog) return;
 
-    const { devMode, url } = readDevMode(target);
+    const { devMode, url: withoutDevMode } = readDevMode(target);
     this.devMode = devMode;
+    this.setGlobals(readGlobalsFromUrl(withoutDevMode) ?? this.globals);
+    const url = writeGlobalsToUrl(withoutDevMode, this.globals);
 
-    const resolution = resolveUrl(url, this.catalog);
+    const resolution = resolveUrl(url, this.catalog, this.globals);
     if (resolution.type === 'redirect') {
       location.replace(resolution.url);
       return;
@@ -158,7 +178,13 @@ export class DocsShell extends LitElement {
 
     if (!this.previewSrc) {
       this.pendingHash = hash;
-      this.previewSrc = buildPreviewUrl(page.id, 'docs');
+      this.bridge.setInitialState(page.id, this.globals);
+      const globalsParam = stringifyGlobalsParam(this.globals);
+      this.previewSrc = buildPreviewUrl(
+        page.id,
+        'docs',
+        new URLSearchParams(globalsParam ? { globals: globalsParam } : {}),
+      );
     } else if (previous?.type === 'page' && previous.page.id === page.id) {
       if (hash !== previous.hash || !fromHistory) this.bridge.scrollToHash(hash);
     } else {
@@ -166,6 +192,26 @@ export class DocsShell extends LitElement {
       this.bridge.showPage(page.id);
     }
   }
+
+  /**
+   * Makes the globals current: in the preview and in storage. The caller updates the URL.
+   */
+  private setGlobals(globals: DocsGlobals) {
+    if (!sameGlobals(globals, this.globals)) {
+      this.globals = globals;
+      storeGlobals(globals);
+    }
+    this.bridge.updateGlobals(globals);
+  }
+
+  /**
+   * A toolbar choice: the URL is rewritten in place, so it does not add a history entry.
+   */
+  private readonly onGlobalsChange = (event: CustomEvent<DocsGlobals>) => {
+    this.setGlobals(event.detail);
+    const url = writeGlobalsToUrl(new URL(location.href), this.globals);
+    history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+  };
 
   private onDocsRendered(id: string) {
     if (this.pendingHash === null || this.route?.type !== 'page' || this.route.page.id !== id) {

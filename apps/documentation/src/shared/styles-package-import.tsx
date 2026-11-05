@@ -6,35 +6,19 @@ import {
   Props,
 } from './styles-package-import-individual.sample';
 import { PostIcon } from '@swisspost/design-system-components-react';
-import { STYLE_SWITCHER_EVENT } from '@root/.storybook/addons/styles-switcher/constants';
+import { getDocsGlobals, subscribeDocsGlobals } from '@root/.storybook/helpers/shell-bridge';
+import type { DocsGlobals } from '@root/shell/src/storybook/docs-globals';
 
-type StyleSelection = {
-  theme: string;
-  appearance: string;
-};
-
-type StyleSelectionEvent = CustomEvent<StyleSelection>;
-
-const getAllStylesImport = ({ theme, appearance }: StyleSelection) => {
-  return `@use '@swisspost/design-system-styles/${theme.toLowerCase()}-${appearance.toLowerCase()}.scss';`;
+const getAllStylesImport = ({ theme, appearance }: DocsGlobals) => {
+  return `@use '@swisspost/design-system-styles/${theme}-${appearance}.scss';`;
 };
 
 export default function PackageTag(props: Props) {
-  const [styleSelection, setStyleSelection] = useState<StyleSelection>({
-    theme: 'Post',
-    appearance: 'Compact',
-  });
-  const allStylesImport = getAllStylesImport(styleSelection);
+  // the theme and appearance chosen in the documentation toolbar
+  const [globals, setGlobals] = useState<DocsGlobals>(getDocsGlobals);
+  const allStylesImport = getAllStylesImport(globals);
 
-  useEffect(() => {
-    const updateStyleSelection = (event: Event) => {
-      setStyleSelection((event as StyleSelectionEvent).detail);
-    };
-
-    window.addEventListener(STYLE_SWITCHER_EVENT, updateStyleSelection);
-
-    return () => window.removeEventListener(STYLE_SWITCHER_EVENT, updateStyleSelection);
-  }, []);
+  useEffect(() => subscribeDocsGlobals(setGlobals), []);
 
   return (
     <>

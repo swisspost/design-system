@@ -1,5 +1,6 @@
 import type { DocsPage } from '../storybook';
 import { PREVIEW_ORIGIN } from '../config';
+import { DocsGlobals, stringifyGlobalsParam } from '../storybook/docs-globals';
 import type { Catalog } from './catalog';
 
 export type Resolution =
@@ -13,17 +14,18 @@ export type Resolution =
 const MANAGER_PARAMS = ['path', 'full', 'nav', 'panel', 'addons', 'shortcuts', 'singleStory'];
 
 /** Query params that are forwarded to the bare preview when an old story URL is opened. */
-const STORY_PARAMS = ['args', 'globals'];
+const STORY_PARAMS = ['args'];
 
 /**
  * Maps a URL to what the shell shows.
  *
  * New URLs: `/components/button#heading`, `/docs/<id>` (permanent alias), `/` (home).
  * Old manager URLs: `/?path=/docs/<id>`, `/?path=/story/<id>`.
+ * `globals` are the shell's current globals; old story URLs open the bare preview with them.
  */
-export function resolveUrl(url: URL, catalog: Catalog): Resolution {
+export function resolveUrl(url: URL, catalog: Catalog, globals: DocsGlobals): Resolution {
   const legacyPath = url.searchParams.get('path');
-  if (legacyPath !== null) return resolveLegacyPath(legacyPath, url, catalog);
+  if (legacyPath !== null) return resolveLegacyPath(legacyPath, url, catalog, globals);
 
   const alias = /^\/docs\/([^/]+)\/?$/.exec(url.pathname);
   if (alias) {
@@ -75,7 +77,12 @@ function pageResolution(page: DocsPage, url: URL, rewrite: boolean): Resolution 
   };
 }
 
-function resolveLegacyPath(path: string, url: URL, catalog: Catalog): Resolution {
+function resolveLegacyPath(
+  path: string,
+  url: URL,
+  catalog: Catalog,
+  globals: DocsGlobals,
+): Resolution {
   const [, viewMode, id] = /^\/(docs|story)\/([^/?#]+)/.exec(path) ?? [];
   if (!id) {
     const home = catalog.home;
@@ -88,6 +95,8 @@ function resolveLegacyPath(path: string, url: URL, catalog: Catalog): Resolution
       const value = url.searchParams.get(param);
       if (value) params.set(param, value);
     });
+    const globalsParam = stringifyGlobalsParam(globals);
+    if (globalsParam) params.set('globals', globalsParam);
     return { type: 'redirect', url: buildPreviewUrl(id, 'story', params) };
   }
 

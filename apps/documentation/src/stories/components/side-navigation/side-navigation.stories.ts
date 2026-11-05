@@ -4,7 +4,6 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
 import { fakeContent } from '@/utils';
 import { defaultNav, largeNav, smallNav } from './nav-content';
-import { forceCompactAppearance } from '../../../../.storybook/helpers';
 
 const meta: MetaComponent = {
   id: '9f26d86e-7edb-5804-ac96-92g22f91c9d9',
@@ -58,8 +57,8 @@ const meta: MetaComponent = {
       },
     },
   },
+  globals: { appearance: 'compact' },
   decorators: [
-    forceCompactAppearance,
     story => html`
       <post-header text-menu="Menu">
         <post-logo slot="post-logo" url="/">Homepage</post-logo>

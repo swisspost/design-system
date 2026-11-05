@@ -11,7 +11,8 @@ import {
   withUrlParams,
 } from './helpers';
 import './helpers/register-web-components';
-import './helpers/shell-bridge';
+import { withShellGlobals } from './helpers/shell-bridge';
+import { DEFAULT_GLOBALS, DOCS_GLOBALS } from '../shell/src/storybook/docs-globals';
 import './addons/cypress-storybook/client';
 
 import './styles/preview.scss';
@@ -26,7 +27,12 @@ SyntaxHighlighter.registerLanguage('scss', scss);
 export const SourceDarkScheme = true;
 
 const preview: Preview = {
-  decorators: [fullScreenUrlDecorator, withUrlParams],
+  decorators: [withShellGlobals, fullScreenUrlDecorator, withUrlParams],
+  // set by the shell toolbar (`shell/src/topbar`) and applied by `helpers/shell-bridge.ts`
+  globalTypes: Object.fromEntries(
+    Object.entries(DOCS_GLOBALS).map(([name, { label }]) => [name, { name: label }]),
+  ),
+  initialGlobals: { ...DEFAULT_GLOBALS },
   parameters: {
     options: {
       storySort: {
