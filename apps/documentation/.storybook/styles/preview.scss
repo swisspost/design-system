@@ -330,10 +330,6 @@ tokens.$default-map: utilities.$post-spacing;
 }
 
 .sbdocs-preview {
-  &:not([data-color-scheme]) {
-    display: none;
-  }
-
   .docs-story {
     > div:last-child {
       background: none !important;

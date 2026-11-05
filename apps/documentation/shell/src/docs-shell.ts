@@ -1,0 +1,237 @@
+import { LitElement, html, nothing } from 'lit';
+import { customElement, query, state } from 'lit/decorators.js';
+import { Catalog } from './state/catalog';
+import { readDevMode } from './state/dev-mode';
+import { Resolution, buildPreviewUrl, resolveUrl } from './state/url';
+import { PreviewBridge, SelectStoryPayload } from './storybook/bridge';
+import type { DocsPage } from './storybook';
+import { FLAT_ROOTS, HOME_ROOT } from './sidebar/config';
+import { SidebarSection, buildSidebar } from './sidebar/tree';
+import type { DocsNavMobile } from './sidebar/docs-nav-mobile';
+import './sidebar/docs-sidebar';
+import './sidebar/docs-nav-mobile';
+import './topbar/docs-topbar';
+import './preview/docs-preview';
+
+const SITE_TITLE = 'Swiss Post Design System';
+
+type ShownRoute = Exclude<Resolution, { type: 'redirect' }>;
+
+/**
+ * The documentation shell: layout, routing and the connection to the Storybook preview.
+ * The URL is the source of truth for the current page; every navigation goes through `navigate`.
+ */
+@customElement('docs-shell')
+export class DocsShell extends LitElement {
+  @state() private catalog?: Catalog;
+  @state() private devMode = false;
+  @state() private route?: ShownRoute;
+  @state() private previewSrc = '';
+  @state() private loadError = false;
+
+  @query('docs-nav-mobile') private mobileNav?: DocsNavMobile;
+
+  private sections: SidebarSection[] = [];
+  /** Hash to scroll to once the preview has rendered the page that is being opened */
+  private pendingHash: string | null = null;
+
+  private readonly bridge = new PreviewBridge({
+    onDocsRendered: id => this.onDocsRendered(id),
+    onNavigateUrl: url => this.navigate(new URL(url, location.href)),
+    onSelectStory: payload => this.onSelectStory(payload),
+  });
+
+  createRenderRoot() {
+    return this;
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    globalThis.addEventListener('popstate', this.onPopState);
+    document.addEventListener('click', this.onDocumentClick);
+    this.init();
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    globalThis.removeEventListener('popstate', this.onPopState);
+    document.removeEventListener('click', this.onDocumentClick);
+  }
+
+  protected willUpdate(changed: Map<string, unknown>) {
+    if ((changed.has('catalog') || changed.has('devMode')) && this.catalog) {
+      this.sections = buildSidebar(this.catalog.pages, this.devMode);
+    }
+  }
+
+  render() {
+    const page = this.route?.type === 'page' ? this.route.page : undefined;
+    const notFound = this.route?.type === 'not-found';
+
+    return html`
+      <docs-sidebar
+        class="shell-sidebar"
+        .sections=${this.sections}
+        .activeId=${page?.id}
+      ></docs-sidebar>
+      <docs-topbar class="shell-topbar"></docs-topbar>
+      <docs-nav-mobile
+        class="shell-nav-mobile"
+        .sections=${this.sections}
+        .activeId=${page?.id}
+        location=${page ? getLocationLabel(page) : ''}
+      ></docs-nav-mobile>
+      <main class="shell-main">
+        ${this.loadError
+          ? this.renderMessage(
+              'The documentation could not be loaded',
+              'Please reload the page. If the problem persists, the Storybook index is not available.',
+            )
+          : nothing}
+        ${notFound
+          ? this.renderMessage(
+              'Page not found',
+              'The page you are looking for does not exist or has been moved.',
+            )
+          : nothing}
+        ${this.previewSrc
+          ? html`<docs-preview .src=${this.previewSrc} ?hidden=${notFound}></docs-preview>`
+          : nothing}
+      </main>
+    `;
+  }
+
+  private renderMessage(title: string, text: string) {
+    return html`<div class="shell-message">
+      <h1>${title}</h1>
+      <p>${text}</p>
+      <p><a href="/">Go to the homepage</a></p>
+    </div>`;
+  }
+
+  private async init() {
+    try {
+      this.catalog = await Catalog.load();
+    } catch (error) {
+      console.error(error);
+      this.loadError = true;
+      return;
+    }
+
+    this.navigate(new URL(location.href), { replace: true });
+  }
+
+  /**
+   * Shows the page for the given URL and updates the address bar.
+   */
+  private navigate(target: URL, { replace = false, fromHistory = false } = {}) {
+    if (!this.catalog) return;
+
+    const { devMode, url } = readDevMode(target);
+    this.devMode = devMode;
+
+    const resolution = resolveUrl(url, this.catalog);
+    if (resolution.type === 'redirect') {
+      location.replace(resolution.url);
+      return;
+    }
+
+    const address =
+      resolution.type === 'page' && resolution.canonical
+        ? resolution.canonical
+        : `${url.pathname}${url.search}${url.hash}`;
+    const isCurrent = address === `${location.pathname}${location.search}${location.hash}`;
+    if (fromHistory || replace || isCurrent) history.replaceState(null, '', address);
+    else history.pushState(null, '', address);
+
+    const previous = this.route;
+    this.route = resolution;
+    this.mobileNav?.close();
+
+    if (resolution.type !== 'page') {
+      document.title = SITE_TITLE;
+      return;
+    }
+
+    const { page, hash } = resolution;
+    document.title = `${page.segments.at(-1)} · ${SITE_TITLE}`;
+
+    if (!this.previewSrc) {
+      this.pendingHash = hash;
+      this.previewSrc = buildPreviewUrl(page.id, 'docs');
+    } else if (previous?.type === 'page' && previous.page.id === page.id) {
+      if (hash !== previous.hash || !fromHistory) this.bridge.scrollToHash(hash);
+    } else {
+      this.pendingHash = hash;
+      this.bridge.showPage(page.id);
+    }
+  }
+
+  private onDocsRendered(id: string) {
+    if (this.pendingHash === null || this.route?.type !== 'page' || this.route.page.id !== id) {
+      return;
+    }
+
+    this.bridge.scrollToHash(this.pendingHash);
+    this.pendingHash = null;
+  }
+
+  private onSelectStory(payload: SelectStoryPayload) {
+    const page =
+      'storyId' in payload
+        ? this.catalog?.getById(payload.storyId)
+        : this.catalog?.getByTitle(payload.title);
+
+    if (page) this.navigate(new URL(page.path, location.href));
+  }
+
+  private readonly onPopState = () => {
+    this.navigate(new URL(location.href), { fromHistory: true });
+  };
+
+  /**
+   * Opens internal links (sidebar, logo, messages) without reloading the shell.
+   */
+  private readonly onDocumentClick = (event: MouseEvent) => {
+    if (event.defaultPrevented || event.button !== 0) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+    const anchor = event
+      .composedPath()
+      .find(
+        (el): el is HTMLAnchorElement => el instanceof HTMLAnchorElement && el.hasAttribute('href'),
+      );
+    if (
+      !anchor ||
+      (anchor.target && anchor.target !== '_self') ||
+      anchor.hasAttribute('download')
+    ) {
+      return;
+    }
+
+    const url = new URL(anchor.href);
+    // files (iframe.html, assets) are not shell routes
+    if (url.origin !== location.origin || /\.[a-z0-9]+$/i.test(url.pathname)) return;
+
+    event.preventDefault();
+    this.navigate(url);
+  };
+}
+
+/**
+ * The location shown in the mobile navigation bar, e.g. "Components/Button".
+ */
+function getLocationLabel(page: DocsPage): string {
+  const [root] = page.segments;
+  const name = page.segments.at(-1);
+
+  if (root === HOME_ROOT) return `Home/${name}`;
+  if (FLAT_ROOTS.includes(root)) return name ?? '';
+  return `${root}/${name}`;
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'docs-shell': DocsShell;
+  }
+}

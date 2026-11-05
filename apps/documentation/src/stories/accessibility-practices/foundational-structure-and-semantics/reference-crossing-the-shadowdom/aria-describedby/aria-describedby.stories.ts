@@ -7,6 +7,7 @@ const meta: MetaExtended = {
   id: '76ade552-2c03-4d6d-9dce-28daa3405910',
   title:
     'Accessibility Practices/Foundational Structure And Semantics/Reference Crossing The Shadowdom/aria-describedby',
+  tags: ['devOnly'],
   parameters: {
     badges: [],
   },
