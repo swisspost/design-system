@@ -23,24 +23,24 @@ catalogs:
   jest:
     '@types/jest': 30.0.0
     'jest': 30.3.0
-    'ts-jest': 29.4.9
+    'ts-jest': 29.4.15
   stencil/jest:
     '@types/jest': 29.5.14
     'jest': 29.7.0
     'jest-cli': 29.7.0
-    'ts-jest': 29.4.9
+    'ts-jest': 29.4.15
   angular:
-    '@angular/build': 22.2.3
-    '@angular/cli': 22.2.3
-    '@angular/common': 22.2.3
-    '@angular/compiler': 22.2.3
-    '@angular/compiler-cli': 22.2.3
-    '@angular/core': 22.2.3
-    '@angular/forms': 22.2.3
-    '@angular/platform-browser': 22.2.3
-    '@angular/router': 22.2.3
+    '@angular/build': 22.2.5
+    '@angular/cli': 22.2.5
+    '@angular/common': 22.2.4
+    '@angular/compiler': 22.2.4
+    '@angular/compiler-cli': 22.2.4
+    '@angular/core': 22.2.4
+    '@angular/forms': 22.2.4
+    '@angular/platform-browser': 22.2.4
+    '@angular/router': 22.2.4
     'angular-eslint': 22.6.0
-    'ng-packagr': 22.2.4
+    'ng-packagr': 22.2.5
     'rxjs': 7.8.2
     'tslib': 2.8.1
     'zone.js': 0.16.3
@@ -50,6 +50,10 @@ catalogs:
     '@types/react': 19.2.18
     '@types/react-dom': 19.2.7
 
+# Keep this value lower than or equal to the `minimumReleaseAge` in /renovate.json.
+# If Renovate proposed a version younger than this cooldown, pnpm would refuse to
+# update the lock file and the pull request would fail with an artifact error.
+# Single versions can be exempted through `minimumReleaseAgeExclude`.
 minimumReleaseAge: 4320 # 3d * 24h * 60m = 4320m (following upstream)
 strictPeerDependencies: false
 saveExact: true
@@ -64,6 +68,7 @@ overrides:
   form-data@>=4.0.0 <4.0.4: 4.0.6
 
 allowBuilds:
+  '@bundled-es-modules/glob': false
   '@parcel/watcher': true
   '@percy/core': true
   core-js-pure: false
@@ -73,4 +78,5 @@ allowBuilds:
   lmdb: true
   msgpackr-extract: true
   sharp: true
+  style-dictionary: false
   unrs-resolver: true
