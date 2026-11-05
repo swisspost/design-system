@@ -1,5 +1,20 @@
 # @swisspost/design-system-components
 
+## 10.9.0
+
+### Patch Changes
+
+- Fixed `post-footer` sticking to the bottom of the viewport on short pages instead of leaving an empty space below it. (by [@AndrinAAF](https://github.com/AndrinAAF), [@alionazherdetska](https://github.com/alionazherdetska) and [@Copilot](https://github.com/Copilot) with [#8551](https://github.com/swisspost/design-system/pull/8551))
+
+- Fixed a regression in the `post-autocomplete` component that displayed all options on a single line instead of stacking them vertically. (by [@leagrdv](https://github.com/leagrdv) with [#8744](https://github.com/swisspost/design-system/pull/8744))
+
+- Fixed a double outline appearing on the megadropdown trigger button when focused. (by [@leagrdv](https://github.com/leagrdv) and [@alionazherdetska](https://github.com/alionazherdetska) with [#8619](https://github.com/swisspost/design-system/pull/8619))
+
+- Fixed the alignment in the year view of the `post-date-picker`. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8684](https://github.com/swisspost/design-system/pull/8684))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.9.0
+  - @swisspost/design-system-styles@10.9.0
+
 ## 10.8.0
 
 ### Patch Changes

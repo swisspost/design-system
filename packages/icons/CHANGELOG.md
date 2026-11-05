@@ -1,5 +1,23 @@
 # @swisspost/design-system-icons
 
+## 10.9.0
+
+### Minor Changes
+
+- Added icons: `2804`, `2805`, `2806` and `2807` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8742](https://github.com/swisspost/design-system/pull/8742))
+
+- Added icons:
+  - `bicyclereservationmandatory` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `datadelete` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `dataprocessing` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `datarequest` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `hackademy` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `privacypolicy` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `seatreservationmandatory` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `seatreservationpossible` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `transporterelectric` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `truckelectric` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8782](https://github.com/swisspost/design-system/pull/8782))
+
 ## 10.8.0
 
 ### Minor Changes

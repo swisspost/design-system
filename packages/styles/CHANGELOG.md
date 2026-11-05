@@ -1,5 +1,14 @@
 # @swisspost/design-system-styles
 
+## 10.9.0
+
+### Patch Changes
+
+- Updated the blockquote author and source to use the italic font style instead of the regular one. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8741](https://github.com/swisspost/design-system/pull/8741))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.9.0
+  - @swisspost/design-system-tokens@10.9.0
+
 ## 10.8.0
 
 ### Minor Changes
