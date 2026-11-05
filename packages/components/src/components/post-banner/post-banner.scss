@@ -3,6 +3,7 @@
 @use '@swisspost/design-system-styles/mixins/color-scheme';
 
 @use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/tokens/helpers';
 @use '@swisspost/design-system-styles/functions/tokens';
 
@@ -42,8 +43,18 @@ tokens.$default-map: components.$post-banner;
   }
 }
 
+// The grief banner keeps the page color scheme on the host (for its border and close button)
+// and applies its own scheme to the content only.
+:host(:not([type='grief'])) {
+  --post-current-fg: #{tokens.get('body-color-fg', elements.$post-body)};
+
+  @include color-scheme.set(tokens.get('banner-info-bg-scheme'));
+}
+
 @each $name in 'info', 'success', 'warning', 'error' {
   :host([type='#{$name}']) {
+    @include color-scheme.set(tokens.get('banner-#{$name}-bg-scheme'));
+
     background-color: tokens.get('banner-#{$name}-bg');
     border-color: tokens.get('banner-#{$name}-border-color');
 
