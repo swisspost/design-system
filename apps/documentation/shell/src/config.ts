@@ -9,3 +9,6 @@ export const PREVIEW_ORIGIN: string = import.meta.env.VITE_PREVIEW_ORIGIN ?? '';
  * Dev mode (devOnly pages are listed) is on by default on the dev server and off in builds.
  */
 export const DEV_MODE_DEFAULT: boolean = import.meta.env.DEV;
+
+/** The design-system `md` breakpoint, from which the sidebar replaces the mobile navigation */
+export const SIDEBAR_QUERY = '(min-width: 780px)';

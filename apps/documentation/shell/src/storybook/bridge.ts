@@ -3,6 +3,7 @@ import {
   CURRENT_STORY_WAS_SET,
   DOCS_RENDERED,
   NAVIGATE_URL,
+  PREVIEW_KEYDOWN,
   SELECT_STORY,
   SET_CURRENT_STORY,
   STORY_SPECIFIED,
@@ -16,6 +17,15 @@ export const PREVIEW_IFRAME_ID = 'storybook-preview-iframe';
 
 export type SelectStoryPayload = { storyId: string } | { title: string; name: string };
 
+/** A key press, as the preview reports it (`PREVIEW_KEYDOWN`) and as a `KeyboardEvent` has it. */
+export interface KeyPress {
+  key: string;
+  altKey: boolean;
+  ctrlKey: boolean;
+  metaKey: boolean;
+  shiftKey: boolean;
+}
+
 export interface BridgeHandlers {
   /** The preview finished rendering a docs page. */
   onDocsRendered(id: string): void;
@@ -23,6 +33,8 @@ export interface BridgeHandlers {
   onNavigateUrl(url: string): void;
   /** `@storybook/addon-links` asks the shell to show a story. */
   onSelectStory(payload: SelectStoryPayload): void;
+  /** A key was pressed in the preview, outside form fields (e.g. ⌘K for the search). */
+  onPreviewKeydown(key: KeyPress): void;
 }
 
 /**
@@ -55,6 +67,9 @@ export class PreviewBridge {
     this.channel.on(DOCS_RENDERED, (id: string) => handlers.onDocsRendered(id));
     this.channel.on(NAVIGATE_URL, (url: string) => handlers.onNavigateUrl(url));
     this.channel.on(SELECT_STORY, (payload: SelectStoryPayload) => handlers.onSelectStory(payload));
+    this.channel.on(PREVIEW_KEYDOWN, ({ event }: { event: KeyPress }) =>
+      handlers.onPreviewKeydown(event),
+    );
   }
 
   /**

@@ -8,7 +8,7 @@ import { defaultNav, largeNav, smallNav } from './nav-content';
 const meta: MetaComponent = {
   id: '9f26d86e-7edb-5804-ac96-92g22f91c9d9',
   title: 'Components/Side Navigation',
-  tags: ['package:WebComponents', 'status:New'],
+  tags: ['package:WebComponents', 'status:New', 'alias:Sidebar', 'alias:Sidenav'],
   component: 'post-side-navigation',
   parameters: {
     layout: 'fullscreen',

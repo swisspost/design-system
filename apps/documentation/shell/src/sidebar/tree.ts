@@ -23,15 +23,14 @@ export type SidebarSection =
 
 /**
  * Groups the docs pages into the sidebar sections, keeping the index order.
- * Pages tagged `devOnly` are only included in dev mode.
+ * Only listed pages are included (see `isListed`).
  */
 export function buildSidebar(pages: DocsPage[], devMode: boolean): SidebarSection[] {
   const sections: SidebarSection[] = [];
   const sectionsByRoot = new Map<string, SidebarSection>();
 
   pages
-    .filter(page => !HIDDEN_ROOTS.includes(page.segments[0]))
-    .filter(page => devMode || !page.tags.includes(TAG_DEV_ONLY))
+    .filter(page => isListed(page, devMode))
     .forEach(page => {
       const [root, ...rest] = page.segments;
       let section = sectionsByRoot.get(root);
@@ -50,6 +49,14 @@ export function buildSidebar(pages: DocsPage[], devMode: boolean): SidebarSectio
     });
 
   return sections;
+}
+
+/**
+ * Whether a page is listed in the sidebar and in the search results.
+ * Hidden roots and, outside dev mode, pages tagged `devOnly` stay reachable by URL only.
+ */
+export function isListed(page: DocsPage, devMode: boolean): boolean {
+  return !HIDDEN_ROOTS.includes(page.segments[0]) && (devMode || !page.tags.includes(TAG_DEV_ONLY));
 }
 
 /**

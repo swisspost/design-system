@@ -214,6 +214,183 @@ body {
   padding-block-end: var(--post-core-dimension-40);
 }
 
+/* Search */
+
+docs-search {
+  // its parts are laid out by the sidebar or the mobile panel: field band on top, results in the
+  // place of the navigation
+  display: contents;
+}
+
+// results take the place of the navigation (and, in the mobile panel, of the preview settings)
+.shell-sidebar:has(> docs-search[active]) > .sidebar-nav,
+.nav-panel:has(> docs-search[active]) > :is(.nav-panel-settings, .nav-panel-body) {
+  display: none;
+}
+
+.search-band {
+  flex: none;
+  padding: var(--post-core-dimension-16);
+}
+
+.search-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: var(--post-device-border-radius-1);
+  box-shadow: var(--post-device-elevation-200);
+}
+
+// the design-system input; the Figma field has the icon at the start and the shortcut hint at the end
+// (selector as specific as the design-system `input.form-control.form-control-sm`, loaded before it)
+input.form-control.form-control-sm.search-input {
+  padding-inline: calc(var(--post-core-dimension-40) - var(--post-device-border-width-default))
+    var(--post-core-dimension-48);
+  padding-block: 0;
+  // 40px at every breakpoint, as in all Figma frames (the small input gets lower on small screens)
+  height: var(--post-core-dimension-40);
+  font-size: var(--post-core-font-size-14);
+
+  // the Figma shows the placeholder in the input text color
+  &::placeholder {
+    color: inherit;
+    opacity: 1;
+  }
+
+  // like the design-system search input: no browser clear button, the field has its own
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    display: none;
+  }
+}
+
+.search-icon,
+.search-shortcut,
+.search-clear {
+  position: absolute;
+  z-index: 1; // above the input, which is positioned too
+}
+
+.search-icon {
+  inset-inline-start: var(--post-core-dimension-16);
+  width: var(--post-core-dimension-16);
+  height: var(--post-core-dimension-16);
+  pointer-events: none;
+}
+
+.search-shortcut {
+  inset-inline-end: var(--post-core-dimension-16);
+  padding: 0;
+  background: none;
+  color: var(--post-core-color-sandgrey-060);
+  font-family: inherit;
+  font-size: var(--post-core-font-size-12);
+  font-weight: var(--post-device-font-weight-bold);
+  line-height: 1.5;
+  pointer-events: none;
+}
+
+.search-clear {
+  inset-inline-end: calc(var(--post-core-dimension-16) - var(--post-core-dimension-4));
+  display: flex;
+  margin: 0;
+  border: 0;
+  padding: var(--post-core-dimension-4);
+  background: none;
+  color: inherit;
+
+  @include utilities.focus-style;
+
+  post-icon {
+    width: var(--post-core-dimension-16);
+    height: var(--post-core-dimension-16);
+  }
+}
+
+.search-results {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-block-end: var(--post-core-dimension-40);
+
+  &[hidden] {
+    display: none;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.search-option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--post-core-dimension-8);
+  padding: var(--post-core-dimension-8) var(--post-core-dimension-16);
+  border-radius: 0;
+  color: inherit;
+  text-decoration: none;
+
+  @include utilities.focus-style;
+  @include utilities.focus-inset;
+
+  post-icon {
+    flex: none;
+    width: var(--post-core-dimension-16);
+    height: var(--post-core-dimension-16);
+    // centred on the first line (16px text, line height 1.5)
+    margin-block-start: var(--post-core-dimension-4);
+  }
+
+  &:hover {
+    background-color: var(--post-core-color-sandgrey-alpha-darksand-10);
+    color: inherit;
+  }
+
+  // the option chosen with the arrow keys looks like the current page in the navigation
+  &[aria-selected='true'] {
+    background-color: var(--post-core-color-sandgrey-080);
+    color: var(--post-core-color-brand-white);
+
+    .search-option-detail {
+      color: inherit;
+    }
+  }
+}
+
+.search-option-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-option-name {
+  font-size: var(--post-core-font-size-16);
+  font-weight: var(--post-device-font-weight-bold);
+  line-height: 1.5;
+}
+
+.search-option-detail {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--post-core-dimension-8);
+  color: var(--post-core-color-sandgrey-060);
+  font-size: var(--post-core-font-size-14);
+  line-height: 1.5;
+}
+
+.search-empty {
+  margin: 0;
+  padding: var(--post-core-dimension-8) var(--post-core-dimension-16);
+  font-size: var(--post-core-font-size-16);
+}
+
 /* Navigation tree */
 
 docs-nav-tree {
@@ -338,6 +515,13 @@ docs-nav-tree post-collapsible-trigger:has(> .nav-toggle) {
 .nav-row.nav-active {
   background-color: var(--post-core-color-sandgrey-080);
   color: var(--post-core-color-brand-white);
+}
+
+// the "New" tag on a dark row (current page, chosen search result)
+.nav-row[aria-current='page'] .tag,
+.search-option[aria-selected='true'] .tag {
+  border-color: currentColor;
+  color: inherit;
 }
 
 .nav-deprecated {

@@ -1,5 +1,7 @@
 import { LitElement, html, nothing } from 'lit';
 import { customElement, query, state } from 'lit/decorators.js';
+import { SIDEBAR_QUERY } from './config';
+import { SearchEntry, buildSearchIndex } from './search/search-index';
 import { Catalog } from './state/catalog';
 import { readDevMode } from './state/dev-mode';
 import {
@@ -9,12 +11,13 @@ import {
   writeGlobalsToUrl,
 } from './state/globals';
 import { Resolution, buildPreviewUrl, resolveUrl } from './state/url';
-import { PreviewBridge, SelectStoryPayload } from './storybook/bridge';
+import { KeyPress, PreviewBridge, SelectStoryPayload } from './storybook/bridge';
 import type { DocsPage } from './storybook';
 import { DocsGlobals, sameGlobals, stringifyGlobalsParam } from './storybook/docs-globals';
 import { FLAT_ROOTS, HOME_ROOT } from './sidebar/config';
 import { SidebarSection, buildSidebar } from './sidebar/tree';
 import type { DocsNavMobile } from './sidebar/docs-nav-mobile';
+import type { DocsSidebar } from './sidebar/docs-sidebar';
 import './sidebar/docs-sidebar';
 import './sidebar/docs-nav-mobile';
 import './topbar/docs-topbar';
@@ -40,8 +43,10 @@ export class DocsShell extends LitElement {
   @state() private mobileNavOpen = false;
 
   @query('docs-nav-mobile') private mobileNav?: DocsNavMobile;
+  @query('docs-sidebar') private sidebar?: DocsSidebar;
 
   private sections: SidebarSection[] = [];
+  private searchEntries: SearchEntry[] = [];
   /** Hash to scroll to once the preview has rendered the page that is being opened */
   private pendingHash: string | null = null;
 
@@ -49,6 +54,7 @@ export class DocsShell extends LitElement {
     onDocsRendered: id => this.onDocsRendered(id),
     onNavigateUrl: url => this.navigate(new URL(url, location.href)),
     onSelectStory: payload => this.onSelectStory(payload),
+    onPreviewKeydown: key => this.onShortcut(key),
   });
 
   createRenderRoot() {
@@ -59,6 +65,7 @@ export class DocsShell extends LitElement {
     super.connectedCallback();
     globalThis.addEventListener('popstate', this.onPopState);
     document.addEventListener('click', this.onDocumentClick);
+    document.addEventListener('keydown', this.onDocumentKeydown);
     this.init();
   }
 
@@ -66,11 +73,13 @@ export class DocsShell extends LitElement {
     super.disconnectedCallback();
     globalThis.removeEventListener('popstate', this.onPopState);
     document.removeEventListener('click', this.onDocumentClick);
+    document.removeEventListener('keydown', this.onDocumentKeydown);
   }
 
   protected willUpdate(changed: Map<string, unknown>) {
     if ((changed.has('catalog') || changed.has('devMode')) && this.catalog) {
       this.sections = buildSidebar(this.catalog.pages, this.devMode);
+      this.searchEntries = buildSearchIndex(this.catalog.pages, this.devMode);
     }
   }
 
@@ -83,6 +92,7 @@ export class DocsShell extends LitElement {
         class="shell-sidebar"
         .sections=${this.sections}
         .activeId=${page?.id}
+        .searchEntries=${this.searchEntries}
       ></docs-sidebar>
       <docs-topbar
         class="shell-topbar"
@@ -95,6 +105,7 @@ export class DocsShell extends LitElement {
         .activeId=${page?.id}
         location=${page ? getLocationLabel(page) : ''}
         .globals=${this.globals}
+        .searchEntries=${this.searchEntries}
         @globals-change=${this.onGlobalsChange}
         @nav-mobile-toggle=${(event: CustomEvent<boolean>) => (this.mobileNavOpen = event.detail)}
       ></docs-nav-mobile>
@@ -230,6 +241,23 @@ export class DocsShell extends LitElement {
 
     if (page) this.navigate(new URL(page.path, location.href));
   }
+
+  /**
+   * ⌘K / Ctrl+K focuses the search: in the sidebar, or in the mobile navigation, which it opens.
+   * Key presses in the preview arrive through the bridge; they return whether they were handled.
+   */
+  private onShortcut(key: KeyPress): boolean {
+    if (!(key.metaKey || key.ctrlKey) || key.altKey || key.shiftKey) return false;
+    if (key.key.toLowerCase() !== 'k') return false;
+
+    if (globalThis.matchMedia(SIDEBAR_QUERY).matches) this.sidebar?.focusSearch();
+    else this.mobileNav?.openSearch();
+    return true;
+  }
+
+  private readonly onDocumentKeydown = (event: KeyboardEvent) => {
+    if (this.onShortcut(event)) event.preventDefault();
+  };
 
   private readonly onPopState = () => {
     this.navigate(new URL(location.href), { fromHistory: true });

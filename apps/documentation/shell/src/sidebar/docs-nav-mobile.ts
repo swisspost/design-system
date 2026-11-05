@@ -1,12 +1,13 @@
 import { LitElement, html } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
+import { SIDEBAR_QUERY } from '../config';
 import { DEFAULT_GLOBALS, DocsGlobals } from '../storybook/docs-globals';
+import type { SearchEntry } from '../search/search-index';
+import type { DocsSearch } from '../search/docs-search';
 import type { SidebarSection } from './tree';
+import '../search/docs-search';
 import '../topbar/docs-globals-menus';
 import './docs-nav-tree';
-
-/** The design-system `md` breakpoint, from which the sidebar replaces this navigation */
-const SIDEBAR_QUERY = '(min-width: 780px)';
 
 /** Same fade as the burger menu of `post-header` (`animations/fade.ts`, `headerEase`) */
 const FADE: KeyframeAnimationOptions = {
@@ -18,7 +19,8 @@ const FADE: KeyframeAnimationOptions = {
 /**
  * The navigation below the `md` breakpoint, modelled on the burger menu of `post-header`:
  * a bar with the current location toggles a panel that covers the page below it, with the
- * preview settings and the navigation tree.
+ * search, the preview settings and the navigation tree. Search results take the place of the
+ * settings and the tree.
  *
  * @fires nav-mobile-toggle - The panel opens (`detail: true`) or starts closing (`detail: false`).
  */
@@ -29,6 +31,7 @@ export class DocsNavMobile extends LitElement {
   /** Where the current page is, e.g. "Components/Button" */
   @property() location = '';
   @property({ attribute: false }) globals: DocsGlobals = DEFAULT_GLOBALS;
+  @property({ attribute: false }) searchEntries: SearchEntry[] = [];
 
   @state() private expanded = false;
 
@@ -75,6 +78,7 @@ export class DocsNavMobile extends LitElement {
         ?hidden=${!this.expanded}
         @keydown=${this.onKeydown}
       >
+        <docs-search id-prefix="sheet-search" .entries=${this.searchEntries}></docs-search>
         <docs-globals-menus
           class="nav-panel-settings"
           role="group"
@@ -103,6 +107,12 @@ export class DocsNavMobile extends LitElement {
     this.fade('in');
   }
 
+  /** Opens the panel with the focus in the search field, e.g. for the ⌘K shortcut. */
+  async openSearch() {
+    await this.open();
+    this.querySelector<DocsSearch>('docs-search')?.focus();
+  }
+
   /** Closes the panel, e.g. after a navigation. Focus inside the panel goes back to the toggle. */
   async close() {
     if (!this.expanded) return;
@@ -114,6 +124,7 @@ export class DocsNavMobile extends LitElement {
     if (!finished) return; // opened again while fading out
 
     this.expanded = false;
+    this.querySelector<DocsSearch>('docs-search')?.clear();
     if (hadFocus) this.toggleButton.focus();
   }
 
