@@ -18,7 +18,7 @@ catalogs:
     'cypress-real-events': 1.15.1
     'cypress-storybook': 1.0.0
   node:
-    '@types/node': 24.0.0
+    '@types/node': 26.6.6
     'ts-node': 10.9.2
   jest:
     '@types/jest': 30.0.0
