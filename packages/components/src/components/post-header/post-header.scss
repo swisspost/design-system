@@ -47,6 +47,17 @@ header,
   }
 }
 
+// Converts --post-header-scroll-max to a px value that can be read by the component
+.scroll-max {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inline-size: var(--post-header-scroll-max, 0);
+  block-size: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .global-header {
   z-index: 2; // local header should slide bellow the global header
   position: sticky;
