@@ -53,6 +53,8 @@ export class DocsShell extends LitElement {
 
   private sections: SidebarSection[] = [];
   private searchEntries: SearchEntry[] = [];
+  /** The page the preview shows (or is rendering), which a not-found route leaves in place */
+  private shownPage?: { id: string; hash: string };
   /** Hash to scroll to once the preview has rendered the page that is being opened */
   private pendingHash: string | null = null;
   private loadingTimeout?: ReturnType<typeof setTimeout>;
@@ -164,13 +166,16 @@ export class DocsShell extends LitElement {
   /**
    * Shows the page for the given URL and updates the address bar.
    * A URL without globals keeps the current ones (on the first load: the stored ones).
+   * Back and Forward keep them too: a history entry holds the globals of the time it was created,
+   * which would undo later toolbar choices. The entry is rewritten with the current globals.
    */
   private navigate(target: URL, { replace = false, fromHistory = false } = {}) {
     if (!this.catalog) return;
 
     const { devMode, url: withoutDevMode } = readDevMode(target);
     this.devMode = devMode;
-    this.setGlobals(readGlobalsFromUrl(withoutDevMode) ?? this.globals);
+    const urlGlobals = fromHistory ? null : readGlobalsFromUrl(withoutDevMode);
+    this.setGlobals(urlGlobals ?? this.globals);
     const url = writeGlobalsToUrl(withoutDevMode, this.globals);
 
     const resolution = resolveUrl(url, this.catalog, this.globals);
@@ -179,13 +184,15 @@ export class DocsShell extends LitElement {
       return;
     }
 
-    const address =
-      resolution.type === 'page' && resolution.canonical
-        ? resolution.canonical
-        : `${url.pathname}${url.search}${url.hash}`;
-    const isCurrent = address === `${location.pathname}${location.search}${location.hash}`;
-    if (fromHistory || replace || isCurrent) history.replaceState(null, '', address);
-    else history.pushState(null, '', address);
+    // parsed, so that paths with emoji or umlauts compare in the same (encoded) form as `location`
+    const address = new URL(
+      resolution.type === 'page' && resolution.canonical ? resolution.canonical : url.href,
+      location.href,
+    );
+    const path = `${address.pathname}${address.search}${address.hash}`;
+    const isCurrent = path === `${location.pathname}${location.search}${location.hash}`;
+    if (fromHistory || replace || isCurrent) history.replaceState(null, '', path);
+    else history.pushState(null, '', path);
 
     const previous = this.route;
     this.route = resolution;
@@ -201,12 +208,15 @@ export class DocsShell extends LitElement {
 
     const previewPage: PreviewPage = {
       id: page.id,
-      url: `${location.origin}${page.path}`,
-      params: getPageParams(new URL(address, location.href).searchParams),
+      url: new URL(page.path, location.origin).href,
+      params: getPageParams(address.searchParams),
     };
-    const previousPage = previous?.type === 'page' ? previous : undefined;
-    const samePage = previousPage?.page.id === page.id;
-    if (!samePage) trackPage();
+    if (previous?.type !== 'page' || previous.page.id !== page.id) trackPage();
+
+    // compared with the page in the preview, not the previous route: after a not-found route the
+    // preview still shows its page, and asking Storybook for it again would never report it rendered
+    const shown = this.shownPage;
+    this.shownPage = { id: page.id, hash };
 
     if (!this.previewSrc) {
       this.pendingHash = hash;
@@ -221,9 +231,9 @@ export class DocsShell extends LitElement {
           ...previewPage.params,
         }),
       );
-    } else if (samePage) {
+    } else if (shown?.id === page.id) {
       this.bridge.updatePage(previewPage);
-      if (hash !== previousPage?.hash || !fromHistory) this.bridge.scrollToHash(hash);
+      if (hash !== shown.hash || !fromHistory) this.bridge.scrollToHash(hash);
     } else {
       this.pendingHash = hash;
       this.setPreviewLoading('page');

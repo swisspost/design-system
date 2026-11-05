@@ -48,12 +48,15 @@ jobs:
       - name: Cypress info
         run: pnpm --filter design-system-documentation exec cypress info
 
-      - name: Run tests
-        run: pnpm e2e:ci
-
-      # The shell specs need the built documentation (shell and preview on one origin), built above
+      # The shell specs need the built documentation (shell and preview on one origin), built above.
+      # They run first: `pnpm e2e:ci` starts `docs:headless`, which deletes `storybook-static`.
       - name: Run documentation shell tests
+        id: shell-tests
         run: pnpm docs:e2e:shell:ci
+
+      - name: Run tests
+        if: ${{ success() || steps.shell-tests.outcome == 'failure' }}
+        run: pnpm e2e:ci
 
       - name: Upload screenshots
         uses: actions/upload-artifact@6027e3dd177782cd8ab9af838c04fd81a07f1d47

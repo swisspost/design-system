@@ -1,4 +1,5 @@
 import type { Args, Decorator } from '@storybook/web-components-vite';
+import { html } from 'lit';
 import { addons, useArgs } from 'storybook/preview-api';
 import { NAVIGATE_URL } from 'storybook/internal/core-events';
 import {
@@ -9,7 +10,7 @@ import {
 } from '../../shell/src/storybook/shell-events';
 import {
   DocsGlobals,
-  getGlobalsQueryParams,
+  GLOBAL_NAMES,
   getStylesheetHref,
   normalizeGlobals,
   parseGlobalsParam,
@@ -63,6 +64,9 @@ const PREVIEW_PARAMS = ['id', 'viewMode', 'globals'];
 const STYLESHEET_ID = 'post-styles';
 
 const PALETTE_CLASSES = ['palette-default', 'palette-alternate', 'palette-accent', 'palette-brand'];
+
+/** The elements of a docs canvas that get the scheme and palette */
+const CANVAS_SELECTOR = '.sbdocs-preview, .docs-story';
 
 const isBrowser = globalThis.window !== undefined;
 const isFramed = isBrowser && globalThis.parent !== globalThis.window;
@@ -119,6 +123,10 @@ export function subscribeDocsGlobals(listener: GlobalsListener): () => void {
 /**
  * Applies a story's own `globals` (e.g. `globals: { appearance: 'compact' }`) in story views.
  * In docs pages they are ignored: the stylesheet is shared by all stories of the page.
+ *
+ * It also puts every story (with its own decorators) into a template: some stories return a lit
+ * directive (e.g. `repeat()` in the number input stories), which Storybook's web-components renderer
+ * only accepts inside a template. "Show code" excludes decorators, so the code shown is unchanged.
  */
 export const withShellGlobals: Decorator = (story, context) => {
   if (context.viewMode === 'story') {
@@ -127,7 +135,7 @@ export const withShellGlobals: Decorator = (story, context) => {
     if (!sameGlobals(before, getAppliedGlobals())) applyGlobals();
   }
 
-  return story();
+  return html`${story()}`;
 };
 
 /**
@@ -173,7 +181,8 @@ export function openFullScreenDemo(event: Event) {
 
 /**
  * "Copy deep link": copies the shell URL of the page that opens it with the story's current args and
- * the current globals (theme, appearance, color scheme, palette).
+ * the current globals (theme, appearance, color scheme, palette). All globals are written, defaults
+ * included: a URL without them keeps the recipient's own.
  */
 export function copyDeepLink(event: Event) {
   const button = (event.target as Element).closest('button');
@@ -183,9 +192,7 @@ export function copyDeepLink(event: Event) {
   const params = new URLSearchParams({ story: story.id.split('--').at(-1) ?? story.id });
   const argsParam = stringifyArgsParam(story.args, story.initialArgs);
   if (argsParam) params.set('args', argsParam);
-  Object.entries(getGlobalsQueryParams(userGlobals)).forEach(([name, value]) =>
-    params.set(name, value),
-  );
+  GLOBAL_NAMES.forEach(name => params.set(name, userGlobals[name]));
 
   const pageUrl = shellPageUrl ?? `${location.origin}/docs/${getPreviewParam('id') ?? ''}`;
   navigator.clipboard.writeText(`${pageUrl}${toQuery(params)}#story--${story.id}`);
@@ -252,7 +259,9 @@ function onShellPage({ url, params }: ShellPagePayload) {
     const value = current.get(name);
     if (value !== null) next.set(name, value);
   });
-  Object.entries(params).forEach(([name, value]) => next.set(name, value));
+  Object.entries(params).forEach(([name, value]) => {
+    if (!PREVIEW_PARAMS.includes(name)) next.set(name, value);
+  });
 
   if (sortedQuery(next) === sortedQuery(current)) return;
   history.replaceState(history.state, '', `${location.pathname}${toQuery(next)}${location.hash}`);
@@ -398,9 +407,13 @@ function applyToCanvases() {
 /**
  * Canvases are rendered after the docs page (and again when content tabs switch), so they are
  * picked up as they appear. The observer runs before the next paint, so they never show unstyled.
+ * Class changes count only on the canvas elements, whose classes React may reset; the stories inside
+ * them change classes all the time.
  */
 function observeCanvases() {
-  const observer = new MutationObserver(applyToCanvases);
+  const observer = new MutationObserver(mutations => {
+    if (mutations.some(isCanvasMutation)) applyToCanvases();
+  });
 
   observer.observe(document.body, {
     childList: true,
@@ -408,6 +421,16 @@ function observeCanvases() {
     attributes: true,
     attributeFilter: ['class'],
   });
+}
+
+function isCanvasMutation(mutation: MutationRecord): boolean {
+  if (mutation.type === 'attributes') return (mutation.target as Element).matches(CANVAS_SELECTOR);
+
+  return [...mutation.addedNodes].some(
+    node =>
+      node instanceof Element &&
+      (node.matches(CANVAS_SELECTOR) || node.querySelector(CANVAS_SELECTOR) !== null),
+  );
 }
 
 function setPalette(element: HTMLElement, palette: string | null) {
@@ -433,20 +456,50 @@ function onLinkClick(event: MouseEvent) {
 
   const href = anchor.getAttribute('href') ?? '';
 
-  // heading links (e.g. the table of contents and the autolink icons)
   if (href.startsWith('#')) {
+    // without the shell, `<base target="_parent">` would load the preview URL into the shell window
     event.preventDefault();
+    if (!isDocsView || isInStory(event)) {
+      followStoryHashLink(anchor, href);
+      return;
+    }
+
+    // heading links (e.g. the table of contents and the autolink icons)
     scrollToHash(href);
     addons.getChannel().emit(NAVIGATE_URL, href);
     return;
   }
 
-  // docs links in the old manager format, e.g. `/?path=/docs/<id>--docs#heading`
+  // docs links in the old manager format: `/?path=/docs/<id>--docs#heading`, or relative
+  // (`?path=/docs/<id>--docs`), which resolves to the preview's own path (`/iframe.html?path=…`)
   const url = new URL(anchor.href);
-  if (url.origin === location.origin && url.pathname === '/' && url.searchParams.has('path')) {
+  if (
+    url.origin === location.origin &&
+    (url.pathname === '/' || url.pathname === location.pathname) &&
+    url.searchParams.has('path')
+  ) {
     event.preventDefault();
     addons.getChannel().emit(NAVIGATE_URL, `/${url.search}${url.hash}`);
   }
+}
+
+function isInStory(event: Event): boolean {
+  return event
+    .composedPath()
+    .some(el => el instanceof Element && el.matches('.docs-story, [id^="story--"]'));
+}
+
+/**
+ * A fragment link inside a story is part of the demo (e.g. skiplinks): it scrolls to and focuses its
+ * target, as the browser would, without changing the page in the shell. Placeholders (`#`) do nothing.
+ */
+function followStoryHashLink(anchor: HTMLAnchorElement, href: string) {
+  const id = decodeURIComponent(href.slice(1));
+  const target = id ? (anchor.getRootNode() as Document | ShadowRoot).getElementById(id) : null;
+  if (!target) return;
+
+  target.scrollIntoView();
+  target.focus({ preventScroll: true });
 }
 
 function scrollToHash(hash: string) {

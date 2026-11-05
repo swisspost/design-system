@@ -29,6 +29,16 @@ describe('shell deep links', () => {
       .should('contain', 'spds-iconset=uilight');
   });
 
+  it("does not forward the preview's own params", () => {
+    cy.visit('/components/button?viewMode=story&id=other');
+    getPreviewBody('Button');
+    cy.get<HTMLIFrameElement>('#storybook-preview-iframe')
+      .its('0.contentWindow.location.search')
+      .should('contain', `id=${BUTTON_DOCS_ID}`)
+      .and('contain', 'viewMode=docs')
+      .and('not.contain', 'other');
+  });
+
   it('opens the full screen demo with the current globals and args', () => {
     cy.visit('/components/button?scheme=dark');
     getPreviewBody('Button').then(body => {
@@ -51,7 +61,7 @@ describe('shell deep links', () => {
     getPreviewBody('Button').find('button').contains('Copy deep link').click();
     cy.get('@copy').should(
       'have.been.calledWith',
-      `http://localhost:9000/components/button?story=default&args=text:Copied&theme=cargo&scheme=dark#story--${BUTTON_STORY_ID}`,
+      `http://localhost:9000/components/button?story=default&args=text:Copied&theme=cargo&appearance=default&scheme=dark&palette=default#story--${BUTTON_STORY_ID}`,
     );
   });
 });

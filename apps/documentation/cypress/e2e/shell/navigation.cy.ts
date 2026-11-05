@@ -1,6 +1,7 @@
 import {
   BUTTON_DOCS_ID,
   BUTTON_STORY_ID,
+  clickLink,
   expectSameWindow,
   getPreviewBody,
   markWindow,
@@ -72,6 +73,32 @@ describe('shell navigation', () => {
   it('shows a message for unknown pages', () => {
     cy.visit('/components/does-not-exist');
     cy.get('.shell-message h1').should('have.text', 'Page not found');
+  });
+
+  it('shows the page again when going back from an unknown page', () => {
+    cy.visit('/components/button');
+    waitForPreview();
+    clickLink('/components/does-not-exist');
+    cy.get('.shell-message h1').should('have.text', 'Page not found');
+
+    cy.go('back');
+    cy.location('pathname').should('equal', '/components/button');
+    // the preview already shows the page: no loading cover until the 10 s timeout
+    cy.get('docs-preview', { timeout: 3000 }).should('be.visible').and('not.have.attr', 'loading');
+  });
+
+  it('opens pages with emoji in their path', () => {
+    // encoded, as a browser sends it
+    const path = encodeURI(
+      '/accessibility-practices/foundational-structure-and-semantics/reference-crossing-the-shadowdom/🔀cross-shadow-dom-attibute-referencing-table',
+    );
+    cy.visit(`${path}?devModeEnabled=true`);
+    cy.get('.shell-message').should('not.exist');
+    cy.get('docs-sidebar [aria-current="page"]').should(
+      'contain.text',
+      'Attibute Referencing Table',
+    );
+    getPreviewBody('Attribute Referencing Table');
   });
 
   it('switches dev mode with the old query param and remembers it', () => {

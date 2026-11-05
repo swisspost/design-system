@@ -1,4 +1,4 @@
-import { getPreviewBody, stubAnalytics } from './preview';
+import { clickLink, getPreviewBody, stubAnalytics, waitForPreview } from './preview';
 
 describe('shell toolbar', () => {
   beforeEach(() => {
@@ -39,5 +39,28 @@ describe('shell toolbar', () => {
     cy.get('docs-sidebar a[href="/components/badge"]').click();
     cy.location('pathname').should('equal', '/components/badge');
     cy.location('search').should('equal', '?scheme=dark');
+  });
+
+  it('keeps a toolbar choice when going back', () => {
+    cy.visit('/components/button?scheme=dark');
+    waitForPreview();
+    clickLink('/components/badge');
+    waitForPreview();
+
+    cy.get('docs-topbar .toolbar-trigger').contains('Color Scheme').click();
+    cy.get('docs-topbar post-menu-item').contains('Light').click();
+    cy.location('search').should('equal', '');
+
+    cy.go('back');
+    cy.location('pathname').should('equal', '/components/button');
+    cy.location('search').should('equal', '');
+    cy.window()
+      .its('localStorage')
+      .invoke('getItem', 'spds-docs:globals')
+      .should('contain', '"scheme":"light"');
+    getPreviewBody('Button')
+      .find('.sbdocs-preview')
+      .first()
+      .should('have.attr', 'data-color-scheme', 'light');
   });
 });

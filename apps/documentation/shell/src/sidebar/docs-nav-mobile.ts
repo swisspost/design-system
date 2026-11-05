@@ -33,7 +33,10 @@ export class DocsNavMobile extends LitElement {
   @property({ attribute: false }) globals: DocsGlobals = DEFAULT_GLOBALS;
   @property({ attribute: false }) searchEntries: SearchEntry[] = [];
 
+  /** The panel is shown: open, or fading out */
   @state() private expanded = false;
+  /** The panel is fading out; it can be opened again meanwhile */
+  @state() private closing = false;
 
   @query('.nav-mobile-bar') private toggleButton!: HTMLButtonElement;
   @query('.nav-panel') private panel!: HTMLElement;
@@ -56,16 +59,18 @@ export class DocsNavMobile extends LitElement {
   }
 
   render() {
+    const open = this.expanded && !this.closing;
+
     return html`
       <button
         type="button"
         class="nav-mobile-bar"
-        aria-expanded=${String(this.expanded)}
+        aria-expanded=${String(open)}
         aria-controls="nav-mobile-panel"
         @click=${this.toggle}
         @keydown=${this.onKeydown}
       >
-        <post-icon name=${this.expanded ? 'closex' : 'burger'} aria-hidden="true"></post-icon>
+        <post-icon name=${open ? 'closex' : 'burger'} aria-hidden="true"></post-icon>
         <span class="nav-mobile-location">
           <span class="visually-hidden">Navigation, current page: </span>${this.location}
         </span>
@@ -98,13 +103,15 @@ export class DocsNavMobile extends LitElement {
   }
 
   async open() {
-    if (this.expanded) return;
+    if (this.expanded && !this.closing) return;
 
+    const reopening = this.closing;
+    this.closing = false;
     this.expanded = true;
     this.emitToggle(true);
     await this.updateComplete;
-    this.querySelector('docs-nav-tree')?.revealActive();
-    this.fade('in');
+    if (!reopening) this.querySelector('docs-nav-tree')?.revealActive();
+    this.fade('in'); // replaces the fade-out, so `close` stops there
   }
 
   /** Opens the panel with the focus in the search field, e.g. for the ⌘K shortcut. */
@@ -115,21 +122,24 @@ export class DocsNavMobile extends LitElement {
 
   /** Closes the panel, e.g. after a navigation. Focus inside the panel goes back to the toggle. */
   async close() {
-    if (!this.expanded) return;
+    if (!this.expanded || this.closing) return;
 
-    const hadFocus = this.panel.contains(document.activeElement);
+    this.closing = true;
     this.emitToggle(false);
 
     const finished = await this.fade('out');
-    if (!finished) return; // opened again while fading out
+    if (!finished || !this.closing) return; // opened again while fading out
 
+    // read now: the focus may have moved into the panel while it faded out (e.g. ⌘K)
+    const hadFocus = this.panel.contains(document.activeElement);
+    this.closing = false;
     this.expanded = false;
     this.querySelector<DocsSearch>('docs-search')?.clear();
     if (hadFocus) this.toggleButton.focus();
   }
 
   private toggle() {
-    if (this.expanded) this.close();
+    if (this.expanded && !this.closing) this.close();
     else this.open();
   }
 
@@ -156,7 +166,7 @@ export class DocsNavMobile extends LitElement {
   }
 
   private onKeydown(event: KeyboardEvent) {
-    if (event.key !== 'Escape' || !this.expanded) return;
+    if (event.key !== 'Escape' || !this.expanded || this.closing) return;
 
     event.preventDefault();
     this.close();

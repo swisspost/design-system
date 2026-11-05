@@ -1,7 +1,7 @@
 import type { DocsPage } from '../storybook';
 import { PREVIEW_ORIGIN } from '../config';
 import { DocsGlobals, GLOBAL_NAMES, stringifyGlobalsParam } from '../storybook/docs-globals';
-import type { Catalog } from './catalog';
+import { type Catalog, decodePath } from './catalog';
 
 export type Resolution =
   /** Show a docs page. `canonical` is set when the URL must be rewritten (old or alias URL). */
@@ -13,6 +13,9 @@ export type Resolution =
 /** Query params of the old manager URLs that are consumed by the URL compat layer. */
 const MANAGER_PARAMS = ['path', 'full', 'nav', 'panel', 'addons', 'shortcuts', 'singleStory'];
 
+/** Query params of the preview URL that say which entry it renders; a page must not change them. */
+const PREVIEW_PARAMS = ['id', 'viewMode'];
+
 /** Query params that are forwarded to the bare preview when an old story URL is opened. */
 const STORY_PARAMS = ['args'];
 
@@ -22,6 +25,7 @@ const SHELL_PARAMS = new Set<string>([
   'globals',
   'devModeEnabled',
   ...MANAGER_PARAMS,
+  ...PREVIEW_PARAMS,
 ]);
 
 /**
@@ -44,7 +48,7 @@ export function resolveUrl(url: URL, catalog: Catalog, globals: DocsGlobals): Re
   const page = url.pathname === '/' ? catalog.home : catalog.getByPath(url.pathname);
   if (!page) return { type: 'not-found' };
 
-  return pageResolution(page, url, page.path !== url.pathname);
+  return pageResolution(page, url, page.path !== decodePath(url.pathname));
 }
 
 /**
@@ -87,7 +91,7 @@ function pageResolution(page: DocsPage, url: URL, rewrite: boolean): Resolution 
   MANAGER_PARAMS.forEach(param => search.delete(param));
 
   const canonical = buildPageUrl(page, search, url.hash);
-  const current = `${url.pathname}${url.search}${url.hash}`;
+  const current = `${decodePath(url.pathname)}${url.search}${url.hash}`;
 
   return {
     type: 'page',

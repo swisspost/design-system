@@ -53,7 +53,6 @@ body {
   gap: var(--post-core-dimension-32);
   background-color: var(--post-scheme-color-surface-brand-bg);
   color: var(--post-scheme-color-surface-brand-fg);
-  box-shadow: var(--post-device-elevation-400);
 
   @include media.min(md) {
     padding-inline: var(--post-core-dimension-16);

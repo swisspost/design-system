@@ -55,3 +55,16 @@ export function markWindow() {
 export function expectSameWindow() {
   cy.window().its('__shellMarker').should('equal', true);
 }
+
+/**
+ * Clicks a link to `href` in the shell, as a link on the page would (e.g. to open an unknown page).
+ */
+export function clickLink(href: string) {
+  cy.document().then(doc => {
+    const link = doc.createElement('a');
+    link.href = href;
+    doc.body.append(link);
+    link.click();
+    link.remove();
+  });
+}

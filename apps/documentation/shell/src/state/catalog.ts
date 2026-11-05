@@ -37,8 +37,13 @@ export class Catalog {
     return this.byId.get(id) ?? (title ? this.byTitle.get(title) : undefined);
   }
 
+  /**
+   * Finds a docs page by its path, as written (`/foundations/🔀-table`) or as in `URL.pathname`
+   * (`/foundations/%F0%9F%94%80-table`).
+   */
   getByPath(path: string): DocsPage | undefined {
-    const normalized = path.length > 1 ? path.replace(/\/+$/, '').toLowerCase() : path;
+    const decoded = decodePath(path);
+    const normalized = decoded.length > 1 ? decoded.replace(/\/+$/, '').toLowerCase() : decoded;
     return this.byPath.get(normalized);
   }
 
@@ -49,5 +54,16 @@ export class Catalog {
   /** Whether the id is a story (not a docs page) in the index. */
   isStory(id: string): boolean {
     return this.storyTitles.has(id) && !this.byId.has(id);
+  }
+}
+
+/**
+ * Decodes the percent-encoded characters of a URL path, e.g. emoji and umlauts in page titles.
+ */
+export function decodePath(path: string): string {
+  try {
+    return decodeURIComponent(path);
+  } catch {
+    return path;
   }
 }
