@@ -52,6 +52,61 @@ describe('tabs', () => {
     });
   });
 
+  describe('scroll buttons', () => {
+    beforeEach(() => {
+      // The tabs overflow by less than the container width, so a single scroll reaches the end
+      cy.viewport(320, 576);
+      cy.getComponent('tabs', TABS_ID);
+      cy.get('@tabs').shadow().find('.tabs').as('container');
+      cy.get('@tabs').shadow().find('.scroll-btn-right').as('rightButton');
+      cy.get('post-tab-item').last().as('lastItem');
+    });
+
+    it('should scroll to the end, hide the right scroll button and fully show the last tab item', () => {
+      cy.get('@rightButton').should('be.visible').click();
+
+      cy.get('@rightButton').should('not.be.visible');
+      cy.get('@container').then($container => {
+        const container = $container[0];
+
+        expect(container.scrollLeft + container.clientWidth).to.be.at.least(
+          container.scrollWidth - 1,
+        );
+
+        cy.get('@lastItem').should($lastItem => {
+          expect($lastItem[0].getBoundingClientRect().right).to.be.at.most(
+            container.getBoundingClientRect().right + 1,
+          );
+        });
+      });
+    });
+  });
+
+  describe('scroll buttons in the Page Tabs variant', () => {
+    beforeEach(() => {
+      cy.viewport(320, 576);
+      cy.getComponent('tabs', TABS_ID, 'pages-variant');
+      cy.get('@tabs').shadow().find('.tabs').as('container');
+      cy.get('@tabs').shadow().find('.scroll-btn-right').as('rightButton');
+    });
+
+    it('should keep the scroll position when the tabs get narrower after scrolling to the end', () => {
+      cy.get('@rightButton').should('be.visible').click();
+      cy.get('@rightButton').should('not.be.visible');
+
+      cy.get('@container').then($container => {
+        const scrollLeft = $container[0].scrollLeft;
+
+        cy.viewport(300, 576);
+        // a smooth scroll back to the end would take a moment: wait before checking that the position didn't change
+        cy.wait(500);
+
+        cy.get('@container').its('0.scrollLeft').should('equal', scrollLeft);
+        cy.get('@rightButton').should('be.visible');
+      });
+    });
+  });
+
   describe('active tab', () => {
     beforeEach(() => {
       cy.getComponent('tabs', TABS_ID, 'active-tab');
