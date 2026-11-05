@@ -54,7 +54,7 @@
     "@types/eslint-scope": "3.7.7",
     "@types/jest": "catalog:jest",
     "@typescript-eslint/rule-tester": "8.62.0",
-    "concurrently": "10.0.3",
+    "concurrently": "10.0.6",
     "domhandler": "5.0.3",
     "eslint": "catalog:",
     "jest": "catalog:jest",
