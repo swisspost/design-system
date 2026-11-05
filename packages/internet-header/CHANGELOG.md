@@ -1,5 +1,16 @@
 # @swisspost/internet-header
 
+## 10.9.0
+
+### Patch Changes
+
+- Fixed `post-footer` sticking to the bottom of the viewport on short pages instead of leaving an empty space below it. (by [@AndrinAAF](https://github.com/AndrinAAF), [@alionazherdetska](https://github.com/alionazherdetska) and [@Copilot](https://github.com/Copilot) with [#8551](https://github.com/swisspost/design-system/pull/8551))
+
+- Fixed the `swisspost-internet-footer` rendering empty link lists when the config contains no links for a section. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8687](https://github.com/swisspost/design-system/pull/8687))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.9.0
+  - @swisspost/design-system-components@10.9.0
+
 ## 10.8.0
 
 ### Patch Changes

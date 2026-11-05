@@ -1,5 +1,26 @@
 # @swisspost/design-system-documentation
 
+## 6.7.1
+
+### Patch Changes
+
+- Added an Accessibility tab to the Footer, Side Navigation and Toast documentation pages. (by [@alionazherdetska](https://github.com/alionazherdetska) and [@Copilot](https://github.com/Copilot) with [#8770](https://github.com/swisspost/design-system/pull/8770))
+
+- Redesigned the migration guide and added accordions for each section to make it easier to navigate. (by [@leagrdv](https://github.com/leagrdv) with [#8703](https://github.com/swisspost/design-system/pull/8703))
+
+- Fixed an example in the header documentation showing a wrong code snippet for the user menu. (by [@leagrdv](https://github.com/leagrdv) with [#8722](https://github.com/swisspost/design-system/pull/8722))
+
+- Put back the missing figma links on each component. (by [@leagrdv](https://github.com/leagrdv) with [#8723](https://github.com/swisspost/design-system/pull/8723))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.9.0
+  - @swisspost/design-system-styles@10.9.0
+  - @swisspost/design-system-components@10.9.0
+  - @swisspost/internet-header@10.9.0
+  - @swisspost/design-system-components-react@10.9.0
+  - @swisspost/design-system-styles-primeng@10.9.0
+  - @swisspost/design-system-theme-ag-grid@10.9.0
+  - @swisspost/design-system-tokens@10.9.0
+
 ## 6.7.0
 
 ### Minor Changes
