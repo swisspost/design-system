@@ -182,9 +182,14 @@ describe('header', () => {
       });
 
       it('should show the login link', () => {
-        cy.get('post-klp-login-widget[slot="post-login"] a[slot="login-link"]').should(
-          'be.visible',
-        );
+        cy.get('post-klp-login-widget[slot="post-login"]')
+          .shadow()
+          .find('.login-link')
+          .should('have.attr', 'href', postLoginConfig.loginLink.url);
+        // Cypress takes the slotted text for an element covering the link, so it checks the text.
+        cy.get('post-klp-login-widget[slot="post-login"] [slot="text-login"]')
+          .should('be.visible')
+          .and('have.text', postLoginConfig.loginLink.text);
       });
 
       it('should not show the user menu', () => {
@@ -202,8 +207,10 @@ describe('header', () => {
       });
 
       it('should not show the login link', () => {
-        // the widget stops rendering the login-link slot, so the anchor is never assigned to it
-        cy.get('[slot="post-login"] a[slot="login-link"]').should('not.be.visible');
+        cy.get('post-klp-login-widget[slot="post-login"]')
+          .shadow()
+          .find('.login-link')
+          .should('not.exist');
       });
 
       it('should show the user menu trigger with an avatar', () => {
@@ -213,25 +220,32 @@ describe('header', () => {
           .should('be.visible');
       });
 
-      it('should show the user menu with the correct user links', () => {
-        // accountSwitch/companySwitch depend on the mocked user's permissions
-        // (auth.json) — only userProfile, settings, userLinks, and logoutLink
-        // are counted here.
-        const expectedCount =
-          (postLoginConfig.userProfile ? 1 : 0) +
-          (postLoginConfig.settings ? 1 : 0) +
-          (postLoginConfig.userLinks?.length ?? 0) +
-          (postLoginConfig.logoutLink ? 1 : 0);
+      it('should show the user menu with the configured targets and texts', () => {
+        // The switches depend on the mocked user's permissions (auth.json), so they are left out.
+        const messages = postLoginConfig.userLinks.find(link => link.icon === 'letter');
+        const entries = {
+          'text-my-profile': postLoginConfig.userProfile,
+          'text-messages': messages,
+          'text-settings': postLoginConfig.settings,
+          'text-logout': postLoginConfig.logoutLink,
+        };
 
         cy.get('post-klp-login-widget[slot="post-login"]')
           .shadow()
           .find('post-menu-trigger button')
           .click();
-        // Every entry is slotted unconditionally, so the ones the session may not see stay in the
-        // dom unassigned and simply never render.
-        cy.get('post-klp-login-widget[slot="post-login"] post-menu-item')
-          .filter(':visible')
-          .should('have.length', expectedCount);
+        Object.entries(entries).forEach(([slot, entry]) => {
+          cy.get('post-klp-login-widget[slot="post-login"]')
+            .shadow()
+            .find(`post-menu-item a[href="${entry.url}"]`)
+            .should('be.visible')
+            .find(`slot[name="${slot}"]`)
+            .should('exist');
+          cy.get(`post-klp-login-widget[slot="post-login"] [slot="${slot}"]`).should(
+            'have.text',
+            entry.text,
+          );
+        });
       });
     });
   });

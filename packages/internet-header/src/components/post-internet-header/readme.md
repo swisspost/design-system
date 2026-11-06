@@ -34,7 +34,6 @@
 
 ### Depends on
 
-- post-menu-item
 - post-klp-login-widget
 - post-header
 - post-logo
@@ -45,16 +44,16 @@
 ### Graph
 ```mermaid
 graph TD;
-  swisspost-internet-header --> post-menu-item
   swisspost-internet-header --> post-klp-login-widget
   swisspost-internet-header --> post-header
   swisspost-internet-header --> post-logo
   swisspost-internet-header --> post-language-menu
   swisspost-internet-header --> post-language-menu-item
   swisspost-internet-header --> post-mainnavigation
+  post-klp-login-widget --> post-menu-item
+  post-klp-login-widget --> post-icon
   post-klp-login-widget --> post-menu-trigger
   post-klp-login-widget --> post-avatar
-  post-klp-login-widget --> post-icon
   post-klp-login-widget --> post-menu
   post-menu --> post-popovercontainer
   post-header --> post-togglebutton

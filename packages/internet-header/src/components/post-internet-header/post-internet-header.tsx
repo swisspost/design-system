@@ -191,14 +191,6 @@ export class PostInternetHeader {
     state.activeLink = getActiveLink(this.activeRoute);
   }
 
-  private getUserMenuOptions(postLogin: PostLoginConfig): Array<IconLinkConfig> {
-    return [
-      ...(postLogin.userProfile ? [postLogin.userProfile] : []),
-      ...(postLogin.settings ? [postLogin.settings] : []),
-      ...(postLogin.userLinks ?? []),
-    ];
-  }
-
   /**
    * Get the language switch URL for a given language code.
    * Alternate links from <head> take priority over config-provided URLs.
@@ -207,46 +199,50 @@ export class PostInternetHeader {
     return state.alternateLinks.get(code.toLowerCase()) ?? configUrl;
   }
 
-  private renderMenuItem(config: IconLinkConfig, slot: string) {
-    return (
-      <post-menu-item slot={slot} key={`${slot}-${config.url}`}>
-        <Link config={config} />
-      </post-menu-item>
-    );
-  }
-
   private renderLoginWidget(postLogin: PostLoginConfig) {
-    // Everything is slotted unconditionally: the widget owns the session and decides which of
-    // these entries it may show.
+    // The widget renders every entry itself; the config only overrides targets and texts.
+    const userLinks = postLogin.userLinks ?? [];
+    const byIcon = (...icons: string[]) => userLinks.find(link => icons.includes(link.icon));
+    const myProfile = postLogin.userProfile ?? byIcon('profile');
+    const settings = postLogin.settings ?? byIcon('gear', 'preferences');
+    const messages = byIcon('letter');
+    const text = (slot: string, config?: IconLinkConfig) =>
+      config?.text && (
+        <span slot={slot} key={slot}>
+          {config.text}
+        </span>
+      );
+
     return (
       <post-klp-login-widget
         slot="post-login"
         environment={this.environment}
+        service={this.project}
+        language={state.currentLanguage ?? undefined}
+        urlLogin={postLogin.loginLink?.url}
+        urlAccountSwitch={
+          postLogin.accountSwitch && changeContextTargetURL(postLogin.accountSwitch.url)
+        }
+        urlCompanySwitch={
+          postLogin.companySwitch && changeContextTargetURL(postLogin.companySwitch.url)
+        }
+        urlMyProfile={myProfile?.url}
+        urlMessages={messages?.url}
+        urlSettings={settings?.url}
+        urlLogout={postLogin.logoutLink?.url}
         textCurrentUser={this.textCurrentUser}
         textUserLinks={this.textUserLinks}
-        textAccessUserLinks={this.textAccessUserLinks}
       >
-        <Link slot="login-link" config={postLogin.loginLink} />
-        {postLogin.accountSwitch &&
-          this.renderMenuItem(
-            {
-              ...postLogin.accountSwitch,
-              url: changeContextTargetURL(postLogin.accountSwitch.url),
-            },
-            'account-switch',
-          )}
-        {postLogin.companySwitch &&
-          this.renderMenuItem(
-            {
-              ...postLogin.companySwitch,
-              url: changeContextTargetURL(postLogin.companySwitch.url),
-            },
-            'company-switch',
-          )}
-        {this.getUserMenuOptions(postLogin).map(option =>
-          this.renderMenuItem(option, 'menu-links'),
-        )}
-        {postLogin.logoutLink && this.renderMenuItem(postLogin.logoutLink, 'logout-link')}
+        <span slot="text-access-user-links" key="text-access-user-links">
+          {this.textAccessUserLinks}
+        </span>
+        {text('text-login', postLogin.loginLink)}
+        {text('text-account-switch', postLogin.accountSwitch)}
+        {text('text-company-switch', postLogin.companySwitch)}
+        {text('text-my-profile', myProfile)}
+        {text('text-messages', messages)}
+        {text('text-settings', settings)}
+        {text('text-logout', postLogin.logoutLink)}
       </post-klp-login-widget>
     );
   }
