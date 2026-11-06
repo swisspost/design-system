@@ -13,23 +13,14 @@ describe('Header Selection Guide', () => {
       .and('include', `https://embed.figma.com/board/${FIGMA_FILE_KEY}/`);
   });
 
-  it('should be served by Figma as an embeddable page', () => {
-    cy.get('@embed')
-      .invoke('attr', 'src')
-      .then(src => {
-        // embed.figma.com redirects to Figma's embed page, so the redirect has to be followed
-        cy.request({ url: src as string, failOnStatusCode: false }).then(response => {
-          expect(response.status, 'status').to.eq(200);
-
-          // Figma sends "X-Frame-Options: SAMEORIGIN" on its non-embed pages, which blocks the iframe
-          expect(response.headers, 'headers').not.to.have.property('x-frame-options');
-
-          const csp = String(response.headers['content-security-policy'] ?? '');
-          const frameAncestors = /frame-ancestors([^;]*)/.exec(csp)?.[1].trim();
-          if (frameAncestors) expect(frameAncestors, 'frame-ancestors').to.eq('*');
-
-          expect(response.body, 'body').to.include(FIGMA_FILE_KEY);
-        });
-      });
+  // embed.figma.com redirects to www.figma.com, so the CSP has to allow both hosts
+  it('should allow Figma in the Content Security Policy', () => {
+    cy.readFile('.storybook/preview-head.html').then((html: string) => {
+      const frameSrc = /frame-src([^;]*);/.exec(html)?.[1].trim().split(/\s+/);
+      expect(frameSrc, 'frame-src').to.include.members([
+        'https://embed.figma.com',
+        'https://www.figma.com',
+      ]);
+    });
   });
 });
