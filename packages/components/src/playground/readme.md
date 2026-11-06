@@ -38,16 +38,16 @@ check.
 ## `klp-real.html`
 
 Runs the login widget against the real KLP platform, without the mock, at
-`/playground/klp-real.html`. `klp-real.js` sets the environment, the initial state and the
-platform routes on every slot before the widget upgrades.
+`/playground/klp-real.html`. `klp-real.js` sets the environment, the language, the initial state
+and the service before the widget upgrades; every entry uses the widget's default target.
 
-| Query parameter  | Effect                                                                  |
-| ---------------- | ----------------------------------------------------------------------- |
-| `?env=`          | The widget's `environment`. Default `int02`.                            |
-| `?lang=`         | Language of the platform pages. Default `de`.                           |
-| `?initialState=` | `anonymous` or `authenticated`, passed on as `initial-state`.           |
-| `?app=`          | The KLP app the login link goes through. Default `kvm`, empty for none. |
-| `?widgets=2`     | Renders a second widget below the header.                               |
+| Query parameter  | Effect                                                        |
+| ---------------- | ------------------------------------------------------------- |
+| `?env=`          | The widget's `environment`. Default `int02`.                  |
+| `?lang=`         | The widget's `lang`. Default `de`.                            |
+| `?initialState=` | `anonymous` or `authenticated`, passed on as `initial-state`. |
+| `?service=`      | The widget's `service`. Default `kvm`.                        |
+| `?widgets=2`     | Renders a second widget below the header.                     |
 
 The platform only answers pages served over `https://` from a `*.post.ch` host on port 443, so
 `localhost:9200` does not work. To test locally:

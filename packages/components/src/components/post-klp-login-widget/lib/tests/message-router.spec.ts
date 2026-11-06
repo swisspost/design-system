@@ -1,5 +1,5 @@
 import { createMessageRouter } from '../message-router';
-import type { KlpMessage, KlpRouterActions } from '../klp-session.model';
+import type { KlpMessage, KlpRouterActions } from '../session.model';
 
 /** Records every action the router takes, in order, so the dispatch table can be read back. */
 function createActions() {

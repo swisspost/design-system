@@ -1,7 +1,7 @@
 import { createControlCookie, hash } from './control-cookie';
 import { createEventBusConnection } from './event-bus-connection';
 import { createKeepAlive, KLP_KEEP_ALIVE_DEFAULTS, type KlpKeepAliveConf } from './keep-alive';
-import type { KlpRouterActions, KlpSessionData } from './klp-session.model';
+import type { KlpRouterActions, KlpSessionData } from './session.model';
 import { createMessageRouter } from './message-router';
 import { createNotifications } from './notifications';
 import { buildEndPoints, createSessionClient } from './session-client';

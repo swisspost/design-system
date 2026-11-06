@@ -1,4 +1,4 @@
-import type { KlpEndPoints, KlpMessage } from './klp-session.model';
+import type { KlpEndPoints, KlpMessage } from './session.model';
 
 /**
  * The HTTP side of the KLP session, ported from the v9 widget. Every call is credentialed and

@@ -1,10 +1,14 @@
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 
 @use '@swisspost/design-system-styles/components/avatar';
 @use '@swisspost/design-system-styles/components/badge';
+
+// post-menu-item styles itself globally, which does not reach into this shadow root.
+@use '../post-menu-item/post-menu-item.scss';
 
 *,
 *::before,
@@ -22,6 +26,21 @@
 
 .visually-hidden {
   @include utilities-mx.visuallyhidden();
+}
+
+// The header's own controls are styled from its global stylesheet, which this shadow root hides.
+.login-link {
+  @include header-mx.nav-item-base;
+  text-decoration: none;
+
+  @include media.only(mobile) {
+    @include header-mx.nav-item-icon-only;
+    padding: 10px;
+  }
+}
+
+post-menu-item .badge {
+  margin-inline-start: auto;
 }
 
 // Ported from the header's `_user-menu.scss`: the trigger now renders in this shadow root, which a

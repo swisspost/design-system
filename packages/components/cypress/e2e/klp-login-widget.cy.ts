@@ -1,12 +1,12 @@
 import 'cypress-real-events';
 
 const KLP_LOGIN_WIDGET_ID = '787282bd-aea2-49e5-b98d-3bf852ca9dd7';
-const KLP_LOGIN_WIDGET_MESSAGES_ID = '28eee16f-1128-4aae-9d02-7e4eb7a3f572';
 
 const SIGNED_IN_SESSIONS = {
   'b2c': { fullName: 'Alan Turing', switchSlot: null },
-  'b2b-multi-account': { fullName: 'Ada Lovelace', switchSlot: 'account-switch' },
-  'b2b-multi-company': { fullName: 'Grace Hopper', switchSlot: 'company-switch' },
+  'b2c-multi-account': { fullName: 'Katherine Johnson', switchSlot: 'text-account-switch' },
+  'b2b-multi-account': { fullName: 'Ada Lovelace', switchSlot: 'text-account-switch' },
+  'b2b-multi-company': { fullName: 'Grace Hopper', switchSlot: 'text-company-switch' },
 } as const;
 
 // The stories answer through a fake KLP platform, whose session is picked by the `session` arg.
@@ -47,14 +47,15 @@ describe('klp login widget', () => {
 
     it('shows only the login link', () => {
       cy.get('@widget')
-        .find('[slot="login-link"]')
+        .shadow()
+        .find('.login-link')
         .should('be.visible')
         .and('contain.text', 'Login');
       cy.get('@widget').shadow().find('post-menu-trigger').should('not.exist');
     });
 
     it('has no detectable a11y violations', () => {
-      cy.get('@widget').find('[slot="login-link"]').should('be.visible');
+      cy.get('@widget').shadow().find('.login-link').should('be.visible');
       checkWidgetA11y();
     });
   });
@@ -88,7 +89,7 @@ describe('klp login widget', () => {
         cy.get('@trigger')
           .should('have.attr', 'aria-haspopup', 'menu')
           .and('have.attr', 'aria-expanded', 'false')
-          .and('contain.text', 'Access user links');
+          .and('contain.text', 'Open user menu');
         cy.get('@trigger')
           .find('post-avatar')
           .shadow()
@@ -121,27 +122,63 @@ describe('klp login widget', () => {
 
       it('offers only the switch the session allows', () => {
         cy.get('@trigger').click();
-        ['account-switch', 'company-switch'].forEach(slot => {
-          cy.get('@widget')
-            .find(`[slot="${slot}"]`)
-            .should(slot === switchSlot ? 'be.visible' : 'not.be.visible');
+        ['text-account-switch', 'text-company-switch'].forEach(slot => {
+          getMenu()
+            .find(`slot[name="${slot}"]`)
+            .should(slot === switchSlot ? 'exist' : 'not.exist');
         });
+      });
+
+      it('offers profile, messages, settings and logout', () => {
+        cy.get('@trigger').click();
+        ['text-my-profile', 'text-messages', 'text-settings', 'text-logout'].forEach(slot => {
+          getMenu().find(`slot[name="${slot}"]`).should('exist');
+        });
+        getMenu()
+          .find('post-menu-item a')
+          .filter(':visible')
+          .should('have.length', switchSlot ? 5 : 4);
       });
     });
   });
 
   describe('unread messages', () => {
     beforeEach(() => {
-      visitStory(KLP_LOGIN_WIDGET_MESSAGES_ID, 'default', { unread: 3 });
+      visitStory(KLP_LOGIN_WIDGET_ID, 'default', { session: 'b2b-multi-account', unread: 3 });
       aliasTrigger();
     });
 
     it('announces the count in the messages entry, not on the trigger', () => {
       cy.get('@trigger').find('.badge').should('have.attr', 'aria-hidden', 'true');
       cy.get('@trigger').click();
-      cy.get('@widget')
-        .find('post-klp-login-widget-messages .visually-hidden')
+      getMenu()
+        .find('post-menu-item .badge .visually-hidden')
         .should('have.text', '3 unread messages');
+    });
+
+    it('has no detectable a11y violations with the menu open', () => {
+      cy.get('@trigger').click();
+      cy.get('@trigger').should('have.attr', 'aria-expanded', 'true');
+      checkWidgetA11y();
+    });
+  });
+
+  describe('custom entries', () => {
+    beforeEach(() => {
+      visitStory(KLP_LOGIN_WIDGET_ID, 'custom-items');
+      aliasTrigger();
+    });
+
+    it('reaches the custom entry by keyboard between settings and logout', () => {
+      cy.get('@trigger').focus().realPress('Enter');
+      cy.get('@trigger').should('have.attr', 'aria-expanded', 'true');
+
+      cy.realPress('End');
+      cy.focused().find('slot[name="text-logout"]').should('exist');
+      cy.realPress('ArrowUp');
+      cy.focused().should('have.attr', 'role', 'menuitem').and('contain.text', 'My orders');
+      cy.realPress('ArrowUp');
+      cy.focused().find('slot[name="text-settings"]').should('exist');
     });
 
     it('has no detectable a11y violations with the menu open', () => {

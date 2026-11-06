@@ -294,7 +294,7 @@ describe('header', () => {
           it('should add data-expanded when a global-header element receives keyboard focus while scrolled', () => {
             cy.scrollTo(0, 500);
             cy.get('@header').should('not.have.attr', 'data-expanded');
-            
+
             cy.get('@header')
               .find('post-language-menu')
               .shadow()
@@ -682,7 +682,11 @@ describe('header', () => {
       });
 
       it('should visually hide the login label without removing it from the DOM', () => {
-        cy.get('@header').find('[slot="post-login"] [slot="login-link"]').as('loginControl');
+        cy.get('@header')
+          .find('[slot="post-login"]')
+          .shadow()
+          .find('.login-link')
+          .as('loginControl');
 
         cy.get('@loginControl').find('span').should('exist').and('contain.text', 'Login');
 
@@ -701,7 +705,11 @@ describe('header', () => {
       });
 
       it('should keep the login label accessible to screen readers', () => {
-        cy.get('@header').find('[slot="post-login"] [slot="login-link"]').as('loginControl');
+        cy.get('@header')
+          .find('[slot="post-login"]')
+          .shadow()
+          .find('.login-link')
+          .as('loginControl');
 
         cy.get('@loginControl').should('not.have.attr', 'aria-hidden', 'true');
         cy.get('@loginControl').find('span').should('not.have.attr', 'aria-hidden', 'true');
@@ -731,9 +739,7 @@ describe('header', () => {
 
         cy.get('@langTrigger').click({ scrollBehavior: false });
 
-        cy.get('@header')
-          .find('post-language-menu-item')
-          .should('be.visible');
+        cy.get('@header').find('post-language-menu-item').should('be.visible');
       }
 
       it('should open a megadropdown on click even if the language menu was left open while scrolled, without affecting scroll position', () => {

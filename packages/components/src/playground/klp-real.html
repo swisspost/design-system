@@ -28,49 +28,7 @@
         slot="post-login"
         text-current-user="Currently logged in: {user}"
         text-user-links="User links"
-        text-access-user-links="Open user links"
-      >
-        <a slot="login-link" data-klp-route="login">
-          <span>Login</span>
-          <post-icon name="login" aria-hidden="true"></post-icon>
-        </a>
-        <post-menu-item slot="account-switch">
-          <a data-klp-route="switch">
-            <post-icon name="userswitch" aria-hidden="true"></post-icon>
-            Switch account
-          </a>
-        </post-menu-item>
-        <post-menu-item slot="company-switch">
-          <a data-klp-route="switch">
-            <post-icon name="company" aria-hidden="true"></post-icon>
-            Switch company
-          </a>
-        </post-menu-item>
-        <post-menu-item slot="menu-links">
-          <a data-klp-route="profile">
-            <post-icon name="profile" aria-hidden="true"></post-icon>
-            My profile
-          </a>
-        </post-menu-item>
-        <post-klp-login-widget-messages
-          slot="menu-links"
-          data-klp-route="messages"
-          text="Messages"
-          text-unread="{count} unread messages"
-        ></post-klp-login-widget-messages>
-        <post-menu-item slot="menu-links">
-          <a data-klp-route="settings">
-            <post-icon name="gear" aria-hidden="true"></post-icon>
-            Settings
-          </a>
-        </post-menu-item>
-        <post-menu-item slot="logout-link">
-          <a data-klp-route="logout">
-            <post-icon name="logout" aria-hidden="true"></post-icon>
-            Logout
-          </a>
-        </post-menu-item>
-      </post-klp-login-widget>
+      ></post-klp-login-widget>
     </post-header>
 
     <main class="container">
@@ -90,10 +48,7 @@
         </li>
         <li><code>?lang=</code> language of the platform pages, default <code>de</code></li>
         <li><code>?initialState=</code> <code>anonymous</code> or <code>authenticated</code></li>
-        <li>
-          <code>?app=</code> the KLP app the login link goes through, default <code>kvm</code>;
-          empty for none
-        </li>
+        <li><code>?service=</code> the widget's <code>service</code>, default <code>kvm</code></li>
         <li><code>?widgets=2</code> renders a second widget below</li>
       </ul>
 

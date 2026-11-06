@@ -10,7 +10,7 @@ import { BannerType } from "./components/post-banner/banner-types";
 import { Variant } from "./components/post-breadcrumb-item/variants";
 import { ButtonType, Placement, Size } from "./components/post-closebutton/types";
 import { PostIconAnimation } from "./types/icon-animations";
-import { KlpEnvironment } from "./components/post-klp-login-widget/lib/klp-widget.model";
+import { KlpEnvironment } from "./components/post-klp-login-widget/lib/widget.model";
 import { SwitchVariant } from "./components/post-language-menu/switch-variants";
 import { Placement as Placement1 } from "@floating-ui/dom";
 import { SideNavigationSize } from "./components/post-side-navigation/side-navigation-styles";
@@ -19,7 +19,7 @@ export { BannerType } from "./components/post-banner/banner-types";
 export { Variant } from "./components/post-breadcrumb-item/variants";
 export { ButtonType, Placement, Size } from "./components/post-closebutton/types";
 export { PostIconAnimation } from "./types/icon-animations";
-export { KlpEnvironment } from "./components/post-klp-login-widget/lib/klp-widget.model";
+export { KlpEnvironment } from "./components/post-klp-login-widget/lib/widget.model";
 export { SwitchVariant } from "./components/post-language-menu/switch-variants";
 export { Placement as Placement1 } from "@floating-ui/dom";
 export { SideNavigationSize } from "./components/post-side-navigation/side-navigation-styles";
@@ -337,10 +337,19 @@ export namespace Components {
     }
     interface PostKlpLoginWidget {
         /**
-          * The KLP platform instance to talk to. Determines every backend URL the widget uses.
+          * The KLP application sent as `app` with the login and the switches. Defaults to `service`.
+         */
+        "app"?: string;
+        /**
+          * The KLP platform instance to talk to. Determines the backend and the default link targets.
           * @default 'prod'
          */
         "environment": KlpEnvironment;
+        /**
+          * Whether the page runs inside an iframe, sent as `inIframe` with the switches and the logout.
+          * @default false
+         */
+        "inIframe": boolean;
         /**
           * What to show before the session is known. Leave unset unless the server already knows who the visitor is: the widget then shows an avatar without initials, which costs anonymous visitors a short placeholder but never flashes the wrong state at anyone. Set `anonymous` to render the login link right away instead.
          */
@@ -365,9 +374,13 @@ export namespace Components {
          */
         "keepAliveUrl"?: string;
         /**
-          * Visually hidden label for the button that opens the user menu.
+          * The language of the default texts and link targets: `de`, `fr`, `it` or `en`. Defaults to `<html lang>`, then to the browser's preferred language, then to `de`.
          */
-        "textAccessUserLinks": string;
+        "language"?: string;
+        /**
+          * The application registered with KLP, sent as `service` with the login and the switches, so KLP returns the user to it.
+         */
+        "service": string;
         /**
           * Visually hidden label for the current user. The placeholder `{user}` will be replaced with the full name of the currently logged-in user.
          */
@@ -376,20 +389,34 @@ export namespace Components {
           * Visually hidden label for the user menu.
          */
         "textUserLinks": string;
-    }
-    interface PostKlpLoginWidgetMessages {
         /**
-          * Label of the entry.
+          * Overrides the target of the account switch.
          */
-        "text"?: string;
+        "urlAccountSwitch"?: string;
         /**
-          * Visually hidden label for the unread count. The placeholder `{count}` will be replaced with the number of unread messages.
+          * Overrides the target of the company switch.
          */
-        "textUnread"?: string;
+        "urlCompanySwitch"?: string;
         /**
-          * Where the entry points.
+          * Overrides the target of the login link.
          */
-        "url": string;
+        "urlLogin"?: string;
+        /**
+          * Overrides the target of the logout entry.
+         */
+        "urlLogout"?: string;
+        /**
+          * Overrides the target of the messages entry.
+         */
+        "urlMessages"?: string;
+        /**
+          * Overrides the target of the profile entry.
+         */
+        "urlMyProfile"?: string;
+        /**
+          * Overrides the target of the settings entry.
+         */
+        "urlSettings"?: string;
     }
     interface PostLanguageMenu {
         /**
@@ -1062,12 +1089,6 @@ declare global {
         prototype: HTMLPostKlpLoginWidgetElement;
         new (): HTMLPostKlpLoginWidgetElement;
     };
-    interface HTMLPostKlpLoginWidgetMessagesElement extends Components.PostKlpLoginWidgetMessages, HTMLStencilElement {
-    }
-    var HTMLPostKlpLoginWidgetMessagesElement: {
-        prototype: HTMLPostKlpLoginWidgetMessagesElement;
-        new (): HTMLPostKlpLoginWidgetMessagesElement;
-    };
     interface HTMLPostLanguageMenuElementEventMap {
         "postChange": string;
     }
@@ -1386,7 +1407,6 @@ declare global {
         "post-header": HTMLPostHeaderElement;
         "post-icon": HTMLPostIconElement;
         "post-klp-login-widget": HTMLPostKlpLoginWidgetElement;
-        "post-klp-login-widget-messages": HTMLPostKlpLoginWidgetMessagesElement;
         "post-language-menu": HTMLPostLanguageMenuElement;
         "post-language-menu-item": HTMLPostLanguageMenuItemElement;
         "post-linkarea": HTMLPostLinkareaElement;
@@ -1718,10 +1738,19 @@ declare namespace LocalJSX {
     }
     interface PostKlpLoginWidget {
         /**
-          * The KLP platform instance to talk to. Determines every backend URL the widget uses.
+          * The KLP application sent as `app` with the login and the switches. Defaults to `service`.
+         */
+        "app"?: string;
+        /**
+          * The KLP platform instance to talk to. Determines the backend and the default link targets.
           * @default 'prod'
          */
         "environment"?: KlpEnvironment;
+        /**
+          * Whether the page runs inside an iframe, sent as `inIframe` with the switches and the logout.
+          * @default false
+         */
+        "inIframe"?: boolean;
         /**
           * What to show before the session is known. Leave unset unless the server already knows who the visitor is: the widget then shows an avatar without initials, which costs anonymous visitors a short placeholder but never flashes the wrong state at anyone. Set `anonymous` to render the login link right away instead.
          */
@@ -1746,9 +1775,13 @@ declare namespace LocalJSX {
          */
         "keepAliveUrl"?: string;
         /**
-          * Visually hidden label for the button that opens the user menu.
+          * The language of the default texts and link targets: `de`, `fr`, `it` or `en`. Defaults to `<html lang>`, then to the browser's preferred language, then to `de`.
          */
-        "textAccessUserLinks": string;
+        "language"?: string;
+        /**
+          * The application registered with KLP, sent as `service` with the login and the switches, so KLP returns the user to it.
+         */
+        "service": string;
         /**
           * Visually hidden label for the current user. The placeholder `{user}` will be replaced with the full name of the currently logged-in user.
          */
@@ -1757,20 +1790,34 @@ declare namespace LocalJSX {
           * Visually hidden label for the user menu.
          */
         "textUserLinks": string;
-    }
-    interface PostKlpLoginWidgetMessages {
         /**
-          * Label of the entry.
+          * Overrides the target of the account switch.
          */
-        "text"?: string;
+        "urlAccountSwitch"?: string;
         /**
-          * Visually hidden label for the unread count. The placeholder `{count}` will be replaced with the number of unread messages.
+          * Overrides the target of the company switch.
          */
-        "textUnread"?: string;
+        "urlCompanySwitch"?: string;
         /**
-          * Where the entry points.
+          * Overrides the target of the login link.
          */
-        "url": string;
+        "urlLogin"?: string;
+        /**
+          * Overrides the target of the logout entry.
+         */
+        "urlLogout"?: string;
+        /**
+          * Overrides the target of the messages entry.
+         */
+        "urlMessages"?: string;
+        /**
+          * Overrides the target of the profile entry.
+         */
+        "urlMyProfile"?: string;
+        /**
+          * Overrides the target of the settings entry.
+         */
+        "urlSettings"?: string;
     }
     interface PostLanguageMenu {
         /**
@@ -2291,19 +2338,24 @@ declare namespace LocalJSX {
     }
     interface PostKlpLoginWidgetAttributes {
         "environment": KlpEnvironment;
+        "service": string;
+        "app": string;
+        "inIframe": boolean;
+        "language": string;
+        "urlLogin": string;
+        "urlAccountSwitch": string;
+        "urlCompanySwitch": string;
+        "urlMyProfile": string;
+        "urlMessages": string;
+        "urlSettings": string;
+        "urlLogout": string;
         "keepAliveDisabled": boolean;
         "keepAliveUrl": string;
         "keepAliveInterval": number;
         "keepAliveEvents": string;
         "textCurrentUser": string;
         "textUserLinks": string;
-        "textAccessUserLinks": string;
         "initialState": 'anonymous' | 'authenticated';
-    }
-    interface PostKlpLoginWidgetMessagesAttributes {
-        "url": string;
-        "text": string;
-        "textUnread": string;
     }
     interface PostLanguageMenuAttributes {
         "textChangeLanguage": string;
@@ -2440,8 +2492,7 @@ declare namespace LocalJSX {
         "post-footer": Omit<PostFooter, keyof PostFooterAttributes> & { [K in keyof PostFooter & keyof PostFooterAttributes]?: PostFooter[K] } & { [K in keyof PostFooter & keyof PostFooterAttributes as `attr:${K}`]?: PostFooterAttributes[K] } & { [K in keyof PostFooter & keyof PostFooterAttributes as `prop:${K}`]?: PostFooter[K] } & OneOf<"textFooter", PostFooter["textFooter"], PostFooterAttributes["textFooter"]>;
         "post-header": Omit<PostHeader, keyof PostHeaderAttributes> & { [K in keyof PostHeader & keyof PostHeaderAttributes]?: PostHeader[K] } & { [K in keyof PostHeader & keyof PostHeaderAttributes as `attr:${K}`]?: PostHeaderAttributes[K] } & { [K in keyof PostHeader & keyof PostHeaderAttributes as `prop:${K}`]?: PostHeader[K] } & OneOf<"textMenu", PostHeader["textMenu"], PostHeaderAttributes["textMenu"]>;
         "post-icon": Omit<PostIcon, keyof PostIconAttributes> & { [K in keyof PostIcon & keyof PostIconAttributes]?: PostIcon[K] } & { [K in keyof PostIcon & keyof PostIconAttributes as `attr:${K}`]?: PostIconAttributes[K] } & { [K in keyof PostIcon & keyof PostIconAttributes as `prop:${K}`]?: PostIcon[K] } & OneOf<"name", PostIcon["name"], PostIconAttributes["name"]>;
-        "post-klp-login-widget": Omit<PostKlpLoginWidget, keyof PostKlpLoginWidgetAttributes> & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes]?: PostKlpLoginWidget[K] } & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes as `attr:${K}`]?: PostKlpLoginWidgetAttributes[K] } & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes as `prop:${K}`]?: PostKlpLoginWidget[K] } & OneOf<"textCurrentUser", PostKlpLoginWidget["textCurrentUser"], PostKlpLoginWidgetAttributes["textCurrentUser"]> & OneOf<"textUserLinks", PostKlpLoginWidget["textUserLinks"], PostKlpLoginWidgetAttributes["textUserLinks"]> & OneOf<"textAccessUserLinks", PostKlpLoginWidget["textAccessUserLinks"], PostKlpLoginWidgetAttributes["textAccessUserLinks"]>;
-        "post-klp-login-widget-messages": Omit<PostKlpLoginWidgetMessages, keyof PostKlpLoginWidgetMessagesAttributes> & { [K in keyof PostKlpLoginWidgetMessages & keyof PostKlpLoginWidgetMessagesAttributes]?: PostKlpLoginWidgetMessages[K] } & { [K in keyof PostKlpLoginWidgetMessages & keyof PostKlpLoginWidgetMessagesAttributes as `attr:${K}`]?: PostKlpLoginWidgetMessagesAttributes[K] } & { [K in keyof PostKlpLoginWidgetMessages & keyof PostKlpLoginWidgetMessagesAttributes as `prop:${K}`]?: PostKlpLoginWidgetMessages[K] } & OneOf<"url", PostKlpLoginWidgetMessages["url"], PostKlpLoginWidgetMessagesAttributes["url"]>;
+        "post-klp-login-widget": Omit<PostKlpLoginWidget, keyof PostKlpLoginWidgetAttributes> & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes]?: PostKlpLoginWidget[K] } & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes as `attr:${K}`]?: PostKlpLoginWidgetAttributes[K] } & { [K in keyof PostKlpLoginWidget & keyof PostKlpLoginWidgetAttributes as `prop:${K}`]?: PostKlpLoginWidget[K] } & OneOf<"service", PostKlpLoginWidget["service"], PostKlpLoginWidgetAttributes["service"]> & OneOf<"textCurrentUser", PostKlpLoginWidget["textCurrentUser"], PostKlpLoginWidgetAttributes["textCurrentUser"]> & OneOf<"textUserLinks", PostKlpLoginWidget["textUserLinks"], PostKlpLoginWidgetAttributes["textUserLinks"]>;
         "post-language-menu": Omit<PostLanguageMenu, keyof PostLanguageMenuAttributes> & { [K in keyof PostLanguageMenu & keyof PostLanguageMenuAttributes]?: PostLanguageMenu[K] } & { [K in keyof PostLanguageMenu & keyof PostLanguageMenuAttributes as `attr:${K}`]?: PostLanguageMenuAttributes[K] } & { [K in keyof PostLanguageMenu & keyof PostLanguageMenuAttributes as `prop:${K}`]?: PostLanguageMenu[K] } & OneOf<"textChangeLanguage", PostLanguageMenu["textChangeLanguage"], PostLanguageMenuAttributes["textChangeLanguage"]> & OneOf<"textCurrentLanguage", PostLanguageMenu["textCurrentLanguage"], PostLanguageMenuAttributes["textCurrentLanguage"]>;
         "post-language-menu-item": Omit<PostLanguageMenuItem, keyof PostLanguageMenuItemAttributes> & { [K in keyof PostLanguageMenuItem & keyof PostLanguageMenuItemAttributes]?: PostLanguageMenuItem[K] } & { [K in keyof PostLanguageMenuItem & keyof PostLanguageMenuItemAttributes as `attr:${K}`]?: PostLanguageMenuItemAttributes[K] } & { [K in keyof PostLanguageMenuItem & keyof PostLanguageMenuItemAttributes as `prop:${K}`]?: PostLanguageMenuItem[K] } & OneOf<"code", PostLanguageMenuItem["code"], PostLanguageMenuItemAttributes["code"]>;
         "post-linkarea": PostLinkarea;
@@ -2496,7 +2547,6 @@ declare module "@stencil/core" {
              */
             "post-icon": LocalJSX.IntrinsicElements["post-icon"] & JSXBase.HTMLAttributes<HTMLPostIconElement>;
             "post-klp-login-widget": LocalJSX.IntrinsicElements["post-klp-login-widget"] & JSXBase.HTMLAttributes<HTMLPostKlpLoginWidgetElement>;
-            "post-klp-login-widget-messages": LocalJSX.IntrinsicElements["post-klp-login-widget-messages"] & JSXBase.HTMLAttributes<HTMLPostKlpLoginWidgetMessagesElement>;
             "post-language-menu": LocalJSX.IntrinsicElements["post-language-menu"] & JSXBase.HTMLAttributes<HTMLPostLanguageMenuElement>;
             "post-language-menu-item": LocalJSX.IntrinsicElements["post-language-menu-item"] & JSXBase.HTMLAttributes<HTMLPostLanguageMenuItemElement>;
             "post-linkarea": LocalJSX.IntrinsicElements["post-linkarea"] & JSXBase.HTMLAttributes<HTMLPostLinkareaElement>;

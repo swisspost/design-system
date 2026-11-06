@@ -1,4 +1,4 @@
-import type { KlpMessage } from './klp-session.model';
+import type { KlpMessage } from './session.model';
 import type { KlpEventBus } from './vertx-event-bus';
 
 /**

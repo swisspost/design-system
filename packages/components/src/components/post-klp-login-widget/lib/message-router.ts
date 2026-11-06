@@ -1,4 +1,4 @@
-import type { KlpMessage, KlpRouterActions } from './klp-session.model';
+import type { KlpMessage, KlpRouterActions } from './session.model';
 
 /**
  * The KLP session protocol: one message type, one decision. Every effect arrives as an injected

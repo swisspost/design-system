@@ -1,5 +1,5 @@
 import { buildEndPoints, createSessionClient } from '../session-client';
-import type { KlpMessage } from '../klp-session.model';
+import type { KlpMessage } from '../session.model';
 
 const endPoints = buildEndPoints('https://platform.int.post.ch');
 

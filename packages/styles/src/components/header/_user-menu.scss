@@ -21,13 +21,11 @@ post-header {
           }
         }
       }
-    }
 
-    // the login widget renders its menu in a shadow root, so the consumer's items are a descendant
-    // of the host rather than a child of post-menu
-    /* stylelint-disable-next-line selector-max-compound-selectors */
-    post-menu-item > a > post-icon {
-      order: -1;
+      /* stylelint-disable-next-line selector-max-compound-selectors */
+      > post-menu-item > a > post-icon {
+        order: -1;
+      }
     }
   }
 }
@@ -39,15 +37,8 @@ post-klp-login-widget:not(:defined) {
   align-items: center;
   min-block-size: tokens.get('avatar-size', components.$post-avatar);
 
-  // Without the shadow root there is nothing to slot into, so every link the widget will later
-  // show is laid out at once. The login link is the only one that still has to work.
-  > :not([slot='login-link']) {
+  // Only text overrides live in the light DOM; without the shadow root they would be bare text.
+  > * {
     display: none;
   }
-}
-
-// The consumer already knows a session exists, so showing the login link first would flash the
-// wrong state; hold the avatar's box empty instead.
-post-klp-login-widget[initial-state='authenticated']:not(:defined) > * {
-  display: none;
 }

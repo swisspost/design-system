@@ -1,4 +1,4 @@
-import type { KlpMessage, KlpSessionData } from '../klp-session.model';
+import type { KlpMessage, KlpSessionData } from '../session.model';
 import { createSessionController } from '../session-controller';
 
 const sessionData: KlpSessionData = {
