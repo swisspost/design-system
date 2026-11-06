@@ -22,7 +22,7 @@ function stubFetch(response?: Promise<unknown>) {
   }) as unknown as typeof globalThis.fetch;
 }
 
-const audited = { typ: 'hi', adt: 1 } as unknown as KlpMessage;
+const audited = { typ: 'hi', adt: true } as unknown as KlpMessage;
 const notAudited = { typ: 'hi' } as unknown as KlpMessage;
 
 describe('buildEndPoints', () => {
@@ -48,7 +48,7 @@ describe('audit', () => {
     expect(fetches[0].options.credentials).toBe('include');
     expect(JSON.parse(fetches[0].options.body as string)).toEqual({
       adr: 'address-1',
-      evt: { typ: 'hi', adt: 1 },
+      evt: { typ: 'hi', adt: true },
     });
   });
 

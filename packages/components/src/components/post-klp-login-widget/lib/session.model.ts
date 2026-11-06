@@ -24,12 +24,12 @@ export interface KlpSessionData {
  *   rem  a document was withdrawn.
  */
 export type KlpMessage =
-  | { typ: 'sub'; adr: string; ttl: number; data: KlpSessionData; adt?: number }
-  | { typ: 'ukn'; sub?: boolean; adt?: number }
-  | { typ: 'hi'; data: KlpSessionData; ttl: number; adt?: number }
-  | { typ: 'bye'; adt?: number }
-  | { typ: 'doc'; doc: unknown; doctyp: string; adt?: number }
-  | { typ: 'rem'; doctyp: string; adt?: number };
+  | { typ: 'sub'; adr: string; ttl: number; data: KlpSessionData; adt?: boolean }
+  | { typ: 'ukn'; sub?: boolean; adt?: boolean }
+  | { typ: 'hi'; data: KlpSessionData; ttl: number; adt?: boolean }
+  | { typ: 'bye'; adt?: boolean }
+  | { typ: 'doc'; doc: unknown; doctyp: string; adt?: boolean }
+  | { typ: 'rem'; doctyp: string; adt?: boolean };
 
 export interface KlpEndPoints {
   audit: string;
