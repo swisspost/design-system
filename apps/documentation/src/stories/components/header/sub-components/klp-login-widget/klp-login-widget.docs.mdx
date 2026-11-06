@@ -1,6 +1,5 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as KlpLoginWidgetStories from './klp-login-widget.stories';
-import * as KlpLoginWidgetMessagesStories from '../klp-login-widget-messages/klp-login-widget-messages.stories';
 import StoryTags from '@/shared/story-tags';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 import './klp-login-widget.styles.scss';
@@ -23,8 +22,9 @@ import './klp-login-widget.styles.scss';
 
 It is designed to be used in the `post-login` slot of the `post-header` component. The widget owns
 the session: it asks the KLP platform who is signed in, keeps the session alive while the user is
-active, and receives unread messages and sign-ins or sign-outs from other tabs as they happen. Your
-application only provides the links.
+active, and receives unread messages and sign-ins or sign-outs from other tabs as they happen. It
+also renders the login link and every entry of the user menu, so your application only adds the
+widget.
 
 <Canvas sourceState="shown" of={KlpLoginWidgetStories.Default} />
 
@@ -55,64 +55,101 @@ from a `post.ch` domain, so the session cookie is sent along.
 If your page uses a Content Security Policy, allow the platform in `connect-src`, for both `https:`
 and `wss:`, because the widget also opens a websocket to it.
 
-## Links
+## Service
 
-All links are provided by your application, as light DOM in the widget's slots. The widget decides
-which of them to show:
+The required `service` property names your application as it is registered with KLP. The widget
+sends it as `app` and `service` with the login and the account and company switch, so KLP returns
+the user to your application afterwards. If KLP knows your application under a different `app`
+name, set the optional `app` property; `service` is still sent as is. Set `in-iframe` if your
+application runs inside an iframe; KLP then keeps the switches and the logout inside it.
+
+## Entries
+
+The widget renders a fixed set of entries. Each one links to the KLP page of the selected
+`environment` and language by default, takes another target through its URL property, and another
+text through its text slot:
 
 <div className="table-responsive">
   <table className="table">
     <caption className="visually-hidden">
-      Slots of the KLP login widget and when they are shown
+      Entries of the KLP login widget, how to override them and when they are shown
     </caption>
     <thead>
       <tr>
-        <th scope="col">Slot</th>
-        <th scope="col">Content</th>
+        <th scope="col">Entry</th>
+        <th scope="col">URL property</th>
+        <th scope="col">Text slot</th>
         <th scope="col">Shown</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <th scope="row">
-          <code>login-link</code>
-        </th>
-        <td>A link to the login page.</td>
+        <th scope="row">Login</th>
+        <td>
+          <code>url-login</code>
+        </td>
+        <td>
+          <code>text-login</code>
+        </td>
         <td>To anonymous visitors.</td>
       </tr>
       <tr>
-        <th scope="row">
-          <code>account-switch</code>
-        </th>
+        <th scope="row">Switch account</th>
         <td>
-          A <code>post-menu-item</code> linking to the account switch.
+          <code>url-account-switch</code>
+        </td>
+        <td>
+          <code>text-account-switch</code>
         </td>
         <td>When the session allows the user to switch account.</td>
       </tr>
       <tr>
-        <th scope="row">
-          <code>company-switch</code>
-        </th>
+        <th scope="row">Switch company</th>
         <td>
-          A <code>post-menu-item</code> linking to the company switch.
+          <code>url-company-switch</code>
+        </td>
+        <td>
+          <code>text-company-switch</code>
         </td>
         <td>When the session allows the user to switch company.</td>
       </tr>
       <tr>
-        <th scope="row">
-          <code>menu-links</code>
-        </th>
+        <th scope="row">My profile</th>
         <td>
-          Any number of <code>post-menu-item</code> elements.
+          <code>url-my-profile</code>
         </td>
-        <td>In the user menu, in the order given.</td>
+        <td>
+          <code>text-my-profile</code>
+        </td>
+        <td>To signed-in users.</td>
       </tr>
       <tr>
-        <th scope="row">
-          <code>logout-link</code>
-        </th>
+        <th scope="row">Messages</th>
         <td>
-          A <code>post-menu-item</code> linking to the logout.
+          <code>url-messages</code>
+        </td>
+        <td>
+          <code>text-messages</code>, <code>text-unread-messages</code>
+        </td>
+        <td>To signed-in users, with the number of unread messages.</td>
+      </tr>
+      <tr>
+        <th scope="row">Settings</th>
+        <td>
+          <code>url-settings</code>
+        </td>
+        <td>
+          <code>text-settings</code>
+        </td>
+        <td>To signed-in users.</td>
+      </tr>
+      <tr>
+        <th scope="row">Log out</th>
+        <td>
+          <code>url-logout</code>
+        </td>
+        <td>
+          <code>text-logout</code>
         </td>
         <td>Last in the user menu.</td>
       </tr>
@@ -122,11 +159,35 @@ which of them to show:
 
 The account switch and the company switch are never shown together.
 
+The texts come in German, French, Italian and English. The widget takes the first of these it
+finds in the `language` property, `<html lang>` and the browser's preferred languages, and falls
+back to German otherwise.
+
+To replace a text, put an element with the matching `slot` into the widget. To replace a target,
+set the URL property:
+
+<Canvas sourceState="shown" of={KlpLoginWidgetStories.Overrides} />
+
 <post-banner>
   <p>
-    <b>Link URLs:</b> the links in the examples on this page are placeholders. Which URLs your
-    application has to link to depends on your projects setup and the KLP platform. To find out
-    more, talk to the KLP team or visit their documentation.
+    <b>Link targets:</b> the defaults lead to the KLP pages of the global Swiss Post header. KLP
+    only returns the user to a `service` that is registered for your application's host. Talk to the
+    KLP team or visit their documentation.
+  </p>
+</post-banner>
+
+## Custom entries
+
+To add entries of your own, put `post-menu-item`s into the widget without a `slot`. They are
+listed between settings and logout, in the order you add them:
+
+<Canvas sourceState="shown" of={KlpLoginWidgetStories.CustomItems} />
+
+<post-banner type="warning">
+  <p>
+    <b>Always wrap custom entries in a `post-menu-item`</b>, with a link or a button inside. Only
+    then does the entry look like the others, get the `menuitem` role and stay reachable with the
+    arrow keys. Other elements, such as a bare `a`, are not supported.
   </p>
 </post-banner>
 
@@ -143,42 +204,34 @@ answer, so it keeps showing that state.</post-banner>
 
 ## Unread messages
 
-Place a `post-klp-login-widget-messages` element among the `menu-links`, wherever the messages entry
-should appear. It shows the number of unread messages the platform reports, and
-the avatar shows a dot as long as there are any. Both update as messages arrive, without a reload.
-
-<Canvas sourceState="shown" of={KlpLoginWidgetMessagesStories.Default} />
-
-<Controls of={KlpLoginWidgetMessagesStories.Default} />
-
-The entry brings its own `post-menu-item` and the `letter` icon, so it only needs the
-`slot="menu-links"` attribute to sit in the user menu like the other links. The count is shared by
-every messages entry on the page, so use one KLP login widget per page.
+The Messages entry shows the number of unread messages the platform reports, and the avatar shows
+a dot as long as there are any. Both update as messages arrive, without a reload. Use the
+`Unread messages` control of the first example to see them.
 
 ### How it works
 
 The platform only reports how many messages are unread; it never sends the messages themselves.
-They are read on the account portal, so point the entry's `url` to its messages page:
-`https://account.post.ch/selfadmin/messages/?lang=de` in production, with the language of the page
-and the account host of your environment (`accountint1.post.ch`, `accountint2.post.ch`). This is
+They are read on the account portal's messages page, which is the default target of the entry and
 the same page for every type of user.
 
 <img
   className="messages-flow"
   src="/assets/images/klp-login-widget-messages-flow.svg"
-  alt="Flow of unread messages. Your project places the login widget and the messages entry in the header. On page load the widget asks KLP for the session: anonymous visitors see the login link, signed-in users get the user menu, and the widget opens the event bus. KLP pushes the unread count, the messages entry shows it and the avatar a dot. Selecting Messages opens the account portal's messages page, where the messages are read. The messages backend then updates the count in KLP, which pushes it again. A sign-out in another tab resets the count and shows the login link."
+  alt="Flow of unread messages. Your project places the login widget in the header. On page load the widget asks KLP for the session: anonymous visitors see the login link, signed-in users get the user menu, and the widget opens the event bus. KLP pushes the unread count, the Messages entry shows it and the avatar a dot. Selecting Messages opens the account portal's messages page, where the messages are read. The messages backend then updates the count in KLP, which pushes it again. A sign-out in another tab resets the count and shows the login link."
   width="760"
   height="1010"
 />
 
 ## Accessibility
 
-The avatar has no visible label, so the widget relies on three texts, which must be translated
-into the page's language:
+The avatar has no visible label, so the widget relies on three texts, which must match the
+page's language:
 
 - `text-current-user` describes the avatar; `{user}` is replaced with the user's full name.
-- `text-access-user-links` is the accessible name of the button opening the user menu.
 - `text-user-links` labels the user menu itself.
+- The `text-access-user-links` slot is the accessible name of the button opening the user menu. It
+  is translated by default.
 
-Give the messages entry a `text-unread` as well, since its count is otherwise announced as a bare
-number.
+The first two are properties, since they end up in attributes, which a slot cannot fill. The number
+of unread messages is announced together with `text-unread-messages`, which is translated by
+default.

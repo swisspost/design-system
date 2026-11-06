@@ -9,24 +9,40 @@ import {
   KlpFakeSession,
   uninstallKlpPlatformFake,
 } from './klp-platform.fake';
-import { KLP_LOGIN_WIDGET_TEXTS, renderKlpLoginWidget } from './klp-login-widget.renderer';
+import {
+  KLP_LOGIN_WIDGET_TEXTS,
+  KlpLoginWidgetRenderOptions,
+  renderKlpLoginWidget,
+} from './klp-login-widget.renderer';
 
 interface KlpLoginWidgetArgs
   extends Pick<
     HTMLPostKlpLoginWidgetElement,
-    'environment' | 'textCurrentUser' | 'textUserLinks' | 'textAccessUserLinks' | 'initialState'
+    | 'environment'
+    | 'language'
+    | 'textCurrentUser'
+    | 'textUserLinks'
+    | 'initialState'
+    | 'urlLogin'
+    | 'urlMyProfile'
   > {
   session?: KlpFakeSession;
   unread?: number;
+  texts?: KlpLoginWidgetRenderOptions['texts'];
+  customItems?: KlpLoginWidgetRenderOptions['customItems'];
 }
 
 const renderWidget = (args: KlpLoginWidgetArgs) =>
   renderKlpLoginWidget({
     environment: args.environment,
+    language: args.language,
     textCurrentUser: args.textCurrentUser,
     textUserLinks: args.textUserLinks,
-    textAccessUserLinks: args.textAccessUserLinks,
     initialState: args.initialState,
+    urlLogin: args.urlLogin,
+    urlMyProfile: args.urlMyProfile,
+    texts: args.texts,
+    customItems: args.customItems,
   });
 
 const meta: MetaComponent<KlpLoginWidgetArgs> = {
@@ -43,11 +59,18 @@ const meta: MetaComponent<KlpLoginWidgetArgs> = {
   },
   args: {
     environment: 'int01',
+    language: 'en',
     ...KLP_LOGIN_WIDGET_TEXTS,
     session: 'anonymous',
     unread: 0,
   },
   argTypes: {
+    language: {
+      control: { type: 'select' },
+      options: ['de', 'fr', 'it', 'en'],
+    },
+    texts: { table: { disable: true } },
+    customItems: { table: { disable: true } },
     session: {
       name: 'Session',
       description:
@@ -94,6 +117,43 @@ export default meta;
 type Story = StoryObj<KlpLoginWidgetArgs>;
 
 export const Default: Story = {};
+
+/**
+ * Own targets and texts for some entries; the others keep their defaults.
+ * In a window of its own: a window holds one fake at a time, and the Default story already uses it.
+ */
+export const Overrides: Story = {
+  parameters: {
+    docs: { story: { inline: false, iframeHeight: 500 } },
+  },
+  args: {
+    session: 'b2b-multi-account',
+    urlMyProfile: '/my-account',
+    texts: { 'text-my-profile': 'My account', 'text-logout': 'Sign out' },
+  },
+  argTypes: {
+    session: { table: { disable: true } },
+    unread: { table: { disable: true } },
+  },
+};
+
+/**
+ * An entry of the application's own, listed between settings and logout.
+ * In a window of its own: a window holds one fake at a time, and the Default story already uses it.
+ */
+export const CustomItems: Story = {
+  parameters: {
+    docs: { story: { inline: false, iframeHeight: 500 } },
+  },
+  args: {
+    session: 'b2c',
+    customItems: [{ href: '/orders', icon: 'parcel', text: 'My orders' }],
+  },
+  argTypes: {
+    session: { table: { disable: true } },
+    unread: { table: { disable: true } },
+  },
+};
 
 /**
  * The fake never answers, so the widget keeps the state it shows before the session is known.

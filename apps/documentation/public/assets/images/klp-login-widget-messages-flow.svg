@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1010" width="760" height="1010" role="img" aria-labelledby="title desc" font-family="Frutiger, 'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#050400">
   <title id="title">How unread messages reach a project's header</title>
-  <desc id="desc">The project places the login widget and the messages entry in its header. On page load the widget asks KLP for the session. Anonymous visitors see the login link. Signed-in users get the user menu, and the widget opens the event bus, over which KLP pushes the unread count. The messages entry shows the count and the avatar a dot. Selecting Messages opens the account portal's messages page, where the messages are read. The messages backend then updates the count in KLP, which pushes it again. A sign-out in another tab resets the count and shows the login link.</desc>
+  <desc id="desc">The project places the login widget in its header. On page load the widget asks KLP for the session. Anonymous visitors see the login link. Signed-in users get the user menu, and the widget opens the event bus, over which KLP pushes the unread count. The messages entry shows the count and the avatar a dot. Selecting Messages opens the account portal's messages page, where the messages are read. The messages backend then updates the count in KLP, which pushes it again. A sign-out in another tab resets the count and shows the login link.</desc>
 
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
@@ -48,8 +48,8 @@
 
   <g text-anchor="middle">
     <text x="300" y="44" font-weight="bold">Your project</text>
-    <text x="300" y="66">post-klp-login-widget in post-header,</text>
-    <text x="300" y="86">post-klp-login-widget-messages in menu-links</text>
+    <text x="300" y="66">post-klp-login-widget in post-header;</text>
+    <text x="300" y="86">it renders the Messages entry itself</text>
 
     <text x="300" y="170">Page loads: the widget asks KLP</text>
     <text x="300" y="190" font-family="Menlo, Consolas, monospace" font-size="13">GET /v1/session/subscribe</text>

@@ -15,6 +15,13 @@ export const KLP_FAKE_USERS = {
     userType: 'B2C',
     authLevel: 'PASSWORD',
   },
+  'b2c-multi-account': {
+    name: 'Katherine',
+    surname: 'Johnson',
+    userType: 'B2C',
+    authLevel: 'PASSWORD',
+    changeUserAndProfile: 'userAndProfile',
+  },
   'b2b-multi-account': {
     name: 'Ada',
     surname: 'Lovelace',
@@ -41,6 +48,7 @@ export type KlpFakeSession = KlpFakeUser | 'anonymous';
 export const KLP_FAKE_SESSION_LABELS: Record<KlpFakeSession, string> = {
   'anonymous': 'Anonymous visitor',
   'b2c': 'B2C user',
+  'b2c-multi-account': 'B2C user (multi account)',
   'b2b-multi-account': 'B2B user (multi account)',
   'b2b-multi-company': 'B2B user (multi company)',
 };
