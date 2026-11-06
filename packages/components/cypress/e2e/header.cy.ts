@@ -74,7 +74,7 @@ describe('header', () => {
       cy.get('@header')
         .shadow()
         .find('.burger-button')
-        .should(shouldRender ? 'exist' : 'not.exist');
+        .should(shouldRender ? 'be.visible' : 'not.exist');
       ['global-nav-secondary', 'language-menu'].forEach(slot => {
         cy.get('@header')
           .shadow()
@@ -102,6 +102,9 @@ describe('header', () => {
 
         slots.forEach(slot => {
           it(`should render only on tablet and mobile when only ${slot} has content`, () => {
+            slots.filter(otherSlot => otherSlot !== slot).forEach(otherSlot => {
+              cy.get('@header').find(`[slot="${otherSlot}"]`).invoke('remove');
+            });
             cy.get('@header')
               .find(`[slot="${slot}"]`)
               .invoke('html', '<ul><li><a href="/letters">Letters</a></li></ul>');
@@ -118,22 +121,22 @@ describe('header', () => {
           });
         });
       });
+    });
 
-      slots.forEach(slot => {
-        it(`should count a later populated element assigned to ${slot}`, () => {
-          cy.viewport(VIEWPORTS.mobile);
-          cy.get('@header').invoke('append', `<a slot="${slot}" href="/letters">Letters</a>`);
-          checkBurgerMenu(true);
-        });
+    slots.forEach(slot => {
+      it(`should count a later populated element assigned to ${slot}`, () => {
+        cy.viewport(VIEWPORTS.mobile);
+        cy.get('@header').invoke('append', `<a slot="${slot}" href="/letters">Letters</a>`);
+        checkBurgerMenu(true);
+      });
 
-        it(`should ignore ${slot} attributes on elements that are not direct children`, () => {
-          cy.viewport(VIEWPORTS.mobile);
-          cy.get('@header').invoke(
-            'append',
-            `<div><a slot="${slot}" href="/letters">Letters</a></div>`,
-          );
-          checkBurgerMenu(false);
-        });
+      it(`should ignore ${slot} attributes on elements that are not direct children`, () => {
+        cy.viewport(VIEWPORTS.mobile);
+        cy.get('@header').invoke(
+          'append',
+          `<div><a slot="${slot}" href="/letters">Letters</a></div>`,
+        );
+        checkBurgerMenu(false);
       });
     });
   });
