@@ -5,11 +5,10 @@ import { expect, test } from '@playwright/test';
 test.describe('KLP login widget initial state', () => {
   const cases = [
     { query: '', expected: 'anonymous' },
-    { query: '?klpmock', expected: 'authenticated' },
-    { query: '?KLPMOCK&Session=Grace', expected: 'authenticated' },
-    { query: '?klpmock&session=grace', expected: 'authenticated' },
-    { query: '?klpmock&session=nobody', expected: 'anonymous' },
-    { query: '?session=ada', expected: 'anonymous' },
+    { query: '?SESSION=Gabe', expected: 'authenticated' },
+    { query: '?session=gabe', expected: 'authenticated' },
+    { query: '?session=nobody', expected: 'anonymous' },
+    { query: '?session=bert', expected: 'authenticated' },
   ];
 
   for (const { query, expected } of cases) {

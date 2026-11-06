@@ -9,21 +9,21 @@ interface SignedInUser {
   companySwitch: boolean;
 }
 
-// `?klpmock` swaps the KLP platform for the playground mock, `session` picks its user (see
-// `packages/components/src/playground/klp-platform-mock.js`). Without it the platform is blocked.
+// The playground mock is always on; `session` picks its user (see
+// `packages/components/src/playground/klp-platform-mock.js`). Without it nobody is signed in.
 const SESSIONS: { name: string; query: string; user?: SignedInUser }[] = [
-  { name: 'anonymous without the mock', query: '' },
-  { name: 'anonymous with the mock', query: '?klpmock&session=nobody' },
+  { name: 'anonymous by default', query: '' },
+  { name: 'anonymous with an unknown user', query: '?session=nobody' },
   {
     name: 'B2C',
-    query: '?klpmock&session=alan',
-    user: { fullName: 'Alan Turing', accountSwitch: false, companySwitch: false },
+    query: '?session=alex',
+    user: { fullName: 'Alex Irvin', accountSwitch: false, companySwitch: false },
   },
   {
     name: 'B2B multi account',
-    query: '?klpmock&session=ada',
+    query: '?session=anna',
     user: {
-      fullName: 'Ada Lovelace',
+      fullName: 'Anna Lovelace',
       company: 'Analytical Engines AG',
       accountSwitch: true,
       companySwitch: false,
@@ -31,9 +31,9 @@ const SESSIONS: { name: string; query: string; user?: SignedInUser }[] = [
   },
   {
     name: 'B2B multi company',
-    query: '?klpmock&session=grace',
+    query: '?session=gabe',
     user: {
-      fullName: 'Grace Hopper',
+      fullName: 'Gabe Hopper',
       company: 'Naval Systems AG',
       accountSwitch: false,
       companySwitch: true,
