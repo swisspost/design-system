@@ -74,6 +74,10 @@ export const config: Config = {
           src: '../node_modules/@swisspost/design-system-icons/public/post-icons/*.svg',
           dest: 'assets/icons',
         },
+        {
+          src: 'playground',
+          dest: 'playground',
+        },
       ],
       serviceWorker: null, // disable service workers,
     },
@@ -150,6 +154,11 @@ export const config: Config = {
   },
   testing: {
     setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+    // Jest does not read the tsconfig `paths`, so component specs need these spelled out.
+    moduleNameMapper: {
+      '^@root/(.*)$': '<rootDir>/$1',
+      '^@/(.*)$': '<rootDir>/src/$1',
+    },
     testPathIgnorePatterns: [
       '<rootDir>/dist/',
       '<rootDir>/loader/',

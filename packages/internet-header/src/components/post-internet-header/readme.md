@@ -10,6 +10,7 @@
 | `activeRoute`                      | `active-route`           | Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted. Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison. | `string`                                                                  | `'auto'`    |
 | `environment`                      | `environment`            | Target environment. Choose 'int01' for local testing.                                                                                                                                                                     | `"dev01" \| "dev02" \| "devs1" \| "int01" \| "int02" \| "prod" \| "test"` | `'prod'`    |
 | `fullWidth`                        | `full-width`             | Makes the header content span the full width on screens larger than 1440px.                                                                                                                                               | `boolean`                                                                 | `false`     |
+| `klpInitialState`                  | `klp-initial-state`      | What the login widget shows before the session is known. Leave unset unless the server already knows who the visitor is; set `anonymous` to render the login link right away.                                             | `"anonymous" \| "authenticated" \| undefined`                             | `undefined` |
 | `language`                         | `language`               | Initial language to be used. Overrides automatic language detection.                                                                                                                                                      | `"de" \| "en" \| "fr" \| "it" \| undefined`                               | `undefined` |
 | `project` _(required)_             | `project`                | Your project id, previously passed as query string parameter serviceId.                                                                                                                                                   | `string`                                                                  | `undefined` |
 | `textAccessUserLinks` _(required)_ | `text-access-user-links` | Visually hidden label for the login widget trigger button.                                                                                                                                                                | `string`                                                                  | `undefined` |
@@ -34,6 +35,7 @@
 
 ### Depends on
 
+- post-klp-login-widget
 - post-header
 - post-logo
 - post-language-menu
@@ -43,17 +45,23 @@
 ### Graph
 ```mermaid
 graph TD;
+  swisspost-internet-header --> post-klp-login-widget
   swisspost-internet-header --> post-header
   swisspost-internet-header --> post-logo
   swisspost-internet-header --> post-language-menu
   swisspost-internet-header --> post-language-menu-item
   swisspost-internet-header --> post-mainnavigation
+  post-klp-login-widget --> post-menu-item
+  post-klp-login-widget --> post-icon
+  post-klp-login-widget --> post-menu-trigger
+  post-klp-login-widget --> post-avatar
+  post-klp-login-widget --> post-menu
+  post-menu --> post-popovercontainer
   post-header --> post-togglebutton
   post-header --> post-icon
   post-language-menu --> post-menu-trigger
   post-language-menu --> post-icon
   post-language-menu --> post-menu
-  post-menu --> post-popovercontainer
   post-language-menu-item --> post-menu-item
   post-mainnavigation --> post-icon
   style swisspost-internet-header fill:#f9f,stroke:#333,stroke-width:4px

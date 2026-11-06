@@ -34,7 +34,7 @@
               }
             ],
             "styles": ["src/styles.scss"],
-            "scripts": [],
+            "scripts": ["../../packages/components/src/playground/klp-platform-mock.js"],
             "browser": "src/main.ts"
           },
           "configurations": {

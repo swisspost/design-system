@@ -9,6 +9,7 @@ import {
   PostFooter,
   PostHeader,
   PostIcon,
+  PostKlpLoginWidget,
   PostLanguageMenu,
   PostLanguageMenuItem,
   PostLogo,
@@ -19,9 +20,10 @@ import {
   PostSideNavigationTrigger,
 } from '@swisspost/design-system-components-angular';
 import { ToastComponent } from './toast/toast.component';
+import { getKlpInitialState } from './klp-mock';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-self-managed-layout',
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -36,6 +38,7 @@ import { ToastComponent } from './toast/toast.component';
     PostFooter,
     PostHeader,
     PostIcon,
+    PostKlpLoginWidget,
     PostLanguageMenuItem,
     PostLanguageMenu,
     PostLogo,
@@ -51,6 +54,9 @@ export class App implements OnInit {
   private router = inject(Router);
 
   navigationRoutes: Route[] = [];
+
+  // The app only renders in the browser, so the URL of the first load can be read directly.
+  readonly klpInitialState = getKlpInitialState(new URLSearchParams(location.search));
 
   // Shared links for megadropdown sections (Header)
   private megadropdownLinks = {
@@ -160,6 +166,8 @@ export class App implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.navigationRoutes = this.router.config.filter(r => r.title);
+    this.navigationRoutes = this.router.config
+      .flatMap(route => [route, ...(route.children ?? [])])
+      .filter(route => route.title);
   }
 }

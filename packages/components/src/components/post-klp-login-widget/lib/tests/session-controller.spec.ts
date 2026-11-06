@@ -1,0 +1,402 @@
+import type { KlpMessage, KlpSessionData } from '../session.model';
+import { createSessionController } from '../session-controller';
+
+const sessionData: KlpSessionData = {
+  name: 'Ada',
+  surname: 'Lovelace',
+  userType: 'B2B',
+  authLevel: 'PASSWORD',
+};
+
+function mockSubscribe(message: KlpMessage) {
+  const fetchMock = jest.fn().mockResolvedValue({ json: async () => message });
+  globalThis.fetch = fetchMock as unknown as typeof fetch;
+  return fetchMock;
+}
+
+/** Every controller installs a keep-alive interval on login; an untracked one outlives the test. */
+const running: { stop: () => void }[] = [];
+
+function track<T extends { stop: () => void }>(controller: T): T {
+  running.push(controller);
+  return controller;
+}
+
+function fakeEventBus() {
+  return {
+    onopen: null as (() => void) | null,
+    onclose: null as (() => void) | null,
+    registerHandler: jest.fn(),
+    close: jest.fn(),
+  };
+}
+
+function controllerFor(message: KlpMessage) {
+  const fetchMock = mockSubscribe(message);
+  const onSessionChange = jest.fn();
+  const onUnreadChange = jest.fn();
+  const bus = fakeEventBus();
+  const loadEventBus = jest.fn().mockResolvedValue(() => bus);
+  const controller = track(
+    createSessionController({
+      endPoint: 'https://n.accountint1.post.ch',
+      onSessionChange,
+      onUnreadChange,
+      loadEventBus,
+    }),
+  );
+
+  return { controller, onSessionChange, onUnreadChange, fetchMock, bus, loadEventBus };
+}
+
+describe('session-controller', () => {
+  afterEach(() => {
+    while (running.length > 0) running.pop().stop();
+    jest.restoreAllMocks();
+  });
+
+  it('reports the session carried by a sub message', async () => {
+    const { controller, onSessionChange } = controllerFor({
+      typ: 'sub',
+      adr: 'address-1',
+      ttl: 60_000,
+      data: sessionData,
+    });
+
+    await controller.start();
+
+    expect(onSessionChange).toHaveBeenCalledWith(sessionData);
+    expect(controller.getSession()).toEqual(sessionData);
+  });
+
+  it('adopts the address the platform assigned', async () => {
+    const { controller } = controllerFor({
+      typ: 'sub',
+      adr: 'address-1',
+      ttl: 60_000,
+      data: sessionData,
+    });
+
+    await controller.start();
+
+    expect(controller.getAddress()).toBe('address-1');
+  });
+
+  it('subscribes against the endpoint built for the given platform', async () => {
+    const { controller, fetchMock } = controllerFor({ typ: 'bye' });
+
+    await controller.start();
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      'https://n.accountint1.post.ch/v1/session/subscribe',
+      expect.objectContaining({ credentials: 'include' }),
+    );
+  });
+
+  it('stays anonymous when the platform does not know us', async () => {
+    const { controller, onSessionChange } = controllerFor({ typ: 'ukn' });
+
+    await controller.start();
+
+    expect(onSessionChange).toHaveBeenCalledWith(null);
+    expect(controller.getSession()).toBeNull();
+  });
+
+  it('drops the session again on bye', async () => {
+    const { controller, onSessionChange } = controllerFor({
+      typ: 'sub',
+      adr: 'address-1',
+      ttl: 60_000,
+      data: sessionData,
+    });
+    await controller.start();
+    onSessionChange.mockClear();
+
+    mockSubscribe({ typ: 'bye' });
+    await controller.start();
+
+    expect(onSessionChange).toHaveBeenCalledWith(null);
+    expect(controller.getSession()).toBeNull();
+  });
+
+  it('survives a failing subscribe without rejecting', async () => {
+    globalThis.fetch = jest.fn().mockRejectedValue(new Error('offline')) as unknown as typeof fetch;
+    const onSessionChange = jest.fn();
+    const controller = track(
+      createSessionController({
+        endPoint: 'https://n.accountint1.post.ch',
+        onSessionChange,
+      }),
+    );
+
+    await expect(controller.start()).resolves.toBeUndefined();
+    expect(controller.getSession()).toBeNull();
+  });
+
+  describe('keep-alive', () => {
+    afterEach(() => {
+      jest.useRealTimers();
+    });
+
+    it('refreshes the portal and the platform once logged in', async () => {
+      jest.useFakeTimers();
+      const fetchMock = mockSubscribe({
+        typ: 'sub',
+        adr: 'address-1',
+        ttl: 60_000,
+        data: sessionData,
+      });
+      const controller = track(
+        createSessionController({
+          endPoint: 'https://n.accountint1.post.ch',
+          keepAliveUrl: 'https://int.post.ch/keepalive',
+          conf: { keepAliveInterval: 1 },
+          onSessionChange: jest.fn(),
+        }),
+      );
+
+      await controller.start();
+      fetchMock.mockClear();
+      jest.advanceTimersByTime(60 * 1000);
+
+      const pinged = fetchMock.mock.calls.map(([url]) => url as string);
+      expect(pinged).toHaveLength(2);
+      expect(pinged[0]).toContain('https://int.post.ch/keepalive');
+      expect(pinged[1]).toContain('https://n.accountint1.post.ch/v1/session/keepalive');
+    });
+
+    it('does not refresh anything while anonymous', async () => {
+      jest.useFakeTimers();
+      const fetchMock = mockSubscribe({ typ: 'ukn' });
+      const controller = track(
+        createSessionController({
+          endPoint: 'https://n.accountint1.post.ch',
+          conf: { keepAliveInterval: 1 },
+          onSessionChange: jest.fn(),
+        }),
+      );
+
+      await controller.start();
+      fetchMock.mockClear();
+      jest.advanceTimersByTime(60 * 1000 * 3);
+
+      expect(fetchMock).not.toHaveBeenCalled();
+    });
+
+    it('stops refreshing once the controller is stopped', async () => {
+      jest.useFakeTimers();
+      const fetchMock = mockSubscribe({
+        typ: 'sub',
+        adr: 'address-1',
+        ttl: 60_000,
+        data: sessionData,
+      });
+      const controller = track(
+        createSessionController({
+          endPoint: 'https://n.accountint1.post.ch',
+          conf: { keepAliveInterval: 1 },
+          onSessionChange: jest.fn(),
+        }),
+      );
+      await controller.start();
+
+      controller.stop();
+      fetchMock.mockClear();
+      jest.advanceTimersByTime(60 * 1000 * 3);
+
+      expect(fetchMock).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('the live connection', () => {
+    /** openCommunication awaits the transport chunk, so the socket exists a microtask later. */
+    const settled = () => new Promise(resolve => setImmediate(resolve));
+
+    it('opens once a session exists', async () => {
+      const { controller, loadEventBus } = controllerFor({
+        typ: 'sub',
+        adr: 'address-1',
+        ttl: 60_000,
+        data: sessionData,
+      });
+
+      await controller.start();
+      await settled();
+
+      expect(loadEventBus).toHaveBeenCalledTimes(1);
+    });
+
+    it('is never loaded for a visitor who is not logged in', async () => {
+      const { controller, loadEventBus } = controllerFor({ typ: 'ukn' });
+
+      await controller.start();
+      await settled();
+
+      expect(loadEventBus).not.toHaveBeenCalled();
+    });
+
+    it('routes what the platform pushes over it', async () => {
+      const { controller, onSessionChange, bus } = controllerFor({
+        typ: 'sub',
+        adr: 'address-1',
+        ttl: 60_000,
+        data: sessionData,
+      });
+      await controller.start();
+      await settled();
+      bus.onopen();
+
+      const [address, handler] = bus.registerHandler.mock.calls[0];
+      handler({ typ: 'bye' });
+
+      expect(address).toBe('address-1');
+      expect(controller.getSession()).toBeNull();
+      expect(onSessionChange).toHaveBeenLastCalledWith(null);
+    });
+
+    it('is closed together with the widget', async () => {
+      const { controller, bus } = controllerFor({
+        typ: 'sub',
+        adr: 'address-1',
+        ttl: 60_000,
+        data: sessionData,
+      });
+      await controller.start();
+      await settled();
+
+      controller.stop();
+
+      expect(bus.close).toHaveBeenCalled();
+    });
+
+    describe('when the platform asks for a new subscription', () => {
+      const sub = (adr: string): KlpMessage => ({
+        typ: 'sub',
+        adr,
+        ttl: 60_000,
+        data: sessionData,
+      });
+
+      async function openOn(...answers: KlpMessage[]) {
+        const setup = controllerFor(answers[0]);
+        const fetchMock = jest.fn();
+        for (const answer of answers) fetchMock.mockResolvedValueOnce({ json: async () => answer });
+        globalThis.fetch = fetchMock as unknown as typeof fetch;
+
+        await setup.controller.start();
+        await settled();
+        setup.bus.onopen();
+
+        const handlerFor = (address: string) =>
+          setup.bus.registerHandler.mock.calls.find(([registered]) => registered === address)?.[1];
+
+        return { ...setup, fetchMock, handlerFor };
+      }
+
+      // Was a v9 defect: the socket stayed on the stale address, so a logout elsewhere went unheard.
+      it('listens on the new address and hears the logout there', async () => {
+        const { controller, bus, handlerFor } = await openOn(sub('stale'), sub('fresh'));
+
+        handlerFor('stale')({ typ: 'ukn', sub: true });
+        await settled();
+
+        expect(bus.registerHandler.mock.calls.map(([address]) => address)).toEqual([
+          'stale',
+          'fresh',
+        ]);
+        expect(controller.getSession()).toEqual(sessionData);
+
+        handlerFor('fresh')({ typ: 'bye' });
+        expect(controller.getSession()).toBeNull();
+      });
+
+      // INT2 in 2026-10 handed out a new address on every subscribe and accepted none of them.
+      it('stays signed in rather than loop when no address is ever accepted', async () => {
+        const { controller, fetchMock, handlerFor } = await openOn(sub('a'), sub('b'), sub('c'));
+
+        handlerFor('a')({ typ: 'ukn', sub: true });
+        await settled();
+        handlerFor('b')({ typ: 'ukn', sub: true });
+        await settled();
+
+        expect(fetchMock).toHaveBeenCalledTimes(2);
+        expect(controller.getSession()).toEqual(sessionData);
+      });
+    });
+  });
+
+  describe('notifications', () => {
+    it('keeps the count the platform pushes', async () => {
+      const { controller, bus } = controllerFor({
+        typ: 'sub',
+        adr: 'address-1',
+        ttl: 60_000,
+        data: sessionData,
+      });
+      await controller.start();
+      await new Promise(resolve => setImmediate(resolve));
+      bus.onopen();
+      const [, handler] = bus.registerHandler.mock.calls[0];
+
+      handler({ typ: 'doc', doc: { unreadNotifications: 4 }, doctyp: 'UNREAD_NOTIFICATIONS' });
+
+      expect(controller.getUnreadNotifications()).toBe(4);
+    });
+
+    it('forgets the count on logout, so the next user never sees it', async () => {
+      const { controller, bus } = controllerFor({
+        typ: 'sub',
+        adr: 'address-1',
+        ttl: 60_000,
+        data: sessionData,
+      });
+      await controller.start();
+      await new Promise(resolve => setImmediate(resolve));
+      bus.onopen();
+      const [, handler] = bus.registerHandler.mock.calls[0];
+      handler({ typ: 'doc', doc: { unreadNotifications: 4 }, doctyp: 'UNREAD_NOTIFICATIONS' });
+
+      handler({ typ: 'bye' });
+
+      expect(controller.getUnreadNotifications()).toBe(0);
+    });
+
+    it('drops a withdrawn document', async () => {
+      const { controller, bus } = controllerFor({
+        typ: 'sub',
+        adr: 'address-1',
+        ttl: 60_000,
+        data: sessionData,
+      });
+      await controller.start();
+      await new Promise(resolve => setImmediate(resolve));
+      bus.onopen();
+      const [, handler] = bus.registerHandler.mock.calls[0];
+      handler({ typ: 'doc', doc: { unreadNotifications: 4 }, doctyp: 'UNREAD_NOTIFICATIONS' });
+
+      handler({ typ: 'rem', doctyp: 'UNREAD_NOTIFICATIONS' });
+
+      expect(controller.getUnreadNotifications()).toBe(0);
+    });
+
+    // Polling would be the alternative, and the count changes far too rarely to be worth it.
+    it('announces every change, so the menu never has to ask', async () => {
+      const { controller, bus, onUnreadChange } = controllerFor({
+        typ: 'sub',
+        adr: 'address-1',
+        ttl: 60_000,
+        data: sessionData,
+      });
+      await controller.start();
+      await new Promise(resolve => setImmediate(resolve));
+      bus.onopen();
+      const [, handler] = bus.registerHandler.mock.calls[0];
+
+      handler({ typ: 'doc', doc: { unreadNotifications: 4 }, doctyp: 'UNREAD_NOTIFICATIONS' });
+      handler({ typ: 'rem', doctyp: 'UNREAD_NOTIFICATIONS' });
+      handler({ typ: 'bye' });
+
+      expect(onUnreadChange.mock.calls.map(([unread]) => unread)).toEqual([4, 0, 0]);
+    });
+  });
+});

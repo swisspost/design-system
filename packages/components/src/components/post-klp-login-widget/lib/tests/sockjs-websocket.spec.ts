@@ -1,0 +1,180 @@
+import { createSockJsSocket } from '../sockjs-websocket';
+
+type Handler = ((event: unknown) => void) | null;
+
+class FakeWebSocket {
+  static OPEN = 1;
+  static last: FakeWebSocket;
+
+  readyState = 0;
+  sent: string[] = [];
+  closed = false;
+  onopen: Handler = null;
+  onmessage: Handler = null;
+  onclose: Handler = null;
+  onerror: Handler = null;
+
+  constructor(public url: string) {
+    FakeWebSocket.last = this;
+  }
+
+  send(data: string) {
+    this.sent.push(data);
+  }
+
+  close() {
+    this.closed = true;
+  }
+
+  receive(frame: string) {
+    this.onmessage?.({ data: frame });
+  }
+}
+
+function setup() {
+  (globalThis as unknown as { WebSocket: unknown }).WebSocket = FakeWebSocket;
+  const socket = createSockJsSocket('https://n.accountint1.post.ch/eventbus');
+  const ws = FakeWebSocket.last;
+  const messages: string[] = [];
+  socket.onmessage = event => messages.push(event.data);
+
+  return { socket, ws, messages };
+}
+
+describe('sockjs-websocket', () => {
+  it('opens the websocket on the session url the server expects', () => {
+    const { ws } = setup();
+
+    expect(ws.url).toMatch(
+      /^wss:\/\/n\.accountint1\.post\.ch\/eventbus\/\d{3}\/[a-z0-9]{8}\/websocket$/,
+    );
+  });
+
+  it('gives every connection its own session, so two tabs never collide', () => {
+    const first = setup().ws.url;
+    const second = setup().ws.url;
+
+    expect(first).not.toEqual(second);
+  });
+
+  describe('the session ids', () => {
+    afterEach(() => jest.restoreAllMocks());
+
+    // Feeds getRandomValues a fixed sequence of 32-bit draws.
+    function drawing(...values: number[]) {
+      jest
+        .spyOn(crypto, 'getRandomValues')
+        .mockImplementation(<T extends ArrayBufferView | null>(array: T) => {
+          (array as unknown as Uint32Array)[0] = values.length > 1 ? values.shift() : values[0];
+          return array;
+        });
+      return setup().ws.url.split('/').slice(-3, -1);
+    }
+
+    it('draws again rather than fold an out-of-range value into range', () => {
+      // 1000 and 1023 exceed 999 after masking to 10 bits; 36 and 63 exceed 35 after masking to 6.
+      const [server, session] = drawing(1000, 1023, 7, 36, 63, 0, 1, 2, 3, 4, 5, 6, 35);
+
+      expect(server).toBe('007');
+      expect(session).toBe('abcdefg9');
+    });
+
+    it('uses only the low bits, whatever the high ones are', () => {
+      // Every bit above the mask set: 22 high bits for the server number, 26 for the session.
+      const [server, session] = drawing(2 ** 32 - 1024 + 999, 2 ** 32 - 64 + 35);
+
+      expect(server).toBe('999');
+      expect(session).toBe('99999999');
+    });
+  });
+
+  it('reports open only once the server sends the open frame', () => {
+    const { socket, ws } = setup();
+    const onopen = jest.fn();
+    socket.onopen = onopen;
+
+    expect(onopen).not.toHaveBeenCalled();
+    ws.receive('o');
+    expect(onopen).toHaveBeenCalledTimes(1);
+  });
+
+  it('unwraps an array frame into one message per element', () => {
+    const { ws, messages } = setup();
+
+    ws.receive(`a${JSON.stringify(['first', 'second'])}`);
+
+    expect(messages).toEqual(['first', 'second']);
+  });
+
+  it('delivers a single message frame', () => {
+    const { ws, messages } = setup();
+
+    ws.receive(`m${JSON.stringify('only')}`);
+
+    expect(messages).toEqual(['only']);
+  });
+
+  it('swallows the heartbeat, which nobody listens for', () => {
+    const { ws, messages } = setup();
+
+    ws.receive('h');
+
+    expect(messages).toEqual([]);
+  });
+
+  it('ignores a frame it cannot parse instead of throwing at the server', () => {
+    const { ws, messages } = setup();
+
+    expect(() => ws.receive('a{not json')).not.toThrow();
+    expect(messages).toEqual([]);
+  });
+
+  it('closes on the server close frame, reporting the reason', () => {
+    const { socket, ws } = setup();
+    const onclose = jest.fn();
+    socket.onclose = onclose;
+
+    ws.receive(`c${JSON.stringify([1001, 'Session closed'])}`);
+
+    expect(ws.closed).toBe(true);
+    expect(onclose).toHaveBeenCalledWith({ code: 1001, reason: 'Session closed' });
+  });
+
+  it('reports a broken connection as a close, so the widget can retry', () => {
+    const { socket, ws } = setup();
+    const onclose = jest.fn();
+    socket.onclose = onclose;
+
+    ws.onerror?.({});
+
+    expect(onclose).toHaveBeenCalledWith({ code: 1006, reason: 'WebSocket connection broken' });
+  });
+
+  it('reports a close exactly once', () => {
+    const { socket, ws } = setup();
+    const onclose = jest.fn();
+    socket.onclose = onclose;
+
+    ws.onerror?.({});
+    ws.onclose?.({ code: 1006, reason: '' });
+
+    expect(onclose).toHaveBeenCalledTimes(1);
+  });
+
+  it('wraps what it sends the way the websocket transport does', () => {
+    const { socket, ws } = setup();
+    ws.readyState = FakeWebSocket.OPEN;
+
+    socket.send('{"type":"ping"}');
+
+    expect(ws.sent).toEqual([String.raw`["{\"type\":\"ping\"}"]`]);
+  });
+
+  it('drops a send on a socket that is not open yet', () => {
+    const { socket, ws } = setup();
+
+    socket.send('{"type":"ping"}');
+
+    expect(ws.sent).toEqual([]);
+  });
+});

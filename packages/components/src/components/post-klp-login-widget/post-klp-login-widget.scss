@@ -1,0 +1,120 @@
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
+@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
+
+@use '@swisspost/design-system-styles/components/avatar';
+@use '@swisspost/design-system-styles/components/badge';
+
+// post-menu-item styles itself globally, which does not reach into this shadow root.
+@use '../post-menu-item/post-menu-item.scss';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:host {
+  display: inline-flex;
+  align-items: center;
+  // the avatar is the tallest state the widget can end up in, so holding its height from the first
+  // byte keeps the header row from growing once the session resolves
+  min-block-size: tokens.get('avatar-size', components.$post-avatar);
+}
+
+.visually-hidden {
+  @include utilities-mx.visuallyhidden();
+}
+
+// The header's own controls are styled from its global stylesheet, which this shadow root hides.
+.login-link {
+  @include header-mx.nav-item-base;
+  text-decoration: none;
+
+  @include media.only(mobile) {
+    @include header-mx.nav-item-icon-only;
+    padding: 10px;
+  }
+}
+
+post-menu-item .badge {
+  margin-inline-start: auto;
+}
+
+// Ported from the header's `_user-menu.scss`: the trigger now renders in this shadow root, which a
+// global stylesheet cannot reach.
+.user-menu-trigger {
+  @include header-mx.nav-item-base;
+  position: relative;
+  padding: 0;
+  align-items: center;
+  overflow: visible; // the button base clips to its pill, which would cut the unread dot in half
+  border-radius: tokens.get('avatar-border-radius', components.$post-avatar);
+  text-decoration: none;
+  cursor: pointer;
+
+  .support-user {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.25em;
+    background-color: #50f;
+    border: 1px solid #fff;
+    border-radius: 1.2em;
+    transform: translate(-45%, -45%);
+    color: #fff;
+    z-index: 2;
+
+    post-icon {
+      display: block;
+    }
+  }
+
+  // The avatar is the button's surface, so it never gets the nav item's background: repeat the
+  // base mixin's own state selectors, which then win by source order.
+  &,
+  &:hover {
+    background-color: transparent;
+  }
+
+  @include header-mx.active-state {
+    &,
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
+
+[slot='header'] p {
+  margin-block: 0;
+
+  &:not(.company) {
+    line-height: 1;
+  }
+
+  &.company {
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
+
+// Anchors the badge to the avatar; the trigger itself clips whatever reaches its own edge.
+.user-menu-avatar {
+  position: relative;
+  z-index: 1;
+
+  .badge {
+    position: absolute;
+    top: calc(
+      50% - #{tokens.get('avatar-size', components.$post-avatar)} * 0.5 +
+        #{tokens.get('avatar-border-width', components.$post-avatar)}
+    );
+    right: calc(
+      50% - #{tokens.get('avatar-size', components.$post-avatar)} * 0.5 +
+        #{tokens.get('avatar-border-width', components.$post-avatar)}
+    );
+  }
+}

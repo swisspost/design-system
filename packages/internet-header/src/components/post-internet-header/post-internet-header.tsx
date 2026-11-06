@@ -1,23 +1,14 @@
-import { Link, LinkProps, MegaDropdown, UserMenu } from '@/components/internal';
+import { Link, LinkProps, MegaDropdown } from '@/components/internal';
 import { dispose, state } from '@/data/store';
 import { ActiveRouteProp, Environment } from '@/models/general.model';
-import { PostLoginConfig, UserMenuConfig } from '@/models/header.model';
+import { PostLoginConfig } from '@/models/header.model';
 import { IconLinkConfig, LinkConfig } from '@/models/shared.model';
 import { getAlternateLinks, observeAlternateLinks } from '@/services/alternate-link.service';
 import { getLocalizedConfig, isValidProjectId } from '@/services/config.service';
 import { getActiveLink } from '@/services/route.service';
-import { getSessionUrl } from '@/config/klp-urls';
+import { changeContextTargetURL } from '@/utils/change-context-target-url';
 import { version } from '@root/package.json';
-import {
-  Component,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Listen,
-  Prop,
-  Watch,
-} from '@stencil/core';
+import { Component, Event, EventEmitter, h, Host, Listen, Prop, Watch } from '@stencil/core';
 import '@swisspost/design-system-components';
 
 @Component({
@@ -47,6 +38,12 @@ export class PostInternetHeader {
    * Makes the header content span the full width on screens larger than 1440px.
    */
   @Prop() fullWidth = false;
+
+  /**
+   * What the login widget shows before the session is known. Leave unset unless the server already
+   * knows who the visitor is; set `anonymous` to render the login link right away.
+   */
+  @Prop() klpInitialState?: 'anonymous' | 'authenticated';
 
   /**
    * Initial language to be used. Overrides automatic language detection.
@@ -134,7 +131,7 @@ export class PostInternetHeader {
 
   async componentWillLoad() {
     this.initAlternateLinks();
-    await Promise.all([this.fetchHeaderConfig(), this.fetchUserData()]);
+    await this.fetchHeaderConfig();
   }
 
   componentDidLoad() {
@@ -174,22 +171,6 @@ export class PostInternetHeader {
     }
   }
 
-  private async fetchUserData(): Promise<void> {
-    try {
-      const sessionUrl = getSessionUrl(this.environment);
-      const response = await fetch(sessionUrl, {
-        credentials: 'include',
-      });
-
-      if (response.ok) {
-        const json = await response.json();
-        state.user = json?.data;
-      }
-    } catch {
-      // In case of an error, we assume the user is not logged in and do nothing
-    }
-  }
-
   // Fetch and store the localized config, defaulting to the `language` prop if none is passed
   private async updateConfig(language?: string) {
     state.localizedConfig = await getLocalizedConfig({
@@ -216,14 +197,6 @@ export class PostInternetHeader {
     state.activeLink = getActiveLink(this.activeRoute);
   }
 
-  private getUserMenuOptions(postLogin: PostLoginConfig): Array<IconLinkConfig> {
-    return [
-      ...(postLogin.userProfile ? [postLogin.userProfile] : []),
-      ...(postLogin.settings ? [postLogin.settings] : []),
-      ...(postLogin.userLinks ?? []),
-    ];
-  }
-
   /**
    * Get the language switch URL for a given language code.
    * Alternate links from <head> take priority over config-provided URLs.
@@ -232,37 +205,68 @@ export class PostInternetHeader {
     return state.alternateLinks.get(code.toLowerCase()) ?? configUrl;
   }
 
-  private renderNavItem(config: LinkConfig | UserMenuConfig, props: LinkProps = {}): string {
-    if ('url' in config) {
-      return <Link {...props} config={config} />;
-    }
+  private renderLoginWidget(postLogin: PostLoginConfig) {
+    // The widget renders every entry itself; the config only overrides targets and texts.
+    const userLinks = postLogin.userLinks ?? [];
+    const byIcon = (...icons: string[]) => userLinks.find(link => icons.includes(link.icon));
+    const myProfile = postLogin.userProfile ?? byIcon('profile');
+    const settings = postLogin.settings ?? byIcon('gear', 'preferences');
+    const messages = byIcon('letter');
+    const text = (slot: string, config?: IconLinkConfig) =>
+      config?.text && (
+        <span slot={slot} key={slot}>
+          {config.text}
+        </span>
+      );
 
     return (
-      <UserMenu
-        slot={props.slot}
-        config={config}
+      <post-klp-login-widget
+        slot="post-login"
+        environment={this.environment}
+        service={this.project}
+        language={state.currentLanguage ?? undefined}
+        initialState={this.klpInitialState}
+        urlLogin={postLogin.loginLink?.url}
+        urlAccountSwitch={
+          postLogin.accountSwitch && changeContextTargetURL(postLogin.accountSwitch.url)
+        }
+        urlCompanySwitch={
+          postLogin.companySwitch && changeContextTargetURL(postLogin.companySwitch.url)
+        }
+        urlMyProfile={myProfile?.url}
+        urlMessages={messages?.url}
+        urlSettings={settings?.url}
+        urlLogout={postLogin.logoutLink?.url}
         textCurrentUser={this.textCurrentUser}
-        textAccessUserLinks={this.textAccessUserLinks}
         textUserLinks={this.textUserLinks}
-      />
+      >
+        <span slot="text-access-user-links" key="text-access-user-links">
+          {this.textAccessUserLinks}
+        </span>
+        {text('text-login', postLogin.loginLink)}
+        {text('text-account-switch', postLogin.accountSwitch)}
+        {text('text-company-switch', postLogin.companySwitch)}
+        {text('text-my-profile', myProfile)}
+        {text('text-messages', messages)}
+        {text('text-settings', settings)}
+        {text('text-logout', postLogin.logoutLink)}
+      </post-klp-login-widget>
     );
   }
 
-  private renderNavigation(
-    slot: string,
-    config: (LinkConfig | UserMenuConfig)[],
-    props: LinkProps = {},
-  ) {
+  private renderNavigation(slot: string, config: LinkConfig[], props: LinkProps = {}) {
     if (config.length === 0) return null;
 
     if (config.length === 1) {
-      return this.renderNavItem(config[0], { ...props, slot });
+      return <Link {...props} slot={slot} config={config[0]} />;
     }
 
     return (
       <ul slot={slot}>
         {config.map(navItem => (
-          <li key={'url' in navItem ? navItem.url : navItem.user.email}>{this.renderNavItem(navItem, props)}</li>
+          <li key={navItem.url}>
+            <Link {...props} config={navItem} />
+          </li>
         ))}
       </ul>
     );
@@ -326,19 +330,7 @@ export class PostInternetHeader {
             </post-language-menu>
           )}
 
-          {globalHeader.postLogin &&
-            this.renderNavItem(
-              state.user
-                ? {
-                    user: state.user,
-                    options: this.getUserMenuOptions(globalHeader.postLogin),
-                    accountSwitch: globalHeader.postLogin.accountSwitch,
-                    companySwitch: globalHeader.postLogin.companySwitch,
-                    logoutLink: globalHeader.postLogin.logoutLink,
-                  }
-                : globalHeader.postLogin.loginLink,
-              { slot: 'post-login' },
-            )}
+          {globalHeader.postLogin && this.renderLoginWidget(globalHeader.postLogin)}
 
           {localHeader.title && <p slot="title">{localHeader.title}</p>}
 
