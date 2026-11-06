@@ -198,6 +198,16 @@ describe('header', () => {
           .find('post-menu')
           .should('not.exist');
       });
+
+      it('should pass klpInitialState to the login widget', () => {
+        cy.get('post-klp-login-widget[slot="post-login"]').should('not.have.attr', 'initial-state');
+        cy.changeArg('klpInitialState', 'authenticated');
+        cy.get('post-klp-login-widget[slot="post-login"]').should(
+          'have.prop',
+          'initialState',
+          'authenticated',
+        );
+      });
     });
 
     context('logged in', () => {

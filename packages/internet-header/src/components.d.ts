@@ -35,6 +35,10 @@ export namespace Components {
          */
         "fullWidth": boolean;
         /**
+          * What the login widget shows before the session is known. Leave unset unless the server already knows who the visitor is; set `anonymous` to render the login link right away.
+         */
+        "klpInitialState"?: 'anonymous' | 'authenticated';
+        /**
           * Initial language to be used. Overrides automatic language detection.
          */
         "language"?: 'de' | 'fr' | 'it' | 'en';
@@ -143,6 +147,10 @@ declare namespace LocalJSX {
          */
         "fullWidth"?: boolean;
         /**
+          * What the login widget shows before the session is known. Leave unset unless the server already knows who the visitor is; set `anonymous` to render the login link right away.
+         */
+        "klpInitialState"?: 'anonymous' | 'authenticated';
+        /**
           * Initial language to be used. Overrides automatic language detection.
          */
         "language"?: 'de' | 'fr' | 'it' | 'en';
@@ -200,6 +208,7 @@ declare namespace LocalJSX {
         "activeRoute": ActiveRouteProp;
         "environment": Environment;
         "fullWidth": boolean;
+        "klpInitialState": 'anonymous' | 'authenticated';
         "language": 'de' | 'fr' | 'it' | 'en';
         "project": string;
         "textBack": string;

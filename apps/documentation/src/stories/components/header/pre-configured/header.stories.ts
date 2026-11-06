@@ -115,6 +115,7 @@ export function renderHeader({ innerHMTL, ...args }: Args = defaultArgs) {
       environment=${args.environment !== 'prod' ? args.environment : nothing}
       language=${args.language}
       ?full-width=${args.fullWidth}
+      klp-initial-state=${args.klpInitialState ?? nothing}
       text-main=${args.textMain}
       text-menu=${args.textMenu}
       text-change-language=${args.textChangeLanguage}

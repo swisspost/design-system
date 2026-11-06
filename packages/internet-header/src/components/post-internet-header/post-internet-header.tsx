@@ -40,6 +40,12 @@ export class PostInternetHeader {
   @Prop() fullWidth = false;
 
   /**
+   * What the login widget shows before the session is known. Leave unset unless the server already
+   * knows who the visitor is; set `anonymous` to render the login link right away.
+   */
+  @Prop() klpInitialState?: 'anonymous' | 'authenticated';
+
+  /**
    * Initial language to be used. Overrides automatic language detection.
    */
   @Prop() language?: 'de' | 'fr' | 'it' | 'en';
@@ -219,6 +225,7 @@ export class PostInternetHeader {
         environment={this.environment}
         service={this.project}
         language={state.currentLanguage ?? undefined}
+        initialState={this.klpInitialState}
         urlLogin={postLogin.loginLink?.url}
         urlAccountSwitch={
           postLogin.accountSwitch && changeContextTargetURL(postLogin.accountSwitch.url)
