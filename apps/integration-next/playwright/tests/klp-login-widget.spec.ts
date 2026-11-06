@@ -57,7 +57,7 @@ const PAGES: { name: string; path: string; api?: boolean }[] = [
 
 async function expectSession(page: Page, user?: SignedInUser) {
   const widget = page.locator('post-klp-login-widget');
-  const loginLink = widget.locator('[slot="login-link"]');
+  const loginLink = widget.locator('.login-link');
   const trigger = widget.locator('post-menu-trigger button');
 
   if (!user) {
@@ -76,15 +76,18 @@ async function expectSession(page: Page, user?: SignedInUser) {
   await expect(menuHeader).toContainText(user.fullName);
   if (user.company) await expect(menuHeader).toContainText(user.company);
 
-  const accountSwitch = widget.locator('[slot="account-switch"]');
-  const companySwitch = widget.locator('[slot="company-switch"]');
+  const entry = (text: string) => widget.locator(`post-menu a:has(slot[name="${text}"])`);
+  const accountSwitch = entry('text-account-switch');
+  const companySwitch = entry('text-company-switch');
   await (user.accountSwitch
     ? expect(accountSwitch).toBeVisible()
     : expect(accountSwitch).toBeHidden());
   await (user.companySwitch
     ? expect(companySwitch).toBeVisible()
     : expect(companySwitch).toBeHidden());
-  await expect(widget.locator('[slot="logout-link"]')).toBeVisible();
+  for (const text of ['text-my-profile', 'text-messages', 'text-settings', 'text-logout']) {
+    await expect(entry(text)).toBeVisible();
+  }
 }
 
 test.describe('KLP login widget sessions', () => {

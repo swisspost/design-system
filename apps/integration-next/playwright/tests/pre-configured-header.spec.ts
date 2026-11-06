@@ -21,7 +21,7 @@ test.describe('Pre-configured header', () => {
     const apiRequests = collectApiRequests(page);
     await page.goto('/pre-configured-header/script-config');
 
-    await expect(page.locator('post-klp-login-widget [slot="account-switch"]')).toHaveText(
+    await expect(page.locator('post-klp-login-widget [slot="text-account-switch"]')).toHaveText(
       testConfiguration.header.globalHeader.postLogin.accountSwitch.text,
     );
     expect(apiRequests).toHaveLength(0);
@@ -38,7 +38,7 @@ test.describe('Pre-configured header', () => {
 
     await page.goto('/pre-configured-header/api-config');
 
-    await expect(page.locator('post-klp-login-widget [slot="account-switch"]')).toHaveText(
+    await expect(page.locator('post-klp-login-widget [slot="text-account-switch"]')).toHaveText(
       API_ACCOUNT_SWITCH,
     );
     expect(apiRequests).toHaveLength(1);
