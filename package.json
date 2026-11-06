@@ -130,7 +130,7 @@
     "@web-types/lit": "2.0.0-3"
   },
   "prettier": "@swisspost/design-system-prettier-config",
-  "packageManager": "pnpm@11.23.0",
+  "packageManager": "pnpm@12.17.0",
   "devEngines": {
     "runtime": {
       "name": "node",
