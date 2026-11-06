@@ -122,6 +122,9 @@ describe('klp login widget', () => {
 
       it('offers only the switch the session allows', () => {
         cy.get('@trigger').click();
+        getMenu()
+          .find('slot[name$="-switch"]')
+          .should('have.length', switchSlot ? 1 : 0);
         ['text-account-switch', 'text-company-switch'].forEach(slot => {
           getMenu()
             .find(`slot[name="${slot}"]`)
