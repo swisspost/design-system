@@ -3,7 +3,7 @@
  * without a backend. Loaded as a classic script, because it must patch `fetch` and `WebSocket`
  * before the components module evaluates and connects.
  *
- * `?session=` picks who is signed in — `ada`, `grace`, `alan`, or anything else for anonymous —
+ * `?session=` picks who is signed in — `bert`, `anna`, `gabe`, `alex`, `mary`, or anything else for anonymous —
  * and `?unread=` how many messages are already waiting. Every other query parameter overrides the
  * matching `KlpSessionData` field, e.g. `?surname=Hopper&userType=B2C&company=` or `?support=true`.
  *
@@ -23,36 +23,58 @@
   }
 
   const USERS = {
-    ada: {
-      name: 'Ada',
+    alex: {
+      name: 'Alex',
+      surname: 'Irvin',
+      userType: 'B2C',
+      authLevel: 'PASSWORD',
+    },
+    mary: {
+      name: 'Mary',
+      surname: 'Hamilton',
+      userType: 'B2C',
+      authLevel: 'PASSWORD',
+      changeUserAndProfile: 'profile',
+    },
+    bert: {
+      name: 'Bert',
+      surname: 'Keller',
+      company: 'Keller Logistik AG',
+      userType: 'B2B',
+      authLevel: 'PASSWORD',
+    },
+    anna: {
+      name: 'Anna',
       surname: 'Lovelace',
       company: 'Analytical Engines AG',
       userType: 'B2B',
       authLevel: 'PASSWORD',
       changeUserAndProfile: 'userAndProfile',
     },
-    grace: {
-      name: 'Grace',
+    gabe: {
+      name: 'Gabe',
       surname: 'Hopper',
       company: 'Naval Systems AG',
       userType: 'B2B',
       authLevel: 'PASSWORD',
       canChangeCompany: true,
     },
-    alan: {
-      name: 'Alan',
-      surname: 'Turing',
-      userType: 'B2C',
-      authLevel: 'PASSWORD',
-    },
   };
 
-  const label = user => `${user.name} ${user.surname}`;
+  const HINTS = {
+    alex: 'simple',
+    mary: 'can switch company',
+    bert: 'simple',
+    anna: 'can switch account',
+    gabe: 'can switch company',
+  };
+
+  const label = user => `${user.name} ${user.surname[0]}.`;
 
   const TTL = 900000;
   const RESERVED = new Set(['klpmock', 'session', 'unread']);
 
-  const current = (findParam('session')?.[1] ?? 'ada').toLowerCase();
+  const current = (findParam('session')?.[1] ?? 'anna').toLowerCase();
   const session = USERS[current] ? { ...USERS[current] } : null;
 
   for (const [field, value] of params) {
@@ -137,10 +159,19 @@
   // The widget guards on `WebSocket.OPEN`, which a replaced constructor does not carry over.
   Object.assign(globalThis.WebSocket, { CONNECTING: 0, OPEN: 1, CLOSING: 2, CLOSED: 3 });
 
-  function button(text, onClick) {
+  function button(text, iconName, onClick) {
     const element = document.createElement('button');
     element.type = 'button';
-    element.textContent = text;
+    element.classList.add('btn', 'btn-sm', 'btn-secondary');
+
+    const icon = document.createElement('post-icon');
+    icon.setAttribute('name', iconName);
+    icon.setAttribute('aria-hidden', 'true');
+
+    const label = document.createElement('span');
+    label.textContent = text;
+
+    element.append(icon, label);
     element.addEventListener('click', onClick);
 
     return element;
@@ -154,23 +185,168 @@
     }
   }
 
-  /** Falls back to a fixed bar, so a host only has to load the script. */
-  function container() {
-    const existing = document.querySelector('#KLPMockContainer');
-    if (existing) return existing;
+  function inlineRadio(radio, labelElement) {
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('form-check', 'form-check-inline');
+    wrapper.append(radio, labelElement);
+    return wrapper;
+  }
 
-    const element = document.createElement('div');
-    element.id = 'KLPMockContainer';
-    element.style.cssText =
-      'position:fixed;inset:auto 0 0 0;z-index:1000;display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px;background:#fc0';
-    document.body.append(element);
-
+  function heading(text, className) {
+    const element = document.createElement('h2');
+    if (className) element.className = className;
+    element.textContent = text;
     return element;
   }
 
+  function playgroundLink(description, href, text, steps = []) {
+    const item = document.createElement('tr');
+    const cell = document.createElement('td');
+    item.append(cell);
+
+    const link = document.createElement('a');
+    link.classList.add('btn', 'btn-sm', 'btn-primary');
+    link.href = href;
+    link.textContent = text;
+
+    const summary = document.createElement('p');
+    summary.textContent = description;
+    cell.append(link, summary);
+
+    if (steps.length > 0) {
+      const list = document.createElement('ol');
+      for (const step of steps)
+        list.append(Object.assign(document.createElement('li'), { textContent: step }));
+      cell.append(list);
+    }
+
+    return item;
+  }
+
+  function container() {
+    const existing = document.querySelector('#KLPMockContainer');
+    if (existing?.closest('#KLPMockDetails')) return existing;
+
+    const controls = existing ?? document.createElement('div');
+    controls.id = 'KLPMockContainer';
+
+    const details = document.createElement('details');
+    details.id = 'KLPMockDetails';
+
+    const summary = document.createElement('summary');
+    summary.textContent = 'KLP';
+
+    const playgroundPages = document.createElement('nav');
+    playgroundPages.id = 'PlaygroundLinks';
+    playgroundPages.setAttribute('aria-label', 'Other playground pages');
+
+    const pageTable = document.createElement('table');
+    pageTable.classList.add('table');
+    const pageRows = document.createElement('tbody');
+    pageTable.append(pageRows);
+    playgroundPages.append(pageTable);
+    pageRows.append(
+      playgroundLink(
+        'Previous implementation. Must keep working alongside the new KLP widget.',
+        '/playground/self-managed-user-menu.html',
+        'Previous Self-Managed User Menu',
+      ),
+      playgroundLink(
+        'Runs against the real KLP platform on int02, without the mock. To test manually:',
+        '/playground/klp-real.html',
+        'KLP Live Test Page',
+        [
+          'Serve this page over https from a *.post.ch host (see playground readme).',
+          'Open the live page and follow the login link.',
+          'Sign in with an int02 test user.',
+          'KLP redirects to the app, so open the live page again in the same tab.',
+          'Check the signed-in menu, switches and unread count; then log out.',
+        ],
+      ),
+    );
+
+    if (existing) existing.replaceWith(details);
+    else document.body.append(details);
+    details.append(
+      summary,
+      heading('Mock controls', 'mt-0'),
+      controls,
+      heading('Other playground pages'),
+      playgroundPages,
+    );
+
+    if (!document.getElementById('KlpPlatformMockStyles')) {
+      const styles = document.createElement('style');
+      styles.id = 'KlpPlatformMockStyles';
+      styles.textContent = `
+        #KLPMockDetails { padding: 8px; }
+        #KLPMockDetails summary { cursor: pointer; }
+        #KLPMockContainer, #PlaygroundLinks { margin-block: 8px 0; }
+        #PlaygroundLinks p { margin: 8px 0 0; }
+        #KLPMockContainer .klp-mock-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+      `;
+      document.head.append(styles);
+    }
+
+    return controls;
+  }
+
   onReady(() => {
-    const his = Object.entries(USERS).map(([id, user]) =>
-      button(`hi ${label(user)} (${user.userType})`, () => {
+    let activeUserId = session ? current : 'logout';
+    const userRadios = new Map();
+    const userGroup = document.createElement('fieldset');
+    userGroup.classList.add('mb-8');
+
+    const legend = document.createElement('legend');
+    legend.classList.add('visually-hidden');
+    legend.textContent = 'Active mock session';
+    userGroup.append(legend);
+
+    const logoutRadio = document.createElement('input');
+    logoutRadio.type = 'radio';
+    logoutRadio.name = 'klp-mock-session';
+    logoutRadio.id = 'klp-mock-session-logout';
+
+    const logoutLabel = document.createElement('label');
+    logoutLabel.htmlFor = logoutRadio.id;
+    logoutLabel.textContent = 'Logout';
+
+    logoutRadio.addEventListener('change', () => {
+      if (!logoutRadio.checked) return;
+
+      if (!eventBus) {
+        const search = new URLSearchParams(location.search);
+        search.set('session', 'anonymous');
+        location.search = search.toString();
+        return;
+      }
+
+      signOut();
+    });
+
+    userRadios.set('logout', logoutRadio);
+    userGroup.append(inlineRadio(logoutRadio, logoutLabel));
+
+    for (const [id, user] of Object.entries(USERS)) {
+      const radio = document.createElement('input');
+      radio.type = 'radio';
+      radio.name = 'klp-mock-session';
+      radio.id = `klp-mock-session-${id}`;
+
+      const labelElement = document.createElement('label');
+      labelElement.htmlFor = radio.id;
+
+      const name = document.createElement('span');
+      name.textContent = `${label(user)} (${user.userType})`;
+
+      const hint = document.createElement('small');
+      hint.classList.add('d-block');
+      hint.textContent = HINTS[id];
+      labelElement.append(name, hint);
+
+      radio.addEventListener('change', () => {
+        if (!radio.checked) return;
+
         // The widget only opens a socket once it is signed in, so without one the page has to come
         // back with the session already in place.
         if (!eventBus) {
@@ -180,19 +356,58 @@
           return;
         }
 
-        signIn({ ...user });
+        signIn({ ...user }, id);
+      });
+
+      userRadios.set(id, radio);
+      userGroup.append(inlineRadio(radio, labelElement));
+    }
+
+    const actionGroup = document.createElement('div');
+    actionGroup.setAttribute('role', 'group');
+    actionGroup.setAttribute('aria-label', 'Other KLP mock actions');
+    actionGroup.classList.add('klp-mock-actions');
+
+    const support = button('', 'customercenter', () =>
+      signIn({ ...signedIn, support: !signedIn.support }, activeUserId),
+    );
+
+    const newMessage = button('', 'letter', () => {
+      deliver();
+      update();
+    });
+
+    actionGroup.append(
+      support,
+      newMessage,
+      button('no messages', 'letteropen', () => {
+        waiting = 0;
+        pushUnread();
+        update();
       }),
     );
 
-    const support = button('', () => signIn({ ...signedIn, support: !signedIn.support }));
-
     // Flags only an open session; while signed out, `?support=true` presets it for the next one.
     function update() {
-      support.textContent = `support flag: ${signedIn?.support ? 'on' : 'off'}`;
-      support.disabled = !signedIn;
+      support.querySelector('span').textContent =
+        `support flag: ${signedIn?.support ? 'on' : 'off'}`;
+      newMessage.querySelector('span').textContent = `new message (${waiting})`;
+      for (const action of actionGroup.querySelectorAll('button')) action.disabled = !signedIn;
+
+      for (const [id, radio] of userRadios) {
+        radio.checked = id === activeUserId;
+      }
     }
 
-    function signIn(data) {
+    function signOut() {
+      signedIn = null;
+      activeUserId = 'logout';
+      update();
+      push({ typ: 'bye' });
+    }
+
+    function signIn(data, userId) {
+      activeUserId = userId;
       signedIn = data;
       update();
       push({ typ: 'hi', ttl: TTL, data });
@@ -201,20 +416,6 @@
     }
 
     update();
-    container().append(
-      'KLP mock: ',
-      button('logout', () => {
-        signedIn = null;
-        update();
-        push({ typ: 'bye' });
-      }),
-      ...his,
-      support,
-      button('new message', deliver),
-      button('no messages', () => {
-        waiting = 0;
-        pushUnread();
-      }),
-    );
+    container().append(userGroup, actionGroup);
   });
 })();

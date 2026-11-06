@@ -16,11 +16,11 @@ under `src/` into the published `dist/collection`, so the folder is excluded aga
 
 Stands in for the KLP platform, so the login widget can be driven without a backend.
 
-| Query parameter | Effect                                                                  |
-| --------------- | ----------------------------------------------------------------------- |
-| `?session=`     | `ada`, `grace` or `alan`; anything else is anonymous. Default `ada`.    |
-| `?unread=`      | How many messages are already waiting. Default `0`.                     |
-| anything else   | Overrides that `KlpSessionData` field, e.g. `?surname=Hopper&company=`. |
+| Query parameter | Effect                                                                                |
+| --------------- | ------------------------------------------------------------------------------------- |
+| `?session=`     | `bert`, `anna`, `gabe`, `alex` or `mary`; anything else is anonymous. Default `anna`. |
+| `?unread=`      | How many messages are already waiting. Default `0`.                                   |
+| anything else   | Overrides that `KlpSessionData` field, e.g. `?surname=Hopper&company=`.               |
 
 The query parameters only decide what the page starts with. From there the buttons at the bottom
 of the page push the messages the platform would send into an open session — `bye` to sign out,
