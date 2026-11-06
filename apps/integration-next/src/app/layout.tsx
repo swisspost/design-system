@@ -6,7 +6,7 @@ export default function RootLayout({ children }: { readonly children: React.Reac
   return (
     <html lang="en" data-color-scheme="light">
       <body>
-        {/* Dormant until the URL carries `?klpmock`, then it fakes the KLP platform for the login widget. */}
+        {/* Fakes the KLP platform for the login widget; logged out unless `?session=` names a user. */}
         <Script src="/klp-platform-mock.js" strategy="beforeInteractive" />
         {children}
       </body>

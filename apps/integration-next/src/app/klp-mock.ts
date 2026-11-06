@@ -4,19 +4,17 @@ export type KlpInitialState = 'anonymous' | 'authenticated';
 export const KLP_INITIAL_STATE_HEADER = 'x-klp-initial-state';
 
 // The users `public/klp-platform-mock.js` can sign in; it treats any other `session` as anonymous.
-const KLP_MOCK_USERS = new Set(['ada', 'grace', 'alan']);
+const KLP_MOCK_USERS = new Set(['alex', 'mary', 'bert', 'anna', 'gabe']);
 
 /**
  * What the KLP platform mock will answer, known from the URL alone, so the server can render the
- * login widget in that state. Without `?klpmock` the real platform answers, which never signs
- * anyone in on this app.
+ * login widget in that state. The mock is always on and signs nobody in unless `?session=` names
+ * a user.
  */
 export function getKlpInitialState(searchParams: URLSearchParams): KlpInitialState {
   // Matches the mock in ignoring case, which address bars may change.
   const findParam = (name: string) => [...searchParams].find(([key]) => key.toLowerCase() === name);
 
-  if (!findParam('klpmock')) return 'anonymous';
-
-  const user = (findParam('session')?.[1] ?? 'ada').toLowerCase();
+  const user = (findParam('session')?.[1] ?? '').toLowerCase();
   return KLP_MOCK_USERS.has(user) ? 'authenticated' : 'anonymous';
 }

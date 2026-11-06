@@ -15,7 +15,7 @@ export function PreConfiguredHeaderPage({
         <h1>{title}</h1>
         {children}
         <p>
-          Add <code>?klpmock</code> to the URL to see the user menu of a signed-in user.
+          Add <code>?session=anna</code> to the URL to see the user menu of a signed-in user.
         </p>
         <nav aria-labelledby="pre-configured-header-nav">
           <h2 id="pre-configured-header-nav">Pre-configured header examples</h2>
