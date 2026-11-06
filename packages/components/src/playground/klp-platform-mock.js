@@ -10,17 +10,12 @@
  * From there the buttons take over: they push the messages the platform would send into an open
  * session, so signing in and out needs no reload.
  *
- * Hosts that ship this on every page leave it dormant until the URL carries `?klpmock`. The
- * playground marks its tag `data-always`, because that page exists for nothing else.
+ * Nobody is signed in unless `?session=` names a user.
  */
 (() => {
   const params = new URLSearchParams(location.search);
   // Address bars may change the case of what was typed, so the mock's own parameters ignore it.
   const findParam = name => [...params].find(([key]) => key.toLowerCase() === name);
-
-  if (!document.currentScript?.hasAttribute('data-always') && !findParam('klpmock')) {
-    return;
-  }
 
   const USERS = {
     alex: {
@@ -74,7 +69,7 @@
   const TTL = 900000;
   const RESERVED = new Set(['klpmock', 'session', 'unread']);
 
-  const current = (findParam('session')?.[1] ?? 'anna').toLowerCase();
+  const current = (findParam('session')?.[1] ?? '').toLowerCase();
   const session = USERS[current] ? { ...USERS[current] } : null;
 
   for (const [field, value] of params) {

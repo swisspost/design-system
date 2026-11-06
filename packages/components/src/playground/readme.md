@@ -16,11 +16,11 @@ under `src/` into the published `dist/collection`, so the folder is excluded aga
 
 Stands in for the KLP platform, so the login widget can be driven without a backend.
 
-| Query parameter | Effect                                                                                |
-| --------------- | ------------------------------------------------------------------------------------- |
-| `?session=`     | `bert`, `anna`, `gabe`, `alex` or `mary`; anything else is anonymous. Default `anna`. |
-| `?unread=`      | How many messages are already waiting. Default `0`.                                   |
-| anything else   | Overrides that `KlpSessionData` field, e.g. `?surname=Hopper&company=`.               |
+| Query parameter | Effect                                                                                   |
+| --------------- | ---------------------------------------------------------------------------------------- |
+| `?session=`     | `bert`, `anna`, `gabe`, `alex` or `mary`; anything else is anonymous. Default anonymous. |
+| `?unread=`      | How many messages are already waiting. Default `0`.                                      |
+| anything else   | Overrides that `KlpSessionData` field, e.g. `?surname=Hopper&company=`.                  |
 
 The query parameters only decide what the page starts with. From there the buttons at the bottom
 of the page push the messages the platform would send into an open session — `bye` to sign out,
@@ -31,9 +31,8 @@ the `support` flag turned on or off (disabled while signed out; `?support=true` 
 Only one of them ever reloads: the widget opens its socket just once it is signed in, so a `hi`
 on an anonymous page has nothing to push into and comes back as `?session=<id>` instead.
 
-The integration apps serve the same file and load it on every page, so it stays dormant until the
-URL carries `?klpmock`. The playground's own tag carries `data-always` instead, which skips that
-check.
+The integration apps serve the same file and load it on every page, so each of them starts logged
+out and signs a user in through `?session=`.
 
 ## `self-managed-user-menu.html`
 
