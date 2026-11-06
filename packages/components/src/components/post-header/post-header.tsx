@@ -341,11 +341,9 @@ export class PostHeader {
     return scrollParent === document.body ? globalThis.scrollY : scrollParent.scrollTop;
   }
 
-  // Browsers scroll a newly focused element into view before dispatching the focus events,
-  // so focusing a control of the collapsed header (positioned out of view) makes the page jump.
-  // The scroll event of that jump is not dispatched yet, so scrollPosition is still the position before the focus.
-  // Scrolling is not skipped when the position is unchanged: with `scroll-behavior: smooth`
-  // the browser scroll is still pending, and an instant scroll is what cancels it.
+  // Focusing a control of the collapsed header scrolls it into view before the focus events are dispatched
+  // the scroll event is not dispatched yet, so scrollPosition is still the position before the focus
+  // Never skip the scroll when the position is unchanged: an instant scroll cancels a pending smooth scroll
   private restoreScrollPosition() {
     const scrollParent = this.scrollParent;
     const scrollContainer = scrollParent === document.body ? globalThis : scrollParent;
