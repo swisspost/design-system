@@ -1,12 +1,10 @@
 const FIGMA_FILE_KEY = '3qYq4MN0QMWzumbLgkSh02';
 
 describe('Header Selection Guide', () => {
-  beforeEach(() => {
+  it('should embed the decision tree from Figma', () => {
     cy.visit('/iframe.html?id=3b69a918-06c3-4c4c-992a-714188b445c3--docs&viewMode=docs');
     cy.get('.header-decision-tree iframe').as('embed');
-  });
 
-  it('should embed the decision tree from Figma', () => {
     cy.get('@embed').should('have.attr', 'title').and('not.be.empty');
     cy.get('@embed')
       .should('have.attr', 'src')
