@@ -50232,6 +50232,486 @@
       "modifiedAt": "2025-03-26T13:27:20.000Z"
     },
     {
+      "uuid": "37358770-d834-11f1-adf0-0050568d2654",
+      "id": 11889583,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889583/storage/MDExODg5NTgzLzAvbWFzdGVyLy8vMTE4MDczMzEw",
+        "keywords": [
+          "Videoüberwachung",
+          "Videosorveglianza",
+          "Video surveillance",
+          "Vidéosurveillance",
+          "surveillance camera",
+          "Überwachungskamera",
+          "Videocamera di sorveglianza",
+          "Caméra de surveillance",
+          "Security cameras",
+          "Überwachungskameras",
+          "Caméras de surveillance",
+          "Videocamere di sorveglianza",
+          "Security camera",
+          "Sicherheitskamera",
+          "Caméra de sécurité",
+          "Fotocamera di sicurezza"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CameraSecurity_Shape_16.svg",
+        "basename": "CameraSecurity_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:43:40.000Z",
+      "modifiedAt": "2026-11-04T11:05:01.338Z"
+    },
+    {
+      "uuid": "36f9b6f0-d834-11f1-adf0-0050568d2654",
+      "id": 11889582,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889582/storage/MDExODg5NTgyLzAvbWFzdGVyLy8vMTE4MDczMzA2",
+        "keywords": [
+          "Videoüberwachung",
+          "Videosorveglianza",
+          "Video surveillance",
+          "Vidéosurveillance",
+          "surveillance camera",
+          "Überwachungskamera",
+          "Videocamera di sorveglianza",
+          "Caméra de surveillance",
+          "Security cameras",
+          "Überwachungskameras",
+          "Caméras de surveillance",
+          "Videocamere di sorveglianza",
+          "Security camera",
+          "Sicherheitskamera",
+          "Caméra de sécurité",
+          "Fotocamera di sicurezza"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CameraSecurity_Shape_24.svg",
+        "basename": "CameraSecurity_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:43:39.000Z",
+      "modifiedAt": "2026-11-04T11:05:01.338Z"
+    },
+    {
+      "uuid": "3549e410-d834-11f1-adf0-0050568d2654",
+      "id": 11889581,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889581/storage/MDExODg5NTgxLzAvbWFzdGVyLy8vMTE4MDczMzAy",
+        "keywords": [
+          "Videoüberwachung",
+          "Videosorveglianza",
+          "Video surveillance",
+          "Vidéosurveillance",
+          "surveillance camera",
+          "Überwachungskamera",
+          "Videocamera di sorveglianza",
+          "Caméra de surveillance",
+          "Security cameras",
+          "Überwachungskameras",
+          "Caméras de surveillance",
+          "Videocamere di sorveglianza",
+          "Security camera",
+          "Sicherheitskamera",
+          "Caméra de sécurité",
+          "Fotocamera di sicurezza"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CameraSecurity_Shape_32.svg",
+        "basename": "CameraSecurity_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:43:36.000Z",
+      "modifiedAt": "2026-11-04T11:05:01.338Z"
+    },
+    {
+      "uuid": "34f13cc0-d834-11f1-adf0-0050568d2654",
+      "id": 11889580,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889580/storage/MDExODg5NTgwLzAvbWFzdGVyLy8vMTE4MDczMjk4",
+        "keywords": [
+          "Videoüberwachung",
+          "Videosorveglianza",
+          "Video surveillance",
+          "Vidéosurveillance",
+          "surveillance camera",
+          "Überwachungskamera",
+          "Videocamera di sorveglianza",
+          "Caméra de surveillance",
+          "Security cameras",
+          "Überwachungskameras",
+          "Caméras de surveillance",
+          "Videocamere di sorveglianza",
+          "Security camera",
+          "Sicherheitskamera",
+          "Caméra de sécurité",
+          "Fotocamera di sicurezza"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CameraSecurity_Shape_40.svg",
+        "basename": "CameraSecurity_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:43:36.000Z",
+      "modifiedAt": "2026-11-04T11:05:01.338Z"
+    },
+    {
+      "uuid": "33d5baa0-d834-11f1-adf0-0050568d2654",
+      "id": 11889579,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889579/storage/MDExODg5NTc5LzAvbWFzdGVyLy8vMTE4MDczMjk0",
+        "keywords": [
+          "Videoüberwachung",
+          "Videosorveglianza",
+          "Video surveillance",
+          "Vidéosurveillance",
+          "surveillance camera",
+          "Überwachungskamera",
+          "Videocamera di sorveglianza",
+          "Caméra de surveillance",
+          "Security cameras",
+          "Überwachungskameras",
+          "Caméras de surveillance",
+          "Videocamere di sorveglianza",
+          "Security camera",
+          "Sicherheitskamera",
+          "Caméra de sécurité",
+          "Fotocamera di sicurezza"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CameraSecurity_Shape_48.svg",
+        "basename": "CameraSecurity_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:43:34.000Z",
+      "modifiedAt": "2026-11-04T11:05:01.338Z"
+    },
+    {
+      "uuid": "32d98051-d834-11f1-adf0-0050568d2654",
+      "id": 11889578,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889578/storage/MDExODg5NTc4LzAvbWFzdGVyLy8vMTE4MDcyMTcz",
+        "keywords": [
+          "Videoüberwachung",
+          "Videosorveglianza",
+          "Video surveillance",
+          "Vidéosurveillance",
+          "surveillance camera",
+          "Überwachungskamera",
+          "Videocamera di sorveglianza",
+          "Caméra de surveillance",
+          "Security cameras",
+          "Überwachungskameras",
+          "Caméras de surveillance",
+          "Videocamere di sorveglianza",
+          "Security camera",
+          "Sicherheitskamera",
+          "Caméra de sécurité",
+          "Fotocamera di sicurezza"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CameraSecurity_Shape_64.svg",
+        "basename": "CameraSecurity_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:43:32.000Z",
+      "modifiedAt": "2026-11-04T11:05:01.338Z"
+    },
+    {
+      "uuid": "30f18670-d834-11f1-adf0-0050568d2654",
+      "id": 11889577,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889577/storage/MDExODg5NTc3LzAvbWFzdGVyLy8vMTE4MDczMjg3",
+        "keywords": [
+          "Videoüberwachung",
+          "Videosorveglianza",
+          "Video surveillance",
+          "Vidéosurveillance",
+          "surveillance camera",
+          "Überwachungskamera",
+          "Videocamera di sorveglianza",
+          "Caméra de surveillance",
+          "Security cameras",
+          "Überwachungskameras",
+          "Caméras de surveillance",
+          "Videocamere di sorveglianza",
+          "Security camera",
+          "Sicherheitskamera",
+          "Caméra de sécurité",
+          "Fotocamera di sicurezza"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CameraSecurity_Solid_Shape_16.svg",
+        "basename": "CameraSecurity_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:43:29.000Z",
+      "modifiedAt": "2026-11-04T11:05:01.338Z"
+    },
+    {
+      "uuid": "30eec750-d834-11f1-adf0-0050568d2654",
+      "id": 11889576,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889576/storage/MDExODg5NTc2LzAvbWFzdGVyLy8vMTE4MDczMjgz",
+        "keywords": [
+          "Videoüberwachung",
+          "Videosorveglianza",
+          "Video surveillance",
+          "Vidéosurveillance",
+          "surveillance camera",
+          "Überwachungskamera",
+          "Videocamera di sorveglianza",
+          "Caméra de surveillance",
+          "Security cameras",
+          "Überwachungskameras",
+          "Caméras de surveillance",
+          "Videocamere di sorveglianza",
+          "Security camera",
+          "Sicherheitskamera",
+          "Caméra de sécurité",
+          "Fotocamera di sicurezza"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CameraSecurity_Solid_Shape_24.svg",
+        "basename": "CameraSecurity_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:43:29.000Z",
+      "modifiedAt": "2026-11-04T11:05:01.338Z"
+    },
+    {
+      "uuid": "2f4efa00-d834-11f1-adf0-0050568d2654",
+      "id": 11889575,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889575/storage/MDExODg5NTc1LzAvbWFzdGVyLy8vMTE4MDczMjc2",
+        "keywords": [
+          "Videoüberwachung",
+          "Videosorveglianza",
+          "Video surveillance",
+          "Vidéosurveillance",
+          "surveillance camera",
+          "Überwachungskamera",
+          "Videocamera di sorveglianza",
+          "Caméra de surveillance",
+          "Security cameras",
+          "Überwachungskameras",
+          "Caméras de surveillance",
+          "Videocamere di sorveglianza",
+          "Security camera",
+          "Sicherheitskamera",
+          "Caméra de sécurité",
+          "Fotocamera di sicurezza"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CameraSecurity_Solid_Shape_32.svg",
+        "basename": "CameraSecurity_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:43:26.000Z",
+      "modifiedAt": "2026-11-04T11:05:01.338Z"
+    },
+    {
+      "uuid": "2cf356c0-d834-11f1-adf0-0050568d2654",
+      "id": 11889571,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889571/storage/MDExODg5NTcxLzAvbWFzdGVyLy8vMTE4MDczMjU4",
+        "keywords": [
+          "Videoüberwachung",
+          "Videosorveglianza",
+          "Video surveillance",
+          "Vidéosurveillance",
+          "surveillance camera",
+          "Überwachungskamera",
+          "Videocamera di sorveglianza",
+          "Caméra de surveillance",
+          "Security cameras",
+          "Überwachungskameras",
+          "Caméras de surveillance",
+          "Videocamere di sorveglianza",
+          "Security camera",
+          "Sicherheitskamera",
+          "Caméra de sécurité",
+          "Fotocamera di sicurezza"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CameraSecurity_Solid_Shape_40.svg",
+        "basename": "CameraSecurity_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:43:22.000Z",
+      "modifiedAt": "2026-11-04T11:05:01.338Z"
+    },
+    {
+      "uuid": "2d055820-d834-11f1-adf0-0050568d2654",
+      "id": 11889573,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889573/storage/MDExODg5NTczLzAvbWFzdGVyLy8vMTE4MDczMjY5",
+        "keywords": [
+          "Videoüberwachung",
+          "Videosorveglianza",
+          "Video surveillance",
+          "Vidéosurveillance",
+          "surveillance camera",
+          "Überwachungskamera",
+          "Videocamera di sorveglianza",
+          "Caméra de surveillance",
+          "Security cameras",
+          "Überwachungskameras",
+          "Caméras de surveillance",
+          "Videocamere di sorveglianza",
+          "Security camera",
+          "Sicherheitskamera",
+          "Caméra de sécurité",
+          "Fotocamera di sicurezza"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CameraSecurity_Solid_Shape_48.svg",
+        "basename": "CameraSecurity_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:43:23.000Z",
+      "modifiedAt": "2026-11-04T11:05:01.338Z"
+    },
+    {
+      "uuid": "2d050a00-d834-11f1-adf0-0050568d2654",
+      "id": 11889572,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889572/storage/MDExODg5NTcyLzAvbWFzdGVyLy8vMTE4MDczMjY1",
+        "keywords": [
+          "Videoüberwachung",
+          "Videosorveglianza",
+          "Video surveillance",
+          "Vidéosurveillance",
+          "surveillance camera",
+          "Überwachungskamera",
+          "Videocamera di sorveglianza",
+          "Caméra de surveillance",
+          "Security cameras",
+          "Überwachungskameras",
+          "Caméras de surveillance",
+          "Videocamere di sorveglianza",
+          "Security camera",
+          "Sicherheitskamera",
+          "Caméra de sécurité",
+          "Fotocamera di sicurezza"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CameraSecurity_Solid_Shape_64.svg",
+        "basename": "CameraSecurity_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:43:23.000Z",
+      "modifiedAt": "2026-11-04T11:05:01.338Z"
+    },
+    {
       "uuid": "98e3db00-e562-11ef-a15d-005056873709",
       "id": 1831716,
       "type": "picture.pictogram.",
@@ -68674,6 +69154,342 @@
       "modifiedAt": "2025-03-26T13:27:10.000Z"
     },
     {
+      "uuid": "939dde70-d831-11f1-adf0-0050568d2654",
+      "id": 11889544,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889544/storage/MDExODg5NTQ0LzAvbWFzdGVyLy8vMTE4MDY4NDU5",
+        "keywords": [
+          "community",
+          "Community",
+          "communauté",
+          "comunità"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Community_Shape_16.svg",
+        "basename": "Community_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:24:46.000Z",
+      "modifiedAt": "2026-11-04T09:36:55.000Z"
+    },
+    {
+      "uuid": "9320bf30-d831-11f1-adf0-0050568d2654",
+      "id": 11889543,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889543/storage/MDExODg5NTQzLzAvbWFzdGVyLy8vMTE4MDY4NDU1",
+        "keywords": [
+          "community",
+          "Community",
+          "communauté",
+          "comunità"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Community_Shape_24.svg",
+        "basename": "Community_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:24:45.000Z",
+      "modifiedAt": "2026-11-04T09:36:55.000Z"
+    },
+    {
+      "uuid": "91da0e60-d831-11f1-adf0-0050568d2654",
+      "id": 11889542,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889542/storage/MDExODg5NTQyLzAvbWFzdGVyLy8vMTE4MDY4NDUx",
+        "keywords": [
+          "community",
+          "Community",
+          "communauté",
+          "comunità"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Community_Shape_32.svg",
+        "basename": "Community_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:24:43.000Z",
+      "modifiedAt": "2026-11-04T09:36:55.000Z"
+    },
+    {
+      "uuid": "90dd85f0-d831-11f1-adf0-0050568d2654",
+      "id": 11889541,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889541/storage/MDExODg5NTQxLzAvbWFzdGVyLy8vMTE4MDY4NDQ3",
+        "keywords": [
+          "community",
+          "Community",
+          "communauté",
+          "comunità"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Community_Shape_40.svg",
+        "basename": "Community_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:24:42.000Z",
+      "modifiedAt": "2026-11-04T09:36:55.000Z"
+    },
+    {
+      "uuid": "8faa5d22-d831-11f1-adf0-0050568d2654",
+      "id": 11889540,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889540/storage/MDExODg5NTQwLzAvbWFzdGVyLy8vMTE4MDY4NDQz",
+        "keywords": [
+          "community",
+          "Community",
+          "communauté",
+          "comunità"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Community_Shape_48.svg",
+        "basename": "Community_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:24:40.000Z",
+      "modifiedAt": "2026-11-04T09:36:55.000Z"
+    },
+    {
+      "uuid": "8e8b5890-d831-11f1-adf0-0050568d2654",
+      "id": 11889539,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889539/storage/MDExODg5NTM5LzAvbWFzdGVyLy8vMTE4MDY4Mjc0",
+        "keywords": [
+          "community",
+          "Community",
+          "communauté",
+          "comunità"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Community_Shape_64.svg",
+        "basename": "Community_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:24:38.000Z",
+      "modifiedAt": "2026-11-04T09:36:04.000Z"
+    },
+    {
+      "uuid": "8d9e1260-d831-11f1-adf0-0050568d2654",
+      "id": 11889538,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889538/storage/MDExODg5NTM4LzAvbWFzdGVyLy8vMTE4MDY4NDM5",
+        "keywords": [
+          "community",
+          "Community",
+          "communauté",
+          "comunità"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Community_Solid_Shape_16.svg",
+        "basename": "Community_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:24:36.000Z",
+      "modifiedAt": "2026-11-04T09:36:55.000Z"
+    },
+    {
+      "uuid": "8cb81f32-d831-11f1-adf0-0050568d2654",
+      "id": 11889537,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889537/storage/MDExODg5NTM3LzAvbWFzdGVyLy8vMTE4MDY4NDM1",
+        "keywords": [
+          "community",
+          "Community",
+          "communauté",
+          "comunità"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Community_Solid_Shape_24.svg",
+        "basename": "Community_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:24:35.000Z",
+      "modifiedAt": "2026-11-04T09:36:55.000Z"
+    },
+    {
+      "uuid": "8ba1f440-d831-11f1-adf0-0050568d2654",
+      "id": 11889536,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889536/storage/MDExODg5NTM2LzAvbWFzdGVyLy8vMTE4MDY4NDMx",
+        "keywords": [
+          "community",
+          "Community",
+          "communauté",
+          "comunità"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Community_Solid_Shape_32.svg",
+        "basename": "Community_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:24:33.000Z",
+      "modifiedAt": "2026-11-04T09:36:55.000Z"
+    },
+    {
+      "uuid": "895b86b4-d831-11f1-adf0-0050568d2654",
+      "id": 11889533,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889533/storage/MDExODg5NTMzLzAvbWFzdGVyLy8vMTE4MDY4NDE5",
+        "keywords": [
+          "community",
+          "Community",
+          "communauté",
+          "comunità"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Community_Solid_Shape_40.svg",
+        "basename": "Community_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:24:29.000Z",
+      "modifiedAt": "2026-11-04T09:36:55.000Z"
+    },
+    {
+      "uuid": "895e6ce0-d831-11f1-adf0-0050568d2654",
+      "id": 11889534,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889534/storage/MDExODg5NTM0LzAvbWFzdGVyLy8vMTE4MDY4NDIz",
+        "keywords": [
+          "community",
+          "Community",
+          "communauté",
+          "comunità"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Community_Solid_Shape_48.svg",
+        "basename": "Community_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:24:29.000Z",
+      "modifiedAt": "2026-11-04T09:36:55.000Z"
+    },
+    {
+      "uuid": "89702020-d831-11f1-adf0-0050568d2654",
+      "id": 11889535,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889535/storage/MDExODg5NTM1LzAvbWFzdGVyLy8vMTE4MDY4NDI3",
+        "keywords": [
+          "community",
+          "Community",
+          "communauté",
+          "comunità"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Community_Solid_Shape_64.svg",
+        "basename": "Community_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:24:29.000Z",
+      "modifiedAt": "2026-11-04T09:36:55.000Z"
+    },
+    {
       "uuid": "9884a400-e562-11ef-a15d-005056873709",
       "id": 1831543,
       "type": "picture.pictogram.",
@@ -75923,6 +76739,342 @@
       },
       "createdAt": "2026-07-13T12:33:25.000Z",
       "modifiedAt": "2026-07-14T12:05:01.825Z"
+    },
+    {
+      "uuid": "e008fb20-d834-11f1-adf0-0050568d2654",
+      "id": 11889689,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889689/storage/MDExODg5Njg5LzAvbWFzdGVyLy8vMTE4MDgwNjE0",
+        "keywords": [
+          "cost reduction",
+          "riduzione dei costi",
+          "réduction des coûts",
+          "Kostenreduktion"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CostReduction_Shape_16.svg",
+        "basename": "CostReduction_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:48:23.000Z",
+      "modifiedAt": "2026-11-04T09:54:56.000Z"
+    },
+    {
+      "uuid": "de80fb90-d834-11f1-adf0-0050568d2654",
+      "id": 11889686,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889686/storage/MDExODg5Njg2LzAvbWFzdGVyLy8vMTE4MDgwNjEw",
+        "keywords": [
+          "cost reduction",
+          "riduzione dei costi",
+          "réduction des coûts",
+          "Kostenreduktion"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CostReduction_Shape_24.svg",
+        "basename": "CostReduction_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:48:20.000Z",
+      "modifiedAt": "2026-11-04T09:54:56.000Z"
+    },
+    {
+      "uuid": "dd3ae700-d834-11f1-adf0-0050568d2654",
+      "id": 11889685,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889685/storage/MDExODg5Njg1LzAvbWFzdGVyLy8vMTE4MDgwNjA2",
+        "keywords": [
+          "cost reduction",
+          "riduzione dei costi",
+          "réduction des coûts",
+          "Kostenreduktion"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CostReduction_Shape_32.svg",
+        "basename": "CostReduction_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:48:18.000Z",
+      "modifiedAt": "2026-11-04T09:54:56.000Z"
+    },
+    {
+      "uuid": "dc37f5f0-d834-11f1-adf0-0050568d2654",
+      "id": 11889684,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889684/storage/MDExODg5Njg0LzAvbWFzdGVyLy8vMTE4MDgwNjAy",
+        "keywords": [
+          "cost reduction",
+          "riduzione dei costi",
+          "réduction des coûts",
+          "Kostenreduktion"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CostReduction_Shape_40.svg",
+        "basename": "CostReduction_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:48:16.000Z",
+      "modifiedAt": "2026-11-04T09:54:56.000Z"
+    },
+    {
+      "uuid": "dc320285-d834-11f1-adf0-0050568d2654",
+      "id": 11889683,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889683/storage/MDExODg5NjgzLzAvbWFzdGVyLy8vMTE4MDgwNTk4",
+        "keywords": [
+          "cost reduction",
+          "riduzione dei costi",
+          "réduction des coûts",
+          "Kostenreduktion"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CostReduction_Shape_48.svg",
+        "basename": "CostReduction_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:48:16.000Z",
+      "modifiedAt": "2026-11-04T09:54:56.000Z"
+    },
+    {
+      "uuid": "db117750-d834-11f1-adf0-0050568d2654",
+      "id": 11889682,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889682/storage/MDExODg5NjgyLzAvbWFzdGVyLy8vMTE4MDgwNDA5",
+        "keywords": [
+          "cost reduction",
+          "riduzione dei costi",
+          "réduction des coûts",
+          "Kostenreduktion"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CostReduction_Shape_64.svg",
+        "basename": "CostReduction_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:48:15.000Z",
+      "modifiedAt": "2026-11-04T09:54:14.000Z"
+    },
+    {
+      "uuid": "da1f2810-d834-11f1-adf0-0050568d2654",
+      "id": 11889680,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889680/storage/MDExODg5NjgwLzAvbWFzdGVyLy8vMTE4MDgwNTk0",
+        "keywords": [
+          "cost reduction",
+          "riduzione dei costi",
+          "réduction des coûts",
+          "Kostenreduktion"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CostReduction_Solid_Shape_16.svg",
+        "basename": "CostReduction_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:48:13.000Z",
+      "modifiedAt": "2026-11-04T09:54:56.000Z"
+    },
+    {
+      "uuid": "d9e35790-d834-11f1-adf0-0050568d2654",
+      "id": 11889679,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889679/storage/MDExODg5Njc5LzAvbWFzdGVyLy8vMTE4MDgwNTkw",
+        "keywords": [
+          "cost reduction",
+          "riduzione dei costi",
+          "réduction des coûts",
+          "Kostenreduktion"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CostReduction_Solid_Shape_24.svg",
+        "basename": "CostReduction_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:48:13.000Z",
+      "modifiedAt": "2026-11-04T09:54:56.000Z"
+    },
+    {
+      "uuid": "d89294a0-d834-11f1-adf0-0050568d2654",
+      "id": 11889678,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889678/storage/MDExODg5Njc4LzAvbWFzdGVyLy8vMTE4MDgwNTg2",
+        "keywords": [
+          "cost reduction",
+          "riduzione dei costi",
+          "réduction des coûts",
+          "Kostenreduktion"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CostReduction_Solid_Shape_32.svg",
+        "basename": "CostReduction_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:48:10.000Z",
+      "modifiedAt": "2026-11-04T09:54:56.000Z"
+    },
+    {
+      "uuid": "d581ab20-d834-11f1-adf0-0050568d2654",
+      "id": 11889675,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889675/storage/MDExODg5Njc1LzAvbWFzdGVyLy8vMTE4MDgwNTc0",
+        "keywords": [
+          "cost reduction",
+          "riduzione dei costi",
+          "réduction des coûts",
+          "Kostenreduktion"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CostReduction_Solid_Shape_40.svg",
+        "basename": "CostReduction_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:48:05.000Z",
+      "modifiedAt": "2026-11-04T09:54:56.000Z"
+    },
+    {
+      "uuid": "d58888f0-d834-11f1-adf0-0050568d2654",
+      "id": 11889676,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889676/storage/MDExODg5Njc2LzAvbWFzdGVyLy8vMTE4MDgwNTc4",
+        "keywords": [
+          "cost reduction",
+          "riduzione dei costi",
+          "réduction des coûts",
+          "Kostenreduktion"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CostReduction_Solid_Shape_48.svg",
+        "basename": "CostReduction_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:48:05.000Z",
+      "modifiedAt": "2026-11-04T09:54:56.000Z"
+    },
+    {
+      "uuid": "d58ea370-d834-11f1-adf0-0050568d2654",
+      "id": 11889677,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889677/storage/MDExODg5Njc3LzAvbWFzdGVyLy8vMTE4MDgwNTgy",
+        "keywords": [
+          "cost reduction",
+          "riduzione dei costi",
+          "réduction des coûts",
+          "Kostenreduktion"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "CostReduction_Solid_Shape_64.svg",
+        "basename": "CostReduction_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:48:05.000Z",
+      "modifiedAt": "2026-11-04T09:54:56.000Z"
     },
     {
       "uuid": "eab39220-bb0a-11f1-bf6c-0050568d2654",
@@ -150546,6 +151698,342 @@
       "modifiedAt": "2026-07-15T05:07:16.000Z"
     },
     {
+      "uuid": "b3114062-d833-11f1-adf0-0050568d2654",
+      "id": 11889566,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889566/storage/MDExODg5NTY2LzAvbWFzdGVyLy8vMTE4MDY5Mzg1",
+        "keywords": [
+          "Internationale Spedition",
+          "International forwarding",
+          "Expédition internationale",
+          "Spedizione internazionale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "InternationalForewarding_Shape_16.svg",
+        "basename": "InternationalForewarding_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:39:58.000Z",
+      "modifiedAt": "2026-11-04T09:42:31.000Z"
+    },
+    {
+      "uuid": "b18b1590-d833-11f1-adf0-0050568d2654",
+      "id": 11889564,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889564/storage/MDExODg5NTY0LzAvbWFzdGVyLy8vMTE4MDY5Mzcz",
+        "keywords": [
+          "Internationale Spedition",
+          "International forwarding",
+          "Expédition internationale",
+          "Spedizione internazionale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "InternationalForewarding_Shape_24.svg",
+        "basename": "InternationalForewarding_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:39:55.000Z",
+      "modifiedAt": "2026-11-04T09:42:31.000Z"
+    },
+    {
+      "uuid": "b18f3440-d833-11f1-adf0-0050568d2654",
+      "id": 11889565,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889565/storage/MDExODg5NTY1LzAvbWFzdGVyLy8vMTE4MDY5MzY5",
+        "keywords": [
+          "Internationale Spedition",
+          "International forwarding",
+          "Expédition internationale",
+          "Spedizione internazionale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "InternationalForewarding_Shape_32.svg",
+        "basename": "InternationalForewarding_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:39:55.000Z",
+      "modifiedAt": "2026-11-04T09:42:31.000Z"
+    },
+    {
+      "uuid": "b0989f44-d833-11f1-adf0-0050568d2654",
+      "id": 11889563,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889563/storage/MDExODg5NTYzLzAvbWFzdGVyLy8vMTE4MDY5MzQ5",
+        "keywords": [
+          "Internationale Spedition",
+          "International forwarding",
+          "Expédition internationale",
+          "Spedizione internazionale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "InternationalForewarding_Shape_40.svg",
+        "basename": "InternationalForewarding_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:39:54.000Z",
+      "modifiedAt": "2026-11-04T09:42:31.000Z"
+    },
+    {
+      "uuid": "af12c290-d833-11f1-adf0-0050568d2654",
+      "id": 11889562,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889562/storage/MDExODg5NTYyLzAvbWFzdGVyLy8vMTE4MDY5MzUz",
+        "keywords": [
+          "Internationale Spedition",
+          "International forwarding",
+          "Expédition internationale",
+          "Spedizione internazionale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "InternationalForewarding_Shape_48.svg",
+        "basename": "InternationalForewarding_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:39:51.000Z",
+      "modifiedAt": "2026-11-04T09:42:31.000Z"
+    },
+    {
+      "uuid": "adaaf530-d833-11f1-adf0-0050568d2654",
+      "id": 11889561,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889561/storage/MDExODg5NTYxLzAvbWFzdGVyLy8vMTE4MDY5MTEx",
+        "keywords": [
+          "Internationale Spedition",
+          "International forwarding",
+          "Expédition internationale",
+          "Spedizione internazionale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "InternationalForewarding_Shape_64.svg",
+        "basename": "InternationalForewarding_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:39:49.000Z",
+      "modifiedAt": "2026-11-04T09:41:18.000Z"
+    },
+    {
+      "uuid": "ad3af550-d833-11f1-adf0-0050568d2654",
+      "id": 11889560,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889560/storage/MDExODg5NTYwLzAvbWFzdGVyLy8vMTE4MDY5Mzc3",
+        "keywords": [
+          "Internationale Spedition",
+          "International forwarding",
+          "Expédition internationale",
+          "Spedizione internazionale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "InternationalForewarding_Solid_Shape_16.svg",
+        "basename": "InternationalForewarding_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:39:48.000Z",
+      "modifiedAt": "2026-11-04T09:42:31.000Z"
+    },
+    {
+      "uuid": "ad1740b0-d833-11f1-adf0-0050568d2654",
+      "id": 11889559,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889559/storage/MDExODg5NTU5LzAvbWFzdGVyLy8vMTE4MDY5Mzgx",
+        "keywords": [
+          "Internationale Spedition",
+          "International forwarding",
+          "Expédition internationale",
+          "Spedizione internazionale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "InternationalForewarding_Solid_Shape_24.svg",
+        "basename": "InternationalForewarding_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:39:48.000Z",
+      "modifiedAt": "2026-11-04T09:42:31.000Z"
+    },
+    {
+      "uuid": "abeb91f0-d833-11f1-adf0-0050568d2654",
+      "id": 11889558,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889558/storage/MDExODg5NTU4LzAvbWFzdGVyLy8vMTE4MDY5Mzg5",
+        "keywords": [
+          "Internationale Spedition",
+          "International forwarding",
+          "Expédition internationale",
+          "Spedizione internazionale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "InternationalForewarding_Solid_Shape_32.svg",
+        "basename": "InternationalForewarding_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:39:46.000Z",
+      "modifiedAt": "2026-11-04T09:42:31.000Z"
+    },
+    {
+      "uuid": "a9d227d0-d833-11f1-adf0-0050568d2654",
+      "id": 11889556,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889556/storage/MDExODg5NTU2LzAvbWFzdGVyLy8vMTE4MDY5MzY1",
+        "keywords": [
+          "Internationale Spedition",
+          "International forwarding",
+          "Expédition internationale",
+          "Spedizione internazionale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "InternationalForewarding_Solid_Shape_40.svg",
+        "basename": "InternationalForewarding_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:39:42.000Z",
+      "modifiedAt": "2026-11-04T09:42:31.000Z"
+    },
+    {
+      "uuid": "a9d31230-d833-11f1-adf0-0050568d2654",
+      "id": 11889557,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889557/storage/MDExODg5NTU3LzAvbWFzdGVyLy8vMTE4MDY5MzU3",
+        "keywords": [
+          "Internationale Spedition",
+          "International forwarding",
+          "Expédition internationale",
+          "Spedizione internazionale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "InternationalForewarding_Solid_Shape_48.svg",
+        "basename": "InternationalForewarding_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:39:42.000Z",
+      "modifiedAt": "2026-11-04T09:42:31.000Z"
+    },
+    {
+      "uuid": "a9d200c0-d833-11f1-adf0-0050568d2654",
+      "id": 11889555,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889555/storage/MDExODg5NTU1LzAvbWFzdGVyLy8vMTE4MDY5MzYx",
+        "keywords": [
+          "Internationale Spedition",
+          "International forwarding",
+          "Expédition internationale",
+          "Spedizione internazionale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "InternationalForewarding_Solid_Shape_64.svg",
+        "basename": "InternationalForewarding_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:39:42.000Z",
+      "modifiedAt": "2026-11-04T09:42:31.000Z"
+    },
+    {
       "uuid": "f0301432-3fd6-11f1-b98f-0050568d2654",
       "id": 10195945,
       "type": "picture.pictogram.",
@@ -187923,6 +189411,390 @@
       },
       "createdAt": "2025-02-07T06:33:39.000Z",
       "modifiedAt": "2025-03-26T13:37:20.000Z"
+    },
+    {
+      "uuid": "cb8559e0-d830-11f1-adf0-0050568d2654",
+      "id": 11889525,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889525/storage/MDExODg5NTI1LzAvbWFzdGVyLy8vMTE4MDY2MjU3",
+        "keywords": [
+          "municipality",
+          "Gemeinde",
+          "Commune",
+          "Comune",
+          "Gemeindehaus",
+          "community center",
+          "Casa comunale",
+          "Maison communale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Municipality_Shape_16.svg",
+        "basename": "Municipality_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:19:10.000Z",
+      "modifiedAt": "2026-11-04T09:21:30.000Z"
+    },
+    {
+      "uuid": "cb65c3f0-d830-11f1-adf0-0050568d2654",
+      "id": 11889524,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889524/storage/MDExODg5NTI0LzAvbWFzdGVyLy8vMTE4MDY2MjYx",
+        "keywords": [
+          "municipality",
+          "Gemeinde",
+          "Commune",
+          "Comune",
+          "Gemeindehaus",
+          "community center",
+          "Casa comunale",
+          "Maison communale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Municipality_Shape_24.svg",
+        "basename": "Municipality_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:19:10.000Z",
+      "modifiedAt": "2026-11-04T09:21:30.000Z"
+    },
+    {
+      "uuid": "c9f36f40-d830-11f1-adf0-0050568d2654",
+      "id": 11889523,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889523/storage/MDExODg5NTIzLzAvbWFzdGVyLy8vMTE4MDY2MjY1",
+        "keywords": [
+          "municipality",
+          "Gemeinde",
+          "Commune",
+          "Comune",
+          "Gemeindehaus",
+          "community center",
+          "Casa comunale",
+          "Maison communale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Municipality_Shape_32.svg",
+        "basename": "Municipality_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:19:08.000Z",
+      "modifiedAt": "2026-11-04T09:21:30.000Z"
+    },
+    {
+      "uuid": "c94afa42-d830-11f1-adf0-0050568d2654",
+      "id": 11889522,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889522/storage/MDExODg5NTIyLzAvbWFzdGVyLy8vMTE4MDY2MjY5",
+        "keywords": [
+          "municipality",
+          "Gemeinde",
+          "Commune",
+          "Comune",
+          "Gemeindehaus",
+          "community center",
+          "Casa comunale",
+          "Maison communale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Municipality_Shape_40.svg",
+        "basename": "Municipality_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:19:07.000Z",
+      "modifiedAt": "2026-11-04T09:21:30.000Z"
+    },
+    {
+      "uuid": "c7a11ad0-d830-11f1-adf0-0050568d2654",
+      "id": 11889521,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889521/storage/MDExODg5NTIxLzAvbWFzdGVyLy8vMTE4MDY2Mjcz",
+        "keywords": [
+          "municipality",
+          "Gemeinde",
+          "Commune",
+          "Comune",
+          "Gemeindehaus",
+          "community center",
+          "Casa comunale",
+          "Maison communale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Municipality_Shape_48.svg",
+        "basename": "Municipality_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:19:04.000Z",
+      "modifiedAt": "2026-11-04T09:21:30.000Z"
+    },
+    {
+      "uuid": "c79a15f0-d830-11f1-adf0-0050568d2654",
+      "id": 11889520,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889520/storage/MDExODg5NTIwLzAvbWFzdGVyLy8vMTE4MDY2MTEx",
+        "keywords": [
+          "municipality",
+          "Gemeinde",
+          "Commune",
+          "Comune",
+          "Gemeindehaus",
+          "community center",
+          "Casa comunale",
+          "Maison communale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Municipality_Shape_64.svg",
+        "basename": "Municipality_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:19:04.000Z",
+      "modifiedAt": "2026-11-04T09:20:34.000Z"
+    },
+    {
+      "uuid": "c5939790-d830-11f1-adf0-0050568d2654",
+      "id": 11889519,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889519/storage/MDExODg5NTE5LzAvbWFzdGVyLy8vMTE4MDY2Mjc3",
+        "keywords": [
+          "municipality",
+          "Gemeinde",
+          "Commune",
+          "Comune",
+          "Gemeindehaus",
+          "community center",
+          "Casa comunale",
+          "Maison communale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Municipality_Solid_Shape_16.svg",
+        "basename": "Municipality_Solid_Shape_16",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:19:01.000Z",
+      "modifiedAt": "2026-11-04T09:21:30.000Z"
+    },
+    {
+      "uuid": "c55d6c60-d830-11f1-adf0-0050568d2654",
+      "id": 11889518,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889518/storage/MDExODg5NTE4LzAvbWFzdGVyLy8vMTE4MDY2Mjgx",
+        "keywords": [
+          "municipality",
+          "Gemeinde",
+          "Commune",
+          "Comune",
+          "Gemeindehaus",
+          "community center",
+          "Casa comunale",
+          "Maison communale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Municipality_Solid_Shape_24.svg",
+        "basename": "Municipality_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:19:00.000Z",
+      "modifiedAt": "2026-11-04T09:21:30.000Z"
+    },
+    {
+      "uuid": "c4290b10-d830-11f1-adf0-0050568d2654",
+      "id": 11889517,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889517/storage/MDExODg5NTE3LzAvbWFzdGVyLy8vMTE4MDY2Mjg1",
+        "keywords": [
+          "municipality",
+          "Gemeinde",
+          "Commune",
+          "Comune",
+          "Gemeindehaus",
+          "community center",
+          "Casa comunale",
+          "Maison communale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Municipality_Solid_Shape_32.svg",
+        "basename": "Municipality_Solid_Shape_32",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:18:58.000Z",
+      "modifiedAt": "2026-11-04T09:21:30.000Z"
+    },
+    {
+      "uuid": "c1af3170-d830-11f1-adf0-0050568d2654",
+      "id": 11889516,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889516/storage/MDExODg5NTE2LzAvbWFzdGVyLy8vMTE4MDY2Mjg5",
+        "keywords": [
+          "municipality",
+          "Gemeinde",
+          "Commune",
+          "Comune",
+          "Gemeindehaus",
+          "community center",
+          "Casa comunale",
+          "Maison communale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Municipality_Solid_Shape_40.svg",
+        "basename": "Municipality_Solid_Shape_40",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:18:54.000Z",
+      "modifiedAt": "2026-11-04T09:21:30.000Z"
+    },
+    {
+      "uuid": "c1a87ab0-d830-11f1-adf0-0050568d2654",
+      "id": 11889514,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889514/storage/MDExODg5NTE0LzAvbWFzdGVyLy8vMTE4MDY2MjUw",
+        "keywords": [
+          "municipality",
+          "Gemeinde",
+          "Commune",
+          "Comune",
+          "Gemeindehaus",
+          "community center",
+          "Casa comunale",
+          "Maison communale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Municipality_Solid_Shape_48.svg",
+        "basename": "Municipality_Solid_Shape_48",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:18:54.000Z",
+      "modifiedAt": "2026-11-04T09:21:30.000Z"
+    },
+    {
+      "uuid": "c1a8a1c0-d830-11f1-adf0-0050568d2654",
+      "id": 11889515,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/11889515/storage/MDExODg5NTE1LzAvbWFzdGVyLy8vMTE4MDY2Mjkz",
+        "keywords": [
+          "municipality",
+          "Gemeinde",
+          "Commune",
+          "Comune",
+          "Gemeindehaus",
+          "community center",
+          "Casa comunale",
+          "Maison communale"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Municipality_Solid_Shape_64.svg",
+        "basename": "Municipality_Solid_Shape_64",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2026-11-04T09:18:54.000Z",
+      "modifiedAt": "2026-11-04T09:21:30.000Z"
     },
     {
       "uuid": "b4c6a820-d1b1-11f0-b1fa-0050568d2654",
@@ -401360,13 +403232,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 10620,
+    "success": 10680,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 2948,
     "duplicates": 0
   },
-  "created": "2026-11-02T10:03:39.682Z",
+  "created": "2026-11-04T11:33:04.643Z",
   "version": "10.8.0"
 }
