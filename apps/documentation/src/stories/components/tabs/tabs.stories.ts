@@ -167,7 +167,7 @@ const meta: MetaComponent<
   args: {
     'variant': 'Content Tabs',
     'activeTab': undefined,
-    'tabContent': 'text',
+    'tabContent': 'icon-text',
     'label': 'Page Tabs',
     'size': 'large',
     'textPrevTabItems': 'Previous tab items',
@@ -209,13 +209,13 @@ function renderPagesVariant(
   return html`
     <post-tabs label="${ifDefined(label)}" size="${ifDefined(size)}">
       <post-tab-item name="first">
-        <a href="/first" aria-current="page">${renderTabLabel(tabContent, 'First page', 'home')}</a>
+        <a href="/first" aria-current="page">${renderTabLabel(tabContent, 'First Tab', 'home')}</a>
       </post-tab-item>
       <post-tab-item name="second">
-        <a href="/second">${renderTabLabel(tabContent, 'Second page', 'letter')}</a>
+        <a href="/second">${renderTabLabel(tabContent, 'Second Tab', 'letter')}</a>
       </post-tab-item>
       <post-tab-item name="third">
-        <a href="/third">${renderTabLabel(tabContent, 'Third page', 'gear')}</a>
+        <a href="/third">${renderTabLabel(tabContent, 'Third Tab', 'gear')}</a>
       </post-tab-item>
     </post-tabs>
   `;
@@ -241,13 +241,13 @@ function renderContentVariant(
     return html`
       <post-tabs active-tab="${ifDefined(activeTab)}" size="${ifDefined(size)}">
         <post-tab-item name="first"
-          >${renderTabLabel(tabContent, 'First tab', 'home')}</post-tab-item
+          >${renderTabLabel(tabContent, 'First Tab', 'home')}</post-tab-item
         >
         <post-tab-item name="second"
-          >${renderTabLabel(tabContent, 'Second tab', 'letter')}</post-tab-item
+          >${renderTabLabel(tabContent, 'Second Tab', 'letter')}</post-tab-item
         >
         <post-tab-item name="third"
-          >${renderTabLabel(tabContent, 'Third tab', 'gear')}</post-tab-item
+          >${renderTabLabel(tabContent, 'Third Tab', 'gear')}</post-tab-item
         >
 
         ${unsafeHTML(panelSlots)}
@@ -257,11 +257,11 @@ function renderContentVariant(
 
   return html`
     <post-tabs active-tab="${ifDefined(activeTab)}" size="${ifDefined(size)}">
-      <post-tab-item name="first">${renderTabLabel(tabContent, 'First tab', 'home')}</post-tab-item>
+      <post-tab-item name="first">${renderTabLabel(tabContent, 'First Tab', 'home')}</post-tab-item>
       <post-tab-item name="second"
-        >${renderTabLabel(tabContent, 'Second tab', 'letter')}</post-tab-item
+        >${renderTabLabel(tabContent, 'Second Tab', 'letter')}</post-tab-item
       >
-      <post-tab-item name="third">${renderTabLabel(tabContent, 'Third tab', 'gear')}</post-tab-item>
+      <post-tab-item name="third">${renderTabLabel(tabContent, 'Third Tab', 'gear')}</post-tab-item>
 
       <post-tab-panel for="first">
         This is the content of the first tab. By default it is shown initially.

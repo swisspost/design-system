@@ -20,12 +20,13 @@ type Story = StoryObj;
 function renderPageTabsInContainer(
   containerClass: string,
   size: string | undefined,
+  tabContent: string,
   context: StoryContext,
 ) {
   return html`
     <div class="${containerClass}">
-      <p class="mt-8">Container: ${containerClass || 'none'}</p>
-      ${meta.render?.({ ...context.args, variant: 'Page Tabs', size, label: context.args.label ?? 'Page navigation' } as never, context as never)}
+      <p class="mt-8">Container: ${containerClass || 'none'} / Tab content: ${tabContent}</p>
+      ${meta.render?.({ ...context.args, variant: 'Page Tabs', size, tabContent, label: context.args.label ?? 'Page navigation' } as never, context as never)}
       <p>The quick brown fox jumps over the lazy dog.</p>
     </div>
   `;
@@ -38,8 +39,12 @@ function renderPageTabsInPalette(palette: string, scheme: string, context: Story
       ${['large', 'small'].map(
         size => html`
           <p class="mt-16">Size: ${size}</p>
-          ${['container', 'container-fluid', ''].map(containerClass =>
-            renderPageTabsInContainer(containerClass, size, context),
+          ${['text', 'icon', 'icon-text'].map(
+            tabContent => html`
+              ${['container', 'container-fluid', ''].map(containerClass =>
+                renderPageTabsInContainer(containerClass, size, tabContent, context),
+              )}
+            `,
           )}
         `,
       )}
@@ -70,9 +75,11 @@ function renderContentTabsInContainer(
       ${bombArgs({
         variant: ['Content Tabs'],
         activeTab: [undefined, 'third'],
-      }).map((args: Args) =>
-        meta.render?.({ ...context.args, ...args, size } as never, context as never),
-      )}
+        tabContent: ['text', 'icon', 'icon-text'],
+      }).map((args: Args) => html`
+        <p class="mt-8">Tab content: ${args.tabContent}</p>
+        ${meta.render?.({ ...context.args, ...args, size } as never, context as never)}
+      `)}
       <p>The quick brown fox jumps over the lazy dog.</p>
     </div>
   `;
