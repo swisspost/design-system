@@ -62,28 +62,6 @@ A dedicated header for the Jobs pages within the Post Portal.
 
 <Canvas of={HeaderStories.Jobs} inline="false" />
 
-## User menu
-
-The `post-login` slot in `<post-header>` holds the KLP login widget. It asks the Swiss Post customer
-login platform who is signed in and shows either the login link or the user menu. Your application
-only provides the links; there is no session to fetch and no condition to write yourself.
-
-See the <a href="/?path=/docs/787282bd-aea2-49e5-b98d-3bf852ca9dd7--docs">KLP Login Widget</a> for its
-properties, the links it accepts and the platform requirements.
-
-### Logged out
-
-When no user is authenticated, the widget shows the login link:
-
-<Canvas of={HeaderStories.LoggedOut} />
-
-### Logged in
-
-When a user is authenticated, the widget shows the user menu, with the avatar and the menu header
-taken from the session:
-
-<Canvas of={HeaderStories.LoggedIn} />
-
 </post-tab-panel>
 
 <post-tab-panel for="microsite" class="pt-24">
@@ -151,6 +129,15 @@ The `<post-header>` styles expose several custom properties on the `:root` eleme
 
 In addition, the `<post-header>` styles set the `scroll-padding-top` property on the `<body>` element to match the currently visible header height.
 This ensures that when using scroll navigation (e.g. jumping to anchors), content is positioned correctly below the header.
+
+## User menu
+
+The `post-login` slot in `<post-header>` holds the KLP login widget. It asks the Swiss Post customer
+login platform who is signed in and shows either the login link or the user menu. Your application
+only provides the links; there is no session to fetch and no condition to write yourself.
+
+See the <a href="/?path=/docs/787282bd-aea2-49e5-b98d-3bf852ca9dd7--docs">KLP Login Widget</a> for its
+properties, the links it accepts and the platform requirements.
 
 ## Active Navigation Items
 

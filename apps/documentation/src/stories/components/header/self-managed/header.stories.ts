@@ -1,5 +1,4 @@
 import {
-  renderLoginWidget,
   renderMainnavigation,
   renderSideNavigation,
   renderTitle,
@@ -394,40 +393,4 @@ export const ApplicationWithSideNavigation: Story = {
       },
     },
   },
-};
-
-// User is logged in
-export const LoggedIn: Story = {
-  ...getIframeParameters(400),
-  args: {
-    isLoggedIn: true,
-  },
-  decorators: [
-    (story: StoryFn, context: StoryContext) => {
-      const renderHeader = getHeaderRenderer({
-        renderLoginWidget: () => html` ${story(context.args, context)} `,
-        renderMainnavigation: () => renderMainnavigation({ showMegadropdown: false }),
-      });
-      return renderHeader(context.args);
-    },
-  ],
-  render: (args: Args) => renderLoginWidget(args),
-};
-
-// User is logged out
-export const LoggedOut: Story = {
-  ...getIframeParameters(200),
-  args: {
-    isLoggedIn: false,
-  },
-  decorators: [
-    (story: StoryFn, context: StoryContext) => {
-      const renderHeader = getHeaderRenderer({
-        renderLoginWidget: () => html` ${story(context.args, context)} `,
-        renderMainnavigation: () => renderMainnavigation({ showMegadropdown: false }),
-      });
-      return renderHeader(context.args);
-    },
-  ],
-  render: (args: Args) => renderLoginWidget(args),
 };
