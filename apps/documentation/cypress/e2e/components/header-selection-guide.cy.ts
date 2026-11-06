@@ -10,27 +10,26 @@ describe('Header Selection Guide', () => {
     cy.get('@embed').should('have.attr', 'title').and('not.be.empty');
     cy.get('@embed')
       .should('have.attr', 'src')
-      .and('include', `https://www.figma.com/board/${FIGMA_FILE_KEY}/`);
+      .and('include', `https://embed.figma.com/board/${FIGMA_FILE_KEY}/`);
   });
 
   it('should be served by Figma as an embeddable page', () => {
     cy.get('@embed')
       .invoke('attr', 'src')
       .then(src => {
-        cy.request({ url: src as string, followRedirect: false, failOnStatusCode: false }).then(
-          response => {
-            // a redirect or an error means Figma no longer serves the board at this URL
-            expect(response.status, 'status').to.eq(200);
+        // embed.figma.com redirects to Figma's embed page, so the redirect has to be followed
+        cy.request({ url: src as string, failOnStatusCode: false }).then(response => {
+          expect(response.status, 'status').to.eq(200);
 
-            // Figma sends "X-Frame-Options: SAMEORIGIN" on its non-embed pages, which blocks the iframe
-            expect(response.headers, 'headers').not.to.have.property('x-frame-options');
-            expect(String(response.headers['content-security-policy'] ?? '')).not.to.include(
-              'frame-ancestors',
-            );
+          // Figma sends "X-Frame-Options: SAMEORIGIN" on its non-embed pages, which blocks the iframe
+          expect(response.headers, 'headers').not.to.have.property('x-frame-options');
 
-            expect(response.body, 'body').to.include(FIGMA_FILE_KEY);
-          },
-        );
+          const csp = String(response.headers['content-security-policy'] ?? '');
+          const frameAncestors = /frame-ancestors([^;]*)/.exec(csp)?.[1].trim();
+          if (frameAncestors) expect(frameAncestors, 'frame-ancestors').to.eq('*');
+
+          expect(response.body, 'body').to.include(FIGMA_FILE_KEY);
+        });
       });
   });
 });
