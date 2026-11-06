@@ -89,7 +89,7 @@ const meta: MetaComponent<KlpLoginWidgetArgs> = {
   },
   decorators: [
     (story: StoryFn, context: StoryContext<KlpLoginWidgetArgs>) => html`
-      <div class="header-story-wrapper">
+      <div class="header-story-wrapper klp-login-widget-story">
         <div class="virtual-body">
           <post-header text-menu="Menu">
             <post-logo slot="post-logo" url="/">Homepage</post-logo>

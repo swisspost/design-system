@@ -139,13 +139,17 @@ Account and company switches are mutually exclusive. Text follows the `language`
 
 To replace a text, add an element with the matching `slot`. To change a target, set its URL property:
 
-<Canvas sourceState="shown" of={KlpLoginWidgetStories.Overrides} />
+<div className="klp-iframe-story">
+  <Canvas sourceState="shown" of={KlpLoginWidgetStories.Overrides} />
+</div>
 
 ## Custom entries
 
 Add custom entries as `post-menu-item`s without a `slot`. They appear between settings and logout:
 
-<Canvas sourceState="shown" of={KlpLoginWidgetStories.CustomItems} />
+<div className="klp-iframe-story">
+  <Canvas sourceState="shown" of={KlpLoginWidgetStories.CustomItems} />
+</div>
 
 <post-banner type="warning">
   <p>
@@ -159,7 +163,9 @@ Add custom entries as `post-menu-item`s without a `slot`. They appear between se
 Before the signed-in state is known, the widget shows an avatar without initials. Set `initial-state`
 when your page already knows the visitor's authentication state, for example during SSR.
 
-<Canvas of={KlpLoginWidgetStories.InitialState} />
+<div className="klp-iframe-story">
+  <Canvas of={KlpLoginWidgetStories.InitialState} />
+</div>
 
 ## Unread messages
 
