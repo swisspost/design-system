@@ -241,13 +241,13 @@ function renderContentVariant(
     return html`
       <post-tabs active-tab="${ifDefined(activeTab)}" size="${ifDefined(size)}">
         <post-tab-item name="first"
-          >${renderTabLabel(tabContent, 'First Tab', 'home')}</post-tab-item
+          >${renderTabLabel(tabContent, 'First Tab', 'Home')}</post-tab-item
         >
         <post-tab-item name="second"
-          >${renderTabLabel(tabContent, 'Second Tab', 'letter')}</post-tab-item
+          >${renderTabLabel(tabContent, 'Second Tab', 'Messages')}</post-tab-item
         >
         <post-tab-item name="third"
-          >${renderTabLabel(tabContent, 'Third Tab', 'gear')}</post-tab-item
+          >${renderTabLabel(tabContent, 'Third Tab', 'Settings')}</post-tab-item
         >
 
         ${unsafeHTML(panelSlots)}
