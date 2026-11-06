@@ -28,8 +28,8 @@ interface KlpLoginWidgetArgs
   > {
   session?: KlpFakeSession;
   unread?: number;
-  texts?: KlpLoginWidgetRenderOptions['texts'];
-  customItems?: KlpLoginWidgetRenderOptions['customItems'];
+  texts?: NonNullable<KlpLoginWidgetRenderOptions['texts']>;
+  customItems?: NonNullable<KlpLoginWidgetRenderOptions['customItems']>;
 }
 
 const renderWidget = (args: KlpLoginWidgetArgs) =>
