@@ -124,19 +124,22 @@ describe('klp login widget', () => {
         cy.get('@trigger').click();
         getMenu()
           .find('slot[name$="-switch"]')
-          .should('have.length', switchSlot ? 1 : 0);
-        ['text-account-switch', 'text-company-switch'].forEach(slot => {
-          getMenu()
-            .find(`slot[name="${slot}"]`)
-            .should(slot === switchSlot ? 'exist' : 'not.exist');
-        });
+          .should('have.length', switchSlot ? 1 : 0)
+          .then($slots => {
+            const names = [...$slots].map(slot => slot.getAttribute('name'));
+            expect(names).to.deep.equal(switchSlot ? [switchSlot] : []);
+          });
       });
 
       it('offers profile, messages, settings and logout', () => {
         cy.get('@trigger').click();
-        ['text-my-profile', 'text-messages', 'text-settings', 'text-logout'].forEach(slot => {
-          getMenu().find(`slot[name="${slot}"]`).should('exist');
-        });
+        const entries = ['text-my-profile', 'text-messages', 'text-settings', 'text-logout'];
+        getMenu()
+          .find('slot[name^="text-"]')
+          .then($slots => {
+            const names = [...$slots].map(slot => slot.getAttribute('name'));
+            expect(names).to.include.members(entries);
+          });
         getMenu()
           .find('post-menu-item a')
           .filter(':visible')
