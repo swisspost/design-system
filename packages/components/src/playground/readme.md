@@ -35,6 +35,12 @@ The integration apps serve the same file and load it on every page, so it stays 
 URL carries `?klpmock`. The playground's own tag carries `data-always` instead, which skips that
 check.
 
+## `self-managed-user-menu.html`
+
+The header without the login widget: the `post-login` slot holds the login link or the user menu
+markup a project writes itself, as the self-managed header docs showed before the widget. Open
+`/playground/self-managed-user-menu.html`; add `?state=logged-out` for the login link.
+
 ## `klp-real.html`
 
 Runs the login widget against the real KLP platform, without the mock, at
