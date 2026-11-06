@@ -204,23 +204,10 @@ answer, so it keeps showing that state.</post-banner>
 
 ## Unread messages
 
-The Messages entry shows the number of unread messages the platform reports, and the avatar shows
-a dot as long as there are any. Both update as messages arrive, without a reload. Use the
-`Unread messages` control of the first example to see them.
-
-### How it works
-
-The platform only reports how many messages are unread; it never sends the messages themselves.
-They are read on the account portal's messages page, which is the default target of the entry and
-the same page for every type of user.
-
-<img
-  className="messages-flow"
-  src="/assets/images/klp-login-widget-messages-flow.svg"
-  alt="Flow of unread messages. Your project places the login widget in the header. On page load the widget asks KLP for the session: anonymous visitors see the login link, signed-in users get the user menu, and the widget opens the event bus. KLP pushes the unread count, the Messages entry shows it and the avatar a dot. Selecting Messages opens the account portal's messages page, where the messages are read. The messages backend then updates the count in KLP, which pushes it again. A sign-out in another tab resets the count and shows the login link."
-  width="760"
-  height="1010"
-/>
+The Messages entry shows the unread count reported by KLP, and the avatar shows a dot while the
+count is greater than zero. Both update without a page reload. The Messages link opens the account
+portal's messages page by default. Use the `Unread messages` control of the first example to preview
+the badge.
 
 ## Accessibility
 
