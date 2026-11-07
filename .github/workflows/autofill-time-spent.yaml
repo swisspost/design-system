@@ -1,0 +1,104 @@
+name: 'Autofill time spent'
+
+on:
+  issues:
+    types: [closed]
+  workflow_dispatch:
+    inputs:
+      issue-number:
+        description: 'Number of the issue to process'
+        required: true
+        type: number
+
+permissions:
+  issues: read
+
+jobs:
+  autofill-time-spent:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Copy "Hours" into "Time Spent (h)" if empty
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue-number }}
+        with:
+          github-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+          script: |
+            const ESTIMATE_FIELD = 'Hours';
+            const SPENT_FIELD = 'Time Spent (h)';
+            const issueNumber = Number(process.env.ISSUE_NUMBER);
+
+            const { repository } = await github.graphql(
+              `query ($owner: String!, $repo: String!, $number: Int!, $estimate: String!, $spent: String!) {
+                repository(owner: $owner, name: $repo) {
+                  issue(number: $number) {
+                    projectItems(first: 20) {
+                      nodes {
+                        id
+                        project {
+                          id
+                          title
+                          spentField: field(name: $spent) {
+                            ... on ProjectV2Field { id dataType }
+                          }
+                        }
+                        estimate: fieldValueByName(name: $estimate) {
+                          ... on ProjectV2ItemFieldNumberValue { number }
+                        }
+                        spent: fieldValueByName(name: $spent) {
+                          ... on ProjectV2ItemFieldNumberValue { number }
+                        }
+                      }
+                    }
+                  }
+                }
+              }`,
+              {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                number: issueNumber,
+                estimate: ESTIMATE_FIELD,
+                spent: SPENT_FIELD,
+              },
+            );
+
+            const items = (repository.issue?.projectItems.nodes ?? []).filter(
+              item => item.project.spentField?.dataType === 'NUMBER',
+            );
+
+            if (items.length === 0) {
+              core.info(`#${issueNumber} is not on a project with a "${SPENT_FIELD}" number field. Skipping.`);
+              return;
+            }
+
+            for (const item of items) {
+              const project = item.project.title;
+
+              if (item.spent?.number != null) {
+                core.info(`[${project}] "${SPENT_FIELD}" is already set to ${item.spent.number}. Nothing to do.`);
+                continue;
+              }
+
+              if (item.estimate?.number == null) {
+                core.info(`[${project}] "${ESTIMATE_FIELD}" is empty. Skipping.`);
+                continue;
+              }
+
+              await github.graphql(
+                `mutation ($project: ID!, $item: ID!, $field: ID!, $value: Float!) {
+                  updateProjectV2ItemFieldValue(
+                    input: { projectId: $project, itemId: $item, fieldId: $field, value: { number: $value } }
+                  ) {
+                    projectV2Item { id }
+                  }
+                }`,
+                {
+                  project: item.project.id,
+                  item: item.id,
+                  field: item.project.spentField.id,
+                  value: item.estimate.number,
+                },
+              );
+
+              core.info(`[${project}] Set "${SPENT_FIELD}" to ${item.estimate.number} for #${issueNumber}.`);
+            }
