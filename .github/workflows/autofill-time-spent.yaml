@@ -24,9 +24,6 @@ jobs:
         with:
           github-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           script: |
-            // Project board: https://github.com/orgs/swisspost/projects/3
-            const PROJECT_OWNER = 'swisspost';
-            const PROJECT_NUMBER = 3;
             const ESTIMATE_FIELD = 'Hours';
             const SPENT_FIELD = 'Time Spent (h)';
             const issueNumber = Number(process.env.ISSUE_NUMBER);
@@ -35,13 +32,12 @@ jobs:
               `query ($owner: String!, $repo: String!, $number: Int!, $estimate: String!, $spent: String!) {
                 repository(owner: $owner, name: $repo) {
                   issue(number: $number) {
-                    projectItems(first: 10) {
+                    projectItems(first: 1) {
                       nodes {
                         id
                         project {
                           id
-                          number
-                          owner { ... on Organization { login } }
+                          title
                           spentField: field(name: $spent) {
                             ... on ProjectV2Field { id }
                           }
@@ -66,12 +62,16 @@ jobs:
               },
             );
 
-            const item = repository.issue?.projectItems.nodes.find(
-              node => node.project.owner?.login === PROJECT_OWNER && node.project.number === PROJECT_NUMBER,
-            );
+            // The org tracks all work on a single project, so the issue's first project is the one we want.
+            const item = repository.issue?.projectItems.nodes[0];
 
             if (!item) {
-              core.info(`#${issueNumber} is not on project ${PROJECT_OWNER}/${PROJECT_NUMBER}. Skipping.`);
+              core.info(`#${issueNumber} is not on a project. Skipping.`);
+              return;
+            }
+
+            if (!item.project.spentField) {
+              core.info(`Project "${item.project.title}" has no "${SPENT_FIELD}" field. Skipping.`);
               return;
             }
 
