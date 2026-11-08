@@ -37,7 +37,6 @@ jobs:
                         id
                         project {
                           id
-                          title
                           spentField: field(name: $spent) {
                             ... on ProjectV2Field { id }
                           }
@@ -67,11 +66,6 @@ jobs:
 
             if (!item) {
               core.info(`#${issueNumber} is not on a project. Skipping.`);
-              return;
-            }
-
-            if (!item.project.spentField) {
-              core.info(`Project "${item.project.title}" has no "${SPENT_FIELD}" field. Skipping.`);
               return;
             }
 
