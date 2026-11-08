@@ -32365,7 +32365,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7351970/storage/NzM1MTk2OS8wL21hc3Rlci8vLzY2NTg3NzI1",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7351970/storage/MDA3MzUxOTY5LzAvbWFzdGVyLy8vMTE4Mzc5Mzky",
         "keywords": [
           "Mobil",
           "AmiGo",
@@ -32387,7 +32387,7 @@
         }
       },
       "createdAt": "2025-11-14T06:45:49.000Z",
-      "modifiedAt": "2025-11-15T06:05:01.223Z"
+      "modifiedAt": "2026-11-06T04:00:24.000Z"
     },
     {
       "uuid": "ab24a972-c126-11f0-b1fa-0050568d2654",
@@ -46968,7 +46968,7 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2026-11-01T06:42:39.320Z",
+  "created": "2026-11-08T06:35:25.186Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
