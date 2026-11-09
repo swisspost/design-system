@@ -66,9 +66,6 @@ tokens.$default-map: utilities.$post-spacing;
     .docs-title :is(h1, h2, h3, h4, h5, h6),
     post-tab-panel > :is(h1, h2, h3, h4, h5, h6),
     > :is(h1, h2, h3, h4, h5, h6) {
-      position: relative;
-      padding-right: 32px; // needed to add space for the link icon
-
       @media (hover: hover) {
         > a {
           display: none;
@@ -76,8 +73,9 @@ tokens.$default-map: utilities.$post-spacing;
       }
 
       > a {
-        position: absolute;
-        bottom: 0;
+        position: static;
+        display: inline-block;
+        vertical-align: middle;
         font-size: 1.5rem;
         padding: 0.5rem;
         line-height: 1;
