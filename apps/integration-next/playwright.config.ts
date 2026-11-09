@@ -47,5 +47,8 @@ export default defineConfig({
     command: 'pnpm start',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
+    // Forward the Next.js server logs (incl. STENCIL_SSR_DEBUG output) to the CI log
+    stdout: process.env.CI ? 'pipe' : 'ignore',
+    stderr: 'pipe',
   },
 });
