@@ -5,21 +5,25 @@
 @use '../variables/icons';
 
 /**
- * Fallback for browsers without `light-dark()` support, based on space toggles.
+ * Fallback for browsers without full `light-dark()` support, based on space toggles.
  *
- * Every scheme colour is recomputed from the `--post-fallback-prefers-light` toggle:
+ * Values are recomputed from the `--post-fallback-prefers-light` toggle:
  * - empty value -> light
  * - `initial` -> dark
+ *
+ * Browser support varies based on the kind of value, so the fallback has two levels:
+ * - scheme colours are recomputed when `light-dark()` is not supported at all;
+ * - signal icons are also recomputed when `light-dark()` does not support images.
  *
  * For more information about space toggles, see:
  * - https://dev.to/janeori/css-lightdark-mode-implementation-without-duplicating-vars-22c9
  * - https://kizu.dev/cyclic-toggles/
  *
  * This placeholder is used to output the variables only once, shared by all selectors that use
- * `set()` and by the root scheme tokens (`_schemes.scss`). It can be removed once the
- * `light-dark()` function becomes available in across supported browsers.
+ * `set()` and by the root scheme tokens (`_schemes.scss`).
  */
 %color-scheme-fallback-variables {
+  // Colour fallback: can be removed once `light-dark()` for colours is Baseline Widely Available.
   @include supports.light-dark-color(false) {
     @each $key, $light-value in scheme.$post-light {
       --#{$key}-fallback-light: var(--post-fallback-prefers-light) #{$light-value};
@@ -27,6 +31,7 @@
     }
   }
 
+  // Image fallback: can be removed once `light-dark()` for images is Baseline Widely Available.
   @include supports.light-dark(false) {
     @each $key in icons.$signal-icon-names {
       --post-signal-icon-#{$key}-fallback-light: var(--post-fallback-prefers-light)
@@ -40,8 +45,8 @@
 }
 
 /**
- * Sets the colour scheme of an element, including the fallback for browsers without `light-dark()`
- * support.
+ * Sets the colour scheme of an element, including the fallback for browsers without full
+ * `light-dark()` support.
  *
  * The input can be a literal value (`light` or `dark`) or a CSS variable that resolves to a core
  * colour scheme.
