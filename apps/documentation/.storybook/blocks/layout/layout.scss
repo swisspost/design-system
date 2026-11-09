@@ -1,4 +1,11 @@
 @use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/tokens/utilities';
+
+.title-highlight {
+  color: post.$yellow;
+}
 
 .docs-beta {
   background-color: post.$info;
@@ -6,15 +13,11 @@
 }
 
 .docs-header {
-  background-image: url('/assets/images/header.png');
+  background-image: url('/assets/images/griddy.svg');
   background-repeat: no-repeat;
-  background-position: center left 60vw;
+  background-position: center right 0;
   background-size: auto 100%;
   background-color: post.$yellow;
-
-  .container {
-    padding-right: 20vw;
-  }
 
   @include post.min(xl) {
     background-position: center right;
@@ -34,7 +37,7 @@
   ul.list-profile {
     display: grid;
     grid-template-rows: auto;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1rem 1.5rem;
     margin: 0;
     padding: 0;
@@ -42,71 +45,42 @@
   }
 
   .avatar {
-    display: inline-flex;
-    gap: calc(1rem - 6px * 2);
+    display: flex;
+    border-radius: 18px;
+    gap: tokens.get('utility-gap-8', utilities.$post-spacing);
+    padding: tokens.get('utility-gap-8', utilities.$post-spacing);
     align-items: center;
-    text-decoration: none;
+    background-color: tokens.get('card-bg', components.$post-cards);
+    box-shadow: tokens.get('card-interactive-elevation', components.$post-cards);
+    transition: background-color 250ms;
 
-    .avatar-image {
+    &:hover {
+      background-color: tokens.get('card-hover-bg', components.$post-cards);
+    }
+
+    img {
       border-radius: 50%;
+      width: 4rem;
+    }
 
-      img {
-        display: block;
-        position: relative;
-        box-sizing: content-box;
-        z-index: 2;
-        width: 4rem;
-        border: 6px solid transparent;
-        border-radius: inherit;
-      }
+    .avatar-placeholder {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      width: 4rem;
+      height: 4rem;
+      border: 2px dashed currentColor;
+      border-radius: 50%;
+      font-size: 1.5rem;
     }
 
     .avatar-description {
-      position: relative;
-      padding: 10px;
-      border-radius: 4px;
-
       span {
         display: block;
-        position: relative;
-        z-index: 2;
-        font-size: 1rem;
-        line-height: 1.2;
 
         &:first-child {
           font-weight: bold;
-          font-size: 0.6875rem;
-        }
-      }
-
-      &::after {
-        display: block;
-        content: '';
-        position: absolute;
-        inset: 0;
-        left: calc(-1rem * 2);
-        z-index: 1;
-        border-radius: 4px;
-      }
-    }
-
-    &:hover {
-      .avatar-image {
-        box-shadow:
-          0.25px 1px 1px rgba(0, 0, 0, 0.1),
-          1px 2px 2.5px 1px rgba(0, 0, 0, 0.2);
-
-        img {
-          border-color: white;
-        }
-      }
-
-      .avatar-description {
-        &::after {
-          background-color: white;
-          box-shadow:
-            0.25px 1px 1px rgba(0, 0, 0, 0.1),
-            1px 2px 2.5px 1px rgba(0, 0, 0, 0.1);
         }
       }
     }

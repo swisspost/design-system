@@ -27,9 +27,23 @@
         <p className="mb-0">{props.description}</p>
       </div>
     </div>
-    <a className="btn btn-secondary btn-sm flex-shrink-0" href={props.href} rel="noopener">
-      {props.linkText}
-      <post-icon name={props.linkIcon ?? 'arrowright'} aria-hidden="true"></post-icon>
-    </a>
+    <div className="flex-shrink-0 d-flex flex-column gap-16">
+      <a className="btn btn-secondary btn-sm flex-shrink-0" href={props.href} rel="noopener">
+        {props.linkText}
+        <post-icon name={props.linkIcon ?? 'arrowright'} aria-hidden="true"></post-icon>
+      </a>
+      {props.secondaryLinkText ? (
+        <a
+          className="btn btn-secondary btn-sm flex-shrink-0"
+          href={props.secondaryLinkHref}
+          rel="noopener"
+        >
+          {props.secondaryLinkText}
+          <post-icon name={props.secondaryLinkIcon ?? 'arrowright'} aria-hidden="true"></post-icon>
+        </a>
+      ) : (
+        ''
+      )}
+    </div>
   </div>
 </section>
