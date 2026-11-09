@@ -2,7 +2,7 @@ import type { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { COLOR_SCHEMES, schemes } from '@/shared/snapshots/schemes';
 import meta from './display.stories';
-import { displayOptions } from './display.docs.mdx';
+import { displayOptions } from './display.data';
 import './display.styles.scss';
 
 const { id, ...metaWithoutId } = meta;

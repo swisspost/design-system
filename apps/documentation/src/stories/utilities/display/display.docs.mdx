@@ -2,21 +2,8 @@ import { Canvas, Meta } from '@storybook/addon-docs/blocks';
 import * as DisplayStories from './display.stories';
 import { breakpoints, firstBreakpoint } from '../spacing/spacing.docs.mdx';
 import { forEach } from '@/utils/react';
+import { displayOptions } from './display.data';
 import './display.styles.scss';
-
-export const displayOptions = [
-  'none',
-  'inline',
-  'inline-block',
-  'block',
-  'grid',
-  'inline-grid',
-  'table',
-  'table-cell',
-  'table-row',
-  'flex',
-  'inline-flex',
-];
 
 <Meta of={DisplayStories} />
 
