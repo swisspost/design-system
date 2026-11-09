@@ -66,7 +66,10 @@ describe('header', () => {
     const slots = ['main-nav', 'audience', 'global-nav-secondary'];
 
     function checkBurgerMenu(shouldRender: boolean) {
-      cy.get('@header').should('have.attr', 'data-burger-menu', String(shouldRender));
+      cy.get('@header').should(
+        shouldRender ? 'have.attr' : 'not.have.attr',
+        'data-burger-menu',
+      );
       cy.get('@header')
         .shadow()
         .find('.burger-menu')
