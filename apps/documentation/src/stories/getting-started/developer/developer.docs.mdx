@@ -6,7 +6,11 @@ import { PackageType } from '@/../types';
 import './list-component';
 
 export const renderPackageTile = pkg => (
-  <ti-le title={pkg.name} href={pkg.links.docs.href} ariaLabel={pkg.links.docs.ariaLabel}>
+  <ti-le
+    title={pkg.name}
+    href={pkg.links.docs.href}
+    ariaLabel={pkg.links.docs.ariaLabel}
+  >
     <img src={pkg.image.src} alt={pkg.image.alt} />
     <span>{pkg.version}</span>
   </ti-le>
@@ -116,7 +120,9 @@ The design-system is formed with several packages and different compatibilities 
             packageType={PackageType.InternetHeader}
           ></developer-list-component>
         </td>
-        <td rowSpan="4">{renderPackageTile(packages['styles'])}</td>
+        <td rowSpan="4">
+          {renderPackageTile(packages['styles'])}
+        </td>
         <td colSpan="2">
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             {renderPackageTile(packages['internet-header'])}
@@ -129,9 +135,15 @@ The design-system is formed with several packages and different compatibilities 
           Web Components:
           <developer-list-component packageType={PackageType.Wc}></developer-list-component>
         </td>
-        <td>{renderPackageTile(packages['components'])}</td>
-        <td>{renderPackageTile(packages['components-angular'])}</td>
-        <td>{renderPackageTile(packages['components-react'])}</td>
+        <td>
+          {renderPackageTile(packages['components'])}
+        </td>
+        <td>
+          {renderPackageTile(packages['components-angular'])}
+        </td>
+        <td>
+          {renderPackageTile(packages['components-react'])}
+        </td>
       </tr>
       <tr>
         <td scope="row">

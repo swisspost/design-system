@@ -18,17 +18,19 @@ import { PackageShields } from '@root/src/shared/package-shields';
 <Source code={`npm install @swisspost/design-system-styles`} language="bash" />
 
 <post-banner class="mb-16">
-  The `scss` files in our styling package make use of the latest Sass features. If you are planning
-  to compile the `.scss` files in your project, make sure you use an up-to-date version of [Dart
-  Sass](https://sass-lang.com/dart-sass). LibSass or Ruby Sass are not supported. If you can not
-  meet this prerequisite, you can still use the precompiled CSS files.
+The `scss` files in our styling package make use of the latest Sass features.
+If you are planning to compile the `.scss` files in your project, make sure you use an up-to-date version of [Dart Sass](https://sass-lang.com/dart-sass). LibSass or Ruby Sass are not supported.
+If you can not meet this prerequisite, you can still use the precompiled CSS files.
 </post-banner>
 
 ## Usage
 
 Import one of our stylesheets into your project:
 
-<Source code={`@use '@swisspost/design-system-styles/<bundle>.<extension>';`} language="scss" />
+<Source
+  code={`@use '@swisspost/design-system-styles/<bundle>.<extension>';`}
+  language="scss"
+/>
 
 ### Available bundles
 
