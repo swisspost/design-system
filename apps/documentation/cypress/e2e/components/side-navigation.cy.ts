@@ -48,18 +48,27 @@ describe('Side Navigation docs', () => {
   });
 
   it('should settle on the last value when the controls change quickly', () => {
-    let sentMessages = 0;
+    let receivedMessages = 0;
 
-    // Deliver the args to the iframe late, so it is still applying older values while the user keeps typing
-    cy.get(`iframe[src*="id=${STORY_ID}"]`)
-      .its('0.contentWindow')
-      .then((win: Window) => {
-        const postMessage = win.postMessage.bind(win) as (message: unknown, origin: string) => void;
-        win.postMessage = ((message: unknown, origin: string) => {
-          sentMessages++;
-          setTimeout(() => postMessage(message, origin), 50);
-        }) as Window['postMessage'];
-      });
+    cy.window().then(docsWindow => {
+      cy.get(`iframe[src*="id=${STORY_ID}"]`)
+        .its('0.contentWindow')
+        .then((storyWindow: Window) => {
+          storyWindow.addEventListener('message', (event: MessageEvent) => {
+            if (event.data?.type === 'post-docs:story-args-update') receivedMessages++;
+          });
+
+          // Deliver the args to the iframe late, so it is still applying older values while the user keeps typing.
+          // Only native functions are chained: if a function of this spec sent the message,
+          // the iframe would see the spec window as the sender and ignore the message.
+          const postMessage = storyWindow.postMessage.bind(storyWindow);
+          storyWindow.postMessage = docsWindow.setTimeout.bind(
+            docsWindow,
+            postMessage,
+            50,
+          ) as unknown as Window['postMessage'];
+        });
+    });
 
     getControlRow('text-close').find('textarea').type(' button');
 
@@ -69,8 +78,8 @@ describe('Side Navigation docs', () => {
 
     // An endless loop would keep sending args to the iframe
     cy.then(() => {
-      const settledMessages = sentMessages;
-      cy.wait(500).then(() => expect(sentMessages).to.equal(settledMessages));
+      const settledMessages = receivedMessages;
+      cy.wait(500).then(() => expect(receivedMessages).to.equal(settledMessages));
     });
   });
 
