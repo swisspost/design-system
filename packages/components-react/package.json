@@ -101,7 +101,7 @@
     "prettier": "catalog:",
     "react": "catalog:react",
     "react-dom": "catalog:react",
-    "rimraf": "6.1.3",
+    "rimraf": "6.1.4",
     "typescript": "catalog:"
   },
   "prettier": "@swisspost/design-system-prettier-config",

@@ -40,7 +40,7 @@
     "@swisspost/design-system-icons": "workspace:10.8.0",
     "@swisspost/design-system-styles": "workspace:10.8.0",
     "@swisspost/design-system-styles-primeng": "workspace:10.8.0",
-    "primeng": "21.1.9",
+    "primeng": "21.1.10",
     "rxjs": "catalog:angular",
     "tslib": "catalog:angular",
     "zone.js": "catalog:angular"
@@ -56,7 +56,7 @@
     "angular-eslint": "catalog:angular",
     "eslint": "catalog:",
     "prettier": "catalog:",
-    "rimraf": "6.1.3",
+    "rimraf": "6.1.4",
     "typescript": "catalog:"
   },
   "prettier": "@swisspost/design-system-prettier-config"
