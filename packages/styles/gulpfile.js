@@ -14,15 +14,12 @@ const options = require('./package.json').sass;
 /**
  * Copy task
  */
-gulp.task(
-  'copy',
-  () => {
-    return gulp
-      .src(['./LICENSE', './README.md', './package.json', './src/**/*.scss'])
-      .pipe(newer(options.outputDir))
-      .pipe(gulp.dest(options.outputDir));
-  },
-);
+gulp.task('copy', () => {
+  return gulp
+    .src(['./LICENSE', './README.md', './package.json', './src/**/*.scss'])
+    .pipe(newer(options.outputDir))
+    .pipe(gulp.dest(options.outputDir));
+});
 
 /**
  * Autoprefix SCSS files
@@ -170,12 +167,7 @@ exports.default = gulp.task(
     'prebuild-env-vars',
     gulp.parallel(
       'map-icons',
-      gulp.series(
-        'copy',
-        'transform-package-json',
-        'autoprefixer',
-        'sass',
-      ),
+      gulp.series('copy', 'transform-package-json', 'autoprefixer', 'sass'),
     ),
   ),
 );
