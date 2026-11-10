@@ -13,7 +13,7 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 <p className="lead">The collapsible toggles the visibility of content within your project.</p>
 
 The `<post-collapsible>` component is used to show and hide content.
-Collapsing an element will animate the height from its current value to 0.
+Using a trigger or the `toggle()` method animates the height when opening or closing.
 
 <Canvas sourceState="shown" of={CollapsibleStories.Default} />
 <Controls of={CollapsibleStories.Default} />
@@ -30,11 +30,31 @@ To make the collapsible content hidden by default, just use the `collapsible="tr
 
 <Canvas of={CollapsibleStories.InitiallyCollapsed} />
 
+### Findable Content
+
+Set `findable` to allow deeplinking and browser search to open a closed collapsible.
+This option defaults to `false`.
+A link to `#findable-collapsible-content` opens the example below.
+
+<Canvas of={CollapsibleStories.Findable} />
+
+Browser search uses [`hidden="until-found"`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/hidden#the_hidden_until_found_state) where supported.
+A fallback for deeplinking is provided for browsers not supporting `hidden="until-found"`.
+A match opens collapsibles immediately and emits the `postToggle` event with `true`.
+For nested collapsibles, all findable ancestors also open to make the matched content visible.
+
 ### Programmatic Toggle
 
 The `<post-collapsible>` component offers a `.toggle()` method that allows you to trigger the collapse programmatically.
 This method is asynchronous and returns a promise that resolves with the current open state.
 It optionally takes a boolean parameter: `true` forces it open, and `false` forces it closed.
+
+When connected in a browser, `toggle()` animates the state change and emits `postToggle` before the animation.
+Calling it with the current state does nothing.
+On a disconnected element, it updates the state without animation or a `postToggle` event.
+
+Setting the `collapsed` property directly updates visibility without animation and does not emit `postToggle`.
+Use `toggle()` for animated changes.
 
 <Source code={SampleCustomTrigger} language="typescript" />
 

@@ -1,3 +1,5 @@
+import { navigateToFragment } from '../support/fragment';
+
 const ACCORDION_ID = '4d1b4185-e04d-494a-ab38-2b56c1778b0b';
 
 describe('accordion', () => {
@@ -284,12 +286,167 @@ describe('accordion', () => {
       cy.get('@collapsibles').first().shadow().find('post-collapsible').should('be.visible');
     });
   });
+
+  for (const supportsBeforeMatch of [true, false]) {
+    describe(
+      `findable panels (${supportsBeforeMatch ? 'native' : 'fallback'})`,
+      { baseUrl: null },
+      () => {
+        const fixture = './cypress/fixtures/post-accordion-item.test.html';
+        const visitOptions = {
+          onBeforeLoad(win: Window & typeof globalThis) {
+            if (!supportsBeforeMatch) {
+              Reflect.deleteProperty(win.HTMLElement.prototype, 'onbeforematch');
+            }
+          },
+        };
+
+        beforeEach(() => {
+          cy.visit(fixture, visitOptions);
+          cy.get<HTMLPostAccordionElement>('#findable-accordion[data-hydrated]').as('accordion');
+          cy.get<HTMLPostAccordionItemElement>('#first-findable-item[data-hydrated]').as('first');
+          cy.get<HTMLPostAccordionItemElement>('#second-findable-item[data-hydrated]').as('second');
+          cy.get('#nested-accordion-item[data-hydrated]').as('nested');
+          cy.window().then(win => {
+            expect('onbeforematch' in win.document.documentElement).to.equal(supportsBeforeMatch);
+          });
+        });
+
+        it('forwards findable without overwriting nested accordion configuration', () => {
+          cy.get('@first').should('have.prop', 'findable', true);
+          cy.get('@first').shadow().find('post-collapsible').should('have.prop', 'findable', true);
+          cy.get('#nested-accordion post-accordion-item').should('have.prop', 'findable', false);
+          cy.get('@accordion').invoke('prop', 'findable', false);
+          cy.get('@first').shadow().find('post-collapsible').should('have.prop', 'findable', false);
+          cy.get('@first')
+            .shadow()
+            .find('post-collapsible')
+            .shadow()
+            .find('div')
+            .first()
+            .should('have.css', 'display', 'none');
+          cy.get('@accordion').invoke('prop', 'findable', true);
+          cy.get('@first').shadow().find('post-collapsible').should('have.prop', 'findable', true);
+          cy.get('@nested').should('have.prop', 'findable', false);
+          cy.get('#nested-accordion').invoke('prop', 'findable', true);
+          cy.get('@nested').should('have.prop', 'findable', true);
+          cy.get('@accordion').invoke('prop', 'findable', false);
+          cy.get('@first').should('have.prop', 'findable', false);
+          cy.get('@nested').should('have.prop', 'findable', true);
+        });
+
+        it('does not include nested panels in accordion methods', () => {
+          cy.get<HTMLPostAccordionItemElement>(
+            '#nested-accordion post-accordion-item[data-hydrated]',
+          ).then(async ([nestedItem]) => {
+            const outerAccordion = nestedItem
+              .closest('post-accordion')
+              ?.parentElement?.closest<HTMLPostAccordionElement>('post-accordion');
+            if (!outerAccordion) throw new Error('Expected an outer accordion.');
+
+            outerAccordion.multiple = true;
+            await outerAccordion.expandAll();
+            expect(nestedItem.collapsed).to.equal(true);
+            const ownedItems = Array.from(outerAccordion.children).filter(
+              (item): item is HTMLPostAccordionItemElement =>
+                item.localName === 'post-accordion-item',
+            );
+            expect(ownedItems.length).to.equal(3);
+            ownedItems.forEach(item => expect(item.collapsed).to.equal(false));
+            await nestedItem.toggle(true);
+            expect(nestedItem.collapsed).to.equal(false);
+            await outerAccordion.collapseAll();
+            ownedItems.forEach(item => expect(item.collapsed).to.equal(true));
+            expect(nestedItem.collapsed).to.equal(false);
+            await outerAccordion.toggle('first-findable-item');
+            expect(ownedItems[0].collapsed).to.equal(false);
+            await outerAccordion.toggle(nestedItem.id).then(
+              () => {
+                throw new Error('The outer accordion must reject nested item IDs.');
+              },
+              (error: Error) =>
+                expect(error.message).to.equal(
+                  `No post-accordion-item found with id #${nestedItem.id}.`,
+                ),
+            );
+            expect(nestedItem.collapsed).to.equal(false);
+          });
+        });
+
+        it('forwards findable to newly slotted panels', () => {
+          cy.get<JQuery<HTMLPostAccordionElement>>('@accordion').then(([accordion]) => {
+            const item = accordion.ownerDocument.createElement('post-accordion-item');
+            item.id = 'new-findable-item';
+            item.collapsed = true;
+            item.innerHTML = '<span slot="header">New panel</span><p>New content</p>';
+            accordion.append(item);
+          });
+          cy.get('#new-findable-item[data-hydrated]').should('have.prop', 'findable', true);
+          cy.get('#new-findable-item')
+            .shadow()
+            .find('post-collapsible')
+            .should('have.prop', 'findable', true);
+        });
+
+        it('opens a panel on initial fragment navigation through its shadow slots', () => {
+          cy.visit(`${fixture}#second-accordion-target`, visitOptions);
+          cy.get('#second-findable-item[data-hydrated]').should('have.prop', 'collapsed', false);
+          cy.get('#second-accordion-target').should('be.visible');
+          cy.get('#second-findable-item')
+            .shadow()
+            .find('button')
+            .should('have.attr', 'aria-expanded', 'true')
+            .and('not.have.class', 'collapsed');
+        });
+
+        it('keeps only the matched panel open in a single-open accordion', () => {
+          cy.window().then(win => navigateToFragment(win, 'first-accordion-target'));
+          cy.get('@first').should('have.prop', 'collapsed', false);
+          cy.window().then(win => navigateToFragment(win, 'second-accordion-target'));
+          cy.get('@second').should('have.prop', 'collapsed', false);
+          cy.get('@first').should('have.prop', 'collapsed', true);
+          cy.get('@first').shadow().find('post-collapsible').should('be.hidden');
+          cy.get('#second-accordion-target').should('be.visible');
+          cy.get('@second').shadow().find('button').should('have.attr', 'aria-expanded', 'true');
+          cy.get('@second')
+            .shadow()
+            .find('post-collapsible')
+            .invoke('attr', 'id')
+            .then(id => {
+              cy.get('@second').shadow().find('button').should('have.attr', 'aria-controls', id);
+            });
+        });
+
+        it('preserves open panels when multiple is enabled', () => {
+          cy.get('@accordion').invoke('prop', 'multiple', true);
+          cy.window().then(win => navigateToFragment(win, 'first-accordion-target'));
+          cy.get('@first').should('have.prop', 'collapsed', false);
+          cy.window().then(win => navigateToFragment(win, 'second-accordion-target'));
+          cy.get('@second').should('have.prop', 'collapsed', false);
+          cy.get('@first').should('have.prop', 'collapsed', false);
+          cy.get('#first-accordion-target').should('be.visible');
+          cy.get('#second-accordion-target').should('be.visible');
+        });
+
+        it('leaves panels closed when findable is disabled', () => {
+          cy.get('@accordion').invoke('prop', 'findable', false);
+          cy.get('@second')
+            .shadow()
+            .find('post-collapsible')
+            .should('have.prop', 'findable', false);
+          cy.window().then(win => navigateToFragment(win, 'second-accordion-target'));
+          cy.get('@second').should('have.prop', 'collapsed', true);
+          cy.get('#second-accordion-target').should('not.be.visible');
+        });
+      },
+    );
+  }
 });
 
 describe('Accessibility', () => {
   it('Has no detectable a11y violations on load for all variants', () => {
     cy.getSnapshots('accordion');
-    cy.checkA11y('#root-inner', undefined, (violations) => {
+    cy.checkA11y('#root-inner', undefined, violations => {
       expect(violations).to.have.length(0);
     });
   });
