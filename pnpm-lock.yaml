@@ -1024,8 +1024,8 @@ importers:
         specifier: catalog:node
         version: 26.6.6
       autoprefixer:
-        specifier: 10.5.0
-        version: 10.5.0(postcss@8.5.32)
+        specifier: 10.6.2
+        version: 10.6.2(postcss@8.5.32)
       copyfiles:
         specifier: 2.4.1
         version: 2.4.1
@@ -5301,8 +5301,8 @@ packages:
     engines: {node: '>= 4.5.0'}
     hasBin: true
 
-  autoprefixer@10.5.0:
-    resolution: {integrity: sha512-FMhOoZV4+qR6aTUALKX2rEqGG+oyATvwBt9IIzVR5rMa2HRWPkxf+P+PAJLD1I/H5/II+HuZcBJYEFBpq39ong==}
+  autoprefixer@10.6.2:
+    resolution: {integrity: sha512-VOw9/yGTGwPPgzFcODtcv6zhEPIeIWkRSe10L2ri2f5vZ7ID7lCt6jZzRF5/ubgOZ+szYydmEF5AYsA5jxX1tA==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
     peerDependencies:
@@ -16788,7 +16788,7 @@ snapshots:
 
   atob@2.1.2: {}
 
-  autoprefixer@10.5.0(postcss@8.5.32):
+  autoprefixer@10.6.2(postcss@8.5.32):
     dependencies:
       browserslist: 4.29.4
       caniuse-lite: 1.0.30001819
