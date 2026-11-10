@@ -118,7 +118,7 @@ export class PostCollapsible {
   /**
    * Synchronize native revelation without waiting for an animation.
    */
-  private reveal = () => {
+  private reveal = (event?: Event) => {
     if (!this.findable) return;
 
     const wasCollapsed = this.collapsed;
@@ -130,6 +130,13 @@ export class PostCollapsible {
     this.host.style.removeProperty('height');
     this.host.style.removeProperty('overflow');
     if (wasCollapsed) this.postToggle.emit(true);
+
+    // Native beforematch does not cross shadow roots. Forward it once to reveal findable ancestors.
+    if (event && !event.composed) {
+      this.host.dispatchEvent(
+        new globalThis.Event('beforematch', { bubbles: true, composed: true }),
+      );
+    }
   };
 
   /**
