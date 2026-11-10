@@ -59,7 +59,7 @@
     "eslint": "catalog:",
     "ng-packagr": "catalog:angular",
     "prettier": "catalog:",
-    "rimraf": "6.1.3",
+    "rimraf": "6.1.4",
     "rxjs": "catalog:angular",
     "typescript": "catalog:",
     "zone.js": "catalog:angular"
