@@ -38,7 +38,7 @@
     "@swisspost/design-system-prettier-config": "workspace:10.8.0",
     "@swisspost/design-system-stylelint-config": "workspace:10.8.0",
     "@types/node": "catalog:node",
-    "autoprefixer": "10.5.0",
+    "autoprefixer": "10.6.2",
     "copyfiles": "2.4.1",
     "glob": "13.0.6",
     "gulp": "5.0.1",
@@ -46,14 +46,14 @@
     "gulp-postcss": "10.0.0",
     "gulp-sass": "6.0.1",
     "gulp-sourcemaps": "3.0.0",
-    "postcss": "8.5.26",
+    "postcss": "8.5.32",
     "postcss-scss": "4.0.9",
     "prettier": "catalog:",
-    "rimraf": "6.1.3",
+    "rimraf": "6.1.4",
     "sass-embedded": "1.104.0",
     "stylelint": "catalog:",
     "typescript": "catalog:",
-    "vite": "7.3.5"
+    "vite": "7.3.7"
   },
   "prettier": "@swisspost/design-system-prettier-config",
   "sass": {
