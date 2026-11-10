@@ -66,10 +66,7 @@ describe('header', () => {
     const slots = ['main-nav', 'audience', 'global-nav-secondary'];
 
     function checkBurgerMenu(shouldRender: boolean) {
-      cy.get('@header').should(
-        shouldRender ? 'have.attr' : 'not.have.attr',
-        'data-burger-menu',
-      );
+      cy.get('@header').should(shouldRender ? 'have.attr' : 'not.have.attr', 'data-burger-menu');
       cy.get('@header')
         .shadow()
         .find('.burger-menu')
@@ -105,9 +102,11 @@ describe('header', () => {
 
         slots.forEach(slot => {
           it(`should render only on tablet and mobile when only ${slot} has content`, () => {
-            slots.filter(otherSlot => otherSlot !== slot).forEach(otherSlot => {
-              cy.get('@header').find(`[slot="${otherSlot}"]`).invoke('remove');
-            });
+            slots
+              .filter(otherSlot => otherSlot !== slot)
+              .forEach(otherSlot => {
+                cy.get('@header').find(`[slot="${otherSlot}"]`).invoke('remove');
+              });
             cy.get('@header')
               .find(`[slot="${slot}"]`)
               .invoke('html', '<ul><li><a href="/letters">Letters</a></li></ul>');
