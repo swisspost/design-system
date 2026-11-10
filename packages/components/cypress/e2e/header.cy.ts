@@ -62,6 +62,88 @@ describe('header', () => {
     });
   });
 
+  describe('burger menu rendering', () => {
+    const slots = ['main-nav', 'audience', 'global-nav-secondary'];
+
+    function checkBurgerMenu(shouldRender: boolean) {
+      cy.get('@header').should(
+        shouldRender ? 'have.attr' : 'not.have.attr',
+        'data-burger-menu',
+      );
+      cy.get('@header')
+        .shadow()
+        .find('.burger-menu')
+        .should(shouldRender ? 'exist' : 'not.exist');
+      cy.get('@header')
+        .shadow()
+        .find('.burger-button')
+        .should(shouldRender ? 'be.visible' : 'not.exist');
+      ['global-nav-secondary', 'language-menu'].forEach(slot => {
+        cy.get('@header')
+          .shadow()
+          .find(`.global-header slot[name="${slot}"]`)
+          .should(shouldRender ? 'not.exist' : 'exist');
+      });
+    }
+
+    beforeEach(() => {
+      cy.getComponent('header', HEADER_ID);
+      slots.forEach(slot => {
+        cy.get('@header').find(`[slot="${slot}"]`).invoke('empty');
+      });
+    });
+
+    Object.entries(VIEWPORTS).forEach(([viewportName, viewportPreset]) => {
+      describe(viewportName, () => {
+        beforeEach(() => {
+          cy.viewport(viewportPreset);
+        });
+
+        it('should not render when none of the slots has content', () => {
+          checkBurgerMenu(false);
+        });
+
+        slots.forEach(slot => {
+          it(`should render only on tablet and mobile when only ${slot} has content`, () => {
+            slots.filter(otherSlot => otherSlot !== slot).forEach(otherSlot => {
+              cy.get('@header').find(`[slot="${otherSlot}"]`).invoke('remove');
+            });
+            cy.get('@header')
+              .find(`[slot="${slot}"]`)
+              .invoke('html', '<ul><li><a href="/letters">Letters</a></li></ul>');
+            checkBurgerMenu(viewportName !== 'desktop');
+          });
+        });
+
+        slots.forEach(slot => {
+          it(`should count a directly slotted link in ${slot} as content`, () => {
+            cy.get('@header')
+              .find(`[slot="${slot}"]`)
+              .invoke('replaceWith', `<a slot="${slot}" href="/letters">Letters</a>`);
+            checkBurgerMenu(viewportName !== 'desktop');
+          });
+        });
+      });
+    });
+
+    slots.forEach(slot => {
+      it(`should count a later populated element assigned to ${slot}`, () => {
+        cy.viewport(VIEWPORTS.mobile);
+        cy.get('@header').invoke('append', `<a slot="${slot}" href="/letters">Letters</a>`);
+        checkBurgerMenu(true);
+      });
+
+      it(`should ignore ${slot} attributes on elements that are not direct children`, () => {
+        cy.viewport(VIEWPORTS.mobile);
+        cy.get('@header').invoke(
+          'append',
+          `<div><a slot="${slot}" href="/letters">Letters</a></div>`,
+        );
+        checkBurgerMenu(false);
+      });
+    });
+  });
+
   describe('DOM reattachment & state', { viewportHeight: 1000, viewportWidth: 400 }, () => {
     beforeEach(() => {
       cy.getComponent('header', HEADER_ID);
@@ -294,7 +376,7 @@ describe('header', () => {
           it('should add data-expanded when a global-header element receives keyboard focus while scrolled', () => {
             cy.scrollTo(0, 500);
             cy.get('@header').should('not.have.attr', 'data-expanded');
-            
+
             cy.get('@header')
               .find('post-language-menu')
               .shadow()
@@ -731,9 +813,7 @@ describe('header', () => {
 
         cy.get('@langTrigger').click({ scrollBehavior: false });
 
-        cy.get('@header')
-          .find('post-language-menu-item')
-          .should('be.visible');
+        cy.get('@header').find('post-language-menu-item').should('be.visible');
       }
 
       it('should open a megadropdown on click even if the language menu was left open while scrolled, without affecting scroll position', () => {
