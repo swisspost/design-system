@@ -123,4 +123,29 @@ post-footer {
       height: 22px;
     }
   }
+
+  post-icon:is(div[slot='socialmedia'] > ul > li > a > *) {
+    width: 26px;
+    height: 26px;
+
+    @include media.max(md) {
+      width: 24px;
+      height: 24px;
+    }
+
+    @include media.max(sm) {
+      width: 22px;
+      height: 22px;
+    }
+
+    &:is([name='letter'], [name='letter-solid']) {
+      width: 16px;
+      height: 16px;
+
+      @include media.max(md) {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
 }
