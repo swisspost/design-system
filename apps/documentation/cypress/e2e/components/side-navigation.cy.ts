@@ -21,7 +21,8 @@ describe('Side Navigation docs', () => {
 
     getControlRow('size').find('input[type="radio"][value="small"]').check({ force: true });
     getControlRow('Show icons').find('input[type="checkbox"]').check({ force: true });
-    getControlRow('text-close').find('textarea').clear().type('Schliessen');
+    // Type at a human pace, the args make a round trip through the iframe on every keystroke
+    getControlRow('text-close').find('textarea').clear().type('Schliessen', { delay: 100 });
 
     cy.get('@storyNav').should('have.attr', 'size', 'small');
     cy.get('@storyNav').should('have.attr', 'text-close', 'Schliessen');
@@ -35,7 +36,8 @@ describe('Side Navigation docs', () => {
 
     getControlRow('size').find('input[type="radio"][value="small"]').check({ force: true });
     getControlRow('Show icons').find('input[type="checkbox"]').check({ force: true });
-    getControlRow('text-close').find('textarea').clear().type('Schliessen');
+    // Type at a human pace, the args make a round trip through the iframe on every keystroke
+    getControlRow('text-close').find('textarea').clear().type('Schliessen', { delay: 100 });
 
     cy.get('@source').should(
       'contain.text',
