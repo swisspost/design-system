@@ -435,7 +435,11 @@ export class PostDatePicker {
         target = cells.find(cell => !cell.classList.contains('-other-year-'));
       }
     } else {
-      target = cells.find(cell => Number(cell.dataset.year) === date.getFullYear());
+      target = cells.find(
+        cell =>
+          Number(cell.dataset.year) === date.getFullYear() &&
+          !cell.classList.contains('-other-decade-'),
+      );
       if (!target) {
         target = cells.find(cell => !cell.classList.contains('-other-decade-'));
       }
