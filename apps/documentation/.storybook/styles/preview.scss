@@ -330,10 +330,6 @@ tokens.$default-map: utilities.$post-spacing;
 }
 
 .sbdocs-preview {
-  &:not([data-color-scheme]) {
-    display: none;
-  }
-
   .docs-story {
     > div:last-child {
       background: none !important;
@@ -349,30 +345,18 @@ tokens.$default-map: utilities.$post-spacing;
     font-size: 0.875rem;
   }
 
-  &[data-color-scheme='light'] {
+  // The canvas actions sit on the palette of the story (`.docs-story.palette`), whose text colour they
+  // inherit. `light-dark()` follows the palette's own color scheme, which can differ from the canvas
+  // scheme (e.g. the accent palette is light in the dark scheme).
+  &[data-color-scheme] {
     .docs-story {
       > div:last-child {
         button {
-          background-color: #efefef;
-          border-color: #ccc;
+          background-color: light-dark(#efefef, #4b4b4b);
+          border-color: light-dark(#ccc, #5d5d5d);
 
           &:hover {
-            background-color: #e2e2e2;
-          }
-        }
-      }
-    }
-  }
-
-  &[data-color-scheme='dark'] {
-    .docs-story {
-      > div:last-child {
-        button {
-          background-color: #4b4b4b;
-          border-color: #5d5d5d;
-
-          &:hover {
-            background-color: #424242;
+            background-color: light-dark(#e2e2e2, #424242);
           }
         }
       }

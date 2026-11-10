@@ -7,18 +7,6 @@
 /v8   https://design-system-version-8.netlify.app
 /v9   https://swisspost-design-system-version-9.netlify.app
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# The documentation shell routes readable paths (e.g. /components/button) on the client.
+# Files that exist (iframe.html, index.json, assets) are served first. Keep this rule last.
+/*    /index.html   200

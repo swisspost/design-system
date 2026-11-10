@@ -313,17 +313,23 @@ jobs:
             const release = ${{ needs.collect-release-data.outputs.release-data }}
 
             const redirectsPath = './apps/documentation/public/_redirects'
-            let redirects = ''
             const redirect = `/v${release.old.major}   https://${release.old.siteUrl}.netlify.app`
+            // the documentation shell routes readable paths on the client; this rule matches every path
+            const fallback = '/*    /index.html   200'
 
-            if (fs.existsSync(redirectsPath)) {
-               redirects = fs.readFileSync(redirectsPath, 'utf8')
-            } else {
-              redirects = '# Redirects from what the browser requests to what we serve\n'
+            const lines = fs.existsSync(redirectsPath)
+              ? fs.readFileSync(redirectsPath, 'utf8').trimEnd().split('\n')
+              : ['# Redirects from what the browser requests to what we serve', '', fallback]
+
+            // version redirects go after the last one, and in any case before the fallback
+            if (!lines.includes(redirect)) {
+              const lastVersion = lines.findLastIndex(line => /^\/v\d+\s/.test(line))
+              const fallbackIndex = lines.findIndex(line => line.startsWith('/*'))
+              const index = lastVersion >= 0 ? lastVersion + 1 : fallbackIndex >= 0 ? fallbackIndex : lines.length
+              lines.splice(index, 0, redirect)
             }
 
-            if(!redirects.includes(redirect)) redirects += redirect
-            fs.writeFileSync(redirectsPath, redirects + '\n')
+            fs.writeFileSync(redirectsPath, lines.join('\n') + '\n')
 
             return true
 
@@ -565,8 +571,10 @@ jobs:
       - name: Remove Documentation _headers
         run: rm -f ./apps/documentation/public/_headers
 
-      - name: Remove Documentation _redirects
-        run: rm -f ./apps/documentation/public/_redirects
+      # The version redirects belong to the main site only, but the documentation shell needs its
+      # fallback for readable paths (e.g. /components/button) on the versioned site too.
+      - name: Keep only the fallback in the Documentation _redirects
+        run: printf '%s\n' '/*    /index.html   200' > ./apps/documentation/public/_redirects
 
       - name: Setup pnpm & node
         uses: ./.github/actions/setup-pnpm

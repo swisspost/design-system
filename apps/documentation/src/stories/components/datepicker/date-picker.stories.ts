@@ -8,7 +8,7 @@ const meta: MetaComponent = {
   id: 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e',
   title: 'Components/Form Date Picker',
   component: 'post-date-picker',
-  tags: ['package:WebComponents', 'status:New'],
+  tags: ['package:WebComponents', 'status:New', 'alias:Calendar'],
   render,
   parameters: {
     controls: {

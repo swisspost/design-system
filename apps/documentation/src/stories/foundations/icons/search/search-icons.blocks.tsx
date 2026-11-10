@@ -123,7 +123,8 @@ export class Search extends React.Component {
   }
 
   private applyDeeplinkFromLocation() {
-    const params = new URLSearchParams(window.parent?.location.search ?? window.location.search);
+    // the shell forwards its page params (e.g. `?spds-iconset=uilight`) into the preview URL
+    const params = new URLSearchParams(window.location.search);
     const setName = this.normalizeSetName(this.getSearchParam(params, 'spds-iconset'));
     const query = this.getSearchParam(params, 'spds-query');
 

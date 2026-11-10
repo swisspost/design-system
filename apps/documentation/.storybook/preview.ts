@@ -2,15 +2,15 @@ import type { Preview } from '@storybook/web-components-vite';
 import { extractArgTypes, extractComponentDescription } from '@kurbar/storybook-addon-docs-stencil';
 import { format } from 'prettier';
 import DocsLayout from './blocks/layout/layout';
-import {
-  fullScreenUrlDecorator,
-  openFullScreenDemo,
-  copyStoryConfigUrl,
-  prettierOptions,
-  resetComponents,
-  withUrlParams,
-} from './helpers';
+import { prettierOptions, resetComponents } from './helpers';
 import './helpers/register-web-components';
+import {
+  copyDeepLink,
+  openFullScreenDemo,
+  withDeepLinks,
+  withShellGlobals,
+} from './helpers/shell-bridge';
+import { DEFAULT_GLOBALS, DOCS_GLOBALS } from '../shell/src/storybook/docs-globals';
 import './addons/cypress-storybook/client';
 
 import './styles/preview.scss';
@@ -25,7 +25,12 @@ SyntaxHighlighter.registerLanguage('scss', scss);
 export const SourceDarkScheme = true;
 
 const preview: Preview = {
-  decorators: [fullScreenUrlDecorator, withUrlParams],
+  decorators: [withShellGlobals, withDeepLinks],
+  // set by the shell toolbar (`shell/src/topbar`) and applied by `helpers/shell-bridge.ts`
+  globalTypes: Object.fromEntries(
+    Object.entries(DOCS_GLOBALS).map(([name, { label }]) => [name, { name: label }]),
+  ),
+  initialGlobals: { ...DEFAULT_GLOBALS },
   parameters: {
     options: {
       storySort: {
@@ -85,7 +90,7 @@ const preview: Preview = {
           },
           {
             title: 'Copy deep link',
-            onClick: copyStoryConfigUrl,
+            onClick: copyDeepLink,
           },
         ],
       },

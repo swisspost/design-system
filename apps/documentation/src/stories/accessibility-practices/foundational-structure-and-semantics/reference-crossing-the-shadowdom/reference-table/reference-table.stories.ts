@@ -5,6 +5,7 @@ const meta: MetaExtended = {
   id: '76ade552-2c03-4d6d-9dce-28daa560f755',
   title:
     'Accessibility Practices/Foundational Structure And Semantics/Reference Crossing The Shadowdom/🔀Cross-Shadow DOM: Attibute Referencing Table',
+  tags: ['devOnly'],
 };
 
 export default meta;
