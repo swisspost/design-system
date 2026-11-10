@@ -575,7 +575,6 @@ export class MigrationV45ManualListComponent extends LitElement {
                         <code>.mr-[breakpoint]-[size]</code> became
                         <code>.me-[breakpoint]-[size]</code>
                       </li>
-                      <hr />
                       <li><code>.pl-[size]</code> became <code>.ps-[size]</code></li>
                       <li>
                         <code>.pl-[breakpoint]-[size]</code> became
@@ -586,7 +585,6 @@ export class MigrationV45ManualListComponent extends LitElement {
                         <code>.pr-[breakpoint]-[size]</code> became
                         <code>.pe-[breakpoint]-[size]</code>
                       </li>
-                      <hr />
                       <li><code>.float-left</code> became <code>.float-start</code></li>
                       <li>
                         <code>.float-[breakpoint]-left</code> became
@@ -597,7 +595,6 @@ export class MigrationV45ManualListComponent extends LitElement {
                         <code>.float-[breakpoint]-right</code> became
                         <code>.float-[breakpoint]-end</code>
                       </li>
-                      <hr />
                       <li><code>.text-left</code> became <code>.text-start</code></li>
                       <li>
                         <code>.text-[breakpoint]-left</code> became
@@ -1789,15 +1786,13 @@ export class MigrationV45ManualListComponent extends LitElement {
                       component.
                     </p>
 
-                    ${
-                      this.angular
-                        ? html` <post-banner>
-                            One might think: "When it is so easy to migrate, why don't you offer an
-                            automatic migration?"<br />
-                            The short answer: because it is no longer the same component!
-                          </post-banner>`
-                        : nothing
-                    }
+                    ${this.angular
+                      ? html` <post-banner>
+                          One might think: "When it is so easy to migrate, why don't you offer an
+                          automatic migration?"<br />
+                          The short answer: because it is no longer the same component!
+                        </post-banner>`
+                      : nothing}
                   </label>
                 </div>
               </li>

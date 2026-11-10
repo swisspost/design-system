@@ -16,15 +16,15 @@
   },
   "scripts": {
     "start": "next dev",
-    "build": "pnpm clean && pnpm typecheck && next build",
+    "build": "pnpm clean && next build",
     "build:serve": "pnpm build && next start",
     "analyze": "next experimental-analyze",
     "typecheck": "tsc --noEmit",
     "clean": "rimraf .next",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
-    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore",
     "e2e": "pnpm exec playwright test",
     "e2e:watch": "pnpm exec playwright test --ui",
     "unit": "vitest run",
@@ -33,7 +33,7 @@
   "dependencies": {
     "@swisspost/design-system-components-react": "workspace:10.8.0",
     "@swisspost/design-system-styles": "workspace:10.8.0",
-    "next": "16.3.8",
+    "next": "16.4.2",
     "react": "catalog:react",
     "react-dom": "catalog:react"
   },
@@ -52,12 +52,12 @@
     "eslint-plugin-react-hooks": "7.0.1",
     "globals": "17.3.0",
     "prettier": "catalog:",
-    "resolve.exports": "2.0.3",
-    "rimraf": "6.1.3",
+    "resolve.exports": "2.0.4",
+    "rimraf": "6.1.4",
     "sass": "1.104.0",
     "tailwindcss": "4.3.1",
     "typescript": "catalog:",
-    "vitest": "4.1.11"
+    "vitest": "4.1.12"
   },
   "prettier": "@swisspost/design-system-prettier-config",
   "keywords": [

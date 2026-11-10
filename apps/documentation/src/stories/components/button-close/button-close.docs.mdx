@@ -59,16 +59,46 @@ No `onClick` handler or event listener is required on the consumer side.
 
 ### Supported closable targets
 
-| Ancestor | Close method |
-|---|---|
-| `<post-banner>` | `dismiss()` |
-| `<post-popover>` | `hide()` |
-| `<post-popovercontainer>` | `hide()` |
-| `<post-collapsible>` | `toggle(false)` |
-| `<post-accordion-item>` | `toggle(false)` |
-| `<dialog>` | `close()` |
-| native `[popover]` element | `togglePopover(false)` |
-
+<div className="table-responsive text-start">
+  <table className="table">
+    <thead>
+      <tr>
+        <th scope="col">Ancestor</th>
+        <th scope="col">Close method</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>`<post-banner>`</td>
+        <td>`dismiss()`</td>
+      </tr>
+      <tr>
+        <td>`<post-popover>`</td>
+        <td>`hide()`</td>
+      </tr>
+      <tr>
+        <td>`<post-popovercontainer>`</td>
+        <td>`hide()`</td>
+      </tr>
+      <tr>
+        <td>`<post-collapsible>`</td>
+        <td>`toggle(false)`</td>
+      </tr>
+      <tr>
+        <td>`<post-accordion-item>`</td>
+        <td>`toggle(false)`</td>
+      </tr>
+      <tr>
+        <td>`<dialog>`</td>
+        <td>`close()`</td>
+      </tr>
+      <tr>
+        <td>native `[popover]` element</td>
+        <td>`togglePopover(false)`</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ### Examples
 
@@ -79,4 +109,3 @@ No `onClick` handler or event listener is required on the consumer side.
 #### `<post-banner>`
 
 <Canvas sourceState="shown" of={CloseButtonStories.CloseBanner} />
-

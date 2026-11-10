@@ -191,7 +191,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
           .then($nav => {
             const scrollLeftAtLeave = $nav.get(0).scrollLeft;
 
-cy.window().then(win => win.dispatchEvent(new MouseEvent('mouseleave')));
+            cy.window().then(win => win.dispatchEvent(new MouseEvent('mouseleave')));
             cy.wait(300);
 
             cy.get('@mainnavigation')
@@ -373,7 +373,7 @@ cy.window().then(win => win.dispatchEvent(new MouseEvent('mouseleave')));
     });
 
     it('Has no detectable a11y violations on load', () => {
-      cy.checkA11y('post-mainnavigation', undefined, (violations) => {
+      cy.checkA11y('post-mainnavigation', undefined, violations => {
         expect(violations).to.have.length(0);
       });
     });
