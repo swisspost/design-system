@@ -1,5 +1,6 @@
 export const DISCUSSION_LABEL = 'needs: ☕️ discussion in daily';
 const FOURTEEN_DAYS = 14 * 24 * 60 * 60 * 1000;
+const MAX_CONCURRENT_PULL_REQUESTS = 5;
 
 /**
  * Parses a review date into epoch milliseconds, rejecting invalid dates.
@@ -161,14 +162,14 @@ export async function flagOverdueReviews({ github, core, context, now = Date.now
     state: 'open',
     per_page: 100,
   });
-  for (const candidate of pullRequests) {
-    if (!(await overdue(candidate))) continue;
+  async function processPullRequest(candidate) {
+    if (!(await overdue(candidate))) return;
     // Refresh eligibility before writes in case reviews or requests changed during the scan.
     const { data: current } = await github.rest.pulls.get({
       ...repo,
       pull_number: candidate.number,
     });
-    if (!(await overdue(current))) continue;
+    if (!(await overdue(current))) return;
 
     core.info(`Flagging #${current.number}: review baseline is more than 14 days old`);
     // This mutation returns the existing item if the PR is already in the project.
@@ -193,4 +194,14 @@ export async function flagOverdueReviews({ github, core, context, now = Date.now
       core.info(`Added ${DISCUSSION_LABEL} to #${current.number}`);
     }
   }
+
+  const batches = [];
+  for (let index = 0; index < pullRequests.length; index += MAX_CONCURRENT_PULL_REQUESTS) {
+    batches.push(pullRequests.slice(index, index + MAX_CONCURRENT_PULL_REQUESTS));
+  }
+  await batches.reduce(
+    (previousBatch, batch) =>
+      previousBatch.then(() => Promise.all(batch.map(processPullRequest))),
+    Promise.resolve(),
+  );
 }

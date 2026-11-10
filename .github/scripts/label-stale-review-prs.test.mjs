@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { isReviewOverdue, reviewBaseline } from './label-stale-review-prs.mjs';
+import {
+  flagOverdueReviews,
+  isReviewOverdue,
+  reviewBaseline,
+} from './label-stale-review-prs.mjs';
 
 const DAY = 24 * 60 * 60 * 1000;
 const NOW = Date.parse('2026-11-02T12:00:00Z');
@@ -149,4 +153,44 @@ test('rejects invalid timestamps and identities', () => {
     () => reviewBaseline(pr({ requested_reviewers: [] }), [], []),
     /without pending requests/,
   );
+});
+
+test('scans pull requests in bounded concurrent batches', async () => {
+  const pullRequests = Array.from({ length: 12 }, (_, index) => ({
+    ...pr(),
+    number: index + 1,
+  }));
+  let activeRequests = 0;
+  let maxActiveRequests = 0;
+  const github = {
+    graphql: async () => ({ organization: { projectV2: { id: 'project', closed: false } } }),
+    paginate: async (endpoint, params) => {
+      if (endpoint === github.rest.pulls.list) return pullRequests;
+      return (await endpoint(params)).data;
+    },
+    rest: {
+      issues: {
+        getLabel: async () => {},
+      },
+      pulls: {
+        list: async () => ({ data: pullRequests }),
+        listReviews: async () => {
+          activeRequests++;
+          maxActiveRequests = Math.max(maxActiveRequests, activeRequests);
+          await new Promise(resolve => setTimeout(resolve, 1));
+          activeRequests--;
+          return { data: [review(1)] };
+        },
+      },
+    },
+  };
+
+  await flagOverdueReviews({
+    github,
+    core: { info: () => {} },
+    context: { repo: { owner: 'org', repo: 'repo' } },
+    now: NOW,
+  });
+
+  assert.equal(maxActiveRequests, 5);
 });
