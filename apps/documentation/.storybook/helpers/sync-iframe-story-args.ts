@@ -8,14 +8,16 @@
  * - the docs page sends the current args of a story to every iframe rendering that story,
  * - the iframe applies the received args to its story and asks for the current args once the story is ready,
  *   so iframes that load late or reload still show the current state of the controls.
+ *
+ * The args only flow from the docs page to the iframe.
+ * Storybook forwards every event of the iframe channel to the docs page, so when the controls change quickly
+ * (e.g. while typing) these events arrive after newer values. To keep them from overwriting the newer values:
+ * - the iframe applies the args with its preview directly, instead of emitting `UPDATE_STORY_ARGS`,
+ * - the docs page always sends the args of its own story store, not the args of the event it receives.
  */
 import type { Args } from '@storybook/web-components-vite';
 import type { Channel } from 'storybook/internal/channels';
-import {
-  STORY_ARGS_UPDATED,
-  STORY_PREPARED,
-  UPDATE_STORY_ARGS,
-} from 'storybook/internal/core-events';
+import { STORY_ARGS_UPDATED, STORY_PREPARED } from 'storybook/internal/core-events';
 import { addons } from 'storybook/preview-api';
 
 const ARGS_UPDATE = 'post-docs:story-args-update';
@@ -37,6 +39,12 @@ interface ArgsRequestMessage {
   storyId: string;
 }
 
+// The parts of the Storybook preview (`window.__STORYBOOK_PREVIEW__`) used by this helper
+interface StorybookPreview {
+  storyStoreValue?: { args: { get(storyId: string): Args } };
+  onUpdateArgs(update: { storyId: string; updatedArgs: Args }): Promise<void>;
+}
+
 const latestArgs = new Map<string, TransferableArgs & { key: string }>();
 
 function isMessage<T extends ArgsUpdateMessage | ArgsRequestMessage>(
@@ -53,6 +61,20 @@ function getViewMode(win: Window): string | null {
   } catch {
     // The window belongs to another origin
     return null;
+  }
+}
+
+function getPreview(): StorybookPreview | undefined {
+  return (window as Window & { __STORYBOOK_PREVIEW__?: StorybookPreview }).__STORYBOOK_PREVIEW__;
+}
+
+// The args currently stored for a story, read synchronously so they are never outdated
+function getStoredArgs(storyId: string): Args | undefined {
+  try {
+    return getPreview()?.storyStoreValue?.args.get(storyId);
+  } catch {
+    // The story is not loaded yet
+    return undefined;
   }
 }
 
@@ -106,13 +128,15 @@ function postArgs(target: Window | null, storyId: string, { args, omittedKeys }:
 
 // Runs in the docs page
 function setupParent(channel: Channel) {
-  channel.on(STORY_ARGS_UPDATED, ({ storyId, args }: { storyId: string; args: Args }) => {
+  channel.on(STORY_ARGS_UPDATED, ({ storyId }: { storyId: string }) => {
     if (getViewMode(window) !== 'docs') return;
+
+    // The event can also come from an iframe and contain outdated args, the store is always up to date
+    const args = getStoredArgs(storyId);
+    if (!args) return;
 
     const transferable = toTransferableArgs(args);
     const key = toKey(transferable.args);
-
-    // The child echoes back the args it applied, stop here to avoid an endless loop
     if (latestArgs.get(storyId)?.key === key) return;
 
     latestArgs.set(storyId, { ...transferable, key });
@@ -142,22 +166,14 @@ function setupChild(channel: Channel) {
   const storyId = params.get('id');
   if (!storyId || params.get('viewMode') !== 'story') return;
 
-  let currentArgs: Args | undefined;
-
-  const trackArgs = (id: string, args: Args) => {
-    if (id === storyId) currentArgs = args;
-  };
-  channel.on(STORY_PREPARED, ({ id, args }: { id: string; args: Args }) => trackArgs(id, args));
-  channel.on(STORY_ARGS_UPDATED, ({ storyId: id, args }: { storyId: string; args: Args }) =>
-    trackArgs(id, args),
-  );
-
   window.addEventListener('message', (event: MessageEvent) => {
     if (event.source !== window.parent || event.origin !== window.location.origin) return;
     if (!isMessage<ArgsUpdateMessage>(event.data, ARGS_UPDATE)) return;
+    if (event.data.storyId !== storyId) return;
 
     // The args are requested again once the story is prepared, so early messages can be ignored
-    if (!currentArgs || event.data.storyId !== storyId) return;
+    const currentArgs = getStoredArgs(storyId);
+    if (!currentArgs) return;
 
     const { args, omittedKeys } = event.data;
     const updatedArgs: Args = { ...args };
@@ -168,11 +184,16 @@ function setupChild(channel: Channel) {
       .forEach(key => (updatedArgs[key] = undefined));
 
     const unchanged = Object.keys(updatedArgs).every(
-      key => toKey({ value: updatedArgs[key] }) === toKey({ value: currentArgs?.[key] }),
+      key => toKey({ value: updatedArgs[key] }) === toKey({ value: currentArgs[key] }),
     );
     if (unchanged) return;
 
-    channel.emit(UPDATE_STORY_ARGS, { storyId, updatedArgs });
+    // Emitting `UPDATE_STORY_ARGS` would also send the args to the docs page and overwrite newer values there
+    getPreview()
+      ?.onUpdateArgs({ storyId, updatedArgs })
+      .catch((error: unknown) => {
+        console.warn(`Unable to update the args of the story "${storyId}".`, error);
+      });
   });
 
   channel.on(STORY_PREPARED, ({ id }: { id: string }) => {

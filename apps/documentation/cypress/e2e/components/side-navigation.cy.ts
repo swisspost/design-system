@@ -47,6 +47,33 @@ describe('Side Navigation docs', () => {
       .should('have.length', 6);
   });
 
+  it('should settle on the last value when the controls change quickly', () => {
+    let sentMessages = 0;
+
+    // Deliver the args to the iframe late, so it is still applying older values while the user keeps typing
+    cy.get(`iframe[src*="id=${STORY_ID}"]`)
+      .its('0.contentWindow')
+      .then((win: Window) => {
+        const postMessage = win.postMessage.bind(win) as (message: unknown, origin: string) => void;
+        win.postMessage = ((message: unknown, origin: string) => {
+          sentMessages++;
+          setTimeout(() => postMessage(message, origin), 50);
+        }) as Window['postMessage'];
+      });
+
+    getControlRow('text-close').find('textarea').type(' button');
+
+    cy.get('@storyNav').should('have.attr', 'text-close', 'Close button');
+    cy.get('.main-story pre').should('contain.text', 'text-close="Close button"');
+    getControlRow('text-close').find('textarea').should('have.value', 'Close button');
+
+    // An endless loop would keep sending args to the iframe
+    cy.then(() => {
+      const settledMessages = sentMessages;
+      cy.wait(500).then(() => expect(sentMessages).to.equal(settledMessages));
+    });
+  });
+
   it('should keep the current controls when the iframe reloads', () => {
     getControlRow('size').find('input[type="radio"][value="small"]').check({ force: true });
     cy.get('@storyNav').should('have.attr', 'size', 'small');
