@@ -46,4 +46,4 @@ A GitHub action is responsible for automating the above workflow and creating pu
 
 ## Test dependencies
 
-`node-fetch` v3 is ESM-only. The fetch utility loads it with native `import()` so the package can keep its existing CommonJS setup. The unit test script enables Node's VM module support to test this import.
+The icon download utility uses Node's built-in `fetch`. If you need a proxy, set `HTTP_PROXY` or `HTTPS_PROXY` in the environment. `NO_PROXY` can exclude hosts from the proxy. The package configures these variables through Undici's `EnvHttpProxyAgent`.

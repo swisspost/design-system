@@ -28,9 +28,9 @@
     "build": "pnpm clean && pnpm typecheck && ts-node src/build.ts",
     "typecheck": "tsc --noEmit",
     "clean": "rimraf public/post-icons public/report.json dist",
-    "unit": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js",
-    "unit:watch": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --watch",
-    "unit:updatesnapshots": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js -u",
+    "unit": "jest",
+    "unit:watch": "jest --watch",
+    "unit:updatesnapshots": "jest -u",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
@@ -47,10 +47,8 @@
     "dotenv": "17.2.3",
     "eslint": "catalog:",
     "http-server": "14.1.1",
-    "https-proxy-agent": "7.0.6",
     "jest": "catalog:jest",
     "mock-fs": "5.5.0",
-    "node-fetch": "3.3.2",
     "node-html-parser": "7.0.2",
     "nodemon": "3.1.14",
     "prettier": "catalog:",
@@ -58,7 +56,8 @@
     "svgo": "4.1.0",
     "ts-jest": "catalog:jest",
     "ts-node": "catalog:node",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "undici": "6.29.1"
   },
   "prettier": "@swisspost/design-system-prettier-config",
   "keywords": [

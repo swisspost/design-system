@@ -7,9 +7,6 @@ import {
 import fs from 'fs';
 import path from 'path';
 import { fetchFile } from './../fetchFile';
-import { fetch } from '../../fetch';
-
-jest.mock('../../fetch');
 
 describe('fetchFile', () => {
   afterEach(() => {
@@ -20,11 +17,9 @@ describe('fetchFile', () => {
     const outputPath = './icons';
     const writeFile = jest.spyOn(fs, 'writeFileSync').mockImplementation();
 
-    jest.mocked(fetch).mockImplementationOnce(() =>
-      Promise.resolve({
-        text: () => Promise.resolve('<svg><path d="M16 8.4l-12.533 12.4z"></path></svg>'),
-      } as Awaited<ReturnType<typeof fetch>>),
-    );
+    jest
+      .spyOn(globalThis, 'fetch')
+      .mockResolvedValueOnce(new Response('<svg><path d="M16 8.4l-12.533 12.4z"></path></svg>'));
 
     const svg = await fetchFile(
       {
