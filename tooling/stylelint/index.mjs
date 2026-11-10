@@ -27,18 +27,7 @@ const config = {
     'max-nesting-depth': 5,
     'media-feature-name-no-vendor-prefix': true,
     'property-no-unknown': true,
-    'property-no-vendor-prefix': [
-      true,
-      {
-        ignoreProperties: [
-          '-webkit-mask-size',
-          '-webkit-mask-image',
-          '-webkit-mask-repeat',
-          '-webkit-mask-position',
-          '-webkit-mask-composite',
-        ],
-      },
-    ],
+    'property-no-vendor-prefix': true,
     'rule-empty-line-before': [
       'always-multi-line',
       {
