@@ -68,4 +68,14 @@ export default meta;
 
 type Story = StoryObj;
 
-export const Default: Story = {};
+// Rendered in an iframe so the header switches to mobile based on the preview width, not the page width
+export const Default: Story = {
+  parameters: {
+    docs: {
+      story: {
+        inline: false,
+        iframeHeight: 600,
+      },
+    },
+  },
+};
