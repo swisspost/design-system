@@ -502,7 +502,6 @@ export class PostHeader {
 
   render() {
     const onDesktop = Build.isServer || this.device === 'desktop';
-    const onTabletAndMobile = Build.isServer || this.device !== 'desktop';
 
     return (
       <Host
@@ -529,8 +528,7 @@ export class PostHeader {
                   <slot key="language-menu" name="language-menu"></slot>,
                 ]}
                 <slot name="post-login"></slot>
-                {onTabletAndMobile &&
-                  (this.hasMainNav || this.hasAudience || this.hasGlobalNavSecondary) && (
+                {(Build.isServer || this.hasBurgerMenu) && (
                     <post-togglebutton
                       class="burger-button"
                       ref={el => (this.burgerMenuButton = el)}
