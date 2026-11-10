@@ -48,15 +48,9 @@
   },
   "dependencies": {
     "@swisspost/design-system-components": "workspace:10.8.0",
-    "@swisspost/design-system-styles": "workspace:10.8.0",
-    "body-scroll-lock": "4.0.0-beta.0",
-    "jquery": "3.7.1",
-    "throttle-debounce": "5.0.2",
-    "url-polyfill": "1.1.14"
+    "@swisspost/design-system-styles": "workspace:10.8.0"
   },
   "devDependencies": {
-    "@babel/core": "7.29.13",
-    "@percy/cli": "1.32.12",
     "@percy/cypress": "3.1.9",
     "@stencil/core": "4.43.3",
     "@stencil/sass": "3.0.12",
@@ -67,12 +61,8 @@
     "@swisspost/design-system-prettier-config": "workspace:10.8.0",
     "@swisspost/design-system-tokens": "workspace:10.8.0",
     "@swisspost/design-system-tsconfig": "workspace:10.8.0",
-    "@types/body-scroll-lock": "3.1.2",
     "@types/jest": "catalog:jest",
-    "@types/jquery": "3.5.34",
     "@types/node": "catalog:node",
-    "@types/throttle-debounce": "5.0.2",
-    "babel-loader": "10.0.0",
     "cypress": "catalog:cypress",
     "cypress-each": "catalog:cypress",
     "cypress-storybook": "catalog:cypress",
@@ -81,11 +71,8 @@
     "jest-environment-jsdom": "29.7.0",
     "prettier": "catalog:",
     "rimraf": "6.1.4",
-    "rollup-plugin-node-polyfills": "0.2.1",
     "rollup-plugin-scss": "4.0.1",
-    "rollup-plugin-visualizer": "5.12.0",
     "sass": "1.104.0",
-    "start-server-and-test": "2.1.5",
     "ts-jest": "catalog:jest",
     "typescript": "catalog:"
   },
