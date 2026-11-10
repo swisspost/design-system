@@ -1,9 +1,11 @@
 import testResult from '../../../../tests/fixtures/test-result.json';
-import { Response } from 'undici';
+import { fetch, Response } from 'undici';
 import { fetchPage } from './../fetchPage';
-import { fetch } from '../../fetch';
 
-jest.mock('../../fetch');
+jest.mock('undici', () => {
+  const undici = jest.requireActual('undici');
+  return { ...undici, fetch: jest.fn() };
+});
 
 describe('fetchPage', () => {
   it('Should fetch a page of data', async () => {

@@ -6,11 +6,13 @@ import {
 } from '../../../models/censhare-result-page.model';
 import fs from 'fs';
 import path from 'path';
-import { Response } from 'undici';
+import { fetch, Response } from 'undici';
 import { fetchFile } from './../fetchFile';
-import { fetch } from '../../fetch';
 
-jest.mock('../../fetch');
+jest.mock('undici', () => {
+  const undici = jest.requireActual('undici');
+  return { ...undici, fetch: jest.fn() };
+});
 
 describe('fetchFile', () => {
   afterEach(() => {

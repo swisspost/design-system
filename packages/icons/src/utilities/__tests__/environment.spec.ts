@@ -39,7 +39,7 @@ describe('environment proxy configuration', () => {
 
     const script = [
       "require('./src/utilities/environment').setupProxy();",
-      "require('./src/utilities/fetch').fetch('http://proxy-target.test/icons/example.svg')",
+      "require('undici').fetch('http://proxy-target.test/icons/example.svg')",
       '  .then(response => response.text())',
       '  .then(console.log)',
       '  .catch(error => { console.error(error); process.exitCode = 1; });',
