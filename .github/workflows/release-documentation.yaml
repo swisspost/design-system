@@ -70,7 +70,9 @@ jobs:
         with:
           script: |
             const fs = require('fs')
-            return JSON.parse(fs.readFileSync('./apps/documentation/netlify.config.json', 'utf8'))
+            const { parseNetlifyConfig } = require('.github/workflows/scripts/netlify-config.mjs')
+
+            return parseNetlifyConfig(fs.readFileSync('./apps/documentation/netlify.config.json', 'utf8'))
 
       - name: Publish documentation to netlify
         id: deploy

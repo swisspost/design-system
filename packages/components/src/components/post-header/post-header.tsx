@@ -57,7 +57,10 @@ export class PostHeader {
   private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
 
   private get hasBurgerMenu(): boolean {
-    return this.device !== 'desktop' && this.hasMainNav;
+    return (
+      this.device !== 'desktop' &&
+      (this.hasMainNav || this.hasAudience || this.hasGlobalNavSecondary)
+    );
   }
 
   private animationOptions: Partial<AnimationOptions> = {
@@ -92,6 +95,8 @@ export class PostHeader {
   @State() device: Device = breakpoint.get('device');
   @State() hasTitle: boolean = true;
   @State() hasMainNav: boolean = true;
+  @State() hasAudience: boolean = true;
+  @State() hasGlobalNavSecondary: boolean = true;
   @State() hasLocalNav: boolean = true;
   @State() burgerMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
@@ -447,15 +452,31 @@ export class PostHeader {
       this.checkSlottedContent();
 
       this.slottedContentObserver = new MutationObserver(this.checkSlottedContent);
-      this.slottedContentObserver.observe(this.host, { childList: true });
+      this.slottedContentObserver.observe(this.host, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['slot'],
+      });
     }
+  }
+
+  private slotHasNavigationItems(slotName: string, selector: string): boolean {
+    return Array.from(this.host.querySelectorAll(`:scope > [slot="${slotName}"]`)).some(
+      element => element.matches(selector) || !!element.querySelector(selector),
+    );
   }
 
   private checkSlottedContent() {
     if (Build.isServer) return;
 
     this.hasTitle = !!this.host.querySelector('[slot="title"]');
-    this.hasMainNav = !!this.host.querySelector('[slot="main-nav"]');
+    this.hasMainNav = this.slotHasNavigationItems(
+      'main-nav',
+      'a:not(post-megadropdown *), post-megadropdown-trigger',
+    );
+    this.hasAudience = this.slotHasNavigationItems('audience', 'a, button');
+    this.hasGlobalNavSecondary = this.slotHasNavigationItems('global-nav-secondary', 'a, button');
     this.hasLocalNav = !!this.host.querySelector('[slot="local-nav"]');
   }
 
@@ -538,7 +559,6 @@ export class PostHeader {
 
   render() {
     const onDesktop = Build.isServer || this.device === 'desktop';
-    const onTabletAndMobile = Build.isServer || this.device !== 'desktop';
 
     return (
       <Host
@@ -561,26 +581,30 @@ export class PostHeader {
                   </div>
                 )}
                 <slot name="global-nav-primary"></slot>
-                {(onDesktop || !this.hasMainNav) && [
+                {(onDesktop || !this.hasBurgerMenu) && [
                   <slot key="global-nav-secondary" name="global-nav-secondary"></slot>,
                   <slot key="language-menu" name="language-menu"></slot>,
                 ]}
                 <slot name="post-login"></slot>
-                {onTabletAndMobile && this.hasMainNav && (
-                  <post-togglebutton
-                    class="burger-button"
-                    ref={el => (this.burgerMenuButton = el)}
-                    onClick={() => this.toggleBurgerMenu()}
-                  >
-                    <span>{this.textMenu}</span>
-                    <post-icon
-                      aria-hidden="true"
-                      name="burger"
-                      data-showwhen="untoggled"
-                    ></post-icon>
-                    <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
-                  </post-togglebutton>
-                )}
+                {(Build.isServer || this.hasBurgerMenu) && (
+                    <post-togglebutton
+                      class="burger-button"
+                      ref={el => (this.burgerMenuButton = el)}
+                      onClick={() => this.toggleBurgerMenu()}
+                    >
+                      <span>{this.textMenu}</span>
+                      <post-icon
+                        aria-hidden="true"
+                        name="burger"
+                        data-showwhen="untoggled"
+                      ></post-icon>
+                      <post-icon
+                        aria-hidden="true"
+                        name="closex"
+                        data-showwhen="toggled"
+                      ></post-icon>
+                    </post-togglebutton>
+                  )}
               </div>
             </div>
           </div>
