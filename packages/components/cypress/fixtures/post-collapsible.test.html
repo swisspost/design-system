@@ -19,6 +19,10 @@
       section {
         inline-size: 20rem;
       }
+
+      post-collapsible {
+        display: block;
+      }
     </style>
   </head>
   <body>
@@ -58,6 +62,33 @@
         <post-collapsible>
           <p class="border rounded-4 p-24">Content closed by the close button.</p>
           <post-closebutton>Close</post-closebutton>
+        </post-collapsible>
+      </section>
+
+      <section id="findable">
+        <a id="find-link" href="#findable-target">Find content</a>
+        <post-collapsible-trigger for="findable-collapsible">
+          <button>Toggle findable content</button>
+        </post-collapsible-trigger>
+        <post-collapsible id="findable-collapsible" collapsed findable>
+          <p id="findable-target">Findable content</p>
+          <p id="encoded target">Content with an encoded fragment</p>
+          <button id="hidden-button">Button inside hidden content</button>
+        </post-collapsible>
+        <button id="after-hidden-content">Button after hidden content</button>
+      </section>
+
+      <section>
+        <post-collapsible id="not-findable" collapsed>
+          <p id="not-findable-target">Content that is not findable</p>
+        </post-collapsible>
+      </section>
+
+      <section>
+        <post-collapsible id="outer-findable" collapsed findable>
+          <post-collapsible id="inner-findable" collapsed findable>
+            <p id="nested-target">Nested findable content</p>
+          </post-collapsible>
         </post-collapsible>
       </section>
     </main>

@@ -13,6 +13,11 @@
     <link rel="stylesheet" href="/assets/css/post-default.css" />
     <script type="module" src="/build/post-components.esm.js"></script>
     <script nomodule src="/build/post-components.js"></script>
+    <style>
+      p[id^='playground-'] {
+        scroll-margin-block-start: calc(var(--post-header-height) + 1em);
+      }
+    </style>
   </head>
 
   <body style="min-height: 200vh">
@@ -179,5 +184,99 @@
       <option value="compact">Post compact</option>
     </select>
     <hr />
+
+    <section class="p-24 mb-48">
+      <h2>Findable collapsible</h2>
+      <ul>
+        <li><a href="#playground-collapsible-introduction">Collapsible introduction</a></li>
+        <li><a href="#playground-collapsible-details">Collapsible details</a></li>
+      </ul>
+      <post-collapsible-trigger for="playground-collapsible">
+        <button type="button" class="btn btn-secondary mb-16">Toggle collapsible</button>
+      </post-collapsible-trigger>
+      <post-collapsible id="playground-collapsible" collapsed findable>
+        <div class="p-24">
+          <p id="playground-collapsible-introduction">Introduction inside the collapsible.</p>
+          <div>
+            <p id="playground-collapsible-details">Nested details inside the collapsible.</p>
+          </div>
+        </div>
+      </post-collapsible>
+    </section>
+
+    <section class="p-24 mb-48">
+      <h2>Findable accordion</h2>
+      <ul>
+        <li><a href="#playground-accordion-first-details">First panel details</a></li>
+        <li><a href="#playground-accordion-second-details">Second panel details</a></li>
+      </ul>
+      <post-accordion heading-level="3" findable>
+        <post-accordion-item collapsed>
+          <span slot="header">First panel</span>
+          <div>
+            <p id="playground-accordion-first-details">Nested details inside the first panel.</p>
+            <a href="#playground-accordion-second-details">Go to the second panel details</a>
+          </div>
+        </post-accordion-item>
+        <post-accordion-item collapsed>
+          <span slot="header">Second panel</span>
+          <div>
+            <p id="playground-accordion-second-details">Nested details inside the second panel.</p>
+            <a href="#playground-accordion-first-details">Go to the first panel details</a>
+          </div>
+        </post-accordion-item>
+      </post-accordion>
+    </section>
+
+    <section class="p-24 mb-48">
+      <h2>Non-findable collapsible</h2>
+      <ul>
+        <li><a href="#playground-static-collapsible-introduction">Collapsible introduction</a></li>
+        <li><a href="#playground-static-collapsible-details">Collapsible details</a></li>
+      </ul>
+      <post-collapsible-trigger for="playground-static-collapsible">
+        <button type="button" class="btn btn-secondary mb-16">Toggle collapsible</button>
+      </post-collapsible-trigger>
+      <post-collapsible id="playground-static-collapsible" collapsed>
+        <div class="p-24">
+          <p id="playground-static-collapsible-introduction">
+            Introduction inside the non-findable collapsible.
+          </p>
+          <div>
+            <p id="playground-static-collapsible-details">
+              Nested details inside the non-findable collapsible.
+            </p>
+          </div>
+        </div>
+      </post-collapsible>
+    </section>
+
+    <section class="p-24 mb-48">
+      <h2>Non-findable accordion</h2>
+      <ul>
+        <li><a href="#playground-static-accordion-first-details">First panel details</a></li>
+        <li><a href="#playground-static-accordion-second-details">Second panel details</a></li>
+      </ul>
+      <post-accordion heading-level="3">
+        <post-accordion-item collapsed>
+          <span slot="header">First panel</span>
+          <div>
+            <p id="playground-static-accordion-first-details">
+              Nested details inside the first non-findable panel.
+            </p>
+            <a href="#playground-static-accordion-second-details">Go to the second panel details</a>
+          </div>
+        </post-accordion-item>
+        <post-accordion-item collapsed>
+          <span slot="header">Second panel</span>
+          <div>
+            <p id="playground-static-accordion-second-details">
+              Nested details inside the second non-findable panel.
+            </p>
+            <a href="#playground-static-accordion-first-details">Go to the first panel details</a>
+          </div>
+        </post-accordion-item>
+      </post-accordion>
+    </section>
   </body>
 </html>
