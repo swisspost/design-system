@@ -4,12 +4,12 @@ import {
   TypeFilter,
   VariantMIME,
 } from '../../../models/censhare-result-page.model';
-import fetch, { Response } from 'node-fetch';
 import fs from 'fs';
 import path from 'path';
 import { fetchFile } from './../fetchFile';
+import { fetch } from '../../fetch';
 
-jest.mock('node-fetch');
+jest.mock('../../fetch');
 
 describe('fetchFile', () => {
   afterEach(() => {
@@ -23,7 +23,7 @@ describe('fetchFile', () => {
     jest.mocked(fetch).mockImplementationOnce(() =>
       Promise.resolve({
         text: () => Promise.resolve('<svg><path d="M16 8.4l-12.533 12.4z"></path></svg>'),
-      } as Response),
+      } as Awaited<ReturnType<typeof fetch>>),
     );
 
     const svg = await fetchFile(

@@ -1,16 +1,17 @@
-import fetch, { Response } from 'node-fetch';
 import testResult from '../../../../tests/fixtures/test-result.json';
 import { fetchPage } from './../fetchPage';
+import { fetch } from '../../fetch';
 
-jest.mock('node-fetch');
+jest.mock('../../fetch');
 
 describe('fetchPage', () => {
   it('Should fetch a page of data', async () => {
-    jest
-      .mocked(fetch)
-      .mockImplementationOnce(() =>
-        Promise.resolve({ status: 200, json: () => Promise.resolve(testResult) } as Response),
-      );
+    jest.mocked(fetch).mockImplementationOnce(() =>
+      Promise.resolve({
+        status: 200,
+        json: () => Promise.resolve(testResult),
+      } as Awaited<ReturnType<typeof fetch>>),
+    );
     const json = await fetchPage('test');
     const count = getCount();
 
@@ -37,7 +38,7 @@ describe('fetchPage', () => {
       Promise.resolve({
         status: 401,
         statusText: 'unauthorized',
-      } as Response),
+      } as Awaited<ReturnType<typeof fetch>>),
     );
     const t = async () => fetchPage('test');
     await expect(t).rejects.toBeInstanceOf(Error);

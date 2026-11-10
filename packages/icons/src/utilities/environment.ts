@@ -2,7 +2,7 @@
 // to the same env variables
 import * as dotenv from 'dotenv';
 import { HttpsProxyAgent } from 'https-proxy-agent';
-import { RequestInit } from 'node-fetch';
+import type { RequestInit } from 'node-fetch';
 import { MESSAGE_ENV_VARS_MISSING_ERROR } from './constants';
 
 dotenv.config();
