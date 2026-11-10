@@ -403,6 +403,9 @@ export class PostHeader {
     this.hasTitle = !!this.host.querySelector('[slot="title"]');
     this.hasMainNav = !!this.host.querySelector('[slot="main-nav"]');
     this.hasLocalNav = !!this.host.querySelector('[slot="local-nav"]');
+
+    // A language menu slotted after the initial render does not trigger a re-render of the header
+    this.switchLanguageSwitchMode();
   }
 
   private switchLanguageSwitchMode() {

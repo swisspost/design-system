@@ -98,6 +98,28 @@ describe('header', () => {
       cy.get('[data-post-scroll-locked]').should('not.exist');
     });
 
+    it('should render a language menu added after the initial render as a list in the burger menu', () => {
+      cy.get('@header')
+        .find('post-language-menu')
+        .should('have.attr', 'variant', 'list')
+        .then($languageMenu => {
+          const languageMenu = $languageMenu[0];
+
+          // Parse a new, not yet upgraded element, like frameworks do when re-rendering
+          const template = document.createElement('template');
+          template.innerHTML = languageMenu.outerHTML;
+          const newLanguageMenu = template.content.firstElementChild as HTMLElement;
+          newLanguageMenu.removeAttribute('variant');
+          delete newLanguageMenu.dataset.hydrated;
+
+          languageMenu.remove();
+          cy.get('@header').then($header => $header[0].append(newLanguageMenu));
+        });
+
+      cy.get('@header').find('post-language-menu').should('have.attr', 'data-hydrated');
+      cy.get('@header').find('post-language-menu').should('have.attr', 'variant', 'list');
+    });
+
     it('should log an error if the textMenu prop is not set', () => {
       cy.window().then(win => {
         cy.spy(win.console, 'error').as('consoleError');
