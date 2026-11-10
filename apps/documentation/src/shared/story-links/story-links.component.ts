@@ -34,13 +34,32 @@ let indexEntries: Promise<IndexEntry[]> | undefined;
 
 function getIndexEntries(): Promise<IndexEntry[]> {
   indexEntries ??= fetch(INDEX_PATH)
-    .then(response => response.json())
-    .then((index: { entries: Record<string, IndexEntry> }) => Object.values(index.entries));
+    .then(response => {
+      if (!response.ok) throw new Error(`Unable to load ${INDEX_PATH}: ${response.status}`);
+      return response.json();
+    })
+    .then((index: { entries: Record<string, IndexEntry> }) => Object.values(index.entries))
+    .catch((error: unknown) => {
+      indexEntries = undefined;
+      throw error;
+    });
   return indexEntries;
 }
 
 function getDirectory(path: string): string {
   return path.substring(0, path.lastIndexOf('/'));
+}
+
+function isDevModeEnabled(): boolean {
+  try {
+    const env = window.top?.document.documentElement.getAttribute('data-env');
+    if (env) return env === 'development';
+  } catch {
+    // The Storybook manager belongs to another origin
+  }
+
+  const storedDevMode = localStorage.getItem('devModeEnabled');
+  return storedDevMode === 'true' || storedDevMode === 'development';
 }
 
 let instanceCount = 0;
@@ -50,11 +69,12 @@ export class StoryLinksComponent extends LitElement {
   @property({ type: Object }) of: StoriesModule | string = {};
 
   private readonly snapshotsMenuId = `story-links-snapshots-${instanceCount++}`;
+  private readonly devModeEnabled = isDevModeEnabled();
 
   // Snapshot stories live next to the stories they belong to, but their names don't follow a fixed pattern
   private readonly snapshotsTask = new Task(this, {
-    task: async ([metaId, metaTitle]) => {
-      if (!metaId && !metaTitle) return [];
+    task: async ([devModeEnabled, metaId, metaTitle]) => {
+      if (!devModeEnabled || (!metaId && !metaTitle)) return [];
 
       const entries = await getIndexEntries();
       const story = entries.find(
@@ -72,7 +92,7 @@ export class StoryLinksComponent extends LitElement {
           getDirectory(entry.importPath) === directory,
       );
     },
-    args: () => [this.meta?.id, this.meta?.title] as const,
+    args: () => [this.devModeEnabled, this.meta?.id, this.meta?.title] as const,
   });
 
   createRenderRoot() {
