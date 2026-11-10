@@ -25,7 +25,7 @@ jobs:
       - name: Abort workflow, if uncommitted changes are detected
         run: |
           if [[ $(git status --porcelain) ]]; then
-            echo "Error: Unclean working tree! Commit generated changes first."
+            echo "Error: Unclean working tree! Commit generated changes first." >&2
             exit 1
           fi
 
