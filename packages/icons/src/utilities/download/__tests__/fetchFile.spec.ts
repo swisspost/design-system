@@ -6,7 +6,11 @@ import {
 } from '../../../models/censhare-result-page.model';
 import fs from 'fs';
 import path from 'path';
+import { Response } from 'undici';
 import { fetchFile } from './../fetchFile';
+import { fetch } from '../../fetch';
+
+jest.mock('../../fetch');
 
 describe('fetchFile', () => {
   afterEach(() => {
@@ -18,7 +22,7 @@ describe('fetchFile', () => {
     const writeFile = jest.spyOn(fs, 'writeFileSync').mockImplementation();
 
     jest
-      .spyOn(globalThis, 'fetch')
+      .mocked(fetch)
       .mockResolvedValueOnce(new Response('<svg><path d="M16 8.4l-12.533 12.4z"></path></svg>'));
 
     const svg = await fetchFile(

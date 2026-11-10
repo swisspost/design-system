@@ -39,7 +39,7 @@ describe('environment proxy configuration', () => {
 
     const script = [
       "require('./src/utilities/environment').setupProxy();",
-      "fetch('http://proxy-target.test/icons/example.svg')",
+      "require('./src/utilities/fetch').fetch('http://proxy-target.test/icons/example.svg')",
       '  .then(response => response.text())',
       '  .then(console.log)',
       '  .catch(error => { console.error(error); process.exitCode = 1; });',
@@ -61,7 +61,7 @@ describe('environment proxy configuration', () => {
     }
   });
 
-  it('routes native fetch through the configured environment proxy', () => {
+  it('routes Undici fetch through the configured environment proxy', () => {
     expect(proxiedRequests).toBe(1);
     expect(proxyResponse).toBe('proxied');
   });

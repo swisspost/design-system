@@ -1,5 +1,6 @@
 import type { CenshareError, CenshareResultPage } from '../../models/censhare-result-page.model';
 import { requestInit } from '../environment';
+import { fetch } from '../fetch';
 import { coloredLogMessage } from '../shared';
 import { DOWNLOAD_PAGE_DELAY } from '../constants';
 

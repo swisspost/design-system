@@ -1,10 +1,14 @@
 import testResult from '../../../../tests/fixtures/test-result.json';
+import { Response } from 'undici';
 import { fetchPage } from './../fetchPage';
+import { fetch } from '../../fetch';
+
+jest.mock('../../fetch');
 
 describe('fetchPage', () => {
   it('Should fetch a page of data', async () => {
     jest
-      .spyOn(globalThis, 'fetch')
+      .mocked(fetch)
       .mockResolvedValueOnce(new Response(JSON.stringify(testResult), { status: 200 }));
     const json = await fetchPage('test');
     const count = getCount();
@@ -22,14 +26,14 @@ describe('fetchPage', () => {
   });
 
   it('Should error if the call fails', async () => {
-    jest.spyOn(globalThis, 'fetch').mockRejectedValueOnce('NOK');
+    jest.mocked(fetch).mockRejectedValueOnce('NOK');
     const t = async () => fetchPage('test');
     await expect(t).rejects.toEqual('NOK');
   });
 
   it('Should error if the response is not 200', async () => {
     jest
-      .spyOn(globalThis, 'fetch')
+      .mocked(fetch)
       .mockResolvedValueOnce(new Response(null, { status: 401, statusText: 'unauthorized' }));
     const t = async () => fetchPage('test');
     await expect(t).rejects.toBeInstanceOf(Error);

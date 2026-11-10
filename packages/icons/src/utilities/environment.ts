@@ -1,7 +1,7 @@
 // Dotenv needs to be configured before anything else so imported modules also have access
 // to the same env variables
 import * as dotenv from 'dotenv';
-import { EnvHttpProxyAgent, setGlobalDispatcher } from 'undici';
+import { EnvHttpProxyAgent, setGlobalDispatcher, type RequestInit } from 'undici';
 import { MESSAGE_ENV_VARS_MISSING_ERROR } from './constants';
 
 dotenv.config();
