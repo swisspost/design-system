@@ -1,17 +1,34 @@
 /**
+ * Based on [stylelint-config-sass-guidelines](https://www.npmjs.com/package/stylelint-config-sass-guidelines),
+ * without the stylistic rules and other small tweaks.
+ *
  * @see https://stylelint.io/user-guide/configure
  * @type {import('stylelint').Config}
  */
 const config = {
-  plugins: ['stylelint-scss'],
-  extends: ['stylelint-config-sass-guidelines'],
+  plugins: ['stylelint-scss', '@stylistic/stylelint-plugin'],
+  customSyntax: 'postcss-scss',
   rules: {
+    'at-rule-disallowed-list': ['debug'],
+    'at-rule-no-unknown': null,
+    'at-rule-no-vendor-prefix': true,
+    'block-no-empty': true,
+    'color-hex-length': 'short',
+    'color-named': 'never',
+    'color-no-invalid-hex': true,
+    'declaration-block-single-line-max-declarations': 1,
+    'declaration-property-value-disallowed-list': {
+      'border': ['none'],
+      'border-top': ['none'],
+      'border-right': ['none'],
+      'border-bottom': ['none'],
+      'border-left': ['none'],
+    },
+    // 'function-url-quotes': null,
+    'length-zero-no-unit': true,
     'max-nesting-depth': 5,
-    'selector-max-compound-selectors': 5,
-    'selector-max-id': 1,
-    'selector-no-qualifying-type': [true, { ignore: ['attribute', 'class'] }],
-    'function-url-quotes': null,
-    'scss/dollar-variable-colon-space-after': 'always-single-line',
+    'media-feature-name-no-vendor-prefix': true,
+    'property-no-unknown': true,
     'property-no-vendor-prefix': [
       true,
       {
@@ -24,6 +41,56 @@ const config = {
         ],
       },
     ],
+    'rule-empty-line-before': [
+      'always-multi-line',
+      {
+        except: ['first-nested'],
+        ignore: ['after-comment'],
+      },
+    ],
+    'selector-class-pattern': [
+      '^[a-z0-9\\-]+$',
+      {
+        message: 'Selector should be written in lowercase with hyphens (selector-class-pattern)',
+      },
+    ],
+    'selector-max-compound-selectors': 5,
+    'selector-max-id': 1,
+    'selector-no-qualifying-type': [true, { ignore: ['attribute', 'class'] }],
+    'selector-no-vendor-prefix': true,
+    'selector-pseudo-element-colon-notation': 'double',
+    'selector-pseudo-element-no-unknown': true,
+    'shorthand-property-no-redundant-values': true,
+    'value-no-vendor-prefix': true,
+    '@stylistic/block-opening-brace-space-before': 'always',
+    '@stylistic/color-hex-case': 'lower',
+    '@stylistic/declaration-bang-space-after': 'never',
+    '@stylistic/declaration-bang-space-before': 'always',
+    '@stylistic/declaration-block-semicolon-newline-after': 'always',
+    '@stylistic/declaration-block-semicolon-space-before': 'never',
+    '@stylistic/declaration-block-trailing-semicolon': 'always',
+    '@stylistic/declaration-colon-space-after': 'always-single-line',
+    '@stylistic/declaration-colon-space-before': 'never',
+    '@stylistic/function-comma-space-after': 'always-single-line',
+    '@stylistic/function-parentheses-space-inside': 'never-single-line',
+    '@stylistic/indentation': 2,
+    '@stylistic/media-feature-parentheses-space-inside': 'never',
+    '@stylistic/no-missing-end-of-source-newline': true,
+    '@stylistic/number-leading-zero': 'always',
+    '@stylistic/number-no-trailing-zeros': true,
+    '@stylistic/selector-list-comma-newline-after': 'always',
+    '@stylistic/string-quotes': 'single',
+    'scss/at-extend-no-missing-placeholder': true,
+    'scss/at-function-pattern': '^[a-z]+([a-z0-9-]+[a-z0-9]+)?$',
+    'scss/at-import-partial-extension-disallowed-list': ['scss'],
+    'scss/at-rule-no-unknown': true,
+    'scss/dollar-variable-colon-space-after': 'always-single-line',
+    'scss/dollar-variable-colon-space-before': 'never',
+    'scss/dollar-variable-pattern': '^[_]?[a-z]+([a-z0-9-]+[a-z0-9]+)?$',
+    'scss/load-no-partial-leading-underscore': true,
+    'scss/no-global-function-names': true,
+    'scss/percent-placeholder-pattern': '^[a-z]+([a-z0-9-]+[a-z0-9]+)?$',
+    'scss/selector-no-redundant-nesting-selector': true,
   },
 };
 
