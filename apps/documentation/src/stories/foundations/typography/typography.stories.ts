@@ -52,18 +52,6 @@ export const Paragraph: Story = {
   `,
 };
 
-export const Legend: Story = {
-  render: () => html`
-    <fieldset>
-      <legend>Default legend</legend>
-    </fieldset>
-
-    <fieldset>
-      <legend class="large">Default legend</legend>
-    </fieldset>
-  `,
-};
-
 export const Heading: Story = {
   render: () => html`
     <h1>
