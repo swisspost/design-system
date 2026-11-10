@@ -44,6 +44,6 @@ The `post-icon` component published as a part of the `@swisspost/design-system-c
 
 A GitHub action is responsible for automating the above workflow and creating pull requests on a regular basis in order to keep the icon base up to date.
 
-## Test dependencies
+## Proxy configuration
 
-The icon download utility uses Node's built-in `fetch`. If you need a proxy, set `HTTP_PROXY` or `HTTPS_PROXY` in the environment. `NO_PROXY` can exclude hosts from the proxy. The package configures these variables through Undici's `EnvHttpProxyAgent`.
+The icon download utility uses `fetch` from Undici and requires proxy configuration. Set `HTTP_PROXY` and `HTTPS_PROXY` in the environment before running `pnpm --filter design-system-icons fetchSVGs`. For local runs, add them to the package's `.env` file, which is loaded automatically. In GitHub Actions, provide them to the workflow job as environment variables. Set `NO_PROXY` if any hosts should bypass the proxy.
