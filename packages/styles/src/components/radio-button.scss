@@ -39,25 +39,17 @@ tokens.$default-map: components.$post-radio-button;
     margin-inline-end: tokens.get('radio-button-group-items-gap-inline');
   }
 
-  fieldset[disabled] & {
-    > input[type='radio'] ~ label {
-      color: tokens.get('radio-button-disabled-fg');
-    }
-  }
-
   > input[type='radio'] {
     ~ label {
       padding-block: tokens.get('radio-button-label-padding-block');
       color: tokens.get('radio-button-enabled-fg');
     }
 
-    &:not([disabled]) {
-      &:hover ~ label {
-        color: tokens.get('radio-button-hover-fg');
-      }
+    &:enabled:hover ~ label {
+      color: tokens.get('radio-button-hover-fg');
     }
 
-    &[disabled] ~ label {
+    &:disabled ~ label {
       color: tokens.get('radio-button-disabled-fg');
     }
   }

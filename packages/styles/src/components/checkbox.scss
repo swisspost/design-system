@@ -40,25 +40,17 @@ tokens.$default-map: components.$post-checkbox;
     margin-inline-end: tokens.get('checkbox-group-items-gap-inline');
   }
 
-  fieldset[disabled] & {
-    > input[type='checkbox'] ~ label {
-      color: tokens.get('checkbox-disabled-fg');
-    }
-  }
-
   > input[type='checkbox'] {
     ~ label {
       padding-block: tokens.get('checkbox-label-padding-block');
       color: tokens.get('checkbox-enabled-fg');
     }
 
-    &:not([disabled]) {
-      &:hover ~ label {
-        color: tokens.get('checkbox-hover-fg');
-      }
+    &:enabled:hover ~ label {
+      color: tokens.get('checkbox-hover-fg');
     }
 
-    &[disabled] ~ label {
+    &:disabled ~ label {
       color: tokens.get('checkbox-disabled-fg');
     }
   }

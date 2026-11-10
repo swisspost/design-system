@@ -69,7 +69,7 @@
   margin: tokens.get('checkbox-icon-padding-inner', components.$post-checkbox);
   margin-block: calc(
     tokens.get('checkbox-icon-padding-inner', components.$post-checkbox) +
-    tokens.get('checkbox-icon-padding-container', components.$post-checkbox)
+      tokens.get('checkbox-icon-padding-container', components.$post-checkbox)
   );
   width: tokens.get('checkbox-icon-size', components.$post-checkbox);
   height: tokens.get('checkbox-icon-size', components.$post-checkbox);
@@ -93,7 +93,7 @@
     transition: none;
   }
 
-  &:not([disabled]) {
+  &:enabled {
     cursor: pointer;
   }
 
@@ -130,7 +130,7 @@
       @include checkbox-hover();
     }
   } @else {
-    &:not([disabled]):hover {
+    &:enabled:hover {
       @include checkbox-hover();
     }
   }
@@ -149,8 +149,7 @@
     }
   }
 
-  fieldset[disabled] &,
-  &[disabled] {
+  &:disabled {
     background-color: tokens.get('checkbox-disabled-bg', components.$post-checkbox);
     border: tokens.get('checkbox-icon-border-width', components.$post-checkbox)
       tokens.get('checkbox-border-style-disabled', components.$post-checkbox)
@@ -198,7 +197,7 @@
   align-items: center;
   margin-block: calc(
     tokens.get('radio-button-icon-padding-block-inner', components.$post-radio-button) +
-    tokens.get('radio-button-icon-padding-block-container', components.$post-radio-button)
+      tokens.get('radio-button-icon-padding-block-container', components.$post-radio-button)
   );
   margin-inline: tokens.get(
     'radio-button-icon-padding-inline-inner',
@@ -226,7 +225,7 @@
     transition: none;
   }
 
-  &:not([disabled]) {
+  &:enabled {
     cursor: pointer;
   }
 
@@ -258,17 +257,16 @@
 
   @if $custom-hover-selector != null {
     @at-root #{$custom-hover-selector},
-    &:not([disabled]):hover {
+      &:enabled:hover {
       @include radio-button-hover();
     }
   } @else {
-    &:not([disabled]):hover {
+    &:enabled:hover {
       @include radio-button-hover();
     }
   }
 
-  fieldset[disabled] &,
-  &[disabled] {
+  &:disabled {
     background-color: tokens.get('radio-button-disabled-bg', components.$post-radio-button);
     border: tokens.get('radio-button-icon-border-width', components.$post-radio-button)
       tokens.get('radio-button-icon-border-style-disabled', components.$post-radio-button)
@@ -349,7 +347,7 @@
 
   > input[type='radio'],
   > input[type='checkbox'] {
-    &:not([disabled]) {
+    &:enabled {
       ~ label {
         cursor: pointer;
       }
@@ -361,7 +359,7 @@
       }
     }
 
-    &[disabled] ~ label {
+    &:disabled ~ label {
       @include utility-mx.high-contrast-mode() {
         color: GrayText;
       }
