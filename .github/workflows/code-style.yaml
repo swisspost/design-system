@@ -1,0 +1,33 @@
+name: Code Style
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Install dependencies
+        run: pnpm bootstrap
+
+      - parallel:
+          - name: Check formatting
+            run: pnpm format:check
+
+          - name: Typecheck packages
+            run: pnpm typecheck
+
+          - name: Lint packages
+            run: pnpm lint

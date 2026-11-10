@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "next dev",
-    "build": "pnpm clean && pnpm typecheck && next build",
+    "build": "pnpm clean && next build",
     "build:serve": "pnpm build && next start",
     "analyze": "next experimental-analyze",
     "typecheck": "tsc --noEmit",
