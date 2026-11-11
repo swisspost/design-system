@@ -50,7 +50,7 @@ export class PostHeader {
   private slottedContentObserver: MutationObserver;
   private globalHeader: HTMLElement;
   private localHeader: HTMLElement;
-  private scrollEventTarget: Window | HTMLElement;
+  private scrollEventTarget: typeof globalThis | HTMLElement;
   private scrollMaxElement: HTMLElement;
   private scrollMax = Infinity;
   private lastScrollTop: number;
@@ -91,11 +91,11 @@ export class PostHeader {
     return document.body;
   }
 
-  private get scrollEventTargetCandidate(): Window | HTMLElement {
+  private get scrollEventTargetCandidate(): typeof globalThis | HTMLElement {
     const scrollParent = this.scrollParent;
 
     return scrollParent === document.body || scrollParent === document.documentElement
-      ? window
+      ? globalThis
       : scrollParent;
   }
 
@@ -214,6 +214,7 @@ export class PostHeader {
     globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange);
     globalThis.removeEventListener('resize', this.throttledResize);
     this.scrollEventTarget?.removeEventListener('scroll', this.onScroll);
+    this.scrollEventTarget = undefined;
     document.removeEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.removeEventListener('keydown', this.keyboardHandler);
     if (this.host.shadowRoot) {
@@ -360,14 +361,6 @@ export class PostHeader {
   }
 
   private handleScrollEvent() {
-    const scrollTop =
-      this.scrollEventTarget === window
-        ? window.scrollY
-        : ((this.scrollEventTarget as HTMLElement)?.scrollTop ?? 0);
-    document.documentElement.style.setProperty(
-      '--post-header-scroll-top',
-      `${Math.max(scrollTop, 0)}px`,
-    );
     this.scrollPosition = this.getScrollPosition();
 
     // Once the header is fully reduced, writing a new value would only trigger
