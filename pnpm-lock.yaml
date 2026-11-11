@@ -875,8 +875,8 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       undici:
-        specifier: 6.29.1
-        version: 6.29.1
+        specifier: 8.12.4
+        version: 8.12.4
 
   packages/internet-header:
     dependencies:
@@ -11342,6 +11342,10 @@ packages:
   undici@6.29.1:
     resolution: {integrity: sha512-EvRlUt/QqAEvXdQeRMYUfwOQsfzpDztykrG2owGEE/rBOBoYv9uF39ZzsNDh4lTFHhTr2XOZjKkYgueD12ZmGA==}
     engines: {node: '>=18.17'}
+
+  undici@8.12.4:
+    resolution: {integrity: sha512-8Mx+uNKKER2bA4AdtedkqRbwUCIJFr2nJckXRe5yrDqzePqwLP7VNcctN8/XdmDSbF7mS+jJKIszlL+vbam1VA==}
+    engines: {node: '>=22.19.0'}
 
   unified-engine@11.2.2:
     resolution: {integrity: sha512-15g/gWE7qQl9tQ3nAEbMd5h9HV1EACtFs6N9xaRBZICoCwnNGbal1kOs++ICf4aiTdItZxU2s/kYWhW7htlqJg==}
@@ -24983,6 +24987,8 @@ snapshots:
   undici-types@8.9.0: {}
 
   undici@6.29.1: {}
+
+  undici@8.12.4: {}
 
   unified-engine@11.2.2(bluebird@3.7.2)(supports-color@10.2.2):
     dependencies:

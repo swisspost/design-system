@@ -11,13 +11,9 @@ describe('environment proxy configuration', () => {
 
   beforeAll(async () => {
     proxyServer = createServer();
-    proxyServer.on('connect', (_request, socket) => {
+    proxyServer.on('request', (_request, response) => {
       proxiedRequests += 1;
-      socket.write('HTTP/1.1 200 Connection Established\r\n\r\n');
-      socket.once('data', () => {
-        const body = 'proxied';
-        socket.end(`HTTP/1.1 200 OK\r\nContent-Length: ${body.length}\r\n\r\n${body}`);
-      });
+      response.end('proxied');
     });
 
     await new Promise<void>(resolve => proxyServer.listen(0, '127.0.0.1', resolve));
