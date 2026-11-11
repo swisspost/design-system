@@ -5,17 +5,20 @@ import {
   VariantMIME,
 } from '../../../models/censhare-result-page.model';
 import fetch, { Response } from 'node-fetch';
-import mockFs from 'mock-fs';
+import fs from 'fs';
+import path from 'path';
 import { fetchFile } from './../fetchFile';
 
 jest.mock('node-fetch');
 
 describe('fetchFile', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   it('should download an svg icon', async () => {
     const outputPath = './icons';
-    mockFs({
-      [outputPath]: {},
-    });
+    const writeFile = jest.spyOn(fs, 'writeFileSync').mockImplementation();
 
     jest.mocked(fetch).mockImplementationOnce(() =>
       Promise.resolve({
@@ -52,8 +55,8 @@ describe('fetchFile', () => {
       outputPath,
     );
 
-    mockFs.restore();
-
+    expect(writeFile).toHaveBeenCalledTimes(1);
+    expect(writeFile).toHaveBeenCalledWith(path.join(outputPath, 'test.svg'), svg);
     expect(svg).toMatchSnapshot();
   });
 });

@@ -1,0 +1,37 @@
+{/* Full-width page section with an h2 title, optional content and an optional call-to-action link. */}
+{/* Props: id (used for the heading and aria-labelledby), title, palette (default | alternate | brand | accent), */}
+{/* icon (optional post-icon name next to the title), href, linkText, linkIcon (defaults to arrowright). */}
+
+<section
+  className={`docs-band palette palette-${props.palette ?? 'default'} ${props.children || props.href ? 'py-48' : 'py-32'}`}
+  aria-labelledby={props.id}
+>
+  <div className="container">
+    <h2
+      id={props.id}
+      className={[
+        'mt-0',
+        !props.children && !props.href && 'mb-0',
+        props.icon && 'd-flex align-items-center gap-16',
+      ]
+        .filter(Boolean)
+        .join(' ')}
+    >
+      {props.icon && (
+        <post-icon
+          name={props.icon}
+          className="w-48 h-48 flex-shrink-0"
+          aria-hidden="true"
+        ></post-icon>
+      )}
+      {props.title}
+    </h2>
+    {props.children}
+    {props.href && (
+      <a className="btn btn-primary w-full w-sm-auto" href={props.href}>
+        {props.linkText}
+        <post-icon name={props.linkIcon ?? 'arrowright'} aria-hidden="true"></post-icon>
+      </a>
+    )}
+  </div>
+</section>
