@@ -25,8 +25,18 @@ function renderPageTabsInContainer(
 ) {
   return html`
     <div class="${containerClass}">
+<<<<<<< HEAD
       <p class="mt-8">Container: ${containerClass || 'none'} / Tab content: ${tabContent}</p>
-      ${meta.render?.({ ...context.args, variant: 'Page Tabs', size, tabContent, label: context.args.label ?? 'Page navigation' } as never, context as never)}
+      ${meta.render?.(
+        {
+          ...context.args,
+          variant: 'Page Tabs',
+          size,
+          tabContent,
+          label: context.args.label ?? 'Page navigation',
+        } as never,
+        context as never,
+      )}
       <p>The quick brown fox jumps over the lazy dog.</p>
     </div>
   `;

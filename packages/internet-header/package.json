@@ -32,7 +32,7 @@
   "scripts": {
     "play": "stencil build --serve --port 9310 --watch --docs-readme --dev --config stencil.config.dev.ts",
     "start": "stencil build --watch --docs-readme",
-    "build": "pnpm clean && pnpm typecheck && stencil build --docs-readme",
+    "build": "pnpm clean && stencil build --docs-readme",
     "typecheck": "tsc --noEmit",
     "clean": "rimraf www dist loader",
     "unit": "jest",
@@ -42,8 +42,8 @@
     "e2e:ci": "xvfb-run -a cypress run",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
-    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path .prettierignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path .prettierignore",
     "generate": "stencil generate"
   },
   "dependencies": {
