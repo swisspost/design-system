@@ -23,7 +23,10 @@ Our component customizes the native `<input>` with CSS. Add the `.form-control` 
   <Controls of={InputStories.Default} />
 </div>
 
-<StylesPackageImport components={['form-input']} required={{ validation: true }} />
+<StylesPackageImport
+  components={['form-input']}
+  required={{ 'form-hint': true, validation: true }}
+/>
 
 ## Examples
 

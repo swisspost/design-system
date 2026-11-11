@@ -27,7 +27,10 @@ Our component customizes the native `<textarea>` with CSS. Add the `.form-contro
   <Controls of={TextareaStories.Default} />
 </div>
 
-<StylesPackageImport components={['form-textarea']} required={{ validation: true }} />
+<StylesPackageImport
+  components={['form-textarea']}
+  required={{ 'form-hint': true, validation: true }}
+/>
 
 ## Concrete Examples of Application
 

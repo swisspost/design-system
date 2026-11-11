@@ -1,6 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as AppStoreBadgeStories from './app-store-badge.stories';
 import StoryTags from '@/shared/story-tags';
+import StylesPackageImport from '@/shared/styles-package-import';
 
 <Meta of={AppStoreBadgeStories} />
 
@@ -23,6 +24,8 @@ import StoryTags from '@/shared/story-tags';
 <div className="hide-col-default">
   <Controls of={AppStoreBadgeStories.Default} />
 </div>
+
+<StylesPackageImport components={['appstore-badge']} />
 
 ## Resources
 

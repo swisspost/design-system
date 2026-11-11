@@ -25,7 +25,10 @@ Custom `<select>` menus need only the class `.form-select` to apply the custom s
   <Controls of={SelectStories.Default} />
 </div>
 
-<StylesPackageImport components={['form-select']} required={{ validation: true }} />
+<StylesPackageImport
+  components={['form-select']}
+  required={{ 'form-hint': true, validation: true }}
+/>
 
 ## Concrete Examples of Application
 

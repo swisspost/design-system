@@ -1,6 +1,7 @@
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 import { Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as FooterStories from '../footer.stories';
+import StylesPackageImport from '@/shared/styles-package-import';
 
 <post-tab-panel for="overview" class="pt-24">
 
@@ -10,6 +11,11 @@ Internally the `<post-footer>` component has a fix structure, but it offers a nu
 <Controls of={FooterStories.Default} />
 
 <ComponentsPackageInstall component="<post-footer>" />
+
+<StylesPackageImport
+  components={['footer/index', 'button', 'appstore-badge']}
+  required={{ 'icon-button': true }}
+/>
 
 ## Examples
 

@@ -5,6 +5,7 @@ import * as PopoverStories from '../popover/popover.stories';
 import StoryTags from '@/shared/story-tags';
 
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import StylesPackageImport from '@/shared/styles-package-import';
 
 <Meta of={TooltipStories} />
 
@@ -35,6 +36,8 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <ComponentsPackageInstall component="<post-tooltip>" />
 
+<StylesPackageImport components={[]} />
+
 ## `<post-tooltip-trigger>`
 
 The `<post-tooltip-trigger>` component enables you to show tooltips with customizable delay.
@@ -55,10 +58,6 @@ interactive element such as a button or link. If you need to add essential infor
 that already triggers an action, place the information icon button next to it instead of inside it.
 
 <Canvas sourceState="shown" of={PopoverStories.InfoIcon} />
-
-## Installation
-
-The `<post-tooltip>` and `<post-tooltip-trigger>` elements are part of the `@swisspost/design-system-components` package. For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
 
 ## Examples
 

@@ -3,6 +3,7 @@ import meta, * as AvatarPictureStories from './avatar.stories';
 import AvatarSample from './avatar.sample.scss?raw';
 import StoryTags from '@/shared/story-tags';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import StylesPackageImport from '@/shared/styles-package-import';
 
 <Meta of={AvatarPictureStories} />
 
@@ -23,6 +24,8 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 <Controls of={AvatarPictureStories.Default} />
 
 <ComponentsPackageInstall component="<post-avatar>" />
+
+<StylesPackageImport components={['avatar']} />
 
 ## Interactive Wrapper Element
 

@@ -2,6 +2,7 @@ import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
 import * as BannerStories from './banner.stories';
 import BannerDismissSample from './banner-dismiss.sample?raw';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import StylesPackageImport from '@/shared/styles-package-import';
 
 <Meta of={BannerStories} />
 
@@ -23,6 +24,8 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 <Controls of={BannerStories.Default} />
 
 <ComponentsPackageInstall component="<post-banner>" />
+
+<StylesPackageImport components={[]} required={{ 'signal-icons': true }} />
 
 ## Usage
 

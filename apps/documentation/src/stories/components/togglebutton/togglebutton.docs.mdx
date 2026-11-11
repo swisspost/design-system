@@ -2,6 +2,7 @@ import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as toggleButtonStories from './togglebutton.stories';
 import StoryTags from '@/shared/story-tags';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import StylesPackageImport from '@/shared/styles-package-import';
 
 <Meta of={toggleButtonStories} />
 
@@ -10,7 +11,7 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 <StoryTags meta={meta} />
 
 <div className="lead">
-  The toggle button switches between two states, displaying different content 
+  The toggle button switches between two states, displaying different content
   depending on which state is currently active.
 </div>
 
@@ -20,6 +21,8 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 </div>
 
 <ComponentsPackageInstall component="<post-togglebutton>" />
+
+<StylesPackageImport components={['button']} />
 
 ## Examples
 

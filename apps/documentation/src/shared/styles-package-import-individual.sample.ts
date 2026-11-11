@@ -1,28 +1,52 @@
-export interface Props {
-  components: string[];
-  required?: { icons: boolean; floatingLabel: boolean; formFeedback: boolean };
-  importText?: string;
-}
-
-const requiredLabels: { [key: string]: string } = {
-  'icons': 'required if you use icons',
-  'floating-label': 'required if you use floating-labels',
-  'validation': 'required if you use validation feedbacks',
+const requiredImports = {
+  'icon-button': {
+    label: 'required if you use icon-only buttons',
+    files: ['components/icon-button'],
+  },
+  'form-hint': {
+    label: 'required if you use form hints',
+    files: ['components/form-hint'],
+  },
+  'validation': {
+    label: 'required if you use validation feedbacks',
+    files: ['components/validation', 'icons/signal-icons'],
+  },
+  'signal-icons': {
+    label: 'required for the status icons (info, success, warning, error)',
+    files: ['icons/signal-icons'],
+  },
 };
 
-export function getComponentStyleImports(props: Props) {
-  const basics = `@use '@swisspost/design-system-styles/basics.scss';`;
-  const generateComponentLine = (name: string) =>
-    `@use '@swisspost/design-system-styles/components/${name}.scss';`;
-  const components = props.components.map(generateComponentLine).join('\n');
+export interface Props {
+  components: string[];
+  required?: Partial<Record<keyof typeof requiredImports, boolean>>;
+  importText?: string;
+  componentsCss?: boolean;
+}
 
-  const required = Object.keys(props?.required || {}).reduce(
-    (acc: string, curr: string) =>
-      `${acc}\n// ${requiredLabels[curr]}\n${generateComponentLine(curr)}`,
-    '',
-  );
+export const COMPONENTS_STYLES_IMPORT = `// required for the styles of the slotted content
+@use '@swisspost/design-system-components/post-components.css';`;
 
-  return `${basics}\n${components}\n${required}`;
+export function getComponentStyleImports(props: Props, tokens: string) {
+  const generateImport = (path: string) => `@use '@swisspost/design-system-styles/${path}.scss';`;
+  const components = props.components.map(name => generateImport(`components/${name}`)).join('\n');
+
+  const required = (Object.keys(requiredImports) as Array<keyof typeof requiredImports>)
+    .filter(name => props.required?.[name])
+    .map(name => {
+      const { label, files } = requiredImports[name];
+      return `// ${label}\n${files.map(generateImport).join('\n')}`;
+    })
+    .join('\n');
+
+  return [
+    `${generateImport(tokens)}\n${generateImport('basics')}`,
+    components,
+    required,
+    props.componentsCss ? COMPONENTS_STYLES_IMPORT : '',
+  ]
+    .filter(Boolean)
+    .join('\n');
 }
 
 export function getStyleImportsText(props: Props): string {
