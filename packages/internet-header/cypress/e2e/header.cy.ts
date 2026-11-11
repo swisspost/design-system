@@ -225,6 +225,37 @@ describe('header', () => {
     });
   });
 
+  describe('hide login', () => {
+    context('logged out', () => {
+      beforeEach(() => {
+        prepare(HEADER, 'Default');
+        cy.changeArg('language', language);
+      });
+
+      it('should show the login by default', () => {
+        cy.get('[slot="post-login"]').should('be.visible');
+      });
+
+      it('should hide the login when hideLogin is true', () => {
+        cy.changeArg('hideLogin', true);
+        cy.get('[slot="post-login"]').should('not.exist');
+      });
+    });
+
+    context('logged in', () => {
+      beforeEach(() => {
+        prepare(HEADER, 'Default', { loggedIn: true });
+        cy.changeArg('language', language);
+      });
+
+      it('should hide the user menu when hideLogin is true', () => {
+        cy.get('[slot="post-login"]').should('be.visible');
+        cy.changeArg('hideLogin', true);
+        cy.get('[slot="post-login"]').should('not.exist');
+      });
+    });
+  });
+
   describe('microsite', () => {
     const headerConfig = micrositeConfiguration.header;
 
