@@ -587,24 +587,20 @@ export class PostHeader {
                 ]}
                 <slot name="post-login"></slot>
                 {(Build.isServer || this.hasBurgerMenu) && (
-                    <post-togglebutton
-                      class="burger-button"
-                      ref={el => (this.burgerMenuButton = el)}
-                      onClick={() => this.toggleBurgerMenu()}
-                    >
-                      <span>{this.textMenu}</span>
-                      <post-icon
-                        aria-hidden="true"
-                        name="burger"
-                        data-showwhen="untoggled"
-                      ></post-icon>
-                      <post-icon
-                        aria-hidden="true"
-                        name="closex"
-                        data-showwhen="toggled"
-                      ></post-icon>
-                    </post-togglebutton>
-                  )}
+                  <post-togglebutton
+                    class="burger-button"
+                    ref={el => (this.burgerMenuButton = el)}
+                    onClick={() => this.toggleBurgerMenu()}
+                  >
+                    <span>{this.textMenu}</span>
+                    <post-icon
+                      aria-hidden="true"
+                      name="burger"
+                      data-showwhen="untoggled"
+                    ></post-icon>
+                    <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
+                  </post-togglebutton>
+                )}
               </div>
             </div>
           </div>

@@ -7,15 +7,19 @@ describe('Choice-card', () => {
     });
 
     it('Has no detectable a11y violations on load for all variants', () => {
-      cy.checkA11y('#root-inner', {
-        rules: {
-          'color-contrast': {
-            enabled: false,
+      cy.checkA11y(
+        '#root-inner',
+        {
+          rules: {
+            'color-contrast': {
+              enabled: false,
+            },
           },
         },
-      }, (violations) => {
-        expect(violations).to.have.length(0);
-      });
+        violations => {
+          expect(violations).to.have.length(0);
+        },
+      );
     });
   });
 });

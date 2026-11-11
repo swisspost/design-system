@@ -26,8 +26,8 @@
     "playwright:install": "playwright install --with-deps chromium",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
-    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
-    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore"
   },
   "dependencies": {
     "@angular/common": "catalog:angular",
