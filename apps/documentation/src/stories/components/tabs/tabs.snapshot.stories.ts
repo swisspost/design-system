@@ -25,7 +25,15 @@ function renderPageTabsInContainer(
   return html`
     <div class="${containerClass}">
       <p class="mt-8">Container: ${containerClass || 'none'}</p>
-      ${meta.render?.({ ...context.args, variant: 'Page Tabs', size, label: context.args.label ?? 'Page navigation' } as never, context as never)}
+      ${meta.render?.(
+        {
+          ...context.args,
+          variant: 'Page Tabs',
+          size,
+          label: context.args.label ?? 'Page navigation',
+        } as never,
+        context as never,
+      )}
       <p>The quick brown fox jumps over the lazy dog.</p>
     </div>
   `;

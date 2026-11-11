@@ -29,8 +29,8 @@
   "scripts": {
     "build": "tsc",
     "typecheck": "tsc --noEmit",
-    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
-    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore"
   },
   "peerDependencies": {
     "primeng": "^21.0.0"
