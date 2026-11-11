@@ -120,7 +120,7 @@
     "styles-primeng:build": "pnpm --filter design-system-styles-primeng build"
   },
   "devDependencies": {
-    "@changesets/cli": "2.31.0",
+    "@changesets/cli": "2.31.1",
     "@swisspost/design-system-prettier-config": "workspace:10.5.0",
     "prettier": "catalog:",
     "start-server-and-test": "2.1.5",
@@ -134,7 +134,7 @@
   "devEngines": {
     "runtime": {
       "name": "node",
-      "version": "^24.22.1",
+      "version": "^26.12.1",
       "onFail": "warn"
     }
   }
