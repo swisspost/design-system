@@ -40,6 +40,11 @@ export class PostInternetHeader {
   @Prop() fullWidth = false;
 
   /**
+   * Hides the login slot entirely, whether the user is logged in or not.
+   */
+  @Prop() hideLogin = false;
+
+  /**
    * What the login widget shows before the session is known. Leave unset unless the server already
    * knows who the visitor is; set `anonymous` to render the login link right away.
    */
@@ -330,7 +335,9 @@ export class PostInternetHeader {
             </post-language-menu>
           )}
 
-          {globalHeader.postLogin && this.renderLoginWidget(globalHeader.postLogin)}
+          {!this.hideLogin &&
+            globalHeader.postLogin &&
+            this.renderLoginWidget(globalHeader.postLogin)}
 
           {localHeader.title && <p slot="title">{localHeader.title}</p>}
 

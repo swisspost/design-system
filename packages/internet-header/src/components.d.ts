@@ -35,6 +35,11 @@ export namespace Components {
          */
         "fullWidth": boolean;
         /**
+          * Hides the login slot entirely, whether the user is logged in or not.
+          * @default false
+         */
+        "hideLogin": boolean;
+        /**
           * What the login widget shows before the session is known. Leave unset unless the server already knows who the visitor is; set `anonymous` to render the login link right away.
          */
         "klpInitialState"?: 'anonymous' | 'authenticated';
@@ -147,6 +152,11 @@ declare namespace LocalJSX {
          */
         "fullWidth"?: boolean;
         /**
+          * Hides the login slot entirely, whether the user is logged in or not.
+          * @default false
+         */
+        "hideLogin"?: boolean;
+        /**
           * What the login widget shows before the session is known. Leave unset unless the server already knows who the visitor is; set `anonymous` to render the login link right away.
          */
         "klpInitialState"?: 'anonymous' | 'authenticated';
@@ -208,6 +218,7 @@ declare namespace LocalJSX {
         "activeRoute": ActiveRouteProp;
         "environment": Environment;
         "fullWidth": boolean;
+        "hideLogin": boolean;
         "klpInitialState": 'anonymous' | 'authenticated';
         "language": 'de' | 'fr' | 'it' | 'en';
         "project": string;
