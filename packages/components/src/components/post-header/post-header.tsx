@@ -53,6 +53,7 @@ export class PostHeader {
   private scrollMaxElement: HTMLElement;
   private scrollMax = Infinity;
   private lastScrollTop: number;
+  private scrollPosition = 0;
   private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
 
   private get hasBurgerMenu(): boolean {
@@ -340,13 +341,26 @@ export class PostHeader {
     delete this.host.dataset.expanded;
   }
 
+  private getScrollPosition(): number {
+    const scrollParent = this.scrollParent;
+    return scrollParent === document.body ? globalThis.scrollY : scrollParent.scrollTop;
+  }
+
+  // Focusing a control of the collapsed header scrolls it into view before the focus events are dispatched
+  // the scroll event is not dispatched yet, so scrollPosition is still the position before the focus
+  // Never skip the scroll when the position is unchanged: an instant scroll cancels a pending smooth scroll
+  private restoreScrollPosition() {
+    const scrollParent = this.scrollParent;
+    const scrollContainer = scrollParent === document.body ? globalThis : scrollParent;
+    scrollContainer.scrollTo({ top: this.scrollPosition, behavior: 'instant' });
+  }
+
   private handleScrollEvent() {
-    const scrollTop =
-      this.scrollParent === document.body ? window.scrollY : this.scrollParent.scrollTop;
+    this.scrollPosition = this.getScrollPosition();
 
     // Once the header is fully reduced, writing a new value would only trigger
     // a style recalculation of the whole page without any visual change
-    const value = Math.min(Math.max(scrollTop, 0), this.scrollMax);
+    const value = Math.min(Math.max(this.scrollPosition, 0), this.scrollMax);
     if (value === this.lastScrollTop) return;
 
     this.lastScrollTop = value;
@@ -493,6 +507,9 @@ export class PostHeader {
     const isInCollapsiblePart = event.composedPath().includes(collapsiblePart);
 
     this.host.toggleAttribute('data-expanded', isInCollapsiblePart);
+
+    // The header is now expanded, so the focused control stays visible at the previous position
+    if (isInCollapsiblePart) this.restoreScrollPosition();
   }
 
   private isWithinHeader(target: EventTarget | null): boolean {

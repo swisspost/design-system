@@ -1,4 +1,11 @@
-import { HEADER_ID, getScrollMax, getScrollTopProperty, scrollAndWait } from './helper/header';
+import 'cypress-real-events';
+import {
+  HEADER_ID,
+  focusFirstMainNavigationLink,
+  getScrollMax,
+  getScrollTopProperty,
+  scrollAndWait,
+} from './helper/header';
 
 const HEADER_CONFIGS = ['portal', 'microsite', 'one-pager'];
 const VIEWPORTS: Record<string, Cypress.ViewportPreset> = {
@@ -104,5 +111,31 @@ describe('header', () => {
         getScrollTopProperty().should('eq', `${below}px`);
       });
     });
+
+    // the header only collapses on desktop
+    // the page is loaded at that size, so the header doesn't depend on a device change event while it is detached
+    it(
+      'should keep the scroll position on keyboard focus after reattaching header',
+      { viewportWidth: 1920, viewportHeight: 1080 },
+      () => {
+        scrollAndWait(500);
+
+        removeAndReattachHeader();
+        cy.get('@header').should('have.attr', 'data-hydrated');
+
+        // removing the header shortens the page, the scroll position may have changed in the meantime
+        cy.window().then(win => {
+          const scrollY = win.scrollY;
+
+          focusFirstMainNavigationLink();
+          cy.get('@header').should('not.have.attr', 'data-expanded');
+
+          cy.realPress(['Shift', 'Tab']);
+
+          cy.get('@header').should('have.attr', 'data-expanded');
+          cy.window().its('scrollY').should('equal', scrollY);
+        });
+      },
+    );
   });
 });

@@ -36,3 +36,7 @@ export function getScrollMax() {
     .find('.scroll-max')
     .then($el => Math.ceil($el[0].getBoundingClientRect().width));
 }
+
+export function focusFirstMainNavigationLink() {
+  cy.get('@header').find('post-mainnavigation a').first().focus();
+}

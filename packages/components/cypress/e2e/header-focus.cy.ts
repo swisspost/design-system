@@ -1,5 +1,10 @@
 import 'cypress-real-events';
-import { HEADER_ID, getLanguageMenuTrigger, scrollAndWait } from './helper/header';
+import {
+  HEADER_ID,
+  focusFirstMainNavigationLink,
+  getLanguageMenuTrigger,
+  scrollAndWait,
+} from './helper/header';
 
 describe('header', () => {
   describe('focus and keyboard navigation', () => {
@@ -319,6 +324,37 @@ describe('header', () => {
         scrollAndWait(501);
         cy.get('@header').should('have.attr', 'data-expanded');
       });
+
+      // the first tab stop is the logo, which stays visible in the reduced header
+      // tabbing back from the main navigation lands on a control that is out of view
+      it('should keep the scroll position when a global-header element receives keyboard focus', () => {
+        scrollAndWait(500);
+
+        focusFirstMainNavigationLink();
+        cy.get('@header').should('not.have.attr', 'data-expanded');
+
+        cy.realPress(['Shift', 'Tab']);
+
+        cy.get('@header').should('have.attr', 'data-expanded');
+        cy.window().its('scrollY').should('equal', 500);
+      });
+
+      it('should keep the scroll position when a global-header element receives keyboard focus and the page scrolls smoothly', () => {
+        scrollAndWait(500);
+        cy.document().then(doc => {
+          doc.documentElement.style.scrollBehavior = 'smooth';
+        });
+
+        focusFirstMainNavigationLink();
+        cy.get('@header').should('not.have.attr', 'data-expanded');
+
+        cy.realPress(['Shift', 'Tab']);
+
+        cy.get('@header').should('have.attr', 'data-expanded');
+        // the smooth scroll is animated, without waiting the assertion would pass before the page moves
+        cy.wait(500);
+        cy.window().its('scrollY').should('equal', 500);
+      });
     });
 
     // real mouse events are needed here: synthetic clicks don't change the :focus-visible heuristic
@@ -337,19 +373,25 @@ describe('header', () => {
               el => !el.closest('[slot="main-nav"]'),
             );
 
-            // focusing an element that is out of view scrolls the page
-            // wait for that scroll event, otherwise it can collapse the header after the next click
+            // focusing an element hidden by the reduced header scrolls the page and the header scrolls it back
+            // wait for the scroll event on the next frame, otherwise it can collapse the header after the next click
             cy.window().then(win => {
-              const scrollY = win.scrollY;
               globalHeaderEl.focus();
-              if (win.scrollY === scrollY) return;
 
               return new Cypress.Promise<void>(resolve => {
-                win.addEventListener('scroll', () => resolve(), { once: true });
+                win.requestAnimationFrame(() => resolve());
               });
             });
           });
         cy.get('@header').should('have.attr', 'data-expanded');
+
+        // the controls slide into view when the header expands, a click during the transition would miss them
+        cy.get('@header').should($header => {
+          const header = $header[0];
+          expect([...header.getAnimations(), ...header.shadowRoot.getAnimations()]).to.have.length(
+            0,
+          );
+        });
       }
 
       // the trigger is visible in the expanded header, scrolling it into view would fire a scroll event after the click
