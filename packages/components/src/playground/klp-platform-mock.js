@@ -29,7 +29,7 @@
       surname: 'Hamilton',
       userType: 'B2C',
       authLevel: 'PASSWORD',
-      changeUserAndProfile: 'profile',
+      changeUserAndProfile: 'userAndProfile',
     },
     bert: {
       name: 'Bert',
@@ -58,7 +58,7 @@
 
   const HINTS = {
     alex: 'simple',
-    mary: 'can switch company',
+    mary: 'can switch account',
     bert: 'simple',
     anna: 'can switch account',
     gabe: 'can switch company',
