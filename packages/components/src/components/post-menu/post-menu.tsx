@@ -1,5 +1,13 @@
 import { PLACEMENT_TYPES } from '@/types';
-import { EventFrom, getFocusableChildren, getRoot, isFocusVisible, OneOf, Required, Type } from '@/utils';
+import {
+  EventFrom,
+  getFocusableChildren,
+  getRoot,
+  isFocusVisible,
+  OneOf,
+  Required,
+  Type,
+} from '@/utils';
 import type { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
 import {

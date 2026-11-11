@@ -7,7 +7,7 @@ Shared TypeScript configurations used across the Swiss Post Design System.
 ## Available Configurations
 
 | Configuration           | Use for                                                    |
-|-------------------------|------------------------------------------------------------|
+| ----------------------- | ---------------------------------------------------------- |
 | `base.tsconfig.json`    | Platform-agnostic code that brings its own module settings |
 | `browser.tsconfig.json` | Browser-facing code that is bundled for the web            |
 | `node.tsconfig.json`    | Node.js code such as build scripts and CLI tooling         |
