@@ -240,12 +240,12 @@ function renderContentVariant(
   if (panelSlots) {
     return html`
       <post-tabs active-tab="${ifDefined(activeTab)}" size="${ifDefined(size)}">
-        <post-tab-item name="first">${renderTabLabel(tabContent, 'Home', 'Home')}</post-tab-item>
+        <post-tab-item name="first">${renderTabLabel(tabContent, 'Home', 'home')}</post-tab-item>
         <post-tab-item name="second"
-          >${renderTabLabel(tabContent, 'Messages', 'Messages')}</post-tab-item
+          >${renderTabLabel(tabContent, 'Messages', 'messages')}</post-tab-item
         >
         <post-tab-item name="third"
-          >${renderTabLabel(tabContent, 'Settings', 'Settings')}</post-tab-item
+          >${renderTabLabel(tabContent, 'Settings', 'settings')}</post-tab-item
         >
 
         ${unsafeHTML(panelSlots)}
