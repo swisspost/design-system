@@ -95,15 +95,24 @@ post-header:has([slot='main-nav']):has([slot='title']) {
 // One-pager header: when there is no main-nav and no title,
 // ensure the local header collapses to zero height
 :root:has(post-header):not(:has(post-header [slot='main-nav'])):not(
-  :has(post-header [slot='title'])
-) {
+    :has(post-header [slot='title'])
+  ) {
   --post-local-header-expanded-min-height: 0px;
 }
 
-post-header:not(:has([slot='main-nav'])) {
-  // Hide burger button (no main navigation)
+post-header:not(
+  :has(
+    > [slot='main-nav']:is(a:not(post-megadropdown *), post-megadropdown-trigger),
+    > [slot='main-nav'] :is(a:not(post-megadropdown *), post-megadropdown-trigger),
+    > :is([slot='audience'], [slot='global-nav-secondary']):is(a, button),
+    > :is([slot='audience'], [slot='global-nav-secondary']) :is(a, button)
+  )
+) {
+  // Hide burger button when main navigation, audience, and secondary navigation have no items.
   --post-burger-button-display: none;
+}
 
+post-header:not(:has([slot='main-nav'])) {
   // Hide local header if there is no title either
   &:not(:has([slot='title'])) {
     --post-local-header-display: none;
@@ -135,10 +144,10 @@ post-header:not(:has([slot='main-nav'])) {
 // ============================================================
 
 :root:has(post-header):not(:has(post-header > [slot='audience'])):not(
-  :has(post-header > [slot='global-nav-primary'])
-):not(:has(post-header > [slot='global-nav-secondary'])):not(
-  :has(post-header > [slot='language-menu'])
-):not(:has(post-header > [slot='post-login'])) {
+    :has(post-header > [slot='global-nav-primary'])
+  ):not(:has(post-header > [slot='global-nav-secondary'])):not(
+    :has(post-header > [slot='language-menu'])
+  ):not(:has(post-header > [slot='post-login'])) {
   --post-global-header-expanded-height: var(--_post-initial-global-header-height);
   --post-global-header-reduced-height: 32px;
 

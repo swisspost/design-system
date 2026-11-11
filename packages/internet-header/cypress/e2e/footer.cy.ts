@@ -41,7 +41,11 @@ describe('footer', () => {
           cy.get('[slot="socialmedia"] ul').invoke('attr', 'aria-labelledby').should('eq', id);
         });
 
-      shouldBeVisible(cy.get('[slot="socialmedia"] a').should('have.length', 8))
+      shouldBeVisible(
+        cy
+          .get('[slot="socialmedia"] a')
+          .should('have.length', testConfiguration.footer.socialLinks.items.length),
+      )
         .and('contain.html', 'post-icon')
         .and('have.class', 'btn btn-primary btn-icon')
         .invoke('text')
@@ -130,5 +134,40 @@ describe('footer', () => {
         });
       },
     );
+
+    describe('empty lists', () => {
+      function emptyItemsInConfig(configKey: keyof FooterConfig) {
+        customConfig = structuredClone(testConfiguration);
+        const footer = customConfig.footer as FooterConfig;
+        const value = footer[configKey];
+        if (Array.isArray(value)) {
+          value.forEach(list => (list.items = []));
+        } else if (typeof value === 'object') {
+          value.items = [];
+        }
+      }
+
+      it('should not render empty section lists', () => {
+        emptyItemsInConfig('sections');
+        prepare(FOOTER, 'Default', { config: customConfig });
+
+        cy.get('swisspost-internet-footer post-footer').should('exist');
+        cy.get('[slot^=grid]').should('not.exist');
+      });
+
+      (['socialLinks', 'appStoreLinks', 'companyLinks', 'complianceLinks'] as const).forEach(
+        configKey => {
+          const slot = slotsByConfigKey[configKey];
+
+          it(`should not render an empty list when "${configKey}" has no items`, () => {
+            emptyItemsInConfig(configKey);
+            prepare(FOOTER, 'Default', { config: customConfig });
+
+            cy.get('swisspost-internet-footer post-footer').should('exist');
+            cy.get(`[slot="${slot}"]`).should('not.exist');
+          });
+        },
+      );
+    });
   });
 });
