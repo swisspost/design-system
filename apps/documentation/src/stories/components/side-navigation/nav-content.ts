@@ -1,11 +1,16 @@
+// Where a level-1 item can get an icon, see `withLevel1Icons`
+const LEVEL_1_ICON_SLOT = '<!-- level-1-icon -->';
+
 const smallExpanded = `<ul>
         <li>
           <a href="#" class="post-side-navigation-item">
+            ${LEVEL_1_ICON_SLOT}
             Level 1
           </a>
         </li>
         <li>
           <a href="#" class="post-side-navigation-item">
+            ${LEVEL_1_ICON_SLOT}
             Level 1
           </a>
           <ul>
@@ -17,6 +22,7 @@ const smallExpanded = `<ul>
         </li>
         <li>
           <a href="#" class="post-side-navigation-item">
+            ${LEVEL_1_ICON_SLOT}
             Level 1
           </a>
           <ul>
@@ -41,14 +47,14 @@ const smallExpanded = `<ul>
 const largeCollapsible = `<ul>
         <li>
           <a href="#" class="post-side-navigation-item">
-            <post-icon name="letter" aria-hidden="true"></post-icon>
+            ${LEVEL_1_ICON_SLOT}
             Level 1
           </a>
         </li>
         <li>
           <post-collapsible-trigger>
             <button class="post-side-navigation-item">
-              <post-icon name="letter" aria-hidden="true"></post-icon>
+              ${LEVEL_1_ICON_SLOT}
               Level 1
               <post-icon name="chevrondown" aria-hidden="true"></post-icon>
             </button>
@@ -125,7 +131,7 @@ const largeCollapsible = `<ul>
           <post-collapsible-trigger>
             <div class="post-side-navigation-item">
               <a href="#">
-                <post-icon name="letter" aria-hidden="true"></post-icon>
+                ${LEVEL_1_ICON_SLOT}
                 Level 1
               </a>
               <button>
@@ -143,51 +149,42 @@ const largeCollapsible = `<ul>
         </li>
       </ul>`;
 
-const LEVEL_1_ICON_NAME = 'letter';
-
 /**
  * Icons must be used on all level-1 items or none of them, never on deeper levels.
  */
-export function setLevel1Icons(nav: string, showIcons: boolean): string {
-  const template = document.createElement('template');
-  template.innerHTML = nav;
-
-  template.content
-    .querySelectorAll(`post-icon[name="${LEVEL_1_ICON_NAME}"]`)
-    .forEach(icon => icon.remove());
-
-  if (showIcons) {
-    Array.from(template.content.children)
-      .filter(element => element.tagName === 'UL')
-      .flatMap(list => Array.from(list.children))
-      .forEach(item => {
-        const navItem = item.querySelector('.post-side-navigation-item');
-        // Combined link and collapsible items carry the icon on the link
-        const iconContainer = navItem?.matches('div') ? navItem.querySelector('a') : navItem;
-
-        const icon = document.createElement('post-icon');
-        icon.setAttribute('name', LEVEL_1_ICON_NAME);
-        icon.setAttribute('aria-hidden', 'true');
-        iconContainer?.prepend(icon);
-      });
-  }
-
-  return template.innerHTML;
+function withLevel1Icons(nav: string, showIcons: boolean): string {
+  const icon = '<post-icon name="letter" aria-hidden="true"></post-icon>';
+  // Replaces the whole line of the slot, so no empty line is left without icons
+  const slotLine = new RegExp(`^( *)${LEVEL_1_ICON_SLOT}\n`, 'gm');
+  return nav.replace(slotLine, showIcons ? `$1${icon}\n` : '');
 }
 
-export const defaultNav = `
-      <h2 class="post-side-navigation-heading">Always expanded</h2>
-
-      ${smallExpanded}
-
+const defaultNavContent = {
+  collapsible: `
       <h2 class="post-side-navigation-heading">Expandable content</h2>
 
       ${largeCollapsible}
-`;
+`,
+  expanded: `
+      <h2 class="post-side-navigation-heading">Always expanded</h2>
 
-export const smallNav = smallExpanded;
+      ${smallExpanded}
+`,
+};
 
-export const largeNav = `
+// Expandable items are either all collapsible or all always expanded, never mixed
+export type ExpandableItems = keyof typeof defaultNavContent;
+
+export const getDefaultNav = ({
+  expandableItems = 'collapsible',
+  showIcons = false,
+}: { expandableItems?: ExpandableItems; showIcons?: boolean } = {}) =>
+  withLevel1Icons(defaultNavContent[expandableItems], showIcons);
+
+export const smallNav = withLevel1Icons(smallExpanded, false);
+
+export const largeNav = withLevel1Icons(
+  `
       <h2 class="post-side-navigation-heading">Section title (optional)</h2>
 
 
@@ -195,4 +192,6 @@ export const largeNav = `
       <h2 class="post-side-navigation-heading">Section title (optional)</h2>
 
       ${largeCollapsible}
-`;
+`,
+  true,
+);

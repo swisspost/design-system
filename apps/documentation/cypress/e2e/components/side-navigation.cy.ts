@@ -1,15 +1,22 @@
 const DOCS_ID = '9f26d86e-7edb-5804-ac96-92g22f91c9d9--docs';
 const STORY_ID = '9f26d86e-7edb-5804-ac96-92g22f91c9d9--default';
+const STORY_IFRAME = `iframe[src*="id=${STORY_ID}"]`;
 
 describe('Side Navigation docs', () => {
   const getControlRow = (name: string) => cy.contains('.docblock-argstable tbody tr', name);
+
+  const changeControls = () => {
+    getControlRow('size').find('input[type="radio"][value="small"]').check({ force: true });
+    getControlRow('Show icons').find('input[type="checkbox"]').check({ force: true });
+    getControlRow('text-close').find('textarea').clear().type('Schliessen');
+  };
 
   beforeEach(() => {
     cy.visit(`/iframe.html?id=${DOCS_ID}&viewMode=docs`);
     // Canvases stay hidden until the styles switcher of the manager sets their color scheme
     cy.get('.main-story .sbdocs-preview').invoke('attr', 'data-color-scheme', 'light');
     // Query aliases are re-run on every use, so they also resolve after the iframe reloads
-    cy.get(`iframe[src*="id=${STORY_ID}"]`)
+    cy.get(STORY_IFRAME)
       .its('0.contentDocument.body')
       .find('post-side-navigation[data-hydrated]')
       .as('storyNav');
@@ -19,13 +26,11 @@ describe('Side Navigation docs', () => {
   it('should update the story rendered in an iframe when the controls change', () => {
     cy.get('@storyNav').find('post-icon[name="letter"]').should('not.exist');
 
-    getControlRow('size').find('input[type="radio"][value="small"]').check({ force: true });
-    getControlRow('Show icons').find('input[type="checkbox"]').check({ force: true });
-    getControlRow('text-close').find('textarea').clear().type('Schliessen');
+    changeControls();
 
     cy.get('@storyNav').should('have.attr', 'size', 'small');
     cy.get('@storyNav').should('have.attr', 'text-close', 'Schliessen');
-    cy.get('@storyNav').find('nav > ul > li post-icon[name="letter"]').should('have.length', 6);
+    cy.get('@storyNav').find('nav > ul > li post-icon[name="letter"]').should('have.length', 3);
     cy.get('@storyNav').find('ul ul post-icon[name="letter"]').should('not.exist');
   });
 
@@ -33,9 +38,7 @@ describe('Side Navigation docs', () => {
     cy.get('.main-story pre').as('source');
     cy.get('@source').should('contain.text', '<post-side-navigation text-close="Close">');
 
-    getControlRow('size').find('input[type="radio"][value="small"]').check({ force: true });
-    getControlRow('Show icons').find('input[type="checkbox"]').check({ force: true });
-    getControlRow('text-close').find('textarea').clear().type('Schliessen');
+    changeControls();
 
     cy.get('@source').should(
       'contain.text',
@@ -44,14 +47,29 @@ describe('Side Navigation docs', () => {
     cy.get('@source')
       .invoke('text')
       .then(code => code.match(/<post-icon name="letter"/g))
-      .should('have.length', 6);
+      .should('have.length', 3);
+  });
+
+  it('should show only one kind of expandable items', () => {
+    cy.get('.main-story pre').as('source');
+    cy.get('@storyNav').find('post-collapsible').should('exist');
+    cy.get('@source').should('contain.text', '<post-collapsible');
+
+    // Storybook uses the labels of the options as the values of the radio buttons
+    getControlRow('Expandable items')
+      .find('input[type="radio"][value="Always expanded"]')
+      .check({ force: true });
+
+    cy.get('@storyNav').find('post-collapsible').should('not.exist');
+    cy.get('@storyNav').find('nav > ul > li > ul').should('have.length', 2);
+    cy.get('@source').should('not.contain.text', '<post-collapsible');
   });
 
   it('should settle on the last value when the controls change quickly', () => {
     let receivedMessages = 0;
 
     cy.window().then(docsWindow => {
-      cy.get(`iframe[src*="id=${STORY_ID}"]`)
+      cy.get(STORY_IFRAME)
         .its('0.contentWindow')
         .then((storyWindow: Window) => {
           storyWindow.addEventListener('message', (event: MessageEvent) => {
@@ -87,7 +105,7 @@ describe('Side Navigation docs', () => {
     getControlRow('size').find('input[type="radio"][value="small"]').check({ force: true });
     cy.get('@storyNav').should('have.attr', 'size', 'small');
 
-    cy.get(`iframe[src*="id=${STORY_ID}"]`)
+    cy.get(STORY_IFRAME)
       .its('0.contentWindow')
       .then((win: Window & { beforeReload?: boolean }) => {
         win.beforeReload = true;
@@ -95,9 +113,7 @@ describe('Side Navigation docs', () => {
       });
 
     // Make sure the assertion below runs against the reloaded document
-    cy.get(`iframe[src*="id=${STORY_ID}"]`)
-      .its('0.contentWindow')
-      .should('not.have.property', 'beforeReload');
+    cy.get(STORY_IFRAME).its('0.contentWindow').should('not.have.property', 'beforeReload');
 
     cy.get('@storyNav').should('have.attr', 'size', 'small');
   });

@@ -3,7 +3,7 @@ import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
 import { fakeContent } from '@/utils';
-import { defaultNav, largeNav, setLevel1Icons, smallNav } from './nav-content';
+import { getDefaultNav, largeNav, smallNav } from './nav-content';
 import { forceCompactAppearance } from '../../../../.storybook/helpers';
 
 const meta: MetaComponent = {
@@ -27,6 +27,7 @@ const meta: MetaComponent = {
   },
   args: {
     textClose: 'Close',
+    expandableItems: 'collapsible',
     showIcons: false,
     size: 'large',
   },
@@ -34,6 +35,22 @@ const meta: MetaComponent = {
     textClose: {
       name: 'text-close',
       description: 'Accessible label for the close button shown in the mobile navigation dialog.',
+    },
+    expandableItems: {
+      name: 'Expandable items',
+      description:
+        'Defines whether the items with sub-levels can be collapsed or are always expanded.' +
+        '<post-banner data-size="sm"><p>' +
+        '<strong>Do not mix:</strong> either all expandable items are collapsible, or all of them are always expanded.' +
+        '</p></post-banner>',
+      control: {
+        type: 'radio',
+        labels: { collapsible: 'Collapsible', expanded: 'Always expanded' },
+      },
+      options: ['collapsible', 'expanded'],
+      table: {
+        category: 'Content',
+      },
     },
     showIcons: {
       name: 'Show icons',
@@ -90,7 +107,7 @@ export const Default: Story = {
         transform: (_snippet: string, { args }: { args: Args }) => `
   <post-side-navigation${args.size === 'large' ? '' : ` size="${args.size}"`} text-close="${args.textClose}">
     <nav aria-label="Main navigation">
-      ${setLevel1Icons(defaultNav, args.showIcons)}
+      ${getDefaultNav(args)}
     </nav>
   </post-side-navigation>
 
@@ -103,9 +120,7 @@ export const Default: Story = {
   },
   render: (args: Args) => html`
     <post-side-navigation size="${args.size}" id="sidenavigation" text-close="${args.textClose}">
-      <nav aria-label="Main navigation">
-        ${unsafeHTML(setLevel1Icons(defaultNav, args.showIcons))}
-      </nav>
+      <nav aria-label="Main navigation">${unsafeHTML(getDefaultNav(args))}</nav>
     </post-side-navigation>
 
     <main class="main-container flex-grow-1">${fakeContent(4)}</main>

@@ -45,7 +45,8 @@ interface StorybookPreview {
   onUpdateArgs(update: { storyId: string; updatedArgs: Args }): Promise<void>;
 }
 
-const latestArgs = new Map<string, TransferableArgs & { key: string }>();
+// Key of the args last sent for each story, so the same args are not sent twice
+const sentArgsKeys = new Map<string, string>();
 
 function isMessage<T extends ArgsUpdateMessage | ArgsRequestMessage>(
   data: unknown,
@@ -137,9 +138,9 @@ function setupParent(channel: Channel) {
 
     const transferable = toTransferableArgs(args);
     const key = toKey(transferable.args);
-    if (latestArgs.get(storyId)?.key === key) return;
+    if (sentArgsKeys.get(storyId) === key) return;
 
-    latestArgs.set(storyId, { ...transferable, key });
+    sentArgsKeys.set(storyId, key);
     getStoryIframes(storyId).forEach(iframe =>
       postArgs(iframe.contentWindow, storyId, transferable),
     );
@@ -153,9 +154,9 @@ function setupParent(channel: Channel) {
     const isStoryIframe = getStoryIframes(storyId).some(
       iframe => iframe.contentWindow === event.source,
     );
-    const current = latestArgs.get(storyId);
+    const args = getStoredArgs(storyId);
 
-    if (isStoryIframe && current) postArgs(event.source as Window, storyId, current);
+    if (isStoryIframe && args) postArgs(event.source as Window, storyId, toTransferableArgs(args));
   });
 }
 
