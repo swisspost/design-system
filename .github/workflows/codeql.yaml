@@ -9,12 +9,17 @@
 name: CodeQL
 
 on:
+  # Scans commits pushed to the configured branches, including PR merges.
   push:
-    branches: [main, 'release/*', shai-hulud, 'tokens/*']
+    branches: [main, 'release/*']
+  # Scans PRs (incl. forks) whose base branch is one of the configured branches, on open, new commits and reopen.
   pull_request:
-    branches: [main, 'release/*', shai-hulud, 'tokens/*']
+    branches: [main, 'release/*']
+  # Weekly re-scan to catch new queries and newly known vulnerabilities in unchanged code.
+  # Scheduled runs only cover the default branch (GitHub limitation).
+  # This matches the schedule of the GitHub CodeQL default setup.
   schedule:
-    - cron: '21 6 * * 6'
+    - cron: '20 6 * * 6' # runs every Saturdays 06:20 UTC, on default branch only
 
 permissions:
   contents: read
