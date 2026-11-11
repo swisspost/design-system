@@ -5,13 +5,18 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 <Meta of={toggleButtonStories} />
 
-# Button Toggle
+<div className="docs-title">
+  # Button Toggle
+
+<story-links of={JSON.stringify(toggleButtonStories)}></story-links>
+
+</div>
 
 <StoryTags meta={meta} />
 
 <div className="lead">
-  The toggle button switches between two states, displaying different content 
-  depending on which state is currently active.
+  The toggle button switches between two states, displaying different content depending on which
+  state is currently active.
 </div>
 
 <Canvas sourceState="shown" of={toggleButtonStories.Default} />
