@@ -25,7 +25,6 @@ function renderPageTabsInContainer(
 ) {
   return html`
     <div class="${containerClass}">
-<<<<<<< HEAD
       <p class="mt-8">Container: ${containerClass || 'none'} / Tab content: ${tabContent}</p>
       ${meta.render?.(
         {
@@ -86,10 +85,12 @@ function renderContentTabsInContainer(
         variant: ['Content Tabs'],
         activeTab: [undefined, 'third'],
         tabContent: ['text', 'icon', 'icon-text'],
-      }).map((args: Args) => html`
-        <p class="mt-8">Tab content: ${args.tabContent}</p>
-        ${meta.render?.({ ...context.args, ...args, size } as never, context as never)}
-      `)}
+      }).map(
+        (args: Args) => html`
+          <p class="mt-8">Tab content: ${args.tabContent}</p>
+          ${meta.render?.({ ...context.args, ...args, size } as never, context as never)}
+        `,
+      )}
       <p>The quick brown fox jumps over the lazy dog.</p>
     </div>
   `;
