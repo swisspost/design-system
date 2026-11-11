@@ -55,10 +55,8 @@ tokens.$default-map: components.$post-banner;
 .post-banner-content {
   // Reserve space for focus rings clipped by the scroll container below, canceled by a negative margin
   --post-banner-focus-room: calc(
-    #{tokens.get('focus-outline-width', helpers.$post-focus)} + #{tokens.get(
-        'focus-outline-offset',
-        helpers.$post-focus
-      )}
+    #{tokens.get('focus-outline-width', helpers.$post-focus)} +
+      #{tokens.get('focus-outline-offset', helpers.$post-focus)}
   );
 
   display: grid;

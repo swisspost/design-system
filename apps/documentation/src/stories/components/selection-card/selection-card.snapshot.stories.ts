@@ -68,7 +68,7 @@ export const SelectionCard: StoryObj = {
                   ${bombedArgs.map(
                     args =>
                       html`<div class="mx-0 my-8">
-                        ${meta.render?.({ ...args, type }, context)}
+                        ${meta.render?.({ ..._args, ...args, type }, context)}
                       </div>`,
                   )}
 
