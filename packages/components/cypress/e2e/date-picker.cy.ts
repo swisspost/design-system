@@ -99,6 +99,54 @@ describe('date-picker', { includeShadowDom: true }, () => {
         cy.get('@date-picker').find('.air-datepicker-body.-days-').should('have.class', '-hidden-');
       });
 
+      it('should display the year view in complete rows of four', () => {
+        cy.get('@toggle').click().wait(500);
+
+        cy.get('@navigation').find('.air-datepicker-nav--title button').click();
+
+        // Every row is filled with exactly four year cells (no partial/orphan row).
+        cy.get('@date-picker')
+          .find('.air-datepicker-body.-years- .air-datepicker-body--cells.-years- .a11y-row')
+          .each($row => {
+            expect($row.find('.air-datepicker-cell.-year-').length).to.equal(4);
+          });
+
+        // The first year of the decade starts in the second column, after the hidden previous-decade year.
+        cy.get('@date-picker')
+          .find('.air-datepicker-body.-years- .a11y-row')
+          .first()
+          .find('.air-datepicker-cell.-year-')
+          .then($cells => {
+            expect($cells.eq(0)).to.have.class('-other-decade-');
+            expect($cells.eq(1)).not.to.have.class('-other-decade-');
+            expect(Number($cells.eq(1).attr('data-year')) % 10).to.equal(0);
+          });
+
+        cy.get('@date-picker')
+          .find('.air-datepicker-body.-years- .air-datepicker-cell.-year-.-other-decade-')
+          .should('have.length.greaterThan', 0)
+          .each($cell => {
+            expect($cell.css('visibility')).to.equal('hidden');
+          });
+      });
+
+      it('should not focus a hidden adjacent-decade year', () => {
+        cy.get('@input').then($input => {
+          ($input[0] as HTMLInputElement).value = '2030-06-15';
+        });
+
+        cy.get('@toggle').click().wait(500);
+        cy.get('@navigation').find('.air-datepicker-nav--title button').click();
+
+        // In the 2020s, the selected year 2030 is rendered as a hidden adjacent-decade cell
+        cy.get('@navigation').find('[data-action="prev"] button').click();
+
+        cy.get('@date-picker')
+          .find('.air-datepicker-cell.-year-[tabindex="0"]')
+          .should('not.have.class', '-other-decade-')
+          .and('be.visible');
+      });
+
       it('should return focus to the input on Escape', () => {
         cy.get('@toggle').click();
 
