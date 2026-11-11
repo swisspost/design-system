@@ -41,7 +41,11 @@ describe('footer', () => {
           cy.get('[slot="socialmedia"] ul').invoke('attr', 'aria-labelledby').should('eq', id);
         });
 
-      shouldBeVisible(cy.get('[slot="socialmedia"] a').should('have.length', 8))
+      shouldBeVisible(
+        cy
+          .get('[slot="socialmedia"] a')
+          .should('have.length', testConfiguration.footer.socialLinks.items.length),
+      )
         .and('contain.html', 'post-icon')
         .and('have.class', 'btn btn-primary btn-icon')
         .invoke('text')
