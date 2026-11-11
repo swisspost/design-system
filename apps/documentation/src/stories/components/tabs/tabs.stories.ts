@@ -46,7 +46,7 @@ const meta: MetaComponent<
     'tabContent': {
       name: 'tabContent',
       description:
-        'Controls whether the default tab items show text only, an icon only (with a visually hidden label for screen readers), or an icon together with visible text.',
+        'Controls whether the default tab items show text only, an icon only (with a visually hidden label for screen readers), or an icon together with visible text. <post-banner data-size="sm"><p>When using icon only tabs, make sure to provide a visually hidden label for each icon so the tab\'s purpose remains clear to screen reader users.</p></post-banner>',
       control: 'radio',
       options: ['text', 'icon', 'icon-text'],
       table: {
@@ -209,13 +209,13 @@ function renderPagesVariant(
   return html`
     <post-tabs label="${ifDefined(label)}" size="${ifDefined(size)}">
       <post-tab-item name="first">
-        <a href="/first" aria-current="page">${renderTabLabel(tabContent, 'First Tab', 'home')}</a>
+        <a href="/first" aria-current="page">${renderTabLabel(tabContent, 'Home', 'home')}</a>
       </post-tab-item>
       <post-tab-item name="second">
-        <a href="/second">${renderTabLabel(tabContent, 'Second Tab', 'letter')}</a>
+        <a href="/second">${renderTabLabel(tabContent, 'Messages', 'letter')}</a>
       </post-tab-item>
       <post-tab-item name="third">
-        <a href="/third">${renderTabLabel(tabContent, 'Third Tab', 'gear')}</a>
+        <a href="/third">${renderTabLabel(tabContent, 'Settings', 'gear')}</a>
       </post-tab-item>
     </post-tabs>
   `;
@@ -240,14 +240,12 @@ function renderContentVariant(
   if (panelSlots) {
     return html`
       <post-tabs active-tab="${ifDefined(activeTab)}" size="${ifDefined(size)}">
-        <post-tab-item name="first"
-          >${renderTabLabel(tabContent, 'First Tab', 'Home')}</post-tab-item
-        >
+        <post-tab-item name="first">${renderTabLabel(tabContent, 'Home', 'Home')}</post-tab-item>
         <post-tab-item name="second"
-          >${renderTabLabel(tabContent, 'Second Tab', 'Messages')}</post-tab-item
+          >${renderTabLabel(tabContent, 'Messages', 'Messages')}</post-tab-item
         >
         <post-tab-item name="third"
-          >${renderTabLabel(tabContent, 'Third Tab', 'Settings')}</post-tab-item
+          >${renderTabLabel(tabContent, 'Settings', 'Settings')}</post-tab-item
         >
 
         ${unsafeHTML(panelSlots)}
@@ -257,11 +255,11 @@ function renderContentVariant(
 
   return html`
     <post-tabs active-tab="${ifDefined(activeTab)}" size="${ifDefined(size)}">
-      <post-tab-item name="first">${renderTabLabel(tabContent, 'First Tab', 'home')}</post-tab-item>
+      <post-tab-item name="first">${renderTabLabel(tabContent, 'Home', 'home')}</post-tab-item>
       <post-tab-item name="second"
-        >${renderTabLabel(tabContent, 'Second Tab', 'letter')}</post-tab-item
+        >${renderTabLabel(tabContent, 'Messages', 'letter')}</post-tab-item
       >
-      <post-tab-item name="third">${renderTabLabel(tabContent, 'Third Tab', 'gear')}</post-tab-item>
+      <post-tab-item name="third">${renderTabLabel(tabContent, 'Settings', 'gear')}</post-tab-item>
 
       <post-tab-panel for="first">
         This is the content of the first tab. By default it is shown initially.
