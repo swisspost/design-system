@@ -199,6 +199,21 @@ post-header:not(:has([slot='main-nav'])) {
   );
   --post-header-height: calc(var(--post-global-header-height) + var(--post-local-header-height));
 
+  // --- Scroll max ---
+  // Scroll position from which the header is fully reduced,
+  // --post-header-scroll-top is not updated beyond this value
+  // The min() is the position where the sliding controls stop (see --post-global-controls-top),
+  // 4000 = 4 (scroll speed divider) * 1000 (offset limit multiplier), 0 when the global header does not shrink
+  --post-header-scroll-max: max(
+    0px,
+    var(--post-global-header-expanded-height) - var(--post-global-header-reduced-height),
+    var(--post-local-header-expanded-height) - var(--post-local-header-reduced-height),
+    min(
+      4 * var(--post-global-header-reduced-height),
+      4000 * (var(--post-global-header-expanded-height) - var(--post-global-header-reduced-height))
+    )
+  );
+
   // --- Logo offset ---
   --post-logo-expanded-offset: 0px;
   --post-logo-reduced-offset: var(--post-logo-expanded-offset);
