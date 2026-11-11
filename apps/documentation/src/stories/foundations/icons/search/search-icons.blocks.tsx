@@ -57,7 +57,7 @@ const ICON_SETS: IconSets = report.icons.reduce(
 export const POST_ICONS_COUNT = ICON_SETS.post.length;
 export const UI_ICONS_COUNT = ICON_SETS.uiLight.length + ICON_SETS.uiSolid.length;
 
-const PAGE_SIZE = 96;
+const PAGE_SIZE = 84;
 
 export class Search extends React.Component {
   form = {
@@ -77,11 +77,11 @@ export class Search extends React.Component {
     ],
     uiVariants: [
       {
-        text: 'Line Icons',
+        text: 'Line icons',
         value: 'uiLight',
       },
       {
-        text: 'Solid Icons',
+        text: 'Solid icons',
         value: 'uiSolid',
       },
     ],
@@ -409,7 +409,7 @@ export class Search extends React.Component {
         </p>
 
         <div className="mt-40 vw-full position-relative start-50 translate-middle-x palette palette-alternate">
-          <div className="container py-32">
+          <div className="container pt-32 pb-16">
             <div className="search-text">
               <div className="search-input form-floating">
                 <input
@@ -441,7 +441,13 @@ export class Search extends React.Component {
                 Showing {this.results.icons.length} of{' '}
                 {ICON_SETS[this.form.set.current as keyof IconSets].length} icons.
               </p>
+            </div>
+          </div>
 
+          <hr />
+          <div className="container pt-16 pb-32">
+            <div className="d-flex justify-content-between">
+              <h2 className="h6 mb-0 mt-16">Overview</h2>
               {isUiGroup && (
                 <div className="ui-variants">
                   <fieldset>
