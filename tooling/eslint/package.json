@@ -29,8 +29,8 @@
   "scripts": {
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
-    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore"
   },
   "dependencies": {
     "@eslint/js": "9.26.0",

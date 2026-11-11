@@ -264,9 +264,7 @@ function RenderSelect(args: Args, context: StoryContext) {
 
   if (args.floatingLabel) {
     return html`
-      <div class="form-floating">
-        ${[control, label, ...contextuals].filter(el => el !== null)}
-      </div>
+      <div class="form-floating">${[control, label, ...contextuals].filter(el => el !== null)}</div>
     `;
   } else {
     return html`${[label, control, ...contextuals].filter(el => el !== null)}`;

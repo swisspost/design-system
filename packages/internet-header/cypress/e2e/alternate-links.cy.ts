@@ -12,9 +12,7 @@ describe('Language switch alternate link overrides', () => {
   // and appends it to <head>. Removes any existing link with the same
   // hreflang first so a language's override is always applied cleanly.
   const addAlternateLink = (doc: Document, code: string, href: string): HTMLLinkElement => {
-    doc
-      .querySelectorAll(`link[rel="alternate"][hreflang="${code}" i]`)
-      .forEach(el => el.remove());
+    doc.querySelectorAll(`link[rel="alternate"][hreflang="${code}" i]`).forEach(el => el.remove());
 
     const link = doc.createElement('link');
     link.rel = 'alternate';
