@@ -1,0 +1,50 @@
+// Building blocks for full-width documentation pages (see `src/shared/docs-page/`).
+
+// A page containing `.docs-band` elements spans the full docs width; each band provides its own `.container`.
+// `.sbdocs-wrapper` is needed to outrank the `.docs-container` padding defined later in `preview.scss`.
+#storybook-docs .sbdocs-wrapper .docs-container:has(.docs-band) {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+}
+
+// The band padding defines the vertical spacing, so the last element must not add any.
+.docs-band > .container > :last-child {
+  margin-block-end: 0;
+}
+
+.docs-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: linear-gradient(
+      233deg,
+      transparent 28.68%,
+      var(--post-core-color-brand-black) 70.84%
+    );
+    opacity: 0.4;
+  }
+
+  h1 {
+    color: var(--post-core-color-brand-postyellow);
+
+    post-icon {
+      color: var(--post-current-fg);
+    }
+  }
+}
+
+.docs-hero-image {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

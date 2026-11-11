@@ -435,7 +435,11 @@ export class PostDatePicker {
         target = cells.find(cell => !cell.classList.contains('-other-year-'));
       }
     } else {
-      target = cells.find(cell => Number(cell.dataset.year) === date.getFullYear());
+      target = cells.find(
+        cell =>
+          Number(cell.dataset.year) === date.getFullYear() &&
+          !cell.classList.contains('-other-decade-'),
+      );
       if (!target) {
         target = cells.find(cell => !cell.classList.contains('-other-decade-'));
       }
@@ -573,7 +577,7 @@ export class PostDatePicker {
   }
 
   /**
-   * Traps focus inside the calendar popover (not used in inline mode) by always taking over Tab handling, 
+   * Traps focus inside the calendar popover (not used in inline mode) by always taking over Tab handling,
    * so focus can't escape even while a grid cell is briefly untabbable mid-render.
    */
   private handleTab = (e: KeyboardEvent) => {
