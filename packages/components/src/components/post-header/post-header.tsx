@@ -356,12 +356,11 @@ export class PostHeader {
   }
 
   private handleScrollEvent() {
-    const scrollTop = this.getScrollPosition();
-    this.scrollPosition = scrollTop;
+    this.scrollPosition = this.getScrollPosition();
 
     // Once the header is fully reduced, writing a new value would only trigger
     // a style recalculation of the whole page without any visual change
-    const value = Math.min(Math.max(scrollTop, 0), this.scrollMax);
+    const value = Math.min(Math.max(this.scrollPosition, 0), this.scrollMax);
     if (value === this.lastScrollTop) return;
 
     this.lastScrollTop = value;
