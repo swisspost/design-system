@@ -84,14 +84,18 @@ function getSpecs(dir) {
       // The number of tests is a cheap approximation of how long a spec takes.
       const tests = readFileSync(join(dir, path), 'utf8').match(/\bit(\.\w+)?\(/g)?.length ?? 0;
 
-      return { path, name: entry.name, letter: entry.name[0].toLowerCase(), tests };
+      // Names that do not start with a letter are sorted first and belong to the "a" range.
+      const letter = entry.name.toLowerCase().match(/^[a-z]/)?.[0] ?? 'a';
+
+      return { path, name: entry.name, letter, tests };
     })
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
 // Splits the alphabetically sorted specs into ranges with a similar number of tests.
-// Specs starting with the same letter always stay together, so that a range can be named after
-// its first and last letter.
+// Specs starting with the same letter always stay together, and the ranges are named so that
+// together they cover the whole alphabet (for example a-h, i-q, r-z). The boundaries are
+// calculated on every run: a new spec file needs no change here, whatever letter it starts with.
 function split(specs, count) {
   const letters = [];
 
@@ -131,17 +135,23 @@ function split(specs, count) {
 
   for (let k = parts - 1, end = letters.length; k >= 0; k--) {
     const { start } = best[k][end - 1];
-    const range = letters.slice(start, end);
-    const first = range[0].letter;
-    const last = range.at(-1).letter;
 
     shards.unshift({
-      range: first === last ? first : `${first}-${last}`,
-      specs: range.flatMap(group => group.specs),
+      first: letters[start].letter,
+      specs: letters.slice(start, end).flatMap(group => group.specs),
       tests: sum(start, end),
     });
     end = start;
   }
+
+  // A range ends right before the first letter of the next one, the last one ends with "z".
+  shards.forEach((shard, index) => {
+    const next = shards[index + 1];
+    const from = index === 0 ? 'a' : shard.first;
+    const to = next ? String.fromCharCode(next.first.charCodeAt(0) - 1) : 'z';
+
+    shard.range = from === to ? from : `${from}-${to}`;
+  });
 
   return shards;
 }
