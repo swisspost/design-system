@@ -5,10 +5,7 @@ import { AppHeader, AppFooter } from './navigation';
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrls: ['./app.scss'],
-  imports: [
-    AppHeader,
-    AppFooter,
-  ],
+  imports: [AppHeader, AppFooter],
 })
 export class App implements OnInit {
   /* ... */

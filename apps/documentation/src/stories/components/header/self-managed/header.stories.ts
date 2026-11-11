@@ -88,7 +88,8 @@ const meta: MetaComponent = {
     },
     globalNavPrimary: {
       name: 'Global primary navigation',
-      description: 'Whether or not the search button in the global header is displayed.',
+      description:
+        'Whether or not the primary navigation (shown here with a search button) in the global header is displayed. On tablet and mobile, its content remains visible in the same position as on desktop.',
       control: {
         type: 'boolean',
       },
@@ -109,7 +110,7 @@ const meta: MetaComponent = {
     globalNavSecondary: {
       name: 'Global secondary navigation',
       description:
-        'Whether or not the global secondary navigation is displayed ("jobs" and "create an account").',
+        'Whether or not the global secondary navigation is displayed ("jobs" and "create an account"). Its content moves inside the burger menu on tablet and mobile.',
       control: {
         type: 'boolean',
       },
