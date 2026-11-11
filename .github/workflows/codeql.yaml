@@ -10,9 +10,9 @@ name: CodeQL
 
 on:
   push:
-    branches: [main]
+    branches: [main, 'release/*', shai-hulud, 'tokens/*']
   pull_request:
-    branches: [main]
+    branches: [main, 'release/*', shai-hulud, 'tokens/*']
   schedule:
     - cron: '21 6 * * 6'
 
