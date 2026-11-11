@@ -107,7 +107,7 @@ post-footer {
     column-gap: var(--post-footer-list-item-gap);
   }
 
-  post-icon:is(div[slot='socialmedia'] > ul > li > a > *):not([name='letter']) {
+  post-icon:is(div[slot='socialmedia'] > ul > li > a > *) {
     width: 26px;
     height: 26px;
 
@@ -119,6 +119,16 @@ post-footer {
     @include media.max(sm) {
       width: 22px;
       height: 22px;
+    }
+
+    &:is([name='letter'], [name='letter-solid']) {
+      width: 16px;
+      height: 16px;
+
+      @include media.max(md) {
+        width: 14px;
+        height: 14px;
+      }
     }
   }
 }
