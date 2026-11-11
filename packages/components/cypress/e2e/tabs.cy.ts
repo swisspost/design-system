@@ -338,7 +338,9 @@ describe('Accessibility', () => {
 
           cy.get('@tabs').then($tabs => {
             const focusedInShadow = $tabs[0].shadowRoot?.activeElement;
-            expect(focusedInShadow?.classList.contains('scroll-btn-right') ?? false).to.equal(false);
+            expect(focusedInShadow?.classList.contains('scroll-btn-right') ?? false).to.equal(
+              false,
+            );
           });
         });
       });
