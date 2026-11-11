@@ -1,8 +1,11 @@
-const DOCS_ID = '27a2e64d-55ba-492d-ab79-5f7c5e818498--docs';
-const STORY_ID = '27a2e64d-55ba-492d-ab79-5f7c5e818498--default';
-const DESKTOP_MIN_WIDTH = 1024;
-
 describe('Self-managed Header docs', () => {
+  // Declared inside `describe`: spec files without imports share their top-level scope
+  const DOCS_ID = '27a2e64d-55ba-492d-ab79-5f7c5e818498--docs';
+  const STORY_ID = '27a2e64d-55ba-492d-ab79-5f7c5e818498--default';
+  const DESKTOP_MIN_WIDTH = 1024;
+  // The page is wider than the breakpoint while the preview inside it is narrower, with a margin on both sides
+  const MOBILE_PREVIEW_VIEWPORT = 1060;
+
   const getControlRow = (name: string) => cy.contains('.docblock-argstable tbody tr', name);
 
   const visitDocs = (viewportWidth: number) => {
@@ -21,7 +24,7 @@ describe('Self-managed Header docs', () => {
   };
 
   it('should show the mobile header when the preview is narrower than the desktop breakpoint', () => {
-    visitDocs(1100);
+    visitDocs(MOBILE_PREVIEW_VIEWPORT);
 
     cy.window().its('innerWidth').should('be.gte', DESKTOP_MIN_WIDTH);
     cy.get('@storyWindow').its('innerWidth').should('be.lt', DESKTOP_MIN_WIDTH);
@@ -40,16 +43,13 @@ describe('Self-managed Header docs', () => {
   });
 
   it('should update the story and the code snippet when the controls change', () => {
-    visitDocs(1100);
+    visitDocs(MOBILE_PREVIEW_VIEWPORT);
 
     cy.get('.main-story pre').as('source');
     cy.get('@source').should('contain.text', '<post-header text-menu="Menu">');
 
-    // Type at a human pace, the args make a round trip through the iframe on every keystroke
-    getControlRow('textMenu').find('textarea').clear().type('Menü', { delay: 100 });
-    getControlRow('Application title')
-      .find('textarea')
-      .type('[Application Title]', { delay: 100 });
+    getControlRow('textMenu').find('textarea').clear().type('Menü');
+    getControlRow('Application title').find('textarea').type('[Application Title]');
 
     cy.get('@storyHeader').should('have.attr', 'text-menu', 'Menü');
     cy.get('@storyHeader').shadow().find('.burger-button').should('contain.text', 'Menü');

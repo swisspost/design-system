@@ -35,13 +35,7 @@ const meta: MetaComponent = {
   },
   args: defaultArgs,
   render: renderHeader,
-  decorators: [
-    story => html`
-      <div class="header-story-wrapper">
-        <div class="virtual-body">${story()} ${fakeContent()}</div>
-      </div>
-    `,
-  ],
+  decorators: [story => html`${story()} ${fakeContent()}`],
 };
 
 export function renderHeader({ innerHMTL, ...args }: Args = defaultArgs) {

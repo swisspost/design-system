@@ -1,8 +1,11 @@
-const DOCS_ID = 'ebb11274-091b-4cb7-9a3f-3e0451c9a865--docs';
-const STORY_ID = 'ebb11274-091b-4cb7-9a3f-3e0451c9a865--default';
-const DESKTOP_MIN_WIDTH = 1024;
-
 describe('Pre-configured Header docs', () => {
+  // Declared inside `describe`: spec files without imports share their top-level scope
+  const DOCS_ID = 'ebb11274-091b-4cb7-9a3f-3e0451c9a865--docs';
+  const STORY_ID = 'ebb11274-091b-4cb7-9a3f-3e0451c9a865--default';
+  const DESKTOP_MIN_WIDTH = 1024;
+  // The page is wider than the breakpoint while the preview inside it is narrower, with a margin on both sides
+  const MOBILE_PREVIEW_VIEWPORT = 1060;
+
   const getControlRow = (name: string) => cy.contains('.docblock-argstable tbody tr', name);
 
   const visitDocs = (viewportWidth: number) => {
@@ -22,7 +25,7 @@ describe('Pre-configured Header docs', () => {
   };
 
   it('should show the mobile header when the preview is narrower than the desktop breakpoint', () => {
-    visitDocs(1100);
+    visitDocs(MOBILE_PREVIEW_VIEWPORT);
 
     cy.window().its('innerWidth').should('be.gte', DESKTOP_MIN_WIDTH);
     cy.get('@storyWindow').its('innerWidth').should('be.lt', DESKTOP_MIN_WIDTH);
@@ -41,7 +44,7 @@ describe('Pre-configured Header docs', () => {
   });
 
   it('should update the story and the code snippet when the controls change', () => {
-    visitDocs(1100);
+    visitDocs(MOBILE_PREVIEW_VIEWPORT);
 
     cy.get('.sbdocs-preview').first().find('pre').as('source');
     cy.get('@source').should('contain.text', 'language="en"');

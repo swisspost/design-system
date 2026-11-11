@@ -177,14 +177,10 @@ const meta: MetaComponent = {
       const showSideNav = context.args.sideNav && context.args.title !== '';
 
       return html`
-        <div class="header-story-wrapper">
-          <div class="virtual-body">
-            ${story()}
-            ${showSideNav
-              ? html`<main class="main-container">${fakeContent()}</main>`
-              : html`<div>${fakeContent()}</div>`}
-          </div>
-        </div>
+        ${story()}
+        ${showSideNav
+          ? html`<main class="main-container">${fakeContent()}</main>`
+          : html`<div>${fakeContent()}</div>`}
       `;
     },
   ],
