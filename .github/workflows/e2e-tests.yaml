@@ -2,7 +2,8 @@
 #
 # Runs the Cypress end to end tests of the packages changed since the base branch
 #
-# The suites run in parallel on separate runners, large suites are split into shards.
+# The suites run in parallel on separate runners, large suites are split into shards and
+# small ones share a runner.
 # The matrix is defined in .github/scripts/e2e-matrix.mjs
 #
 ###
@@ -93,8 +94,11 @@ jobs:
       # this makes sure the binary is there. It does nothing if it is already installed.
       - name: Install cypress binary
         env:
-          PACKAGE: ${{ matrix.package }}
-        run: pnpm --filter "$PACKAGE" exec cypress install
+          PACKAGES: ${{ matrix.packages }}
+        run: |
+          for PACKAGE in $PACKAGES; do
+            pnpm --filter "$PACKAGE" exec cypress install
+          done
 
       # The tests run against the storybook dev server, which only needs its dependencies built.
       - name: Build dependencies
@@ -102,28 +106,34 @@ jobs:
 
       - name: Cypress info
         env:
-          PACKAGE: ${{ matrix.package }}
-        run: pnpm --filter "$PACKAGE" exec cypress info
+          PACKAGES: ${{ matrix.packages }}
+        run: |
+          for PACKAGE in $PACKAGES; do
+            pnpm --filter "$PACKAGE" exec cypress info
+          done
 
       - name: Run tests
         env:
-          PACKAGE: ${{ matrix.package }}
+          PACKAGES: ${{ matrix.packages }}
           SPECS: ${{ matrix.specs }}
         run: |
-          COMMAND="pnpm --filter $PACKAGE e2e:ci"
+          # Suites sharing a runner use the same storybook server and all run, even if one fails.
+          COMMAND="status=0"
 
-          if [[ -n "$SPECS" ]]; then
-            COMMAND="$COMMAND --spec $SPECS"
-          fi
+          for PACKAGE in $PACKAGES; do
+            COMMAND="$COMMAND; pnpm --filter $PACKAGE e2e:ci${SPECS:+ --spec $SPECS} || status=1"
+          done
 
-          pnpm exec start-server-and-test 'pnpm docs:headless' 9001 "$COMMAND"
+          COMMAND="$COMMAND; exit \$status"
+
+          pnpm exec start-server-and-test 'pnpm docs:headless' 9001 "bash -c '$COMMAND'"
 
       - name: Upload screenshots
         uses: actions/upload-artifact@6027e3dd177782cd8ab9af838c04fd81a07f1d47
         if: failure()
         with:
           name: cypress-screenshots-${{ matrix.id }}
-          path: ${{ matrix.dir }}/cypress/screenshots
+          path: ${{ matrix.screenshots }}
           retention-days: 14
           if-no-files-found: ignore
 

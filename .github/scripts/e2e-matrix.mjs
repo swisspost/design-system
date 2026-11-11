@@ -17,26 +17,30 @@ import { execFileSync } from 'node:child_process';
 import { appendFileSync, readdirSync, readFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 
-// Increase `shards` when a suite becomes the slowest job, each shard runs on its own runner.
+// The number of shards follows the number of tests: a suite is split into as many shards as
+// needed to keep each one at about `testsPerShard` tests, and each shard runs on its own runner.
 // A shard is an alphabetical range of spec files, for example "components a-h".
+// Small suites that are not split and share the same `job` run together on a single runner.
 const SUITES = [
   {
     name: 'documentation',
     package: '@swisspost/design-system-documentation',
     dir: 'apps/documentation',
-    shards: 1,
+    job: 'small',
+    testsPerShard: 300,
   },
   {
     name: 'components',
     package: '@swisspost/design-system-components',
     dir: 'packages/components',
-    shards: 3,
+    testsPerShard: 300,
   },
   {
     name: 'internet-header',
     package: '@swisspost/internet-header',
     dir: 'packages/internet-header',
-    shards: 1,
+    job: 'small',
+    testsPerShard: 300,
   },
 ];
 
@@ -158,6 +162,15 @@ function split(specs, count) {
 
 const affected = getAffectedPackages();
 const include = [];
+const combined = new Map();
+
+const entry = (id, name, suites, specs) => ({
+  id,
+  name,
+  packages: suites.map(suite => suite.package).join(' '),
+  screenshots: suites.map(suite => `${suite.dir}/cypress/screenshots`).join('\n'),
+  specs,
+});
 
 for (const suite of SUITES) {
   if (affected && !affected.has(suite.package)) {
@@ -165,32 +178,48 @@ for (const suite of SUITES) {
     continue;
   }
 
+  const specs = getSpecs(suite.dir);
+  const totalTests = specs.reduce((total, spec) => total + spec.tests, 0);
+  const shards = Math.max(1, Math.ceil(totalTests / suite.testsPerShard));
+
   // Without a spec list, Cypress runs everything that matches its `specPattern`.
-  if (suite.shards <= 1) {
-    include.push({
-      id: suite.name,
-      name: suite.name,
-      package: suite.package,
-      dir: suite.dir,
-      specs: '',
-    });
+  if (shards <= 1) {
     console.error(`- ${suite.name}: all specs`);
+
+    if (suite.job) {
+      combined.set(suite.job, [...(combined.get(suite.job) ?? []), suite]);
+    } else {
+      include.push(entry(suite.name, suite.name, [suite], ''));
+    }
+
     continue;
   }
 
-  for (const shard of split(getSpecs(suite.dir), suite.shards)) {
+  for (const shard of split(specs, shards)) {
     const name = `${suite.name} ${shard.range}`;
 
-    include.push({
-      id: `${suite.name}-${shard.range}`,
-      name,
-      package: suite.package,
-      dir: suite.dir,
-      specs: shard.specs.map(spec => spec.path).join(','),
-    });
+    include.push(
+      entry(
+        `${suite.name}-${shard.range}`,
+        name,
+        [suite],
+        shard.specs.map(spec => spec.path).join(','),
+      ),
+    );
     console.error(`- ${name}: ${shard.specs.length} specs, ${shard.tests} tests`);
     console.error(`  ${shard.specs.map(spec => spec.name.replace(SPEC_FILE, '')).join(', ')}`);
   }
+}
+
+for (const suites of combined.values()) {
+  include.push(
+    entry(
+      suites.map(suite => suite.name).join('-'),
+      suites.map(suite => suite.name).join(' + '),
+      suites,
+      '',
+    ),
+  );
 }
 
 const outputs = [`matrix=${JSON.stringify({ include })}`, `has-suites=${include.length > 0}`];
