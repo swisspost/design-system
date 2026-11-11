@@ -1,6 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as ValidationStories from './validation.stories';
 import StoryTags from '@/shared/story-tags';
+import StylesPackageImport from '@/shared/styles-package-import';
 
 <Meta of={ValidationStories} />
 
@@ -23,6 +24,8 @@ Validation employs the `:invalid` and `:valid` pseudo-classes to provide styling
 Alternatively, `.is-invalid` and `.is-valid` classes may be used instead of the pseudo-classes for server-side validation, without the `.was-validated` parent class.
 
 These classes control the display of corresponding feedback messages that should be placed under the component: `<p className="valid-feedback">...</p>` or `<p className="invalid-feedback">...</p>`.
+
+<StylesPackageImport components={['validation']} required={{ 'signal-icons': true }} />
 
 ## Examples
 

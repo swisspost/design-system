@@ -25,7 +25,11 @@ import StylesPackageImport from '@/shared/styles-package-import';
 
 <ComponentsPackageInstall component="<post-number-input>" />
 
-<StylesPackageImport components={['form-input', 'form-hint']} required={{ validation: true }} />
+<StylesPackageImport
+  components={['form-input']}
+  required={{ 'form-hint': true, validation: true }}
+  componentsCss
+/>
 
 ## Examples
 

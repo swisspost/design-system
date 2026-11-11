@@ -32,6 +32,8 @@ Import one of our stylesheets into your project:
 
 ### Available bundles
 
+Each bundle contains the design tokens, the base styles and the styles of all components.
+
 <div className="table-responsive text-start">
   <table className="table">
     <thead>
@@ -57,35 +59,47 @@ Import one of our stylesheets into your project:
         <td>`css`, `scss`</td>
         <td>Full styles for information-dense internal applications</td>
       </tr>
+    </tbody>
+  </table>
+</div>
+
+### Custom entry files
+
+If you do not want the full styles, build your own entry point from the following files.
+
+<div className="table-responsive text-start">
+  <table className="table">
+    <thead>
       <tr>
-        <td>`(post|cargo)-tokens-(default|compact|condensed)`</td>
-        <td>`css`, `scss`</td>
-        <td>
-          Design tokens (CSS custom properties) only, without any styles. Required next to `basics`
-          and the individual component styles
-        </td>
+        <th>&lt;file&gt;</th>
+        <th>&lt;extension&gt;</th>
+        <th>Description</th>
       </tr>
+    </thead>
+    <tbody>
       <tr>
-        <td>`basics`</td>
+        <td>`(post|cargo)-tokens-(default|compact|condensed)` + `basics`</td>
         <td>`css`, `scss`</td>
         <td>
-          Base styles for layout, typography, lists, utilities, etc. (excludes components). Does not
-          work without one of the tokens files
+          Design tokens (CSS custom properties) and base styles for fonts, layout, typography, lists,
+          utilities, etc. (excludes components). Always use both files together and add the
+          individual component styles you need: `basics` does not work without one of the tokens
+          files
         </td>
       </tr>
       <tr>
         <td>`core`</td>
         <td>`scss`</td>
-        <td>Core definitions including variables, functions, and mixins (no CSS output)</td>
+        <td>
+          Core definitions including variables, functions, and mixins (no CSS output), for usage in
+          your own custom styles
+        </td>
       </tr>
     </tbody>
   </table>
 </div>
 
-### Importing only what you need
-
-If you do not want the full styles, combine one tokens file with `basics` and the styles of the components you use.
-The `basics` file alone does not work: without a tokens file, the design tokens it relies on are missing.
+Combine one tokens file with `basics` and the styles of the components you use:
 
 <Source
   code={`@use '@swisspost/design-system-styles/post-tokens-default.scss';

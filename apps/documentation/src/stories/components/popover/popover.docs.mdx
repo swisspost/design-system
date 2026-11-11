@@ -2,6 +2,7 @@ import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as PopoverStories from './popover.stories';
 import StoryTags from '@/shared/story-tags';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import StylesPackageImport from '@/shared/styles-package-import';
 
 <Meta of={PopoverStories} />
 
@@ -29,6 +30,8 @@ The `<post-popover>` can be nested within the `<post-popover-trigger>` to establ
 <Canvas sourceState="shown" of={PopoverStories.Wrapped} />
 
 <ComponentsPackageInstall component="<post-popover>" />
+
+<StylesPackageImport components={['palette']} />
 
 ## Usage with an info icon
 

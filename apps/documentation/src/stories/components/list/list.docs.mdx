@@ -5,6 +5,7 @@ import SampleListInline from './list-inline.sample.scss?raw';
 import SampleListUnstyled from './list-unstyled.sample.scss?raw';
 import SampleListNumber from './list-number.sample.scss?raw';
 import StoryTags from '@/shared/story-tags';
+import StylesPackageImport from '@/shared/styles-package-import';
 
 <Meta of={ListStories} />
 
@@ -24,6 +25,11 @@ import StoryTags from '@/shared/story-tags';
 
 There are three types of HTML lists: unordered lists, ordered lists, and description lists.
 Utility classes allow you to style each of these lists in different ways.
+
+<StylesPackageImport
+  components={['list-check']}
+  importText="To import only the styles required for lists (list-check is only needed for check lists):"
+/>
 
 ## Unordered List
 

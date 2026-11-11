@@ -1,6 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as TeaserStories from './teaser.stories';
 import StoryTags from '@/shared/story-tags';
+import StylesPackageImport from '@/shared/styles-package-import';
 
 <Meta of={TeaserStories} />
 
@@ -23,6 +24,8 @@ import StoryTags from '@/shared/story-tags';
 <div className="hide-col-default">
   <Controls of={TeaserStories.Default} />
 </div>
+
+<StylesPackageImport components={['card', 'teaser', 'button']} />
 
 ## Teaser section
 

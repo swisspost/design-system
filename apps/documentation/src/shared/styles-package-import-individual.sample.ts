@@ -3,6 +3,10 @@ const requiredImports = {
     label: 'required if you use icon-only buttons',
     files: ['components/icon-button'],
   },
+  'form-hint': {
+    label: 'required if you use form hints',
+    files: ['components/form-hint'],
+  },
   'validation': {
     label: 'required if you use validation feedbacks',
     files: ['components/validation', 'icons/signal-icons'],
@@ -17,7 +21,11 @@ export interface Props {
   components: string[];
   required?: Partial<Record<keyof typeof requiredImports, boolean>>;
   importText?: string;
+  componentsCss?: boolean;
 }
+
+export const COMPONENTS_STYLES_IMPORT = `// required for the styles of the slotted content
+@use '@swisspost/design-system-components/post-components.css';`;
 
 export function getComponentStyleImports(props: Props, tokens: string) {
   const generateImport = (path: string) => `@use '@swisspost/design-system-styles/${path}.scss';`;
@@ -31,7 +39,12 @@ export function getComponentStyleImports(props: Props, tokens: string) {
     })
     .join('\n');
 
-  return [`${generateImport(tokens)}\n${generateImport('basics')}`, components, required]
+  return [
+    `${generateImport(tokens)}\n${generateImport('basics')}`,
+    components,
+    required,
+    props.componentsCss ? COMPONENTS_STYLES_IMPORT : '',
+  ]
     .filter(Boolean)
     .join('\n');
 }

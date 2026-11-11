@@ -2,6 +2,7 @@ import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import meta, * as MenuStories from './menu.stories';
 import StoryTags from '@/shared/story-tags';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import StylesPackageImport from '@/shared/styles-package-import';
 
 <Meta of={MenuStories} />
 
@@ -23,6 +24,8 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 <Controls of={MenuStories.Default} />
 
 <ComponentsPackageInstall component="<post-menu>" />
+
+<StylesPackageImport components={[]} />
 
 ## Examples
 

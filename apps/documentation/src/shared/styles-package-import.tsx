@@ -1,6 +1,7 @@
 import { Source } from '@storybook/addon-docs/blocks';
 import { useEffect, useState } from 'react';
 import {
+  COMPONENTS_STYLES_IMPORT,
   getComponentStyleImports,
   getStyleImportsText,
   Props,
@@ -27,7 +28,12 @@ export default function PackageTag(props: Props) {
     theme: 'Post',
     appearance: 'Compact',
   });
-  const allStylesImport = getAllStylesImport(styleSelection);
+  const allStylesImport = [
+    getAllStylesImport(styleSelection),
+    props.componentsCss ? COMPONENTS_STYLES_IMPORT : '',
+  ]
+    .filter(Boolean)
+    .join('\n');
 
   useEffect(() => {
     const updateStyleSelection = (event: Event) => {
