@@ -7,15 +7,15 @@ import StoryTags from '@/shared/story-tags';
 <div className="docs-title">
 # Validation
 
-<link-design of={JSON.stringify(ValidationStories)}></link-design>
+<story-links of={JSON.stringify(ValidationStories)}></story-links>
 
 </div>
 
 <StoryTags meta={meta} />
 
 <div className="lead">
-  Validation is a reusable component that provides consistent feedback styling across all
-  components that require input validation.
+  Validation is a reusable component that provides consistent feedback styling across all components
+  that require input validation.
 </div>
 
 Validation employs the `:invalid` and `:valid` pseudo-classes to provide styling for `<input>`, `<select>`, and `<textarea>` elements. To control when these styles are displayed, the `.was-validated` class must be applied to a parent element (e.g. `<form>`).
