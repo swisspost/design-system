@@ -111,7 +111,7 @@ describe('header', () => {
             cy.get('@header').then($header => {
               const header = $header[0];
               const rootStyle = header.ownerDocument.documentElement.style;
-              const noTransitions = new (header.ownerDocument.defaultView.CSSStyleSheet)();
+              const noTransitions = new header.ownerDocument.defaultView.CSSStyleSheet();
               noTransitions.replaceSync('*, :host { transition: none !important; }');
               header.shadowRoot.adoptedStyleSheets = [
                 ...header.shadowRoot.adoptedStyleSheets,

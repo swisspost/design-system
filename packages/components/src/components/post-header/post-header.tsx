@@ -549,11 +549,7 @@ export class PostHeader {
         data-burger-menu={this.hasBurgerMenu}
         data-menu-extended={this.burgerMenuExtended}
       >
-        <span
-          class="scroll-max"
-          aria-hidden="true"
-          ref={el => (this.scrollMaxElement = el)}
-        ></span>
+        <span class="scroll-max" aria-hidden="true" ref={el => (this.scrollMaxElement = el)}></span>
         <header>
           <div ref={el => (this.globalHeader = el)} class="global-header">
             <div class="section">
