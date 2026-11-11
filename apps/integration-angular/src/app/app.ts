@@ -132,14 +132,34 @@ export class App implements OnInit {
 
   // Social media links (Footer)
   public socialMediaLinks = [
-    { name: 'Facebook', url: '#facebook', icon: 'facebook' },
-    { name: 'Instagram', url: '#instagram', icon: 'instagram' },
-    { name: 'Youtube', url: '#youtube', icon: 'youtube' },
-    { name: 'Snapchat', url: '#snapchat', icon: 'snapchat' },
-    { name: 'Twitter X', url: '#twitter-x', icon: 'twitterx' },
-    { name: 'Linkedin', url: '#linkedin', icon: 'linkedin' },
-    { name: 'Xing', url: '#xing', icon: 'xing' },
-    { name: 'E-Mail', url: 'mailto:noreply@post.ch', icon: 'letter' },
+    { name: 'Facebook', url: '#facebook', icon: 'facebook-solid' },
+    { name: 'Instagram', url: '#instagram', icon: 'instagram-solid' },
+    { name: 'Youtube', url: '#youtube', icon: 'youtube-solid' },
+    {
+      name: 'Snapchat',
+      url: '#snapchat',
+      icon: 'snapchat-solid',
+    },
+    {
+      name: 'Linkedin',
+      url: '#linkedin',
+      icon: 'linkedin-solid',
+    },
+    { name: 'Xing', url: '#xing', icon: 'xing-solid' },
+    {
+      name: 'Kununu',
+      url: '#kununu',
+      icon: 'kununu-solid',
+    },
+    { name: 'TikTok', url: '#tiktok', icon: 'tiktok-solid' },
+    { name: 'Blog', url: '#blog', icon: 'blog-solid' },
+    { name: 'RSS', url: '#rssfeed', icon: 'rssfeed-solid' },
+    {
+      name: 'Slideshare',
+      url: '#slideshare',
+      icon: 'slideshare-solid',
+    },
+    { name: 'E-Mail', url: 'mailto:noreply@post.ch', icon: 'letter-solid' },
   ];
 
   // Meta links (Footer)
