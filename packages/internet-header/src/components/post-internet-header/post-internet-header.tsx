@@ -8,16 +8,7 @@ import { getLocalizedConfig, isValidProjectId } from '@/services/config.service'
 import { getActiveLink } from '@/services/route.service';
 import { getSessionUrl } from '@/config/klp-urls';
 import { version } from '@root/package.json';
-import {
-  Component,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Listen,
-  Prop,
-  Watch,
-} from '@stencil/core';
+import { Component, Event, EventEmitter, h, Host, Listen, Prop, Watch } from '@stencil/core';
 import '@swisspost/design-system-components';
 
 @Component({
@@ -267,7 +258,9 @@ export class PostInternetHeader {
     return (
       <ul slot={slot}>
         {config.map(navItem => (
-          <li key={'url' in navItem ? navItem.url : navItem.user.email}>{this.renderNavItem(navItem, props)}</li>
+          <li key={'url' in navItem ? navItem.url : navItem.user.email}>
+            {this.renderNavItem(navItem, props)}
+          </li>
         ))}
       </ul>
     );
