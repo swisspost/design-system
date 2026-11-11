@@ -78,12 +78,6 @@ export class PostBanner {
   render() {
     return (
       <Host data-version={version} role="alert">
-        {this.type === 'grief' && (
-          <span class="grief-icon" aria-hidden="true">
-            <post-icon name="candle"></post-icon>
-          </span>
-        )}
-
         <slot name="close-button" />
 
         <div class="post-banner-content">
