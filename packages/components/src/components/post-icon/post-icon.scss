@@ -23,11 +23,8 @@ span {
   fill: currentColor;
   forced-color-adjust: preserve-parent-color;
   background-color: currentColor;
-  -webkit-mask-position: center center;
   mask-position: center center;
-  -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  -webkit-mask-size: 100%;
   mask-size: 100%;
 }
 
