@@ -5,7 +5,7 @@ packages:
 
 catalog:
   '@playwright/test': 1.65.0
-  'eslint': 9.26.0
+  'eslint': 9.39.5
   'prettier': 3.6.2
   'stylelint': 17.16.0
   'typescript': 6.0.3
