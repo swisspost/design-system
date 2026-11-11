@@ -275,8 +275,8 @@ export class PostKlpLoginWidget {
               aria-hidden={this.textCurrentUser ? null : 'true'}
             ></post-avatar>
             {session.support ? (
-              <div class="support-user">
-                <post-icon flip-h name="customercenter"></post-icon>
+              <div class="support-icon">
+                <post-icon name="profile"></post-icon>
               </div>
             ) : null}
             {this.unread > 0 && <span class="badge" aria-hidden="true"></span>}
