@@ -45,7 +45,7 @@ jobs:
       - name: Abort workflow, if uncommitted changes are detected
         run: |
           if [[ $(git status --porcelain) ]]; then
-            echo "Error: Unclean working tree! Commit changes first, then release again..."
+            echo "Error: Unclean working tree! Commit changes first, then release again..." >&2
             exit 1
           fi
 
@@ -173,7 +173,7 @@ jobs:
       - name: Abort workflow, if uncommitted changes are detected
         run: |
           if [[ $(git status --porcelain) ]]; then
-            echo "Error: Unclean working tree! Commit changes first, then release again..."
+            echo "Error: Unclean working tree! Commit changes first, then release again..." >&2
             exit 1
           fi
 
