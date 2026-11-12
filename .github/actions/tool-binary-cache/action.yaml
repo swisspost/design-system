@@ -1,0 +1,37 @@
+name: Tool binary cache
+description: Provides the versions, cache paths and cache keys of the Playwright browsers and the Cypress binary, based on the versions pinned in the pnpm catalog.
+
+outputs:
+  playwright-version:
+    description: Playwright version pinned in the pnpm catalog
+    value: ${{ steps.read.outputs.playwright-version }}
+  playwright-path:
+    description: Path of the Playwright browsers cache
+    value: ~/.cache/ms-playwright
+  playwright-key:
+    description: Cache key of the Playwright browsers
+    value: ${{ steps.read.outputs.playwright-key }}
+  cypress-version:
+    description: Cypress version pinned in the pnpm catalog
+    value: ${{ steps.read.outputs.cypress-version }}
+  cypress-path:
+    description: Path of the Cypress binary cache
+    value: ~/.cache/Cypress
+  cypress-key:
+    description: Cache key of the Cypress binary
+    value: ${{ steps.read.outputs.cypress-key }}
+
+runs:
+  using: composite
+  steps:
+    - name: Read versions from pnpm catalog
+      id: read
+      shell: bash
+      run: |
+        PLAYWRIGHT_VERSION=$(yq -e '.catalog."@playwright/test"' pnpm-workspace.yaml)
+        CYPRESS_VERSION=$(yq -e '.catalogs.cypress.cypress' pnpm-workspace.yaml)
+
+        echo "playwright-version=$PLAYWRIGHT_VERSION" >> "$GITHUB_OUTPUT"
+        echo "playwright-key=${RUNNER_OS}-${RUNNER_ARCH}-playwright-${PLAYWRIGHT_VERSION}" >> "$GITHUB_OUTPUT"
+        echo "cypress-version=$CYPRESS_VERSION" >> "$GITHUB_OUTPUT"
+        echo "cypress-key=${RUNNER_OS}-${RUNNER_ARCH}-cypress-${CYPRESS_VERSION}" >> "$GITHUB_OUTPUT"
