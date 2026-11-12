@@ -882,7 +882,7 @@ importers:
         version: 4.1.0
       ts-jest:
         specifier: catalog:jest
-        version: 29.4.15(@babel/core@8.0.5)(@jest/transform@30.3.0(supports-color@5.5.0))(@jest/types@30.5.1)(babel-jest@30.3.0(@babel/core@7.29.13(supports-color@5.5.0))(supports-color@5.5.0))(esbuild@0.28.2)(jest-util@30.5.1)(jest@30.3.0(@types/node@26.6.6)(esbuild-register@3.6.0(esbuild@0.28.2)(supports-color@5.5.0))(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.6.6)(typescript@6.0.3)))(typescript@6.0.3)
+        version: 29.4.15(@babel/core@7.29.13(supports-color@5.5.0))(@jest/transform@30.3.0(supports-color@5.5.0))(@jest/types@30.5.1)(babel-jest@30.3.0(@babel/core@7.29.13(supports-color@5.5.0))(supports-color@5.5.0))(esbuild@0.28.2)(jest-util@30.5.1)(jest@30.3.0(@types/node@26.6.6)(esbuild-register@3.6.0(esbuild@0.28.2)(supports-color@5.5.0))(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.6.6)(typescript@6.0.3)))(typescript@6.0.3)
       ts-node:
         specifier: catalog:node
         version: 10.9.2(@types/node@26.6.6)(typescript@6.0.3)
@@ -23843,7 +23843,7 @@ snapshots:
       esbuild: 0.28.2
       jest-util: 30.5.1
 
-  ts-jest@29.4.15(@babel/core@8.0.5)(@jest/transform@30.3.0(supports-color@5.5.0))(@jest/types@30.5.1)(babel-jest@30.3.0(@babel/core@7.29.13(supports-color@5.5.0))(supports-color@5.5.0))(esbuild@0.28.2)(jest-util@30.5.1)(jest@30.3.0(@types/node@26.6.6)(esbuild-register@3.6.0(esbuild@0.28.2)(supports-color@5.5.0))(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.6.6)(typescript@6.0.3)))(typescript@6.0.3):
+  ts-jest@29.4.15(@babel/core@7.29.13(supports-color@5.5.0))(@jest/transform@30.3.0(supports-color@5.5.0))(@jest/types@30.5.1)(babel-jest@30.3.0(@babel/core@7.29.13(supports-color@5.5.0))(supports-color@5.5.0))(esbuild@0.28.2)(jest-util@30.5.1)(jest@30.3.0(@types/node@26.6.6)(esbuild-register@3.6.0(esbuild@0.28.2)(supports-color@5.5.0))(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.6.6)(typescript@6.0.3)))(typescript@6.0.3):
     dependencies:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
@@ -23857,7 +23857,7 @@ snapshots:
       typescript: 6.0.3
       yargs-parser: 21.1.1
     optionalDependencies:
-      '@babel/core': 8.0.5
+      '@babel/core': 7.29.13(supports-color@5.5.0)
       '@jest/transform': 30.3.0(supports-color@5.5.0)
       '@jest/types': 30.5.1
       babel-jest: 30.3.0(@babel/core@7.29.13(supports-color@5.5.0))(supports-color@5.5.0)
