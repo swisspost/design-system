@@ -32,6 +32,7 @@ runs:
         CYPRESS_VERSION=$(yq -e '.catalogs.cypress.cypress' pnpm-workspace.yaml)
 
         echo "playwright-version=$PLAYWRIGHT_VERSION" >> "$GITHUB_OUTPUT"
-        echo "playwright-key=${RUNNER_OS}-${RUNNER_ARCH}-playwright-${PLAYWRIGHT_VERSION}" >> "$GITHUB_OUTPUT"
+        # Playwright browsers are built per OS release (e.g. ubuntu24 vs. ubuntu26), so the image OS is part of the key
+        echo "playwright-key=${RUNNER_OS}-${RUNNER_ARCH}-${ImageOS:-unknown}-playwright-${PLAYWRIGHT_VERSION}" >> "$GITHUB_OUTPUT"
         echo "cypress-version=$CYPRESS_VERSION" >> "$GITHUB_OUTPUT"
         echo "cypress-key=${RUNNER_OS}-${RUNNER_ARCH}-cypress-${CYPRESS_VERSION}" >> "$GITHUB_OUTPUT"
