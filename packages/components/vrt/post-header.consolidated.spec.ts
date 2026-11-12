@@ -24,6 +24,7 @@ async function executeTest(
   await handler(page);
 
   await page.waitForTimeout(200);
+  await page.mouse.move(-1, -1);
 
   await expect(page).toHaveScreenshot(`${variant}-${breakpoint}-${state}.png`);
 
