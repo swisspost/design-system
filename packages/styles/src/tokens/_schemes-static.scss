@@ -9,7 +9,7 @@
 
 // prefered root color-scheme
 :root {
-  @include supports.light-dark(true) {
+  @include supports.light-dark-color(true) {
     color-scheme: light;
   }
 
@@ -34,7 +34,7 @@
   &[data-color-scheme='light'] {
     @include schemes.light-variables;
 
-    @include supports.light-dark(true) {
+    @include supports.light-dark-color(true) {
       color-scheme: light;
     }
 
@@ -47,7 +47,7 @@
   &[data-color-scheme='dark'] {
     @include schemes.dark-variables;
 
-    @include supports.light-dark(true) {
+    @include supports.light-dark-color(true) {
       color-scheme: dark;
     }
 

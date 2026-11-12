@@ -2,39 +2,59 @@
 @use '@swisspost/design-system-tokens/scheme';
 
 @use '../mixins/supports';
+@use '../variables/icons';
 
 /**
- * Fallback for browsers without `light-dark()` support, based on space toggles.
+ * Fallback for browsers without full `light-dark()` support, based on space toggles.
  *
- * Every scheme colour is recomputed from the `--post-fallback-prefers-light` toggle:
+ * Values are recomputed from the `--post-fallback-prefers-light` toggle:
  * - empty value -> light
  * - `initial` -> dark
+ *
+ * Browser support varies based on the kind of value, so the fallback has two levels:
+ * - scheme colours are recomputed when `light-dark()` is not supported at all;
+ * - signal icons are also recomputed when `light-dark()` does not support images.
  *
  * For more information about space toggles, see:
  * - https://dev.to/janeori/css-lightdark-mode-implementation-without-duplicating-vars-22c9
  * - https://kizu.dev/cyclic-toggles/
  *
  * This placeholder is used to output the variables only once, shared by all selectors that use
- * `set()` and by the root scheme tokens (`_schemes.scss`). It can be removed once the
- * `light-dark()` function becomes available in across supported browsers.
+ * `set()` and by the root scheme tokens (`_schemes.scss`).
  */
 %color-scheme-fallback-variables {
-  @include supports.light-dark(false) {
+  // Colour fallback: can be removed once `light-dark()` for colours is Baseline Widely Available.
+  @include supports.light-dark-color(false) {
     @each $key, $light-value in scheme.$post-light {
-      --#{$key}-light: var(--post-fallback-prefers-light) #{$light-value};
-      --#{$key}: var(--#{$key}-light, #{map.get(scheme.$post-dark, $key)});
+      --#{$key}-fallback-light: var(--post-fallback-prefers-light) #{$light-value};
+      --#{$key}: var(--#{$key}-fallback-light, #{map.get(scheme.$post-dark, $key)});
+    }
+  }
+
+  // Image fallback: can be removed once `light-dark()` for images is Baseline Widely Available.
+  @include supports.light-dark(false) {
+    @each $key in icons.$signal-icon-names {
+      --post-signal-icon-#{$key}-fallback-light: var(--post-fallback-prefers-light)
+        var(--post-signal-icon-#{$key}-light);
+      --post-signal-icon-#{$key}: var(
+        --post-signal-icon-#{$key}-fallback-light,
+        var(--post-signal-icon-#{$key}-dark)
+      );
     }
   }
 }
 
 /**
- * Sets the colour scheme of an element, including the fallback for browsers without `light-dark()`
- * support.
+ * Sets the colour scheme of an element, including the fallback for browsers without full
+ * `light-dark()` support.
  *
  * The input can be a literal value (`light` or `dark`) or a CSS variable that resolves to a core
  * colour scheme.
  */
 @mixin set($color-scheme) {
+  $is-light: $color-scheme == light or $color-scheme == var(--post-core-bg-scheme-light);
+  $is-dark: $color-scheme == dark or $color-scheme == var(--post-core-bg-scheme-dark);
+
   @include supports.light-dark(true) {
     color-scheme: #{$color-scheme};
   }
@@ -42,14 +62,26 @@
   @include supports.light-dark(false) {
     // Literals (`light`, `dark`) and the core tokens `var(--post-core-bg-scheme-…)` are not valid
     // space toggles and must be converted.
-    @if $color-scheme == light or $color-scheme == var(--post-core-bg-scheme-light) {
+    @if $is-light {
       --post-fallback-prefers-light: ;
-    } @else if $color-scheme == dark or $color-scheme == var(--post-core-bg-scheme-dark) {
+    } @else if $is-dark {
       --post-fallback-prefers-light: initial;
     }
     // Other values are expected to already resolve to a space toggle.
     @else {
       --post-fallback-prefers-light: #{$color-scheme};
+    }
+
+    // In browsers that do not fully support `light-dark()`, scheme variables resolve to space
+    // toggles. To allow the `color-scheme` keyword to be used in browsers that only support
+    // `light-dark()` for colours, the value needs to be derived from the toggle.
+    @include supports.light-dark-color(true) {
+      @if $is-light or $is-dark {
+        color-scheme: #{$color-scheme};
+      } @else {
+        --post-fallback-color-scheme-light: var(--post-fallback-prefers-light) light;
+        color-scheme: var(--post-fallback-color-scheme-light, dark);
+      }
     }
   }
 

@@ -1,5 +1,18 @@
-@mixin light-dark($supports: true) {
-  @if ($supports) {
+@mixin light-dark($supported: true) {
+  @if ($supported) {
+    // The `none` keyword produces a fully transparent image with no natural size.
+    @supports (background-image: light-dark(none, none)) {
+      @content;
+    }
+  } @else {
+    @supports not (background-image: light-dark(none, none)) {
+      @content;
+    }
+  }
+}
+
+@mixin light-dark-color($supported: true) {
+  @if ($supported) {
     @supports (color: light-dark(black, white)) {
       @content;
     }
