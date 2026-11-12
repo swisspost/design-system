@@ -4,6 +4,8 @@ import { Meta, Source } from '@storybook/addon-docs/blocks';
 import AngularAppComponentSample from './angular-app-component.sample.html?raw';
 import SampleCssGlobal from './angular-app-css-global.sample.css?raw';
 import AngularAppModuleSample from './angular-app-module.sample.ts?raw';
+import AngularAppStandaloneHtmlSample from './angular-app-standalone.sample.html?raw';
+import AngularAppStandaloneComponentSample from './angular-app-standalone-component.sample.ts?raw';
 import * as PackageStories from './components-angular.stories';
 import { PackageShields } from '@root/src/shared/package-shields';
 
@@ -28,6 +30,18 @@ import { PackageShields } from '@root/src/shared/package-shields';
 Import the packages global styles. They are required for the components to work properly.
 
 <Source code={SampleCssGlobal} language="scss" />
+
+### Standalone application
+
+Importing the components to your project.
+
+<Source code={AngularAppStandaloneComponentSample} language="typescript" />
+
+Usage within your template.
+
+<Source code={AngularAppStandaloneHtmlSample} language="html" />
+
+### Module-based application
 
 Importing the components to your project.
 
