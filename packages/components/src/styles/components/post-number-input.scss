@@ -4,18 +4,21 @@
 tokens.$default-map: components.$post-number-input;
 
 // Non-floating label
-.form-label:has(+ post-number-input) {
+.form-label:has(+ post-number-input),
+.form-label:has(+ .form-grid-control post-number-input) {
   display: block;
 }
 
-.form-label:has(+ post-number-input.number-input-sm) {
+.form-label:has(+ post-number-input.number-input-sm),
+.form-label:has(+ .form-grid-control post-number-input.number-input-sm) {
   padding-inline: tokens.get('number-input-non-floating-small-label-padding-inline');
   padding-block: tokens.get('number-input-non-floating-small-label-padding-block');
   font-weight: tokens.get('number-input-non-floating-small-label-font-weight');
   font-size: tokens.get('number-input-non-floating-small-label-font-size');
 }
 
-.form-label:has(+ post-number-input.disabled) {
+.form-label:has(+ post-number-input.disabled),
+.form-label:has(+ .form-grid-control post-number-input.disabled) {
   color: tokens.get('input-color-disabled-fg', components.$post-text-input);
 }
 
