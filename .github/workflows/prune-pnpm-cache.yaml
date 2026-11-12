@@ -1,0 +1,54 @@
+###
+#
+# Keeps a single pnpm store cache per branch.
+#
+# The pnpm store cache is only saved from `main` and `release/v*` (see the setup-pnpm action),
+# but every save creates a new cache entry. This workflow deletes
+# - all but the newest `pnpm-cache-*` entry of `main` and of each `release/v*` branch
+# - all `pnpm-cache-*` entries of any other ref (e.g. pull requests), as they cannot be shared anyway
+#
+###
+
+name: Prune pnpm cache
+on:
+  workflow_run:
+    workflows: [Release]
+    types: [completed]
+    branches:
+      - main
+      - release/v*
+  schedule:
+    - cron: '30 5 * * *' # the job will run every day at 5:30 UTC
+  workflow_dispatch:
+
+permissions:
+  actions: write
+
+concurrency:
+  group: ${{ github.workflow }}
+
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Delete outdated pnpm caches
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh api --paginate "repos/${GH_REPO}/actions/caches?key=pnpm-cache-&per_page=100" \
+            --jq '.actions_caches[] | [.id, .ref, .created_at] | @tsv' > caches.tsv
+
+          # newest first, so the first entry per ref is the one to keep
+          sort -t$'\t' -k3,3r caches.tsv | awk -F'\t' '
+            $2 == "refs/heads/main" || $2 ~ /^refs\/heads\/release\/v/ { if (seen[$2]++) print $1; next }
+            { print $1 }
+          ' > delete-ids.txt
+
+          while read -r id; do
+            echo "Deleting cache $id"
+            gh api --method DELETE "repos/${GH_REPO}/actions/caches/$id"
+          done < delete-ids.txt
+
+          echo "Deleted $(wc -l < delete-ids.txt) of $(wc -l < caches.tsv) pnpm cache entries"
