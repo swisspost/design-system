@@ -16,15 +16,15 @@
   },
   "exports": "./index.mjs",
   "scripts": {
-    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore",
-    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
+    "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore",
+    "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore"
   },
   "dependencies": {
-    "stylelint-config-sass-guidelines": "13.0.0",
-    "stylelint-scss": "6.12.1"
+    "postcss": "8.5.32",
+    "stylelint-scss": "7.4.0"
   },
   "peerDependencies": {
-    "stylelint": ">=16.0.0"
+    "stylelint": ">=17.0.0"
   },
   "devDependencies": {
     "@swisspost/design-system-prettier-config": "workspace:10.8.0",

@@ -5,6 +5,7 @@
 @use '@swisspost/design-system-styles/core.scss' as post;
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
 @use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/tokens/utilities';
 @use './variables' as sb;
@@ -15,8 +16,7 @@ tokens.$default-map: utilities.$post-spacing;
 #storybook-root,
 #storybook-docs {
   .sbdocs-content *:not(.section) > .container >,
-  .sbdocs-content *:not(.section) > .container > post-tabs > post-tab-panel >,
-  .sbdocs-content *:not(.section) > .container > migration-global-state {
+  .sbdocs-content *:not(.section) > .container > post-tabs > post-tab-panel > {
     // Target content headings only
     h1 {
       margin-block: 5rem 1rem;
@@ -66,25 +66,21 @@ tokens.$default-map: utilities.$post-spacing;
     .docs-title :is(h1, h2, h3, h4, h5, h6),
     post-tab-panel > :is(h1, h2, h3, h4, h5, h6),
     > :is(h1, h2, h3, h4, h5, h6) {
-      position: relative;
-      padding-right: 32px; // needed to add space for the link icon
+      // the link stays in the text flow, so it follows the text even when the heading wraps
+      > a {
+        padding-inline: 0.25rem;
+        font-size: 0.8em;
+        line-height: 0;
+        vertical-align: middle;
 
-      @media (hover: hover) {
-        > a {
-          display: none;
+        @media (hover: hover) {
+          // hidden instead of removed, so revealing it doesn't reflow the heading
+          visibility: hidden;
         }
       }
 
-      > a {
-        position: absolute;
-        bottom: 0;
-        font-size: 1.5rem;
-        padding: 0.5rem;
-        line-height: 1;
-      }
-
       &:hover > a {
-        display: inline-block;
+        visibility: visible;
       }
     }
   }
@@ -98,8 +94,8 @@ tokens.$default-map: utilities.$post-spacing;
     gap: tokens.get('utility-gap-8');
   }
 
-  // aligns figma button to the title
-  .docs-title > link-design,
+  // aligns figma and snapshot buttons to the title
+  .docs-title > story-links,
   .docs-title > .buttons-container {
     margin-block-end: tokens.get('h1-margin-block-end', elements.$post-heading);
   }
@@ -112,7 +108,7 @@ tokens.$default-map: utilities.$post-spacing;
   .docs-title {
     margin-bottom: tokens.get('utility-gap-8');
 
-    :first-child {
+    > :first-child {
       margin-right: auto;
     }
   }
@@ -168,8 +164,17 @@ tokens.$default-map: utilities.$post-spacing;
       background: transparent;
 
       button {
-        &:hover {
-          background-color: post.$white;
+        // removes Storybook's blue focus underline in favor of the design system outline
+        &:focus {
+          box-shadow: none;
+        }
+
+        // keeps the focus outline inside the button and above the next one
+        @include utilities-mx.focus-inset;
+
+        &:focus-visible {
+          position: relative;
+          z-index: 1;
         }
 
         &:nth-of-type(2) {
