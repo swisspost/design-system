@@ -9,7 +9,15 @@ export default defineConfig({
   e2e: {
     viewportWidth: 1024,
     viewportHeight: 576,
-    async setupNodeEvents(_on, config) {
+    async setupNodeEvents(on, config) {
+      on('before:browser:launch', (browser, launchOptions) => {
+        if (!config.isTextTerminal && browser.family === 'chromium') {
+          launchOptions.args = launchOptions.args.filter(arg => arg !== '--headless=new');
+        }
+
+        return launchOptions;
+      });
+
       await browsersPlugin(config);
       return config;
     },
