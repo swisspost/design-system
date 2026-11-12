@@ -14,14 +14,16 @@ permissions:
   contents: read
 
 jobs:
-  # Runs all third-party build code (Stencil, Sass, Storybook, transitive dependencies)
-  # without any secret, write permission or OIDC token.
+  # Everything that runs third-party build tooling (dependency install scripts, Stencil,
+  # Sass, Angular, Storybook, ...) happens in this job. It only has the read-only default
+  # GITHUB_TOKEN: no secrets, no environment and no `id-token: write`.
+  # The build output is handed over to the changeset-magic job as an artifact, so the job
+  # that is allowed to publish to npm never runs the build toolchain itself.
   build:
     name: Build Packages
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     steps:
+      # Checkout the Branch which was pushed ('main' or 'release/v*')
       - name: Checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
         with:
@@ -30,63 +32,15 @@ jobs:
       - name: Setup Node & pnpm
         uses: ./.github/actions/setup-pnpm
 
-      - name: Install & build Dependencies
-        run: pnpm bootstrap
-
-      # Collect the git-ignored build outputs (dist, generated sources, ...) in a single tarball
-      - name: Pack build outputs
-        run: |
-          git ls-files --others --ignored --exclude-standard --directory -z \
-            | grep -zvE '(^|/)(node_modules|\.turbo|\.angular|\.next|\.stencil|storybook-static|screenshots|__screenshots__)(/|$)|\.DS_Store$|^mise\.local\.toml$' \
-            | tar --null -czf "$RUNNER_TEMP/build-outputs.tgz" --files-from=-
-
-      - name: Upload build outputs
-        uses: actions/upload-artifact@6027e3dd177782cd8ab9af838c04fd81a07f1d47
-        with:
-          name: release-build-outputs
-          path: ${{ runner.temp }}/build-outputs.tgz
-          retention-days: 1
-          if-no-files-found: error
-
-  # Only this job can publish: it never executes the build scripts of the monorepo dependencies.
-  changeset-magic:
-    name: Set up Changeset PR or Release Packages
-    runs-on: ubuntu-latest
-    needs: build
-    permissions:
-      contents: write
-      pull-requests: write
-      id-token: write
-    environment: npm-release
-    steps:
-      # Checkout the Branch which was pushed ('main' or 'release/v*')
-      - name: Checkout
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
-
-      - name: Setup Node & pnpm
-        uses: ./.github/actions/setup-pnpm
-
-      # Trusted publishing requires npm 11.5.1 or later.
-      - name: Update NPM for trusted publishing
+      # Keep in sync with the npm version of the changeset-magic job,
+      # so the publish dry-run below is representative.
+      - name: Update NPM
         run: |
           npm install -g npm@11.19.1 --ignore-scripts
           echo "npm: $(npm -v)"
 
-      # Dependency lifecycle scripts must not run in this privileged job
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile --ignore-scripts
-
-      - name: Download build outputs
-        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
-        with:
-          name: release-build-outputs
-          path: ${{ runner.temp }}/build-outputs
-
-      - name: Restore build outputs
-        run: tar -xzf "$RUNNER_TEMP/build-outputs/build-outputs.tgz"
-
-      - name: Configure GitHub User
-        uses: ./.github/actions/configure-github-user
+      - name: Install & build Dependencies
+        run: pnpm bootstrap
 
       - name: Abort workflow, if uncommitted changes are detected
         run: |
@@ -110,6 +64,118 @@ jobs:
           trap 'rm -f changesets.json' EXIT
           pnpm changeset status --output=changesets.json
           node .github/workflows/scripts/check-packages-on-npm.mjs
+
+      # The build output is everything below packages/ that is ignored by git, except:
+      #  - node_modules: reinstalled in the changeset-magic job
+      #  - the changelog generator: rebuilt in the changeset-magic job, because it is executed there
+      #
+      # git can list an ignored directory together with one of its ignored subdirectories
+      # (e.g. packages/icons/dist/ and packages/icons/dist/custom-properties/). tar would store
+      # the files it then sees twice as hard links, `--hard-dereference` keeps them regular files.
+      - name: Archive build output
+        run: |
+          set -euo pipefail
+
+          git ls-files -z --others --ignored --exclude-standard --directory -- packages \
+            | grep --null-data --invert-match --extended-regexp '(^|/)node_modules/|^packages/changelog-github/' \
+            | tar --create --gzip --hard-dereference --file "$RUNNER_TEMP/build-output.tar.gz" --exclude=node_modules --null --files-from=-
+
+      - name: Upload build output
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: build-output
+          path: ${{ runner.temp }}/build-output.tar.gz
+          if-no-files-found: error
+          retention-days: 1
+
+  # This is the only job that can publish to npm (`id-token: write` for trusted publishing).
+  # It does not build anything: it installs the dependencies without lifecycle scripts
+  # and reuses the build output of the build job.
+  changeset-magic:
+    name: Set up Changeset PR or Release Packages
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+    environment: npm-release
+    steps:
+      # Checkout the Branch which was pushed ('main' or 'release/v*')
+      - name: Checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+
+      # The pnpm store cache can be written by jobs that run the build toolchain,
+      # so it is not reused in the job that is allowed to publish.
+      - name: Setup Node & pnpm
+        uses: ./.github/actions/setup-pnpm
+        with:
+          use_cache: false
+
+      # Trusted publishing requires npm 11.5.1 or later.
+      - name: Update NPM for trusted publishing
+        run: |
+          npm install -g npm@11.19.1 --ignore-scripts
+          echo "npm: $(npm -v)"
+
+      # Lifecycle scripts are skipped on purpose: the packages are already built,
+      # the dependencies are only needed to run the changeset CLI.
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+
+      # The changelog generator (see .changeset/config.json) is executed by `changeset version`
+      # in this job. It is therefore compiled here from the checked out sources
+      # instead of being taken from the build artifact.
+      - name: Build changelog generator
+        run: pnpm --filter @swisspost/design-system-changelog-github build
+
+      - name: Download build output
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: build-output
+          path: ${{ runner.temp }}/build-output
+
+      # The archive was created by a job that ran the build toolchain, so its content is validated
+      # before it is copied into the workspace. It may only contain regular files and directories
+      # below packages/, and nothing that pnpm, git or the changeset CLI would execute.
+      - name: Restore build output
+        run: |
+          set -euo pipefail
+
+          STAGING="$RUNNER_TEMP/build-output/staging"
+
+          mkdir "$STAGING"
+          tar --extract --gzip --file "$RUNNER_TEMP/build-output/build-output.tar.gz" --directory "$STAGING" --no-same-owner
+
+          if [[ "$(ls -A "$STAGING")" != "packages" ]]; then
+            echo "::error::The build output must only contain the packages directory."
+            exit 1
+          fi
+
+          if [[ -n "$(find "$STAGING" ! -type f ! -type d -print -quit)" ]]; then
+            echo "::error::The build output must only contain regular files and directories."
+            exit 1
+          fi
+
+          if [[ -n "$(find "$STAGING" \( -name node_modules -o -name .git \) -print -quit)" || -e "$STAGING/packages/changelog-github" ]]; then
+            echo "::error::The build output contains paths that must not be restored."
+            exit 1
+          fi
+
+          cp -R "$STAGING/packages/." packages/
+          rm -rf "$RUNNER_TEMP/build-output"
+
+      - name: Configure GitHub User
+        uses: ./.github/actions/configure-github-user
+
+      # Besides catching uncommitted changes, this ensures that restoring the build output
+      # did not modify tracked files or add files that are not ignored by git.
+      - name: Abort workflow, if uncommitted changes are detected
+        run: |
+          if [[ $(git status --porcelain) ]]; then
+            echo "Error: Unclean working tree! Commit changes first, then release again..."
+            exit 1
+          fi
 
       # The changeset action will behave differently based on whether there are
       # new changesets on the github.ref branch:
