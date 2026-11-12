@@ -77,7 +77,7 @@ function StylesSwitcher() {
       debounce(() => {
         const storySelectors = [
           // Story in fullscreen mode (standalone)
-          'body.sb-main-padded',
+          'body:is(.sb-main-padded, .sb-main-fullscreen, .sb-main-centered):has(> #storybook-docs[hidden])',
           // Story on docs page (nested)
           'div.sbdocs-preview',
         ];
@@ -164,6 +164,11 @@ function StylesSwitcher() {
 
     const scheme = currentScheme.toLowerCase();
 
+    // The preview body is reused when navigating from a standalone story to a docs page
+    if (preview && !Array.from(stories).includes(preview.body)) {
+      preview.body.removeAttribute('data-color-scheme');
+    }
+
     stories.forEach(story => {
       story.setAttribute('data-color-scheme', scheme);
       story.querySelector('.docs-story')?.classList.add('palette', 'palette-default');
@@ -173,7 +178,7 @@ function StylesSwitcher() {
         .querySelector('iframe')
         ?.contentDocument?.documentElement?.setAttribute('data-color-scheme', scheme);
     });
-  }, [stories, currentScheme]);
+  }, [preview, stories, currentScheme]);
 
   /**
    * Applies selected theme and registers it to the local storage
