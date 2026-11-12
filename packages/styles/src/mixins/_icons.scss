@@ -19,7 +19,6 @@ $icons-default-path: '@swisspost/design-system-icons/dist/custom-properties';
  * Not documented for Design System users.
  */
 @mixin mask-image($name, $path: $icons-default-path) {
-  -webkit-mask-image: var(--post-icon-#{$name});
   mask-image: var(--post-icon-#{$name});
   background-color: currentColor;
 
@@ -44,15 +43,11 @@ $icons-default-path: '@swisspost/design-system-icons/dist/custom-properties';
   height: $size;
   vertical-align: -0.15em;
   color: $color;
-  -webkit-mask-position: center center;
   mask-position: center center;
-  -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  -webkit-mask-size: 100%;
   mask-size: 100%;
 }
 
 @mixin remove-icon() {
-  -webkit-mask-image: none;
   mask-image: none;
 }
