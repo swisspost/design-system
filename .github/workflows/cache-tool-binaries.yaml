@@ -93,9 +93,15 @@ jobs:
         with:
           use_cache: false
 
+      # Dependencies are installed from the lockfile without running any lifecycle scripts,
+      # the Cypress binary is then downloaded explicitly by the Cypress CLI
+      - name: Install dependencies without scripts
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: pnpm --filter design-system-documentation install --frozen-lockfile --ignore-scripts
+
       - name: Install Cypress binary
         if: steps.cache.outputs.cache-hit != 'true'
-        run: pnpm dlx --allow-build=cypress cypress@${{ steps.cache-keys.outputs.cypress-version }} install
+        run: pnpm --filter design-system-documentation exec cypress install
 
       - name: Save cache
         if: steps.cache.outputs.cache-hit != 'true'
