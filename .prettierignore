@@ -1,9 +1,0 @@
-CODEOWNERS
-pnpm-lock.yaml
-dist
-*.min.*
-packages/components/**/readme.md
-packages/internet-header/**/readme.md
-packages/icons/src/icons/**/report.json
-packages/tokens/tokensstudio-generated/
-*.d.ts

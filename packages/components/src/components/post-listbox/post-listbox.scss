@@ -7,9 +7,6 @@ post-popovercontainer {
   box-shadow: elevation.$elevation-300;
 }
 
-div[role='listbox'] {
-  max-height: 384px;
-  overflow: auto;
-  display: flex;
+post-popovercontainer::part(post-popovercontainer-content) {
   flex-direction: column;
 }

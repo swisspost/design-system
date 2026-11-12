@@ -1,0 +1,11 @@
+#storybook-docs .header-decision-tree {
+  overflow: hidden;
+
+  iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    min-height: 400px;
+    border: 0;
+  }
+}
