@@ -9,6 +9,7 @@ const defaultArgs: Args = {
   language: 'en',
   activeRoute: 'auto',
   fullWidth: false,
+  hideLogin: false,
   textMain: 'Main',
   textMenu: 'Menu',
   textChangeLanguage: 'Change the language',
@@ -52,6 +53,7 @@ export function renderHeader({ innerHMTL, ...args }: Args = defaultArgs) {
       environment=${args.environment !== 'prod' ? args.environment : nothing}
       language=${args.language}
       ?full-width=${args.fullWidth}
+      ?hide-login=${args.hideLogin}
       text-main=${args.textMain}
       text-menu=${args.textMenu}
       text-change-language=${args.textChangeLanguage}
