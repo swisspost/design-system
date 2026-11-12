@@ -4,5 +4,6 @@ import { PostBanner, PostIcon } from '@swisspost/design-system-components-angula
 
 @Component({
   imports: [PostBanner, PostIcon],
-  ...
+  // ...
 })
+export class AppComponent {}
