@@ -35,6 +35,7 @@ $post-segmented-button-max-count: 8;
     position: relative;
     z-index: 2;
     padding-inline: tokens.get('button-segmented-padding-inline');
+    gap: tokens.get('button-segmented-elements-gap-inline');
     height: tokens.get('button-segmented-elements-height');
     border-radius: inherit;
     cursor: pointer;
@@ -43,6 +44,10 @@ $post-segmented-button-max-count: 8;
     text-align: center;
     line-height: 1.2;
     overflow-wrap: anywhere;
+
+    post-icon {
+      flex-shrink: 0;
+    }
 
     input {
       appearance: none !important;

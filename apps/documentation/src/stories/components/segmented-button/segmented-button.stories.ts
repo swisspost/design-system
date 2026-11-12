@@ -3,6 +3,16 @@ import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const MAX_LABELS = 8;
+const ICON_NAMES = [
+  'letter',
+  'parcel',
+  'letterandparcel',
+  'locationpackage',
+  'locationletter',
+  'stampapost',
+  'stampbpost',
+  'mailboxprivate',
+];
 
 const meta: MetaComponent = {
   id: '78509712-d45e-462c-bde3-405cfaff5421',
@@ -17,12 +27,27 @@ const meta: MetaComponent = {
   },
   args: {
     labelCount: 4,
+    content: 'text',
   },
   argTypes: {
     labelCount: {
       name: 'Number of segments',
       description: `Defines the number of segments for the segmented button. The maximum number of supported segments is 8. If you need more options, please refer to the select component.`,
       control: { type: 'number', min: 1, max: MAX_LABELS },
+      table: { category: 'Content' },
+    },
+    content: {
+      name: 'Content',
+      description: 'Defines whether the segments display a text, an icon, or both.',
+      control: {
+        type: 'radio',
+        labels: {
+          'text': 'Text only',
+          'icon': 'Icon only',
+          'text-icon': 'Text + Icon',
+        },
+      },
+      options: ['text', 'icon', 'text-icon'],
       table: { category: 'Content' },
     },
   },
@@ -32,59 +57,32 @@ export default meta;
 
 type Story = StoryObj;
 
-export const TextExample: Story = {
+export const Default: Story = {
   render: (args: Args) => {
     const labelCount = Math.min(args.labelCount || 0, MAX_LABELS);
-    const labelsArray = Array.from({ length: labelCount }, (_, i) => `Label ${i + 1}`);
     const name = `segmented-button-${Math.random().toString(36).slice(-6)}`;
+    const showIcon = args.content !== 'text';
+    const showText = args.content !== 'icon';
 
     return html`
       <div class="segmented-button-container">
         <fieldset class="segmented-button">
           <legend>Choose one of the options</legend>
-          ${labelsArray.map(
-            (label, index) => html`
+          ${Array.from({ length: labelCount }, (_, index) => {
+            const label = `Label ${index + 1}`;
+            return html`
               <label class="segmented-button-label">
                 <input name="${name}" type="radio" checked="${index === 0 ? '' : nothing}" />
-                ${label}
+                ${showIcon
+                  ? html`<post-icon
+                      name="${ICON_NAMES[index % ICON_NAMES.length]}"
+                      aria-hidden="true"
+                    ></post-icon>`
+                  : nothing}
+                ${showText ? label : html`<span class="visually-hidden">${label}</span>`}
               </label>
-            `,
-          )}
-        </fieldset>
-      </div>
-    `;
-  },
-};
-
-export const IconExample: Story = {
-  render: (args: Args) => {
-    const labelCount = Math.min(args.labelCount || 0, MAX_LABELS);
-    const name = `segmented-button-${Math.random().toString(36).slice(-6)}`;
-
-    const iconNames = [
-      'letter',
-      'parcel',
-      'letterandparcel',
-      'locationpackage',
-      'locationletter',
-      'stampapost',
-      'stampbpost',
-      'mailboxprivate',
-    ];
-
-    return html`
-      <div class="segmented-button-container">
-        <fieldset class="segmented-button">
-          <legend>Choose one of the options</legend>
-          ${Array.from(
-            { length: labelCount },
-            (_undefined, index) => html`
-              <label class="segmented-button-label">
-                <input type="radio" name="${name}" checked="${index === 0 ? '' : nothing}" />
-                <post-icon name="${iconNames[index % iconNames.length]}" />
-              </label>
-            `,
-          )}
+            `;
+          })}
         </fieldset>
       </div>
     `;
