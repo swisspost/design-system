@@ -50,7 +50,7 @@ width. With this setup, we can define a max-width on the input field to shrink i
 
 <Canvas of={FormGuidelinesStories.CustomWidth} sourceState="shown" />
 
-## One field per row or multiple columns ?
+## One field per row or multiple columns?
 
 ### External applications
 
@@ -70,6 +70,13 @@ To keep all form fields aligned:
 - For radio button groups, place the `<fieldset>` inside the column, with the `<legend>` followed by the `.form-grid-control` wrapper. The legend then aligns with the other labels.
 
 This way, all form fields in a row start at the same height, no matter how long their labels are or whether they have a label at all.
+
+<post-banner type="warning" data-size="sm">
+  <p>
+    Radio button groups and checkbox groups inside a <code>&lt;fieldset&gt;</code> with a
+    <code>&lt;legend&gt;</code> do not yet align perfectly in the form grid. This will be addressed in a follow-up.
+  </p>
+</post-banner>
 
 <Canvas of={FormGuidelinesStories.FormGrid} sourceState="shown" />
 

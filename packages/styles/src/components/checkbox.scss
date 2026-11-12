@@ -83,7 +83,7 @@ fieldset:has(.form-check input[type='checkbox']) {
 
 fieldset legend {
   &:has(+ .form-check input[type='checkbox']),
-  &:has(+ .form-grid-control + .form-check input[type='checkbox']) {
+  &:has(+ .form-grid-control .form-check input[type='checkbox']) {
     font-size: tokens.get('checkbox-group-legend-font-size');
     margin-block-end: tokens.get('checkbox-gap-block-group');
   }

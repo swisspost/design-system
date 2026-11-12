@@ -34,18 +34,18 @@
     }
   }
 
-  // Visually align form checks with inputs
+  // Visually align single form checks with the inputs next to them
   .form-check:not(fieldset .form-check) {
     $input-height: tokens.get('input-sizing-height', components.$post-text-input);
     $checkbox-height: tokens.get('checkbox-icon-size', components.$post-checkbox);
 
-    padding-block-start: calc((#{$input-height} - #{$checkbox-height}) / 2);
+    --post-form-grid-check-offset: calc((#{$input-height} - #{$checkbox-height}) / 2);
 
     &.form-check-sm {
       $input-height: tokens.get('input-small-sizing-height', components.$post-text-input);
       $checkbox-height: tokens.get('checkbox-small-icon-size', components.$post-checkbox);
 
-      padding-block-start: calc((#{$input-height} - #{$checkbox-height}) / 2);
+      --post-form-grid-check-offset: calc((#{$input-height} - #{$checkbox-height}) / 2);
     }
   }
 
@@ -56,6 +56,16 @@
       @for $size from 1 through grid.$grid-columns {
         > .col#{$infix}-#{$size} {
           grid-column: span $size;
+        }
+
+        // A full-width column is alone on its line, so no need for the extra margin-top on a form-check element
+        $check-offset: 0;
+        @if $size < grid.$grid-columns {
+          $check-offset: var(--post-form-grid-check-offset);
+        }
+
+        > .col#{$infix}-#{$size} .form-check:not(fieldset .form-check) {
+          margin-block-start: $check-offset;
         }
       }
     }
