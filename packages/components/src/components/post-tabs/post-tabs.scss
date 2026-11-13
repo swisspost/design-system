@@ -17,6 +17,7 @@ $tabs-outline-offset: tokens.get('focus-outline-offset3', helpers.$post-focus);
     position: relative;
     display: flex;
     align-items: center;
+    z-index: 0;
 
     // Scroll buttons
     button.scroll-btn {
@@ -85,21 +86,21 @@ $tabs-outline-offset: tokens.get('focus-outline-offset3', helpers.$post-focus);
     @include media.min(desktop) {
       // Keeps `.tabs-wrapper` this far short of the true page edge, so the `100vw`/scrollbar-width
       // gap in `--post-container-offset` can never push it into horizontal overflow
-      $safe-edge-margin: 20px;
+      $safe-edge-margin: var(--post-tabs-safe-edge-margin, 20px);
 
-      margin-inline: calc(-1 * (var(--post-container-offset)) + #{$safe-edge-margin});
+      margin-inline: min(0px, calc(-1 * var(--post-container-offset) + #{$safe-edge-margin}));
 
       &::after {
         // Extends the line drawn by ::after to reach the true page edge, without creating
         // horizontal overflow
         box-shadow:
           $safe-edge-margin 0 0 tokens.get('post-tabs-page-border'),
-          (-$safe-edge-margin) 0 0 tokens.get('post-tabs-page-border');
+          calc(-1 * #{$safe-edge-margin}) 0 0 tokens.get('post-tabs-page-border');
 
         @include utilities-mx.high-contrast-mode() {
           box-shadow:
             $safe-edge-margin 0 0 LinkText,
-            (-$safe-edge-margin) 0 0 LinkText;
+            calc(-1 * #{$safe-edge-margin}) 0 0 LinkText;
         }
       }
     }
@@ -163,6 +164,13 @@ $tabs-outline-offset: tokens.get('focus-outline-offset3', helpers.$post-focus);
       // These styles are required to stretch the bottom line to the edges of the container
       padding-inline: calc(var(--post-container-offset));
       gap: tokens.get('post-tabs-page-gap-inline');
+
+      @include media.min(desktop) {
+        padding-inline: max(
+          0px,
+          calc(var(--post-container-offset) - var(--post-tabs-safe-edge-margin, 20px))
+        );
+      }
 
       // Hide scrollbar across browsers while keeping scroll functionality
       scrollbar-width: none; // Firefox
