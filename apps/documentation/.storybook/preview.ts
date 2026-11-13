@@ -11,6 +11,7 @@ import {
   withUrlParams,
 } from './helpers';
 import './helpers/register-web-components';
+import './helpers/sync-iframe-story-args';
 import './addons/cypress-storybook/client';
 
 import './styles/preview.scss';
