@@ -15,24 +15,6 @@ tokens.$default-map: components.$post-banner;
 // Provides the `--post-icon-candle` custom property used by the grief banner
 @include meta.load-css('#{icons.$icons-default-path}/candle');
 
-// The host keeps the color scheme of the page, so that its background, its border and the close
-// button (which overlaps the page) are resolved against the page.
-// The icon and the content lie on the banner background and use the color scheme of the banner.
-@mixin banner-type($bg, $border-color, $fg, $scheme) {
-  background-color: $bg;
-  border-color: $border-color;
-
-  &::before,
-  .post-banner-content {
-    @include color-scheme.set($scheme);
-  }
-
-  .post-banner-content {
-    --post-current-bg: #{$bg};
-    --post-current-fg: #{$fg};
-  }
-}
-
 :host {
   position: relative;
   display: grid;
@@ -45,6 +27,7 @@ tokens.$default-map: components.$post-banner;
     #{tokens.get('banner-padding')} + #{tokens.get('banner-icon-size')} +
       #{tokens.get('banner-gap')}
   );
+  color: var(--post-current-fg);
   border-style: tokens.get('banner-border-style');
   border-width: tokens.get('banner-border-width');
   border-radius: tokens.get('banner-border-radius');
@@ -61,46 +44,36 @@ tokens.$default-map: components.$post-banner;
   }
 }
 
-@each $name in 'info', 'success', 'warning', 'error' {
+// The host keeps the color scheme of the page, so that the close button (which overlaps the page)
+// is resolved against the page. The icon and the content use the color scheme of the banner.
+@each $name in 'info', 'success', 'warning', 'error', 'grief' {
   :host([type='#{$name}']) {
-    @include banner-type(
-      tokens.get('banner-#{$name}-bg'),
-      tokens.get('banner-#{$name}-border-color'),
-      tokens.get('body-color-fg', elements.$post-body),
-      tokens.get('banner-#{$name}-bg-scheme')
-    );
+    background-color: tokens.get('banner-#{$name}-bg');
+
+    @if $name == 'grief' {
+      border-color: tokens.get('banner-grief-stroke');
+    } @else {
+      border-color: tokens.get('banner-#{$name}-border-color');
+    }
+
+    &::before,
+    .post-banner-content {
+      @include color-scheme.set(tokens.get('banner-#{$name}-bg-scheme'));
+    }
 
     &::before {
-      background-image: var(--post-signal-icon-#{$name});
+      @if $name == 'grief' {
+        // Unlike the signal icons, the candle icon has no background circle of its own
+        border-radius: tokens.get('banner-grief-icon-wrapper-border-radius');
+        background-color: tokens.get('banner-grief-icon-bg');
+        background-image: var(--post-icon-candle);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: tokens.get('banner-grief-icon-size');
+      } @else {
+        background-image: var(--post-signal-icon-#{$name});
+      }
     }
-  }
-}
-
-:host([type='grief']) {
-  min-height: calc(
-    #{tokens.get('banner-grief-icon-wrapper-size')} + (2 * #{tokens.get('banner-padding')})
-  );
-  padding-inline-start: calc(
-    #{tokens.get('banner-padding')} + #{tokens.get('banner-grief-icon-wrapper-size')} +
-      #{tokens.get('banner-gap')}
-  );
-
-  @include banner-type(
-    tokens.get('banner-grief-bg'),
-    tokens.get('banner-grief-stroke'),
-    tokens.get('banner-grief-fg'),
-    tokens.get('banner-grief-bg-scheme')
-  );
-
-  &::before {
-    height: tokens.get('banner-grief-icon-wrapper-size');
-    width: tokens.get('banner-grief-icon-wrapper-size');
-    border-radius: tokens.get('banner-grief-icon-wrapper-border-radius');
-    background-color: tokens.get('banner-grief-icon-bg');
-    background-image: var(--post-icon-candle);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: tokens.get('banner-grief-icon-size') tokens.get('banner-grief-icon-size');
   }
 }
 
