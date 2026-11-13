@@ -6,7 +6,6 @@
 @use '@swisspost/design-system-styles/mixins/icons';
 
 @use '@swisspost/design-system-styles/tokens/components';
-@use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/tokens/helpers';
 @use '@swisspost/design-system-styles/functions/tokens';
 
@@ -50,30 +49,38 @@ tokens.$default-map: components.$post-banner;
   :host([type='#{$name}']) {
     background-color: tokens.get('banner-#{$name}-bg');
 
-    @if $name == 'grief' {
-      border-color: tokens.get('banner-grief-stroke');
-    } @else {
-      border-color: tokens.get('banner-#{$name}-border-color');
-    }
-
     &::before,
     .post-banner-content {
       @include color-scheme.set(tokens.get('banner-#{$name}-bg-scheme'));
     }
+  }
+}
+
+@each $name in 'info', 'success', 'warning', 'error' {
+  :host([type='#{$name}']) {
+    border-color: tokens.get('banner-#{$name}-border-color');
 
     &::before {
-      @if $name == 'grief' {
-        // Unlike the signal icons, the candle icon has no background circle of its own
-        border-radius: tokens.get('banner-grief-icon-wrapper-border-radius');
-        background-color: tokens.get('banner-grief-icon-bg');
-        background-image: var(--post-icon-candle);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: tokens.get('banner-grief-icon-size');
-      } @else {
-        background-image: var(--post-signal-icon-#{$name});
-      }
+      background-image: var(--post-signal-icon-#{$name});
     }
+  }
+}
+
+:host([type='grief']) {
+  border-color: tokens.get('banner-grief-stroke');
+
+  // Unlike the signal icons, the candle icon has no background circle of its own
+  &::before {
+    border-radius: tokens.get('banner-grief-icon-wrapper-border-radius');
+    background-color: tokens.get('banner-grief-icon-bg');
+    background-image: var(--post-icon-candle);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: tokens.get('banner-grief-icon-size');
+  }
+
+  .post-banner-content {
+    --post-current-fg: #{tokens.get('banner-grief-fg')};
   }
 }
 
@@ -90,6 +97,7 @@ tokens.$default-map: components.$post-banner;
   overflow-x: auto;
   padding: var(--post-banner-focus-room);
   margin: calc(-1 * var(--post-banner-focus-room));
+  color: var(--post-current-fg);
 }
 
 .actions {
