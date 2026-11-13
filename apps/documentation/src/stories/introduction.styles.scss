@@ -3,6 +3,7 @@
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/utilities';
 @use '@swisspost/design-system-styles/tokens/elements';
+@use '@swisspost/design-system-styles/mixins/media';
 
 tokens.$default-map: utilities.$post-spacing;
 
@@ -11,6 +12,18 @@ tokens.$default-map: utilities.$post-spacing;
 }
 
 .target {
+  flex-wrap: wrap;
+
+  > * {
+    width: 100%;
+  }
+
+  @include media.min(sm) {
+    > * {
+      width: 50%;
+    }
+  }
+
   .target-icon {
     display: flex;
     align-items: center;
