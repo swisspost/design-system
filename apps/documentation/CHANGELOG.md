@@ -1,5 +1,15 @@
 # @swisspost/design-system-documentation
 
+## 6.8.1
+
+### Patch Changes
+
+- Added the dark mode on the fullscreen previews. (by [@leagrdv](https://github.com/leagrdv) with [#8873](https://github.com/swisspost/design-system/pull/8873))
+
+- Added an option to the Tabs documentation to show Tab items with only text, only icons and with text and icons (by [@AndrinAAF](https://github.com/AndrinAAF), [@Copilot](https://github.com/Copilot) and [@alionazherdetska](https://github.com/alionazherdetska) with [#8804](https://github.com/swisspost/design-system/pull/8804))
+
+- Changed the icon search to the new design. (by [@leagrdv](https://github.com/leagrdv) with [#8779](https://github.com/swisspost/design-system/pull/8779))
+
 ## 6.8.0
 
 ### Minor Changes
