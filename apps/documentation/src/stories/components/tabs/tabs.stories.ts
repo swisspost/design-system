@@ -8,6 +8,7 @@ const meta: MetaComponent<
   HTMLPostTabsElement & {
     'variant': string;
     'activeTab'?: string;
+    'tabContent'?: string;
     'postChange': string;
     'post-tabs-content'?: string;
     'post-tabs'?: string;
@@ -40,6 +41,16 @@ const meta: MetaComponent<
       options: ['Content Tabs', 'Page Tabs'],
       table: {
         category: 'Component Variant',
+      },
+    },
+    'tabContent': {
+      name: 'tabContent',
+      description:
+        'Controls whether the default tab items show text only, an icon only (with a visually hidden label for screen readers), or an icon together with visible text. <post-banner data-size="sm"><p>When using icon only tabs, make sure to provide a visually hidden label for each icon so the tab\'s purpose remains clear to screen reader users.</p></post-banner>',
+      control: 'radio',
+      options: ['text', 'icon', 'icon-text'],
+      table: {
+        category: 'Tabs',
       },
     },
     'activeTab': {
@@ -156,6 +167,7 @@ const meta: MetaComponent<
   args: {
     'variant': 'Content Tabs',
     'activeTab': undefined,
+    'tabContent': 'icon-text',
     'label': 'Page Tabs',
     'size': 'large',
     'textPrevTabItems': 'Previous tab items',
@@ -167,10 +179,23 @@ const meta: MetaComponent<
 
 export default meta;
 
+function renderTabLabel(tabContent: string | undefined, label: string, iconName: string) {
+  switch (tabContent) {
+    case 'icon':
+      return html`<post-icon name="${iconName}"></post-icon
+        ><span class="visually-hidden">${label}</span>`;
+    case 'icon-text':
+      return html`<post-icon name="${iconName}"></post-icon>${label}`;
+    default:
+      return html`${label}`;
+  }
+}
+
 function renderPagesVariant(
   label: string | undefined,
   customSlots: string,
   size: string | undefined,
+  tabContent: string | undefined,
 ): ReturnType<typeof html> {
   if (customSlots) {
     return html`
@@ -184,13 +209,13 @@ function renderPagesVariant(
   return html`
     <post-tabs label="${ifDefined(label)}" size="${ifDefined(size)}">
       <post-tab-item name="first">
-        <a href="/first" aria-current="page"><post-icon name="letter"></post-icon>First page</a>
+        <a href="/first" aria-current="page">${renderTabLabel(tabContent, 'Home', 'home')}</a>
       </post-tab-item>
       <post-tab-item name="second">
-        <a href="/second"><post-icon name="letter"></post-icon>Second page</a>
+        <a href="/second">${renderTabLabel(tabContent, 'Messages', 'letter')}</a>
       </post-tab-item>
       <post-tab-item name="third">
-        <a href="/third"><post-icon name="letter"></post-icon>Third page</a>
+        <a href="/third">${renderTabLabel(tabContent, 'Settings', 'gear')}</a>
       </post-tab-item>
     </post-tabs>
   `;
@@ -202,6 +227,7 @@ function renderContentVariant(
   customSlots: string,
   panelSlots: string,
   size: string | undefined,
+  tabContent: string | undefined,
 ): ReturnType<typeof html> {
   if (customSlots) {
     return html`
@@ -214,9 +240,13 @@ function renderContentVariant(
   if (panelSlots) {
     return html`
       <post-tabs active-tab="${ifDefined(activeTab)}" size="${ifDefined(size)}">
-        <post-tab-item name="first"><post-icon name="letter"></post-icon>First tab</post-tab-item>
-        <post-tab-item name="second"><post-icon name="letter"></post-icon>Second tab</post-tab-item>
-        <post-tab-item name="third"><post-icon name="letter"></post-icon>Third tab</post-tab-item>
+        <post-tab-item name="first">${renderTabLabel(tabContent, 'Home', 'home')}</post-tab-item>
+        <post-tab-item name="second"
+          >${renderTabLabel(tabContent, 'Messages', 'messages')}</post-tab-item
+        >
+        <post-tab-item name="third"
+          >${renderTabLabel(tabContent, 'Settings', 'settings')}</post-tab-item
+        >
 
         ${unsafeHTML(panelSlots)}
       </post-tabs>
@@ -225,9 +255,11 @@ function renderContentVariant(
 
   return html`
     <post-tabs active-tab="${ifDefined(activeTab)}" size="${ifDefined(size)}">
-      <post-tab-item name="first"><post-icon name="letter"></post-icon>First tab</post-tab-item>
-      <post-tab-item name="second"><post-icon name="letter"></post-icon>Second tab</post-tab-item>
-      <post-tab-item name="third"><post-icon name="letter"></post-icon>Third tab</post-tab-item>
+      <post-tab-item name="first">${renderTabLabel(tabContent, 'Home', 'home')}</post-tab-item>
+      <post-tab-item name="second"
+        >${renderTabLabel(tabContent, 'Messages', 'letter')}</post-tab-item
+      >
+      <post-tab-item name="third">${renderTabLabel(tabContent, 'Settings', 'gear')}</post-tab-item>
 
       <post-tab-panel for="first">
         This is the content of the first tab. By default it is shown initially.
@@ -247,6 +279,7 @@ function renderTabs(
     HTMLPostTabsElement & {
       'variant': string;
       'activeTab'?: string;
+      'tabContent'?: string;
       'slots-default'?: string;
       'slots-panels'?: string;
     }
@@ -255,12 +288,13 @@ function renderTabs(
   const variant = args.variant || 'Content Tabs';
 
   return variant === 'Page Tabs'
-    ? renderPagesVariant(args.label, args['slots-default'] || '', args.size)
+    ? renderPagesVariant(args.label, args['slots-default'] || '', args.size, args.tabContent)
     : renderContentVariant(
         args.activeTab,
         args['slots-default'] || '',
         args['slots-panels'] || '',
         args.size,
+        args.tabContent,
       );
 }
 

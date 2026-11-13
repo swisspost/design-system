@@ -1,5 +1,38 @@
 # @swisspost/design-system-documentation
 
+## 6.8.0
+
+### Minor Changes
+
+- Documented the usage of the `@swisspost/design-system-components-angular` package with standalone components. (by [@leagrdv](https://github.com/leagrdv) with [#8870](https://github.com/swisspost/design-system/pull/8870))
+
+- Updated the home page of the design system documentation to the new design. (by [@leagrdv](https://github.com/leagrdv) with [#8838](https://github.com/swisspost/design-system/pull/8838))
+
+- Updated the footer examples with a revised selection of social icons as per the new Figma design. (by [@myrtasakellariou](https://github.com/myrtasakellariou) with [#8790](https://github.com/swisspost/design-system/pull/8790))
+
+### Patch Changes
+
+- Added an Accessibility tab to the Footer, Side Navigation and Toast documentation pages. (by [@alionazherdetska](https://github.com/alionazherdetska) and [@Copilot](https://github.com/Copilot) with [#8770](https://github.com/swisspost/design-system/pull/8770))
+
+- Added a Header Selection Guide page to the header documentation, with a decision tree that helps choose the right header variant for a project. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8820](https://github.com/swisspost/design-system/pull/8820))
+
+- Fixed the heading link in the documentation overlapping the heading text when the heading wraps over multiple lines. (by [@Ant1Braun](https://github.com/Ant1Braun) with [#8547](https://github.com/swisspost/design-system/pull/8547))
+
+- Redesigned the migration guide and added accordions for each section to make it easier to navigate. (by [@leagrdv](https://github.com/leagrdv) with [#8703](https://github.com/swisspost/design-system/pull/8703))
+
+- Fixed an example in the header documentation showing a wrong code snippet for the user menu. (by [@leagrdv](https://github.com/leagrdv) with [#8722](https://github.com/swisspost/design-system/pull/8722))
+
+- Put back the missing figma links on each component. (by [@leagrdv](https://github.com/leagrdv) with [#8723](https://github.com/swisspost/design-system/pull/8723))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.9.0
+  - @swisspost/design-system-styles@10.9.0
+  - @swisspost/design-system-components@10.9.0
+  - @swisspost/internet-header@10.9.0
+  - @swisspost/design-system-components-react@10.9.0
+  - @swisspost/design-system-styles-primeng@10.9.0
+  - @swisspost/design-system-theme-ag-grid@10.9.0
+  - @swisspost/design-system-tokens@10.9.0
+
 ## 6.7.0
 
 ### Minor Changes
