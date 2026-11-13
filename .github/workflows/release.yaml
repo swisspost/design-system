@@ -61,8 +61,9 @@ jobs:
       # This check fails fast if a queued package hasn't been bootstrapped yet.
       - name: Verify packages to release exist on the public npm registry
         run: |
-          trap 'rm -f changesets.json' EXIT
+          trap 'rm -f changesets.json monorepo.json' EXIT
           pnpm changeset status --output=changesets.json
+          pnpm m ls --depth=0 --json > monorepo.json
           node .github/workflows/scripts/check-packages-on-npm.mjs
 
       # The changeset action will behave differently based on whether there are
