@@ -14,9 +14,9 @@ import StoryTags from '@/shared/story-tags';
 
 <StoryTags meta={meta} />
 
-<p className="lead">
+<div className="lead">
   The card is a container that contains information and actions related to a single topic.
-</p>
+</div>
 
 Built with flexbox, they offer easy alignment and mix well with other components.
 
@@ -38,11 +38,10 @@ Interactive cards have a shadow and an hover effect.
 To make your card interactive, simply use a `post-linkarea` component as container.
 To know more about it, read our [post-linkarea documentation](/?path=/docs/1d52b794-768b-464e-90eb-4fd15774aa90--docs).
 
-<post-banner>
+<div className="inline-notification inline-notification-info">
   Interactive cards must include exactly one anchor element.
-
-Cards that require more than one link should use a non-interactive card, which allows a broader range of interactive elements.
-</post-banner>
+  Cards that require more than one link should use a non-interactive card, which allows a broader range of interactive elements.
+</div>
 
 <Canvas of={CardStories.Interactivity} />
 

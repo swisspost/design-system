@@ -5,9 +5,11 @@
 @use '@swisspost/design-system-styles/core.scss' as post;
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/tokens' as token-mx;
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
 @use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/tokens/utilities';
+@use '@swisspost/design-system-tokens/device';
 @use './variables' as sb;
 @use './components';
 
@@ -211,6 +213,29 @@ tokens.$default-map: utilities.$post-spacing;
     font-size: 0.9375rem;
   }
 
+  // Compact style on inline notifications when in the args table
+  .docblock-argstable-body tr td .inline-notification {
+    @include media.min(1024px) {
+      @include token-mx.from(device.$post-tablet);
+    }
+
+    p {
+      font-size: tokens.get('body-font-size', elements.$post-body);
+      margin: 0;
+    }
+
+    a,
+    span {
+      font-size: inherit;
+    }
+  }
+
+  .inline-notification {
+    a {
+      color: var(--post-current-fg);
+    }
+  }
+
   @include media.max(sm) {
     .docs-story > div:first-child {
       padding-bottom: 3rem;
@@ -249,6 +274,10 @@ tokens.$default-map: utilities.$post-spacing;
 
   .docblock-source {
     margin: 0 0 1rem;
+  }
+
+  .docblock-argstable {
+    font-family: tokens.get('body-font-family', elements.$post-body);
   }
 
   .hide-col-default .docblock-argstable {
