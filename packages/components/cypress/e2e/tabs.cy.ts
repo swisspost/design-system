@@ -55,7 +55,7 @@ describe('tabs', () => {
   describe('scroll buttons', () => {
     beforeEach(() => {
       // The tabs overflow by less than the container width, so a single scroll reaches the end
-      cy.viewport(320, 576);
+      cy.viewport(280, 576);
       cy.getComponent('tabs', TABS_ID);
       cy.get('@tabs').shadow().find('.tabs').as('container');
       cy.get('@tabs').shadow().find('.scroll-btn-right').as('rightButton');
