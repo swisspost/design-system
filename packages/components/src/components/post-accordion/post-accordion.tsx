@@ -1,5 +1,5 @@
 import { HEADING_LEVELS, HeadingLevel } from '@/types';
-import { EventFrom, OneOf, Required } from '@/utils';
+import { EventFrom, OneOf, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
 import { Component, Element, h, Host, Listen, Method, Prop, Watch } from '@stencil/core';
 
@@ -13,10 +13,16 @@ import { Component, Element, h, Host, Listen, Method, Prop, Watch } from '@stenc
   shadow: true,
 })
 export class PostAccordion {
-  private accordionItems: HTMLPostAccordionItemElement[];
   private expandedItems = new Set<HTMLPostAccordionItemElement>();
 
   @Element() host: HTMLPostAccordionElement;
+
+  /** Get accordion items belonging to this accordion only, ignoring nested accordions */
+  private get accordionItems(): HTMLPostAccordionItemElement[] {
+    return Array.from(this.host.querySelectorAll('post-accordion-item')).filter(
+      item => item.closest('post-accordion') === this.host,
+    );
+  }
 
   /**
    * Defines the hierarchical level of the `post-accordion-item` headers within the headings structure.
@@ -37,6 +43,21 @@ export class PostAccordion {
    * If `true`, multiple `post-accordion-item` can be open at the same time.
    */
   @Prop({ reflect: true }) readonly multiple: boolean = false;
+
+  /**
+   * If `true`, browser search and links to content can expand accordion panels.
+   * Browser search requires support for `hidden="until-found"`.
+   */
+  @Prop()
+  @Type('boolean')
+  findable: boolean = false;
+
+  @Watch('findable')
+  syncFindable() {
+    this.accordionItems.forEach(item => {
+      item.findable = this.findable;
+    });
+  }
 
   componentWillLoad() {
     this.registerAccordionItems();
@@ -104,7 +125,7 @@ export class PostAccordion {
   }
 
   private registerAccordionItems() {
-    this.accordionItems = Array.from(this.host.querySelectorAll('post-accordion-item'));
+    this.syncFindable();
 
     this.accordionItems
       .filter(item => {

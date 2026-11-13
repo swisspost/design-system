@@ -20,6 +20,7 @@ const meta: MetaComponent<HTMLPostCollapsibleElement> = {
   args: {
     innerHTML: `<p class='border rounded-4 p-24'>This is collapsible content that can be shown or hidden.</p>`,
     collapsed: false,
+    findable: false,
   },
 };
 
@@ -63,6 +64,14 @@ export const Default: Story = {};
 
 export const InitiallyCollapsed: Story = {
   args: { collapsed: true },
+};
+
+export const Findable: Story = {
+  args: {
+    collapsed: true,
+    findable: true,
+    innerHTML: `<p id="findable-collapsible-content" class="border rounded-4 p-24">Searchable collapsible content</p>`,
+  },
 };
 
 export const WrappedCollapsible: Story = {

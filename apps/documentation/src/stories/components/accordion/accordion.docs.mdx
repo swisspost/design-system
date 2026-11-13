@@ -44,6 +44,21 @@ To allow multiple panels to be open at the same time, use the `multiple="true"` 
 
 <Canvas of={accordionStories.MultipleOpenPanels} />
 
+### Findable Content
+
+Set `findable` on the accordion to enable deeplinking and browser search to content with IDs.
+This option defaults to `false` and is passed to each panel's internal collapsible.
+Nested accordions use their own `findable` setting.
+
+<Canvas of={accordionStories.Findable} />
+
+A link to `#findable-accordion-content-2` opens the second panel.
+Browser search requires support for [`hidden="until-found"`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/hidden#the_hidden_until_found_state).
+In other browsers, a fallback for deeplinking is provided.
+
+Revelation opens a panel immediately and emits the existing `postToggle` event.
+The accordion still closes other panels unless `multiple` is enabled.
+
 ### Logos
 
 To enhance individual accordion items with a logo, add an `<img>` to the logo slot.
