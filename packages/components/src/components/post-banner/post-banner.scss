@@ -50,14 +50,6 @@ tokens.$default-map: components.$post-banner;
   border-radius: tokens.get('banner-border-radius');
   box-shadow: tokens.get('banner-elevation');
 
-  // Default to info styles when no type attribute is present
-  @include banner-type(
-    tokens.get('banner-info-bg'),
-    tokens.get('banner-info-border-color'),
-    tokens.get('body-color-fg', elements.$post-body),
-    tokens.get('banner-info-bg-scheme')
-  );
-
   &::before {
     content: '';
     display: block;
@@ -66,7 +58,6 @@ tokens.$default-map: components.$post-banner;
     width: tokens.get('banner-icon-size');
     inset-block-start: tokens.get('banner-padding');
     inset-inline-start: tokens.get('banner-padding');
-    background-image: var(--post-signal-icon-info);
   }
 }
 
