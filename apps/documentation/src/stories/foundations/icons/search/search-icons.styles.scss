@@ -16,16 +16,13 @@ tokens.$default-map: utilities.$post-spacing;
     }
   }
 
-  .search-text {
-    margin-block: tokens.get('utility-gap-64') tokens.get('utility-gap-48');
-    margin-inline: auto;
-    max-width: 400px;
+  .ui-variants {
+    display: flex;
+    justify-content: flex-end;
   }
 }
 
 .search-results {
-  margin-block-start: tokens.get('utility-gap-48');
-
   .no-results {
     text-align: center;
 
@@ -54,13 +51,19 @@ tokens.$default-map: utilities.$post-spacing;
       grid-template-columns: repeat(6, 1fr);
     }
 
+    @include post.min('xl') {
+      grid-template-columns: repeat(7, 1fr);
+    }
+
     .icon {
       border: 1px solid post.$gray-20;
-      border-radius: post.$border-radius;
+      border-radius: 18px;
+      background-color: post.$white;
+      box-shadow: post.$elevation-200;
 
       > button {
         position: relative;
-        padding: tokens.get('utility-gap-16') 0.5rem 0.5rem;
+        padding: tokens.get('utility-gap-8');
         width: 100%;
         background-color: transparent;
         border: none;
@@ -70,6 +73,7 @@ tokens.$default-map: utilities.$post-spacing;
         display: flex;
         justify-content: center;
         height: tokens.get('utility-gap-32');
+        margin-block: tokens.get('utility-gap-24');
         font-size: tokens.get('utility-gap-32');
       }
 
