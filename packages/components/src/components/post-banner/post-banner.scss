@@ -6,6 +6,7 @@
 @use '@swisspost/design-system-styles/mixins/icons';
 
 @use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/tokens/helpers';
 @use '@swisspost/design-system-styles/functions/tokens';
 
@@ -79,7 +80,7 @@ tokens.$default-map: components.$post-banner;
   }
 
   .post-banner-content {
-    --post-current-fg: #{tokens.get('banner-grief-fg')};
+    color: tokens.get('banner-grief-fg');
   }
 }
 
@@ -96,8 +97,7 @@ tokens.$default-map: components.$post-banner;
   overflow-x: auto;
   padding: var(--post-banner-focus-room);
   margin: calc(-1 * var(--post-banner-focus-room));
-  // Resolved here, so that the text uses the color scheme of the banner instead of the one of the page
-  color: var(--post-current-fg);
+  color: tokens.get('body-color-fg', elements.$post-body);
 }
 
 .actions {
