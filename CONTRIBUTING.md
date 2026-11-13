@@ -103,6 +103,12 @@ Whenever we add new scripts to the package.json file, we follow the instructions
 - A non default script name for a specific tool is prefixed with the tool name (e.g. `storybook:serve`, `storybook:bulid`, etc.).
 - A non default script name can contain more than one colon (e.g. `lint:fix:dry`, `stencil:test:watch`, etc.).
 
+## Overdue review automation
+
+Runs Sun–Wed at 22:09 `Europe/Zurich`. Adds open, non-draft PRs with pending review requests and no human review for over 14 days to the [production board](https://github.com/orgs/swisspost/projects/3/views/11), labeled `needs: ☕️ discussion in daily`. Without human reviews, uses the earliest pending request date.
+
+Requires `SWISSPOSTDEVS_ACCESS_TOKEN` with PR read, issue write, and organization project write access. Test custom review logic with `node --test .github/scripts/label-stale-review-prs.test.mjs`.
+
 ## Accessibility
 
 Swiss Post is guided by the standards of the Web Content Accessibility Guidelines (WCAG) version 2.1.

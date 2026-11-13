@@ -40,6 +40,11 @@ export class PostInternetHeader {
   @Prop() fullWidth = false;
 
   /**
+   * Hides the login slot entirely, whether the user is logged in or not.
+   */
+  @Prop() hideLogin = false;
+
+  /**
    * Initial language to be used. Overrides automatic language detection.
    */
   @Prop() language?: 'de' | 'fr' | 'it' | 'en';
@@ -319,7 +324,8 @@ export class PostInternetHeader {
             </post-language-menu>
           )}
 
-          {globalHeader.postLogin &&
+          {!this.hideLogin &&
+            globalHeader.postLogin &&
             this.renderNavItem(
               state.user
                 ? {
