@@ -47,3 +47,33 @@ The `post-language-menu` consists of a list of `post-language-menu-item` compone
 The language menu items can be used as links, which will navigate to a different page upon selection.
 
 <Canvas sourceState="shown" of={languageMenuStories.Links} />
+
+### Routing with Client-Side Frameworks
+
+To enable client-side routing (e.g. Next.js, Angular Router), slot your own anchor instead of using the `url` property. The component detects the slotted `<a>` and stops rendering its own, leaving your link's click handling untouched.
+
+<post-banner type="info">
+  <p>
+    Slot the `<a>` directly inside `<post-language-menu-item>`. The `url` property is ignored once
+    an anchor is slotted, and the component no longer renders its own link or button.
+  </p>
+</post-banner>
+
+<post-banner type="warning">
+  <p>
+    <b>Accessibility Note:</b> When using client-side routing, the accessibility attributes are no
+    longer applied by the component and need to be added manually to the slotted `<a>`:
+  </p>
+  <ul>
+    <li>
+      the full language name as accessible name, e.g. in a `<span class="visually-hidden">`
+    </li>
+    <li>`lang` and `hreflang` set to the language code</li>
+    <li>
+      `aria-current="page"` on the active language, kept up to date when the route changes
+    </li>
+    <li>`aria-description`, if a description is needed</li>
+  </ul>
+</post-banner>
+
+<Canvas sourceState="shown" of={languageMenuItemStories.ClientSideRouting} />

@@ -59,6 +59,15 @@ export const Link: Story = {
   decorators: [containerWithHeight],
 };
 
+export const ClientSideRouting: Story = {
+  render: () => html`
+    <post-logo>
+      <a href="/">Logo of the Post</a>
+    </post-logo>
+  `,
+  decorators: [containerWithHeight],
+};
+
 export const Height: Story = {
   render: () => html` <post-logo class="h-56">Logo of the Post</post-logo> `,
 };

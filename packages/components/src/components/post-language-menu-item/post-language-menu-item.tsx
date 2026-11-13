@@ -1,7 +1,21 @@
 import { OneOf, Required, Type, Url } from '@/utils';
 import { version } from '@root/package.json';
-import { Component, Element, Event, EventEmitter, h, Host, Method, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+} from '@stencil/core';
 import { SWITCH_VARIANTS, SwitchVariant } from '../post-language-menu/switch-variants';
+
+function opensLinkElsewhere(e: MouseEvent): boolean {
+  return e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button > 0;
+}
 
 /**
  * @slot default - Slot for placing the content inside the anchor or button.
@@ -12,6 +26,11 @@ import { SWITCH_VARIANTS, SwitchVariant } from '../post-language-menu/switch-var
 })
 export class PostLanguageMenuItem {
   @Element() host: HTMLPostLanguageMenuItemElement;
+
+  /**
+   * Whether the consumer slotted their own <a>. When true, the component renders only the <slot>, leaving the slotted anchor untouched so the host app's router can handle clicks.
+   */
+  @State() hasSlottedAnchor = false;
 
   /**
    *  The ISO 639-1 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
@@ -34,7 +53,7 @@ export class PostLanguageMenuItem {
   variant?: SwitchVariant;
 
   /**
-   * The full name of the language. For example, "Deutsch".
+   * The full name of the language. For example, "Deutsch". Required when the language code alone is displayed, unless an anchor is slotted.
    */
   @Prop()
   @Type('string')
@@ -55,8 +74,12 @@ export class PostLanguageMenuItem {
   @Url()
   url?: string;
 
+  componentWillLoad() {
+    this.checkSlottedAnchor();
+  }
+
   componentDidLoad() {
-    if (!this.name && this.isNameRequired()) {
+    if (!this.hasSlottedAnchor && !this.name && this.isNameRequired()) {
       throw new Error(
         'The "name" property of the post-language-menu-item component is required when the full language name is not displayed.',
       );
@@ -90,32 +113,52 @@ export class PostLanguageMenuItem {
     this.postChange.emit(this.code);
   }
 
+  private emitChangeOnLinkActivation(e: MouseEvent) {
+    if (!opensLinkElsewhere(e)) this.emitChange();
+  }
+
   private isNameRequired(): boolean {
     return this.host.textContent.toLowerCase() === this.code.toLowerCase();
   }
 
-  render() {
+  private checkSlottedAnchor() {
+    // Without shadow DOM, slotted nodes get moved into the rendered markup (e.g. post-menu-item)
+    this.hasSlottedAnchor = !!this.host.querySelector(
+      'a:not([data-post-language-menu-item-internal])',
+    );
+  }
+
+  private renderInteractiveElement() {
+    const slot = <slot onSlotchange={() => this.checkSlottedAnchor()} />;
+    if (this.hasSlottedAnchor) return slot;
+
     const lang = this.code.toLowerCase();
     const emitOnKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter' || e.key === ' ') {
+        // Stops the native click that would follow and emit a second time
+        e.preventDefault();
         this.emitChange();
       }
     };
 
-    const interactiveElement = this.url ? (
-      <a
-        aria-current={this.active ? 'page' : undefined}
-        href={this.url}
-        hreflang={lang}
-        lang={lang}
-        aria-description={this.description}
-        onClick={() => this.emitChange()}
-        onKeyDown={emitOnKeyDown}
-      >
-        <slot />
-        <span class="visually-hidden">{this.name}</span>
-      </a>
-    ) : (
+    if (this.url) {
+      return (
+        <a
+          data-post-language-menu-item-internal
+          aria-current={this.active ? 'page' : undefined}
+          aria-description={this.description}
+          href={this.url}
+          hreflang={lang}
+          lang={lang}
+          onClick={(e: MouseEvent) => this.emitChangeOnLinkActivation(e)}
+        >
+          {slot}
+          <span class="visually-hidden">{this.name}</span>
+        </a>
+      );
+    }
+
+    return (
       <button
         aria-current={this.active ? 'true' : undefined}
         lang={lang}
@@ -123,17 +166,26 @@ export class PostLanguageMenuItem {
         onClick={() => this.emitChange()}
         onKeyDown={emitOnKeyDown}
       >
-        <slot />
+        {slot}
         <span class="visually-hidden">{this.name}</span>
       </button>
     );
+  }
+
+  render() {
+    const interactiveElement = this.renderInteractiveElement();
+    const onHostClick = this.hasSlottedAnchor
+      ? (e: MouseEvent) => {
+          if ((e.target as Element).closest('a')) this.emitChangeOnLinkActivation(e);
+        }
+      : undefined;
 
     return this.variant === 'list' ? (
-      <Host data-version={version} role="listitem">
+      <Host data-version={version} role="listitem" onClick={onHostClick}>
         {interactiveElement}
       </Host>
     ) : (
-      <Host data-version={version}>
+      <Host data-version={version} onClick={onHostClick}>
         <post-menu-item>{interactiveElement}</post-menu-item>
       </Host>
     );

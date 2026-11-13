@@ -59,17 +59,27 @@ The component detects the slotted link and leaves it unchanged, allowing the rou
 handle navigation. The `url` and `home-url` properties are ignored when a slotted link is used.
 
 <post-banner type="info">
-  <ul className="list-bullet"><li>
+  <p>
     For regular breadcrumb items, the slotted link must be a direct child of
     `<post-breadcrumb-item>`. For the root breadcrumb, the slotted link must be a direct child of
-    `<post-breadcrumbs>` and use the `home` slot. In both cases, if the link is wrapped in another element, it won't be
-    detected and the component will fall back to rendering its own internal link.
-  </li>
+    `<post-breadcrumbs>` and use the `home` slot. In both cases, if the link is wrapped in another
+    element, it won't be detected and the component will fall back to rendering its own internal
+    link.
+  </p>
+</post-banner>
+
+<post-banner type="warning">
+  <p>
+    <b>Accessibility Note:</b> When using client-side routing, the accessibility attributes are no
+    longer applied by the component and need to be added manually to the slotted `<a>`:
+  </p>
+  <ul>
+    <li>an accessible name, through the link's text content or `aria-label`</li>
+    <li>`aria-current="page"` on the current page, kept up to date when the route changes</li>
+    <li>`aria-description`, if a description is needed</li>
     <li>
-      When a link is slotted, the component does not automatically apply the `label`, `description`,
-      or `aria-current` attributes. To make the link accessible:
-      (a) give it an accessible name through its text content or `aria-label` and (b) add
-      `aria-current="page"` if it represents the current page.
+      for the home link with an icon only: a visually hidden text (e.g. in a
+      `<span class="visually-hidden">`) and `aria-hidden="true"` on the icon
     </li>
   </ul>
 </post-banner>
