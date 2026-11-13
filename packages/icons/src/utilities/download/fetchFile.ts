@@ -1,9 +1,9 @@
 import type { SourceIcon } from '../../models/icon.model';
 import svgoOptions from '../../../svgo.config';
-import fetch from 'node-fetch';
 import fs from 'fs';
 import path from 'path';
 import { optimize } from 'svgo';
+import { fetch } from 'undici';
 import { requestInit } from '../environment';
 
 export async function fetchFile(icon: SourceIcon, output: string) {
