@@ -15,11 +15,15 @@
 .docs-header {
   background-image: url('/assets/images/griddy.svg');
   background-repeat: no-repeat;
-  background-position: center right 0;
+  background-position: center left 150px;
   background-size: auto 100%;
   background-color: post.$yellow;
 
-  @include post.min(xl) {
+  @include post.min(sm) {
+    background-position: center left 280px;
+  }
+
+  @include post.min(md) {
     background-position: center right;
   }
 }
@@ -30,9 +34,7 @@
 }
 
 .docs-footer {
-  > div:first-child {
-    background-color: post.$white;
-  }
+  background-color: post.$white;
 
   ul.list-profile {
     display: grid;
