@@ -1,11 +1,12 @@
 ###
 #
-# Keeps a single pnpm store cache per branch.
+# Keeps a single pnpm store cache and a single CodeQL overlay base database cache per branch.
 #
-# The pnpm store cache is only saved from `main` and `release/v*` (see the setup-pnpm action),
-# but every save creates a new cache entry. This workflow deletes
-# - all but the newest `pnpm-cache-*` entry of `main` and of each `release/v*` branch
-# - all `pnpm-cache-*` entries of any other ref (e.g. pull requests), as they cannot be shared anyway
+# Both caches are only saved from `main` and `release/*` (pnpm: see the setup-pnpm action, CodeQL: see the codeql workflow),
+# but every save creates a new cache entry, as the cache keys contain a commit sha or run id. This workflow deletes
+# - all but the newest `pnpm-cache-*` entry of `main` and of each `release/*` branch
+# - all but the newest `codeql-overlay-base-database-*` entry per language of `main` and of each `release/*` branch
+# - all of these entries of any other ref (e.g. pull requests), as they cannot be shared anyway
 #
 ###
 
@@ -32,19 +33,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Delete outdated pnpm caches
+      - name: Delete outdated caches
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: |
-          # 1. List all pnpm caches (id, ref, creation date) of the repository
-          gh api --paginate "repos/${GH_REPO}/actions/caches?key=pnpm-cache-&per_page=100" \
-            --jq '.actions_caches[] | [.id, .ref, .created_at] | @tsv' > caches.tsv
+          # 1. List all pnpm and CodeQL overlay caches (id, ref, creation date, key) of the repository
+          : > caches.tsv
+          for key_prefix in pnpm-cache- codeql-overlay-base-database-; do
+            gh api --paginate "repos/${GH_REPO}/actions/caches?key=${key_prefix}&per_page=100" \
+              --jq '.actions_caches[] | [.id, .ref, .created_at, .key] | @tsv' >> caches.tsv
+          done
 
-          # 2. Select the caches to delete. Sorted newest first, so the first entry per ref is the one to keep:
-          #    main and release/v* keep their newest cache, all other refs keep none
+          # 2. Select the caches to delete. Sorted newest first, so the first entry per ref and cache type is the one to keep:
+          #    main and release/* keep their newest cache (per language for CodeQL), all other refs keep none.
+          #    CodeQL key: codeql-overlay-base-database-<version>-<hash>-<language>-<codeql version>-<sha>-<run id>-<attempt>
           sort -t$'\t' -k3,3r caches.tsv | awk -F'\t' '
-            $2 == "refs/heads/main" || $2 ~ /^refs\/heads\/release\/v/ { if (seen[$2]++) print $1; next }
+            {
+              type = "pnpm"
+              if ($4 ~ /^codeql-overlay-base-database-/) { split($4, parts, "-"); type = "codeql-" parts[7] }
+            }
+            $2 == "refs/heads/main" || $2 ~ /^refs\/heads\/release\// { if (seen[$2 SUBSEP type]++) print $1; next }
             { print $1 }
           ' > delete-ids.txt
 
@@ -84,5 +93,5 @@ jobs:
           done < delete-ids.txt
 
           # 6. Summary; fail the job if any cache could not be deleted
-          echo "Deleted $((total - failed)) of $(wc -l < caches.tsv) pnpm cache entries ($failed failed)"
+          echo "Deleted $((total - failed)) of $(wc -l < caches.tsv) cache entries ($failed failed)"
           [ "$failed" -eq 0 ] || exit 1
