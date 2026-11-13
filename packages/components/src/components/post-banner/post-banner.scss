@@ -26,7 +26,6 @@ tokens.$default-map: components.$post-banner;
     #{tokens.get('banner-padding')} + #{tokens.get('banner-icon-size')} +
       #{tokens.get('banner-gap')}
   );
-  color: var(--post-current-fg);
   border-style: tokens.get('banner-border-style');
   border-width: tokens.get('banner-border-width');
   border-radius: tokens.get('banner-border-radius');
@@ -97,6 +96,7 @@ tokens.$default-map: components.$post-banner;
   overflow-x: auto;
   padding: var(--post-banner-focus-room);
   margin: calc(-1 * var(--post-banner-focus-room));
+  // Resolved here, so that the text uses the color scheme of the banner instead of the one of the page
   color: var(--post-current-fg);
 }
 
