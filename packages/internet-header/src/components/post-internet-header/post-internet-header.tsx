@@ -8,16 +8,7 @@ import { getLocalizedConfig, isValidProjectId } from '@/services/config.service'
 import { getActiveLink } from '@/services/route.service';
 import { getSessionUrl } from '@/config/klp-urls';
 import { version } from '@root/package.json';
-import {
-  Component,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Listen,
-  Prop,
-  Watch,
-} from '@stencil/core';
+import { Component, Event, EventEmitter, h, Host, Listen, Prop, Watch } from '@stencil/core';
 import '@swisspost/design-system-components';
 
 @Component({
@@ -47,6 +38,11 @@ export class PostInternetHeader {
    * Makes the header content span the full width on screens larger than 1440px.
    */
   @Prop() fullWidth = false;
+
+  /**
+   * Hides the login slot entirely, whether the user is logged in or not.
+   */
+  @Prop() hideLogin = false;
 
   /**
    * Initial language to be used. Overrides automatic language detection.
@@ -262,7 +258,9 @@ export class PostInternetHeader {
     return (
       <ul slot={slot}>
         {config.map(navItem => (
-          <li key={'url' in navItem ? navItem.url : navItem.user.email}>{this.renderNavItem(navItem, props)}</li>
+          <li key={'url' in navItem ? navItem.url : navItem.user.email}>
+            {this.renderNavItem(navItem, props)}
+          </li>
         ))}
       </ul>
     );
@@ -326,7 +324,8 @@ export class PostInternetHeader {
             </post-language-menu>
           )}
 
-          {globalHeader.postLogin &&
+          {!this.hideLogin &&
+            globalHeader.postLogin &&
             this.renderNavItem(
               state.user
                 ? {
