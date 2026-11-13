@@ -1,39 +1,44 @@
-name: 'Label stale review pull requests'
+name: 'Flag overdue pull request reviews'
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '9 22 * * 0'
+    - cron: '9 22 * * 0-3'
+      timezone: Europe/Zurich
 
 permissions:
-  issues: write
-  pull-requests: read
+  contents: read
+
+concurrency:
+  group: flag-overdue-reviews
+  cancel-in-progress: false
 
 jobs:
   label-stale-review-prs:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
-      - name: Label pull requests awaiting review for 30 days
+      - name: Checkout trusted workflow revision
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
+
+      - name: Test overdue review automation
+        run: node --test .github/scripts/label-stale-review-prs.test.mjs
+
+      - name: Check project token configuration
+        env:
+          PROJECT_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+        run: |
+          if [ -z "$PROJECT_TOKEN" ]; then
+            echo "::error::SWISSPOSTDEVS_ACCESS_TOKEN must have repository and organization project write access"
+            exit 1
+          fi
+
+      - name: Flag pull requests with overdue reviews
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
         with:
+          github-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           script: |
-            const label = 'needs: 🏓 dev roundtable';
-            const cutoff = new Date();
-            cutoff.setDate(cutoff.getDate() - 30);
-            const date = cutoff.toISOString().slice(0, 10);
-            const query = `repo:${context.repo.owner}/${context.repo.repo} is:pr is:open updated:<${date} -label:"${label}"`;
-
-            const pullRequests = await github.paginate(github.rest.search.issuesAndPullRequests, {
-              q: query,
-              per_page: 100,
-            });
-
-            for (const pullRequest of pullRequests) {
-              await github.rest.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: pullRequest.number,
-                labels: [label],
-              });
-              core.info(`Added ${label} to #${pullRequest.number}`);
-            }
+            const { flagOverdueReviews } = await import(`${process.env.GITHUB_WORKSPACE}/.github/scripts/label-stale-review-prs.mjs`);
+            await flagOverdueReviews({ github, core, context });
