@@ -434,49 +434,73 @@ export default function Layout({ children }: { readonly children: React.ReactNod
             <ul aria-labelledby="socialmedia">
               <li>
                 <a href="#facebook" className="btn btn-primary btn-icon">
-                  <PostIcon aria-hidden="true" name="facebook"></PostIcon>
+                  <PostIcon aria-hidden="true" name="facebook-solid"></PostIcon>
                   <span className="visually-hidden">Facebook</span>
                 </a>
               </li>
               <li>
                 <a href="#instagram" className="btn btn-primary btn-icon">
-                  <PostIcon aria-hidden="true" name="instagram"></PostIcon>
+                  <PostIcon aria-hidden="true" name="instagram-solid"></PostIcon>
                   <span className="visually-hidden">Instagram</span>
                 </a>
               </li>
               <li>
                 <a href="#youtube" className="btn btn-primary btn-icon">
-                  <PostIcon aria-hidden="true" name="youtube"></PostIcon>
+                  <PostIcon aria-hidden="true" name="youtube-solid"></PostIcon>
                   <span className="visually-hidden">Youtube</span>
                 </a>
               </li>
               <li>
                 <a href="#snapchat" className="btn btn-primary btn-icon">
-                  <PostIcon aria-hidden="true" name="snapchat"></PostIcon>
+                  <PostIcon aria-hidden="true" name="snapchat-solid"></PostIcon>
                   <span className="visually-hidden">Snapchat</span>
                 </a>
               </li>
               <li>
-                <a href="#twitter-x" className="btn btn-primary btn-icon">
-                  <PostIcon aria-hidden="true" name="twitterx"></PostIcon>
-                  <span className="visually-hidden">Twitter X</span>
-                </a>
-              </li>
-              <li>
                 <a href="#linkedin" className="btn btn-primary btn-icon">
-                  <PostIcon aria-hidden="true" name="linkedin"></PostIcon>
+                  <PostIcon aria-hidden="true" name="linkedin-solid"></PostIcon>
                   <span className="visually-hidden">Linkedin</span>
                 </a>
               </li>
               <li>
                 <a href="#xing" className="btn btn-primary btn-icon">
-                  <PostIcon aria-hidden="true" name="xing"></PostIcon>
+                  <PostIcon aria-hidden="true" name="xing-solid"></PostIcon>
                   <span className="visually-hidden">Xing</span>
                 </a>
               </li>
               <li>
+                <a href="#kununu" className="btn btn-primary btn-icon">
+                  <PostIcon aria-hidden="true" name="kununu-solid"></PostIcon>
+                  <span className="visually-hidden">Kununu</span>
+                </a>
+              </li>
+              <li>
+                <a href="#tiktok" className="btn btn-primary btn-icon">
+                  <PostIcon aria-hidden="true" name="tiktok-solid"></PostIcon>
+                  <span className="visually-hidden">TikTok</span>
+                </a>
+              </li>
+              <li>
+                <a href="#blog" className="btn btn-primary btn-icon">
+                  <PostIcon aria-hidden="true" name="blog-solid"></PostIcon>
+                  <span className="visually-hidden">Blog</span>
+                </a>
+              </li>
+              <li>
+                <a href="#rssfeed" className="btn btn-primary btn-icon">
+                  <PostIcon aria-hidden="true" name="rssfeed-solid"></PostIcon>
+                  <span className="visually-hidden">RSS</span>
+                </a>
+              </li>
+              <li>
+                <a href="#slideshare" className="btn btn-primary btn-icon">
+                  <PostIcon aria-hidden="true" name="slideshare-solid"></PostIcon>
+                  <span className="visually-hidden">Slideshare</span>
+                </a>
+              </li>
+              <li>
                 <a href="mailto:noreply@post.ch" className="btn btn-primary btn-icon">
-                  <PostIcon aria-hidden="true" name="letter"></PostIcon>
+                  <PostIcon aria-hidden="true" name="letter-solid"></PostIcon>
                   <span className="visually-hidden">E-Mail</span>
                 </a>
               </li>
