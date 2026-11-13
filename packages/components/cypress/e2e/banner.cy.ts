@@ -29,6 +29,31 @@ describe('banner', () => {
       cy.get('@banner').should('not.exist');
     });
   });
+
+  describe('color scheme', () => {
+    const CONTENT_SCHEMES = {
+      info: 'light',
+      success: 'light',
+      warning: 'light',
+      error: 'light',
+      grief: 'dark',
+    };
+
+    beforeEach(() => {
+      cy.getComponent('banner', BANNER_ID);
+    });
+
+    Object.entries(CONTENT_SCHEMES).forEach(([type, scheme]) => {
+      it(`should apply the ${scheme} scheme to the content of the ${type} banner, not to the host`, () => {
+        cy.get('@banner').invoke('attr', 'type', type);
+        cy.get('@banner').should('have.css', 'color-scheme', 'light');
+        cy.get('@banner')
+          .shadow()
+          .find('.post-banner-content')
+          .should('have.css', 'color-scheme', scheme);
+      });
+    });
+  });
 });
 
 describe('Accessibility', () => {

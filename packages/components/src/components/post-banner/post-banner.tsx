@@ -77,7 +77,7 @@ export class PostBanner {
 
   render() {
     return (
-      <Host data-version={version} role="alert" data-color-scheme="light">
+      <Host data-version={version} role="alert">
         <slot name="close-button" />
 
         <div class="post-banner-content">
