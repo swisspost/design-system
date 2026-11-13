@@ -36,7 +36,7 @@ const meta: MetaComponent<
     'variant': {
       name: 'variant',
       description:
-        'Select between Content Tabs (panels) or Page Tabs variant (navigation links). <post-banner data-size="sm"><p>If you attempt to mix modes (panels + links), the component will throw an error.</p></post-banner>',
+        'Select between Content Tabs (panels) or Page Tabs variant (navigation links). <div class="inline-notification inline-notification-info"><p>If you attempt to mix modes (panels + links), the component will throw an error.</p></div>',
       control: 'radio',
       options: ['Content Tabs', 'Page Tabs'],
       table: {

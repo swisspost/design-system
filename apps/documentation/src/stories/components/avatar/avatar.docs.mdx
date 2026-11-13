@@ -44,9 +44,9 @@ Use this approach to use the component as a menu toggler, ...
 
 The component provides some css-variables, which allow you to switch the background and the foreground color if needed.
 
-<post-banner type="warning">
+<div className="inline-notification inline-notification-warning mb-16">
   Please ensure at all times, that the background and foreground colors have sufficient contrast!
-</post-banner>
+</div>
 
 <Source code={AvatarSample} language="scss" />
 
@@ -58,16 +58,16 @@ Please notice, that if you combine several methods to show a picture, the compon
 The properties are used in the order as follows:
 
 1. If you use an `<img>` tag in the default slot (for example to show a self hosted image), this will override the other properties.<br/><br/>
-2. If you use the `email` property (to show a users picture provided through gravatar.com) and a picture is available, this will override the `firstname` and `lastname` properties.<br/><br/>
-   <post-banner class="mb-16">
-   Don't know Gravatar or haven't set up a profile yet, let's change this:
-   [Sign up](https://gravatar.com) now!
-   </post-banner>
-3. As an overall fallback the `firstname` and `lastname` properties are used to show at least some initials. And as an addition, `firstname` and `lastname` (if defined) are also used on all the other methods to set the `alt` tag of the image (if not already defined).<br/><br/>
-   <post-banner class="mb-16">
-   Because of big differences in the naming conventions around the world, we only set the
-   `firstname` as required property.
-   </post-banner>
+2. If you use the `email` property (to show a users picture provided through gravatar.com) and a picture is available, this will override the `firstname` and `lastname` properties.<br/>
+    <span className="inline-notification inline-notification-info mt-8 mb-16">
+    Don't know Gravatar or haven't set up a profile yet, let's change this:
+    [Sign up](https://gravatar.com) now!
+    </span>
+3. As an overall fallback the `firstname` and `lastname` properties are used to show at least some initials. And as an addition, `firstname` and `lastname` (if defined) are also used on all the other methods to set the `alt` tag of the image (if not already defined).<br/>
+    <span className="inline-notification inline-notification-info mt-8 mb-16">
+    Because of big differences in the naming conventions around the world, we only set the
+    `firstname` as required property.
+    </span>
 
 ## Check the Content Security Policy
 

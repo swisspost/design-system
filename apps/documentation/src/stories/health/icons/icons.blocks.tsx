@@ -216,10 +216,10 @@ export const StatusBlock: React.FC = () => {
 
       <hr className="my-32" />
 
-      <post-banner className="my-16">
+      <div className="inline-notification inline-notification-info mb-16">
         The amount of source files can be higher than the amount of output files, because one output
         file can contain multiple source files.
-      </post-banner>
+      </div>
 
       <div className="row gy-16 mb-16">
         <div className="col-12 col-md-6">

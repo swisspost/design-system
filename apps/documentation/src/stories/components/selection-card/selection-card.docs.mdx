@@ -38,22 +38,19 @@ See how this can be achieved in the following example.
 
 If you need to add additional content to the component, you can do that as shown in the example below.
 
-<post-banner type="warning">
-  <p slot="heading">
+<div className="inline-notification inline-notification-warning">
+  <strong>
     Even if it is generally possible to add other interactive elements within the component, this is
     strongly discouraged.
-  </p>
-  <p>
+  </strong>
+
     It can cause confusion when the hit area of nested interactive elements is not clearly separated
     from the component, may result in invalid HTML, and event bubbling can lead to unexpected
     behavior.
-    <br />
-    More info:{' '}
-    <a href="https://accessibilityinsights.io/info-examples/web/nested-interactive/">
-      https://accessibilityinsights.io/info-examples/web/nested-interactive/
-    </a>
-  </p>
-</post-banner>
+
+    More info: <a href="https://accessibilityinsights.io/info-examples/web/nested-interactive/">https://accessibilityinsights.io/info-examples/web/nested-interactive</a>
+
+</div>
 
 <Canvas of={SelectionCardStories.CustomContent} />
 
