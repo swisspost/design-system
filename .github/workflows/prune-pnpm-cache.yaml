@@ -37,18 +37,52 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: |
+          # 1. List all pnpm caches (id, ref, creation date) of the repository
           gh api --paginate "repos/${GH_REPO}/actions/caches?key=pnpm-cache-&per_page=100" \
             --jq '.actions_caches[] | [.id, .ref, .created_at] | @tsv' > caches.tsv
 
-          # newest first, so the first entry per ref is the one to keep
+          # 2. Select the caches to delete. Sorted newest first, so the first entry per ref is the one to keep:
+          #    main and release/v* keep their newest cache, all other refs keep none
           sort -t$'\t' -k3,3r caches.tsv | awk -F'\t' '
             $2 == "refs/heads/main" || $2 ~ /^refs\/heads\/release\/v/ { if (seen[$2]++) print $1; next }
             { print $1 }
           ' > delete-ids.txt
 
+          # 3. Retry settings: one initial round plus up to $max_retries retry rounds
+          total=$(wc -l < delete-ids.txt)
+          max_retries=2
+
+          # 4. A failed deletion must not stop the job: failed ids are collected and retried in the next round
+          for round in $(seq 0 "$max_retries"); do
+            # stop early when nothing is left to delete
+            [ -s delete-ids.txt ] || break
+
+            # back off a little longer before each retry round
+            if [ "$round" -gt 0 ]; then
+              echo "Retry round $round of $max_retries for $(wc -l < delete-ids.txt) failed deletion(s)"
+              sleep $((round * 5))
+            fi
+
+            # delete each cache; on failure log a warning and remember the id for the next round
+            : > failed-ids.txt
+            while read -r id; do
+              echo "Deleting cache $id"
+              if ! gh api --method DELETE "repos/${GH_REPO}/actions/caches/$id" > /dev/null; then
+                echo "::warning::Failed to delete cache $id (round $round)"
+                echo "$id" >> failed-ids.txt
+              fi
+            done < delete-ids.txt
+
+            # only the failed ids are attempted again in the next round
+            mv failed-ids.txt delete-ids.txt
+          done
+
+          # 5. Report caches that still could not be deleted after all attempts
+          failed=$(wc -l < delete-ids.txt)
           while read -r id; do
-            echo "Deleting cache $id"
-            gh api --method DELETE "repos/${GH_REPO}/actions/caches/$id"
+            echo "::error::Giving up on cache $id after $((max_retries + 1)) attempts"
           done < delete-ids.txt
 
-          echo "Deleted $(wc -l < delete-ids.txt) of $(wc -l < caches.tsv) pnpm cache entries"
+          # 6. Summary; fail the job if any cache could not be deleted
+          echo "Deleted $((total - failed)) of $(wc -l < caches.tsv) pnpm cache entries ($failed failed)"
+          [ "$failed" -eq 0 ] || exit 1
