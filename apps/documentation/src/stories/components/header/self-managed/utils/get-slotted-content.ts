@@ -10,8 +10,7 @@ export function getSlottedContent(args: Args, customRenderers: SubComponentRende
     renderGlobalNavPrimary,
     renderGlobalNavSecondary,
     renderLanguageMenu,
-    renderUserMenu,
-    renderLoginLink,
+    renderLoginWidget,
     renderTitle,
     renderSideNavTrigger,
     renderLocalNav,
@@ -30,8 +29,7 @@ export function getSlottedContent(args: Args, customRenderers: SubComponentRende
   const globalLanguageMenu =
     args.languageMenu && !isApplicationHeader(args) ? renderLanguageMenu() : nothing;
 
-  const login = args.isLoggedIn ? renderUserMenu() : renderLoginLink();
-  const globalLogin = args.postLogin && !args.jobs ? login : nothing;
+  const globalLogin = args.postLogin && !args.jobs ? renderLoginWidget(args) : nothing;
 
   const title = args.title !== '' ? renderTitle(args) : nothing;
 

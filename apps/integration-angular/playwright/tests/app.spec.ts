@@ -1,6 +1,11 @@
 import { test, expect } from '@playwright/test';
+import { blockKlpPlatform } from '../support/klp-platform';
 
 test.describe('App', () => {
+  test.beforeEach(async ({ page }) => {
+    await blockKlpPlatform(page);
+  });
+
   test('should run', async ({ page }) => {
     await page.goto('/');
     await expect(page.getByText('Hurray, it works!')).toBeVisible();

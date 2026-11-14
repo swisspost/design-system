@@ -42,3 +42,10 @@ jspm_packages
 /playwright-report/
 /playwright/.cache/
 /playwright/results/
+
+# Written by `next dev`, see `agentRules` in next.config.mjs
+AGENTS.md
+CLAUDE.md
+
+# Copied from packages/components by next.config.mjs
+/public/klp-platform-mock.js

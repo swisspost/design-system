@@ -1,0 +1,184 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as KlpLoginWidgetStories from './klp-login-widget.stories';
+import StoryTags from '@/shared/story-tags';
+import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import './klp-login-widget.styles.scss';
+
+<Meta of={KlpLoginWidgetStories} />
+
+<div className="docs-title">
+  # KLP Login Widget
+
+<link-design of={JSON.stringify(KlpLoginWidgetStories)}></link-design>
+
+</div>
+
+<StoryTags meta={meta} />
+
+<p className="lead">
+  The KLP login widget shows a login link to visitors and a user menu to signed-in users.
+</p>
+
+Use it in the `post-login` slot of `post-header`. Click the avatar to open the user menu; available
+account or company switches depend on the user.
+
+<Canvas sourceState="shown" of={KlpLoginWidgetStories.Default} />
+
+<Controls of={KlpLoginWidgetStories.Default} />
+
+<post-banner>
+  <p>
+    <b>Fake session:</b> the examples use a fake response so you can preview each user type without
+    signing in.
+  </p>
+</post-banner>
+
+<ComponentsPackageInstall component="<post-klp-login-widget>" />
+
+## Setup
+
+Set `environment` to select the platform (`prod` uses `n.account.post.ch`) and `service` to your
+application's registered service name. Set `app` if your registered app name differs, and
+`in-iframe` when the application runs in an iframe. Your page must use an allowed `post.ch` origin.
+If you use a Content Security Policy, allow the platform in `connect-src` for `https:` and `wss:`.
+
+## Entries
+
+Customize the default link targets with URL properties and the labels with text slots:
+
+<div className="table-responsive">
+  <table className="table">
+    <caption className="visually-hidden">
+      Widget entries, how to customize them and when they are shown
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">Entry</th>
+        <th scope="col">URL property</th>
+        <th scope="col">Text slot</th>
+        <th scope="col">Shown</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Login</th>
+        <td>
+          <code>url-login</code>
+        </td>
+        <td>
+          <code>text-login</code>
+        </td>
+        <td>To anonymous visitors.</td>
+      </tr>
+      <tr>
+        <th scope="row">Switch account</th>
+        <td>
+          <code>url-account-switch</code>
+        </td>
+        <td>
+          <code>text-account-switch</code>
+        </td>
+        <td>When the user can switch account.</td>
+      </tr>
+      <tr>
+        <th scope="row">Switch company</th>
+        <td>
+          <code>url-company-switch</code>
+        </td>
+        <td>
+          <code>text-company-switch</code>
+        </td>
+        <td>When the user can switch company.</td>
+      </tr>
+      <tr>
+        <th scope="row">My profile</th>
+        <td>
+          <code>url-my-profile</code>
+        </td>
+        <td>
+          <code>text-my-profile</code>
+        </td>
+        <td>To signed-in users.</td>
+      </tr>
+      <tr>
+        <th scope="row">Messages</th>
+        <td>
+          <code>url-messages</code>
+        </td>
+        <td>
+          <code>text-messages</code>, <code>text-unread-messages</code>
+        </td>
+        <td>To signed-in users, with the unread count.</td>
+      </tr>
+      <tr>
+        <th scope="row">Settings</th>
+        <td>
+          <code>url-settings</code>
+        </td>
+        <td>
+          <code>text-settings</code>
+        </td>
+        <td>To signed-in users.</td>
+      </tr>
+      <tr>
+        <th scope="row">Log out</th>
+        <td>
+          <code>url-logout</code>
+        </td>
+        <td>
+          <code>text-logout</code>
+        </td>
+        <td>Last in the user menu.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+Account and company switches are mutually exclusive. Text follows the `language` property,
+`<html lang>`, then the browser's preferred languages; German is the fallback.
+
+To replace a text, add an element with the matching `slot`. To change a target, set its URL property:
+
+<div className="klp-iframe-story">
+  <Canvas sourceState="shown" of={KlpLoginWidgetStories.Overrides} />
+</div>
+
+## Custom entries
+
+Add custom entries as `post-menu-item`s without a `slot`. They appear between settings and logout:
+
+<div className="klp-iframe-story">
+  <Canvas sourceState="shown" of={KlpLoginWidgetStories.CustomItems} />
+</div>
+
+<post-banner type="warning">
+  <p>
+    <b>Wrap custom entries in a `post-menu-item`</b> with a link or button inside. Bare links are
+    not supported.
+  </p>
+</post-banner>
+
+## Initial state
+
+Before the signed-in state is known, the widget shows an avatar without initials. Set `initial-state`
+when your page already knows the visitor's authentication state, for example during SSR.
+
+<div className="klp-iframe-story">
+  <Canvas of={KlpLoginWidgetStories.InitialState} />
+</div>
+
+## Unread messages
+
+The Messages entry shows the unread count, and the avatar shows a dot when the count is greater than
+zero. Use the `Unread messages` control above to preview the badge.
+
+## Accessibility
+
+Provide accessible text in the page's language:
+
+- `text-current-user` labels the avatar; `{user}` is replaced with the user's full name.
+- `text-user-links` labels the user menu.
+- The `text-access-user-links` slot labels the button that opens the menu. It is translated by
+  default.
+
+The unread count is announced with `text-unread-messages`, which is translated by default.

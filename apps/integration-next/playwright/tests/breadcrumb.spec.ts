@@ -1,7 +1,9 @@
 import { expect, test } from '@playwright/test';
+import { blockKlpPlatform } from '../support/klp-platform';
 
 test.describe('post-breadcrumb-item client-side routing', () => {
   test.beforeEach(async ({ page }) => {
+    await blockKlpPlatform(page);
     await page.goto('/ssr');
 
     // Tag the current window so we can detect whether it survives navigation:

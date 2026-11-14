@@ -4,9 +4,11 @@ import {
   setupComponentErrorCapture,
   assertNoComponentErrors,
 } from '../support/component-error-filter';
+import { blockKlpPlatform } from '../support/klp-platform';
 
 test.describe('components-angular (consumer-app)', () => {
   test.beforeEach(async ({ page }) => {
+    await blockKlpPlatform(page);
     await page.goto('/');
   });
 

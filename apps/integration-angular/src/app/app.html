@@ -52,11 +52,15 @@
   </post-language-menu>
 
   <!-- Global header login/user menu -->
-
-  <a href="" slot="post-login">
-    <span>Login</span>
-    <post-icon name="login" />
-  </a>
+  <!-- `int01` keeps the integration app off the production platform. -->
+  <post-klp-login-widget
+    slot="post-login"
+    environment="int01"
+    service="design-system"
+    [initialState]="klpInitialState"
+    textCurrentUser="Signed in as {user}"
+    textUserLinks="User menu"
+  ></post-klp-login-widget>
 
   <!-- Main navigation -->
   <post-mainnavigation slot="main-nav" textMain="Main">
@@ -159,7 +163,7 @@
       <ul class="d-flex flex-wrap row-gap-4 column-gap-16 m-0 list-unstyled">
         @for (route of navigationRoutes; track route.path) {
         <li>
-          <a [routerLink]="route.path">{{ route.title }}</a>
+          <a [routerLink]="'/' + route.path">{{ route.title }}</a>
         </li>
         }
       </ul>

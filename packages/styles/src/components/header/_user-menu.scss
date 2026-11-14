@@ -29,3 +29,16 @@ post-header {
     }
   }
 }
+
+// With scripting the global `:not(:defined)` utility already hides the host, so what is left here
+// is the reserved box and the no-JS case, where that utility deliberately shows the host again.
+post-klp-login-widget:not(:defined) {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: tokens.get('avatar-size', components.$post-avatar);
+
+  // Only text overrides live in the light DOM; without the shadow root they would be bare text.
+  > * {
+    display: none;
+  }
+}

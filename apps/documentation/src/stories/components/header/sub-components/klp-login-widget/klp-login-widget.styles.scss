@@ -1,0 +1,13 @@
+// Docs styles stay loaded after leaving the page, so only this component's stories are targeted.
+#storybook-docs {
+  .header-story-wrapper.klp-login-widget-story .virtual-body {
+    height: 350px;
+    overflow-y: auto;
+  }
+
+  // Storybook's container around an iframe story ends up a few pixels taller than the iframe and
+  // scrolls too; the iframe already scrolls its own content.
+  .klp-iframe-story .docs-story > :first-child {
+    overflow: hidden;
+  }
+}

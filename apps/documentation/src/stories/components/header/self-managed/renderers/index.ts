@@ -3,7 +3,7 @@ export * from './global-nav-primary';
 export * from './global-nav-secondary';
 export * from './job-controls';
 export * from './language-menu';
-export * from './login-link';
+export * from './login-widget';
 export * from './logo';
 export * from './main-navigation';
 export * from './local-nav';
