@@ -97,8 +97,12 @@ describe('createCssFiles', () => {
     );
   });
 
-  it('should convert SVG content to base64 data URL', async () => {
-    const mockSvgContent = '<svg><path d="M10 10"/></svg>';
+  it.each([
+    '<svg><path d="M10 10"/></svg>',
+    '<svg xmlns="http://www.w3.org/2000/svg"><path fill="#fff" d="M0,0 L1,1"/></svg>',
+    '<svg><text>\'"#%\\\r\n\t\u00e4\u6f22\ud83d\udce8 %23 %3C</text></svg>',
+    '<svg><style>.icon { fill: red; transform: translate(1px, 2px); }</style></svg>',
+  ])('should losslessly encode SVG content in a CSS data URL: %s', async mockSvgContent => {
     const mockSvgFiles = ['test-icon.svg'];
 
     jest.spyOn(fs, 'existsSync').mockReturnValue(true);
@@ -113,8 +117,14 @@ describe('createCssFiles', () => {
     await createCssFiles(mockIconOutputDirectory, mockCssOutputDirectory);
 
     const cssContent = (fs.writeFileSync as jest.Mock).mock.calls[0][1];
+    expect(cssContent).toContain('data:image/svg+xml,%3Csvg');
     expect(cssContent).toContain('--post-icon-test-icon');
-    expect(cssContent).toContain('data:image/svg+xml;base64,');
+    const url = /url\("data:image\/svg\+xml,([^"]*)"\)/.exec(cssContent);
+    if (!url) throw new Error('Expected a quoted SVG data URL');
+    expect(url[1]).not.toMatch(/[<>"'#\\\r\n\t]/);
+    expect(Buffer.from(decodeURIComponent(url[1]), 'utf8')).toEqual(
+      Buffer.from(mockSvgContent, 'utf8'),
+    );
   });
 
   it('should only process SVG files', async () => {
