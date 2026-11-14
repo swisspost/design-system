@@ -340,6 +340,74 @@ describe('pagination', () => {
             .should('have.length.at.most', wideCount);
         });
     });
+
+    it('should keep reacting to viewport changes after being moved in the DOM', () => {
+      cy.getComponent('pagination', PAGINATION_ID, 'many-pages');
+      cy.viewport(1920, 1080);
+      cy.wait(200);
+
+      cy.get('@pagination')
+        .find('.pagination-link')
+        .not('.pagination-control-button')
+        .then($wideButtons => {
+          const wideCount = $wideButtons.length;
+
+          cy.get('@pagination')
+            .its(0)
+            .then(element => element.parentElement.append(element));
+
+          cy.viewport(375, 667);
+          cy.wait(200);
+
+          cy.get('@pagination')
+            .find('.pagination-link')
+            .not('.pagination-control-button')
+            .should('have.length.lessThan', wideCount);
+        });
+    });
+
+    it('should recalculate visible pages when only its container is resized', () => {
+      cy.getComponent('pagination', PAGINATION_ID, 'many-pages');
+      cy.viewport(1920, 1080);
+      cy.wait(200);
+
+      cy.get('@pagination')
+        .find('.pagination-link')
+        .not('.pagination-control-button')
+        .then($wideButtons => {
+          const wideCount = $wideButtons.length;
+
+          cy.get('@pagination').parent().invoke('css', 'width', '375px');
+
+          cy.get('@pagination')
+            .find('.pagination-link')
+            .not('.pagination-control-button')
+            .should('have.length.lessThan', wideCount);
+        });
+    });
+
+    it('should recalculate visible pages when shown after the viewport changed while hidden', () => {
+      cy.viewport(375, 667);
+      cy.getComponent('pagination', PAGINATION_ID, 'many-pages');
+      cy.wait(200);
+
+      cy.get('@pagination')
+        .find('.pagination-link')
+        .not('.pagination-control-button')
+        .then($narrowButtons => {
+          const narrowCount = $narrowButtons.length;
+
+          cy.get('@pagination').parent().invoke('css', 'display', 'none');
+          cy.viewport(1920, 1080);
+          cy.wait(200);
+          cy.get('@pagination').parent().invoke('css', 'display', '');
+
+          cy.get('@pagination')
+            .find('.pagination-link')
+            .not('.pagination-control-button')
+            .should('have.length.greaterThan', narrowCount);
+        });
+    });
   });
 
   describe('icons', () => {
