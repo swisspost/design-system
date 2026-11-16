@@ -11,7 +11,7 @@ describe('constants output paths', () => {
     process.argv = ['node', 'script', ...args];
     let constants!: typeof import('../constants');
     jest.isolateModules(() => {
-      constants = require('../constants');
+      constants = jest.requireActual<typeof import('../constants')>('../constants');
     });
     return constants;
   }
