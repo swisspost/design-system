@@ -298,6 +298,10 @@ export class PostKlpLoginWidget {
             <p>{fullName}</p>
           </div>
         </div>
+        {this.renderMenuItem(links.myProfile, 'profile', texts.myProfile, 'text-my-profile')}
+        {this.renderMessages(links.messages, texts.messages, texts.unreadMessages)}
+        {this.renderMenuItem(links.settings, 'gear', texts.settings, 'text-settings')}
+        <slot></slot>
         {showAccountSwitch(session) &&
           this.renderMenuItem(
             links.accountSwitch,
@@ -312,10 +316,6 @@ export class PostKlpLoginWidget {
             texts.companySwitch,
             'text-company-switch',
           )}
-        {this.renderMenuItem(links.myProfile, 'profile', texts.myProfile, 'text-my-profile')}
-        {this.renderMessages(links.messages, texts.messages, texts.unreadMessages)}
-        {this.renderMenuItem(links.settings, 'gear', texts.settings, 'text-settings')}
-        <slot></slot>
         {this.renderMenuItem(links.logout, 'logout', texts.logout, 'text-logout')}
       </post-menu>,
     ];
