@@ -306,7 +306,7 @@ export class EffectManager<C extends object> {
     }, delay);
 
     const effect = this.track({
-      describe: () => `timeout (${delay ?? 0}ms)`,
+      describe: () => `timeout (${delay}ms)`,
       teardown: () => globalThis.clearTimeout(timeout),
     });
 
@@ -561,7 +561,7 @@ export class EffectManager<C extends object> {
 
   /**
    * Starts tracking an effect.
-   *s
+   *
    * @param descriptor - The descriptor of the effect to track.
    * @returns The ID of the tracked effect.
    */
