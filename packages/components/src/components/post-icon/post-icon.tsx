@@ -149,7 +149,6 @@ export class PostIcon {
 
     return Object.fromEntries(
       Object.entries({
-        '-webkit-mask-image': `url(${url})`,
         'mask-image': `url('${url}')`,
         'transform':
           (this.scale && !Number.isNaN(Number(this.scale)) ? 'scale(' + this.scale + ')' : '') +

@@ -51,16 +51,12 @@ function renderFeedback(
   validationState: string,
 ) {
   return html`
-    ${
-      validFeedbackId && validationState === 'is-valid'
-        ? html`<p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>`
-        : nothing
-    }
-    ${
-      invalidFeedbackId && validationState === 'is-invalid'
-        ? html`<p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>`
-        : nothing
-    }
+    ${validFeedbackId && validationState === 'is-valid'
+      ? html`<p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>`
+      : nothing}
+    ${invalidFeedbackId && validationState === 'is-invalid'
+      ? html`<p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>`
+      : nothing}
   `;
 }
 
