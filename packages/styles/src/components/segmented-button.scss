@@ -46,6 +46,8 @@ $post-segmented-button-max-count: 8;
     overflow-wrap: anywhere;
 
     post-icon {
+      width: tokens.get('button-segmented-icon-size');
+      height: tokens.get('button-segmented-icon-size');
       flex-shrink: 0;
     }
 
