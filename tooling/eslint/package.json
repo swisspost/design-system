@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-eslint-config",
-  "version": "10.8.0",
+  "version": "10.9.0",
   "description": "Shared ESLint configurations for the Swiss Post Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -52,7 +52,7 @@
     "typescript": ">=5.0.0"
   },
   "devDependencies": {
-    "@swisspost/design-system-prettier-config": "workspace:10.8.0",
+    "@swisspost/design-system-prettier-config": "workspace:10.9.0",
     "eslint": "catalog:",
     "prettier": "catalog:",
     "typescript": "catalog:"

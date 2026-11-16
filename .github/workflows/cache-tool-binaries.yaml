@@ -1,0 +1,111 @@
+###
+#
+# Saves the Playwright browsers and the Cypress binary to the GitHub Actions cache,
+# keyed by the versions pinned in the pnpm catalog.
+#
+# Caches saved by pull requests cannot be shared with other pull requests, so the
+# binaries are cached from main. All other workflows only restore these caches and
+# download the binaries themselves on a cache miss.
+#
+# The daily schedule only checks whether the cache entries exist and recreates them
+# when GitHub has evicted them (after 7 days without access or when the cache limit is reached).
+#
+###
+
+name: Cache tool binaries
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'pnpm-workspace.yaml'
+      - '.github/actions/tool-binary-cache/**'
+      - '.github/workflows/cache-tool-binaries.yaml'
+  schedule:
+    - cron: '30 4 * * *' # the job will run every day at 4:30 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}
+
+jobs:
+  playwright:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+
+      - name: Get cache keys
+        id: cache-keys
+        uses: ./.github/actions/tool-binary-cache
+
+      - name: Check cache
+        id: cache
+        uses: actions/cache/restore@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+        with:
+          path: ${{ steps.cache-keys.outputs.playwright-path }}
+          key: ${{ steps.cache-keys.outputs.playwright-key }}
+          lookup-only: true
+
+      - name: Setup
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: ./.github/actions/setup-pnpm
+        with:
+          use_cache: false
+
+      - name: Install Playwright browsers
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: pnpm dlx playwright@${{ steps.cache-keys.outputs.playwright-version }} install
+
+      - name: Save cache
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+        with:
+          path: ${{ steps.cache-keys.outputs.playwright-path }}
+          key: ${{ steps.cache-keys.outputs.playwright-key }}
+
+  cypress:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+
+      - name: Get cache keys
+        id: cache-keys
+        uses: ./.github/actions/tool-binary-cache
+
+      - name: Check cache
+        id: cache
+        uses: actions/cache/restore@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+        with:
+          path: ${{ steps.cache-keys.outputs.cypress-path }}
+          key: ${{ steps.cache-keys.outputs.cypress-key }}
+          lookup-only: true
+
+      - name: Setup
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: ./.github/actions/setup-pnpm
+        with:
+          use_cache: false
+
+      # Dependencies are installed from the lockfile without running any lifecycle scripts,
+      # the Cypress binary is then downloaded explicitly by the Cypress CLI
+      - name: Install dependencies without scripts
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: pnpm --filter design-system-documentation install --frozen-lockfile --ignore-scripts
+
+      - name: Install Cypress binary
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: pnpm --filter design-system-documentation exec cypress install
+
+      - name: Save cache
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+        with:
+          path: ${{ steps.cache-keys.outputs.cypress-path }}
+          key: ${{ steps.cache-keys.outputs.cypress-key }}

@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': patch
 ---
 
-Put back the missing figma links on each component.
+Added the dark mode on the fullscreen previews.
