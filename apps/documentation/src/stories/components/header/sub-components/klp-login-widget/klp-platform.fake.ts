@@ -38,6 +38,13 @@ export const KLP_FAKE_USERS = {
     authLevel: 'PASSWORD',
     canChangeCompany: true,
   },
+  'support': {
+    name: 'Margaret',
+    surname: 'Hamilton',
+    userType: 'B2C',
+    authLevel: 'PASSWORD',
+    support: true,
+  },
 } as const;
 
 export type KlpFakeUser = keyof typeof KLP_FAKE_USERS;
@@ -51,6 +58,7 @@ export const KLP_FAKE_SESSION_LABELS: Record<KlpFakeSession, string> = {
   'b2c-multi-account': 'B2C user (multi account)',
   'b2b-multi-account': 'B2B user (multi account)',
   'b2b-multi-company': 'B2B user (multi company)',
+  'support': 'Support user',
 };
 
 export interface KlpFakeOptions {

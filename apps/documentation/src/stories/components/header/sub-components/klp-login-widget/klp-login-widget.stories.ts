@@ -19,12 +19,24 @@ interface KlpLoginWidgetArgs
   extends Pick<
     HTMLPostKlpLoginWidgetElement,
     | 'environment'
+    | 'service'
+    | 'app'
     | 'language'
+    | 'initialState'
+    | 'inIframe'
     | 'textCurrentUser'
     | 'textUserLinks'
-    | 'initialState'
+    | 'keepAliveDisabled'
+    | 'keepAliveUrl'
+    | 'keepAliveInterval'
+    | 'keepAliveEvents'
     | 'urlLogin'
+    | 'urlAccountSwitch'
+    | 'urlCompanySwitch'
     | 'urlMyProfile'
+    | 'urlMessages'
+    | 'urlSettings'
+    | 'urlLogout'
   > {
   session?: KlpFakeSession;
   unread?: number;
@@ -35,12 +47,24 @@ interface KlpLoginWidgetArgs
 const renderWidget = (args: KlpLoginWidgetArgs) =>
   renderKlpLoginWidget({
     environment: args.environment,
+    service: args.service,
+    app: args.app,
     language: args.language,
+    initialState: args.initialState,
+    inIframe: args.inIframe,
     textCurrentUser: args.textCurrentUser,
     textUserLinks: args.textUserLinks,
-    initialState: args.initialState,
+    keepAliveDisabled: args.keepAliveDisabled,
+    keepAliveUrl: args.keepAliveUrl,
+    keepAliveInterval: args.keepAliveInterval,
+    keepAliveEvents: args.keepAliveEvents,
     urlLogin: args.urlLogin,
+    urlAccountSwitch: args.urlAccountSwitch,
+    urlCompanySwitch: args.urlCompanySwitch,
     urlMyProfile: args.urlMyProfile,
+    urlMessages: args.urlMessages,
+    urlSettings: args.urlSettings,
+    urlLogout: args.urlLogout,
     texts: args.texts,
     customItems: args.customItems,
   });
@@ -57,10 +81,26 @@ const meta: MetaComponent<KlpLoginWidgetArgs> = {
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=558-7012&t=ywmfJhyvd2euoiGI-1',
     },
   },
+  // The order of the keys is the order of the controls table.
   args: {
     environment: 'int01',
+    service: 'design-system',
+    app: undefined,
     language: 'en',
+    initialState: undefined,
+    inIframe: false,
     ...KLP_LOGIN_WIDGET_TEXTS,
+    keepAliveDisabled: false,
+    keepAliveUrl: undefined,
+    keepAliveInterval: 9,
+    keepAliveEvents: 'click touchstart keydown',
+    urlLogin: undefined,
+    urlAccountSwitch: undefined,
+    urlCompanySwitch: undefined,
+    urlMyProfile: undefined,
+    urlMessages: undefined,
+    urlSettings: undefined,
+    urlLogout: undefined,
     session: 'anonymous',
     unread: 0,
   },
@@ -119,43 +159,6 @@ type Story = StoryObj<KlpLoginWidgetArgs>;
 export const Default: Story = {};
 
 /**
- * Own targets and texts for some entries; the others keep their defaults.
- * In a window of its own: a window holds one fake at a time, and the Default story already uses it.
- */
-export const Overrides: Story = {
-  parameters: {
-    docs: { story: { inline: false, iframeHeight: 500 } },
-  },
-  args: {
-    session: 'b2b-multi-account',
-    urlMyProfile: '/my-account',
-    texts: { 'text-my-profile': 'My account', 'text-logout': 'Sign out' },
-  },
-  argTypes: {
-    session: { table: { disable: true } },
-    unread: { table: { disable: true } },
-  },
-};
-
-/**
- * An entry of the application's own, listed between settings and logout.
- * In a window of its own: a window holds one fake at a time, and the Default story already uses it.
- */
-export const CustomItems: Story = {
-  parameters: {
-    docs: { story: { inline: false, iframeHeight: 500 } },
-  },
-  args: {
-    session: 'b2c',
-    customItems: [{ href: '/orders', icon: 'parcel', text: 'My orders' }],
-  },
-  argTypes: {
-    session: { table: { disable: true } },
-    unread: { table: { disable: true } },
-  },
-};
-
-/**
  * The fake never answers, so the widget keeps the state it shows before the session is known.
  * In a window of its own: a window holds one fake at a time, and the Default story already uses it.
  */
@@ -173,5 +176,61 @@ export const InitialState: Story = {
   render: args => {
     installKlpPlatformFake({ user: null, pending: true });
     return html`${keyed(JSON.stringify(args), renderWidget(args))}`;
+  },
+};
+
+/**
+ * A signed-in user with unread messages: the trigger is marked and the messages entry shows the count.
+ * In a window of its own: a window holds one fake at a time, and the Default story already uses it.
+ */
+export const WithMessages: Story = {
+  parameters: {
+    docs: { story: { inline: false, iframeHeight: 500 } },
+  },
+  args: {
+    session: 'b2c',
+    unread: 3,
+  },
+  argTypes: {
+    session: { table: { disable: true } },
+    unread: { table: { disable: true } },
+  },
+};
+
+/**
+ * A support user signed in on behalf of a customer: the avatar carries the support icon.
+ * In a window of its own: a window holds one fake at a time, and the Default story already uses it.
+ */
+export const WithServiceIcon: Story = {
+  parameters: {
+    docs: { story: { inline: false, iframeHeight: 500 } },
+  },
+  args: {
+    session: 'support',
+  },
+  argTypes: {
+    session: { table: { disable: true } },
+    unread: { table: { disable: true } },
+  },
+};
+
+/**
+ * Own targets and texts for some entries, and an entry of the application's own listed between
+ * settings and logout; the other entries keep their defaults.
+ * In a window of its own: a window holds one fake at a time, and the Default story already uses it.
+ */
+export const Entries: Story = {
+  parameters: {
+    docs: { story: { inline: false, iframeHeight: 500 } },
+  },
+  args: {
+    session: 'b2b-multi-account',
+    urlMyProfile: '/my-account',
+    texts: { 'text-my-profile': 'My account', 'text-logout': 'Sign out' },
+    customItems: [{ href: '/orders', icon: 'parcel', text: 'My orders' }],
+  },
+  argTypes: {
+    session: { table: { disable: true } },
+    unread: { table: { disable: true } },
   },
 };
