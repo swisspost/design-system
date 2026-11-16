@@ -366,11 +366,11 @@ post-tabs[active-tab] {
     );
     padding-block: calc(
       tokens.get('post-tabs-page-large-tab-selected-padding-block') + var(--active, 0) *
-      (
-        tokens.get('post-tabs-page-large-tab-enabled-padding-block') - tokens.get(
-          'post-tabs-page-large-tab-selected-padding-block'
+        (
+          tokens.get('post-tabs-page-large-tab-enabled-padding-block') - tokens.get(
+              'post-tabs-page-large-tab-selected-padding-block'
+            )
         )
-      )
     );
     z-index: calc(var(--active, 0) * 1);
 
@@ -386,11 +386,11 @@ post-tabs[active-tab] {
   &[size='small'] post-tab-item.nav-item.ssr a {
     padding-block: calc(
       tokens.get('post-tabs-page-small-tab-selected-padding-block') + var(--active, 0) *
-      (
-        tokens.get('post-tabs-page-small-tab-enabled-padding-block') - tokens.get(
-          'post-tabs-page-small-tab-selected-padding-block'
+        (
+          tokens.get('post-tabs-page-small-tab-enabled-padding-block') - tokens.get(
+              'post-tabs-page-small-tab-selected-padding-block'
+            )
         )
-      )
     );
   }
 }
