@@ -1,13 +1,27 @@
 import type { SourceReport, MergedReport } from '../models/icon.model';
+import path from 'path';
+import { parseArgs } from 'util';
 import { version } from '../../package.json';
 import { coloredLogMessage } from './shared';
 
 export const DOWNLOAD_PAGE_DELAY = 2000;
 
-export const SOURCE_PATH = 'src/icons';
-export const OUTPUT_PATH = 'public';
+// Optional `--out <dir>` CLI argument, used by consumers to write all files to a custom directory
+const { out } = parseArgs({
+  args: process.argv.slice(2),
+  options: { out: { type: 'string' } },
+  strict: false,
+}).values;
+const CUSTOM_OUTPUT_PATH = typeof out === 'string' ? path.resolve(out) : undefined;
+
+export const SOURCE_PATH = CUSTOM_OUTPUT_PATH
+  ? path.join(CUSTOM_OUTPUT_PATH, 'source')
+  : 'src/icons';
+export const OUTPUT_PATH = CUSTOM_OUTPUT_PATH ?? 'public';
 export const OUTPUT_PATH_ICONS = `${OUTPUT_PATH}/post-icons`;
-export const OUTPUT_PATH_CSS = 'dist/custom-properties';
+export const OUTPUT_PATH_CSS = CUSTOM_OUTPUT_PATH
+  ? path.join(CUSTOM_OUTPUT_PATH, 'custom-properties')
+  : 'dist/custom-properties';
 
 export const SOURCE_REPORT: SourceReport = {
   icons: [],

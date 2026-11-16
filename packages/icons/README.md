@@ -13,6 +13,34 @@ Icons for the Swiss Post Design System.
 
 To add a new icon to this package, please contact [corpdesign@post.ch](mailto:corpdesign@post.ch). There is an automated workflow in place that will grab the new icon from the sharing platform and issue a pull request to this repository. After review through maintainers of the Design System, the new icon(s) can be published.
 
+## Downloading icons yourself
+
+The package ships the `post-icons-fetch` command, which downloads and builds the icons into a directory of your choice.
+
+Provide the credentials as environment variables, for example in a `.env` file in the working directory:
+
+```shell
+CEN_USERNAME=<username>
+CEN_PASSWORD=<password>
+CEN_URL_ICONSET_POST=<Censhare URL>
+CEN_URL_ICONSET_UI=<Censhare URL>
+```
+
+Then run:
+
+```shell
+npx post-icons-fetch --out ./icons
+```
+
+The output directory contains:
+
+- `source/` raw downloads and source reports
+- `post-icons/` built SVG icons
+- `custom-properties/` CSS files with one custom property per icon
+- `report.json` and `report.min.json` icon reports
+
+Use a dedicated output directory, as existing files are removed on every run. If you need a proxy, set `HTTP_PROXY`, `HTTPS_PROXY` and optionally `NO_PROXY`.
+
 ## Contribute
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](https://github.com/swisspost/design-system/blob/main/CODE_OF_CONDUCT.md)
