@@ -1,0 +1,16 @@
+import { Source } from '@storybook/addon-docs/blocks';
+import LandmarkCorrect from '../../../../../shared/samples/landmark-placement-example.sample.html?raw';
+
+<post-tab-panel for="accessibility" class="pt-24">
+
+## Landmark
+
+- The footer provides a **contentinfo landmark** that contains metadata about the parent document, such as copyright information, legal links, and contact details. Screen reader users can jump directly to the contentinfo using landmark navigation shortcuts.
+- Each page must have **exactly one contentinfo landmark** at the top level, placed after the `<main>` element.
+- Do not place the `<post-footer>` inside `<main>` or any other landmark.
+
+<Source code={LandmarkCorrect} language="html" />
+
+For more information, see the [WAI-ARIA Contentinfo Landmark documentation](https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/contentinfo.html).
+
+</post-tab-panel>
