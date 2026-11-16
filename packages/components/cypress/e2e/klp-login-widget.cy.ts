@@ -171,16 +171,18 @@ describe('klp login widget', () => {
 
   describe('custom entries', () => {
     beforeEach(() => {
-      visitStory(KLP_LOGIN_WIDGET_ID, 'custom-items');
+      visitStory(KLP_LOGIN_WIDGET_ID, 'entries');
       aliasTrigger();
     });
 
-    it('reaches the custom entry by keyboard between settings and logout', () => {
+    it('reaches the custom entry by keyboard between settings and the switch', () => {
       cy.get('@trigger').focus().realPress('Enter');
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'true');
 
       cy.realPress('End');
       cy.focused().find('slot[name="text-logout"]').should('exist');
+      cy.realPress('ArrowUp');
+      cy.focused().find('slot[name="text-account-switch"]').should('exist');
       cy.realPress('ArrowUp');
       cy.focused().should('have.attr', 'role', 'menuitem').and('contain.text', 'My orders');
       cy.realPress('ArrowUp');

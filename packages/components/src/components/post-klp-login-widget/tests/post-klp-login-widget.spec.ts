@@ -197,11 +197,11 @@ describe('post-klp-login-widget', () => {
       ]);
     });
 
-    it('puts the permitted switch first', async () => {
+    it('puts the permitted switch right before logout', async () => {
       const page = await render({ environment: 'int01' });
       await logIn(page, { changeUserAndProfile: 'userAndProfile' });
 
-      expect(menuEntries(page)[0]).toEqual({
+      expect(menuEntries(page).at(-2)).toEqual({
         text: 'text-account-switch',
         href: 'https://accountint1.post.ch/logout/?app=my-app&lang=de&service=my-app&inIframe=false&changecompany=true',
       });
@@ -212,7 +212,7 @@ describe('post-klp-login-widget', () => {
       await logIn(page, { canChangeCompany: true });
       const hrefs = menuEntries(page).map(entry => entry.href);
 
-      expect(hrefs[0]).toContain('&inIframe=true&');
+      expect(hrefs.at(-2)).toContain('&inIframe=true&');
       expect(hrefs.at(-1)).toBe('https://account.post.ch/logout/?lang=de&inIframe=true');
     });
 
@@ -228,9 +228,9 @@ describe('post-klp-login-widget', () => {
       await logIn(page, { changeUserAndProfile: 'userAndProfile' });
       const accountTargets = menuEntries(page).map(entry => entry.href);
       await logIn(page, { canChangeCompany: true });
-      const companyTarget = menuEntries(page)[0].href;
+      const companyTarget = menuEntries(page).at(-2).href;
 
-      expect(accountTargets).toEqual(['/account', '/profile', '/messages', '/settings', '/logout']);
+      expect(accountTargets).toEqual(['/profile', '/messages', '/settings', '/account', '/logout']);
       expect(companyTarget).toBe('/company');
     });
 
@@ -330,7 +330,7 @@ describe('post-klp-login-widget', () => {
       const texts = shadowAll(page, 'post-menu post-menu-item slot').map(slot => slot.textContent);
       const { companySwitch, myProfile, messages, settings, logout } = KLP_TRANSLATIONS.fr;
 
-      expect(texts).toEqual([companySwitch, myProfile, messages, settings, logout]);
+      expect(texts).toEqual([myProfile, messages, settings, companySwitch, logout]);
     });
   });
 
