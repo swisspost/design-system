@@ -1,5 +1,5 @@
 import type { CenshareError, CenshareResultPage } from '../../models/censhare-result-page.model';
-import fetch from 'node-fetch';
+import { fetch } from 'undici';
 import { requestInit } from '../environment';
 import { coloredLogMessage } from '../shared';
 import { DOWNLOAD_PAGE_DELAY } from '../constants';
