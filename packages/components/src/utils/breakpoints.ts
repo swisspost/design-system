@@ -49,9 +49,7 @@ class Breakpoint {
 
     Object.keys(this.currentBreakpoint)
       .filter(key => key !== 'mediaQuery')
-      .filter(
-        key => !previousBreakpoint || this.currentBreakpoint[key] !== previousBreakpoint[key],
-      )
+      .filter(key => !previousBreakpoint || this.currentBreakpoint[key] !== previousBreakpoint[key])
       .forEach((key: BreakpointProperty) => this.dispatchEvent(key));
   };
 

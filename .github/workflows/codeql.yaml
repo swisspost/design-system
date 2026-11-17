@@ -1,0 +1,53 @@
+###
+#
+# Runs CodeQL code scanning (advanced setup).
+# Replaces the default setup, which does not scan pull requests from forks.
+# Do not switch to `pull_request_target`: it would run fork code with write permissions.
+#
+###
+
+name: CodeQL
+
+on:
+  # Scans commits pushed to the configured branches, including PR merges.
+  push:
+    branches: [main, 'release/*']
+  # Scans PRs (incl. forks) whose base branch is one of the configured branches, on open, new commits and reopen.
+  pull_request:
+    branches: [main, 'release/*']
+  # Weekly re-scan to catch new queries and newly known vulnerabilities in unchanged code.
+  # Scheduled runs only cover the default branch (GitHub limitation).
+  # This matches the schedule of the GitHub CodeQL default setup.
+  schedule:
+    - cron: '20 6 * * 6' # runs every Saturdays 06:20 UTC, on default branch only
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      packages: read
+      actions: read
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [actions, javascript-typescript]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: none
+
+      - name: Analyze
+        uses: github/codeql-action/analyze@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          category: /language:${{ matrix.language }}
