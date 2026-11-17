@@ -5,7 +5,7 @@ import {
   createInertRateLimited,
   createInertMutationObserver,
   createInertResizeObserver,
-} from './mock';
+} from './inert';
 
 /**
  * A callback that is invoked with `this` bound to the manager's context.
@@ -24,17 +24,13 @@ export type BoundCallback<C, A extends unknown[]> = (this: C, ...args: A) => unk
 export type ListenerOptions = boolean | Omit<AddEventListenerOptions, 'signal'>;
 
 /**
- * A function that limits how often its callback is invoked by delaying invocations. A pending
- * invocation can be cancelled through its `cancel()` method, after which the function remains
- * usable.
+ * A function that limits how often its callback is invoked by delaying or dropping invocations.
  *
  * @typeParam A - The type of the arguments the function is called with.
  */
 export type RateLimited<A extends unknown[]> = ((...args: A) => void) & {
   /**
-   * Cancels the pending invocation, if any.
-   *
-   * Calling `cancel()` when no invocation is pending is a no-op.
+   * Cancels the pending invocation, if any, and resets the rate limit.
    */
   cancel(): void;
 };
@@ -79,17 +75,17 @@ export interface ThrottleOptions {
 
 /**
  * The reason why an effect stops being tracked:
- * - `disposed`: it was torn down through its handle (e.g. {@link EffectHandle.dispose},
- *   {@link RateLimited.cancel} or {@link ResizeObserver.disconnect}).
- * - `completed`: it completed on its own (e.g. a timeout fired or a `once` listener was invoked).
- * - `disconnected`: it was torn down by the manager ({@link EffectManager.disconnect}).
+ *
+ * - `completed`: it completed on its own.
+ * - `disposed`: it was torn down before it completed on its own or the manager was disconnected.
+ * - `disconnected`: it was torn down by {@link EffectManager.disconnect}.
  */
-type ReleaseReason = 'disposed' | 'completed' | 'disconnected';
+type ReleaseReason = 'completed' | 'disposed' | 'disconnected';
 
 /**
  * An event in the lifecycle of an effect, as reported in debug logs.
  */
-export type EffectLifecycleEvent = 'tracked' | ReleaseReason;
+type EffectLifecycleEvent = 'tracked' | ReleaseReason;
 
 /**
  * A handle to a tracked effect, allowing the effect to be torn down before it completes on its own
@@ -99,7 +95,7 @@ export interface EffectHandle {
   /**
    * Tears down the effect and stops tracking it.
    *
-   * Calling `dispose()` on an effect that is no longer tracked is a no-op.
+   * Calling `dispose()` after the effect is no longer tracked is a no-op.
    */
   dispose(): void;
 }
@@ -109,8 +105,8 @@ export interface EffectHandle {
  */
 export interface EffectManagerOptions {
   /**
-   * Whether to log the lifecycle events of every effect to the console. Only has an effect in
-   * development builds. Defaults to `false`.
+   * Whether to log the lifecycle events of every effect to the console. Only applies in development
+   * builds. Defaults to `false`.
    */
   debug?: boolean;
 }
@@ -125,26 +121,27 @@ interface EffectDescriptor {
   describe(): string;
 
   /**
-   * Undoes the side effect (e.g. removes the listener or clears the timeout).
+   * Undoes the effect (e.g. removes the listener or clears the timeout).
    */
   teardown(): void;
 }
 
 /**
  * Manages the lifecycle of side effects, such as event listeners, timers, and observers. It tracks
- * them and tears them down when they complete, are disposed, or the manager is disconnected,
- * thereby preventing memory leaks and unwanted behaviour.
+ * them until they complete on their own, and tears them down when they are disposed of or the
+ * manager is disconnected, thereby preventing memory leaks and unwanted behaviour.
  *
  * All callbacks are invoked with `this` bound to the manager's context, so they can be passed as
  * plain functions without binding them first.
  *
- * During server-side rendering, no effect is created and every method returns an inert handle,
- * allowing their API to be used safely without checking for the environment.
+ * During server-side rendering, or when a required browser API is unavailable, no effect is
+ * created. Instead, an inert substitute is returned, enabling the API to be used safely without
+ * checking the environment.
  *
  * ```ts
- * @Component({ tag: 'example' })
- * export class ExampleComponent {
- *   @Element() host: HTMLExampleElement;
+ * @Component({ tag: 'post-example' })
+ * export class PostExample {
+ *   @Element() host: HTMLPostExampleElement;
  *
  *   private readonly effects = new EffectManager(this);
  *
@@ -162,7 +159,7 @@ interface EffectDescriptor {
  *   }
  *
  *   disconnectedCallback() {
- *     // Look ma, no manual clean-up!
+ *     // Look ma, no manual teardown!
  *     this.effects.disconnect();
  *   }
  *
@@ -176,8 +173,7 @@ interface EffectDescriptor {
  * }
  * ```
  *
- * @typeParam C - The type of the manager's context, i.e. the object that owns the effects — usually
- * a component.
+ * @typeParam C - The type of the manager's context.
  */
 export class EffectManager<C extends object> {
   /**
@@ -192,7 +188,8 @@ export class EffectManager<C extends object> {
   private readonly effects = new Map<number, EffectDescriptor>();
 
   /**
-   * @param context - The object that `this` is bound to in every callback.
+   * @param context - The object that owns the effects (usually a component), to which `this` is
+   * bound in every callback.
    * @param options - The options for configuring the manager.
    */
   constructor(
@@ -214,39 +211,11 @@ export class EffectManager<C extends object> {
     return Build.isDev && this.options?.debug === true;
   }
 
-  public addEventListener<K extends keyof WindowEventMap>(
-    target: Window,
-    type: K,
-    callback: BoundCallback<C, [WindowEventMap[K]]>,
-    options?: ListenerOptions,
-  ): EffectHandle;
-
-  public addEventListener<K extends keyof DocumentEventMap>(
-    target: Document,
-    type: K,
-    callback: BoundCallback<C, [DocumentEventMap[K]]>,
-    options?: ListenerOptions,
-  ): EffectHandle;
-
-  public addEventListener<K extends keyof HTMLElementEventMap>(
-    target: HTMLElement,
-    type: K,
-    callback: BoundCallback<C, [HTMLElementEventMap[K]]>,
-    options?: ListenerOptions,
-  ): EffectHandle;
-
-  public addEventListener<E extends Event = Event>(
-    target: EventTarget,
-    type: string,
-    callback: BoundCallback<C, [E]>,
-    options?: ListenerOptions,
-  ): EffectHandle;
-
   /**
    * Adds an event listener to the given target.
    *
    * The listener is tracked until:
-   * - the `once` option is set and the event fires;
+   * - it completes, i.e. the `once` option is set and the event fires;
    * - it is disposed of through the returned handle; or
    * - the manager is disconnected.
    *
@@ -256,8 +225,84 @@ export class EffectManager<C extends object> {
    * manager's context.
    * @param options - The native listener options, or a boolean indicating whether to use `capture`.
    * The `signal` option is not supported.
-   * @returns A handle to remove the listener.
+   * @returns A handle to dispose of the listener, or an inert one during server-side rendering.
    */
+  public addEventListener<K extends keyof WindowEventMap>(
+    target: Window,
+    type: K,
+    callback: BoundCallback<C, [WindowEventMap[K]]>,
+    options?: ListenerOptions,
+  ): EffectHandle;
+
+  /**
+   * Adds an event listener to the given target.
+   *
+   * The listener is tracked until:
+   * - it completes, i.e. the `once` option is set and the event fires;
+   * - it is disposed of through the returned handle; or
+   * - the manager is disconnected.
+   *
+   * @param target - The target to listen on.
+   * @param type - The event type to listen for.
+   * @param callback - The callback to invoke when the event fires, with `this` bound to the
+   * manager's context.
+   * @param options - The native listener options, or a boolean indicating whether to use `capture`.
+   * The `signal` option is not supported.
+   * @returns A handle to dispose of the listener, or an inert one during server-side rendering.
+   */
+  public addEventListener<K extends keyof DocumentEventMap>(
+    target: Document,
+    type: K,
+    callback: BoundCallback<C, [DocumentEventMap[K]]>,
+    options?: ListenerOptions,
+  ): EffectHandle;
+
+  /**
+   * Adds an event listener to the given target.
+   *
+   * The listener is tracked until:
+   * - it completes, i.e. the `once` option is set and the event fires;
+   * - it is disposed of through the returned handle; or
+   * - the manager is disconnected.
+   *
+   * @param target - The target to listen on.
+   * @param type - The event type to listen for.
+   * @param callback - The callback to invoke when the event fires, with `this` bound to the
+   * manager's context.
+   * @param options - The native listener options, or a boolean indicating whether to use `capture`.
+   * The `signal` option is not supported.
+   * @returns A handle to dispose of the listener, or an inert one during server-side rendering.
+   */
+  public addEventListener<K extends keyof HTMLElementEventMap>(
+    target: HTMLElement,
+    type: K,
+    callback: BoundCallback<C, [HTMLElementEventMap[K]]>,
+    options?: ListenerOptions,
+  ): EffectHandle;
+
+  /**
+   * Adds an event listener to the given target.
+   *
+   * The listener is tracked until:
+   * - it completes, i.e. the `once` option is set and the event fires;
+   * - it is disposed of through the returned handle; or
+   * - the manager is disconnected.
+   *
+   * @param target - The target to listen on.
+   * @param type - The event type to listen for.
+   * @param callback - The callback to invoke when the event fires, with `this` bound to the
+   * manager's context.
+   * @param options - The native listener options, or a boolean indicating whether to use `capture`.
+   * The `signal` option is not supported.
+   * @returns A handle to dispose of the listener.
+   */
+  public addEventListener<E extends Event = Event>(
+    target: EventTarget,
+    type: string,
+    callback: BoundCallback<C, [E]>,
+    options?: ListenerOptions,
+  ): EffectHandle;
+
   public addEventListener(
     target: EventTarget,
     type: string,
@@ -272,8 +317,8 @@ export class EffectManager<C extends object> {
     const removeListener = () => target.removeEventListener(type, listener, nativeOptions);
 
     const listener: EventListener = (...args) => {
-      // The native `once` option is handled manually, so that the effect is guaranteed to be torn
-      // down when it fires.
+      // The native `once` option is handled manually, so that the effect is released as completed
+      // and the listener removed when it fires.
       if (once) {
         this.release(effect, 'completed');
         removeListener();
@@ -296,14 +341,14 @@ export class EffectManager<C extends object> {
    * Schedules a callback to be invoked once after the given delay.
    *
    * The timeout is tracked until:
-   * - it fires;
+   * - it completes, i.e. it fires;
    * - it is disposed of through the returned handle; or
    * - the manager is disconnected.
    *
    * @param callback - The callback to invoke when the timeout fires, with `this` bound to the
    * manager's context.
    * @param delay - The delay in milliseconds.
-   * @returns A handle to clear the timeout before it fires.
+   * @returns A handle to dispose of the timeout before it fires.
    */
   public setTimeout(callback: BoundCallback<C, []>, delay: number): EffectHandle {
     if (Build.isServer) return createInertHandle();
@@ -330,17 +375,17 @@ export class EffectManager<C extends object> {
    *
    * @param callback - The callback to invoke each time the interval fires, with `this` bound to the
    * manager's context.
-   * @param delay - The interval in milliseconds. Defaults to `0`.
-   * @returns A handle to clear the interval.
+   * @param interval - The interval in milliseconds.
+   * @returns A handle to dispose of the interval.
    */
-  public setInterval(callback: BoundCallback<C, []>, delay?: number): EffectHandle {
+  public setInterval(callback: BoundCallback<C, []>, interval: number): EffectHandle {
     if (Build.isServer) return createInertHandle();
 
-    const interval = globalThis.setInterval(() => callback.call(this.context), delay);
+    const id = globalThis.setInterval(() => callback.call(this.context), interval);
 
     const effect = this.track({
-      describe: () => `interval (${delay ?? 0}ms)`,
-      teardown: () => globalThis.clearInterval(interval),
+      describe: () => `interval (${interval}ms)`,
+      teardown: () => globalThis.clearInterval(id),
     });
 
     return this.toHandle(effect);
@@ -350,7 +395,7 @@ export class EffectManager<C extends object> {
    * Schedules a callback to be invoked before the next repaint.
    *
    * The animation frame request is tracked until:
-   * - it fires;
+   * - it completes, i.e. it fires;
    * - it is disposed of through the returned handle; or
    * - the manager is disconnected.
    *
@@ -381,11 +426,11 @@ export class EffectManager<C extends object> {
   /**
    * Wraps a callback in a debounced function, which defers the invocation of the callback until the
    * given delay has elapsed. If the debounced function is called again before the delay elapses,
-   * the previous invocation is cancelled and the delay restarts.
+   * the pending invocation is cancelled and the delay restarts.
    *
    * Each pending invocation is tracked until:
-   * - the callback is invoked;
-   * - it is cancelled through the `cancel()` method or superseded by a new call; or
+   * - it completes, i.e. the callback is invoked;
+   * - it is disposed of through the `cancel()` method or superseded by a new call; or
    * - the manager is disconnected.
    *
    * @param callback - The callback to invoke, with `this` bound to the manager's context.
@@ -427,11 +472,11 @@ export class EffectManager<C extends object> {
    *
    * Each throttle interval is tracked until:
    * - it completes, i.e. the interval elapses (a trailing invocation then starts a new interval);
-   * - it is cancelled through the `cancel()` method; or
+   * - it is disposed of through the `cancel()` method; or
    * - the manager is disconnected.
    *
    * @param callback - The callback to invoke, with `this` bound to the manager's context.
-   * @param delay - The interval in milliseconds.
+   * @param interval - The interval in milliseconds.
    * @param options - Whether to invoke the callback on the leading and/or trailing edge of the
    * interval. Both default to `true`.
    * @returns The throttled function, with a `cancel()` method to cancel the pending trailing
@@ -439,7 +484,7 @@ export class EffectManager<C extends object> {
    */
   public throttle<A extends unknown[]>(
     callback: BoundCallback<C, A>,
-    delay: number,
+    interval: number,
     { leading = true, trailing = true }: ThrottleOptions = {},
   ): Throttled<A> {
     if (Build.isServer) return createInertRateLimited<A>();
@@ -459,10 +504,10 @@ export class EffectManager<C extends object> {
           queue();
           callback.apply(this.context, args);
         }
-      }, delay);
+      }, interval);
 
       effect = this.track({
-        describe: () => `throttle (${delay}ms)`,
+        describe: () => `throttle (${interval}ms)`,
         teardown: () => {
           globalThis.clearTimeout(timeout);
           effect = null;
@@ -491,8 +536,9 @@ export class EffectManager<C extends object> {
   /**
    * Creates a `ResizeObserver` whose lifetime is managed by the manager.
    *
-   * The observer is tracked from its first call to `observe()` until:
-   * - it is disposed of by calling its `disconnect()` method; or
+   * An observer never completes on its own. It starts being tracked when `observe()` is called and
+   * keeps being tracked until:
+   * - it is disposed of through its `disconnect()` method; or
    * - the manager is disconnected.
    *
    * @param callback - The callback to invoke when an observed element is resized, with `this` bound
@@ -515,8 +561,9 @@ export class EffectManager<C extends object> {
   /**
    * Creates a `MutationObserver` whose lifetime is managed by the manager.
    *
-   * The observer is tracked from its first call to `observe()` until:
-   * - it is disposed of by calling its `disconnect()` method; or
+   * An observer never completes on its own. It starts being tracked when `observe()` is called and
+   * keeps being tracked until:
+   * - it is disposed of through its `disconnect()` method; or
    * - the manager is disconnected.
    *
    * @param callback - The callback to invoke when a mutation is observed, with `this` bound to the
@@ -542,7 +589,7 @@ export class EffectManager<C extends object> {
    * This is typically called in the `disconnectedCallback` of a component. The manager remains
    * usable afterwards, so effects can be tracked again when the component is reconnected.
    *
-   * Every effect is released even if the teardown of another one throws.
+   * Every effect is torn down even if the teardown of another one throws.
    *
    * @throws {AggregateError} An aggregation of all thrown errors if the teardown of one or more
    * effects fails.
@@ -550,7 +597,7 @@ export class EffectManager<C extends object> {
   public disconnect(): void {
     const errors: unknown[] = [];
 
-    // Take a snapshot of the IDs, as a live map iterator would also visit any effects registered
+    // Take a snapshot of the IDs, as a live map iterator would also visit any effects tracked
     // during teardown.
     const ids = Array.from(this.effects.keys());
 
@@ -563,7 +610,7 @@ export class EffectManager<C extends object> {
     }
 
     if (errors.length > 0) {
-      throw new AggregateError(errors, 'Side effect teardown failed.');
+      throw new AggregateError(errors, 'Effect teardown failed.');
     }
   }
 
@@ -582,15 +629,15 @@ export class EffectManager<C extends object> {
   }
 
   /**
-   * Proxies the `observe()` and `disconnect()` methods of an observer so that it can be tracked as
+   * Patches the `observe()` and `disconnect()` methods of an observer so that it can be tracked as
    * an effect.
    *
-   * The observer starts being tracked on the first call to `observe()` and stops being tracked if
+   * The observer starts being tracked whenever `observe()` is called and stops being tracked when
    * `disconnect()` is called.
    *
-   * @param observer - The observer to proxy.
+   * @param observer - The observer to patch.
    * @param label - A human-readable label for the observer, used in debug logs.
-   * @returns The same observer, proxied.
+   * @returns The same observer, patched.
    */
   private trackObserver<O extends ResizeObserver | MutationObserver>(
     observer: O,
@@ -605,7 +652,7 @@ export class EffectManager<C extends object> {
       observe: (...args: Parameters<O['observe']>) => {
         nativeObserve(...args);
 
-        // Register an effect as soon as the observer is used.
+        // Track an effect as soon as the observer is used.
         effect ??= this.track({
           describe: () => label,
           teardown: () => {
@@ -616,7 +663,7 @@ export class EffectManager<C extends object> {
       },
       disconnect: () => {
         if (effect !== null) this.release(effect, 'disposed');
-        // If no effect was registered, the observer was never used, and no additional teardown is
+        // If no effect was tracked, the observer was never used, and no additional teardown is
         // necessary.
         else nativeDisconnect();
       },

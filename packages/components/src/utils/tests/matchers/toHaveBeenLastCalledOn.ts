@@ -1,13 +1,17 @@
 expect.extend({
   toHaveBeenLastCalledOn(this: jest.MatcherContext, received: jest.Mock, context: unknown) {
+    const wasCalled = received.mock.calls.length > 0;
     const lastContext = received.mock.contexts.at(-1);
-    const pass = received.mock.calls.length > 0 && Object.is(lastContext, context);
+
+    const pass = wasCalled && Object.is(lastContext, context);
 
     return {
       pass,
       message: () =>
         `expected the mock ${pass ? 'not ' : ''}to have been last called on ${this.utils.printExpected(context)}, ` +
-        `but it was last called on ${this.utils.printReceived(lastContext)}`,
+        (wasCalled
+          ? `but it was last called on ${this.utils.printReceived(lastContext)}`
+          : 'but it was never called'),
     };
   },
 });

@@ -1,10 +1,6 @@
-if (!Object.prototype.hasOwnProperty.call(globalThis, 'MutationObserver')) {
-  Object.defineProperty(globalThis, 'MutationObserver', {
-    value: undefined,
-    configurable: true,
-    writable: true,
-  });
-}
+import { createPlaceholderProperty } from '@/utils/tests/helpers/global-this';
+
+createPlaceholderProperty('MutationObserver');
 
 export class MockMutationObserver implements MutationObserver {
   private readonly targets = new Set<Node>();

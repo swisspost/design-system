@@ -1,10 +1,6 @@
-if (!Object.prototype.hasOwnProperty.call(globalThis, 'ResizeObserver')) {
-  Object.defineProperty(globalThis, 'ResizeObserver', {
-    value: undefined,
-    configurable: true,
-    writable: true,
-  });
-}
+import { createPlaceholderProperty } from '@/utils/tests/helpers/global-this';
+
+createPlaceholderProperty('ResizeObserver');
 
 export class MockResizeObserver implements ResizeObserver {
   private readonly targets = new Set<Element>();

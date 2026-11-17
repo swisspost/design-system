@@ -446,6 +446,21 @@ describe('EffectManager', () => {
         expect(manager.effectCount).toBe(1);
       });
 
+      it('should reset the interval when cancelled without a pending call', () => {
+        const throttled = manager.throttle(callback, 2, { trailing: false });
+
+        throttled(1);
+        throttled.cancel();
+
+        expect(manager.effectCount).toBe(0);
+
+        throttled(2);
+
+        expect(callback).toHaveBeenCalledTimes(2);
+        expect(callback).toHaveBeenLastCalledWith(2);
+        expect(manager.effectCount).toBe(1);
+      });
+
       it('should do nothing when cancelled after completion', () => {
         const clearSpy = jest.spyOn(globalThis, 'clearTimeout');
         const throttled = manager.throttle(callback, 2);
@@ -611,6 +626,40 @@ describe('EffectManager', () => {
         expect(manager.effectCount).toBe(0);
       });
     });
+
+    describe('unavailable APIs', () => {
+      it('should return an inert handle from requestAnimationFrame', () => {
+        // `jest.replaceProperty` cannot replace functions
+        const nativeRequestAnimationFrame = globalThis.requestAnimationFrame;
+
+        globalThis.requestAnimationFrame = undefined as never;
+
+        try {
+          const effect = manager.requestAnimationFrame(callback);
+
+          expect(manager.effectCount).toBe(0);
+
+          jest.runAllTimers();
+          effect.dispose();
+
+          expect(callback).not.toHaveBeenCalled();
+        } finally {
+          globalThis.requestAnimationFrame = nativeRequestAnimationFrame;
+        }
+      });
+
+      it.each(OBSERVERS)('should return an inert observer from $method', ({ api, method }) => {
+        jest.replaceProperty(globalThis, api, undefined as never);
+
+        const observer = manager[method](callback);
+
+        observer.observe(document.body);
+
+        expect(manager.effectCount).toBe(0);
+
+        observer.disconnect();
+      });
+    });
   });
 
   describe('server environment', () => {
@@ -661,6 +710,17 @@ describe('EffectManager', () => {
         expect(nativeSpy).not.toHaveBeenCalled();
         expect(callback).not.toHaveBeenCalled();
         expect(manager.effectCount).toBe(0);
+      },
+    );
+
+    it.each(['debounce', 'throttle'] as const)(
+      'should return a distinct inert function on every call with %s',
+      method => {
+        const first = manager[method](callback, 2);
+        const second = manager[method](callback, 2);
+
+        expect(first).not.toBe(second);
+        expect(first.cancel).toBeInstanceOf(Function);
       },
     );
 

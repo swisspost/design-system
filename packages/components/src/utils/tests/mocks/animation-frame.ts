@@ -1,4 +1,4 @@
-export const FRAME_TIMEOUT = 16;
+const FRAME_TIMEOUT = 16;
 
 export function mockAnimationFrame() {
   jest
