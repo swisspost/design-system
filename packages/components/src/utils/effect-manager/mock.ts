@@ -1,19 +1,20 @@
-import type { Callable, Cancelable } from './index';
+import type { EffectHandle, RateLimited } from './index';
 
 const noop = () => {};
 
 /**
- * Creates a `Cancelable` whose `cancel` method does nothing.
+ * Creates an `EffectHandle` whose `dispose` method does nothing.
  */
-export function createInertCancelable(): Cancelable {
-  return Object.freeze({ cancel: noop });
+export function createInertHandle(): EffectHandle {
+  return Object.freeze({ dispose: noop });
 }
 
 /**
- * Creates a `Callable` that never invokes anything and whose `cancel` method does nothing.
+ * Creates a `RateLimited` function that never invokes anything and whose `cancel` method does
+ * nothing.
  */
-export function createInertCallable<A extends unknown[]>(): Callable<A> {
-  return Object.assign(noop, createInertCancelable());
+export function createInertRateLimited<A extends unknown[]>(): RateLimited<A> {
+  return Object.assign(noop, { cancel: noop });
 }
 
 /**

@@ -71,7 +71,7 @@ describe('EffectManager', () => {
           expect(callback).toHaveBeenCalledTimes(i);
           expect(callback).toHaveBeenLastCalledWith(event);
           expect(callback).toHaveBeenLastCalledOn(context);
-          expect(manager.activeEffects).toBe(1);
+          expect(manager.effectCount).toBe(1);
         }
       });
 
@@ -84,7 +84,7 @@ describe('EffectManager', () => {
 
         expect(callback).toHaveBeenCalledTimes(1);
         expect(callback).toHaveBeenLastCalledWith(event);
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
 
       it.each([
@@ -99,29 +99,29 @@ describe('EffectManager', () => {
         const addSpy = jest.spyOn(target, 'addEventListener');
         const removeSpy = jest.spyOn(target, 'removeEventListener');
 
-        manager.addEventListener(target, 'click', callback, options).cancel();
+        manager.addEventListener(target, 'click', callback, options).dispose();
 
         expect(addSpy).toHaveBeenLastCalledWith('click', expect.any(Function), expected);
         expect(removeSpy).toHaveBeenLastCalledWith('click', addSpy.mock.calls[0][1], expected);
       });
 
-      it('should remove the listener when cancelled', () => {
-        manager.addEventListener(target, 'click', callback).cancel();
+      it('should remove the listener when disposed', () => {
+        manager.addEventListener(target, 'click', callback).dispose();
         target.dispatchEvent(new Event('click'));
 
         expect(callback).not.toHaveBeenCalled();
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
 
-      it('should do nothing when cancelled after completion', () => {
+      it('should do nothing when disposed after completion', () => {
         const removeSpy = jest.spyOn(target, 'removeEventListener');
         const effect = manager.addEventListener(target, 'click', callback, { once: true });
 
         target.dispatchEvent(new Event('click'));
-        effect.cancel();
+        effect.dispose();
 
         expect(removeSpy).toHaveBeenCalledTimes(1);
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
 
       it('should remove a `once` listener even when the callback throws', () => {
@@ -132,7 +132,7 @@ describe('EffectManager', () => {
         target.dispatchEvent(new Event('click'));
 
         expect(callback).toHaveBeenCalledTimes(1);
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
     });
 
@@ -142,33 +142,33 @@ describe('EffectManager', () => {
         jest.advanceTimersByTime(1);
 
         expect(callback).not.toHaveBeenCalled();
-        expect(manager.activeEffects).toBe(1);
+        expect(manager.effectCount).toBe(1);
 
         jest.advanceTimersByTime(3);
 
         expect(callback).toHaveBeenCalledTimes(1);
         expect(callback).toHaveBeenLastCalledWith();
         expect(callback).toHaveBeenLastCalledOn(context);
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
 
-      it('should clear the timeout when cancelled', () => {
-        manager.setTimeout(callback, 2).cancel();
+      it('should clear the timeout when disposed', () => {
+        manager.setTimeout(callback, 2).dispose();
         jest.advanceTimersByTime(2);
 
         expect(callback).not.toHaveBeenCalled();
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
 
-      it('should do nothing when cancelled after completion', () => {
+      it('should do nothing when disposed after completion', () => {
         const clearSpy = jest.spyOn(globalThis, 'clearTimeout');
         const effect = manager.setTimeout(callback, 2);
 
         jest.advanceTimersByTime(2);
-        effect.cancel();
+        effect.dispose();
 
         expect(clearSpy).not.toHaveBeenCalled();
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
 
       it('should stop tracking the timeout even when the callback throws', () => {
@@ -177,7 +177,7 @@ describe('EffectManager', () => {
         manager.setTimeout(callback, 2);
 
         expect(() => jest.advanceTimersByTime(2)).toThrow('Callback failed.');
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
     });
 
@@ -195,19 +195,19 @@ describe('EffectManager', () => {
           expect(callback).toHaveBeenCalledTimes(i);
           expect(callback).toHaveBeenLastCalledWith();
           expect(callback).toHaveBeenLastCalledOn(context);
-          expect(manager.activeEffects).toBe(1);
+          expect(manager.effectCount).toBe(1);
         }
       });
 
-      it('should clear the interval when cancelled', () => {
+      it('should clear the interval when disposed', () => {
         const effect = manager.setInterval(callback, 2);
 
         jest.advanceTimersByTime(2);
-        effect.cancel();
+        effect.dispose();
         jest.advanceTimersByTime(4);
 
         expect(callback).toHaveBeenCalledTimes(1);
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
     });
 
@@ -220,32 +220,32 @@ describe('EffectManager', () => {
         manager.requestAnimationFrame(callback);
 
         expect(callback).not.toHaveBeenCalled();
-        expect(manager.activeEffects).toBe(1);
+        expect(manager.effectCount).toBe(1);
 
         jest.runAllTimers();
 
         expect(callback).toHaveBeenCalledTimes(1);
         expect(callback).toHaveBeenLastCalledWith(expect.any(Number));
         expect(callback).toHaveBeenLastCalledOn(context);
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
 
-      it('should cancel the frame request when cancelled', () => {
-        manager.requestAnimationFrame(callback).cancel();
+      it('should cancel the frame request when disposed', () => {
+        manager.requestAnimationFrame(callback).dispose();
         jest.runAllTimers();
 
         expect(callback).not.toHaveBeenCalled();
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
 
-      it('should do nothing when cancelled after completion', () => {
+      it('should do nothing when disposed after completion', () => {
         const effect = manager.requestAnimationFrame(callback);
 
         jest.runAllTimers();
-        effect.cancel();
+        effect.dispose();
 
         expect(globalThis.cancelAnimationFrame).not.toHaveBeenCalled();
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
 
       it('should stop tracking the frame request even when the callback throws', () => {
@@ -254,7 +254,7 @@ describe('EffectManager', () => {
         manager.requestAnimationFrame(callback);
 
         expect(() => jest.runAllTimers()).toThrow('Callback failed.');
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
     });
 
@@ -267,7 +267,7 @@ describe('EffectManager', () => {
           jest.advanceTimersByTime(1);
 
           expect(callback).not.toHaveBeenCalled();
-          expect(manager.activeEffects).toBe(1);
+          expect(manager.effectCount).toBe(1);
         }
 
         jest.advanceTimersByTime(3);
@@ -275,7 +275,7 @@ describe('EffectManager', () => {
         expect(callback).toHaveBeenCalledTimes(1);
         expect(callback).toHaveBeenLastCalledWith(3);
         expect(callback).toHaveBeenLastCalledOn(context);
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
 
       it('should call the callback again when called after the delay has elapsed', () => {
@@ -285,13 +285,13 @@ describe('EffectManager', () => {
         jest.advanceTimersByTime(2);
         debounced(2);
 
-        expect(manager.activeEffects).toBe(1);
+        expect(manager.effectCount).toBe(1);
 
         jest.advanceTimersByTime(2);
 
         expect(callback).toHaveBeenCalledTimes(2);
         expect(callback).toHaveBeenLastCalledWith(2);
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
 
       it('should track a call made from within the callback', () => {
@@ -304,13 +304,13 @@ describe('EffectManager', () => {
         jest.advanceTimersByTime(2);
 
         expect(callback).toHaveBeenCalledTimes(1);
-        expect(manager.activeEffects).toBe(1);
+        expect(manager.effectCount).toBe(1);
 
         debounced.cancel();
         jest.advanceTimersByTime(2);
 
         expect(callback).toHaveBeenCalledTimes(1);
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
 
       it('should cancel the pending call when cancelled', () => {
@@ -321,7 +321,7 @@ describe('EffectManager', () => {
         jest.advanceTimersByTime(2);
 
         expect(callback).not.toHaveBeenCalled();
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
 
       it('should do nothing when cancelled after completion', () => {
@@ -333,7 +333,7 @@ describe('EffectManager', () => {
         debounced.cancel();
 
         expect(clearSpy).not.toHaveBeenCalled();
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
 
       it('should stop tracking the pending call even when the callback throws', () => {
@@ -342,7 +342,7 @@ describe('EffectManager', () => {
         manager.debounce(callback, 2)(1);
 
         expect(() => jest.advanceTimersByTime(2)).toThrow('Callback failed.');
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
     });
 
@@ -355,7 +355,7 @@ describe('EffectManager', () => {
         expect(callback).toHaveBeenCalledTimes(1);
         expect(callback).toHaveBeenLastCalledWith(1);
         expect(callback).toHaveBeenLastCalledOn(context);
-        expect(manager.activeEffects).toBe(1);
+        expect(manager.effectCount).toBe(1);
 
         throttled(2);
         jest.advanceTimersByTime(1);
@@ -370,12 +370,12 @@ describe('EffectManager', () => {
         expect(callback).toHaveBeenLastCalledOn(context);
 
         // The trailing call starts a new interval, which ends without a call if not called again.
-        expect(manager.activeEffects).toBe(1);
+        expect(manager.effectCount).toBe(1);
 
         jest.advanceTimersByTime(2);
 
         expect(callback).toHaveBeenCalledTimes(2);
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
 
       it('should call the callback immediately again when called after the interval has elapsed', () => {
@@ -384,13 +384,13 @@ describe('EffectManager', () => {
         throttled(1);
         jest.advanceTimersByTime(2);
 
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
 
         throttled(2);
 
         expect(callback).toHaveBeenCalledTimes(2);
         expect(callback).toHaveBeenLastCalledWith(2);
-        expect(manager.activeEffects).toBe(1);
+        expect(manager.effectCount).toBe(1);
       });
 
       it('should only call the callback at the end of the interval when `leading` is disabled', () => {
@@ -401,18 +401,18 @@ describe('EffectManager', () => {
         throttled(2);
 
         expect(callback).not.toHaveBeenCalled();
-        expect(manager.activeEffects).toBe(1);
+        expect(manager.effectCount).toBe(1);
 
         jest.advanceTimersByTime(1);
 
         expect(callback).toHaveBeenCalledTimes(1);
         expect(callback).toHaveBeenLastCalledWith(2);
-        expect(manager.activeEffects).toBe(1);
+        expect(manager.effectCount).toBe(1);
 
         jest.advanceTimersByTime(2);
 
         expect(callback).toHaveBeenCalledTimes(1);
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
 
       it('should ignore calls during the interval when `trailing` is disabled', () => {
@@ -425,7 +425,7 @@ describe('EffectManager', () => {
 
         expect(callback).toHaveBeenCalledTimes(1);
         expect(callback).toHaveBeenLastCalledWith(1);
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
 
       it('should cancel the pending call and reset the interval when cancelled', () => {
@@ -437,13 +437,13 @@ describe('EffectManager', () => {
         jest.advanceTimersByTime(2);
 
         expect(callback).toHaveBeenCalledTimes(1);
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
 
         throttled(3);
 
         expect(callback).toHaveBeenCalledTimes(2);
         expect(callback).toHaveBeenLastCalledWith(3);
-        expect(manager.activeEffects).toBe(1);
+        expect(manager.effectCount).toBe(1);
       });
 
       it('should do nothing when cancelled after completion', () => {
@@ -455,7 +455,7 @@ describe('EffectManager', () => {
         throttled.cancel();
 
         expect(clearSpy).not.toHaveBeenCalled();
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
     });
 
@@ -487,7 +487,7 @@ describe('EffectManager', () => {
       it('should start tracking the observer once it observes a target', () => {
         const options = { box: 'border-box', childList: true } as MockObserverOptions;
 
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
 
         for (let i = 1; i <= 2; i++) {
           const target = document.createElement('div');
@@ -495,7 +495,7 @@ describe('EffectManager', () => {
 
           expect(observeSpy).toHaveBeenCalledTimes(i);
           expect(observeSpy).toHaveBeenLastCalledWith(target, options);
-          expect(manager.activeEffects).toBe(1);
+          expect(manager.effectCount).toBe(1);
         }
       });
 
@@ -504,14 +504,14 @@ describe('EffectManager', () => {
         observer.disconnect();
 
         expect(disconnectSpy).toHaveBeenCalledTimes(1);
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
 
       it('should disconnect the native observer when disconnected before observing', () => {
         observer.disconnect();
 
         expect(disconnectSpy).toHaveBeenCalledTimes(1);
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
 
       it('should track the observer again when observing after being disconnected', () => {
@@ -520,7 +520,7 @@ describe('EffectManager', () => {
         observer.observe(document.body);
 
         expect(observeSpy).toHaveBeenCalledTimes(2);
-        expect(manager.activeEffects).toBe(1);
+        expect(manager.effectCount).toBe(1);
       });
     });
 
@@ -543,7 +543,7 @@ describe('EffectManager', () => {
         manager.createResizeObserver(callback).observe(target);
         manager.createMutationObserver(callback).observe(target);
 
-        expect(manager.activeEffects).toBe(8);
+        expect(manager.effectCount).toBe(8);
 
         manager.disconnect();
         target.dispatchEvent(new Event('click'));
@@ -552,7 +552,7 @@ describe('EffectManager', () => {
         expect(callback).not.toHaveBeenCalled();
         expect(resizeDisconnectSpy).toHaveBeenCalledTimes(1);
         expect(mutationDisconnectSpy).toHaveBeenCalledTimes(1);
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
 
       it('should tear down all tracked effects and throw an aggregate error when teardowns fail', () => {
@@ -577,7 +577,7 @@ describe('EffectManager', () => {
         target.dispatchEvent(new Event('click'));
 
         expect(callback).not.toHaveBeenCalled();
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
 
       it('should not tear down effects tracked during teardown', () => {
@@ -590,12 +590,12 @@ describe('EffectManager', () => {
         manager.addEventListener(target, 'click', jest.fn());
         manager.disconnect();
 
-        expect(manager.activeEffects).toBe(1);
+        expect(manager.effectCount).toBe(1);
 
         jest.advanceTimersByTime(2);
 
         expect(callback).toHaveBeenCalledTimes(1);
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
 
       it('should keep the manager usable after being disconnected', () => {
@@ -603,12 +603,12 @@ describe('EffectManager', () => {
         manager.disconnect();
         manager.setTimeout(callback, 2);
 
-        expect(manager.activeEffects).toBe(1);
+        expect(manager.effectCount).toBe(1);
 
         jest.advanceTimersByTime(2);
 
         expect(callback).toHaveBeenCalledTimes(1);
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       });
     });
   });
@@ -622,10 +622,10 @@ describe('EffectManager', () => {
       const target = document.createElement('div');
       const addSpy = jest.spyOn(target, 'addEventListener');
 
-      manager.addEventListener(target, 'click', callback).cancel();
+      manager.addEventListener(target, 'click', callback).dispose();
 
       expect(addSpy).not.toHaveBeenCalled();
-      expect(manager.activeEffects).toBe(0);
+      expect(manager.effectCount).toBe(0);
     });
 
     it.each(['setTimeout', 'setInterval'] as const)(
@@ -633,34 +633,34 @@ describe('EffectManager', () => {
       method => {
         const nativeSpy = jest.spyOn(globalThis, method);
 
-        manager[method](callback, 2).cancel();
+        manager[method](callback, 2).dispose();
 
         expect(nativeSpy).not.toHaveBeenCalled();
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       },
     );
 
     it('should not request a native animation frame with requestAnimationFrame', () => {
       mockAnimationFrame();
 
-      manager.requestAnimationFrame(callback).cancel();
+      manager.requestAnimationFrame(callback).dispose();
 
       expect(globalThis.requestAnimationFrame).not.toHaveBeenCalled();
-      expect(manager.activeEffects).toBe(0);
+      expect(manager.effectCount).toBe(0);
     });
 
     it.each(['debounce', 'throttle'] as const)(
       'should not schedule a native timer with %s',
       method => {
         const nativeSpy = jest.spyOn(globalThis, 'setTimeout');
-        const callable = manager[method](callback, 2);
+        const rateLimited = manager[method](callback, 2);
 
-        callable();
-        callable.cancel();
+        rateLimited();
+        rateLimited.cancel();
 
         expect(nativeSpy).not.toHaveBeenCalled();
         expect(callback).not.toHaveBeenCalled();
-        expect(manager.activeEffects).toBe(0);
+        expect(manager.effectCount).toBe(0);
       },
     );
 
@@ -674,7 +674,7 @@ describe('EffectManager', () => {
       observer.disconnect();
 
       expect(nativeSpy).not.toHaveBeenCalled();
-      expect(manager.activeEffects).toBe(0);
+      expect(manager.effectCount).toBe(0);
     });
   });
 });
