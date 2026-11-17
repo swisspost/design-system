@@ -44,8 +44,6 @@ The `post-icon` component published as a part of the `@swisspost/design-system-c
 
 A GitHub action is responsible for automating the above workflow and creating pull requests on a regular basis in order to keep the icon base up to date.
 
-## Test dependencies
+## Proxy configuration
 
-Packages like jest, ts-jest and node-fetch are in the process of transforming to es-modules. At the time of writing, this lead to serious compatibility issues during setup. As of January 2023, the best way forward seems to be to downgrade to v25 of these modules and evaluate updating at a later time when documentation and support for es-modules in the node ecosystem are more mature.
-
-Reference setup: https://gist.github.com/iRoachie/3f9b4855ee4891050c8e900ed9953773
+The icon download utility uses `fetch` from Undici and requires proxy configuration. Set `HTTP_PROXY` and `HTTPS_PROXY` in the environment before running `pnpm --filter design-system-icons fetchSVGs`. For local runs, add them to the package's `.env` file, which is loaded automatically. In GitHub Actions, provide them to the workflow job as environment variables. Set `NO_PROXY` if any hosts should bypass the proxy.

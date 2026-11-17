@@ -477,6 +477,9 @@ export class PostHeader {
     this.hasAudience = this.slotHasNavigationItems('audience', 'a, button');
     this.hasGlobalNavSecondary = this.slotHasNavigationItems('global-nav-secondary', 'a, button');
     this.hasLocalNav = !!this.host.querySelector('[slot="local-nav"]');
+
+    // A language menu slotted after the initial render does not trigger a re-render of the header
+    this.switchLanguageSwitchMode();
   }
 
   private switchLanguageSwitchMode() {
