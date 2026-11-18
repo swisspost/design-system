@@ -577,7 +577,7 @@ export class PostDatePicker {
   }
 
   /**
-   * Traps focus inside the calendar popover (not used in inline mode) by always taking over Tab handling, 
+   * Traps focus inside the calendar popover (not used in inline mode) by always taking over Tab handling,
    * so focus can't escape even while a grid cell is briefly untabbable mid-render.
    */
   private handleTab = (e: KeyboardEvent) => {

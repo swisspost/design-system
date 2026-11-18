@@ -204,7 +204,8 @@ function renderTextarea(args: Args, context: StoryContext) {
       style=${args.resize ?? nothing}
       ?required="${args.requiredOptional === 'required'}"
     >
-${args.textInside ?? nothing}</textarea>
+${args.textInside ?? nothing}</textarea
+    >
   `;
   if (args.floatingLabel) {
     return html`

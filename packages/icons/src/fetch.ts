@@ -1,6 +1,6 @@
 import type { IconSet, SourceReport } from './models/icon.model';
 import iconSets from './iconsets.config';
-import { checkEnvVarsExist } from './utilities/environment';
+import { checkEnvVarsExist, setupProxy } from './utilities/environment';
 import { setup } from './utilities/download/setup';
 import { getBaseSourceReport, coloredLogMessage } from './utilities/shared';
 import { fetchPage } from './utilities/download/fetchPage';
@@ -10,6 +10,7 @@ import { updateReport, writeReport } from './utilities/download/report';
 import buildSVGs from './utilities/build';
 
 async function fetchSVGs() {
+  setupProxy();
   setup();
 
   for (const iconSet of iconSets) {

@@ -16,6 +16,7 @@ const meta: MetaComponent = {
   },
   args: {
     label: 'Label',
+    value: null,
     floatingLabel: true,
     hiddenLabel: false,
     hint: 'This is helpful text that provides guidance or additional information to assist the user in filling out this field correctly.',
@@ -145,6 +146,7 @@ function render(args: Args, context: StoryContext) {
       id="${id}"
       class="${classes}"
       type="time"
+      ?value="${args.value}"
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
