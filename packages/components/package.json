@@ -115,7 +115,7 @@
   "dependencies": {
     "@floating-ui/dom": "1.8.0",
     "@floating-ui/utils": "0.2.12",
-    "@oddbird/popover-polyfill": "0.6.0",
+    "@oddbird/popover-polyfill": "0.7.3",
     "@stencil/core": "4.43.3",
     "@swisspost/design-system-icons": "workspace:10.9.0",
     "@swisspost/design-system-styles": "workspace:10.9.0",

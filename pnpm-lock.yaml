@@ -647,8 +647,8 @@ importers:
         specifier: 0.2.12
         version: 0.2.12
       '@oddbird/popover-polyfill':
-        specifier: 0.6.0
-        version: 0.6.0
+        specifier: 0.7.3
+        version: 0.7.3
       '@stencil/core':
         specifier: 4.43.3
         version: 4.43.3
@@ -3540,8 +3540,8 @@ packages:
     resolution: {integrity: sha512-xhfYPXoV5Dy4UkY0D+v2KkwvnDfiA/8Mt3sWCGI/hM03NsYIH8ZaG6QzS9x7pje5vHZBZJ2v6VRFVTWACnqcmQ==}
     engines: {node: ^16.14.0 || >=18.0.0}
 
-  '@oddbird/popover-polyfill@0.6.0':
-    resolution: {integrity: sha512-pbuLPpoGnAp2W0RIt5Wbinq0CHTAMm6qpYj4n/QfamFtmkgNS3R1hr58CikfBGuqSzeUkKxVtKuPnPD/4s7QXQ==}
+  '@oddbird/popover-polyfill@0.7.3':
+    resolution: {integrity: sha512-uOY7RLqS1M12u+EzZHQ8vPSh3NjwDlb4qwJ1WDzQ0inZ14+47Vv0NNs+1Lh4PtX1nLiiCbfJyIxPRHsgBTvhvg==}
 
   '@open-wc/lit-helpers@0.7.0':
     resolution: {integrity: sha512-4NBlx5ve0EvZplCRJbESm0MdMbRCw16alP2y76KAAAwzmFFXXrUj5hFwhw55+sSg5qaRRx6sY+s7usKgnNo3TQ==}
@@ -14658,7 +14658,7 @@ snapshots:
     dependencies:
       which: 4.0.0
 
-  '@oddbird/popover-polyfill@0.6.0': {}
+  '@oddbird/popover-polyfill@0.7.3': {}
 
   '@open-wc/lit-helpers@0.7.0(lit@3.3.3)':
     dependencies:
