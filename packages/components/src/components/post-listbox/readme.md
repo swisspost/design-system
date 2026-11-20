@@ -57,7 +57,7 @@ Navigates the listbox options in the specified direction and scrolls the active 
 
 | Name        | Type                                  | Description |
 | ----------- | ------------------------------------- | ----------- |
-| `direction` | `"up" \| "down" \| "first" \| "last"` |             |
+| `direction` | `"first" \| "up" \| "down" \| "last"` |             |
 
 #### Returns
 
@@ -84,14 +84,6 @@ Opens the listbox
 Type: `Promise<void>`
 
 
-
-
-## Slots
-
-| Slot            | Description      |
-| --------------- | ---------------- |
-|                 | The default slot |
-| `"blank-slate"` |                  |
 
 
 ## Dependencies

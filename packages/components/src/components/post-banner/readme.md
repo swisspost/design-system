@@ -34,7 +34,6 @@ Type: `Promise<void>`
 
 | Slot             | Description                                                                     |
 | ---------------- | ------------------------------------------------------------------------------- |
-|                  | The default slot                                                                |
 | `"actions"`      | Slot for placing custom actions (buttons, links, etc.) within the banner.       |
 | `"close-button"` | Slot for placing a `post-closebutton` component to make the banner dismissible. |
 | `"default"`      | Slot for placing the main content/message of the banner.                        |

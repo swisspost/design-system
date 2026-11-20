@@ -14,7 +14,6 @@
 
 | Slot        | Description                                                                                                                                                             |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|             | The default slot                                                                                                                                                        |
 | `"default"` | Slot for placing hidden descriptive text. If `url` is set, this text will serve as the accessible name of the link; otherwise, it will be used as the title of the SVG. |
 
 

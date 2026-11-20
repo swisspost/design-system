@@ -45,7 +45,6 @@ Type: `Promise<void>`
 
 | Slot        | Description                                                                       |
 | ----------- | --------------------------------------------------------------------------------- |
-|             | The default slot                                                                  |
 | `"default"` | Slot for placing tab items. Each tab item should be a <post-tab-item> element.    |
 | `"panels"`  | Slot for placing tab panels. Each tab panel should be a <post-tab-panel> element. |
 

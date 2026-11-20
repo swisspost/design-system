@@ -24,7 +24,6 @@
 
 | Slot        | Description                                         |
 | ----------- | --------------------------------------------------- |
-|             | The default slot                                    |
 | `"default"` | Slot for placing post-autocomplete-item components. |
 
 

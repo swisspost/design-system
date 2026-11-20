@@ -10,13 +10,6 @@
 | `for`    | `for`     | ID of the popover element that this trigger is linked to. Used to open and close the popover. | `string` | `undefined` |
 
 
-## Slots
-
-| Slot | Description      |
-| ---- | ---------------- |
-|      | The default slot |
-
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

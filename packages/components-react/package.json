@@ -84,13 +84,13 @@
   "dependencies": {
     "@stencil/react-output-target": "1.8.1",
     "@stencil/ssr": "0.4.0",
-    "@swisspost/design-system-components": "workspace:10.9.0"
+    "@swisspost/design-system-components": "workspace:*"
   },
   "devDependencies": {
-    "@swisspost/design-system-eslint-config": "workspace:10.9.0",
-    "@swisspost/design-system-icons": "workspace:10.9.0",
-    "@swisspost/design-system-prettier-config": "workspace:10.9.0",
-    "@swisspost/design-system-tsconfig": "workspace:10.9.0",
+    "@swisspost/design-system-eslint-config": "workspace:*",
+    "@swisspost/design-system-icons": "workspace:*",
+    "@swisspost/design-system-prettier-config": "workspace:*",
+    "@swisspost/design-system-tsconfig": "workspace:*",
     "@types/node": "catalog:node",
     "@types/react": "catalog:react",
     "@types/react-dom": "catalog:react",

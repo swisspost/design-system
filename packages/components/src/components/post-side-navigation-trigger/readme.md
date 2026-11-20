@@ -27,7 +27,6 @@ Type: `Promise<void>`
 
 | Slot        | Description                                          |
 | ----------- | ---------------------------------------------------- |
-|             | The default slot                                     |
 | `"default"` | Slot for the `<button>` that toggles the navigation. |
 
 

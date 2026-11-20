@@ -17,7 +17,6 @@
 
 | Slot        | Description                                  |
 | ----------- | -------------------------------------------- |
-|             | The default slot                             |
 | `"default"` | Slot for inserting a custom image as avatar. |
 
 

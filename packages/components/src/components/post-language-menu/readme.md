@@ -19,13 +19,6 @@
 | `postChange` | An event emitted when the active language changes. The payload is the ISO 639 code of the newly active language. | `CustomEvent<string>` |
 
 
-## Slots
-
-| Slot | Description      |
-| ---- | ---------------- |
-|      | The default slot |
-
-
 ## Dependencies
 
 ### Depends on

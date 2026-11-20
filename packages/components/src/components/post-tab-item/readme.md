@@ -15,7 +15,6 @@
 
 | Slot        | Description                                                                                     |
 | ----------- | ----------------------------------------------------------------------------------------------- |
-|             | The default slot                                                                                |
 | `"default"` | Slot for the content of the tab item. Can contain text or an <a> element for Page Tabs variant. |
 
 

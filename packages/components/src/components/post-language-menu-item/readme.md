@@ -40,7 +40,6 @@ Type: `Promise<void>`
 
 | Slot        | Description                                               |
 | ----------- | --------------------------------------------------------- |
-|             | The default slot                                          |
 | `"default"` | Slot for placing the content inside the anchor or button. |
 
 

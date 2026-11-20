@@ -653,10 +653,10 @@ importers:
         specifier: 4.45.4
         version: 4.45.4
       '@swisspost/design-system-icons':
-        specifier: workspace:10.9.0
+        specifier: workspace:*
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:10.9.0
+        specifier: workspace:*
         version: link:../styles/dist
       air-datepicker:
         specifier: 3.6.0
@@ -687,25 +687,25 @@ importers:
         specifier: 3.3.3
         version: 3.3.3(@stencil/core@4.45.4)
       '@swisspost/design-system-cypress-config':
-        specifier: workspace:10.9.0
+        specifier: workspace:*
         version: link:../../tooling/cypress
       '@swisspost/design-system-eslint':
-        specifier: workspace:10.9.0
+        specifier: workspace:*
         version: link:../eslint
       '@swisspost/design-system-eslint-config':
-        specifier: workspace:10.9.0
+        specifier: workspace:*
         version: link:../../tooling/eslint
       '@swisspost/design-system-prettier-config':
-        specifier: workspace:10.9.0
+        specifier: workspace:*
         version: link:../../tooling/prettier
       '@swisspost/design-system-stylelint-config':
-        specifier: workspace:10.9.0
+        specifier: workspace:*
         version: link:../../tooling/stylelint
       '@swisspost/design-system-tokens':
-        specifier: workspace:10.9.0
+        specifier: workspace:*
         version: link:../tokens/dist
       '@swisspost/design-system-tsconfig':
-        specifier: workspace:10.9.0
+        specifier: workspace:*
         version: link:../../tooling/typescript
       '@types/jest':
         specifier: catalog:stencil/jest
@@ -851,20 +851,20 @@ importers:
         specifier: 0.4.0
         version: 0.4.0(next@15.5.29(@babel/core@8.0.5)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass@1.104.1))(vite@6.4.5(@types/node@26.6.6)(jiti@2.7.0)(less@4.9.1(supports-color@10.2.2))(lightningcss@1.33.0)(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))(webpack@5.112.2(cssnano@5.1.15(postcss@8.5.32))(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.32)(sharp@0.35.5(@types/node@26.6.6))(svgo@4.1.0)(uglify-js@3.19.3))
       '@swisspost/design-system-components':
-        specifier: workspace:10.9.0
+        specifier: workspace:*
         version: link:../components
     devDependencies:
       '@swisspost/design-system-eslint-config':
-        specifier: workspace:10.9.0
+        specifier: workspace:*
         version: link:../../tooling/eslint
       '@swisspost/design-system-icons':
-        specifier: workspace:10.9.0
+        specifier: workspace:*
         version: link:../icons
       '@swisspost/design-system-prettier-config':
-        specifier: workspace:10.9.0
+        specifier: workspace:*
         version: link:../../tooling/prettier
       '@swisspost/design-system-tsconfig':
-        specifier: workspace:10.9.0
+        specifier: workspace:*
         version: link:../../tooling/typescript
       '@types/node':
         specifier: catalog:node
@@ -1039,10 +1039,10 @@ importers:
   packages/internet-header:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:10.9.0
+        specifier: workspace:*
         version: link:../components
       '@swisspost/design-system-styles':
-        specifier: workspace:10.9.0
+        specifier: workspace:*
         version: link:../styles/dist
       body-scroll-lock:
         specifier: 4.0.0-beta.0
@@ -1076,22 +1076,22 @@ importers:
         specifier: 2.2.5
         version: 2.2.5(@stencil/core@4.45.4)
       '@swisspost/design-system-cypress-config':
-        specifier: workspace:10.9.0
+        specifier: workspace:*
         version: link:../../tooling/cypress
       '@swisspost/design-system-eslint-config':
-        specifier: workspace:10.9.0
+        specifier: workspace:*
         version: link:../../tooling/eslint
       '@swisspost/design-system-icons':
-        specifier: workspace:10.9.0
+        specifier: workspace:*
         version: link:../icons
       '@swisspost/design-system-prettier-config':
-        specifier: workspace:10.9.0
+        specifier: workspace:*
         version: link:../../tooling/prettier
       '@swisspost/design-system-tokens':
-        specifier: workspace:10.9.0
+        specifier: workspace:*
         version: link:../tokens/dist
       '@swisspost/design-system-tsconfig':
-        specifier: workspace:10.9.0
+        specifier: workspace:*
         version: link:../../tooling/typescript
       '@types/body-scroll-lock':
         specifier: 3.1.2
