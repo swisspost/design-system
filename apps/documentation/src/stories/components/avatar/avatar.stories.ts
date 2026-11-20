@@ -28,7 +28,7 @@ const meta: MetaComponent = {
     'email': {
       description: `${
         EMAIL_ARGTYPE?.docs ?? ''
-      } <post-banner data-size="sm"><p>Do you need an example email address? Try it out with <strong>oss@post.ch</strong>.</p></post-banner>`,
+      } <div class="inline-notification inline-notification-info"><p>Do you need an example email address? Try it out with <strong>oss@post.ch</strong>.</p></div>`,
     },
     'slots-default': {
       name: 'default',
@@ -41,7 +41,7 @@ const meta: MetaComponent = {
     'imageSrc': {
       control: 'text',
       description:
-        'Define an image `src` to insert a custom image.<post-banner data-size="sm"><p>Do you need an example? Try our logo <strong>/assets/images/logo-swisspost.svg</strong>.</p><p>Note that external images may not load on this preview because of the Content Security Policy of this page.</p></post-banner>',
+        'Define an image `src` to insert a custom image.<div class="inline-notification inline-notification-info"><p>Do you need an example? Try our logo <strong>/assets/images/logo-swisspost.svg</strong>.</p><p>Note that external images may not load on this preview because of the Content Security Policy of this page.</p></div>',
       table: {
         category: 'Content',
       },
