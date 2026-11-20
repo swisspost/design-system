@@ -175,11 +175,16 @@ describe('post-language-menu', () => {
           const anchor = $languageOption[0].ownerDocument.createElement('a');
           anchor.href = '/en';
           anchor.textContent = 'EN';
-          $languageOption[0].appendChild(anchor);
+          $languageOption[0].append(anchor);
         });
 
-        cy.get('@language-menu-item').find('a[data-post-language-menu-item-internal]').should('not.exist');
-        cy.get('@language-menu-item').find('a').should('have.length', 1).and('have.attr', 'href', '/en');
+        cy.get('@language-menu-item')
+          .find('a[data-post-language-menu-item-internal]')
+          .should('not.exist');
+        cy.get('@language-menu-item')
+          .find('a')
+          .should('have.length', 1)
+          .and('have.attr', 'href', '/en');
       });
     });
 
