@@ -36,7 +36,7 @@
     "primeng": "^21.0.0"
   },
   "dependencies": {
-    "@primeuix/themes": "3.0.0",
+    "@primeuix/themes": "3.1.1",
     "@swisspost/design-system-styles": "workspace:10.9.0",
     "tslib": "2.9.1"
   },
