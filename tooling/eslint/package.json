@@ -33,7 +33,7 @@
     "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore"
   },
   "dependencies": {
-    "@eslint/js": "9.26.0",
+    "@eslint/js": "9.39.5",
     "@next/eslint-plugin-next": "16.4.6",
     "@stencil/eslint-plugin": "1.4.1",
     "angular-eslint": "catalog:angular",
