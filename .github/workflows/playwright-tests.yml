@@ -28,6 +28,17 @@ jobs:
       - name: Install & build dependencies
         run: pnpm e2e:next:ci
 
+      - name: Get tool binary cache keys
+        id: tool-binary-cache
+        uses: ./.github/actions/tool-binary-cache
+
+      # Restore only: the cache is saved from main by the "Cache tool binaries" workflow
+      - name: Restore Playwright browsers
+        uses: actions/cache/restore@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+        with:
+          path: ${{ steps.tool-binary-cache.outputs.playwright-path }}
+          key: ${{ steps.tool-binary-cache.outputs.playwright-key }}
+
       - name: Install Playwright Browsers
         run: pnpm --filter design-system-integration-next exec playwright install --with-deps chromium
 
@@ -51,6 +62,17 @@ jobs:
 
       - name: Build consumer app
         run: pnpm --filter design-system-integration-angular exec ng build
+
+      - name: Get tool binary cache keys
+        id: tool-binary-cache
+        uses: ./.github/actions/tool-binary-cache
+
+      # Restore only: the cache is saved from main by the "Cache tool binaries" workflow
+      - name: Restore Playwright browsers
+        uses: actions/cache/restore@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+        with:
+          path: ${{ steps.tool-binary-cache.outputs.playwright-path }}
+          key: ${{ steps.tool-binary-cache.outputs.playwright-key }}
 
       - name: Install Playwright browsers
         run: pnpm --filter design-system-integration-angular playwright:install
