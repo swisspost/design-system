@@ -5,7 +5,6 @@ import meta, * as accordionStories from './accordion.stories';
 import TabAccessibility from './content-tabs/accessibility.mdx';
 import TabInstallation from './content-tabs/installation.mdx';
 import TabOverview from './content-tabs/overview.mdx';
-import TabUsage from './content-tabs/usage.mdx';
 
 <Meta of={accordionStories} />
 
@@ -24,12 +23,10 @@ import TabUsage from './content-tabs/usage.mdx';
 
 <post-tabs size="large">
   <post-tab-item name="overview">Overview</post-tab-item>
-  <post-tab-item name="usage">Usage</post-tab-item>
   <post-tab-item name="accessibility">Accessibility</post-tab-item>
   <post-tab-item name="installation">Installation</post-tab-item>
 
   <TabOverview />
-  <TabUsage />
   <TabAccessibility />
   <TabInstallation />
 </post-tabs>
