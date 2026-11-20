@@ -39,12 +39,13 @@
   color: transparent;
   text-indent: -9999px;
   white-space: nowrap;
+  // The focus-style mixin can't be used here, it generates `::slotted(a):focus-visible` which browsers ignore
+  outline: tokens.get('focus-outline-color', helpers.$post-focus) none
+    tokens.get('focus-outline-width', helpers.$post-focus) !important;
 
-  @include utilities.focus-style;
   @include utilities.focus-inset;
 }
 
-.logo-link-slotted > slot::slotted(a:focus),
 .logo-link-slotted > slot::slotted(a:focus-visible) {
   border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
   outline-style: tokens.get('focus-border-style', helpers.$post-focus) !important;

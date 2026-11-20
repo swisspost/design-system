@@ -169,6 +169,18 @@ describe('post-language-menu', () => {
           .and('have.attr', 'hrefLang', 'en')
           .and('have.attr', 'lang', 'en');
       });
+
+      it('should replace its own anchor with an anchor slotted after load', () => {
+        cy.get('@language-menu-item').then($languageOption => {
+          const anchor = $languageOption[0].ownerDocument.createElement('a');
+          anchor.href = '/en';
+          anchor.textContent = 'EN';
+          $languageOption[0].appendChild(anchor);
+        });
+
+        cy.get('@language-menu-item').find('a[data-post-language-menu-item-internal]').should('not.exist');
+        cy.get('@language-menu-item').find('a').should('have.length', 1).and('have.attr', 'href', '/en');
+      });
     });
 
     describe('client-side routing (slotted anchor)', () => {
@@ -198,6 +210,12 @@ describe('post-language-menu', () => {
         cy.get('@language-menu-item').children('a').trigger('click', { ctrlKey: true });
         cy.get('@language-menu-item').children('a').trigger('click', { metaKey: true });
         cy.get('@postChangeSpy').should('not.have.been.called');
+      });
+
+      it('should render its own button when the slotted anchor is removed', () => {
+        cy.get('@language-menu-item').find('a').invoke('remove');
+
+        cy.get('@language-menu-item').find('button').should('exist');
       });
     });
   });

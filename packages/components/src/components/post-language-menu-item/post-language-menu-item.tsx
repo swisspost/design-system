@@ -25,6 +25,9 @@ function opensLinkElsewhere(e: MouseEvent): boolean {
   styleUrl: 'post-language-menu-item.scss',
 })
 export class PostLanguageMenuItem {
+  // Without shadow DOM `slotchange` never fires; subtree is needed as the menu variant moves the slotted nodes into post-menu-item
+  private readonly mutationObserver = new MutationObserver(this.checkSlottedAnchor.bind(this));
+
   @Element() host: HTMLPostLanguageMenuItemElement;
 
   /**
@@ -74,8 +77,13 @@ export class PostLanguageMenuItem {
   @Url()
   url?: string;
 
-  componentWillLoad() {
+  connectedCallback() {
     this.checkSlottedAnchor();
+    this.mutationObserver.observe(this.host, { childList: true, subtree: true });
+  }
+
+  disconnectedCallback() {
+    this.mutationObserver.disconnect();
   }
 
   componentDidLoad() {
@@ -129,7 +137,7 @@ export class PostLanguageMenuItem {
   }
 
   private renderInteractiveElement() {
-    const slot = <slot onSlotchange={() => this.checkSlottedAnchor()} />;
+    const slot = <slot />;
     if (this.hasSlottedAnchor) return slot;
 
     const lang = this.code.toLowerCase();
@@ -176,7 +184,8 @@ export class PostLanguageMenuItem {
     const interactiveElement = this.renderInteractiveElement();
     const onHostClick = this.hasSlottedAnchor
       ? (e: MouseEvent) => {
-          if ((e.target as Element).closest('a')) this.emitChangeOnLinkActivation(e);
+          const anchor = (e.target as Element).closest('a');
+          if (anchor && this.host.contains(anchor)) this.emitChangeOnLinkActivation(e);
         }
       : undefined;
 
