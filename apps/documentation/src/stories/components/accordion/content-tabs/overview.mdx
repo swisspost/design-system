@@ -1,0 +1,67 @@
+import { Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import SampleCustomTrigger from '../accordion-custom-trigger.sample?raw';
+import * as accordionItemStories from '../accordion-item.stories';
+import * as accordionStories from '../accordion.stories';
+
+<post-tab-panel for="overview" class="pt-24">
+
+The `<post-accordion>` is a container for `<post-accordion-item>` components.
+It is used to manage how content is shown and hidden across a set of collapsible elements.
+
+<Canvas sourceState="shown" of={accordionStories.Default} />
+
+## `<post-accordion>`
+
+<Controls of={accordionStories.Default} />
+
+## `<post-accordion-item>`
+
+<Controls of={accordionItemStories.Default} />
+
+## Examples
+
+### Multiple Open Panels
+
+By default, whenever a panel is opened manually or programmatically, any other open panel is closed.
+To allow multiple panels to be open at the same time, use the `multiple="true"` property.
+
+<Canvas of={accordionStories.MultipleOpenPanels} />
+
+<div className="docs-section palette palette-alternate py-40">
+
+### Logos
+
+To enhance individual accordion items with a logo, add an `<img>` to the logo slot.
+This will display the logo in front of the accordion item's heading.
+
+<Canvas of={accordionStories.Logos} />
+
+</div>
+
+### Initially Closed Panel
+
+Use the `collapsed="true"` property on all `post-accordion-item` you want to be initially closed.
+The first panel without this property will be initially open,
+or if the accordion is configured with the `multiple="true"` property, all other panels will be open.
+
+<Canvas of={accordionStories.DefaultCollapsedPanels} />
+
+<div className="docs-section palette palette-alternate py-40">
+
+### Custom Trigger
+
+The `<post-accordion>` offers several methods to expand or collapse the `<post-accordion-item>` it contains.
+
+Expand or collapse all elements at once using `.expandAll()` and `.collapseAll()` respectively,
+or toggle just one using `.toggle()` specifying the id of the element you want to act on.
+
+<Source
+  code={`<post-accordion-item id="my-item">...</post-accordion-item>`}
+  language="typescript"
+/>
+
+<Source code={SampleCustomTrigger} language="typescript" />
+
+</div>
+
+</post-tab-panel>
