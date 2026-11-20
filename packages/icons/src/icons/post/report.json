@@ -27508,7 +27508,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7351969/storage/NzM1MTk2OS8wL21hc3Rlci8vLzY2NTg3NzI1",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/7351969/storage/MDA3MzUxOTY5LzAvbWFzdGVyLy8vMTE4Mzc5Mzky",
         "keywords": [
           "AmiGo",
           "On-demand mobility",
@@ -27533,7 +27533,7 @@
         }
       },
       "createdAt": "2025-11-14T06:45:48.000Z",
-      "modifiedAt": "2025-11-15T06:05:01.223Z"
+      "modifiedAt": "2026-11-06T04:00:46.000Z"
     },
     {
       "uuid": "22731210-c126-11f0-b1fa-0050568d2654",
@@ -42779,6 +42779,6 @@
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2026-11-02T10:03:39.682Z",
+  "created": "2026-11-08T06:00:30.245Z",
   "version": "10.8.0"
 }
