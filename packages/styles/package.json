@@ -50,7 +50,7 @@
     "postcss-scss": "4.0.9",
     "prettier": "catalog:",
     "rimraf": "6.1.4",
-    "sass-embedded": "1.104.0",
+    "sass-embedded": "1.108.2",
     "stylelint": "catalog:",
     "typescript": "catalog:",
     "vite": "7.3.8"

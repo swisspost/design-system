@@ -42,7 +42,7 @@
     "eslint": "catalog:",
     "prettier": "catalog:",
     "rimraf": "6.1.4",
-    "style-dictionary": "5.4.4",
+    "style-dictionary": "5.8.0",
     "typescript": "catalog:"
   },
   "prettier": "@swisspost/design-system-prettier-config",
