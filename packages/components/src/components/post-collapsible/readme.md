@@ -5,9 +5,10 @@
 
 ## Properties
 
-| Property    | Attribute   | Description                                                    | Type      | Default |
-| ----------- | ----------- | -------------------------------------------------------------- | --------- | ------- |
-| `collapsed` | `collapsed` | If `true`, the element is collapsed otherwise it is displayed. | `boolean` | `false` |
+| Property    | Attribute   | Description                                                                                                                            | Type      | Default |
+| ----------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------- | --------- | ------- |
+| `collapsed` | `collapsed` | If `true`, the element is collapsed otherwise it is displayed.                                                                         | `boolean` | `false` |
+| `findable`  | `findable`  | If `true`, browser search and links to content can expand the collapsible. Browser search requires support for `hidden="until-found"`. | `boolean` | `false` |
 
 
 ## Events
@@ -24,6 +25,8 @@
 Triggers the collapse programmatically.
 If there is a collapsing transition running already, it will be reversed.
 If no parameter is provided, the current state (this.isExpanded) will be toggled.
+Animates and emits postToggle only when connected in a browser.
+Setting collapsed directly changes visibility without animation or postToggle.
 
 #### Parameters
 

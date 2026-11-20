@@ -1,4 +1,4 @@
-import { EventFrom, nanoid } from '@/utils';
+import { EventFrom, nanoid, Type } from '@/utils';
 import { version } from '@root/package.json';
 import { Component, Element, h, Host, Listen, Method, Prop, State } from '@stencil/core';
 
@@ -16,6 +16,7 @@ import { Component, Element, h, Host, Listen, Method, Prop, State } from '@stenc
   shadow: true,
 })
 export class PostAccordionItem {
+  private readonly collapsibleId = `c${nanoid(6)}`;
   private collapsible: HTMLPostCollapsibleElement;
 
   @Element() host: HTMLPostAccordionItemElement;
@@ -26,6 +27,14 @@ export class PostAccordionItem {
    * If `true`, the element is collapsed otherwise it is displayed.
    */
   @Prop({ mutable: true, reflect: true }) collapsed?: boolean = false;
+
+  /**
+   * If `true`, browser search and links to content can expand the panel.
+   * Managed by the parent `post-accordion` when present.
+   */
+  @Prop()
+  @Type('boolean')
+  findable: boolean = false;
 
   // Capture to make sure the "collapsed" property is updated before the event is consumed
   @Listen('postToggle', { capture: true })
@@ -51,7 +60,7 @@ export class PostAccordionItem {
   }
 
   render() {
-    const collapsibleId = `c${nanoid(6)}`;
+    const collapsibleId = this.collapsibleId;
 
     const headingLevel = this.host.closest('post-accordion')?.getAttribute('heading-level');
     const HeadingTag = `h${headingLevel ?? 2}`;
@@ -82,6 +91,7 @@ export class PostAccordionItem {
         <post-collapsible
           id={collapsibleId}
           collapsed={this.collapsed}
+          findable={this.findable}
           ref={el => (this.collapsible = el)}
         >
           <div class="accordion-body" part="post-accordion-body">

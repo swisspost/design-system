@@ -19,6 +19,7 @@ const meta: MetaComponent<HTMLPostAccordionElement & HTMLPostCollapsibleElementE
   },
   args: {
     multiple: false,
+    findable: false,
     headingLevel: 4 as HeadingLevel, // needs to be a string for the control to properly initialize
     logoSrc: '',
   },
@@ -65,7 +66,8 @@ function renderAccordion(
   return (args: Partial<HTMLPostAccordionElement>) => html`
     <post-accordion
       heading-level=${args.headingLevel}
-      multiple=${ifDefined(args.multiple || undefined)}
+      ?multiple=${args.multiple}
+      ?findable=${args.findable}
     >
       ${Array.from({ length: 3 }, (_, i) => accordionItemRenderer(args, i))}
     </post-accordion>
@@ -91,6 +93,20 @@ export const MultipleOpenPanels: Story = {
   args: {
     multiple: true,
   },
+};
+
+export const Findable: Story = {
+  args: {
+    findable: true,
+  },
+  render: renderAccordion(
+    (_, i) => html`
+      <post-accordion-item collapsed>
+        <span slot="header">Findable panel ${i + 1}</span>
+        <p id="findable-accordion-content-${i + 1}">Searchable accordion content ${i + 1}</p>
+      </post-accordion-item>
+    `,
+  ),
 };
 
 export const DefaultCollapsedPanels: Story = {
