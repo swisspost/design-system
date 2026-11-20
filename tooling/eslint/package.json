@@ -45,7 +45,7 @@
     "eslint-plugin-storybook": "9.0.10",
     "eslint-plugin-unicorn": "56.0.1",
     "globals": "17.3.0",
-    "typescript-eslint": "8.62.0"
+    "typescript-eslint": "8.73.0"
   },
   "peerDependencies": {
     "eslint": ">=9.0.0",
