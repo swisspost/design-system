@@ -1228,8 +1228,8 @@ importers:
   packages/styles-primeng:
     dependencies:
       '@primeuix/themes':
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.1.1
+        version: 3.1.1
       '@swisspost/design-system-styles':
         specifier: workspace:10.9.0
         version: link:../styles/dist
@@ -3890,8 +3890,8 @@ packages:
   '@primeuix/styles@2.0.3':
     resolution: {integrity: sha512-2ykAB6BaHzR/6TwF8ShpJTsZrid6cVIEBVlookSdvOdmlWuevGu5vWOScgIwqWwlZcvkFYAGR/SUV3OHCTBMdw==}
 
-  '@primeuix/themes@3.0.0':
-    resolution: {integrity: sha512-lNMOhorzu4vHRKbTDIU2/raS7/Z6Oyq2WXGfFDVhOwAIVDF4e7hCX75jlgfC7bo4D0Bl5f+oW5HPGZpG52r6lw==}
+  '@primeuix/themes@3.1.1':
+    resolution: {integrity: sha512-NDempN4bFl3ZYh8ZX/f3lUuvOPwgmmTV/tD44SOfUYJ3yX+UD5umwCjU40Y4TWjUsdbEvQZa/FtUXIWqbr6aZA==}
 
   '@primeuix/utils@0.6.4':
     resolution: {integrity: sha512-pZ5f+vj7wSzRhC7KoEQRU5fvYAe+RP9+m39CTscZ3UywCD1Y2o6Fe1rRgklMPSkzUcty2jzkA0zMYkiJBD1hgg==}
@@ -15327,7 +15327,7 @@ snapshots:
     dependencies:
       '@primeuix/styled': 0.7.4
 
-  '@primeuix/themes@3.0.0':
+  '@primeuix/themes@3.1.1':
     dependencies:
       '@primeuix/styled': 1.2.0
 
