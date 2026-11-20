@@ -35,7 +35,7 @@ jobs:
 
       # Restore only: the cache is saved from main by the "Cache tool binaries" workflow
       - name: Restore Cypress binary
-        uses: actions/cache/restore@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+        uses: actions/cache/restore@caa296126883cff596d87d8935842f9db880ef25 # v5.1.0
         with:
           path: ${{ steps.tool-binary-cache.outputs.cypress-path }}
           key: ${{ steps.tool-binary-cache.outputs.cypress-key }}
