@@ -1,16 +1,17 @@
-import fetch, { Response } from 'node-fetch';
 import testResult from '../../../../tests/fixtures/test-result.json';
+import { fetch, Response } from 'undici';
 import { fetchPage } from './../fetchPage';
 
-jest.mock('node-fetch');
+jest.mock('undici', () => {
+  const undici = jest.requireActual('undici');
+  return { ...undici, fetch: jest.fn() };
+});
 
 describe('fetchPage', () => {
   it('Should fetch a page of data', async () => {
     jest
       .mocked(fetch)
-      .mockImplementationOnce(() =>
-        Promise.resolve({ status: 200, json: () => Promise.resolve(testResult) } as Response),
-      );
+      .mockResolvedValueOnce(new Response(JSON.stringify(testResult), { status: 200 }));
     const json = await fetchPage('test');
     const count = getCount();
 
@@ -27,18 +28,15 @@ describe('fetchPage', () => {
   });
 
   it('Should error if the call fails', async () => {
-    jest.mocked(fetch).mockImplementationOnce(() => Promise.reject('NOK'));
+    jest.mocked(fetch).mockRejectedValueOnce('NOK');
     const t = async () => fetchPage('test');
     await expect(t).rejects.toEqual('NOK');
   });
 
   it('Should error if the response is not 200', async () => {
-    jest.mocked(fetch).mockImplementationOnce(() =>
-      Promise.resolve({
-        status: 401,
-        statusText: 'unauthorized',
-      } as Response),
-    );
+    jest
+      .mocked(fetch)
+      .mockResolvedValueOnce(new Response(null, { status: 401, statusText: 'unauthorized' }));
     const t = async () => fetchPage('test');
     await expect(t).rejects.toBeInstanceOf(Error);
   });
