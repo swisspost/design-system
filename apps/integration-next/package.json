@@ -50,7 +50,7 @@
     "eslint": "catalog:",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.1.1",
-    "globals": "17.3.0",
+    "globals": "17.14.0",
     "prettier": "catalog:",
     "resolve.exports": "2.0.4",
     "rimraf": "6.1.4",
