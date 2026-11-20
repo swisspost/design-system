@@ -232,7 +232,7 @@ export class MigrationV910Component extends LitElement {
               the checklist below and verify every step yourself.
             </p>
 
-            <post-banner type="warning" class="mt-16">
+            <div class="inline-notification inline-notification-warning mt-16">
               <p>
                 The skill relies on AI and on a set of predefined transformation rules. Keep the
                 following in mind before relying on it:
@@ -247,7 +247,7 @@ export class MigrationV910Component extends LitElement {
                 <li>Work on a dedicated branch and commit often so you can roll back easily.</li>
                 <li>Project-specific code may be missed or misinterpreted by the AI.</li>
               </ul>
-            </post-banner>
+            </div>
 
             <h5>How to use it</h5>
             <ol>
@@ -350,8 +350,8 @@ export class MigrationV910Component extends LitElement {
                 </label>
               </div>
             </div>
-            <post-banner type="warning" class="mt-24">
-              <h4 slot="heading">Notice: Bootstrap & Ng-Bootstrap removed</h4>
+            <div class="inline-notification inline-notification-warning mt-24">
+              <h4>Notice: Bootstrap & Ng-Bootstrap removed</h4>
               <p>
                 As part of the latest migration, Bootstrap and Ng-Bootstrap have been fully removed
                 from the design system. This means that any variables, classes, mixins, or utilities
@@ -377,8 +377,7 @@ export class MigrationV910Component extends LitElement {
                 </li>
               </ul>
               <p>Please review your components and styles to ensure compatibility.</p>
-              <br />
-            </post-banner>
+            </div>
 
             <div @change="${this._onChange}">
               <section class="palette palette-alternate mt-40 p-16 p-lg-40">
@@ -2928,14 +2927,14 @@ Menu Text
                   ? html`
                       <section class="palette palette-default p-16 p-lg-40">
                         <h4>Internet Header (@swisspost/internet-header)</h4>
-                        <post-banner type="warning" class="mb-16">
+                        <div class="inline-notification inline-notification-warning mb-16">
                           <p>
                             Version 10 uses a <strong>new configuration format</strong>. Your
                             existing v9 Portal configuration will not work with the v10 Internet
                             Header and will cause errors at runtime. You must request a
                             configuration migration <strong>before</strong> upgrading the package.
                           </p>
-                        </post-banner>
+                        </div>
                         <ul class="list-unstyled">
                           <li class="mb-16">
                             <div class="form-check">
@@ -3131,11 +3130,11 @@ Menu Text
             <p>Using the new icons is as easy as before, simply replace the icon number with the icon name, and you're done.</p>
             <p>Below, we show you which of the previous icons you can replace with a corresponding new icon.</p>
 
-            <post-banner variant="info">
-              <p>Not all previous icons are (or will be) available in the new Icon Set. Instead, we produce icons on request.</p>
+            <div class="inline-notification inline-notification-info">
+              <p><strong>Not all previous icons are (or will be) available in the new Icon Set. Instead, we produce icons on request.</strong></p>
               <p>For this reason, the previous Icon Set stays available and you can continue using icons from it if no equivalent exists in the new Icon Set. However, we strongly recommend switching to the new <strong>UI Icon Set</strong>
               whenever possible!</p>
-            </post-banner>
+            </div>
 
             <h4>Icon Mapping</h4>
 
