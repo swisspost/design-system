@@ -1370,8 +1370,8 @@ importers:
         specifier: catalog:angular
         version: 22.7.0(chokidar@5.0.0)(eslint@9.39.5(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript-eslint@8.62.0(eslint@9.39.5(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(typescript@6.0.3)
       eslint-plugin-cypress:
-        specifier: 4.2.0
-        version: 4.2.0(eslint@9.39.5(jiti@2.7.0)(supports-color@10.2.2))
+        specifier: 4.3.0
+        version: 4.3.0(eslint@9.39.5(jiti@2.7.0)(supports-color@10.2.2))
       eslint-plugin-jest:
         specifier: 29.15.4
         version: 29.15.4(@typescript-eslint/eslint-plugin@8.62.0(@typescript-eslint/parser@8.62.0(eslint@9.39.5(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@9.39.5(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@9.39.5(jiti@2.7.0)(supports-color@10.2.2))(jest@30.3.0(@types/node@26.6.6)(esbuild-register@3.6.0(esbuild@0.28.2)(supports-color@10.2.2))(supports-color@10.2.2)(ts-node@10.9.2(@types/node@26.6.6)(typescript@6.0.3)))(supports-color@10.2.2)(typescript@6.0.3)
@@ -6652,8 +6652,8 @@ packages:
       remark-lint-file-extension:
         optional: true
 
-  eslint-plugin-cypress@4.2.0:
-    resolution: {integrity: sha512-v5cyt0VYb1tEEODBJSE44PocYOwQsckyexJhCs7LtdD3FGO6D2GjnZB2s2Sts4RcxdxECTWX01nObOZRs26bQw==}
+  eslint-plugin-cypress@4.3.0:
+    resolution: {integrity: sha512-CgS/S940MJlT8jtnWGKI0LvZQBGb/BB0QCpgBOxFMM/Z6znD+PZUwBhCTwHKN2GEr5AOny3xB92an0QfzBGooQ==}
     peerDependencies:
       eslint: '>=9'
 
@@ -18180,7 +18180,7 @@ snapshots:
       - bluebird
       - supports-color
 
-  eslint-plugin-cypress@4.2.0(eslint@9.39.5(jiti@2.7.0)(supports-color@10.2.2)):
+  eslint-plugin-cypress@4.3.0(eslint@9.39.5(jiti@2.7.0)(supports-color@10.2.2)):
     dependencies:
       eslint: 9.39.5(jiti@2.7.0)(supports-color@10.2.2)
       globals: 15.15.0
