@@ -40,6 +40,8 @@ describe('header', () => {
         cy.get('@megadropdown-trigger').click({ force: true });
         cy.get('@close-btn').should('be.visible');
 
+        cy.get('@megadropdown').find(':focus').should('exist');
+
         cy.get('@close-btn').find('button').focus();
         cy.press(Cypress.Keyboard.Keys.TAB);
 
@@ -164,6 +166,7 @@ describe('header', () => {
             cy.get('post-togglebutton').as('burger-menu-btn');
             cy.get('post-megadropdown-trigger').find('button').first().as('megadropdown-trigger');
             cy.get('post-megadropdown').first().as('megadropdown');
+            cy.get('@megadropdown').find('.megadropdown').as('megadropdown-container');
           });
 
           it('should only allow focus on megadropdown elements when second level is opened', () => {
@@ -171,7 +174,7 @@ describe('header', () => {
             cy.get('div.burger-menu.extended').should('exist');
 
             cy.get('@megadropdown-trigger').click();
-            cy.get('@megadropdown').should('be.visible');
+            cy.get('@megadropdown-container').should('be.visible');
 
             cy.get('@megadropdown')
               .shadow()
@@ -202,7 +205,7 @@ describe('header', () => {
             cy.get('div.burger-menu.extended').should('exist');
 
             cy.get('@megadropdown-trigger').click();
-            cy.get('@megadropdown').should('be.visible');
+            cy.get('@megadropdown-container').should('be.visible');
 
             cy.get('@megadropdown').shadow().find('.back-button').as('back-btn');
 
@@ -221,10 +224,10 @@ describe('header', () => {
             cy.get('div.burger-menu.extended').should('exist');
 
             cy.get('@megadropdown-trigger').click();
-            cy.get('@megadropdown').should('be.visible');
+            cy.get('@megadropdown-container').should('be.visible');
 
             cy.get('@megadropdown').shadow().find('.back-button').click();
-            cy.get('@megadropdown').should('not.be.visible');
+            cy.get('@megadropdown-container').should('not.be.visible');
 
             cy.focused().then($focused => {
               cy.get('@megadropdown-trigger').then($trigger => {

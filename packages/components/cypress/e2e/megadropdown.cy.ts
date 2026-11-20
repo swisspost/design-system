@@ -153,11 +153,12 @@ describe('megadropdown', () => {
           .find('button')
           .as('megadropdown-trigger');
         cy.get('@megadropdown').find('.back-button').as('back-btn');
+        cy.get('@megadropdown').find('.megadropdown').as('megadropdown-container');
       });
 
       it('should open on trigger click', () => {
         cy.get('@megadropdown-trigger').click({ force: true });
-        cy.get('@megadropdown').should('be.visible');
+        cy.get('@megadropdown-container').should('be.visible');
       });
 
       it('should show back button', () => {

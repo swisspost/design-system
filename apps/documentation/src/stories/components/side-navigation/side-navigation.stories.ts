@@ -39,10 +39,10 @@ const meta: MetaComponent = {
       name: 'Show icons',
       description:
         'Prepend an icon to every level-1 navigation item.' +
-        '<post-banner data-size="sm"><p>' +
+        '<div class="inline-notification inline-notification-info"><p>' +
         '<strong>Level-1 only:</strong> never use icons on levels 2, 3, or 4.<br/>' +
         '<strong>All or none:</strong> apply icons to all level-1 items or none, do not mix.' +
-        '</p></post-banner>',
+        '</p></div>',
       control: { type: 'boolean' },
       table: {
         category: 'Content',
