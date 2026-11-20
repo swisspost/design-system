@@ -1787,11 +1787,11 @@ export class MigrationV45ManualListComponent extends LitElement {
                     </p>
 
                     ${this.angular
-                      ? html` <post-banner>
+                      ? html` <div class="inline-notification inline-notification-info">
                           One might think: "When it is so easy to migrate, why don't you offer an
                           automatic migration?"<br />
                           The short answer: because it is no longer the same component!
-                        </post-banner>`
+                        </div>`
                       : nothing}
                   </label>
                 </div>

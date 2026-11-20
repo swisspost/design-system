@@ -36,7 +36,7 @@ const meta: MetaComponent<
     'variant': {
       name: 'variant',
       description:
-        'Select between Content Tabs (panels) or Page Tabs variant (navigation links). <post-banner data-size="sm"><p>If you attempt to mix modes (panels + links), the component will throw an error.</p></post-banner>',
+        'Select between Content Tabs (panels) or Page Tabs variant (navigation links). <div class="inline-notification inline-notification-info"><p>If you attempt to mix modes (panels + links), the component will throw an error.</p></div>',
       control: 'radio',
       options: ['Content Tabs', 'Page Tabs'],
       table: {
@@ -46,7 +46,7 @@ const meta: MetaComponent<
     'tabContent': {
       name: 'tabContent',
       description:
-        'Controls whether the default tab items show text only, an icon only (with a visually hidden label for screen readers), or an icon together with visible text. <post-banner data-size="sm"><p>When using icon only tabs, make sure to provide a visually hidden label for each icon so the tab\'s purpose remains clear to screen reader users.</p></post-banner>',
+        'Controls whether the default tab items show text only, an icon only (with a visually hidden label for screen readers), or an icon together with visible text. <div class="inline-notification inline-notification-info"><p>When using icon only tabs, make sure to provide a visually hidden label for each icon so the tab\'s purpose remains clear to screen reader users.</p></div>',
       control: 'radio',
       options: ['text', 'icon', 'icon-text'],
       table: {
