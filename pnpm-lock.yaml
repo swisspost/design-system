@@ -337,11 +337,11 @@ importers:
         specifier: workspace:10.9.0
         version: link:../../packages/internet-header
       ag-charts-community:
-        specifier: 14.1.0
-        version: 14.1.0
+        specifier: 14.3.0
+        version: 14.3.0
       ag-charts-react:
-        specifier: 14.1.0
-        version: 14.1.0(react@19.2.8)
+        specifier: 14.3.0
+        version: 14.3.0(react@19.2.8)
     devDependencies:
       '@kurbar/storybook-addon-docs-stencil':
         specifier: 8.0.0
@@ -5332,25 +5332,25 @@ packages:
     resolution: {integrity: sha512-Xwrja8nx9e5o2N1my4DsKCeKpdrnACyr1wtbPxBDgGzKzKyE9kRtBFA8mWldI+RVlD7CBZNWY/wQ2+ydwOR6kQ==}
     engines: {node: '>=14.0'}
 
-  ag-charts-community@14.1.0:
-    resolution: {integrity: sha512-J5S2Gag/nEJy7WzX/esAguqkuNHBYB3nly4vItMM/DggnnOYCopjLBEtkXXZZt1If1IQstnU4sKaUTmteAoj1Q==}
+  ag-charts-community@14.3.0:
+    resolution: {integrity: sha512-rrvL9hSEFOJ9Y3vKrChlekX4c4wV/zevNGdtufuSIgyDAEh6v8SVRz9DuUdZKhjo8xEXGEfdhbUNmjMHzyYFMQ==}
 
-  ag-charts-core@14.1.0:
-    resolution: {integrity: sha512-lkjDoudYOiUncHQ0FaDv8CaQ+TsOK16vUZnkJNPIaC92opRP95pryDbWQ6VDWzCLCqsJbAGPx2xlsTor+WgA2A==}
+  ag-charts-core@14.3.0:
+    resolution: {integrity: sha512-8RRcQlIplanR55Y+9x1Mg991zKpY/Wd+v5VyLEgpo7/ZM+1EwfqNf2vur0uj/QqTOUAbA5zJFTqArhOpOLMfKw==}
 
-  ag-charts-locale@14.1.0:
-    resolution: {integrity: sha512-5UFnL7JoOj491LtqZmlCdbxDvXqE12qz664CZFBK4Tzlh8n48pN9yWfVqhlmkJWEC/wugG3Yf6/i3WGxL5qljw==}
+  ag-charts-locale@14.3.0:
+    resolution: {integrity: sha512-GnvnGooJyMjAVw3UxtzADsCi2aJQ9p+GsidmHC5KQcEvQCWEatzJ7Y1HFqpv05koM49caILtq1MLr7rYayzilQ==}
 
-  ag-charts-react@14.1.0:
-    resolution: {integrity: sha512-gEyLSBsCzBNcJRJ2Ux9k6oVryOLUhJ16u0HH27K+9Y0Xtt2AypvZ3cQIKpJIywsffbrYZwcYAbEbIoKR2qWJow==}
+  ag-charts-react@14.3.0:
+    resolution: {integrity: sha512-f5g9nWFZdgg2+IUtZ7IB4JXlRq7QBIBjgkB1ZHyjoUHGibywN6UzzeCRROGn67qE9h9QKW2lRib5N4dXlBRFlg==}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
 
   ag-charts-types@11.3.2:
     resolution: {integrity: sha512-trPGqgGYiTeLgtf9nLuztDYOPOFOLbqHn1g2D99phf7QowcwdX0TPx0wfWG8Hm90LjB8IH+G2s3AZe2vrdAtMQ==}
 
-  ag-charts-types@14.1.0:
-    resolution: {integrity: sha512-mmzkng88c0l+Z9PvCMowMilhVeNgDU/iMuMemcOQD4BG/qO4vbkxWvyQO0iqju8Dx7YOY81PNzC/RmElQNiVkA==}
+  ag-charts-types@14.3.0:
+    resolution: {integrity: sha512-6VtzUYBKN5mFY24/Eye3RUn1AAq7s+/B4hEu83ZOK/Pjqx26tHq2MoxiXlBE8F7oQO0VpjV5rZZaw6wxSpMNJg==}
 
   ag-grid-community@33.3.2:
     resolution: {integrity: sha512-9bx0e/+ykOyLvUxHqmdy0cRVANH6JAtv0yZdnBZEXYYqBAwN+G5a4NY+2I1KvoOCYzbk8SnStG7y4hCdVAAWOQ==}
@@ -16549,26 +16549,26 @@ snapshots:
 
   adm-zip@0.6.1: {}
 
-  ag-charts-community@14.1.0:
+  ag-charts-community@14.3.0:
     dependencies:
-      ag-charts-core: 14.1.0
-      ag-charts-locale: 14.1.0
-      ag-charts-types: 14.1.0
+      ag-charts-core: 14.3.0
+      ag-charts-locale: 14.3.0
+      ag-charts-types: 14.3.0
 
-  ag-charts-core@14.1.0:
+  ag-charts-core@14.3.0:
     dependencies:
-      ag-charts-types: 14.1.0
+      ag-charts-types: 14.3.0
 
-  ag-charts-locale@14.1.0: {}
+  ag-charts-locale@14.3.0: {}
 
-  ag-charts-react@14.1.0(react@19.2.8):
+  ag-charts-react@14.3.0(react@19.2.8):
     dependencies:
-      ag-charts-community: 14.1.0
+      ag-charts-community: 14.3.0
       react: 19.2.8
 
   ag-charts-types@11.3.2: {}
 
-  ag-charts-types@14.1.0: {}
+  ag-charts-types@14.3.0: {}
 
   ag-grid-community@33.3.2:
     dependencies:
