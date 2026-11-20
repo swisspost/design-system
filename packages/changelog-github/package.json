@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@changesets/types": "7.0.0",
-    "dotenv": "17.2.3"
+    "dotenv": "17.4.2"
   },
   "devDependencies": {
     "@changesets/parse": "1.0.0",
