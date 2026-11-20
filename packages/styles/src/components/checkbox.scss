@@ -45,13 +45,11 @@ tokens.$default-map: components.$post-checkbox;
       color: tokens.get('checkbox-enabled-fg');
     }
 
-    &:not([disabled]) {
-      &:hover ~ label {
-        color: tokens.get('checkbox-hover-fg');
-      }
+    &:enabled:hover ~ label {
+      color: tokens.get('checkbox-hover-fg');
     }
 
-    &[disabled] ~ label {
+    &:disabled ~ label {
       color: tokens.get('checkbox-disabled-fg');
     }
   }
@@ -77,6 +75,10 @@ tokens.$default-map: components.$post-checkbox;
 
 fieldset:has(.form-check input[type='checkbox']) {
   margin-block: tokens.get('checkbox-padding-block-group');
+}
+
+fieldset[disabled]:has(.form-check input[type='checkbox']) > legend {
+  color: tokens.get('checkbox-disabled-fg');
 }
 
 fieldset legend {
