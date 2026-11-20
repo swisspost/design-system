@@ -54,7 +54,7 @@
     "prettier": "catalog:",
     "resolve.exports": "2.0.4",
     "rimraf": "6.1.4",
-    "sass": "1.104.0",
+    "sass": "1.108.2",
     "tailwindcss": "4.3.1",
     "typescript": "catalog:",
     "vitest": "4.1.12"
