@@ -82,8 +82,8 @@
     "copy:styles:dist": "copyfiles -f src/stencil-generated/post-components.css dist/"
   },
   "dependencies": {
-    "@stencil/react-output-target": "1.2.0",
-    "@stencil/ssr": "0.3.0",
+    "@stencil/react-output-target": "1.8.1",
+    "@stencil/ssr": "0.4.0",
     "@swisspost/design-system-components": "workspace:10.9.0"
   },
   "devDependencies": {
