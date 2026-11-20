@@ -7,7 +7,13 @@ import {
   scrollAndWait,
 } from './helper/header';
 
-const HEADER_CONFIGS = ['portal', 'microsite', 'one-pager'];
+const HEADER_CONFIGS = [
+  'portal',
+  'microsite',
+  'one-pager',
+  'application',
+  'application-with-side-navigation',
+];
 const VIEWPORTS: Record<string, Cypress.ViewportPreset> = {
   desktop: 'macbook-15',
   tablet: 'ipad-2',
@@ -75,6 +81,61 @@ describe('header', () => {
               expect(beyondGeometry).to.eq(reducedGeometry);
             });
           });
+        });
+      });
+    });
+  });
+
+  // Header with global header slots only (no main-nav and no title), not documented as a variant
+  describe('global header only', () => {
+    const getLogoHeight = () =>
+      cy
+        .get('@header')
+        .find('post-logo')
+        .then($logo => $logo[0].getBoundingClientRect().height);
+
+    beforeEach(() => {
+      cy.visit(`/iframe.html?id=${HEADER_ID}--portal`);
+      cy.get('post-header').as('header');
+      cy.get('@header').should('have.attr', 'data-hydrated');
+
+      cy.get('@header')
+        .find('[slot="main-nav"]')
+        .then($mainNav => $mainNav.remove());
+      cy.get('@header').find('[slot="main-nav"], [slot="title"]').should('not.exist');
+      cy.get('@header').find('[slot="audience"], [slot="post-login"]').should('exist');
+    });
+
+    it('should reduce the logo and stop updating the scroll position once fully reduced on desktop', () => {
+      cy.viewport(VIEWPORTS.desktop);
+
+      getScrollMax().then(scrollMax => {
+        expect(scrollMax).to.be.greaterThan(1);
+
+        getLogoHeight().then(expandedLogoHeight => {
+          scrollAndWait(scrollMax);
+          getScrollTopProperty().should('eq', `${scrollMax}px`);
+          cy.get('@header')
+            .find('post-logo')
+            .should($logo =>
+              expect($logo[0].getBoundingClientRect().height).to.be.lessThan(expandedLogoHeight),
+            );
+
+          scrollAndWait(scrollMax + 300);
+          getScrollTopProperty().should('eq', `${scrollMax}px`);
+        });
+      });
+    });
+
+    ['tablet', 'mobile'].forEach(viewportName => {
+      it(`should not reduce the header on ${viewportName}`, () => {
+        cy.viewport(VIEWPORTS[viewportName]);
+
+        getScrollMax().should('be.lessThan', 2);
+        getLogoHeight().then(expandedLogoHeight => {
+          scrollAndWait(300);
+          getScrollTopProperty().should('eq', '0px');
+          getLogoHeight().should('eq', expandedLogoHeight);
         });
       });
     });
