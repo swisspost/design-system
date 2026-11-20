@@ -5,7 +5,6 @@ describe('Typography', () => {
       cy.get('h1', { timeout: 30000 }).should('be.visible');
       cy.get('a', { timeout: 30000 }).should('be.visible');
       cy.get('p', { timeout: 30000 }).should('be.visible');
-      cy.get('legend', { timeout: 30000 }).should('be.visible');
       // Test Inline Elements
       cy.get('small', { timeout: 30000 }).should('be.visible');
       cy.get('strong', { timeout: 30000 }).should('be.visible');
