@@ -1,0 +1,106 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <meta name="design-system-settings" data-post-icon-base="/assets/icons" />
+    <title>Self-managed user menu</title>
+
+    <link rel="stylesheet" href="/build/post-components.css" />
+    <link rel="stylesheet" href="/assets/css/post-default.css" />
+    <script type="module" src="/build/post-components.esm.js"></script>
+    <script nomodule src="/build/post-components.js"></script>
+  </head>
+
+  <body style="min-height: 200vh">
+    <post-header text-menu="Menu">
+      <post-logo slot="post-logo">Homepage</post-logo>
+
+      <p slot="title">Self-managed user menu</p>
+
+      <!-- Markup from main's self-managed header docs, without the login widget. -->
+      <template id="logged-out">
+        <a href="#login" slot="post-login">
+          <span>Login</span>
+          <post-icon name="login"></post-icon>
+        </a>
+      </template>
+
+      <template id="logged-in">
+        <div slot="post-login">
+          <post-menu-trigger for="user-menu">
+            <button class="btn btn-link" type="button">
+              <post-avatar
+                firstname="John"
+                lastname="Doe"
+                description="Current user is John Doe."
+              ></post-avatar>
+              <span class="visually-hidden">Access user links.</span>
+            </button>
+          </post-menu-trigger>
+          <post-menu id="user-menu" label="User links" placement="bottom-end">
+            <div slot="header">
+              <post-avatar firstname="John" lastname="Doe" aria-hidden="true"></post-avatar>
+              <p>John Doe</p>
+            </div>
+            <post-menu-item>
+              <a href="#my-profile">
+                <post-icon aria-hidden="true" name="profile"></post-icon>
+                My Profile
+              </a>
+            </post-menu-item>
+            <post-menu-item>
+              <a href="#messages">
+                <post-icon aria-hidden="true" name="letter"></post-icon>
+                Messages
+              </a>
+            </post-menu-item>
+            <post-menu-item>
+              <a href="#settings">
+                <post-icon aria-hidden="true" name="gear"></post-icon>
+                Settings
+              </a>
+            </post-menu-item>
+            <post-menu-item>
+              <button type="button">
+                <post-icon aria-hidden="true" name="logout"></post-icon>
+                Logout
+              </button>
+            </post-menu-item>
+          </post-menu>
+        </div>
+      </template>
+
+      <ul slot="local-nav">
+        <li>
+          <a href="#">
+            <span>Search</span>
+            <post-icon aria-hidden="true" name="search"></post-icon>
+          </a>
+        </li>
+      </ul>
+    </post-header>
+
+    <main class="container">
+      <h1>Self-managed user menu</h1>
+      <p>
+        No <code>post-klp-login-widget</code>: the <code>post-login</code> slot holds the project's
+        own login link or user menu, as before.
+      </p>
+      <p>
+        <a href="?state=logged-in">Logged in</a> ·
+        <a href="?state=logged-out">Logged out</a>
+      </p>
+    </main>
+
+    <script>
+      const state = new URLSearchParams(location.search).get('state') ?? 'logged-in';
+      const template = document.getElementById(state) ?? document.getElementById('logged-in');
+      template.replaceWith(template.content.cloneNode(true));
+      document.querySelectorAll('post-header > template').forEach(t => t.remove());
+    </script>
+  </body>
+</html>

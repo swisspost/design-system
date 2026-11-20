@@ -1,9 +1,18 @@
 jest.mock('@stencil/core', () => {
   const actual = jest.requireActual('@stencil/core');
+  const fallbackHosts = new WeakMap<object, HTMLElement>();
 
   return {
     ...actual,
-    getElement: (ref: { host?: HTMLElement }) => ref.host ?? document.createElement('post-test'),
+    // Only use `host` when it is a plain value: a component's `@Element() host` is a getter that
+    // calls `getElement` itself, which would recurse forever.
+    getElement: (ref: object) => {
+      const own = Object.getOwnPropertyDescriptor(ref, 'host');
+      if (own && 'value' in own && own.value) return own.value as HTMLElement;
+
+      if (!fallbackHosts.has(ref)) fallbackHosts.set(ref, document.createElement('post-test'));
+      return fallbackHosts.get(ref);
+    },
   };
 });
 
