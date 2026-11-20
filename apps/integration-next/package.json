@@ -49,7 +49,7 @@
     "@types/react-dom": "catalog:react",
     "eslint": "catalog:",
     "eslint-plugin-react": "7.37.5",
-    "eslint-plugin-react-hooks": "7.0.1",
+    "eslint-plugin-react-hooks": "7.1.1",
     "globals": "17.3.0",
     "prettier": "catalog:",
     "resolve.exports": "2.0.4",
