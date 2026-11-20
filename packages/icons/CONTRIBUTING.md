@@ -26,7 +26,7 @@ After downloading the whole set, a `report.json` is generated containing informa
 
 ## Transforming icons
 
-We're using [SVGO]() in order to normalize and minify SVG icons.
+We're using [SVGO](https://svgo.dev) in order to normalize and minify SVG icons.
 
 ## Reading the report
 
