@@ -1,7 +1,8 @@
 @use '../functions/tokens';
 @use '../tokens/elements';
 @use '../tokens/components';
-@use './../mixins/utilities';
+@use '../mixins/utilities';
+@use '../mixins/color-scheme';
 
 tokens.$default-map: components.$post-inline-notification;
 
@@ -45,7 +46,7 @@ tokens.$default-map: components.$post-inline-notification;
       border-color: tokens.get('notification-inline-color-#{$name}-stroke');
       background-color: tokens.get('notification-inline-color-#{$name}-bg');
       color: tokens.get('notification-inline-color-#{$name}-fg');
-      color-scheme: light;
+      @include color-scheme.set(light);
 
       &::before {
         background-image: var(--post-signal-icon-#{$name});
