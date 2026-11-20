@@ -38,6 +38,8 @@ some content
  - [post-number-input](../post-number-input)
  - [post-pagination](../post-pagination)
  - [post-rating](../post-rating)
+ - [post-select](../post-select)
+ - [post-select-option](../post-select-option)
  - [post-tabs](../post-tabs)
 
 ### Graph
@@ -58,6 +60,8 @@ graph TD;
   post-number-input --> post-icon
   post-pagination --> post-icon
   post-rating --> post-icon
+  post-select --> post-icon
+  post-select-option --> post-icon
   post-tabs --> post-icon
   style post-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
