@@ -124,13 +124,13 @@
     "@swisspost/design-system-prettier-config": "workspace:*",
     "prettier": "catalog:",
     "start-server-and-test": "2.1.5",
-    "turbo": "2.10.10"
+    "turbo": "2.11.11"
   },
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
   },
   "prettier": "@swisspost/design-system-prettier-config",
-  "packageManager": "pnpm@12.17.0",
+  "packageManager": "pnpm@12.21.0",
   "devEngines": {
     "runtime": {
       "name": "node",
