@@ -58,7 +58,7 @@ libraries such as Next.js and Angular Router. Use the default slot for regular
 The component detects the slotted link and leaves it unchanged, allowing the routing library to
 handle navigation. The `url` and `home-url` properties are ignored when a slotted link is used.
 
-<post-banner type="info">
+<div className="inline-notification inline-notification-info">
   <p>
     For regular breadcrumb items, the slotted link must be a direct child of
     `<post-breadcrumb-item>`. For the root breadcrumb, the slotted link must be a direct child of
@@ -66,9 +66,9 @@ handle navigation. The `url` and `home-url` properties are ignored when a slotte
     element, it won't be detected and the component will fall back to rendering its own internal
     link.
   </p>
-</post-banner>
+</div>
 
-<post-banner type="warning">
+<div className="inline-notification inline-notification-warning">
   <p>
     <b>Accessibility Note:</b> When using client-side routing, the accessibility attributes are no
     longer applied by the component and need to be added manually to the slotted `<a>`:
@@ -82,7 +82,7 @@ handle navigation. The `url` and `home-url` properties are ignored when a slotte
       `<span class="visually-hidden">`) and `aria-hidden="true"` on the icon
     </li>
   </ul>
-</post-banner>
+</div>
 
 <Canvas of={BreadcrumbsStories.ClientSideRouting} sourceState="shown" />
 
