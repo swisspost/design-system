@@ -20,7 +20,7 @@
     "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore"
   },
   "dependencies": {
-    "postcss": "8.5.32",
+    "postcss": "8.5.33",
     "stylelint-scss": "7.4.0"
   },
   "peerDependencies": {
