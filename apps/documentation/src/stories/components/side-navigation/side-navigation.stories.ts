@@ -40,9 +40,9 @@ const meta: MetaComponent = {
       name: 'Expandable items',
       description:
         'Defines whether the items with sub-levels can be collapsed or are always expanded.' +
-        '<post-banner data-size="sm"><p>' +
+        '<div class="inline-notification inline-notification-info"><p>' +
         '<strong>Do not mix:</strong> either all expandable items are collapsible, or all of them are always expanded.' +
-        '</p></post-banner>',
+        '</p></div>',
       control: {
         type: 'radio',
         labels: { collapsible: 'Collapsible', expanded: 'Always expanded' },
