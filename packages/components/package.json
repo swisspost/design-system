@@ -115,7 +115,7 @@
   "dependencies": {
     "@floating-ui/dom": "1.8.0",
     "@floating-ui/utils": "0.2.12",
-    "@oddbird/popover-polyfill": "0.6.0",
+    "@oddbird/popover-polyfill": "0.7.3",
     "@stencil/core": "4.43.3",
     "@swisspost/design-system-icons": "workspace:10.9.0",
     "@swisspost/design-system-styles": "workspace:10.9.0",
@@ -153,7 +153,7 @@
     "replace": "1.2.2",
     "rimraf": "6.1.4",
     "rollup-plugin-postcss": "4.0.2",
-    "sass": "1.104.0",
+    "sass": "1.108.2",
     "stylelint": "catalog:",
     "throttle-debounce": "5.0.2",
     "ts-jest": "catalog:stencil/jest",

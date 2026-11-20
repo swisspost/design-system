@@ -58,7 +58,7 @@
     "domhandler": "5.0.3",
     "eslint": "catalog:",
     "jest": "catalog:jest",
-    "parse5": "7.2.1",
+    "parse5": "7.3.0",
     "prettier": "catalog:",
     "rimraf": "6.1.4",
     "ts-jest": "catalog:jest",
