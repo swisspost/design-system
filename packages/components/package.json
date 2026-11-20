@@ -148,7 +148,7 @@
     "http-server": "14.1.1",
     "jest": "catalog:stencil/jest",
     "jest-cli": "catalog:stencil/jest",
-    "memfs": "4.51.0",
+    "memfs": "4.80.1",
     "prettier": "catalog:",
     "replace": "1.2.2",
     "rimraf": "6.1.4",
