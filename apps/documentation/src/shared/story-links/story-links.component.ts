@@ -115,16 +115,13 @@ export class StoryLinksComponent extends LitElement {
 
     const figmaLink =
       designParameter?.type === 'figma' && designParameter?.url
-        ? html`<a class="figma-link btn btn-primary" href="${designParameter.url}">
-            <img
-              src="/assets/images/technologies/logo-figma.svg"
-              alt=""
-              style="width: 0.8rem;height: 0.8rem;"
-            />
+        ? html`<a class="figma-link btn btn-secondary" href="${designParameter.url}">
+            <img src="/assets/images/technologies/logo-figma.svg" alt="Figma logo" />
             <span>
               Figma Design
               <span class="visually-hidden"> for ${componentName} component</span>
             </span>
+            <post-icon name="arrowright"></post-icon>
           </a>`
         : nothing;
 
@@ -145,6 +142,7 @@ export class StoryLinksComponent extends LitElement {
       return html`<a class="btn btn-secondary" href="${getHref(snapshots[0])}">
         Snapshot
         <span class="visually-hidden"> for ${componentName}</span>
+        <post-icon name="arrowright"></post-icon>
       </a>`;
     }
 

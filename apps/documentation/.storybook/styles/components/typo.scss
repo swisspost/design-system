@@ -23,6 +23,11 @@ body {
   #storybook-docs {
     :is(pre, .prismjs) {
       font-family: var(--post-docs-font-monospace);
+
+      // Storybook sets its own font on the syntax tokens
+      * {
+        font-family: inherit;
+      }
     }
   }
 }

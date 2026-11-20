@@ -1,0 +1,13 @@
+import { Canvas } from '@storybook/addon-docs/blocks';
+import * as accordionStories from '../accordion.stories';
+
+<post-tab-panel for="accessibility" class="pt-24">
+
+## Heading Levels
+
+To ensure accessibility, all accordion titles are contained within heading tags (`h1`-`h6`) behind the scenes.
+It is essential to set the appropriate `heading-level` property on the `post-accordion` so that it matches the structure of your page properly.
+
+<Canvas of={accordionStories.Nested} />
+
+</post-tab-panel>

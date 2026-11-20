@@ -13,6 +13,20 @@
   margin-block-end: 0;
 }
 
+// Stretches a section inside the docs container to the full viewport width, keeping its content aligned with the container.
+.docs-section {
+  margin-inline: calc(50% - 50vw);
+  padding-inline: calc(50vw - 50%);
+
+  > :first-child {
+    margin-block-start: 0;
+  }
+
+  > :last-child {
+    margin-block-end: 0;
+  }
+}
+
 .docs-hero {
   position: relative;
   isolation: isolate;

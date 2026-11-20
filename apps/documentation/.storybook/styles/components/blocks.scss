@@ -17,8 +17,28 @@ tokens.$default-map: utilities.$post-spacing;
   }
 
   .docblock-argstable {
-    border-radius: tokens.get('utility-gap-8');
+    position: relative;
+    z-index: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: tokens.get('utility-gap-4');
     margin-inline: 0;
+    padding: 0 tokens.get('utility-gap-12') tokens.get('utility-gap-12');
+    background-color: post.$gray;
+    color: post.$gray-80;
+
+    thead th {
+      padding: tokens.get('utility-gap-8') tokens.get('utility-gap-12');
+      font-family: post.$font-family-sans-serif;
+      font-size: 0.8125rem;
+      font-weight: normal;
+      color: post.$gray-60;
+      text-align: start;
+
+      span {
+        font-size: inherit !important;
+      }
+    }
 
     tbody {
       position: relative;
@@ -30,9 +50,20 @@ tokens.$default-map: utilities.$post-spacing;
         content: '';
         position: absolute;
         inset: 0;
-        border: post.$border-width solid post.$border-color;
-        border-radius: tokens.get('utility-gap-8');
+        border-radius: tokens.get('utility-gap-4');
+        background-color: post.$white;
         z-index: -1;
+      }
+
+      // drawn above the rows so the gray category cells don't hide it
+      &:after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: post.$border-width solid post.$border-color;
+        border-radius: tokens.get('utility-gap-4');
+        pointer-events: none;
+        z-index: 1;
       }
 
       > tr {
@@ -46,11 +77,46 @@ tokens.$default-map: utilities.$post-spacing;
         > td {
           background-color: transparent;
           border: 0 none;
+          padding: tokens.get('utility-gap-16') tokens.get('utility-gap-12');
+          font-family: post.$font-family-monospace;
+          font-size: 0.875rem;
+          color: post.$gray-80;
+          vertical-align: top;
 
           // description
           &:nth-child(2) {
             min-width: 160px;
+            font-size: 0.8125rem;
           }
+
+          span,
+          p,
+          div,
+          code {
+            font-family: inherit;
+            font-size: inherit !important;
+            color: inherit;
+          }
+
+          code {
+            padding: 0;
+            border: 0 none;
+            background: none;
+          }
+
+          span[title='Required'] {
+            color: post.$error;
+          }
+
+          a,
+          button:not([id^='set-']):not([tabindex='-1']):not([tabindex='0']) {
+            color: #0073bc;
+          }
+        }
+
+        &:not([title]) > td:first-child {
+          padding-inline-start: tokens.get('utility-gap-24');
+          font-weight: post.$font-weight-bold;
         }
 
         &:not(:first-child) {
@@ -60,48 +126,143 @@ tokens.$default-map: utilities.$post-spacing;
           }
         }
 
-        // category headers
-        &[title] {
-          > td {
-            background-clip: padding-box !important;
+        // category headers; Storybook sets their background with !important
+        &[title] > td,
+        &[title]:hover > td {
+          background: post.$gray !important;
+          box-shadow: none;
+          padding-block: tokens.get('utility-gap-6');
+          font-family: post.$font-family-sans-serif;
+          font-size: 0.8125rem;
+          font-weight: post.$font-weight-bold;
+          letter-spacing: normal;
+          text-transform: none;
+          color: post.$gray-80;
+        }
+      }
 
-            &:first-child {
-              border-inline-start: tokens.get('utility-gap-2') solid transparent;
-            }
+      // boolean
+      label:has(> input[role='switch']) {
+        display: inline-flex;
+        align-items: center;
+        gap: tokens.get('utility-gap-8');
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+        background: none;
+        box-shadow: none;
 
-            &:last-child {
-              border-inline-end: tokens.get('utility-gap-2') solid transparent;
-            }
+        span {
+          padding: 0;
+          border-radius: 0;
+          background: none;
+          box-shadow: none;
+          font-family: post.$font-family-sans-serif;
+          font-size: 1rem !important;
+          font-weight: normal;
+          color: post.$gray-80;
+
+          &:first-of-type {
+            order: 0;
           }
 
-          &:first-child > td {
-            border-block-start: tokens.get('utility-gap-1') solid transparent;
-
-            &:first-child {
-              border-start-start-radius: tokens.get('utility-gap-8');
-            }
-
-            &:last-child {
-              border-start-end-radius: tokens.get('utility-gap-8');
-            }
+          &:last-of-type {
+            order: 2;
           }
+        }
 
-          &:last-child > td {
-            &:first-child {
-              border-end-start-radius: tokens.get('utility-gap-8');
-            }
+        input {
+          order: 1;
+          position: static;
+          flex-shrink: 0;
+          width: 2.25rem;
+          height: 1.25rem;
+          margin: 0;
+          border: 0 none;
+          border-radius: 1.25rem;
+          appearance: none;
+          background-color: post.$black;
+          background-image: radial-gradient(circle closest-side, post.$white 70%, transparent 75%);
+          background-size: 1.25rem 1.25rem;
+          background-repeat: no-repeat;
+          background-position: left center;
+          transition: background-position 0.2s ease;
+          @include post.focus-style;
 
-            &:last-child {
-              border-end-end-radius: tokens.get('utility-gap-8');
-            }
+          &:checked {
+            background-color: post.$success;
+            background-position: right center;
           }
+        }
+
+        input:not(:checked) ~ span:first-of-type,
+        input:checked ~ span:last-of-type {
+          font-weight: post.$font-weight-bold;
+        }
+      }
+
+      // select, text and setter button controls
+      select,
+      textarea,
+      button[id^='set-'] {
+        width: 100%;
+        min-height: tokens.get('utility-gap-48');
+        padding-inline: tokens.get('utility-gap-12');
+        border: tokens.get('utility-gap-2') solid post.$gray-80;
+        border-radius: tokens.get('utility-gap-4');
+        background-color: post.$white;
+        box-shadow: none;
+        font-family: post.$font-family-sans-serif;
+        font-size: 0.8125rem !important;
+        font-weight: normal;
+        color: post.$gray-80;
+      }
+
+      textarea {
+        padding-block: tokens.get('utility-gap-12');
+      }
+
+      // Storybook wraps the select in a span
+      :has(> select) {
+        position: relative;
+
+        > svg {
+          display: none;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          inset-inline-end: tokens.get('utility-gap-12');
+          top: 50%;
+          width: tokens.get('utility-gap-24');
+          height: tokens.get('utility-gap-24');
+          transform: translateY(-50%);
+          pointer-events: none;
+          @include post.mask-image('chevrondown');
         }
       }
 
       select {
-        padding-right: 28px;
+        appearance: none;
+        padding-inline-end: tokens.get('utility-gap-48');
         text-overflow: ellipsis;
         min-width: 120px;
+      }
+
+      button[id^='set-'] {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: tokens.get('utility-gap-8');
+
+        &::after {
+          content: '';
+          flex-shrink: 0;
+          width: tokens.get('utility-gap-24');
+          height: tokens.get('utility-gap-24');
+          @include post.mask-image('edit');
+        }
       }
     }
   }
