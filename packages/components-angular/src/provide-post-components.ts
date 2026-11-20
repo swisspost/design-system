@@ -21,7 +21,7 @@ export function providePostComponents(): EnvironmentProviders {
       if (nonce) setNonce(nonce);
 
       // Define Post components
-      defineCustomElements();
+      void defineCustomElements();
     }),
   ]);
 }

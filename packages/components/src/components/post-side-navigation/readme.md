@@ -58,6 +58,7 @@ Type: `Promise<void>`
 
 | Slot        | Description                                                                      |
 | ----------- | -------------------------------------------------------------------------------- |
+|             | The default slot                                                                 |
 | `"default"` | Slot for the navigation content (must be a `<nav>` landmark with proper heading) |
 
 

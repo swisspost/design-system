@@ -64,6 +64,7 @@ Type: `Promise<void>`
 
 | Slot        | Description                                  |
 | ----------- | -------------------------------------------- |
+|             | The default slot                             |
 | `"default"` | Slot for placing content inside the popover. |
 
 

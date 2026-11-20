@@ -14,6 +14,7 @@
 
 | Slot        | Description                         |
 | ----------- | ----------------------------------- |
+|             | The default slot                    |
 | `"default"` | Slot for the content of the button. |
 
 

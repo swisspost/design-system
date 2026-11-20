@@ -86,6 +86,14 @@ Type: `Promise<void>`
 
 
 
+## Slots
+
+| Slot            | Description      |
+| --------------- | ---------------- |
+|                 | The default slot |
+| `"blank-slate"` |                  |
+
+
 ## Dependencies
 
 ### Depends on

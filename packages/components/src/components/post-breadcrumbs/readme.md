@@ -16,9 +16,12 @@
 
 ## Slots
 
-| Slot     | Description                                                                                                                                                                 |
-| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `"home"` | The content of the root (home) breadcrumb item. Can contain an `<a>` element, so consumers can slot their own routing-aware link instead of relying on the `home-url` prop. |
+| Slot         | Description                                                                                                                                                                 |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|              | The default slot                                                                                                                                                            |
+| `"home"`     | The content of the root (home) breadcrumb item. Can contain an `<a>` element, so consumers can slot their own routing-aware link instead of relying on the `home-url` prop. |
+| `"menu"`     |                                                                                                                                                                             |
+| `"selected"` |                                                                                                                                                                             |
 
 
 ## Dependencies

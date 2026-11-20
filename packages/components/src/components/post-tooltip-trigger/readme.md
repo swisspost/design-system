@@ -15,6 +15,7 @@
 
 | Slot        | Description                                                                                                |
 | ----------- | ---------------------------------------------------------------------------------------------------------- |
+|             | The default slot                                                                                           |
 | `"default"` | Content to trigger the tooltip. Can contain any focusable element or will be made focusable automatically. |
 
 

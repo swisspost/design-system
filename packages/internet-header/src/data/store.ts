@@ -1,7 +1,7 @@
 import { Environment, LocalizedConfig } from '@/models/general.model';
 import { RouteLink } from '@/models/shared.model';
 import { UserConfig } from '@/models/user.model';
-import { createStore } from '@stencil/store';
+import { createStore, ObservableMap } from '@stencil/store';
 
 export interface HeaderState {
   localizedConfig: LocalizedConfig | null;
@@ -14,7 +14,7 @@ export interface HeaderState {
   alternateLinks: Map<string, string>;
 }
 
-export const { state, onChange, reset, dispose } = createStore<HeaderState>({
+const store = createStore<HeaderState>({
   projectId: null,
   currentLanguage: null,
   localizedConfig: null,
@@ -24,3 +24,8 @@ export const { state, onChange, reset, dispose } = createStore<HeaderState>({
   user: null,
   alternateLinks: new Map<string, string>(),
 });
+
+export const state: HeaderState = store.state;
+export const onChange: ObservableMap<HeaderState>['onChange'] = store.onChange;
+export const reset: ObservableMap<HeaderState>['reset'] = store.reset;
+export const dispose: ObservableMap<HeaderState>['dispose'] = store.dispose;

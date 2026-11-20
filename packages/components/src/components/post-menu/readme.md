@@ -69,6 +69,7 @@ Type: `Promise<void>`
 
 | Slot       | Description                        |
 | ---------- | ---------------------------------- |
+|            | The default slot                   |
 | `"header"` | Holds the header part of the menu. |
 
 

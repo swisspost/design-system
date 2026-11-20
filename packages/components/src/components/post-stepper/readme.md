@@ -14,6 +14,13 @@
 | `textStepNumber` _(required)_    | `text-step-number`    | Label for the "Step {number}:" indicator for mobile view. Use `{number}` as a placeholder — it will be replaced with the current step number at runtime. | `string` | `undefined` |
 
 
+## Slots
+
+| Slot | Description      |
+| ---- | ---------------- |
+|      | The default slot |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

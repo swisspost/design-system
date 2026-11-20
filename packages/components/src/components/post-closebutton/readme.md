@@ -16,6 +16,7 @@
 
 | Slot        | Description                                                 |
 | ----------- | ----------------------------------------------------------- |
+|             | The default slot                                            |
 | `"default"` | Slot for placing visually hidden label in the close button. |
 
 

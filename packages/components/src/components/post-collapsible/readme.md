@@ -42,6 +42,7 @@ Type: `Promise<boolean>`
 
 | Slot        | Description                                              |
 | ----------- | -------------------------------------------------------- |
+|             | The default slot                                         |
 | `"default"` | Slot for placing content within the collapsible element. |
 
 

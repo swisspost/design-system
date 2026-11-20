@@ -19,6 +19,13 @@
 | `postOptionSelected` | Fires when this option was selected. Bubbles up. | `CustomEvent<string>` |
 
 
+## Slots
+
+| Slot | Description      |
+| ---- | ---------------- |
+|      | The default slot |
+
+
 ## Dependencies
 
 ### Depends on
