@@ -216,12 +216,14 @@ tokens.$default-map: utilities.$post-spacing;
   // Compact style on inline notifications when in the args table
   .docblock-argstable-body tr td .inline-notification {
     @include media.min(1024px) {
-      @include token-mx.from(device.$post-tablet);
+      @include token-mx.from(device.$post-mobile);
     }
 
     p {
       font-size: tokens.get('body-font-size', elements.$post-body);
       margin: 0;
+      hyphens: none;
+      overflow-wrap: anywhere;
     }
 
     a,
