@@ -43,7 +43,7 @@
     "@swisspost/design-system-tsconfig": "workspace:10.9.0",
     "@swisspost/design-system-eslint-config": "workspace:10.9.0",
     "@swisspost/design-system-prettier-config": "workspace:10.9.0",
-    "@tailwindcss/postcss": "4.1.18",
+    "@tailwindcss/postcss": "4.3.5",
     "@types/node": "catalog:node",
     "@types/react": "catalog:react",
     "@types/react-dom": "catalog:react",
@@ -55,7 +55,7 @@
     "resolve.exports": "2.0.4",
     "rimraf": "6.1.4",
     "sass": "1.108.2",
-    "tailwindcss": "4.3.1",
+    "tailwindcss": "4.3.5",
     "typescript": "catalog:",
     "vitest": "4.1.12"
   },
