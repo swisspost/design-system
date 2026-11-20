@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import type { IconSet, SourceReport } from './models/icon.model';
 import iconSets from './iconsets.config';
 import { checkEnvVarsExist, setupProxy } from './utilities/environment';
