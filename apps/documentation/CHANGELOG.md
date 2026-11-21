@@ -1,5 +1,34 @@
 # @swisspost/design-system-documentation
 
+## 6.9.0
+
+### Minor Changes
+
+- Introduced the `form-grid` and `form-grid-control` classes to align complex forms in internal applications. (by [@leagrdv](https://github.com/leagrdv) with [#8720](https://github.com/swisspost/design-system/pull/8720))
+
+### Patch Changes
+
+- Added the dark mode on the fullscreen previews. (by [@leagrdv](https://github.com/leagrdv) with [#8873](https://github.com/swisspost/design-system/pull/8873))
+
+- Added an option to the Tabs documentation to show Tab items with only text, only icons and with text and icons (by [@AndrinAAF](https://github.com/AndrinAAF), [@Copilot](https://github.com/Copilot) and [@alionazherdetska](https://github.com/alionazherdetska) with [#8804](https://github.com/swisspost/design-system/pull/8804))
+
+- Updated the docs with inline notifications instead of banners. (by [@leagrdv](https://github.com/leagrdv) with [#8888](https://github.com/swisspost/design-system/pull/8888))
+
+- Fixed the controls on the `post-side-navigation` documentation page not updating the demo. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8752](https://github.com/swisspost/design-system/pull/8752))
+
+- Changed the icon search to the new design. (by [@leagrdv](https://github.com/leagrdv) with [#8779](https://github.com/swisspost/design-system/pull/8779))
+
+- Moved the legend documentation from `Typography` to `Components/Legend`. (by [@leagrdv](https://github.com/leagrdv) with [#8843](https://github.com/swisspost/design-system/pull/8843))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.10.0
+  - @swisspost/design-system-styles@10.10.0
+  - @swisspost/design-system-components-react@10.10.0
+  - @swisspost/internet-header@10.10.0
+  - @swisspost/design-system-styles-primeng@10.10.0
+  - @swisspost/design-system-icons@10.10.0
+  - @swisspost/design-system-theme-ag-grid@10.10.0
+  - @swisspost/design-system-tokens@10.10.0
+
 ## 6.8.0
 
 ### Minor Changes
