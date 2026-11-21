@@ -1,5 +1,20 @@
 # @swisspost/design-system-components
 
+## 10.10.0
+
+### Minor Changes
+
+- Introduced the `form-grid` and `form-grid-control` classes to align complex forms in internal applications. (by [@leagrdv](https://github.com/leagrdv) with [#8720](https://github.com/swisspost/design-system/pull/8720))
+
+- Added the `grief` type to the `post-banner` component, a dark banner variant with a candle icon to be used for messages of condolence. (by [@alionazherdetska](https://github.com/alionazherdetska), [@Copilot](https://github.com/Copilot) and [@oliverschuerch](https://github.com/oliverschuerch) with [#8718](https://github.com/swisspost/design-system/pull/8718))
+
+### Patch Changes
+
+- Fixed the `post-language-menu` being displayed as a dropdown instead of a list in the `post-header` burger menu on mobile and tablet when it is added after the initial render. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8852](https://github.com/swisspost/design-system/pull/8852))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.10.0
+  - @swisspost/design-system-icons@10.10.0
+
 ## 10.9.0
 
 ### Patch Changes
