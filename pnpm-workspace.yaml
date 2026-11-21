@@ -4,7 +4,7 @@ packages:
   - 'tooling/*'
 
 catalog:
-  '@playwright/test': 1.65.0
+  '@playwright/test': 1.65.1
   'eslint': 9.39.5
   'prettier': 3.6.2
   'stylelint': 17.16.0
