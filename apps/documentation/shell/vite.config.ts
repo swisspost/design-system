@@ -1,10 +1,11 @@
 import { defineConfig } from 'vite';
-import { ALIASES, NODE_MODULES, OUT_DIR, PUBLIC_DIR, SHELL_ROOT } from '../paths';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import { DOCS_ROOT, NODE_MODULES, OUT_DIR, PUBLIC_DIR, SHELL_ROOT } from '../paths';
 
 export default defineConfig(({ command }) => ({
   root: SHELL_ROOT,
   base: '/',
-  resolve: { alias: ALIASES },
+  plugins: [tsconfigPaths({ root: DOCS_ROOT })],
   publicDir: command === 'serve' ? PUBLIC_DIR : false,
   server: {
     port: 9000,

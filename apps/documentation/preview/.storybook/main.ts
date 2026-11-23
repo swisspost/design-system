@@ -23,9 +23,9 @@ const config: StorybookConfig = {
 
   // MDX files inside `content-tabs/` folders are tab panel partials imported by a docs page, so they must not be indexed.
   stories: [
-    '../stories/*.mdx',
-    '../stories/**/!(content-tabs)/*.mdx',
-    '../stories/**/*.stories.@(ts|tsx)',
+    '../src/stories/*.mdx',
+    '../src/stories/**/!(content-tabs)/*.mdx',
+    '../src/stories/**/*.stories.@(ts|tsx)',
   ],
 
   addons: [

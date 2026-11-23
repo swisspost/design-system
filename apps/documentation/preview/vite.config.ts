@@ -1,11 +1,10 @@
 import { defineConfig } from 'vite';
-import { ALIASES, PUBLIC_DIR } from '../paths';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import { DOCS_ROOT, PUBLIC_DIR } from '../paths';
 
 export default defineConfig({
   publicDir: PUBLIC_DIR,
-  resolve: {
-    alias: ALIASES,
-  },
+  plugins: [tsconfigPaths({ root: DOCS_ROOT })],
   optimizeDeps: {
     include: [
       '@kurbar/storybook-addon-docs-stencil',
