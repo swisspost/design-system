@@ -48,13 +48,9 @@
     "@types/react": "catalog:react",
     "@types/react-dom": "catalog:react",
     "eslint": "catalog:",
-    "eslint-plugin-react": "7.37.5",
-    "eslint-plugin-react-hooks": "7.0.1",
-    "globals": "17.3.0",
     "prettier": "catalog:",
     "resolve.exports": "2.0.4",
     "rimraf": "6.1.4",
-    "sass": "1.104.0",
     "tailwindcss": "4.3.1",
     "typescript": "catalog:",
     "vitest": "4.1.12"
