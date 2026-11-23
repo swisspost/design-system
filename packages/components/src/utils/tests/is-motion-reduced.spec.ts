@@ -1,17 +1,29 @@
-import '../tests/helpers/mock-stencil-constants';
-import { mockConfig } from '../tests/helpers/mock-match-media';
-
-// Must be imported after mock helpers to ensure it uses the mocked environment
-import { isMotionReduced } from '../is-motion-reduced';
+import { isMotionReduced } from '@/utils';
+import { useBrowser } from '@/utils/tests/helpers/stencil-build';
 
 describe('isMotionReduced', () => {
-  it('should return true if reduced motion is requested', () => {
-    mockConfig.matches = true;
-    expect(isMotionReduced()).toBe(true);
+  beforeEach(() => {
+    useBrowser();
   });
 
-  it('should return false if reduced motion is not requested', () => {
-    mockConfig.matches = false;
-    expect(isMotionReduced()).toBe(false);
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('queries prefers-reduced-motion and returns its result', () => {
+    const matchSpy = jest.spyOn(globalThis, 'matchMedia');
+
+    for (const matches of [true, false]) {
+      matchSpy.mockReturnValue({ matches } as MediaQueryList);
+
+      expect(isMotionReduced()).toBe(matches);
+      expect(matchSpy).toHaveBeenCalledWith('(prefers-reduced-motion: reduce)');
+    }
+  });
+
+  it('defaults to true when `matchMedia` is unavailable', () => {
+    globalThis.matchMedia = undefined;
+
+    expect(isMotionReduced()).toBe(true);
   });
 });
