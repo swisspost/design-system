@@ -80,9 +80,9 @@ There are different ways how to consume our web-components, and it depends on yo
         </post-tab-panel>
       </post-tabs>
 
-      <post-banner type="info">
-        <p>Make sure to replace `{tag|version}` with the tag/version you want to, or remove `@{tag|version}` to use the latest version.</p>
-      </post-banner>
+      <div className="inline-notification inline-notification-info">
+        Make sure to replace `{tag|version}` with the tag/version you want to, or remove `@{tag|version}` to use the latest version.
+      </div>
     </post-tab-panel>
 
     <post-tab-item name="standalone">Standalone Components</post-tab-item>
@@ -109,10 +109,10 @@ There are different ways how to consume our web-components, and it depends on yo
 
         You can also get our standalone components from a <a href="https://en.wikipedia.org/wiki/Content_delivery_network" rel="noopener">CDN</a>. See the examples below to know how to set it up.
 
-        <post-banner type="warning">
+        <div className="inline-notification inline-notification-warning">
           <h5>Not recommended!</h5>
           <p>There is currently no fallback for browsers without esm support, therefore we do not recommend the standalone approach by using a CDN.</p>
-        </post-banner>
+        </div>
 
         <post-tabs>
           <post-tab-item name="jsdelivr">jsDelivr</post-tab-item>
@@ -126,9 +126,9 @@ There are different ways how to consume our web-components, and it depends on yo
           </post-tab-panel>
         </post-tabs>
 
-        <post-banner type="info">
-          <p>Make sure to replace `{tag|version}` with the tag/version you want to, or remove `@{tag|version}` to use the latest version.</p>
-        </post-banner>
+        <div className="inline-notification inline-notification-info">
+          Make sure to replace `{tag|version}` with the tag/version you want to, or remove `@{tag|version}` to use the latest version.
+        </div>
     </post-tab-panel>
 
   </post-tabs>
