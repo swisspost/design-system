@@ -53,7 +53,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'If `true`, the chip is disabled.<post-banner data-size="sm"><p>There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</p></post-banner>',
+        'If `true`, the chip is disabled.<div class="inline-notification inline-notification-info"><p>There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</p></div>',
       control: {
         type: 'boolean',
       },
@@ -64,7 +64,7 @@ const meta: MetaComponent = {
     selected: {
       name: 'Selected',
       description:
-        'If `true`, the chip is selected.<post-banner data-size="sm"><p>Disabling selected chips can result in confusing or unexpected behavior and should be avoided.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</p></post-banner>',
+        'If `true`, the chip is selected.<div class="inline-notification inline-notification-info"><p>Disabling selected chips can result in confusing or unexpected behavior and should be avoided.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</p></div>',
       if: {
         arg: 'type',
         eq: 'selectable',
