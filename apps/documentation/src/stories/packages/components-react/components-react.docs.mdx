@@ -39,13 +39,13 @@ If your project is purely client-side rendered, you can use the CSR entry points
 
 <post-tabs>
   <post-tab-item name="csr-monolith">Monolith</post-tab-item>
-  <post-tab-panel for="csr-monolith">
+  <post-tab-panel for="csr-monolith" class="pt-16">
     The monolith entry point is the simplest way to get started.
     <Source code={CSRSample} language="typescript" />
   </post-tab-panel>
 
 <post-tab-item name="csr-standalone">Standalone</post-tab-item>
-<post-tab-panel for="csr-standalone">
+<post-tab-panel for="csr-standalone" class="pt-16">
 The standalone entry point gives you fine-grained control over your imports.
 
 <Source code={CSRStandaloneSample} language="typescript" />
@@ -56,19 +56,19 @@ The standalone entry point gives you fine-grained control over your imports.
 
 The SSR entry points are needed for server-side rendering.
 
-<post-banner variant="info">
+<div className="inline-notification inline-notification-info">
   Using these entry points instead of the ones above is highly recommended for Next.js projects!
-</post-banner>
+</div>
 
 <post-tabs>
   <post-tab-item name="ssr-monolith">Monolith</post-tab-item>
-  <post-tab-panel for="ssr-monolith">
+  <post-tab-panel for="ssr-monolith" class="pt-16">
     The monolith entry point is the simplest way to get started.
     <Source code={SSRSample} language="typescript" />
   </post-tab-panel>
 
 <post-tab-item name="ssr-standalone">Standalone</post-tab-item>
-<post-tab-panel for="ssr-standalone">
+<post-tab-panel for="ssr-standalone" class="pt-16">
 The standalone entry point gives you fine-grained control over your imports.
 
 <Source code={SSRStandaloneSample} language="typescript" />
@@ -83,20 +83,20 @@ Under the hood, the `<post-icon>` component is being used to render the icons co
 therefore, all properties of this component are also available for the React icons.
 See the [icon documentation](https://next.design-system.post.ch/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs) for more information on it's features.
 
-<post-banner variant="info">
+<div className="inline-notification inline-notification-info">
   The icon components are currently available only with built-in SSR compatibility. However, they
   can also be used in pure client-side projects.
-</post-banner>
+</div>
 
 <post-tabs>
   <post-tab-item name="icons-monolith">Monolith</post-tab-item>
-  <post-tab-panel for="icons-monolith">
+  <post-tab-panel for="icons-monolith" class="pt-16">
     The monolith entry point is the simplest way to get started.
     <Source code={IconSample} language="typescript" />
   </post-tab-panel>
 
 <post-tab-item name="icons-standalone">Standalone</post-tab-item>
-<post-tab-panel for="icons-standalone">
+<post-tab-panel for="icons-standalone" class="pt-16">
 The standalone entry point gives you fine-grained control over your imports.
 
 <Source code={IconStandaloneSample} language="typescript" />

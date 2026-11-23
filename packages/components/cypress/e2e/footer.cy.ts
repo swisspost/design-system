@@ -58,6 +58,7 @@ describe('Footer', () => {
       // Cookie settings button
       cy.get('@footer')
         .find('div[slot="meta"] button')
+        .scrollIntoView()
         .should('exist')
         .should('be.visible')
         .click(); // Test it's clickable

@@ -48,8 +48,7 @@ $tabs-outline-offset: tokens.get('focus-outline-offset3', helpers.$post-focus);
         display: none;
       }
 
-    @include utilities-mx.focus-style($outline-offset: $tabs-outline-offset) {
-
+      @include utilities-mx.focus-style($outline-offset: $tabs-outline-offset) {
         @include utilities-mx.high-contrast-mode() {
           transition: none;
 

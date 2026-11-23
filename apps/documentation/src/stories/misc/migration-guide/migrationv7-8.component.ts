@@ -18,23 +18,23 @@ export class MigrationV78Component extends LitElement {
     if (!this.currentVersion || this.currentVersion > 7) return nothing;
 
     return html`
-      <h2 id="migration-from-v7-to-v8" class="docs-autolink">
-        Migration from v7 to v8
-        <a
-          aria-hidden="true"
-          tabindex="-1"
-          href="/?path=/docs/c23b1d0b-76b3-4e38-aa76-b10c29bb873f--docs#migration-from-v7-to-v8"
-        >
-          <post-icon name="link"></post-icon>
-        </a>
-      </h2>
-      <section>
-        <ol class="bubble-tea">
-          <li>
-            <h3>Package Update 🩺</h3>
-            <ol>
-              ${
-                this.angular
+      <div class="container py-40">
+        <h2 id="migration-from-v7-to-v8" class="docs-autolink">
+          Migration from v7 to v8
+          <a
+            aria-hidden="true"
+            tabindex="-1"
+            href="/?path=/docs/c23b1d0b-76b3-4e38-aa76-b10c29bb873f--docs#migration-from-v7-to-v8"
+          >
+            <post-icon name="link"></post-icon>
+          </a>
+        </h2>
+        <section>
+          <post-accordion heading-level="3">
+            <post-accordion-item>
+              <span slot="header">1. Package Update 🩺</span>
+              <ol>
+                ${this.angular
                   ? html`
                       <li>
                         <p>
@@ -44,10 +44,8 @@ export class MigrationV78Component extends LitElement {
                         </p>
                       </li>
                     `
-                  : nothing
-              }
-              ${
-                this.angular
+                  : nothing}
+                ${this.angular
                   ? html`
                       <li>
                         <div>
@@ -63,29 +61,34 @@ export class MigrationV78Component extends LitElement {
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            ng-bootstrap 17.x.x changelog<span class="visually-hidden">(opens in a new tab)</span></a>
+                            ng-bootstrap 17.x.x changelog<span class="visually-hidden"
+                              >(opens in a new tab)</span
+                            ></a
+                          >
                           for more details.
                         </div>
                       </li>
                     `
-                  : nothing
-              }
+                  : nothing}
 
-              <li>
-                <p>
-                  Update Design System style package to version 8:
-                  <code-block code=${'npm install @swisspost/design-system-styles@8'}></code-block>
-                </p>
-              </li>
-            </ol>
-          </li>
+                <li>
+                  <p>
+                    Update Design System style package to version 8:
+                    <code-block
+                      code=${'npm install @swisspost/design-system-styles@8'}
+                    ></code-block>
+                  </p>
+                </li>
+              </ol>
+            </post-accordion-item>
 
-          <li>
-            <h3>🥮 Rejoice</h3>
-            <p>For there are no other breaking changes in this version.</p>
-          </li>
-        </ol>
-      </section>
+            <post-accordion-item>
+              <span slot="header">2. Rejoice 🥮 </span>
+              <p>For there are no other breaking changes in this version.</p>
+            </post-accordion-item>
+          </post-accordion>
+        </section>
+      </div>
     `;
   }
 }

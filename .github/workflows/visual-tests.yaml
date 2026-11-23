@@ -38,13 +38,16 @@ jobs:
       - name: Install & build dependencies
         run: pnpm bootstrap
 
-      - name: Cache Playwright browsers
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+      - name: Get tool binary cache keys
+        id: tool-binary-cache
+        uses: ./.github/actions/tool-binary-cache
+
+      # Restore only: the cache is saved from main by the "Cache tool binaries" workflow
+      - name: Restore Playwright browsers
+        uses: actions/cache/restore@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
         with:
-          path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-playwright-
+          path: ${{ steps.tool-binary-cache.outputs.playwright-path }}
+          key: ${{ steps.tool-binary-cache.outputs.playwright-key }}
 
       - name: Install Playwright browsers
         working-directory: packages/components

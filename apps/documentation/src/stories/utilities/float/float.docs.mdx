@@ -3,7 +3,12 @@ import * as FloatStories from './float.stories';
 
 <Meta of={FloatStories} />
 
-# Float
+<div className="docs-title">
+  # Float
+
+<story-links of={JSON.stringify(FloatStories)}></story-links>
+
+</div>
 
 <div className="lead">
   Use `float-start`, `float-end`, or `float-none` to easily float elements.
@@ -17,10 +22,10 @@ import * as FloatStories from './float.stories';
 
 ### Relative to breakpoints
 
-<post-banner>
+<div className="inline-notification inline-notification-info">
   The `float-{breakpoint}-{position}` classes provide control over floating elements at specific
   breakpoints, enabling you to float elements or remove floating based on the screen size.
-</post-banner>
+</div>
 
 > - `float-sm-{start|end|none}`
 > - `float-md-{start|end|none}`

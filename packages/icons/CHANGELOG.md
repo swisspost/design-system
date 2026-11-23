@@ -1,5 +1,69 @@
 # @swisspost/design-system-icons
 
+## 10.9.0
+
+### Minor Changes
+
+- Added icons: `2804`, `2805`, `2806` and `2807` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8742](https://github.com/swisspost/design-system/pull/8742))
+
+- Added icons:
+  - `bicyclereservationmandatory` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `datadelete` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `dataprocessing` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `datarequest` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `hackademy` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `privacypolicy` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `seatreservationmandatory` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `seatreservationpossible` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `transporterelectric` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `truckelectric` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8782](https://github.com/swisspost/design-system/pull/8782))
+
+- Added icons:
+  - `camerasecurity` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `community` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `costreduction` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `internationalforewarding` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `municipality` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `parceltlsdropoff` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `parceltlspickup` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `trainwagon` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8822](https://github.com/swisspost/design-system/pull/8822))
+
+### Patch Changes
+
+- Updated icons: `2742` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8822](https://github.com/swisspost/design-system/pull/8822))
+
+## 10.8.0
+
+### Minor Changes
+
+- Added icons:
+  - `bicyclereservation` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `documentadd` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `requirement` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `taxi` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `ticketsbb` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `zipdownload` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) and [@alionazherdetska](https://github.com/alionazherdetska) with [#8628](https://github.com/swisspost/design-system/pull/8628))
+
+- Added icons: `2802` (by [@swisspost-bot](https://github.com/swisspost-bot) and [@myrtasakellariou](https://github.com/myrtasakellariou) with [#8663](https://github.com/swisspost/design-system/pull/8663))
+
+- Added icons:
+  - `bandage` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `injury` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `relapse` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `transporterbatteryloaded` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) and [@myrtasakellariou](https://github.com/myrtasakellariou) with [#8663](https://github.com/swisspost/design-system/pull/8663))
+
+- Added icons: `2803` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8688](https://github.com/swisspost/design-system/pull/8688))
+
+- Added icons:
+  - `icon` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `vinolog` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8688](https://github.com/swisspost/design-system/pull/8688))
+
+### Patch Changes
+
+- Updated icons: `1021`, `1022`, `1023` and `1024` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#8639](https://github.com/swisspost/design-system/pull/8639))
+
+- Updated icons: `1021`, `1022`, `1023` and `1024` (by [@swisspost-bot](https://github.com/swisspost-bot) and [@myrtasakellariou](https://github.com/myrtasakellariou) with [#8663](https://github.com/swisspost/design-system/pull/8663))
+
 ## 10.7.0
 
 ### Minor Changes

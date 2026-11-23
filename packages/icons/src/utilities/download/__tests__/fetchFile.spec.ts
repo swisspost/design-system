@@ -4,24 +4,28 @@ import {
   TypeFilter,
   VariantMIME,
 } from '../../../models/censhare-result-page.model';
-import fetch, { Response } from 'node-fetch';
-import mockFs from 'mock-fs';
+import fs from 'fs';
+import path from 'path';
+import { fetch, Response } from 'undici';
 import { fetchFile } from './../fetchFile';
 
-jest.mock('node-fetch');
+jest.mock('undici', () => {
+  const undici = jest.requireActual('undici');
+  return { ...undici, fetch: jest.fn() };
+});
 
 describe('fetchFile', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   it('should download an svg icon', async () => {
     const outputPath = './icons';
-    mockFs({
-      [outputPath]: {},
-    });
+    const writeFile = jest.spyOn(fs, 'writeFileSync').mockImplementation();
 
-    jest.mocked(fetch).mockImplementationOnce(() =>
-      Promise.resolve({
-        text: () => Promise.resolve('<svg><path d="M16 8.4l-12.533 12.4z"></path></svg>'),
-      } as Response),
-    );
+    jest
+      .mocked(fetch)
+      .mockResolvedValueOnce(new Response('<svg><path d="M16 8.4l-12.533 12.4z"></path></svg>'));
 
     const svg = await fetchFile(
       {
@@ -52,8 +56,8 @@ describe('fetchFile', () => {
       outputPath,
     );
 
-    mockFs.restore();
-
+    expect(writeFile).toHaveBeenCalledTimes(1);
+    expect(writeFile).toHaveBeenCalledWith(path.join(outputPath, 'test.svg'), svg);
     expect(svg).toMatchSnapshot();
   });
 });

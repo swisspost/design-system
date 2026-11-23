@@ -40,7 +40,7 @@ const meta: MetaComponent = {
     hiddenLabel: {
       name: 'Hidden Label',
       description:
-        'Hides the visible label. An accessible name is still provided via `aria-label` on the indicator.<post-banner data-size="sm"><p>Hiding labels has accessibility implications. Use a descriptive label text and only hide it when the context makes the purpose unambiguous.</p></post-banner>',
+        'Hides the visible label. An accessible name is still provided via `aria-label` on the indicator.<div class="inline-notification inline-notification-info"><p>Hiding labels has accessibility implications. Use a descriptive label text and only hide it when the context makes the purpose unambiguous.</p></div>',
       control: { type: 'boolean' },
       table: { category: 'Content' },
     },

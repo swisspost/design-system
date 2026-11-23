@@ -10,7 +10,7 @@ import SampleLazyLoaded from './internet-header-lazy-loaded.sample.js?raw';
 import SampleWithAngularHeaderHTML from './internet-header-angular-app-header.sample.html?raw';
 import SampleWithAngularFooterHTML from './internet-header-angular-app-footer.sample.html?raw';
 import SampleWithAngularNavJS from './internet-header-angular-app-nav.sample.js?raw';
-import SampleWithAngularAppJS from './internet-header-angular-app.sample.js?raw';
+import SampleWithAngularAppJS from './internet-header-angular-app.sample.ts?raw';
 import * as PackageStories from './internet-header.stories';
 import { PackageShields } from '@root/src/shared/package-shields';
 
@@ -30,16 +30,16 @@ import { PackageShields } from '@root/src/shared/package-shields';
       <p>The Internet Header is built to support the already existing Portal Configuration used for the old Internet Header.
       <br/>If you're working on a new project, you probably need a new configuration. Please contact the Post Portal Team.</p>
 
-      <post-banner type="warning" className="mt-16 mb-16">
-        <h4 slot="heading">Migrating from v9?</h4>
-          Version 10 uses a <strong>new configuration format</strong>. Your existing v9
+      <div className="inline-notification inline-notification-warning mt-16">
+        <h4>Migrating from v9?</h4>
+        <p>Version 10 uses a <strong>new configuration format</strong>. Your existing v9
           configuration <strong>will not work</strong> with the v10 header and will cause
           errors at runtime. Before upgrading, contact the Post Portal Team at{' '}
           <a href="mailto:dm-tec@post.ch" rel="noopener">dm-tec@post.ch <post-icon name="letter" /></a>{' '}
           to request a <strong>configuration migration</strong> to the v10 format. Provide your
           project's <code>serviceId</code> and the environments you need migrated
-          (e.g. <code>int01</code>, <code>int02</code>, <code>prod</code>).
-      </post-banner>
+          (e.g. <code>int01</code>, <code>int02</code>, <code>prod</code>).</p>
+      </div>
 
       <h3>Step 1</h3>
       <p>Integration of header only: contact <a href="mailto:dm-tec@post.ch" rel="noopener">dm-tec@post.ch <post-icon name="letter" /></a> directly</p>
@@ -57,11 +57,11 @@ import { PackageShields } from '@root/src/shared/package-shields';
         <li>Abstract in all available languages (will be shown on the <a href="https://www.post.ch/de/kundencenter/onlinedienste#t=AllOSTab&sort=%40servicez32xname%20ascending" rel="noopener">Swiss Post online services overview page</a>)</li>
       </ul>
 
-      <post-banner class="mt-24">
+      <div className="inline-notification inline-notification-info mt-24">
         Not every Online Service has configurations for all environments.
         For example, "TOPOS" only has `int02` configured and cannot use `int01` as value for environment.
         If you are not sure what's configured for your project, please reach out to the post-portal team as well.
-      </post-banner>
+      </div>
     </div>
 
   </div>
@@ -77,7 +77,7 @@ Internet-header package provide two versions:
 
 <post-tabs>
   <post-tab-item name="with-bundler">Install with a bundler</post-tab-item>
-  <post-tab-panel for="with-bundler">
+  <post-tab-panel for="with-bundler" class="pt-16">
 
     All the popular frameworks come with some form of bundler.
     This makes it easy to use npm packages like the Internet Header as you can import,
@@ -104,7 +104,7 @@ Internet-header package provide two versions:
 
   </post-tab-panel>
   <post-tab-item name="with-angular">Install with Angular</post-tab-item>
-  <post-tab-panel for="with-angular">
+  <post-tab-panel for="with-angular" class="pt-16">
 
     If you are using Angular, you can create two components for the header and the footer. It's easiest if you define the markup in two separate HTML component files.
 
@@ -126,12 +126,12 @@ Internet-header package provide two versions:
     Finally, you can use the header and footer components in your main application component.
     <figure className="code-sample-file">
       <figcaption>app.ts</figcaption>
-      <Source code={SampleWithAngularAppJS} dark={SourceDarkScheme} language="javascript" />
+      <Source code={SampleWithAngularAppJS} dark={SourceDarkScheme} language="typescript" />
     </figure>
 
   </post-tab-panel>
   <post-tab-item name="with-cdn">Include from a CDN</post-tab-item>
-  <post-tab-panel for="with-cdn">
+  <post-tab-panel for="with-cdn" class="pt-16">
 
     If you are not using any bundler or don't want to install from npm, you can load the `internet-header` from your favourite [CDN](https://en.wikipedia.org/wiki/Content_delivery_network).<br/>
     Make sure to replace `{version}` with the version you want to use or remove `@{version}` to use the latest version.

@@ -7,19 +7,23 @@ describe('Card', () => {
     });
 
     it('Has no detectable a11y violations on load for all variants', () => {
-      cy.checkA11y('#root-inner', {
-        rules: {
-          'heading-order': {
-            enabled: false,
-          },
-          // aria-label attribute is used as a prop on post-icon
-          'aria-allowed-attr': {
-            enabled: false,
+      cy.checkA11y(
+        '#root-inner',
+        {
+          rules: {
+            'heading-order': {
+              enabled: false,
+            },
+            // aria-label attribute is used as a prop on post-icon
+            'aria-allowed-attr': {
+              enabled: false,
+            },
           },
         },
-      }, (violations) => {
-        expect(violations).to.have.length(0);
-      });
+        violations => {
+          expect(violations).to.have.length(0);
+        },
+      );
     });
   });
 });

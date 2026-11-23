@@ -46,7 +46,7 @@ export class PostDatePicker {
 
   /**
    * The date pickers locale (e.g. "it", "it-CH", etc.), which specifies the date format and language.
-   * <post-banner type="info" data-size="sm"><span>If not set, it defaults to either the closest ancestor with a `lang` attribute (e.g. \<html lang="de"\>), or falls back to English.</span></post-banner>
+   * <span class="inline-notification inline-notification-info">If not set, it defaults to either the closest ancestor with a `lang` attribute (e.g. \<html lang="de"\>), or falls back to English.</span>
    */
   @Prop() locale?: string = this.systemLocale;
   @Watch('locale')
@@ -435,7 +435,11 @@ export class PostDatePicker {
         target = cells.find(cell => !cell.classList.contains('-other-year-'));
       }
     } else {
-      target = cells.find(cell => Number(cell.dataset.year) === date.getFullYear());
+      target = cells.find(
+        cell =>
+          Number(cell.dataset.year) === date.getFullYear() &&
+          !cell.classList.contains('-other-decade-'),
+      );
       if (!target) {
         target = cells.find(cell => !cell.classList.contains('-other-decade-'));
       }
@@ -573,7 +577,7 @@ export class PostDatePicker {
   }
 
   /**
-   * Traps focus inside the calendar popover (not used in inline mode) by always taking over Tab handling, 
+   * Traps focus inside the calendar popover (not used in inline mode) by always taking over Tab handling,
    * so focus can't escape even while a grid cell is briefly untabbable mid-render.
    */
   private handleTab = (e: KeyboardEvent) => {

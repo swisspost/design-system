@@ -102,11 +102,13 @@ textarea.form-control {
   @include forms-mx.validation-icons;
 }
 
-.form-label:has(+ textarea.form-control[disabled]) {
+.form-label:has(+ textarea.form-control[disabled]),
+.form-label:has(+ .form-grid-control textarea.form-control[disabled]) {
   color: tokens.get('textarea-disabled-fg');
 }
 
-.form-label:has(+ textarea.form-control-sm) {
+.form-label:has(+ textarea.form-control-sm),
+.form-label:has(+ .form-grid-control textarea.form-control-sm) {
   display: block;
   padding-inline: tokens.get('textarea-non-floating-small-label-padding-inline');
   padding-block: tokens.get('textarea-non-floating-small-label-padding-block');
@@ -133,7 +135,7 @@ textarea.form-control {
     padding-block-start: tokens.get('textarea-label-padding-block-start');
     width: calc(
       100% - (#{tokens.get('textarea-border-width')} * 2) -
-      #{tokens.get('textarea-label-padding-inline-end')}
+        #{tokens.get('textarea-label-padding-inline-end')}
     );
     border: 0;
     border-top-left-radius: tokens.get('textarea-border-radius');
@@ -202,7 +204,7 @@ textarea.form-control {
       ~ label {
         width: calc(
           100% - (#{tokens.get('textarea-border-width')} * 2) -
-          #{tokens.get('textarea-label-validated-padding-inline-end')}
+            #{tokens.get('textarea-label-validated-padding-inline-end')}
         );
       }
     }
