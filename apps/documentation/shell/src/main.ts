@@ -1,2 +1,2 @@
-import './styles/shell.scss';
-import './docs-shell';
+import './components/docs-shell';
+import './styles/main.scss';
