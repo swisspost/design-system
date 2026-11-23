@@ -5,14 +5,14 @@ packages:
 
 catalog:
   '@playwright/test': 1.65.0
-  'eslint': 9.26.0
+  'eslint': 9.39.5
   'prettier': 3.6.2
-  'stylelint': 16.26.1
+  'stylelint': 17.16.0
   'typescript': 6.0.3
 
 catalogs:
   cypress:
-    'cypress': 15.20.1
+    'cypress': 16.3.0
     'cypress-each': 1.14.1
     'cypress-axe': 1.7.0
     'cypress-real-events': 1.15.1
@@ -61,6 +61,7 @@ saveExact: true
 peerDependencyRules:
   ignoreMissing: []
   allowedVersions:
+    cypress-axe>cypress: '16'
     zone.js: '>=0.14'
 
 overrides:

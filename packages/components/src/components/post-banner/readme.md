@@ -5,9 +5,9 @@
 
 ## Properties
 
-| Property | Attribute | Description             | Type                                          | Default  |
-| -------- | --------- | ----------------------- | --------------------------------------------- | -------- |
-| `type`   | `type`    | The type of the banner. | `"error" \| "info" \| "success" \| "warning"` | `'info'` |
+| Property | Attribute | Description             | Type                                                     | Default  |
+| -------- | --------- | ----------------------- | -------------------------------------------------------- | -------- |
+| `type`   | `type`    | The type of the banner. | `"error" \| "grief" \| "info" \| "success" \| "warning"` | `'info'` |
 
 
 ## Events

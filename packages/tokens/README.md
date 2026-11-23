@@ -16,6 +16,7 @@ Tokens for the Swiss Post.
   <summary>Prerequisites</summary>
 
 In order to be able to use `npm` commands, [node.js](https://nodejs.org/en/) needs to be installed on your machine.
+
 </details>
 <br>
 

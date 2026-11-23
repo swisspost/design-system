@@ -4,7 +4,7 @@ import { setStencilDocJson } from '@kurbar/storybook-addon-docs-stencil';
 import { StencilJsonDocs } from '@kurbar/storybook-addon-docs-stencil/dist/types';
 import postComponentsDocJson from '@swisspost/design-system-components/dist/docs.json';
 import internetHeaderDocJson from '@swisspost/internet-header/dist/docs.json';
-import '../../src/shared/link-design/link-design.component';
+import '../../src/shared/story-links/story-links.component';
 
 defineHeader();
 
@@ -20,7 +20,7 @@ if (postComponentsDocJson && internetHeaderDocJson) {
   allComponents.forEach(component => {
     component.props.forEach(prop => {
       if (prop.deprecation) {
-        const deprecationAlert = `<post-banner type="warning" data-size="sm">**Deprecated:** ${prop.deprecation}</post-banner>`;
+        const deprecationAlert = `<div class="inline-notification inline-notification-warning">**Deprecated:** ${prop.deprecation}</div>`;
         prop.docs = `${prop.deprecation ? deprecationAlert : ''}${prop.docs}`;
       }
     });
