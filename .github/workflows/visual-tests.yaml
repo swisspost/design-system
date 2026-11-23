@@ -28,7 +28,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0
 
@@ -44,7 +44,7 @@ jobs:
 
       # Restore only: the cache is saved from main by the "Cache tool binaries" workflow
       - name: Restore Playwright browsers
-        uses: actions/cache/restore@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ steps.tool-binary-cache.outputs.playwright-path }}
           key: ${{ steps.tool-binary-cache.outputs.playwright-key }}
@@ -65,7 +65,7 @@ jobs:
 
       - name: Get baseline snapshots from cache
         id: snapshot-cache
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: packages/components/vrt/__screenshots__
           key: vrt-${{ steps.baseline.outputs.branch }}-${{ hashFiles('packages/components/src/**/*.scss', 'packages/components/src/**/*.tsx', 'packages/components/vrt/**/*.js') }}
