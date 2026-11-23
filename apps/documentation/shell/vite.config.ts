@@ -1,52 +1,33 @@
-import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
+import { ALIASES, NODE_MODULES, OUT_DIR, PUBLIC_DIR, SHELL_ROOT } from '../paths';
 
-const docsRoot = fileURLToPath(new URL('..', import.meta.url));
-
-/**
- * The documentation shell, which replaces Storybook's manager UI.
- *
- * Dev: the shell runs on port 9000, the Storybook preview on its own dev server on port 9001.
- * Build: the shell is built into the Storybook output folder (`dist`), next to `iframe.html` and `index.json`,
- * so both are served from one origin.
- */
 export default defineConfig(({ command }) => ({
-  root: fileURLToPath(new URL('.', import.meta.url)),
+  root: SHELL_ROOT,
   base: '/',
-  resolve: {
-    alias: {
-      '@shell': fileURLToPath(new URL('./src', import.meta.url)),
-      '@shared': `${docsRoot}/shared`,
-    },
-  },
-  // in dev, serve the favicons and `/assets` ourselves; in builds Storybook already copies them
-  publicDir: command === 'serve' ? `${docsRoot}/public` : false,
+  resolve: { alias: ALIASES },
+  publicDir: command === 'serve' ? PUBLIC_DIR : false,
   server: {
     port: 9000,
     strictPort: true,
-    // the design-system styles and icons are Storybook static dirs (see `preview/.storybook/main.ts`)
     proxy: {
       '/styles': 'http://localhost:9001',
       '/post-icons': 'http://localhost:9001',
     },
   },
-  // `vite preview` serves the full build (shell and preview on one origin), it must not inherit the dev proxy
   preview: {
     port: 9000,
     strictPort: true,
     proxy: {},
   },
   build: {
-    outDir: `${docsRoot}/dist`,
+    outDir: OUT_DIR,
     emptyOutDir: false,
     assetsDir: 'shell',
   },
   css: {
     devSourcemap: true,
     preprocessorOptions: {
-      scss: {
-        loadPaths: [`${docsRoot}/node_modules`],
-      },
+      scss: { loadPaths: [NODE_MODULES] },
     },
   },
 }));

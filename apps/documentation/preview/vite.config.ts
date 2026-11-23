@@ -1,22 +1,10 @@
-import { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
+import { ALIASES, PUBLIC_DIR } from '../paths';
 
-const previewRoot = dirname(fileURLToPath(import.meta.url));
-const docsRoot = dirname(previewRoot);
-
-/**
- * Vite config of the Storybook preview.
- * Storybook loads it because this folder is the parent of its config dir (`preview/.storybook`).
- */
 export default defineConfig({
-  // the site root (favicons, `_redirects`, ...) is shared with the shell
-  publicDir: `${docsRoot}/public`,
+  publicDir: PUBLIC_DIR,
   resolve: {
-    alias: {
-      '@preview': previewRoot,
-      '@shared': `${docsRoot}/shared`,
-    },
+    alias: ALIASES,
   },
   optimizeDeps: {
     include: [
