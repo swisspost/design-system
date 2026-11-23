@@ -7,7 +7,7 @@ import metaInternetHeader from '@preview/stories/packages/internet-header/intern
 import metaIcons from '@preview/stories/packages/icons/package-icons.stories';
 import metaTokens from '@preview/stories/packages/tokens/tokens.stories';
 import metaThemeAGGrid from '@preview/stories/packages/theme-ag-grid/theme-ag-grid.stories';
-import { DEPENDENCIES, getVersion } from '@shared/version-utils';
+import { getPackageVersion } from '@shared/versions';
 
 export interface IPackage {
   type: PackageType;
@@ -85,7 +85,7 @@ function definePackage(
   dependencyName: string,
   metaId: string,
 ): IPackage {
-  const version = getVersion(DEPENDENCIES[`@swisspost/${dependencyName}`]);
+  const version = getPackageVersion(`@swisspost/${dependencyName}`);
 
   return {
     type,

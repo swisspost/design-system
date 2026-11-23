@@ -1,18 +1,8 @@
 {
-  "extends": "@swisspost/design-system-tsconfig/browser.tsconfig.json",
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "composite": true,
-    "noEmit": true,
-    "tsBuildInfoFile": "../node_modules/.cache/tsc/preview.tsbuildinfo",
     "allowJs": true,
     "jsx": "react-jsx",
-    "experimentalDecorators": true,
-    "useDefineForClassFields": false,
-    "types": ["vite/client"],
-    "paths": {
-      "@preview/*": ["./*"],
-      "@shared/*": ["../shared/*"]
-    },
 
     // Pre-existing debt. Drop once sources are clean.
     "noImplicitOverride": false,
@@ -21,8 +11,6 @@
     "noUnusedParameters": false
   },
   "include": ["**/*", ".storybook/**/*", "data/*.json"],
-  // Samples are shown as code and need not compile, unless a block imports them
-  "exclude": ["**/*.sample.*"],
-  "files": ["blocks/styles-package-import-individual.sample.ts"],
+  "exclude": ["**/*.sample.*", "vite.config.ts", ".storybook/main.ts"],
   "references": [{ "path": "../shared" }]
 }

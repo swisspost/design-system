@@ -1,184 +1,87 @@
-import { DEPENDENCIES, getVersion, compareVersions } from './version-utils';
-const currentMajorVersion =
-  getVersion(DEPENDENCIES['@swisspost/design-system-styles'], 'major') ?? '';
+import { coerce, gt, major, prerelease, rcompare } from 'semver';
+import docsPackage from '../package.json';
 
 const LOCAL_VERSIONS_URL = '/assets/versions.json';
 const REMOTE_VERSIONS_URL = 'https://design-system.post.ch/assets/versions.json';
 
-const NEXT_FLAG_REGEX = /-(next)/i;
-const NEXT_VERSION_URLS = [
-  'next.design-system.post.ch',
-  'swisspost-design-system-next.netlify.app',
-];
+const NEXT_DOCS_HOSTS = ['next.design-system.post.ch', 'swisspost-design-system-next.netlify.app'];
 
-export interface Version {
+export interface Release {
   title: string;
   version: string;
   description: string;
   url: string;
-  dependencies: {
-    [key: string]: string;
-  };
-  peerDependencies: {
-    [key: string]: string;
-  };
+  dependencies: Record<string, string>;
+  peerDependencies: Record<string, string>;
+  distTag: string;
 }
 
-export type Versions = Version[];
+type ReleaseEntry = Omit<Release, 'distTag'>;
 
-interface VersionsStore {
-  cache: Versions;
-  promise: Promise<Versions> | null;
-}
+const docsDependencies: Record<string, string> = {
+  ...docsPackage.dependencies,
+  ...docsPackage.devDependencies,
+};
+
+let request: Promise<Release[]> | null = null;
 
 /**
- * The versions helper may be evaluated in several windows (e.g. the documentation shell and the
- * preview iframes). When they run on the same origin, we keep a single cache and in-flight request
- * on the top window so versions.json is fetched only once across all contexts.
+ * The releases listed in `versions.json`, newest first.
+ * Pre-releases are only included on the "next" documentation site.
  */
-function getVersionsStore(): VersionsStore {
-  let host: unknown = globalThis;
+export function getReleases(): Promise<Release[]> {
+  request ??= fetchReleases(LOCAL_VERSIONS_URL)
+    .catch(() => fetchReleases(REMOTE_VERSIONS_URL))
+    .then(entries => {
+      const listed = entries
+        .filter(entry => isNextDocs() || !prerelease(entry.version))
+        .sort((a, b) => rcompare(a.version, b.version));
 
-  if (globalThis.window !== undefined) {
-    try {
-      const top = globalThis.window.top ?? globalThis.window;
-
-      // Safely check for same-origin access: Reading `window.top` itself never throws, but reading
-      // its properties throws a `SecurityError` for cross-origin iframes.
-      void top.location.href;
-
-      host = top;
-    } catch {
-      host = globalThis.window;
-    }
-  }
-
-  const target = host as { __postDesignSystemVersions__?: VersionsStore };
-
-  if (!target.__postDesignSystemVersions__) {
-    target.__postDesignSystemVersions__ = { cache: [], promise: null };
-  }
-
-  return target.__postDesignSystemVersions__;
-}
-
-/**
- * Fetch versions.json from a single URL, throwing if the response is not ok.
- */
-function fetchVersionsJson(url: string): Promise<Versions> {
-  return fetch(url).then(response => {
-    if (!response.ok) throw new Error(`Failed to load versions.json from ${url}`);
-    return response.json() as Promise<Version[]>;
-  });
-}
-
-/**
- * Fetch versions.json once and cache the result across all Storybook contexts.
- * Prefer the local copy and fall back to the remote origin when unavailable.
- */
-function loadVersionsJson(): Promise<Versions> {
-  const store = getVersionsStore();
-
-  // Already loaded: reuse the cached data.
-  if (store.cache.length > 0) return Promise.resolve(store.cache);
-
-  // Already loading: reuse the in-flight request instead of fetching again.
-  if (store.promise !== null) return store.promise;
-
-  store.promise = fetchVersionsJson(LOCAL_VERSIONS_URL)
-    .catch(() => fetchVersionsJson(REMOTE_VERSIONS_URL))
-    .then(data => {
-      store.cache = data;
-      return store.cache;
+      return listed.map(entry => ({ ...entry, distTag: getDistTag(entry, listed) }));
     })
-    .catch(error => {
+    .catch((error: unknown) => {
       console.error('Error loading versions.json:', error);
-      store.cache = [];
+      request = null; // allows a retry
       return [];
-    })
-    .finally(() => {
-      // Clear the in-flight marker so a failed load can be retried later.
-      store.promise = null;
     });
 
-  return store.promise;
+  return request;
 }
 
-/**
- * The "next" documentation site is the only place pre-release versions may be listed.
- * Matches the canonical host and any Netlify deploy/branch preview of the next site.
- */
-function isNextDocs(): boolean {
-  if (globalThis.window === undefined) return false;
-  return NEXT_VERSION_URLS.some(url => globalThis.window.location.hostname.endsWith(url));
+export function getPackageVersion(name: string) {
+  const range = docsDependencies[name];
+  return range ? (coerce(range, { includePrerelease: true })?.version ?? null) : null;
 }
 
-/**
- * Get cached versions data as a Promise, always sorted newest to oldest.
- * Sorting happens on read so the result is stable regardless of the file order
- * or of a shared cache populated by another Storybook realm. Pre-release versions
- * are excluded unless the docs are served from the "next" site.
- * @returns Promise that resolves to the sorted versions data
- */
-export function getVersions(): Promise<Versions> {
-  const includePrereleases = isNextDocs();
+export async function getLatestRelease(): Promise<Release | null> {
+  const currentVersion = getPackageVersion('@swisspost/design-system-styles');
+  if (!currentVersion) return null;
 
-  return loadVersionsJson().then(versions =>
-    [...versions]
+  const releases = await getReleases();
+  return releases.find(release => major(release.version) === major(currentVersion)) ?? null;
+}
 
-      .filter(version => includePrereleases || !NEXT_FLAG_REGEX.test(version.version))
-      .sort((a, b) => compareVersions(b.version, a.version)),
+function getDistTag(release: ReleaseEntry, releases: ReleaseEntry[]): string {
+  const [preReleaseId] = prerelease(release.version) ?? [];
+  if (preReleaseId !== undefined) return String(preReleaseId).toLowerCase();
+
+  const hasNewerStableRelease = releases.some(
+    other => !prerelease(other.version) && gt(other.version, release.version),
   );
+
+  return hasNewerStableRelease ? `version-${major(release.version)}` : 'latest';
 }
 
-/**
- * Resolve the version entry that matches the current major version of the bundled
- * styles package, or null when no matching entry exists so consumers can tell the
- * difference between "found" and "not found".
- * @returns Promise that resolves to the current version entry or null
- */
-export function getCurrentVersion(): Promise<Version | null> {
-  // use pkg.dependencies['@swisspost/design-system-styles'] to find the current version in the versionsCache
-  return getVersions().then(
-    versions => versions?.find((v: Version) => v.version.startsWith(currentMajorVersion)) ?? null,
-  );
+function isNextDocs() {
+  const hostname = globalThis.location?.hostname;
+  if (!hostname) return false;
+
+  return NEXT_DOCS_HOSTS.some(host => hostname.endsWith(host));
 }
 
-/**
- * Get the npm dist-tag for the current version.
- * @returns Promise that resolves to the dist-tag of the current version
- */
-export function getCurrentDistTag(): Promise<string> {
-  return getCurrentVersion().then(currentVersion =>
-    currentVersion ? getDistTag(currentVersion) : 'latest',
-  );
-}
+async function fetchReleases(url: string): Promise<ReleaseEntry[]> {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`Failed to load versions.json from ${url}`);
 
-/**
- * Determine the npm dist-tag for a version: the pre-release flag for pre-releases,
- * `latest` for the newest stable release, or `version-<major>` for older stable releases.
- * @param version - The version entry to resolve the dist-tag for
- * @returns Promise that resolves to the dist-tag
- */
-export function getDistTag(version: Version): Promise<string> {
-  return getVersions().then(versions => {
-    const nextFlag = NEXT_FLAG_REGEX.exec(version.version ?? '')?.[1]?.toLowerCase();
-
-    if (nextFlag) return nextFlag;
-
-    // A stable release is `latest` only when no other stable release has a higher
-    // version. Deriving this from semver keeps the tag independent of the entry
-    // order in versions.json (reordering entries no longer breaks the badges).
-    const hasNewerStableVersion = (versions ?? []).some(
-      other =>
-        !NEXT_FLAG_REGEX.test(other.version) && compareVersions(other.version, version.version) > 0,
-    );
-
-    if (hasNewerStableVersion) {
-      const major = version.version.split('.')[0];
-      return `version-${major}`;
-    }
-
-    return 'latest';
-  });
+  return await response.json();
 }

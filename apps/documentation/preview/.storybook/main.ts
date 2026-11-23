@@ -1,16 +1,13 @@
 import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
-import { fileURLToPath, URL } from 'node:url';
 import type { StorybookConfig } from '@storybook/web-components-vite';
 import type { InlineConfig } from 'vite';
 import { mergeConfig } from 'vite';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import { NODE_MODULES, PUBLIC_DIR } from '../../paths';
 
 const require = createRequire(import.meta.url);
-
-// Resolve node_modules from apps/documentation (two levels up from preview/.storybook/)
-const docsNodeModules = join(fileURLToPath(new URL('../..', import.meta.url)), 'node_modules');
 
 const config: StorybookConfig = {
   logLevel: 'info',
@@ -62,15 +59,15 @@ const config: StorybookConfig = {
 
   staticDirs: [
     {
-      from: '../../public/assets',
+      from: join(PUBLIC_DIR, 'assets'),
       to: '/assets',
     },
     {
-      from: '../../node_modules/@swisspost/design-system-styles',
+      from: join(NODE_MODULES, '@swisspost/design-system-styles'),
       to: '/styles',
     },
     {
-      from: '../../node_modules/@swisspost/design-system-icons/public/post-icons',
+      from: join(NODE_MODULES, '@swisspost/design-system-icons/public/post-icons'),
       to: '/post-icons',
     },
   ],
@@ -81,7 +78,7 @@ const config: StorybookConfig = {
         devSourcemap: true,
         preprocessorOptions: {
           scss: {
-            loadPaths: [docsNodeModules],
+            loadPaths: [NODE_MODULES],
           },
         },
       },

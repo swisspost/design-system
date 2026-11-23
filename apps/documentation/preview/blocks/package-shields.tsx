@@ -1,19 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
-import type { Versions, Version } from '@shared/versions';
-import { getVersions, getDistTag, getCurrentVersion, getCurrentDistTag } from '@shared/versions';
+import type { Release } from '@shared/versions';
+import { getReleases, getLatestRelease } from '@shared/versions';
 
 interface PackageShieldsProps {
   packageName: string;
 }
 
-type VersionWithDistTag = Version & { distTag?: string };
-
-type VersionsWithDistTag = Versions & VersionWithDistTag[];
-
 export const PackageShields: React.FC<PackageShieldsProps> = ({ packageName }) => {
   const [loading, setLoading] = useState<boolean>(true);
-  const [versions, setVersions] = useState<VersionsWithDistTag>([]);
-  const [currentVersion, setCurrentVersion] = useState<VersionWithDistTag | null>(null);
+  const [releases, setReleases] = useState<Release[]>([]);
+  const [currentRelease, setCurrentRelease] = useState<Release | null>(null);
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -32,13 +28,11 @@ export const PackageShields: React.FC<PackageShieldsProps> = ({ packageName }) =
   useEffect(() => {
     setLoading(true);
 
-    Promise.all([getVersions(), getCurrentVersion(), getCurrentDistTag()])
-      .then(async ([versions, currentVersion, currentDistTag]) => {
-        if (packageName && versions && currentVersion) {
-          await Promise.all(versions.map(async v => ({ ...v, distTag: await getDistTag(v) })))
-            .then(versions => versions.filter(v => v !== currentVersion))
-            .then(setVersions);
-          setCurrentVersion({ ...currentVersion, distTag: currentDistTag });
+    Promise.all([getReleases(), getLatestRelease()])
+      .then(([releases, currentRelease]) => {
+        if (packageName && currentRelease) {
+          setReleases(releases.filter(release => release !== currentRelease));
+          setCurrentRelease(currentRelease);
         }
       })
       .finally(() => {
@@ -46,21 +40,21 @@ export const PackageShields: React.FC<PackageShieldsProps> = ({ packageName }) =
       });
   }, [packageName]);
 
-  function getVersionPackage(version: VersionWithDistTag | null): string {
-    return version?.dependencies?.[packageName] ?? '';
+  function getReleasePackageVersion(release: Release | null): string {
+    return release?.dependencies?.[packageName] ?? '';
   }
 
-  function getVersionDistTag(version: VersionWithDistTag | null, separator: string = '/'): string {
-    return version?.distTag ? `${separator}${version.distTag}` : '';
+  function getReleaseDistTag(release: Release | null, separator: string = '/'): string {
+    return release?.distTag ? `${separator}${release.distTag}` : '';
   }
 
-  function renderVersionShields(
-    version: VersionWithDistTag | null,
+  function renderReleaseShields(
+    release: Release | null,
     renderTitle: boolean = true,
   ): React.ReactNode {
-    const packageVersion = getVersionPackage(version);
-    const renderStats = version === currentVersion;
-    const renderWithNoDistTag = version !== null && version.distTag === '';
+    const packageVersion = getReleasePackageVersion(release);
+    const renderStats = release === currentRelease;
+    const renderWithNoDistTag = release !== null && release.distTag === '';
 
     if (loading) {
       return <span className="fs-11">Loading...</span>;
@@ -85,13 +79,13 @@ export const PackageShields: React.FC<PackageShieldsProps> = ({ packageName }) =
             <React.Fragment>
               <a href={`https://www.npmjs.com/package/${packageName}/v/${packageVersion}`}>
                 <img
-                  alt={`${packageName}${getVersionDistTag(version, '@')} NPM version`}
-                  src={`https://img.shields.io/npm/v/${packageName}${getVersionDistTag(version)}?style=flat&color=%23fc0`}
+                  alt={`${packageName}${getReleaseDistTag(release, '@')} NPM version`}
+                  src={`https://img.shields.io/npm/v/${packageName}${getReleaseDistTag(release)}?style=flat&color=%23fc0`}
                 />
               </a>
               <img
-                alt={`${packageName}${getVersionDistTag(version, '@')} NPM last update`}
-                src={`https://img.shields.io/npm/last-update/${packageName}${getVersionDistTag(version)}?style=flat`}
+                alt={`${packageName}${getReleaseDistTag(release, '@')} NPM last update`}
+                src={`https://img.shields.io/npm/last-update/${packageName}${getReleaseDistTag(release)}?style=flat`}
               />
               {renderStats && (
                 <React.Fragment>
@@ -112,11 +106,11 @@ export const PackageShields: React.FC<PackageShieldsProps> = ({ packageName }) =
     );
   }
 
-  function renderVersionPeerShields(
-    version: VersionWithDistTag | null,
+  function renderReleasePeerShields(
+    release: Release | null,
     renderTitle: boolean = true,
   ): React.ReactNode {
-    const peers = Object.entries(version?.peerDependencies?.[packageName] ?? {});
+    const peers = Object.entries(release?.peerDependencies?.[packageName] ?? {});
 
     return (
       <React.Fragment>
@@ -147,17 +141,14 @@ export const PackageShields: React.FC<PackageShieldsProps> = ({ packageName }) =
     );
   }
 
-  function renderVersion(
-    version: VersionWithDistTag | null,
-    renderTitle: boolean = true,
-  ): React.ReactNode {
-    const isCurrent = version === currentVersion;
+  function renderRelease(release: Release | null, renderTitle: boolean = true): React.ReactNode {
+    const isCurrent = release === currentRelease;
 
     return (
-      <React.Fragment key={version?.title || ''}>
+      <React.Fragment key={release?.title || ''}>
         <div className={`d-sm-flex gap-24${renderTitle ? '' : ' mt-8 pt-8 border-top'}`}>
-          {renderVersionShields(version, renderTitle)}
-          {renderVersionPeerShields(version, renderTitle)}
+          {renderReleaseShields(release, renderTitle)}
+          {renderReleasePeerShields(release, renderTitle)}
         </div>
         {isCurrent && (
           <div className="text-end mt-8">
@@ -176,10 +167,10 @@ export const PackageShields: React.FC<PackageShieldsProps> = ({ packageName }) =
 
   return (
     <div>
-      {renderVersion(currentVersion)}
+      {renderRelease(currentRelease)}
 
       <hr className="mb-32" />
-      {/* only render versions which contain a packageVersion of given packageName */}
+      {/* only render releases which contain a packageVersion of given packageName */}
       <dialog
         ref={dialogRef}
         id="PackageShieldsDialog"
@@ -198,7 +189,9 @@ export const PackageShields: React.FC<PackageShieldsProps> = ({ packageName }) =
           </h3>
           <div className="dialog-body">
             {dialogOpen &&
-              versions.filter(v => getVersionPackage(v)).map((v, i) => renderVersion(v, i === 0))}
+              releases
+                .filter(v => getReleasePackageVersion(v))
+                .map((v, i) => renderRelease(v, i === 0))}
           </div>
           <post-closebutton button-type="button">Close</post-closebutton>
         </div>

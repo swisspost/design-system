@@ -1,6 +1,22 @@
 {
-  // The shell and the preview never import each other, both may import `shared`.
-  // The project references enforce this: `tsc -b` fails on imports outside a project.
+  "extends": "@swisspost/design-system-tsconfig/browser.tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": true,
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "types": ["vite/client"],
+    "paths": {
+      "@preview/*": ["./preview/*"],
+      "@shell/*": ["./shell/src/*"],
+      "@shared/*": ["./shared/*"]
+    }
+  },
   "files": [],
-  "references": [{ "path": "./preview" }, { "path": "./shell" }, { "path": "./shared" }]
+  "references": [
+    { "path": "./preview" },
+    { "path": "./shell" },
+    { "path": "./shared" },
+    { "path": "./tsconfig.node.json" }
+  ]
 }

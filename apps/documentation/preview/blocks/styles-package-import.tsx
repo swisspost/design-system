@@ -4,7 +4,7 @@ import {
   getComponentStyleImports,
   getStyleImportsText,
   Props,
-} from './styles-package-import-individual.sample';
+} from './styles-package-import.utils';
 import { PostIcon } from '@swisspost/design-system-components-react';
 import { addons } from 'storybook/preview-api';
 import { STYLES_CHANGED, type StylesChangedPayload } from '@shared/channel';

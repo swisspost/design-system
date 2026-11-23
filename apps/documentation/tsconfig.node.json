@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": []
+  },
+  "include": [
+    "paths.ts",
+    "preview/vite.config.ts",
+    "preview/.storybook/main.ts",
+    "shell/vite.config.ts"
+  ]
+}
