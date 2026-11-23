@@ -2,9 +2,13 @@ import { useArgs } from 'storybook/preview-api';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { mapClasses } from '@/utils';
-import { MetaComponent } from '@root/types';
-import { getLabelText, getValidationMessages, VALIDATION_STATE_MAP } from '@/utils/form-elements';
+import { mapClasses } from '@preview/utils';
+import { MetaComponent } from '@preview/types';
+import {
+  getLabelText,
+  getValidationMessages,
+  VALIDATION_STATE_MAP,
+} from '@preview/utils/form-elements';
 
 const meta: MetaComponent = {
   id: 'e6ecc86f-d148-413b-b796-614a89da54be',

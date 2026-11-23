@@ -1,8 +1,8 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import meta from './input.stories';
 import { html } from 'lit';
-import { schemes } from '@/shared/snapshots/schemes';
-import { COMBINATIONS, getCombinations } from '@/utils/inputComponentsGetCombinations';
+import { schemes } from '@preview/utils/snapshots/schemes';
+import { COMBINATIONS, getCombinations } from '@preview/utils/inputComponentsGetCombinations';
 
 const { id, ...metaWithoutId } = meta;
 

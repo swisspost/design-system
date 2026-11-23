@@ -1,6 +1,6 @@
 import { Args, StoryObj, StoryContext } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '@root/types';
+import { MetaComponent } from '@preview/types';
 
 const validationObject: object = {
   name: 'validation',

@@ -1,6 +1,6 @@
 import { html } from 'lit';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
-import { schemes } from '@/shared/snapshots/schemes';
+import { schemes } from '@preview/utils/snapshots/schemes';
 import { Heading, Link, Paragraph, Inline } from './typography.stories';
 
 const meta = {

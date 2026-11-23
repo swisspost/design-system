@@ -1,6 +1,6 @@
 import type { StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { COLOR_SCHEMES, schemes } from '@/shared/snapshots/schemes';
+import { COLOR_SCHEMES, schemes } from '@preview/utils/snapshots/schemes';
 import meta from './forms.stories';
 
 const { id, ...metaWithoutId } = meta;

@@ -1,4 +1,4 @@
-import { parse } from '@/utils/sass-export';
+import { parse } from '@preview/utils/sass-export';
 import scss from './elevation.module.scss';
 
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */

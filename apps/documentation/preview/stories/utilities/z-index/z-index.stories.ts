@@ -1,7 +1,7 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import './z-index.styles.scss';
-import { MetaExtended } from '@root/types';
+import { MetaExtended } from '@preview/types';
 
 const options: Array<string> = ['n1', '0', '1', '2', '3', 'header', 'spinner', 'toast'];
 

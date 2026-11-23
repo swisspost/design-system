@@ -13,7 +13,7 @@ describe('Header Selection Guide', () => {
 
   // embed.figma.com redirects to www.figma.com, so the CSP has to allow both hosts
   it('should allow Figma in the Content Security Policy', () => {
-    cy.readFile('.storybook/preview-head.html').then((html: string) => {
+    cy.readFile('preview/.storybook/preview-head.html').then((html: string) => {
       const frameSrc = /frame-src([^;]*);/.exec(html)?.[1].trim().split(/\s+/);
       expect(frameSrc, 'frame-src').to.include.members([
         'https://embed.figma.com',

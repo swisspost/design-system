@@ -1,7 +1,11 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing, TemplateResult } from 'lit';
-import { MetaComponent } from '@root/types';
-import { getLabelText, getValidationMessages, VALIDATION_STATE_MAP } from '@/utils/form-elements';
+import { MetaComponent } from '@preview/types';
+import {
+  getLabelText,
+  getValidationMessages,
+  VALIDATION_STATE_MAP,
+} from '@preview/utils/form-elements';
 
 const meta: MetaComponent = {
   id: '51471f0b-1bbb-4059-951b-f89aa7339f91',

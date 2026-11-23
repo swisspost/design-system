@@ -1,5 +1,5 @@
-import { spreadArgs } from '@/utils';
-import { MetaComponent } from '@root/types';
+import { spreadArgs } from '@preview/utils';
+import { MetaComponent } from '@preview/types';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, TemplateResult } from 'lit';
 

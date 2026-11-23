@@ -1,8 +1,8 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { COLOR_SCHEMES, schemes } from '@/shared/snapshots/schemes';
+import { COLOR_SCHEMES, schemes } from '@preview/utils/snapshots/schemes';
 import meta from './float.stories';
-import { bombArgs } from '@/utils';
+import { bombArgs } from '@preview/utils';
 
 const { id, ...metaWithoutId } = meta;
 

@@ -1,10 +1,10 @@
 import { Canvas, Meta, Source } from '@storybook/addon-docs/blocks';
-import { parse } from '@/utils/sass-export';
+import { parse } from '@preview/utils/sass-export';
 import scss from './grid.module.scss';
 import meta, * as GridStories from './grid.stories';
 import './grid.styles.scss';
 import SampleContainer from './grid-container.sample.html?raw';
-import StoryTags from '@/shared/story-tags';
+import StoryTags from '@preview/blocks/story-tags';
 
 export const SCSS_VARIABLES = parse(scss);
 

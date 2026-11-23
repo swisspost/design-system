@@ -1,29 +1,27 @@
 import type { Preview } from '@storybook/web-components-vite';
 import { extractArgTypes, extractComponentDescription } from '@kurbar/storybook-addon-docs-stencil';
 import { format } from 'prettier';
-import DocsLayout from './blocks/layout/layout';
+import DocsLayout from '@preview/blocks/layout/layout';
 import {
   fullScreenUrlDecorator,
   openFullScreenDemo,
   copyStoryConfigUrl,
-  prettierOptions,
-  resetComponents,
   withUrlParams,
-} from './helpers';
-import './helpers/register-web-components';
-import './helpers/sync-iframe-story-args';
-import './addons/cypress-storybook/client';
+} from '@preview/decorators';
+import { prettierOptions } from '@preview/setup/prettier-options';
+import { resetComponents } from '@preview/setup/reset-sb-styled-components';
+import '@preview/setup/register-web-components';
+import '@preview/setup/sync-iframe-story-args';
+import '@preview/setup/cypress-storybook/client';
 
-import './styles/preview.scss';
+import '@preview/styles/preview.scss';
 
 import { SyntaxHighlighter } from 'storybook/internal/components';
 import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
 
-import '../src/demo-components';
+import '@preview/demo-components';
 
 SyntaxHighlighter.registerLanguage('scss', scss);
-
-export const SourceDarkScheme = true;
 
 const preview: Preview = {
   decorators: [fullScreenUrlDecorator, withUrlParams],
@@ -95,7 +93,7 @@ const preview: Preview = {
       },
       source: {
         excludeDecorators: true,
-        dark: SourceDarkScheme,
+        dark: true,
         transform: (snippet: string) => format(snippet, prettierOptions),
       },
       components: resetComponents,

@@ -1,4 +1,4 @@
-import { DESKTOP_BREAKPOINT, NON_DESKTOP_VIEWPORT_WIDTH } from '../../support/breakpoints';
+import { DESKTOP_BREAKPOINT, NON_DESKTOP_VIEWPORT_WIDTH } from '../../../support/breakpoints';
 
 describe('Self-managed Header docs', () => {
   const DOCS_ID = '27a2e64d-55ba-492d-ab79-5f7c5e818498--docs';

@@ -8,11 +8,11 @@ import { customElement, property } from 'lit/decorators.js';
 export class DocsPreview extends LitElement {
   @property() src = '';
 
-  createRenderRoot() {
+  override createRenderRoot() {
     return this;
   }
 
-  render() {
+  override render() {
     return html`<iframe class="preview-frame" title="Documentation page" src=${this.src}></iframe>`;
   }
 }

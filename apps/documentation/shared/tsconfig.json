@@ -1,0 +1,12 @@
+{
+  "extends": "@swisspost/design-system-tsconfig/browser.tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    // Referenced projects must emit, so only declarations are written, into the cache
+    "emitDeclarationOnly": true,
+    "rootDir": "..",
+    "outDir": "../node_modules/.cache/tsc/shared",
+    "tsBuildInfoFile": "../node_modules/.cache/tsc/shared.tsbuildinfo"
+  },
+  "include": ["**/*", "../package.json"]
+}

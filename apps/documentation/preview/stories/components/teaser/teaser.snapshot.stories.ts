@@ -1,6 +1,6 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { schemes } from '@/shared/snapshots/schemes';
+import { schemes } from '@preview/utils/snapshots/schemes';
 
 import meta, { renderTeaserCard, renderTeaserSectionHeader } from './teaser.stories';
 

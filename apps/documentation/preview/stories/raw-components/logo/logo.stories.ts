@@ -1,6 +1,6 @@
 import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '@root/types';
+import { MetaComponent } from '@preview/types';
 
 const meta: MetaComponent<HTMLPostLogoElement> = {
   id: '73066e1c-0720-4a9b-8f81-a29d4250872a',

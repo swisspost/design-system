@@ -9,11 +9,11 @@ import './preview/docs-preview';
 @customElement('docs-shell')
 export class DocsShell extends LitElement {
   // light DOM, so the design-system styles and `shell.scss` apply
-  createRenderRoot() {
+  override createRenderRoot() {
     return this;
   }
 
-  render() {
+  override render() {
     const src = `${PREVIEW_ORIGIN}/iframe.html?id=${HOME_PAGE_ID}&viewMode=docs`;
 
     return html`<docs-preview src=${src}></docs-preview>`;

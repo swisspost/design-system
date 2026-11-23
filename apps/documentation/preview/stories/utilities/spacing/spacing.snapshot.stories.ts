@@ -1,6 +1,6 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { COLOR_SCHEMES, schemes } from '@/shared/snapshots/schemes';
+import { COLOR_SCHEMES, schemes } from '@preview/utils/snapshots/schemes';
 import meta, { MarginAndPadding as MandP, Gap as G } from './spacing.stories';
 import './spacing.styles.scss';
 

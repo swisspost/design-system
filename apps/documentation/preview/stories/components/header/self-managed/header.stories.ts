@@ -4,12 +4,12 @@ import {
   renderSideNavigation,
   renderTitle,
   renderUserMenu,
-} from '@/stories/components/header/self-managed/renderers';
-import { fakeContent } from '@/utils';
-import { MetaComponent } from '@root/types';
+} from '@preview/stories/components/header/self-managed/renderers';
+import { fakeContent } from '@preview/utils';
+import { MetaComponent } from '@preview/types';
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { forceCompactAppearance } from '../../../../../.storybook/helpers';
+import { forceCompactAppearance } from '@preview/decorators';
 import { getSlottedContent, SubComponentRenderers } from './utils';
 
 const meta: MetaComponent = {

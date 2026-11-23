@@ -1,7 +1,7 @@
 import { Args, StoryObj, StoryContext } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { MetaComponent } from '@root/types';
+import { MetaComponent } from '@preview/types';
 
 const meta: MetaComponent = {
   id: 'cd684d90-e7a7-41a9-8923-b1b72ad9b385',

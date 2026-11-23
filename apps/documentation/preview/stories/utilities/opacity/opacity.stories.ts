@@ -1,7 +1,7 @@
 import type { Args, StoryObj, StoryFn, StoryContext } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import './opacity.styles.scss';
-import { MetaExtended } from '@root/types';
+import { MetaExtended } from '@preview/types';
 
 const meta: MetaExtended = {
   id: '5e27e48d-a5f6-4e57-a343-7f40507fc27b',

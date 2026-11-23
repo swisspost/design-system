@@ -1,5 +1,9 @@
-import { getLabelText, getValidationMessages, VALIDATION_STATE_MAP } from '@/utils/form-elements';
-import { MetaComponent } from '@root/types';
+import {
+  getLabelText,
+  getValidationMessages,
+  VALIDATION_STATE_MAP,
+} from '@preview/utils/form-elements';
+import { MetaComponent } from '@preview/types';
 import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { repeat } from 'lit-html/directives/repeat.js';

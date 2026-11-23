@@ -1,5 +1,5 @@
-import { fakeContent } from '@/utils';
-import { MetaComponent } from '@root/types';
+import { fakeContent } from '@preview/utils';
+import { MetaComponent } from '@preview/types';
 import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 

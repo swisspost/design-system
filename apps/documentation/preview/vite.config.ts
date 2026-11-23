@@ -1,13 +1,22 @@
-import { fileURLToPath, URL } from 'node:url';
-// https://vitejs.dev/config/
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { defineConfig } from 'vite';
 
-/** @type {import('vite').UserConfig} */
-export default {
+const previewRoot = dirname(fileURLToPath(import.meta.url));
+const docsRoot = dirname(previewRoot);
+
+/**
+ * Vite config of the Storybook preview.
+ * Storybook loads it because this folder is the parent of its config dir (`preview/.storybook`).
+ */
+export default defineConfig({
+  // the site root (favicons, `_redirects`, ...) is shared with the shell
+  publicDir: `${docsRoot}/public`,
   resolve: {
-    alias: [
-      { find: '@', replacement: fileURLToPath(new URL('./src', import.meta.url)) },
-      { find: '@root', replacement: fileURLToPath(new URL('./', import.meta.url)) },
-    ],
+    alias: {
+      '@preview': previewRoot,
+      '@shared': `${docsRoot}/shared`,
+    },
   },
   optimizeDeps: {
     include: [
@@ -23,12 +32,4 @@ export default {
     ],
     exclude: ['@swisspost/design-system-styles'],
   },
-  // https://www.oddbird.net/2024/08/14/sass-compiler/
-  css: {
-    preprocessorOptions: {
-      scss: {
-        api: 'modern-compiler',
-      },
-    },
-  },
-};
+});

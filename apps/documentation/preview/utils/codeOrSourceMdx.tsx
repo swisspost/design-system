@@ -1,7 +1,6 @@
 // Source: https://github.com/storybookjs/storybook/blob/next/code/ui/blocks/src/blocks/mdx.tsx#L34
 import { Source } from '@storybook/addon-docs/blocks';
 import { Code } from 'storybook/internal/components';
-import { SourceDarkScheme } from '@/../.storybook/preview';
 
 /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
 // @ts-ignore
@@ -19,7 +18,7 @@ export const CodeOrSourceMdx = ({ className, children, ...rest }) => {
     <Source
       language={(language && language[1]) || 'plaintext'}
       format={false}
-      dark={SourceDarkScheme}
+      dark
       code={children as string}
       {...rest}
     />

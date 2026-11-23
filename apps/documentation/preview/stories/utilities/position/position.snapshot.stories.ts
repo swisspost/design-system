@@ -1,9 +1,9 @@
 import type { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import meta from './position.stories';
-import { bombArgs } from '@/utils';
+import { bombArgs } from '@preview/utils';
 import './position.styles.scss';
-import { schemes } from '@/shared/snapshots/schemes';
+import { schemes } from '@preview/utils/snapshots/schemes';
 
 const { id, ...metaWithoutId } = meta;
 

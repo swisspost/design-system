@@ -1,6 +1,6 @@
 import type { Args, StoryObj, StoryFn, StoryContext } from '@storybook/web-components-vite';
 import { html } from 'lit/static-html.js';
-import { MetaExtended } from '@root/types';
+import { MetaExtended } from '@preview/types';
 import { nothing } from 'lit';
 
 const meta: MetaExtended = {

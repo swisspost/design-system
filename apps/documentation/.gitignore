@@ -1,5 +1,5 @@
 # Storybook specific
-storybook-static
+dist
 doctor-storybook.log
 
 # Project specific

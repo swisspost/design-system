@@ -1,5 +1,5 @@
-import { parse } from '@/utils/sass-export';
-import { forEach } from '@/utils/react';
+import { parse } from '@preview/utils/sass-export';
+import { forEach } from '@preview/utils/react';
 import { SpecTable } from '../shared.blocks';
 import scss from './grid.module.scss';
 

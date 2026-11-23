@@ -1,8 +1,8 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit/static-html.js';
-import { MetaExtended } from '@root/types';
+import { MetaExtended } from '@preview/types';
 import './position.styles.scss';
-import { bombArgs } from '@/utils';
+import { bombArgs } from '@preview/utils';
 
 const meta: MetaExtended = {
   id: '803a58e8-c734-4ad7-80a8-62da1bb29d4b',

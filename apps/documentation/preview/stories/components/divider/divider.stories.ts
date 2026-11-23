@@ -1,4 +1,4 @@
-import { MetaComponent } from '@root/types';
+import { MetaComponent } from '@preview/types';
 import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit/static-html.js';
 import { nothing } from 'lit';

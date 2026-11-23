@@ -6,14 +6,10 @@ import {
   Props,
 } from './styles-package-import-individual.sample';
 import { PostIcon } from '@swisspost/design-system-components-react';
-import { STYLE_SWITCHER_EVENT } from '@root/.storybook/constants';
+import { addons } from 'storybook/preview-api';
+import { STYLES_CHANGED, type StylesChangedPayload } from '@shared/channel';
 
-type StyleSelection = {
-  theme: string;
-  appearance: string;
-};
-
-type StyleSelectionEvent = CustomEvent<StyleSelection>;
+type StyleSelection = StylesChangedPayload;
 
 const getAllStylesImport = ({ theme, appearance }: StyleSelection) => {
   return `@use '@swisspost/design-system-styles/${theme.toLowerCase()}-${appearance.toLowerCase()}.scss';`;
@@ -27,13 +23,12 @@ export default function PackageTag(props: Props) {
   const allStylesImport = getAllStylesImport(styleSelection);
 
   useEffect(() => {
-    const updateStyleSelection = (event: Event) => {
-      setStyleSelection((event as StyleSelectionEvent).detail);
-    };
+    const channel = addons.getChannel();
+    const updateStyleSelection = (selection: StyleSelection) => setStyleSelection(selection);
 
-    window.addEventListener(STYLE_SWITCHER_EVENT, updateStyleSelection);
+    channel.on(STYLES_CHANGED, updateStyleSelection);
 
-    return () => window.removeEventListener(STYLE_SWITCHER_EVENT, updateStyleSelection);
+    return () => channel.off(STYLES_CHANGED, updateStyleSelection);
   }, []);
 
   return (

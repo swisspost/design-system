@@ -1,8 +1,12 @@
-import { MetaComponent } from '@root/types';
+import { MetaComponent } from '@preview/types';
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { keyed } from 'lit/directives/keyed.js';
-import { getLabelText, VALIDATION_STATE_MAP, getValidationMessages } from '@/utils/form-elements';
+import {
+  getLabelText,
+  VALIDATION_STATE_MAP,
+  getValidationMessages,
+} from '@preview/utils/form-elements';
 
 const meta: MetaComponent = {
   id: 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e',

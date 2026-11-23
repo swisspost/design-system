@@ -1,10 +1,10 @@
 import meta, { Default } from './dialog.stories';
 import { html } from 'lit';
-import { schemes } from '@/shared/snapshots/schemes';
-import { bombArgs } from '@/utils';
+import { schemes } from '@preview/utils/snapshots/schemes';
+import { bombArgs } from '@preview/utils';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 
-import { PALETTE_TEST_PALETTE_TYPES } from '@/shared/snapshots/palettes';
+import { PALETTE_TEST_PALETTE_TYPES } from '@preview/utils/snapshots/palettes';
 
 const { id, ...metaWithoutId } = meta;
 

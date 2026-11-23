@@ -1,7 +1,7 @@
 import { LitElement, css, html, unsafeCSS } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import Styles from './icons-migration-map.component.scss?inline';
-import migrationMap from '@/shared/icons-migration-map.json';
+import migrationMap from '@preview/data/icons-migration-map.json';
 
 @customElement('icons-migration-map')
 export class IconsMigrationMap extends LitElement {

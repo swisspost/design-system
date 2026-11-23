@@ -1,6 +1,6 @@
 import { StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '@root/types';
+import { MetaComponent } from '@preview/types';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { useArgs } from 'storybook/preview-api';
 

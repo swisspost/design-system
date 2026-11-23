@@ -1,11 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import type { Versions, Version } from '@root/.storybook/helpers/get-versions-json';
-import {
-  getVersions,
-  getDistTag,
-  getCurrentVersion,
-  getCurrentDistTag,
-} from '@root/.storybook/helpers/get-versions-json';
+import type { Versions, Version } from '@shared/versions';
+import { getVersions, getDistTag, getCurrentVersion, getCurrentDistTag } from '@shared/versions';
 
 interface PackageShieldsProps {
   packageName: string;

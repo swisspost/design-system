@@ -39,10 +39,10 @@ jobs:
         run: pnpm --filter design-system-documentation... build
 
       - name: Add netlify.config.json to artifact folder
-        run: cp apps/documentation/netlify.config.json apps/documentation/storybook-static/netlify.config.json
+        run: cp apps/documentation/netlify.config.json apps/documentation/dist/netlify.config.json
 
       - name: Upload documentation
         uses: ./.github/actions/artifact-upload
         with:
           name: design-system-documentation
-          folder: apps/documentation/storybook-static
+          folder: apps/documentation/dist

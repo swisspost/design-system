@@ -1,7 +1,7 @@
 import type { StoryObj, StoryFn, StoryContext } from '@storybook/web-components-vite';
 import meta from './back-to-top.stories';
 import { html } from 'lit';
-import { schemes } from '@/shared/snapshots/schemes';
+import { schemes } from '@preview/utils/snapshots/schemes';
 
 const { id, ...metaWithoutId } = meta;
 

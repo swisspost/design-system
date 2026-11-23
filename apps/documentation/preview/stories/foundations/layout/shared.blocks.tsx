@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
-import { parse } from '@/utils/sass-export';
-import { forEach } from '@/utils/react';
+import { parse } from '@preview/utils/sass-export';
+import { forEach } from '@preview/utils/react';
 import scss from './shared.module.scss';
 
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */

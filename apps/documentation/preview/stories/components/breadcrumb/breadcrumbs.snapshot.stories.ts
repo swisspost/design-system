@@ -1,7 +1,7 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import meta, { Default, Concatenated } from './breadcrumbs.stories';
 import { html } from 'lit';
-import { schemes } from '@/shared/snapshots/schemes';
+import { schemes } from '@preview/utils/snapshots/schemes';
 
 const { id, ...metaWithoutId } = meta;
 

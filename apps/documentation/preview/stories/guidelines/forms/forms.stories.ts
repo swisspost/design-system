@@ -1,6 +1,6 @@
 import { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { MetaExtended } from '@root/types';
+import { MetaExtended } from '@preview/types';
 import * as FormFooterMeta from '../../components/form-footer/form-footer.stories';
 
 const meta: MetaExtended = {

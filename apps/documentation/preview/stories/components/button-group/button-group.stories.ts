@@ -1,7 +1,7 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { useArgs } from 'storybook/preview-api';
-import { MetaComponent } from '@root/types';
+import { MetaComponent } from '@preview/types';
 
 const BUTTON_LABELS = ['Letters', 'Parcel', 'Stamp', 'Mail', 'Packages', 'Pickup'];
 const BUTTON_ICONS = [

@@ -1,10 +1,10 @@
 import type { Args, StoryObj, StoryFn, StoryContext } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import sizing from './sizing.module.scss';
-import { parse } from '@/utils/sass-export';
-import { MetaExtended } from '@root/types';
+import { parse } from '@preview/utils/sass-export';
+import { MetaExtended } from '@preview/types';
 import './sizing.styles.scss';
-import { camelToKebabCase } from '@/utils/naming';
+import { camelToKebabCase } from '@preview/utils/naming';
 
 const sizes: Record<string, string> = parse(sizing);
 
