@@ -3,7 +3,8 @@
 @use '../../mixins/media';
 @use './slots';
 
-$post-header: 'post-header';
+// Hidden headers (display: none) are flagged by the component and must not affect the page
+$post-header: 'post-header:not([data-hidden])';
 
 // ============================================================
 // Variant: Portal — main-nav only, no title, no local-nav
@@ -85,7 +86,7 @@ post-header#{slots.has($slot: 'main-nav')}#{slots.has($slot: 'title')} {
 // Variant: One-pager — title only, no main-nav, optional local-nav
 // ============================================================
 
-:root:has(post-header)#{slots.lacks($slot: 'main-nav', $scope: $post-header)} {
+:root:has(#{$post-header})#{slots.lacks($slot: 'main-nav', $scope: $post-header)} {
   --post-global-header-expanded-height: 64px;
   --post-local-header-expanded-min-height: 56px;
 
@@ -98,7 +99,7 @@ post-header#{slots.has($slot: 'main-nav')}#{slots.has($slot: 'title')} {
 // One-pager header: when there is no main-nav and no title,
 // ensure the local header collapses to zero height
 :root:has(
-    post-header
+    #{$post-header}
   )#{slots.lacks($slot: 'main-nav', $scope: $post-header)}#{slots.lacks($slot: 'title', $scope: $post-header)} {
   --post-local-header-expanded-min-height: 0px;
 }
@@ -142,25 +143,12 @@ post-header#{slots.lacks($slot: 'main-nav')} {
   }
 }
 
-// ============================================================
-// Global header only: global nav slots, no main-nav, no title
-// ============================================================
-
-:root:has(
-    post-header
-  )#{slots.lacks($slot: 'main-nav', $scope: $post-header)}#{slots.lacks($slot: 'title', $scope: $post-header)}#{slots.has-any($slots: slots.$global-header-slots, $scope: $post-header, $direct: true)} {
-  @include media.only(desktop) {
-    --post-global-header-reduced-height: 24px;
-    --post-logo-reduced-offset: 6px;
-  }
-}
-
 // ===========================================================
 // Application header: logo only, no global nav slots
 // ============================================================
 
 :root:has(
-    post-header
+    #{$post-header}
   )#{slots.lacks-any($slots: slots.$global-header-slots, $scope: $post-header, $direct: true)} {
   --post-global-header-expanded-height: var(--_post-initial-global-header-height);
   --post-global-header-reduced-height: 32px;
@@ -183,7 +171,7 @@ post-header#{slots.lacks($slot: 'main-nav')} {
 // Shared / base custom properties
 // ============================================================
 
-:root:has(post-header) {
+:root:has(#{$post-header}) {
   // Opt out of scroll anchoring so the browser doesn't adjust scrollY when the
   // sticky header repositions itself on scroll. Removing this breaks shrink-on-scroll
   // in frameworks that flush layout synchronously between scroll events (e.g. Angular).

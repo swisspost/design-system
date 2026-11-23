@@ -106,28 +106,7 @@ describe('header', () => {
       cy.get('@header').find('[slot="audience"], [slot="post-login"]').should('exist');
     });
 
-    it('should reduce the logo and stop updating the scroll position once fully reduced on desktop', () => {
-      cy.viewport(VIEWPORTS.desktop);
-
-      getScrollMax().then(scrollMax => {
-        expect(scrollMax).to.be.greaterThan(1);
-
-        getLogoHeight().then(expandedLogoHeight => {
-          scrollAndWait(scrollMax);
-          getScrollTopProperty().should('eq', `${scrollMax}px`);
-          cy.get('@header')
-            .find('post-logo')
-            .should($logo =>
-              expect($logo[0].getBoundingClientRect().height).to.be.lessThan(expandedLogoHeight),
-            );
-
-          scrollAndWait(scrollMax + 300);
-          getScrollTopProperty().should('eq', `${scrollMax}px`);
-        });
-      });
-    });
-
-    ['tablet', 'mobile'].forEach(viewportName => {
+    Object.keys(VIEWPORTS).forEach(viewportName => {
       it(`should not reduce the header on ${viewportName}`, () => {
         cy.viewport(VIEWPORTS[viewportName]);
 
@@ -138,6 +117,42 @@ describe('header', () => {
           getLogoHeight().should('eq', expandedLogoHeight);
         });
       });
+    });
+  });
+
+  // Frameworks may keep the header of the previous route in the DOM with display: none
+  describe('hidden duplicate header', () => {
+    beforeEach(() => {
+      cy.visit(`/iframe.html?id=${HEADER_ID}--portal`);
+      cy.get('post-header').as('header');
+      cy.get('@header').should('have.attr', 'data-hydrated');
+      cy.viewport(VIEWPORTS.desktop);
+
+      cy.get('@header').then($header => {
+        const hiddenHeader = $header[0].cloneNode(true) as HTMLElement;
+        hiddenHeader.removeAttribute('data-hydrated');
+        hiddenHeader.removeAttribute('data-hidden');
+        hiddenHeader.style.display = 'none';
+        $header[0].before(hiddenHeader);
+        $header.find('[slot="main-nav"]').remove();
+      });
+      cy.get('post-header').should('have.length', 2);
+      cy.get('post-header[data-hidden]').should('have.length', 1);
+    });
+
+    it('should not reduce the visible header because of the hidden header main-nav', () => {
+      cy.get('post-header:not([data-hidden])').as('visibleHeader');
+      cy.get('@visibleHeader')
+        .find('post-logo')
+        .then($logo => {
+          const expandedLogoHeight = $logo[0].getBoundingClientRect().height;
+
+          scrollAndWait(300);
+          getScrollTopProperty().should('eq', '0px');
+          cy.get('@visibleHeader')
+            .find('post-logo')
+            .should($l => expect($l[0].getBoundingClientRect().height).to.eq(expandedLogoHeight));
+        });
     });
   });
 
