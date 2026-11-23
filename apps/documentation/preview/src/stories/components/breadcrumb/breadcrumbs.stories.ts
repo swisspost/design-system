@@ -1,13 +1,13 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { keyed } from 'lit/directives/keyed.js';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 
 const meta: MetaComponent = {
   id: 'b7db7391-f893-4b1e-a125-b30c6f0b028b',
   title: 'Components/Breadcrumbs',
   component: 'post-breadcrumbs',
-  tags: ['package:WebComponents', 'status:New'],
+  tags: ['package:components', 'status:new'],
   render,
   parameters: {
     badges: [],

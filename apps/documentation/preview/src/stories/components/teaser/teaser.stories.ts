@@ -1,11 +1,11 @@
 import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 
 const meta: MetaComponent = {
   id: '68699b2c-ec1f-467d-81ae-8b3f48d7c595',
   title: 'Components/Card Teaser',
-  tags: ['package:Styles', 'status:New'],
+  tags: ['package:styles', 'status:new'],
   parameters: {
     design: {
       type: 'figma',

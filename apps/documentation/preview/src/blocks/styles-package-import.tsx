@@ -7,7 +7,7 @@ import {
 } from './styles-package-import.utils';
 import { PostIcon } from '@swisspost/design-system-components-react';
 import { addons } from 'storybook/preview-api';
-import { STYLES_CHANGED, type StylesChangedPayload } from '@shared/channel';
+import { STYLES_CHANGED_EVENT, type StylesChangedPayload } from '@shared/channel';
 
 type StyleSelection = StylesChangedPayload;
 
@@ -26,9 +26,9 @@ export default function PackageTag(props: Props) {
     const channel = addons.getChannel();
     const updateStyleSelection = (selection: StyleSelection) => setStyleSelection(selection);
 
-    channel.on(STYLES_CHANGED, updateStyleSelection);
+    channel.on(STYLES_CHANGED_EVENT, updateStyleSelection);
 
-    return () => channel.off(STYLES_CHANGED, updateStyleSelection);
+    return () => channel.off(STYLES_CHANGED_EVENT, updateStyleSelection);
   }, []);
 
   return (

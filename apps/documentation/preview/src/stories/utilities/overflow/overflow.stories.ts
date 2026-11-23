@@ -1,6 +1,6 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit/static-html.js';
-import { MetaExtended } from '@preview/types';
+import { MetaExtended } from '@preview/types/storybook';
 import './overflow.styles.scss';
 
 const meta: MetaExtended = {

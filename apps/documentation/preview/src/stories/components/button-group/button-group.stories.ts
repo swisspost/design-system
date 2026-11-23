@@ -1,7 +1,7 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { useArgs } from 'storybook/preview-api';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 
 const BUTTON_LABELS = ['Letters', 'Parcel', 'Stamp', 'Mail', 'Packages', 'Pickup'];
 const BUTTON_ICONS = [
@@ -16,7 +16,7 @@ const BUTTON_ICONS = [
 const meta: MetaComponent = {
   id: '021d61aa-e039-4858-b4b9-b86a3e772811',
   title: 'Components/Button Group',
-  tags: ['package:Styles'],
+  tags: ['package:styles'],
   render: renderButtonGroup,
   parameters: {
     badges: [],

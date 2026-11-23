@@ -2,8 +2,7 @@ import { html, LitElement } from 'lit';
 import { Task } from '@lit/task';
 import { customElement, property } from 'lit/decorators.js';
 import { PACKAGE_TAG_PREFIX } from '@shared/tags';
-import { PackageType } from '@preview/types';
-import { getDocsPath, getTitleFromPath } from '@preview/utils';
+import { getDocsPath, getTitleFromPath } from '@preview/utils/storybook-indexer';
 
 const INDEX_PATH = '/index.json';
 const TAG_REDIRECT_PREFIX = 'redirect:';
@@ -24,7 +23,7 @@ interface IndexInput {
 
 @customElement('developer-list-component')
 export class DeveloperListComponent extends LitElement {
-  @property({ type: String }) packageType: PackageType | null = null;
+  @property({ type: String }) packageName: string | null = null;
 
   createRenderRoot() {
     /**
@@ -34,7 +33,7 @@ export class DeveloperListComponent extends LitElement {
   }
 
   private _indexTask = new Task(this, {
-    task: async ([packageType]) => {
+    task: async ([packageName]) => {
       const response = await fetch(INDEX_PATH);
       const rawData: IndexInput = await response.json();
       return (
@@ -42,7 +41,8 @@ export class DeveloperListComponent extends LitElement {
           .filter(
             entry =>
               entry.id.endsWith('--default') &&
-              entry.tags.includes(`${PACKAGE_TAG_PREFIX}${packageType}`),
+              packageName !== null &&
+              entry.tags.includes(`${PACKAGE_TAG_PREFIX}${packageName}`),
           )
           .map(entry => {
             const redirectId = entry.tags
@@ -67,7 +67,7 @@ export class DeveloperListComponent extends LitElement {
           })
       );
     },
-    args: () => [this.packageType],
+    args: () => [this.packageName],
   });
 
   render() {

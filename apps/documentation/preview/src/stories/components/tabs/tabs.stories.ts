@@ -2,8 +2,8 @@ import { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { MetaComponent } from '@preview/types';
-import { forceCompactAppearance } from '@preview/decorators';
+import { MetaComponent } from '@preview/types/storybook';
+import { forceCompactAppearance } from '@preview/decorators/force-compact-appearance';
 
 const meta: MetaComponent<
   HTMLPostTabsElement & {
@@ -19,7 +19,7 @@ const meta: MetaComponent<
 > = {
   id: 'bb1291ca-4dbb-450c-a15f-596836d9f39e',
   title: 'Components/Tabs',
-  tags: ['package:WebComponents'],
+  tags: ['package:components'],
   component: 'post-tabs',
   render: renderTabs,
   parameters: {

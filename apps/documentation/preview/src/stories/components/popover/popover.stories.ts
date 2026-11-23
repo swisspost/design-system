@@ -1,12 +1,12 @@
 import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 
 const meta: MetaComponent = {
   id: '9a636763-de2d-4f72-bc81-98daf10871f7',
   title: 'Components/Popover',
-  tags: ['package:WebComponents'],
+  tags: ['package:components'],
   component: 'post-popover',
   parameters: {
     badges: [],

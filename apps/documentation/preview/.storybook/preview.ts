@@ -6,8 +6,8 @@ import {
   fullScreenUrlDecorator,
   openFullScreenDemo,
   copyStoryConfigUrl,
-  withUrlParams,
-} from '@preview/decorators';
+} from '@preview/decorators/open-full-screen-demo';
+import { withUrlParams } from '@preview/decorators/with-url-params';
 import { prettierOptions } from '@preview/setup/prettier-options';
 import { resetComponents } from '@preview/setup/reset-sb-styled-components';
 import '@preview/setup/register-web-components';
@@ -19,7 +19,13 @@ import '@preview/styles/preview.scss';
 import { SyntaxHighlighter } from 'storybook/internal/components';
 import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
 
-import '@preview/demo-components';
+import '@preview/demo-components/demo-button';
+import '@preview/demo-components/demo-input';
+import '@preview/demo-components/demo-label';
+import '@preview/demo-components/demo-list';
+import '@preview/demo-components/demo-list-item';
+import '@preview/demo-components/demo-list-item-group';
+import '@preview/demo-components/demo-span';
 
 SyntaxHighlighter.registerLanguage('scss', scss);
 

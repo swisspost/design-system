@@ -1,4 +1,4 @@
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 import { Args } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 
@@ -7,7 +7,7 @@ const meta: MetaComponent = {
   title: 'Components/Breadcrumb Item',
   component: 'post-breadcrumb-item',
   render,
-  tags: ['package:WebComponents', 'status:New'],
+  tags: ['package:components', 'status:new'],
   parameters: {
     badges: [],
     design: {

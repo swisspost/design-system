@@ -1,4 +1,5 @@
-import { Args, Meta, StoryObj } from '@storybook/web-components-vite';
+import { MetaExtended } from '@preview/types/storybook';
+import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit-html';
 
 const DIALOG_VARIANT_OPTIONS = {
@@ -12,10 +13,10 @@ const DIALOG_VARIANT_OPTIONS = {
   },
 };
 
-const meta: Meta = {
+const meta: MetaExtended = {
   id: '562eac2b-6dc1-4007-ba8e-4e981cef0cbc',
   title: 'Components/Dialog',
-  tags: ['package:Styles', 'status:New'],
+  tags: ['package:styles', 'status:new'],
   parameters: {
     design: {
       type: 'figma',

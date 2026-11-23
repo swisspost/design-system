@@ -1,11 +1,11 @@
 import type { StoryObj } from '@storybook/web-components-vite';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 import { html, nothing } from 'lit';
 
 const meta: MetaComponent = {
   id: '60c8a05b-4109-4efe-aab7-ea6f445d9684',
   title: 'Components/Legend',
-  tags: ['package:Styles'],
+  tags: ['package:styles'],
   parameters: {
     badges: [],
     design: {

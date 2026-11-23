@@ -1,6 +1,6 @@
 import { StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { useArgs } from 'storybook/preview-api';
 
@@ -18,7 +18,7 @@ const GRIEF_CONTENT =
 const meta: MetaComponent<PostBannerControls> = {
   id: '105e67d8-31e9-4d0b-87ff-685aba31fd4c',
   title: 'Components/Banner',
-  tags: ['package:WebComponents'],
+  tags: ['package:components'],
   component: 'post-banner',
   render: RenderBanner,
   decorators: [],

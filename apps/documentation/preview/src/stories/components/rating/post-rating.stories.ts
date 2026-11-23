@@ -1,11 +1,11 @@
 import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 
 const meta: MetaComponent = {
   id: '956e063b-b40c-4fe4-bc27-53b8c4ab1e81',
   title: 'Components/Rating',
-  tags: ['package:WebComponents'],
+  tags: ['package:components'],
   component: 'post-rating',
   render: render,
   parameters: {

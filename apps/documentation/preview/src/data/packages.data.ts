@@ -1,4 +1,3 @@
-import { PackageType } from '@preview/types';
 import metaStyles from '@preview/stories/packages/styles/styles.stories';
 import metaComponents from '@preview/stories/packages/components/components.stories';
 import metaComponentsAngular from '@preview/stories/packages/components-angular/components-angular.stories';
@@ -9,9 +8,18 @@ import metaTokens from '@preview/stories/packages/tokens/tokens.stories';
 import metaThemeAGGrid from '@preview/stories/packages/theme-ag-grid/theme-ag-grid.stories';
 import { getPackageVersion } from '@shared/versions';
 
+export type PackageType =
+  | 'Styles'
+  | 'WebComponents'
+  | 'React'
+  | 'Angular'
+  | 'Assets'
+  | 'Typescript';
+
 export interface IPackage {
   type: PackageType;
   name: string;
+  npmName: string;
   version: string;
   links: Record<'github' | 'docs', IPackageLink>;
   image: {
@@ -26,56 +34,44 @@ interface IPackageLink {
 }
 
 export const packages: Record<string, IPackage> = {
-  'styles': definePackage(
-    PackageType.Styles,
-    'Styles',
-    'styles',
-    'design-system-styles',
-    metaStyles.id,
-  ),
+  'styles': definePackage('Styles', 'Styles', 'styles', 'design-system-styles', metaStyles.id),
   'components': definePackage(
-    PackageType.Wc,
+    'WebComponents',
     'Components',
     'components',
     'design-system-components',
     metaComponents.id,
   ),
   'components-angular': definePackage(
-    PackageType.Angular,
+    'Angular',
     'Components for Angular',
     'components-angular',
     'design-system-components-angular',
     metaComponentsAngular.id,
   ),
   'components-react': definePackage(
-    PackageType.React,
+    'React',
     'Components for React',
     'components-react',
     'design-system-components-react',
     metaComponentsReact.id,
   ),
   'internet-header': definePackage(
-    PackageType.Wc,
+    'WebComponents',
     'Internet-Header',
     'internet-header',
     'internet-header',
     metaInternetHeader.id,
   ),
-  'icons': definePackage(PackageType.Assets, 'Icons', 'icons', 'design-system-icons', metaIcons.id),
+  'icons': definePackage('Assets', 'Icons', 'icons', 'design-system-icons', metaIcons.id),
   'theme-ag-grid': definePackage(
-    PackageType.Ts,
+    'Typescript',
     'Theme AG Grid',
     'theme-ag-grid',
     'design-system-theme-ag-grid',
     metaThemeAGGrid.id,
   ),
-  'tokens': definePackage(
-    PackageType.Assets,
-    'Tokens',
-    'tokens',
-    'design-system-tokens',
-    metaTokens.id,
-  ),
+  'tokens': definePackage('Assets', 'Tokens', 'tokens', 'design-system-tokens', metaTokens.id),
 };
 
 function definePackage(
@@ -85,11 +81,13 @@ function definePackage(
   dependencyName: string,
   metaId: string,
 ): IPackage {
-  const version = getPackageVersion(`@swisspost/${dependencyName}`);
+  const npmName = `@swisspost/${dependencyName}`;
+  const version = getPackageVersion(npmName);
 
   return {
     type,
     name,
+    npmName,
     version: version !== null ? `v${version}` : '',
     links: {
       github: {

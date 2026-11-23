@@ -1,4 +1,4 @@
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 
@@ -8,7 +8,7 @@ const meta: MetaComponent = {
   id: 'd97528b3-a9ef-4201-bf28-9caf6e8997dc',
   title: 'Components/Footer/Self-Managed',
   component: 'post-footer',
-  tags: ['package:WebComponents', 'status:New'],
+  tags: ['package:components', 'status:new'],
   parameters: {
     layout: 'fullscreen',
     badges: [],

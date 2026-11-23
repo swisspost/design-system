@@ -1,13 +1,13 @@
 import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 
 const MAX_LABELS = 8;
 
 const meta: MetaComponent = {
   id: '78509712-d45e-462c-bde3-405cfaff5421',
   title: 'Components/Segmented button',
-  tags: ['package:Styles', 'status:New'],
+  tags: ['package:styles', 'status:new'],
   parameters: {
     badges: [],
     design: {

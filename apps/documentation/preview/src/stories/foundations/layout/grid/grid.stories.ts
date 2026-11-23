@@ -1,11 +1,11 @@
 import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { MetaExtended } from '@preview/types';
+import { MetaExtended } from '@preview/types/storybook';
 
 const meta: MetaExtended = {
   id: '7240f2ef-216a-490e-9bd8-c0cef19f7b31',
   title: 'Foundations/Layout/Grid',
-  tags: ['package:Styles'],
+  tags: ['package:styles'],
   parameters: {
     badges: [],
   },

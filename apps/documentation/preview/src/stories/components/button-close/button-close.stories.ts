@@ -1,6 +1,6 @@
 import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import bannerMeta, { Dismissible as BannerDismissible } from '../banner/banner.stories';
 import dialogMeta, { Default as DialogDefault } from '../dialog/dialog.stories';
@@ -11,7 +11,7 @@ const meta: MetaComponent = {
   title: 'Components/Button Close',
   component: 'post-closebutton',
   render: getCloseButtonRenderer(),
-  tags: ['package:WebComponents', 'status:New'],
+  tags: ['package:components', 'status:new'],
   parameters: {
     badges: [],
     design: {

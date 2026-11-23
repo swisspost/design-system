@@ -2,7 +2,7 @@ import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vit
 import { html } from 'lit';
 import { COLOR_SCHEMES, schemes } from '@preview/utils/snapshots/schemes';
 import meta from './float.stories';
-import { bombArgs } from '@preview/utils';
+import { bombArgs } from '@preview/utils/bomb-args';
 
 const { id, ...metaWithoutId } = meta;
 

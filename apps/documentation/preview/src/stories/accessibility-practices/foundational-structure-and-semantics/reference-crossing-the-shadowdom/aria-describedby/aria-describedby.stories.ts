@@ -1,5 +1,5 @@
 import { StoryObj, Args } from '@storybook/web-components-vite';
-import { MetaExtended } from '@preview/types';
+import { MetaExtended } from '@preview/types/storybook';
 import { html } from 'lit';
 import './aria-describedby.styles.scss';
 

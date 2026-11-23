@@ -1,6 +1,6 @@
 import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 
 export const FooterArgs = {
   showPrimaryButton: true,
@@ -16,7 +16,7 @@ export const FooterArgs = {
 const meta: MetaComponent = {
   id: 'f2eddf67-2c3c-40c4-bfec-df49bd028001',
   title: 'Components/Form Footer',
-  tags: ['package:Styles', 'status:New'],
+  tags: ['package:styles', 'status:new'],
   render: render,
   parameters: {
     badges: [],

@@ -1,7 +1,7 @@
 import { StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { schemes } from '@preview/utils/snapshots/schemes';
-import { bombArgs } from '@preview/utils';
+import { bombArgs } from '@preview/utils/bomb-args';
 import { useArgs } from 'storybook/preview-api';
 import bannerMeta from './banner.stories';
 

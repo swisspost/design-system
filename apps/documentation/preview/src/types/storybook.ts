@@ -1,16 +1,18 @@
 import { Args, Meta } from '@storybook/web-components-vite';
-import { PackageType } from '@shared/tags';
+import { PackageTag, Tag } from '@shared/tags';
 import { DesignParameter } from '@preview/blocks/story-links/story-links.component';
 
-export interface MetaExtended<T = Args> extends Meta<T> {
+export interface MetaBase<T = Args> extends Omit<Meta<T>, 'tags'> {
+  tags?: Tag[];
+}
+
+export interface MetaExtended<T = Args> extends MetaBase<T> {
   id: string; // Make id required
   title: string; // Make title required
 }
 
-export type TagPackagePrefix<K> = K extends string ? `package:${K}` : K;
-
 export interface MetaComponent<T = Args> extends MetaExtended<T> {
-  tags: [TagPackagePrefix<PackageType>, ...string[]];
+  tags: [PackageTag, ...Tag[]];
   parameters: {
     [key: string]: unknown;
     design: DesignParameter;

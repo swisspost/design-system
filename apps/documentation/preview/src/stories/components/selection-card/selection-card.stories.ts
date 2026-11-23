@@ -3,7 +3,7 @@ import { useArgs, useState } from 'storybook/preview-api';
 import { nothing } from 'lit';
 import { html } from 'lit/static-html.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 import { VALIDATION_STATE_MAP } from '@preview/utils/form-elements';
 
 const commonArgs: ArgTypes = {
@@ -99,7 +99,7 @@ const validationArg: object = {
 const meta: MetaComponent = {
   id: '047501dd-a185-4835-be91-09130fa3dad9',
   title: 'Components/Form Selection Card',
-  tags: ['package:Styles', 'status:New'],
+  tags: ['package:styles', 'status:new'],
   render: RenderComponent,
   parameters: {
     badges: [],

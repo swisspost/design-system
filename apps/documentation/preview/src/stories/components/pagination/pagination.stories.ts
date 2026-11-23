@@ -1,13 +1,13 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { useArgs } from 'storybook/preview-api';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 
 const meta: MetaComponent = {
   id: 'd6f8b5c7-4e2a-4f3a-9d3a-1a2b3c4d5e6f',
   title: 'Components/Pagination',
   component: 'post-pagination',
-  tags: ['package:WebComponents', 'status:New'],
+  tags: ['package:components', 'status:new'],
   parameters: {
     badges: [],
     design: {

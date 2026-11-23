@@ -1,12 +1,12 @@
 import { useArgs } from 'storybook/preview-api';
 import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 
 const meta: MetaComponent = {
   id: '12576d97-52c3-49ec-be7b-6d37728b75f5',
   title: 'Components/Chip',
-  tags: ['package:Styles'],
+  tags: ['package:styles'],
   render: RenderChip,
   parameters: {
     design: {

@@ -2,7 +2,7 @@ import type { StoryObj } from '@storybook/web-components-vite';
 import meta, { FooterArgs } from './form-footer.stories';
 import { html } from 'lit';
 import { schemes } from '@preview/utils/snapshots/schemes';
-import { bombArgs } from '@preview/utils';
+import { bombArgs } from '@preview/utils/bomb-args';
 
 const { id, ...metaWithoutId } = meta;
 

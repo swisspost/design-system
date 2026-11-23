@@ -11,7 +11,7 @@ import {
   flexJustifyContentValues,
   flexWrapValues,
 } from './flex.docs.mdx';
-import { bombArgs } from '@preview/utils';
+import { bombArgs } from '@preview/utils/bomb-args';
 
 const { id, ...metaWithoutId } = meta;
 

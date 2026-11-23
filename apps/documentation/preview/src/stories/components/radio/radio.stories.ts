@@ -1,7 +1,7 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { useArgs } from 'storybook/preview-api';
 import { html, nothing, TemplateResult } from 'lit';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import {
   getLabelText,
@@ -12,7 +12,7 @@ import {
 const meta: MetaComponent = {
   id: '151242aa-a074-4a55-a81c-db597c83cdad',
   title: 'Components/Form Radio Button',
-  tags: ['package:Styles'],
+  tags: ['package:styles'],
   parameters: {
     badges: [],
     design: {

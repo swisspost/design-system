@@ -2,7 +2,7 @@ import type { Args, StoryObj, StoryFn, StoryContext } from '@storybook/web-compo
 import { html } from 'lit';
 import sizing from './sizing.module.scss';
 import { parse } from '@preview/utils/sass-export';
-import { MetaExtended } from '@preview/types';
+import { MetaExtended } from '@preview/types/storybook';
 import './sizing.styles.scss';
 import { camelToKebabCase } from '@preview/utils/naming';
 

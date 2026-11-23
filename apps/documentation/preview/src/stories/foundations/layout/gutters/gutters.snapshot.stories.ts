@@ -3,7 +3,7 @@ import { html } from 'lit';
 import { COLOR_SCHEMES, schemes } from '@preview/utils/snapshots/schemes';
 import meta from './gutters.stories';
 import './gutters.styles.scss';
-import { bombArgs } from '@preview/utils';
+import { bombArgs } from '@preview/utils/bomb-args';
 
 const { id, ...metaWithoutId } = meta;
 

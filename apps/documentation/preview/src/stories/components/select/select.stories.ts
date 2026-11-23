@@ -2,7 +2,7 @@ import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vit
 import { html, nothing } from 'lit';
 import { useArgs } from 'storybook/preview-api';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 import {
   getLabelText,
   getValidationMessages,
@@ -12,7 +12,7 @@ import {
 const meta: MetaComponent = {
   id: 'bc251cd0-5173-463b-8729-586bb1bf1e1a',
   title: 'Components/Form Select',
-  tags: ['package:Styles'],
+  tags: ['package:styles'],
   parameters: {
     badges: [],
     design: {

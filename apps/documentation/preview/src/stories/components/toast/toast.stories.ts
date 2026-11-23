@@ -1,12 +1,12 @@
 import { useArgs } from 'storybook/preview-api';
 import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 
 const meta: MetaComponent = {
   id: '825b65c9-7eaf-4e0a-9e20-5f5ed406726d',
   title: 'Components/Toast',
-  tags: ['package:Styles'],
+  tags: ['package:styles'],
   parameters: {
     badges: [],
     design: {
