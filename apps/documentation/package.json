@@ -17,9 +17,9 @@
   "main": "index.js",
   "scripts": {
     "start": "pnpm clean && pnpm start:preview & pnpm start:shell --open",
+    "start:headless": "pnpm clean && pnpm start:shell",
     "start:preview": "storybook dev -c preview/.storybook -p 9001 --quiet --no-open --docs --preview-only",
     "start:shell": "vite --config shell/vite.config.ts",
-    "start:headless": "pnpm clean && storybook dev -c preview/.storybook -p 9001 --quiet --no-open --docs --preview-only",
     "build": "pnpm clean && storybook build -c preview/.storybook -o dist --quiet --docs --preview-only && vite build --config shell/vite.config.ts",
     "preview": "vite preview --config shell/vite.config.ts",
     "clean": "rimraf dist",
