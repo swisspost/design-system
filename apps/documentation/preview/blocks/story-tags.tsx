@@ -1,8 +1,9 @@
-import { MetaComponent } from '@root/types';
+import { NEW_TAG, PACKAGE_TAG_PREFIX } from '@shared/tags';
+import { MetaComponent } from '@preview/types';
 import { PostTooltip, PostTooltipTrigger } from '@swisspost/design-system-components-react';
 
 export default function StoryTags({ meta }: { meta: MetaComponent }) {
-  const newTag = meta.tags.some(tag => tag === 'status:New') ? (
+  const newTag = meta.tags.some(tag => tag === NEW_TAG) ? (
     <PostTooltipTrigger for="new-badge">
       <span className="tag tag-sm">
         <span aria-hidden>🆕 New</span>
@@ -18,7 +19,10 @@ export default function StoryTags({ meta }: { meta: MetaComponent }) {
     </PostTooltipTrigger>
   ) : null;
 
-  const tags = [newTag, meta.tags.filter(tag => tag.startsWith('package:')).map(getPackageTag)];
+  const tags = [
+    newTag,
+    meta.tags.filter(tag => tag.startsWith(PACKAGE_TAG_PREFIX)).map(getPackageTag),
+  ];
 
   return tags.length > 1 ? <div className="d-flex gap-8">{tags}</div> : tags;
 }

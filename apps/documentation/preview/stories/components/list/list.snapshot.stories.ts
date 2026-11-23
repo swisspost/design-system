@@ -1,5 +1,5 @@
 import type { StoryObj } from '@storybook/web-components-vite';
-import { schemes } from '@/shared/snapshots/schemes';
+import { schemes } from '@preview/utils/snapshots/schemes';
 import meta from './list.stories';
 import { html, TemplateResult } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';

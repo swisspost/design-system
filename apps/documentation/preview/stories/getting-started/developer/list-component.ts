@@ -1,12 +1,12 @@
 import { html, LitElement } from 'lit';
 import { Task } from '@lit/task';
 import { customElement, property } from 'lit/decorators.js';
-import { PackageType } from '@root/types';
-import { getDocsPath, getTitleFromPath } from '@/utils';
+import { PACKAGE_TAG_PREFIX } from '@shared/tags';
+import { PackageType } from '@preview/types';
+import { getDocsPath, getTitleFromPath } from '@preview/utils';
 
 const INDEX_PATH = '/index.json';
 const TAG_REDIRECT_PREFIX = 'redirect:';
-const TAG_PACKAGE_PREFIX = 'package:';
 
 interface Entry {
   id: string;
@@ -42,7 +42,7 @@ export class DeveloperListComponent extends LitElement {
           .filter(
             entry =>
               entry.id.endsWith('--default') &&
-              entry.tags.includes(`${TAG_PACKAGE_PREFIX}${packageType}`),
+              entry.tags.includes(`${PACKAGE_TAG_PREFIX}${packageType}`),
           )
           .map(entry => {
             const redirectId = entry.tags

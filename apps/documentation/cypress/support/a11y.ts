@@ -11,7 +11,7 @@
  *
  * @example
  * ```typescript
- * import { testMethods, addA11yTests } from '../shared/a11y';
+ * import { testMethods, addA11yTests } from './a11y';
  *
  * addA11yTests({
  *   storyName: 'button-group',

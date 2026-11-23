@@ -1,7 +1,7 @@
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '@root/types';
-import chipMeta from '@/stories/components/chip/chip.stories';
+import { MetaComponent } from '@preview/types';
+import chipMeta from '@preview/stories/components/chip/chip.stories';
 
 const meta: MetaComponent = {
   id: 'bec68e8b-445e-4760-8bd7-1b9970206d8d',

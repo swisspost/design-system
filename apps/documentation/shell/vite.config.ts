@@ -7,18 +7,24 @@ const docsRoot = fileURLToPath(new URL('..', import.meta.url));
  * The documentation shell, which replaces Storybook's manager UI.
  *
  * Dev: the shell runs on port 9000, the Storybook preview on its own dev server on port 9001.
- * Build: the shell is built into the Storybook output folder, next to `iframe.html` and `index.json`,
+ * Build: the shell is built into the Storybook output folder (`dist`), next to `iframe.html` and `index.json`,
  * so both are served from one origin.
  */
 export default defineConfig(({ command }) => ({
   root: fileURLToPath(new URL('.', import.meta.url)),
   base: '/',
+  resolve: {
+    alias: {
+      '@shell': fileURLToPath(new URL('./src', import.meta.url)),
+      '@shared': `${docsRoot}/shared`,
+    },
+  },
   // in dev, serve the favicons and `/assets` ourselves; in builds Storybook already copies them
   publicDir: command === 'serve' ? `${docsRoot}/public` : false,
   server: {
     port: 9000,
     strictPort: true,
-    // the design-system styles and icons are Storybook static dirs (see `.storybook/main.ts`)
+    // the design-system styles and icons are Storybook static dirs (see `preview/.storybook/main.ts`)
     proxy: {
       '/styles': 'http://localhost:9001',
       '/post-icons': 'http://localhost:9001',
@@ -31,7 +37,7 @@ export default defineConfig(({ command }) => ({
     proxy: {},
   },
   build: {
-    outDir: `${docsRoot}/storybook-static`,
+    outDir: `${docsRoot}/dist`,
     emptyOutDir: false,
     assetsDir: 'shell',
   },

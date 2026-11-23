@@ -1,6 +1,6 @@
 import type { StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '@root/types';
+import { MetaComponent } from '@preview/types';
 import { StoryContext, StoryFn } from '@storybook/web-components-vite';
 
 const meta: MetaComponent<HTMLPostLanguageMenuItemElement> = {

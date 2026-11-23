@@ -1,6 +1,6 @@
 import React from 'react';
 import report from '@swisspost/design-system-icons/public/report.min.json';
-import migrationMap from '@/shared/icons-migration-map.json';
+import migrationMap from '@preview/data/icons-migration-map.json';
 import { ReportIcon, ReportSourceIcon } from '@swisspost/design-system-icons/src/models/icon.model';
 import './search-icons.styles.scss';
 

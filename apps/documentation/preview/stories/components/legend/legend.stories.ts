@@ -1,5 +1,5 @@
 import type { StoryObj } from '@storybook/web-components-vite';
-import { MetaComponent } from '@root/types';
+import { MetaComponent } from '@preview/types';
 import { html, nothing } from 'lit';
 
 const meta: MetaComponent = {

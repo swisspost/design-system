@@ -2,9 +2,23 @@
 
 These contribution guidelines extend the [general contribution guidelines](../../CONTRIBUTING.md), where you can find instructions on how to set up the repository for contributing.
 
+## Structure
+
+The documentation consists of two apps: the shell, which provides the navigation and the toolbar, and the Storybook preview, which renders the documentation pages in an iframe.
+
+| Folder     | Content                                                                                                      |
+| ---------- | ------------------------------------------------------------------------------------------------------------ |
+| `preview/` | Everything rendered in the Storybook preview (`iframe.html`): Storybook config, stories, blocks, styles      |
+| `shell/`   | The Vite app that replaces the Storybook manager UI                                                          |
+| `shared/`  | The contract between shell and preview: channel events, story tags, versions                                 |
+| `public/`  | Files served at the site root by both apps                                                                   |
+| `cypress/` | End-to-end and snapshot tests, `cypress/e2e/preview/` for the preview and `cypress/e2e/shell/` for the shell |
+
+The shell and the preview never import each other, both may import `shared/`. Each folder is a TypeScript project, so imports across these boundaries fail the type check (`tsc -b`). Import `shared/` with `@shared/*`, and use `@preview/*` or `@shell/*` for imports between the subfolders of an app (e.g. from `preview/stories/` to `preview/blocks/`).
+
 ## Bundling the documentation
 
-Run the following command to build the entire Storybook source files into the dist folder, making them available for developers.
+Run the following command to build the shell and the Storybook preview into the `dist` folder, making them available for developers.
 
 ```bash
 # Production build

@@ -1,4 +1,4 @@
-import { addA11yTests } from '../shared/a11y';
+import { addA11yTests } from '../../../support/a11y';
 
 interface PaletteDefinition {
   name: string;

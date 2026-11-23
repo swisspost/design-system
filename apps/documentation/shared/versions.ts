@@ -1,4 +1,4 @@
-import { DEPENDENCIES, getVersion, compareVersions } from '../../src/utils/version';
+import { DEPENDENCIES, getVersion, compareVersions } from './version-utils';
 const currentMajorVersion =
   getVersion(DEPENDENCIES['@swisspost/design-system-styles'], 'major') ?? '';
 

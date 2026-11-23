@@ -3,7 +3,7 @@ declare module '*.json' {
   export default value;
 }
 
-declare module '@/shared/icons-migration-map.json' {
+declare module '@preview/data/icons-migration-map.json' {
   const value: {
     icons: {
       old: number;

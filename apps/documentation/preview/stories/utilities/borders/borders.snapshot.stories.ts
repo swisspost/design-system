@@ -2,7 +2,7 @@ import type { StoryObj, Args } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import meta, { BorderRounded, BorderSides, RemoveBorders } from './borders.stories';
 import './borders.styles.scss';
-import { bombArgs } from '@/utils';
+import { bombArgs } from '@preview/utils';
 
 const { id, ...metaWithoutId } = meta;
 

@@ -6,11 +6,17 @@ import postMdx from '@swisspost/design-system-eslint-config/mdx';
 import postStorybook from '@swisspost/design-system-eslint-config/storybook';
 
 export default defineConfig(
-  globalIgnores(['public/', 'storybook-static/', 'src/**/*.sample.*']),
+  globalIgnores(['public/', 'dist/', 'preview/**/*.sample.*']),
   post,
   postStorybook,
   postMdx,
   postCypress,
+
+  // The Storybook config dir is not at the package root, the recommended config only matches `.storybook/main.*`
+  {
+    files: ['preview/.storybook/main.ts'],
+    rules: { 'storybook/no-uninstalled-addons': 'error' },
+  },
 
   // Pre-existing debt. Drop once sources are clean.
   {

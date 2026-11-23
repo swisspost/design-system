@@ -17,12 +17,12 @@
   "main": "index.js",
   "scripts": {
     "start": "pnpm clean && pnpm start:preview & pnpm start:shell --open",
-    "start:preview": "storybook dev -p 9001 --quiet --no-open --docs --preview-only",
+    "start:preview": "storybook dev -c preview/.storybook -p 9001 --quiet --no-open --docs --preview-only",
     "start:shell": "vite --config shell/vite.config.ts",
-    "start:headless": "pnpm clean && storybook dev -p 9001 --quiet --no-open --docs --preview-only",
-    "build": "pnpm clean && storybook build --quiet --docs --preview-only && vite build --config shell/vite.config.ts",
+    "start:headless": "pnpm clean && storybook dev -c preview/.storybook -p 9001 --quiet --no-open --docs --preview-only",
+    "build": "pnpm clean && storybook build -c preview/.storybook -o dist --quiet --docs --preview-only && vite build --config shell/vite.config.ts",
     "preview": "vite preview --config shell/vite.config.ts",
-    "clean": "rimraf storybook-static",
+    "clean": "rimraf dist",
     "e2e": "cypress run",
     "e2e:watch": "cypress open",
     "e2e:ci": "xvfb-run -a cypress run",
@@ -32,7 +32,7 @@
     "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path .prettierignore",
     "snapshots": "percy exec -- cypress run --config-file ./cypress.snapshot.config.mjs --record --key 0995e768-43ec-42bd-a127-ff944a2ad8c9",
     "unit": "echo 'No unit tests for documentation'",
-    "doctor": "storybook doctor"
+    "doctor": "storybook doctor -c preview/.storybook"
   },
   "dependencies": {
     "@swisspost/design-system-components": "workspace:10.10.0",

@@ -1,7 +1,7 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { schemes } from '@/shared/snapshots/schemes';
-import { bombArgs } from '@/utils';
+import { schemes } from '@preview/utils/snapshots/schemes';
+import { bombArgs } from '@preview/utils';
 import meta from './selection-card.stories';
 
 const { id, ...metaWithoutId } = meta;
@@ -15,7 +15,7 @@ import {
   PALETTE_TEST_COMPONENT_TYPES,
   PALETTE_TEST_PALETTE_TYPES,
   PALETTE_TEST_ARGS,
-} from '@/shared/snapshots/palettes';
+} from '@preview/utils/snapshots/palettes';
 
 const bombedArgs = bombArgs({
   customIcon: [null, 'svg', 'img'],

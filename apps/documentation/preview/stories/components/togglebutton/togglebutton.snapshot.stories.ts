@@ -1,7 +1,7 @@
 import type { StoryObj } from '@storybook/web-components-vite';
 import meta from './togglebutton.stories';
 import { html } from 'lit';
-import { schemes } from '@/shared/snapshots/schemes';
+import { schemes } from '@preview/utils/snapshots/schemes';
 
 const { id, ...metaWithoutId } = meta;
 

@@ -1,6 +1,6 @@
 import type { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { COLOR_SCHEMES, schemes } from '@/shared/snapshots/schemes';
+import { COLOR_SCHEMES, schemes } from '@preview/utils/snapshots/schemes';
 import meta from './flex.stories';
 import './flex.styles.scss';
 import {
@@ -11,7 +11,7 @@ import {
   flexJustifyContentValues,
   flexWrapValues,
 } from './flex.docs.mdx';
-import { bombArgs } from '@/utils';
+import { bombArgs } from '@preview/utils';
 
 const { id, ...metaWithoutId } = meta;
 

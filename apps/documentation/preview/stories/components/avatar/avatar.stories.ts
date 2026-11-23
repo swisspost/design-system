@@ -1,5 +1,5 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
-import { MetaComponent } from '@root/types';
+import { MetaComponent } from '@preview/types';
 import { html, nothing } from 'lit';
 import { components } from '@swisspost/design-system-components/dist/docs.json';
 

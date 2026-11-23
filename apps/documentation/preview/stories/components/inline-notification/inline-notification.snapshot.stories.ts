@@ -1,7 +1,7 @@
 import { Args, StoryObj, StoryContext } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { schemes } from '@/shared/snapshots/schemes';
-import { bombArgs } from '@/utils';
+import { schemes } from '@preview/utils/snapshots/schemes';
+import { bombArgs } from '@preview/utils';
 import meta from './inline-notification.stories';
 
 const { id, ...metaWithoutId } = meta;

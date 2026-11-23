@@ -1,8 +1,8 @@
 import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { TemplateResult } from 'lit';
 import { html } from 'lit/static-html.js';
-import { MetaExtended } from '@root/types';
-import { parse } from '@/utils/sass-export';
+import { MetaExtended } from '@preview/types';
+import { parse } from '@preview/utils/sass-export';
 import scss from './spacing.module.scss';
 import './spacing.styles.scss';
 

@@ -1,8 +1,8 @@
 import { useArgs } from 'storybook/preview-api';
 import { StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { spreadArgs } from '@/utils';
-import { MetaComponent } from '@root/types';
+import { spreadArgs } from '@preview/utils';
+import { MetaComponent } from '@preview/types';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 const meta: MetaComponent<HTMLPostCollapsibleElement> = {

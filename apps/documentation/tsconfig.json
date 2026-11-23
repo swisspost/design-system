@@ -1,0 +1,6 @@
+{
+  // The shell and the preview never import each other, both may import `shared`.
+  // The project references enforce this: `tsc -b` fails on imports outside a project.
+  "files": [],
+  "references": [{ "path": "./preview" }, { "path": "./shell" }, { "path": "./shared" }]
+}

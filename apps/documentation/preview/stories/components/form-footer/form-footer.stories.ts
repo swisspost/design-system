@@ -1,6 +1,6 @@
 import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { MetaComponent } from '@root/types';
+import { MetaComponent } from '@preview/types';
 
 export const FooterArgs = {
   showPrimaryButton: true,

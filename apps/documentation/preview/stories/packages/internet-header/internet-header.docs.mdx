@@ -1,6 +1,5 @@
-import changelog from '@/../../../packages/internet-header/CHANGELOG.md?raw';
-import { SourceDarkScheme } from '@/../.storybook/preview';
-import PackageDocs from '@/shared/packages-docs-layout.mdx';
+import changelog from '../../../../../../packages/internet-header/CHANGELOG.md?raw';
+import PackageDocs from '@preview/blocks/packages-docs-layout.mdx';
 import { Meta, Source } from '@storybook/addon-docs/blocks';
 import SampleBareComponent from './internet-header-bare-component.sample.js?raw';
 import SampleCDNBareComponent from './internet-header-cdn-bare-component.sample.html?raw';
@@ -12,7 +11,7 @@ import SampleWithAngularFooterHTML from './internet-header-angular-app-footer.sa
 import SampleWithAngularNavJS from './internet-header-angular-app-nav.sample.js?raw';
 import SampleWithAngularAppJS from './internet-header-angular-app.sample.ts?raw';
 import * as PackageStories from './internet-header.stories';
-import { PackageShields } from '@root/src/shared/package-shields';
+import { PackageShields } from '@preview/blocks/package-shields';
 
 <Meta of={PackageStories} />
 
@@ -85,19 +84,19 @@ Internet-header package provide two versions:
 
     When working with Angular or any other framework, the easiest installation method is via npm.
 
-    <Source code={`npm install @swisspost/internet-header`} dark={SourceDarkScheme} language="bash" />
+    <Source code={`npm install @swisspost/internet-header`} dark language="bash" />
 
-    <Source code={SampleFrameworks} dark={SourceDarkScheme} language="html" />
+    <Source code={SampleFrameworks} dark language="html" />
 
     <div>
       <div className="row">
         <div className="col-md-6">
           <p className="fw-bold">Lazy-Loaded</p>
-          <Source code={SampleLazyLoaded} dark={SourceDarkScheme} language="javascript" />
+          <Source code={SampleLazyLoaded} dark language="javascript" />
         </div>
         <div className="col-md-6">
           <p className="fw-bold">Bare Component</p>
-          <Source code={SampleBareComponent} dark={SourceDarkScheme} language="javascript" />
+          <Source code={SampleBareComponent} dark language="javascript" />
         </div>
       </div>
     </div>
@@ -110,23 +109,23 @@ Internet-header package provide two versions:
 
     <figure className="code-sample-file">
       <figcaption>header.html</figcaption>
-      <Source code={SampleWithAngularHeaderHTML} dark={SourceDarkScheme} language="html" />
+      <Source code={SampleWithAngularHeaderHTML} dark language="html" />
     </figure>
     <figure className="code-sample-file">
       <figcaption>footer.html</figcaption>
-      <Source code={SampleWithAngularFooterHTML} dark={SourceDarkScheme} language="html" />
+      <Source code={SampleWithAngularFooterHTML} dark language="html" />
     </figure>
 
     Expose the components in a component file using the `CUSTOM_ELEMENTS_SCHEMA` to allow the use of custom elements in Angular.
     <figure className="code-sample-file">
       <figcaption>navigation.ts</figcaption>
-      <Source code={SampleWithAngularNavJS} dark={SourceDarkScheme} language="javascript" />
+      <Source code={SampleWithAngularNavJS} dark language="javascript" />
     </figure>
 
     Finally, you can use the header and footer components in your main application component.
     <figure className="code-sample-file">
       <figcaption>app.ts</figcaption>
-      <Source code={SampleWithAngularAppJS} dark={SourceDarkScheme} language="typescript" />
+      <Source code={SampleWithAngularAppJS} dark language="typescript" />
     </figure>
 
   </post-tab-panel>
@@ -145,11 +144,11 @@ Internet-header package provide two versions:
       <div className="row">
         <div className="col-md-6">
           <p className="fw-bold">Lazy-Loaded</p>
-          <Source code={SampleCDNLazyLoaded} dark={SourceDarkScheme} language="html" />
+          <Source code={SampleCDNLazyLoaded} dark language="html" />
         </div>
         <div className="col-md-6">
           <p className="fw-bold">Bare Component</p>
-          <Source code={SampleCDNBareComponent} dark={SourceDarkScheme} language="html" />
+          <Source code={SampleCDNBareComponent} dark language="html" />
         </div>
       </div>
     </div>

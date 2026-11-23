@@ -2,7 +2,7 @@ import type { StoryContext, StoryObj, Args } from '@storybook/web-components-vit
 import { html, TemplateResult } from 'lit';
 import './sizing.styles.scss';
 import meta from './sizing.stories';
-import { COLOR_SCHEMES, schemes } from '@/shared/snapshots/schemes';
+import { COLOR_SCHEMES, schemes } from '@preview/utils/snapshots/schemes';
 const { id, ...metaWithoutId } = meta;
 
 export default {

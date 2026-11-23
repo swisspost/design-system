@@ -1,10 +1,10 @@
 import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { MetaComponent } from '@root/types';
-import { fakeContent } from '@/utils';
+import { MetaComponent } from '@preview/types';
+import { fakeContent } from '@preview/utils';
 import { getDefaultNav, largeNav, smallNav } from './nav-content';
-import { forceCompactAppearance } from '../../../../.storybook/helpers';
+import { forceCompactAppearance } from '@preview/decorators';
 
 const meta: MetaComponent = {
   id: '9f26d86e-7edb-5804-ac96-92g22f91c9d9',

@@ -1,7 +1,7 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { keyed } from 'lit/directives/keyed.js';
-import { MetaComponent } from '@root/types';
+import { MetaComponent } from '@preview/types';
 
 const meta: MetaComponent = {
   id: 'b7db7391-f893-4b1e-a125-b30c6f0b028b',

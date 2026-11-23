@@ -9,8 +9,8 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 const require = createRequire(import.meta.url);
 
-// Resolve node_modules from apps/documentation (one level up from .storybook/)
-const docsNodeModules = join(fileURLToPath(new URL('..', import.meta.url)), 'node_modules');
+// Resolve node_modules from apps/documentation (two levels up from preview/.storybook/)
+const docsNodeModules = join(fileURLToPath(new URL('../..', import.meta.url)), 'node_modules');
 
 const config: StorybookConfig = {
   logLevel: 'info',
@@ -26,9 +26,9 @@ const config: StorybookConfig = {
 
   // MDX files inside `content-tabs/` folders are tab panel partials imported by a docs page, so they must not be indexed.
   stories: [
-    '../src/stories/*.mdx',
-    '../src/stories/**/!(content-tabs)/*.mdx',
-    '../src/stories/**/*.stories.@(ts|tsx)',
+    '../stories/*.mdx',
+    '../stories/**/!(content-tabs)/*.mdx',
+    '../stories/**/*.stories.@(ts|tsx)',
   ],
 
   addons: [
@@ -62,15 +62,15 @@ const config: StorybookConfig = {
 
   staticDirs: [
     {
-      from: '../public/assets',
+      from: '../../public/assets',
       to: '/assets',
     },
     {
-      from: '../node_modules/@swisspost/design-system-styles',
+      from: '../../node_modules/@swisspost/design-system-styles',
       to: '/styles',
     },
     {
-      from: '../node_modules/@swisspost/design-system-icons/public/post-icons',
+      from: '../../node_modules/@swisspost/design-system-icons/public/post-icons',
       to: '/post-icons',
     },
   ],

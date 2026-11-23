@@ -1,5 +1,5 @@
-import { forEach } from '@/utils/react';
-import { parse } from '@/utils/sass-export';
+import { forEach } from '@preview/utils/react';
+import { parse } from '@preview/utils/sass-export';
 import { SpecTable } from '../shared.blocks';
 import scss from './breakpoints.module.scss';
 

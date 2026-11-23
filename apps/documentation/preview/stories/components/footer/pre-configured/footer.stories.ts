@@ -1,6 +1,6 @@
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { MetaComponent } from '@root/types';
+import { MetaComponent } from '@preview/types';
 import { renderHeader } from '../../header/pre-configured/header.stories';
 
 const meta: MetaComponent = {

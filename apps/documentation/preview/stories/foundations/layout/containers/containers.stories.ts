@@ -1,6 +1,6 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { StoryContext, StoryFn } from '@storybook/web-components-vite';
-import { MetaExtended } from '@root/types';
+import { MetaExtended } from '@preview/types';
 import { html } from 'lit';
 import './containers.styles.scss';
 

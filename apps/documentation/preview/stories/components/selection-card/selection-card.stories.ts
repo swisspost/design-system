@@ -3,8 +3,8 @@ import { useArgs, useState } from 'storybook/preview-api';
 import { nothing } from 'lit';
 import { html } from 'lit/static-html.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { MetaComponent } from '@root/types';
-import { VALIDATION_STATE_MAP } from '@/utils/form-elements';
+import { MetaComponent } from '@preview/types';
+import { VALIDATION_STATE_MAP } from '@preview/utils/form-elements';
 
 const commonArgs: ArgTypes = {
   label: {

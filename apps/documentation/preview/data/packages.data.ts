@@ -1,13 +1,13 @@
-import { PackageType } from '@root/types';
-import metaStyles from '@/stories/packages/styles/styles.stories';
-import metaComponents from '@/stories/packages/components/components.stories';
-import metaComponentsAngular from '@/stories/packages/components-angular/components-angular.stories';
-import metaComponentsReact from '@/stories/packages/components-react/components-react.stories';
-import metaInternetHeader from '@/stories/packages/internet-header/internet-header.stories';
-import metaIcons from '@/stories/packages/icons/package-icons.stories';
-import metaTokens from '@/stories/packages/tokens/tokens.stories';
-import metaThemeAGGrid from '@/stories/packages/theme-ag-grid/theme-ag-grid.stories';
-import { DEPENDENCIES, getVersion } from '@/utils/version';
+import { PackageType } from '@preview/types';
+import metaStyles from '@preview/stories/packages/styles/styles.stories';
+import metaComponents from '@preview/stories/packages/components/components.stories';
+import metaComponentsAngular from '@preview/stories/packages/components-angular/components-angular.stories';
+import metaComponentsReact from '@preview/stories/packages/components-react/components-react.stories';
+import metaInternetHeader from '@preview/stories/packages/internet-header/internet-header.stories';
+import metaIcons from '@preview/stories/packages/icons/package-icons.stories';
+import metaTokens from '@preview/stories/packages/tokens/tokens.stories';
+import metaThemeAGGrid from '@preview/stories/packages/theme-ag-grid/theme-ag-grid.stories';
+import { DEPENDENCIES, getVersion } from '@shared/version-utils';
 
 export interface IPackage {
   type: PackageType;

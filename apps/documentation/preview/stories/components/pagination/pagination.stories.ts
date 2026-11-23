@@ -1,7 +1,7 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { useArgs } from 'storybook/preview-api';
-import { MetaComponent } from '@root/types';
+import { MetaComponent } from '@preview/types';
 
 const meta: MetaComponent = {
   id: 'd6f8b5c7-4e2a-4f3a-9d3a-1a2b3c4d5e6f',

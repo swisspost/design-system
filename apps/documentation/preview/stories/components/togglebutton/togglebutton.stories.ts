@@ -1,6 +1,6 @@
 import { type Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '@root/types';
+import { MetaComponent } from '@preview/types';
 import buttonMeta from '../button/button.stories';
 
 export interface PostTogglebuttonProps {
