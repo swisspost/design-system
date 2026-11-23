@@ -2,7 +2,7 @@ import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vit
 import meta from './divider.stories';
 import { html } from 'lit';
 import { schemes } from '@preview/utils/snapshots/schemes';
-import { bombArgs } from '@preview/utils';
+import { bombArgs } from '@preview/utils/bomb-args';
 
 const { id, ...metaWithoutId } = meta;
 

@@ -5,7 +5,6 @@ import SampleWcAngularManually from './sample-web-components-angular-manually.co
 import { packages } from '@preview/data/packages.data';
 import '@preview/blocks/tile/tile.component';
 import './angular.styles.scss';
-import { PackageType } from '@preview/types';
 
 <Meta of={AngularStories} />
 
@@ -21,7 +20,7 @@ Currently, we are providing some of our packages with those technologies:
 
 <ul className="tile-wrapper" role="list">
   {Object.values(packages)
-    .filter(pkg => pkg.type === PackageType.Wc)
+    .filter(pkg => pkg.type === 'WebComponents')
     .map(pkg => (
       <li key={pkg.name}>
         <ti-le title={pkg.name} href={pkg.links.docs.href} ariaLabel={pkg.links.docs.ariaLabel}>

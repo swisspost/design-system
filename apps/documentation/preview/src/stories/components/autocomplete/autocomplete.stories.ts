@@ -1,5 +1,5 @@
-import { spreadArgs } from '@preview/utils';
-import { MetaComponent } from '@preview/types';
+import { spreadArgs } from '@preview/utils/spread-args';
+import { MetaComponent } from '@preview/types/storybook';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, TemplateResult } from 'lit';
 
@@ -7,7 +7,7 @@ const meta: MetaComponent = {
   id: '5ef3cb45-86f6-4baf-bdbf-35bd2ddf0f3d',
   title: 'Raw Components/Form Autocomplete',
   component: 'post-autocomplete',
-  tags: ['package:WebComponents', 'devOnly', 'status:New'],
+  tags: ['package:components', 'visibility:dev', 'status:new'],
   render: createAutocompleteRenderer(),
   parameters: {
     badges: [],

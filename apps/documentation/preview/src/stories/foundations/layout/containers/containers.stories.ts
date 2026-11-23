@@ -1,13 +1,13 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { StoryContext, StoryFn } from '@storybook/web-components-vite';
-import { MetaExtended } from '@preview/types';
+import { MetaExtended } from '@preview/types/storybook';
 import { html } from 'lit';
 import './containers.styles.scss';
 
 const meta: MetaExtended = {
   id: 'a4ca9660-bb4a-4cc7-adfd-84767382ac03',
   title: 'Foundations/Layout/Containers',
-  tags: ['package:Styles'],
+  tags: ['package:styles'],
   render: (args: Args) => html`
     <div class=${args.containerClass}>
       <!-- Content goes here -->

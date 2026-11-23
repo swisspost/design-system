@@ -1,5 +1,5 @@
-import { fakeContent } from '@preview/utils';
-import { MetaComponent } from '@preview/types';
+import { fakeContent } from '@preview/utils/fake-content';
+import { MetaComponent } from '@preview/types/storybook';
 import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 
@@ -7,7 +7,7 @@ const meta: MetaComponent = {
   id: '1a1b4cab-d0a8-4b01-bd85-b70e18668cb5',
   title: 'Components/Button Back-to-Top',
   component: 'post-back-to-top',
-  tags: ['package:WebComponents', 'status:New'],
+  tags: ['package:components', 'status:new'],
   parameters: {
     layout: 'fullscreen',
     design: {

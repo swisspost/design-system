@@ -2,7 +2,7 @@ import type { Args, StoryObj } from '@storybook/web-components-vite';
 import meta, { renderListGroup } from './list-interactive.stories';
 import { html } from 'lit';
 import { schemes } from '@preview/utils/snapshots/schemes';
-import { bombArgs } from '@preview/utils';
+import { bombArgs } from '@preview/utils/bomb-args';
 
 const { id, ...metaWithoutId } = meta;
 

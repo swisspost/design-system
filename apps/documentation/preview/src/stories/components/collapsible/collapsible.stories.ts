@@ -1,14 +1,14 @@
 import { useArgs } from 'storybook/preview-api';
 import { StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { spreadArgs } from '@preview/utils';
-import { MetaComponent } from '@preview/types';
+import { spreadArgs } from '@preview/utils/spread-args';
+import { MetaComponent } from '@preview/types/storybook';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 const meta: MetaComponent<HTMLPostCollapsibleElement> = {
   id: '6a91848c-16ec-4a23-bc45-51c797b5b2c3',
   title: 'Components/Collapsible',
-  tags: ['package:WebComponents'],
+  tags: ['package:components'],
   component: 'post-collapsible',
   render: RenderCollapsible,
   parameters: {

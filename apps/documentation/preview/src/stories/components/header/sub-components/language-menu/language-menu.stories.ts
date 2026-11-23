@@ -1,11 +1,11 @@
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 import type { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 
 const meta: MetaComponent<HTMLPostLanguageMenuElement> = {
   id: 'decbb10c-2b39-4f47-b67d-337d8111a3ae',
   title: 'Components/Header/Sub Components/Language Menu',
-  tags: ['package:WebComponents', 'status:New'],
+  tags: ['package:components', 'status:new'],
   component: 'post-language-menu',
   render: renderLanguageMenu,
   parameters: {

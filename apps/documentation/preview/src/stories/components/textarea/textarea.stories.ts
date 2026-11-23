@@ -1,4 +1,4 @@
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import {
@@ -10,7 +10,7 @@ import {
 const meta: MetaComponent = {
   id: '152b7268-cce0-43d7-b931-41a57370f9a0',
   title: 'Components/Form Textarea',
-  tags: ['package:Styles'],
+  tags: ['package:styles'],
   render: renderTextarea,
   parameters: {
     badges: [],

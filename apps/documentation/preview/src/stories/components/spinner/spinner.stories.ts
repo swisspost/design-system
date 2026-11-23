@@ -1,11 +1,11 @@
 import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit/static-html.js';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 
 const meta: MetaComponent = {
   id: 'd0e645d0-3bf2-4b00-967a-5a1343107f60',
   title: 'Components/Spinner',
-  tags: ['package:Styles'],
+  tags: ['package:styles'],
   render,
   decorators: [(story, context) => generateDecorators(story, context)],
   parameters: {

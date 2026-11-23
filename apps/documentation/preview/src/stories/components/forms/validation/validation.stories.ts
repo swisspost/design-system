@@ -1,6 +1,6 @@
 import { Args, StoryObj, StoryContext } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 
 const validationObject: object = {
   name: 'validation',
@@ -63,7 +63,7 @@ function renderFeedback(
 const meta: MetaComponent = {
   id: '1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472',
   title: 'Components/Form Validation',
-  tags: ['package:Styles'],
+  tags: ['package:styles'],
   parameters: {
     badges: [],
     design: {

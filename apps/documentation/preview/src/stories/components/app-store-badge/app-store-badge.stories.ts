@@ -1,11 +1,11 @@
 import { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 
 const meta: MetaComponent = {
   id: 'f1cda0ac-28d4-4afc-b56d-9182bd9bd671',
   title: 'Components/App Store Badge',
-  tags: ['package:Styles', 'status:New'],
+  tags: ['package:styles', 'status:new'],
   parameters: {
     badges: [],
     design: {

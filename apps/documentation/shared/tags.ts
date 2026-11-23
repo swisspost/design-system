@@ -1,18 +1,18 @@
-/** Prefix of the tags that link a page to the package it documents, e.g. `package:Styles` */
+export const STATUS_TAG_PREFIX = 'status:';
 export const PACKAGE_TAG_PREFIX = 'package:';
+export const VISIBILITY_TAG_PREFIX = 'visibility:';
 
-/** Tag of the pages that are only listed in dev mode */
-export const DEV_ONLY_TAG = 'devOnly';
+export type Status = 'new';
 
-/** Tag of the components that were added recently */
-export const NEW_TAG = 'status:New';
+export type Visibility = 'dev';
 
-export enum PackageType {
-  Styles = 'Styles',
-  Wc = 'WebComponents',
-  React = 'React',
-  Angular = 'Angular',
-  InternetHeader = 'InternetHeader',
-  Assets = 'Assets',
-  Ts = 'Typescript',
-}
+export type Tag = PackageTag | StatusTag | VisibilityTag;
+
+/** Links a page to a package. **/
+export type PackageTag = `${typeof PACKAGE_TAG_PREFIX}${string}`;
+
+/** Sets the visibility of a page. **/
+export type VisibilityTag = `${typeof VISIBILITY_TAG_PREFIX}${Visibility}`;
+
+/** Adds a status to a page. **/
+export type StatusTag = `${typeof STATUS_TAG_PREFIX}${Status}`;

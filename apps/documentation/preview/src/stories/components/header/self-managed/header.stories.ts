@@ -1,21 +1,20 @@
-import {
-  renderLoginLink,
-  renderMainnavigation,
-  renderSideNavigation,
-  renderTitle,
-  renderUserMenu,
-} from '@preview/stories/components/header/self-managed/renderers';
-import { fakeContent } from '@preview/utils';
-import { MetaComponent } from '@preview/types';
+import { renderLoginLink } from '@preview/stories/components/header/self-managed/renderers/login-link';
+import { renderMainnavigation } from '@preview/stories/components/header/self-managed/renderers/main-navigation';
+import { renderSideNavigation } from '@preview/stories/components/header/self-managed/renderers/side-navigation';
+import { renderTitle } from '@preview/stories/components/header/self-managed/renderers/title';
+import { renderUserMenu } from '@preview/stories/components/header/self-managed/renderers/user-menu';
+import { fakeContent } from '@preview/utils/fake-content';
+import { MetaComponent } from '@preview/types/storybook';
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { forceCompactAppearance } from '@preview/decorators';
-import { getSlottedContent, SubComponentRenderers } from './utils';
+import { forceCompactAppearance } from '@preview/decorators/force-compact-appearance';
+import { getSlottedContent } from './utils/get-slotted-content';
+import { SubComponentRenderers } from './utils/get-sub-component-renderers';
 
 const meta: MetaComponent = {
   id: '27a2e64d-55ba-492d-ab79-5f7c5e818498',
   title: 'Components/Header/Self-Managed',
-  tags: ['package:WebComponents', 'status:New'],
+  tags: ['package:components', 'status:new'],
   component: 'post-header',
   parameters: {
     layout: 'fullscreen',

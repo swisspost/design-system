@@ -1,4 +1,4 @@
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 import type { StoryObj } from '@storybook/web-components-vite';
 import type { HeadingLevel } from '@swisspost/design-system-components';
 import { html, nothing, TemplateResult } from 'lit';
@@ -7,7 +7,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 const meta: MetaComponent<HTMLPostAccordionElement & HTMLPostCollapsibleElementEventMap> = {
   id: '4d1b4185-e04d-494a-ab38-2b56c1778b0b',
   title: 'Components/Accordion',
-  tags: ['package:WebComponents'],
+  tags: ['package:components'],
   component: 'post-accordion',
   render: renderAccordion(),
   parameters: {

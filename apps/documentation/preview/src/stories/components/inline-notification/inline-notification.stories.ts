@@ -1,12 +1,12 @@
 import type { Args, StoryFn, StoryObj } from '@storybook/web-components-vite';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 const meta: MetaComponent = {
   id: 'bf4826ad-450e-4d8a-8b2d-796c31758349',
   title: 'Components/Inline Notification',
-  tags: ['package:Styles', 'status:New'],
+  tags: ['package:styles', 'status:new'],
   render: renderInlineNotification,
   parameters: {
     design: {

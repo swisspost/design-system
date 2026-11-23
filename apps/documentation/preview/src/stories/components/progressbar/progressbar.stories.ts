@@ -1,4 +1,4 @@
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 
@@ -8,7 +8,7 @@ const meta: MetaComponent = {
   id: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890',
   title: 'Components/Progressbar',
   component: 'post-progressbar',
-  tags: ['package:Styles', 'package:WebComponents', 'status:New'],
+  tags: ['package:styles', 'package:components', 'status:new'],
   render,
   parameters: {
     badges: [],

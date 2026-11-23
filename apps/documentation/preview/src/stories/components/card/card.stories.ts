@@ -1,11 +1,11 @@
 import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 
 const meta: MetaComponent = {
   id: '605c788d-3f75-4e6c-8498-be3d546843c2',
   title: 'Components/Card',
-  tags: ['package:Styles'],
+  tags: ['package:styles'],
   render: renderCard,
   decorators: [clickBlocker],
   parameters: {

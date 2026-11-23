@@ -1,11 +1,11 @@
 import { StoryObj } from '@storybook/web-components-vite';
-import { MetaExtended } from '@preview/types';
+import { MetaExtended } from '@preview/types/storybook';
 import { html } from 'lit/static-html.js';
 
 const meta: MetaExtended = {
   id: '677cfabf-dbf0-4de2-ad07-6d5bfb9e2375',
   title: 'Foundations/Typography',
-  tags: ['package:Styles'],
+  tags: ['package:styles'],
   parameters: {
     design: {
       type: 'figma',

@@ -1,5 +1,5 @@
 import { schemes } from '@preview/utils/snapshots/schemes';
-import { bombArgs } from '@preview/utils';
+import { bombArgs } from '@preview/utils/bomb-args';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import meta from './progressbar.stories';

@@ -1,7 +1,7 @@
 import type { Args, StoryObj, StoryFn, StoryContext } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import './vertical-align.styles.scss';
-import { MetaExtended } from '@preview/types';
+import { MetaExtended } from '@preview/types/storybook';
 
 const alignOptions = ['baseline', 'top', 'middle', 'bottom', 'text-bottom', 'text-top'];
 

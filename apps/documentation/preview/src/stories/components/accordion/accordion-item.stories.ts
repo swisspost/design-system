@@ -1,6 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/web-components-vite';
+import { MetaExtended } from '@preview/types/storybook';
+import type { StoryObj } from '@storybook/web-components-vite';
 
-const meta: Meta = {
+const meta: MetaExtended = {
   id: '3b86bc9b-3dcd-4788-a436-88fd18a6312d',
   title: 'Components/Accordion Item',
   component: 'post-accordion-item',

@@ -2,14 +2,14 @@ import { spread } from '@open-wc/lit-helpers';
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { spreadArgs } from '@preview/utils';
+import { spreadArgs } from '@preview/utils/spread-args';
 import { PostIcon } from '@swisspost/design-system-components/dist/components/post-icon';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 
 const meta: MetaComponent = {
   id: '0dcfe3c0-bfc0-4107-b43b-7e9d825b805f',
   title: 'Foundations/Icons',
-  tags: ['package:WebComponents'],
+  tags: ['package:components'],
   component: 'post-icon',
   parameters: {
     badges: [],

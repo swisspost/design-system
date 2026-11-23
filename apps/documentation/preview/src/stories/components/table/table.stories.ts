@@ -1,12 +1,12 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { mapClasses } from '@preview/utils';
-import { MetaComponent } from '@preview/types';
+import { mapClasses } from '@preview/utils/map-classes';
+import { MetaComponent } from '@preview/types/storybook';
 
 const meta: MetaComponent = {
   id: '81799516-470c-446b-a049-54946b6ccfca',
   title: 'Components/Table',
-  tags: ['package:Styles'],
+  tags: ['package:styles'],
   render: renderTable,
   parameters: {
     badges: [],

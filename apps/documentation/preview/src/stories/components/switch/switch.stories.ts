@@ -2,14 +2,14 @@ import { useArgs } from 'storybook/preview-api';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { mapClasses } from '@preview/utils';
-import { MetaComponent } from '@preview/types';
+import { mapClasses } from '@preview/utils/map-classes';
+import { MetaComponent } from '@preview/types/storybook';
 import { getLabelText, VALIDATION_STATE_MAP } from '@preview/utils/form-elements';
 
 const meta: MetaComponent = {
   id: '7fb639f8-86f6-4937-999c-4ee15f81643b',
   title: 'Components/Form Switch',
-  tags: ['package:Styles'],
+  tags: ['package:styles'],
   render: RenderSwitch,
   parameters: {
     badges: [],

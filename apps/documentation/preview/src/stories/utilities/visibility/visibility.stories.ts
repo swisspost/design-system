@@ -1,7 +1,7 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import './visibility.styles.scss';
-import { MetaExtended } from '@preview/types';
+import { MetaExtended } from '@preview/types/storybook';
 
 const visibilityOptions = ['visible', 'invisible'];
 

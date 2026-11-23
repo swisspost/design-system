@@ -3,7 +3,7 @@ import {
   getValidationMessages,
   VALIDATION_STATE_MAP,
 } from '@preview/utils/form-elements';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { repeat } from 'lit-html/directives/repeat.js';
@@ -12,7 +12,7 @@ const meta: MetaComponent = {
   id: 'd5f43fa8-42ba-4cb9-98c7-9386d4c939bb',
   title: 'Components/Form Number Input',
   component: 'post-number-input',
-  tags: ['package:WebComponents', 'status:New'],
+  tags: ['package:components', 'status:new'],
   parameters: {
     design: {
       type: 'figma',

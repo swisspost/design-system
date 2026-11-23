@@ -1,6 +1,6 @@
 import { type Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 import buttonMeta from '../button/button.stories';
 
 export interface PostTogglebuttonProps {
@@ -14,7 +14,7 @@ export interface PostTogglebuttonProps {
 const meta: MetaComponent<PostTogglebuttonProps> = {
   id: '1a6f47c2-5e8a-45a0-b1c3-9f7e2b834c24',
   title: 'Components/Button Toggle',
-  tags: ['package:WebComponents', 'status:New'],
+  tags: ['package:components', 'status:new'],
   render: renderBadge,
   component: 'post-togglebutton',
   parameters: {

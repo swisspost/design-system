@@ -1,4 +1,4 @@
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit/static-html.js';
 import { nothing } from 'lit';
@@ -6,7 +6,7 @@ import { nothing } from 'lit';
 const meta: MetaComponent = {
   id: 'a1eef11e-b5db-4066-99a8-9723a6cdef12',
   title: 'Components/Divider',
-  tags: ['package:Styles', 'status:New'],
+  tags: ['package:styles', 'status:new'],
   render,
   parameters: {
     badges: [],

@@ -1,12 +1,12 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 
 const meta: MetaComponent = {
   id: 'fb749467-c70e-4d87-b639-03cc713a8370',
   title: 'Components/Listbox',
   component: 'post-listbox',
-  tags: ['package:WebComponents'],
+  tags: ['package:components'],
   parameters: {
     badges: [],
     design: {},

@@ -1,15 +1,15 @@
 import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { MetaComponent } from '@preview/types';
-import { fakeContent } from '@preview/utils';
+import { MetaComponent } from '@preview/types/storybook';
+import { fakeContent } from '@preview/utils/fake-content';
 import { getDefaultNav, largeNav, smallNav } from './nav-content';
-import { forceCompactAppearance } from '@preview/decorators';
+import { forceCompactAppearance } from '@preview/decorators/force-compact-appearance';
 
 const meta: MetaComponent = {
   id: '9f26d86e-7edb-5804-ac96-92g22f91c9d9',
   title: 'Components/Side Navigation',
-  tags: ['package:WebComponents', 'status:New'],
+  tags: ['package:components', 'status:new'],
   component: 'post-side-navigation',
   parameters: {
     layout: 'fullscreen',

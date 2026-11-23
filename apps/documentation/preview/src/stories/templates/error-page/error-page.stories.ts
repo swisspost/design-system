@@ -1,4 +1,5 @@
-import { Meta, StoryObj } from '@storybook/web-components-vite';
+import { MetaExtended } from '@preview/types/storybook';
+import { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 
 type ErrorContent = {
@@ -85,7 +86,7 @@ const errorTypeLabels = Object.fromEntries(
   errorTypeOptions.map(type => [type, `${type}: ${contentByType[type].label}`]),
 ) as Record<ErrorType, string>;
 
-const meta: Meta = {
+const meta: MetaExtended = {
   id: 'a536a61d-cac2-4f39-adbf-092bdd445ce5',
   title: 'Templates/Error page',
   parameters: {

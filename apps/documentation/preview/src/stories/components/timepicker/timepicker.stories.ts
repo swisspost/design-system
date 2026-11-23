@@ -1,6 +1,6 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing, TemplateResult } from 'lit';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 import {
   getLabelText,
   getValidationMessages,
@@ -10,7 +10,7 @@ import {
 const meta: MetaComponent = {
   id: '51471f0b-1bbb-4059-951b-f89aa7339f91',
   title: 'Components/Form Time Picker',
-  tags: ['package:Styles'],
+  tags: ['package:styles'],
   render: render,
   parameters: {
     design: {

@@ -2,7 +2,6 @@ import { Meta } from '@storybook/addon-docs/blocks';
 import * as DeveloperStories from './developer.stories';
 import { packages } from '@preview/data/packages.data';
 import '@preview/blocks/tile/tile.component';
-import { PackageType } from '@preview/types';
 import './list-component';
 
 export const renderPackageTile = pkg => (
@@ -117,7 +116,7 @@ The design-system is formed with several packages and different compatibilities 
         <td scope="row">
           Internet-header:
           <developer-list-component
-            packageType={PackageType.InternetHeader}
+            packageName="internet-header"
           ></developer-list-component>
         </td>
         <td rowSpan="4">
@@ -133,7 +132,7 @@ The design-system is formed with several packages and different compatibilities 
       <tr>
         <td scope="row">
           Web Components:
-          <developer-list-component packageType={PackageType.Wc}></developer-list-component>
+          <developer-list-component packageName="components"></developer-list-component>
         </td>
         <td>
           {renderPackageTile(packages['components'])}
@@ -148,7 +147,7 @@ The design-system is formed with several packages and different compatibilities 
       <tr>
         <td scope="row">
           HTML components:
-          <developer-list-component packageType={PackageType.Styles}></developer-list-component>
+          <developer-list-component packageName="styles"></developer-list-component>
         </td>
         <td colSpan="3">No additional package is required</td>
       </tr>

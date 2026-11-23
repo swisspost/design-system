@@ -1,11 +1,11 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, unsafeStatic } from 'lit/static-html.js';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 
 const meta: MetaComponent = {
   id: 'a4c7d5fa-9f8d-4a95-820b-ae4ce9ab4f03',
   title: 'Components/Blockquote',
-  tags: ['package:Styles'],
+  tags: ['package:styles'],
   render: renderBlockquote,
   parameters: {
     badges: [],

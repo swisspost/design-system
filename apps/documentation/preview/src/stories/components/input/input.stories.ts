@@ -1,6 +1,6 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing, TemplateResult } from 'lit';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 import {
   getLabelText,
   getValidationMessages,
@@ -10,7 +10,7 @@ import {
 const meta: MetaComponent = {
   id: '2df77c32-5e33-402e-bd2e-54d54271ce19',
   title: 'Components/Form Input',
-  tags: ['package:Styles'],
+  tags: ['package:styles'],
   render: render,
   parameters: {
     badges: [],

@@ -1,12 +1,12 @@
 import type { StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 import { StoryContext, StoryFn } from '@storybook/web-components-vite';
 
 const meta: MetaComponent<HTMLPostLanguageMenuItemElement> = {
   id: '3753ab83-a659-47b5-a2f2-ac452ec97916',
   title: 'Components/Header/Sub Components/Language Menu Item',
-  tags: ['package:WebComponents', 'status:New'],
+  tags: ['package:components', 'status:new'],
   component: 'post-language-menu-item',
   render: renderLanguageOption,
   decorators: [listContainer],

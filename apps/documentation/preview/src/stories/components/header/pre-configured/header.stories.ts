@@ -1,5 +1,5 @@
-import { fakeContent } from '@preview/utils';
-import { MetaComponent } from '@preview/types';
+import { fakeContent } from '@preview/utils/fake-content';
+import { MetaComponent } from '@preview/types/storybook';
 import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 
@@ -23,7 +23,7 @@ const defaultArgs: Args = {
 const meta: MetaComponent = {
   id: 'ebb11274-091b-4cb7-9a3f-3e0451c9a865',
   title: 'Components/Header/Pre-Configured',
-  tags: ['package:InternetHeader', 'status:New'],
+  tags: ['package:internet-header', 'status:new'],
   component: 'swisspost-internet-header',
   parameters: {
     badges: [],

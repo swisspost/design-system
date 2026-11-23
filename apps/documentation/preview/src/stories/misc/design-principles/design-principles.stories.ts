@@ -1,4 +1,4 @@
-import { MetaExtended } from '@preview/types';
+import { MetaExtended } from '@preview/types/storybook';
 import { StoryObj } from '@storybook/web-components-vite';
 
 const meta: MetaExtended = {

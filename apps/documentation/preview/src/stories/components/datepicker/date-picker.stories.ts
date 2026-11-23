@@ -1,4 +1,4 @@
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { keyed } from 'lit/directives/keyed.js';
@@ -12,7 +12,7 @@ const meta: MetaComponent = {
   id: 'eb77cd02-48b2-42e1-a3e4-cd8a973d431e',
   title: 'Components/Form Date Picker',
   component: 'post-date-picker',
-  tags: ['package:WebComponents', 'status:New'],
+  tags: ['package:components', 'status:new'],
   render,
   parameters: {
     controls: {

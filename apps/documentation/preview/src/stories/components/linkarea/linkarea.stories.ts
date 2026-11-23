@@ -1,6 +1,6 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 
 export interface PostLinkarea {
   dataLink?: boolean;
@@ -11,7 +11,7 @@ export interface PostLinkarea {
 const meta: MetaComponent<PostLinkarea> = {
   id: '1d52b794-768b-464e-90eb-4fd15774aa90',
   title: 'Components/Link Area',
-  tags: ['package:WebComponents', 'status:New'],
+  tags: ['package:components', 'status:new'],
   render: renderLinkarea,
   component: 'post-linkarea',
   parameters: {

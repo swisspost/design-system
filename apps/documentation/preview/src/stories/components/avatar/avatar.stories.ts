@@ -1,5 +1,5 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 import { html, nothing } from 'lit';
 import { components } from '@swisspost/design-system-components/dist/docs.json';
 
@@ -10,7 +10,7 @@ const meta: MetaComponent = {
   id: '09aac03d-220e-4885-8fb8-1cfa01add188',
   title: 'Components/Avatar',
   component: 'post-avatar',
-  tags: ['package:WebComponents', 'status:New'],
+  tags: ['package:components', 'status:new'],
   parameters: {
     design: {
       type: 'figma',

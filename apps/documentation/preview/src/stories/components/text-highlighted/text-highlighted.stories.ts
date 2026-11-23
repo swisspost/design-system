@@ -1,11 +1,11 @@
 import type { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { MetaExtended } from '@preview/types';
+import { MetaExtended } from '@preview/types/storybook';
 
 const meta: MetaExtended = {
   id: '88318ccf-be8d-4bdf-b8dc-06b0b78e5e3d',
   title: 'Components/Text Highlighted',
-  tags: ['package:Styles', 'status:New'],
+  tags: ['package:styles', 'status:new'],
   parameters: {
     badges: [],
     design: {

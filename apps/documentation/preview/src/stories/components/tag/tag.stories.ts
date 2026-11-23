@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
-import { MetaComponent } from '@preview/types';
+import { MetaComponent } from '@preview/types/storybook';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
@@ -14,7 +14,7 @@ export const CustomIconSignalMapping: Record<string, string> = {
 const meta: MetaComponent = {
   id: '1b1ea384-7421-4064-ad34-e3f48a36b39f',
   title: 'Components/Tag',
-  tags: ['package:Styles'],
+  tags: ['package:styles'],
   render: renderTag,
   parameters: {
     design: {

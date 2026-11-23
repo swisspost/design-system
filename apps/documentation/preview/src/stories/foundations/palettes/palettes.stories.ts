@@ -1,10 +1,11 @@
-import { Args, Meta, StoryObj } from '@storybook/web-components-vite';
+import { MetaExtended } from '@preview/types/storybook';
+import { Args, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 
-const meta: Meta = {
+const meta: MetaExtended = {
   id: '43481535-5b39-40b5-a273-478b07dc3b31',
   title: 'Foundations/Palettes',
-  tags: ['package:Styles', 'status:New'],
+  tags: ['package:styles', 'status:new'],
   render: renderPalette,
   parameters: {
     palettes: [],

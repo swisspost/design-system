@@ -1,8 +1,9 @@
-import { Meta, StoryObj } from '@storybook/web-components-vite';
+import { MetaBase } from '@preview/types/storybook';
+import { StoryObj } from '@storybook/web-components-vite';
 
-const meta: Meta = {
+const meta: MetaBase = {
   title: 'Health/Package Stats',
-  tags: ['devOnly'],
+  tags: ['visibility:dev'],
 };
 
 export default meta;
