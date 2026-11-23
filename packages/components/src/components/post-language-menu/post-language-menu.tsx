@@ -96,7 +96,17 @@ export class PostLanguageMenu {
    */
   @Listen('postChange')
   @EventFrom('post-language-menu-item')
-  handlePostChange(event: CustomEvent<string>) {
+  handlePostChange() {
+    // Hides the dropdown when an option has been clicked
+    if (this.variant === 'menu') {
+      const menu = this.host.shadowRoot.querySelector<HTMLPostMenuElement>('post-menu');
+      menu.hide();
+    }
+  }
+
+  @Listen('postLanguageMenuItemSelected')
+  @EventFrom('post-language-menu-item')
+  handleItemSelected(event: CustomEvent<string>) {
     this.activeLang = event.detail;
 
     // Update the active state in the children post-language-menu-item components
@@ -107,12 +117,6 @@ export class PostLanguageMenu {
         lang.removeAttribute('active');
       }
     });
-
-    // Hides the dropdown when an option has been clicked
-    if (this.variant === 'menu') {
-      const menu = this.host.shadowRoot.querySelector<HTMLPostMenuElement>('post-menu');
-      menu.hide();
-    }
   }
 
   @Listen('scroll', { target: 'document', capture: true })
