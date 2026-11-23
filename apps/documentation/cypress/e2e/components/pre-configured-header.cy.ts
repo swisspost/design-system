@@ -10,9 +10,6 @@ describe('Pre-configured Header docs', () => {
     cy.viewport(viewportWidth, 900);
     cy.visit(`/iframe.html?id=${DOCS_ID}&viewMode=docs`);
 
-    // Canvases stay hidden until the styles switcher of the manager sets their color scheme
-    cy.get('.sbdocs-preview').first().invoke('attr', 'data-color-scheme', 'light');
-
     // Query aliases are re-run on every use, so they also resolve after the iframe reloads
     cy.get(`iframe[src*="id=${STORY_ID}"]`).its('0.contentWindow').as('storyWindow');
     cy.get(`iframe[src*="id=${STORY_ID}"]`)

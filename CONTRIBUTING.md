@@ -220,11 +220,11 @@ For some packages it's necessary to run multiple dev servers at the same time. T
 
 ### Documentation DevServer: 9000-9099
 
-| Package            | Port |
-| :----------------- | ---: |
-| Storybook          | 9000 |
-| Storybook Headless | 9001 |
-| Demo               | 9010 |
+| Package                    | Port |
+| :------------------------- | ---: |
+| Documentation Shell        | 9000 |
+| Storybook Preview/Headless | 9001 |
+| Demo                       | 9010 |
 
 ### Components DevServer: 9200-9299
 
