@@ -363,7 +363,7 @@ export class PostHeader {
   }
 
   private get isHidden(): boolean {
-    return this.host.hasAttribute('data-hidden');
+    return Object.hasOwn(this.host.dataset, 'hidden');
   }
 
   // A header that is not rendered (e.g. kept in the DOM with display: none) must neither

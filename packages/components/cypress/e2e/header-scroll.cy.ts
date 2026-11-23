@@ -130,8 +130,8 @@ describe('header', () => {
 
       cy.get('@header').then($header => {
         const hiddenHeader = $header[0].cloneNode(true) as HTMLElement;
-        hiddenHeader.removeAttribute('data-hydrated');
-        hiddenHeader.removeAttribute('data-hidden');
+        delete hiddenHeader.dataset.hydrated;
+        delete hiddenHeader.dataset.hidden;
         hiddenHeader.style.display = 'none';
         $header[0].before(hiddenHeader);
         $header.find('[slot="main-nav"]').remove();
