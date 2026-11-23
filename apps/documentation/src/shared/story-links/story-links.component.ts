@@ -55,7 +55,7 @@ function isDevModeEnabled(): boolean {
     const env = window.top?.document.documentElement.getAttribute('data-env');
     if (env) return env === 'development';
   } catch {
-    // The Storybook manager belongs to another origin
+    // the documentation shell has another origin in the two-port dev setup
   }
 
   const storedDevMode = localStorage.getItem('devModeEnabled');

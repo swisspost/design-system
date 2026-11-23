@@ -13,8 +13,6 @@ describe('Side Navigation docs', () => {
 
   beforeEach(() => {
     cy.visit(`/iframe.html?id=${DOCS_ID}&viewMode=docs`);
-    // Canvases stay hidden until the styles switcher of the manager sets their color scheme
-    cy.get('.main-story .sbdocs-preview').invoke('attr', 'data-color-scheme', 'light');
     // Query aliases are re-run on every use, so they also resolve after the iframe reloads
     cy.get(STORY_IFRAME)
       .its('0.contentDocument.body')

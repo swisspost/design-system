@@ -12,14 +12,6 @@ tokens.$default-map: elements.$post-body;
 body {
   font-family: var(--post-docs-font-serif);
 
-  // manager
-  #root {
-    * {
-      font-family: var(--post-docs-font-monospace);
-    }
-  }
-
-  // preview
   #storybook-docs {
     :is(pre, .prismjs) {
       font-family: var(--post-docs-font-monospace);

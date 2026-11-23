@@ -131,7 +131,7 @@ export class Search extends React.Component {
   }
 
   private applyDeeplinkFromLocation() {
-    const params = new URLSearchParams(window.parent?.location.search ?? window.location.search);
+    const params = new URLSearchParams(this.getDeeplinkSearch());
     const setName = this.normalizeSetName(this.getSearchParam(params, 'spds-iconset'));
     const query = this.getSearchParam(params, 'spds-query');
 
@@ -144,6 +144,15 @@ export class Search extends React.Component {
       this.search(query);
     } else if (setName) {
       this.updateResults();
+    }
+  }
+
+  private getDeeplinkSearch(): string {
+    try {
+      return window.parent.location.search;
+    } catch {
+      // the documentation shell has another origin in the two-port dev setup
+      return window.location.search;
     }
   }
 
