@@ -5,12 +5,7 @@
     "noEmit": true,
     "experimentalDecorators": true,
     "useDefineForClassFields": false,
-    "types": ["vite/client"],
-    "paths": {
-      "@preview/*": ["./preview/*"],
-      "@shell/*": ["./shell/src/*"],
-      "@shared/*": ["./shared/*"]
-    }
+    "types": ["vite/client"]
   },
   "files": [],
   "references": [

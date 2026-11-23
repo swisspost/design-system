@@ -3,6 +3,10 @@
   "compilerOptions": {
     "allowJs": true,
     "jsx": "react-jsx",
+    "paths": {
+      "@preview/*": ["./src/*"],
+      "@shared/*": ["../shared/*"]
+    },
 
     // Pre-existing debt. Drop once sources are clean.
     "noImplicitOverride": false,
@@ -10,7 +14,7 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false
   },
-  "include": ["**/*", ".storybook/**/*", "data/*.json"],
-  "exclude": ["**/*.sample.*", "vite.config.ts", ".storybook/main.ts"],
+  "include": ["src", "src/data/*.json", ".storybook/**/*"],
+  "exclude": ["**/*.sample.*", ".storybook/main.ts"],
   "references": [{ "path": "../shared" }]
 }
