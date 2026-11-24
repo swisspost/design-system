@@ -10,7 +10,7 @@ import {
   type Globals,
   normalizeGlobals,
 } from '@shared/globals';
-import { getGlobals, subscribeGlobals } from './globals-host';
+import { globalsHost } from './globals-host';
 
 const STYLESHEET_ID = 'post-styles';
 const CANVAS_SELECTOR = '.sbdocs-preview, .docs-story';
@@ -25,7 +25,7 @@ let appliedGlobals: Globals | null = null;
 let pendingStylesheet: HTMLLinkElement | null = null;
 
 export function startApplyingGlobals() {
-  subscribeGlobals(applyGlobals);
+  globalsHost.addEventListener('globals-change', applyGlobals);
   applyGlobals();
 
   if (isDocsView) observeCanvases();
@@ -44,7 +44,9 @@ export function getStylesheetHref(globals: Pick<Globals, 'theme' | 'appearance'>
 }
 
 function applyGlobals() {
-  const globals = isDocsView ? getGlobals() : normalizeGlobals(storyGlobals, getGlobals());
+  const globals = isDocsView
+    ? globalsHost.current
+    : normalizeGlobals(storyGlobals, globalsHost.current);
   if (appliedGlobals && compareGlobals(appliedGlobals, globals)) return;
 
   appliedGlobals = globals;

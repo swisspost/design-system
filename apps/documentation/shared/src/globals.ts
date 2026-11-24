@@ -35,6 +35,12 @@ export const DEFAULT_GLOBALS: Globals = {
   palette: 'default',
 };
 
+export class GlobalsChangeEvent extends Event {
+  constructor(readonly globals: Globals) {
+    super('globals-change');
+  }
+}
+
 export function isGlobalValue<K extends GlobalName>(
   name: K,
   value: unknown,

@@ -1,6 +1,6 @@
 import { bookmarkUrl } from '@shared/urls';
 import { getShellOrigin } from '@preview/bridge/storybook-adapter';
-import { getGlobals } from '@preview/globals/globals-host';
+import { globalsHost } from '@preview/globals/globals-host';
 import { storyUrl, stringifyArgs } from '@preview/utils/story-urls';
 import { getPageStoryIds, STORY_ANCHOR_PREFIX, toStorySlug } from './deep-links';
 import { getStoryRecord, type StoryRecord } from './story-records';
@@ -16,7 +16,7 @@ export function viewFullScreen(event: Event) {
   const url = storyUrl(story.id, {
     args: story.record?.args,
     initialArgs: story.record?.initialArgs,
-    globals: getGlobals(),
+    globals: globalsHost.current,
   });
 
   window.open(url, '_blank');
@@ -32,7 +32,7 @@ export function copyDeepLink(event: Event) {
   const { id, record } = story;
   const url = bookmarkUrl(pageId, {
     hash: STORY_ANCHOR_PREFIX + id,
-    globals: getGlobals(),
+    globals: globalsHost.current,
     params: {
       story: toStorySlug(id),
       args: record ? stringifyArgs(record.args, record.initialArgs) : null,

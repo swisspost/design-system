@@ -1,13 +1,13 @@
 import { LitElement, html, nothing } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { stringifyGlobals } from '@shared/globals';
+import { type GlobalsChangeEvent, stringifyGlobals } from '@shared/globals';
 import { previewUrl } from '@shared/urls';
 
 import { PREVIEW_ORIGIN, SITE_TITLE } from '../../config';
 import { type PreviewMessageEvent, PreviewConnection } from '../../bridge/preview-connection';
 import { Catalog } from '../../catalog';
-import { type GlobalsChangeEvent, GlobalsStore } from '../../globals/globals-store';
+import { GlobalsStore } from '../../globals/globals-store';
 import { buildNavigation, type NavigationSection } from '../../navigation/tree';
 import type { Route } from '../../router/route';
 import { type RouteChangeEvent, Router } from '../../router';
