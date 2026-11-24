@@ -7,7 +7,6 @@ import { fakeContent } from '@preview/utils/fake-content';
 import { MetaComponent } from '@preview/types/storybook';
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
-import { forceCompactAppearance } from '@preview/decorators/force-compact-appearance';
 import { getSlottedContent } from './utils/get-slotted-content';
 import { SubComponentRenderers } from './utils/get-sub-component-renderers';
 
@@ -324,7 +323,7 @@ export const OnePagerH1: Story = {
 
 export const Application: Story = {
   ...getIframeParameters(250),
-  decorators: [forceCompactAppearance],
+  globals: { appearance: 'compact' },
   args: {
     title: '[Application Title]',
     mainNav: false,
@@ -349,7 +348,7 @@ export const ApplicationWithSideNavigation: Story = {
     postLogin: false,
     targetGroup: false,
   },
-  decorators: [forceCompactAppearance],
+  globals: { appearance: 'compact' },
   parameters: {
     layout: 'fullscreen',
     docs: {

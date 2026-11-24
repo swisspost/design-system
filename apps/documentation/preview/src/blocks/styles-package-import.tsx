@@ -1,3 +1,4 @@
+import { useSyncExternalStore } from 'react';
 import { Source } from '@storybook/addon-docs/blocks';
 import {
   getComponentStyleImports,
@@ -5,10 +6,10 @@ import {
   Props,
 } from './styles-package-import.utils';
 import { PostIcon } from '@swisspost/design-system-components-react';
-import { DEFAULT_GLOBALS, type Globals } from '@shared/globals';
+import { getGlobals, subscribeGlobals } from '@preview/globals/globals-host';
 
 export default function PackageTag(props: Props) {
-  const { theme, appearance }: Pick<Globals, 'theme' | 'appearance'> = DEFAULT_GLOBALS;
+  const { theme, appearance } = useSyncExternalStore(subscribeGlobals, getGlobals);
   const stylesheet = `@swisspost/design-system-styles/${theme}-${appearance}.scss`;
 
   return (

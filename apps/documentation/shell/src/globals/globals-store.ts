@@ -1,0 +1,44 @@
+import { compareGlobals, DEFAULT_GLOBALS, type Globals, normalizeGlobals } from '@shared/globals';
+
+const STORAGE_KEY = 'post-docs:globals';
+
+export class GlobalsChangeEvent extends Event {
+  constructor(readonly globals: Globals) {
+    super('globals-change');
+  }
+}
+
+/** The globals chosen by the user, kept in the local storage. */
+export class GlobalsStore extends EventTarget {
+  private globals: Globals = readStoredGlobals();
+
+  get current(): Globals {
+    return this.globals;
+  }
+
+  public set(globals: Partial<Globals>) {
+    const next = normalizeGlobals(globals, this.globals);
+    if (compareGlobals(next, this.globals)) return;
+
+    this.globals = next;
+    writeStoredGlobals(next);
+    this.dispatchEvent(new GlobalsChangeEvent(next));
+  }
+}
+
+function readStoredGlobals(): Globals {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored ? normalizeGlobals(JSON.parse(stored)) : DEFAULT_GLOBALS;
+  } catch {
+    return DEFAULT_GLOBALS;
+  }
+}
+
+function writeStoredGlobals(globals: Globals) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(globals));
+  } catch {
+    // the storage is not available (e.g. in private mode), the globals then only last until the next reload
+  }
+}
