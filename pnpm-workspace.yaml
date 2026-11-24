@@ -82,6 +82,3 @@ allowBuilds:
   sharp: true
   style-dictionary: false
   unrs-resolver: true
-minimumReleaseAgeExclude:
-  # Renovate security update: glob@14.0.2
-  - glob@14.0.2
