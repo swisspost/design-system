@@ -1,6 +1,8 @@
 @use '@swisspost/design-system-styles/mixins/utilities';
 
 $line-height: 18px;
+// the radius of the design-system focus ring
+$focus-radius: 4px;
 
 // a `post-menu-trigger` button and its `post-menu`, as used in the toolbar and the mobile navigation
 @mixin toolbar-menu {
@@ -9,6 +11,7 @@ $line-height: 18px;
     color: inherit;
     font-family: inherit;
     line-height: $line-height;
+    border-radius: $focus-radius;
 
     @include utilities.focus-style;
 

@@ -1,7 +1,12 @@
 import { LitElement, type PropertyValues, html, nothing } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { type GlobalsChangeEvent, stringifyGlobals } from '@shared/globals';
+import {
+  DEFAULT_GLOBALS,
+  type Globals,
+  type GlobalsChangeEvent,
+  stringifyGlobals,
+} from '@shared/globals';
 import { previewUrl } from '@shared/urls';
 
 import { PREVIEW_ORIGIN, SITE_TITLE } from '../../config';
@@ -23,7 +28,7 @@ export class PostDocsShell extends LitElement {
   @state() private failed = false;
   @state() private previewSrc: string | null = null;
   @state() private catalog: Catalog | null = null;
-  @state() private devMode = false;
+  @state() private globals: Globals = DEFAULT_GLOBALS;
   // the sheet covers the page, which must not take the focus meanwhile
   @state() private isSheetOpen = false;
 
@@ -56,12 +61,12 @@ export class PostDocsShell extends LitElement {
     this.previewConnection.addEventListener('rendered', this.onRendered);
     this.previewConnection.addEventListener('navigate', this.onNavigate);
     this.globalsStore.addEventListener('globals-change', this.onGlobalsChange);
+    this.globals = this.globalsStore.current;
 
     try {
       const catalog = await Catalog.load();
 
       this.catalog = catalog;
-      this.devMode = this.globalsStore.current.mode === 'dev';
       this.router = new Router(catalog);
       this.router.addEventListener('route-change', this.onRouteChange);
       this.router.start();
@@ -116,7 +121,7 @@ export class PostDocsShell extends LitElement {
   private readonly onGlobalsChange = (event: Event) => {
     const { globals } = event as GlobalsChangeEvent;
 
-    this.devMode = globals.mode === 'dev';
+    this.globals = globals;
     this.previewConnection.setGlobals(globals);
     this.router?.replaceGlobals(globals);
   };
@@ -128,13 +133,20 @@ export class PostDocsShell extends LitElement {
     if (url.origin === location.origin) this.router?.navigate(url);
   };
 
+  private readonly onGlobalsSelect = (event: CustomEvent<Partial<Globals>>) => {
+    this.globalsStore.set(event.detail);
+  };
+
   private readonly onSheetToggle = (event: CustomEvent<boolean>) => {
     this.isSheetOpen = event.detail;
   };
 
   override willUpdate(changed: PropertyValues) {
-    if ((changed.has('catalog') || changed.has('devMode')) && this.catalog) {
-      this.navigation = buildNavigation(this.catalog, this.devMode);
+    const previousGlobals = changed.get('globals') as Globals | undefined;
+    const isModeChanged = changed.has('globals') && previousGlobals?.mode !== this.globals.mode;
+
+    if ((changed.has('catalog') || isModeChanged) && this.catalog) {
+      this.navigation = buildNavigation(this.catalog, this.globals.mode === 'dev');
     }
   }
 
@@ -147,10 +159,16 @@ export class PostDocsShell extends LitElement {
         .sections=${this.navigation}
         .activePage=${activePage}
       ></post-docs-navigation-sidebar>
-      <post-docs-toolbar class="palette palette-brand"></post-docs-toolbar>
+      <post-docs-toolbar
+        class="palette palette-brand"
+        .globals=${this.globals}
+        @postDocsGlobalsChange=${this.onGlobalsSelect}
+      ></post-docs-toolbar>
       <post-docs-navigation-sheet
         .sections=${this.navigation}
         .activePage=${activePage}
+        .globals=${this.globals}
+        @postDocsGlobalsChange=${this.onGlobalsSelect}
         @postDocsToggle=${this.onSheetToggle}
       ></post-docs-navigation-sheet>
       <main ?inert=${this.isSheetOpen}>${this.renderContent()}</main>
