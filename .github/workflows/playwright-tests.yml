@@ -34,7 +34,7 @@ jobs:
 
       # Restore only: the cache is saved from main by the "Cache tool binaries" workflow
       - name: Restore Playwright browsers
-        uses: actions/cache/restore@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ steps.tool-binary-cache.outputs.playwright-path }}
           key: ${{ steps.tool-binary-cache.outputs.playwright-key }}
@@ -69,7 +69,7 @@ jobs:
 
       # Restore only: the cache is saved from main by the "Cache tool binaries" workflow
       - name: Restore Playwright browsers
-        uses: actions/cache/restore@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ steps.tool-binary-cache.outputs.playwright-path }}
           key: ${{ steps.tool-binary-cache.outputs.playwright-key }}
@@ -81,7 +81,7 @@ jobs:
         run: pnpm --filter design-system-integration-angular e2e:ci
 
       - name: Upload test results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         if: failure()
         with:
           name: playwright-results-angular

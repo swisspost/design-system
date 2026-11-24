@@ -125,7 +125,6 @@
     "imask": "7.6.1"
   },
   "devDependencies": {
-    "@percy/cli": "1.32.12",
     "@percy/cypress": "3.1.9",
     "@playwright/test": "catalog:",
     "@stencil/angular-output-target": "1.1.1",
@@ -157,7 +156,6 @@
     "sass": "1.104.0",
     "stylelint": "catalog:",
     "throttle-debounce": "5.0.2",
-    "ts-jest": "catalog:stencil/jest",
     "ts-node": "catalog:node",
     "typescript": "catalog:"
   },

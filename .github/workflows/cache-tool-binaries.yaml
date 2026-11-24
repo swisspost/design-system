@@ -45,7 +45,7 @@ jobs:
 
       - name: Check cache
         id: cache
-        uses: actions/cache/restore@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ steps.cache-keys.outputs.playwright-path }}
           key: ${{ steps.cache-keys.outputs.playwright-key }}
@@ -63,7 +63,7 @@ jobs:
 
       - name: Save cache
         if: steps.cache.outputs.cache-hit != 'true'
-        uses: actions/cache/save@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ steps.cache-keys.outputs.playwright-path }}
           key: ${{ steps.cache-keys.outputs.playwright-key }}
@@ -81,7 +81,7 @@ jobs:
 
       - name: Check cache
         id: cache
-        uses: actions/cache/restore@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ steps.cache-keys.outputs.cypress-path }}
           key: ${{ steps.cache-keys.outputs.cypress-key }}
@@ -105,7 +105,7 @@ jobs:
 
       - name: Save cache
         if: steps.cache.outputs.cache-hit != 'true'
-        uses: actions/cache/save@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ steps.cache-keys.outputs.cypress-path }}
           key: ${{ steps.cache-keys.outputs.cypress-key }}

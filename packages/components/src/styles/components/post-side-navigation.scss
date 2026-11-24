@@ -381,8 +381,11 @@ post-side-navigation {
   }
 }
 
-// Only animate the chevron after hydration, to avoid a transition on the initial render
-post-collapsible-trigger[data-hydrated] .post-side-navigation-item post-icon[name='chevrondown'] {
+// Only animate the chevron after hydration, to avoid a transition on the initial render.
+// The lazy-loaded build sets `data-hydrated`, the standalone build (e.g. Angular) sets `.hydrated`
+post-collapsible-trigger:is([data-hydrated], .hydrated)
+  .post-side-navigation-item
+  post-icon[name='chevrondown'] {
   transition: transform 0.2s ease;
 }
 

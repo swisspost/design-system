@@ -48,7 +48,7 @@
     "@kurbar/storybook-addon-docs-stencil": "8.0.0",
     "@lit/task": "1.0.3",
     "@open-wc/lit-helpers": "0.7.0",
-    "@percy/cli": "1.32.12",
+    "@percy/cli": "1.33.1",
     "@percy/cypress": "3.1.9",
     "@storybook/addon-docs": "9.0.18",
     "@storybook/addon-links": "9.0.18",
@@ -77,7 +77,7 @@
     "sass-embedded": "1.104.0",
     "storybook": "9.1.21",
     "typescript": "catalog:",
-    "vite": "7.3.7"
+    "vite": "7.3.8"
   },
   "prettier": "@swisspost/design-system-prettier-config",
   "keywords": [

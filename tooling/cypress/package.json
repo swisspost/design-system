@@ -29,11 +29,11 @@
     "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore"
   },
   "dependencies": {
-    "@puppeteer/browsers": "3.2.6",
-    "proxy-agent": "8.0.2"
+    "@puppeteer/browsers": "3.2.7",
+    "proxy-agent": "8.0.3"
   },
   "peerDependencies": {
-    "cypress": ">=15.0.0"
+    "cypress": ">=16.0.0"
   },
   "devDependencies": {
     "@swisspost/design-system-eslint-config": "workspace:10.9.0",
