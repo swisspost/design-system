@@ -38,7 +38,7 @@ export function previewUrl(
   params: UrlParams = {},
   origin = '',
 ): string {
-  return serializeUrl(`${origin}/iframe.html`, { id, viewMode, ...params });
+  return serializeUrl(`${origin}/iframe.html`, { ...params, id, viewMode });
 }
 
 export function titleToPath(title: string): string {
