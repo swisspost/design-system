@@ -8,10 +8,13 @@ import { PREVIEW_ORIGIN, SITE_TITLE } from '../../config';
 import { type PreviewMessageEvent, PreviewConnection } from '../../bridge/preview-connection';
 import { Catalog } from '../../catalog';
 import { type GlobalsChangeEvent, GlobalsStore } from '../../globals/globals-store';
+import { buildNavigation, type NavigationSection } from '../../navigation/tree';
 import type { Route } from '../../router/route';
 import { type RouteChangeEvent, Router } from '../../router';
+import '../post-docs-navigation-sheet/post-docs-navigation-sheet';
+import '../post-docs-navigation-sidebar/post-docs-navigation-sidebar';
 import '../post-docs-preview/post-docs-preview';
-import '../post-docs-topbar/post-docs-topbar';
+import '../post-docs-toolbar/post-docs-toolbar';
 import './post-docs-shell.scss';
 
 @customElement('post-docs-shell')
@@ -19,6 +22,9 @@ export class PostDocsShell extends LitElement {
   @state() private route: Route | null = null;
   @state() private failed = false;
   @state() private previewSrc: string | null = null;
+  @state() private navigation: NavigationSection[] = [];
+  // the sheet covers the page, which must not take the focus meanwhile
+  @state() private isSheetOpen = false;
 
   private readonly previewConnection = new PreviewConnection(PREVIEW_ORIGIN);
   private readonly globalsStore = new GlobalsStore();
@@ -50,7 +56,10 @@ export class PostDocsShell extends LitElement {
     this.globalsStore.addEventListener('globals-change', this.onGlobalsChange);
 
     try {
-      this.router = new Router(await Catalog.load());
+      const catalog = await Catalog.load();
+
+      this.navigation = buildNavigation(catalog, import.meta.env.DEV);
+      this.router = new Router(catalog);
       this.router.addEventListener('route-change', this.onRouteChange);
       this.router.start();
     } catch (error) {
@@ -62,6 +71,7 @@ export class PostDocsShell extends LitElement {
   private readonly onRouteChange = (event: Event) => {
     const { route, fromHistory } = event as RouteChangeEvent;
     this.route = route;
+    void this.querySelector('post-docs-navigation-sheet')?.close();
 
     const pageTitle = route.type === 'page' ? route.page.segments.at(-1) : 'Page not found';
     document.title = `${pageTitle} · ${SITE_TITLE}`;
@@ -114,10 +124,26 @@ export class PostDocsShell extends LitElement {
     if (url.origin === location.origin) this.router?.navigate(url);
   };
 
+  private readonly onSheetToggle = (event: CustomEvent<boolean>) => {
+    this.isSheetOpen = event.detail;
+  };
+
   override render(): unknown {
+    const activePage = this.route?.type === 'page' ? this.route.page : null;
+
     return html`
-      <post-docs-topbar></post-docs-topbar>
-      <main>${this.renderContent()}</main>
+      <post-docs-navigation-sidebar
+        class="palette palette-default elevation-400"
+        .sections=${this.navigation}
+        .activePage=${activePage}
+      ></post-docs-navigation-sidebar>
+      <post-docs-toolbar class="palette palette-brand"></post-docs-toolbar>
+      <post-docs-navigation-sheet
+        .sections=${this.navigation}
+        .activePage=${activePage}
+        @postDocsToggle=${this.onSheetToggle}
+      ></post-docs-navigation-sheet>
+      <main ?inert=${this.isSheetOpen}>${this.renderContent()}</main>
     `;
   }
 

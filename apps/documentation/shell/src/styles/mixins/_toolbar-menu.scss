@@ -1,12 +1,14 @@
 @use '@swisspost/design-system-styles/mixins/utilities';
 
-// a `post-menu-trigger` button and its `post-menu`, as used in the topbar and the mobile navigation
+$line-height: 18px;
+
+// a `post-menu-trigger` button and its `post-menu`, as used in the toolbar and the mobile navigation
 @mixin toolbar-menu {
   post-menu-trigger > button {
     background: none;
     color: inherit;
     font-family: inherit;
-    line-height: var(--post-core-dimension-18);
+    line-height: $line-height;
 
     @include utilities.focus-style;
 
