@@ -1,4 +1,5 @@
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/utilities';
 
 $gap: 32px;
 $padding-inline: 16px;
@@ -10,5 +11,12 @@ post-docs-toolbar {
 
   @include media.min(md) {
     padding-inline: $padding-inline;
+  }
+
+  // the values only, until there is room for the labels
+  post-docs-globals-menus .label {
+    @include media.max(lg) {
+      @include utilities.visuallyhidden;
+    }
   }
 }

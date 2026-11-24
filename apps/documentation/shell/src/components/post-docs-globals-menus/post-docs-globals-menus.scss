@@ -1,0 +1,5 @@
+@use '../../styles/mixins/toolbar-menu';
+
+post-docs-globals-menus {
+  @include toolbar-menu.toolbar-menu;
+}

@@ -9,6 +9,27 @@ $heading-font-size: 1.125rem;
 
 $toggle-padding: 4px;
 
+// like `post-menu-item`: an inset ring with rounded corners, the row background stays square
+$focus-offset: -4px;
+$focus-radius: 4px;
+
+// draws the focus ring of a row on `::after`, the closest positioned ancestor is the row
+@mixin row-focus {
+  @include utilities.focus-visible {
+    outline: none !important;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: $focus-radius - $focus-offset;
+    pointer-events: none;
+  }
+
+  @include utilities.focus-style('::after', $focus-offset);
+}
+
 post-docs-navigation-tree {
   display: block;
 
@@ -22,6 +43,7 @@ post-docs-navigation-tree {
 
   // the layout shared by all rows, the template sets their block padding and font
   .item {
+    position: relative;
     display: flex;
     align-items: center;
     gap: $item-gap;
@@ -37,8 +59,9 @@ post-docs-navigation-tree {
     text-align: start;
     text-decoration: none;
 
-    @include utilities.focus-style;
-    @include utilities.focus-inset;
+    &:is(a, button) {
+      @include row-focus;
+    }
 
     @for $depth from 1 through $item-max-depth {
       &[data-depth='#{$depth}'] {
@@ -56,13 +79,13 @@ post-docs-navigation-tree {
       background-color: var(--post-palette-color-nested-bg);
     }
 
-    // the link of a page with subpages
+    // the link of a page with subpages, its focus ring surrounds the row
     > a {
       border-radius: 0;
       color: inherit;
       text-decoration: none;
 
-      @include utilities.focus-style;
+      @include row-focus;
 
       &:hover {
         text-decoration: underline;
@@ -77,6 +100,7 @@ post-docs-navigation-tree {
   // the chevron of a page with subpages, separate from its link
   .toggle {
     margin: -$toggle-padding;
+    border-radius: $focus-radius;
     padding: $toggle-padding;
     background: none;
     color: inherit;

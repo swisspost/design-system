@@ -1,9 +1,11 @@
 import { LitElement, html } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
+import { DEFAULT_GLOBALS, type Globals } from '@shared/globals';
 import type { Page } from '../../catalog';
 import { getRootDefinition } from '../../navigation/root';
 import type { NavigationSection } from '../../navigation/tree';
 import type { PostDocsNavigationTree } from '../post-docs-navigation-tree/post-docs-navigation-tree';
+import '../post-docs-globals-menus/post-docs-globals-menus';
 import '../post-docs-navigation-tree/post-docs-navigation-tree';
 import './post-docs-navigation-sheet.scss';
 
@@ -16,7 +18,7 @@ const FADE: KeyframeAnimationOptions = {
 
 /**
  * The navigation below the sidebar breakpoint, modelled on the `post-header` burger menu:
- * a bar with the current location toggles a panel that covers the page.
+ * a bar with the current location toggles a panel that covers the page, with the preview settings as its footer.
  *
  * @fires postDocsToggle - The panel opens (`detail: true`) or starts closing (`detail: false`).
  */
@@ -24,6 +26,7 @@ const FADE: KeyframeAnimationOptions = {
 export class PostDocsNavigationSheet extends LitElement {
   @property({ attribute: false }) public sections: NavigationSection[] = [];
   @property({ attribute: false }) public activePage: Page | null = null;
+  @property({ attribute: false }) public globals: Globals = DEFAULT_GLOBALS;
 
   /** The panel is shown: open, or fading out. */
   @state() private isExpanded = false;
@@ -110,17 +113,24 @@ export class PostDocsNavigationSheet extends LitElement {
 
       <div
         id="navigation-sheet-panel"
-        class="panel palette palette-alternate"
+        class="panel palette palette-default overflow-y-auto"
         ?hidden=${!this.isExpanded}
         @keydown=${this.onKeydown}
       >
-        <nav class="flex-fill overflow-y-auto pt-16 pb-40" aria-label="Documentation">
+        <nav class="flex-fill py-24" aria-label="Documentation">
           <post-docs-navigation-tree
             id-prefix="sheet"
             .sections=${this.sections}
             .activePage=${this.activePage}
           ></post-docs-navigation-tree>
         </nav>
+        <post-docs-globals-menus
+          class="palette palette-alternate d-flex flex-wrap row-gap-16 column-gap-24 px-16 pt-16"
+          role="group"
+          aria-label="Preview settings"
+          id-prefix="sheet"
+          .globals=${this.globals}
+        ></post-docs-globals-menus>
       </div>
     `;
   }
