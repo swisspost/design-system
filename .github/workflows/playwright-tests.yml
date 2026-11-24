@@ -81,7 +81,7 @@ jobs:
         run: pnpm --filter design-system-integration-angular e2e:ci
 
       - name: Upload test results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         if: failure()
         with:
           name: playwright-results-angular

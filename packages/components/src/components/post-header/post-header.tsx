@@ -47,6 +47,7 @@ export class PostHeader {
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
   private scrollMaxResizeObserver: ResizeObserver;
+  private visibilityResizeObserver: ResizeObserver;
   private slottedContentObserver: MutationObserver;
   private globalHeader: HTMLElement;
   private localHeader: HTMLElement;
@@ -148,6 +149,7 @@ export class PostHeader {
     this.updateScrollParentHeight = this.updateScrollParentHeight.bind(this);
     this.updateLocalHeaderHeight = this.updateLocalHeaderHeight.bind(this);
     this.updateScrollMax = this.updateScrollMax.bind(this);
+    this.updateVisibility = this.updateVisibility.bind(this);
     this.keyboardHandler = this.keyboardHandler.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
     this.checkSlottedContent = this.checkSlottedContent.bind(this);
@@ -181,6 +183,7 @@ export class PostHeader {
     document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
 
+    this.handleVisibilityChange();
     this.handleScrollParentResize();
     this.handleScrollMaxResize();
     this.lockBody(false, this.burgerMenuExtended, 'burgerMenuExtended');
@@ -233,6 +236,10 @@ export class PostHeader {
     if (this.scrollMaxResizeObserver) {
       this.scrollMaxResizeObserver.disconnect();
       this.scrollMaxResizeObserver = null;
+    }
+    if (this.visibilityResizeObserver) {
+      this.visibilityResizeObserver.disconnect();
+      this.visibilityResizeObserver = null;
     }
     this.lastScrollTop = undefined;
     if (this.slottedContentObserver) {
@@ -361,8 +368,33 @@ export class PostHeader {
     scrollContainer.scrollTo({ top: this.scrollPosition, behavior: 'instant' });
   }
 
+  private get isHidden(): boolean {
+    return Object.hasOwn(this.host.dataset, 'hidden');
+  }
+
+  // A header that is not rendered (e.g. kept in the DOM with display: none) must neither
+  // write the shared root custom properties nor be taken into account by the header styles
+  private updateVisibility() {
+    const wasHidden = this.isHidden;
+    this.host.toggleAttribute('data-hidden', !this.host.checkVisibility());
+
+    if (wasHidden && !this.isHidden) {
+      this.updateLocalHeaderHeight();
+      this.updateScrollMax();
+    }
+  }
+
+  private handleVisibilityChange() {
+    this.updateVisibility();
+    if (this.visibilityResizeObserver) return;
+
+    this.visibilityResizeObserver = new ResizeObserver(this.updateVisibility);
+    this.visibilityResizeObserver.observe(this.host);
+  }
+
   private handleScrollEvent() {
     this.scrollPosition = this.getScrollPosition();
+    if (this.isHidden) return;
 
     // Once the header is fully reduced, writing a new value would only trigger
     // a style recalculation of the whole page without any visual change
@@ -374,7 +406,7 @@ export class PostHeader {
   }
 
   private updateScrollMax() {
-    if (!this.scrollMaxElement) return;
+    if (!this.scrollMaxElement || this.isHidden) return;
 
     // Never limit the scroll value when the header styles are not loaded
     const isScrollMaxDefined =
@@ -390,7 +422,7 @@ export class PostHeader {
   private updateLocalHeaderHeight() {
     const localHeaderElement = this.host.shadowRoot.querySelector('.local-header');
 
-    if (localHeaderElement) {
+    if (localHeaderElement && !this.isHidden) {
       document.documentElement.style.setProperty(
         '--post-local-header-expanded-height',
         `${localHeaderElement.clientHeight}px`,
