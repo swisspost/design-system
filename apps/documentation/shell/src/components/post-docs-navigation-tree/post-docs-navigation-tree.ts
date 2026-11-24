@@ -50,6 +50,7 @@ export class PostDocsNavigationTree extends LitElement {
 
     // the collapsibles render in the next frame, collapsed ones only take their height then
     await new Promise(resolve => requestAnimationFrame(resolve));
+    if (this.getClientRects().length === 0) return;
 
     const toggles: Promise<boolean>[] = [];
     for (const key of getAncestorKeys(this.sections, this.activePage.id)) {

@@ -44,7 +44,8 @@
     "@swisspost/design-system-tokens": "workspace:10.9.0",
     "@swisspost/internet-header": "workspace:10.9.0",
     "ag-charts-community": "14.1.0",
-    "ag-charts-react": "14.1.0"
+    "ag-charts-react": "14.1.0",
+    "fuse.js": "7.5.0"
   },
   "devDependencies": {
     "@kurbar/storybook-addon-docs-stencil": "8.0.0",

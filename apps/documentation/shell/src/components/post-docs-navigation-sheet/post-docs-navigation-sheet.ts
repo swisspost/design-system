@@ -1,12 +1,15 @@
-import { LitElement, html } from 'lit';
+import { LitElement, html, nothing } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { DEFAULT_GLOBALS, type Globals } from '@shared/globals';
 import type { Page } from '../../catalog';
 import { getRootDefinition } from '../../navigation/root';
 import type { NavigationSection } from '../../navigation/tree';
+import type { SearchIndex } from '../../search/search-index';
 import type { PostDocsNavigationTree } from '../post-docs-navigation-tree/post-docs-navigation-tree';
+import type { PostDocsSearch } from '../post-docs-search/post-docs-search';
 import '../post-docs-globals-menus/post-docs-globals-menus';
 import '../post-docs-navigation-tree/post-docs-navigation-tree';
+import '../post-docs-search/post-docs-search';
 import './post-docs-navigation-sheet.scss';
 
 // the fade of the `post-header` burger menu (`animations/fade.ts`, `headerEase`)
@@ -27,15 +30,19 @@ export class PostDocsNavigationSheet extends LitElement {
   @property({ attribute: false }) public sections: NavigationSection[] = [];
   @property({ attribute: false }) public activePage: Page | null = null;
   @property({ attribute: false }) public globals: Globals = DEFAULT_GLOBALS;
+  @property({ attribute: false }) public searchIndex: SearchIndex | null = null;
 
   /** The panel is shown: open, or fading out. */
   @state() private isExpanded = false;
   /** The panel is fading out, it can be opened again meanwhile. */
   @state() private isClosing = false;
+  /** The search results take the place of the navigation and the preview settings. */
+  @state() private isSearching = false;
 
   @query('.bar') private bar!: HTMLButtonElement;
   @query('.panel') private panel!: HTMLElement;
   @query('post-docs-navigation-tree') private tree!: PostDocsNavigationTree;
+  @query('post-docs-search') private search!: PostDocsSearch;
 
   private animation: Animation | null = null;
   private readonly sidebarQuery = matchMedia('(min-width: 780px)');
@@ -55,6 +62,17 @@ export class PostDocsNavigationSheet extends LitElement {
   }
 
   public async open() {
+    await this.expand(true);
+  }
+
+  /** Opens the panel with the focus in the search field, e.g. for the search shortcut. */
+  public async openSearch() {
+    // the search hides the tree as soon as there is a query, it reveals the active page once cleared
+    await this.expand(false);
+    this.search.focus();
+  }
+
+  private async expand(revealActivePage: boolean) {
     if (this.isExpanded && !this.isClosing) return;
 
     const isReopening = this.isClosing;
@@ -63,7 +81,7 @@ export class PostDocsNavigationSheet extends LitElement {
     this.emitToggle(true);
 
     await this.updateComplete;
-    if (!isReopening) void this.tree.revealActivePage();
+    if (!isReopening && revealActivePage) void this.tree.revealActivePage();
 
     // replaces a running fade-out, so that `close` stops there
     void this.fade('in');
@@ -83,6 +101,7 @@ export class PostDocsNavigationSheet extends LitElement {
     const hadFocus = this.panel.contains(document.activeElement);
     this.isClosing = false;
     this.isExpanded = false;
+    this.search.clear();
     if (hadFocus) this.bar.focus();
   }
 
@@ -117,20 +136,29 @@ export class PostDocsNavigationSheet extends LitElement {
         ?hidden=${!this.isExpanded}
         @keydown=${this.onKeydown}
       >
-        <nav class="flex-fill py-24" aria-label="Documentation">
+        <post-docs-search
+          id-prefix="sheet-search"
+          .index=${this.searchIndex}
+          @postDocsSearchToggle=${this.onSearchToggle}
+        ></post-docs-search>
+        <nav class="flex-fill pb-24" aria-label="Documentation" ?hidden=${this.isSearching}>
           <post-docs-navigation-tree
             id-prefix="sheet"
             .sections=${this.sections}
             .activePage=${this.activePage}
           ></post-docs-navigation-tree>
         </nav>
-        <post-docs-globals-menus
-          class="palette palette-alternate d-flex flex-wrap row-gap-16 column-gap-24 px-16 pt-16"
-          role="group"
-          aria-label="Preview settings"
-          id-prefix="sheet"
-          .globals=${this.globals}
-        ></post-docs-globals-menus>
+        ${this.isSearching
+          ? nothing
+          : html`
+              <post-docs-globals-menus
+                class="palette palette-alternate d-flex flex-wrap row-gap-16 column-gap-24 px-16 pt-16"
+                role="group"
+                aria-label="Preview settings"
+                id-prefix="sheet"
+                .globals=${this.globals}
+              ></post-docs-globals-menus>
+            `}
       </div>
     `;
   }
@@ -149,6 +177,14 @@ export class PostDocsNavigationSheet extends LitElement {
     else if (layout === 'flat') location = name;
 
     return html`<span class="visually-hidden">Navigation, current page: </span>${location}`;
+  }
+
+  private async onSearchToggle(event: CustomEvent<boolean>) {
+    this.isSearching = event.detail;
+    if (this.isSearching) return;
+
+    await this.updateComplete;
+    void this.tree.revealActivePage();
   }
 
   private toggle() {

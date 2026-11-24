@@ -1,0 +1,80 @@
+@use '@swisspost/design-system-styles/mixins/utilities';
+@use '../../styles/mixins/row-focus';
+
+$field-inset: 16px;
+$field-padding-inline-start: 40px;
+$field-padding-inline-end: 48px;
+$clear-padding: 4px;
+
+post-docs-search {
+  // the field and the results are laid out by the container
+  display: contents;
+
+  .field {
+    display: flex;
+    align-items: center;
+
+    > input {
+      padding-inline: $field-padding-inline-start $field-padding-inline-end;
+
+      // the field has its own clear button
+      &::-webkit-search-cancel-button {
+        display: none;
+      }
+    }
+
+    // above the input, which is positioned
+    > :is(.icon, .shortcut, .clear) {
+      position: absolute;
+      z-index: 1;
+    }
+
+    > .icon {
+      inset-inline-start: $field-inset;
+      pointer-events: none;
+    }
+
+    > .shortcut {
+      inset-inline-end: $field-inset;
+      padding: 0;
+      background: none;
+      color: var(--post-palette-color-fg-secondary);
+      font-family: inherit;
+      pointer-events: none;
+    }
+
+    > .clear {
+      inset-inline-end: $field-inset - $clear-padding;
+      margin: 0;
+      border: 0;
+      border-radius: row-focus.$radius;
+      padding: $clear-padding;
+      background: none;
+      color: inherit;
+
+      @include utilities.focus-style;
+    }
+  }
+
+  .option {
+    position: relative;
+    color: inherit;
+    text-decoration: none;
+
+    @include row-focus.row-focus;
+
+    &:hover {
+      background-color: var(--post-palette-color-nested-bg);
+      color: inherit;
+    }
+  }
+
+  // the option chosen with the arrow keys shows the focus ring, the focus stays in the field
+  &:focus-within .option[aria-selected='true']::after {
+    outline-style: solid !important;
+  }
+
+  .detail {
+    color: var(--post-palette-color-fg-secondary);
+  }
+}
