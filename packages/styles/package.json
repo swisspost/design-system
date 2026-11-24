@@ -38,7 +38,7 @@
     "@swisspost/design-system-prettier-config": "workspace:10.9.0",
     "@swisspost/design-system-stylelint-config": "workspace:10.9.0",
     "@types/node": "catalog:node",
-    "autoprefixer": "10.6.2",
+    "autoprefixer": "10.7.0",
     "glob": "13.0.6",
     "gulp": "5.0.1",
     "gulp-newer": "1.4.0",
