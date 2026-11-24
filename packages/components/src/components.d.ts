@@ -1682,7 +1682,7 @@ declare namespace LocalJSX {
          */
         "name"?: string;
         /**
-          * An event emitted when the language option is clicked. The payload is the ISO 639 code of the language. Call `preventDefault()` to keep the language menu's active language unchanged. To prevent a link (`url`) from navigating, cancel the `click` event instead.
+          * An event emitted when the language option is clicked. Call `preventDefault()` to keep the language menu's active language unchanged.
          */
         "onPostChange"?: (event: PostLanguageMenuItemCustomEvent<string>) => void;
         /**
