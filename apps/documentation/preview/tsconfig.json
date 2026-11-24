@@ -5,7 +5,7 @@
     "jsx": "react-jsx",
     "paths": {
       "@preview/*": ["./src/*"],
-      "@shared/*": ["../shared/*"]
+      "@shared/*": ["../shared/src/*"]
     },
 
     // Pre-existing debt. Drop once sources are clean.

@@ -1,5 +1,5 @@
 import { coerce, gt, major, prerelease, rcompare } from 'semver';
-import docsPackage from '../package.json';
+import docsPackage from '../../package.json';
 
 const LOCAL_VERSIONS_URL = '/assets/versions.json';
 const REMOTE_VERSIONS_URL = 'https://design-system.post.ch/assets/versions.json';
@@ -34,7 +34,7 @@ export function getReleases(): Promise<Release[]> {
     .catch(() => fetchReleases(REMOTE_VERSIONS_URL))
     .then(entries => {
       const listed = entries
-        .filter(entry => isNextDocs() || !prerelease(entry.version))
+        .filter(entry => includePrereleases() || !prerelease(entry.version))
         .sort((a, b) => rcompare(a.version, b.version));
 
       return listed.map(entry => ({ ...entry, distTag: getDistTag(entry, listed) }));
@@ -62,8 +62,8 @@ export async function getLatestRelease(): Promise<Release | null> {
 }
 
 function getDistTag(release: ReleaseEntry, releases: ReleaseEntry[]): string {
-  const [preReleaseId] = prerelease(release.version) ?? [];
-  if (preReleaseId !== undefined) return String(preReleaseId).toLowerCase();
+  const [prereleaseTag] = prerelease(release.version) ?? [];
+  if (prereleaseTag !== undefined) return String(prereleaseTag).toLowerCase();
 
   const hasNewerStableRelease = releases.some(
     other => !prerelease(other.version) && gt(other.version, release.version),
@@ -72,7 +72,7 @@ function getDistTag(release: ReleaseEntry, releases: ReleaseEntry[]): string {
   return hasNewerStableRelease ? `version-${major(release.version)}` : 'latest';
 }
 
-function isNextDocs() {
+function includePrereleases() {
   const hostname = globalThis.location?.hostname;
   if (!hostname) return false;
 
