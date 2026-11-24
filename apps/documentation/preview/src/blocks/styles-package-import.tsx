@@ -1,35 +1,15 @@
 import { Source } from '@storybook/addon-docs/blocks';
-import { useEffect, useState } from 'react';
 import {
   getComponentStyleImports,
   getStyleImportsText,
   Props,
 } from './styles-package-import.utils';
 import { PostIcon } from '@swisspost/design-system-components-react';
-import { addons } from 'storybook/preview-api';
-import { STYLES_CHANGED_EVENT, type StylesChangedPayload } from '@shared/channel';
-
-type StyleSelection = StylesChangedPayload;
-
-const getAllStylesImport = ({ theme, appearance }: StyleSelection) => {
-  return `@use '@swisspost/design-system-styles/${theme.toLowerCase()}-${appearance.toLowerCase()}.scss';`;
-};
+import { DEFAULT_GLOBALS, type Globals } from '@shared/globals';
 
 export default function PackageTag(props: Props) {
-  const [styleSelection, setStyleSelection] = useState<StyleSelection>({
-    theme: 'Post',
-    appearance: 'Compact',
-  });
-  const allStylesImport = getAllStylesImport(styleSelection);
-
-  useEffect(() => {
-    const channel = addons.getChannel();
-    const updateStyleSelection = (selection: StyleSelection) => setStyleSelection(selection);
-
-    channel.on(STYLES_CHANGED_EVENT, updateStyleSelection);
-
-    return () => channel.off(STYLES_CHANGED_EVENT, updateStyleSelection);
-  }, []);
+  const { theme, appearance }: Pick<Globals, 'theme' | 'appearance'> = DEFAULT_GLOBALS;
+  const stylesheet = `@swisspost/design-system-styles/${theme}-${appearance}.scss`;
 
   return (
     <>
@@ -53,7 +33,7 @@ export default function PackageTag(props: Props) {
       </p>
       <p>To import all Design System styles:</p>
       <div className="docblock-source-all-design">
-        <Source key={allStylesImport} code={allStylesImport} language="css" />
+        <Source key={stylesheet} code={`@use '${stylesheet}';`} language="css" />
       </div>
       <p>{getStyleImportsText(props)}</p>
       <Source code={getComponentStyleImports(props)} language="css" />
