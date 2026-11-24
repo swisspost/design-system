@@ -32,6 +32,16 @@ The `<post-breadcrumbs>` is a container for `<post-breadcrumb-item>` components,
 
 <Controls of={BreadcrumbItemStories.Default} />
 
+## Element ID
+
+The overflow menu of `<post-breadcrumbs>` needs an `id` to be linked to its trigger button. The component builds it from the `id` of the host element (`<host id>-menu`). If no `id` is set, a random one is generated instead.
+
+Set a stable `id` on `<post-breadcrumbs>` when you need predictable ids, for example in tests or when the page is rendered on the server. If you set one, make sure it is unique within the page, as the component can not guarantee that for you.
+
+```html
+<post-breadcrumbs id="main-breadcrumbs" …>…</post-breadcrumbs>
+```
+
 <ComponentsPackageInstall component="<post-breadcrumbs>" />
 
 ## Examples
