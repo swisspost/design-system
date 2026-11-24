@@ -1,0 +1,40 @@
+@use '@swisspost/design-system-styles/mixins/utilities';
+
+// extra black, the utilities go up to black
+$bar-font-weight: 950;
+
+post-docs-navigation-sheet {
+  > .bar {
+    font-family: inherit;
+    font-weight: $bar-font-weight;
+
+    @include utilities.focus-style;
+    @include utilities.focus-inset;
+
+    > .chevron {
+      transition: transform 150ms ease;
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+    }
+
+    &[aria-expanded='true'] > .chevron {
+      transform: rotate(180deg);
+    }
+  }
+
+  > .panel {
+    display: flex;
+    flex-direction: column;
+    min-block-size: 0;
+
+    &[hidden] {
+      display: none;
+    }
+
+    > nav {
+      overscroll-behavior: contain;
+    }
+  }
+}

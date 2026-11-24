@@ -1,17 +1,17 @@
 import { LitElement, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import '../post-docs-version-menu/post-docs-version-menu';
-import './post-docs-topbar.scss';
+import './post-docs-toolbar.scss';
 
-@customElement('post-docs-topbar')
-export class PostDocsTopbar extends LitElement {
+@customElement('post-docs-toolbar')
+export class PostDocsToolbar extends LitElement {
   override createRenderRoot() {
     return this;
   }
 
   override render() {
     return html`
-      <post-logo class="flex-shrink-0 h-40" url="/">
+      <post-logo class="flex-shrink-0 h-40 d-md-none" url="/">
         Swiss Post Design System, go to the homepage
       </post-logo>
       <post-docs-version-menu
@@ -23,6 +23,6 @@ export class PostDocsTopbar extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'post-docs-topbar': PostDocsTopbar;
+    'post-docs-toolbar': PostDocsToolbar;
   }
 }

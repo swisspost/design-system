@@ -1,0 +1,14 @@
+@use '@swisspost/design-system-styles/mixins/media';
+
+$gap: 32px;
+$padding-inline: 16px;
+
+post-docs-toolbar {
+  display: flex;
+  align-items: center;
+  gap: $gap;
+
+  @include media.min(md) {
+    padding-inline: $padding-inline;
+  }
+}
