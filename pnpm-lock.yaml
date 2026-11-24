@@ -1225,7 +1225,7 @@ importers:
         version: link:../../tooling/typescript
       '@tokens-studio/sd-transforms':
         specifier: 2.0.3
-        version: 2.0.3(style-dictionary@5.4.4)
+        version: 2.0.3(style-dictionary@5.8.0)
       '@types/node':
         specifier: catalog:node
         version: 26.6.6
@@ -1242,8 +1242,8 @@ importers:
         specifier: 6.1.4
         version: 6.1.4
       style-dictionary:
-        specifier: 5.4.4
-        version: 5.4.4
+        specifier: 5.8.0
+        version: 5.8.0
       typescript:
         specifier: 'catalog:'
         version: 6.0.3
@@ -10751,8 +10751,8 @@ packages:
   strnum@1.1.2:
     resolution: {integrity: sha512-vrN+B7DBIoTTZjnPNewwhx6cBA/H+IS7rfW68n7XxC1y7uoiGQBxaKzqucGUgavX15dJgiGztLJ8vxuEzwqBdA==}
 
-  style-dictionary@5.4.4:
-    resolution: {integrity: sha512-Sd7dkEOLn33EpvlMyS8ykUu0us2EIFUqsysf4DSwZQ46nqQkZ2Q9o5mozu8cSizj3t7E220HaPk7EV1O7LjvDQ==}
+  style-dictionary@5.8.0:
+    resolution: {integrity: sha512-RqOa3FF+9Dol5kP8KKtr5oqVijz1TPbs53+lBj9aMJy/JVPwl1pRj/4IzdnvDWXZaePYaO8Z5zgBTvcjeGh6cA==}
     engines: {node: '>=22.0.0'}
     hasBin: true
 
@@ -15449,7 +15449,7 @@ snapshots:
     dependencies:
       '@testing-library/dom': 10.4.2
 
-  '@tokens-studio/sd-transforms@2.0.3(style-dictionary@5.4.4)':
+  '@tokens-studio/sd-transforms@2.0.3(style-dictionary@5.8.0)':
     dependencies:
       '@bundled-es-modules/deepmerge': 4.3.2
       '@bundled-es-modules/postcss-calc-ast-parser': 0.1.6
@@ -15457,7 +15457,7 @@ snapshots:
       colorjs.io: 0.5.2
       expr-eval-fork: 3.0.3
       is-mergeable-object: 1.1.1
-      style-dictionary: 5.4.4
+      style-dictionary: 5.8.0
 
   '@tokens-studio/types@0.5.2': {}
 
@@ -23385,7 +23385,7 @@ snapshots:
 
   strnum@1.1.2: {}
 
-  style-dictionary@5.4.4:
+  style-dictionary@5.8.0:
     dependencies:
       '@bundled-es-modules/deepmerge': 4.3.2
       '@bundled-es-modules/glob': 13.0.6
