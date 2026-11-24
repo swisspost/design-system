@@ -83,9 +83,8 @@ export class PostLanguageMenuItem {
   }
 
   /**
-   * An event emitted when the language option is clicked. The payload is the ISO 639 code of the language.
+   * An event emitted when the language option is clicked.
    * Call `preventDefault()` to keep the language menu's active language unchanged.
-   * To prevent a link (`url`) from navigating, cancel the `click` event instead.
    */
   @Event({ cancelable: true }) postChange: EventEmitter<string>;
 
