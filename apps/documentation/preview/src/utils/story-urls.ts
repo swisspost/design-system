@@ -1,4 +1,9 @@
-import { type Globals, stringifyGlobals } from '@shared/globals';
+import {
+  filterGlobals,
+  type Globals,
+  SHARABLE_GLOBALS_FILTER,
+  stringifyGlobals,
+} from '@shared/globals';
 import { decodeUrlComponent, previewUrl } from '@shared/urls';
 
 export type ArgValue = string | number | boolean | null | undefined;
@@ -22,7 +27,7 @@ const SPECIAL_VALUES: Record<string, ArgValue> = {
 export function storyUrl(storyId: string, options: StoryUrlOptions = {}): string {
   return previewUrl(storyId, 'story', {
     args: stringifyArgs(options.args ?? {}, options.initialArgs),
-    globals: stringifyGlobals(options.globals ?? {}),
+    globals: stringifyGlobals(filterGlobals(options.globals ?? {}, SHARABLE_GLOBALS_FILTER)),
   });
 }
 

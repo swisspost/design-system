@@ -1,4 +1,4 @@
-import { LitElement, html, nothing } from 'lit';
+import { LitElement, type PropertyValues, html, nothing } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { type GlobalsChangeEvent, stringifyGlobals } from '@shared/globals';
@@ -22,13 +22,15 @@ export class PostDocsShell extends LitElement {
   @state() private route: Route | null = null;
   @state() private failed = false;
   @state() private previewSrc: string | null = null;
-  @state() private navigation: NavigationSection[] = [];
+  @state() private catalog: Catalog | null = null;
+  @state() private devMode = false;
   // the sheet covers the page, which must not take the focus meanwhile
   @state() private isSheetOpen = false;
 
   private readonly previewConnection = new PreviewConnection(PREVIEW_ORIGIN);
   private readonly globalsStore = new GlobalsStore();
   private router: Router | null = null;
+  private navigation: NavigationSection[] = [];
 
   private pageId: string | null = null;
   private isRendering = false;
@@ -58,7 +60,8 @@ export class PostDocsShell extends LitElement {
     try {
       const catalog = await Catalog.load();
 
-      this.navigation = buildNavigation(catalog, import.meta.env.DEV);
+      this.catalog = catalog;
+      this.devMode = this.globalsStore.current.mode === 'dev';
       this.router = new Router(catalog);
       this.router.addEventListener('route-change', this.onRouteChange);
       this.router.start();
@@ -113,6 +116,7 @@ export class PostDocsShell extends LitElement {
   private readonly onGlobalsChange = (event: Event) => {
     const { globals } = event as GlobalsChangeEvent;
 
+    this.devMode = globals.mode === 'dev';
     this.previewConnection.setGlobals(globals);
     this.router?.replaceGlobals(globals);
   };
@@ -127,6 +131,12 @@ export class PostDocsShell extends LitElement {
   private readonly onSheetToggle = (event: CustomEvent<boolean>) => {
     this.isSheetOpen = event.detail;
   };
+
+  override willUpdate(changed: PropertyValues) {
+    if ((changed.has('catalog') || changed.has('devMode')) && this.catalog) {
+      this.navigation = buildNavigation(this.catalog, this.devMode);
+    }
+  }
 
   override render(): unknown {
     const activePage = this.route?.type === 'page' ? this.route.page : null;
