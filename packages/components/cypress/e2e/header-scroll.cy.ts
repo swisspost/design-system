@@ -156,6 +156,38 @@ describe('header', () => {
     });
   });
 
+  // E.g. the header of a route that is hidden on navigation and shown again when navigating back
+  describe('header hidden and shown again', () => {
+    it('should resume reducing on scroll once shown again', () => {
+      // toggling the visibility resizes the observed header while the observer is delivering
+      cy.on('uncaught:exception', err => {
+        if (err.message.includes('ResizeObserver loop')) return false;
+      });
+
+      cy.visit(`/iframe.html?id=${HEADER_ID}--portal`);
+      cy.get('post-header').as('header');
+      cy.get('@header').should('have.attr', 'data-hydrated');
+      cy.viewport(VIEWPORTS.desktop);
+
+      cy.get('@header').then($header => ($header[0].style.display = 'none'));
+      cy.get('@header').should('have.attr', 'data-hidden');
+
+      cy.get('@header').then($header => $header[0].style.removeProperty('display'));
+      cy.get('@header').should('not.have.attr', 'data-hidden');
+
+      cy.get('@header')
+        .shadow()
+        .find('.scroll-max')
+        .should($el => expect($el[0].getBoundingClientRect().width).to.be.greaterThan(1));
+
+      getScrollMax().then(scrollMax => {
+        const below = Math.floor(scrollMax / 2);
+        scrollAndWait(below);
+        getScrollTopProperty().should('eq', `${below}px`);
+      });
+    });
+  });
+
   describe('DOM reattachment', { viewportHeight: 1000, viewportWidth: 400 }, () => {
     beforeEach(() => {
       cy.getComponent('header', HEADER_ID);
