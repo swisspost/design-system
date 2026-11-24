@@ -1,11 +1,13 @@
 import { LitElement, html, nothing } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { stringifyGlobals } from '@shared/globals';
 import { previewUrl } from '@shared/urls';
 
 import { PREVIEW_ORIGIN, SITE_TITLE } from '../config';
 import { type PreviewMessageEvent, PreviewConnection } from '../bridge/preview-connection';
 import { Catalog } from '../catalog';
+import { type GlobalsChangeEvent, GlobalsStore } from '../globals/globals-store';
 import type { Route } from '../router/route';
 import { type RouteChangeEvent, Router } from '../router';
 import './docs-preview';
@@ -17,9 +19,9 @@ export class DocsShell extends LitElement {
   @state() private previewSrc: string | null = null;
 
   private readonly previewConnection = new PreviewConnection(PREVIEW_ORIGIN);
+  private readonly globalsStore = new GlobalsStore();
   private router: Router | null = null;
 
-  // the page shown in the preview, and whether it is still rendering
   private pageId: string | null = null;
   private isRendering = false;
 
@@ -37,11 +39,13 @@ export class DocsShell extends LitElement {
     this.router?.stop();
     this.previewConnection.removeEventListener('rendered', this.onRendered);
     this.previewConnection.removeEventListener('navigate', this.onNavigate);
+    this.globalsStore.removeEventListener('globals-change', this.onGlobalsChange);
   }
 
   private async start() {
     this.previewConnection.addEventListener('rendered', this.onRendered);
     this.previewConnection.addEventListener('navigate', this.onNavigate);
+    this.globalsStore.addEventListener('globals-change', this.onGlobalsChange);
 
     try {
       this.router = new Router(await Catalog.load());
@@ -54,7 +58,7 @@ export class DocsShell extends LitElement {
   }
 
   private readonly onRouteChange = (event: Event) => {
-    const { route } = event as RouteChangeEvent;
+    const { route, fromHistory } = event as RouteChangeEvent;
     this.route = route;
 
     const pageTitle = route.type === 'page' ? route.page.segments.at(-1) : 'Page not found';
@@ -62,8 +66,20 @@ export class DocsShell extends LitElement {
 
     if (route.type !== 'page') return;
 
+    // Back and Forward keep the current globals, the history entry may hold older ones
+    if (route.globals && !fromHistory) this.globalsStore.set(route.globals);
+    this.router?.replaceGlobals(this.globalsStore.current);
+
     const { page, params, hash } = route;
-    this.previewSrc ??= previewUrl(page.id, 'docs', params, PREVIEW_ORIGIN);
+    const globals = this.globalsStore.current;
+
+    this.previewSrc ??= previewUrl(
+      page.id,
+      'docs',
+      { ...params, globals: stringifyGlobals(globals) },
+      PREVIEW_ORIGIN,
+    );
+    this.previewConnection.setGlobals(globals);
     this.previewConnection.showPage({ id: page.id, params });
 
     if (page.id === this.pageId) {
@@ -80,6 +96,13 @@ export class DocsShell extends LitElement {
 
     this.isRendering = false;
     if (this.route?.type === 'page') this.previewConnection.scrollTo(this.route.hash);
+  };
+
+  private readonly onGlobalsChange = (event: Event) => {
+    const { globals } = event as GlobalsChangeEvent;
+
+    this.previewConnection.setGlobals(globals);
+    this.router?.replaceGlobals(globals);
   };
 
   private readonly onNavigate = (event: Event) => {

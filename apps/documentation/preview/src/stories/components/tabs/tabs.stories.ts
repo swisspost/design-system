@@ -3,7 +3,6 @@ import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@preview/types/storybook';
-import { forceCompactAppearance } from '@preview/decorators/force-compact-appearance';
 
 const meta: MetaComponent<
   HTMLPostTabsElement & {
@@ -398,8 +397,8 @@ export const TabsWithSideNavigation: Story = {
       },
     },
   },
+  globals: { appearance: 'compact' },
   decorators: [
-    forceCompactAppearance,
     story =>
       html`<post-header text-menu="Menu">
           <post-logo slot="post-logo" url="/">Homepage</post-logo>

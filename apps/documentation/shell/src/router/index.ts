@@ -8,10 +8,16 @@ export interface NavigationOptions {
   replace?: boolean;
 }
 
+interface GoOptions extends NavigationOptions {
+  fromHistory?: boolean;
+}
+
 export class RouteChangeEvent extends Event {
   constructor(
     readonly route: Route,
     readonly previous: Route | null,
+    /** Whether the route changed with Back or Forward. */
+    readonly fromHistory: boolean,
   ) {
     super('route-change');
   }
@@ -57,7 +63,7 @@ export class Router extends EventTarget {
     );
   }
 
-  private go(url: URL, options: NavigationOptions) {
+  private go(url: URL, options: GoOptions) {
     const route = resolve(url, this.catalog);
 
     if (route.type === 'redirect') {
@@ -72,11 +78,11 @@ export class Router extends EventTarget {
     const previous = this.route;
 
     this.route = route;
-    this.dispatchEvent(new RouteChangeEvent(route, previous));
+    this.dispatchEvent(new RouteChangeEvent(route, previous, options.fromHistory ?? false));
   }
 
   private readonly onPopState = () => {
-    this.go(new URL(location.href), { replace: true });
+    this.go(new URL(location.href), { replace: true, fromHistory: true });
   };
 
   private readonly onClick = (event: MouseEvent) => {

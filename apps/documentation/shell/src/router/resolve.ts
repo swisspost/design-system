@@ -1,4 +1,4 @@
-import { GLOBAL_NAMES } from '@shared/globals';
+import { GLOBAL_NAMES, type Globals, normalizeGlobals } from '@shared/globals';
 import { BOOKMARK_PATH, decodeUrlComponent, normalizePath } from '@shared/urls';
 import type { Catalog } from '../catalog';
 import { migrateLegacyUrl } from './legacy';
@@ -24,8 +24,13 @@ export function resolve(url: URL, catalog: Catalog): Route {
     page,
     hash,
     params: withoutGlobals(params),
+    globals: readGlobals(params),
     canonical: new URL(canonical, url).href === url.href ? null : canonical,
   };
+}
+
+function readGlobals(params: Record<string, string>): Globals | null {
+  return GLOBAL_NAMES.some(name => Object.hasOwn(params, name)) ? normalizeGlobals(params) : null;
 }
 
 function withoutGlobals(params: Record<string, string>): Record<string, string> {

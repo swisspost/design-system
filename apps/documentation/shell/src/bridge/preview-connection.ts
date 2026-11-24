@@ -5,6 +5,7 @@ import {
   type ShellMessageType,
   toEnvelope,
 } from '@shared/bridge';
+import { compareGlobals, type Globals } from '@shared/globals';
 
 export interface PreviewPage {
   id: string;
@@ -24,10 +25,12 @@ export class PreviewMessageEvent<T extends PreviewMessageType = PreviewMessageTy
 export class PreviewConnection extends EventTarget {
   private readonly previewOrigin: string;
   private previewPage: PreviewPage | null = null;
+  private previewGlobals: Globals | null = null;
   private previewFrame: HTMLIFrameElement | null = null;
   private previewReady = false;
 
   private requestedPage: PreviewPage | null = null;
+  private requestedGlobals: Globals | null = null;
 
   constructor(previewOrigin: string) {
     super();
@@ -57,6 +60,12 @@ export class PreviewConnection extends EventTarget {
     this.sendPage();
   }
 
+  /** Applies the globals to the preview once it is ready, without reloading it. */
+  public setGlobals(globals: Globals) {
+    this.requestedGlobals = globals;
+    this.sendGlobals();
+  }
+
   public scrollTo(hash: string) {
     if (this.previewReady) this.send('scroll-to', { hash });
   }
@@ -69,6 +78,14 @@ export class PreviewConnection extends EventTarget {
     this.send('page', this.requestedPage);
   }
 
+  private sendGlobals() {
+    if (!this.previewReady || !this.requestedGlobals) return;
+    if (this.previewGlobals && compareGlobals(this.previewGlobals, this.requestedGlobals)) return;
+
+    this.previewGlobals = this.requestedGlobals;
+    this.send('globals', { globals: this.requestedGlobals });
+  }
+
   private send<T extends ShellMessageType>(type: T, payload: MessagePayload<T>) {
     this.previewFrame?.contentWindow?.postMessage(toEnvelope(type, payload), this.previewOrigin);
   }
@@ -77,6 +94,7 @@ export class PreviewConnection extends EventTarget {
   private readonly onLoad = () => {
     this.previewReady = false;
     this.previewPage = null;
+    this.previewGlobals = null;
     this.send('connect', {});
   };
 
@@ -89,6 +107,10 @@ export class PreviewConnection extends EventTarget {
     if (type === 'ready') {
       this.previewReady = true;
       this.previewPage = null;
+      this.previewGlobals = null;
+
+      // the globals first, so that the page renders with them
+      this.sendGlobals();
       this.sendPage();
     }
 

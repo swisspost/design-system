@@ -14,7 +14,9 @@ import {
   STORY_SPECIFIED,
   STORY_THREW_EXCEPTION,
 } from 'storybook/internal/core-events';
+import { stringifyGlobals } from '@shared/globals';
 import { previewUrl } from '@shared/urls';
+import { getGlobals, setGlobals } from '@preview/globals/globals-host';
 import { interceptLinks } from './links';
 import { ShellConnection, type ShellMessageEvent } from './shell-connection';
 
@@ -27,10 +29,17 @@ interface RenderPhaseChange {
   storyId: string;
 }
 
+interface UrlPage {
+  id: string;
+  params: Record<string, string>;
+}
+
 interface RenderingPage {
   id: string;
   timers: number[];
 }
+
+const STORYBOOK_PARAMS = new Set(['id', 'viewMode', 'globals']);
 
 const SETTLED_PHASES = new Set(['completed', 'afterEach', 'finished', 'aborted', 'errored']);
 
@@ -43,6 +52,18 @@ function setup(channel: Channel) {
 
   // the page Storybook shows, once it has selected one
   let pageId: string | null = null;
+
+  // the page of the URL, which a reload shows again together with the globals
+  let urlPage = readUrlPage();
+
+  const replaceUrl = () => {
+    const params = { ...urlPage.params, globals: stringifyGlobals(getGlobals()) };
+    const url = previewUrl(urlPage.id, 'docs', params);
+
+    if (url !== location.pathname + location.search) {
+      history.replaceState(history.state, '', url + location.hash);
+    }
+  };
 
   const select = (id: string) => {
     pageId = id;
@@ -70,14 +91,19 @@ function setup(channel: Channel) {
   shell.addEventListener('page', event => {
     const { payload } = event as ShellMessageEvent<'page'>;
 
-    const url = previewUrl(payload.id, 'docs', payload.params);
-    if (url !== location.pathname + location.search) {
-      history.replaceState(history.state, '', url + location.hash);
-    }
+    urlPage = { id: payload.id, params: payload.params };
+    replaceUrl();
 
     if (payload.id !== pageId) {
       channel.emit(SET_CURRENT_STORY, { storyId: payload.id, viewMode: 'docs' });
     }
+  });
+
+  shell.addEventListener('globals', event => {
+    const { payload } = event as ShellMessageEvent<'globals'>;
+
+    setGlobals(payload.globals);
+    replaceUrl();
   });
 
   shell.addEventListener('scroll-to', event => {
@@ -89,6 +115,17 @@ function setup(channel: Channel) {
   });
 
   shell.start();
+}
+
+function readUrlPage(): UrlPage {
+  const search = new URLSearchParams(location.search);
+  const params: Record<string, string> = {};
+
+  for (const [name, value] of search) {
+    if (!STORYBOOK_PARAMS.has(name)) params[name] = value;
+  }
+
+  return { id: search.get('id') ?? '', params };
 }
 
 /** Calls `onRendered` once a docs page and the stories on it are rendered. */
