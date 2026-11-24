@@ -11,6 +11,10 @@ docs-preview {
   display: block;
   block-size: 100%;
 
+  &:not(.loaded) {
+    display: none;
+  }
+
   & > iframe {
     display: block;
     inline-size: 100%;
