@@ -1,5 +1,5 @@
 import { type Globals, stringifyGlobals } from '@shared/globals';
-import { previewUrl } from '@shared/urls';
+import { decodeUrlComponent, previewUrl } from '@shared/urls';
 
 export type ArgValue = string | number | boolean | null | undefined;
 
@@ -57,7 +57,8 @@ export function parseArgs(value: string): Record<string, ArgValue> {
     if (separator < 1) return;
 
     const key = pair.slice(0, separator);
-    const raw = pair.slice(separator + 1);
+    // older links encoded the values twice
+    const raw = decodeUrlComponent(pair.slice(separator + 1));
     if (!STRING_REGEX.test(key)) return;
 
     if (Object.hasOwn(SPECIAL_VALUES, raw)) args[key] = SPECIAL_VALUES[raw];

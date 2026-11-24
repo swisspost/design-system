@@ -22,7 +22,14 @@ export class DocsPreview extends LitElement {
   }
 
   override render() {
-    return html`<iframe class="preview-frame" title="Documentation page" src=${this.src}></iframe>`;
+    return html`
+      <iframe
+        class="preview-frame"
+        title="Documentation page"
+        allow="clipboard-write"
+        src=${this.src}
+      ></iframe>
+    `;
   }
 }
 

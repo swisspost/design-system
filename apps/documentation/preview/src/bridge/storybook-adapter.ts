@@ -47,9 +47,14 @@ const SETTLED_PHASES = new Set(['completed', 'afterEach', 'finished', 'aborted',
 const STORIES_START_DELAY = 50;
 const STORIES_MAX_WAIT = 1500;
 
-function setup(channel: Channel) {
-  const shell = new ShellConnection();
+const shell = new ShellConnection();
 
+/** The origin of the shell, once it has connected. */
+export function getShellOrigin(): string | null {
+  return shell.origin;
+}
+
+function setup(channel: Channel) {
   // the page Storybook shows, once it has selected one
   let pageId: string | null = null;
 
