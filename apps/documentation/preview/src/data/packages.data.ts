@@ -17,24 +17,24 @@ export type PackageType =
   | 'Assets'
   | 'Typescript';
 
-export interface IPackage {
+export interface Package {
   type: PackageType;
   name: string;
   npmName: string;
   version: string;
-  links: Record<'github' | 'docs', IPackageLink>;
+  links: Record<'github' | 'docs', PackageLink>;
   image: {
     src: string;
     alt: string;
   };
 }
 
-interface IPackageLink {
+interface PackageLink {
   href: string;
   ariaLabel: string;
 }
 
-export const packages: Record<string, IPackage> = {
+export const packages: Record<string, Package> = {
   'styles': definePackage('Styles', 'Styles', 'styles', 'design-system-styles', metaStyles.id),
   'components': definePackage(
     'WebComponents',
@@ -81,7 +81,7 @@ function definePackage(
   packageName: string,
   dependencyName: string,
   metaId: string,
-): IPackage {
+): Package {
   const npmName = `@swisspost/${dependencyName}`;
   const version = getPackageVersion(npmName);
 
