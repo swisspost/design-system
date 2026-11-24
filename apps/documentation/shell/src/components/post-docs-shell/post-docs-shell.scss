@@ -54,9 +54,5 @@ post-docs-shell {
     grid-area: main;
     position: relative;
     min-block-size: 0;
-
-    > .message {
-      max-inline-size: 40rem;
-    }
   }
 }

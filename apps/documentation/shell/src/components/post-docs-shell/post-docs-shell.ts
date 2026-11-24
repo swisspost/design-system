@@ -20,6 +20,7 @@ import { type RouteChangeEvent, Router } from '../../router';
 import { SearchIndex } from '../../search/search-index';
 import '../post-docs-navigation-sheet/post-docs-navigation-sheet';
 import '../post-docs-navigation-sidebar/post-docs-navigation-sidebar';
+import type { PreviewLoading } from '../post-docs-preview/post-docs-preview';
 import '../post-docs-preview/post-docs-preview';
 import '../post-docs-toolbar/post-docs-toolbar';
 import './post-docs-shell.scss';
@@ -33,6 +34,8 @@ export class PostDocsShell extends LitElement {
   @state() private globals: Globals = DEFAULT_GLOBALS;
   // the sheet covers the page, which must not take the focus meanwhile
   @state() private isSheetOpen = false;
+  // the page is rendering, its scroll position is restored once it is rendered
+  @state() private previewLoading: PreviewLoading | null = null;
 
   private readonly previewConnection = new PreviewConnection(PREVIEW_ORIGIN);
   private readonly globalsStore = new GlobalsStore();
@@ -42,7 +45,6 @@ export class PostDocsShell extends LitElement {
   private readonly sidebarQuery = matchMedia('(min-width: 780px)');
 
   private pageId: string | null = null;
-  private isRendering = false;
 
   override createRenderRoot() {
     return this;
@@ -57,6 +59,7 @@ export class PostDocsShell extends LitElement {
     super.disconnectedCallback();
     this.router?.stop();
     this.previewConnection.removeEventListener('rendered', this.onRendered);
+    this.previewConnection.removeEventListener('error', this.onPreviewError);
     this.previewConnection.removeEventListener('navigate', this.onNavigate);
     this.previewConnection.removeEventListener('shortcut', this.onPreviewShortcut);
     document.removeEventListener('keydown', this.onKeydown);
@@ -65,6 +68,7 @@ export class PostDocsShell extends LitElement {
 
   private async start() {
     this.previewConnection.addEventListener('rendered', this.onRendered);
+    this.previewConnection.addEventListener('error', this.onPreviewError);
     this.previewConnection.addEventListener('navigate', this.onNavigate);
     this.previewConnection.addEventListener('shortcut', this.onPreviewShortcut);
     document.addEventListener('keydown', this.onKeydown);
@@ -111,19 +115,25 @@ export class PostDocsShell extends LitElement {
     this.previewConnection.showPage({ id: page.id, params });
 
     if (page.id === this.pageId) {
-      if (!this.isRendering) this.previewConnection.scrollTo(hash);
+      if (!this.previewLoading) this.previewConnection.scrollTo(hash);
     } else {
+      this.previewLoading = this.pageId === null ? 'first' : 'page';
       this.pageId = page.id;
-      this.isRendering = true;
     }
   };
 
   private readonly onRendered = (event: Event) => {
     const { payload } = event as PreviewMessageEvent<'rendered'>;
-    if (payload.pageId !== this.pageId || !this.isRendering) return;
+    if (payload.pageId !== this.pageId || !this.previewLoading) return;
 
-    this.isRendering = false;
+    this.previewLoading = null;
     if (this.route?.type === 'page') this.previewConnection.scrollTo(this.route.hash);
+  };
+
+  // the preview shows the error, e.g. the exception of a page that failed to render
+  private readonly onPreviewError = (event: Event) => {
+    const { payload } = event as PreviewMessageEvent<'error'>;
+    if (payload.pageId === this.pageId) this.previewLoading = null;
   };
 
   private readonly onGlobalsChange = (event: Event) => {
@@ -203,29 +213,37 @@ export class PostDocsShell extends LitElement {
         @postDocsGlobalsChange=${this.onGlobalsSelect}
         @postDocsToggle=${this.onSheetToggle}
       ></post-docs-navigation-sheet>
-      <main ?inert=${this.isSheetOpen}>${this.renderContent()}</main>
+      <main class="overflow-y-auto" ?inert=${this.isSheetOpen}>${this.renderContent()}</main>
     `;
   }
 
   private renderContent(): unknown {
     if (this.failed) {
-      return html`
-        <div class="message py-40 px-16">
-          <h1>Something went wrong</h1>
-          <p>The documentation could not be loaded. Please try again later.</p>
-        </div>
-      `;
+      return this.renderErrorPage(
+        '500',
+        'The documentation could not be loaded.',
+        'Please reload the page. If the error persists, try again later.',
+        html`
+          <button type="button" class="btn btn-primary" @click=${() => location.reload()}>
+            Reload the page
+          </button>
+        `,
+      );
     }
 
     const notFound =
       this.route?.type === 'not-found'
-        ? html`
-            <div class="message py-40 px-16">
-              <h1>Page not found</h1>
-              <p>The page you are looking for does not exist or has been moved.</p>
-              <a href="/">Go to the homepage</a>
-            </div>
-          `
+        ? this.renderErrorPage(
+            '404',
+            'This page could not be found.',
+            'The page may have been moved or renamed, or the URL is incorrect. You may find it from the homepage or with the search.',
+            html`
+              <a class="btn btn-primary" href="/">
+                <post-icon name="arrowleft" aria-hidden="true"></post-icon>
+                Go to homepage
+              </a>
+            `,
+          )
         : nothing;
 
     // the preview stays loaded, so that it shows the next page without a reload
@@ -235,11 +253,28 @@ export class PostDocsShell extends LitElement {
             src=${this.previewSrc}
             .connection=${this.previewConnection}
             class=${classMap({ loaded: this.route?.type === 'page' })}
+            .loading=${this.previewLoading}
           ></post-docs-preview>
         `
       : nothing;
 
     return html`${notFound}${preview}`;
+  }
+
+  // the error page template of the design system
+  private renderErrorPage(type: string, title: string, text: string, buttons: unknown): unknown {
+    return html`
+      <div class="palette palette-alternate error error-${type} min-h-full">
+        <div class="container">
+          <div class="error-content">
+            <h1 class="error-title">Error ${type}</h1>
+            <h2 class="error-subtitle">${title}</h2>
+            <p>${text}</p>
+            <div class="error-buttons">${buttons}</div>
+          </div>
+        </div>
+      </div>
+    `;
   }
 }
 
