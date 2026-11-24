@@ -1,0 +1,24 @@
+@use '../../styles/variables';
+
+post-docs-shell {
+  display: grid;
+  block-size: 100dvh;
+  grid-template-areas: 'topbar' 'main';
+  grid-template-rows: variables.$bar-height minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
+
+  > post-docs-topbar {
+    grid-area: topbar;
+    z-index: 1;
+  }
+
+  > main {
+    grid-area: main;
+    position: relative;
+    min-block-size: 0;
+
+    > .message {
+      max-inline-size: 40rem;
+    }
+  }
+}

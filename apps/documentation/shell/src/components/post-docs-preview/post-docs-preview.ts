@@ -1,9 +1,10 @@
 import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import type { PreviewConnection } from '../bridge/preview-connection';
+import type { PreviewConnection } from '../../bridge/preview-connection';
+import './post-docs-preview.scss';
 
-@customElement('docs-preview')
-export class DocsPreview extends LitElement {
+@customElement('post-docs-preview')
+export class PostDocsPreview extends LitElement {
   @property() src = '';
   @property({ attribute: false }) connection: PreviewConnection | null = null;
 
@@ -24,7 +25,7 @@ export class DocsPreview extends LitElement {
   override render() {
     return html`
       <iframe
-        class="preview-frame"
+        class="d-block w-full h-full border-0"
         title="Documentation page"
         allow="clipboard-write"
         src=${this.src}
@@ -35,6 +36,6 @@ export class DocsPreview extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'docs-preview': DocsPreview;
+    'post-docs-preview': PostDocsPreview;
   }
 }
