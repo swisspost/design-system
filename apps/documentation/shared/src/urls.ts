@@ -5,7 +5,7 @@ export const BOOKMARK_PATH = '/bookmark';
 
 const DOCS_SUFFIX = '--docs';
 
-export type UrlParams = Record<string, string | undefined>;
+export type UrlParams = Record<string, string | null>;
 
 export interface UrlOptions {
   hash?: string;
@@ -13,22 +13,23 @@ export interface UrlOptions {
   params?: UrlParams;
 }
 
-export function bookmarkUrl(pageId: string, options: UrlOptions = {}): string {
-  const { params, globals = {} }: UrlOptions = options;
-  return buildUrl(
-    BOOKMARK_PATH,
-    { page: toBookmarkId(pageId), ...params, ...withoutDefaultValues(globals) },
-    options.hash,
-  );
+export function bookmarkUrl(pageId: string, options?: UrlOptions): string {
+  const params: UrlParams = {
+    page: toBookmarkId(pageId),
+    ...options?.params,
+    ...withoutDefaultValues(options?.globals ?? {}),
+  };
+
+  return serializeUrl(BOOKMARK_PATH, params, options?.hash);
 }
 
-export function pageUrl(title: string, options: UrlOptions = {}): string {
-  const { params, globals = {} }: UrlOptions = options;
-  return buildUrl(
-    titleToPath(title),
-    { ...params, ...withoutDefaultValues(globals) },
-    options.hash,
-  );
+export function pageUrl(title: string, options?: UrlOptions): string {
+  const params: UrlParams = {
+    ...options?.params,
+    ...withoutDefaultValues(options?.globals ?? {}),
+  };
+
+  return serializeUrl(titleToPath(title), params, options?.hash);
 }
 
 export function previewUrl(
@@ -37,7 +38,7 @@ export function previewUrl(
   params: UrlParams = {},
   origin = '',
 ): string {
-  return buildUrl(`${origin}/iframe.html`, { id, viewMode, ...params });
+  return serializeUrl(`${origin}/iframe.html`, { id, viewMode, ...params });
 }
 
 export function titleToPath(title: string): string {
@@ -52,7 +53,7 @@ function toBookmarkId(id: string): string {
   return id.endsWith(DOCS_SUFFIX) ? id.slice(0, -DOCS_SUFFIX.length) : id;
 }
 
-function buildUrl(path: string, params: UrlParams, hash = ''): string {
+function serializeUrl(path: string, params: UrlParams, hash = ''): string {
   const search = new URLSearchParams();
 
   for (const [name, value] of Object.entries(params)) {
@@ -68,6 +69,18 @@ function buildUrl(path: string, params: UrlParams, hash = ''): string {
   if (fragment) result += `#${fragment}`;
 
   return result;
+}
+
+export function decodeUrlComponent(value: string): string {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
+}
+
+export function normalizePath(path: string): string {
+  return decodeUrlComponent(path).replace(/\/+$/, '').toLowerCase() || '/';
 }
 
 /**
