@@ -1,7 +1,9 @@
 import { LitElement, nothing } from 'lit';
 import { html } from 'lit/static-html.js';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 import { Task } from '@lit/task';
+import type { GlobalsChangeEvent } from '@shared/globals';
+import { globalsHost } from '@preview/globals/globals-host';
 import { getTitleFromPath } from '@preview/utils/storybook-indexer';
 
 export interface DesignParameter {
@@ -50,31 +52,20 @@ function getDirectory(path: string): string {
   return path.substring(0, path.lastIndexOf('/'));
 }
 
-function isDevModeEnabled(): boolean {
-  try {
-    const env = window.top?.document.documentElement.getAttribute('data-env');
-    if (env) return env === 'development';
-  } catch {
-    // the documentation shell has another origin in the two-port dev setup
-  }
-
-  const storedDevMode = localStorage.getItem('devModeEnabled');
-  return storedDevMode === 'true' || storedDevMode === 'development';
-}
-
 let instanceCount = 0;
 
 @customElement('story-links')
 export class StoryLinksComponent extends LitElement {
   @property({ type: Object }) of: StoriesModule | string = {};
 
+  @state() private devMode = globalsHost.current.mode === 'dev';
+
   private readonly snapshotsMenuId = `story-links-snapshots-${instanceCount++}`;
-  private readonly devModeEnabled = isDevModeEnabled();
 
   // Snapshot stories live next to the stories they belong to, but their names don't follow a fixed pattern
   private readonly snapshotsTask = new Task(this, {
-    task: async ([devModeEnabled, metaId, metaTitle]) => {
-      if (!devModeEnabled || (!metaId && !metaTitle)) return [];
+    task: async ([devMode, metaId, metaTitle]) => {
+      if (!devMode || (!metaId && !metaTitle)) return [];
 
       const entries = await getIndexEntries();
       const story = entries.find(
@@ -92,8 +83,22 @@ export class StoryLinksComponent extends LitElement {
           getDirectory(entry.importPath) === directory,
       );
     },
-    args: () => [this.devModeEnabled, this.meta?.id, this.meta?.title] as const,
+    args: () => [this.devMode, this.meta?.id, this.meta?.title] as const,
   });
+
+  connectedCallback() {
+    super.connectedCallback();
+    globalsHost.addEventListener('globals-change', this.onGlobalsChange);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    globalsHost.removeEventListener('globals-change', this.onGlobalsChange);
+  }
+
+  private readonly onGlobalsChange = (event: Event) => {
+    this.devMode = (event as GlobalsChangeEvent).globals.mode === 'dev';
+  };
 
   createRenderRoot() {
     /**

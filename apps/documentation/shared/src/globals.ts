@@ -1,6 +1,8 @@
 interface GlobalDefinition {
   label: string;
   options: Record<string, string>;
+  /** A hidden global has no menu and is never written into a shared URL, but a URL can still set it. */
+  hidden?: boolean;
 }
 
 export const GLOBAL_DEFINITIONS = {
@@ -20,6 +22,11 @@ export const GLOBAL_DEFINITIONS = {
     label: 'Palette',
     options: { default: 'Default', alternate: 'Alternate', accent: 'Accent', brand: 'Brand' },
   },
+  mode: {
+    label: 'Mode',
+    options: { default: 'Default', dev: 'Development' },
+    hidden: true,
+  },
 } satisfies Record<string, GlobalDefinition>;
 
 export type Globals = { [K in GlobalName]: GlobalValue<K> };
@@ -28,11 +35,21 @@ export type GlobalValue<K extends GlobalName> = keyof (typeof GLOBAL_DEFINITIONS
 
 export const GLOBAL_NAMES = Object.keys(GLOBAL_DEFINITIONS) as GlobalName[];
 
+/** The globals that are not hidden, see `GlobalDefinition.hidden`. */
+export const SHARABLE_GLOBAL_NAMES = GLOBAL_NAMES.filter(name => {
+  const definition: GlobalDefinition = GLOBAL_DEFINITIONS[name];
+  return !definition.hidden;
+});
+
+/** Shared URLs hold the globals that differ from the defaults, the hidden ones only apply to the person who has set them. */
+export const SHARABLE_GLOBALS_FILTER: GlobalsFilter = { defaultValues: false, hidden: false };
+
 export const DEFAULT_GLOBALS: Globals = {
   theme: 'post',
   appearance: 'default',
   scheme: 'light',
   palette: 'default',
+  mode: 'default',
 };
 
 export class GlobalsChangeEvent extends Event {
@@ -67,16 +84,27 @@ export function compareGlobals(a: Globals, b: Globals): boolean {
   return GLOBAL_NAMES.every(name => a[name] === b[name]);
 }
 
-export function withoutDefaultValues(globals: Partial<Globals>): Partial<Globals> {
-  return Object.fromEntries(
-    GLOBAL_NAMES.filter(name => globals[name] && globals[name] !== DEFAULT_GLOBALS[name]).map(
-      name => [name, globals[name]],
-    ),
+export interface GlobalsFilter {
+  /** Keeps the globals that have their default value. */
+  defaultValues?: boolean;
+  /** Keeps the hidden globals. */
+  hidden?: boolean;
+}
+
+/** Leaves out the globals that the filter excludes, e.g. `{ defaultValues: false }`. Both are kept by default. */
+export function filterGlobals(globals: Partial<Globals>, filter: GlobalsFilter): Partial<Globals> {
+  const names = GLOBAL_NAMES.filter(
+    name =>
+      globals[name] &&
+      (filter.defaultValues !== false || globals[name] !== DEFAULT_GLOBALS[name]) &&
+      (filter.hidden !== false || SHARABLE_GLOBAL_NAMES.includes(name)),
   );
+
+  return Object.fromEntries(names.map(name => [name, globals[name]]));
 }
 
 export function stringifyGlobals(globals: Partial<Globals>): string {
-  return Object.entries(withoutDefaultValues(globals))
+  return Object.entries(filterGlobals(globals, { defaultValues: false }))
     .map(([name, value]) => `${name}:${value}`)
     .join(';');
 }
