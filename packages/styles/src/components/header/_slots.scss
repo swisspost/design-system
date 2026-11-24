@@ -1,0 +1,107 @@
+@use 'sass:list';
+
+/// Slots of the global header (yellow part).
+/// @type List
+$global-header-slots:
+  'audience', 'global-nav-primary', 'global-nav-secondary', 'language-menu', 'post-login';
+
+/// Slots of the local header (white part).
+/// @type List
+$local-header-slots: 'title', 'main-nav', 'local-nav', 'side-nav';
+
+/// Throws a compile-time error for every slot that is not listed in `$global-header-slots` or `$local-header-slots`.
+/// Internal, called by `has-selector`. Keeps typos and unregistered slots out of the selectors.
+/// @param {List|String} $slots - Slot name or list of slot names to validate
+@function validate-slots($slots) {
+  $known-slots: list.join($global-header-slots, $local-header-slots, comma);
+
+  @each $slot in $slots {
+    @if not list.index($known-slots, $slot) {
+      @error "Unknown header slot '#{$slot}'. Valid slots: #{$known-slots}. Add new slots to $global-header-slots or $local-header-slots.";
+    }
+  }
+
+  @return true;
+}
+
+/// Builds the attribute selector for one slot, or an `:is()` selector for several slots.
+/// Internal, called by `has-selector`.
+/// @param {List|String} $slots - Slot name or list of slot names
+/// @return {String} e.g. `[slot='title']` or `:is([slot='audience'], [slot='post-login'])`
+@function slot-selector($slots) {
+  $selectors: ();
+
+  @each $slot in $slots {
+    $selectors: list.append($selectors, "[slot='#{$slot}']", comma);
+  }
+
+  @if list.length($selectors) == 1 {
+    @return list.nth($selectors, 1);
+  }
+
+  @return ':is(#{$selectors})';
+}
+
+/// Builds the `:has()` selector shared by `has`, `has-any`, `lacks` and `lacks-any`.
+/// Internal, use one of those functions instead of calling this one directly.
+/// @param {List|String} $slots - Slot name or list of slot names, validated against the known header slots
+/// @param {String|null} $scope - Element the slots are searched in, e.g. `'post-header'` when the selector is used on `:root`
+/// @param {Boolean} $direct - Only match slots that are direct children of the `$scope`
+/// @return {String} e.g. `:has(post-header > [slot='title'])`
+@function has-selector($slots, $scope, $direct) {
+  $valid: validate-slots($slots);
+  $prefix: '';
+
+  @if $scope {
+    $prefix: '#{$scope} ';
+  }
+
+  @if $direct {
+    $prefix: '#{$prefix}> ';
+  }
+
+  @return ':has(#{$prefix}#{slot-selector($slots)})';
+}
+
+/// Matches when the given slot is present.
+/// Use it to add a condition to a selector, interpolated like `post-header#{slots.has($slot: 'title')}`.
+/// For several slots use `has-any`, a list passed to this function is treated like `has-any`.
+/// @param {String} $slot - Name of a header slot
+/// @param {String|null} $scope [null] - Element the slot is searched in, set it to `'post-header'` when the selector is used on `:root`
+/// @param {Boolean} $direct [false] - Only match direct children of the `$scope`
+/// @return {String} e.g. `:has([slot='title'])`
+@function has($slot, $scope: null, $direct: false) {
+  @return has-selector($slot, $scope, $direct);
+}
+
+/// Matches when at least one of the given slots is present.
+/// Use it for "any slot of a group" conditions, e.g. with `$global-header-slots`.
+/// Don't use it to require that all slots are present, chain several `has` calls for that.
+/// @param {List} $slots - List of header slot names
+/// @param {String|null} $scope [null] - Element the slots are searched in, set it to `'post-header'` when the selector is used on `:root`
+/// @param {Boolean} $direct [false] - Only match direct children of the `$scope`
+/// @return {String} e.g. `:has(:is([slot='audience'], [slot='post-login']))`
+@function has-any($slots, $scope: null, $direct: false) {
+  @return has-selector($slots, $scope, $direct);
+}
+
+/// Matches when the given slot is not present.
+/// Use it to exclude a variant, interpolated like `post-header#{slots.lacks($slot: 'main-nav')}`.
+/// @param {String} $slot - Name of a header slot
+/// @param {String|null} $scope [null] - Element the slot is searched in, set it to `'post-header'` when the selector is used on `:root`
+/// @param {Boolean} $direct [false] - Only match direct children of the `$scope`
+/// @return {String} e.g. `:not(:has([slot='main-nav']))`
+@function lacks($slot, $scope: null, $direct: false) {
+  @return ':not(#{has-selector($slot, $scope, $direct)})';
+}
+
+/// Matches when none of the given slots is present.
+/// Use it for "no slot of a group" conditions, e.g. with `$global-header-slots`.
+/// Don't use it to require that at least one slot is missing, chain several `lacks` calls for that.
+/// @param {List} $slots - List of header slot names
+/// @param {String|null} $scope [null] - Element the slots are searched in, set it to `'post-header'` when the selector is used on `:root`
+/// @param {Boolean} $direct [false] - Only match direct children of the `$scope`
+/// @return {String} e.g. `:not(:has(:is([slot='audience'], [slot='post-login'])))`
+@function lacks-any($slots, $scope: null, $direct: false) {
+  @return ':not(#{has-selector($slots, $scope, $direct)})';
+}
