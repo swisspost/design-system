@@ -140,6 +140,7 @@ export class PostHeader {
       delete scrollParent.dataset.postScrollLocked;
       this.host.removeEventListener('keydown', this.keyboardHandler);
     }
+    this.updateScrollParentHeight();
   }
 
   constructor() {
