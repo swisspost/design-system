@@ -5,6 +5,7 @@ import {
   type ShellMessageType,
   toEnvelope,
 } from '@shared/bridge';
+import type { Shortcut } from '@shared/shortcuts';
 
 export class ShellMessageEvent<T extends ShellMessageType = ShellMessageType> extends Event {
   constructor(
@@ -57,6 +58,10 @@ export class ShellConnection extends EventTarget {
 
   public navigate(href: string) {
     this.send('navigate', { href });
+  }
+
+  public shortcut(name: Shortcut) {
+    this.send('shortcut', { name });
   }
 
   private sendReady() {

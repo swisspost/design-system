@@ -19,6 +19,7 @@ import { previewUrl } from '@shared/urls';
 import { globalsHost } from '@preview/globals/globals-host';
 import { interceptLinks } from './links';
 import { ShellConnection, type ShellMessageEvent } from './shell-connection';
+import { forwardShortcuts } from './shortcuts';
 
 interface StorySelection {
   storyId: string;
@@ -89,9 +90,14 @@ function setup(channel: Channel) {
 
   watchPageRenders(channel, id => shell.rendered(id));
 
-  shell.addEventListener('connect', () => interceptLinks(href => shell.navigate(href)), {
-    once: true,
-  });
+  shell.addEventListener(
+    'connect',
+    () => {
+      interceptLinks(href => shell.navigate(href));
+      forwardShortcuts(name => shell.shortcut(name));
+    },
+    { once: true },
+  );
 
   shell.addEventListener('page', event => {
     const { payload } = event as ShellMessageEvent<'page'>;

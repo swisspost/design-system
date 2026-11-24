@@ -7,6 +7,7 @@ import {
   type GlobalsChangeEvent,
   stringifyGlobals,
 } from '@shared/globals';
+import { getShortcut } from '@shared/shortcuts';
 import { previewUrl } from '@shared/urls';
 
 import { PREVIEW_ORIGIN, SITE_TITLE } from '../../config';
@@ -16,6 +17,7 @@ import { GlobalsStore } from '../../globals/globals-store';
 import { buildNavigation, type NavigationSection } from '../../navigation/tree';
 import type { Route } from '../../router/route';
 import { type RouteChangeEvent, Router } from '../../router';
+import { SearchIndex } from '../../search/search-index';
 import '../post-docs-navigation-sheet/post-docs-navigation-sheet';
 import '../post-docs-navigation-sidebar/post-docs-navigation-sidebar';
 import '../post-docs-preview/post-docs-preview';
@@ -36,6 +38,8 @@ export class PostDocsShell extends LitElement {
   private readonly globalsStore = new GlobalsStore();
   private router: Router | null = null;
   private navigation: NavigationSection[] = [];
+  private searchIndex: SearchIndex | null = null;
+  private readonly sidebarQuery = matchMedia('(min-width: 780px)');
 
   private pageId: string | null = null;
   private isRendering = false;
@@ -54,12 +58,16 @@ export class PostDocsShell extends LitElement {
     this.router?.stop();
     this.previewConnection.removeEventListener('rendered', this.onRendered);
     this.previewConnection.removeEventListener('navigate', this.onNavigate);
+    this.previewConnection.removeEventListener('shortcut', this.onPreviewShortcut);
+    document.removeEventListener('keydown', this.onKeydown);
     this.globalsStore.removeEventListener('globals-change', this.onGlobalsChange);
   }
 
   private async start() {
     this.previewConnection.addEventListener('rendered', this.onRendered);
     this.previewConnection.addEventListener('navigate', this.onNavigate);
+    this.previewConnection.addEventListener('shortcut', this.onPreviewShortcut);
+    document.addEventListener('keydown', this.onKeydown);
     this.globalsStore.addEventListener('globals-change', this.onGlobalsChange);
     this.globals = this.globalsStore.current;
 
@@ -133,6 +141,25 @@ export class PostDocsShell extends LitElement {
     if (url.origin === location.origin) this.router?.navigate(url);
   };
 
+  private readonly onKeydown = (event: KeyboardEvent) => {
+    if (getShortcut(event) !== 'search') return;
+
+    // not the search field of the browser
+    event.preventDefault();
+    this.openSearch();
+  };
+
+  private readonly onPreviewShortcut = (event: Event) => {
+    const { payload } = event as PreviewMessageEvent<'shortcut'>;
+    if (payload.name === 'search') this.openSearch();
+  };
+
+  private openSearch() {
+    if (this.sidebarQuery.matches)
+      this.querySelector('post-docs-navigation-sidebar')?.focusSearch();
+    else void this.querySelector('post-docs-navigation-sheet')?.openSearch();
+  }
+
   private readonly onGlobalsSelect = (event: CustomEvent<Partial<Globals>>) => {
     this.globalsStore.set(event.detail);
   };
@@ -146,7 +173,10 @@ export class PostDocsShell extends LitElement {
     const isModeChanged = changed.has('globals') && previousGlobals?.mode !== this.globals.mode;
 
     if ((changed.has('catalog') || isModeChanged) && this.catalog) {
-      this.navigation = buildNavigation(this.catalog, this.globals.mode === 'dev');
+      const devMode = this.globals.mode === 'dev';
+
+      this.navigation = buildNavigation(this.catalog, devMode);
+      this.searchIndex = new SearchIndex(this.catalog, devMode);
     }
   }
 
@@ -158,6 +188,7 @@ export class PostDocsShell extends LitElement {
         class="palette palette-default elevation-400"
         .sections=${this.navigation}
         .activePage=${activePage}
+        .searchIndex=${this.searchIndex}
       ></post-docs-navigation-sidebar>
       <post-docs-toolbar
         class="palette palette-brand"
@@ -168,6 +199,7 @@ export class PostDocsShell extends LitElement {
         .sections=${this.navigation}
         .activePage=${activePage}
         .globals=${this.globals}
+        .searchIndex=${this.searchIndex}
         @postDocsGlobalsChange=${this.onGlobalsSelect}
         @postDocsToggle=${this.onSheetToggle}
       ></post-docs-navigation-sheet>
