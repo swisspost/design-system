@@ -60,14 +60,20 @@ function applyGlobals() {
   }
 }
 
-/** Replaces the stylesheet once the new one has loaded, so that the page is never unstyled. */
+/**
+ * Replaces the stylesheet once the new one has loaded, so that the page is never unstyled.
+ * It is kept last in the head: the design-system styles must win over the docs styles, which are injected after `preview-head.html`.
+ */
 function setStylesheet(href: string) {
   const current = document.getElementById(STYLESHEET_ID);
   if (!current) return;
 
   pendingStylesheet?.remove();
   pendingStylesheet = null;
-  if (current.getAttribute('href') === href) return;
+
+  const stylesheets = document.head.querySelectorAll('link[rel="stylesheet"], style');
+  const isLast = stylesheets[stylesheets.length - 1] === current;
+  if (current.getAttribute('href') === href && isLast) return;
 
   const next = current.cloneNode() as HTMLLinkElement;
   next.removeAttribute('id');
@@ -85,7 +91,7 @@ function setStylesheet(href: string) {
   next.addEventListener('error', swap, { once: true });
 
   pendingStylesheet = next;
-  current.after(next);
+  document.head.append(next);
 }
 
 function applyToCanvases(globals: Globals) {
