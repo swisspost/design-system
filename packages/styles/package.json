@@ -39,7 +39,7 @@
     "@swisspost/design-system-stylelint-config": "workspace:10.9.0",
     "@types/node": "catalog:node",
     "autoprefixer": "10.7.0",
-    "glob": "13.0.6",
+    "glob": "14.0.2",
     "gulp": "5.0.1",
     "gulp-newer": "1.4.0",
     "gulp-postcss": "10.0.0",
