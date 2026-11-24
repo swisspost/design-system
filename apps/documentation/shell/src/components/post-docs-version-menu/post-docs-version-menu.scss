@@ -1,0 +1,9 @@
+@use '../../styles/mixins/toolbar-menu';
+
+post-docs-version-menu {
+  @include toolbar-menu.toolbar-menu;
+
+  .dependency > img {
+    block-size: 1.1em;
+  }
+}
