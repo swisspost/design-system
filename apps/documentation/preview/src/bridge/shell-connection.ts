@@ -25,6 +25,11 @@ export class ShellConnection extends EventTarget {
   // the page the preview shows, once it is ready
   private pageId: string | null = null;
 
+  /** The origin of the shell, once it has connected. */
+  public get origin(): string | null {
+    return this.shellOrigin;
+  }
+
   public start() {
     window.addEventListener('message', this.onMessage);
   }
