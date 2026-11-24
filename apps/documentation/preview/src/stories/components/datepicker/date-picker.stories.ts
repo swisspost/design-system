@@ -141,7 +141,7 @@ const meta: MetaComponent = {
     validation: {
       name: 'Validation',
       description:
-        'Defines the validation state of the input and controls the display of the corresponding return message. <div class="inline-notification inline-notification-info"><p>Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs#input">validation guidelines here</a>.</p></div> ',
+        'Defines the validation state of the input and controls the display of the corresponding return message. <div class="inline-notification inline-notification-info"><p>Please read our <a href="/bookmark?page=1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472#input">validation guidelines here</a>.</p></div> ',
       control: {
         type: 'radio',
         labels: {

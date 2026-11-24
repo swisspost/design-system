@@ -47,7 +47,7 @@ export const GridTable = () => (
     <tr>
       <th>Column ordering</th>
       <td colSpan={SCSS_VARIABLES['breakpoint-count']}>
-        <a href="/?path=/docs/cd70f48f-6308-4ec8-a8c6-982bd72c855c--docs">yes</a>
+        <a href="/bookmark?page=cd70f48f-6308-4ec8-a8c6-982bd72c855c">yes</a>
       </td>
     </tr>
   </SpecTable>
