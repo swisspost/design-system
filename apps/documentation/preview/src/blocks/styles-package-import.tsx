@@ -25,7 +25,7 @@ export default function PackageTag(props: Props) {
           <strong>
             Make sure the <code>@swisspost/design-system-styles</code> package is already present in
             your project or follow the&nbsp;
-            <a href="/?path=/docs/e53e2de8-0bbf-4f70-babc-074c5466f700--docs">
+            <a href="/bookmark?page=e53e2de8-0bbf-4f70-babc-074c5466f700">
               installation guidelines
             </a>
             .

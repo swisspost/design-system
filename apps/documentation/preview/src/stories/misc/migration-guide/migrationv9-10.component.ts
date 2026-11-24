@@ -139,7 +139,7 @@ export class MigrationV910Component extends LitElement {
         <a
           aria-hidden="true"
           tabindex="-1"
-          href="/?path=/docs/c23b1d0b-76b3-4e38-aa76-b10c29bb873f--docs#migration-from-v9-to-v10"
+          href="/bookmark?page=c23b1d0b-76b3-4e38-aa76-b10c29bb873f#migration-from-v9-to-v10"
         >
           <post-icon name="link"></post-icon>
         </a>
@@ -157,10 +157,10 @@ export class MigrationV910Component extends LitElement {
               <b>Bootstrap</b> and <b>Ng-Bootstrap</b> have been replaced by
               <b>Web Standards</b> compliant components, which means the Design System works across
               <b>any framework</b> (<a
-                href="/?path=/docs/833ef689-a573-40f5-a6a6-30a999b94733--docs"
+                href="/bookmark?page=833ef689-a573-40f5-a6a6-30a999b94733"
                 >Angular</a
-              >, <a href="/?path=/docs/13b9c7f1-993d-4348-a3b7-a7ceb92fd5c7--docs">React</a>, or
-              <a href="/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs">plain HTML</a>).
+              >, <a href="/bookmark?page=13b9c7f1-993d-4348-a3b7-a7ceb92fd5c7">React</a>, or
+              <a href="/bookmark?page=edfb619b-fda1-4570-bf25-20830303d483">plain HTML</a>).
             </p>
             <p>
               We've reworked utility classes to be
@@ -179,14 +179,14 @@ export class MigrationV910Component extends LitElement {
                 ></span
               >
               and easily adjust themes without rewriting CSS. Want to see this in action? Check the
-              <a href="/?path=/docs/43481535-5b39-40b5-a273-478b07dc3b31--docs"
+              <a href="/bookmark?page=43481535-5b39-40b5-a273-478b07dc3b31"
                 >Palette documentation</a
               >
               and switch to dark mode or the Cargo theme.
             </p>
             <p>
               Oh, and yes — there's a
-              <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uilight">
+              <a href="/bookmark?page=0dcfe3c0-bfc0-4107-b43b-7e9d825b805f&spds-iconset=uilight">
                 brand-new icon set</a
               >
               too 🖼️.
@@ -213,7 +213,7 @@ export class MigrationV910Component extends LitElement {
                         Are you using React? V10 of the design system comes with a
                         <code>@swisspost/design-system-components-react</code> package. Go check out
                         the
-                        <a href="/?path=/docs/13b9c7f1-993d-4348-a3b7-a7ceb92fd5c7--docs"
+                        <a href="/bookmark?page=13b9c7f1-993d-4348-a3b7-a7ceb92fd5c7"
                           >React package documentation</a
                         >
                         for more informations.
@@ -407,11 +407,11 @@ export class MigrationV910Component extends LitElement {
                           />
                           <label class="form-check-label" for="ngbootstrap-custom_select">
                             custom select &amp; dropdown →
-                            <a href="/?path=/docs/bc251cd0-5173-463b-8729-586bb1bf1e1a--docs"
+                            <a href="/bookmark?page=bc251cd0-5173-463b-8729-586bb1bf1e1a"
                               >native select element</a
                             >
                             or
-                            <a href="/?path=/docs/8ca2bd70-56e6-4da9-b1fd-4e55388dca88--docs"
+                            <a href="/bookmark?page=8ca2bd70-56e6-4da9-b1fd-4e55388dca88"
                               >post-menu</a
                             >
                             <span class="info">
@@ -548,7 +548,7 @@ export class MigrationV910Component extends LitElement {
                             datatable →
                             <a href="https://www.ag-grid.com/">AG Grid</a>
                             <span class="info">For interactive data tables, we recommend using AG Grid. For Swiss Post styling, use our
-                              <a href="/?path=/docs/e1405db2-fe06-45c6-a7ed-1408f9bf4895--docs">@swisspost/design-system-theme-ag-grid</a>
+                              <a href="/bookmark?page=e1405db2-fe06-45c6-a7ed-1408f9bf4895">@swisspost/design-system-theme-ag-grid</a>
                               package.</span>
                           </label>
                         </div>
@@ -563,7 +563,7 @@ export class MigrationV910Component extends LitElement {
                           />
                           <label class="form-check-label" for="ngbootstrap-datepicker">
                             datepicker →
-                            <a href="/?path=/docs/eb77cd02-48b2-42e1-a3e4-cd8a973d431e--docs"
+                            <a href="/bookmark?page=eb77cd02-48b2-42e1-a3e4-cd8a973d431e"
                               >post-date-picker</a
                             >
                             <span class="info">
@@ -720,7 +720,7 @@ readonly disableChristmasWeek = (date: Date, cellType: 'day' | 'month' | 'year')
                           />
                           <label class="form-check-label" for="ngbootstrap-modal">
                             modal / notification overlay →
-                            <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs"
+                            <a href="/bookmark?page=562eac2b-6dc1-4007-ba8e-4e981cef0cbc"
                               >dialog</a
                             >
                             <span class="info">
@@ -817,7 +817,7 @@ readonly disableChristmasWeek = (date: Date, cellType: 'day' | 'month' | 'year')
                           />
                           <label class="form-check-label" for="ngbootstrap-pagination">
                             pagination →
-                            <a href="/?path=/docs/d6f8b5c7-4e2a-4f3a-9d3a-1a2b3c4d5e6f--docs"
+                            <a href="/bookmark?page=d6f8b5c7-4e2a-4f3a-9d3a-1a2b3c4d5e6f"
                               >post-pagination</a
                             >
                             <span class="info">
@@ -942,7 +942,7 @@ export class MyComponent {
                           />
                           <label class="form-check-label" for="ngbootstrap-progressbar">
                             progressbar →
-                            <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs"
+                            <a href="/bookmark?page=a1b2c3d4-e5f6-7890-abcd-ef1234567890"
                               >post-progressbar</a
                             >
                             <span class="info">
@@ -1036,7 +1036,7 @@ export class MyComponent {
                                 To show the current progress percentage, use <code>.progressbar-value</code> together with a
                                 <code>.progressbar-label</code>.
                                 For implementation details and additional examples, refer to the
-                                <a href="/?path=/docs/a1b2c3d4-e5f6-7890-abcd-ef1234567890--docs">
+                                <a href="/bookmark?page=a1b2c3d4-e5f6-7890-abcd-ef1234567890">
                                   post-progressbar documentation
                                 </a>.
                               </p>
@@ -1059,7 +1059,7 @@ export class MyComponent {
                           />
                           <label class="form-check-label" for="ngbootstrap-timepicker">
                             timepicker →
-                            <a href="/?path=/docs/51471f0b-1bbb-4059-951b-f89aa7339f91--docs"
+                            <a href="/bookmark?page=51471f0b-1bbb-4059-951b-f89aa7339f91"
                               >native input with type "time"</a
                             >
                             <span class="info">
@@ -1140,7 +1140,7 @@ export class MyComponent {
                           <label class="form-check-label" for="ngbootstrap-typeahead">
                             typeahead →
                             <a
-                              href="/?path=/docs/2df77c32-5e33-402e-bd2e-54d54271ce19--docs#autocomplete"
+                              href="/bookmark?page=2df77c32-5e33-402e-bd2e-54d54271ce19#autocomplete"
                               >native input with datalist</a
                             >
                             <span class="info">
@@ -1395,7 +1395,7 @@ export class MyComponent {
                         <span class="info">
                           Instead, use classes <code>.valid-feedback</code> and
                           <code>.invalid-feedback</code>. <br />More informations on the
-                          <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs"
+                          <a href="/bookmark?page=1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472"
                             >form validation docs</a
                           >.
                         </span>
@@ -1863,7 +1863,7 @@ export class MyComponent {
                         Background color classes (<code>.bg-*</code>) removed
                         <span class="info"
                           >Colors are now handled by
-                          <a href="/?path=/docs/43481535-5b39-40b5-a273-478b07dc3b31--docs"
+                          <a href="/bookmark?page=43481535-5b39-40b5-a273-478b07dc3b31"
                             >palettes</a
                           >.</span
                         >
@@ -1917,7 +1917,7 @@ export class MyComponent {
                         </ul>
                         <span class="info"
                           >Use
-                          <a href="/?path=/docs/facaacfd-18f1-49b4-80f1-a96680730fa0--docs#gap"
+                          <a href="/bookmark?page=facaacfd-18f1-49b4-80f1-a96680730fa0#gap"
                             >gaps</a
                           >
                           to add spacing between elements and the
@@ -2008,7 +2008,7 @@ export class MyComponent {
                         </ul>
                         <span class="info"
                           >Colors are now handled by
-                          <a href="/?path=/docs/43481535-5b39-40b5-a273-478b07dc3b31--docs"
+                          <a href="/bookmark?page=43481535-5b39-40b5-a273-478b07dc3b31"
                             >palettes</a
                           >.</span
                         >
@@ -2046,7 +2046,7 @@ export class MyComponent {
                           >Those SCSS variables can either be replaced by a static value, or you can
                           add a
                           <a
-                            href="/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs#font-sizes"
+                            href="/bookmark?page=c55681df-4d21-469d-a5b3-c67686e7c104#font-sizes"
                             >font-size class</a
                           >
                           to the element it was affecting.</span
@@ -2082,7 +2082,7 @@ export class MyComponent {
                         </ul>
                         <span class="info">
                           ⚠️ For <code>post-icon</code> sizing, use the
-                          <a href="/?path=/docs/e728de1f-0d71-4317-8bb8-cbef0bf8d5db--docs"
+                          <a href="/bookmark?page=e728de1f-0d71-4317-8bb8-cbef0bf8d5db"
                             >sizing utility classes</a
                           >
                           instead of font size classes. If you're using the automigration rules,
@@ -2160,7 +2160,7 @@ export class MyComponent {
                           >Those SCSS variables can either be replaced by a static value, or you can
                           add a
                           <a
-                            href="/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs#font-sizes"
+                            href="/bookmark?page=c55681df-4d21-469d-a5b3-c67686e7c104#font-sizes"
                             >font-size class</a
                           >
                           to the element it was affecting.</span
@@ -2215,7 +2215,7 @@ export class MyComponent {
                           Line height utilities classes have been reduced to the following classes:
                           <code>.lh-1</code>, <code>.lh-sm</code> and <code>.lh-lg</code> which are
                           documented in the
-                          <a href="/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs"
+                          <a href="/bookmark?page=c55681df-4d21-469d-a5b3-c67686e7c104"
                             >text utilities</a
                           >.
                         </span>
@@ -2324,7 +2324,7 @@ export class MyComponent {
                           class anymore and all the card content is now within the
                           <code>.card-body</code>.<br />
                           Read the
-                          <a href="/?path=/docs/605c788d-3f75-4e6c-8498-be3d546843c2--docs"
+                          <a href="/bookmark?page=605c788d-3f75-4e6c-8498-be3d546843c2"
                             >card documentation</a
                           >
                           for more informations.</span
@@ -2347,7 +2347,7 @@ export class MyComponent {
                         <code>.card-group</code> removed
                         <span class="info"
                           >Card elements should be set inside a
-                          <a href="/?path=/docs/7240f2ef-216a-490e-9bd8-c0cef19f7b31--docs"
+                          <a href="/bookmark?page=7240f2ef-216a-490e-9bd8-c0cef19f7b31"
                             >grid container</a
                           >.</span
                         >
@@ -2406,7 +2406,7 @@ export class MyComponent {
                         <span class="info"
                           >The <code>post-icon</code> component should be used instead, which is
                           documented in the
-                          <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs"
+                          <a href="/bookmark?page=0dcfe3c0-bfc0-4107-b43b-7e9d825b805f"
                             >icon component</a
                           >.</span
                         >
@@ -2429,7 +2429,7 @@ export class MyComponent {
                         <span class="info">
                           The <code>post-breadcrumb-item</code> component should be used instead,
                           which is documented in the
-                          <a href="/?path=/docs/b7db7391-f893-4b1e-a125-b30c6f0b028b--docs"
+                          <a href="/bookmark?page=b7db7391-f893-4b1e-a125-b30c6f0b028b"
                             >breadcrumbs component</a
                           >.
                         </span>
@@ -2451,7 +2451,7 @@ export class MyComponent {
                         <code>.alert-fixed-bottom</code> class removed
                         <span class="info"
                           >Use
-                          <a href="/?path=/docs/803a58e8-c734-4ad7-80a8-62da1bb29d4b--docs"
+                          <a href="/bookmark?page=803a58e8-c734-4ad7-80a8-62da1bb29d4b"
                             >position utilities</a
                           >
                           to fix an alert to the bottom of a page.</span
@@ -2471,7 +2471,7 @@ export class MyComponent {
                         <code>topic-teaser</code> component (and its related classes) removed
                         <span class="info"
                           >As an alternative, you can use the
-                          <a href="/?path=/docs/5a47ba70-7831-4e59-b83e-81b6e6c32372--docs"
+                          <a href="/bookmark?page=5a47ba70-7831-4e59-b83e-81b6e6c32372"
                             >list interactive</a
                           >
                           component to display a list of links.</span
@@ -2529,7 +2529,7 @@ export class MyComponent {
                         </ul>
                         <span class="info"
                           >Colors are now handled by
-                          <a href="/?path=/docs/43481535-5b39-40b5-a273-478b07dc3b31--docs"
+                          <a href="/bookmark?page=43481535-5b39-40b5-a273-478b07dc3b31"
                             >palettes</a
                           >.</span
                         >
@@ -2713,17 +2713,16 @@ export class MyComponent {
                         <p>
                           The <code>sp-intranet-header</code> no longer exists. In this new version,
                           both internet and intranet use the same
-                          <a href="/?path=/docs/27a2e64d-55ba-492d-ab79-5f7c5e818498--docs"
+                          <a href="/bookmark?page=27a2e64d-55ba-492d-ab79-5f7c5e818498"
                             ><code>post-header</code></a
                           >
                           component and compose content through slots. For intranet applications,
                           this means using the
-                          <a
-                            href="/?path=/docs/27a2e64d-55ba-492d-ab79-5f7c5e818498--docs#application"
+                          <a href="/bookmark?page=27a2e64d-55ba-492d-ab79-5f7c5e818498#application"
                             >application header</a
                           >
                           variant. If you were also using a sidebar, migrate it to the
-                          <a href="/?path=/docs/9f26d86e-7edb-5804-ac96-92g22f91c9d9--docs"
+                          <a href="/bookmark?page=9f26d86e-7edb-5804-ac96-92g22f91c9d9"
                             >post-side-navigation</a
                           >
                           component.
@@ -3047,7 +3046,7 @@ Menu Text
                                   your <code>&lt;head&gt;</code> instead. The header reads these
                                   tags automatically and updates the language switch URLs.
                                   More information on the
-                                  <a href="/?path=/docs/ebb11274-091b-4cb7-9a3f-3e0451c9a865--docs#dynamic-updates"
+                                  <a href="/bookmark?page=ebb11274-091b-4cb7-9a3f-3e0451c9a865#dynamic-updates"
                                     >language switch overrides docs</a
                                   >.
                               </label>
@@ -3108,7 +3107,7 @@ Menu Text
                                   ></code-block>
 
                                   More information on the
-                                  <a href="/?path=/docs/b7db7391-f893-4b1e-a125-b30c6f0b028b--docs"
+                                  <a href="/bookmark?page=b7db7391-f893-4b1e-a125-b30c6f0b028b"
                                     >breadcrumbs docs</a
                                   >.
                                 </span>
@@ -3125,8 +3124,8 @@ Menu Text
         </post-accordion-item>
         <post-accordion-item>
           <span slot="header">8. Icons Migration 🖼️</span>
-            <p>Beside the <strong><a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=post">Post Icon Set</a></strong>, there is now a brand new
-              <strong>UI Icon Set</strong>, available as <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uilight">line</a> or <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs&spds-iconset=uisolid">solid</a> icons.</p>
+            <p>Beside the <strong><a href="/bookmark?page=0dcfe3c0-bfc0-4107-b43b-7e9d825b805f&spds-iconset=post">Post Icon Set</a></strong>, there is now a brand new
+              <strong>UI Icon Set</strong>, available as <a href="/bookmark?page=0dcfe3c0-bfc0-4107-b43b-7e9d825b805f&spds-iconset=uilight">line</a> or <a href="/bookmark?page=0dcfe3c0-bfc0-4107-b43b-7e9d825b805f&spds-iconset=uisolid">solid</a> icons.</p>
             <p>Using the new icons is as easy as before, simply replace the icon number with the icon name, and you're done.</p>
             <p>Below, we show you which of the previous icons you can replace with a corresponding new icon.</p>
 

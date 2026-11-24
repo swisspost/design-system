@@ -24,7 +24,7 @@ export class MigrationV78Component extends LitElement {
           <a
             aria-hidden="true"
             tabindex="-1"
-            href="/?path=/docs/c23b1d0b-76b3-4e38-aa76-b10c29bb873f--docs#migration-from-v7-to-v8"
+            href="/bookmark?page=c23b1d0b-76b3-4e38-aa76-b10c29bb873f#migration-from-v7-to-v8"
           >
             <post-icon name="link"></post-icon>
           </a>

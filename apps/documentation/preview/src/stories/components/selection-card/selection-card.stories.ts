@@ -46,7 +46,7 @@ const commonArgs: ArgTypes = {
   disabled: {
     name: 'Disabled',
     description:
-      'When set to `true`, disables the component\'s functionality and places it in a disabled state.<div class="inline-notification inline-notification-info"><p>There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</p></div>',
+      'When set to `true`, disables the component\'s functionality and places it in a disabled state.<div class="inline-notification inline-notification-info"><p>There are accessibility concerns with the disabled state.<br/>Please read our <a href="/bookmark?page=cb34361c-7d3f-4c21-bb9c-874c73e82578">disabled elements guidelines</a>.</p></div>',
     control: {
       type: 'boolean',
     },
@@ -77,7 +77,7 @@ const typeArg: object = {
 
 const validationArg: object = {
   description:
-    'Defines the validation state of the selection card and controls the display of the corresponding return message.<div class="inline-notification inline-notification-info"><p>Validations work the same as a regular checkbox or radio button. Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs">validation guidelines here</a>.</p></div> ',
+    'Defines the validation state of the selection card and controls the display of the corresponding return message.<div class="inline-notification inline-notification-info"><p>Validations work the same as a regular checkbox or radio button. Please read our <a href="/bookmark?page=1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472">validation guidelines here</a>.</p></div> ',
   control: {
     type: 'radio',
     labels: {

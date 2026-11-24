@@ -74,7 +74,7 @@ const meta: MetaComponent = {
     hiddenLabel: {
       name: 'Hidden Label',
       description:
-        'Renders the component with or without a visible label.<div class="inline-notification inline-notification-info"><p>There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/13fb5dfe-6c96-4246-aa6a-6df9569f143f--docs">form labels guidelines</a>.</p></div>',
+        'Renders the component with or without a visible label.<div class="inline-notification inline-notification-info"><p>There are accessibility concerns with hidden labels.<br/>Please read our <a href="/bookmark?page=13fb5dfe-6c96-4246-aa6a-6df9569f143f">form labels guidelines</a>.</p></div>',
       if: {
         arg: 'floatingLabel',
         truthy: false,
@@ -123,7 +123,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<div class="inline-notification inline-notification-info"><p>There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</p></div>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<div class="inline-notification inline-notification-info"><p>There are accessibility concerns with the disabled state.<br/>Please read our <a href="/bookmark?page=cb34361c-7d3f-4c21-bb9c-874c73e82578">disabled elements guidelines</a>.</p></div>',
       control: {
         type: 'boolean',
       },
@@ -134,7 +134,7 @@ const meta: MetaComponent = {
     validation: {
       name: 'Validation',
       description:
-        'Defines the validation state of the textarea and controls the display of the corresponding return message. <div class="inline-notification inline-notification-info"><p>Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs#textarea">validation guidelines here</a>.</p></div> ',
+        'Defines the validation state of the textarea and controls the display of the corresponding return message. <div class="inline-notification inline-notification-info"><p>Please read our <a href="/bookmark?page=1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472#textarea">validation guidelines here</a>.</p></div> ',
       control: {
         type: 'radio',
         labels: {
