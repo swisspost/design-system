@@ -62,60 +62,60 @@ const TEAM_MEMBERS: TeamMember[] = [
   },
 ];
 
-const BASEURL = 'https://github.com/swisspost/design-system/tree/main/apps/documentation';
-
-function getGitHubUrl(path: string) {
-  return `${BASEURL}${path.replace(/^\./, '').replace(/\.stories\.ts$/, '.docs.mdx')}`;
-}
-
-export default (params: { pathToStoryFile?: string }) => (
-  <>
-    <div className="container mt-56 fs-5 text-end">
-      {params.pathToStoryFile && (
-        <a href={getGitHubUrl(params.pathToStoryFile)} rel="noopener">
-          Edit this page on GitHub
-        </a>
-      )}
-    </div>
-    <footer className="docs-footer mt-56">
-      <div>
-        <div className="container">
-          <div className="py-32">
-            <h2 className="mt-0">Design System Team Members</h2>
-            <ul className="list-profile">
-              {TEAM_MEMBERS.sort(() => (Math.random() > 0.5 ? 1 : -1)).map((developer, index) => (
-                <li key={index}>
-                  <a className="avatar" href={`https://github.com/${developer.githubUsername}`}>
-                    <div className="avatar-image">
-                      <img
-                        src={`https://avatars.githubusercontent.com/u/${developer.githubImageId}?v=4`}
-                        alt={developer.name}
-                      />
-                    </div>
-                    <div className="avatar-description">
-                      <span>{developer.title}</span>
-                      <span>{developer.name}</span>
-                    </div>
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <div className="row mt-24">
-              <div className="col-12 col-sm-auto mt-24">
+export default () => (
+  <footer className="docs-footer">
+    <div className="container">
+      <div className="py-40">
+        <h2 className="text-center mt-0 mb-32">Design System Team Members</h2>
+        <ul className="list-profile">
+          {TEAM_MEMBERS.sort(() => (Math.random() > 0.5 ? 1 : -1)).map((developer, index) => (
+            <li key={index}>
+              <post-linkarea className="avatar">
+                <img
+                  src={`https://avatars.githubusercontent.com/u/${developer.githubImageId}?v=4`}
+                  alt={developer.name}
+                />
+                <div className="avatar-description">
+                  <span>{developer.title}</span>
+                  <span>{developer.name}</span>
+                </div>
                 <a
-                  className="btn-primary btn"
-                  href="https://github.com/swisspost/design-system/issues"
-                  rel="noopener"
+                  href={`https://github.com/${developer.githubUsername}`}
+                  className="visually-hidden"
                 >
-                  <span>Submit an issue</span>
+                  User profile
+                  <post-icon aria-hidden="true" name="arrowright"></post-icon>
                 </a>
+              </post-linkarea>
+            </li>
+          ))}
+          <li>
+            <post-linkarea className="avatar">
+              <span className="avatar-placeholder" aria-hidden="true">
+                <post-icon name="plus"></post-icon>
+              </span>
+              <div className="avatar-description">
+                <span>Open source</span>
+                <span>
+                  Contribute on GitHub <post-icon name="arrowright"></post-icon>
+                </span>
               </div>
-            </div>
-          </div>
-        </div>
+              <a
+                href="https://github.com/swisspost/design-system/blob/main/CONTRIBUTING.md"
+                className="visually-hidden"
+                rel="noopener"
+              >
+                Contributing guide
+                <post-icon aria-hidden="true" name="arrowright"></post-icon>
+              </a>
+            </post-linkarea>
+          </li>
+        </ul>
       </div>
+    </div>
 
-      <div className="container d-flex justify-content-between py-16">
+    <div className="palette palette-brand">
+      <div className="container d-flex gap-16 py-16">
         <strong>&copy; {new Date().getFullYear()} Swiss Post Ltd.</strong>
         <div className="d-flex gap-16">
           <a
@@ -126,6 +126,6 @@ export default (params: { pathToStoryFile?: string }) => (
           </a>
         </div>
       </div>
-    </footer>
-  </>
+    </div>
+  </footer>
 );

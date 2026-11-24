@@ -22,18 +22,14 @@ import StoryTags from '@/shared/story-tags';
   until the user responds. Use it to communicate critical information or request a specific action.
 </div>
 
-<post-banner type="warning">
-  <p>
-    Using the Design System dialog component will require the <code>.post-dialog</code> class in the
-    future to prevent styling conflicts with other <code>dialog</code> elements on the page.
-  </p>
-</post-banner>
+<div className="inline-notification inline-notification-warning mt-8 mb-16">
+  Using the Design System dialog component will require the <code>.post-dialog</code> class in the
+  future to prevent styling conflicts with other <code>dialog</code> elements on the page.
+</div>
 
-<post-banner type="info">
-  <p>
-    For more information on the dialog element, please refer to the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog" target="_blank" rel="noopener noreferrer"><strong>MDN Web Docs: HTML &lt;dialog&gt; element</strong><span className="visually-hidden">(opens in a new tab)</span></a>.
-  </p>
-</post-banner>
+<div className="inline-notification inline-notification-info mb-16">
+  For more information on the dialog element, please refer to the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog" target="_blank" rel="noopener noreferrer"><strong>MDN Web Docs: HTML &lt;dialog&gt; element</strong><span className="visually-hidden">(opens in a new tab)</span></a>.
+</div>
 
 <Canvas sourceState="shown" of={DialogStories.Default} />
 <div className="hide-col-default">

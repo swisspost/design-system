@@ -2,7 +2,6 @@ import { defineConfig } from 'cypress';
 import { browsersPlugin } from '../plugins/browsers.js';
 
 export default defineConfig({
-  allowCypressEnv: false,
   includeShadowDom: true,
   retries: { runMode: 1 },
   video: false,
