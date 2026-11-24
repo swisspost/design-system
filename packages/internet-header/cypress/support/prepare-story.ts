@@ -2,6 +2,7 @@ import testConfiguration from '../fixtures/internet-header/test-configuration.js
 import mockNotAuth from '../fixtures/internet-header/not-auth.json';
 import mockAuth from '../fixtures/internet-header/auth.json';
 import { LocalizedConfig } from '../../src/models/general.model';
+import { HEADER } from '../e2e/shared/variables';
 
 export const installInterceptors = (
   config: LocalizedConfig = testConfiguration,
@@ -27,6 +28,14 @@ export const prepare = (
   cy.get('.sb-nopreview_main', { timeout: 30000 }).should('be.visible'); // Wait until vite is ready (initial loading is longer)
   cy.loadStory(storyId, storyName);
   cy.get('#root-inner', { timeout: 30000 }).should('exist'); // Ensure that we have a storybook component loaded, before going further
+
+  if (storyId === HEADER) {
+    // The header story answers from local test data by default, which would bypass the interceptors
+    cy.changeArg('localData', false);
+    cy.get('#PPM_HEADER_DATA').should('not.exist');
+    // Let the remounted header load its config, so the tests assert on a rendered header
+    cy.wait('@getTestConfig');
+  }
 };
 
 export const copyConfig = (): LocalizedConfig => {

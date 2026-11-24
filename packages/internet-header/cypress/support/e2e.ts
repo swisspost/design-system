@@ -31,4 +31,10 @@ Cypress.on('uncaught:exception', err => {
   if (err.name.includes('TypeError')) {
     return false;
   }
+
+  // Storybook waits for running animations after each render, but does not handle the rejection of one that gets cancelled.
+  // A remounted header retargets the transition of its `inset-block-start`, which cancels it and throws an 'AbortError'.
+  if (err.name.includes('AbortError')) {
+    return false;
+  }
 });

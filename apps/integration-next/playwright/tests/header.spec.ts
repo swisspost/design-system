@@ -1,7 +1,9 @@
 import { test, expect } from '@playwright/test';
+import { blockKlpPlatform } from '../support/klp-platform';
 
 test.describe('Sticky header behavior', () => {
   test.beforeEach(async ({ page }) => {
+    await blockKlpPlatform(page);
     await page.goto('/ssr');
 
     await page.waitForSelector('post-header[data-hydrated]');
