@@ -16,7 +16,7 @@ import {
 } from 'storybook/internal/core-events';
 import { stringifyGlobals } from '@shared/globals';
 import { previewUrl } from '@shared/urls';
-import { getGlobals, setGlobals } from '@preview/globals/globals-host';
+import { globalsHost } from '@preview/globals/globals-host';
 import { interceptLinks } from './links';
 import { ShellConnection, type ShellMessageEvent } from './shell-connection';
 
@@ -62,7 +62,7 @@ function setup(channel: Channel) {
   let urlPage = readUrlPage();
 
   const replaceUrl = () => {
-    const params = { ...urlPage.params, globals: stringifyGlobals(getGlobals()) };
+    const params = { ...urlPage.params, globals: stringifyGlobals(globalsHost.current) };
     const url = previewUrl(urlPage.id, 'docs', params);
 
     if (url !== location.pathname + location.search) {
@@ -107,7 +107,7 @@ function setup(channel: Channel) {
   shell.addEventListener('globals', event => {
     const { payload } = event as ShellMessageEvent<'globals'>;
 
-    setGlobals(payload.globals);
+    globalsHost.set(payload.globals);
     replaceUrl();
   });
 

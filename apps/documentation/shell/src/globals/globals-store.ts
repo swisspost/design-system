@@ -1,12 +1,12 @@
-import { compareGlobals, DEFAULT_GLOBALS, type Globals, normalizeGlobals } from '@shared/globals';
+import {
+  compareGlobals,
+  DEFAULT_GLOBALS,
+  type Globals,
+  GlobalsChangeEvent,
+  normalizeGlobals,
+} from '@shared/globals';
 
 const STORAGE_KEY = 'post-docs:globals';
-
-export class GlobalsChangeEvent extends Event {
-  constructor(readonly globals: Globals) {
-    super('globals-change');
-  }
-}
 
 /** The globals chosen by the user, kept in the local storage. */
 export class GlobalsStore extends EventTarget {
