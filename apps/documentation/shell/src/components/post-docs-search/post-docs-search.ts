@@ -2,8 +2,8 @@ import { LitElement, type PropertyValues, html, nothing } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { SEARCH_SHORTCUT } from '@shared/shortcuts';
 import { STATUS_TAG_PREFIX, type StatusTag } from '@shared/tags';
-import { getRootDefinition } from '../../navigation/root';
-import type { SearchIndex, SearchResult } from '../../search/search-index';
+import { getRootDefinition } from '../../navigation/navigation';
+import type { SearchIndex, SearchResult } from '../../catalog/search-index';
 import './post-docs-search.scss';
 
 const NEW_TAG: StatusTag = `${STATUS_TAG_PREFIX}new`;

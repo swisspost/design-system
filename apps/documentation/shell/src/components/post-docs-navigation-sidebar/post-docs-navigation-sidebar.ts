@@ -1,8 +1,8 @@
 import { LitElement, html } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
-import type { Page } from '../../catalog';
+import type { Page } from '../../catalog/catalog';
 import type { NavigationSection } from '../../navigation/tree';
-import type { SearchIndex } from '../../search/search-index';
+import type { SearchIndex } from '../../catalog/search-index';
 import type { PostDocsNavigationTree } from '../post-docs-navigation-tree/post-docs-navigation-tree';
 import type { PostDocsSearch } from '../post-docs-search/post-docs-search';
 import '../post-docs-navigation-tree/post-docs-navigation-tree';

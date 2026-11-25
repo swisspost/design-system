@@ -1,5 +1,5 @@
 import type { Globals } from '@shared/globals';
-import type { Catalog } from '../catalog';
+import type { Catalog } from '../catalog/catalog';
 import { resolve } from './resolve';
 import type { Route } from './route';
 

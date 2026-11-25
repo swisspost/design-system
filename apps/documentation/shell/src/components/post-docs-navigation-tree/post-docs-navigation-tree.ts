@@ -1,9 +1,9 @@
 import { LitElement, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { STATUS_TAG_PREFIX, type StatusTag } from '@shared/tags';
-import type { Page } from '../../catalog';
-import { CATEGORY_ICON } from '../../config';
-import { getRootDefinition } from '../../navigation/root';
+import type { Page } from '../../catalog/catalog';
+import { NAVIGATION } from '../../config';
+import { getRootDefinition } from '../../navigation/navigation';
 import {
   getAncestorKeys,
   type NavigationNode,
@@ -97,7 +97,7 @@ export class PostDocsNavigationTree extends LitElement {
           html`
             <button type="button" class="item heading py-8 fw-black">
               ${renderIcon('chevrondown', 'chevron')} ${renderLabel(section.label)}
-              ${renderIcon(CATEGORY_ICON)}
+              ${renderIcon(NAVIGATION.categoryIcon)}
             </button>
           `,
         )}
