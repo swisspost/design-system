@@ -1,7 +1,7 @@
 import { filterGlobals, normalizeGlobals, parseGlobals, stringifyGlobals } from '@shared/globals';
 import { BOOKMARK_PATH, decodeUrlComponent, normalizePath, previewUrl } from '@shared/urls';
 import { PREVIEW_ORIGIN } from '../config';
-import type { Catalog } from '../catalog';
+import type { Catalog } from '../catalog/catalog';
 import type { NotFoundRoute, RedirectRoute } from './route';
 
 const MANAGER_PATHS = new Set(['/', '/index.html']);

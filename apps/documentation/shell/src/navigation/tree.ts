@@ -1,6 +1,6 @@
 import { VISIBILITY_TAG_PREFIX, type VisibilityTag } from '@shared/tags';
-import type { Catalog, Page } from '../catalog';
-import { getRootDefinition } from './root';
+import type { Catalog, Page } from '../catalog/catalog';
+import { getRootDefinition } from './navigation';
 
 const DEV_TAG: VisibilityTag = `${VISIBILITY_TAG_PREFIX}dev`;
 

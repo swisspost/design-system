@@ -12,12 +12,12 @@ import { previewUrl } from '@shared/urls';
 
 import { PREVIEW_ORIGIN, SITE_TITLE } from '../../config';
 import { type PreviewMessageEvent, PreviewConnection } from '../../bridge/preview-connection';
-import { Catalog } from '../../catalog';
+import { Catalog } from '../../catalog/catalog';
 import { GlobalsStore } from '../../globals/globals-store';
 import { buildNavigation, type NavigationSection } from '../../navigation/tree';
 import type { Route } from '../../router/route';
-import { type RouteChangeEvent, Router } from '../../router';
-import { SearchIndex } from '../../search/search-index';
+import { type RouteChangeEvent, Router } from '../../router/router';
+import { SearchIndex } from '../../catalog/search-index';
 import '../post-docs-navigation-sheet/post-docs-navigation-sheet';
 import '../post-docs-navigation-sidebar/post-docs-navigation-sidebar';
 import type { PreviewLoading } from '../post-docs-preview/post-docs-preview';

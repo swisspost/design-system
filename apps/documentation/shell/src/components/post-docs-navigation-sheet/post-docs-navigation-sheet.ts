@@ -1,10 +1,10 @@
 import { LitElement, html, nothing } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { DEFAULT_GLOBALS, type Globals } from '@shared/globals';
-import type { Page } from '../../catalog';
-import { getRootDefinition } from '../../navigation/root';
+import type { Page } from '../../catalog/catalog';
+import { getRootDefinition } from '../../navigation/navigation';
 import type { NavigationSection } from '../../navigation/tree';
-import type { SearchIndex } from '../../search/search-index';
+import type { SearchIndex } from '../../catalog/search-index';
 import type { PostDocsNavigationTree } from '../post-docs-navigation-tree/post-docs-navigation-tree';
 import type { PostDocsSearch } from '../post-docs-search/post-docs-search';
 import '../post-docs-globals-menus/post-docs-globals-menus';
