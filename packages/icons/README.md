@@ -29,7 +29,7 @@ CEN_URL_ICONSET_UI=<Censhare URL>
 Then run:
 
 ```shell
-npx post-icons-fetch --out ./icons
+npx --package @swisspost/design-system-icons post-icons-fetch --out ./icons
 ```
 
 The output directory contains:
