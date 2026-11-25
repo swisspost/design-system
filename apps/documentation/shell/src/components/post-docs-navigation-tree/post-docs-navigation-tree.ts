@@ -52,14 +52,23 @@ export class PostDocsNavigationTree extends LitElement {
     await new Promise(resolve => requestAnimationFrame(resolve));
     if (this.getClientRects().length === 0) return;
 
+    const ids = getAncestorKeys(this.sections, this.activePage.id).map(key =>
+      CSS.escape(this.collapsibleId(key)),
+    );
     const toggles: Promise<boolean>[] = [];
-    for (const key of getAncestorKeys(this.sections, this.activePage.id)) {
-      const collapsible = this.querySelector<HTMLPostCollapsibleElement>(
-        `#${CSS.escape(this.collapsibleId(key))}`,
-      );
+    for (const id of ids) {
+      const collapsible = this.querySelector<HTMLPostCollapsibleElement>(`#${id}`);
       if (collapsible) toggles.push(collapsible.toggle(true));
     }
-    await Promise.all(toggles);
+
+    // a toggle rejects when the tree is hidden during its animation (e.g. by the search):
+    // the collapsible is expanded, but its triggers still read collapsed
+    await Promise.allSettled(toggles);
+    for (const id of ids) {
+      void this.querySelector<HTMLPostCollapsibleTriggerElement>(
+        `post-collapsible-trigger[for="${id}"]`,
+      )?.update();
+    }
 
     this.querySelector('[aria-current="page"]')?.scrollIntoView({ block: 'nearest' });
   }

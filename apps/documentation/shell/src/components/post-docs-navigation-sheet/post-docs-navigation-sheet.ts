@@ -62,17 +62,16 @@ export class PostDocsNavigationSheet extends LitElement {
   }
 
   public async open() {
-    await this.expand(true);
+    await this.expand();
   }
 
   /** Opens the panel with the focus in the search field, e.g. for the search shortcut. */
   public async openSearch() {
-    // the search hides the tree as soon as there is a query, it reveals the active page once cleared
-    await this.expand(false);
+    await this.expand();
     this.search.focus();
   }
 
-  private async expand(revealActivePage: boolean) {
+  private async expand() {
     if (this.isExpanded && !this.isClosing) return;
 
     const isReopening = this.isClosing;
@@ -81,7 +80,7 @@ export class PostDocsNavigationSheet extends LitElement {
     this.emitToggle(true);
 
     await this.updateComplete;
-    if (!isReopening && revealActivePage) void this.tree.revealActivePage();
+    if (!isReopening) void this.tree.revealActivePage();
 
     // replaces a running fade-out, so that `close` stops there
     void this.fade('in');
