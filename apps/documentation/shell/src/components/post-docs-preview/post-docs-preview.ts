@@ -34,6 +34,13 @@ export class PostDocsPreview extends LitElement {
     this.clearTimeout();
   }
 
+  /** Moves the focus into the page, e.g. to read it with the keyboard. */
+  public override focus() {
+    // after the current event: Firefox ignores a focus move into the frame during the key press that causes it
+    const frame = this.querySelector('iframe');
+    window.setTimeout(() => frame?.focus(), 0);
+  }
+
   protected override willUpdate(changed: PropertyValues) {
     if (!changed.has('loading')) return;
 

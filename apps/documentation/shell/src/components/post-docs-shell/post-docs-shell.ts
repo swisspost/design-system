@@ -187,6 +187,13 @@ export class PostDocsShell extends LitElement {
     this.isSheetOpen = event.detail;
   };
 
+  // back to the page, once the sheet no longer makes it inert
+  private readonly onSearchExit = async () => {
+    void this.querySelector('post-docs-navigation-sheet')?.close();
+    await this.updateComplete;
+    this.querySelector('post-docs-preview')?.focus();
+  };
+
   override willUpdate(changed: PropertyValues) {
     const previousGlobals = changed.get('globals') as Globals | undefined;
     const isModeChanged = changed.has('globals') && previousGlobals?.mode !== this.globals.mode;
@@ -208,6 +215,7 @@ export class PostDocsShell extends LitElement {
         .sections=${this.navigation}
         .activePage=${activePage}
         .searchIndex=${this.searchIndex}
+        @postDocsSearchExit=${this.onSearchExit}
       ></post-docs-navigation-sidebar>
       <post-docs-toolbar
         class="palette palette-brand"
@@ -220,6 +228,7 @@ export class PostDocsShell extends LitElement {
         .globals=${this.globals}
         .searchIndex=${this.searchIndex}
         @postDocsGlobalsChange=${this.onGlobalsSelect}
+        @postDocsSearchExit=${this.onSearchExit}
         @postDocsToggle=${this.onSheetToggle}
       ></post-docs-navigation-sheet>
       <main class="overflow-y-auto" ?inert=${this.isSheetOpen}>${this.renderContent()}</main>
