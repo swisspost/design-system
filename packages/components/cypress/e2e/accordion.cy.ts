@@ -419,25 +419,29 @@ describe('accordion', () => {
           cy.get('#late-first').should('have.prop', 'collapsed', true);
         });
 
-        it('keeps the open panel containing the fragment target in a single-open accordion', () => {
-          cy.window().then(win => {
-            win.history.replaceState(null, '', '#open-target');
-            win.document.body.insertAdjacentHTML(
-              'beforeend',
-              `<post-accordion id="open-accordion" heading-level="2">
-                <post-accordion-item id="open-first">
-                  <span slot="header">First</span><p>First</p>
-                </post-accordion-item>
-                <post-accordion-item id="open-second">
-                  <span slot="header">Second</span><p id="open-target">Target</p>
-                </post-accordion-item>
-              </post-accordion>`,
-            );
+        [
+          { findable: true, open: 'open-second', closed: 'open-first' },
+          { findable: false, open: 'open-first', closed: 'open-second' },
+        ].forEach(({ findable, open, closed }) => {
+          it(`keeps ${findable ? 'the fragment target panel' : 'the first panel'} open in a ${findable ? 'findable' : 'non-findable'} single-open accordion`, () => {
+            cy.window().then(win => {
+              win.history.replaceState(null, '', '#open-target');
+              win.document.body.insertAdjacentHTML(
+                'beforeend',
+                `<post-accordion id="open-accordion" heading-level="2"${findable ? ' findable' : ''}>
+                  <post-accordion-item id="open-first">
+                    <span slot="header">First</span><p>First</p>
+                  </post-accordion-item>
+                  <post-accordion-item id="open-second">
+                    <span slot="header">Second</span><p id="open-target">Target</p>
+                  </post-accordion-item>
+                </post-accordion>`,
+              );
+            });
+            cy.get('#open-accordion[data-hydrated]');
+            cy.get(`#${open}`).should('have.prop', 'collapsed', false);
+            cy.get(`#${closed}`).should('have.prop', 'collapsed', true);
           });
-          cy.get('#open-accordion[data-hydrated]');
-          cy.get('#open-second').should('have.prop', 'collapsed', false);
-          cy.get('#open-target').should('be.visible');
-          cy.get('#open-first').should('have.prop', 'collapsed', true);
         });
 
         it('keeps only the matched panel open in a single-open accordion', () => {

@@ -131,8 +131,9 @@ export class PostAccordion {
       return !item.collapsed || this.expandedItems.has(item);
     });
 
-    // In single mode, keep the item containing the URL fragment target open (e.g. a deep link)
-    const target = Build.isBrowser ? getFragmentTarget(this.host.ownerDocument) : null;
+    // In single mode, keep the findable item containing the URL fragment target open (e.g. a deep link)
+    const target =
+      Build.isBrowser && this.findable ? getFragmentTarget(this.host.ownerDocument) : null;
     const keptItem = openItems.find(item => target && item.contains(target)) ?? openItems[0];
 
     openItems.forEach(item => {

@@ -244,19 +244,21 @@ export class PostCollapsible {
   private updateTriggers() {
     if (!Build.isBrowser || !this.host.isConnected) return;
 
-    // Using a set for de-duplicating triggers
-    const triggers = new Set<HTMLPostCollapsibleTriggerElement>(
-      this.host.id &&
-        getRoot(this.host).querySelectorAll<HTMLPostCollapsibleTriggerElement>(
-          `post-collapsible-trigger[for="${this.host.id}"]`,
-        ),
-    );
+    const triggers = this.host.id
+      ? Array.from(
+          getRoot(this.host).querySelectorAll<HTMLPostCollapsibleTriggerElement>(
+            `post-collapsible-trigger[for="${this.host.id}"]`,
+          ),
+        )
+      : [];
 
-    // Also update an ancestor trigger when the collapsible is nested inside one
+    // also update an ancestor trigger when the collapsible is nested inside one
     const nestedTrigger = this.host.closest<HTMLPostCollapsibleTriggerElement>(
       'post-collapsible-trigger',
     );
-    if (nestedTrigger) triggers.add(nestedTrigger);
+    if (nestedTrigger && !triggers.includes(nestedTrigger)) {
+      triggers.push(nestedTrigger);
+    }
 
     triggers.forEach(trigger => trigger.update());
   }

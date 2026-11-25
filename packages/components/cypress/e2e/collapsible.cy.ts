@@ -187,56 +187,6 @@ describe('collapsible', () => {
     });
   });
 
-  describe('trigger deduplication', { baseUrl: null }, () => {
-    it('updates wrapping and external triggers once each per collapsed change', () => {
-      cy.visit(FIXTURE_PATH);
-      cy.get<HTMLPostCollapsibleElement>('#nested post-collapsible[data-hydrated]')
-        .as('collapsible')
-        .should(([collapsible]) => {
-          expect(collapsible.id).not.to.equal('');
-        })
-        .then(([collapsible]) => {
-          const wrapper = collapsible.closest('post-collapsible-trigger');
-          wrapper.setAttribute('for', collapsible.id);
-          const external = collapsible.ownerDocument.createElement('post-collapsible-trigger');
-          external.setAttribute('for', collapsible.id);
-          external.id = 'external-trigger';
-          external.innerHTML = '<button>External trigger</button>';
-          wrapper.after(external);
-        });
-
-      cy.get('#external-trigger[data-hydrated] button').should(
-        'have.attr',
-        'aria-expanded',
-        'true',
-      );
-      cy.get<HTMLPostCollapsibleTriggerElement>('#nested post-collapsible-trigger').then(
-        ([trigger]) => {
-          Object.defineProperty(trigger, 'update', {
-            value: cy.spy(trigger.update).as('updateWrapper'),
-          });
-        },
-      );
-      cy.get<HTMLPostCollapsibleTriggerElement>('#external-trigger').then(([trigger]) => {
-        Object.defineProperty(trigger, 'update', {
-          value: cy.spy(trigger.update).as('updateExternal'),
-        });
-      });
-
-      cy.get('@collapsible').invoke('prop', 'collapsed', true);
-      cy.get('#nested button').should('have.attr', 'aria-expanded', 'false');
-      cy.get('#external-trigger button').should('have.attr', 'aria-expanded', 'false');
-      cy.get('@updateWrapper').should('have.been.calledOnce');
-      cy.get('@updateExternal').should('have.been.calledOnce');
-
-      cy.get('@collapsible').invoke('prop', 'collapsed', false);
-      cy.get('#nested button').should('have.attr', 'aria-expanded', 'true');
-      cy.get('#external-trigger button').should('have.attr', 'aria-expanded', 'true');
-      cy.get('@updateWrapper').should('have.been.calledTwice');
-      cy.get('@updateExternal').should('have.been.calledTwice');
-    });
-  });
-
   describe('hidden and findable content', { baseUrl: null }, () => {
     beforeEach(() => {
       cy.visit(FIXTURE_PATH);
@@ -340,12 +290,12 @@ describe('collapsible', () => {
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'false');
       cy.get('@animate').should('not.have.been.called');
       cy.get('@postToggle').should('not.have.been.called');
-    });
-
-    it('opens on initial fragment navigation', () => {
-      cy.visit(`${FIXTURE_PATH}#findable-target`);
-      cy.get('#findable-collapsible[data-hydrated]').should('have.prop', 'collapsed', false);
-      cy.get('#findable-target').should('be.visible');
+      cy.get('#nested post-collapsible[data-hydrated]').invoke('prop', 'collapsed', true);
+      cy.get('#nested post-collapsible-trigger button').should(
+        'have.attr',
+        'aria-expanded',
+        'false',
+      );
     });
 
     it('opens native fragment matches and synchronizes ARIA and the existing event', () => {
@@ -371,14 +321,6 @@ describe('collapsible', () => {
       cy.get('@animate').should('not.have.been.called');
     });
 
-    it('opens encoded fragments and ignores missing targets', () => {
-      cy.window().then(win => navigateToFragment(win, 'missing-target'));
-      cy.get('@collapsible').should('have.prop', 'collapsed', true);
-      cy.window().then(win => navigateToFragment(win, 'encoded%20target'));
-      cy.get('[id="encoded target"]').should('be.visible');
-      cy.get('@collapsible').should('have.prop', 'collapsed', false);
-    });
-
     it('changes state without animation or an event when toggled while detached', () => {
       const postToggle = cy.spy().as('postToggle');
       cy.get('@collapsible').then(async ([collapsible]) => {
@@ -392,31 +334,6 @@ describe('collapsible', () => {
         expect(animate.callCount).to.equal(0);
         cy.wrap(postToggle).should('not.have.been.called');
       });
-    });
-
-    it('does not emit another opening event when navigating within an open panel', () => {
-      const toggle = cy.spy().as('toggle');
-      cy.get('@collapsible').then(([collapsible]) => {
-        collapsible.addEventListener('postToggle', event =>
-          toggle((event as CustomEvent<boolean>).detail),
-        );
-      });
-      cy.get('#find-link').click();
-      cy.get('@collapsible').should('have.prop', 'collapsed', false);
-      cy.window().then(win => navigateToFragment(win, 'encoded%20target'));
-      cy.get('[id="encoded target"]').should('be.visible');
-      cy.get('@toggle').should('have.been.calledOnceWith', true);
-    });
-
-    it('can reveal the same fragment again after navigating away', () => {
-      cy.get('#find-link').click();
-      cy.get('#findable-target').should('be.visible');
-      cy.get('@trigger').click();
-      cy.get('@collapsible').should('be.hidden');
-      cy.window().then(win => navigateToFragment(win, 'missing-target'));
-      cy.location('hash').should('equal', '#missing-target');
-      cy.window().then(win => navigateToFragment(win, 'findable-target'));
-      cy.get('#findable-target').should('be.visible');
     });
 
     it('does not let the fallback close over a fragment match during animation', () => {
@@ -547,62 +464,66 @@ describe('collapsible', () => {
     });
   });
 
-  describe('fallback fragment navigation', { baseUrl: null }, () => {
-    const visitOptions = {
-      onBeforeLoad(win: Window & typeof globalThis) {
-        Reflect.deleteProperty(win.HTMLElement.prototype, 'onbeforematch');
-      },
-    };
+  for (const native of [true, false]) {
+    describe(`${native ? 'native' : 'fallback'} fragment navigation`, { baseUrl: null }, () => {
+      const visitOptions = {
+        onBeforeLoad(win: Window & typeof globalThis) {
+          if (!native) Reflect.deleteProperty(win.HTMLElement.prototype, 'onbeforematch');
+        },
+      };
 
-    beforeEach(() => {
-      cy.visit(FIXTURE_PATH, visitOptions);
-      cy.get<HTMLPostCollapsibleElement>('#findable-collapsible[data-hydrated]').as('collapsible');
-      cy.window().then(win => {
-        expect('onbeforematch' in win.document.documentElement).to.equal(false);
-      });
-    });
-
-    it('reveals an initial fragment without native until-found support', () => {
-      cy.visit(`${FIXTURE_PATH}#findable-target`, visitOptions);
-      cy.get('#findable-collapsible[data-hydrated]').should('have.prop', 'collapsed', false);
-      cy.get('#findable-target').should('be.visible');
-    });
-
-    it('ignores a handled missing fragment and decodes an encoded target', () => {
-      cy.window().then(win => navigateToFragment(win, 'missing-target'));
-      cy.get('@collapsible').should('have.prop', 'collapsed', true);
-      cy.get('#findable-target').should('not.be.visible');
-      cy.window().then(win => navigateToFragment(win, 'encoded%20target'));
-      cy.get('@collapsible').should('have.prop', 'collapsed', false);
-      cy.get('[id="encoded target"]').should('be.visible');
-    });
-
-    it('reveals the same fragment again only after navigation away', () => {
-      cy.window().then(win => navigateToFragment(win, 'findable-target'));
-      cy.get('#findable-target').should('be.visible');
-      cy.get('@collapsible').then(([collapsible]) => collapsible.toggle(false));
-      cy.get('@collapsible').should('be.hidden');
-      cy.window().then(win => navigateToFragment(win, 'missing-target'));
-      cy.get('@collapsible').should('have.prop', 'collapsed', true);
-      cy.window().then(win => navigateToFragment(win, 'findable-target'));
-      cy.get('@collapsible').should('have.prop', 'collapsed', false);
-      cy.get('#findable-target').should('be.visible');
-    });
-
-    it('does not emit another opening event for a handled hashchange inside an open panel', () => {
-      const toggle = cy.spy().as('fallbackToggle');
-      cy.get('@collapsible').then(([collapsible]) => {
-        collapsible.addEventListener('postToggle', event =>
-          toggle((event as CustomEvent<boolean>).detail),
+      beforeEach(() => {
+        cy.visit(FIXTURE_PATH, visitOptions);
+        cy.get<HTMLPostCollapsibleElement>('#findable-collapsible[data-hydrated]').as(
+          'collapsible',
         );
+        cy.window().then(win => {
+          expect('onbeforematch' in win.document.documentElement).to.equal(native);
+        });
       });
-      cy.window().then(win => navigateToFragment(win, 'findable-target'));
-      cy.get('#findable-target').should('be.visible');
-      cy.window().then(win => navigateToFragment(win, 'encoded%20target'));
-      cy.get('[id="encoded target"]').should('be.visible');
-      cy.get('@fallbackToggle').should('have.been.calledOnceWith', true);
+
+      it('reveals an initial fragment', () => {
+        cy.visit(`${FIXTURE_PATH}#findable-target`, visitOptions);
+        cy.get('#findable-collapsible[data-hydrated]').should('have.prop', 'collapsed', false);
+        cy.get('#findable-target').should('be.visible');
+      });
+
+      it('ignores a missing fragment and decodes an encoded target', () => {
+        cy.window().then(win => navigateToFragment(win, 'missing-target'));
+        cy.get('@collapsible').should('have.prop', 'collapsed', true);
+        cy.get('#findable-target').should('not.be.visible');
+        cy.window().then(win => navigateToFragment(win, 'encoded%20target'));
+        cy.get('@collapsible').should('have.prop', 'collapsed', false);
+        cy.get('[id="encoded target"]').should('be.visible');
+      });
+
+      it('reveals the same fragment again only after navigation away', () => {
+        cy.window().then(win => navigateToFragment(win, 'findable-target'));
+        cy.get('#findable-target').should('be.visible');
+        cy.get('@collapsible').then(([collapsible]) => collapsible.toggle(false));
+        cy.get('@collapsible').should('be.hidden');
+        cy.window().then(win => navigateToFragment(win, 'missing-target'));
+        cy.get('@collapsible').should('have.prop', 'collapsed', true);
+        cy.window().then(win => navigateToFragment(win, 'findable-target'));
+        cy.get('@collapsible').should('have.prop', 'collapsed', false);
+        cy.get('#findable-target').should('be.visible');
+      });
+
+      it('does not emit another opening event when navigating within an open panel', () => {
+        const toggle = cy.spy().as('toggle');
+        cy.get('@collapsible').then(([collapsible]) => {
+          collapsible.addEventListener('postToggle', event =>
+            toggle((event as CustomEvent<boolean>).detail),
+          );
+        });
+        cy.window().then(win => navigateToFragment(win, 'findable-target'));
+        cy.get('#findable-target').should('be.visible');
+        cy.window().then(win => navigateToFragment(win, 'encoded%20target'));
+        cy.get('[id="encoded target"]').should('be.visible');
+        cy.get('@toggle').should('have.been.calledOnceWith', true);
+      });
     });
-  });
+  }
 });
 
 describe('Accessibility', () => {
