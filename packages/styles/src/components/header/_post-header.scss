@@ -5,7 +5,7 @@
 @use './mixins' as *;
 @use './placeholders' as *;
 
-body:has(post-header) {
+html:has(post-header) {
   scroll-padding-top: var(--post-header-height);
 }
 
