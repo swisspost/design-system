@@ -47,6 +47,9 @@ export default function Home() {
       </p>
 
       <h2>Accordion</h2>
+      <p>
+        <a href="#findable-ssr-accordion-target">Target the paragraph in the second panel</a>
+      </p>
       <PostAccordion headingLevel={3} findable>
         <PostAccordionItem>
           <span slot="header">Titulum 1</span>
