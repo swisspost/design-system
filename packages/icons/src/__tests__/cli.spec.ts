@@ -5,7 +5,7 @@ import { fetchSVGs } from '../fetch';
 jest.mock('fs');
 jest.mock('../fetch', () => ({ fetchSVGs: jest.fn() }));
 
-describe('post-icons-fetch CLI', () => {
+describe('design-system-icons CLI', () => {
   const originalArgv = process.argv;
 
   beforeEach(() => {
@@ -24,7 +24,12 @@ describe('post-icons-fetch CLI', () => {
     });
   }
 
-  it.each([[], ['--out'], ['--out', ''], ['--out', '   ']])(
+  it.each([[], ['unknown', '--out', 'icons']])('rejects an invalid command: %j', (...args) => {
+    expect(() => runCli(args)).toThrow('Expected the fetch command');
+    expect(fetchSVGs).not.toHaveBeenCalled();
+  });
+
+  it.each([['fetch'], ['fetch', '--out'], ['fetch', '--out', ''], ['fetch', '--out', '   ']])(
     'rejects a missing or empty output directory: %j',
     (...args) => {
       expect(() => runCli(args)).toThrow();
@@ -37,7 +42,7 @@ describe('post-icons-fetch CLI', () => {
     jest.spyOn(fs, 'readdirSync').mockReturnValue(['existing.svg'] as never);
     const warn = jest.spyOn(console, 'warn').mockImplementation();
 
-    runCli(['--out', 'icons']);
+    runCli(['fetch', '--out', 'icons']);
 
     expect(fs.readdirSync).toHaveBeenCalledWith(path.resolve('icons'));
     expect(warn).toHaveBeenCalledWith(expect.stringContaining('not empty'));
@@ -49,7 +54,7 @@ describe('post-icons-fetch CLI', () => {
     jest.spyOn(fs, 'readdirSync').mockReturnValue([] as never);
     const warn = jest.spyOn(console, 'warn').mockImplementation();
 
-    runCli(['--out', 'icons']);
+    runCli(['fetch', '--out', 'icons']);
 
     expect(warn).not.toHaveBeenCalled();
     expect(fetchSVGs).toHaveBeenCalledWith(true);

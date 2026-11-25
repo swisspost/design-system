@@ -3,6 +3,10 @@ import fs from 'fs';
 import { CUSTOM_OUTPUT_PATH } from './utilities/constants';
 import { fetchSVGs } from './fetch';
 
+if (process.argv[2] !== 'fetch') {
+  throw new Error('Expected the fetch command: design-system-icons fetch --out <dir>.');
+}
+
 if (!CUSTOM_OUTPUT_PATH) {
   throw new Error('The --out option requires a non-empty output directory.');
 }

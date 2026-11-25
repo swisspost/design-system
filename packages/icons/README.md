@@ -15,7 +15,7 @@ To add a new icon to this package, please contact [corpdesign@post.ch](mailto:co
 
 ## Downloading icons yourself
 
-The package ships the `post-icons-fetch` command, which downloads and builds the icons into a directory of your choice.
+The package provides a command to download and build the icons into a directory of your choice.
 
 Provide the credentials as environment variables, for example in a `.env` file in the working directory:
 
@@ -29,7 +29,7 @@ CEN_URL_ICONSET_UI=<Censhare URL>
 Then run:
 
 ```shell
-npx --package @swisspost/design-system-icons post-icons-fetch --out ./icons
+npx @swisspost/design-system-icons fetch --out ./icons
 ```
 
 The output directory contains:

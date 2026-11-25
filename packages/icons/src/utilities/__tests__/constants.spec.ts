@@ -27,7 +27,7 @@ describe('constants output paths', () => {
 
   it('derives all paths from the --out argument', () => {
     const out = path.resolve('custom-out');
-    const constants = loadConstants(['--out', 'custom-out']);
+    const constants = loadConstants(['fetch', '--out', 'custom-out']);
 
     expect(constants.SOURCE_PATH).toBe(path.join(out, 'source'));
     expect(constants.OUTPUT_PATH).toBe(out);

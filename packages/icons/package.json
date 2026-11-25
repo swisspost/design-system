@@ -23,7 +23,7 @@
     "dist"
   ],
   "bin": {
-    "post-icons-fetch": "dist/bin/src/cli.js"
+    "design-system-icons": "dist/bin/src/cli.js"
   },
   "scripts": {
     "play": "pnpm build && http-server ./public -o -a localhost -p 9330",
