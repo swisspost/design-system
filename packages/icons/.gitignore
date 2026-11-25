@@ -9,6 +9,7 @@ public/post-icons
 public/report.json
 public/report.min.json
 dist/custom-properties/
+dist/bin/
 
 icons-optimized
 icons.json

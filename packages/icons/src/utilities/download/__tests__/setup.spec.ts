@@ -23,6 +23,15 @@ describe('download/setup', () => {
     jest.clearAllMocks();
   });
 
+  it('preserves existing download directories when requested', () => {
+    jest.spyOn(fs, 'existsSync').mockReturnValue(true);
+    jest.spyOn(fs, 'rmSync').mockImplementation(() => {});
+
+    setup(true);
+
+    expect(fs.rmSync).not.toHaveBeenCalled();
+  });
+
   it('should remove existing download directories for all iconsets', () => {
     jest.spyOn(fs, 'existsSync').mockReturnValue(true);
     jest.spyOn(fs, 'rmSync').mockImplementation(() => {});

@@ -31,6 +31,7 @@ function removeStaleCssFiles(
 export async function createCssFiles(
   iconOutputDirectory: string,
   cssOutputDirectory: string,
+  preserveExisting = false,
 ): Promise<void> {
   fs.mkdirSync(cssOutputDirectory, { recursive: true });
 
@@ -57,7 +58,9 @@ export async function createCssFiles(
     }),
   );
 
-  const removedCount = removeStaleCssFiles(cssOutputDirectory, existingFiles, generatedFiles);
+  const removedCount = preserveExisting
+    ? 0
+    : removeStaleCssFiles(cssOutputDirectory, existingFiles, generatedFiles);
 
   console.log(
     coloredLogMessage(

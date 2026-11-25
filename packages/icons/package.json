@@ -22,10 +22,13 @@
     "public",
     "dist"
   ],
+  "bin": {
+    "design-system-icons": "dist/bin/src/cli.js"
+  },
   "scripts": {
     "play": "pnpm build && http-server ./public -o -a localhost -p 9330",
     "start": "nodemon",
-    "build": "pnpm clean && ts-node src/build.ts",
+    "build": "pnpm clean && ts-node src/build.ts && tsc -p tsconfig.bin.json",
     "typecheck": "tsc --noEmit",
     "clean": "rimraf public/post-icons public/report.json dist",
     "unit": "jest",
@@ -35,27 +38,31 @@
     "lint:fix": "eslint --fix",
     "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path .prettierignore",
     "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path .prettierignore",
-    "fetchSVGs": "ts-node src/fetch.ts"
+    "fetchSVGs": "ts-node src/fetch-internal.ts"
+  },
+  "dependencies": {
+    "dotenv": "17.2.3",
+    "node-html-parser": "7.0.2",
+    "prettier": "catalog:",
+    "svgo": "4.1.0",
+    "undici": "8.12.4"
   },
   "devDependencies": {
     "@swisspost/design-system-eslint-config": "workspace:10.10.0",
     "@swisspost/design-system-prettier-config": "workspace:10.10.0",
     "@swisspost/design-system-tsconfig": "workspace:10.10.0",
     "@types/jest": "catalog:jest",
+    "@types/mock-fs": "4.13.4",
     "@types/node": "catalog:node",
-    "dotenv": "17.2.3",
     "eslint": "catalog:",
     "http-server": "14.1.1",
     "jest": "catalog:jest",
-    "node-html-parser": "7.0.2",
+    "mock-fs": "5.5.0",
     "nodemon": "3.1.14",
-    "prettier": "catalog:",
     "rimraf": "6.1.4",
-    "svgo": "4.1.0",
     "ts-jest": "catalog:jest",
     "ts-node": "catalog:node",
-    "typescript": "catalog:",
-    "undici": "8.12.4"
+    "typescript": "catalog:"
   },
   "prettier": "@swisspost/design-system-prettier-config",
   "keywords": [

@@ -1,10 +1,10 @@
 import iconSets from '../../iconsets.config';
 import fs from 'fs';
 
-export function setup() {
+export function setup(preserveExisting = false) {
   iconSets.forEach(iconsSet => {
     // remove download folders & files
-    if (fs.existsSync(iconsSet.downloadDirectory)) {
+    if (!preserveExisting && fs.existsSync(iconsSet.downloadDirectory)) {
       fs.rmSync(iconsSet.downloadDirectory, { recursive: true });
     }
 

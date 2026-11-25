@@ -9,9 +9,10 @@ import { format } from './utilities/download/format';
 import { updateReport, writeReport } from './utilities/download/report';
 import buildSVGs from './utilities/build';
 
-async function fetchSVGs() {
+export async function fetchSVGs(preserveExisting = false) {
+  checkEnvVarsExist();
   setupProxy();
-  setup();
+  setup(preserveExisting);
 
   for (const iconSet of iconSets) {
     console.log(coloredLogMessage(`<blue>Start downloading "${iconSet.name}" icons...</blue>`));
@@ -23,7 +24,7 @@ async function fetchSVGs() {
     );
   }
 
-  buildSVGs();
+  await buildSVGs(preserveExisting);
 }
 
 async function downloadIconSet(
@@ -74,8 +75,4 @@ async function downloadIconSet(
   }
 
   return writeReport(iconSet, report);
-}
-
-if (checkEnvVarsExist()) {
-  fetchSVGs();
 }
