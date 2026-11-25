@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-styles",
-  "version": "10.9.0",
+  "version": "10.10.0",
   "description": "Design System Styles for the Swiss Post web platform.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -31,15 +31,15 @@
     "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore"
   },
   "dependencies": {
-    "@swisspost/design-system-icons": "workspace:10.9.0",
-    "@swisspost/design-system-tokens": "workspace:10.9.0"
+    "@swisspost/design-system-icons": "workspace:10.10.0",
+    "@swisspost/design-system-tokens": "workspace:10.10.0"
   },
   "devDependencies": {
-    "@swisspost/design-system-prettier-config": "workspace:10.9.0",
-    "@swisspost/design-system-stylelint-config": "workspace:10.9.0",
+    "@swisspost/design-system-prettier-config": "workspace:10.10.0",
+    "@swisspost/design-system-stylelint-config": "workspace:10.10.0",
     "@types/node": "catalog:node",
     "autoprefixer": "10.7.0",
-    "glob": "13.0.6",
+    "glob": "14.0.2",
     "gulp": "5.0.1",
     "gulp-newer": "1.4.0",
     "gulp-postcss": "10.0.0",
