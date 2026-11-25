@@ -399,6 +399,47 @@ describe('accordion', () => {
             .and('not.have.class', 'collapsed');
         });
 
+        it('reveals the fragment target of a panel mounted after navigation', () => {
+          cy.window().then(win => {
+            win.history.replaceState(null, '', '#late-target');
+            win.document.body.insertAdjacentHTML(
+              'beforeend',
+              `<post-accordion id="late-accordion" heading-level="2" findable>
+                <post-accordion-item id="late-first">
+                  <span slot="header">First</span><p>First</p>
+                </post-accordion-item>
+                <post-accordion-item id="late-second" collapsed>
+                  <span slot="header">Second</span><p id="late-target">Target</p>
+                </post-accordion-item>
+              </post-accordion>`,
+            );
+          });
+          cy.get('#late-second[data-hydrated]').should('have.prop', 'collapsed', false);
+          cy.get('#late-target').should('be.visible');
+          cy.get('#late-first').should('have.prop', 'collapsed', true);
+        });
+
+        it('keeps the open panel containing the fragment target in a single-open accordion', () => {
+          cy.window().then(win => {
+            win.history.replaceState(null, '', '#open-target');
+            win.document.body.insertAdjacentHTML(
+              'beforeend',
+              `<post-accordion id="open-accordion" heading-level="2">
+                <post-accordion-item id="open-first">
+                  <span slot="header">First</span><p>First</p>
+                </post-accordion-item>
+                <post-accordion-item id="open-second">
+                  <span slot="header">Second</span><p id="open-target">Target</p>
+                </post-accordion-item>
+              </post-accordion>`,
+            );
+          });
+          cy.get('#open-accordion[data-hydrated]');
+          cy.get('#open-second').should('have.prop', 'collapsed', false);
+          cy.get('#open-target').should('be.visible');
+          cy.get('#open-first').should('have.prop', 'collapsed', true);
+        });
+
         it('keeps only the matched panel open in a single-open accordion', () => {
           cy.window().then(win => navigateToFragment(win, 'first-accordion-target'));
           cy.get('@first').should('have.prop', 'collapsed', false);

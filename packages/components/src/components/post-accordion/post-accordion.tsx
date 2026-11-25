@@ -1,7 +1,7 @@
 import { HEADING_LEVELS, HeadingLevel } from '@/types';
-import { EventFrom, OneOf, Required, Type } from '@/utils';
+import { EventFrom, getFragmentTarget, OneOf, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { Component, Element, h, Host, Listen, Method, Prop, Watch } from '@stencil/core';
+import { Build, Component, Element, h, Host, Listen, Method, Prop, Watch } from '@stencil/core';
 
 /**
  * @slot default - Slot for placing post-accordion-item components.
@@ -127,18 +127,23 @@ export class PostAccordion {
   private registerAccordionItems() {
     this.syncFindable();
 
-    this.accordionItems
-      .filter(item => {
-        return !item.collapsed || this.expandedItems.has(item);
-      })
-      .forEach((item, index) => {
-        if (!this.multiple && index !== 0) {
-          item.setAttribute('collapsed', '');
-          return;
-        }
+    const openItems = this.accordionItems.filter(item => {
+      return !item.collapsed || this.expandedItems.has(item);
+    });
 
-        this.expandedItems.add(item);
-      });
+    // In single mode, keep the item containing the URL fragment target open (e.g. a deep link)
+    const target = Build.isBrowser ? getFragmentTarget(this.host.ownerDocument) : null;
+    const keptItem = openItems.find(item => target && item.contains(target)) ?? openItems[0];
+
+    openItems.forEach(item => {
+      if (!this.multiple && item !== keptItem) {
+        item.setAttribute('collapsed', '');
+        this.expandedItems.delete(item);
+        return;
+      }
+
+      this.expandedItems.add(item);
+    });
   }
 
   render() {

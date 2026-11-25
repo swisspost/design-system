@@ -36,6 +36,15 @@ test.describe('SSR compatibility', () => {
     expect(item?.[0]).toContain('hidden="until-found"');
   });
 
+  test('keeps a deep-linked findable accordion item open after hydration', async ({ page }) => {
+    await page.goto('/ssr#findable-ssr-accordion-target');
+    const item = page.locator('#findable-ssr-accordion-item[data-hydrated]');
+
+    await expect(item).toHaveJSProperty('collapsed', false);
+    await expect(page.locator('#findable-ssr-accordion-target')).toBeVisible();
+    await expect(item.locator('button')).toHaveAttribute('aria-expanded', 'true');
+  });
+
   test('all components should not have console errors', async ({ page }) => {
     const errorCapture = setupComponentErrorCapture(page, componentNames as string[]);
 

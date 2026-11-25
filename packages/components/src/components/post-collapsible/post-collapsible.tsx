@@ -1,5 +1,5 @@
 import { collapse, collapsedKeyframe, expand } from '@/animations/collapse';
-import { getRoot, Type } from '@/utils';
+import { getFragmentTarget, getRoot, Type } from '@/utils';
 import { version } from '@root/package.json';
 import {
   Build,
@@ -64,7 +64,8 @@ export class PostCollapsible {
 
   componentDidLoad() {
     this.updateTriggers();
-    if (!SUPPORTS_HIDDEN_UNTIL_FOUND) this.handleHashChange();
+    // Reveal the initial fragment target, which the browser may have resolved before mount or hydration
+    this.revealFragmentTarget();
   }
 
   @Watch('collapsed')
@@ -80,24 +81,21 @@ export class PostCollapsible {
 
   /**
    * Fallback for hidden="until-found". Can be removed once support is good enough.
-   * Reveal fragment targets across assigned slots and shadow boundaries.
    */
   private handleHashChange = () => {
-    if (!Build.isBrowser || SUPPORTS_HIDDEN_UNTIL_FOUND || !this.findable || !this.content) return;
+    if (!SUPPORTS_HIDDEN_UNTIL_FOUND) this.revealFragmentTarget();
+  };
+
+  /**
+   * Reveal fragment targets across assigned slots and shadow boundaries.
+   */
+  private revealFragmentTarget() {
+    if (!Build.isBrowser || !this.findable || !this.content) return;
 
     if (this.revealedHash !== globalThis.location.hash) this.revealedHash = undefined;
     if (!this.collapsed || this.revealedHash === globalThis.location.hash) return;
 
-    let id: string;
-    try {
-      id = decodeURIComponent(globalThis.location.hash.slice(1));
-    } catch (error) {
-      if (!(error instanceof URIError)) throw error;
-      console.warn('Unable to decode the collapsible fragment target.', error);
-      return;
-    }
-
-    const target = this.host.ownerDocument.getElementById(id);
+    const target = getFragmentTarget(this.host.ownerDocument);
     let current: Node | null = target;
     while (current) {
       if (current === this.host) {
@@ -113,7 +111,7 @@ export class PostCollapsible {
           : current.parentNode;
       current = parent instanceof ShadowRoot ? parent.host : parent;
     }
-  };
+  }
 
   /**
    * Synchronize native revelation without waiting for an animation.

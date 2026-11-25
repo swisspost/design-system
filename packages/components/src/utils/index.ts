@@ -7,6 +7,7 @@ export * from './component-on-ready';
 export * from './debounce';
 export * from './event-from';
 export * from './get-focusable-children';
+export * from './get-fragment-target';
 export * from './get-root';
 export * from './get-slotted-element';
 export * from './is-focus-visible';
