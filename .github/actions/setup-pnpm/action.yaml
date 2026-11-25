@@ -16,7 +16,7 @@ description: Provides node and pnpm in a specific version.
 
 inputs:
   use_cache:
-    description: Specify whether to use the pnpm cache or not
+    description: Specify whether to use the pnpm cache or not. The cache is only saved from `main` and `release/v*` branches; all other refs only restore it.
     default: true
     type: boolean
 
@@ -24,11 +24,13 @@ runs:
   using: composite
   steps:
     - name: Install pnpm and runtime
-      uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2
+      uses: pnpm/setup@731dfb6463bbd11c11fd0ee11fe00ed0e36d48a1 # v3.2.0
       with:
         runtime: node
         install: false
         cache: ${{ inputs.use_cache }}
+        # Caches saved by pull requests cannot be shared with other pull requests and fill the repository cache limit
+        save-cache: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release/v') }}
 
     - name: Summary
       shell: bash

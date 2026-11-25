@@ -153,11 +153,12 @@ describe('megadropdown', () => {
           .find('button')
           .as('megadropdown-trigger');
         cy.get('@megadropdown').find('.back-button').as('back-btn');
+        cy.get('@megadropdown').find('.megadropdown').as('megadropdown-container');
       });
 
       it('should open on trigger click', () => {
         cy.get('@megadropdown-trigger').click({ force: true });
-        cy.get('@megadropdown').should('be.visible');
+        cy.get('@megadropdown-container').should('be.visible');
       });
 
       it('should show back button', () => {
@@ -213,7 +214,10 @@ describe('megadropdown', () => {
     function getRotation($icon: JQuery<HTMLElement>): number {
       const transform = globalThis.getComputedStyle($icon.get(0)).transform;
       if (transform === 'none') return 0;
-      const values = transform.match(/matrix\(([^)]+)\)/)?.[1].split(',').map(Number);
+      const values = transform
+        .match(/matrix\(([^)]+)\)/)?.[1]
+        .split(',')
+        .map(Number);
       if (!values) return 0;
       const [a, b] = values;
       return Math.round((Math.atan2(b, a) * 180) / Math.PI);
@@ -229,7 +233,10 @@ describe('megadropdown', () => {
 
       cy.get('@chevron').should($icon => expect(getRotation($icon)).to.eq(0));
 
-      cy.get('post-megadropdown-trigger[data-hydrated]').find('button').first().click({ force: true });
+      cy.get('post-megadropdown-trigger[data-hydrated]')
+        .find('button')
+        .first()
+        .click({ force: true });
 
       cy.get('@chevron').should($icon => expect(Math.abs(getRotation($icon))).to.eq(180));
     });
@@ -240,7 +247,10 @@ describe('megadropdown', () => {
 
       cy.get('@chevron').should($icon => expect(getRotation($icon)).to.eq(-90));
 
-      cy.get('post-megadropdown-trigger[data-hydrated]').find('button').first().click({ force: true });
+      cy.get('post-megadropdown-trigger[data-hydrated]')
+        .find('button')
+        .first()
+        .click({ force: true });
 
       cy.get('@chevron').should($icon => expect(getRotation($icon)).to.eq(-90));
     });

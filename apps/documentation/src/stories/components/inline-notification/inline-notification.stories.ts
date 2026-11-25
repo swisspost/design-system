@@ -55,7 +55,7 @@ const meta: MetaComponent = {
         neq: '',
       },
       description:
-        'The semantic tag used for the notification title. <post-banner data-size="sm"><p>A heading tag is needed for introducing a new subsection heading, or a paragraph <code>p</code> + <code>strong</code> tag to simply highlight the content.</p></post-banner>',
+        'The semantic tag used for the notification title. <div class="inline-notification inline-notification-info"><p>A heading tag is needed for introducing a new subsection heading, or a paragraph <code>p</code> + <code>strong</code> tag to simply highlight the content.</p></div>',
       control: {
         type: 'select',
         labels: {

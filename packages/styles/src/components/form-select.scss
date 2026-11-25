@@ -184,11 +184,13 @@ tokens.$default-map: components.$post-select;
   }
 }
 
-.form-label:has(+ select.form-select[disabled]) {
+.form-label:has(+ select.form-select[disabled]),
+.form-label:has(+ .form-grid-control select.form-select[disabled]) {
   color: tokens.get('select-color-disabled-fg');
 }
 
-.form-label:has(+ select.form-select-sm) {
+.form-label:has(+ select.form-select-sm),
+.form-label:has(+ .form-grid-control select.form-select-sm) {
   display: block;
   padding-inline: tokens.get('select-non-floating-small-label-padding-inline');
   padding-block: tokens.get('select-non-floating-small-label-padding-block');
@@ -221,9 +223,9 @@ tokens.$default-map: components.$post-select;
       color: tokens.get('select-color-enabled-fg');
       max-width: calc(
         100% -
-        (#{tokens.get('select-border-width')} * 2) - tokens.get(
-          'select-label-empty-padding-inline-end'
-        )
+          (#{tokens.get('select-border-width')} * 2) - tokens.get(
+            'select-label-empty-padding-inline-end'
+          )
       );
       background-color: tokens.get('select-color-enabled-bg');
       white-space: nowrap;
@@ -279,7 +281,7 @@ tokens.$default-map: components.$post-select;
           padding-block: tokens.get('select-standalone-padding-block');
           width: calc(
             100% - (#{tokens.get('select-border-width')} * 2) -
-            #{tokens.get('select-label-empty-padding-inline-start')}
+              #{tokens.get('select-label-empty-padding-inline-start')}
           );
         }
       }
@@ -306,26 +308,32 @@ tokens.$default-map: components.$post-select;
     }
 
     &.is-valid:not(:disabled) {
-      background-image: forms-fx.select-arrow-icon('enabled', 'dark'), var(--post-signal-icon-success);
+      background-image:
+        forms-fx.select-arrow-icon('enabled', 'dark'), var(--post-signal-icon-success);
 
       &:focus {
-        background-image: forms-fx.select-arrow-icon('selected', 'dark'), var(--post-signal-icon-success);
+        background-image:
+          forms-fx.select-arrow-icon('selected', 'dark'), var(--post-signal-icon-success);
       }
 
       &:hover {
-        background-image: forms-fx.select-arrow-icon('hover', 'dark'), var(--post-signal-icon-success);
+        background-image:
+          forms-fx.select-arrow-icon('hover', 'dark'), var(--post-signal-icon-success);
       }
     }
 
     &.is-invalid:not(:disabled) {
-      background-image: forms-fx.select-arrow-icon('enabled', 'dark'), var(--post-signal-icon-error);
+      background-image:
+        forms-fx.select-arrow-icon('enabled', 'dark'), var(--post-signal-icon-error);
 
       &:focus {
-        background-image: forms-fx.select-arrow-icon('selected', 'dark'), var(--post-signal-icon-error);
+        background-image:
+          forms-fx.select-arrow-icon('selected', 'dark'), var(--post-signal-icon-error);
       }
 
       &:hover {
-        background-image: forms-fx.select-arrow-icon('hover', 'dark'), var(--post-signal-icon-error);
+        background-image:
+          forms-fx.select-arrow-icon('hover', 'dark'), var(--post-signal-icon-error);
       }
     }
   }

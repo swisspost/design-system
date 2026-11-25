@@ -5,9 +5,11 @@
 @use '@swisspost/design-system-styles/core.scss' as post;
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/tokens' as token-mx;
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
 @use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/tokens/utilities';
+@use '@swisspost/design-system-tokens/device';
 @use './variables' as sb;
 @use './components';
 
@@ -66,25 +68,28 @@ tokens.$default-map: utilities.$post-spacing;
     .docs-title :is(h1, h2, h3, h4, h5, h6),
     post-tab-panel > :is(h1, h2, h3, h4, h5, h6),
     > :is(h1, h2, h3, h4, h5, h6) {
-      position: relative;
-      padding-right: 32px; // needed to add space for the link icon
-
-      @media (hover: hover) {
-        > a {
-          display: none;
-        }
-      }
-
       > a {
-        position: absolute;
-        bottom: 0;
-        font-size: 1.5rem;
-        padding: 0.5rem;
-        line-height: 1;
-      }
+        color: inherit;
+        text-decoration: none;
 
-      &:hover > a {
-        display: inline-block;
+        &:hover,
+        &:focus-visible {
+          text-decoration: underline;
+        }
+
+        post-icon {
+          padding-inline: 0.25rem;
+
+          @media (hover: hover) {
+            // hidden instead of removed, so revealing it doesn't reflow the heading
+            visibility: hidden;
+          }
+        }
+
+        &:hover post-icon,
+        &:focus-visible post-icon {
+          visibility: visible;
+        }
       }
     }
   }
@@ -98,8 +103,8 @@ tokens.$default-map: utilities.$post-spacing;
     gap: tokens.get('utility-gap-8');
   }
 
-  // aligns figma button to the title
-  .docs-title > link-design,
+  // aligns figma and snapshot buttons to the title
+  .docs-title > story-links,
   .docs-title > .buttons-container {
     margin-block-end: tokens.get('h1-margin-block-end', elements.$post-heading);
   }
@@ -112,7 +117,7 @@ tokens.$default-map: utilities.$post-spacing;
   .docs-title {
     margin-bottom: tokens.get('utility-gap-8');
 
-    :first-child {
+    > :first-child {
       margin-right: auto;
     }
   }
@@ -215,6 +220,31 @@ tokens.$default-map: utilities.$post-spacing;
     font-size: 0.9375rem;
   }
 
+  // Compact style on inline notifications when in the args table
+  .docblock-argstable-body tr td .inline-notification {
+    @include media.min(1024px) {
+      @include token-mx.from(device.$post-mobile);
+    }
+
+    p {
+      font-size: tokens.get('body-font-size', elements.$post-body);
+      margin: 0;
+      hyphens: none;
+      overflow-wrap: anywhere;
+    }
+
+    a,
+    span {
+      font-size: inherit;
+    }
+  }
+
+  .inline-notification {
+    a {
+      color: var(--post-current-fg);
+    }
+  }
+
   @include media.max(sm) {
     .docs-story > div:first-child {
       padding-bottom: 3rem;
@@ -253,6 +283,10 @@ tokens.$default-map: utilities.$post-spacing;
 
   .docblock-source {
     margin: 0 0 1rem;
+  }
+
+  .docblock-argstable {
+    font-family: tokens.get('body-font-family', elements.$post-body);
   }
 
   .hide-col-default .docblock-argstable {
