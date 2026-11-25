@@ -200,6 +200,15 @@ export class PostCollapsible {
     const previousAnimation = this.animation;
     this.animation = animation;
     previousAnimation?.cancel();
+    const motionPreference = globalThis.matchMedia?.('(prefers-reduced-motion: reduce)');
+    const finishForReducedMotion = (event: MediaQueryListEvent) => {
+      if (!event.matches || this.animation !== animation) return;
+
+      animation.cancel();
+      this.animation = undefined;
+      this.animating = false;
+    };
+    motionPreference?.addEventListener('change', finishForReducedMotion);
     this.postToggle.emit(isExpanded);
 
     try {
@@ -208,7 +217,7 @@ export class PostCollapsible {
       animation.commitStyles();
       animation.cancel();
     } catch (error) {
-      // A newer toggle or native reveal supersedes this animation.
+      // A newer toggle, native reveal, or reduced-motion preference supersedes this animation.
       if (
         this.animation !== animation &&
         error instanceof DOMException &&
@@ -218,6 +227,7 @@ export class PostCollapsible {
       }
       throw error;
     } finally {
+      motionPreference?.removeEventListener('change', finishForReducedMotion);
       // Only this animation may clear its state, not an older superseded animation.
       if (this.animation === animation) {
         this.animation = undefined;

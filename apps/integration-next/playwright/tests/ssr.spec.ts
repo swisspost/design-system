@@ -78,6 +78,97 @@ test.describe('SSR compatibility', () => {
     expect(rootErrors).toEqual([]);
   });
 
+  test('uses the current reduced-motion preference for collapsible animations', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    await page.reload();
+    const collapsible = page.locator(
+      'post-collapsible[id="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default"][data-hydrated]',
+    );
+    await expect(collapsible).toBeVisible();
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+
+    const collapseDuration = await collapsible.evaluate(
+      async (element: HTMLPostCollapsibleElement) => {
+        let duration: number | undefined;
+        element.addEventListener(
+          'postToggle',
+          () => {
+            const timing = element.getAnimations()[0]?.effect?.getTiming().duration;
+            duration = typeof timing === 'number' ? timing : undefined;
+          },
+          { once: true },
+        );
+        await element.toggle(false);
+        return duration;
+      },
+    );
+    expect(collapseDuration).toBe(0);
+    await expect(collapsible).toBeHidden();
+
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    const expandDuration = await collapsible.evaluate(
+      async (element: HTMLPostCollapsibleElement) => {
+        let duration: number | undefined;
+        element.addEventListener(
+          'postToggle',
+          () => {
+            const timing = element.getAnimations()[0]?.effect?.getTiming().duration;
+            duration = typeof timing === 'number' ? timing : undefined;
+          },
+          { once: true },
+        );
+        await element.toggle(true);
+        return duration;
+      },
+    );
+    if (expandDuration === undefined) throw new Error('Expected an expansion animation.');
+    expect(expandDuration).toBeGreaterThan(0);
+    await expect(collapsible).toBeVisible();
+  });
+
+  test('stops an active collapsible animation when reduced motion is enabled', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    const collapsible = page.locator(
+      'post-collapsible[id="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default"][data-hydrated]',
+    );
+    await expect(collapsible).toBeVisible();
+    const trigger = page.locator(
+      'post-collapsible-trigger[for="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default"] button',
+    );
+    for (const expanded of [false, true]) {
+      await page.emulateMedia({ reducedMotion: 'no-preference' });
+      await collapsible.evaluate((element: HTMLPostCollapsibleElement, shouldExpand) => {
+        return new Promise<void>(resolve => {
+          element.addEventListener(
+            'postToggle',
+            () => {
+              element.getAnimations()[0].pause();
+              resolve();
+            },
+            { once: true },
+          );
+          (window as typeof window & { toggleResult?: Promise<boolean> }).toggleResult =
+            element.toggle(shouldExpand);
+        });
+      }, expanded);
+
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      expect(
+        await page.evaluate(
+          () => (window as typeof window & { toggleResult?: Promise<boolean> }).toggleResult,
+        ),
+      ).toBe(expanded);
+      if (expanded) await expect(collapsible).toBeVisible();
+      else await expect(collapsible).toBeHidden();
+      await expect
+        .poll(() => collapsible.evaluate(element => element.getAnimations().length))
+        .toBe(0);
+      await expect(trigger).toHaveAttribute('aria-expanded', String(expanded));
+    }
+  });
+
   // NextJS typically only logs a single hydration error.
   // This means that after an error in one component has been fixed, another one may occur.
   // Make sure you're not hunting ghosts!
