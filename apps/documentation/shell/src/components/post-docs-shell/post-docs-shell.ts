@@ -10,7 +10,8 @@ import {
 import { getShortcut } from '@shared/shortcuts';
 import { previewUrl } from '@shared/urls';
 
-import { PREVIEW_ORIGIN, SITE_TITLE } from '../../config';
+import { ANALYTICS, PREVIEW_ORIGIN, SITE_TITLE } from '../../config';
+import { Analytics } from '../../analytics/analytics';
 import { type PreviewMessageEvent, PreviewConnection } from '../../bridge/preview-connection';
 import { Catalog } from '../../catalog/catalog';
 import { GlobalsStore } from '../../globals/globals-store';
@@ -39,6 +40,7 @@ export class PostDocsShell extends LitElement {
 
   private readonly previewConnection = new PreviewConnection(PREVIEW_ORIGIN);
   private readonly globalsStore = new GlobalsStore();
+  private readonly analytics = new Analytics(ANALYTICS);
   private router: Router | null = null;
   private navigation: NavigationSection[] = [];
   private searchIndex: SearchIndex | null = null;
@@ -67,6 +69,7 @@ export class PostDocsShell extends LitElement {
   }
 
   private async start() {
+    this.analytics.start();
     this.previewConnection.addEventListener('rendered', this.onRendered);
     this.previewConnection.addEventListener('error', this.onPreviewError);
     this.previewConnection.addEventListener('navigate', this.onNavigate);
@@ -89,18 +92,24 @@ export class PostDocsShell extends LitElement {
   }
 
   private readonly onRouteChange = (event: Event) => {
-    const { route, fromHistory } = event as RouteChangeEvent;
+    const { route, previous, fromHistory } = event as RouteChangeEvent;
     this.route = route;
     void this.querySelector('post-docs-navigation-sheet')?.close();
 
     const pageTitle = route.type === 'page' ? route.page.segments.at(-1) : 'Page not found';
     document.title = `${pageTitle} · ${SITE_TITLE}`;
 
-    if (route.type !== 'page') return;
+    if (route.type !== 'page') {
+      this.analytics.trackPage();
+      return;
+    }
 
     // Back and Forward keep the current globals, the history entry may hold older ones
     if (route.globals && !fromHistory) this.globalsStore.set(route.globals);
     this.router?.replaceGlobals(this.globalsStore.current);
+
+    // tracked with the globals in the URL, a new hash on the same page is not a page view
+    if (previous?.type !== 'page' || previous.page.id !== route.page.id) this.analytics.trackPage();
 
     const { page, params, hash } = route;
     const globals = this.globalsStore.current;
