@@ -8,8 +8,15 @@ function sanitizeForCSSVariable(name: string): string {
 }
 
 function svgToDataUrl(svgContent: string): string {
-  const base64 = Buffer.from(svgContent, 'utf8').toString('base64');
-  return `data:image/svg+xml;base64,${base64}`;
+  const encoded = encodeURIComponent(svgContent)
+    .replaceAll("'", '%27')
+    .replaceAll('%20', ' ')
+    .replaceAll('%3D', '=')
+    .replaceAll('%3A', ':')
+    .replaceAll('%2F', '/')
+    .replaceAll('%2C', ',')
+    .replaceAll('%3B', ';');
+  return `data:image/svg+xml,${encoded}`;
 }
 
 function getExistingCssFiles(dir: string): string[] {
