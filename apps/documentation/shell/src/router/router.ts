@@ -1,4 +1,4 @@
-import type { Globals } from '@shared/globals';
+import { filterGlobals, type Globals, SHARABLE_GLOBALS_FILTER } from '@shared/globals';
 import type { Catalog } from '../catalog/catalog';
 import { resolve } from './resolve';
 import type { Route } from './route';
@@ -59,7 +59,11 @@ export class Router extends EventTarget {
     history.replaceState(
       history.state,
       '',
-      this.catalog.canonicalURL(page, { params, globals, hash }),
+      this.catalog.canonicalURL(page, {
+        params,
+        globals: filterGlobals(globals, SHARABLE_GLOBALS_FILTER),
+        hash,
+      }),
     );
   }
 

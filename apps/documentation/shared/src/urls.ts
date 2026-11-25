@@ -1,4 +1,4 @@
-import { filterGlobals, type Globals, SHARABLE_GLOBALS_FILTER } from './globals';
+import type { Globals } from './globals';
 
 export const HOME_PAGE_ID = 'introduction--docs';
 export const BOOKMARK_PATH = '/bookmark';
@@ -9,27 +9,25 @@ export type UrlParams = Record<string, string | null>;
 
 export interface UrlOptions {
   hash?: string;
+  /** Written into the URL as they are, see `filterGlobals` to leave some out. */
   globals?: Partial<Globals>;
   params?: UrlParams;
 }
 
 export function bookmarkUrl(pageId: string, options?: UrlOptions): string {
-  const params: UrlParams = {
-    page: toBookmarkId(pageId),
-    ...options?.params,
-    ...filterGlobals(options?.globals ?? {}, SHARABLE_GLOBALS_FILTER),
-  };
-
-  return serializeUrl(BOOKMARK_PATH, params, options?.hash);
+  return serializeUrl(
+    BOOKMARK_PATH,
+    { page: toBookmarkId(pageId), ...options?.params, ...options?.globals },
+    options?.hash,
+  );
 }
 
 export function pageUrl(title: string, options?: UrlOptions): string {
-  const params: UrlParams = {
-    ...options?.params,
-    ...filterGlobals(options?.globals ?? {}, SHARABLE_GLOBALS_FILTER),
-  };
-
-  return serializeUrl(titleToPath(title), params, options?.hash);
+  return serializeUrl(
+    titleToPath(title),
+    { ...options?.params, ...options?.globals },
+    options?.hash,
+  );
 }
 
 export function previewUrl(
