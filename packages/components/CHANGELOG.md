@@ -1,5 +1,51 @@
 # @swisspost/design-system-components
 
+## 10.10.0
+
+### Minor Changes
+
+- Introduced the `form-grid` and `form-grid-control` classes to align complex forms in internal applications. (by [@leagrdv](https://github.com/leagrdv) with [#8720](https://github.com/swisspost/design-system/pull/8720))
+
+- Added the `grief` type to the `post-banner` component, a dark banner variant with a candle icon to be used for messages of condolence. (by [@alionazherdetska](https://github.com/alionazherdetska), [@Copilot](https://github.com/Copilot) and [@oliverschuerch](https://github.com/oliverschuerch) with [#8718](https://github.com/swisspost/design-system/pull/8718))
+
+### Patch Changes
+
+- Fixed the `post-language-menu` being displayed as a dropdown instead of a list in the `post-header` burger menu on mobile and tablet when it is added after the initial render. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8852](https://github.com/swisspost/design-system/pull/8852))
+
+- Fixed `post-header` registering redundant `scroll` listeners on both its scroll parent and `window`. Now attaches to only the one that actually fires. (by [@AndrinAAF](https://github.com/AndrinAAF), [@Copilot](https://github.com/Copilot), [@alionazherdetska](https://github.com/alionazherdetska) and [@oliverschuerch](https://github.com/oliverschuerch) with [#8751](https://github.com/swisspost/design-system/pull/8751))
+
+- Fixed an issue where the `post-header` logo and global header shrank on scroll when only global header slots were used. The header now stays expanded when no local header area is present. (by [@oliverschuerch](https://github.com/oliverschuerch) and [@Copilot](https://github.com/Copilot) with [#8902](https://github.com/swisspost/design-system/pull/8902))
+
+- Fixed the collapsing animation of `post-side-navigation` items in Angular. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8945](https://github.com/swisspost/design-system/pull/8945))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.10.0
+  - @swisspost/design-system-styles@10.10.0
+
+## 10.9.0
+
+### Patch Changes
+
+- Fixed `post-footer` sticking to the bottom of the viewport on short pages instead of leaving an empty space below it. (by [@AndrinAAF](https://github.com/AndrinAAF), [@alionazherdetska](https://github.com/alionazherdetska) and [@Copilot](https://github.com/Copilot) with [#8551](https://github.com/swisspost/design-system/pull/8551))
+
+- Fixed a regression in the `post-autocomplete` component that displayed all options on a single line instead of stacking them vertically. (by [@leagrdv](https://github.com/leagrdv) with [#8744](https://github.com/swisspost/design-system/pull/8744))
+
+- Improved the scroll performance of the `post-header`. The internal `--post-header-scroll-top` custom property now stops updating once the header is fully reduced, so it no longer reflects the page scroll position. (by [@alionazherdetska](https://github.com/alionazherdetska) and [@Copilot](https://github.com/Copilot) with [#8681](https://github.com/swisspost/design-system/pull/8681))
+
+- Added hover feedback to the `post-mainnavigation` overflow scroll buttons. (by [@alionazherdetska](https://github.com/alionazherdetska) and [@Copilot](https://github.com/Copilot) with [#8819](https://github.com/swisspost/design-system/pull/8819))
+
+- Fixed the `post-tabs` right scroll button staying visible and covering the last tab item after scrolling to the end. (by [@Ant1Braun](https://github.com/Ant1Braun) and [@myrtasakellariou](https://github.com/myrtasakellariou) with [#8504](https://github.com/swisspost/design-system/pull/8504))
+
+- Fixed an issue where moving the keyboard focus into the `global-header` scrolled the page. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8810](https://github.com/swisspost/design-system/pull/8810))
+
+- Fixed a double outline appearing on the megadropdown trigger button when focused. (by [@leagrdv](https://github.com/leagrdv) and [@alionazherdetska](https://github.com/alionazherdetska) with [#8619](https://github.com/swisspost/design-system/pull/8619))
+
+- Show the header burger menu on tablet and mobile when main navigation, audience, or secondary navigation contains items. (by [@myrtasakellariou](https://github.com/myrtasakellariou) with [#8821](https://github.com/swisspost/design-system/pull/8821))
+
+- Fixed the alignment in the year view of the `post-date-picker`. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8684](https://github.com/swisspost/design-system/pull/8684))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.9.0
+  - @swisspost/design-system-styles@10.9.0
+
 ## 10.8.0
 
 ### Patch Changes

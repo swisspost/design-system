@@ -10,9 +10,7 @@
   "timezone": "Europe/Zurich",
   "schedule": ["* 0-3 * * 1"],
   "minimumReleaseAge": "3 days",
-  "prConcurrentLimit": 20,
-  "branchConcurrentLimit": 20,
-  "prHourlyLimit": 6,
+  "prConcurrentLimit": 30,
   "packageRules": [
     {
       "description": "Surface dependencies declared in the pnpm workspace file (catalogs and overrides) as one reviewable pull request. Must stay the first rule so the more specific monorepo and patch groups below can still take precedence.",
@@ -86,12 +84,12 @@
     },
     {
       "groupName": "Sass",
-      "matchPackageNames": ["sass"],
+      "matchPackageNames": ["sass", "sass-embedded"],
       "matchUpdateTypes": ["digest", "patch", "minor", "major"]
     },
     {
       "groupName": "Stylelint",
-      "matchPackageNames": ["^stylelint"],
+      "matchPackageNames": ["/^stylelint/"],
       "matchUpdateTypes": ["digest", "patch", "minor", "major"]
     },
     {
@@ -105,9 +103,54 @@
       "allowedVersions": "<8"
     },
     {
-      "matchFileNames": ["packages/components/package.json"],
-      "allowedVersions": "0.2.3",
-      "matchPackageNames": ["@oddbird/popover-polyfill"]
+      "groupName": "AG Charts",
+      "matchPackageNames": ["/^ag-charts-/"],
+      "matchUpdateTypes": ["digest", "patch", "minor", "major"]
+    },
+    {
+      "groupName": "PrimeNG",
+      "matchPackageNames": ["primeng", "@primeuix/themes"],
+      "matchUpdateTypes": ["digest", "patch", "minor", "major"]
+    },
+    {
+      "groupName": "Cypress",
+      "matchPackageNames": ["cypress", "/^cypress-/", "eslint-plugin-cypress"],
+      "matchUpdateTypes": ["digest", "patch", "minor", "major"]
+    },
+    {
+      "groupName": "Percy",
+      "matchPackageNames": ["/^@percy/"],
+      "matchUpdateTypes": ["digest", "patch", "minor", "major"]
+    },
+    {
+      "groupName": "Changesets",
+      "matchPackageNames": ["/^@changesets/"],
+      "matchUpdateTypes": ["digest", "patch", "minor", "major"]
+    },
+    {
+      "groupName": "design tokens",
+      "matchPackageNames": ["style-dictionary", "@tokens-studio/sd-transforms"],
+      "matchUpdateTypes": ["digest", "patch", "minor", "major"]
+    },
+    {
+      "description": "Major updates of GitHub Actions stay separate, one pull request per action.",
+      "groupName": "GitHub Actions",
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["digest", "patch", "minor", "pin", "pinDigest"]
+    },
+    {
+      "description": "Non-major updates of ESLint plugins. Cypress, Storybook and React plugins are excluded because they belong to their own groups.",
+      "groupName": "ESLint plugins",
+      "matchPackageNames": [
+        "/^eslint-plugin-/",
+        "!eslint-plugin-cypress",
+        "!eslint-plugin-storybook",
+        "!/^eslint-plugin-react/",
+        "eslint-scope",
+        "@types/eslint-scope",
+        "globals"
+      ],
+      "matchUpdateTypes": ["digest", "patch", "minor"]
     }
   ]
 }
