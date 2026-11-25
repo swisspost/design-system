@@ -8,7 +8,7 @@
 /*
  * Elements targeted with hash refs (https://url.com#target) are hidden by the header without this.
  * Takes full expanded height to factor in jumps from the bottom of the page back up where the header
- * suddenly is expanded again.
+ * is expanded again.
 */
 html:has(post-header) {
   scroll-padding-top: calc(
