@@ -255,7 +255,7 @@ export class PostCollapsible {
     const hidden =
       this.collapsed &&
       !this.animating &&
-      (this.findable && SUPPORTS_HIDDEN_UNTIL_FOUND ? 'until-found' : true);
+      (this.findable && (!Build.isBrowser || SUPPORTS_HIDDEN_UNTIL_FOUND) ? 'until-found' : true);
 
     return (
       <Host
@@ -264,8 +264,8 @@ export class PostCollapsible {
         tabindex={this.collapsed ? -1 : undefined}
         style={this.collapsed ? (collapsedKeyframe as InlineStyles) : undefined}
       >
-        {/* @ts-expect-error Stencil types do not yet support hidden="until-found". */}
-        <div hidden={hidden} ref={this.setContent}>
+        {/* @ts-expect-error Stencil's JSX types do not yet support the attr: prefix. */}
+        <div attr:hidden={hidden || undefined} ref={this.setContent}>
           <slot onSlotchange={() => this.handleHashChange()} />
         </div>
       </Host>
