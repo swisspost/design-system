@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-icons",
-  "version": "10.9.0",
+  "version": "10.10.0",
   "description": "A collection of Swiss Post icons intended for use with the Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -38,17 +38,15 @@
     "fetchSVGs": "ts-node src/fetch.ts"
   },
   "devDependencies": {
-    "@swisspost/design-system-eslint-config": "workspace:10.9.0",
-    "@swisspost/design-system-prettier-config": "workspace:10.9.0",
-    "@swisspost/design-system-tsconfig": "workspace:10.9.0",
+    "@swisspost/design-system-eslint-config": "workspace:10.10.0",
+    "@swisspost/design-system-prettier-config": "workspace:10.10.0",
+    "@swisspost/design-system-tsconfig": "workspace:10.10.0",
     "@types/jest": "catalog:jest",
-    "@types/mock-fs": "4.13.4",
     "@types/node": "catalog:node",
     "dotenv": "17.2.3",
     "eslint": "catalog:",
     "http-server": "14.1.1",
     "jest": "catalog:jest",
-    "mock-fs": "5.5.0",
     "node-html-parser": "7.0.2",
     "nodemon": "3.1.14",
     "prettier": "catalog:",

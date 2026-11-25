@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-stylelint-config",
-  "version": "10.9.0",
+  "version": "10.10.0",
   "description": "Shared Stylelint configuration for the Swiss Post Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -20,14 +20,14 @@
     "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore"
   },
   "dependencies": {
-    "postcss": "8.5.32",
+    "postcss": "8.5.33",
     "stylelint-scss": "7.4.0"
   },
   "peerDependencies": {
     "stylelint": ">=17.0.0"
   },
   "devDependencies": {
-    "@swisspost/design-system-prettier-config": "workspace:10.9.0",
+    "@swisspost/design-system-prettier-config": "workspace:10.10.0",
     "prettier": "catalog:",
     "stylelint": "catalog:"
   },
