@@ -47,7 +47,7 @@ export default function Home() {
       </p>
 
       <h2>Accordion</h2>
-      <PostAccordion headingLevel={3}>
+      <PostAccordion headingLevel={3} findable>
         <PostAccordionItem>
           <span slot="header">Titulum 1</span>
           <div>
@@ -55,10 +55,12 @@ export default function Home() {
           </div>
         </PostAccordionItem>
 
-        <PostAccordionItem>
+        <PostAccordionItem id="findable-ssr-accordion-item" collapsed>
           <span slot="header">Titulum 2</span>
           <div>
-            <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+            <p id="findable-ssr-accordion-target">
+              Contentus momentus vero siteos et accusam iretea et justo.
+            </p>
           </div>
         </PostAccordionItem>
 

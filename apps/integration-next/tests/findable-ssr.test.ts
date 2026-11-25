@@ -12,4 +12,13 @@ describe('findable content SSR', () => {
     expect(result.html).toContain('<template shadowrootmode="open">');
     expect(result.html).toMatch(/<div\b[^>]* hidden="until-found"/);
   });
+
+  it('serializes collapsed accordion item content as until-found when the accordion is findable', async () => {
+    const result = await renderToString(
+      '<post-accordion findable><post-accordion-item collapsed><span slot="header">Heading</span><p>Content</p></post-accordion-item></post-accordion>',
+      { serializeShadowRoot: 'declarative-shadow-dom' },
+    );
+
+    expect(result.html).toMatch(/<div\b[^>]* hidden="until-found"/);
+  });
 });

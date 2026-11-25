@@ -61,8 +61,10 @@ export class PostAccordionItem {
 
   render() {
     const collapsibleId = this.collapsibleId;
+    const accordion = this.host.closest('post-accordion');
+    const findable = accordion ? accordion.findable : this.findable;
 
-    const headingLevel = this.host.closest('post-accordion')?.getAttribute('heading-level');
+    const headingLevel = accordion?.getAttribute('heading-level');
     const HeadingTag = `h${headingLevel ?? 2}`;
 
     return (
@@ -91,7 +93,7 @@ export class PostAccordionItem {
         <post-collapsible
           id={collapsibleId}
           collapsed={this.collapsed}
-          findable={this.findable}
+          findable={findable}
           ref={el => (this.collapsible = el)}
         >
           <div class="accordion-body" part="post-accordion-body">

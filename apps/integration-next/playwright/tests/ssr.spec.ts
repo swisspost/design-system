@@ -24,6 +24,18 @@ test.describe('SSR compatibility', () => {
     }
   });
 
+  test('findable accordion items are serialized with until-found content', async ({ page }) => {
+    const response = await page.goto('/ssr');
+    if (!response) throw new Error('Expected the SSR route to return a response.');
+    const html = await response.text();
+    const item = html.match(
+      /<post-accordion-item[^>]*id="findable-ssr-accordion-item"[\s\S]*?<\/post-accordion-item>/,
+    );
+
+    expect(response.ok()).toBe(true);
+    expect(item?.[0]).toContain('hidden="until-found"');
+  });
+
   test('all components should not have console errors', async ({ page }) => {
     const errorCapture = setupComponentErrorCapture(page, componentNames as string[]);
 
