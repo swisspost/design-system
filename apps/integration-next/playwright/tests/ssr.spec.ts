@@ -54,6 +54,24 @@ test.describe('SSR compatibility', () => {
     expect(errorCapture.errors.length).toBe(0);
   });
 
+  test('does not access detached roots during accordion hydration', async ({ page }) => {
+    const rootErrors: string[] = [];
+    const captureRootError = (message: string) => {
+      if (message.includes('Attempting to access root node')) rootErrors.push(message);
+    };
+    page.on('console', message => {
+      if (message.type() === 'error') captureRootError(message.text());
+    });
+    page.on('pageerror', error => captureRootError(error.message));
+
+    await page.reload();
+    await expect(
+      page.locator('#findable-ssr-accordion-item[data-hydrated] button'),
+    ).toHaveAttribute('aria-expanded', 'false');
+    await expect(page.locator('post-accordion[data-hydrated]')).toBeAttached();
+    expect(rootErrors).toEqual([]);
+  });
+
   // NextJS typically only logs a single hydration error.
   // This means that after an error in one component has been fixed, another one may occur.
   // Make sure you're not hunting ghosts!

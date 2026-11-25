@@ -232,6 +232,8 @@ export class PostCollapsible {
    * Update all post-collapsible-trigger elements referring to or wrapping the collapsible
    */
   private updateTriggers() {
+    if (!Build.isBrowser || !this.host.isConnected) return;
+
     // Using a set for de-duplicating triggers
     const triggers = new Set<HTMLPostCollapsibleTriggerElement>(
       this.host.id &&
