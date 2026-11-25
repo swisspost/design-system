@@ -1,10 +1,12 @@
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/variables/commons';
 
 tokens.$default-map: components.$post-side-navigation;
 
 :host {
   display: flex;
+  z-index: commons.$zindex-side-nav;
 
   &,
   & dialog {
