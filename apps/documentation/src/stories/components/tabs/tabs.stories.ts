@@ -3,6 +3,7 @@ import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
+import { forceCompactAppearance } from '../../../../.storybook/helpers';
 
 const meta: MetaComponent<
   HTMLPostTabsElement & {
@@ -36,7 +37,7 @@ const meta: MetaComponent<
     'variant': {
       name: 'variant',
       description:
-        'Select between Content Tabs (panels) or Page Tabs variant (navigation links). <post-banner data-size="sm"><p>If you attempt to mix modes (panels + links), the component will throw an error.</p></post-banner>',
+        'Select between Content Tabs (panels) or Page Tabs variant (navigation links). <div class="inline-notification inline-notification-info"><p>If you attempt to mix modes (panels + links), the component will throw an error.</p></div>',
       control: 'radio',
       options: ['Content Tabs', 'Page Tabs'],
       table: {
@@ -46,7 +47,7 @@ const meta: MetaComponent<
     'tabContent': {
       name: 'tabContent',
       description:
-        'Controls whether the default tab items show text only, an icon only (with a visually hidden label for screen readers), or an icon together with visible text. <post-banner data-size="sm"><p>When using icon only tabs, make sure to provide a visually hidden label for each icon so the tab\'s purpose remains clear to screen reader users.</p></post-banner>',
+        'Controls whether the default tab items show text only, an icon only (with a visually hidden label for screen readers), or an icon together with visible text. <div class="inline-notification inline-notification-info"><p>When using icon only tabs, make sure to provide a visually hidden label for each icon so the tab\'s purpose remains clear to screen reader users.</p></div>',
       control: 'radio',
       options: ['text', 'icon', 'icon-text'],
       table: {
@@ -286,7 +287,6 @@ function renderTabs(
   >,
 ) {
   const variant = args.variant || 'Content Tabs';
-
   return variant === 'Page Tabs'
     ? renderPagesVariant(args.label, args['slots-default'] || '', args.size, args.tabContent)
     : renderContentVariant(
@@ -368,4 +368,101 @@ export const ActivePagesItem: Story = {
       </post-tab-item>
     `,
   },
+};
+
+export const TabsWithSideNavigation: Story = {
+  render: args =>
+    html` <!-- Wrap page tabs in ".post-tabs-container" when they sit in a constrained layout, e.g. next to the side navigation. -->
+      <div class="post-tabs-container container-fluid">${renderTabs(args)}</div>`,
+  args: {
+    'variant': 'Page Tabs',
+    'slots-default': `
+      <post-tab-item name="letters">
+       <!-- The active link must have an aria-current="page" attribute to ensure correct accessibility and styling. -->
+        <a href="/letters" aria-current="page">Letters</a>
+      </post-tab-item>
+      <post-tab-item name="packages">
+        <a href="/packages" >Packages</a>
+      </post-tab-item>
+      <post-tab-item name="logistics">
+        <a href="/logistics">Logistics</a>
+      </post-tab-item>
+   
+    `,
+  },
+  parameters: {
+    docs: {
+      story: {
+        inline: false,
+        iframeHeight: 700,
+      },
+    },
+  },
+  decorators: [
+    forceCompactAppearance,
+    story =>
+      html`<post-header text-menu="Menu">
+          <post-logo slot="post-logo" url="/">Homepage</post-logo>
+          <post-side-navigation-trigger slot="side-nav" for="sidenavigation">
+            <button aria-controls="sidenavigation" aria-expanded="false">
+              <post-icon aria-hidden="true" name="burger"></post-icon>
+              Menu
+            </button>
+          </post-side-navigation-trigger>
+          <p slot="title">[Application Title]</p>
+        </post-header>
+
+        <post-side-navigation id="sidenavigation" text-close="Close">
+          <nav aria-label="Main navigation">
+            <h2 class="post-side-navigation-heading">Always expanded</h2>
+
+            <ul>
+              <li>
+                <a href="#" class="post-side-navigation-item"> Level 1 </a>
+              </li>
+              <li>
+                <a href="#" class="post-side-navigation-item"> Level 1 </a>
+                <ul>
+                  <li>
+                    <a href="#" class="post-side-navigation-item">Level 2</a>
+                  </li>
+                  <li>
+                    <a href="#" class="post-side-navigation-item" aria-current="page"
+                      >Level 2 (active)</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#" class="post-side-navigation-item"> Level 1 </a>
+                <ul>
+                  <li>
+                    <a href="#" class="post-side-navigation-item">Level 2</a>
+                  </li>
+                  <li>
+                    <a href="#" class="post-side-navigation-item">Level 2</a>
+                    <ul>
+                      <li>
+                        <a href="#" class="post-side-navigation-item">Level 3</a>
+                      </li>
+                      <li>
+                        <a href="#" class="post-side-navigation-item">Level 3</a>
+                        <ul>
+                          <li>
+                            <a href="#" class="post-side-navigation-item">Level 4</a>
+                          </li>
+                          <li>
+                            <a href="#" class="post-side-navigation-item">Level 4</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </post-side-navigation>
+        <main class="main-container mt-16">${story()}</main>`,
+  ],
 };

@@ -1,5 +1,20 @@
 # @swisspost/design-system-styles
 
+## 10.10.0
+
+### Minor Changes
+
+- Introduced the `form-grid` and `form-grid-control` classes to align complex forms in internal applications. (by [@leagrdv](https://github.com/leagrdv) with [#8720](https://github.com/swisspost/design-system/pull/8720))
+
+### Patch Changes
+
+- Fixed signal icons showing the wrong colour variant in Safari when the page colour scheme differed from the OS preference. (by [@yomonom](https://github.com/yomonom) with [#8786](https://github.com/swisspost/design-system/pull/8786))
+
+- Fixed an issue where the `post-header` logo and global header shrank on scroll when only global header slots were used. The header now stays expanded when no local header area is present. (by [@oliverschuerch](https://github.com/oliverschuerch) and [@Copilot](https://github.com/Copilot) with [#8902](https://github.com/swisspost/design-system/pull/8902))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.10.0
+  - @swisspost/design-system-tokens@10.10.0
+
 ## 10.9.0
 
 ### Patch Changes

@@ -2,7 +2,7 @@ import type { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import meta from './side-navigation.stories';
-import { defaultNav } from './nav-content';
+import { getDefaultNav } from './nav-content';
 
 const { id, ...metaWithoutId } = meta;
 
@@ -42,7 +42,11 @@ export const PostSideNavigation: Story = {
         </ul>
       </post-header>
       <post-side-navigation text-close="Close" id="sidenavigation">
-        <nav aria-label="Main navigation">${unsafeHTML(defaultNav)}</nav>
+        <!-- Both kinds of expandable items are rendered for the snapshot, a real navigation uses only one -->
+        <nav aria-label="Main navigation">
+          ${unsafeHTML(getDefaultNav({ expandableItems: 'expanded' }))}
+          ${unsafeHTML(getDefaultNav({ expandableItems: 'collapsible' }))}
+        </nav>
       </post-side-navigation>
       <main class="main-container">
         <div class="form-check form-switch">

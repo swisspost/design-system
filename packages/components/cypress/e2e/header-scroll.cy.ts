@@ -7,7 +7,13 @@ import {
   scrollAndWait,
 } from './helper/header';
 
-const HEADER_CONFIGS = ['portal', 'microsite', 'one-pager'];
+const HEADER_CONFIGS = [
+  'portal',
+  'microsite',
+  'one-pager',
+  'application',
+  'application-with-side-navigation',
+];
 const VIEWPORTS: Record<string, Cypress.ViewportPreset> = {
   desktop: 'macbook-15',
   tablet: 'ipad-2',
@@ -76,6 +82,108 @@ describe('header', () => {
             });
           });
         });
+      });
+    });
+  });
+
+  // Header with global header slots only (no main-nav and no title), not documented as a variant
+  describe('global header only', () => {
+    const getLogoHeight = () =>
+      cy
+        .get('@header')
+        .find('post-logo')
+        .then($logo => $logo[0].getBoundingClientRect().height);
+
+    beforeEach(() => {
+      cy.visit(`/iframe.html?id=${HEADER_ID}--portal`);
+      cy.get('post-header').as('header');
+      cy.get('@header').should('have.attr', 'data-hydrated');
+
+      cy.get('@header')
+        .find('[slot="main-nav"]')
+        .then($mainNav => $mainNav.remove());
+      cy.get('@header').find('[slot="main-nav"], [slot="title"]').should('not.exist');
+      cy.get('@header').find('[slot="audience"], [slot="post-login"]').should('exist');
+    });
+
+    Object.keys(VIEWPORTS).forEach(viewportName => {
+      it(`should not reduce the header on ${viewportName}`, () => {
+        cy.viewport(VIEWPORTS[viewportName]);
+
+        getScrollMax().should('be.lessThan', 2);
+        getLogoHeight().then(expandedLogoHeight => {
+          scrollAndWait(300);
+          getScrollTopProperty().should('eq', '0px');
+          getLogoHeight().should('eq', expandedLogoHeight);
+        });
+      });
+    });
+  });
+
+  // Frameworks may keep the header of the previous route in the DOM with display: none
+  describe('hidden duplicate header', () => {
+    beforeEach(() => {
+      cy.visit(`/iframe.html?id=${HEADER_ID}--portal`);
+      cy.get('post-header').as('header');
+      cy.get('@header').should('have.attr', 'data-hydrated');
+      cy.viewport(VIEWPORTS.desktop);
+
+      cy.get('@header').then($header => {
+        const hiddenHeader = $header[0].cloneNode(true) as HTMLElement;
+        delete hiddenHeader.dataset.hydrated;
+        delete hiddenHeader.dataset.hidden;
+        hiddenHeader.style.display = 'none';
+        $header[0].before(hiddenHeader);
+        $header.find('[slot="main-nav"]').remove();
+      });
+      cy.get('post-header').should('have.length', 2);
+      cy.get('post-header[data-hidden]').should('have.length', 1);
+    });
+
+    it('should not reduce the visible header because of the hidden header main-nav', () => {
+      cy.get('post-header:not([data-hidden])').as('visibleHeader');
+      cy.get('@visibleHeader')
+        .find('post-logo')
+        .then($logo => {
+          const expandedLogoHeight = $logo[0].getBoundingClientRect().height;
+
+          scrollAndWait(300);
+          getScrollTopProperty().should('eq', '0px');
+          cy.get('@visibleHeader')
+            .find('post-logo')
+            .should($l => expect($l[0].getBoundingClientRect().height).to.eq(expandedLogoHeight));
+        });
+    });
+  });
+
+  // E.g. the header of a route that is hidden on navigation and shown again when navigating back
+  describe('header hidden and shown again', () => {
+    it('should resume reducing on scroll once shown again', () => {
+      // toggling the visibility resizes the observed header while the observer is delivering
+      cy.on('uncaught:exception', err => {
+        if (err.message.includes('ResizeObserver loop')) return false;
+      });
+
+      cy.visit(`/iframe.html?id=${HEADER_ID}--portal`);
+      cy.get('post-header').as('header');
+      cy.get('@header').should('have.attr', 'data-hydrated');
+      cy.viewport(VIEWPORTS.desktop);
+
+      cy.get('@header').then($header => ($header[0].style.display = 'none'));
+      cy.get('@header').should('have.attr', 'data-hidden');
+
+      cy.get('@header').then($header => $header[0].style.removeProperty('display'));
+      cy.get('@header').should('not.have.attr', 'data-hidden');
+
+      cy.get('@header')
+        .shadow()
+        .find('.scroll-max')
+        .should($el => expect($el[0].getBoundingClientRect().width).to.be.greaterThan(1));
+
+      getScrollMax().then(scrollMax => {
+        const below = Math.floor(scrollMax / 2);
+        scrollAndWait(below);
+        getScrollTopProperty().should('eq', `${below}px`);
       });
     });
   });
