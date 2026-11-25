@@ -740,6 +740,10 @@ $current-day-inset: calc(var(--adp-cell-border-width) * -1);
       outline-width: tokens.get('focus-outline-width', helpers.$post-focus) !important;
       outline-color: tokens.get('focus-outline-color', helpers.$post-focus) !important;
     }
+
+    :has(input.form-control-sm) & {
+      @include form-input-mx.input-btn-sm();
+    }
   }
 
   ::slotted(input) {
