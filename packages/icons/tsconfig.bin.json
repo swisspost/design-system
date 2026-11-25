@@ -4,6 +4,6 @@
     "outDir": "dist/bin",
     "types": ["node"]
   },
-  "include": ["src/fetch.ts"],
+  "include": ["src/cli.ts"],
   "exclude": ["node_modules", "public", "**/__tests__"]
 }

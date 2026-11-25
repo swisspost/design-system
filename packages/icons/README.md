@@ -39,7 +39,7 @@ The output directory contains:
 - `custom-properties/` CSS files with one custom property per icon
 - `report.json` and `report.min.json` icon reports
 
-Use a dedicated output directory, as existing files are removed on every run. If you need a proxy, set `HTTP_PROXY`, `HTTPS_PROXY` and optionally `NO_PROXY`.
+The `--out` option is required. The command warns if the directory is not empty. It does not delete existing files, but it overwrites files with matching names. Remove outdated files yourself if needed. If you need a proxy, set `HTTP_PROXY`, `HTTPS_PROXY` and optionally `NO_PROXY`.
 
 ## Contribute
 

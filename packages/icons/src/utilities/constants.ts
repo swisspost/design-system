@@ -6,13 +6,13 @@ import { coloredLogMessage } from './shared';
 
 export const DOWNLOAD_PAGE_DELAY = 2000;
 
-// Optional `--out <dir>` CLI argument, used by consumers to write all files to a custom directory
 const { out } = parseArgs({
   args: process.argv.slice(2),
   options: { out: { type: 'string' } },
   strict: false,
 }).values;
-const CUSTOM_OUTPUT_PATH = typeof out === 'string' ? path.resolve(out) : undefined;
+export const CUSTOM_OUTPUT_PATH =
+  typeof out === 'string' && out.trim() ? path.resolve(out) : undefined;
 
 export const SOURCE_PATH = CUSTOM_OUTPUT_PATH
   ? path.join(CUSTOM_OUTPUT_PATH, 'source')

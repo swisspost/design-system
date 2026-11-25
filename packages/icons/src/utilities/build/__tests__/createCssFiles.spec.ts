@@ -16,6 +16,19 @@ describe('createCssFiles', () => {
     jest.clearAllMocks();
   });
 
+  it('preserves stale CSS files when requested', async () => {
+    jest.spyOn(fs, 'existsSync').mockReturnValue(true);
+    (fs.readdirSync as jest.Mock).mockImplementation(dir =>
+      dir === mockCssOutputDirectory ? ['old.css'] : [],
+    );
+    jest.spyOn(fs, 'mkdirSync').mockImplementation(() => undefined);
+    jest.spyOn(fs, 'unlinkSync').mockImplementation(() => {});
+
+    await createCssFiles(mockIconOutputDirectory, mockCssOutputDirectory, true);
+
+    expect(fs.unlinkSync).not.toHaveBeenCalled();
+  });
+
   it('should create CSS output directory if it does not exist', async () => {
     jest.spyOn(fs, 'existsSync').mockReturnValue(false);
     jest.spyOn(fs, 'mkdirSync').mockImplementation(() => undefined);

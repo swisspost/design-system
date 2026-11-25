@@ -23,7 +23,7 @@
     "dist"
   ],
   "bin": {
-    "post-icons-fetch": "dist/bin/src/fetch.js"
+    "post-icons-fetch": "dist/bin/src/cli.js"
   },
   "scripts": {
     "play": "pnpm build && http-server ./public -o -a localhost -p 9330",
@@ -38,7 +38,7 @@
     "lint:fix": "eslint --fix",
     "format": "prettier . --write --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path .prettierignore",
     "format:check": "prettier . --check --ignore-path .gitignore --ignore-path ../../.gitignore --ignore-path .prettierignore",
-    "fetchSVGs": "ts-node src/fetch.ts"
+    "fetchSVGs": "ts-node src/fetch-internal.ts"
   },
   "dependencies": {
     "dotenv": "17.2.3",

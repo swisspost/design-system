@@ -18,7 +18,7 @@ In order to start the workflow, run
   pnpm --filter design-system-icons fetchSVGs
 ```
 
-Pass `--out <dir>` (e.g. `pnpm --filter design-system-icons fetchSVGs --out ./icons`) to write all files to a custom directory instead of `src/icons`, `public` and `dist`. The same script is published as the `post-icons-fetch` command for consumers (see [README](./README.md)).
+The published `post-icons-fetch` command requires `--out <dir>` and preserves existing files except for matching generated filenames (see [README](./README.md)). The internal command above retains the package paths and cleans old outputs.
 
 This will call the API sequentially and download SVGs in batches of 100. Icons are named in numbers and each 1000 block has a different theme. There is a filter ignoring some icon ranges because they are not targeted at the web.
 

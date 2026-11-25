@@ -12,6 +12,17 @@ describe('build/setup', () => {
     jest.clearAllMocks();
   });
 
+  it('preserves existing icons and reports when requested', () => {
+    jest.spyOn(fs, 'existsSync').mockReturnValue(true);
+    jest.spyOn(fs, 'rmSync').mockImplementation();
+    jest.spyOn(fs, 'unlinkSync').mockImplementation();
+
+    setup(mockIconOutputDir, mockReportOutputDir, true);
+
+    expect(fs.rmSync).not.toHaveBeenCalled();
+    expect(fs.unlinkSync).not.toHaveBeenCalled();
+  });
+
   it('should remove existing icon output directory if it exists', () => {
     jest.spyOn(fs, 'existsSync').mockReturnValue(true);
     jest.spyOn(fs, 'rmSync').mockImplementation();
