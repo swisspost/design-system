@@ -18,7 +18,7 @@ export const SOURCE_PATH = CUSTOM_OUTPUT_PATH
   ? path.join(CUSTOM_OUTPUT_PATH, 'source')
   : 'src/icons';
 export const OUTPUT_PATH = CUSTOM_OUTPUT_PATH ?? 'public';
-export const OUTPUT_PATH_ICONS = `${OUTPUT_PATH}/post-icons`;
+export const OUTPUT_PATH_ICONS = path.join(OUTPUT_PATH, 'post-icons');
 export const OUTPUT_PATH_CSS = CUSTOM_OUTPUT_PATH
   ? path.join(CUSTOM_OUTPUT_PATH, 'custom-properties')
   : 'dist/custom-properties';
