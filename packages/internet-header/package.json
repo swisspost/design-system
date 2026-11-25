@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/internet-header",
-  "version": "10.9.0",
+  "version": "10.10.0",
   "description": "The header for client facing applications.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -47,20 +47,20 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:10.9.0",
-    "@swisspost/design-system-styles": "workspace:10.9.0"
+    "@swisspost/design-system-components": "workspace:10.10.0",
+    "@swisspost/design-system-styles": "workspace:10.10.0"
   },
   "devDependencies": {
     "@percy/cypress": "3.1.9",
     "@stencil/core": "4.43.3",
     "@stencil/sass": "3.0.12",
     "@stencil/store": "2.0.16",
-    "@swisspost/design-system-cypress-config": "workspace:10.9.0",
-    "@swisspost/design-system-eslint-config": "workspace:10.9.0",
-    "@swisspost/design-system-icons": "workspace:10.9.0",
-    "@swisspost/design-system-prettier-config": "workspace:10.9.0",
-    "@swisspost/design-system-tokens": "workspace:10.9.0",
-    "@swisspost/design-system-tsconfig": "workspace:10.9.0",
+    "@swisspost/design-system-cypress-config": "workspace:10.10.0",
+    "@swisspost/design-system-eslint-config": "workspace:10.10.0",
+    "@swisspost/design-system-icons": "workspace:10.10.0",
+    "@swisspost/design-system-prettier-config": "workspace:10.10.0",
+    "@swisspost/design-system-tokens": "workspace:10.10.0",
+    "@swisspost/design-system-tsconfig": "workspace:10.10.0",
     "@types/jest": "catalog:jest",
     "@types/node": "catalog:node",
     "cypress": "catalog:cypress",
