@@ -52,6 +52,108 @@ describe('tabs', () => {
     });
   });
 
+  describe('scroll buttons', () => {
+    beforeEach(() => {
+      // The tabs overflow by less than the container width, so a single scroll reaches the end
+      cy.viewport(280, 576);
+      cy.getComponent('tabs', TABS_ID);
+      cy.get('@tabs').shadow().find('.tabs').as('container');
+      cy.get('@tabs').shadow().find('.scroll-btn-right').as('rightButton');
+      cy.get('post-tab-item').last().as('lastItem');
+    });
+
+    it('should scroll to the end, hide the right scroll button and fully show the last tab item', () => {
+      cy.get('@rightButton').should('be.visible').click();
+
+      cy.get('@rightButton').should('not.be.visible');
+      cy.get('@container').then($container => {
+        const container = $container[0];
+
+        expect(container.scrollLeft + container.clientWidth).to.be.at.least(
+          container.scrollWidth - 1,
+        );
+
+        cy.get('@lastItem').should($lastItem => {
+          expect($lastItem[0].getBoundingClientRect().right).to.be.at.most(
+            container.getBoundingClientRect().right + 1,
+          );
+        });
+      });
+    });
+  });
+
+  describe('scroll buttons in the Page Tabs variant', () => {
+    beforeEach(() => {
+      cy.viewport(320, 576);
+      cy.getComponent('tabs', TABS_ID, 'pages-variant');
+      cy.get('@tabs').shadow().find('.tabs').as('container');
+      cy.get('@tabs').shadow().find('.scroll-btn-right').as('rightButton');
+    });
+
+    it('should keep the scroll position when the tabs get narrower after scrolling to the end', () => {
+      cy.get('@rightButton').should('be.visible').click();
+      cy.get('@rightButton').should('not.be.visible');
+
+      cy.get('@container').then($container => {
+        const scrollLeft = $container[0].scrollLeft;
+
+        cy.viewport(300, 576);
+        // a smooth scroll back to the end would take a moment: wait before checking that the position didn't change
+        cy.wait(500);
+
+        cy.get('@container').its('0.scrollLeft').should('equal', scrollLeft);
+        cy.get('@rightButton').should('be.visible');
+      });
+    });
+  });
+
+  describe('Page Tabs alignment', () => {
+    ['container', 'container-fluid', ''].forEach(containerClass => {
+      [320, 1440].forEach(width => {
+        it(`aligns with ${containerClass || 'uncontained'} content at ${width}px without page overflow`, () => {
+          cy.viewport(width, 800);
+          cy.getComponent('tabs', TABS_ID, 'pages-variant');
+          cy.document().then(doc => {
+            doc.body.style.minHeight = '200vh';
+          });
+          if (containerClass) {
+            cy.get('@tabs').parent().invoke('addClass', containerClass);
+          }
+
+          cy.get('@tabs').should($tabs => {
+            const tabs = $tabs[0];
+            const firstItem = tabs.querySelector('post-tab-item');
+            expect(firstItem).not.to.equal(null);
+            expect(firstItem!.getBoundingClientRect().left).to.be.closeTo(
+              tabs.getBoundingClientRect().left,
+              1,
+            );
+          });
+          cy.document().should(doc => {
+            expect(doc.documentElement.scrollWidth).to.be.at.most(doc.documentElement.clientWidth);
+          });
+        });
+      });
+    });
+
+    it('aligns with content next to the side navigation', () => {
+      cy.viewport(1440, 800);
+      cy.getComponent('tabs', TABS_ID, 'tabs-with-side-navigation');
+      cy.get('@tabs').should($tabs => {
+        const tabs = $tabs[0];
+        const firstItem = tabs.querySelector('post-tab-item');
+        expect(firstItem).not.to.equal(null);
+        expect(firstItem!.getBoundingClientRect().left).to.be.closeTo(
+          tabs.getBoundingClientRect().left,
+          1,
+        );
+      });
+      cy.document().should(doc => {
+        expect(doc.documentElement.scrollWidth).to.be.at.most(doc.documentElement.clientWidth);
+      });
+    });
+  });
+
   describe('active tab', () => {
     beforeEach(() => {
       cy.getComponent('tabs', TABS_ID, 'active-tab');

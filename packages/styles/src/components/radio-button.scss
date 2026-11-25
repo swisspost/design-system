@@ -30,12 +30,14 @@ tokens.$default-map: components.$post-radio-button;
   @include forms-mx.form-check-base();
 
   // Grouped
-  fieldset > &:not(.form-check-inline):not(:last-of-type) {
+  fieldset > &:not(.form-check-inline):not(:last-of-type),
+  fieldset > .form-grid-control > &:not(.form-check-inline):not(:last-of-type) {
     margin-block-end: tokens.get('radio-button-gap-block-group');
   }
 
   // Grouped inline
-  fieldset > &.form-check-inline:not(:last-of-type) {
+  fieldset > &.form-check-inline:not(:last-of-type),
+  fieldset > .form-grid-control > &.form-check-inline:not(:last-of-type) {
     margin-inline-end: tokens.get('radio-button-group-items-gap-inline');
   }
 
@@ -80,12 +82,14 @@ fieldset:has(.form-check input[type='radio']) {
 }
 
 fieldset legend {
-  &:has(+ .form-check input[type='radio']) {
+  &:has(+ .form-check input[type='radio']),
+  &:has(+ .form-grid-control .form-check input[type='radio']) {
     font-size: tokens.get('radio-button-group-legend-font-size');
     margin-block-end: tokens.get('radio-button-gap-block-group');
   }
 
-  &:has(+ .form-check.form-check-sm input[type='radio']) {
+  &:has(+ .form-check.form-check-sm input[type='radio']),
+  &:has(+ .form-grid-control .form-check.form-check-sm input[type='radio']) {
     margin-block-end: tokens.get('radio-button-small-group-gap-block');
   }
 }

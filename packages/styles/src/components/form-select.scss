@@ -184,11 +184,13 @@ tokens.$default-map: components.$post-select;
   }
 }
 
-.form-label:has(+ select.form-select[disabled]) {
+.form-label:has(+ select.form-select[disabled]),
+.form-label:has(+ .form-grid-control select.form-select[disabled]) {
   color: tokens.get('select-color-disabled-fg');
 }
 
-.form-label:has(+ select.form-select-sm) {
+.form-label:has(+ select.form-select-sm),
+.form-label:has(+ .form-grid-control select.form-select-sm) {
   display: block;
   padding-inline: tokens.get('select-non-floating-small-label-padding-inline');
   padding-block: tokens.get('select-non-floating-small-label-padding-block');

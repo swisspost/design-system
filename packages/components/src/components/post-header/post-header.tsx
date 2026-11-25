@@ -46,9 +46,16 @@ export class PostHeader {
   private burgerMenuAnimation: Animation;
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
+  private scrollMaxResizeObserver: ResizeObserver;
+  private visibilityResizeObserver: ResizeObserver;
   private slottedContentObserver: MutationObserver;
   private globalHeader: HTMLElement;
   private localHeader: HTMLElement;
+  private scrollEventTarget: typeof globalThis | HTMLElement;
+  private scrollMaxElement: HTMLElement;
+  private scrollMax = Infinity;
+  private lastScrollTop: number;
+  private scrollPosition = 0;
   private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
 
   private get hasBurgerMenu(): boolean {
@@ -83,6 +90,14 @@ export class PostHeader {
     }
 
     return document.body;
+  }
+
+  private get scrollEventTargetCandidate(): typeof globalThis | HTMLElement {
+    const scrollParent = this.scrollParent;
+
+    return scrollParent === document.body || scrollParent === document.documentElement
+      ? globalThis
+      : scrollParent;
   }
 
   @Element() host: HTMLPostHeaderElement;
@@ -126,12 +141,15 @@ export class PostHeader {
       delete scrollParent.dataset.postScrollLocked;
       this.host.removeEventListener('keydown', this.keyboardHandler);
     }
+    this.updateScrollParentHeight();
   }
 
   constructor() {
     this.handleScrollEvent = this.handleScrollEvent.bind(this);
     this.updateScrollParentHeight = this.updateScrollParentHeight.bind(this);
     this.updateLocalHeaderHeight = this.updateLocalHeaderHeight.bind(this);
+    this.updateScrollMax = this.updateScrollMax.bind(this);
+    this.updateVisibility = this.updateVisibility.bind(this);
     this.keyboardHandler = this.keyboardHandler.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
     this.checkSlottedContent = this.checkSlottedContent.bind(this);
@@ -158,16 +176,16 @@ export class PostHeader {
 
   connectedCallback() {
     globalThis.addEventListener('resize', this.throttledResize, { passive: true });
-    globalThis.addEventListener('scroll', this.onScroll, {
-      passive: true,
-    });
-    this.scrollParent.addEventListener('scroll', this.onScroll, {
+    this.scrollEventTarget = this.scrollEventTargetCandidate;
+    this.scrollEventTarget.addEventListener('scroll', this.onScroll, {
       passive: true,
     });
     document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     globalThis.addEventListener('postBreakpoint:device', this.breakpointChange);
 
+    this.handleVisibilityChange();
     this.handleScrollParentResize();
+    this.handleScrollMaxResize();
     this.lockBody(false, this.burgerMenuExtended, 'burgerMenuExtended');
   }
 
@@ -180,6 +198,7 @@ export class PostHeader {
   componentDidRender() {
     this.getFocusableElements();
     this.handleLocalHeaderResize();
+    this.handleScrollMaxResize();
 
     // When a megadropdown is open on desktop and the user resizes to mobile, we set
     // burgerMenuExtended = true but burgerMenuButton doesn't exist yet — it only renders
@@ -196,12 +215,10 @@ export class PostHeader {
 
   // Clean up possible side effects when post-header is disconnected
   disconnectedCallback() {
-    const scrollParent = this.scrollParent;
-
     globalThis.removeEventListener('postBreakpoint:device', this.breakpointChange);
     globalThis.removeEventListener('resize', this.throttledResize);
-    globalThis.removeEventListener('scroll', this.onScroll);
-    if (scrollParent) scrollParent.removeEventListener('scroll', this.onScroll);
+    this.scrollEventTarget?.removeEventListener('scroll', this.onScroll);
+    this.scrollEventTarget = undefined;
     document.removeEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.removeEventListener('keydown', this.keyboardHandler);
     if (this.host.shadowRoot) {
@@ -216,6 +233,15 @@ export class PostHeader {
       this.localHeaderResizeObserver.disconnect();
       this.localHeaderResizeObserver = null;
     }
+    if (this.scrollMaxResizeObserver) {
+      this.scrollMaxResizeObserver.disconnect();
+      this.scrollMaxResizeObserver = null;
+    }
+    if (this.visibilityResizeObserver) {
+      this.visibilityResizeObserver.disconnect();
+      this.visibilityResizeObserver = null;
+    }
+    this.lastScrollTop = undefined;
     if (this.slottedContentObserver) {
       this.slottedContentObserver.disconnect();
       this.slottedContentObserver = null;
@@ -328,19 +354,75 @@ export class PostHeader {
     delete this.host.dataset.expanded;
   }
 
+  private getScrollPosition(): number {
+    const scrollParent = this.scrollParent;
+    return scrollParent === document.body ? globalThis.scrollY : scrollParent.scrollTop;
+  }
+
+  // Focusing a control of the collapsed header scrolls it into view before the focus events are dispatched
+  // the scroll event is not dispatched yet, so scrollPosition is still the position before the focus
+  // Never skip the scroll when the position is unchanged: an instant scroll cancels a pending smooth scroll
+  private restoreScrollPosition() {
+    const scrollParent = this.scrollParent;
+    const scrollContainer = scrollParent === document.body ? globalThis : scrollParent;
+    scrollContainer.scrollTo({ top: this.scrollPosition, behavior: 'instant' });
+  }
+
+  private get isHidden(): boolean {
+    return Object.hasOwn(this.host.dataset, 'hidden');
+  }
+
+  // A header that is not rendered (e.g. kept in the DOM with display: none) must neither
+  // write the shared root custom properties nor be taken into account by the header styles
+  private updateVisibility() {
+    const wasHidden = this.isHidden;
+    this.host.toggleAttribute('data-hidden', !this.host.checkVisibility());
+
+    if (wasHidden && !this.isHidden) {
+      this.updateLocalHeaderHeight();
+      this.updateScrollMax();
+    }
+  }
+
+  private handleVisibilityChange() {
+    this.updateVisibility();
+    if (this.visibilityResizeObserver) return;
+
+    this.visibilityResizeObserver = new ResizeObserver(this.updateVisibility);
+    this.visibilityResizeObserver.observe(this.host);
+  }
+
   private handleScrollEvent() {
-    const scrollTop =
-      this.scrollParent === document.body ? window.scrollY : this.scrollParent.scrollTop;
-    document.documentElement.style.setProperty(
-      '--post-header-scroll-top',
-      `${Math.max(scrollTop, 0)}px`,
-    );
+    this.scrollPosition = this.getScrollPosition();
+    if (this.isHidden) return;
+
+    // Once the header is fully reduced, writing a new value would only trigger
+    // a style recalculation of the whole page without any visual change
+    const value = Math.min(Math.max(this.scrollPosition, 0), this.scrollMax);
+    if (value === this.lastScrollTop) return;
+
+    this.lastScrollTop = value;
+    document.documentElement.style.setProperty('--post-header-scroll-top', `${value}px`);
+  }
+
+  private updateScrollMax() {
+    if (!this.scrollMaxElement || this.isHidden) return;
+
+    // Never limit the scroll value when the header styles are not loaded
+    const isScrollMaxDefined =
+      getComputedStyle(this.host).getPropertyValue('--post-header-scroll-max').trim() !== '';
+
+    this.scrollMax = isScrollMaxDefined
+      ? Math.ceil(this.scrollMaxElement.getBoundingClientRect().width)
+      : Infinity;
+
+    this.handleScrollEvent();
   }
 
   private updateLocalHeaderHeight() {
     const localHeaderElement = this.host.shadowRoot.querySelector('.local-header');
 
-    if (localHeaderElement) {
+    if (localHeaderElement && !this.isHidden) {
       document.documentElement.style.setProperty(
         '--post-local-header-expanded-height',
         `${localHeaderElement.clientHeight}px`,
@@ -393,6 +475,15 @@ export class PostHeader {
     }
   }
 
+  private handleScrollMaxResize() {
+    if (!this.scrollMaxElement || this.scrollMaxResizeObserver) return;
+
+    // The ResizeObserver is not called for an initial size of 0px (e.g. on mobile)
+    this.updateScrollMax();
+    this.scrollMaxResizeObserver = new ResizeObserver(this.updateScrollMax);
+    this.scrollMaxResizeObserver.observe(this.scrollMaxElement);
+  }
+
   private handleSlottedContentChanges() {
     if (!this.slottedContentObserver) {
       this.checkSlottedContent();
@@ -424,6 +515,9 @@ export class PostHeader {
     this.hasAudience = this.slotHasNavigationItems('audience', 'a, button');
     this.hasGlobalNavSecondary = this.slotHasNavigationItems('global-nav-secondary', 'a, button');
     this.hasLocalNav = !!this.host.querySelector('[slot="local-nav"]');
+
+    // A language menu slotted after the initial render does not trigger a re-render of the header
+    this.switchLanguageSwitchMode();
   }
 
   private switchLanguageSwitchMode() {
@@ -454,6 +548,9 @@ export class PostHeader {
     const isInCollapsiblePart = event.composedPath().includes(collapsiblePart);
 
     this.host.toggleAttribute('data-expanded', isInCollapsiblePart);
+
+    // The header is now expanded, so the focused control stays visible at the previous position
+    if (isInCollapsiblePart) this.restoreScrollPosition();
   }
 
   private isWithinHeader(target: EventTarget | null): boolean {
@@ -510,6 +607,7 @@ export class PostHeader {
         data-burger-menu={this.hasBurgerMenu}
         data-menu-extended={this.burgerMenuExtended}
       >
+        <span class="scroll-max" aria-hidden="true" ref={el => (this.scrollMaxElement = el)}></span>
         <header>
           <div ref={el => (this.globalHeader = el)} class="global-header">
             <div class="section">

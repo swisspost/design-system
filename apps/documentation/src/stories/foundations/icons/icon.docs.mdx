@@ -5,13 +5,14 @@ import { POST_ICONS_COUNT, UI_ICONS_COUNT, Search } from './search/search-icons.
 import './icon.styles.scss';
 import StoryTags from '@/shared/story-tags';
 import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
+import { ORDER_ICON_LINK } from '@/shared/links';
 
 <Meta of={IconStories} />
 
 <div className="docs-title">
   # Icons
 
-<link-design of={JSON.stringify(IconStories)}></link-design>
+<story-links of={JSON.stringify(IconStories)}></story-links>
 
 </div>
 
@@ -22,6 +23,9 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
   svg icons and the brand new UI Icon Set, exclusively designed and provided for the web with{' '}
   {Math.floor(UI_ICONS_COUNT / 10) * 10}+ icons and responsive level-of-detail.
 </div>
+
+{/* prettier-ignore */}
+<a href={ORDER_ICON_LINK} className="btn btn-lg btn-primary mt-32">Order new icon <post-icon name="mail" aria-hidden="true"></post-icon></a>
 
 <post-tabs active-tab="search">
   <post-tab-item name="search">Find your Icon</post-tab-item>
@@ -119,9 +123,9 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
     To define an icon in your own CSS, you need the `@swisspost/design-system-styles` package and use our `post-icon` mixin. The icons are responsive and can have a different level-of-detail, depending on how big they are rendered on the page.
 
-    <post-banner>
+    <div className="inline-notification inline-notification-info">
       The used classes in the examples below are only there for demonstration purposes.
-    </post-banner>
+    </div>
 
     ### Post Icons
 
