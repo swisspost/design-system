@@ -9,6 +9,12 @@ type PostBannerControls = Partial<HTMLPostBannerElement> & {
   dismissed?: boolean;
 };
 
+const DEFAULT_CONTENT =
+  '<p>This is the content of the banner. It helps to draw attention to critical messages.</p>';
+
+const GRIEF_CONTENT =
+  '<p>This is the content of the grief banner. It is used for messages of condolence.</p>';
+
 const meta: MetaComponent<PostBannerControls> = {
   id: '105e67d8-31e9-4d0b-87ff-685aba31fd4c',
   title: 'Components/Banner',
@@ -27,8 +33,7 @@ const meta: MetaComponent<PostBannerControls> = {
     },
   },
   args: {
-    innerHTML:
-      '<p>This is the content of the banner. It helps to draw attention to critical messages.</p>',
+    innerHTML: DEFAULT_CONTENT,
     type: 'info',
     dismissible: false,
     dismissed: false,
@@ -77,17 +82,17 @@ function RenderBanner({ innerHTML, dismissible, dismissed, type }: PostBannerCon
     </button>`;
   }
 
+  const content = type === 'grief' && innerHTML === DEFAULT_CONTENT ? GRIEF_CONTENT : innerHTML;
+
   return html`
     <post-banner
       type=${type === 'info' ? nothing : type}
       @postDismissed=${() => updateArgs({ dismissed: true })}
     >
-      ${
-        dismissible
-          ? html` <post-closebutton slot="close-button"> Close </post-closebutton> `
-          : nothing
-      }
-      ${unsafeHTML(innerHTML ?? '')}
+      ${dismissible
+        ? html` <post-closebutton slot="close-button"> Close </post-closebutton> `
+        : nothing}
+      ${unsafeHTML(content ?? '')}
     </post-banner>
   `;
 }

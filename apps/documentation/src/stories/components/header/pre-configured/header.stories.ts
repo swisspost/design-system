@@ -9,6 +9,7 @@ const defaultArgs: Args = {
   language: 'en',
   activeRoute: 'auto',
   fullWidth: false,
+  hideLogin: false,
   textMain: 'Main',
   textMenu: 'Menu',
   textChangeLanguage: 'Change the language',
@@ -35,13 +36,7 @@ const meta: MetaComponent = {
   },
   args: defaultArgs,
   render: renderHeader,
-  decorators: [
-    story => html`
-      <div class="header-story-wrapper">
-        <div class="virtual-body">${story()} ${fakeContent()}</div>
-      </div>
-    `,
-  ],
+  decorators: [story => html`${story()} ${fakeContent()}`],
 };
 
 export function renderHeader({ innerHMTL, ...args }: Args = defaultArgs) {
@@ -52,6 +47,7 @@ export function renderHeader({ innerHMTL, ...args }: Args = defaultArgs) {
       environment=${args.environment !== 'prod' ? args.environment : nothing}
       language=${args.language}
       ?full-width=${args.fullWidth}
+      ?hide-login=${args.hideLogin}
       text-main=${args.textMain}
       text-menu=${args.textMenu}
       text-change-language=${args.textChangeLanguage}
@@ -68,4 +64,14 @@ export default meta;
 
 type Story = StoryObj;
 
-export const Default: Story = {};
+// Rendered in an iframe so the header switches to mobile based on the preview width, not the page width
+export const Default: Story = {
+  parameters: {
+    docs: {
+      story: {
+        inline: false,
+        iframeHeight: 600,
+      },
+    },
+  },
+};

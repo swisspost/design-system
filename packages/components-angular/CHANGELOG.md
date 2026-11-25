@@ -1,5 +1,20 @@
 # @swisspost/design-system-components-angular
 
+## 10.10.0
+
+### Patch Changes
+
+- Fixed the collapsing animation of `post-side-navigation` items in Angular. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8945](https://github.com/swisspost/design-system/pull/8945))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.10.0
+
+## 10.9.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.9.0
+
 ## 10.8.0
 
 ### Patch Changes

@@ -5,7 +5,6 @@ describe('Typography', () => {
       cy.get('h1', { timeout: 30000 }).should('be.visible');
       cy.get('a', { timeout: 30000 }).should('be.visible');
       cy.get('p', { timeout: 30000 }).should('be.visible');
-      cy.get('legend', { timeout: 30000 }).should('be.visible');
       // Test Inline Elements
       cy.get('small', { timeout: 30000 }).should('be.visible');
       cy.get('strong', { timeout: 30000 }).should('be.visible');
@@ -21,7 +20,7 @@ describe('Typography', () => {
     });
 
     it('Has no detectable a11y violations on load for all variants', () => {
-      cy.checkA11y('#root-inner', undefined, (violations) => {
+      cy.checkA11y('#root-inner', undefined, violations => {
         expect(violations).to.have.length(0);
       });
     });

@@ -88,7 +88,8 @@ const meta: MetaComponent = {
     },
     globalNavPrimary: {
       name: 'Global primary navigation',
-      description: 'Whether or not the search button in the global header is displayed.',
+      description:
+        'Whether or not the primary navigation (shown here with a search button) in the global header is displayed. On tablet and mobile, its content remains visible in the same position as on desktop.',
       control: {
         type: 'boolean',
       },
@@ -109,7 +110,7 @@ const meta: MetaComponent = {
     globalNavSecondary: {
       name: 'Global secondary navigation',
       description:
-        'Whether or not the global secondary navigation is displayed ("jobs" and "create an account").',
+        'Whether or not the global secondary navigation is displayed ("jobs" and "create an account"). Its content moves inside the burger menu on tablet and mobile.',
       control: {
         type: 'boolean',
       },
@@ -176,14 +177,10 @@ const meta: MetaComponent = {
       const showSideNav = context.args.sideNav && context.args.title !== '';
 
       return html`
-        <div class="header-story-wrapper">
-          <div class="virtual-body">
-            ${story()}
-            ${showSideNav
-              ? html`<main class="main-container">${fakeContent()}</main>`
-              : html`<div>${fakeContent()}</div>`}
-          </div>
-        </div>
+        ${story()}
+        ${showSideNav
+          ? html`<main class="main-container">${fakeContent()}</main>`
+          : html`<div>${fakeContent()}</div>`}
       `;
     },
   ],
@@ -219,7 +216,10 @@ export default meta;
 
 type Story = StoryObj;
 
-export const Default: Story = {};
+// Rendered in an iframe so the header switches to mobile based on the preview width, not the page width
+export const Default: Story = {
+  ...getIframeParameters(600),
+};
 
 export const ActiveNavigationItem: Story = {
   ...getIframeParameters(250),

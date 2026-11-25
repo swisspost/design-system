@@ -49,7 +49,7 @@ const config: StorybookConfig = {
                     properties: { name: 'link' },
                   },
                   headingProperties: { className: 'docs-autolink' },
-                  behavior: 'append',
+                  behavior: 'wrap',
                 },
               ],
             ],

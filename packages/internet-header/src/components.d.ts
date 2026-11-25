@@ -35,6 +35,11 @@ export namespace Components {
          */
         "fullWidth": boolean;
         /**
+          * Hides the login slot entirely, whether the user is logged in or not.
+          * @default false
+         */
+        "hideLogin": boolean;
+        /**
           * Initial language to be used. Overrides automatic language detection.
          */
         "language"?: 'de' | 'fr' | 'it' | 'en';
@@ -143,6 +148,11 @@ declare namespace LocalJSX {
          */
         "fullWidth"?: boolean;
         /**
+          * Hides the login slot entirely, whether the user is logged in or not.
+          * @default false
+         */
+        "hideLogin"?: boolean;
+        /**
           * Initial language to be used. Overrides automatic language detection.
          */
         "language"?: 'de' | 'fr' | 'it' | 'en';
@@ -200,6 +210,7 @@ declare namespace LocalJSX {
         "activeRoute": ActiveRouteProp;
         "environment": Environment;
         "fullWidth": boolean;
+        "hideLogin": boolean;
         "language": 'de' | 'fr' | 'it' | 'en';
         "project": string;
         "textBack": string;

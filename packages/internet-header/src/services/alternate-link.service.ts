@@ -54,7 +54,8 @@ export const observeAlternateLinks = (
             n instanceof HTMLLinkElement &&
             n.hasAttribute('href') &&
             n.hasAttribute('hreflang') &&
-            n.hasAttribute('rel') && n.rel === 'alternate',
+            n.hasAttribute('rel') &&
+            n.rel === 'alternate',
         );
       }
 

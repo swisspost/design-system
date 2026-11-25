@@ -1,7 +1,8 @@
 @use '../functions/tokens';
 @use '../tokens/elements';
 @use '../tokens/components';
-@use './../mixins/utilities';
+@use '../mixins/utilities';
+@use '../mixins/color-scheme';
 
 tokens.$default-map: components.$post-inline-notification;
 
@@ -12,11 +13,11 @@ tokens.$default-map: components.$post-inline-notification;
   flex-direction: column;
   padding-block: calc(
     tokens.get('notification-inline-padding-block') +
-    tokens.get('notification-inline-content-padding-block')
+      tokens.get('notification-inline-content-padding-block')
   );
   padding-inline-start: calc(
     tokens.get('notification-inline-padding-inline') + tokens.get('notification-inline-icon-size') +
-    tokens.get('notification-inline-gap-inline')
+      tokens.get('notification-inline-gap-inline')
   );
   padding-inline-end: tokens.get('notification-inline-padding-inline');
   border-style: tokens.get('notification-inline-border-style');
@@ -45,7 +46,7 @@ tokens.$default-map: components.$post-inline-notification;
       border-color: tokens.get('notification-inline-color-#{$name}-stroke');
       background-color: tokens.get('notification-inline-color-#{$name}-bg');
       color: tokens.get('notification-inline-color-#{$name}-fg');
-      color-scheme: light;
+      @include color-scheme.set(light);
 
       &::before {
         background-image: var(--post-signal-icon-#{$name});
