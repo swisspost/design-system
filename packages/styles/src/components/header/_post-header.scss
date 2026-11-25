@@ -5,8 +5,9 @@
 @use './mixins' as *;
 @use './placeholders' as *;
 
+/* Elements targeted with hash refs (https://url.com#target) are hidden by the header without this */
 html:has(post-header) {
-  scroll-padding-top: var(--post-header-height);
+  scroll-padding-top: calc(1em + var(--post-header-height));
 }
 
 [data-post-scroll-locked] {
