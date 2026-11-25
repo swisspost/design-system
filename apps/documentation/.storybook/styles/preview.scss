@@ -78,7 +78,7 @@ tokens.$default-map: utilities.$post-spacing;
         }
 
         post-icon {
-          transform: scale(0.8);
+          padding-inline: 0.25rem;
 
           @media (hover: hover) {
             // hidden instead of removed, so revealing it doesn't reflow the heading
