@@ -22,8 +22,8 @@
   top: calc(#{tokens.get('input-sizing-height', components.$post-text-input)} / 2);
 
   post-icon {
-    width: tokens.get('select-sizing-icon', components.$post-select);
-    height: tokens.get('select-sizing-icon', components.$post-select);
+    width: tokens.get('input-sizing-icon', components.$post-text-input);
+    height: tokens.get('input-sizing-icon', components.$post-text-input);
   }
 
   &:not([disabled]) {
@@ -36,5 +36,14 @@
         color: Highlight;
       }
     }
+  }
+}
+
+@mixin input-btn-sm() {
+  top: calc(#{tokens.get('input-small-sizing-height', components.$post-text-input)} / 2);
+
+  post-icon {
+    width: tokens.get('input-small-sizing-icon', components.$post-text-input);
+    height: tokens.get('input-small-sizing-icon', components.$post-text-input);
   }
 }
