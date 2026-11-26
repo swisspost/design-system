@@ -1,5 +1,33 @@
 # @swisspost/design-system-styles
 
+## 10.10.0
+
+### Minor Changes
+
+- Introduced the `form-grid` and `form-grid-control` classes to align complex forms in internal applications. (by [@leagrdv](https://github.com/leagrdv) with [#8720](https://github.com/swisspost/design-system/pull/8720))
+
+### Patch Changes
+
+- Fixed signal icons showing the wrong colour variant in Safari when the page colour scheme differed from the OS preference. (by [@yomonom](https://github.com/yomonom) with [#8786](https://github.com/swisspost/design-system/pull/8786))
+
+- Fixed an issue where the `post-header` logo and global header shrank on scroll when only global header slots were used. The header now stays expanded when no local header area is present. (by [@oliverschuerch](https://github.com/oliverschuerch) and [@Copilot](https://github.com/Copilot) with [#8902](https://github.com/swisspost/design-system/pull/8902))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.10.0
+  - @swisspost/design-system-tokens@10.10.0
+
+## 10.9.0
+
+### Patch Changes
+
+- Updated the blockquote author and source to use the italic font style instead of the regular one. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#8741](https://github.com/swisspost/design-system/pull/8741))
+
+- Fixed the color value of the disabled time picker input. (by [@leagrdv](https://github.com/leagrdv) with [#8725](https://github.com/swisspost/design-system/pull/8725))
+
+- Improved the scroll performance of the `post-header`. The internal `--post-header-scroll-top` custom property now stops updating once the header is fully reduced, so it no longer reflects the page scroll position. (by [@alionazherdetska](https://github.com/alionazherdetska) and [@Copilot](https://github.com/Copilot) with [#8681](https://github.com/swisspost/design-system/pull/8681))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.9.0
+  - @swisspost/design-system-tokens@10.9.0
+
 ## 10.8.0
 
 ### Minor Changes
