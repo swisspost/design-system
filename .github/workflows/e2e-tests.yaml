@@ -46,6 +46,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+        with:
+          persist-credentials: false
 
       # The pull request is checked out as its merge commit, so a diff with the tip of the base branch
       # shows the changes of the pull request alone and does not need the git history in between
@@ -79,6 +81,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+        with:
+          persist-credentials: false
 
       - name: Setup
         uses: ./.github/actions/setup-pnpm
@@ -134,7 +138,7 @@ jobs:
           retention-days: 14
           if-no-files-found: ignore
 
-  # Single status for the whole workflow, keeps the name of the check used before the split
+  # Single status for the whole workflow, so that branch protection only requires this one check
   e2e:
     name: e2e
     needs: [plan, test]

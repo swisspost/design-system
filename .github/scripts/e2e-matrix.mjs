@@ -3,8 +3,9 @@
 /**
  * Builds the job matrix of the "End to end tests" workflow.
  *
- * Only the suites of packages that changed (or depend on a changed package) are run, and large
- * suites are split into shards so that they run on several runners in parallel.
+ * Only the suites of packages that changed (or depend on a changed package) are run, unless a
+ * change can affect all of them (see `RUN_ALL_PATHS`). Large suites are split into shards so that
+ * they run on several runners in parallel.
  *
  * Usage: node e2e-matrix.mjs
  * Environment:
@@ -22,8 +23,6 @@ import { join, relative } from 'node:path';
 // tests (or the `testsPerShard` of the suite), and each shard runs on its own runner.
 // A shard is an alphabetical range of spec files, for example "components a-h".
 // Small suites that are not split and share the same `job` run together on a single runner.
-// Nothing here lists spec files or shards: both follow the spec files found on every run, so
-// added, removed or growing specs need no change in this file.
 const TESTS_PER_SHARD = 200;
 
 const SUITES = [
@@ -126,13 +125,13 @@ function getSpecs(dir) {
 
       return { path, name: entry.name, letter, tests };
     })
-    .sort((a, b) => a.name.localeCompare(b.name));
+    .sort((a, b) => a.name.localeCompare(b.name, 'en'));
 }
 
 // Splits the alphabetically sorted specs into ranges with a similar number of tests.
 // Specs starting with the same letter always stay together, and the ranges are named so that
 // together they cover the whole alphabet (for example a-h, i-q, r-z). The boundaries are
-// calculated on every run: a new spec file needs no change here, whatever letter it starts with.
+// calculated on every run, so they follow the spec files that exist at that time.
 function split(specs, count) {
   const letters = [];
   for (const spec of specs) {
