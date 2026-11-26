@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-changelog-github",
-  "version": "10.10.0",
+  "version": "10.11.0",
   "description": "A changelog entry generator for GitHub that links to PRs and users",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -33,9 +33,9 @@
     "dotenv": "17.2.3"
   },
   "devDependencies": {
-    "@swisspost/design-system-eslint-config": "workspace:10.10.0",
-    "@swisspost/design-system-prettier-config": "workspace:10.10.0",
-    "@swisspost/design-system-tsconfig": "workspace:10.10.0",
+    "@swisspost/design-system-eslint-config": "workspace:10.11.0",
+    "@swisspost/design-system-prettier-config": "workspace:10.11.0",
+    "@swisspost/design-system-tsconfig": "workspace:10.11.0",
     "eslint": "catalog:",
     "prettier": "catalog:",
     "rimraf": "6.1.4",

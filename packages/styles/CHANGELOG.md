@@ -1,5 +1,14 @@
 # @swisspost/design-system-styles
 
+## 10.11.0
+
+### Patch Changes
+
+- Reduce compressed CSS sizes by using percent-encoded SVG data URLs instead of base64. Decoded SVG content and icon rendering remain unchanged. (by [@gfellerph](https://github.com/gfellerph) and [@Copilot](https://github.com/Copilot) with [#8865](https://github.com/swisspost/design-system/pull/8865))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.11.0
+  - @swisspost/design-system-tokens@10.11.0
+
 ## 10.10.0
 
 ### Minor Changes

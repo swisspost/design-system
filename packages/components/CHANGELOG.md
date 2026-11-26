@@ -1,5 +1,17 @@
 # @swisspost/design-system-components
 
+## 10.11.0
+
+### Minor Changes
+
+- Added the `.post-tabs-container` wrapper class so page tabs size according to their nearest container. (by [@myrtasakellariou](https://github.com/myrtasakellariou) with [#8647](https://github.com/swisspost/design-system/pull/8647))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.11.0
+  - @swisspost/design-system-styles@10.11.0
+
 ## 10.10.0
 
 ### Minor Changes
