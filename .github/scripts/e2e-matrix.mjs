@@ -20,6 +20,8 @@ import { join, relative } from 'node:path';
 // tests, and each shard runs on its own runner.
 // A shard is an alphabetical range of spec files, for example "components a-h".
 // Small suites that are not split and share the same `job` run together on a single runner.
+// `shards` sets a fixed number of shards instead, for suites whose number of tests is a poor
+// measure of their duration (for example when tests are generated in loops).
 const TESTS_PER_SHARD = 300;
 
 const SUITES = [
@@ -33,6 +35,9 @@ const SUITES = [
     name: 'components',
     package: '@swisspost/design-system-components',
     dir: 'packages/components',
+    // Several large specs (header, main navigation, megadropdown...) run each test once per
+    // variant and viewport, so they take much longer than their number of tests suggests.
+    shards: 3,
   },
   {
     name: 'internet-header',
@@ -203,7 +208,8 @@ for (const suite of SUITES) {
 
   const specs = getSpecs(suite.dir);
   const totalTests = specs.reduce((total, spec) => total + spec.tests, 0);
-  const shards = Math.max(1, Math.ceil(totalTests / (suite.testsPerShard ?? TESTS_PER_SHARD)));
+  const shards =
+    suite.shards ?? Math.max(1, Math.ceil(totalTests / (suite.testsPerShard ?? TESTS_PER_SHARD)));
 
   // Without a spec list, Cypress runs everything that matches its `specPattern`.
   if (shards <= 1) {
