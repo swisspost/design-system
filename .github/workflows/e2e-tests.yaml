@@ -1,10 +1,8 @@
 ###
 #
-# Runs the Cypress end to end tests of the packages changed since the base branch
+# Runs the Cypress end to end tests of the packages affected by a pull request
 #
-# The suites run in parallel on separate runners, large suites are split into shards and
-# small ones share a runner.
-# The matrix is defined in .github/scripts/e2e-matrix.mjs
+# The tests run in parallel jobs, which are defined by .github/scripts/e2e-matrix.mjs
 #
 ###
 
