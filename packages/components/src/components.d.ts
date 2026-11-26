@@ -1017,6 +1017,7 @@ declare global {
     };
     interface HTMLPostLanguageMenuItemElementEventMap {
         "postChange": string;
+        "postLanguageMenuItemSelected": string;
         "postLanguageMenuItemInitiallyActive": string;
     }
     interface HTMLPostLanguageMenuItemElement extends Components.PostLanguageMenuItem, HTMLStencilElement {
@@ -1681,13 +1682,17 @@ declare namespace LocalJSX {
          */
         "name"?: string;
         /**
-          * An event emitted when the language option is clicked. The payload is the ISO 639 code of the language.
+          * An event emitted when the language option is clicked. Call `preventDefault()` to keep the language menu's active language unchanged.
          */
         "onPostChange"?: (event: PostLanguageMenuItemCustomEvent<string>) => void;
         /**
           * An event emitted when the language option is initially active. The payload is the ISO 639 code of the language.
          */
         "onPostLanguageMenuItemInitiallyActive"?: (event: PostLanguageMenuItemCustomEvent<string>) => void;
+        /**
+          * An event emitted when the language option becomes active. Used internally by post-language-menu.
+         */
+        "onPostLanguageMenuItemSelected"?: (event: PostLanguageMenuItemCustomEvent<string>) => void;
         /**
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */

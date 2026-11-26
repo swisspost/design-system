@@ -61,6 +61,21 @@ describe('post-language-menu', () => {
         .find('post-language-menu-item[code="fr"]')
         .should('not.have.attr', 'active', 'false');
     });
+
+    it('should keep the active language when postChange is prevented', () => {
+      cy.get('@language-menu').then($menu => {
+        $menu[0].addEventListener('postChange', event => event.preventDefault());
+      });
+
+      cy.get('@language-menu').find('post-language-menu-item[code="de"]').click();
+
+      cy.get('@language-menu')
+        .find('post-language-menu-item[code="en"]')
+        .should('have.attr', 'active');
+      cy.get('@language-menu')
+        .find('post-language-menu-item[code="de"]')
+        .should('have.attr', 'active', 'false');
+    });
   });
 
   describe('menu variant', () => {
@@ -113,6 +128,29 @@ describe('post-language-menu', () => {
         .find('post-language-menu-item')
         .find('button[role="menuitem"]:visible')
         .should('have.length', 2);
+    });
+
+    it('should keep the trigger language when postChange is prevented', () => {
+      cy.get('@language-menu').then($menu => {
+        $menu[0].addEventListener('postChange', event => event.preventDefault());
+      });
+
+      cy.get('@trigger').find('button').click();
+      cy.get('@language-menu').find('post-language-menu-item[code="de"]').click();
+
+      cy.get('@trigger').should('contain.text', 'en');
+      cy.get('@language-menu').find('post-language-menu-item').should('not.be.visible');
+    });
+
+    it('should update the trigger language when active is set on another item', () => {
+      cy.get('@language-menu')
+        .find('post-language-menu-item[code="de"]')
+        .invoke('prop', 'active', true);
+
+      cy.get('@trigger').should('contain.text', 'de');
+      cy.get('@language-menu')
+        .find('post-language-menu-item[code="en"]')
+        .should('not.have.attr', 'active');
     });
   });
 

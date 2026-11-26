@@ -17,10 +17,11 @@
 
 ## Events
 
-| Event                                 | Description                                                                                                     | Type                  |
-| ------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------- |
-| `postChange`                          | An event emitted when the language option is clicked. The payload is the ISO 639 code of the language.          | `CustomEvent<string>` |
-| `postLanguageMenuItemInitiallyActive` | An event emitted when the language option is initially active. The payload is the ISO 639 code of the language. | `CustomEvent<string>` |
+| Event                                 | Description                                                                                                                          | Type                  |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | --------------------- |
+| `postChange`                          | An event emitted when the language option is clicked. Call `preventDefault()` to keep the language menu's active language unchanged. | `CustomEvent<string>` |
+| `postLanguageMenuItemInitiallyActive` | An event emitted when the language option is initially active. The payload is the ISO 639 code of the language.                      | `CustomEvent<string>` |
+| `postLanguageMenuItemSelected`        | An event emitted when the language option becomes active. Used internally by post-language-menu.                                     | `CustomEvent<string>` |
 
 
 ## Methods

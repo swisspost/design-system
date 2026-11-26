@@ -1,6 +1,16 @@
 import { OneOf, Required, Type, Url } from '@/utils';
 import { version } from '@root/package.json';
-import { Component, Element, Event, EventEmitter, h, Host, Method, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  Prop,
+  Watch,
+} from '@stencil/core';
 import { SWITCH_VARIANTS, SwitchVariant } from '../post-language-menu/switch-variants';
 
 /**
@@ -25,6 +35,11 @@ export class PostLanguageMenuItem {
    * If set to `true`, the language option is considered the current language for the page.
    */
   @Prop({ mutable: true, reflect: true }) active?: boolean;
+
+  @Watch('active')
+  handleActiveChange(isActive: boolean) {
+    if (isActive) this.postLanguageMenuItemSelected.emit(this.code);
+  }
 
   /**
    * To communicate the variant prop from the parent (post-language-menu) component to the child (post-language-menu-item) component. See parent docs for a description about the property itself.
@@ -68,9 +83,15 @@ export class PostLanguageMenuItem {
   }
 
   /**
-   * An event emitted when the language option is clicked. The payload is the ISO 639 code of the language.
+   * An event emitted when the language option is clicked.
+   * Call `preventDefault()` to keep the language menu's active language unchanged.
    */
-  @Event() postChange: EventEmitter<string>;
+  @Event({ cancelable: true }) postChange: EventEmitter<string>;
+
+  /**
+   * An event emitted when the language option becomes active. Used internally by post-language-menu.
+   */
+  @Event() postLanguageMenuItemSelected: EventEmitter<string>;
 
   /**
    * An event emitted when the language option is initially active. The payload is the ISO 639 code of the language.
@@ -82,12 +103,12 @@ export class PostLanguageMenuItem {
    */
   @Method()
   async select() {
-    this.active = true;
     this.emitChange();
   }
 
   private emitChange() {
-    this.postChange.emit(this.code);
+    if (this.postChange.emit(this.code).defaultPrevented) return;
+    this.active = true;
   }
 
   private isNameRequired(): boolean {
