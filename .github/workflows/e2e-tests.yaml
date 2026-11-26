@@ -9,6 +9,7 @@
 ###
 
 name: End to end tests
+
 on:
   pull_request:
     paths:
@@ -21,6 +22,10 @@ on:
       - 'tooling/**'
       - '.github/workflows/e2e-tests.yaml'
       - '.github/scripts/e2e-matrix.mjs'
+      - '.github/scripts/e2e-run.sh'
+      - '.github/actions/setup-pnpm/**'
+      - 'package.json'
+      - 'pnpm-workspace.yaml'
   workflow_dispatch:
 
 permissions:
@@ -44,8 +49,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
 
-      # The changed packages are found by comparing the working tree with the tip of the base
-      # branch, which does not require the git history.
+      # The pull request is checked out as its merge commit with the base branch, so comparing
+      # it with the tip of the base branch gives the changes of the pull request alone.
+      # A diff between two trees does not need the git history in between.
       - name: Fetch base branch
         env:
           BASE_BRANCH: ${{ github.base_ref || 'main' }}
@@ -102,7 +108,7 @@ jobs:
 
       # The tests run against the storybook dev server, which only needs its dependencies built.
       - name: Build dependencies
-        run: pnpm --filter "design-system-documentation^..." build
+        run: pnpm --filter "@swisspost/design-system-documentation^..." build
 
       - name: Cypress info
         env:
@@ -116,17 +122,7 @@ jobs:
         env:
           PACKAGES: ${{ matrix.packages }}
           SPECS: ${{ matrix.specs }}
-        run: |
-          # Suites sharing a runner use the same storybook server and all run, even if one fails.
-          COMMAND="status=0"
-
-          for PACKAGE in $PACKAGES; do
-            COMMAND="$COMMAND; pnpm --filter $PACKAGE e2e:ci${SPECS:+ --spec $SPECS} || status=1"
-          done
-
-          COMMAND="$COMMAND; exit \$status"
-
-          pnpm exec start-server-and-test 'pnpm docs:headless' 9001 "bash -c '$COMMAND'"
+        run: pnpm exec start-server-and-test 'pnpm docs:headless' 9001 'bash .github/scripts/e2e-run.sh'
 
       - name: Upload screenshots
         uses: actions/upload-artifact@6027e3dd177782cd8ab9af838c04fd81a07f1d47
@@ -144,7 +140,6 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 5
-
     steps:
       - name: Check results
         env:
@@ -152,11 +147,9 @@ jobs:
           TEST: ${{ needs.test.result }}
         run: |
           echo "plan: $PLAN, test: $TEST"
-
           if [[ "$PLAN" != "success" ]]; then
             exit 1
           fi
-
           # The test job is skipped when no suite is affected by the changes
           if [[ "$TEST" != "success" && "$TEST" != "skipped" ]]; then
             exit 1
