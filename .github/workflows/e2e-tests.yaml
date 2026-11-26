@@ -49,9 +49,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
 
-      # The pull request is checked out as its merge commit with the base branch, so comparing
-      # it with the tip of the base branch gives the changes of the pull request alone.
-      # A diff between two trees does not need the git history in between.
+      # The pull request is checked out as its merge commit, so a diff with the tip of the base branch
+      # shows the changes of the pull request alone and does not need the git history in between
       - name: Fetch base branch
         env:
           BASE_BRANCH: ${{ github.base_ref || 'main' }}
@@ -100,8 +99,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # With a restored pnpm store the postinstall script of cypress can be skipped,
-      # this makes sure the binary is there. It does nothing if it is already installed.
+      # Downloads the binary on a cache miss, as the postinstall script of cypress can be skipped
+      # with a restored pnpm store, and does nothing if the binary is already installed
       - name: Install cypress binary
         env:
           PACKAGES: ${{ matrix.packages }}
@@ -110,7 +109,7 @@ jobs:
             pnpm --filter "$PACKAGE" exec cypress install
           done
 
-      # The tests run against the storybook dev server, which only needs its dependencies built.
+      # The tests run against the storybook dev server, which only needs its dependencies built
       - name: Build dependencies
         run: pnpm --filter "@swisspost/design-system-documentation^..." build
 
@@ -137,7 +136,7 @@ jobs:
           retention-days: 14
           if-no-files-found: ignore
 
-  # Single status for the whole workflow, keeps the name of the check used before the split.
+  # Single status for the whole workflow, keeps the name of the check used before the split
   e2e:
     name: e2e
     needs: [plan, test]

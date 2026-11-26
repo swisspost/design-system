@@ -1,23 +1,25 @@
 #!/usr/bin/env node
+
 /**
  * Builds the job matrix of the "End to end tests" workflow.
  *
  * Only the suites of packages that changed (or depend on a changed package) are run, and large
  * suites are split into shards so that they run on several runners in parallel.
  *
- * Usage: node .github/scripts/e2e-matrix.mjs
+ * Usage: node e2e-matrix.mjs
  * Environment:
  *   BASE_REF  Git ref to compare the working tree with (default: origin/main).
  *   RUN_ALL   Set to "true" to run every suite, no matter what changed.
  * Output: `matrix=<json>` and `has-suites=<true|false>` in $GITHUB_OUTPUT, a report on stderr
  * and in the job summary.
  */
+
 import { execFileSync } from 'node:child_process';
 import { appendFileSync, readdirSync, readFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 
-// A suite is split into as many shards as needed to keep each one at about `testsPerShard`
-// tests, and each shard runs on its own runner.
+// A suite is split into as many shards as needed to keep each one at about `TESTS_PER_SHARD`
+// tests (or the `testsPerShard` of the suite), and each shard runs on its own runner.
 // A shard is an alphabetical range of spec files, for example "components a-h".
 // Small suites that are not split and share the same `job` run together on a single runner.
 // Nothing here lists spec files or shards: both follow the spec files found on every run, so
