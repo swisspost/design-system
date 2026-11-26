@@ -1,4 +1,13 @@
+###
+#
+# Runs the Cypress end to end tests of the packages affected by a pull request
+#
+# The tests run in parallel jobs, which are defined by .github/scripts/e2e-matrix.mjs
+#
+###
+
 name: End to end tests
+
 on:
   pull_request:
     paths:
@@ -9,25 +18,74 @@ on:
       - 'packages/icons/**'
       - 'packages/tokens/tokensstudio-generated/tokens.json'
       - 'tooling/**'
+      - '.github/workflows/e2e-tests.yaml'
+      - '.github/scripts/e2e-matrix.mjs'
+      - '.github/scripts/e2e-run.sh'
+      - '.github/actions/setup-pnpm/**'
+      - 'package.json'
+      - 'pnpm-workspace.yaml'
   workflow_dispatch:
 
 permissions:
   contents: read
 
+# A new push to a pull request cancels the runs of the previous push
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  e2e:
+  plan:
+    name: Plan
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+      has-suites: ${{ steps.matrix.outputs.has-suites }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
         with:
-          fetch-depth: 0
+          persist-credentials: false
+
+      # The pull request is checked out as its merge commit, so a diff with the tip of the base branch
+      # shows the changes of the pull request alone and does not need the git history in between
+      - name: Fetch base branch
+        env:
+          BASE_BRANCH: ${{ github.base_ref || 'main' }}
+        run: git fetch --no-tags --depth=1 origin "+refs/heads/$BASE_BRANCH:refs/remotes/origin/$BASE_BRANCH"
 
       - name: Setup
         uses: ./.github/actions/setup-pnpm
         with:
           use_cache: false
+
+      - name: Create matrix
+        id: matrix
+        env:
+          BASE_REF: origin/${{ github.base_ref || 'main' }}
+          RUN_ALL: ${{ github.event_name == 'workflow_dispatch' }}
+        run: node .github/scripts/e2e-matrix.mjs
+
+  test:
+    name: ${{ matrix.name }}
+    needs: plan
+    if: needs.plan.outputs.has-suites == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+        with:
+          persist-credentials: false
+
+      - name: Setup
+        uses: ./.github/actions/setup-pnpm
 
       - name: Get tool binary cache keys
         id: tool-binary-cache
@@ -40,25 +98,64 @@ jobs:
           path: ${{ steps.tool-binary-cache.outputs.cypress-path }}
           key: ${{ steps.tool-binary-cache.outputs.cypress-key }}
 
-      - name: Install & build dependencies
-        run: pnpm install && pnpm -r build
+      - name: Install dependencies
+        run: pnpm install
 
-      - name: Prepare Cypress – Spawn Xvfb server
-        run: Xvfb :99 &
+      # Downloads the binary on a cache miss, as the postinstall script of cypress can be skipped
+      # with a restored pnpm store, and does nothing if the binary is already installed
+      - name: Install cypress binary
+        env:
+          PACKAGES: ${{ matrix.packages }}
+        run: |
+          for PACKAGE in $PACKAGES; do
+            pnpm --filter "$PACKAGE" exec cypress install
+          done
 
-      - name: Prepare Cypress – Share Xvfb server as environment variable
-        run: export DISPLAY=:99
+      # The tests run against the storybook dev server, which only needs its dependencies built
+      - name: Build dependencies
+        run: pnpm --filter "@swisspost/design-system-documentation^..." build
 
       - name: Cypress info
-        run: pnpm --filter design-system-documentation exec cypress info
+        env:
+          PACKAGES: ${{ matrix.packages }}
+        run: |
+          for PACKAGE in $PACKAGES; do
+            pnpm --filter "$PACKAGE" exec cypress info
+          done
 
       - name: Run tests
-        run: pnpm e2e:ci
+        env:
+          PACKAGES: ${{ matrix.packages }}
+          SPECS: ${{ matrix.specs }}
+        run: pnpm exec start-server-and-test 'pnpm docs:headless' 9001 'bash .github/scripts/e2e-run.sh'
 
       - name: Upload screenshots
         uses: actions/upload-artifact@6027e3dd177782cd8ab9af838c04fd81a07f1d47
         if: failure()
         with:
-          name: cypress-snapshots
-          path: packages/**/cypress/screenshots
+          name: cypress-screenshots-${{ matrix.id }}
+          path: ${{ matrix.screenshots }}
           retention-days: 14
+          if-no-files-found: ignore
+
+  # Single status for the whole workflow, so that branch protection only requires this one check
+  e2e:
+    name: e2e
+    needs: [plan, test]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check results
+        env:
+          PLAN: ${{ needs.plan.result }}
+          TEST: ${{ needs.test.result }}
+        run: |
+          echo "plan: $PLAN, test: $TEST"
+          if [[ "$PLAN" != "success" ]]; then
+            exit 1
+          fi
+          # The test job is skipped when no suite is affected by the changes
+          if [[ "$TEST" != "success" && "$TEST" != "skipped" ]]; then
+            exit 1
+          fi
