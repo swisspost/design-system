@@ -1,5 +1,24 @@
 # @swisspost/design-system-documentation
 
+## 6.10.0
+
+### Minor Changes
+
+- Added the `.post-tabs-container` wrapper class so page tabs size according to their nearest container. (by [@myrtasakellariou](https://github.com/myrtasakellariou) with [#8647](https://github.com/swisspost/design-system/pull/8647))
+
+### Patch Changes
+
+- Fixed the heading anchor link in the documentation being hidden behind the heading text instead of displaying next to it. (by [@AndrinAAF](https://github.com/AndrinAAF) with [#8835](https://github.com/swisspost/design-system/pull/8835))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.11.0
+  - @swisspost/design-system-icons@10.11.0
+  - @swisspost/design-system-styles@10.11.0
+  - @swisspost/design-system-components-react@10.11.0
+  - @swisspost/internet-header@10.11.0
+  - @swisspost/design-system-styles-primeng@10.11.0
+  - @swisspost/design-system-theme-ag-grid@10.11.0
+  - @swisspost/design-system-tokens@10.11.0
+
 ## 6.9.0
 
 ### Minor Changes

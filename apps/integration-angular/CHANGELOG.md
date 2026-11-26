@@ -1,5 +1,15 @@
 # @swisspost/design-system-integration-angular
 
+## 10.11.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.11.0
+  - @swisspost/design-system-styles@10.11.0
+  - @swisspost/design-system-components-angular@10.11.0
+  - @swisspost/design-system-styles-primeng@10.11.0
+
 ## 10.10.0
 
 ### Patch Changes
