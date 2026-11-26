@@ -107,6 +107,53 @@ describe('tabs', () => {
     });
   });
 
+  describe('Page Tabs alignment', () => {
+    ['container', 'container-fluid', ''].forEach(containerClass => {
+      [320, 1440].forEach(width => {
+        it(`aligns with ${containerClass || 'uncontained'} content at ${width}px without page overflow`, () => {
+          cy.viewport(width, 800);
+          cy.getComponent('tabs', TABS_ID, 'pages-variant');
+          cy.document().then(doc => {
+            doc.body.style.minHeight = '200vh';
+          });
+          if (containerClass) {
+            cy.get('@tabs').parent().invoke('addClass', containerClass);
+          }
+
+          cy.get('@tabs').should($tabs => {
+            const tabs = $tabs[0];
+            const firstItem = tabs.querySelector('post-tab-item');
+            expect(firstItem).not.to.equal(null);
+            expect(firstItem!.getBoundingClientRect().left).to.be.closeTo(
+              tabs.getBoundingClientRect().left,
+              1,
+            );
+          });
+          cy.document().should(doc => {
+            expect(doc.documentElement.scrollWidth).to.be.at.most(doc.documentElement.clientWidth);
+          });
+        });
+      });
+    });
+
+    it('aligns with content next to the side navigation', () => {
+      cy.viewport(1440, 800);
+      cy.getComponent('tabs', TABS_ID, 'tabs-with-side-navigation');
+      cy.get('@tabs').should($tabs => {
+        const tabs = $tabs[0];
+        const firstItem = tabs.querySelector('post-tab-item');
+        expect(firstItem).not.to.equal(null);
+        expect(firstItem!.getBoundingClientRect().left).to.be.closeTo(
+          tabs.getBoundingClientRect().left,
+          1,
+        );
+      });
+      cy.document().should(doc => {
+        expect(doc.documentElement.scrollWidth).to.be.at.most(doc.documentElement.clientWidth);
+      });
+    });
+  });
+
   describe('active tab', () => {
     beforeEach(() => {
       cy.getComponent('tabs', TABS_ID, 'active-tab');
