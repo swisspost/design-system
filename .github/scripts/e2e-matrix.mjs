@@ -20,9 +20,9 @@ import { join, relative } from 'node:path';
 // tests, and each shard runs on its own runner.
 // A shard is an alphabetical range of spec files, for example "components a-h".
 // Small suites that are not split and share the same `job` run together on a single runner.
-// `shards` sets a fixed number of shards instead, for suites whose number of tests is a poor
-// measure of their duration (for example when tests are generated in loops).
-const TESTS_PER_SHARD = 300;
+// Nothing here lists spec files or shards: both follow the spec files found on every run, so
+// added, removed or growing specs need no change in this file.
+const TESTS_PER_SHARD = 200;
 
 const SUITES = [
   {
@@ -35,9 +35,6 @@ const SUITES = [
     name: 'components',
     package: '@swisspost/design-system-components',
     dir: 'packages/components',
-    // Several large specs (header, main navigation, megadropdown...) run each test once per
-    // variant and viewport, so they take much longer than their number of tests suggests.
-    shards: 3,
   },
   {
     name: 'internet-header',
@@ -123,7 +120,7 @@ function getSpecs(dir) {
       const tests = readFileSync(join(dir, path), 'utf8').match(/\bit(\.\w+)?\(/g)?.length ?? 0;
 
       // Names that do not start with a letter are sorted first and belong to the "a" range.
-      const letter = entry.name.toLowerCase().match(/^[a-z]/)?.[0] ?? 'a';
+      const letter = /^[a-z]/.exec(entry.name.toLowerCase())?.[0] ?? 'a';
 
       return { path, name: entry.name, letter, tests };
     })
@@ -181,7 +178,7 @@ function split(specs, count) {
   shards.forEach((shard, index) => {
     const next = shards[index + 1];
     const from = index === 0 ? 'a' : shard.first;
-    const to = next ? String.fromCharCode(next.first.charCodeAt(0) - 1) : 'z';
+    const to = next ? String.fromCodePoint(next.first.codePointAt(0) - 1) : 'z';
     shard.range = from === to ? from : `${from}-${to}`;
   });
 
@@ -208,8 +205,7 @@ for (const suite of SUITES) {
 
   const specs = getSpecs(suite.dir);
   const totalTests = specs.reduce((total, spec) => total + spec.tests, 0);
-  const shards =
-    suite.shards ?? Math.max(1, Math.ceil(totalTests / (suite.testsPerShard ?? TESTS_PER_SHARD)));
+  const shards = Math.max(1, Math.ceil(totalTests / (suite.testsPerShard ?? TESTS_PER_SHARD)));
 
   // Without a spec list, Cypress runs everything that matches its `specPattern`.
   if (shards <= 1) {
