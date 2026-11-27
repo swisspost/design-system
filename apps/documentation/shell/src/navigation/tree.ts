@@ -18,7 +18,7 @@ export interface NavigationNode {
 
 export type NavigationSection =
   | { type: 'home'; label: string; nodes: NavigationNode[] }
-  | { type: 'category'; key: string; label: string; nodes: NavigationNode[] }
+  | { type: 'collapsible'; key: string; label: string; nodes: NavigationNode[] }
   | { type: 'flat'; nodes: NavigationNode[] };
 
 /** Groups the listed pages into sections, in the order of the catalog. */
@@ -37,7 +37,7 @@ export function buildNavigation(catalog: Catalog, devMode: boolean): NavigationS
 
       if (layout === 'home') section = { type: 'home', label: 'Home', nodes: [] };
       else if (layout === 'flat') section = { type: 'flat', nodes: [] };
-      else section = { type: 'category', key: toKey([root]), label: root, nodes: [] };
+      else section = { type: 'collapsible', key: toKey([root]), label: root, nodes: [] };
 
       sectionsByRoot.set(root, section);
       sections.push(section);
@@ -63,7 +63,7 @@ export function getAncestorKeys(sections: NavigationSection[], pageId: string): 
     const path = findPath(section.nodes, pageId);
     if (!path) continue;
 
-    return section.type === 'category' ? [section.key, ...path] : path;
+    return section.type === 'collapsible' ? [section.key, ...path] : path;
   }
 
   return [];

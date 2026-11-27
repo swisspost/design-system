@@ -102,7 +102,7 @@ export class PostDocsNavigationTree extends LitElement {
           html`
             <button type="button" class="item heading py-8 fw-black">
               ${renderIcon('chevrondown', 'chevron')} ${renderLabel(section.label)}
-              ${renderIcon(NAVIGATION.categoryIcon)}
+              ${renderIcon(NAVIGATION.collapsibleRootIcon)}
             </button>
           `,
         )}
