@@ -16,7 +16,8 @@ tokens.$default-map: utilities.$post-spacing;
 .flex-story-container .d-flex,
 .flex-doc-container__demo .d-flex {
   > *:nth-child(odd) {
-    background-color: post.$yellow;
+    background-color: var(--post-theme-color-palettes-brand-bg);
+    color: var(--post-theme-color-palettes-brand-fg);
   }
 
   > *:nth-child(even) {

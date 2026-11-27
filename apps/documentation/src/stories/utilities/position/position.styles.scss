@@ -30,7 +30,8 @@
 
   > * {
     @include square;
-    background-color: post.$yellow;
+    background-color: var(--post-theme-color-palettes-brand-bg);
+    color: var(--post-theme-color-palettes-brand-fg);
 
     &.translate-middle {
       background-color: post.$info;
@@ -60,7 +61,8 @@
     }
 
     .my-element {
-      background: post.$yellow;
+      background-color: var(--post-theme-color-palettes-brand-bg);
+      color: var(--post-theme-color-palettes-brand-fg);
       min-width: 2rem;
       min-height: 2rem;
       border-radius: post.$border-radius;
@@ -128,7 +130,8 @@
     }
 
     &.my-element {
-      background-color: post.$yellow;
+      background-color: var(--post-theme-color-palettes-brand-bg);
+      color: var(--post-theme-color-palettes-brand-fg);
       padding: 1rem;
       display: inline-block;
     }
@@ -157,6 +160,7 @@
   @include centered-dot();
 
   > * {
-    background-color: post.$yellow;
+    background-color: var(--post-theme-color-palettes-brand-bg);
+    color: var(--post-theme-color-palettes-brand-fg);
   }
 }

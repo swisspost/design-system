@@ -1,5 +1,4 @@
 @use 'sass:map';
-@use '@swisspost/design-system-styles/core.scss' as post;
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/utilities';
 @use '@swisspost/design-system-styles/tokens/elements';
@@ -28,7 +27,6 @@ tokens.$default-map: utilities.$post-spacing;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: post.$yellow;
     border-radius: 50%;
     width: tokens.get('utility-gap-80');
     height: tokens.get('utility-gap-80');
