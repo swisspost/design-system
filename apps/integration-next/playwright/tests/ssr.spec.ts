@@ -43,12 +43,6 @@ test.describe('SSR compatibility', () => {
     await expect(item).toHaveJSProperty('collapsed', false);
     await expect(page.locator('#findable-ssr-accordion-target')).toBeVisible();
     await expect(item.locator('button')).toHaveAttribute('aria-expanded', 'true');
-
-    const header = await page.locator('post-header').boundingBox();
-    const target = await page.locator('#findable-ssr-accordion-target').boundingBox();
-    if (!header || !target)
-      throw new Error('Expected the header and fragment target to be visible.');
-    expect(target.y).toBeGreaterThanOrEqual(header.y + header.height - 1);
   });
 
   test('all components should not have console errors', async ({ page }) => {

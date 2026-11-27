@@ -5,15 +5,8 @@
 @use './mixins' as *;
 @use './placeholders' as *;
 
-/*
- * Elements targeted with hash refs (https://url.com#target) are hidden by the header without this.
- * Takes full expanded height to factor in jumps from the bottom of the page back up where the header
- * is expanded again.
-*/
-html:has(post-header) {
-  scroll-padding-top: calc(
-    1em + var(--post-local-header-expanded-height) + var(--post-global-header-expanded-height)
-  );
+body:has(post-header) {
+  scroll-padding-top: var(--post-header-height);
 }
 
 [data-post-scroll-locked] {
