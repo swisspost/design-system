@@ -200,6 +200,78 @@ describe('date-picker', { includeShadowDom: true }, () => {
     });
   });
 
+  describe('with a value', () => {
+    const TOGGLE_SELECTOR = 'button[aria-haspopup="true"]';
+
+    // Whether a focus call lands depends on timing, so check that the toggle is never focused at all
+    const expectToggleNotFocused = () => {
+      cy.get<sinon.SinonSpy>('@focus').then(focusSpy => {
+        const toggleFocusCalls = focusSpy
+          .getCalls()
+          .filter(call => (call.thisValue as HTMLElement).matches(TOGGLE_SELECTOR));
+        expect(toggleFocusCalls).to.have.length(0);
+      });
+    };
+
+    beforeEach(() => {
+      cy.visit(`/iframe.html?id=${DATEPICKER_ID}--default&args=value:2026-03-10`, {
+        onBeforeLoad(win) {
+          cy.spy(win.HTMLElement.prototype, 'focus').as('focus');
+        },
+      });
+      cy.get('post-date-picker[data-hydrated]', { timeout: 30000 }).as('date-picker');
+      cy.get('@date-picker').find('input').as('input');
+      cy.get('@date-picker').shadow().find(TOGGLE_SELECTOR).as('toggle');
+      cy.get('@date-picker')
+        .find('.air-datepicker-cell.-selected-')
+        .should('have.attr', 'data-iso-date', '2026-03-10');
+
+      // Let the picker finish reacting to its initial value
+      cy.wait(500);
+    });
+
+    it('should not move focus when the page loads with a value', () => {
+      cy.get('@date-picker')
+        .find('.air-datepicker-cell.-selected-')
+        .should('have.attr', 'aria-selected', 'true');
+
+      expectToggleNotFocused();
+    });
+
+    it('should not move focus when the value is set programmatically', () => {
+      cy.get<sinon.SinonSpy>('@focus').invoke('resetHistory');
+
+      cy.get('@date-picker').then($datePicker => {
+        const doc = $datePicker[0].ownerDocument;
+        const heading = doc.createElement('h2');
+        heading.id = 'step-heading';
+        heading.tabIndex = -1;
+        heading.textContent = 'Step 2';
+        doc.body.prepend(heading);
+        heading.focus();
+
+        $datePicker[0].querySelector('input').value = '2026-04-15';
+      });
+
+      cy.get('@date-picker')
+        .find('.air-datepicker-cell.-selected-')
+        .should('have.attr', 'data-iso-date', '2026-04-15')
+        .and('have.attr', 'aria-selected', 'true');
+
+      cy.wait(500);
+      expectToggleNotFocused();
+      cy.focused().should('have.id', 'step-heading');
+    });
+
+    it('should move focus to the calendar toggle after the user selects a date', () => {
+      cy.get('@toggle').click().wait(500);
+      cy.get('@date-picker').find('.air-datepicker-cell[data-iso-date="2026-03-20"]').click();
+
+      cy.get('@input').should('have.value', '2026-03-20');
+      cy.focused().should('match', TOGGLE_SELECTOR);
+    });
+  });
+
   describe('i18n', () => {
     const START_DAY = 1;
     const END_DAY = 10;

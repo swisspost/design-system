@@ -920,18 +920,26 @@ export class PostDatePicker {
         .map(iso => isoToDate(iso))
         .filter(d => d && isValidDate(d)) as Date[];
 
+      // This value comes from code, not from the user picking a date.
+      // `silent: true` keeps AirDatepicker from calling onSelect, which would move focus to the
+      // toggle button. Because onSelect is skipped, the cells' aria-selected is updated here.
       if (dates.length === 0) {
         this.inputMask.value = '';
-        this.dpInstance?.clear();
+        this.dpInstance?.clear({ silent: true });
+        this.updateCellsSelectedState();
         return;
       }
 
       this.inputMask.value = this.formatDatesForMask(dates);
 
-      this.dpInstance?.clear();
-      this.dpInstance?.selectDate(this.range ? dates : dates[0]);
+      this.dpInstance?.clear({ silent: true });
+      this.dpInstance?.selectDate(this.range ? dates : dates[0], { silent: true });
       this.dpInstance?.setViewDate(dates[0]);
+      this.updateCellsSelectedState();
     } finally {
+      // Remember the new value without emitting input/change events (like a native input),
+      // so the next user change is compared against it
+      this._lastInputValue = this.serializeIsoValue();
       this._isInternalUpdate = false;
     }
   }
@@ -1013,9 +1021,7 @@ export class PostDatePicker {
             return;
           }
 
-          this.getCells().forEach(c => {
-            c.setAttribute('aria-selected', c.classList.contains('-selected-') ? 'true' : 'false');
-          });
+          this.updateCellsSelectedState();
 
           // If selected date is added dynamically after user has typed it in the input
           if (this.skipOnSelectCount > 0) {
@@ -1106,9 +1112,19 @@ export class PostDatePicker {
     const dates = isoDates.map(iso => isoToDate(iso)).filter(d => d && isValidDate(d)) as Date[];
 
     if (dates.length > 0) {
-      this.dpInstance.selectDate(this.range ? dates : dates[0]);
+      // The date is already in the input (e.g. initial value), the user did not pick it.
+      // `silent: true` keeps AirDatepicker from calling onSelect, which would move focus to the
+      // toggle button. Because onSelect is skipped, the cells' aria-selected is updated here.
+      this.dpInstance.selectDate(this.range ? dates : dates[0], { silent: true });
       this.dpInstance.setViewDate(dates[0]);
+      this.updateCellsSelectedState();
     }
+  }
+
+  private updateCellsSelectedState() {
+    this.getCells().forEach(c => {
+      c.setAttribute('aria-selected', c.classList.contains('-selected-') ? 'true' : 'false');
+    });
   }
 
   private attachTitleBtnListener() {
