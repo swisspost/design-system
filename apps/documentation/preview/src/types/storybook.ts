@@ -17,6 +17,6 @@ export interface MetaComponent<T = Args> extends MetaExtended<T> {
   tags: [PackageTag, ...Tag[]];
   parameters: {
     [key: string]: unknown;
-    design: DesignParameter;
+    design?: DesignParameter;
   };
 }

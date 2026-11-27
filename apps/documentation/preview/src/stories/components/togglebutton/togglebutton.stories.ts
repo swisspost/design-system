@@ -17,9 +17,7 @@ const meta: MetaComponent<PostTogglebuttonProps> = {
   tags: ['package:components', 'status:new'],
   render: renderBadge,
   component: 'post-togglebutton',
-  parameters: {
-    design: {},
-  },
+  parameters: {},
   args: {
     contentWhenToggled: 'Toggled',
     contentWhenUntoggled: 'Untoggled',

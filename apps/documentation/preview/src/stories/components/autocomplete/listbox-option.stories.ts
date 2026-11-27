@@ -9,7 +9,6 @@ const meta: MetaComponent = {
   tags: ['package:components'],
   parameters: {
     badges: [],
-    design: {},
   },
   args: {
     value: 'Switzerland',
