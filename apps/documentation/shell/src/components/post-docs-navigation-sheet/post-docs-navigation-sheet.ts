@@ -45,20 +45,9 @@ export class PostDocsNavigationSheet extends LitElement {
   @query('post-docs-search') private search!: PostDocsSearch;
 
   private animation: Animation | null = null;
-  private readonly sidebarQuery = matchMedia('(min-width: 780px)');
 
   override createRenderRoot() {
     return this;
-  }
-
-  override connectedCallback() {
-    super.connectedCallback();
-    this.sidebarQuery.addEventListener('change', this.onBreakpointChange);
-  }
-
-  override disconnectedCallback() {
-    super.disconnectedCallback();
-    this.sidebarQuery.removeEventListener('change', this.onBreakpointChange);
   }
 
   public async open() {
@@ -220,10 +209,6 @@ export class PostDocsNavigationSheet extends LitElement {
     void this.close();
     this.bar.focus();
   }
-
-  private readonly onBreakpointChange = (event: MediaQueryListEvent) => {
-    if (event.matches) void this.close();
-  };
 }
 
 declare global {

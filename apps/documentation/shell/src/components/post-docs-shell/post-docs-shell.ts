@@ -65,6 +65,7 @@ export class PostDocsShell extends LitElement {
     this.previewConnection.removeEventListener('navigate', this.onNavigate);
     this.previewConnection.removeEventListener('shortcut', this.onPreviewShortcut);
     document.removeEventListener('keydown', this.onKeydown);
+    this.sidebarQuery.removeEventListener('change', this.onBreakpointChange);
     this.globalsStore.removeEventListener('globals-change', this.onGlobalsChange);
   }
 
@@ -75,6 +76,7 @@ export class PostDocsShell extends LitElement {
     this.previewConnection.addEventListener('navigate', this.onNavigate);
     this.previewConnection.addEventListener('shortcut', this.onPreviewShortcut);
     document.addEventListener('keydown', this.onKeydown);
+    this.sidebarQuery.addEventListener('change', this.onBreakpointChange);
     this.globalsStore.addEventListener('globals-change', this.onGlobalsChange);
     this.globals = this.globalsStore.current;
 
@@ -178,6 +180,11 @@ export class PostDocsShell extends LitElement {
       this.querySelector('post-docs-navigation-sidebar')?.focusSearch();
     else void this.querySelector('post-docs-navigation-sheet')?.openSearch();
   }
+
+  // The sidebar takes over from the sheet, which would otherwise stay open and keep the page inert.
+  private readonly onBreakpointChange = (event: MediaQueryListEvent) => {
+    if (event.matches) void this.querySelector('post-docs-navigation-sheet')?.close();
+  };
 
   private readonly onGlobalsSelect = (event: CustomEvent<Partial<Globals>>) => {
     this.globalsStore.set(event.detail);

@@ -35,7 +35,6 @@ export class Catalog {
 
   private readonly pagesById = new Map<string, Page>();
   private readonly pagesByPath = new Map<string, Page>();
-  private readonly pagesByTitle = new Map<string, Page>();
 
   private readonly storyTitles = new Map<string, string>();
 
@@ -62,7 +61,6 @@ export class Catalog {
       const owner = this.pagesByPath.get(page.path);
 
       this.pagesById.set(page.id, page);
-      this.pagesByTitle.set(page.title, page);
 
       if (owner || page.path === BOOKMARK_PATH) {
         if (import.meta.env.DEV) {
@@ -87,13 +85,6 @@ export class Catalog {
 
   public byId(id: string): Page | null {
     return this.pagesById.get(toDocsId(id)) ?? null;
-  }
-
-  public byStoryId(storyId: string): Page | null {
-    const title = this.storyTitles.get(storyId);
-    if (!title) return null;
-
-    return this.pagesByTitle.get(title) ?? null;
   }
 
   public byPath(path: string): Page | null {
