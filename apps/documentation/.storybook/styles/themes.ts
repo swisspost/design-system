@@ -14,7 +14,7 @@ export const light = create({
 
   // Typography
   fontBase: '"Reddit Mono", monospace',
-  fontCode: 'monospace',
+  fontCode: '"Reddit Mono", monospace',
 
   // Text colors
   textColor: '#000',
@@ -51,8 +51,8 @@ export const dark = create({
   appBorderRadius: 3,
 
   // Typography
-  fontBase: '""Reddit Mono", monospace',
-  fontCode: 'monospace',
+  fontBase: '"Reddit Mono", monospace',
+  fontCode: '"Reddit Mono", monospace',
 
   // Text colors
   textColor: '#fff',
