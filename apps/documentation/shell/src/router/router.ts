@@ -30,6 +30,7 @@ interface RouterEventMap {
 
 export class Router extends TypedEventTarget<RouterEventMap> {
   private route: Route | null = null;
+  private listeners: AbortController | null = null;
 
   constructor(private readonly catalog: Catalog) {
     super();
@@ -40,15 +41,18 @@ export class Router extends TypedEventTarget<RouterEventMap> {
   }
 
   public start() {
-    window.addEventListener('popstate', this.onPopState);
-    document.addEventListener('click', this.onClick);
+    this.listeners = new AbortController();
+    const signal = this.listeners.signal;
+
+    window.addEventListener('popstate', this.onPopState, { signal });
+    document.addEventListener('click', this.onClick, { signal });
 
     this.go(new URL(location.href), { replace: true });
   }
 
   public stop() {
-    window.removeEventListener('popstate', this.onPopState);
-    document.removeEventListener('click', this.onClick);
+    this.listeners?.abort();
+    this.listeners = null;
   }
 
   public navigate(href: string | URL, options: NavigationOptions = {}) {

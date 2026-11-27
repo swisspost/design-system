@@ -31,6 +31,7 @@ export class PreviewConnection extends TypedEventTarget<PreviewConnectionEventMa
   private previewGlobals: Globals | null = null;
   private previewFrame: HTMLIFrameElement | null = null;
   private previewReady = false;
+  private listeners: AbortController | null = null;
 
   private requestedPage: PreviewPage | null = null;
   private requestedGlobals: Globals | null = null;
@@ -45,14 +46,16 @@ export class PreviewConnection extends TypedEventTarget<PreviewConnectionEventMa
 
     this.disconnect();
     this.previewFrame = frame;
-    frame.addEventListener('load', this.onLoad);
-    window.addEventListener('message', this.onMessage);
+    this.listeners = new AbortController();
+    const signal = this.listeners.signal;
+
+    frame.addEventListener('load', this.onLoad, { signal });
+    window.addEventListener('message', this.onMessage, { signal });
   }
 
   public disconnect() {
-    window.removeEventListener('message', this.onMessage);
-
-    this.previewFrame?.removeEventListener('load', this.onLoad);
+    this.listeners?.abort();
+    this.listeners = null;
     this.previewFrame = null;
     this.previewReady = false;
   }

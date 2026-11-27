@@ -45,6 +45,7 @@ export class PostDocsShell extends LitElement {
   private navigation: NavigationSection[] = [];
   private searchIndex: SearchIndex | null = null;
   private readonly sidebarQuery = matchMedia('(min-width: 780px)');
+  private listeners: AbortController | null = null;
 
   private pageId: string | null = null;
 
@@ -60,24 +61,22 @@ export class PostDocsShell extends LitElement {
   override disconnectedCallback() {
     super.disconnectedCallback();
     this.router?.stop();
-    this.previewConnection.removeEventListener('rendered', this.onRendered);
-    this.previewConnection.removeEventListener('error', this.onPreviewError);
-    this.previewConnection.removeEventListener('navigate', this.onNavigate);
-    this.previewConnection.removeEventListener('shortcut', this.onPreviewShortcut);
-    document.removeEventListener('keydown', this.onKeydown);
-    this.sidebarQuery.removeEventListener('change', this.onBreakpointChange);
-    this.globalsStore.removeEventListener('globals-change', this.onGlobalsChange);
+    this.listeners?.abort();
+    this.listeners = null;
   }
 
   private async start() {
+    this.listeners = new AbortController();
+    const signal = this.listeners.signal;
+
     this.analytics.start();
-    this.previewConnection.addEventListener('rendered', this.onRendered);
-    this.previewConnection.addEventListener('error', this.onPreviewError);
-    this.previewConnection.addEventListener('navigate', this.onNavigate);
-    this.previewConnection.addEventListener('shortcut', this.onPreviewShortcut);
-    document.addEventListener('keydown', this.onKeydown);
-    this.sidebarQuery.addEventListener('change', this.onBreakpointChange);
-    this.globalsStore.addEventListener('globals-change', this.onGlobalsChange);
+    this.previewConnection.addEventListener('rendered', this.onRendered, { signal });
+    this.previewConnection.addEventListener('error', this.onPreviewError, { signal });
+    this.previewConnection.addEventListener('navigate', this.onNavigate, { signal });
+    this.previewConnection.addEventListener('shortcut', this.onPreviewShortcut, { signal });
+    document.addEventListener('keydown', this.onKeydown, { signal });
+    this.sidebarQuery.addEventListener('change', this.onBreakpointChange, { signal });
+    this.globalsStore.addEventListener('globals-change', this.onGlobalsChange, { signal });
     this.globals = this.globalsStore.current;
 
     try {
@@ -85,7 +84,7 @@ export class PostDocsShell extends LitElement {
 
       this.catalog = catalog;
       this.router = new Router(catalog);
-      this.router.addEventListener('route-change', this.onRouteChange);
+      this.router.addEventListener('route-change', this.onRouteChange, { signal });
       this.router.start();
     } catch (error) {
       console.error(error);

@@ -25,6 +25,7 @@ type ShellConnectionEventMap = { [T in ShellMessageType]: ShellMessageEvent<T> }
  */
 export class ShellConnection extends TypedEventTarget<ShellConnectionEventMap> {
   private shellOrigin: string | null = null;
+  private listeners: AbortController | null = null;
 
   // the page the preview shows, once it is ready
   private pageId: string | null = null;
@@ -35,11 +36,13 @@ export class ShellConnection extends TypedEventTarget<ShellConnectionEventMap> {
   }
 
   public start() {
-    window.addEventListener('message', this.onMessage);
+    this.listeners = new AbortController();
+    window.addEventListener('message', this.onMessage, { signal: this.listeners.signal });
   }
 
   public stop() {
-    window.removeEventListener('message', this.onMessage);
+    this.listeners?.abort();
+    this.listeners = null;
     this.shellOrigin = null;
   }
 
