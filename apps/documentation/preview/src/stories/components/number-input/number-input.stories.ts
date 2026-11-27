@@ -245,7 +245,7 @@ function render(args: Args, context: StoryContext) {
     : nothing;
 
   // repeat forces rerender and updates the story on args change
-  return repeat(
+  return html`${repeat(
     [key],
     k => k,
     () => html`
@@ -255,7 +255,7 @@ function render(args: Args, context: StoryContext) {
       </post-number-input>
       ${contextual}
     `,
-  );
+  )}`;
 }
 
 export const Default: Story = {};
