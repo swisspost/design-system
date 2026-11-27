@@ -32,6 +32,11 @@ export namespace Components {
          */
         "expandAll": () => Promise<void>;
         /**
+          * If `true`, browser search and links to content can expand accordion panels. Browser search requires support for `hidden="until-found"`.
+          * @default false
+         */
+        "findable": boolean;
+        /**
           * Defines the hierarchical level of the `post-accordion-item` headers within the headings structure.
          */
         "headingLevel": HeadingLevel;
@@ -51,6 +56,11 @@ export namespace Components {
           * @default false
          */
         "collapsed"?: boolean;
+        /**
+          * If `true`, browser search and links to content can expand the panel. Managed by the parent `post-accordion` when present.
+          * @default false
+         */
+        "findable": boolean;
         /**
           * Triggers the collapse programmatically.
          */
@@ -187,7 +197,12 @@ export namespace Components {
          */
         "collapsed"?: boolean;
         /**
-          * Triggers the collapse programmatically. If there is a collapsing transition running already, it will be reversed. If no parameter is provided, the current state (this.isExpanded) will be toggled.
+          * If `true`, browser search and links to content can expand the collapsible. Browser search requires support for `hidden="until-found"`.
+          * @default false
+         */
+        "findable": boolean;
+        /**
+          * Triggers the collapse programmatically. If there is a collapsing transition running already, it will be reversed. If no parameter is provided, the current state (this.isExpanded) will be toggled. Animates and emits postToggle only when connected in a browser. Setting collapsed directly changes visibility without animation or postToggle.
          */
         "toggle": (shouldExpand?: boolean) => Promise<boolean>;
     }
@@ -1351,6 +1366,11 @@ declare namespace LocalJSX {
 
     interface PostAccordion {
         /**
+          * If `true`, browser search and links to content can expand accordion panels. Browser search requires support for `hidden="until-found"`.
+          * @default false
+         */
+        "findable"?: boolean;
+        /**
           * Defines the hierarchical level of the `post-accordion-item` headers within the headings structure.
          */
         "headingLevel": HeadingLevel;
@@ -1366,6 +1386,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "collapsed"?: boolean;
+        /**
+          * If `true`, browser search and links to content can expand the panel. Managed by the parent `post-accordion` when present.
+          * @default false
+         */
+        "findable"?: boolean;
     }
     interface PostAutocomplete {
         /**
@@ -1513,6 +1538,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "collapsed"?: boolean;
+        /**
+          * If `true`, browser search and links to content can expand the collapsible. Browser search requires support for `hidden="until-found"`.
+          * @default false
+         */
+        "findable"?: boolean;
         /**
           * An event emitted when the collapse element is shown or hidden, before the transition.  The event payload is a boolean: `true` if the collapsible is expanded, `false` if it is collapsed.
          */
@@ -2081,9 +2111,11 @@ declare namespace LocalJSX {
     interface PostAccordionAttributes {
         "headingLevel": HeadingLevel;
         "multiple": boolean;
+        "findable": boolean;
     }
     interface PostAccordionItemAttributes {
         "collapsed": boolean;
+        "findable": boolean;
     }
     interface PostAutocompleteAttributes {
         "filterThreshold": number;
@@ -2125,6 +2157,7 @@ declare namespace LocalJSX {
     }
     interface PostCollapsibleAttributes {
         "collapsed": boolean;
+        "findable": boolean;
     }
     interface PostCollapsibleTriggerAttributes {
         "for": string;

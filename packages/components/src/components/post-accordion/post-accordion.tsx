@@ -1,7 +1,7 @@
 import { HEADING_LEVELS, HeadingLevel } from '@/types';
-import { EventFrom, OneOf, Required } from '@/utils';
+import { EventFrom, getFragmentTarget, OneOf, Required, Type } from '@/utils';
 import { version } from '@root/package.json';
-import { Component, Element, h, Host, Listen, Method, Prop, Watch } from '@stencil/core';
+import { Build, Component, Element, h, Host, Listen, Method, Prop, Watch } from '@stencil/core';
 
 /**
  * @slot default - Slot for placing post-accordion-item components.
@@ -13,10 +13,16 @@ import { Component, Element, h, Host, Listen, Method, Prop, Watch } from '@stenc
   shadow: true,
 })
 export class PostAccordion {
-  private accordionItems: HTMLPostAccordionItemElement[];
   private expandedItems = new Set<HTMLPostAccordionItemElement>();
 
   @Element() host: HTMLPostAccordionElement;
+
+  /** Get accordion items belonging to this accordion only, ignoring nested accordions */
+  private get accordionItems(): HTMLPostAccordionItemElement[] {
+    return Array.from(this.host.querySelectorAll('post-accordion-item')).filter(
+      item => item.closest('post-accordion') === this.host,
+    );
+  }
 
   /**
    * Defines the hierarchical level of the `post-accordion-item` headers within the headings structure.
@@ -37,6 +43,21 @@ export class PostAccordion {
    * If `true`, multiple `post-accordion-item` can be open at the same time.
    */
   @Prop({ reflect: true }) readonly multiple: boolean = false;
+
+  /**
+   * If `true`, browser search and links to content can expand accordion panels.
+   * Browser search requires support for `hidden="until-found"`.
+   */
+  @Prop()
+  @Type('boolean')
+  findable: boolean = false;
+
+  @Watch('findable')
+  syncFindable() {
+    this.accordionItems.forEach(item => {
+      item.findable = this.findable;
+    });
+  }
 
   componentWillLoad() {
     this.registerAccordionItems();
@@ -104,20 +125,26 @@ export class PostAccordion {
   }
 
   private registerAccordionItems() {
-    this.accordionItems = Array.from(this.host.querySelectorAll('post-accordion-item'));
+    this.syncFindable();
 
-    this.accordionItems
-      .filter(item => {
-        return !item.collapsed || this.expandedItems.has(item);
-      })
-      .forEach((item, index) => {
-        if (!this.multiple && index !== 0) {
-          item.setAttribute('collapsed', '');
-          return;
-        }
+    const openItems = this.accordionItems.filter(item => {
+      return !item.collapsed || this.expandedItems.has(item);
+    });
 
-        this.expandedItems.add(item);
-      });
+    // In single mode, keep the findable item containing the URL fragment target open (e.g. a deep link)
+    const target =
+      Build.isBrowser && this.findable ? getFragmentTarget(this.host.ownerDocument) : null;
+    const keptItem = openItems.find(item => target && item.contains(target)) ?? openItems[0];
+
+    openItems.forEach(item => {
+      if (!this.multiple && item !== keptItem) {
+        item.setAttribute('collapsed', '');
+        this.expandedItems.delete(item);
+        return;
+      }
+
+      this.expandedItems.add(item);
+    });
   }
 
   render() {

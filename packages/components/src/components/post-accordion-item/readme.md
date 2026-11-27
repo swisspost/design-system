@@ -5,9 +5,10 @@
 
 ## Properties
 
-| Property    | Attribute   | Description                                                    | Type      | Default |
-| ----------- | ----------- | -------------------------------------------------------------- | --------- | ------- |
-| `collapsed` | `collapsed` | If `true`, the element is collapsed otherwise it is displayed. | `boolean` | `false` |
+| Property    | Attribute   | Description                                                                                                               | Type      | Default |
+| ----------- | ----------- | ------------------------------------------------------------------------------------------------------------------------- | --------- | ------- |
+| `collapsed` | `collapsed` | If `true`, the element is collapsed otherwise it is displayed.                                                            | `boolean` | `false` |
+| `findable`  | `findable`  | If `true`, browser search and links to content can expand the panel. Managed by the parent `post-accordion` when present. | `boolean` | `false` |
 
 
 ## Methods

@@ -19,5 +19,25 @@
       <p>Content closed by the close button.</p>
       <post-closebutton>Close</post-closebutton>
     </post-accordion-item>
+
+    <post-accordion id="findable-accordion" heading-level="2" findable>
+      <post-accordion-item id="first-findable-item" collapsed>
+        <span slot="header">First findable panel</span>
+        <p id="first-accordion-target">First findable panel content</p>
+      </post-accordion-item>
+      <post-accordion-item id="second-findable-item" collapsed>
+        <span slot="header">Second findable panel</span>
+        <p id="second-accordion-target">Second findable panel content</p>
+      </post-accordion-item>
+      <post-accordion-item collapsed>
+        <span slot="header">Nested accordion</span>
+        <post-accordion id="nested-accordion" heading-level="3">
+          <post-accordion-item id="nested-accordion-item" collapsed>
+            <span slot="header">Non-findable nested panel</span>
+            <p>Nested content</p>
+          </post-accordion-item>
+        </post-accordion>
+      </post-accordion-item>
+    </post-accordion>
   </body>
 </html>
