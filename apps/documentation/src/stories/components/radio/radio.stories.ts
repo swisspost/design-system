@@ -161,7 +161,7 @@ export function RenderGroup(args: Args, context: Partial<StoryContext>) {
     .join(' ');
 
   return html`
-    <fieldset>
+    <fieldset ?disabled="${args.disabled}">
       <legend class="${args.hiddenLegend ? 'visually-hidden' : nothing}">Legend</legend>
       ${Array.from({ length: 4 }, (_, i) => {
         return html`
@@ -186,7 +186,7 @@ export const Grouped: Story = {
   render: RenderGroup,
   parameters: {
     controls: {
-      include: ['Size', 'Hidden Legend'],
+      include: ['Size', 'Hidden Legend', 'Disabled'],
     },
   },
   args: {
@@ -205,7 +205,7 @@ export const Inline: Story = {
   render: RenderGroup,
   parameters: {
     controls: {
-      include: ['Size', 'Hidden Legend'],
+      include: ['Size', 'Hidden Legend', 'Disabled'],
     },
   },
   args: {

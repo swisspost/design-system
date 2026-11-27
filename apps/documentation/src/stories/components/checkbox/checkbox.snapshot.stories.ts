@@ -65,6 +65,7 @@ export const Checkbox: Story = {
               const combos = bombArgs({
                 inline: [false, true],
                 size: ['null', 'form-check-sm'],
+                disabled: [false, true],
               });
 
               return combos.map((combo: Args) => {

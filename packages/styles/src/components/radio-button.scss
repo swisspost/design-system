@@ -47,13 +47,11 @@ tokens.$default-map: components.$post-radio-button;
       color: tokens.get('radio-button-enabled-fg');
     }
 
-    &:not([disabled]) {
-      &:hover ~ label {
-        color: tokens.get('radio-button-hover-fg');
-      }
+    &:enabled:hover ~ label {
+      color: tokens.get('radio-button-hover-fg');
     }
 
-    &[disabled] ~ label {
+    &:disabled ~ label {
       color: tokens.get('radio-button-disabled-fg');
     }
   }
@@ -79,6 +77,10 @@ tokens.$default-map: components.$post-radio-button;
 
 fieldset:has(.form-check input[type='radio']) {
   margin-block: tokens.get('radio-button-padding-block-group');
+}
+
+fieldset[disabled]:has(.form-check input[type='radio']) > legend {
+  color: tokens.get('radio-button-disabled-fg');
 }
 
 fieldset legend {
