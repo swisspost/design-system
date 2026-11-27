@@ -539,14 +539,14 @@ export class Search extends React.Component {
       <div className="paging">
         <post-pagination
           page={this.results.paging.currentPage}
-          page-size={this.results.paging.pageSize}
-          collection-size={this.results.icons.length}
+          pageSize={this.results.paging.pageSize}
+          collectionSize={this.results.icons.length}
           label="Icon result pages"
-          text-previous="Previous page"
-          text-next="Next page"
-          text-page="Page"
-          text-first="First page"
-          text-last="Last page"
+          textPrevious="Previous page"
+          textNext="Next page"
+          textPage="Page"
+          textFirst="First page"
+          textLast="Last page"
           ref={element => {
             if (!element) return;
             element.removeEventListener('postChange', this.onPaginationChange);
