@@ -300,7 +300,7 @@ export class PostDocsShell extends LitElement {
         @postDocsSearchExit=${this.handleSearchExit}
       ></post-docs-navigation-sidebar>
       <post-docs-toolbar
-        class="palette palette-brand"
+        class="palette palette-brand d-flex align-items-center gap-32 px-md-16"
         .globals=${this.globals}
         @postDocsGlobalsChange=${this.handleGlobalsSelect}
       ></post-docs-toolbar>
