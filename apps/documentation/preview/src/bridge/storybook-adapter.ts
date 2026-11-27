@@ -47,8 +47,8 @@ const SETTLED_PHASES = new Set(['completed', 'afterEach', 'finished', 'aborted',
 const ERROR_EVENTS = [STORY_MISSING, STORY_ERRORED, STORY_THREW_EXCEPTION];
 
 // the stories of a docs page start rendering shortly after the page itself
-const STORIES_START_DELAY = 50;
-const STORIES_MAX_WAIT = 1500;
+const STORIES_START_DELAY_MS = 50;
+const STORIES_MAX_WAIT_MS = 1500;
 
 const shell = new ShellConnection();
 
@@ -66,7 +66,7 @@ class StorybookAdapter {
 
   constructor(private readonly channel: Channel) {}
 
-  public start() {
+  public start(): void {
     this.reportStorybookEvents();
     this.applyShellMessages();
     shell.start();
@@ -88,20 +88,6 @@ class StorybookAdapter {
     shell.addEventListener('page', this.handlePage);
     shell.addEventListener('globals', this.handleGlobals);
     shell.addEventListener('scroll-to', this.handleScrollTo);
-  }
-
-  private select(id: string) {
-    this.pageId = id;
-    shell.ready(id);
-  }
-
-  private replaceUrl() {
-    const params = { ...this.urlPage.params, globals: stringifyGlobals(globalsHost.current) };
-    const url = previewUrl(this.urlPage.id, 'docs', params);
-
-    if (url !== location.pathname + location.search) {
-      history.replaceState(history.state, '', url + location.hash);
-    }
   }
 
   private readonly handleStoryError = () => {
@@ -136,6 +122,20 @@ class StorybookAdapter {
     if (target) target.scrollIntoView();
     else window.scrollTo(0, 0);
   };
+
+  private select(id: string) {
+    this.pageId = id;
+    shell.ready(id);
+  }
+
+  private replaceUrl() {
+    const params = { ...this.urlPage.params, globals: stringifyGlobals(globalsHost.current) };
+    const url = previewUrl(this.urlPage.id, 'docs', params);
+
+    if (url !== location.pathname + location.search) {
+      history.replaceState(history.state, '', url + location.hash);
+    }
+  }
 }
 
 /** Calls `onRendered` once a docs page and the stories on it are rendered. */
@@ -148,7 +148,7 @@ class PageRenderWatcher {
     private readonly onRendered: (pageId: string) => void,
   ) {}
 
-  public start() {
+  public start(): void {
     this.channel.on(CURRENT_STORY_WAS_SET, this.handleStoryChange);
     this.channel.on(DOCS_RENDERED, this.handleDocsRendered);
     this.channel.on(STORY_RENDER_PHASE_CHANGED, this.handleRenderPhaseChange);
@@ -166,8 +166,8 @@ class PageRenderWatcher {
     page.timers.push(
       window.setTimeout(() => {
         if (this.renderingStories.size === 0) this.finish(page);
-      }, STORIES_START_DELAY),
-      window.setTimeout(() => this.finish(page), STORIES_MAX_WAIT),
+      }, STORIES_START_DELAY_MS),
+      window.setTimeout(() => this.finish(page), STORIES_MAX_WAIT_MS),
     );
 
     this.renderingPage = page;

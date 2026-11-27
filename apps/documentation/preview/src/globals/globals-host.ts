@@ -42,11 +42,11 @@ class GlobalsHost extends TypedEventTarget<GlobalsEventMap> {
     }
   }
 
-  get current(): Globals {
+  public get current(): Globals {
     return this.globals;
   }
 
-  public set(globals: Globals) {
+  public set(globals: Globals): void {
     if (compareGlobals(globals, this.globals)) return;
 
     this.globals = globals;

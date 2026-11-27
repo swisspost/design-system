@@ -1,4 +1,4 @@
-import { LitElement, html, nothing } from 'lit';
+import { LitElement, html, nothing, type TemplateResult } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { DEFAULT_GLOBALS, type Globals } from '@shared/globals';
 import type { Page } from '../../catalog/catalog';
@@ -46,18 +46,36 @@ export class PostDocsNavigationSheet extends LitElement {
 
   private animation: Animation | null = null;
 
-  override createRenderRoot() {
+  protected override createRenderRoot() {
     return this;
   }
 
-  public async open() {
+  public async open(): Promise<void> {
     await this.expand();
   }
 
   /** Opens the panel with the focus in the search field, e.g. for the search shortcut. */
-  public async openSearch() {
+  public async openSearch(): Promise<void> {
     await this.expand();
     this.search.focus();
+  }
+
+  /** Closes the panel, e.g. after a navigation. The focus inside the panel goes back to the bar. */
+  public async close(): Promise<void> {
+    if (!this.isExpanded || this.isClosing) return;
+
+    this.isClosing = true;
+    this.emitToggle(false);
+
+    const isFinished = await this.fade('out');
+    if (!isFinished || !this.isClosing) return;
+
+    // read now, the focus may have moved into the panel while it faded out
+    const hadFocus = this.panel.contains(document.activeElement);
+    this.isClosing = false;
+    this.isExpanded = false;
+    this.search.clear();
+    if (hadFocus) this.bar.focus();
   }
 
   private async expand() {
@@ -75,25 +93,66 @@ export class PostDocsNavigationSheet extends LitElement {
     void this.fade('in');
   }
 
-  /** Closes the panel, e.g. after a navigation. The focus inside the panel goes back to the bar. */
-  public async close() {
-    if (!this.isExpanded || this.isClosing) return;
-
-    this.isClosing = true;
-    this.emitToggle(false);
-
-    const isFinished = await this.fade('out');
-    if (!isFinished || !this.isClosing) return;
-
-    // read now, the focus may have moved into the panel while it faded out
-    const hadFocus = this.panel.contains(document.activeElement);
-    this.isClosing = false;
-    this.isExpanded = false;
-    this.search.clear();
-    if (hadFocus) this.bar.focus();
+  private emitToggle(isOpen: boolean) {
+    this.dispatchEvent(
+      new CustomEvent<boolean>('postDocsToggle', { detail: isOpen, bubbles: true }),
+    );
   }
 
-  override render() {
+  /** Resolves `true` when the animation ran to its end, `false` when another one replaced it. */
+  private async fade(direction: 'in' | 'out'): Promise<boolean> {
+    this.animation?.cancel();
+
+    const keyframes = [{ opacity: 0 }, { opacity: 1 }];
+    if (direction === 'out') keyframes.reverse();
+    this.animation = this.panel.animate(keyframes, FADE);
+
+    try {
+      await this.animation.finished;
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  private toggle() {
+    if (this.isExpanded && !this.isClosing) void this.close();
+    else void this.open();
+  }
+
+  private handleKeydown(event: KeyboardEvent) {
+    if (event.key !== 'Escape' || !this.isExpanded || this.isClosing) return;
+
+    event.preventDefault();
+    void this.close();
+    this.bar.focus();
+  }
+
+  private async handleSearchToggle(event: CustomEvent<boolean>) {
+    this.isSearching = event.detail;
+    if (this.isSearching) return;
+
+    await this.updateComplete;
+    void this.tree.revealActivePage();
+  }
+
+  private renderLocation(): string | TemplateResult {
+    if (!this.activePage) return 'Navigation';
+
+    const segments = this.activePage.segments;
+    const root = segments[0];
+    const name = segments[segments.length - 1];
+
+    const layout = getRootDefinition(root).layout;
+
+    let location = `${root}/${name}`;
+    if (layout === 'home') location = `Home/${name}`;
+    else if (layout === 'flat') location = name;
+
+    return html`<span class="visually-hidden">Navigation, current page: </span>${location}`;
+  }
+
+  protected override render(): TemplateResult {
     const isOpen = this.isExpanded && !this.isClosing;
 
     return html`
@@ -149,65 +208,6 @@ export class PostDocsNavigationSheet extends LitElement {
             `}
       </div>
     `;
-  }
-
-  private renderLocation(): unknown {
-    if (!this.activePage) return 'Navigation';
-
-    const segments = this.activePage.segments;
-    const root = segments[0];
-    const name = segments[segments.length - 1];
-
-    const layout = getRootDefinition(root).layout;
-
-    let location = `${root}/${name}`;
-    if (layout === 'home') location = `Home/${name}`;
-    else if (layout === 'flat') location = name;
-
-    return html`<span class="visually-hidden">Navigation, current page: </span>${location}`;
-  }
-
-  private async handleSearchToggle(event: CustomEvent<boolean>) {
-    this.isSearching = event.detail;
-    if (this.isSearching) return;
-
-    await this.updateComplete;
-    void this.tree.revealActivePage();
-  }
-
-  private toggle() {
-    if (this.isExpanded && !this.isClosing) void this.close();
-    else void this.open();
-  }
-
-  /** Resolves `true` when the animation ran to its end, `false` when another one replaced it. */
-  private async fade(direction: 'in' | 'out'): Promise<boolean> {
-    this.animation?.cancel();
-
-    const keyframes = [{ opacity: 0 }, { opacity: 1 }];
-    if (direction === 'out') keyframes.reverse();
-    this.animation = this.panel.animate(keyframes, FADE);
-
-    try {
-      await this.animation.finished;
-      return true;
-    } catch {
-      return false;
-    }
-  }
-
-  private emitToggle(isOpen: boolean) {
-    this.dispatchEvent(
-      new CustomEvent<boolean>('postDocsToggle', { detail: isOpen, bubbles: true }),
-    );
-  }
-
-  private handleKeydown(event: KeyboardEvent) {
-    if (event.key !== 'Escape' || !this.isExpanded || this.isClosing) return;
-
-    event.preventDefault();
-    void this.close();
-    this.bar.focus();
   }
 }
 

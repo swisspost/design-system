@@ -14,11 +14,11 @@ const STORAGE_KEY = 'post-docs:globals';
 export class GlobalsStore extends TypedEventTarget<GlobalsEventMap> {
   private globals: Globals = readStoredGlobals();
 
-  get current(): Globals {
+  public get current(): Globals {
     return this.globals;
   }
 
-  public set(globals: Partial<Globals>) {
+  public set(globals: Partial<Globals>): void {
     const next = normalizeGlobals(globals, this.globals);
     if (compareGlobals(next, this.globals)) return;
 

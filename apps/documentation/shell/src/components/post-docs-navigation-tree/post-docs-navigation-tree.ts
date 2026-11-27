@@ -1,4 +1,4 @@
-import { LitElement, html, nothing } from 'lit';
+import { LitElement, html, nothing, type TemplateResult } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { STATUS_TAG_PREFIX, type StatusTag } from '@shared/tags';
 import type { Page } from '../../catalog/catalog';
@@ -24,7 +24,7 @@ export class PostDocsNavigationTree extends LitElement {
   // read once per collapsible, `post-collapsible` owns its state after the first render
   private readonly initiallyExpanded = new Map<string, boolean>();
 
-  override createRenderRoot() {
+  protected override createRenderRoot() {
     return this;
   }
 
@@ -45,7 +45,7 @@ export class PostDocsNavigationTree extends LitElement {
    * Expands the folders leading to the active page and scrolls it into view.
    * A hidden tree is skipped, `post-collapsible` cannot animate it: its owner calls this again once it is shown.
    */
-  public async revealActivePage() {
+  public async revealActivePage(): Promise<void> {
     if (!this.activePage || this.getClientRects().length === 0) return;
 
     // the collapsibles render in the next frame, collapsed ones only take their height then
@@ -73,15 +73,11 @@ export class PostDocsNavigationTree extends LitElement {
     this.querySelector('[aria-current="page"]')?.scrollIntoView({ block: 'nearest' });
   }
 
-  override render() {
-    return html`
-      <ul class="list-unstyled">
-        ${this.sections.map(section => this.renderSection(section))}
-      </ul>
-    `;
+  private collapsibleId(key: string): string {
+    return `${this.idPrefix}-${key}`;
   }
 
-  private renderSection(section: NavigationSection): unknown {
+  private renderSection(section: NavigationSection): TemplateResult | TemplateResult[] {
     if (section.type === 'flat') return section.nodes.map(node => this.renderNode(node, 0));
 
     const nodes = section.nodes.map(node => this.renderNode(node, node.depth));
@@ -115,7 +111,7 @@ export class PostDocsNavigationTree extends LitElement {
     `;
   }
 
-  private renderNode(node: NavigationNode, depth: number): unknown {
+  private renderNode(node: NavigationNode, depth: number): TemplateResult {
     const isActive = node.page !== null && node.page.id === this.activePage?.id;
     const definition = getRootDefinition(node.root);
     const weight = definition.weight === 'regular' ? 'fw-normal' : 'fw-bold';
@@ -182,7 +178,7 @@ export class PostDocsNavigationTree extends LitElement {
     `;
   }
 
-  private renderPageLabel(node: NavigationNode): unknown {
+  private renderPageLabel(node: NavigationNode): TemplateResult {
     const isNew = node.page?.tags.includes(NEW_TAG) ?? false;
 
     return html`
@@ -191,13 +187,13 @@ export class PostDocsNavigationTree extends LitElement {
     `;
   }
 
-  private renderTrigger(key: string, button: unknown): unknown {
+  private renderTrigger(key: string, button: TemplateResult): TemplateResult {
     return html`
       <post-collapsible-trigger for=${this.collapsibleId(key)}>${button}</post-collapsible-trigger>
     `;
   }
 
-  private renderCollapsible(key: string, content: unknown): unknown {
+  private renderCollapsible(key: string, content: TemplateResult[]): TemplateResult {
     if (!this.initiallyExpanded.has(key)) this.initiallyExpanded.set(key, false);
 
     return html`
@@ -212,12 +208,16 @@ export class PostDocsNavigationTree extends LitElement {
     `;
   }
 
-  private collapsibleId(key: string): string {
-    return `${this.idPrefix}-${key}`;
+  protected override render(): TemplateResult {
+    return html`
+      <ul class="list-unstyled">
+        ${this.sections.map(section => this.renderSection(section))}
+      </ul>
+    `;
   }
 }
 
-function renderIcon(name: string, className: string | null = null): unknown {
+function renderIcon(name: string, className: string | null = null): TemplateResult {
   return html`
     <post-icon
       class="flex-shrink-0 w-16 h-16 ${className ?? ''}"
@@ -227,7 +227,7 @@ function renderIcon(name: string, className: string | null = null): unknown {
   `;
 }
 
-function renderLabel(label: string): unknown {
+function renderLabel(label: string): TemplateResult {
   return html`<span class="flex-fill min-w-0 text-truncate">${label}</span>`;
 }
 

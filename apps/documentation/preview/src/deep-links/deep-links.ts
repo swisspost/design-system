@@ -14,7 +14,7 @@ const STORY_BLOCK_SELECTOR = `[data-story-block][id^="${STORY_ANCHOR_PREFIX}"]`;
  * once its docs page has rendered. The args are updated like the controls do, so the controls show them
  * and stories rendered in their own iframe receive them too.
  */
-export function startApplyingDeepLinks() {
+export function startApplyingDeepLinks(): void {
   addons.ready().then(channel => {
     channel.on(DOCS_RENDERED, () => applyDeepLink(channel));
   });

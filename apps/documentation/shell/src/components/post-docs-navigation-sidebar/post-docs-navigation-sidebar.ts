@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit';
+import { LitElement, html, type TemplateResult } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import type { Page } from '../../catalog/catalog';
 import type { NavigationSection } from '../../navigation/tree';
@@ -21,15 +21,24 @@ export class PostDocsNavigationSidebar extends LitElement {
   @query('post-docs-search') private search!: PostDocsSearch;
   @query('post-docs-navigation-tree') private tree!: PostDocsNavigationTree;
 
-  override createRenderRoot() {
+  protected override createRenderRoot() {
     return this;
   }
 
-  public focusSearch() {
+  public focusSearch(): void {
     this.search.focus();
   }
 
-  override render() {
+  // a hidden tree cannot reveal the active page, a page opened from the results is revealed once the tree is back
+  private async handleSearchToggle(event: CustomEvent<boolean>) {
+    this.isSearching = event.detail;
+    if (this.isSearching) return;
+
+    await this.updateComplete;
+    void this.tree.revealActivePage();
+  }
+
+  protected override render(): TemplateResult {
     return html`
       <div class="palette palette-brand d-flex flex-shrink-0">
         <post-logo class="h-40" url="/">Swiss Post Design System, go to the homepage</post-logo>
@@ -51,15 +60,6 @@ export class PostDocsNavigationSidebar extends LitElement {
         ></post-docs-navigation-tree>
       </nav>
     `;
-  }
-
-  // a hidden tree cannot reveal the active page, a page opened from the results is revealed once the tree is back
-  private async handleSearchToggle(event: CustomEvent<boolean>) {
-    this.isSearching = event.detail;
-    if (this.isSearching) return;
-
-    await this.updateComplete;
-    void this.tree.revealActivePage();
   }
 }
 

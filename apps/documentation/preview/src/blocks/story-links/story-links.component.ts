@@ -1,4 +1,4 @@
-import { LitElement, nothing } from 'lit';
+import { LitElement, nothing, type TemplateResult } from 'lit';
 import { html } from 'lit/static-html.js';
 import { customElement, property, state } from 'lit/decorators.js';
 import { Task } from '@lit/task';
@@ -32,7 +32,7 @@ interface IndexEntry {
 const INDEX_PATH = '/index.json';
 const SNAPSHOTS_TITLE = 'Snapshots';
 
-let indexEntries: Promise<IndexEntry[]> | undefined;
+let indexEntries: Promise<IndexEntry[]> | null = null;
 
 function getIndexEntries(): Promise<IndexEntry[]> {
   indexEntries ??= fetch(INDEX_PATH)
@@ -42,7 +42,7 @@ function getIndexEntries(): Promise<IndexEntry[]> {
     })
     .then((index: { entries: Record<string, IndexEntry> }) => Object.values(index.entries))
     .catch((error: unknown) => {
-      indexEntries = undefined;
+      indexEntries = null;
       throw error;
     });
   return indexEntries;
@@ -86,12 +86,24 @@ export class StoryLinksComponent extends LitElement {
     args: () => [this.devMode, this.meta?.id, this.meta?.title] as const,
   });
 
-  connectedCallback() {
+  private get meta(): StoriesMeta | null {
+    const of: StoriesModule = typeof this.of === 'string' ? JSON.parse(this.of) : this.of;
+    return of?.default ?? null;
+  }
+
+  protected override createRenderRoot() {
+    /**
+     * Render template without shadow DOM.
+     */
+    return this;
+  }
+
+  public override connectedCallback() {
     super.connectedCallback();
     globalsHost.addEventListener('globals-change', this.handleGlobalsChange);
   }
 
-  disconnectedCallback() {
+  public override disconnectedCallback() {
     super.disconnectedCallback();
     globalsHost.removeEventListener('globals-change', this.handleGlobalsChange);
   }
@@ -100,47 +112,10 @@ export class StoryLinksComponent extends LitElement {
     this.devMode = event.globals.mode === 'dev';
   };
 
-  createRenderRoot() {
-    /**
-     * Render template without shadow DOM.
-     */
-    return this;
-  }
-
-  private get meta(): StoriesMeta | undefined {
-    const of: StoriesModule = typeof this.of === 'string' ? JSON.parse(this.of) : this.of;
-    return of?.default;
-  }
-
-  render() {
-    const meta = this.meta;
-    const designParameter = meta?.parameters?.design;
-    const componentName = getTitleFromPath(meta?.title ?? '') ?? '';
-    const snapshots = this.snapshotsTask.value ?? [];
-
-    const figmaLink =
-      designParameter?.type === 'figma' && designParameter?.url
-        ? html`<a class="figma-link btn btn-primary" href="${designParameter.url}">
-            <img
-              src="/assets/images/technologies/logo-figma.svg"
-              alt=""
-              style="width: 0.8rem;height: 0.8rem;"
-            />
-            <span>
-              Figma Design
-              <span class="visually-hidden"> for ${componentName} component</span>
-            </span>
-          </a>`
-        : nothing;
-
-    const snapshotLinks = this.renderSnapshotLinks(snapshots, componentName);
-
-    return figmaLink === nothing && snapshotLinks === nothing
-      ? nothing
-      : html`<div class="d-flex flex-wrap gap-8">${figmaLink}${snapshotLinks}</div>`;
-  }
-
-  private renderSnapshotLinks(snapshots: readonly IndexEntry[], componentName: string) {
+  private renderSnapshotLinks(
+    snapshots: readonly IndexEntry[],
+    componentName: string,
+  ): TemplateResult | typeof nothing {
     const getHref = (snapshot: IndexEntry) => `/iframe.html?id=${snapshot.id}&viewMode=story`;
 
     if (snapshots.length === 0) return nothing;
@@ -170,5 +145,33 @@ export class StoryLinksComponent extends LitElement {
         )}
       </post-menu>
     `;
+  }
+
+  protected override render(): TemplateResult | typeof nothing {
+    const meta = this.meta;
+    const designParameter = meta?.parameters?.design;
+    const componentName = getTitleFromPath(meta?.title ?? '') ?? '';
+    const snapshots = this.snapshotsTask.value ?? [];
+
+    const figmaLink =
+      designParameter?.type === 'figma' && designParameter?.url
+        ? html`<a class="figma-link btn btn-primary" href="${designParameter.url}">
+            <img
+              src="/assets/images/technologies/logo-figma.svg"
+              alt=""
+              style="width: 0.8rem;height: 0.8rem;"
+            />
+            <span>
+              Figma Design
+              <span class="visually-hidden"> for ${componentName} component</span>
+            </span>
+          </a>`
+        : nothing;
+
+    const snapshotLinks = this.renderSnapshotLinks(snapshots, componentName);
+
+    return figmaLink === nothing && snapshotLinks === nothing
+      ? nothing
+      : html`<div class="d-flex flex-wrap gap-8">${figmaLink}${snapshotLinks}</div>`;
   }
 }

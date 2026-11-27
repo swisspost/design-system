@@ -30,15 +30,15 @@ export interface Page {
 }
 
 export class Catalog {
-  readonly home: Page | null;
-  readonly pages: Page[];
+  public readonly home: Page | null;
+  public readonly pages: Page[];
 
   private readonly pagesById = new Map<string, Page>();
   private readonly pagesByPath = new Map<string, Page>();
 
   private readonly storyTitles = new Map<string, string>();
 
-  static async load(): Promise<Catalog> {
+  public static async load(): Promise<Catalog> {
     const response = await fetch(`${PREVIEW_ORIGIN}/index.json`, { cache: 'no-cache' });
     if (!response.ok) throw new Error(`Failed to load the Storybook index (${response.status}).`);
 

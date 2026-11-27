@@ -48,7 +48,7 @@ export function getReleases(): Promise<Release[]> {
   return request;
 }
 
-export function getPackageVersion(name: string) {
+export function getPackageVersion(name: string): string | null {
   const range = docsDependencies[name];
   return range ? (coerce(range, { includePrerelease: true })?.version ?? null) : null;
 }

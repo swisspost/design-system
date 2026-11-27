@@ -25,7 +25,7 @@ class GlobalsApplier {
   private appliedGlobals: Globals | null = null;
   private pendingStylesheet: HTMLLinkElement | null = null;
 
-  public start() {
+  public start(): void {
     globalsHost.addEventListener('globals-change', this.handleGlobalsChange);
     this.apply();
 
@@ -33,7 +33,7 @@ class GlobalsApplier {
   }
 
   /** Applies the `globals` of the story shown in a story view, e.g. `globals: { appearance: 'compact' }`. */
-  public setStoryGlobals(globals: Record<string, unknown>) {
+  public setStoryGlobals(globals: Record<string, unknown>): void {
     if (isDocsView) return;
 
     this.storyGlobals = globals;

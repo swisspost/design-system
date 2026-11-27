@@ -1,4 +1,4 @@
-import { LitElement, type PropertyValues, html, nothing } from 'lit';
+import { LitElement, type PropertyValues, html, nothing, type TemplateResult } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import {
@@ -29,7 +29,7 @@ import './post-docs-shell.scss';
 @customElement('post-docs-shell')
 export class PostDocsShell extends LitElement {
   @state() private route: Route | null = null;
-  @state() private failed = false;
+  @state() private hasFailed = false;
   @state() private previewSrc: string | null = null;
   @state() private catalog: Catalog | null = null;
   @state() private globals: Globals = DEFAULT_GLOBALS;
@@ -49,20 +49,32 @@ export class PostDocsShell extends LitElement {
 
   private pageId: string | null = null;
 
-  override createRenderRoot() {
+  protected override createRenderRoot() {
     return this;
   }
 
-  override connectedCallback() {
+  public override connectedCallback() {
     super.connectedCallback();
     void this.start();
   }
 
-  override disconnectedCallback() {
+  public override disconnectedCallback() {
     super.disconnectedCallback();
     this.router?.stop();
     this.listeners?.abort();
     this.listeners = null;
+  }
+
+  protected override willUpdate(changed: PropertyValues) {
+    const previousGlobals: Globals | undefined = changed.get('globals');
+    const isModeChanged = changed.has('globals') && previousGlobals?.mode !== this.globals.mode;
+
+    if ((changed.has('catalog') || isModeChanged) && this.catalog) {
+      const devMode = this.globals.mode === 'dev';
+
+      this.navigation = buildNavigation(this.catalog, devMode);
+      this.searchIndex = new SearchIndex(this.catalog, devMode);
+    }
   }
 
   private async start() {
@@ -88,7 +100,7 @@ export class PostDocsShell extends LitElement {
       this.router.start();
     } catch (error) {
       console.error(error);
-      this.failed = true;
+      this.hasFailed = true;
     }
   }
 
@@ -179,9 +191,11 @@ export class PostDocsShell extends LitElement {
   };
 
   private openSearch() {
-    if (this.sidebarQuery.matches)
+    if (this.sidebarQuery.matches) {
       this.querySelector('post-docs-navigation-sidebar')?.focusSearch();
-    else void this.querySelector('post-docs-navigation-sheet')?.openSearch();
+    } else {
+      void this.querySelector('post-docs-navigation-sheet')?.openSearch();
+    }
   }
 
   // The sidebar takes over from the sheet, which would otherwise stay open and keep the page inert.
@@ -204,19 +218,77 @@ export class PostDocsShell extends LitElement {
     this.querySelector('post-docs-preview')?.focus();
   };
 
-  override willUpdate(changed: PropertyValues) {
-    const previousGlobals: Globals | undefined = changed.get('globals');
-    const isModeChanged = changed.has('globals') && previousGlobals?.mode !== this.globals.mode;
+  private renderContent(): TemplateResult {
+    if (this.hasFailed) return this.renderLoadError();
 
-    if ((changed.has('catalog') || isModeChanged) && this.catalog) {
-      const devMode = this.globals.mode === 'dev';
+    const notFound = this.route?.type === 'not-found' ? this.renderNotFound() : nothing;
 
-      this.navigation = buildNavigation(this.catalog, devMode);
-      this.searchIndex = new SearchIndex(this.catalog, devMode);
-    }
+    // the preview stays loaded, so that it shows the next page without a reload
+    return html`${notFound}${this.renderPreview()}`;
   }
 
-  override render(): unknown {
+  private renderLoadError(): TemplateResult {
+    return this.renderErrorPage(
+      '500',
+      'The documentation could not be loaded.',
+      'Please reload the page. If the error persists, try again later.',
+      html`
+        <button type="button" class="btn btn-primary" @click=${() => location.reload()}>
+          Reload the page
+        </button>
+      `,
+    );
+  }
+
+  private renderNotFound(): TemplateResult {
+    return this.renderErrorPage(
+      '404',
+      'This page could not be found.',
+      'The page may have been moved or renamed, or the URL is incorrect. You may find it from the homepage or with the search.',
+      html`
+        <a class="btn btn-primary" href="/">
+          <post-icon name="arrowleft" aria-hidden="true"></post-icon>
+          Go to homepage
+        </a>
+      `,
+    );
+  }
+
+  private renderPreview(): TemplateResult | typeof nothing {
+    if (!this.previewSrc) return nothing;
+
+    return html`
+      <post-docs-preview
+        src=${this.previewSrc}
+        .connection=${this.previewConnection}
+        class=${classMap({ loaded: this.route?.type === 'page' })}
+        .loading=${this.previewLoading}
+      ></post-docs-preview>
+    `;
+  }
+
+  // the error page template of the design system
+  private renderErrorPage(
+    type: string,
+    title: string,
+    text: string,
+    buttons: TemplateResult,
+  ): TemplateResult {
+    return html`
+      <div class="palette palette-alternate error error-${type} min-h-full">
+        <div class="container">
+          <div class="error-content">
+            <h1 class="error-title">Error ${type}</h1>
+            <h2 class="error-subtitle">${title}</h2>
+            <p>${text}</p>
+            <div class="error-buttons">${buttons}</div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  protected override render(): TemplateResult {
     const activePage = this.route?.type === 'page' ? this.route.page : null;
 
     return html`
@@ -242,70 +314,6 @@ export class PostDocsShell extends LitElement {
         @postDocsToggle=${this.handleSheetToggle}
       ></post-docs-navigation-sheet>
       <main class="overflow-y-auto" ?inert=${this.isSheetOpen}>${this.renderContent()}</main>
-    `;
-  }
-
-  private renderContent(): unknown {
-    if (this.failed) return this.renderLoadError();
-
-    const notFound = this.route?.type === 'not-found' ? this.renderNotFound() : nothing;
-    return html`${notFound}${this.renderPreview()}`;
-  }
-
-  private renderLoadError(): unknown {
-    return this.renderErrorPage(
-      '500',
-      'The documentation could not be loaded.',
-      'Please reload the page. If the error persists, try again later.',
-      html`
-        <button type="button" class="btn btn-primary" @click=${() => location.reload()}>
-          Reload the page
-        </button>
-      `,
-    );
-  }
-
-  private renderNotFound(): unknown {
-    return this.renderErrorPage(
-      '404',
-      'This page could not be found.',
-      'The page may have been moved or renamed, or the URL is incorrect. You may find it from the homepage or with the search.',
-      html`
-        <a class="btn btn-primary" href="/">
-          <post-icon name="arrowleft" aria-hidden="true"></post-icon>
-          Go to homepage
-        </a>
-      `,
-    );
-  }
-
-  // the preview stays loaded, so that it shows the next page without a reload
-  private renderPreview(): unknown {
-    if (!this.previewSrc) return nothing;
-
-    return html`
-      <post-docs-preview
-        src=${this.previewSrc}
-        .connection=${this.previewConnection}
-        class=${classMap({ loaded: this.route?.type === 'page' })}
-        .loading=${this.previewLoading}
-      ></post-docs-preview>
-    `;
-  }
-
-  // the error page template of the design system
-  private renderErrorPage(type: string, title: string, text: string, buttons: unknown): unknown {
-    return html`
-      <div class="palette palette-alternate error error-${type} min-h-full">
-        <div class="container">
-          <div class="error-content">
-            <h1 class="error-title">Error ${type}</h1>
-            <h2 class="error-subtitle">${title}</h2>
-            <p>${text}</p>
-            <div class="error-buttons">${buttons}</div>
-          </div>
-        </div>
-      </div>
     `;
   }
 }

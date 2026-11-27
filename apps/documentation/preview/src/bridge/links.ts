@@ -8,7 +8,7 @@ const FILE_PATTERN = /\.[a-z0-9]+$/i;
  * Hands the links of the docs page to the shell. The preview has `<base target="_parent">`,
  * so a link would otherwise load the preview URL into the shell window.
  */
-export function interceptLinks(navigate: (href: string) => void) {
+export function interceptLinks(navigate: (href: string) => void): void {
   document.addEventListener('click', (event: MouseEvent) => {
     if (event.defaultPrevented || event.button !== 0) return;
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;

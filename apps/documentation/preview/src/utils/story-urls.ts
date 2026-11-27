@@ -57,19 +57,19 @@ function stringifyArg(value: unknown): string | null {
 export function parseArgs(value: string): Record<string, ArgValue> {
   const args: Record<string, ArgValue> = {};
 
-  value.split(';').forEach(pair => {
+  for (const pair of value.split(';')) {
     const separator = pair.indexOf(':');
-    if (separator < 1) return;
+    if (separator < 1) continue;
 
     const key = pair.slice(0, separator);
     // older links encoded the values twice
     const raw = decodeUrlComponent(pair.slice(separator + 1));
-    if (!STRING_REGEX.test(key)) return;
+    if (!STRING_REGEX.test(key)) continue;
 
     if (Object.hasOwn(SPECIAL_VALUES, raw)) args[key] = SPECIAL_VALUES[raw];
     else if (NUMBER_REGEX.test(raw)) args[key] = Number(raw);
     else if (STRING_REGEX.test(raw)) args[key] = raw;
-  });
+  }
 
   return args;
 }

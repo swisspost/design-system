@@ -61,7 +61,7 @@ export const DEFAULT_GLOBALS: Globals = {
 };
 
 export class GlobalsChangeEvent extends Event {
-  constructor(readonly globals: Globals) {
+  constructor(public readonly globals: Globals) {
     super('globals-change');
   }
 }

@@ -19,7 +19,7 @@ export function migrateLegacyUrl(url: URL, catalog: Catalog): URL | RedirectRout
   const path = migrated.searchParams.get('path');
   if (path === null || !MANAGER_PATHS.has(normalizePath(migrated.pathname))) return migrated;
 
-  MANAGER_PARAMS.forEach(param => migrated.searchParams.delete(param));
+  for (const param of MANAGER_PARAMS) migrated.searchParams.delete(param);
 
   const [, viewMode, id] = /^\/(docs|story)\/([^/?#]+)/.exec(path) ?? [];
 

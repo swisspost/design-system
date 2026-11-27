@@ -11,7 +11,7 @@ import type { Shortcut } from '@shared/shortcuts';
 export class ShellMessageEvent<T extends ShellMessageType = ShellMessageType> extends Event {
   constructor(
     type: T,
-    readonly payload: MessagePayload<T>,
+    public readonly payload: MessagePayload<T>,
   ) {
     super(type);
   }
@@ -35,47 +35,39 @@ export class ShellConnection extends TypedEventTarget<ShellConnectionEventMap> {
     return this.shellOrigin;
   }
 
-  public start() {
+  public start(): void {
     this.listeners = new AbortController();
     window.addEventListener('message', this.handleMessage, { signal: this.listeners.signal });
   }
 
-  public stop() {
+  public stop(): void {
     this.listeners?.abort();
     this.listeners = null;
     this.shellOrigin = null;
   }
 
   /** The preview shows the page. The shell is told once, as soon as both are ready. */
-  public ready(pageId: string) {
+  public ready(pageId: string): void {
     const wasReady = this.pageId !== null;
 
     this.pageId = pageId;
     if (!wasReady) this.sendReady();
   }
 
-  public rendered(pageId: string) {
+  public rendered(pageId: string): void {
     this.send('rendered', { pageId });
   }
 
-  public error(pageId: string) {
+  public error(pageId: string): void {
     this.send('error', { pageId });
   }
 
-  public navigate(href: string) {
+  public navigate(href: string): void {
     this.send('navigate', { href });
   }
 
-  public shortcut(name: Shortcut) {
+  public shortcut(name: Shortcut): void {
     this.send('shortcut', { name });
-  }
-
-  private sendReady() {
-    if (this.pageId !== null) this.send('ready', { pageId: this.pageId });
-  }
-
-  private send<T extends PreviewMessageType>(type: T, payload: MessagePayload<T>) {
-    if (this.shellOrigin) window.parent.postMessage(toEnvelope(type, payload), this.shellOrigin);
   }
 
   private readonly handleMessage = (event: MessageEvent) => {
@@ -92,4 +84,12 @@ export class ShellConnection extends TypedEventTarget<ShellConnectionEventMap> {
 
     this.dispatchEvent(new ShellMessageEvent(type, payload));
   };
+
+  private sendReady() {
+    if (this.pageId !== null) this.send('ready', { pageId: this.pageId });
+  }
+
+  private send<T extends PreviewMessageType>(type: T, payload: MessagePayload<T>) {
+    if (this.shellOrigin) window.parent.postMessage(toEnvelope(type, payload), this.shellOrigin);
+  }
 }

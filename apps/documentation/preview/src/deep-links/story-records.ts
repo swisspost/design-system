@@ -25,7 +25,7 @@ declare global {
 const records: StoryRecords = new Map();
 window[RECORDS_KEY] = records;
 
-export function recordStory(storyId: string, record: StoryRecord) {
+export function recordStory(storyId: string, record: StoryRecord): void {
   records.set(storyId, record);
 }
 

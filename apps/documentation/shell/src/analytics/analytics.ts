@@ -25,11 +25,11 @@ export class Analytics {
   private readonly config: AnalyticsConfig;
   private hasContext = false;
 
-  public constructor(config: AnalyticsConfig) {
+  constructor(config: AnalyticsConfig) {
     this.config = config;
   }
 
-  public start() {
+  public start(): void {
     window.dataLayer ??= [];
     this.push({ 'gtm.start': Date.now(), 'event': 'gtm.js' });
 
@@ -40,7 +40,7 @@ export class Analytics {
   }
 
   /** Call it once the document title is the one of the page. */
-  public trackPage() {
+  public trackPage(): void {
     const page = {
       ...this.config.pageValues,
       page_name_language_neutral: document.title,

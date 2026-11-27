@@ -1,4 +1,4 @@
-import { LitElement, html, nothing } from 'lit';
+import { LitElement, html, nothing, type TemplateResult } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import {
   DEFAULT_GLOBALS,
@@ -20,15 +20,22 @@ export class PostDocsGlobalsMenus extends LitElement {
   /** Makes the menu ids unique, the menus are rendered in the toolbar and in the navigation sheet. */
   @property({ attribute: 'id-prefix' }) public idPrefix = 'globals';
 
-  override createRenderRoot() {
+  protected override createRenderRoot() {
     return this;
   }
 
-  override render() {
-    return SHARABLE_GLOBAL_NAMES.map(name => this.renderMenu(name));
+  private select(name: GlobalName, value: string) {
+    if (this.globals[name] === value) return;
+
+    this.dispatchEvent(
+      new CustomEvent<Partial<Globals>>('postDocsGlobalsChange', {
+        detail: { [name]: value },
+        bubbles: true,
+      }),
+    );
   }
 
-  private renderMenu(name: GlobalName): unknown {
+  private renderMenu(name: GlobalName): TemplateResult {
     const definition = GLOBAL_DEFINITIONS[name];
     const options: Record<string, string> = definition.options;
     const current = this.globals[name];
@@ -71,15 +78,8 @@ export class PostDocsGlobalsMenus extends LitElement {
     `;
   }
 
-  private select(name: GlobalName, value: string) {
-    if (this.globals[name] === value) return;
-
-    this.dispatchEvent(
-      new CustomEvent<Partial<Globals>>('postDocsGlobalsChange', {
-        detail: { [name]: value },
-        bubbles: true,
-      }),
-    );
+  protected override render(): TemplateResult[] {
+    return SHARABLE_GLOBAL_NAMES.map(name => this.renderMenu(name));
   }
 }
 

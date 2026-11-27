@@ -16,7 +16,7 @@ export interface PreviewPage {
 export class PreviewMessageEvent<T extends PreviewMessageType = PreviewMessageType> extends Event {
   constructor(
     type: T,
-    readonly payload: MessagePayload<T>,
+    public readonly payload: MessagePayload<T>,
   ) {
     super(type);
   }
@@ -30,7 +30,7 @@ export class PreviewConnection extends TypedEventTarget<PreviewConnectionEventMa
   private previewPage: PreviewPage | null = null;
   private previewGlobals: Globals | null = null;
   private previewFrame: HTMLIFrameElement | null = null;
-  private previewReady = false;
+  private isPreviewReady = false;
   private listeners: AbortController | null = null;
 
   private requestedPage: PreviewPage | null = null;
@@ -41,7 +41,7 @@ export class PreviewConnection extends TypedEventTarget<PreviewConnectionEventMa
     this.previewOrigin = previewOrigin || location.origin;
   }
 
-  public connect(frame: HTMLIFrameElement) {
+  public connect(frame: HTMLIFrameElement): void {
     if (this.previewFrame === frame) return;
 
     this.disconnect();
@@ -53,52 +53,32 @@ export class PreviewConnection extends TypedEventTarget<PreviewConnectionEventMa
     window.addEventListener('message', this.handleMessage, { signal });
   }
 
-  public disconnect() {
+  public disconnect(): void {
     this.listeners?.abort();
     this.listeners = null;
     this.previewFrame = null;
-    this.previewReady = false;
+    this.isPreviewReady = false;
   }
 
   /** Shows the page in the preview once it is ready, without reloading it. */
-  public showPage(page: PreviewPage) {
+  public showPage(page: PreviewPage): void {
     this.requestedPage = page;
     this.sendPage();
   }
 
   /** Applies the globals to the preview once it is ready, without reloading it. */
-  public setGlobals(globals: Globals) {
+  public setGlobals(globals: Globals): void {
     this.requestedGlobals = globals;
     this.sendGlobals();
   }
 
-  public scrollTo(hash: string) {
-    if (this.previewReady) this.send('scroll-to', { hash });
-  }
-
-  private sendPage() {
-    if (!this.previewReady || !this.requestedPage || this.requestedPage === this.previewPage)
-      return;
-
-    this.previewPage = this.requestedPage;
-    this.send('page', this.requestedPage);
-  }
-
-  private sendGlobals() {
-    if (!this.previewReady || !this.requestedGlobals) return;
-    if (this.previewGlobals && compareGlobals(this.previewGlobals, this.requestedGlobals)) return;
-
-    this.previewGlobals = this.requestedGlobals;
-    this.send('globals', { globals: this.requestedGlobals });
-  }
-
-  private send<T extends ShellMessageType>(type: T, payload: MessagePayload<T>) {
-    this.previewFrame?.contentWindow?.postMessage(toEnvelope(type, payload), this.previewOrigin);
+  public scrollTo(hash: string): void {
+    if (this.isPreviewReady) this.send('scroll-to', { hash });
   }
 
   // every load is a new preview document (also a reload), which waits for its own `connect`
   private readonly handleLoad = () => {
-    this.previewReady = false;
+    this.isPreviewReady = false;
     this.previewPage = null;
     this.previewGlobals = null;
     this.send('connect', {});
@@ -111,7 +91,7 @@ export class PreviewConnection extends TypedEventTarget<PreviewConnectionEventMa
     const { type, payload } = event.data;
 
     if (type === 'ready') {
-      this.previewReady = true;
+      this.isPreviewReady = true;
       this.previewPage = null;
       this.previewGlobals = null;
 
@@ -122,4 +102,25 @@ export class PreviewConnection extends TypedEventTarget<PreviewConnectionEventMa
 
     this.dispatchEvent(new PreviewMessageEvent(type, payload));
   };
+
+  private sendPage() {
+    if (!this.isPreviewReady || !this.requestedPage || this.requestedPage === this.previewPage) {
+      return;
+    }
+
+    this.previewPage = this.requestedPage;
+    this.send('page', this.requestedPage);
+  }
+
+  private sendGlobals() {
+    if (!this.isPreviewReady || !this.requestedGlobals) return;
+    if (this.previewGlobals && compareGlobals(this.previewGlobals, this.requestedGlobals)) return;
+
+    this.previewGlobals = this.requestedGlobals;
+    this.send('globals', { globals: this.requestedGlobals });
+  }
+
+  private send<T extends ShellMessageType>(type: T, payload: MessagePayload<T>) {
+    this.previewFrame?.contentWindow?.postMessage(toEnvelope(type, payload), this.previewOrigin);
+  }
 }

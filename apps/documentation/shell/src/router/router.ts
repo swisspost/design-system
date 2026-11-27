@@ -15,10 +15,10 @@ interface GoOptions extends NavigationOptions {
 
 export class RouteChangeEvent extends Event {
   constructor(
-    readonly route: Route,
-    readonly previous: Route | null,
+    public readonly route: Route,
+    public readonly previous: Route | null,
     /** Whether the route changed with Back or Forward. */
-    readonly fromHistory: boolean,
+    public readonly fromHistory: boolean,
   ) {
     super('route-change');
   }
@@ -36,11 +36,11 @@ export class Router extends TypedEventTarget<RouterEventMap> {
     super();
   }
 
-  get current(): Route | null {
+  public get current(): Route | null {
     return this.route;
   }
 
-  public start() {
+  public start(): void {
     this.listeners = new AbortController();
     const signal = this.listeners.signal;
 
@@ -50,17 +50,17 @@ export class Router extends TypedEventTarget<RouterEventMap> {
     this.go(new URL(location.href), { replace: true });
   }
 
-  public stop() {
+  public stop(): void {
     this.listeners?.abort();
     this.listeners = null;
   }
 
-  public navigate(href: string | URL, options: NavigationOptions = {}) {
+  public navigate(href: string | URL, options: NavigationOptions = {}): void {
     this.go(new URL(href, location.href), options);
   }
 
   /** Writes the globals into the URL, without a history entry or route change. */
-  public replaceGlobals(globals: Globals) {
+  public replaceGlobals(globals: Globals): void {
     if (this.route?.type !== 'page') return;
 
     const { page, params, hash } = this.route;
@@ -75,6 +75,21 @@ export class Router extends TypedEventTarget<RouterEventMap> {
       }),
     );
   }
+
+  private readonly handlePopState = () => {
+    this.go(new URL(location.href), { replace: true, fromHistory: true });
+  };
+
+  private readonly handleClick = (event: MouseEvent) => {
+    if (event.defaultPrevented || event.button !== 0) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+    const anchor = findLink(event);
+    if (!anchor || !isInterceptable(anchor)) return;
+
+    event.preventDefault();
+    this.go(new URL(anchor.href), { replace: false });
+  };
 
   private go(url: URL, options: GoOptions) {
     const route = resolve(url, this.catalog);
@@ -93,21 +108,6 @@ export class Router extends TypedEventTarget<RouterEventMap> {
     this.route = route;
     this.dispatchEvent(new RouteChangeEvent(route, previous, options.fromHistory ?? false));
   }
-
-  private readonly handlePopState = () => {
-    this.go(new URL(location.href), { replace: true, fromHistory: true });
-  };
-
-  private readonly handleClick = (event: MouseEvent) => {
-    if (event.defaultPrevented || event.button !== 0) return;
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-
-    const anchor = findLink(event);
-    if (!anchor || !isInterceptable(anchor)) return;
-
-    event.preventDefault();
-    this.go(new URL(anchor.href), { replace: false });
-  };
 }
 
 // The click may come from inside a shadow root, e.g. of a `post-*` component.
