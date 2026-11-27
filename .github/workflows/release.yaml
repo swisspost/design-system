@@ -304,29 +304,31 @@ jobs:
           use_cache: false # only `pnpm m ls` is used, no dependency install is required
 
       # Only run this Step if a major release was detected
-      - name: Update or create Documentation _redirects
+      - name: Update Documentation _redirects
         id: update-redirects
         if: fromJSON(needs.collect-release-data.outputs.release-data).isMajor == true
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         with:
           script: |
-            const fs = require('fs')
-            const release = ${{ needs.collect-release-data.outputs.release-data }}
+            const fs = require('fs');
+            const release = ${{ needs.collect-release-data.outputs.release-data }};
 
-            const redirectsPath = './apps/documentation/public/_redirects'
-            let redirects = ''
-            const redirect = `/v${release.old.major}   https://${release.old.siteUrl}.netlify.app`
+            const slug = `/v${release.old.major}`;
+            const url = `https://${release.old.siteUrl}.netlify.app`;
 
-            if (fs.existsSync(redirectsPath)) {
-               redirects = fs.readFileSync(redirectsPath, 'utf8')
-            } else {
-              redirects = '# Redirects from what the browser requests to what we serve\n'
+            // Read the _redirects file. It is assumed to always exist.
+            const path = './apps/documentation/public/_redirects';
+            const lines = fs.readFileSync(path, 'utf8').trimEnd().split('\n');
+
+            // Insert a new version redirect below the existing ones.
+            if (!lines.some(line => line.startsWith(`${slug} `))) {
+              const index = lines.findLastIndex(line => /^\/v\d+\s/.test(line));
+              lines.splice(index + 1, 0, `${slug}   ${url}`);
             }
 
-            if(!redirects.includes(redirect)) redirects += redirect
-            fs.writeFileSync(redirectsPath, redirects + '\n')
+            fs.writeFileSync(path, lines.join('\n') + '\n');
 
-            return true
+            return true;
 
       - name: Update Documentation versions.json
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
@@ -566,8 +568,11 @@ jobs:
       - name: Remove Documentation _headers
         run: rm -f ./apps/documentation/public/_headers
 
-      - name: Remove Documentation _redirects
-        run: rm -f ./apps/documentation/public/_redirects
+      # Only the main site needs the redirects to the older versions. However,
+      # the documentation shell is still responsible for routing, which is why
+      # the fallback rule still needs to be present.
+      - name: Replace the Documentation _redirects
+        run: printf '%s\n' '/*    /index.html   200' > ./apps/documentation/public/_redirects
 
       - name: Setup pnpm & node
         uses: ./.github/actions/setup-pnpm
