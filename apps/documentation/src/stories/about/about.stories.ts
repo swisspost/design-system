@@ -1,9 +1,9 @@
-import { MetaExtended } from '@root/types';
 import { StoryObj } from '@storybook/web-components-vite';
+import { MetaExtended } from '@root/types';
 
 const meta: MetaExtended = {
-  id: '43f5818c-98a0-48ba-84f1-bf4d8fe1e70d',
-  title: 'Misc/Design Principles',
+  id: '25eddfb4-20fb-4e1a-a11a-18c4b85de4cb',
+  title: 'About',
   parameters: {
     badges: [],
   },

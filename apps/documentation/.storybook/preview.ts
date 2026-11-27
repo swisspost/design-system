@@ -33,6 +33,7 @@ const preview: Preview = {
         method: 'alphabetical',
         order: [
           'Introduction',
+          'About',
 
           // Category - Getting Started
           'Getting Started',
@@ -72,7 +73,7 @@ const preview: Preview = {
 
           // Category - Misc
           'Misc',
-          ['Mission', 'Design Principles', 'Migration'],
+          ['Migration'],
         ],
       },
     },

@@ -1,5 +1,10 @@
 // Building blocks for full-width documentation pages (see `src/shared/docs-page/`).
 
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
+
 // A page containing `.docs-band` elements spans the full docs width; each band provides its own `.container`.
 // `.sbdocs-wrapper` is needed to outrank the `.docs-container` padding defined later in `preview.scss`.
 #storybook-docs .sbdocs-wrapper .docs-container:has(.docs-band) {
@@ -48,4 +53,21 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+// Circle holding a single icon. Combine with a palette for the colours, e.g.
+// `<span class="docs-icon-circle palette palette-brand"><post-icon …></span>`.
+.docs-icon-circle {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: tokens.get('utility-gap-80');
+  height: tokens.get('utility-gap-80');
+  border-radius: 50%;
+
+  post-icon {
+    width: tokens.get('utility-gap-40');
+    height: tokens.get('utility-gap-40');
+  }
 }
