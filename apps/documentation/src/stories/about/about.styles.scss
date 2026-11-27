@@ -5,25 +5,12 @@
 
 tokens.$default-map: utilities.$post-spacing;
 
-// Emphasis colour: the theme's brand colour (Post yellow, Cargo green).
-// Both contrast with the accent palette of their own theme.
-$highlight-color: var(--post-theme-color-palettes-brand-bg);
-
-// The POUR diagram colour is illustrative only and has no design token.
+// The POUR diagram color has no design token.
 $pour-color: #340060;
 
-.about-highlight {
-  color: $highlight-color;
-}
-
-// Origination process
-
-.about-step {
-  margin-block-start: tokens.get('utility-gap-32');
-
-  h4 {
-    margin-block: tokens.get('utility-gap-24') tokens.get('utility-gap-8');
-  }
+.about-highlight,
+.about-principles h2 {
+  color: var(--post-theme-color-palettes-brand-bg);
 }
 
 .about-step-title {
@@ -40,67 +27,13 @@ $pour-color: #340060;
   justify-content: center;
   width: tokens.get('utility-gap-48');
   height: tokens.get('utility-gap-48');
-  border: tokens.get('utility-gap-4') solid currentColor;
+  border: 4px solid currentColor;
   border-radius: 50%;
   line-height: 1;
 }
 
-.about-process-diagram {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin-block-start: tokens.get('utility-gap-32');
-}
-
-// Design principles (ETIC)
-
-.about-principles {
-  h2,
-  h3 {
-    color: $highlight-color;
-  }
-}
-
-// Lists are reset here rather than with `.list-unstyled`, which unsets all `li` styles.
-.about-principle-list,
-.about-pour-list {
-  padding: 0;
-  list-style: none;
-}
-
-.about-principle-list {
-  display: flex;
-  flex-direction: column;
-  gap: tokens.get('utility-gap-32');
-  margin-block: tokens.get('utility-gap-32') 0;
-}
-
-.about-principle {
-  display: flex;
-  align-items: center;
-  gap: tokens.get('utility-gap-16');
-
-  @include media.min(md) {
-    gap: tokens.get('utility-gap-32');
-  }
-}
-
 .about-principle-icon-tilted {
   transform: rotate(-45deg);
-}
-
-// POUR principles
-
-.about-pour {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: tokens.get('utility-gap-40');
-
-  @include media.min(lg) {
-    flex-direction: row;
-    align-items: flex-start;
-  }
 }
 
 .about-pour-diagram {
@@ -118,17 +51,19 @@ $pour-color: #340060;
   stroke: $pour-color;
 }
 
-// Sizes are in SVG units, so the labels scale with the circles.
 .about-pour-diagram-labels text {
   font-size: 20px;
   font-weight: var(--post-device-font-weight-extra-black);
   fill: currentColor;
 }
 
+// Not `.list-unstyled`: its `all: unset` would override the grid.
 .about-pour-list {
   display: grid;
   gap: tokens.get('utility-gap-24') tokens.get('utility-gap-40');
   margin: 0;
+  padding: 0;
+  list-style: none;
 
   @include media.min(md) {
     grid-template-rows: auto auto;
@@ -142,26 +77,7 @@ $pour-color: #340060;
   }
 }
 
-// Accessibility call-out
-
 .about-callout {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: tokens.get('utility-gap-24');
-  margin-block-start: tokens.get('utility-gap-48');
-  padding: tokens.get('utility-gap-24');
-  border: tokens.get('utility-gap-4') solid var(--post-core-color-sandgrey-060);
+  border: 4px solid var(--post-core-color-sandgrey-060);
   border-radius: tokens.get('utility-gap-16');
-
-  @include media.min(md) {
-    flex-direction: row;
-    align-items: center;
-    gap: tokens.get('utility-gap-40');
-    padding: tokens.get('utility-gap-24') tokens.get('utility-gap-40');
-  }
-}
-
-.about-callout-text {
-  flex: 1 1 auto;
 }

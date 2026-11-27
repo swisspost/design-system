@@ -13,7 +13,6 @@ interface PourPrinciple {
   position: DiagramPosition;
 }
 
-// The four ETIC principles (Ease of use, Trustworthy, Inclusive, Cordial).
 export const designPrinciples: DesignPrinciple[] = [
   {
     icon: 'handpoint',
@@ -38,14 +37,8 @@ export const designPrinciples: DesignPrinciple[] = [
   },
 ];
 
-export const etic: { initial: string; rest: string }[] = [
-  { initial: 'E', rest: 'ase of use' },
-  { initial: 'T', rest: 'rustworthy' },
-  { initial: 'I', rest: 'nclusive' },
-  { initial: 'C', rest: 'ordial' },
-];
+export const etic = ['Ease of use', 'Trustworthy', 'Inclusive', 'Cordial'];
 
-// Listed in reading order; the stylesheet lays them out in two columns (P + O, U + R).
 export const pourPrinciples: PourPrinciple[] = [
   {
     title: 'Perceivable',
@@ -73,13 +66,11 @@ export const pourPrinciples: PourPrinciple[] = [
   },
 ];
 
-// Decorative POUR Venn diagram. Positions are derived from a few values (in SVG units) so the
-// spacing can be tuned in one place. The left and right circles sit far enough apart for the
-// longest label ("Understandable") to fit inside its own circle.
+// The left and right circles are spaced so that the longest label fits inside its circle.
 const RADIUS = 108;
 const STROKE_WIDTH = 4;
-const OFFSET_X = 100; // distance from the centre to the left and right circles
-const OFFSET_Y = 128; // distance from the centre to the top and bottom circles
+const OFFSET_X = 100;
+const OFFSET_Y = 128;
 const EXTENT = RADIUS + STROKE_WIDTH / 2;
 
 const directions: Record<DiagramPosition, [number, number]> = {
