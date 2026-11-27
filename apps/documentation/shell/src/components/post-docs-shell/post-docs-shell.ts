@@ -16,7 +16,7 @@ import { type PreviewMessageEvent, PreviewConnection } from '../../bridge/previe
 import { Catalog } from '../../catalog/catalog';
 import { GlobalsStore } from '../../globals/globals-store';
 import { buildNavigation, type NavigationSection } from '../../navigation/tree';
-import type { Route } from '../../router/route';
+import type { PageRoute, Route } from '../../router/route';
 import { type RouteChangeEvent, Router } from '../../router/router';
 import { SearchIndex } from '../../catalog/search-index';
 import '../post-docs-navigation-sheet/post-docs-navigation-sheet';
@@ -93,44 +93,54 @@ export class PostDocsShell extends LitElement {
   }
 
   private readonly handleRouteChange = (event: RouteChangeEvent) => {
-    const { route, previous, fromHistory } = event;
+    const route = event.route;
     this.route = route;
     void this.querySelector('post-docs-navigation-sheet')?.close();
 
     const pageTitle = route.type === 'page' ? route.page.segments.at(-1) : 'Page not found';
     document.title = `${pageTitle} · ${SITE_TITLE}`;
 
-    if (route.type !== 'page') {
-      this.analytics.trackPage();
-      return;
+    if (route.type === 'page') {
+      this.syncGlobals(route, event.fromHistory);
+      this.showPage(route);
     }
 
-    // Back and Forward keep the current globals, the history entry may hold older ones
+    this.trackPageView(route, event.previous);
+  };
+
+  // Back and Forward keep the current globals, the history entry may hold older ones
+  private syncGlobals(route: PageRoute, fromHistory: boolean) {
     if (route.globals && !fromHistory) this.globalsStore.set(route.globals);
     this.router?.replaceGlobals(this.globalsStore.current);
+  }
 
-    // tracked with the globals in the URL, a new hash on the same page is not a page view
-    if (previous?.type !== 'page' || previous.page.id !== route.page.id) this.analytics.trackPage();
-
-    const { page, params, hash } = route;
+  private showPage(route: PageRoute) {
     const globals = this.globalsStore.current;
 
     this.previewSrc ??= previewUrl(
-      page.id,
+      route.page.id,
       'docs',
-      { ...params, globals: stringifyGlobals(globals) },
+      { ...route.params, globals: stringifyGlobals(globals) },
       PREVIEW_ORIGIN,
     );
     this.previewConnection.setGlobals(globals);
-    this.previewConnection.showPage({ id: page.id, params });
+    this.previewConnection.showPage({ id: route.page.id, params: route.params });
 
-    if (page.id === this.pageId) {
-      if (!this.previewLoading) this.previewConnection.scrollTo(hash);
+    if (route.page.id === this.pageId) {
+      if (!this.previewLoading) this.previewConnection.scrollTo(route.hash);
     } else {
       this.previewLoading = this.pageId === null ? 'first' : 'page';
-      this.pageId = page.id;
+      this.pageId = route.page.id;
     }
-  };
+  }
+
+  // tracked with the globals in the URL, a new hash on the same page is not a page view
+  private trackPageView(route: Route, previous: Route | null) {
+    const isSamePage =
+      route.type === 'page' && previous?.type === 'page' && previous.page.id === route.page.id;
+
+    if (!isSamePage) this.analytics.trackPage();
+  }
 
   private readonly handleRendered = (event: PreviewMessageEvent<'rendered'>) => {
     if (event.payload.pageId !== this.pageId || !this.previewLoading) return;
@@ -236,47 +246,51 @@ export class PostDocsShell extends LitElement {
   }
 
   private renderContent(): unknown {
-    if (this.failed) {
-      return this.renderErrorPage(
-        '500',
-        'The documentation could not be loaded.',
-        'Please reload the page. If the error persists, try again later.',
-        html`
-          <button type="button" class="btn btn-primary" @click=${() => location.reload()}>
-            Reload the page
-          </button>
-        `,
-      );
-    }
+    if (this.failed) return this.renderLoadError();
 
-    const notFound =
-      this.route?.type === 'not-found'
-        ? this.renderErrorPage(
-            '404',
-            'This page could not be found.',
-            'The page may have been moved or renamed, or the URL is incorrect. You may find it from the homepage or with the search.',
-            html`
-              <a class="btn btn-primary" href="/">
-                <post-icon name="arrowleft" aria-hidden="true"></post-icon>
-                Go to homepage
-              </a>
-            `,
-          )
-        : nothing;
+    const notFound = this.route?.type === 'not-found' ? this.renderNotFound() : nothing;
+    return html`${notFound}${this.renderPreview()}`;
+  }
 
-    // the preview stays loaded, so that it shows the next page without a reload
-    const preview = this.previewSrc
-      ? html`
-          <post-docs-preview
-            src=${this.previewSrc}
-            .connection=${this.previewConnection}
-            class=${classMap({ loaded: this.route?.type === 'page' })}
-            .loading=${this.previewLoading}
-          ></post-docs-preview>
-        `
-      : nothing;
+  private renderLoadError(): unknown {
+    return this.renderErrorPage(
+      '500',
+      'The documentation could not be loaded.',
+      'Please reload the page. If the error persists, try again later.',
+      html`
+        <button type="button" class="btn btn-primary" @click=${() => location.reload()}>
+          Reload the page
+        </button>
+      `,
+    );
+  }
 
-    return html`${notFound}${preview}`;
+  private renderNotFound(): unknown {
+    return this.renderErrorPage(
+      '404',
+      'This page could not be found.',
+      'The page may have been moved or renamed, or the URL is incorrect. You may find it from the homepage or with the search.',
+      html`
+        <a class="btn btn-primary" href="/">
+          <post-icon name="arrowleft" aria-hidden="true"></post-icon>
+          Go to homepage
+        </a>
+      `,
+    );
+  }
+
+  // the preview stays loaded, so that it shows the next page without a reload
+  private renderPreview(): unknown {
+    if (!this.previewSrc) return nothing;
+
+    return html`
+      <post-docs-preview
+        src=${this.previewSrc}
+        .connection=${this.previewConnection}
+        class=${classMap({ loaded: this.route?.type === 'page' })}
+        .loading=${this.previewLoading}
+      ></post-docs-preview>
+    `;
   }
 
   // the error page template of the design system

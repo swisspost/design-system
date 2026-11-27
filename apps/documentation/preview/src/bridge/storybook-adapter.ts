@@ -18,7 +18,7 @@ import { stringifyGlobals } from '@shared/globals';
 import { previewUrl } from '@shared/urls';
 import { globalsHost } from '@preview/globals/globals-host';
 import { interceptLinks } from './links';
-import { ShellConnection } from './shell-connection';
+import { ShellConnection, type ShellMessageEvent } from './shell-connection';
 import { forwardShortcuts } from './shortcuts';
 
 interface StorySelection {
@@ -44,6 +44,8 @@ const STORYBOOK_PARAMS = new Set(['id', 'viewMode', 'globals']);
 
 const SETTLED_PHASES = new Set(['completed', 'afterEach', 'finished', 'aborted', 'errored']);
 
+const ERROR_EVENTS = [STORY_MISSING, STORY_ERRORED, STORY_THREW_EXCEPTION];
+
 // the stories of a docs page start rendering shortly after the page itself
 const STORIES_START_DELAY = 50;
 const STORIES_MAX_WAIT = 1500;
@@ -55,72 +57,150 @@ export function getShellOrigin(): string | null {
   return shell.origin;
 }
 
-function setup(channel: Channel) {
+class StorybookAdapter {
   // the page Storybook shows, once it has selected one
-  let pageId: string | null = null;
+  private pageId: string | null = null;
 
   // the page of the URL, which a reload shows again together with the globals
-  let urlPage = readUrlPage();
+  private urlPage = readUrlPage();
 
-  const replaceUrl = () => {
-    const params = { ...urlPage.params, globals: stringifyGlobals(globalsHost.current) };
-    const url = previewUrl(urlPage.id, 'docs', params);
+  constructor(private readonly channel: Channel) {}
+
+  public start() {
+    this.reportStorybookEvents();
+    this.applyShellMessages();
+    shell.start();
+  }
+
+  private reportStorybookEvents() {
+    this.channel.on(STORY_SPECIFIED, (selection: StorySelection) => this.select(selection.storyId));
+    this.channel.on(CURRENT_STORY_WAS_SET, (selection: StorySelection) =>
+      this.select(selection.storyId),
+    );
+
+    for (const event of ERROR_EVENTS) this.channel.on(event, this.handleStoryError);
+
+    new PageRenderWatcher(this.channel, id => shell.rendered(id)).start();
+  }
+
+  private applyShellMessages() {
+    shell.addEventListener('connect', this.handleConnect, { once: true });
+    shell.addEventListener('page', this.handlePage);
+    shell.addEventListener('globals', this.handleGlobals);
+    shell.addEventListener('scroll-to', this.handleScrollTo);
+  }
+
+  private select(id: string) {
+    this.pageId = id;
+    shell.ready(id);
+  }
+
+  private replaceUrl() {
+    const params = { ...this.urlPage.params, globals: stringifyGlobals(globalsHost.current) };
+    const url = previewUrl(this.urlPage.id, 'docs', params);
 
     if (url !== location.pathname + location.search) {
       history.replaceState(history.state, '', url + location.hash);
     }
-  };
-
-  const select = (id: string) => {
-    pageId = id;
-    shell.ready(id);
-  };
-
-  channel.on(STORY_SPECIFIED, (selection: StorySelection) => select(selection.storyId));
-  channel.on(CURRENT_STORY_WAS_SET, (selection: StorySelection) => select(selection.storyId));
-
-  for (const event of [STORY_MISSING, STORY_ERRORED, STORY_THREW_EXCEPTION]) {
-    channel.on(event, () => {
-      const id = pageId ?? new URLSearchParams(location.search).get('id') ?? '';
-
-      select(id);
-      shell.error(id);
-    });
   }
 
-  watchPageRenders(channel, id => shell.rendered(id));
+  private readonly handleStoryError = () => {
+    const id = this.pageId ?? new URLSearchParams(location.search).get('id') ?? '';
 
-  shell.addEventListener(
-    'connect',
-    () => {
-      interceptLinks(href => shell.navigate(href));
-      forwardShortcuts(name => shell.shortcut(name));
-    },
-    { once: true },
-  );
+    this.select(id);
+    shell.error(id);
+  };
 
-  shell.addEventListener('page', event => {
-    urlPage = { id: event.payload.id, params: event.payload.params };
-    replaceUrl();
+  private readonly handleConnect = () => {
+    interceptLinks(href => shell.navigate(href));
+    forwardShortcuts(name => shell.shortcut(name));
+  };
 
-    if (event.payload.id !== pageId) {
-      channel.emit(SET_CURRENT_STORY, { storyId: event.payload.id, viewMode: 'docs' });
+  private readonly handlePage = (event: ShellMessageEvent<'page'>) => {
+    this.urlPage = { id: event.payload.id, params: event.payload.params };
+    this.replaceUrl();
+
+    if (event.payload.id !== this.pageId) {
+      this.channel.emit(SET_CURRENT_STORY, { storyId: event.payload.id, viewMode: 'docs' });
     }
-  });
+  };
 
-  shell.addEventListener('globals', event => {
+  private readonly handleGlobals = (event: ShellMessageEvent<'globals'>) => {
     globalsHost.set(event.payload.globals);
-    replaceUrl();
-  });
+    this.replaceUrl();
+  };
 
-  shell.addEventListener('scroll-to', event => {
+  private readonly handleScrollTo = (event: ShellMessageEvent<'scroll-to'>) => {
     const target = event.payload.hash ? document.getElementById(event.payload.hash) : null;
 
     if (target) target.scrollIntoView();
     else window.scrollTo(0, 0);
-  });
+  };
+}
 
-  shell.start();
+/** Calls `onRendered` once a docs page and the stories on it are rendered. */
+class PageRenderWatcher {
+  private readonly renderingStories = new Set<string>();
+  private renderingPage: RenderingPage | null = null;
+
+  constructor(
+    private readonly channel: Channel,
+    private readonly onRendered: (pageId: string) => void,
+  ) {}
+
+  public start() {
+    this.channel.on(CURRENT_STORY_WAS_SET, this.handleStoryChange);
+    this.channel.on(DOCS_RENDERED, this.handleDocsRendered);
+    this.channel.on(STORY_RENDER_PHASE_CHANGED, this.handleRenderPhaseChange);
+  }
+
+  private readonly handleStoryChange = () => {
+    this.cancel();
+    this.renderingStories.clear();
+  };
+
+  private readonly handleDocsRendered = (id: string) => {
+    this.cancel();
+
+    const page: RenderingPage = { id, timers: [] };
+    page.timers.push(
+      window.setTimeout(() => {
+        if (this.renderingStories.size === 0) this.finish(page);
+      }, STORIES_START_DELAY),
+      window.setTimeout(() => this.finish(page), STORIES_MAX_WAIT),
+    );
+
+    this.renderingPage = page;
+  };
+
+  private readonly handleRenderPhaseChange = (change: RenderPhaseChange) => {
+    if (!SETTLED_PHASES.has(change.newPhase)) {
+      this.renderingStories.add(change.storyId);
+      return;
+    }
+
+    const page = this.renderingPage;
+    if (!this.renderingStories.delete(change.storyId) || this.renderingStories.size > 0 || !page) {
+      return;
+    }
+
+    // the source blocks of the canvases appear right after their story
+    requestAnimationFrame(() => {
+      if (this.renderingStories.size === 0) this.finish(page);
+    });
+  };
+
+  private finish(page: RenderingPage) {
+    if (this.renderingPage !== page) return;
+
+    this.cancel();
+    this.onRendered(page.id);
+  }
+
+  private cancel() {
+    for (const timer of this.renderingPage?.timers ?? []) clearTimeout(timer);
+    this.renderingPage = null;
+  }
 }
 
 function readUrlPage(): UrlPage {
@@ -134,56 +214,4 @@ function readUrlPage(): UrlPage {
   return { id: search.get('id') ?? '', params };
 }
 
-/** Calls `onRendered` once a docs page and the stories on it are rendered. */
-function watchPageRenders(channel: Channel, onRendered: (pageId: string) => void) {
-  const renderingStories = new Set<string>();
-  let renderingPage: RenderingPage | null = null;
-
-  const cancel = () => {
-    for (const timer of renderingPage?.timers ?? []) clearTimeout(timer);
-    renderingPage = null;
-  };
-
-  const finish = (page: RenderingPage) => {
-    if (renderingPage !== page) return;
-
-    cancel();
-    onRendered(page.id);
-  };
-
-  channel.on(CURRENT_STORY_WAS_SET, () => {
-    cancel();
-    renderingStories.clear();
-  });
-
-  channel.on(DOCS_RENDERED, (id: string) => {
-    cancel();
-
-    const page: RenderingPage = { id, timers: [] };
-    page.timers.push(
-      window.setTimeout(() => {
-        if (renderingStories.size === 0) finish(page);
-      }, STORIES_START_DELAY),
-      window.setTimeout(() => finish(page), STORIES_MAX_WAIT),
-    );
-
-    renderingPage = page;
-  });
-
-  channel.on(STORY_RENDER_PHASE_CHANGED, (change: RenderPhaseChange) => {
-    if (!SETTLED_PHASES.has(change.newPhase)) {
-      renderingStories.add(change.storyId);
-      return;
-    }
-
-    const page = renderingPage;
-    if (!renderingStories.delete(change.storyId) || renderingStories.size > 0 || !page) return;
-
-    // the source blocks of the canvases appear right after their story
-    requestAnimationFrame(() => {
-      if (renderingStories.size === 0) finish(page);
-    });
-  });
-}
-
-addons.ready().then(setup);
+addons.ready().then(channel => new StorybookAdapter(channel).start());

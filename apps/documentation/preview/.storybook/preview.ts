@@ -7,7 +7,7 @@ import { copyDeepLink, viewFullScreen } from '@preview/deep-links/canvas-actions
 import { startApplyingDeepLinks } from '@preview/deep-links/deep-links';
 import { withGlobals } from '@preview/decorators/with-globals';
 import { withStoryRecords } from '@preview/decorators/with-story-records';
-import { startApplyingGlobals } from '@preview/globals/apply-globals';
+import { globalsApplier } from '@preview/globals/globals-applier';
 import { prettierOptions } from '@preview/setup/prettier-options';
 import { resetComponents } from '@preview/setup/reset-sb-styled-components';
 import '@preview/setup/register-web-components';
@@ -30,7 +30,7 @@ import '@preview/demo-components/demo-span';
 
 SyntaxHighlighter.registerLanguage('scss', scss);
 
-startApplyingGlobals();
+globalsApplier.start();
 startApplyingDeepLinks();
 
 const preview: Preview = {
