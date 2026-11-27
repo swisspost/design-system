@@ -1,12 +1,9 @@
 import { LitElement, type PropertyValues, html, nothing, type TemplateResult } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { SEARCH_SHORTCUT } from '@shared/shortcuts';
-import { STATUS_TAG_PREFIX, type StatusTag } from '@shared/tags';
 import { getRootDefinition } from '../../navigation/navigation';
 import type { SearchIndex, SearchResult } from '../../catalog/search-index';
 import './post-docs-search.scss';
-
-const NEW_TAG: StatusTag = `${STATUS_TAG_PREFIX}new`;
 
 /**
  * A combobox whose options are links. The field and the results are laid out by
@@ -145,7 +142,6 @@ export class PostDocsSearch extends LitElement {
 
   private renderOption(result: SearchResult, index: number): TemplateResult {
     const entry = result.entry;
-    const isNew = entry.page.tags.includes(NEW_TAG);
 
     return html`
       <li role="presentation">
@@ -164,10 +160,7 @@ export class PostDocsSearch extends LitElement {
             aria-hidden="true"
           ></post-icon>
           <span class="d-flex flex-column min-w-0">
-            <span class="d-flex align-items-center gap-8 fw-bold">
-              ${entry.name}
-              ${isNew ? html`<span class="tag tag-sm flex-shrink-0">New</span>` : nothing}
-            </span>
+            <span class="fw-bold">${entry.name}</span>
             ${entry.context ? html`<span class="detail fs-9">${entry.context}</span>` : nothing}
             ${result.keyword
               ? html`<span class="detail fs-9">Keyword: “${result.keyword}”</span>`

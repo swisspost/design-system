@@ -1,6 +1,5 @@
 import { LitElement, html, nothing, type TemplateResult } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { STATUS_TAG_PREFIX, type StatusTag } from '@shared/tags';
 import type { Page } from '../../catalog/catalog';
 import { NAVIGATION } from '../../config';
 import { getRootDefinition } from '../../navigation/navigation';
@@ -10,8 +9,6 @@ import {
   type NavigationSection,
 } from '../../navigation/tree';
 import './post-docs-navigation-tree.scss';
-
-const NEW_TAG: StatusTag = `${STATUS_TAG_PREFIX}new`;
 
 /**
  * The navigation sections with their collapsible folders, rendered by the
@@ -138,7 +135,7 @@ export class PostDocsNavigationTree extends LitElement {
             href=${node.href ?? nothing}
             aria-current=${isActive ? 'page' : nothing}
           >
-            ${renderIcon(definition.icon)} ${this.renderPageLabel(node)}
+            ${renderIcon(definition.icon)} ${renderLabel(node.label)}
           </a>
         </li>
       `;
@@ -166,7 +163,7 @@ export class PostDocsNavigationTree extends LitElement {
               href=${node.href ?? nothing}
               aria-current=${isActive ? 'page' : nothing}
             >
-              ${this.renderPageLabel(node)}
+              ${renderLabel(node.label)}
             </a>
             ${renderIcon('folder')}
           </div>
@@ -188,15 +185,6 @@ export class PostDocsNavigationTree extends LitElement {
         )}
         ${this.renderCollapsible(node.key, children)}
       </li>
-    `;
-  }
-
-  private renderPageLabel(node: NavigationNode): TemplateResult {
-    const isNew = node.page?.tags.includes(NEW_TAG) ?? false;
-
-    return html`
-      ${renderLabel(node.label)}
-      ${isNew ? html`<span class="tag tag-sm flex-shrink-0">New</span>` : nothing}
     `;
   }
 
