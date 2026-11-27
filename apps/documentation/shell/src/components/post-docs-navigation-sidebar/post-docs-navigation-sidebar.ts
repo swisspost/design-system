@@ -1,13 +1,18 @@
-import { LitElement, html, type TemplateResult } from 'lit';
+import { LitElement, html, nothing, type TemplateResult } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
+import { getPackageVersion } from '@shared/versions';
 import type { Page } from '../../catalog/catalog';
 import type { NavigationSection } from '../../navigation/tree';
 import type { SearchIndex } from '../../catalog/search-index';
 import type { PostDocsNavigationTree } from '../post-docs-navigation-tree/post-docs-navigation-tree';
 import type { PostDocsSearch } from '../post-docs-search/post-docs-search';
+import docsPackage from '../../../../package.json';
 import '../post-docs-navigation-tree/post-docs-navigation-tree';
 import '../post-docs-search/post-docs-search';
 import './post-docs-navigation-sidebar.scss';
+
+// The documented release, the same for all the packages.
+const VERSION = getPackageVersion('@swisspost/design-system-styles');
 
 /**
  * The navigation from the sidebar breakpoint up: the search above the tree,
@@ -64,6 +69,13 @@ export class PostDocsNavigationSidebar extends LitElement {
           .activePage=${this.activePage}
         ></post-docs-navigation-tree>
       </nav>
+      ${VERSION
+        ? html`
+            <p class="version flex-shrink-0 m-0 px-16 py-12 fs-11">
+              v${VERSION} (${docsPackage.version})
+            </p>
+          `
+        : nothing}
     `;
   }
 }
