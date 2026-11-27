@@ -1,6 +1,7 @@
 import type { Args, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { keyed } from 'lit/directives/keyed.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
@@ -20,6 +21,7 @@ const meta: MetaComponent = {
     },
   },
   args: {
+    id: '',
     homeUrl: '/',
     textHome: 'Home',
     textBreadcrumbs: 'Breadcrumbs',
@@ -27,11 +29,24 @@ const meta: MetaComponent = {
     homeTextOnly: false,
     itemCount: 3,
   },
+  argTypes: {
+    id: {
+      name: 'id',
+      description:
+        'The `id` of the host element. The overflow menu id is derived from it (`<id>-menu`). If no `id` is set, a random one is generated. When set, it must be unique within the page.',
+      control: 'text',
+      table: {
+        category: 'General',
+        type: { summary: 'string' },
+      },
+    },
+  },
 };
 
 function render(args: Args) {
   return html`
     <post-breadcrumbs
+      id=${ifDefined(args.id || undefined)}
       home-url=${args.homeUrl}
       text-home=${args.textHome}
       text-breadcrumbs=${args.textBreadcrumbs}

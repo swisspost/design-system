@@ -205,6 +205,45 @@ describe('breadcrumbs', () => {
     });
   });
 
+  describe('ids', () => {
+    beforeEach(() => {
+      cy.getComponent('breadcrumbs', BREADCRUMBS_ID, 'concatenated');
+      cy.get('post-breadcrumbs[data-hydrated]', { timeout: 30000 }).as('breadcrumbs');
+    });
+
+    it('should not render duplicated ids in its shadow root', () => {
+      cy.get('@breadcrumbs')
+        .shadow()
+        .then($shadow => {
+          const ids = $shadow
+            .find('[id]')
+            .toArray()
+            .map(element => element.id);
+
+          expect(ids).to.have.length.greaterThan(0);
+          expect(new Set(ids).size, `ids: ${ids.join(', ')}`).to.equal(ids.length);
+        });
+    });
+
+    it('should update the overflow menu id when the host id changes', () => {
+      cy.get('@breadcrumbs').invoke('attr', 'id', 'custom-breadcrumbs');
+      cy.get('@breadcrumbs')
+        .shadow()
+        .find('nav:not(.invisible)')
+        .within(() => {
+          cy.get('post-menu').should('have.attr', 'id', 'custom-breadcrumbs-menu');
+          cy.get('post-menu-trigger').should('have.attr', 'for', 'custom-breadcrumbs-menu');
+        });
+
+      cy.get('@breadcrumbs').invoke('removeAttr', 'id');
+      cy.get('@breadcrumbs')
+        .shadow()
+        .find('nav:not(.invisible) post-menu')
+        .invoke('attr', 'id')
+        .should('match', /^b.+-menu$/);
+    });
+  });
+
   describe('home link', () => {
     describe('client-side routing (slotted anchor)', () => {
       beforeEach(() => {

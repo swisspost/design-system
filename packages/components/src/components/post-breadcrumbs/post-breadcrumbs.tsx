@@ -19,6 +19,8 @@ export class PostBreadcrumbs {
   private readonly effects = new EffectManager(this);
 
   private readonly mutationObserver = this.effects.createMutationObserver(this.updateAfterMutation);
+  private readonly idObserver = this.effects.createMutationObserver(this.updateId);
+  private readonly fallbackId = `b${nanoid(6)}`;
   private readonly resizeObserver = this.effects.createResizeObserver(
     this.effects.throttle(this.updateCollapsedItems, MEASUREMENT_DEBOUNCE_MS),
   );
@@ -92,7 +94,7 @@ export class PostBreadcrumbs {
   textMoreItems!: string;
 
   componentWillLoad() {
-    this.id = this.host.id || `b${nanoid(6)}`;
+    this.updateId();
     this.checkSlottedHomeAnchor();
   }
 
@@ -109,10 +111,16 @@ export class PostBreadcrumbs {
       characterData: true,
       subtree: true,
     });
+    this.idObserver.observe(this.host, { attributes: true, attributeFilter: ['id'] });
   }
 
   disconnectedCallback() {
     this.effects.disconnect();
+  }
+
+  /** Keeps the internal id in sync with the host's `id`, falling back to a generated one. */
+  private updateId() {
+    this.id = this.host.id || this.fallbackId;
   }
 
   private checkSlottedHomeAnchor() {
@@ -238,6 +246,11 @@ export class PostBreadcrumbs {
     if (!shadowRoot || !this.nav) return null;
 
     const clone = this.nav.cloneNode(true) as HTMLElement;
+
+    // The clone lives in the same shadow root as the live nav, so drop its ids (e.g. the overflow
+    // menu's) to avoid duplicates.
+    clone.querySelectorAll('[id]').forEach(element => element.removeAttribute('id'));
+
     const slots = clone.querySelectorAll('slot');
 
     // Deep clone the breadcrumb navigation and flatten its slots into the clone.
