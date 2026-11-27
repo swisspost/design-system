@@ -73,10 +73,7 @@ export class PostLanguageMenu {
   /* The complete accessible description */
   private get description(): string | undefined {
     const activeLanguage =
-      this.activeLang &&
-      document.querySelector<HTMLPostLanguageMenuItemElement>(
-        `post-language-menu-item[code="${this.activeLang}"]`,
-      );
+      this.activeLang && this.languageOptions.find(item => item.code === this.activeLang);
 
     if (!activeLanguage) return undefined;
 
