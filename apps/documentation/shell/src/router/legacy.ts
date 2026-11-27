@@ -8,8 +8,9 @@ const MANAGER_PATHS = new Set(['/', '/index.html']);
 const MANAGER_PARAMS = ['path', 'full', 'nav', 'panel', 'addons', 'shortcuts', 'singleStory'];
 
 /**
- * Rewrites URLs of the former Storybook manager UI (`/?path=/docs/<id>`, `?globals=…`, `?devModeEnabled=…`) to current URLs.
- * Old story URLs (`/?path=/story/<id>`) leave the shell and open the bare story.
+ * Rewrites URLs of the former Storybook manager UI (`/?path=/docs/<id>`,
+ * `?globals=…`, `?devModeEnabled=…`) to current URLs. Old story URLs
+ * (`/?path=/story/<id>`) leave the shell and open the bare story.
  */
 export function migrateLegacyUrl(url: URL, catalog: Catalog): URL | RedirectRoute | NotFoundRoute {
   const migrated = new URL(url);
@@ -34,7 +35,8 @@ export function migrateLegacyUrl(url: URL, catalog: Catalog): URL | RedirectRout
     return { type: 'redirect', href: migrateStoryUrl(id, migrated.searchParams) };
   }
 
-  // old "Copy deep link" URLs end with the story id, the story's anchor is `story--<id>`
+  // Old "Copy deep link" URLs end with the story id, while the story's anchor
+  // is `story--<id>`.
   const storyId = decodeUrlComponent(migrated.hash.slice(1));
   if (catalog.isStory(storyId)) migrated.hash = `story--${storyId}`;
 

@@ -9,7 +9,10 @@ import { getStoryRecord, type StoryRecord } from './story-records';
 const COPIED_TEXT = 'Copied!';
 const COPIED_DURATION_MS = 1500;
 
-/** "View full screen": opens the story of the canvas in the bare preview, with its current args. */
+/**
+ * "View full screen": opens the story of the canvas in the bare preview, with
+ * its current args.
+ */
 export function viewFullScreen(event: Event): void {
   if (!(event.target instanceof Element)) return;
 
@@ -25,7 +28,10 @@ export function viewFullScreen(event: Event): void {
   window.open(url, '_blank');
 }
 
-/** "Copy deep link": copies the shell URL of the page, which opens the story of the canvas with its current args. */
+/**
+ * "Copy deep link": copies the shell URL of the page, which opens the story of
+ * the canvas with its current args.
+ */
 export function copyDeepLink(event: Event): void {
   if (!(event.target instanceof Element)) return;
 

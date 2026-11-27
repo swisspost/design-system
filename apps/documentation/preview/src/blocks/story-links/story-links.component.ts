@@ -62,7 +62,8 @@ export class StoryLinksComponent extends LitElement {
 
   private readonly snapshotsMenuId = `story-links-snapshots-${instanceCount++}`;
 
-  // Snapshot stories live next to the stories they belong to, but their names don't follow a fixed pattern
+  // Snapshot stories live next to the stories they belong to, but their names
+  // don't follow a fixed pattern.
   private readonly snapshotsTask = new Task(this, {
     task: async ([devMode, metaId, metaTitle]) => {
       if (!devMode || (!metaId && !metaTitle)) return [];
@@ -92,9 +93,6 @@ export class StoryLinksComponent extends LitElement {
   }
 
   protected override createRenderRoot() {
-    /**
-     * Render template without shadow DOM.
-     */
     return this;
   }
 
@@ -120,7 +118,7 @@ export class StoryLinksComponent extends LitElement {
 
     if (snapshots.length === 0) return nothing;
 
-    // Show simple link if there is just one snapshot
+    // Show a simple link if there is just one snapshot.
     if (snapshots.length === 1) {
       return html`<a class="btn btn-secondary" href="${getHref(snapshots[0])}">
         Snapshot
@@ -128,7 +126,7 @@ export class StoryLinksComponent extends LitElement {
       </a>`;
     }
 
-    // Otherwise show a menu for all the snapshots
+    // Otherwise show a menu for all the snapshots.
     return html`
       <post-menu-trigger for="${this.snapshotsMenuId}">
         <button class="btn btn-secondary" type="button">

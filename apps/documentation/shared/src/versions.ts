@@ -26,8 +26,8 @@ const docsDependencies: Record<string, string> = {
 let request: Promise<Release[]> | null = null;
 
 /**
- * The releases listed in `versions.json`, newest first.
- * Pre-releases are only included on the "next" documentation site.
+ * The releases listed in `versions.json`, newest first. Pre-releases are only
+ * included on the "next" documentation site.
  */
 export function getReleases(): Promise<Release[]> {
   request ??= fetchReleases(LOCAL_VERSIONS_URL)

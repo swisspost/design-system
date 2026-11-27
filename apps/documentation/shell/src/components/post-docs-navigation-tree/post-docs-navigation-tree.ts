@@ -13,15 +13,23 @@ import './post-docs-navigation-tree.scss';
 
 const NEW_TAG: StatusTag = `${STATUS_TAG_PREFIX}new`;
 
+/**
+ * The navigation sections with their collapsible folders, rendered by the
+ * sidebar and the mobile sheet.
+ */
 @customElement('post-docs-navigation-tree')
 export class PostDocsNavigationTree extends LitElement {
   @property({ attribute: false }) public sections: NavigationSection[] = [];
   @property({ attribute: false }) public activePage: Page | null = null;
 
-  /** Prefixes the ids of the collapsibles, so that two trees can be on the same page. */
+  /**
+   * Prefixes the ids of the collapsibles, so that two trees can be on the same
+   * page.
+   */
   @property({ attribute: 'id-prefix' }) public idPrefix = 'navigation';
 
-  // read once per collapsible, `post-collapsible` owns its state after the first render
+  // Read once per collapsible, as `post-collapsible` owns its state after the
+  // first render.
   private readonly initiallyExpanded = new Map<string, boolean>();
 
   protected override createRenderRoot() {
@@ -31,7 +39,8 @@ export class PostDocsNavigationTree extends LitElement {
   protected override willUpdate() {
     if (!this.activePage) return;
 
-    // new folders leading to the active page start expanded, rendered ones are expanded in `updated`
+    // New folders leading to the active page start expanded, rendered ones are
+    // expanded in `updated`.
     for (const key of getAncestorKeys(this.sections, this.activePage.id)) {
       if (!this.initiallyExpanded.has(key)) this.initiallyExpanded.set(key, true);
     }
@@ -42,13 +51,15 @@ export class PostDocsNavigationTree extends LitElement {
   }
 
   /**
-   * Expands the folders leading to the active page and scrolls it into view.
-   * A hidden tree is skipped, `post-collapsible` cannot animate it: its owner calls this again once it is shown.
+   * Expands the folders leading to the active page and scrolls it into view. A
+   * hidden tree is skipped: call it again once the tree is shown.
    */
   public async revealActivePage(): Promise<void> {
+    // `post-collapsible` cannot animate a hidden tree.
     if (!this.activePage || this.getClientRects().length === 0) return;
 
-    // the collapsibles render in the next frame, collapsed ones only take their height then
+    // The collapsibles render in the next frame, collapsed ones only take their
+    // height then.
     await new Promise(resolve => requestAnimationFrame(resolve));
     if (this.getClientRects().length === 0) return;
 
@@ -61,8 +72,9 @@ export class PostDocsNavigationTree extends LitElement {
       if (collapsible) toggles.push(collapsible.toggle(true));
     }
 
-    // a toggle rejects when the tree is hidden during its animation (e.g. by the search):
-    // the collapsible is expanded, but its triggers still read collapsed
+    // A toggle rejects when the tree is hidden during its animation (e.g. by
+    // the search): the collapsible is expanded, but its triggers still read
+    // collapsed.
     await Promise.allSettled(toggles);
     for (const id of ids) {
       void this.querySelector<HTMLPostCollapsibleTriggerElement>(
@@ -134,7 +146,8 @@ export class PostDocsNavigationTree extends LitElement {
 
     const children = node.children.map(child => this.renderNode(child, child.depth));
 
-    // a page with subpages: the chevron expands the subpages, the label opens the page
+    // A page with subpages: the chevron expands the subpages, the label opens
+    // the page.
     if (node.page) {
       return html`
         <li>

@@ -12,7 +12,8 @@ import '../post-docs-navigation-tree/post-docs-navigation-tree';
 import '../post-docs-search/post-docs-search';
 import './post-docs-navigation-sheet.scss';
 
-// the fade of the `post-header` burger menu (`animations/fade.ts`, `headerEase`)
+// The fade of the `post-header` burger menu (`animations/fade.ts`,
+// `headerEase`).
 const FADE: KeyframeAnimationOptions = {
   duration: 350,
   easing: 'cubic-bezier(0.8, 0.2, 0.8, 0.7)',
@@ -20,10 +21,12 @@ const FADE: KeyframeAnimationOptions = {
 };
 
 /**
- * The navigation below the sidebar breakpoint, modelled on the `post-header` burger menu:
- * a bar with the current location toggles a panel that covers the page, with the preview settings as its footer.
+ * The navigation below the sidebar breakpoint, modelled on the `post-header`
+ * burger menu: a bar with the current location toggles a panel that covers the
+ * page, with the preview settings as its footer.
  *
- * @fires postDocsToggle - The panel opens (`detail: true`) or starts closing (`detail: false`).
+ * @fires postDocsToggle - The panel opens (`detail: true`) or starts closing
+ *   (`detail: false`).
  */
 @customElement('post-docs-navigation-sheet')
 export class PostDocsNavigationSheet extends LitElement {
@@ -36,7 +39,10 @@ export class PostDocsNavigationSheet extends LitElement {
   @state() private isExpanded = false;
   /** The panel is fading out, it can be opened again meanwhile. */
   @state() private isClosing = false;
-  /** The search results take the place of the navigation and the preview settings. */
+  /**
+   * The search results take the place of the navigation and the preview
+   * settings.
+   */
   @state() private isSearching = false;
 
   @query('.bar') private bar!: HTMLButtonElement;
@@ -54,13 +60,19 @@ export class PostDocsNavigationSheet extends LitElement {
     await this.expand();
   }
 
-  /** Opens the panel with the focus in the search field, e.g. for the search shortcut. */
+  /**
+   * Opens the panel with the focus in the search field, e.g. for the search
+   * shortcut.
+   */
   public async openSearch(): Promise<void> {
     await this.expand();
     this.search.focus();
   }
 
-  /** Closes the panel, e.g. after a navigation. The focus inside the panel goes back to the bar. */
+  /**
+   * Closes the panel, e.g. after a navigation. The focus inside the panel goes
+   * back to the bar.
+   */
   public async close(): Promise<void> {
     if (!this.isExpanded || this.isClosing) return;
 
@@ -70,7 +82,7 @@ export class PostDocsNavigationSheet extends LitElement {
     const isFinished = await this.fade('out');
     if (!isFinished || !this.isClosing) return;
 
-    // read now, the focus may have moved into the panel while it faded out
+    // Read now, as the focus may have moved into the panel while it faded out.
     const hadFocus = this.panel.contains(document.activeElement);
     this.isClosing = false;
     this.isExpanded = false;
@@ -89,7 +101,7 @@ export class PostDocsNavigationSheet extends LitElement {
     await this.updateComplete;
     if (!isReopening) void this.tree.revealActivePage();
 
-    // replaces a running fade-out, so that `close` stops there
+    // Replaces a running fade-out, so that `close` stops there.
     void this.fade('in');
   }
 
@@ -99,7 +111,10 @@ export class PostDocsNavigationSheet extends LitElement {
     );
   }
 
-  /** Resolves `true` when the animation ran to its end, `false` when another one replaced it. */
+  /**
+   * Resolves `true` when the animation ran to its end, `false` when another one
+   * replaced it.
+   */
   private async fade(direction: 'in' | 'out'): Promise<boolean> {
     this.animation?.cancel();
 

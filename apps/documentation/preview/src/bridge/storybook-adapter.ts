@@ -1,6 +1,6 @@
 /**
- * Adapts Storybook to the shell connection: Storybook's events are reported to the shell,
- * and the shell's messages are applied to Storybook.
+ * Adapts Storybook to the shell connection: Storybook's events are reported to
+ * the shell, and the shell's messages are applied to Storybook.
  */
 import { addons } from 'storybook/preview-api';
 import type { Channel } from 'storybook/internal/channels';
@@ -46,22 +46,24 @@ const SETTLED_PHASES = new Set(['completed', 'afterEach', 'finished', 'aborted',
 
 const ERROR_EVENTS = [STORY_MISSING, STORY_ERRORED, STORY_THREW_EXCEPTION];
 
-// the stories of a docs page start rendering shortly after the page itself
+// The stories of a docs page start rendering shortly after the page itself.
 const STORIES_START_DELAY_MS = 50;
 const STORIES_MAX_WAIT_MS = 1500;
 
 const shell = new ShellConnection();
 
-/** The origin of the shell, once it has connected. */
+/**
+ * The origin of the shell, once it has connected.
+ */
 export function getShellOrigin(): string | null {
   return shell.origin;
 }
 
 class StorybookAdapter {
-  // the page Storybook shows, once it has selected one
+  // The page Storybook shows, once it has selected one.
   private pageId: string | null = null;
 
-  // the page of the URL, which a reload shows again together with the globals
+  // The page of the URL, which a reload shows again together with the globals.
   private urlPage = readUrlPage();
 
   constructor(private readonly channel: Channel) {}
@@ -138,7 +140,9 @@ class StorybookAdapter {
   }
 }
 
-/** Calls `onRendered` once a docs page and the stories on it are rendered. */
+/**
+ * Calls `onRendered` once a docs page and the stories on it are rendered.
+ */
 class PageRenderWatcher {
   private readonly renderingStories = new Set<string>();
   private renderingPage: RenderingPage | null = null;
@@ -184,7 +188,7 @@ class PageRenderWatcher {
       return;
     }
 
-    // the source blocks of the canvases appear right after their story
+    // The source blocks of the canvases appear right after their story.
     requestAnimationFrame(() => {
       if (this.renderingStories.size === 0) this.finish(page);
     });

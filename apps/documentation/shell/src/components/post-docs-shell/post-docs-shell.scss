@@ -1,6 +1,7 @@
 @use '@swisspost/design-system-styles/mixins/media';
 
-// layout values without a token come from the Figma frames ("Storybook Redesign 26")
+// layout values without a token come from the Figma frames ("Storybook Redesign
+// 26")
 $bar-height: 40px;
 $sidebar-width: 300px;
 
@@ -31,7 +32,8 @@ post-docs-shell {
     z-index: 1;
   }
 
-  // the bar and the panel take part in the shell grid, the panel covers the main area
+  // the bar and the panel take part in the shell grid, the panel covers the
+  // main area
   > post-docs-navigation-sheet {
     display: contents;
 

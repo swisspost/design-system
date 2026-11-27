@@ -5,10 +5,12 @@ const STORY_SELECTOR = '.docs-story, [id^="story--"]';
 const FILE_PATTERN = /\.[a-z0-9]+$/i;
 
 /**
- * Hands the links of the docs page to the shell. The preview has `<base target="_parent">`,
- * so a link would otherwise load the preview URL into the shell window.
+ * Hands the clicks on the links of the docs page to the shell, which opens them
+ * instead of the browser.
  */
 export function interceptLinks(navigate: (href: string) => void): void {
+  // The preview has `<base target="_parent">`, so a link would otherwise load
+  // the preview URL into the shell window.
   document.addEventListener('click', (event: MouseEvent) => {
     if (event.defaultPrevented || event.button !== 0) return;
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
@@ -33,11 +35,12 @@ export function interceptLinks(navigate: (href: string) => void): void {
       return;
     }
 
-    // other links in stories are part of the demo
+    // Other links in stories are part of the demo.
     const url = new URL(anchor.href);
     if (isInStory || url.origin !== location.origin) return;
 
-    // relative links in the old format (`?path=/docs/…`) resolve to the preview
+    // Relative links in the old format (`?path=/docs/…`) resolve to the
+    // preview.
     if (url.pathname === PREVIEW_PATH) {
       if (!url.searchParams.has('path')) return;
       url.pathname = '/';
@@ -50,7 +53,8 @@ export function interceptLinks(navigate: (href: string) => void): void {
   });
 }
 
-// e.g. skiplinks: scrolls to and focuses the target, as the browser would
+// In-page links such as skip links: the target is scrolled to and focused, as
+// the browser would do.
 function followInStory(anchor: HTMLAnchorElement, id: string) {
   if (!id) return;
 

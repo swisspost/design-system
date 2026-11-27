@@ -26,6 +26,11 @@ import '../post-docs-preview/post-docs-preview';
 import '../post-docs-toolbar/post-docs-toolbar';
 import './post-docs-shell.scss';
 
+/**
+ * Owns the router, the globals store and the preview connection, and connects
+ * them: a route change shows the page in the preview, a globals change is
+ * applied to the preview and written into the URL.
+ */
 @customElement('post-docs-shell')
 export class PostDocsShell extends LitElement {
   @state() private route: Route | null = null;
@@ -33,9 +38,9 @@ export class PostDocsShell extends LitElement {
   @state() private previewSrc: string | null = null;
   @state() private catalog: Catalog | null = null;
   @state() private globals: Globals = DEFAULT_GLOBALS;
-  // the sheet covers the page, which must not take the focus meanwhile
+  // The sheet covers the page, which must not take the focus meanwhile.
   @state() private isSheetOpen = false;
-  // the page is rendering, its scroll position is restored once it is rendered
+  // The page is rendering, its scroll position is restored once it is rendered.
   @state() private previewLoading: PreviewLoading | null = null;
 
   private readonly previewConnection = new PreviewConnection(PREVIEW_ORIGIN);
@@ -120,7 +125,8 @@ export class PostDocsShell extends LitElement {
     this.trackPageView(route, event.previous);
   };
 
-  // Back and Forward keep the current globals, the history entry may hold older ones
+  // Back and Forward keep the current globals, as the history entry may hold
+  // older ones.
   private syncGlobals(route: PageRoute, fromHistory: boolean) {
     if (route.globals && !fromHistory) this.globalsStore.set(route.globals);
     this.router?.replaceGlobals(this.globalsStore.current);
@@ -146,7 +152,8 @@ export class PostDocsShell extends LitElement {
     }
   }
 
-  // tracked with the globals in the URL, a new hash on the same page is not a page view
+  // Tracked once the globals are in the URL. A new hash on the same page is not
+  // a page view.
   private trackPageView(route: Route, previous: Route | null) {
     const isSamePage =
       route.type === 'page' && previous?.type === 'page' && previous.page.id === route.page.id;
@@ -161,7 +168,8 @@ export class PostDocsShell extends LitElement {
     if (this.route?.type === 'page') this.previewConnection.scrollTo(this.route.hash);
   };
 
-  // the preview shows the error, e.g. the exception of a page that failed to render
+  // The preview shows the error, e.g. the exception of a page that failed to
+  // render.
   private readonly handlePreviewError = (event: PreviewMessageEvent<'error'>) => {
     if (event.payload.pageId === this.pageId) this.previewLoading = null;
   };
@@ -181,7 +189,7 @@ export class PostDocsShell extends LitElement {
   private readonly handleKeydown = (event: KeyboardEvent) => {
     if (getShortcut(event) !== 'search') return;
 
-    // not the search field of the browser
+    // Ctrl+K would otherwise focus the browser's own search field.
     event.preventDefault();
     this.openSearch();
   };
@@ -198,7 +206,8 @@ export class PostDocsShell extends LitElement {
     }
   }
 
-  // The sidebar takes over from the sheet, which would otherwise stay open and keep the page inert.
+  // The sidebar takes over from the sheet, which would otherwise stay open and
+  // keep the page inert.
   private readonly handleBreakpointChange = (event: MediaQueryListEvent) => {
     if (event.matches) void this.querySelector('post-docs-navigation-sheet')?.close();
   };
@@ -211,7 +220,7 @@ export class PostDocsShell extends LitElement {
     this.isSheetOpen = event.detail;
   };
 
-  // back to the page, once the sheet no longer makes it inert
+  // Back to the page, once the sheet no longer makes it inert.
   private readonly handleSearchExit = async () => {
     void this.querySelector('post-docs-navigation-sheet')?.close();
     await this.updateComplete;
@@ -223,7 +232,8 @@ export class PostDocsShell extends LitElement {
 
     const notFound = this.route?.type === 'not-found' ? this.renderNotFound() : nothing;
 
-    // the preview stays loaded, so that it shows the next page without a reload
+    // The preview stays loaded, so that it shows the next page without a
+    // reload.
     return html`${notFound}${this.renderPreview()}`;
   }
 
@@ -267,7 +277,8 @@ export class PostDocsShell extends LitElement {
     `;
   }
 
-  // the error page template of the design system
+  // The error page template of the design system, so that the error pages look
+  // like the ones of other Post sites.
   private renderErrorPage(
     type: string,
     title: string,

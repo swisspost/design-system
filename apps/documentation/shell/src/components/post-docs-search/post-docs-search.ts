@@ -9,17 +9,22 @@ import './post-docs-search.scss';
 const NEW_TAG: StatusTag = `${STATUS_TAG_PREFIX}new`;
 
 /**
- * A combobox whose options are links. The field and the results are laid out by the container,
- * which hides its navigation while the results are shown.
+ * A combobox whose options are links. The field and the results are laid out by
+ * the container, which hides its navigation while the results are shown.
  *
- * @fires postDocsSearchToggle - The results are shown (`detail: true`) or hidden (`detail: false`).
- * @fires postDocsSearchExit - The search is left: Escape in the empty field, or a result opened with Enter.
+ * @fires postDocsSearchToggle - The results are shown (`detail: true`) or
+ *   hidden (`detail: false`).
+ * @fires postDocsSearchExit - The search is left: Escape in the empty field, or
+ *   a result opened with Enter.
  */
 @customElement('post-docs-search')
 export class PostDocsSearch extends LitElement {
   @property({ attribute: false }) public index: SearchIndex | null = null;
 
-  /** Prefixes the ids of the field and the results, so that two searches can be on the same page. */
+  /**
+   * Prefixes the ids of the field and the results, so that two searches can be
+   * on the same page.
+   */
   @property({ attribute: 'id-prefix' }) public idPrefix = 'search';
 
   @state() private query = '';
@@ -63,13 +68,17 @@ export class PostDocsSearch extends LitElement {
     }
   }
 
-  /** Focuses the field and selects its text, e.g. for the search shortcut. */
+  /**
+   * Focuses the field and selects its text, e.g. for the search shortcut.
+   */
   public override focus() {
     this.input.focus();
     this.input.select();
   }
 
-  /** Empties the field, the navigation is shown again. */
+  /**
+   * Empties the field, the navigation is shown again.
+   */
   public clear(): void {
     this.query = '';
   }
@@ -95,14 +104,16 @@ export class PostDocsSearch extends LitElement {
       case 'Enter':
         if (count === 0) return;
 
-        // a click on the link, the router opens it like any other link, then the page takes the focus
+        // A click on the link: the router opens it like any other link, then
+        // the page takes the focus.
         event.preventDefault();
         this.querySelector<HTMLAnchorElement>(`#${this.optionId(this.activeIndex)}`)?.click();
         this.exit();
         break;
 
       case 'Escape':
-        // the search owns Escape: a query is cleared, an empty field leaves the search
+        // The search owns Escape: a query is cleared, an empty field leaves the
+        // search.
         event.preventDefault();
         event.stopPropagation();
 
@@ -121,7 +132,8 @@ export class PostDocsSearch extends LitElement {
     this.input.focus();
   }
 
-  // a click that opens the page elsewhere, e.g. in a new tab, keeps the results
+  // A click that opens the page elsewhere, e.g. in a new tab, keeps the
+  // results.
   private handleOptionClick(event: MouseEvent) {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     this.clear();

@@ -4,13 +4,17 @@ import type { Catalog, Page } from './catalog';
 import { getRootDefinition } from '../navigation/navigation';
 import { isListed } from '../navigation/tree';
 
-/** A page as the search sees it. */
+/**
+ * A page as the search sees it.
+ */
 export interface SearchEntry {
   page: Page;
   href: string;
   /** The last segment of the title, e.g. "Form Input". */
   name: string;
-  /** Where the page is, e.g. "Foundations / Layout", empty for top-level pages. */
+  /**
+   * Where the page is, e.g. "Foundations / Layout", empty for top-level pages.
+   */
   context: string;
   /** The words the page is also found by, from its `keyword:` tags. */
   keywords: string[];
@@ -19,14 +23,20 @@ export interface SearchEntry {
 
 export interface SearchResult {
   entry: SearchEntry;
-  /** The keyword that matched, if the page was found by a keyword rather than its name. */
+  /**
+   * The keyword that matched, if the page was found by a keyword rather than
+   * its name.
+   */
   keyword: string | null;
 }
 
 export class SearchIndex {
   private readonly fuse: Fuse<SearchEntry>;
 
-  /** Outside the dev mode, the search finds the pages of the navigation; in dev mode, all pages. */
+  /**
+   * Outside dev mode, the search finds the pages of the navigation; in dev
+   * mode, all pages.
+   */
   constructor(catalog: Catalog, devMode: boolean) {
     const entries: SearchEntry[] = [];
 
@@ -64,7 +74,9 @@ export class SearchIndex {
     });
   }
 
-  /** The matching pages, best matches first. */
+  /**
+   * The matching pages, best matches first.
+   */
   public search(query: string): SearchResult[] {
     const text = query.trim();
     if (!text) return [];
@@ -94,7 +106,7 @@ function getContext(page: Page): string {
 
   if (layout === 'home') return 'Home';
 
-  // a page titled with its root only (e.g. "Introduction") has no context
+  // A page titled with its root only (e.g. "Introduction") has no context.
   if (rest.length === 0) return '';
 
   const folders = rest.slice(0, -1);

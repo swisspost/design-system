@@ -62,7 +62,7 @@ export function parseArgs(value: string): Record<string, ArgValue> {
     if (separator < 1) continue;
 
     const key = pair.slice(0, separator);
-    // older links encoded the values twice
+    // Older links encoded the values twice.
     const raw = decodeUrlComponent(pair.slice(separator + 1));
     if (!STRING_REGEX.test(key)) continue;
 

@@ -29,6 +29,10 @@ export interface Page {
   tags: string[];
 }
 
+/**
+ * The pages of the Storybook index (`/index.json`), by id and by path, with
+ * their readable URLs.
+ */
 export class Catalog {
   public readonly home: Page | null;
   public readonly pages: Page[];
@@ -95,7 +99,10 @@ export class Catalog {
     return this.storyTitles.has(id);
   }
 
-  /** The readable URL of a page, or its bookmark URL if another page has the same path. */
+  /**
+   * The readable URL of a page, or its bookmark URL if another page has the
+   * same path.
+   */
   public canonicalURL(page: Page, options?: UrlOptions): string {
     if (page === this.home) return pageUrl(page.title, options).replace(page.path, '/');
     if (this.pagesByPath.get(page.path) === page) return pageUrl(page.title, options);

@@ -28,6 +28,10 @@ interface RouterEventMap {
   'route-change': RouteChangeEvent;
 }
 
+/**
+ * Resolves the URL to a route and intercepts same-origin link clicks and
+ * Back/Forward, so that pages change without a reload.
+ */
 export class Router extends TypedEventTarget<RouterEventMap> {
   private route: Route | null = null;
   private listeners: AbortController | null = null;
@@ -59,7 +63,9 @@ export class Router extends TypedEventTarget<RouterEventMap> {
     this.go(new URL(href, location.href), options);
   }
 
-  /** Writes the globals into the URL, without a history entry or route change. */
+  /**
+   * Writes the globals into the URL, without a history entry or route change.
+   */
   public replaceGlobals(globals: Globals): void {
     if (this.route?.type !== 'page') return;
 

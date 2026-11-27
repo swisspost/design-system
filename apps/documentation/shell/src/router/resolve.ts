@@ -36,10 +36,12 @@ export function resolve(url: URL, catalog: Catalog): Route {
 }
 
 /**
- * A shared URL holds all its globals, the missing ones are the defaults.
- * Hidden globals are never shared, a missing one keeps its current value.
+ * Reads the globals of a URL, `null` if it has none. If it has a sharable
+ * global, the missing sharable ones are the defaults. A missing hidden global
+ * is left out, so that it keeps its current value.
  */
 function readGlobals(params: Record<string, string>): Partial<Globals> | null {
+  // A shared URL holds all its sharable globals, but never the hidden ones.
   const isShared = SHARABLE_GLOBAL_NAMES.some(name => Object.hasOwn(params, name));
   const names = GLOBAL_NAMES.filter(
     name => Object.hasOwn(params, name) || (isShared && SHARABLE_GLOBAL_NAMES.includes(name)),

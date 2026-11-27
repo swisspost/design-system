@@ -8,7 +8,9 @@ export const SEARCH_SHORTCUT = {
   keys: IS_APPLE ? 'Meta+K' : 'Control+K',
 };
 
-/** The shortcut of a key press, if it is one. */
+/**
+ * The shortcut of a key press, if it is one.
+ */
 export function getShortcut(event: KeyboardEvent): Shortcut | null {
   const hasModifier = IS_APPLE ? event.metaKey : event.ctrlKey;
   const hasOtherModifier =

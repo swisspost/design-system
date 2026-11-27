@@ -1,8 +1,9 @@
 /**
  * Applies the globals to the preview document.
  *
- * Docs pages stay light: the scheme and palette only apply to the canvases of the stories.
- * Story views apply them to the whole document, together with the story's own `globals`.
+ * Docs pages stay light: the scheme and palette only apply to the canvases of
+ * the stories. Story views apply them to the whole document, together with the
+ * story's own `globals`.
  */
 import {
   compareGlobals,
@@ -32,7 +33,10 @@ class GlobalsApplier {
     if (isDocsView) this.observeCanvases();
   }
 
-  /** Applies the `globals` of the story shown in a story view, e.g. `globals: { appearance: 'compact' }`. */
+  /**
+   * Applies the `globals` of the story shown in a story view, e.g.
+   * `globals: { appearance: 'compact' }`.
+   */
   public setStoryGlobals(globals: Record<string, unknown>): void {
     if (isDocsView) return;
 
@@ -58,19 +62,23 @@ class GlobalsApplier {
       applyToCanvases(globals);
     } else {
       document.documentElement.dataset.colorScheme = globals.scheme;
-      // the default palette is the page itself, so that stories look the same as without the shell
+      // The default palette is the page itself, so that stories look the same
+      // as without the shell.
       setPalette(document.body, globals.palette === 'default' ? null : globals.palette);
     }
   }
 
   /**
-   * Replaces the stylesheet once the new one has loaded, so that the page is never unstyled.
-   * It is kept last in the head: the design-system styles must win over the docs styles, which are injected after `preview-head.html`.
+   * Switches to the given design-system stylesheet. The current one stays until
+   * the new one has loaded, so that the page is never unstyled.
    */
   private setStylesheet(href: string) {
     const current = document.getElementById(STYLESHEET_ID);
     if (!current) return;
 
+    // The stylesheet is also replaced when it is no longer the last one in the
+    // head: the design-system styles must win over the docs styles, which
+    // Storybook injects after `preview-head.html`.
     this.pendingStylesheet?.remove();
     this.pendingStylesheet = isStylesheetApplied(current, href)
       ? null
@@ -98,10 +106,12 @@ class GlobalsApplier {
   }
 
   /**
-   * Canvases render after the docs page, and again when React resets their classes.
-   * The observer runs before the next paint, so that they never show without the globals.
+   * Applies the globals to the canvases whenever they render.
    */
   private observeCanvases() {
+    // Canvases render after the docs page, and again when React resets their
+    // classes. The observer runs before the next paint, so that they never show
+    // without the globals.
     const observer = new MutationObserver(mutations => {
       if (this.appliedGlobals && mutations.some(isCanvasMutation)) {
         applyToCanvases(this.appliedGlobals);
@@ -149,7 +159,8 @@ function isCanvasMutation(mutation: MutationRecord): boolean {
   );
 }
 
-// the classes only change when needed, any change of a canvas class notifies the observer again
+// The classes only change when needed, as any change of a canvas class notifies
+// the observer again.
 function setPalette(element: HTMLElement, palette: string | null) {
   const paletteClass = palette ? `palette-${palette}` : null;
   const staleClasses = PALETTE_CLASSES.filter(

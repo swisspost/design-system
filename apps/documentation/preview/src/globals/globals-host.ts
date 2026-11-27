@@ -1,8 +1,9 @@
 /**
  * The globals of a preview document.
  *
- * The docs page gets them from its URL and from the shell. Stories with `inline: false` render in
- * their own iframe inside the docs page, whose URL has no globals: they follow the docs page instead.
+ * The docs page gets them from its URL and from the shell. Stories with
+ * `inline: false` render in their own iframe inside the docs page, whose URL
+ * has no globals: they follow the docs page instead.
  */
 import { TypedEventTarget } from '@shared/events';
 import {
@@ -64,12 +65,15 @@ function getParentHost(): GlobalsHost | null {
   try {
     return window.parent[HOST_KEY] ?? null;
   } catch {
-    // the parent is on another origin, e.g. the shell in development
+    // The parent is on another origin, e.g. the shell in development.
     return null;
   }
 }
 
-/** Dispatches a `GlobalsChangeEvent` whenever the globals change. */
+/**
+ * The globals of this preview document. Dispatches a `GlobalsChangeEvent`
+ * whenever they change.
+ */
 export const globalsHost = new GlobalsHost();
 
 window[HOST_KEY] = globalsHost;

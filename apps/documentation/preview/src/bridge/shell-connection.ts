@@ -20,14 +20,14 @@ export class ShellMessageEvent<T extends ShellMessageType = ShellMessageType> ex
 type ShellConnectionEventMap = { [T in ShellMessageType]: ShellMessageEvent<T> };
 
 /**
- * Talks to the shell. Dispatches a `ShellMessageEvent` for every message of the shell.
- * It sends nothing until the shell has connected, so the preview keeps working on its own.
+ * Talks to the shell. Dispatches a `ShellMessageEvent` for every message of the
+ * shell.
  */
 export class ShellConnection extends TypedEventTarget<ShellConnectionEventMap> {
   private shellOrigin: string | null = null;
   private listeners: AbortController | null = null;
 
-  // the page the preview shows, once it is ready
+  // The page the preview shows, once it is ready.
   private pageId: string | null = null;
 
   /** The origin of the shell, once it has connected. */
@@ -46,8 +46,14 @@ export class ShellConnection extends TypedEventTarget<ShellConnectionEventMap> {
     this.shellOrigin = null;
   }
 
-  /** The preview shows the page. The shell is told once, as soon as both are ready. */
+  /**
+   * Reports that the preview is ready and shows the given page. The shell
+   * receives `ready` once per connection: right away if it has already
+   * connected, otherwise when it connects.
+   */
   public ready(pageId: string): void {
+    // Only the first page is reported, the shell chooses the next ones itself.
+    // A shell that connects later still receives the page shown by then.
     const wasReady = this.pageId !== null;
 
     this.pageId = pageId;
@@ -90,6 +96,8 @@ export class ShellConnection extends TypedEventTarget<ShellConnectionEventMap> {
   }
 
   private send<T extends PreviewMessageType>(type: T, payload: MessagePayload<T>) {
+    // Nothing is sent until the shell has connected, so that the preview also
+    // works on its own.
     if (this.shellOrigin) window.parent.postMessage(toEnvelope(type, payload), this.shellOrigin);
   }
 }

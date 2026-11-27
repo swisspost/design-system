@@ -6,6 +6,10 @@ import './post-docs-version-menu.scss';
 
 const MENU_ID = 'version-menu';
 
+/**
+ * The documented release and the other releases from `versions.json`, each with
+ * the versions of its main dependencies.
+ */
 @customElement('post-docs-version-menu')
 export class PostDocsVersionMenu extends LitElement {
   @state() private releases: Release[] = [];
@@ -89,7 +93,8 @@ function getThirdPartyDependencies(release: Release): Dependency[] {
   return dependencies;
 }
 
-// the logos are named after the package scope or name: `@angular/core` → `logo-angular.svg`
+// The logos are named after the package scope or name: `@angular/core` →
+// `logo-angular.svg`.
 function renderDependency(dependency: Dependency) {
   const technology = /^@?([^/]+)/.exec(dependency.name)?.[1] ?? dependency.name;
 

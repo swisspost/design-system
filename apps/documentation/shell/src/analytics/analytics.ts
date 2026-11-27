@@ -1,6 +1,9 @@
 export interface AnalyticsConfig {
   gtmId: string;
-  /** The host prefixes of each environment, the first environment with a matching prefix is used. */
+  /**
+   * The host prefixes of each environment, the first environment with a
+   * matching prefix is used.
+   */
   environments: Record<string, string[]>;
   fallbackEnvironment: string;
   sourceCodeVersion: string;
@@ -19,7 +22,7 @@ declare global {
 }
 
 /**
- * Google Tag Manager: `page_context` for the first page view, `page_change` for the next ones.
+ * Sends the page views to Google Tag Manager.
  */
 export class Analytics {
   private readonly config: AnalyticsConfig;
@@ -29,6 +32,9 @@ export class Analytics {
     this.config = config;
   }
 
+  /**
+   * Loads Google Tag Manager.
+   */
   public start(): void {
     window.dataLayer ??= [];
     this.push({ 'gtm.start': Date.now(), 'event': 'gtm.js' });
@@ -39,7 +45,10 @@ export class Analytics {
     document.head.append(script);
   }
 
-  /** Call it once the document title is the one of the page. */
+  /**
+   * Sends a page view: `page_context` for the first one, `page_change` for the
+   * next ones. Call it once the document title is the one of the new page.
+   */
   public trackPage(): void {
     const page = {
       ...this.config.pageValues,

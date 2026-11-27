@@ -9,6 +9,10 @@ import '../post-docs-navigation-tree/post-docs-navigation-tree';
 import '../post-docs-search/post-docs-search';
 import './post-docs-navigation-sidebar.scss';
 
+/**
+ * The navigation from the sidebar breakpoint up: the search above the tree,
+ * whose results take its place.
+ */
 @customElement('post-docs-navigation-sidebar')
 export class PostDocsNavigationSidebar extends LitElement {
   @property({ attribute: false }) public sections: NavigationSection[] = [];
@@ -29,7 +33,8 @@ export class PostDocsNavigationSidebar extends LitElement {
     this.search.focus();
   }
 
-  // a hidden tree cannot reveal the active page, a page opened from the results is revealed once the tree is back
+  // A hidden tree cannot reveal the active page, so a page opened from the
+  // results is revealed once the tree is back.
   private async handleSearchToggle(event: CustomEvent<boolean>) {
     this.isSearching = event.detail;
     if (this.isSearching) return;

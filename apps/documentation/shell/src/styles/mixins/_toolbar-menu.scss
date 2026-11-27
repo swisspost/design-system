@@ -4,7 +4,8 @@ $line-height: 18px;
 // the radius of the design-system focus ring
 $focus-radius: 4px;
 
-// a `post-menu-trigger` button and its `post-menu`, as used in the toolbar and the mobile navigation
+// a `post-menu-trigger` button and its `post-menu`, as used in the toolbar and
+// the mobile navigation
 @mixin toolbar-menu {
   post-menu-trigger > button {
     background: none;
@@ -21,7 +22,8 @@ $focus-radius: 4px;
   }
 
   post-menu {
-    // the menu opens in the top layer, its host must not take part in the surrounding layout
+    // the menu opens in the top layer, its host must not take part in the
+    // surrounding layout
     display: contents;
 
     &::part(post-menu) {

@@ -10,14 +10,19 @@ import {
 import './post-docs-globals-menus.scss';
 
 /**
- * A menu per global that is not hidden (theme, appearance, color scheme, palette).
+ * A menu per global that is not hidden (theme, appearance, color scheme,
+ * palette).
  *
- * @fires postDocsGlobalsChange - The user picked another value, `detail` holds the changed global.
+ * @fires postDocsGlobalsChange - The user picked another value, `detail` holds
+ *   the changed global.
  */
 @customElement('post-docs-globals-menus')
 export class PostDocsGlobalsMenus extends LitElement {
   @property({ attribute: false }) public globals: Globals = DEFAULT_GLOBALS;
-  /** Makes the menu ids unique, the menus are rendered in the toolbar and in the navigation sheet. */
+  /**
+   * Prefixes the ids of the menus, so that the toolbar and the navigation sheet
+   * can both render them.
+   */
   @property({ attribute: 'id-prefix' }) public idPrefix = 'globals';
 
   protected override createRenderRoot() {

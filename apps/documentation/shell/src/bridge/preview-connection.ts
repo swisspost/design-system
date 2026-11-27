@@ -24,7 +24,10 @@ export class PreviewMessageEvent<T extends PreviewMessageType = PreviewMessageTy
 
 type PreviewConnectionEventMap = { [T in PreviewMessageType]: PreviewMessageEvent<T> };
 
-/** Talks to the preview iframe. Dispatches a `PreviewMessageEvent` for every message of the preview. */
+/**
+ * Talks to the preview iframe. Dispatches a `PreviewMessageEvent` for every
+ * message of the preview.
+ */
 export class PreviewConnection extends TypedEventTarget<PreviewConnectionEventMap> {
   private readonly previewOrigin: string;
   private previewPage: PreviewPage | null = null;
@@ -60,13 +63,17 @@ export class PreviewConnection extends TypedEventTarget<PreviewConnectionEventMa
     this.isPreviewReady = false;
   }
 
-  /** Shows the page in the preview once it is ready, without reloading it. */
+  /**
+   * Shows the page in the preview once it is ready, without reloading it.
+   */
   public showPage(page: PreviewPage): void {
     this.requestedPage = page;
     this.sendPage();
   }
 
-  /** Applies the globals to the preview once it is ready, without reloading it. */
+  /**
+   * Applies the globals to the preview once it is ready, without reloading it.
+   */
   public setGlobals(globals: Globals): void {
     this.requestedGlobals = globals;
     this.sendGlobals();
@@ -76,7 +83,8 @@ export class PreviewConnection extends TypedEventTarget<PreviewConnectionEventMa
     if (this.isPreviewReady) this.send('scroll-to', { hash });
   }
 
-  // every load is a new preview document (also a reload), which waits for its own `connect`
+  // Every load is a new preview document (also a reload), which waits for its
+  // own `connect`.
   private readonly handleLoad = () => {
     this.isPreviewReady = false;
     this.previewPage = null;
@@ -95,7 +103,7 @@ export class PreviewConnection extends TypedEventTarget<PreviewConnectionEventMa
       this.previewPage = null;
       this.previewGlobals = null;
 
-      // the globals first, so that the page renders with them
+      // The globals go first, so that the page renders with them.
       this.sendGlobals();
       this.sendPage();
     }
