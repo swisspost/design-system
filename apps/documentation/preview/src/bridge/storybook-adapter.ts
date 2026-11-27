@@ -17,7 +17,7 @@ import {
 import { stringifyGlobals } from '@shared/globals';
 import { previewUrl } from '@shared/urls';
 import { globalsHost } from '@preview/globals/globals-host';
-import { interceptLinks } from './links';
+import { interceptLinks, linkToShell } from './links';
 import { ShellConnection, type ShellMessageEvent } from './shell-connection';
 import { forwardShortcuts } from './shortcuts';
 
@@ -82,7 +82,7 @@ class StorybookAdapter {
 
     for (const event of ERROR_EVENTS) this.channel.on(event, this.handleStoryError);
 
-    new PageRenderWatcher(this.channel, id => shell.rendered(id)).start();
+    new PageRenderWatcher(this.channel, this.handlePageRendered).start();
   }
 
   private applyShellMessages() {
@@ -99,8 +99,17 @@ class StorybookAdapter {
     shell.error(id);
   };
 
+  private readonly handlePageRendered = (id: string) => {
+    if (shell.origin) linkToShell(shell.origin);
+    shell.rendered(id);
+  };
+
   private readonly handleConnect = () => {
-    interceptLinks(href => shell.navigate(href));
+    if (shell.origin) {
+      interceptLinks(shell.origin, href => shell.navigate(href));
+      linkToShell(shell.origin);
+    }
+
     forwardShortcuts(name => shell.shortcut(name));
   };
 
