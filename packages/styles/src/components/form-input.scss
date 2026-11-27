@@ -113,6 +113,17 @@ input.form-control {
       border-left: inherit;
     }
 
+    &.is-valid,
+    &.is-invalid {
+      &::file-selector-button {
+        padding-inline-end: calc(
+          #{tokens.get('input-padding-inline-end')} +
+            #{tokens.get('input-validation-icon-position-inline-end')} +
+            #{tokens.get('input-sizing-icon')}
+        );
+      }
+    }
+
     // Fix Safari cutoff when change the initial position of the selector button.
     /* stylelint-disable-next-line */
     @supports (background: -webkit-named-image(i)) {
@@ -165,16 +176,34 @@ input.form-control {
           }
         }
       }
-    }
 
-    &.is-valid,
-    &.is-invalid {
-      &::file-selector-button {
-        padding-inline-end: calc(
-          #{tokens.get('input-padding-inline-end')} +
-            #{tokens.get('input-validation-icon-position-inline-end')} +
-            #{tokens.get('input-sizing-icon')}
-        );
+      // The custom button replaces the native one, so it has to reserve the space of the validation icon
+      &.is-valid,
+      &.is-invalid {
+        &::file-selector-button {
+          padding-inline-end: 0;
+        }
+
+        &::after {
+          padding-inline-end: calc(
+            #{tokens.get('input-padding-inline-end')} +
+              #{tokens.get('input-validation-icon-position-inline-end')} +
+              #{tokens.get('input-sizing-icon')}
+          );
+          background-repeat: no-repeat;
+          background-size: tokens.get('input-sizing-icon') tokens.get('input-sizing-icon');
+          background-position: center right tokens.get('input-validation-icon-position-inline-end');
+        }
+      }
+
+      // The input background is covered by the custom button, so the icon is drawn on the button itself.
+      // With floating labels, the icon is already drawn by the .form-floating::after element.
+      *:not(.form-floating) > &.is-valid:not(:disabled)::after {
+        background-image: var(--post-signal-icon-success);
+      }
+
+      *:not(.form-floating) > &.is-invalid:not(:disabled)::after {
+        background-image: var(--post-signal-icon-error);
       }
     }
 
@@ -399,7 +428,7 @@ input.form-control {
       --post-form-floating-validation-icon-inline-end,
       #{tokens.get('input-validation-icon-position-inline-end')}
     );
-    z-index: 1;
+    z-index: 2;
     pointer-events: none;
     background-image: var(--post-signal-icon-error);
   }
