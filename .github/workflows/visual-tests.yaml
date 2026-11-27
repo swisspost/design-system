@@ -134,7 +134,7 @@ jobs:
       - name: Check VRT approval in PR description
         if: github.event_name == 'pull_request' && steps.vrt-test.outcome == 'failure'
         id: check-approval
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
         with:
           script: |
             const { data: pr } = await github.rest.pulls.get({
@@ -180,7 +180,7 @@ jobs:
 
       - name: Comment PR with VRT results
         if: github.event_name == 'pull_request' && steps.vrt-test.outcome == 'failure' && steps.check-approval.outputs.approved != 'true'
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
         with:
           script: |
             await github.rest.issues.createComment({
