@@ -49,8 +49,8 @@ export class PreviewConnection extends TypedEventTarget<PreviewConnectionEventMa
     this.listeners = new AbortController();
     const signal = this.listeners.signal;
 
-    frame.addEventListener('load', this.onLoad, { signal });
-    window.addEventListener('message', this.onMessage, { signal });
+    frame.addEventListener('load', this.handleLoad, { signal });
+    window.addEventListener('message', this.handleMessage, { signal });
   }
 
   public disconnect() {
@@ -97,14 +97,14 @@ export class PreviewConnection extends TypedEventTarget<PreviewConnectionEventMa
   }
 
   // every load is a new preview document (also a reload), which waits for its own `connect`
-  private readonly onLoad = () => {
+  private readonly handleLoad = () => {
     this.previewReady = false;
     this.previewPage = null;
     this.previewGlobals = null;
     this.send('connect', {});
   };
 
-  private readonly onMessage = (event: MessageEvent) => {
+  private readonly handleMessage = (event: MessageEvent) => {
     if (!this.previewFrame || event.source !== this.previewFrame.contentWindow) return;
     if (event.origin !== this.previewOrigin || !isEnvelope<PreviewMessageType>(event.data)) return;
 

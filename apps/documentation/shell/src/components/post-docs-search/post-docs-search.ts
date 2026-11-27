@@ -99,12 +99,12 @@ export class PostDocsSearch extends LitElement {
             aria-activedescendant=${hasResults ? this.optionId(this.activeIndex) : nothing}
             aria-keyshortcuts=${SEARCH_SHORTCUT.keys}
             .value=${this.query}
-            @input=${this.onInput}
-            @keydown=${this.onKeydown}
+            @input=${this.handleInput}
+            @keydown=${this.handleKeydown}
           />
           ${this.isActive
             ? html`
-                <button type="button" class="clear d-flex" @click=${this.onClear}>
+                <button type="button" class="clear d-flex" @click=${this.handleClear}>
                   <post-icon class="w-16 h-16" name="closex" aria-hidden="true"></post-icon>
                   <span class="visually-hidden">Clear the search</span>
                 </button>
@@ -149,7 +149,7 @@ export class PostDocsSearch extends LitElement {
           tabindex="-1"
           href=${entry.href}
           aria-selected=${String(index === this.activeIndex)}
-          @click=${this.onOptionClick}
+          @click=${this.handleOptionClick}
         >
           <post-icon
             class="flex-shrink-0 w-16 h-16 mt-4"
@@ -183,11 +183,11 @@ export class PostDocsSearch extends LitElement {
     return `${this.idPrefix}-option-${index}`;
   }
 
-  private onInput(event: InputEvent) {
+  private handleInput(event: InputEvent) {
     if (event.target instanceof HTMLInputElement) this.query = event.target.value;
   }
 
-  private onKeydown(event: KeyboardEvent) {
+  private handleKeydown(event: KeyboardEvent) {
     const count = this.results.length;
 
     switch (event.key) {
@@ -225,13 +225,13 @@ export class PostDocsSearch extends LitElement {
     this.dispatchEvent(new CustomEvent('postDocsSearchExit', { bubbles: true }));
   }
 
-  private onClear() {
+  private handleClear() {
     this.clear();
     this.input.focus();
   }
 
   // a click that opens the page elsewhere, e.g. in a new tab, keeps the results
-  private onOptionClick(event: MouseEvent) {
+  private handleOptionClick(event: MouseEvent) {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     this.clear();
   }

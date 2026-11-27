@@ -88,15 +88,15 @@ export class StoryLinksComponent extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    globalsHost.addEventListener('globals-change', this.onGlobalsChange);
+    globalsHost.addEventListener('globals-change', this.handleGlobalsChange);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    globalsHost.removeEventListener('globals-change', this.onGlobalsChange);
+    globalsHost.removeEventListener('globals-change', this.handleGlobalsChange);
   }
 
-  private readonly onGlobalsChange = (event: GlobalsChangeEvent) => {
+  private readonly handleGlobalsChange = (event: GlobalsChangeEvent) => {
     this.devMode = event.globals.mode === 'dev';
   };
 

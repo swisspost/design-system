@@ -37,7 +37,7 @@ export class ShellConnection extends TypedEventTarget<ShellConnectionEventMap> {
 
   public start() {
     this.listeners = new AbortController();
-    window.addEventListener('message', this.onMessage, { signal: this.listeners.signal });
+    window.addEventListener('message', this.handleMessage, { signal: this.listeners.signal });
   }
 
   public stop() {
@@ -78,7 +78,7 @@ export class ShellConnection extends TypedEventTarget<ShellConnectionEventMap> {
     if (this.shellOrigin) window.parent.postMessage(toEnvelope(type, payload), this.shellOrigin);
   }
 
-  private readonly onMessage = (event: MessageEvent) => {
+  private readonly handleMessage = (event: MessageEvent) => {
     if (event.source !== window.parent || !isEnvelope<ShellMessageType>(event.data)) return;
 
     const { type, payload } = event.data;

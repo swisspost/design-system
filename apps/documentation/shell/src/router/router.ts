@@ -44,8 +44,8 @@ export class Router extends TypedEventTarget<RouterEventMap> {
     this.listeners = new AbortController();
     const signal = this.listeners.signal;
 
-    window.addEventListener('popstate', this.onPopState, { signal });
-    document.addEventListener('click', this.onClick, { signal });
+    window.addEventListener('popstate', this.handlePopState, { signal });
+    document.addEventListener('click', this.handleClick, { signal });
 
     this.go(new URL(location.href), { replace: true });
   }
@@ -94,11 +94,11 @@ export class Router extends TypedEventTarget<RouterEventMap> {
     this.dispatchEvent(new RouteChangeEvent(route, previous, options.fromHistory ?? false));
   }
 
-  private readonly onPopState = () => {
+  private readonly handlePopState = () => {
     this.go(new URL(location.href), { replace: true, fromHistory: true });
   };
 
-  private readonly onClick = (event: MouseEvent) => {
+  private readonly handleClick = (event: MouseEvent) => {
     if (event.defaultPrevented || event.button !== 0) return;
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
 

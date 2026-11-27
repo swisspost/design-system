@@ -37,7 +37,7 @@ export class PostDocsNavigationSidebar extends LitElement {
       <post-docs-search
         id-prefix="sidebar-search"
         .index=${this.searchIndex}
-        @postDocsSearchToggle=${this.onSearchToggle}
+        @postDocsSearchToggle=${this.handleSearchToggle}
       ></post-docs-search>
       <nav
         class="flex-fill overflow-y-auto pb-40"
@@ -54,7 +54,7 @@ export class PostDocsNavigationSidebar extends LitElement {
   }
 
   // a hidden tree cannot reveal the active page, a page opened from the results is revealed once the tree is back
-  private async onSearchToggle(event: CustomEvent<boolean>) {
+  private async handleSearchToggle(event: CustomEvent<boolean>) {
     this.isSearching = event.detail;
     if (this.isSearching) return;
 

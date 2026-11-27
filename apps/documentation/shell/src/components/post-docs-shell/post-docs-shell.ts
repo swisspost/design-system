@@ -70,13 +70,13 @@ export class PostDocsShell extends LitElement {
     const signal = this.listeners.signal;
 
     this.analytics.start();
-    this.previewConnection.addEventListener('rendered', this.onRendered, { signal });
-    this.previewConnection.addEventListener('error', this.onPreviewError, { signal });
-    this.previewConnection.addEventListener('navigate', this.onNavigate, { signal });
-    this.previewConnection.addEventListener('shortcut', this.onPreviewShortcut, { signal });
-    document.addEventListener('keydown', this.onKeydown, { signal });
-    this.sidebarQuery.addEventListener('change', this.onBreakpointChange, { signal });
-    this.globalsStore.addEventListener('globals-change', this.onGlobalsChange, { signal });
+    this.previewConnection.addEventListener('rendered', this.handleRendered, { signal });
+    this.previewConnection.addEventListener('error', this.handlePreviewError, { signal });
+    this.previewConnection.addEventListener('navigate', this.handleNavigate, { signal });
+    this.previewConnection.addEventListener('shortcut', this.handlePreviewShortcut, { signal });
+    document.addEventListener('keydown', this.handleKeydown, { signal });
+    this.sidebarQuery.addEventListener('change', this.handleBreakpointChange, { signal });
+    this.globalsStore.addEventListener('globals-change', this.handleGlobalsChange, { signal });
     this.globals = this.globalsStore.current;
 
     try {
@@ -84,7 +84,7 @@ export class PostDocsShell extends LitElement {
 
       this.catalog = catalog;
       this.router = new Router(catalog);
-      this.router.addEventListener('route-change', this.onRouteChange, { signal });
+      this.router.addEventListener('route-change', this.handleRouteChange, { signal });
       this.router.start();
     } catch (error) {
       console.error(error);
@@ -92,7 +92,7 @@ export class PostDocsShell extends LitElement {
     }
   }
 
-  private readonly onRouteChange = (event: RouteChangeEvent) => {
+  private readonly handleRouteChange = (event: RouteChangeEvent) => {
     const { route, previous, fromHistory } = event;
     this.route = route;
     void this.querySelector('post-docs-navigation-sheet')?.close();
@@ -132,7 +132,7 @@ export class PostDocsShell extends LitElement {
     }
   };
 
-  private readonly onRendered = (event: PreviewMessageEvent<'rendered'>) => {
+  private readonly handleRendered = (event: PreviewMessageEvent<'rendered'>) => {
     if (event.payload.pageId !== this.pageId || !this.previewLoading) return;
 
     this.previewLoading = null;
@@ -140,23 +140,23 @@ export class PostDocsShell extends LitElement {
   };
 
   // the preview shows the error, e.g. the exception of a page that failed to render
-  private readonly onPreviewError = (event: PreviewMessageEvent<'error'>) => {
+  private readonly handlePreviewError = (event: PreviewMessageEvent<'error'>) => {
     if (event.payload.pageId === this.pageId) this.previewLoading = null;
   };
 
-  private readonly onGlobalsChange = (event: GlobalsChangeEvent) => {
+  private readonly handleGlobalsChange = (event: GlobalsChangeEvent) => {
     this.globals = event.globals;
     this.previewConnection.setGlobals(event.globals);
     this.router?.replaceGlobals(event.globals);
   };
 
-  private readonly onNavigate = (event: PreviewMessageEvent<'navigate'>) => {
+  private readonly handleNavigate = (event: PreviewMessageEvent<'navigate'>) => {
     const url = new URL(event.payload.href, location.href);
 
     if (url.origin === location.origin) this.router?.navigate(url);
   };
 
-  private readonly onKeydown = (event: KeyboardEvent) => {
+  private readonly handleKeydown = (event: KeyboardEvent) => {
     if (getShortcut(event) !== 'search') return;
 
     // not the search field of the browser
@@ -164,7 +164,7 @@ export class PostDocsShell extends LitElement {
     this.openSearch();
   };
 
-  private readonly onPreviewShortcut = (event: PreviewMessageEvent<'shortcut'>) => {
+  private readonly handlePreviewShortcut = (event: PreviewMessageEvent<'shortcut'>) => {
     if (event.payload.name === 'search') this.openSearch();
   };
 
@@ -175,20 +175,20 @@ export class PostDocsShell extends LitElement {
   }
 
   // The sidebar takes over from the sheet, which would otherwise stay open and keep the page inert.
-  private readonly onBreakpointChange = (event: MediaQueryListEvent) => {
+  private readonly handleBreakpointChange = (event: MediaQueryListEvent) => {
     if (event.matches) void this.querySelector('post-docs-navigation-sheet')?.close();
   };
 
-  private readonly onGlobalsSelect = (event: CustomEvent<Partial<Globals>>) => {
+  private readonly handleGlobalsSelect = (event: CustomEvent<Partial<Globals>>) => {
     this.globalsStore.set(event.detail);
   };
 
-  private readonly onSheetToggle = (event: CustomEvent<boolean>) => {
+  private readonly handleSheetToggle = (event: CustomEvent<boolean>) => {
     this.isSheetOpen = event.detail;
   };
 
   // back to the page, once the sheet no longer makes it inert
-  private readonly onSearchExit = async () => {
+  private readonly handleSearchExit = async () => {
     void this.querySelector('post-docs-navigation-sheet')?.close();
     await this.updateComplete;
     this.querySelector('post-docs-preview')?.focus();
@@ -215,21 +215,21 @@ export class PostDocsShell extends LitElement {
         .sections=${this.navigation}
         .activePage=${activePage}
         .searchIndex=${this.searchIndex}
-        @postDocsSearchExit=${this.onSearchExit}
+        @postDocsSearchExit=${this.handleSearchExit}
       ></post-docs-navigation-sidebar>
       <post-docs-toolbar
         class="palette palette-brand"
         .globals=${this.globals}
-        @postDocsGlobalsChange=${this.onGlobalsSelect}
+        @postDocsGlobalsChange=${this.handleGlobalsSelect}
       ></post-docs-toolbar>
       <post-docs-navigation-sheet
         .sections=${this.navigation}
         .activePage=${activePage}
         .globals=${this.globals}
         .searchIndex=${this.searchIndex}
-        @postDocsGlobalsChange=${this.onGlobalsSelect}
-        @postDocsSearchExit=${this.onSearchExit}
-        @postDocsToggle=${this.onSheetToggle}
+        @postDocsGlobalsChange=${this.handleGlobalsSelect}
+        @postDocsSearchExit=${this.handleSearchExit}
+        @postDocsToggle=${this.handleSheetToggle}
       ></post-docs-navigation-sheet>
       <main class="overflow-y-auto" ?inert=${this.isSheetOpen}>${this.renderContent()}</main>
     `;

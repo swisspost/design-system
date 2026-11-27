@@ -103,7 +103,7 @@ export class PostDocsNavigationSheet extends LitElement {
         aria-expanded=${String(isOpen)}
         aria-controls="navigation-sheet-panel"
         @click=${this.toggle}
-        @keydown=${this.onKeydown}
+        @keydown=${this.handleKeydown}
       >
         <post-icon
           class="flex-shrink-0 w-16 h-16"
@@ -122,12 +122,12 @@ export class PostDocsNavigationSheet extends LitElement {
         id="navigation-sheet-panel"
         class="panel palette palette-default overflow-y-auto"
         ?hidden=${!this.isExpanded}
-        @keydown=${this.onKeydown}
+        @keydown=${this.handleKeydown}
       >
         <post-docs-search
           id-prefix="sheet-search"
           .index=${this.searchIndex}
-          @postDocsSearchToggle=${this.onSearchToggle}
+          @postDocsSearchToggle=${this.handleSearchToggle}
         ></post-docs-search>
         <nav class="flex-fill pb-24" aria-label="Documentation" ?hidden=${this.isSearching}>
           <post-docs-navigation-tree
@@ -167,7 +167,7 @@ export class PostDocsNavigationSheet extends LitElement {
     return html`<span class="visually-hidden">Navigation, current page: </span>${location}`;
   }
 
-  private async onSearchToggle(event: CustomEvent<boolean>) {
+  private async handleSearchToggle(event: CustomEvent<boolean>) {
     this.isSearching = event.detail;
     if (this.isSearching) return;
 
@@ -202,7 +202,7 @@ export class PostDocsNavigationSheet extends LitElement {
     );
   }
 
-  private onKeydown(event: KeyboardEvent) {
+  private handleKeydown(event: KeyboardEvent) {
     if (event.key !== 'Escape' || !this.isExpanded || this.isClosing) return;
 
     event.preventDefault();

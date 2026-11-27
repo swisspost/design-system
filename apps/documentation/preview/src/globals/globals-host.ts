@@ -33,10 +33,10 @@ class GlobalsHost extends TypedEventTarget<GlobalsEventMap> {
       parseGlobals(new URLSearchParams(location.search).get('globals') ?? '');
 
     if (parentHost) {
-      parentHost.addEventListener('globals-change', this.onParentChange);
+      parentHost.addEventListener('globals-change', this.handleParentChange);
       window.addEventListener(
         'pagehide',
-        () => parentHost.removeEventListener('globals-change', this.onParentChange),
+        () => parentHost.removeEventListener('globals-change', this.handleParentChange),
         { once: true },
       );
     }
@@ -53,7 +53,7 @@ class GlobalsHost extends TypedEventTarget<GlobalsEventMap> {
     this.dispatchEvent(new GlobalsChangeEvent(globals));
   }
 
-  private readonly onParentChange = (event: GlobalsChangeEvent) => {
+  private readonly handleParentChange = (event: GlobalsChangeEvent) => {
     this.set(event.globals);
   };
 }
