@@ -5,7 +5,7 @@ import { MetaComponent } from '@preview/types/storybook';
 const meta: MetaComponent = {
   id: 'bc68b346-2fdd-436e-bddf-309d24df06a1',
   title: 'Components/Form Search',
-  tags: ['package:styles', 'status:new'],
+  tags: ['package:styles', 'status:new', 'keyword:Search Bar'],
   render: render,
   parameters: {
     badges: [],

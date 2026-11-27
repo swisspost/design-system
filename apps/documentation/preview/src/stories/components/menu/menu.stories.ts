@@ -5,7 +5,7 @@ import { MetaComponent } from '@preview/types/storybook';
 const meta: MetaComponent = {
   id: '8ca2bd70-56e6-4da9-b1fd-4e55388dca88',
   title: 'Components/Menu',
-  tags: ['package:components', 'status:new'],
+  tags: ['package:components', 'status:new', 'keyword:Dropdown Menu', 'keyword:Context Menu'],
   component: 'post-menu',
   parameters: {
     badges: [],

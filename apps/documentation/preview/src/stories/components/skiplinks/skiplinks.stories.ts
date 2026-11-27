@@ -5,7 +5,7 @@ import { MetaExtended } from '@preview/types/storybook';
 const meta: MetaExtended = {
   id: '2fc3b456-19ba-4ede-b1bc-499518f829b1',
   title: 'Components/Skiplinks',
-  tags: ['package:styles', 'status:new'],
+  tags: ['package:styles', 'status:new', 'keyword:Skip to Content'],
   render: renderSkiplinks,
 };
 

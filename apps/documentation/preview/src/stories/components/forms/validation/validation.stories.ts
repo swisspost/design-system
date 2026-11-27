@@ -63,7 +63,7 @@ function renderFeedback(
 const meta: MetaComponent = {
   id: '1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472',
   title: 'Components/Form Validation',
-  tags: ['package:styles'],
+  tags: ['package:styles', 'keyword:Error Message'],
   parameters: {
     badges: [],
     design: {

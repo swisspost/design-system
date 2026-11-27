@@ -13,7 +13,7 @@ import {
 const meta: MetaComponent = {
   id: 'e6ecc86f-d148-413b-b796-614a89da54be',
   title: 'Components/Form Checkbox',
-  tags: ['package:styles'],
+  tags: ['package:styles', 'keyword:Indeterminate'],
   render: RenderCheckbox,
   parameters: {
     badges: [],

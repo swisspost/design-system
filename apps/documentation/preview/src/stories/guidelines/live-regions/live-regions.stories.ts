@@ -4,6 +4,7 @@ import { MetaExtended } from '@preview/types/storybook';
 const meta: MetaExtended = {
   id: '548d973c-679c-4a02-96cd-70f82aec5f65',
   title: 'Guidelines/Live Regions',
+  tags: ['keyword:aria-live'],
   parameters: {
     badges: [],
   },

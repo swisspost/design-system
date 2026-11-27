@@ -5,6 +5,17 @@ import { MetaExtended } from '@preview/types/storybook';
 const meta: MetaExtended = {
   id: 'c55681df-4d21-469d-a5b3-c67686e7c104',
   title: 'Utilities/Text',
+  tags: [
+    'keyword:Font Size',
+    'keyword:Font Weight',
+    'keyword:Line Height',
+    'keyword:Text Alignment',
+    'keyword:Wrapping',
+    'keyword:Word Break',
+    'keyword:Text Transform',
+    'keyword:Text Decoration',
+    'keyword:Truncation',
+  ],
   parameters: {
     badges: [],
   },

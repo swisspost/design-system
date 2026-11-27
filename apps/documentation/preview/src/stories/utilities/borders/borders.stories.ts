@@ -6,6 +6,7 @@ import './borders.styles.scss';
 const meta: MetaExtended = {
   id: 'cbee1b5e-c98b-4818-8b88-b3c9989796d8',
   title: 'Utilities/Borders',
+  tags: ['keyword:Border Radius'],
 
   decorators: [
     story =>

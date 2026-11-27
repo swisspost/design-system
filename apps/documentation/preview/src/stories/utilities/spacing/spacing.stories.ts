@@ -35,6 +35,7 @@ const sides = {
 const meta: MetaExtended = {
   id: 'facaacfd-18f1-49b4-80f1-a96680730fa0',
   title: 'Utilities/Spacing',
+  tags: ['keyword:Margin', 'keyword:Padding', 'keyword:Gap'],
 };
 
 export default meta;

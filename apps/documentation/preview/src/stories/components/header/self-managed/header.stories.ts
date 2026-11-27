@@ -13,7 +13,13 @@ import { SubComponentRenderers } from './utils/get-sub-component-renderers';
 const meta: MetaComponent = {
   id: '27a2e64d-55ba-492d-ab79-5f7c5e818498',
   title: 'Components/Header/Self-Managed',
-  tags: ['package:components', 'status:new'],
+  tags: [
+    'package:components',
+    'status:new',
+    'keyword:Navbar',
+    'keyword:Navigation Bar',
+    'keyword:User Menu',
+  ],
   component: 'post-header',
   parameters: {
     layout: 'fullscreen',

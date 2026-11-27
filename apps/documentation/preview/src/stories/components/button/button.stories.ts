@@ -6,7 +6,7 @@ import { MetaComponent } from '@preview/types/storybook';
 const meta: MetaComponent = {
   id: 'eb78afcb-ce92-4990-94b6-6536d5ec6af4',
   title: 'Components/Button',
-  tags: ['package:styles'],
+  tags: ['package:styles', 'keyword:CTA', 'keyword:Call to Action'],
   parameters: {
     badges: [],
     design: {

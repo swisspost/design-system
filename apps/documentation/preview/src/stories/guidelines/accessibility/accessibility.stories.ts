@@ -5,6 +5,7 @@ import { html } from 'lit/static-html.js';
 const meta: MetaExtended = {
   id: '759a427c-7884-474e-b6b7-de32d3acf5df',
   title: 'Guidelines/Accessibility',
+  tags: ['keyword:Color Contrast', 'keyword:Keyboard Navigation'],
   parameters: {
     badges: [],
   },

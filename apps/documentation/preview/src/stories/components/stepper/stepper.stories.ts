@@ -5,7 +5,7 @@ import { MetaComponent } from '@preview/types/storybook';
 const meta: MetaComponent = {
   id: '7dc546d9-e248-4d06-befe-3ad62fcd310f',
   title: 'Components/Stepper',
-  tags: ['package:components', 'status:new'],
+  tags: ['package:components', 'status:new', 'keyword:Wizard'],
   component: 'post-stepper',
   render,
   parameters: {
