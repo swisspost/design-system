@@ -5,8 +5,9 @@
 @use './mixins' as *;
 @use './placeholders' as *;
 
-body:has(post-header) {
-  scroll-padding-top: var(--post-header-height);
+body:has(post-header:not([data-hidden])) :target:not(post-header, post-header *) {
+  // Reserve the expanded height for upward jumps without affecting focus inside the header.
+  scroll-margin-top: var(--post-header-expanded-height);
 }
 
 [data-post-scroll-locked] {

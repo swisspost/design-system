@@ -29,6 +29,45 @@ describe('header', () => {
       });
 
       Object.entries(VIEWPORTS).forEach(([viewportName, viewportPreset]) => {
+        it(`should keep fragment targets below the header on ${viewportName}`, () => {
+          cy.viewport(viewportPreset);
+          cy.get('@header').should('have.attr', 'data-hydrated');
+
+          cy.get('@header').then($header => {
+            const doc = $header[0].ownerDocument;
+            const content = doc.createElement('div');
+            content.innerHTML = `
+              <div class="py-80"></div>
+              <h2 id="header-fragment-target" tabindex="-1">Fragment target</h2>
+              <div class="py-80"></div>
+              <div class="py-80"></div>
+              <div class="py-80"></div>
+            `;
+            $header[0].after(content);
+          });
+
+          [0, 500].forEach(scrollY => {
+            scrollAndWait(scrollY);
+            cy.window().then(win => {
+              win.history.replaceState(null, '', win.location.pathname + win.location.search);
+              win.location.hash = 'header-fragment-target';
+            });
+
+            cy.get('#header-fragment-target').should($target => {
+              const target = $target[0];
+              const header = target.ownerDocument.querySelector('post-header');
+              const win = target.ownerDocument.defaultView;
+              expect(win.scrollY).to.be.greaterThan(0);
+              expect(target.getBoundingClientRect().top).to.be.at.least(
+                header.getBoundingClientRect().bottom - 1,
+              );
+              expect(target.getBoundingClientRect().top).to.be.at.most(
+                Number.parseFloat(win.getComputedStyle(target).scrollMarginTop) + 1,
+              );
+            });
+          });
+        });
+
         it(`should stop updating the scroll position once fully reduced on ${viewportName}`, () => {
           cy.viewport(viewportPreset);
           cy.get('@header').should('have.attr', 'data-hydrated');
