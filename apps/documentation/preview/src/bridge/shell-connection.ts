@@ -5,6 +5,7 @@ import {
   type ShellMessageType,
   toEnvelope,
 } from '@shared/bridge';
+import { TypedEventTarget } from '@shared/events';
 import type { Shortcut } from '@shared/shortcuts';
 
 export class ShellMessageEvent<T extends ShellMessageType = ShellMessageType> extends Event {
@@ -16,11 +17,13 @@ export class ShellMessageEvent<T extends ShellMessageType = ShellMessageType> ex
   }
 }
 
+type ShellConnectionEventMap = { [T in ShellMessageType]: ShellMessageEvent<T> };
+
 /**
  * Talks to the shell. Dispatches a `ShellMessageEvent` for every message of the shell.
  * It sends nothing until the shell has connected, so the preview keeps working on its own.
  */
-export class ShellConnection extends EventTarget {
+export class ShellConnection extends TypedEventTarget<ShellConnectionEventMap> {
   private shellOrigin: string | null = null;
 
   // the page the preview shows, once it is ready

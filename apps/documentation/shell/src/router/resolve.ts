@@ -1,4 +1,5 @@
 import {
+  GLOBAL_DEFINITIONS,
   GLOBAL_NAMES,
   type Globals,
   normalizeGlobals,
@@ -51,6 +52,6 @@ function readGlobals(params: Record<string, string>): Partial<Globals> | null {
 
 function withoutGlobals(params: Record<string, string>): Record<string, string> {
   return Object.fromEntries(
-    Object.entries(params).filter(([name]) => !(GLOBAL_NAMES as string[]).includes(name)),
+    Object.entries(params).filter(([name]) => !Object.hasOwn(GLOBAL_DEFINITIONS, name)),
   );
 }

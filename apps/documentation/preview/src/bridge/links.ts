@@ -54,7 +54,9 @@ export function interceptLinks(navigate: (href: string) => void) {
 function followInStory(anchor: HTMLAnchorElement, id: string) {
   if (!id) return;
 
-  const root = anchor.getRootNode() as Document | ShadowRoot;
+  const root = anchor.getRootNode();
+  if (!(root instanceof Document || root instanceof ShadowRoot)) return;
+
   const target = root.getElementById(decodeUrlComponent(id));
   if (!target) return;
 

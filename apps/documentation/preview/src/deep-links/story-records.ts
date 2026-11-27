@@ -16,8 +16,14 @@ type StoryRecords = Map<string, StoryRecord>;
 
 const RECORDS_KEY = '__postDocsStories__';
 
+declare global {
+  interface Window {
+    [RECORDS_KEY]?: StoryRecords;
+  }
+}
+
 const records: StoryRecords = new Map();
-(window as Window & { [RECORDS_KEY]?: StoryRecords })[RECORDS_KEY] = records;
+window[RECORDS_KEY] = records;
 
 export function recordStory(storyId: string, record: StoryRecord) {
   records.set(storyId, record);
@@ -32,8 +38,7 @@ export function getStoryRecord(
   if (local || !frame) return local ?? null;
 
   try {
-    const frameWindow = frame.contentWindow as (Window & { [RECORDS_KEY]?: StoryRecords }) | null;
-    return frameWindow?.[RECORDS_KEY]?.get(storyId) ?? null;
+    return frame.contentWindow?.[RECORDS_KEY]?.get(storyId) ?? null;
   } catch {
     // the iframe belongs to another origin
     return null;

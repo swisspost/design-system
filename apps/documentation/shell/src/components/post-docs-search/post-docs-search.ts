@@ -57,7 +57,7 @@ export class PostDocsSearch extends LitElement {
 
   protected override updated(changed: PropertyValues) {
     if (changed.has('query')) {
-      const previousQuery = (changed.get('query') as string | undefined) ?? '';
+      const previousQuery: string = changed.get('query') ?? '';
 
       if ((previousQuery.trim() !== '') !== this.isActive) {
         this.dispatchEvent(
@@ -184,7 +184,7 @@ export class PostDocsSearch extends LitElement {
   }
 
   private onInput(event: InputEvent) {
-    this.query = (event.target as HTMLInputElement).value;
+    if (event.target instanceof HTMLInputElement) this.query = event.target.value;
   }
 
   private onKeydown(event: KeyboardEvent) {

@@ -93,8 +93,8 @@ export class PostDocsShell extends LitElement {
     }
   }
 
-  private readonly onRouteChange = (event: Event) => {
-    const { route, previous, fromHistory } = event as RouteChangeEvent;
+  private readonly onRouteChange = (event: RouteChangeEvent) => {
+    const { route, previous, fromHistory } = event;
     this.route = route;
     void this.querySelector('post-docs-navigation-sheet')?.close();
 
@@ -133,31 +133,26 @@ export class PostDocsShell extends LitElement {
     }
   };
 
-  private readonly onRendered = (event: Event) => {
-    const { payload } = event as PreviewMessageEvent<'rendered'>;
-    if (payload.pageId !== this.pageId || !this.previewLoading) return;
+  private readonly onRendered = (event: PreviewMessageEvent<'rendered'>) => {
+    if (event.payload.pageId !== this.pageId || !this.previewLoading) return;
 
     this.previewLoading = null;
     if (this.route?.type === 'page') this.previewConnection.scrollTo(this.route.hash);
   };
 
   // the preview shows the error, e.g. the exception of a page that failed to render
-  private readonly onPreviewError = (event: Event) => {
-    const { payload } = event as PreviewMessageEvent<'error'>;
-    if (payload.pageId === this.pageId) this.previewLoading = null;
+  private readonly onPreviewError = (event: PreviewMessageEvent<'error'>) => {
+    if (event.payload.pageId === this.pageId) this.previewLoading = null;
   };
 
-  private readonly onGlobalsChange = (event: Event) => {
-    const { globals } = event as GlobalsChangeEvent;
-
-    this.globals = globals;
-    this.previewConnection.setGlobals(globals);
-    this.router?.replaceGlobals(globals);
+  private readonly onGlobalsChange = (event: GlobalsChangeEvent) => {
+    this.globals = event.globals;
+    this.previewConnection.setGlobals(event.globals);
+    this.router?.replaceGlobals(event.globals);
   };
 
-  private readonly onNavigate = (event: Event) => {
-    const { payload } = event as PreviewMessageEvent<'navigate'>;
-    const url = new URL(payload.href, location.href);
+  private readonly onNavigate = (event: PreviewMessageEvent<'navigate'>) => {
+    const url = new URL(event.payload.href, location.href);
 
     if (url.origin === location.origin) this.router?.navigate(url);
   };
@@ -170,9 +165,8 @@ export class PostDocsShell extends LitElement {
     this.openSearch();
   };
 
-  private readonly onPreviewShortcut = (event: Event) => {
-    const { payload } = event as PreviewMessageEvent<'shortcut'>;
-    if (payload.name === 'search') this.openSearch();
+  private readonly onPreviewShortcut = (event: PreviewMessageEvent<'shortcut'>) => {
+    if (event.payload.name === 'search') this.openSearch();
   };
 
   private openSearch() {
@@ -202,7 +196,7 @@ export class PostDocsShell extends LitElement {
   };
 
   override willUpdate(changed: PropertyValues) {
-    const previousGlobals = changed.get('globals') as Globals | undefined;
+    const previousGlobals: Globals | undefined = changed.get('globals');
     const isModeChanged = changed.has('globals') && previousGlobals?.mode !== this.globals.mode;
 
     if ((changed.has('catalog') || isModeChanged) && this.catalog) {

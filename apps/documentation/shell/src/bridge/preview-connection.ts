@@ -5,6 +5,7 @@ import {
   type ShellMessageType,
   toEnvelope,
 } from '@shared/bridge';
+import { TypedEventTarget } from '@shared/events';
 import { compareGlobals, type Globals } from '@shared/globals';
 
 export interface PreviewPage {
@@ -21,8 +22,10 @@ export class PreviewMessageEvent<T extends PreviewMessageType = PreviewMessageTy
   }
 }
 
+type PreviewConnectionEventMap = { [T in PreviewMessageType]: PreviewMessageEvent<T> };
+
 /** Talks to the preview iframe. Dispatches a `PreviewMessageEvent` for every message of the preview. */
-export class PreviewConnection extends EventTarget {
+export class PreviewConnection extends TypedEventTarget<PreviewConnectionEventMap> {
   private readonly previewOrigin: string;
   private previewPage: PreviewPage | null = null;
   private previewGlobals: Globals | null = null;

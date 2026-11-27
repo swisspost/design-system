@@ -96,8 +96,8 @@ export class StoryLinksComponent extends LitElement {
     globalsHost.removeEventListener('globals-change', this.onGlobalsChange);
   }
 
-  private readonly onGlobalsChange = (event: Event) => {
-    this.devMode = (event as GlobalsChangeEvent).globals.mode === 'dev';
+  private readonly onGlobalsChange = (event: GlobalsChangeEvent) => {
+    this.devMode = event.globals.mode === 'dev';
   };
 
   createRenderRoot() {

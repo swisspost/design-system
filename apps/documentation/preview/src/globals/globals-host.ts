@@ -4,11 +4,24 @@
  * The docs page gets them from its URL and from the shell. Stories with `inline: false` render in
  * their own iframe inside the docs page, whose URL has no globals: they follow the docs page instead.
  */
-import { compareGlobals, type Globals, GlobalsChangeEvent, parseGlobals } from '@shared/globals';
+import { TypedEventTarget } from '@shared/events';
+import {
+  compareGlobals,
+  type Globals,
+  GlobalsChangeEvent,
+  type GlobalsEventMap,
+  parseGlobals,
+} from '@shared/globals';
 
 const HOST_KEY = '__postDocsGlobals__';
 
-class GlobalsHost extends EventTarget {
+declare global {
+  interface Window {
+    [HOST_KEY]?: GlobalsHost;
+  }
+}
+
+class GlobalsHost extends TypedEventTarget<GlobalsEventMap> {
   private globals: Globals;
 
   constructor() {
@@ -40,8 +53,8 @@ class GlobalsHost extends EventTarget {
     this.dispatchEvent(new GlobalsChangeEvent(globals));
   }
 
-  private readonly onParentChange = (event: Event) => {
-    this.set((event as GlobalsChangeEvent).globals);
+  private readonly onParentChange = (event: GlobalsChangeEvent) => {
+    this.set(event.globals);
   };
 }
 
@@ -49,7 +62,7 @@ function getParentHost(): GlobalsHost | null {
   if (window.parent === window) return null;
 
   try {
-    return (window.parent as unknown as Record<string, GlobalsHost | undefined>)[HOST_KEY] ?? null;
+    return window.parent[HOST_KEY] ?? null;
   } catch {
     // the parent is on another origin, e.g. the shell in development
     return null;
@@ -59,4 +72,4 @@ function getParentHost(): GlobalsHost | null {
 /** Dispatches a `GlobalsChangeEvent` whenever the globals change. */
 export const globalsHost = new GlobalsHost();
 
-(window as unknown as Record<string, GlobalsHost>)[HOST_KEY] = globalsHost;
+window[HOST_KEY] = globalsHost;

@@ -33,9 +33,14 @@ export type Globals = { [K in GlobalName]: GlobalValue<K> };
 export type GlobalName = keyof typeof GLOBAL_DEFINITIONS;
 export type GlobalValue<K extends GlobalName> = keyof (typeof GLOBAL_DEFINITIONS)[K]['options'];
 
+// `Object.keys` is typed as `string[]`, as objects may have extra keys, but the definitions are a literal.
 export const GLOBAL_NAMES = Object.keys(GLOBAL_DEFINITIONS) as GlobalName[];
 
-/** The globals that are not hidden, see `GlobalDefinition.hidden`. */
+/**
+ * The globals that are not hidden.
+ *
+ * @see {GlobalDefinition.hidden}
+ */
 export const SHARABLE_GLOBAL_NAMES = GLOBAL_NAMES.filter(name => {
   const definition: GlobalDefinition = GLOBAL_DEFINITIONS[name];
   return !definition.hidden;
@@ -59,6 +64,10 @@ export class GlobalsChangeEvent extends Event {
   constructor(readonly globals: Globals) {
     super('globals-change');
   }
+}
+
+export interface GlobalsEventMap {
+  'globals-change': GlobalsChangeEvent;
 }
 
 export function isGlobalValue<K extends GlobalName>(

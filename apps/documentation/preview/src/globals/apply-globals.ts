@@ -20,7 +20,7 @@ const PALETTE_CLASSES = Object.keys(GLOBAL_DEFINITIONS.palette.options).map(
 
 const isDocsView = new URLSearchParams(location.search).get('viewMode') === 'docs';
 
-let storyGlobals: Partial<Globals> = {};
+let storyGlobals: Record<string, unknown> = {};
 let appliedGlobals: Globals | null = null;
 let pendingStylesheet: HTMLLinkElement | null = null;
 
@@ -32,7 +32,7 @@ export function startApplyingGlobals() {
 }
 
 /** Applies the `globals` of the story shown in a story view, e.g. `globals: { appearance: 'compact' }`. */
-export function setStoryGlobals(globals: Partial<Globals>) {
+export function setStoryGlobals(globals: Record<string, unknown>) {
   if (isDocsView) return;
 
   storyGlobals = globals;
@@ -123,7 +123,9 @@ function observeCanvases() {
 }
 
 function isCanvasMutation(mutation: MutationRecord): boolean {
-  if (mutation.type === 'attributes') return (mutation.target as Element).matches(CANVAS_SELECTOR);
+  if (mutation.type === 'attributes') {
+    return mutation.target instanceof Element && mutation.target.matches(CANVAS_SELECTOR);
+  }
 
   return [...mutation.addedNodes].some(
     node =>

@@ -3,13 +3,15 @@ import {
   DEFAULT_GLOBALS,
   type Globals,
   GlobalsChangeEvent,
+  type GlobalsEventMap,
   normalizeGlobals,
 } from '@shared/globals';
+import { TypedEventTarget } from '@shared/events';
 
 const STORAGE_KEY = 'post-docs:globals';
 
 /** The globals chosen by the user, kept in the local storage. */
-export class GlobalsStore extends EventTarget {
+export class GlobalsStore extends TypedEventTarget<GlobalsEventMap> {
   private globals: Globals = readStoredGlobals();
 
   get current(): Globals {

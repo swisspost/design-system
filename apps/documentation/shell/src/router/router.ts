@@ -1,3 +1,4 @@
+import { TypedEventTarget } from '@shared/events';
 import { filterGlobals, type Globals, SHARABLE_GLOBALS_FILTER } from '@shared/globals';
 import type { Catalog } from '../catalog/catalog';
 import { resolve } from './resolve';
@@ -23,7 +24,11 @@ export class RouteChangeEvent extends Event {
   }
 }
 
-export class Router extends EventTarget {
+interface RouterEventMap {
+  'route-change': RouteChangeEvent;
+}
+
+export class Router extends TypedEventTarget<RouterEventMap> {
   private route: Route | null = null;
 
   constructor(private readonly catalog: Catalog) {

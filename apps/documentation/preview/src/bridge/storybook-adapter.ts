@@ -18,7 +18,7 @@ import { stringifyGlobals } from '@shared/globals';
 import { previewUrl } from '@shared/urls';
 import { globalsHost } from '@preview/globals/globals-host';
 import { interceptLinks } from './links';
-import { ShellConnection, type ShellMessageEvent } from './shell-connection';
+import { ShellConnection } from './shell-connection';
 import { forwardShortcuts } from './shortcuts';
 
 interface StorySelection {
@@ -100,26 +100,21 @@ function setup(channel: Channel) {
   );
 
   shell.addEventListener('page', event => {
-    const { payload } = event as ShellMessageEvent<'page'>;
-
-    urlPage = { id: payload.id, params: payload.params };
+    urlPage = { id: event.payload.id, params: event.payload.params };
     replaceUrl();
 
-    if (payload.id !== pageId) {
-      channel.emit(SET_CURRENT_STORY, { storyId: payload.id, viewMode: 'docs' });
+    if (event.payload.id !== pageId) {
+      channel.emit(SET_CURRENT_STORY, { storyId: event.payload.id, viewMode: 'docs' });
     }
   });
 
   shell.addEventListener('globals', event => {
-    const { payload } = event as ShellMessageEvent<'globals'>;
-
-    globalsHost.set(payload.globals);
+    globalsHost.set(event.payload.globals);
     replaceUrl();
   });
 
   shell.addEventListener('scroll-to', event => {
-    const { payload } = event as ShellMessageEvent<'scroll-to'>;
-    const target = payload.hash ? document.getElementById(payload.hash) : null;
+    const target = event.payload.hash ? document.getElementById(event.payload.hash) : null;
 
     if (target) target.scrollIntoView();
     else window.scrollTo(0, 0);
