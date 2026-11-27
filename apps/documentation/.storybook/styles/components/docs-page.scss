@@ -34,8 +34,9 @@
   h1 {
     color: var(--post-core-color-brand-postyellow);
 
+    // The hero always sits on a dark photo, so the icon stays white in every theme.
     post-icon {
-      color: var(--post-current-fg);
+      color: var(--post-core-color-brand-white);
     }
   }
 }

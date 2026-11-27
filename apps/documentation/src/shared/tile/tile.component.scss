@@ -38,15 +38,16 @@ $tile-rg-size: var(--post-docs-tile-rg-size, 120px);
       flex: 0 0 auto;
       padding: 0 tokens.get('utility-gap-4');
       height: calc((tokens.get('utility-gap-8') * 2) + 2.2em);
-      background-color: post.$yellow;
+      background-color: var(--post-theme-color-palettes-brand-bg);
       border-top-left-radius: inherit;
       border-top-right-radius: inherit;
       font-size: max(14px, calc($tile-size * 0.1));
       font-weight: post.$font-weight-bold;
-      color: post.$black;
+      color: var(--post-theme-color-palettes-brand-fg);
       z-index: 1;
       line-height: 1.1;
-      box-shadow: 0 2px 0 1px rgba(post.$yellow, 0.5);
+      box-shadow: 0 2px 0 1px
+        color-mix(in srgb, var(--post-theme-color-palettes-brand-bg) 50%, transparent);
 
       ~ .tile--icon {
         img {

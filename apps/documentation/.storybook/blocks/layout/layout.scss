@@ -13,18 +13,27 @@
 }
 
 .docs-header {
-  background-image: url('/assets/images/griddy.svg');
-  background-repeat: no-repeat;
-  background-position: center left 150px;
-  background-size: auto 100%;
-  background-color: post.$yellow;
+  position: relative;
+  isolation: isolate;
 
-  @include post.min(sm) {
-    background-position: center left 280px;
-  }
+  // The pattern is used as a mask so it takes the text color of the palette in every theme.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: currentColor;
+    opacity: 0.35;
+    mask: url('/assets/images/griddy.svg') no-repeat center left 150px / auto 100%;
+    pointer-events: none;
 
-  @include post.min(md) {
-    background-position: center right;
+    @include post.min(sm) {
+      mask-position: center left 280px;
+    }
+
+    @include post.min(md) {
+      mask-position: center right;
+    }
   }
 }
 

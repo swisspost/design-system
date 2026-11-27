@@ -9,8 +9,8 @@
 .container-examples > div {
   width: 100px;
   height: 100px;
-  background-color: post.$yellow;
-  color: post.$black;
+  background-color: var(--post-theme-color-palettes-brand-bg);
+  color: var(--post-theme-color-palettes-brand-fg);
   font-weight: bold;
   display: flex;
   align-items: end;

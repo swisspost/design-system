@@ -12,6 +12,7 @@
 
 .display-story {
   > div {
-    background-color: post.$yellow;
+    background-color: var(--post-theme-color-palettes-brand-bg);
+    color: var(--post-theme-color-palettes-brand-fg);
   }
 }

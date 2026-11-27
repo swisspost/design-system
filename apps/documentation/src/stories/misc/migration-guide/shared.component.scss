@@ -1,5 +1,3 @@
-@use '@swisspost/design-system-styles/core.scss' as post;
-
 #storybook-docs .container.docs-container {
   padding: 0;
   margin: 0;
@@ -21,15 +19,11 @@
     margin-top: 0.25rem;
     margin-bottom: 0.75rem;
     font-size: 0.875rem;
-    color: post.$gray-60;
+    color: var(--post-palette-color-fg-secondary);
 
     + .info {
       margin-top: -1rem;
     }
-  }
-
-  .palette-accent .info {
-    color: post.$gray-20;
   }
 
   .todo-list-status {
