@@ -10,7 +10,7 @@ import {
   flexDirectionValues,
   flexJustifyContentValues,
   flexWrapValues,
-} from './flex.docs.mdx';
+} from './flex.data';
 import { bombArgs } from '@preview/utils/bomb-args';
 
 const { id, ...metaWithoutId } = meta;
