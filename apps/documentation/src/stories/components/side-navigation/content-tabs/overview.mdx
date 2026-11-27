@@ -19,10 +19,7 @@ import ComponentsPackageInstall from '@/shared/components-package-install.mdx';
 
 ## Adding the trigger to the header
 
-The `<post-side-navigation>` component has been designed to be used with the <a href="/?path=/docs/27a2e64d-55ba-492d-ab79-5f7c5e818498--docs#application">application header</a>.
-
-On desktop, it is always visible. For smaller screen, a trigger needs to be added in order to let users open it manually.
-To integrate the side navigation with the header, add the `<post-side-navigation-trigger>` component to the `slot="side-nav"` of the header, which will place it on the left of your application title.
+To let users open the side navigation on smaller screens, add the `<post-side-navigation-trigger>` component to the `slot="side-nav"` of the [application header](/?path=/docs/27a2e64d-55ba-492d-ab79-5f7c5e818498--docs#application). It is placed to the left of your application title.
 
 <Source of={SideNavigationStories.HeaderTrigger} />
 
@@ -32,25 +29,8 @@ In order for your page content to not be partially hidden by the side navigation
 
 ## Navigation content
 
-The default slot holds the navigation content. It must be a `<nav>` landmark with a descriptive `aria-label` and `<ul>`/`<li>` lists for the items. Nested levels are nested `<ul>`s. The section heading is optional.
+The default slot holds the navigation content. It must be a `<nav>` landmark with a descriptive `aria-label` and `<ul>`/`<li>` lists for the items. Nested levels are nested `<ul>`s.
 
-**Icons should only be set on the first level elements.** For usability reasons, all or none of the level 1 elements should have an icon.
-
-Expandable elements can either always be `post-collapsible` elements, or never be `post-collapsible` elements - in which case they're always expanded by default.
-
-## Examples
-
-The side navigation comes with two size variants:
-
-- Large (default): for a flat and short navigation
-- Small: for deep and long navigation (set adding the `is-small` property on the `<post-side-navigation>`)
-
-### Small navigation with no icons, always expanded
-
-<Canvas of={SideNavigationStories.Small} />
-
-### Large (default) navigation with icons, collapsible elements
-
-<Canvas of={SideNavigationStories.Large} />
+For the content rules, such as the number of levels and the use of icons, see the Usage tab.
 
 </post-tab-panel>

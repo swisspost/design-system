@@ -3,6 +3,7 @@ import meta, * as SideNavigationStories from './side-navigation.stories';
 import StoryTags from '@/shared/story-tags';
 import TabAccessibility from './content-tabs/accessibility.mdx';
 import TabOverview from './content-tabs/overview.mdx';
+import TabUsage from './content-tabs/usage.mdx';
 import './side-navigation.styles.scss';
 
 <Meta of={SideNavigationStories} />
@@ -22,8 +23,10 @@ import './side-navigation.styles.scss';
 
 <post-tabs size="large">
   <post-tab-item name="overview">Overview</post-tab-item>
+  <post-tab-item name="usage">Usage</post-tab-item>
   <post-tab-item name="accessibility">Accessibility</post-tab-item>
 
   <TabOverview />
+  <TabUsage />
   <TabAccessibility />
 </post-tabs>

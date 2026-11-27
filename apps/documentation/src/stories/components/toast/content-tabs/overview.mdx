@@ -11,7 +11,7 @@ import ToastServiceTs from '../toast-service-ts.sample.ts?raw';
 
 Push notifications to your visitors with a `.toast` element, a lightweight and easily customizable alert message.
 
-Toasts are designed to mimic the push notifications popularized by mobile and desktop operating systems. They are intended to be small interruptions to your visitors or users, and therefore should contain minimal, to-the-point, non-interactive content.
+Toasts are designed to mimic the push notifications popularized by mobile and desktop operating systems.
 
 <Canvas sourceState="shown" of={ToastStories.Default} />
 <div className="hide-col-default">
@@ -19,33 +19,6 @@ Toasts are designed to mimic the push notifications popularized by mobile and de
 </div>
 
 <StylesPackageImport components={['toast']} />
-
-## Usage
-
-The toast takes the full width of its parent element.
-To keep it aligned with the rest of your page content, place it inside a `.container` (or `.container-fluid`) element.
-
-## Concrete Examples of Application
-
-The following examples show the different characteristics of the component. These can differ in the type of visualization, the HTML structure, as well as when, how and why they are displayed.
-
-### Optional auto-dismissal
-
-<Canvas of={ToastStories.AutoClose} />
-
-Keep toasts visible until users dismiss them, especially when they contain important information or
-require action. Auto-dismiss only brief, non-critical messages whose information remains available
-elsewhere.
-
-When using auto-dismissal, give users a way to extend or disable the timer, and pause it while the
-toast is hovered or keyboard-focused. If the toast is the only way to access its information,
-pausing on interaction alone is not enough; users need a way to keep or retrieve that information.
-
-### Stacked
-
-You can stack toasts by wrapping them in a `.toast-container`, which will vertically add some spacing.
-
-<Canvas of={ToastStories.Stacked} />
 
 ## Angular Integration
 

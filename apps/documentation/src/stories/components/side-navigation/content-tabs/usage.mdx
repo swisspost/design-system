@@ -1,0 +1,109 @@
+<post-tab-panel for="usage" class="pt-24">
+
+<post-accordion heading-level="2" multiple>
+<post-accordion-item>
+{/* prettier-ignore */}
+<span slot="header" className="d-flex align-items-center gap-16"><post-icon name="signpost" className="w-32 h-32 flex-shrink-0" aria-hidden="true"></post-icon><span>When to use<span className="d-block fs-6 fw-normal">Web applications, together with the application header.</span></span></span>
+
+<div className="lead mb-16">
+
+Use the side navigation to let users navigate between different parts of a web application through a hierarchical structure. It is designed to be used with the [application header](/?path=/docs/27a2e64d-55ba-492d-ab79-5f7c5e818498--docs#application).
+
+</div>
+
+For other situations, use another solution:
+
+<div className="table-responsive">
+  <table className="table table-bordered">
+    <thead className="palette palette-alternate">
+      <tr>
+        <th scope="col">If you need to</th>
+        <th scope="col">Use instead</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Build the main navigation of a website</td>
+        <td>
+          The main navigation of the
+          [header](/?path=/docs/27a2e64d-55ba-492d-ab79-5f7c5e818498--docs)
+        </td>
+      </tr>
+      <tr>
+        <td>Switch between related content on the same page</td>
+        <td>[Tabs](/?path=/docs/bb1291ca-4dbb-450c-a15f-596836d9f39e--docs)</td>
+      </tr>
+      <tr>
+        <td>Organize a small application with fewer than five pages</td>
+        <td>No navigation hierarchy</td>
+      </tr>
+      <tr>
+        <td>Add a navigation next to another one, such as the main navigation of the header</td>
+        <td>One navigation only</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</post-accordion-item>
+
+<post-accordion-item collapsed>
+{/* prettier-ignore */}
+<span slot="header" className="d-flex align-items-center gap-16"><post-icon name="document" className="w-32 h-32 flex-shrink-0" aria-hidden="true"></post-icon><span>Content<span className="d-block fs-6 fw-normal">Up to 4 levels · Short labels · Icons on level 1 only</span></span></span>
+
+- **Up to four nested levels.** Keep the hierarchy as shallow as possible: more than three levels are hard to navigate.
+- **Short, descriptive labels** that tell users where each item leads.
+- **The section heading is optional.**
+- **Icons only on first-level items,** on all of them or none, and only icons that clearly relate to their label.
+
+</post-accordion-item>
+
+<post-accordion-item collapsed>
+{/* prettier-ignore */}
+<span slot="header" className="d-flex align-items-center gap-16"><post-icon name="touch" className="w-32 h-32 flex-shrink-0" aria-hidden="true"></post-icon><span>Behaviour<span className="d-block fs-6 fw-normal">Consistent items · Always visible on desktop · Trigger on smaller screens</span></span></span>
+
+- **Consistent item types.** Expandable elements are either always `post-collapsible` elements, or never, in which case they are always expanded.
+- **Parent items only open their section.** An item that opens a section does not also navigate to a page.
+
+<div className="row g-16 mt-8">
+  <div className="col-md-6">
+    <div className="palette palette-alternate rounded-8 p-16 h-full">
+      <p className="fw-bold mb-4">Desktop</p>
+      <p className="mb-0">Always visible.</p>
+    </div>
+  </div>
+  <div className="col-md-6">
+    <div className="palette palette-alternate rounded-8 p-16 h-full">
+      <p className="fw-bold mb-4">Smaller screens</p>
+      <p className="mb-0">Hidden. Users open it with a trigger in the header.</p>
+    </div>
+  </div>
+</div>
+
+</post-accordion-item>
+
+<post-accordion-item collapsed>
+{/* prettier-ignore */}
+<span slot="header" className="d-flex align-items-center gap-16"><post-icon name="layers" className="w-32 h-32 flex-shrink-0" aria-hidden="true"></post-icon><span>Variants<span className="d-block fs-6 fw-normal">Large for flat navigation · Small for deep navigation</span></span></span>
+
+<div className="row g-16">
+  <div className="col-md-6">
+    <div className="border rounded-8 p-16 h-full">
+      <p className="h5 mt-0 mb-4">Large (default)</p>
+      <p className="mb-0">For a flat and short navigation.</p>
+    </div>
+  </div>
+  <div className="col-md-6">
+    <div className="border rounded-8 p-16 h-full">
+      <p className="h5 mt-0 mb-4">Small</p>
+      <p className="mb-0">For a deep and long navigation. Set `size="small"` on the `<post-side-navigation>`.</p>
+    </div>
+  </div>
+</div>
+
+To compare the sizes, with and without icons and with collapsible or always expanded items, use the controls on the Overview tab.
+
+</post-accordion-item>
+</post-accordion>
+
+</post-tab-panel>
