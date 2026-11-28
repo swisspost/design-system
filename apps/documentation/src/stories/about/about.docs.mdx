@@ -214,6 +214,56 @@ import './about.styles.scss';
   </div>
 </Band>
 
+<Band
+  id="about-quick-check"
+  palette="alternate"
+  className="pt-72"
+  title="Accessibility Quick Check"
+>
+  <p className="lead">Get an idea of where you stand in regard to accessibility compliance.</p>
+
+We’ll have a look at 1–2 user journeys (book a flight, buy a product, fill out the contact form, find information, …) or 2–4 pages and test with different tools like Accessibility Checkers, keyboard navigation and screen readers.
+
+  <div className="inline-notification inline-notification-info">
+
+A quick check is not an [audit or certification](https://access-for-all.ch/en/services/accessibility-certification/), but it can prepare your application for one. To make sure your product is fully accessible for everyone, it needs to be checked by people with disabilities and specialists in accessibility testing.
+
+  </div>
+  <div className="row g-16 mt-24">
+    <div className="col-md-6">
+      <div className="palette palette-default rounded-8 p-24 h-full">
+        <h3 className="h5 mt-0 mb-8">Free quick check</h3>
+        <p className="mb-0">4h, 1–2 user journeys or 2–4 pages.</p>
+      </div>
+    </div>
+    <div className="col-md-6">
+      <div className="palette palette-default rounded-8 p-24 h-full">
+        <h3 className="h5 mt-0 mb-8">Extended check</h3>
+        <p className="mb-0">According to demand, PSP element necessary.</p>
+      </div>
+    </div>
+  </div>
+  <h3 className="mt-48">What information do you need for a quick check?</h3>
+
+Good question, here’s the checklist.
+
+- **The user journeys or pages to test.**
+
+  **User journey:** The main thing users do in your interface. Some examples:
+
+  - **Google:** search for a website, browse the list of results and visit result X.
+  - **Post shop:** search for a product, add it to the cart and proceed to checkout.
+
+- **Application URL** or list of URLs to check.
+- **Access to your application** if authentication is needed (test user, IAM role to order, …).
+- **Where you’d like us to report the findings:**
+  - **Jira:** We can open Jira issues directly, please provide us with the link to your board and information about access or IAM roles to order.
+  - **PDF:** We’ll compile a PDF with screenshots and descriptions of the findings.
+
+{/* prettier-ignore */}
+<a className="btn btn-primary mt-16" href="mailto:philipp.gfeller@post.ch?subject=Accessibility%20Quick%20Check&body=User%20journeys%20or%20pages%20to%20check%3A%0A%0AApplication%20URL%3A%20%0A%0AAccess%20information%3A%20%0A%0AReport%20findings%20to%3A%20">Order a Quick Check <post-icon name="arrowright" aria-hidden="true"></post-icon></a>
+</Band>
+
 <TeaserRow
   id="about-questions"
   palette="accent"
