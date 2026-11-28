@@ -32,13 +32,6 @@ jobs:
       - name: Setup Node & pnpm
         uses: ./.github/actions/setup-pnpm
 
-      # Keep in sync with the npm version of the changeset-magic job,
-      # so the publish dry-run below is representative.
-      - name: Update NPM
-        run: |
-          npm install -g npm@11.19.1 --ignore-scripts
-          echo "npm: $(npm -v)"
-
       - name: Install & build Dependencies
         run: pnpm bootstrap
 
