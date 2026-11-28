@@ -5,7 +5,7 @@ import {
   SHARABLE_GLOBAL_NAMES,
 } from '@shared/globals';
 import { BOOKMARK_PATH, decodeUrlComponent, normalizePath } from '@shared/urls';
-import type { Catalog } from '../catalog';
+import type { Catalog } from '../catalog/catalog';
 import { migrateLegacyUrl } from './legacy';
 import type { Route } from './route';
 

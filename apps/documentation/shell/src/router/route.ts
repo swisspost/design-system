@@ -1,5 +1,5 @@
 import type { Globals } from '@shared/globals';
-import type { Page } from '../catalog';
+import type { Page } from '../catalog/catalog';
 
 export type Route = PageRoute | RedirectRoute | NotFoundRoute;
 

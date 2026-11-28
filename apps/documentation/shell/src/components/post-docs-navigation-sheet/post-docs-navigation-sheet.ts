@@ -1,10 +1,10 @@
 import { LitElement, html, nothing } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { DEFAULT_GLOBALS, type Globals } from '@shared/globals';
-import type { Page } from '../../catalog';
-import { getRootDefinition } from '../../navigation/root';
+import type { Page } from '../../catalog/catalog';
+import { getRootDefinition } from '../../navigation/navigation';
 import type { NavigationSection } from '../../navigation/tree';
-import type { SearchIndex } from '../../search/search-index';
+import type { SearchIndex } from '../../catalog/search-index';
 import type { PostDocsNavigationTree } from '../post-docs-navigation-tree/post-docs-navigation-tree';
 import type { PostDocsSearch } from '../post-docs-search/post-docs-search';
 import '../post-docs-globals-menus/post-docs-globals-menus';
@@ -62,17 +62,16 @@ export class PostDocsNavigationSheet extends LitElement {
   }
 
   public async open() {
-    await this.expand(true);
+    await this.expand();
   }
 
   /** Opens the panel with the focus in the search field, e.g. for the search shortcut. */
   public async openSearch() {
-    // the search hides the tree as soon as there is a query, it reveals the active page once cleared
-    await this.expand(false);
+    await this.expand();
     this.search.focus();
   }
 
-  private async expand(revealActivePage: boolean) {
+  private async expand() {
     if (this.isExpanded && !this.isClosing) return;
 
     const isReopening = this.isClosing;
@@ -81,7 +80,7 @@ export class PostDocsNavigationSheet extends LitElement {
     this.emitToggle(true);
 
     await this.updateComplete;
-    if (!isReopening && revealActivePage) void this.tree.revealActivePage();
+    if (!isReopening) void this.tree.revealActivePage();
 
     // replaces a running fade-out, so that `close` stops there
     void this.fade('in');

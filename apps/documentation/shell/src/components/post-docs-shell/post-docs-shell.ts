@@ -10,14 +10,15 @@ import {
 import { getShortcut } from '@shared/shortcuts';
 import { previewUrl } from '@shared/urls';
 
-import { PREVIEW_ORIGIN, SITE_TITLE } from '../../config';
+import { ANALYTICS, PREVIEW_ORIGIN, SITE_TITLE } from '../../config';
+import { Analytics } from '../../analytics/analytics';
 import { type PreviewMessageEvent, PreviewConnection } from '../../bridge/preview-connection';
-import { Catalog } from '../../catalog';
+import { Catalog } from '../../catalog/catalog';
 import { GlobalsStore } from '../../globals/globals-store';
 import { buildNavigation, type NavigationSection } from '../../navigation/tree';
 import type { Route } from '../../router/route';
-import { type RouteChangeEvent, Router } from '../../router';
-import { SearchIndex } from '../../search/search-index';
+import { type RouteChangeEvent, Router } from '../../router/router';
+import { SearchIndex } from '../../catalog/search-index';
 import '../post-docs-navigation-sheet/post-docs-navigation-sheet';
 import '../post-docs-navigation-sidebar/post-docs-navigation-sidebar';
 import type { PreviewLoading } from '../post-docs-preview/post-docs-preview';
@@ -39,6 +40,7 @@ export class PostDocsShell extends LitElement {
 
   private readonly previewConnection = new PreviewConnection(PREVIEW_ORIGIN);
   private readonly globalsStore = new GlobalsStore();
+  private readonly analytics = new Analytics(ANALYTICS);
   private router: Router | null = null;
   private navigation: NavigationSection[] = [];
   private searchIndex: SearchIndex | null = null;
@@ -67,6 +69,7 @@ export class PostDocsShell extends LitElement {
   }
 
   private async start() {
+    this.analytics.start();
     this.previewConnection.addEventListener('rendered', this.onRendered);
     this.previewConnection.addEventListener('error', this.onPreviewError);
     this.previewConnection.addEventListener('navigate', this.onNavigate);
@@ -89,18 +92,24 @@ export class PostDocsShell extends LitElement {
   }
 
   private readonly onRouteChange = (event: Event) => {
-    const { route, fromHistory } = event as RouteChangeEvent;
+    const { route, previous, fromHistory } = event as RouteChangeEvent;
     this.route = route;
     void this.querySelector('post-docs-navigation-sheet')?.close();
 
     const pageTitle = route.type === 'page' ? route.page.segments.at(-1) : 'Page not found';
     document.title = `${pageTitle} · ${SITE_TITLE}`;
 
-    if (route.type !== 'page') return;
+    if (route.type !== 'page') {
+      this.analytics.trackPage();
+      return;
+    }
 
     // Back and Forward keep the current globals, the history entry may hold older ones
     if (route.globals && !fromHistory) this.globalsStore.set(route.globals);
     this.router?.replaceGlobals(this.globalsStore.current);
+
+    // tracked with the globals in the URL, a new hash on the same page is not a page view
+    if (previous?.type !== 'page' || previous.page.id !== route.page.id) this.analytics.trackPage();
 
     const { page, params, hash } = route;
     const globals = this.globalsStore.current;
@@ -178,6 +187,13 @@ export class PostDocsShell extends LitElement {
     this.isSheetOpen = event.detail;
   };
 
+  // back to the page, once the sheet no longer makes it inert
+  private readonly onSearchExit = async () => {
+    void this.querySelector('post-docs-navigation-sheet')?.close();
+    await this.updateComplete;
+    this.querySelector('post-docs-preview')?.focus();
+  };
+
   override willUpdate(changed: PropertyValues) {
     const previousGlobals = changed.get('globals') as Globals | undefined;
     const isModeChanged = changed.has('globals') && previousGlobals?.mode !== this.globals.mode;
@@ -199,6 +215,7 @@ export class PostDocsShell extends LitElement {
         .sections=${this.navigation}
         .activePage=${activePage}
         .searchIndex=${this.searchIndex}
+        @postDocsSearchExit=${this.onSearchExit}
       ></post-docs-navigation-sidebar>
       <post-docs-toolbar
         class="palette palette-brand"
@@ -211,6 +228,7 @@ export class PostDocsShell extends LitElement {
         .globals=${this.globals}
         .searchIndex=${this.searchIndex}
         @postDocsGlobalsChange=${this.onGlobalsSelect}
+        @postDocsSearchExit=${this.onSearchExit}
         @postDocsToggle=${this.onSheetToggle}
       ></post-docs-navigation-sheet>
       <main class="overflow-y-auto" ?inert=${this.isSheetOpen}>${this.renderContent()}</main>

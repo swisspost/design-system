@@ -1,7 +1,7 @@
 import Fuse from 'fuse.js';
 import { KEYWORD_TAG_PREFIX } from '@shared/tags';
-import type { Catalog, Page } from '../catalog';
-import { getRootDefinition } from '../navigation/root';
+import type { Catalog, Page } from './catalog';
+import { getRootDefinition } from '../navigation/navigation';
 import { isListed } from '../navigation/tree';
 
 /** A page as the search sees it. */

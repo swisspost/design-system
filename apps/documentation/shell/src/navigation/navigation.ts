@@ -1,4 +1,16 @@
-import { DEFAULT_ROOT, ROOTS } from '../config';
+import { NAVIGATION } from '../config';
+
+export interface NavigationConfig {
+  /** The `post-icon` shown after the category headings. */
+  categoryIcon: string;
+  /** The definition of the roots that are not in `roots`. */
+  defaultRoot: RootDefinition;
+  /**
+   * The roots of the navigation, by name (the first segment of the page titles).
+   * Their order comes from `storySort` in `preview/.storybook/preview.ts`.
+   */
+  roots: Record<string, RootDefinition>;
+}
 
 /** How a root, the first segment of the page titles, appears in the navigation. */
 export interface RootDefinition {
@@ -15,5 +27,5 @@ export interface RootDefinition {
 }
 
 export function getRootDefinition(root: string): RootDefinition {
-  return ROOTS[root] ?? DEFAULT_ROOT;
+  return NAVIGATION.roots[root] ?? NAVIGATION.defaultRoot;
 }

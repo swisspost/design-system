@@ -2,8 +2,8 @@ import { LitElement, type PropertyValues, html, nothing } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { SEARCH_SHORTCUT } from '@shared/shortcuts';
 import { STATUS_TAG_PREFIX, type StatusTag } from '@shared/tags';
-import { getRootDefinition } from '../../navigation/root';
-import type { SearchIndex, SearchResult } from '../../search/search-index';
+import { getRootDefinition } from '../../navigation/navigation';
+import type { SearchIndex, SearchResult } from '../../catalog/search-index';
 import './post-docs-search.scss';
 
 const NEW_TAG: StatusTag = `${STATUS_TAG_PREFIX}new`;
@@ -13,6 +13,7 @@ const NEW_TAG: StatusTag = `${STATUS_TAG_PREFIX}new`;
  * which hides its navigation while the results are shown.
  *
  * @fires postDocsSearchToggle - The results are shown (`detail: true`) or hidden (`detail: false`).
+ * @fires postDocsSearchExit - The search is left: Escape in the empty field, or a result opened with Enter.
  */
 @customElement('post-docs-search')
 export class PostDocsSearch extends LitElement {
@@ -203,20 +204,25 @@ export class PostDocsSearch extends LitElement {
       case 'Enter':
         if (count === 0) return;
 
-        // a click on the link, the router opens it like any other link
+        // a click on the link, the router opens it like any other link, then the page takes the focus
         event.preventDefault();
         this.querySelector<HTMLAnchorElement>(`#${this.optionId(this.activeIndex)}`)?.click();
+        this.exit();
         break;
 
       case 'Escape':
-        // with an empty field, Escape is left to the container, e.g. to close the mobile navigation
-        if (!this.query) return;
-
+        // the search owns Escape: a query is cleared, an empty field leaves the search
         event.preventDefault();
         event.stopPropagation();
-        this.clear();
+
+        if (this.query) this.clear();
+        else this.exit();
         break;
     }
+  }
+
+  private exit() {
+    this.dispatchEvent(new CustomEvent('postDocsSearchExit', { bubbles: true }));
   }
 
   private onClear() {

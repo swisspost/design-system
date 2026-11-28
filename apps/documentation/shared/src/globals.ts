@@ -44,6 +44,9 @@ export const SHARABLE_GLOBAL_NAMES = GLOBAL_NAMES.filter(name => {
 /** Shared URLs hold the globals that differ from the defaults, the hidden ones only apply to the person who has set them. */
 export const SHARABLE_GLOBALS_FILTER: GlobalsFilter = { defaultValues: false, hidden: false };
 
+/** Deep links hold all the sharable globals, so that they never depend on the globals stored by the person who opens them. */
+export const DEEP_LINK_GLOBALS_FILTER: GlobalsFilter = { hidden: false };
+
 export const DEFAULT_GLOBALS: Globals = {
   theme: 'post',
   appearance: 'default',

@@ -1,3 +1,4 @@
+import { DEEP_LINK_GLOBALS_FILTER, filterGlobals } from '@shared/globals';
 import { bookmarkUrl } from '@shared/urls';
 import { getShellOrigin } from '@preview/bridge/storybook-adapter';
 import { globalsHost } from '@preview/globals/globals-host';
@@ -32,7 +33,7 @@ export function copyDeepLink(event: Event) {
   const { id, record } = story;
   const url = bookmarkUrl(pageId, {
     hash: STORY_ANCHOR_PREFIX + id,
-    globals: globalsHost.current,
+    globals: filterGlobals(globalsHost.current, DEEP_LINK_GLOBALS_FILTER),
     params: {
       story: toStorySlug(id),
       args: record ? stringifyArgs(record.args, record.initialArgs) : null,
