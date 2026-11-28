@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': patch
 ---
 
-Added a Usage tab to the Toast and Side Navigation documentation pages, with guidance on when to use the component, when to use another component instead, its content, behaviour, variants and examples.
+Added a Usage tab to the Toast and Side Navigation documentation pages and moved the usage guidance, variants and examples from the Overview tab into it.
