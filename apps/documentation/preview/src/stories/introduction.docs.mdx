@@ -1,0 +1,127 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import * as IntroductionStories from './introduction.stories';
+import { packages } from '@preview/data/packages.data';
+import { ORDER_ICON_LINK } from '@preview/data/links';
+import './introduction.styles.scss';
+import '@preview/blocks/tile/tile.component';
+import TeaserRow from '@preview/blocks/docs-page/teaser-row.mdx';
+
+<Meta of={IntroductionStories} />
+
+<div className="d-flex target">
+  <div className="d-flex flex-column align-items-center gap-40 py-40 px-16 px-lg-64">
+    <div className="target-icon">
+      <post-icon name="brush-solid"></post-icon>
+    </div>
+    {/* prettier-ignore */}
+    <a href="/?path=/docs/811618a8-3c0e-44b4-bbde-408ea7a98d4d--docs" className="btn btn-primary btn-lg">For designers <post-icon name="arrowright"></post-icon></a>
+    <p>Create consistent digital experiences by learning SPDS principles and accessing our core design tools.</p>
+  </div>
+
+  <div className="d-flex flex-column align-items-center gap-40 py-40 px-16 px-lg-64 palette palette-alternate">
+    <div className="target-icon">
+      <post-icon name="code-solid"></post-icon>
+    </div>
+    <a href="/?path=/docs/dfc70c3b-4726-406b-8a41-af5738c89d05--docs" className="btn btn-primary btn-lg">For developers <post-icon name="arrowright"></post-icon></a>
+    <p>Kickstart your SPDS development with this quick setup checklist covering tutorials, installation, and framework basics.</p>
+  </div>
+</div>
+
+<div className="palette palette-accent">
+  <div className="container py-40">
+    <h2 className="mt-0 mb-32">Quick Links</h2>
+    <div className="row quick-links gy-16">
+      <div className="col-md-4">
+        <post-linkarea className="h-full quick-link p-32 pt-60 d-flex flex-column justify-content-between">
+          <div className="mb-32">
+            <h3 className="title-highlight">Project Blueprint</h3>
+            <p>Start your project quickly and easily with our Blueprint.</p>
+          </div>
+          <div>
+            {/* prettier-ignore */}
+            <a href="https://swisspost.atlassian.net/wiki/spaces/DEVPLAT/pages/1056318147/Blueprint?xpis=eyJicmlkZ2UiOiJzZWFyY2hQYWdlIiwiaWQiOiIxNzkzMjE4OTEyMjAxIiwic291cmNlIjoiY29uZmx1ZW5jZSJ9" className="btn btn-secondary btn-lg">SPDS Blueprint <post-icon name="arrowright"></post-icon></a>
+          </div>
+        </post-linkarea>
+      </div>
+      <div className="col-md-4">
+        <post-linkarea className="h-full quick-link p-32 pt-60 d-flex flex-column justify-content-between">
+          <div className="mb-32">
+            <h3 className="title-highlight">Migration Guide</h3>
+            <p>Easily switch to the new design language with our AI-powered migration guide.</p>
+          </div>
+          <div>
+            {/* prettier-ignore */}
+            <a href="/?path=/docs/c23b1d0b-76b3-4e38-aa76-b10c29bb873f--docs" className="btn btn-secondary btn-lg">Migration Guide <post-icon name="arrowright"></post-icon></a>
+          </div>
+        </post-linkarea>
+      </div>
+      <div className="col-md-4">
+        <post-linkarea className="h-full quick-link p-32 pt-60 d-flex flex-column justify-content-between">
+          <div className="mb-32">
+            <h3 className="title-highlight">SPDS Icon Library</h3>
+            <p>Find your Icon in our extensive Library.</p>
+          </div>
+          <div>
+            {/* prettier-ignore */}
+            <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs" className="btn btn-secondary btn-lg">SPDS Icon Library <post-icon name="arrowright"></post-icon></a>
+          </div>
+        </post-linkarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<TeaserRow
+  id="brand-experience"
+  palette="brand"
+  headingLevel={2}
+  icon="experiencehub"
+  title="The Post Brand Experience"
+  description="Visit the Experience Hub for more information about our brand. Login required."
+  href="https://www.experience-hub.ch/document/2803"
+  linkText="Visit Experience Hub"
+/>
+
+<div className="palette palette-alternate py-40">
+  <div className="container">
+    <h2 className="mt-0 mb-32">SPDS Services</h2>
+    <div className="row service-cards gy-16">
+      <div className="col-md-6">
+        <post-linkarea className="h-full p-32 service-card palette palette-accent d-flex flex-column justify-content-between align-items-start">
+          <div>
+            <post-icon className="w-64 h-64" name="icondesign"></post-icon>
+            <h3 className="mt-40 title-highlight">Missing an icon? Order it now.</h3>
+            <p className="mb-40">We create the icon that you need.</p>
+          </div>
+          {/* prettier-ignore */}
+          <a className="btn btn-secondary btn-lg" href={ORDER_ICON_LINK}>Order icon <post-icon name="arrowright"></post-icon></a>
+        </post-linkarea>
+      </div>
+      <div className="col-md-6">
+        <post-linkarea className="h-full p-32 service-card palette palette-accent d-flex flex-column justify-content-between align-items-start">
+          <div>
+            <post-icon className="w-64 h-64" name="palette"></post-icon>
+            <h3 className="mt-40 title-highlight">Brand Quick Check?</h3>
+            {/* prettier-ignore */}
+            <p className="mb-40">Let us check if your page is compliant with the Branding Guidelines.</p>
+          </div>
+          {/* prettier-ignore */}
+          <a className="btn btn-secondary btn-lg" href="mailto:design-system@post.ch?subject=I%20need%20a%20brand%20quick%20check&body=URL%20of%20the%20page%3A%20please%20enter%20URL%20here">Brand Quick Check <post-icon name="arrowright"></post-icon></a>
+        </post-linkarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<TeaserRow
+  id="designer-questions"
+  palette="accent"
+  headingLevel={2}
+  icon="help"
+  title="Do you have a question?"
+  description="We help you in our Support Channel."
+  href="https://teams.microsoft.com/l/channel/19%3Ae7fa68fb13eb40b4bf4604edea5f4b3e%40thread.tacv2/%F0%9F%9A%91%20Support?groupId=123c7c9e-052a-40e6-98d3-6cc6d46bad0a&tenantId=3ae7c479-0cf1-47f4-8f84-929f364eff67"
+  linkText="SPDS Support Channel"
+  secondaryLinkHref="https://github.com/swisspost/design-system/issues"
+  secondaryLinkText="Submit an issue"
+/>

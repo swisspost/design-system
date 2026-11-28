@@ -602,7 +602,7 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
           netlify link --filter @swisspost/design-system-documentation --name ${{ fromJSON(needs.collect-release-data.outputs.release-data).old.siteUrl }}
-          netlify deploy --filter @swisspost/design-system-documentation --dir apps/documentation/storybook-static --prod
+          netlify deploy --filter @swisspost/design-system-documentation --dir apps/documentation/dist --prod
 
       - name: Update Changeset config.json
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd

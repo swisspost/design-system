@@ -1,0 +1,20 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "paths": {
+      "@preview/*": ["./src/*"],
+      "@shared/*": ["../shared/*"]
+    },
+
+    // Pre-existing debt. Drop once sources are clean.
+    "noImplicitOverride": false,
+    "noImplicitReturns": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  },
+  "include": ["src", "src/data/*.json", ".storybook/**/*"],
+  "exclude": ["**/*.sample.*", ".storybook/main.ts"],
+  "references": [{ "path": "../shared" }]
+}

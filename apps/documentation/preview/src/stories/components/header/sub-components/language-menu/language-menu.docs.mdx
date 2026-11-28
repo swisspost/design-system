@@ -1,0 +1,46 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import meta, * as languageMenuStories from './language-menu.stories';
+import * as languageMenuItemStories from '../language-menu-item/language-menu-item.stories';
+import StoryTags from '@preview/blocks/story-tags';
+import ComponentsPackageInstall from '@preview/blocks/components-package-install.mdx';
+
+<Meta of={languageMenuStories} />
+
+<div className="docs-title">
+  # Language Menu
+
+<story-links of={JSON.stringify(languageMenuStories)}></story-links>
+
+</div>
+
+<StoryTags meta={meta} />
+
+<p className="lead">The language menu enables users to select their preferred language.</p>
+
+It is designed to be used within the `post-header` component.
+
+<Canvas sourceState="shown" of={languageMenuStories.Default} />
+
+<Controls of={languageMenuStories.Default} />
+
+<div className="inline-notification inline-notification-info mt-16">
+    <b>Accessibility Note:</b> For each language in the selection menu, the accessible name is
+    generated using the `name` property. It is essential that this property is set with the full,
+    readable name of the language (e.g., English) to serve as an accurate and clear accessible name
+    for assistive technologies.
+</div>
+
+<ComponentsPackageInstall component="<post-language-menu>" />
+
+## Language menu item
+
+The `post-language-menu` consists of a list of `post-language-menu-item` components.
+
+<Canvas sourceState="shown" of={languageMenuItemStories.Default} />
+<Controls of={languageMenuItemStories.Default} />
+
+## Links
+
+The language menu items can be used as links, which will navigate to a different page upon selection.
+
+<Canvas sourceState="shown" of={languageMenuStories.Links} />

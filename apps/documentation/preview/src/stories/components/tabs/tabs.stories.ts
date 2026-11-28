@@ -1,0 +1,468 @@
+import { StoryObj } from '@storybook/web-components-vite';
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { MetaComponent } from '@preview/types/storybook';
+import { forceCompactAppearance } from '@preview/decorators/force-compact-appearance';
+
+const meta: MetaComponent<
+  HTMLPostTabsElement & {
+    'variant': string;
+    'activeTab'?: string;
+    'tabContent'?: string;
+    'postChange': string;
+    'post-tabs-content'?: string;
+    'post-tabs'?: string;
+    'slots-default'?: string;
+    'slots-panels'?: string;
+  }
+> = {
+  id: 'bb1291ca-4dbb-450c-a15f-596836d9f39e',
+  title: 'Components/Tabs',
+  tags: ['package:components'],
+  component: 'post-tabs',
+  render: renderTabs,
+  parameters: {
+    layout: 'fullscreen',
+    badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-V2?node-id=33280-33494',
+    },
+    controls: {
+      exclude: ['postChange', 'show', 'post-tabs-content', 'post-tabs'],
+    },
+  },
+  argTypes: {
+    'variant': {
+      name: 'variant',
+      description:
+        'Select between Content Tabs (panels) or Page Tabs variant (navigation links). <div class="inline-notification inline-notification-info"><p>If you attempt to mix modes (panels + links), the component will throw an error.</p></div>',
+      control: 'radio',
+      options: ['Content Tabs', 'Page Tabs'],
+      table: {
+        category: 'Component Variant',
+      },
+    },
+    'tabContent': {
+      name: 'tabContent',
+      description:
+        'Controls whether the default tab items show text only, an icon only (with a visually hidden label for screen readers), or an icon together with visible text. <div class="inline-notification inline-notification-info"><p>When using icon only tabs, make sure to provide a visually hidden label for each icon so the tab\'s purpose remains clear to screen reader users.</p></div>',
+      control: 'radio',
+      options: ['text', 'icon', 'icon-text'],
+      table: {
+        category: 'Tabs',
+      },
+    },
+    'activeTab': {
+      control: false,
+      if: { arg: 'variant', eq: 'Content Tabs' },
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    'postChange': {
+      name: 'postChange ',
+      control: false,
+      description:
+        'An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly active tab.',
+      if: { arg: 'variant', eq: 'Content Tabs' },
+      table: {
+        category: 'Events',
+        type: {
+          summary: 'CustomEvent<string>',
+        },
+      },
+    },
+    'post-tabs-content': {
+      name: 'post-tabs-content ', // trailing space is intentional to avoid conflict with auto-generated part
+      control: false,
+      description: 'The container element that displays the content of the currently active tab.',
+      if: { arg: 'variant', eq: 'Content Tabs' },
+      table: {
+        category: 'CSS Shadow Parts',
+        type: {
+          summary: 'CSS Selector',
+        },
+      },
+    },
+    'post-tabs': {
+      name: 'post-tabs ',
+      control: false,
+      description: 'The container element that holds the set of tabs.',
+      table: {
+        category: 'CSS Shadow Parts',
+        type: {
+          summary: 'CSS Selector',
+        },
+      },
+    },
+    'show': {
+      name: 'show ',
+      control: false,
+      description:
+        'Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.',
+      if: { arg: 'variant', eq: 'Content Tabs' },
+      table: {
+        category: 'Methods',
+        type: {
+          summary: '(tabName: string) => Promise<void>',
+        },
+      },
+    },
+    'slots-default': {
+      name: 'default',
+      description: 'Slot for placing tab items.',
+      control: {
+        type: 'text',
+        disable: true,
+      },
+      table: {
+        category: 'Slots',
+        type: {
+          summary: 'other',
+        },
+      },
+    },
+    'slots-panels': {
+      name: 'panels',
+      description: 'Slot for placing tab panels.',
+      control: {
+        type: 'text',
+        disable: true,
+      },
+      if: { arg: 'variant', eq: 'Content Tabs' },
+      table: {
+        category: 'Slots',
+        type: {
+          summary: 'other',
+        },
+      },
+    },
+    'textPrevTabItems': {
+      name: 'text-prev-tab-items',
+
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    'textNextTabItems': {
+      name: 'text-next-tab-items',
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    'label': {
+      name: 'label',
+      description: 'ARIA label for the Page tabs.',
+      control: 'text',
+      type: { name: 'string', required: true },
+      if: { arg: 'variant', eq: 'Page Tabs' },
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+  },
+  args: {
+    'variant': 'Content Tabs',
+    'activeTab': undefined,
+    'tabContent': 'icon-text',
+    'label': 'Page Tabs',
+    'size': 'large',
+    'textPrevTabItems': 'Previous tab items',
+    'textNextTabItems': 'Next tab items',
+    'slots-default': '',
+    'slots-panels': '',
+  },
+};
+
+export default meta;
+
+function renderTabLabel(tabContent: string | undefined, label: string, iconName: string) {
+  switch (tabContent) {
+    case 'icon':
+      return html`<post-icon name="${iconName}"></post-icon
+        ><span class="visually-hidden">${label}</span>`;
+    case 'icon-text':
+      return html`<post-icon name="${iconName}"></post-icon>${label}`;
+    default:
+      return html`${label}`;
+  }
+}
+
+function renderPagesVariant(
+  label: string | undefined,
+  customSlots: string,
+  size: string | undefined,
+  tabContent: string | undefined,
+): ReturnType<typeof html> {
+  if (customSlots) {
+    return html`
+      <post-tabs label="${ifDefined(label)}" size="${ifDefined(size)}">
+        ${unsafeHTML(customSlots)}
+      </post-tabs>
+    `;
+  }
+
+  // Default page tabs example - first link is active
+  return html`
+    <post-tabs label="${ifDefined(label)}" size="${ifDefined(size)}">
+      <post-tab-item name="first">
+        <a href="/first" aria-current="page">${renderTabLabel(tabContent, 'Home', 'home')}</a>
+      </post-tab-item>
+      <post-tab-item name="second">
+        <a href="/second">${renderTabLabel(tabContent, 'Messages', 'letter')}</a>
+      </post-tab-item>
+      <post-tab-item name="third">
+        <a href="/third">${renderTabLabel(tabContent, 'Settings', 'gear')}</a>
+      </post-tab-item>
+    </post-tabs>
+  `;
+}
+
+// Helper function to render tabs variant
+function renderContentVariant(
+  activeTab: string | undefined,
+  customSlots: string,
+  panelSlots: string,
+  size: string | undefined,
+  tabContent: string | undefined,
+): ReturnType<typeof html> {
+  if (customSlots) {
+    return html`
+      <post-tabs active-tab="${ifDefined(activeTab)}" size="${ifDefined(size)}">
+        ${unsafeHTML(customSlots)}
+      </post-tabs>
+    `;
+  }
+
+  if (panelSlots) {
+    return html`
+      <post-tabs active-tab="${ifDefined(activeTab)}" size="${ifDefined(size)}">
+        <post-tab-item name="first">${renderTabLabel(tabContent, 'Home', 'home')}</post-tab-item>
+        <post-tab-item name="second"
+          >${renderTabLabel(tabContent, 'Messages', 'messages')}</post-tab-item
+        >
+        <post-tab-item name="third"
+          >${renderTabLabel(tabContent, 'Settings', 'settings')}</post-tab-item
+        >
+
+        ${unsafeHTML(panelSlots)}
+      </post-tabs>
+    `;
+  }
+
+  return html`
+    <post-tabs active-tab="${ifDefined(activeTab)}" size="${ifDefined(size)}">
+      <post-tab-item name="first">${renderTabLabel(tabContent, 'Home', 'home')}</post-tab-item>
+      <post-tab-item name="second"
+        >${renderTabLabel(tabContent, 'Messages', 'letter')}</post-tab-item
+      >
+      <post-tab-item name="third">${renderTabLabel(tabContent, 'Settings', 'gear')}</post-tab-item>
+
+      <post-tab-panel for="first">
+        This is the content of the first tab. By default it is shown initially.
+      </post-tab-panel>
+      <post-tab-panel for="second">
+        This is the content of the second tab. By default it is hidden initially.
+      </post-tab-panel>
+      <post-tab-panel for="third">
+        This is the content of the third tab. By default it is also hidden initially.
+      </post-tab-panel>
+    </post-tabs>
+  `;
+}
+
+function renderTabs(
+  args: Partial<
+    HTMLPostTabsElement & {
+      'variant': string;
+      'activeTab'?: string;
+      'tabContent'?: string;
+      'slots-default'?: string;
+      'slots-panels'?: string;
+    }
+  >,
+) {
+  const variant = args.variant || 'Content Tabs';
+  return variant === 'Page Tabs'
+    ? renderPagesVariant(args.label, args['slots-default'] || '', args.size, args.tabContent)
+    : renderContentVariant(
+        args.activeTab,
+        args['slots-default'] || '',
+        args['slots-panels'] || '',
+        args.size,
+        args.tabContent,
+      );
+}
+
+// STORIES
+type Story = StoryObj<
+  HTMLPostTabsElement & {
+    'variant': string;
+    'activeTab'?: string;
+    'slots-default'?: string;
+    'slots-panels'?: string;
+  }
+>;
+
+export const Default: Story = {};
+
+export const ContentVariant: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Content Tabs variant displays tabbed content sections. Each tab shows its associated panel when clicked. Use this for organizing content on the same page.',
+      },
+    },
+  },
+  args: {
+    variant: 'Content Tabs',
+  },
+};
+
+export const ActiveTab: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Set which tab is initially active using the `active-tab` property.',
+      },
+    },
+  },
+  args: {
+    variant: 'Content Tabs',
+    activeTab: 'second',
+  },
+};
+
+export const PagesVariant: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Page Tabs variant displays tabs as page navigation links. Each tab contains an anchor element for routing. Use this for site navigation. The active link must have an `aria-current="page"` attribute to ensure correct accessibility and styling.',
+      },
+    },
+  },
+  args: {
+    variant: 'Page Tabs',
+  },
+};
+
+export const ActivePagesItem: Story = {
+  args: {
+    'variant': 'Page Tabs',
+    'slots-default': `
+      <post-tab-item name="letters">
+        <a href="/letters">Letters</a>
+      </post-tab-item>
+      <post-tab-item name="packages">
+        <!-- The active link must have an aria-current="page" attribute to ensure correct accessibility and styling. -->
+        <a href="/packages" aria-current="page">Packages</a>
+      </post-tab-item>
+      <post-tab-item name="logistics">
+        <a href="/logistics">Logistics</a>
+      </post-tab-item>
+    `,
+  },
+};
+
+export const TabsWithSideNavigation: Story = {
+  render: args =>
+    html` <!-- Wrap page tabs in ".post-tabs-container" when they sit in a constrained layout, e.g. next to the side navigation. -->
+      <div class="post-tabs-container container-fluid">${renderTabs(args)}</div>`,
+  args: {
+    'variant': 'Page Tabs',
+    'slots-default': `
+      <post-tab-item name="letters">
+       <!-- The active link must have an aria-current="page" attribute to ensure correct accessibility and styling. -->
+        <a href="/letters" aria-current="page">Letters</a>
+      </post-tab-item>
+      <post-tab-item name="packages">
+        <a href="/packages" >Packages</a>
+      </post-tab-item>
+      <post-tab-item name="logistics">
+        <a href="/logistics">Logistics</a>
+      </post-tab-item>
+   
+    `,
+  },
+  parameters: {
+    docs: {
+      story: {
+        inline: false,
+        iframeHeight: 700,
+      },
+    },
+  },
+  decorators: [
+    forceCompactAppearance,
+    story =>
+      html`<post-header text-menu="Menu">
+          <post-logo slot="post-logo" url="/">Homepage</post-logo>
+          <post-side-navigation-trigger slot="side-nav" for="sidenavigation">
+            <button aria-controls="sidenavigation" aria-expanded="false">
+              <post-icon aria-hidden="true" name="burger"></post-icon>
+              Menu
+            </button>
+          </post-side-navigation-trigger>
+          <p slot="title">[Application Title]</p>
+        </post-header>
+
+        <post-side-navigation id="sidenavigation" text-close="Close">
+          <nav aria-label="Main navigation">
+            <h2 class="post-side-navigation-heading">Always expanded</h2>
+
+            <ul>
+              <li>
+                <a href="#" class="post-side-navigation-item"> Level 1 </a>
+              </li>
+              <li>
+                <a href="#" class="post-side-navigation-item"> Level 1 </a>
+                <ul>
+                  <li>
+                    <a href="#" class="post-side-navigation-item">Level 2</a>
+                  </li>
+                  <li>
+                    <a href="#" class="post-side-navigation-item" aria-current="page"
+                      >Level 2 (active)</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#" class="post-side-navigation-item"> Level 1 </a>
+                <ul>
+                  <li>
+                    <a href="#" class="post-side-navigation-item">Level 2</a>
+                  </li>
+                  <li>
+                    <a href="#" class="post-side-navigation-item">Level 2</a>
+                    <ul>
+                      <li>
+                        <a href="#" class="post-side-navigation-item">Level 3</a>
+                      </li>
+                      <li>
+                        <a href="#" class="post-side-navigation-item">Level 3</a>
+                        <ul>
+                          <li>
+                            <a href="#" class="post-side-navigation-item">Level 4</a>
+                          </li>
+                          <li>
+                            <a href="#" class="post-side-navigation-item">Level 4</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </post-side-navigation>
+        <main class="main-container mt-16">${story()}</main>`,
+  ],
+};

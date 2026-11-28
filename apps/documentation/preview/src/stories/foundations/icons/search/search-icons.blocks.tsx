@@ -1,0 +1,581 @@
+import React from 'react';
+import report from '@swisspost/design-system-icons/public/report.min.json';
+import migrationMap from '@preview/data/icons-migration-map.json';
+import { ReportIcon, ReportSourceIcon } from '@swisspost/design-system-icons/src/models/icon.model';
+import './search-icons.styles.scss';
+
+interface Icon {
+  set: string;
+  name: string;
+  migration: string[] | null;
+  keywords: string;
+  searchKeywords: string[];
+  sources: ReportSourceIcon[];
+}
+
+interface IconSets {
+  post: Icon[];
+  uiLight: Icon[];
+  uiSolid: Icon[];
+}
+
+const ICON_SETS: IconSets = report.icons.reduce(
+  (sets: IconSets, icon: ReportIcon) => {
+    let typeOfSet = icon.stats.set;
+    const basename = icon.name.replace(/.svg$/, '');
+    let migration: Icon['migration'] = null;
+
+    if (typeOfSet === 'post') {
+      const migrationRecord = migrationMap.icons.find(m => m.old.toString() === basename)?.new;
+      migration = migrationRecord ? [migrationRecord].flat() : null;
+    } else if (typeOfSet === 'ui') {
+      if (basename.endsWith('-solid')) {
+        typeOfSet += 'Solid';
+      } else {
+        typeOfSet += 'Light';
+      }
+    }
+
+    sets[typeOfSet as keyof IconSets].push({
+      set: typeOfSet,
+      sources: icon.stats.sources,
+      name: basename,
+      migration,
+      keywords: icon.keys.join(', '),
+      searchKeywords: [basename, ...icon.keys].map(word =>
+        word
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .toLowerCase(),
+      ),
+    });
+    return sets;
+  },
+  { post: [], uiLight: [], uiSolid: [] },
+);
+
+export const POST_ICONS_COUNT = ICON_SETS.post.length;
+export const UI_ICONS_COUNT = ICON_SETS.uiLight.length + ICON_SETS.uiSolid.length;
+
+const PAGE_SIZE = 84;
+
+export class Search extends React.Component {
+  form = {
+    text: '',
+    set: {
+      current: 'uiLight',
+    },
+    groups: [
+      {
+        text: 'UI Icons',
+        value: 'ui',
+      },
+      {
+        text: 'Post Icons (Legacy)',
+        value: 'post',
+      },
+    ],
+    uiVariants: [
+      {
+        text: 'Line icons',
+        value: 'uiLight',
+      },
+      {
+        text: 'Solid icons',
+        value: 'uiSolid',
+      },
+    ],
+  };
+
+  uiVariant = 'uiLight';
+
+  activeIcon: Icon | null = null;
+
+  results = {
+    icons: ICON_SETS.uiLight,
+    paging: {
+      pageSize: PAGE_SIZE,
+      currentPage: 1,
+      totalPages: Math.ceil(ICON_SETS.uiLight.length / PAGE_SIZE),
+    },
+  };
+
+  componentDidMount() {
+    this.applyDeeplinkFromLocation();
+  }
+
+  private getSearchParam(params: URLSearchParams, key: string) {
+    const wanted = key.toLowerCase();
+
+    for (const [currentKey, value] of params.entries()) {
+      if (!value) continue;
+      if (currentKey.toLowerCase() === wanted) return value;
+    }
+
+    return null;
+  }
+
+  private normalizeSetName(value: string | null): keyof IconSets | null {
+    const normalized = value?.trim().toLowerCase();
+
+    switch (normalized) {
+      case 'post':
+        return 'post';
+      case 'uilight':
+        return 'uiLight';
+      case 'uisolid':
+        return 'uiSolid';
+      default:
+        return null;
+    }
+  }
+
+  private applyDeeplinkFromLocation() {
+    const params = new URLSearchParams(this.getDeeplinkSearch());
+    const setName = this.normalizeSetName(this.getSearchParam(params, 'spds-iconset'));
+    const query = this.getSearchParam(params, 'spds-query');
+
+    if (setName) {
+      this.form.set.current = setName;
+      if (setName !== 'post') this.uiVariant = setName;
+    }
+
+    if (query) {
+      this.search(query);
+    } else if (setName) {
+      this.updateResults();
+    }
+  }
+
+  private getDeeplinkSearch(): string {
+    try {
+      return window.parent.location.search;
+    } catch {
+      // the documentation shell has another origin in the two-port dev setup
+      return window.location.search;
+    }
+  }
+
+  search(value: string) {
+    this.form.text = value;
+    this.setState(this.form);
+
+    this.updateResults(
+      value
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase(),
+    );
+  }
+
+  updateResults(query?: string) {
+    let icons = ICON_SETS[this.form.set.current as keyof IconSets];
+    if (query) icons = icons.filter(icon => icon.searchKeywords.find(word => word.includes(query)));
+
+    this.results.icons = icons;
+    this.results.paging.currentPage = 1;
+    this.results.paging.totalPages = Math.ceil(
+      this.results.icons.length / this.results.paging.pageSize,
+    );
+
+    this.setState(this.results);
+  }
+
+  changeIconSet(setName: string) {
+    this.form.set.current = setName;
+    this.search('');
+  }
+
+  changeIconGroup(group: string) {
+    this.changeIconSet(group === 'post' ? 'post' : this.uiVariant);
+  }
+
+  changeUiVariant(variant: string) {
+    this.uiVariant = variant;
+    this.form.set.current = variant;
+    this.search(this.form.text);
+  }
+
+  changePage(page: number) {
+    this.results.paging.currentPage = page;
+    this.setState(this.results);
+    this.scrollToResults();
+  }
+
+  onPaginationChange = (event: Event) => {
+    this.changePage((event as CustomEvent<number>).detail);
+  };
+
+  scrollToResults() {
+    const resultsAnchor = document.querySelector('a[href="#results-top"]');
+
+    if (resultsAnchor) {
+      const anchorTop = resultsAnchor.getBoundingClientRect().top;
+
+      if (anchorTop < 0) {
+        window.scrollTo({
+          top: resultsAnchor.getBoundingClientRect().top + window.scrollY,
+          behavior: 'smooth',
+        });
+      }
+    }
+  }
+
+  popoverEventListener() {
+    document.body.style.overflow = '';
+  }
+
+  private trapFocusInElement(container: HTMLElement) {
+    const focusableSelectors = [
+      'a[href]',
+      'button:not([disabled])',
+      'textarea:not([disabled])',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ];
+    const focusables = Array.from(
+      container.querySelectorAll<HTMLElement>(focusableSelectors.join(',')),
+    );
+
+    if (focusables.length === 0) return () => {};
+
+    // Focus the first focusable element
+    focusables[0].focus();
+
+    function trapFocus(e: KeyboardEvent) {
+      if (e.key !== 'Tab' || focusables.length === 0) return;
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if (e.shiftKey) {
+        // Shift+Tab
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        // Tab
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+
+    container.addEventListener('keydown', trapFocus);
+
+    // Return a cleanup function
+    return () => {
+      container.removeEventListener('keydown', trapFocus);
+    };
+  }
+
+  openIconDetails(icon: Icon) {
+    const popover = document.querySelector('#icon-panel') as HTMLPostPopovercontainerElement;
+    popover?.removeEventListener('postToggle', this.popoverEventListener);
+    document.body.style.overflow = 'hidden';
+    this.activeIcon = icon;
+    this.setState(this.activeIcon);
+    popover.showPopover();
+    popover?.addEventListener('postToggle', this.popoverEventListener);
+    setTimeout(() => {
+      // Trap focus inside the popover
+      const cleanupFocusTrap = this.trapFocusInElement(popover);
+
+      // Clean up the focus trap when the popover closes
+      const cleanup = () => {
+        cleanupFocusTrap?.();
+        popover.removeEventListener('postToggle', cleanup);
+      };
+      popover.addEventListener('postToggle', cleanup);
+    }, 0);
+  }
+
+  iconDetailPanel() {
+    const popover = document.querySelector('#icon-panel') as HTMLPostPopovercontainerElement;
+
+    return (
+      <post-popovercontainer id="icon-panel" class="palette palette-default icon-panel">
+        <div className="icon-panel-content">
+          <div>
+            <div className="resizer-container">
+              <div className="resizer">
+                {this.activeIcon && <post-icon name={this.activeIcon?.name}></post-icon>}
+              </div>
+            </div>
+            <dl>
+              <dt>Icon Set</dt>
+              <dd className="text-capitalize">{this.activeIcon?.set}</dd>
+              <dt>Name</dt>
+              <dd>{this.activeIcon?.name}</dd>
+              <dt>Download</dt>
+              <dd>
+                <a href={`/post-icons/${this.activeIcon?.name}.svg`} download>
+                  {this.activeIcon?.name}.svg
+                </a>
+              </dd>
+              <dt>Keywords</dt>
+              <dd>{this.activeIcon?.keywords}</dd>
+              <dt>Source files</dt>
+              <dd>
+                {this.activeIcon?.sources.map((source, i) => {
+                  return (
+                    <span key={source.id}>
+                      {source.name}
+                      {i + 1 === this.activeIcon?.sources.length ? '' : ', '}
+                    </span>
+                  );
+                })}
+              </dd>
+              {this.activeIcon?.migration && (
+                <>
+                  <dt>
+                    {this.activeIcon.migration?.length > 1
+                      ? 'Migrate to one of the following UI Icons'
+                      : 'Migrate to the following UI Icon'}
+                  </dt>
+                  <dd>
+                    <div className="row migration-icons">
+                      {this.activeIcon.migration?.map(icon => (
+                        <React.Fragment key={`migration-${icon}`}>
+                          <div className="col-auto">
+                            <post-icon name={icon}></post-icon>
+                          </div>
+                          <div className="col">
+                            <code>{icon}</code>
+                          </div>
+                          <div className="w-full mb-4"></div>
+                        </React.Fragment>
+                      ))}
+                      {this.activeIcon.migration?.map(icon => (
+                        <React.Fragment key={`migration-${icon}`}>
+                          <div className="col-auto">
+                            <post-icon name={`${icon}-Solid`}></post-icon>
+                          </div>
+                          <div className="col">
+                            <code>{`${icon}-Solid`}</code>
+                          </div>
+                          <div className="w-full mb-4"></div>
+                        </React.Fragment>
+                      ))}
+                    </div>
+                  </dd>
+                </>
+              )}
+            </dl>
+          </div>
+          <post-closebutton size="small" placement="manual" onClick={() => popover.hidePopover()}>
+            Close
+          </post-closebutton>
+        </div>
+      </post-popovercontainer>
+    );
+  }
+
+  searchForm() {
+    const isUiGroup = this.form.set.current !== 'post';
+
+    return (
+      <>
+        <div className="sets py-24 segmented-button-container">
+          <fieldset className="segmented-button">
+            <legend>Choose the icon set you want to browse</legend>
+
+            {this.form.groups.map(group => {
+              return (
+                <label className="segmented-button-label" key={`group-${group.value}`}>
+                  <input
+                    type="radio"
+                    name="IconSearchSetGroup"
+                    value={group.value}
+                    checked={(group.value === 'ui') === isUiGroup}
+                    onChange={() => this.changeIconGroup(group.value)}
+                  />
+                  {group.text}
+                </label>
+              );
+            })}
+          </fieldset>
+        </div>
+
+        <p>
+          <strong>
+            {isUiGroup
+              ? `
+          The UI icon library is an icon library specially designed for digital applications in
+          Swiss Post’s new design language. The icons are optically optimized and scalable from 16
+          px to 64 px. Line icons should generally be used. Solid icons may only be used in
+          exceptional cases and after consultation with the SPDS team.
+          `
+              : `
+          The Swiss Post icon legacy library is primarily used in analogue applications, such as in
+          control systems or for labelling terminals. Swiss Post icons can also be used in
+          PowerPoint presentations. If a required icon is missing from the UI icon library, it can
+          be requested from the SPDS team.`}
+          </strong>
+        </p>
+
+        <div className="mt-40 vw-full position-relative start-50 translate-middle-x palette palette-alternate">
+          <div className="container pt-32 pb-16">
+            <div className="search-text">
+              <div className="search-input form-floating">
+                <input
+                  id="IconSearchText"
+                  className="form-control"
+                  placeholder="Icon ID or keyword"
+                  type="search"
+                  value={this.form.text}
+                  onChange={e => this.search(e.target.value)}
+                />
+                <label className="form-label" htmlFor="IconSearchText">
+                  Search for icons
+                </label>
+
+                <button
+                  className="delete-button"
+                  aria-label="Clear search"
+                  onClick={() => this.search('')}
+                >
+                  <post-icon name="closex"></post-icon>
+                </button>
+
+                <button className="search-button" aria-label="Search">
+                  <post-icon name="search"></post-icon>
+                </button>
+              </div>
+
+              <p className="form-hint">
+                Showing {this.results.icons.length} of{' '}
+                {ICON_SETS[this.form.set.current as keyof IconSets].length} icons.
+              </p>
+            </div>
+          </div>
+
+          <hr />
+          <div className="container pt-16 pb-32">
+            <div className="d-flex justify-content-between">
+              <h2 className="h6 mb-0 mt-16">Overview</h2>
+              {isUiGroup && (
+                <div className="ui-variants">
+                  <fieldset>
+                    <legend className="visually-hidden">Choose the style of the UI icons</legend>
+
+                    {this.form.uiVariants.map(variant => {
+                      return (
+                        <div
+                          className="form-check form-check-inline"
+                          key={`variant-${variant.value}`}
+                        >
+                          <input
+                            id={`IconSearchUiVariant-${variant.value}`}
+                            className="form-check-input"
+                            type="radio"
+                            name="IconSearchUiVariant"
+                            value={variant.value}
+                            checked={variant.value === this.form.set.current}
+                            onChange={() => this.changeUiVariant(variant.value)}
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor={`IconSearchUiVariant-${variant.value}`}
+                          >
+                            {variant.text}
+                          </label>
+                        </div>
+                      );
+                    })}
+                  </fieldset>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  resultsList() {
+    const pageStartIndex = this.results.paging.pageSize * (this.results.paging.currentPage - 1);
+    const pageEndIndex = pageStartIndex + this.results.paging.pageSize;
+
+    if (this.results.paging.totalPages <= 0)
+      return (
+        <div className="no-results">
+          <post-icon name="emotefrowny"></post-icon>
+          <p>No results found with your current query</p>
+        </div>
+      );
+
+    return (
+      <ul className="result-list">
+        {this.results.icons.slice(pageStartIndex, pageEndIndex).map((icon, i) => {
+          return (
+            <li className="icon" key={`icon-${icon.name}-${i}`}>
+              <button onClick={() => this.openIconDetails(icon)}>
+                <span className="gfx">
+                  <post-icon name={icon.name} />
+                </span>
+                <span className="name">{icon.name}</span>
+                <span className="visually-hidden">{icon.keywords}</span>
+                {icon.migration ? (
+                  <post-tooltip-trigger for="tooltip-migration-hint" class="tooltip-migration-hint">
+                    <post-icon name="info"></post-icon>
+                  </post-tooltip-trigger>
+                ) : null}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  }
+
+  paging() {
+    if (this.results.paging.totalPages <= 0) return null;
+
+    return (
+      <div className="paging">
+        <post-pagination
+          page={this.results.paging.currentPage}
+          page-size={this.results.paging.pageSize}
+          collection-size={this.results.icons.length}
+          label="Icon result pages"
+          text-previous="Previous page"
+          text-next="Next page"
+          text-page="Page"
+          text-first="First page"
+          text-last="Last page"
+          ref={element => {
+            if (!element) return;
+            element.removeEventListener('postChange', this.onPaginationChange);
+            element.addEventListener('postChange', this.onPaginationChange);
+          }}
+        ></post-pagination>
+      </div>
+    );
+  }
+
+  render() {
+    return (
+      <div data-iconset={this.form.set.current}>
+        <div className="search-form">{this.searchForm()}</div>
+        <div className="vw-full position-relative start-50 translate-middle-x palette palette-alternate">
+          <div className="container py-16">
+            <div className="search-results">
+              <a href="#results-top" aria-hidden="true" tabindex="-1"></a>
+              {this.paging()}
+              {this.resultsList()}
+              {this.paging()}
+              {this.iconDetailPanel()}
+            </div>
+            <post-tooltip id="tooltip-migration-hint" placement="top-end" arrow>
+              Click me for migration instructions
+            </post-tooltip>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}

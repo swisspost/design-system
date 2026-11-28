@@ -2,9 +2,21 @@
 
 These contribution guidelines extend the [general contribution guidelines](../../CONTRIBUTING.md), where you can find instructions on how to set up the repository for contributing.
 
+## Structure
+
+The documentation consists of two apps: the shell, which provides the navigation and the toolbar, and the Storybook preview, which renders the documentation pages in an iframe.
+
+| Folder     | Content                                                |
+| ---------- | ------------------------------------------------------ |
+| `preview/` | The app that renders the Storybook documentation pages |
+| `shell/`   | The app that replaces the Storybook manager UI         |
+| `shared/`  | The contract between the shell and the preview         |
+| `public/`  | Files served at the site root                          |
+| `cypress/` | End-to-end and snapshot tests                          |
+
 ## Bundling the documentation
 
-Run the following command to build the entire Storybook source files into the dist folder, making them available for developers.
+Run the following command to build the shell and the Storybook preview into the `dist` folder, making them available for developers.
 
 ```bash
 # Production build

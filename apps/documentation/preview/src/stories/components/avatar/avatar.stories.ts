@@ -1,0 +1,87 @@
+import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
+import { MetaComponent } from '@preview/types/storybook';
+import { html, nothing } from 'lit';
+import { components } from '@swisspost/design-system-components/dist/docs.json';
+
+const AVATAR_ARGTYPES = components.find(c => c.tag === 'post-avatar');
+const EMAIL_ARGTYPE = AVATAR_ARGTYPES?.props.find(p => p.name === 'email');
+
+const meta: MetaComponent = {
+  id: '09aac03d-220e-4885-8fb8-1cfa01add188',
+  title: 'Components/Avatar',
+  component: 'post-avatar',
+  tags: ['package:components', 'status:new'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=17-160',
+    },
+  },
+  args: {
+    firstname: 'Firstname',
+    lastname: '',
+    email: '',
+    imageSrc: '',
+    description: 'The current user is Firstname.',
+  },
+  argTypes: {
+    'email': {
+      description: `${
+        EMAIL_ARGTYPE?.docs ?? ''
+      } <div class="inline-notification inline-notification-info"><p>Do you need an example email address? Try it out with <strong>oss@post.ch</strong>.</p></div>`,
+    },
+    'slots-default': {
+      name: 'default',
+      table: {
+        type: {
+          summary: 'HTMLImageElement',
+        },
+      },
+    },
+    'imageSrc': {
+      control: 'text',
+      description:
+        'Define an image `src` to insert a custom image.<div class="inline-notification inline-notification-info"><p>Do you need an example? Try our logo <strong>/assets/images/logo-swisspost.svg</strong>.</p><p>Note that external images may not load on this preview because of the Content Security Policy of this page.</p></div>',
+      table: {
+        category: 'Content',
+      },
+    },
+    'description': {
+      control: 'text',
+      description: 'Set the text for the custom description.',
+    },
+  },
+};
+
+export default meta;
+
+type Story = StoryObj;
+
+export const Default: Story = {
+  render: (args: Args) => {
+    return html`<post-avatar
+      firstname="${args.firstname || nothing}"
+      lastname="${args.lastname || nothing}"
+      email="${args.email || nothing}"
+      description="${args.description || nothing}"
+      >${args.imageSrc
+        ? html`<img
+            src="${args.imageSrc}"
+            alt="${[args.firstname, args.lastname].filter(n => n).join(' ')}"
+          />`
+        : nothing}</post-avatar
+    >`;
+  },
+};
+
+export const AnchorWrapped: Story = {
+  render: (args: Args, context: StoryContext) => {
+    return html`<a href="#">${Default.render?.(args, context)}</a>`;
+  },
+};
+
+export const ButtonWrapped: Story = {
+  render: (args: Args, context: StoryContext) => {
+    return html`<button>${Default.render?.(args, context)}</button>`;
+  },
+};

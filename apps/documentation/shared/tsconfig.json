@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "rootDir": "..",
+    "outDir": "../node_modules/.cache/tsc/shared"
+  },
+  "include": ["**/*", "../package.json"]
+}

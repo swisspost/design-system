@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+}
+
+docs-shell {
+  display: block;
+  block-size: 100dvh;
+}
+
+docs-preview {
+  display: block;
+  block-size: 100%;
+
+  & > iframe {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    border: 0;
+  }
+}
