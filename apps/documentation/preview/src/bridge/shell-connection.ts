@@ -19,6 +19,11 @@ export class ShellMessageEvent<T extends ShellMessageType = ShellMessageType> ex
 
 type ShellConnectionEventMap = { [T in ShellMessageType]: ShellMessageEvent<T> };
 
+interface PageReport {
+  type: 'rendered' | 'error';
+  pageId: string;
+}
+
 /**
  * Talks to the shell. Dispatches a `ShellMessageEvent` for every message of the
  * shell.
@@ -29,6 +34,9 @@ export class ShellConnection extends TypedEventTarget<ShellConnectionEventMap> {
 
   // The page the preview shows, once it is ready.
   private pageId: string | null = null;
+
+  // What became of the last page, for a shell that connects after it.
+  private pageReport: PageReport | null = null;
 
   /** The origin of the shell, once it has connected. */
   public get origin(): string | null {
@@ -61,11 +69,13 @@ export class ShellConnection extends TypedEventTarget<ShellConnectionEventMap> {
   }
 
   public rendered(pageId: string): void {
-    this.send('rendered', { pageId });
+    this.pageReport = { type: 'rendered', pageId };
+    this.sendPageReport();
   }
 
   public error(pageId: string): void {
-    this.send('error', { pageId });
+    this.pageReport = { type: 'error', pageId };
+    this.sendPageReport();
   }
 
   public navigate(href: string): void {
@@ -84,6 +94,9 @@ export class ShellConnection extends TypedEventTarget<ShellConnectionEventMap> {
     if (type === 'connect') {
       this.shellOrigin = event.origin;
       this.sendReady();
+
+      // The page may have rendered before the shell connected.
+      if (this.pageReport?.pageId === this.pageId) this.sendPageReport();
     } else if (event.origin !== this.shellOrigin) {
       return;
     }
@@ -95,9 +108,17 @@ export class ShellConnection extends TypedEventTarget<ShellConnectionEventMap> {
     if (this.pageId !== null) this.send('ready', { pageId: this.pageId });
   }
 
+  private sendPageReport() {
+    if (this.pageReport) {
+      this.send(this.pageReport.type, { pageId: this.pageReport.pageId });
+    }
+  }
+
   private send<T extends PreviewMessageType>(type: T, payload: MessagePayload<T>) {
     // Nothing is sent until the shell has connected, so that the preview also
     // works on its own.
-    if (this.shellOrigin) window.parent.postMessage(toEnvelope(type, payload), this.shellOrigin);
+    if (this.shellOrigin) {
+      window.parent.postMessage(toEnvelope(type, payload), this.shellOrigin);
+    }
   }
 }
