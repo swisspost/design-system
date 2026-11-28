@@ -671,10 +671,63 @@ jobs:
   # - Release Branch does not already exist
   # - Release Data exists
   # - A Major Release was detected
+  #
+  # Builds the documentation of the old major. This job runs third-party build tooling
+  # (dependency install scripts, Storybook, ...), so it has no secrets: only the read-only
+  # default GITHUB_TOKEN, and no persisted credentials. The documentation is handed over
+  # to the create-release-branch job as an artifact.
+  build-release-docs:
+    name: Build Documentation of the old Major Version
+    runs-on: ubuntu-latest
+    needs: collect-release-data
+    if: github.ref_name == 'main' && needs.collect-release-data.outputs.release-branch-exists == 'false' && fromJSON(needs.collect-release-data.outputs.release-data) != null && fromJSON(needs.collect-release-data.outputs.release-data).isMajor == true
+    steps:
+      # Checkout the commit with the release.old.version tag (e.g. @swisspost/design-system-styles@5.3.2)
+      - name: Checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+        with:
+          ref: ${{ fromJSON(needs.collect-release-data.outputs.release-data).tagName }}
+          persist-credentials: false
+
+      # These files only belong to the main documentation site
+      - name: Remove Documentation versions.json
+        run: rm -f ./apps/documentation/public/assets/versions.json
+
+      - name: Remove Documentation _headers
+        run: rm -f ./apps/documentation/public/_headers
+
+      - name: Remove Documentation _redirects
+        run: rm -f ./apps/documentation/public/_redirects
+
+      - name: Setup pnpm & node
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Install documentation & dependencies
+        run: pnpm --filter "design-system-documentation..." install
+
+      - name: Build documentation & dependencies
+        run: pnpm --filter "design-system-documentation..." build
+
+      - name: Upload documentation
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: release-docs
+          path: apps/documentation/storybook-static
+          if-no-files-found: error
+          retention-days: 1
+
+  # Only run this Job if:
+  # - Workflow runs on the 'main' Branch
+  # - Release Branch does not already exist
+  # - Release Data exists
+  # - A Major Release was detected
+  #
+  # This job holds the bot token and the Netlify token, so it does not install or build anything:
+  # the documentation is built by the build-release-docs job.
   create-release-branch:
     name: Create release/v* Branch
     runs-on: ubuntu-latest
-    needs: collect-release-data
+    needs: [collect-release-data, build-release-docs]
     if: github.ref_name == 'main' && needs.collect-release-data.outputs.release-branch-exists == 'false' && fromJSON(needs.collect-release-data.outputs.release-data) != null && fromJSON(needs.collect-release-data.outputs.release-data).isMajor == true
     steps:
       # Checkout the commit with the release.old.version tag (e.g. @swisspost/design-system-styles@5.3.2)
@@ -709,14 +762,27 @@ jobs:
       - name: Remove Documentation _redirects
         run: rm -f ./apps/documentation/public/_redirects
 
+      # Only needed to install netlify-cli. The pnpm store cache can be written by jobs that
+      # run the build toolchain, so it is not reused in this job.
       - name: Setup pnpm & node
         uses: ./.github/actions/setup-pnpm
+        with:
+          use_cache: false
 
-      - name: Install documentation & dependencies
-        run: pnpm --filter "design-system-documentation..." install
+      - name: Download documentation
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: release-docs
+          path: apps/documentation/storybook-static
 
-      - name: Build documentation & dependencies
-        run: pnpm --filter "design-system-documentation..." build
+      # The documentation was built by a job that ran third-party tooling. It is only uploaded
+      # to Netlify, but links could make the deploy pick up files from outside the folder.
+      - name: Validate documentation
+        run: |
+          if [[ -n "$(find apps/documentation/storybook-static ! -type f ! -type d -print -quit)" ]]; then
+            echo "::error::The documentation must only contain regular files and directories."
+            exit 1
+          fi
 
       - name: Setup netlify-cli
         uses: ./.github/actions/setup-netlify-cli
