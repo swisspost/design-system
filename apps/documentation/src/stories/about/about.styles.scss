@@ -1,0 +1,84 @@
+@use 'sass:color';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/utilities';
+@use '@swisspost/design-system-styles/mixins/media';
+
+tokens.$default-map: utilities.$post-spacing;
+
+// The POUR diagram color has no design token.
+$pour-color: #340060;
+
+// There is no palette token for brand-colored text, so the theme's brand color is used directly.
+.about-highlight,
+.about-principles h2 {
+  color: var(--post-theme-color-palettes-brand-bg);
+}
+
+.about-step-title {
+  display: flex;
+  align-items: center;
+  gap: tokens.get('utility-gap-16');
+  margin-block: 0 tokens.get('utility-gap-16');
+}
+
+.about-step-number {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: tokens.get('utility-gap-48');
+  height: tokens.get('utility-gap-48');
+  border: 4px solid currentColor;
+  border-radius: 50%;
+  line-height: 1;
+}
+
+.about-principle-icon-tilted {
+  transform: rotate(-45deg);
+}
+
+.about-pour-diagram {
+  flex-shrink: 0;
+  max-width: 100%;
+  height: auto;
+}
+
+.about-pour-diagram-fills circle {
+  fill: color.change($pour-color, $alpha: 0.1);
+}
+
+.about-pour-diagram-outlines circle {
+  fill: none;
+  stroke: $pour-color;
+}
+
+.about-pour-diagram-labels text {
+  font-size: 20px;
+  font-weight: var(--post-device-font-weight-extra-black);
+  fill: currentColor;
+}
+
+// Not `.list-unstyled`: its `all: unset` would override the grid.
+.about-pour-list {
+  display: grid;
+  gap: tokens.get('utility-gap-24') tokens.get('utility-gap-40');
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include media.min(md) {
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: column;
+  }
+
+  @include media.min(lg) {
+    flex: 1 1 0;
+    padding-block-start: tokens.get('utility-gap-32');
+  }
+}
+
+.about-callout {
+  border: 4px solid color-mix(in srgb, var(--post-current-fg) 40%, transparent);
+  border-radius: tokens.get('utility-gap-16');
+}

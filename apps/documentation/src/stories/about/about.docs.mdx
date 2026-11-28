@@ -1,0 +1,228 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import * as AboutStories from './about.stories';
+import { designPrinciples, etic, pourDiagram, pourPrinciples } from './about.data';
+import { GITHUB_ISSUES_LINK, SUPPORT_CHANNEL_LINK } from '@/shared/links';
+import Band from '@/shared/docs-page/band.mdx';
+import Hero from '@/shared/docs-page/hero.mdx';
+import TeaserRow from '@/shared/docs-page/teaser-row.mdx';
+import './about.styles.scss';
+
+<Meta of={AboutStories} />
+
+<Hero
+  title="About the Design System"
+  icon="designsystem"
+  image="/assets/images/about-header.jpg"
+/>
+
+<Band
+  id="about-mission"
+  palette="brand"
+  icon="rocket"
+  iconPosition="top"
+  titleAlign="center"
+  title="Our mission"
+>
+  <p className="lead text-center">
+    “Swiss Post Design System enables projects and services to create a seamless user experience
+    across all digital touchpoints”
+  </p>
+</Band>
+
+<Band
+  id="about-process"
+  palette="alternate"
+  icon="process"
+  iconPosition="top"
+  title="Origination process for components and modules"
+>
+  <p className="lead">
+    The SPDS does not provide all components used by Swiss Post. In order for a component to be
+    included in the SPDS, certain preconditions must be met.
+  </p>
+  <ol className="list-unstyled">
+    <li className="mt-32">
+      <h3 className="h4 about-step-title">
+        <span className="about-step-number palette palette-brand">1</span>
+        Product team requirements
+      </h3>
+      <p>
+        The need for new or expanded library components can be reported to the SPDS team.
+        Admission will be decided jointly.
+      </p>
+    </li>
+    <li className="mt-32">
+      <h3 className="h4 about-step-title">
+        <span className="about-step-number palette palette-brand">2</span>
+        Joint needs assessment
+      </h3>
+      <h4 className="h6 mt-24 mb-8">The precondition for recording SPDS is reusability:</h4>
+      <ul>
+        <li>The component must be suitable for use in at least three other projects.</li>
+      </ul>
+      <h4 className="h6 mt-24 mb-8">Consequence of non-fulfilment (project-specific components):</h4>
+      <ul>
+        <li>Self-regulation: the project must implement and maintain the components itself.</li>
+        <li>
+          Updates: In the event of future global design changes, the project must independently
+          simulate the components.
+        </li>
+      </ul>
+    </li>
+    <li className="mt-32">
+      <h3 className="h4 about-step-title">
+        <span className="about-step-number palette palette-brand">3</span>
+        After decision for implementation
+      </h3>
+      <h4 className="h6 mt-24 mb-8">Option 1:</h4>
+      <p>
+        Implementation by the SPDS team. If the go-live date allows, the SPDS team implements the
+        components directly. The project is available after the release.
+      </p>
+      <h4 className="h6 mt-24 mb-8">Option 2:</h4>
+      <p>
+        Temporary self-regulation of the project (fallback). If the capacities of the SPDS team do
+        not allow the go-live date, the project will implement the components itself for the time
+        being.
+      </p>
+      <p>
+        The handover to the SPDS team (for Group-wide use) will take place retroactively by hand.
+      </p>
+    </li>
+    <li className="mt-32">
+      <h3 className="h4 about-step-title">
+        <span className="about-step-number palette palette-brand">4</span>
+        Implementation by SPDS or project
+      </h3>
+      <h4 className="h6 mt-24 mb-8">4.1 Implementation by the SPDS team:</h4>
+      <p>
+        If the go-live date makes it possible, the SPDS team implements the components directly.
+        The project is available after the release.
+      </p>
+      <h4 className="h6 mt-24 mb-8">4.2 Implementation by project:</h4>
+      <p>
+        If time is of the essence, the project can implement the components itself. After
+        completion, the component is handed over to the SPDS for integration and incorporated into
+        the SPDS baseline.
+      </p>
+    </li>
+  </ol>
+  <img
+    className="d-block w-full h-auto mt-32"
+    src="/assets/images/about/origination-process.png"
+    width="1060"
+    height="505"
+    loading="lazy"
+    alt="Flowchart of the origination process. 1: The product team needs a new component or an adaptation or expansion of a library component. 2: The requirements are clarified jointly. 3: If the component is not adopted into the SPDS, the product team creates it and it remains project-specific. If it is adopted, it is created or adapted in Figma and/or code, its resources are handed off for inclusion in the SPDS, it goes into the SPDS backlog and the SPDS team implements it as a basic component."
+  />
+</Band>
+
+<Band
+  id="about-principles"
+  palette="accent"
+  icon="icondesign"
+  iconPosition="top"
+  titleAlign="center"
+  className="about-principles"
+  title="SPDS design principles"
+>
+  <h3 className="about-highlight">ETIC</h3>
+  <p className="h4 mt-0">
+    <span className="visually-hidden">{etic.join(', ')}</span>
+    <span aria-hidden="true">
+      {etic.map((word, index) => (
+        <span key={word}>
+          {index > 0 && ', '}
+          <span className="about-highlight">{word[0]}</span>
+          {word.slice(1)}
+        </span>
+      ))}
+    </span>
+  </p>
+  <ul className="list-unstyled d-flex flex-column gap-32 mt-32 mb-0">
+    {designPrinciples.map(principle => (
+      <li key={principle.icon} className="d-flex align-items-center gap-16 gap-md-32">
+        <span className="docs-icon-circle palette palette-brand">
+          <post-icon
+            name={principle.icon}
+            className={principle.iconClassName}
+            aria-hidden="true"
+          ></post-icon>
+        </span>
+        <p className="lead mb-0">
+          {principle.statement} <span className="about-highlight">{principle.highlight}</span>
+        </p>
+      </li>
+    ))}
+  </ul>
+</Band>
+
+<Band
+  id="about-pour"
+  icon="accessibility"
+  iconPosition="top"
+  titleAlign="center"
+  title="POUR Principles"
+>
+  <div className="d-flex flex-column flex-lg-row align-items-center align-items-lg-start gap-40">
+    <svg
+      className="about-pour-diagram"
+      width={pourDiagram.width}
+      height={pourDiagram.height}
+      viewBox={`0 0 ${pourDiagram.width} ${pourDiagram.height}`}
+      aria-hidden="true"
+    >
+      {/* Fills first, then outlines, so no outline is tinted by another circle's fill. */}
+      <g className="about-pour-diagram-fills">
+        {pourDiagram.circles.map(({ title, cx, cy }) => (
+          <circle key={title} cx={cx} cy={cy} r={pourDiagram.radius} />
+        ))}
+      </g>
+      <g className="about-pour-diagram-outlines" strokeWidth={pourDiagram.strokeWidth}>
+        {pourDiagram.circles.map(({ title, cx, cy }) => (
+          <circle key={title} cx={cx} cy={cy} r={pourDiagram.radius} />
+        ))}
+      </g>
+      <g className="about-pour-diagram-labels" textAnchor="middle" dominantBaseline="central">
+        {pourDiagram.circles.map(({ title, cx, cy }) => (
+          <text key={title} x={cx} y={cy}>
+            {title}
+          </text>
+        ))}
+      </g>
+    </svg>
+    <ul className="about-pour-list">
+      {pourPrinciples.map(principle => (
+        <li key={principle.title}>
+          <h3 className="h5 mt-0 mb-8">{principle.title}</h3>
+          <p className="mb-0">{principle.description}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+  <div className="palette palette-brand about-callout d-flex flex-column flex-md-row align-items-start align-items-md-center gap-24 gap-md-40 p-24 px-md-40 mt-48">
+    <post-icon name="accessibility" className="w-64 h-64 flex-shrink-0" aria-hidden="true"></post-icon>
+    <div className="flex-grow-1">
+      <h3 className="mt-0 mb-8">Accessibility</h3>
+      <p className="mb-0">
+        Swiss Post is legally obliged to make its digital channels accessible as part of its
+        universal service obligation.
+      </p>
+    </div>
+    {/* prettier-ignore */}
+    <a className="btn btn-primary flex-shrink-0" href="/?path=/docs/759a427c-7884-474e-b6b7-de32d3acf5df--docs">Find out more<span className="visually-hidden"> about accessibility</span> <post-icon name="arrowright" aria-hidden="true"></post-icon></a>
+  </div>
+</Band>
+
+<TeaserRow
+  id="about-questions"
+  palette="accent"
+  headingLevel={2}
+  icon="help"
+  title="Do you have a question?"
+  description="We help you in our Support Channel."
+  href={SUPPORT_CHANNEL_LINK}
+  linkText="SPDS Support Channel"
+  secondaryLinkHref={GITHUB_ISSUES_LINK}
+  secondaryLinkText="Submit an issue"
+/>

@@ -1,10 +1,6 @@
 @use 'sass:map';
-@use '@swisspost/design-system-styles/functions/tokens';
-@use '@swisspost/design-system-styles/tokens/utilities';
 @use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/mixins/media';
-
-tokens.$default-map: utilities.$post-spacing;
 
 #storybook-docs {
   overflow-x: hidden;
@@ -20,20 +16,6 @@ tokens.$default-map: utilities.$post-spacing;
   @include media.min(sm) {
     > * {
       width: 50%;
-    }
-  }
-
-  .target-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    width: tokens.get('utility-gap-80');
-    height: tokens.get('utility-gap-80');
-
-    post-icon {
-      width: tokens.get('utility-gap-40');
-      height: tokens.get('utility-gap-40');
     }
   }
 }

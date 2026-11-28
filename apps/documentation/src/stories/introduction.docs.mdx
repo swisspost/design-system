@@ -1,7 +1,7 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import * as IntroductionStories from './introduction.stories';
 import { packages } from '@/shared/packages.data';
-import { ORDER_ICON_LINK } from '@/shared/links';
+import { GITHUB_ISSUES_LINK, ORDER_ICON_LINK, SUPPORT_CHANNEL_LINK } from '@/shared/links';
 import './introduction.styles.scss';
 import '@/shared/tile/tile.component';
 import TeaserRow from '@/shared/docs-page/teaser-row.mdx';
@@ -10,7 +10,7 @@ import TeaserRow from '@/shared/docs-page/teaser-row.mdx';
 
 <div className="d-flex target">
   <div className="d-flex flex-column align-items-center gap-40 py-40 px-16 px-lg-64">
-    <div className="target-icon palette palette-brand">
+    <div className="docs-icon-circle palette palette-brand">
       <post-icon name="brush-solid"></post-icon>
     </div>
     {/* prettier-ignore */}
@@ -19,7 +19,7 @@ import TeaserRow from '@/shared/docs-page/teaser-row.mdx';
   </div>
 
   <div className="d-flex flex-column align-items-center gap-40 py-40 px-16 px-lg-64 palette palette-alternate">
-    <div className="target-icon palette palette-brand">
+    <div className="docs-icon-circle palette palette-brand">
       <post-icon name="code-solid"></post-icon>
     </div>
     <a href="/?path=/docs/dfc70c3b-4726-406b-8a41-af5738c89d05--docs" className="btn btn-primary btn-lg">For developers <post-icon name="arrowright"></post-icon></a>
@@ -120,8 +120,8 @@ import TeaserRow from '@/shared/docs-page/teaser-row.mdx';
   icon="help"
   title="Do you have a question?"
   description="We help you in our Support Channel."
-  href="https://teams.microsoft.com/l/channel/19%3Ae7fa68fb13eb40b4bf4604edea5f4b3e%40thread.tacv2/%F0%9F%9A%91%20Support?groupId=123c7c9e-052a-40e6-98d3-6cc6d46bad0a&tenantId=3ae7c479-0cf1-47f4-8f84-929f364eff67"
+  href={SUPPORT_CHANNEL_LINK}
   linkText="SPDS Support Channel"
-  secondaryLinkHref="https://github.com/swisspost/design-system/issues"
+  secondaryLinkHref={GITHUB_ISSUES_LINK}
   secondaryLinkText="Submit an issue"
 />
