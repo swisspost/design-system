@@ -67,6 +67,7 @@ tokens.$default-map: utilities.$post-spacing;
     // Support for autolink-headings
     .docs-title :is(h1, h2, h3, h4, h5, h6),
     post-tab-panel > :is(h1, h2, h3, h4, h5, h6),
+    post-accordion-item > :is(h1, h2, h3, h4, h5, h6),
     > :is(h1, h2, h3, h4, h5, h6) {
       > a {
         color: inherit;
@@ -91,6 +92,12 @@ tokens.$default-map: utilities.$post-spacing;
           visibility: visible;
         }
       }
+    }
+
+    // Story previews inside an accordion use the full width, without the accordion's inline padding,
+    // so stories that render a whole page (header, side navigation) get the same space as elsewhere.
+    post-accordion-item .sbdocs-preview {
+      margin-inline: calc(-1 * #{tokens.get('utility-gap-16')});
     }
   }
 

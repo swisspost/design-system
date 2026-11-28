@@ -1,0 +1,75 @@
+import { Canvas } from '@storybook/addon-docs/blocks';
+import * as SideNavigationStories from '../side-navigation.stories';
+
+<post-tab-panel for="usage" class="pt-24">
+
+<post-accordion heading-level="2" multiple>
+<post-accordion-item>
+{/* prettier-ignore */}
+<span slot="header" className="d-flex align-items-center gap-16"><post-icon name="signpost" className="w-32 h-32 flex-shrink-0" aria-hidden="true"></post-icon><span>When to use<span className="d-block fs-6 fw-normal">Web applications, together with the application header</span></span></span>
+
+Use the side navigation to let users navigate between different parts of a web application through a hierarchical structure.
+
+The `<post-side-navigation>` component has been designed to be used with the [application header](/?path=/docs/27a2e64d-55ba-492d-ab79-5f7c5e818498--docs#application).
+
+</post-accordion-item>
+
+<post-accordion-item collapsed>
+{/* prettier-ignore */}
+<span slot="header" className="d-flex align-items-center gap-16"><post-icon name="document" className="w-32 h-32 flex-shrink-0" aria-hidden="true"></post-icon><span>Content<span className="d-block fs-6 fw-normal">Up to 4 levels · Short labels · Icons on level 1 only</span></span></span>
+
+- **The navigation can have up to 4 nested levels.** The section heading is optional.
+- **Use short, descriptive labels** that tell users where each item leads.
+- **Icons should only be set on the first level elements.** For usability reasons, all or none of the level 1 elements should have an icon.
+
+</post-accordion-item>
+
+<post-accordion-item collapsed>
+{/* prettier-ignore */}
+<span slot="header" className="d-flex align-items-center gap-16"><post-icon name="touch" className="w-32 h-32 flex-shrink-0" aria-hidden="true"></post-icon><span>Behaviour<span className="d-block fs-6 fw-normal">Consistent item types · Always visible on desktop · Trigger on smaller screens</span></span></span>
+
+- **Expandable elements** can either always be `post-collapsible` elements, or never be `post-collapsible` elements - in which case they're always expanded by default.
+- **On desktop, it is always visible.** For smaller screen, a trigger needs to be added in order to let users open it manually.
+
+</post-accordion-item>
+
+<post-accordion-item collapsed>
+{/* prettier-ignore */}
+<span slot="header" className="d-flex align-items-center gap-16"><post-icon name="layers" className="w-32 h-32 flex-shrink-0" aria-hidden="true"></post-icon><span>Variants<span className="d-block fs-6 fw-normal">Large for flat navigation · Small for deep navigation</span></span></span>
+
+The side navigation comes with two size variants:
+
+- **Large (default):** for a flat and short navigation
+- **Small:** for deep and long navigation (set `size="small"` on the `<post-side-navigation>`)
+
+</post-accordion-item>
+
+<post-accordion-item collapsed>
+{/* prettier-ignore */}
+<span slot="header" className="d-flex align-items-center gap-16"><post-icon name="screen" className="w-32 h-32 flex-shrink-0" aria-hidden="true"></post-icon><span>Examples<span className="d-block fs-6 fw-normal">Small without icons · Large with icons</span></span></span>
+
+<post-tabs size="large">
+  <post-tab-item name="small">Small navigation</post-tab-item>
+  <post-tab-item name="large">Large navigation</post-tab-item>
+
+<post-tab-panel for="small" class="pt-24">
+
+Small navigation with no icons, always expanded.
+
+<Canvas of={SideNavigationStories.Small} />
+
+</post-tab-panel>
+
+<post-tab-panel for="large" class="pt-24">
+
+Large (default) navigation with icons, collapsible elements.
+
+<Canvas of={SideNavigationStories.Large} />
+
+</post-tab-panel>
+</post-tabs>
+
+</post-accordion-item>
+</post-accordion>
+
+</post-tab-panel>

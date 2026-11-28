@@ -1,0 +1,78 @@
+import { Canvas } from '@storybook/addon-docs/blocks';
+import * as ToastStories from '../toast.stories';
+
+<post-tab-panel for="usage" class="pt-24">
+
+<post-accordion heading-level="2" multiple>
+<post-accordion-item>
+{/* prettier-ignore */}
+<span slot="header" className="d-flex align-items-center gap-16"><post-icon name="signpost" className="w-32 h-32 flex-shrink-0" aria-hidden="true"></post-icon><span>When to use<span className="d-block fs-6 fw-normal">Not for persistent, task or form messages</span></span></span>
+
+Use another component instead:
+
+- **[Banner](/?path=/docs/105e67d8-31e9-4d0b-87ff-685aba31fd4c--docs)** for general information about a product or system, which can persist across sessions.
+- **[Inline notification](/?path=/docs/bf4826ad-450e-4d8a-8b2d-796c31758349--docs)** for the status of an action within a task flow, or information that should stay visible on the page.
+- **[Validation](/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs) styles** for feedback on form fields.
+- **[Dialog](/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs)** when users must read or respond to an error or a critical message.
+
+</post-accordion-item>
+
+<post-accordion-item collapsed>
+{/* prettier-ignore */}
+<span slot="header" className="d-flex align-items-center gap-16"><post-icon name="document" className="w-32 h-32 flex-shrink-0" aria-hidden="true"></post-icon><span>Content<span className="d-block fs-6 fw-normal">Minimal and non-interactive · No links or buttons · Message type stated in the text</span></span></span>
+
+- **Toasts are intended to be small interruptions** to your visitors or users, and therefore should contain minimal, to-the-point, non-interactive content.
+- **Do not add links or buttons.** If users need to act on the message, place the action on the page or use a dialog.
+- **Make the type of message clear in the text,** not only through its color and icon.
+
+</post-accordion-item>
+
+<post-accordion-item collapsed>
+{/* prettier-ignore */}
+<span slot="header" className="d-flex align-items-center gap-16"><post-icon name="touch" className="w-32 h-32 flex-shrink-0" aria-hidden="true"></post-icon><span>Behaviour<span className="d-block fs-6 fw-normal">Stays until dismissed · Auto-dismiss only brief, non-critical messages</span></span></span>
+
+- **Keep toasts visible until users dismiss them,** especially when they contain important information or require action. Auto-dismiss only brief, non-critical messages whose information remains available elsewhere.
+- **When using auto-dismissal,** give users a way to extend or disable the timer, and pause it while the toast is hovered or keyboard-focused. If the toast is the only way to access its information, pausing on interaction alone is not enough; users need a way to keep or retrieve that information.
+
+<div className="inline-notification inline-notification-info mt-16">
+  <p>
+    <strong>Assume that users can miss a toast,</strong> for example when they zoom in or use a
+    screen reader. Missing it should not keep them from completing their task, so only show a toast
+    when the message is needed.
+  </p>
+</div>
+
+</post-accordion-item>
+
+<post-accordion-item collapsed>
+{/* prettier-ignore */}
+<span slot="header" className="d-flex align-items-center gap-16"><post-icon name="screen" className="w-32 h-32 flex-shrink-0" aria-hidden="true"></post-icon><span>Examples<span className="d-block fs-6 fw-normal">Optional auto-dismissal · Stacked</span></span></span>
+
+The toast takes the full width of its parent element.
+To keep it aligned with the rest of your page content, place it inside a `.container` (or `.container-fluid`) element.
+
+The following examples show the different characteristics of the component. These can differ in the type of visualization, the HTML structure, as well as when, how and why they are displayed.
+
+<post-tabs size="large">
+  <post-tab-item name="auto-dismissal">Optional auto-dismissal</post-tab-item>
+  <post-tab-item name="stacked">Stacked</post-tab-item>
+
+<post-tab-panel for="auto-dismissal" class="pt-24">
+
+<Canvas of={ToastStories.AutoClose} />
+
+</post-tab-panel>
+
+<post-tab-panel for="stacked" class="pt-24">
+
+You can stack toasts by wrapping them in a `.toast-container`, which will vertically add some spacing.
+
+<Canvas of={ToastStories.Stacked} />
+
+</post-tab-panel>
+</post-tabs>
+
+</post-accordion-item>
+</post-accordion>
+
+</post-tab-panel>
