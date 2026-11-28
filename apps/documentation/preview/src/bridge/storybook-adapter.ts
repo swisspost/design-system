@@ -23,6 +23,7 @@ import { forwardShortcuts } from './shortcuts';
 
 interface StorySelection {
   storyId: string;
+  viewMode: string;
 }
 
 interface RenderPhaseChange {
@@ -75,10 +76,8 @@ class StorybookAdapter {
   }
 
   private reportStorybookEvents() {
-    this.channel.on(STORY_SPECIFIED, (selection: StorySelection) => this.select(selection.storyId));
-    this.channel.on(CURRENT_STORY_WAS_SET, (selection: StorySelection) =>
-      this.select(selection.storyId),
-    );
+    this.channel.on(STORY_SPECIFIED, this.handleSelection);
+    this.channel.on(CURRENT_STORY_WAS_SET, this.handleSelection);
 
     for (const event of ERROR_EVENTS) this.channel.on(event, this.handleStoryError);
 
@@ -91,6 +90,10 @@ class StorybookAdapter {
     shell.addEventListener('globals', this.handleGlobals);
     shell.addEventListener('scroll-to', this.handleScrollTo);
   }
+
+  private readonly handleSelection = (selection: StorySelection) => {
+    if (isPageSelection(selection)) this.select(selection.storyId);
+  };
 
   private readonly handleStoryError = () => {
     const id = this.pageId ?? new URLSearchParams(location.search).get('id') ?? '';
@@ -167,7 +170,9 @@ class PageRenderWatcher {
     this.channel.on(STORY_RENDER_PHASE_CHANGED, this.handleRenderPhaseChange);
   }
 
-  private readonly handleStoryChange = () => {
+  private readonly handleStoryChange = (selection: StorySelection) => {
+    if (!isPageSelection(selection)) return;
+
     this.cancel();
     this.renderingStories.clear();
   };
@@ -214,6 +219,12 @@ class PageRenderWatcher {
     for (const timer of this.renderingPage?.timers ?? []) clearTimeout(timer);
     this.renderingPage = null;
   }
+}
+
+// Storybook forwards the events of the stories that render in their own iframe
+// to the docs page, also the selection of their story.
+function isPageSelection(selection: StorySelection): boolean {
+  return selection.viewMode === 'docs';
 }
 
 function readUrlPage(): UrlPage {
