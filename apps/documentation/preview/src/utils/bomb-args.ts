@@ -6,7 +6,7 @@
  * @param variants List of args to blow up
  * @returns
  */
-export const bombArgs = (variants: { [key: string]: unknown[] | undefined }) => {
+export const bombArgs = (variants: { [key: string]: readonly unknown[] | undefined }) => {
   const argsArray = (function recurse(keys): Array<{ [key: string]: unknown }> {
     if (!keys.length) return [{}];
     const result = recurse(keys.slice(1));

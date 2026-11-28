@@ -5,6 +5,7 @@ import { MetaExtended } from '@preview/types/storybook';
 const meta: MetaExtended = {
   id: 'e8d66106-1c50-4edd-a52c-985a3625f0be',
   title: 'Utilities/Visually Hidden',
+  tags: ['keyword:Screen Reader Only', 'keyword:SR Only'],
   render: () => {
     return html`
       <div class="visually-hidden">Hidden from the screen, available to screen readers.</div>

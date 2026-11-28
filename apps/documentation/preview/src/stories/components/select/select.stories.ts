@@ -12,7 +12,7 @@ import {
 const meta: MetaComponent = {
   id: 'bc251cd0-5173-463b-8729-586bb1bf1e1a',
   title: 'Components/Form Select',
-  tags: ['package:styles'],
+  tags: ['package:styles', 'keyword:Dropdown'],
   parameters: {
     badges: [],
     design: {

@@ -3,6 +3,7 @@
   "compilerOptions": {
     "allowJs": true,
     "jsx": "react-jsx",
+    "types": ["vite/client", "react-syntax-highlighter"],
     "paths": {
       "@preview/*": ["./src/*"],
       "@shared/*": ["../shared/src/*"]
@@ -14,7 +15,7 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false
   },
-  "include": ["src", "src/data/*.json", ".storybook/**/*"],
+  "include": ["module.d.ts", "src", "src/data/*.json", ".storybook/**/*"],
   "exclude": ["**/*.sample.*", ".storybook/main.ts"],
   "references": [{ "path": "../shared" }]
 }

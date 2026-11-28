@@ -29,17 +29,20 @@ export interface Page {
   tags: string[];
 }
 
+/**
+ * The pages of the Storybook index (`/index.json`), by id and by path, with
+ * their readable URLs.
+ */
 export class Catalog {
-  readonly home: Page | null;
-  readonly pages: Page[];
+  public readonly home: Page | null;
+  public readonly pages: Page[];
 
   private readonly pagesById = new Map<string, Page>();
   private readonly pagesByPath = new Map<string, Page>();
-  private readonly pagesByTitle = new Map<string, Page>();
 
   private readonly storyTitles = new Map<string, string>();
 
-  static async load(): Promise<Catalog> {
+  public static async load(): Promise<Catalog> {
     const response = await fetch(`${PREVIEW_ORIGIN}/index.json`, { cache: 'no-cache' });
     if (!response.ok) throw new Error(`Failed to load the Storybook index (${response.status}).`);
 
@@ -62,7 +65,6 @@ export class Catalog {
       const owner = this.pagesByPath.get(page.path);
 
       this.pagesById.set(page.id, page);
-      this.pagesByTitle.set(page.title, page);
 
       if (owner || page.path === BOOKMARK_PATH) {
         if (import.meta.env.DEV) {
@@ -89,13 +91,6 @@ export class Catalog {
     return this.pagesById.get(toDocsId(id)) ?? null;
   }
 
-  public byStoryId(storyId: string): Page | null {
-    const title = this.storyTitles.get(storyId);
-    if (!title) return null;
-
-    return this.pagesByTitle.get(title) ?? null;
-  }
-
   public byPath(path: string): Page | null {
     return this.pagesByPath.get(normalizePath(path)) ?? null;
   }
@@ -104,7 +99,10 @@ export class Catalog {
     return this.storyTitles.has(id);
   }
 
-  /** The readable URL of a page, or its bookmark URL if another page has the same path. */
+  /**
+   * The readable URL of a page, or its bookmark URL if another page has the
+   * same path.
+   */
   public canonicalURL(page: Page, options?: UrlOptions): string {
     if (page === this.home) return pageUrl(page.title, options).replace(page.path, '/');
     if (this.pagesByPath.get(page.path) === page) return pageUrl(page.title, options);

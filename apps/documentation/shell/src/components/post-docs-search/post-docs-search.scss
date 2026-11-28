@@ -69,7 +69,8 @@ post-docs-search {
     }
   }
 
-  // the option chosen with the arrow keys shows the focus ring, the focus stays in the field
+  // the option chosen with the arrow keys shows the focus ring, the focus stays
+  // in the field
   &:focus-within .option[aria-selected='true']::after {
     outline-style: solid !important;
   }

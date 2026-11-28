@@ -2,4 +2,13 @@ post-docs-navigation-sidebar {
   display: flex;
   flex-direction: column;
   min-block-size: 0;
+
+  // a revealed page keeps some of its neighbours in view
+  > nav {
+    scroll-padding-block: 96px;
+  }
+
+  > .version {
+    color: var(--post-palette-color-fg-secondary);
+  }
 }

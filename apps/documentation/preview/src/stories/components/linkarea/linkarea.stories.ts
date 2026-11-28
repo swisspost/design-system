@@ -14,9 +14,7 @@ const meta: MetaComponent<PostLinkarea> = {
   tags: ['package:components', 'status:new'],
   render: renderLinkarea,
   component: 'post-linkarea',
-  parameters: {
-    design: {},
-  },
+  parameters: {},
   args: {
     linkUrl: 'https://post.ch',
   },

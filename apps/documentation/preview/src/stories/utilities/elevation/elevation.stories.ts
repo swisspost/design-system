@@ -5,6 +5,7 @@ import { MetaExtended } from '@preview/types/storybook';
 const meta: MetaExtended = {
   id: 'cfdf83ff-efa7-4b3c-ac91-6898c4f88701',
   title: 'Utilities/Elevation',
+  tags: ['keyword:Shadow'],
   parameters: {
     badges: [],
   },

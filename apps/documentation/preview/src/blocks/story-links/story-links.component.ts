@@ -1,4 +1,4 @@
-import { LitElement, nothing } from 'lit';
+import { LitElement, nothing, type TemplateResult } from 'lit';
 import { html } from 'lit/static-html.js';
 import { customElement, property, state } from 'lit/decorators.js';
 import { Task } from '@lit/task';
@@ -32,7 +32,7 @@ interface IndexEntry {
 const INDEX_PATH = '/index.json';
 const SNAPSHOTS_TITLE = 'Snapshots';
 
-let indexEntries: Promise<IndexEntry[]> | undefined;
+let indexEntries: Promise<IndexEntry[]> | null = null;
 
 function getIndexEntries(): Promise<IndexEntry[]> {
   indexEntries ??= fetch(INDEX_PATH)
@@ -42,7 +42,7 @@ function getIndexEntries(): Promise<IndexEntry[]> {
     })
     .then((index: { entries: Record<string, IndexEntry> }) => Object.values(index.entries))
     .catch((error: unknown) => {
-      indexEntries = undefined;
+      indexEntries = null;
       throw error;
     });
   return indexEntries;
@@ -62,7 +62,8 @@ export class StoryLinksComponent extends LitElement {
 
   private readonly snapshotsMenuId = `story-links-snapshots-${instanceCount++}`;
 
-  // Snapshot stories live next to the stories they belong to, but their names don't follow a fixed pattern
+  // Snapshot stories live next to the stories they belong to, but their names
+  // don't follow a fixed pattern.
   private readonly snapshotsTask = new Task(this, {
     task: async ([devMode, metaId, metaTitle]) => {
       if (!devMode || (!metaId && !metaTitle)) return [];
@@ -86,33 +87,65 @@ export class StoryLinksComponent extends LitElement {
     args: () => [this.devMode, this.meta?.id, this.meta?.title] as const,
   });
 
-  connectedCallback() {
-    super.connectedCallback();
-    globalsHost.addEventListener('globals-change', this.onGlobalsChange);
+  private get meta(): StoriesMeta | null {
+    const of: StoriesModule = typeof this.of === 'string' ? JSON.parse(this.of) : this.of;
+    return of?.default ?? null;
   }
 
-  disconnectedCallback() {
-    super.disconnectedCallback();
-    globalsHost.removeEventListener('globals-change', this.onGlobalsChange);
-  }
-
-  private readonly onGlobalsChange = (event: Event) => {
-    this.devMode = (event as GlobalsChangeEvent).globals.mode === 'dev';
-  };
-
-  createRenderRoot() {
-    /**
-     * Render template without shadow DOM.
-     */
+  protected override createRenderRoot() {
     return this;
   }
 
-  private get meta(): StoriesMeta | undefined {
-    const of: StoriesModule = typeof this.of === 'string' ? JSON.parse(this.of) : this.of;
-    return of?.default;
+  public override connectedCallback() {
+    super.connectedCallback();
+    globalsHost.addEventListener('globals-change', this.handleGlobalsChange);
   }
 
-  render() {
+  public override disconnectedCallback() {
+    super.disconnectedCallback();
+    globalsHost.removeEventListener('globals-change', this.handleGlobalsChange);
+  }
+
+  private readonly handleGlobalsChange = (event: GlobalsChangeEvent) => {
+    this.devMode = event.globals.mode === 'dev';
+  };
+
+  private renderSnapshotLinks(
+    snapshots: readonly IndexEntry[],
+    componentName: string,
+  ): TemplateResult | typeof nothing {
+    const getHref = (snapshot: IndexEntry) => `/iframe.html?id=${snapshot.id}&viewMode=story`;
+
+    if (snapshots.length === 0) return nothing;
+
+    // Show a simple link if there is just one snapshot.
+    if (snapshots.length === 1) {
+      return html`<a class="btn btn-secondary" href="${getHref(snapshots[0])}">
+        Snapshot
+        <span class="visually-hidden"> for ${componentName}</span>
+      </a>`;
+    }
+
+    // Otherwise show a menu for all the snapshots.
+    return html`
+      <post-menu-trigger for="${this.snapshotsMenuId}">
+        <button class="btn btn-secondary" type="button">
+          Snapshots
+          <span class="visually-hidden"> for ${componentName}</span>
+        </button>
+      </post-menu-trigger>
+      <post-menu id="${this.snapshotsMenuId}" label="${componentName} snapshots">
+        ${snapshots.map(
+          snapshot =>
+            html`<post-menu-item
+              ><a href="${getHref(snapshot)}">${snapshot.name}</a></post-menu-item
+            >`,
+        )}
+      </post-menu>
+    `;
+  }
+
+  protected override render(): TemplateResult | typeof nothing {
     const meta = this.meta;
     const designParameter = meta?.parameters?.design;
     const componentName = getTitleFromPath(meta?.title ?? '') ?? '';
@@ -138,37 +171,5 @@ export class StoryLinksComponent extends LitElement {
     return figmaLink === nothing && snapshotLinks === nothing
       ? nothing
       : html`<div class="d-flex flex-wrap gap-8">${figmaLink}${snapshotLinks}</div>`;
-  }
-
-  private renderSnapshotLinks(snapshots: readonly IndexEntry[], componentName: string) {
-    const getHref = (snapshot: IndexEntry) => `/iframe.html?id=${snapshot.id}&viewMode=story`;
-
-    if (snapshots.length === 0) return nothing;
-
-    // Show simple link if there is just one snapshot
-    if (snapshots.length === 1) {
-      return html`<a class="btn btn-secondary" href="${getHref(snapshots[0])}">
-        Snapshot
-        <span class="visually-hidden"> for ${componentName}</span>
-      </a>`;
-    }
-
-    // Otherwise show a menu for all the snapshots
-    return html`
-      <post-menu-trigger for="${this.snapshotsMenuId}">
-        <button class="btn btn-secondary" type="button">
-          Snapshots
-          <span class="visually-hidden"> for ${componentName}</span>
-        </button>
-      </post-menu-trigger>
-      <post-menu id="${this.snapshotsMenuId}" label="${componentName} snapshots">
-        ${snapshots.map(
-          snapshot =>
-            html`<post-menu-item
-              ><a href="${getHref(snapshot)}">${snapshot.name}</a></post-menu-item
-            >`,
-        )}
-      </post-menu>
-    `;
   }
 }

@@ -1,11 +1,13 @@
 @use '@swisspost/design-system-styles/mixins/utilities';
 
-// like `post-menu-item`: an inset ring with rounded corners, the row background stays square
+// like `post-menu-item`: an inset ring with rounded corners, the row background
+// stays square
 $offset: -4px;
 // the radius of the design-system focus ring
 $radius: 4px;
 
-// draws the focus ring of a row on `::after`, the closest positioned ancestor is the row
+// draws the focus ring of a row on `::after`, the closest positioned ancestor
+// is the row
 @mixin row-focus {
   @include utilities.focus-visible {
     outline: none !important;

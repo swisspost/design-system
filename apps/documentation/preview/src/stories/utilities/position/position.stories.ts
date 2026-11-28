@@ -7,6 +7,7 @@ import { bombArgs } from '@preview/utils/bomb-args';
 const meta: MetaExtended = {
   id: '803a58e8-c734-4ad7-80a8-62da1bb29d4b',
   title: 'Utilities/Position',
+  tags: ['keyword:Sticky'],
   args: {
     position: 'absolute',
     top: '0',

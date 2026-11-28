@@ -16,7 +16,7 @@ const DIALOG_VARIANT_OPTIONS = {
 const meta: MetaExtended = {
   id: '562eac2b-6dc1-4007-ba8e-4e981cef0cbc',
   title: 'Components/Dialog',
-  tags: ['package:styles', 'status:new'],
+  tags: ['package:styles', 'status:new', 'keyword:Modal', 'keyword:Bottom Sheet'],
   parameters: {
     design: {
       type: 'figma',

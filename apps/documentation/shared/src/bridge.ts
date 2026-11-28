@@ -36,6 +36,7 @@ export function toEnvelope<T extends MessageType>(
   type: T,
   payload: MessagePayload<T>,
 ): Envelope<T> {
+  // TypeScript can't relate a generic `T` to the distributive `Envelope<T>`.
   return { source: BRIDGE_SOURCE, type, payload } as Envelope<T>;
 }
 
@@ -43,12 +44,12 @@ export function isEnvelope<T extends MessageType = MessageType>(
   data: unknown,
 ): data is Envelope<T> {
   if (typeof data !== 'object' || data === null) return false;
+  if (!('source' in data && 'type' in data && 'payload' in data)) return false;
 
-  const { source, type, payload } = data as Record<string, unknown>;
   return (
-    source === BRIDGE_SOURCE &&
-    typeof type === 'string' &&
-    typeof payload === 'object' &&
-    payload !== null
+    data.source === BRIDGE_SOURCE &&
+    typeof data.type === 'string' &&
+    typeof data.payload === 'object' &&
+    data.payload !== null
   );
 }

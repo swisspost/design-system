@@ -1,4 +1,4 @@
-import { LitElement, type PropertyValues, html, nothing } from 'lit';
+import { LitElement, type PropertyValues, html, nothing, type TemplateResult } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import {
@@ -16,7 +16,7 @@ import { type PreviewMessageEvent, PreviewConnection } from '../../bridge/previe
 import { Catalog } from '../../catalog/catalog';
 import { GlobalsStore } from '../../globals/globals-store';
 import { buildNavigation, type NavigationSection } from '../../navigation/tree';
-import type { Route } from '../../router/route';
+import type { PageRoute, Route } from '../../router/route';
 import { type RouteChangeEvent, Router } from '../../router/router';
 import { SearchIndex } from '../../catalog/search-index';
 import '../post-docs-navigation-sheet/post-docs-navigation-sheet';
@@ -26,16 +26,21 @@ import '../post-docs-preview/post-docs-preview';
 import '../post-docs-toolbar/post-docs-toolbar';
 import './post-docs-shell.scss';
 
+/**
+ * Owns the router, the globals store and the preview connection, and connects
+ * them: a route change shows the page in the preview, a globals change is
+ * applied to the preview and written into the URL.
+ */
 @customElement('post-docs-shell')
 export class PostDocsShell extends LitElement {
   @state() private route: Route | null = null;
-  @state() private failed = false;
+  @state() private hasFailed = false;
   @state() private previewSrc: string | null = null;
   @state() private catalog: Catalog | null = null;
   @state() private globals: Globals = DEFAULT_GLOBALS;
-  // the sheet covers the page, which must not take the focus meanwhile
+  // The sheet covers the page, which must not take the focus meanwhile.
   @state() private isSheetOpen = false;
-  // the page is rendering, its scroll position is restored once it is rendered
+  // The page is rendering, its scroll position is restored once it is rendered.
   @state() private previewLoading: PreviewLoading | null = null;
 
   private readonly previewConnection = new PreviewConnection(PREVIEW_ORIGIN);
@@ -45,157 +50,28 @@ export class PostDocsShell extends LitElement {
   private navigation: NavigationSection[] = [];
   private searchIndex: SearchIndex | null = null;
   private readonly sidebarQuery = matchMedia('(min-width: 780px)');
+  private listeners: AbortController | null = null;
 
   private pageId: string | null = null;
 
-  override createRenderRoot() {
+  protected override createRenderRoot() {
     return this;
   }
 
-  override connectedCallback() {
+  public override connectedCallback() {
     super.connectedCallback();
     void this.start();
   }
 
-  override disconnectedCallback() {
+  public override disconnectedCallback() {
     super.disconnectedCallback();
     this.router?.stop();
-    this.previewConnection.removeEventListener('rendered', this.onRendered);
-    this.previewConnection.removeEventListener('error', this.onPreviewError);
-    this.previewConnection.removeEventListener('navigate', this.onNavigate);
-    this.previewConnection.removeEventListener('shortcut', this.onPreviewShortcut);
-    document.removeEventListener('keydown', this.onKeydown);
-    this.globalsStore.removeEventListener('globals-change', this.onGlobalsChange);
+    this.listeners?.abort();
+    this.listeners = null;
   }
 
-  private async start() {
-    this.analytics.start();
-    this.previewConnection.addEventListener('rendered', this.onRendered);
-    this.previewConnection.addEventListener('error', this.onPreviewError);
-    this.previewConnection.addEventListener('navigate', this.onNavigate);
-    this.previewConnection.addEventListener('shortcut', this.onPreviewShortcut);
-    document.addEventListener('keydown', this.onKeydown);
-    this.globalsStore.addEventListener('globals-change', this.onGlobalsChange);
-    this.globals = this.globalsStore.current;
-
-    try {
-      const catalog = await Catalog.load();
-
-      this.catalog = catalog;
-      this.router = new Router(catalog);
-      this.router.addEventListener('route-change', this.onRouteChange);
-      this.router.start();
-    } catch (error) {
-      console.error(error);
-      this.failed = true;
-    }
-  }
-
-  private readonly onRouteChange = (event: Event) => {
-    const { route, previous, fromHistory } = event as RouteChangeEvent;
-    this.route = route;
-    void this.querySelector('post-docs-navigation-sheet')?.close();
-
-    const pageTitle = route.type === 'page' ? route.page.segments.at(-1) : 'Page not found';
-    document.title = `${pageTitle} · ${SITE_TITLE}`;
-
-    if (route.type !== 'page') {
-      this.analytics.trackPage();
-      return;
-    }
-
-    // Back and Forward keep the current globals, the history entry may hold older ones
-    if (route.globals && !fromHistory) this.globalsStore.set(route.globals);
-    this.router?.replaceGlobals(this.globalsStore.current);
-
-    // tracked with the globals in the URL, a new hash on the same page is not a page view
-    if (previous?.type !== 'page' || previous.page.id !== route.page.id) this.analytics.trackPage();
-
-    const { page, params, hash } = route;
-    const globals = this.globalsStore.current;
-
-    this.previewSrc ??= previewUrl(
-      page.id,
-      'docs',
-      { ...params, globals: stringifyGlobals(globals) },
-      PREVIEW_ORIGIN,
-    );
-    this.previewConnection.setGlobals(globals);
-    this.previewConnection.showPage({ id: page.id, params });
-
-    if (page.id === this.pageId) {
-      if (!this.previewLoading) this.previewConnection.scrollTo(hash);
-    } else {
-      this.previewLoading = this.pageId === null ? 'first' : 'page';
-      this.pageId = page.id;
-    }
-  };
-
-  private readonly onRendered = (event: Event) => {
-    const { payload } = event as PreviewMessageEvent<'rendered'>;
-    if (payload.pageId !== this.pageId || !this.previewLoading) return;
-
-    this.previewLoading = null;
-    if (this.route?.type === 'page') this.previewConnection.scrollTo(this.route.hash);
-  };
-
-  // the preview shows the error, e.g. the exception of a page that failed to render
-  private readonly onPreviewError = (event: Event) => {
-    const { payload } = event as PreviewMessageEvent<'error'>;
-    if (payload.pageId === this.pageId) this.previewLoading = null;
-  };
-
-  private readonly onGlobalsChange = (event: Event) => {
-    const { globals } = event as GlobalsChangeEvent;
-
-    this.globals = globals;
-    this.previewConnection.setGlobals(globals);
-    this.router?.replaceGlobals(globals);
-  };
-
-  private readonly onNavigate = (event: Event) => {
-    const { payload } = event as PreviewMessageEvent<'navigate'>;
-    const url = new URL(payload.href, location.href);
-
-    if (url.origin === location.origin) this.router?.navigate(url);
-  };
-
-  private readonly onKeydown = (event: KeyboardEvent) => {
-    if (getShortcut(event) !== 'search') return;
-
-    // not the search field of the browser
-    event.preventDefault();
-    this.openSearch();
-  };
-
-  private readonly onPreviewShortcut = (event: Event) => {
-    const { payload } = event as PreviewMessageEvent<'shortcut'>;
-    if (payload.name === 'search') this.openSearch();
-  };
-
-  private openSearch() {
-    if (this.sidebarQuery.matches)
-      this.querySelector('post-docs-navigation-sidebar')?.focusSearch();
-    else void this.querySelector('post-docs-navigation-sheet')?.openSearch();
-  }
-
-  private readonly onGlobalsSelect = (event: CustomEvent<Partial<Globals>>) => {
-    this.globalsStore.set(event.detail);
-  };
-
-  private readonly onSheetToggle = (event: CustomEvent<boolean>) => {
-    this.isSheetOpen = event.detail;
-  };
-
-  // back to the page, once the sheet no longer makes it inert
-  private readonly onSearchExit = async () => {
-    void this.querySelector('post-docs-navigation-sheet')?.close();
-    await this.updateComplete;
-    this.querySelector('post-docs-preview')?.focus();
-  };
-
-  override willUpdate(changed: PropertyValues) {
-    const previousGlobals = changed.get('globals') as Globals | undefined;
+  protected override willUpdate(changed: PropertyValues) {
+    const previousGlobals: Globals | undefined = changed.get('globals');
     const isModeChanged = changed.has('globals') && previousGlobals?.mode !== this.globals.mode;
 
     if ((changed.has('catalog') || isModeChanged) && this.catalog) {
@@ -206,81 +82,209 @@ export class PostDocsShell extends LitElement {
     }
   }
 
-  override render(): unknown {
-    const activePage = this.route?.type === 'page' ? this.route.page : null;
+  private async start() {
+    this.listeners = new AbortController();
+    const signal = this.listeners.signal;
+
+    this.analytics.start();
+    this.previewConnection.addEventListener('rendered', this.handleRendered, { signal });
+    this.previewConnection.addEventListener('error', this.handlePreviewError, { signal });
+    this.previewConnection.addEventListener('navigate', this.handleNavigate, { signal });
+    this.previewConnection.addEventListener('shortcut', this.handlePreviewShortcut, { signal });
+    document.addEventListener('keydown', this.handleKeydown, { signal });
+    this.sidebarQuery.addEventListener('change', this.handleBreakpointChange, { signal });
+    this.globalsStore.addEventListener('globals-change', this.handleGlobalsChange, { signal });
+    this.globals = this.globalsStore.current;
+
+    try {
+      const catalog = await Catalog.load();
+
+      this.catalog = catalog;
+      this.router = new Router(catalog);
+      this.router.addEventListener('route-change', this.handleRouteChange, { signal });
+      this.router.start();
+    } catch (error) {
+      console.error(error);
+      this.hasFailed = true;
+    }
+  }
+
+  private readonly handleRouteChange = (event: RouteChangeEvent) => {
+    const route = event.route;
+    this.route = route;
+    void this.querySelector('post-docs-navigation-sheet')?.close();
+
+    const pageTitle = route.type === 'page' ? route.page.segments.at(-1) : 'Page not found';
+    document.title = `${pageTitle} · ${SITE_TITLE}`;
+
+    if (route.type === 'page') {
+      this.syncGlobals(route, event.fromHistory);
+      this.showPage(route);
+    }
+
+    this.trackPageView(route, event.previous);
+  };
+
+  // Back and Forward keep the current globals, as the history entry may hold
+  // older ones.
+  private syncGlobals(route: PageRoute, fromHistory: boolean) {
+    if (route.globals && !fromHistory) this.globalsStore.set(route.globals);
+    this.router?.replaceGlobals(this.globalsStore.current);
+  }
+
+  private showPage(route: PageRoute) {
+    const globals = this.globalsStore.current;
+
+    this.previewSrc ??= previewUrl(
+      route.page.id,
+      'docs',
+      { ...route.params, globals: stringifyGlobals(globals) },
+      PREVIEW_ORIGIN,
+    );
+    this.previewConnection.setGlobals(globals);
+    this.previewConnection.showPage({ id: route.page.id, params: route.params });
+
+    if (route.page.id === this.pageId) {
+      if (!this.previewLoading) this.previewConnection.scrollTo(route.hash);
+    } else {
+      this.previewLoading = this.pageId === null ? 'first' : 'page';
+      this.pageId = route.page.id;
+    }
+  }
+
+  // Tracked once the globals are in the URL. A new hash on the same page is not
+  // a page view.
+  private trackPageView(route: Route, previous: Route | null) {
+    const isSamePage =
+      route.type === 'page' && previous?.type === 'page' && previous.page.id === route.page.id;
+
+    if (!isSamePage) this.analytics.trackPage();
+  }
+
+  private readonly handleRendered = (event: PreviewMessageEvent<'rendered'>) => {
+    if (event.payload.pageId !== this.pageId || !this.previewLoading) return;
+
+    this.previewLoading = null;
+    if (this.route?.type === 'page') this.previewConnection.scrollTo(this.route.hash);
+  };
+
+  // The preview shows the error, e.g. the exception of a page that failed to
+  // render.
+  private readonly handlePreviewError = (event: PreviewMessageEvent<'error'>) => {
+    if (event.payload.pageId === this.pageId) this.previewLoading = null;
+  };
+
+  private readonly handleGlobalsChange = (event: GlobalsChangeEvent) => {
+    this.globals = event.globals;
+    this.previewConnection.setGlobals(event.globals);
+    this.router?.replaceGlobals(event.globals);
+  };
+
+  private readonly handleNavigate = (event: PreviewMessageEvent<'navigate'>) => {
+    const url = new URL(event.payload.href, location.href);
+
+    if (url.origin === location.origin) this.router?.navigate(url);
+  };
+
+  private readonly handleKeydown = (event: KeyboardEvent) => {
+    if (getShortcut(event) !== 'search') return;
+
+    // Ctrl+K would otherwise focus the browser's own search field.
+    event.preventDefault();
+    this.openSearch();
+  };
+
+  private readonly handlePreviewShortcut = (event: PreviewMessageEvent<'shortcut'>) => {
+    if (event.payload.name === 'search') this.openSearch();
+  };
+
+  private openSearch() {
+    if (this.sidebarQuery.matches) {
+      this.querySelector('post-docs-navigation-sidebar')?.focusSearch();
+    } else {
+      void this.querySelector('post-docs-navigation-sheet')?.openSearch();
+    }
+  }
+
+  // The sidebar takes over from the sheet, which would otherwise stay open and
+  // keep the page inert.
+  private readonly handleBreakpointChange = (event: MediaQueryListEvent) => {
+    if (event.matches) void this.querySelector('post-docs-navigation-sheet')?.close();
+  };
+
+  private readonly handleGlobalsSelect = (event: CustomEvent<Partial<Globals>>) => {
+    this.globalsStore.set(event.detail);
+  };
+
+  private readonly handleSheetToggle = (event: CustomEvent<boolean>) => {
+    this.isSheetOpen = event.detail;
+  };
+
+  // Back to the page, once the sheet no longer makes it inert.
+  private readonly handleSearchExit = async () => {
+    void this.querySelector('post-docs-navigation-sheet')?.close();
+    await this.updateComplete;
+    this.querySelector('post-docs-preview')?.focus();
+  };
+
+  private renderContent(): TemplateResult {
+    if (this.hasFailed) return this.renderLoadError();
+
+    const notFound = this.route?.type === 'not-found' ? this.renderNotFound() : nothing;
+
+    // The preview stays loaded, so that it shows the next page without a
+    // reload.
+    return html`${notFound}${this.renderPreview()}`;
+  }
+
+  private renderLoadError(): TemplateResult {
+    return this.renderErrorPage(
+      '500',
+      'The documentation could not be loaded.',
+      'Please reload the page. If the error persists, try again later.',
+      html`
+        <button type="button" class="btn btn-primary" @click=${() => location.reload()}>
+          Reload the page
+        </button>
+      `,
+    );
+  }
+
+  private renderNotFound(): TemplateResult {
+    return this.renderErrorPage(
+      '404',
+      'This page could not be found.',
+      'The page may have been moved or renamed, or the URL is incorrect. You may find it from the homepage or with the search.',
+      html`
+        <a class="btn btn-primary" href="/">
+          <post-icon name="arrowleft" aria-hidden="true"></post-icon>
+          Go to homepage
+        </a>
+      `,
+    );
+  }
+
+  private renderPreview(): TemplateResult | typeof nothing {
+    if (!this.previewSrc) return nothing;
 
     return html`
-      <post-docs-navigation-sidebar
-        class="palette palette-default elevation-400"
-        .sections=${this.navigation}
-        .activePage=${activePage}
-        .searchIndex=${this.searchIndex}
-        @postDocsSearchExit=${this.onSearchExit}
-      ></post-docs-navigation-sidebar>
-      <post-docs-toolbar
-        class="palette palette-brand"
-        .globals=${this.globals}
-        @postDocsGlobalsChange=${this.onGlobalsSelect}
-      ></post-docs-toolbar>
-      <post-docs-navigation-sheet
-        .sections=${this.navigation}
-        .activePage=${activePage}
-        .globals=${this.globals}
-        .searchIndex=${this.searchIndex}
-        @postDocsGlobalsChange=${this.onGlobalsSelect}
-        @postDocsSearchExit=${this.onSearchExit}
-        @postDocsToggle=${this.onSheetToggle}
-      ></post-docs-navigation-sheet>
-      <main class="overflow-y-auto" ?inert=${this.isSheetOpen}>${this.renderContent()}</main>
+      <post-docs-preview
+        src=${this.previewSrc}
+        .connection=${this.previewConnection}
+        class=${classMap({ loaded: this.route?.type === 'page' })}
+        .loading=${this.previewLoading}
+      ></post-docs-preview>
     `;
   }
 
-  private renderContent(): unknown {
-    if (this.failed) {
-      return this.renderErrorPage(
-        '500',
-        'The documentation could not be loaded.',
-        'Please reload the page. If the error persists, try again later.',
-        html`
-          <button type="button" class="btn btn-primary" @click=${() => location.reload()}>
-            Reload the page
-          </button>
-        `,
-      );
-    }
-
-    const notFound =
-      this.route?.type === 'not-found'
-        ? this.renderErrorPage(
-            '404',
-            'This page could not be found.',
-            'The page may have been moved or renamed, or the URL is incorrect. You may find it from the homepage or with the search.',
-            html`
-              <a class="btn btn-primary" href="/">
-                <post-icon name="arrowleft" aria-hidden="true"></post-icon>
-                Go to homepage
-              </a>
-            `,
-          )
-        : nothing;
-
-    // the preview stays loaded, so that it shows the next page without a reload
-    const preview = this.previewSrc
-      ? html`
-          <post-docs-preview
-            src=${this.previewSrc}
-            .connection=${this.previewConnection}
-            class=${classMap({ loaded: this.route?.type === 'page' })}
-            .loading=${this.previewLoading}
-          ></post-docs-preview>
-        `
-      : nothing;
-
-    return html`${notFound}${preview}`;
-  }
-
-  // the error page template of the design system
-  private renderErrorPage(type: string, title: string, text: string, buttons: unknown): unknown {
+  // The error page template of the design system, so that the error pages look
+  // like the ones of other Post sites.
+  private renderErrorPage(
+    type: string,
+    title: string,
+    text: string,
+    buttons: TemplateResult,
+  ): TemplateResult {
     return html`
       <div class="palette palette-alternate error error-${type} min-h-full">
         <div class="container">
@@ -292,6 +296,35 @@ export class PostDocsShell extends LitElement {
           </div>
         </div>
       </div>
+    `;
+  }
+
+  protected override render(): TemplateResult {
+    const activePage = this.route?.type === 'page' ? this.route.page : null;
+
+    return html`
+      <post-docs-navigation-sidebar
+        class="palette palette-default elevation-400"
+        .sections=${this.navigation}
+        .activePage=${activePage}
+        .searchIndex=${this.searchIndex}
+        @postDocsSearchExit=${this.handleSearchExit}
+      ></post-docs-navigation-sidebar>
+      <post-docs-toolbar
+        class="palette palette-brand d-flex align-items-center gap-32 px-md-16"
+        .globals=${this.globals}
+        @postDocsGlobalsChange=${this.handleGlobalsSelect}
+      ></post-docs-toolbar>
+      <post-docs-navigation-sheet
+        .sections=${this.navigation}
+        .activePage=${activePage}
+        .globals=${this.globals}
+        .searchIndex=${this.searchIndex}
+        @postDocsGlobalsChange=${this.handleGlobalsSelect}
+        @postDocsSearchExit=${this.handleSearchExit}
+        @postDocsToggle=${this.handleSheetToggle}
+      ></post-docs-navigation-sheet>
+      <main class="overflow-y-auto" ?inert=${this.isSheetOpen}>${this.renderContent()}</main>
     `;
   }
 }

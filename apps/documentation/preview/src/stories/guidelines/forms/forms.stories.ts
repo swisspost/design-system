@@ -6,6 +6,7 @@ import * as FormFooterMeta from '../../components/form-footer/form-footer.storie
 const meta: MetaExtended = {
   id: 'd83829b2-7de2-48d2-be64-07a80c9caef3',
   title: 'Guidelines/Form Creation',
+  tags: ['keyword:Required Fields'],
   parameters: {
     badges: [],
   },

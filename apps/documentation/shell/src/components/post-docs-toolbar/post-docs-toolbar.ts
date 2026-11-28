@@ -1,19 +1,23 @@
-import { LitElement, html } from 'lit';
+import { LitElement, html, type TemplateResult } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { DEFAULT_GLOBALS, type Globals } from '@shared/globals';
 import '../post-docs-globals-menus/post-docs-globals-menus';
 import '../post-docs-version-menu/post-docs-version-menu';
 import './post-docs-toolbar.scss';
 
+/**
+ * The logo below the sidebar breakpoint, the preview settings from it up, and
+ * the version menu.
+ */
 @customElement('post-docs-toolbar')
 export class PostDocsToolbar extends LitElement {
   @property({ attribute: false }) public globals: Globals = DEFAULT_GLOBALS;
 
-  override createRenderRoot() {
+  protected override createRenderRoot() {
     return this;
   }
 
-  override render() {
+  protected override render(): TemplateResult {
     return html`
       <post-logo class="flex-shrink-0 h-40 d-md-none" url="/">
         Swiss Post Design System, go to the homepage

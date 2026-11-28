@@ -6,21 +6,23 @@ import { getStoryRecord } from './story-records';
 
 export const STORY_ANCHOR_PREFIX = 'story--';
 
-// the story blocks of a docs page, their id is the anchor `story--<id>`
+// The story blocks of a docs page. Their id is the anchor `story--<id>`.
 const STORY_BLOCK_SELECTOR = `[data-story-block][id^="${STORY_ANCHOR_PREFIX}"]`;
 
 /**
- * Applies the args of a deep link (`?story=<story>&args=<args>`) to the story it names,
- * once its docs page has rendered. The args are updated like the controls do, so the controls show them
- * and stories rendered in their own iframe receive them too.
+ * Applies the args of a deep link (`?story=<story>&args=<args>`) to the story
+ * it names, once its docs page has rendered.
  */
-export function startApplyingDeepLinks() {
+export function startApplyingDeepLinks(): void {
   addons.ready().then(channel => {
     channel.on(DOCS_RENDERED, () => applyDeepLink(channel));
   });
 }
 
-/** The story segment of a story id, e.g. `default` for `components-button--default`. */
+/**
+ * The story segment of a story id, e.g. `default` for
+ * `components-button--default`.
+ */
 export function toStorySlug(storyId: string): string {
   return storyId.split('--').at(-1) ?? storyId;
 }
@@ -40,12 +42,14 @@ function applyDeepLink(channel: Channel) {
   const storyId = getPageStoryIds().find(id => matchesStory(id, story));
   const updatedArgs = parseArgs(args);
 
+  // The args are updated like the controls do, so that the controls show them
+  // and stories rendered in their own iframe receive them too.
   if (storyId && Object.keys(updatedArgs).length > 0) {
     channel.emit(UPDATE_STORY_ARGS, { storyId, updatedArgs });
   }
 }
 
-// older links name the story, e.g. `story=Default`
+// Older links name the story, e.g. `story=Default`.
 function matchesStory(storyId: string, wanted: string): boolean {
   const simplify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]/g, '');
   const target = simplify(wanted);

@@ -7,11 +7,16 @@ import { getPageStoryIds, STORY_ANCHOR_PREFIX, toStorySlug } from './deep-links'
 import { getStoryRecord, type StoryRecord } from './story-records';
 
 const COPIED_TEXT = 'Copied!';
-const COPIED_DURATION = 1500;
+const COPIED_DURATION_MS = 1500;
 
-/** "View full screen": opens the story of the canvas in the bare preview, with its current args. */
-export function viewFullScreen(event: Event) {
-  const story = findCanvasStory(event.target as Element);
+/**
+ * "View full screen": opens the story of the canvas in the bare preview, with
+ * its current args.
+ */
+export function viewFullScreen(event: Event): void {
+  if (!(event.target instanceof Element)) return;
+
+  const story = findCanvasStory(event.target);
   if (!story) return;
 
   const url = storyUrl(story.id, {
@@ -23,10 +28,15 @@ export function viewFullScreen(event: Event) {
   window.open(url, '_blank');
 }
 
-/** "Copy deep link": copies the shell URL of the page, which opens the story of the canvas with its current args. */
-export function copyDeepLink(event: Event) {
-  const button = (event.target as Element).closest('button');
-  const story = findCanvasStory(event.target as Element);
+/**
+ * "Copy deep link": copies the shell URL of the page, which opens the story of
+ * the canvas with its current args.
+ */
+export function copyDeepLink(event: Event): void {
+  if (!(event.target instanceof Element)) return;
+
+  const button = event.target.closest('button');
+  const story = findCanvasStory(event.target);
   const pageId = new URLSearchParams(location.search).get('id');
   if (!story || !pageId) return;
 
@@ -66,5 +76,5 @@ function showCopied(button: HTMLButtonElement) {
 
   const text = button.textContent;
   button.textContent = COPIED_TEXT;
-  setTimeout(() => (button.textContent = text), COPIED_DURATION);
+  setTimeout(() => (button.textContent = text), COPIED_DURATION_MS);
 }

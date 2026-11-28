@@ -1,14 +1,28 @@
 /**
  * The globals of a preview document.
  *
- * The docs page gets them from its URL and from the shell. Stories with `inline: false` render in
- * their own iframe inside the docs page, whose URL has no globals: they follow the docs page instead.
+ * The docs page gets them from its URL and from the shell. Stories with
+ * `inline: false` render in their own iframe inside the docs page, whose URL
+ * has no globals: they follow the docs page instead.
  */
-import { compareGlobals, type Globals, GlobalsChangeEvent, parseGlobals } from '@shared/globals';
+import { TypedEventTarget } from '@shared/events';
+import {
+  compareGlobals,
+  type Globals,
+  GlobalsChangeEvent,
+  type GlobalsEventMap,
+  parseGlobals,
+} from '@shared/globals';
 
 const HOST_KEY = '__postDocsGlobals__';
 
-class GlobalsHost extends EventTarget {
+declare global {
+  interface Window {
+    [HOST_KEY]?: GlobalsHost;
+  }
+}
+
+class GlobalsHost extends TypedEventTarget<GlobalsEventMap> {
   private globals: Globals;
 
   constructor() {
@@ -20,28 +34,28 @@ class GlobalsHost extends EventTarget {
       parseGlobals(new URLSearchParams(location.search).get('globals') ?? '');
 
     if (parentHost) {
-      parentHost.addEventListener('globals-change', this.onParentChange);
+      parentHost.addEventListener('globals-change', this.handleParentChange);
       window.addEventListener(
         'pagehide',
-        () => parentHost.removeEventListener('globals-change', this.onParentChange),
+        () => parentHost.removeEventListener('globals-change', this.handleParentChange),
         { once: true },
       );
     }
   }
 
-  get current(): Globals {
+  public get current(): Globals {
     return this.globals;
   }
 
-  public set(globals: Globals) {
+  public set(globals: Globals): void {
     if (compareGlobals(globals, this.globals)) return;
 
     this.globals = globals;
     this.dispatchEvent(new GlobalsChangeEvent(globals));
   }
 
-  private readonly onParentChange = (event: Event) => {
-    this.set((event as GlobalsChangeEvent).globals);
+  private readonly handleParentChange = (event: GlobalsChangeEvent) => {
+    this.set(event.globals);
   };
 }
 
@@ -49,14 +63,17 @@ function getParentHost(): GlobalsHost | null {
   if (window.parent === window) return null;
 
   try {
-    return (window.parent as unknown as Record<string, GlobalsHost | undefined>)[HOST_KEY] ?? null;
+    return window.parent[HOST_KEY] ?? null;
   } catch {
-    // the parent is on another origin, e.g. the shell in development
+    // The parent is on another origin, e.g. the shell in development.
     return null;
   }
 }
 
-/** Dispatches a `GlobalsChangeEvent` whenever the globals change. */
+/**
+ * The globals of this preview document. Dispatches a `GlobalsChangeEvent`
+ * whenever they change.
+ */
 export const globalsHost = new GlobalsHost();
 
-(window as unknown as Record<string, GlobalsHost>)[HOST_KEY] = globalsHost;
+window[HOST_KEY] = globalsHost;

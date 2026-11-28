@@ -10,7 +10,7 @@ import {
 const meta: MetaComponent = {
   id: '2df77c32-5e33-402e-bd2e-54d54271ce19',
   title: 'Components/Form Input',
-  tags: ['package:styles'],
+  tags: ['package:styles', 'keyword:Text Input', 'keyword:Form Text', 'keyword:Text Field'],
   render: render,
   parameters: {
     badges: [],

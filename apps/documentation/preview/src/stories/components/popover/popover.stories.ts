@@ -6,7 +6,7 @@ import { MetaComponent } from '@preview/types/storybook';
 const meta: MetaComponent = {
   id: '9a636763-de2d-4f72-bc81-98daf10871f7',
   title: 'Components/Popover',
-  tags: ['package:components'],
+  tags: ['package:components', 'keyword:Popup', 'keyword:Flyout'],
   component: 'post-popover',
   parameters: {
     badges: [],

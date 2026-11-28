@@ -1,4 +1,5 @@
-// per-component imports keep the shell bundle small, the package index registers every component
+// Per-component imports keep the shell bundle small, as the package index
+// registers every component.
 import { defineCustomElement as definePostCollapsible } from '@swisspost/design-system-components/components/post-collapsible.js';
 import { defineCustomElement as definePostCollapsibleTrigger } from '@swisspost/design-system-components/components/post-collapsible-trigger.js';
 import { defineCustomElement as definePostIcon } from '@swisspost/design-system-components/components/post-icon.js';

@@ -16,8 +16,8 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "pnpm clean && pnpm start:preview & pnpm start:shell --open",
-    "start:headless": "pnpm clean && pnpm start:preview & pnpm start:shell",
+    "start": "pnpm clean && concurrently -k -n preview,shell \"pnpm start:preview\" \"pnpm start:shell --open\"",
+    "start:headless": "pnpm clean && concurrently -k -n preview,shell \"pnpm start:preview\" \"pnpm start:shell\"",
     "start:preview": "storybook dev -c preview/.storybook -p 9001 --quiet --no-open --docs --preview-only",
     "start:shell": "vite --config shell/vite.config.ts",
     "build": "pnpm clean && storybook build -c preview/.storybook -o dist --quiet --docs --preview-only && vite build --config shell/vite.config.ts",
@@ -66,6 +66,7 @@
     "@types/react": "catalog:react",
     "@types/react-syntax-highlighter": "15.5.13",
     "@types/semver": "7.8.0",
+    "concurrently": "10.0.6",
     "cypress": "catalog:cypress",
     "cypress-axe": "catalog:cypress",
     "eslint": "catalog:",

@@ -1,83 +1,86 @@
-# Contributing to Design System Documentation
+# Contributing to the Design System Documentation
 
-These contribution guidelines extend the [general contribution guidelines](../../CONTRIBUTING.md), where you can find instructions on how to set up the repository for contributing.
+These guidelines extend the [general contribution guidelines](../../CONTRIBUTING.md), which explain how to set up the repository.
 
 ## Structure
 
-The documentation consists of two apps: the shell, which provides the navigation and the toolbar, and the Storybook preview, which renders the documentation pages in an iframe.
+The documentation consists of two apps:
 
-| Folder     | Content                                                |
-| ---------- | ------------------------------------------------------ |
-| `preview/` | The app that renders the Storybook documentation pages |
-| `shell/`   | The app that replaces the Storybook manager UI         |
-| `shared/`  | The contract between the shell and the preview         |
-| `public/`  | Files served at the site root                          |
-| `cypress/` | End-to-end and snapshot tests                          |
+- The **shell** provides the navigation, the search and the toolbar, and shows the documentation pages in an iframe.
+- The **preview** is a Storybook that renders the pages.
 
-## Bundling the documentation
+## Development
 
-Run the following command to build the shell and the Storybook preview into the `dist` folder, making them available for developers.
+Start the documentation from the repository root:
 
 ```bash
-# Production build
-npm run build
-
-# Rebuild on change
-npm run start
+pnpm docs:start
 ```
 
-## Visual tests
+This builds the packages the documentation depends on, then starts the shell on [localhost:9000](http://localhost:9000), which opens automatically, and the preview on [localhost:9001](http://localhost:9001).
 
-One picture says more than a thousand words.<br>
-Thanks to [Percy](https://docs.percy.io/) and [cypress](https://www.cypress.io/), we're able to visually test almost anything that runs in a browser. It handles everything from capturing and rendering screenshots, to detecting and notifying your team of visual changes.
+### Dev mode
 
-A few steps are required before you can run the script to create the snapshots.
+In dev mode, the navigation and the search list certain pages that are otherwise hidden.
 
-1. Login to your [Percy Account](https://percy.io/).
-2. Create a project or navigate to an existing one.
-3. Copy your write-only percy token.
-4. Open a console in the project root folder.
-5. Register the following local environment variable:
+To activate dev mode, add `?mode=dev` to any address. To turn it off again, add `?mode=default`. This choice is remembered.
+
+## Writing pages
+
+A page consists of a stories file (`*.stories.ts`) and a docs file (`*.docs.mdx`) next to it. The metadata of the stories file defines the page:
+
+```ts
+const meta: MetaComponent = {
+  id: 'eb78afcb-ce92-4990-94b6-6536d5ec6af4',
+  title: 'Components/Button',
+  tags: ['package:styles', 'keyword:Call to Action'],
+  // …
+};
+```
+
+- `id` identifies the page and never changes. Give every new page a new UUID.
+- `title` places the page in the navigation and defines its address: `Components/Form Input` is served at `/components/form-input`. Changing the title changes the address.
+
+### Links
+
+Link to other pages by ID, not by title: `/bookmark?page=<id>`, optionally followed by a `#hash`. These links will continue to work even if the title changes, with the shell automatically redirecting them to the readable address.
+
+### Tags
+
+| Tag               | Effect                                                                                             |
+| ----------------- | -------------------------------------------------------------------------------------------------- |
+| `package:<id>`    | Shows a link to a package on the page. The IDs are defined in `preview/src/data/packages.data.ts`. |
+| `status:new`      | Shows a "New" tag for the page.                                                                    |
+| `visibility:dev`  | Makes the page available in dev mode only. It stays reachable by its address.                      |
+| `keyword:<words>` | Adds a keyword under which the page can be found in the search.                                    |
+
+### Navigation
+
+The first segment of a title is the root of the page, e.g. `Components` for `Components/Button`. How each root appears in the navigation is configured in `NAVIGATION` in `shell/src/config.ts`:
+
+| Layout        | Effect                                                              |
+| ------------- | ------------------------------------------------------------------- |
+| `home`        | The pages are listed under the "Home" heading.                      |
+| `collapsible` | The pages are listed in a collapsible section named after the root. |
+| `flat`        | The pages are listed as top-level rows, without a heading.          |
+| `hidden`      | The pages are not listed, but stay reachable by their address.      |
+
+Roots that are not configured use `defaultRoot`.
+
+### Story settings
+
+Stories follow the theme, appearance, colour scheme and palette chosen in the toolbar. A story can force its own values with `globals`, e.g. `globals: { appearance: 'compact' }`.
+
+## Tests
+
+The end-to-end tests are written with [Cypress](https://www.cypress.io/) and live in `cypress/e2e/`. Run them from the repository root:
 
 ```bash
-# Windows node/bash/cmd
-set PERCY_TOKEN={token}
+# Run all tests
+pnpm docs:e2e
 
-# Windows powershell
-$env:PERCY_TOKEN="{token}"
-
-# Unix
-export PERCY_TOKEN={token}
+# Open the Cypress UI
+pnpm docs:e2e:watch
 ```
 
-6. If you want to take snapshots from a localhost url, you need to allow unauthorized node-tls connections:
-
-```bash
-# Windows node/bash/cmd
-set NODE_TLS_REJECT_UNAUTHORIZED=0
-
-# wWindows powershell
-$env:NODE_TLS_REJECT_UNAUTHORIZED="0"
-
-# Unix terminal
-export NODE_TLS_REJECT_UNAUTHORIZED=0
-```
-
-7. Create your cypress tests
-
-```javascript
-// apps/documentation/cypress/integration/example.spec.js
-
-describe('Integration test with visual testing', function () {
-  it('Loads the homepage', function () {
-    // Load the page or perform any other interactions with the app.
-    cy.visit('{url-under-test}');
-    // Do other stuff (e.g. click button, etc.)
-    // Take a snapshot for visual diffing
-    cy.percySnapshot();
-  });
-});
-```
-
-8. Run script `pnpm --filter design-system-documentation storybook:snapshots`
-9. Once the snapshots has been taken, you should see a new build online in your percy project.
+Both commands start the documentation first. The tests run against the preview.

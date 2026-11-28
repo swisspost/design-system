@@ -9,7 +9,9 @@ export type UrlParams = Record<string, string | null>;
 
 export interface UrlOptions {
   hash?: string;
-  /** Written into the URL as they are, see `filterGlobals` to leave some out. */
+  /**
+   * Written into the URL as they are, see `filterGlobals` to leave some out.
+   */
   globals?: Partial<Globals>;
   params?: UrlParams;
 }
@@ -58,7 +60,8 @@ function serializeUrl(path: string, params: UrlParams, hash = ''): string {
     if (value) search.set(name, value);
   }
 
-  // `:`, `;` and `!` are valid in a query and keep Storybook's `key:value;flag:!true` syntax readable
+  // `:`, `;` and `!` are valid in a query and keep Storybook's
+  // `key:value;flag:!true` syntax readable.
   const query = search.toString().replace(/%(3A|3B|21)/gi, decodeURIComponent);
   const fragment = hash.replace(/^#/, '');
 
@@ -82,8 +85,8 @@ export function normalizePath(path: string): string {
 }
 
 /**
- * Slugifies a value following the same rules as Storybook.
- * @see https://github.com/storybookjs/storybook/blob/v9.1.21/code/core/src/csf/index.ts
+ * Slugifies a value with the same rules as Storybook (see
+ * https://github.com/storybookjs/storybook/blob/v9.1.21/code/core/src/csf/index.ts).
  */
 function slugify(value: string): string {
   return value

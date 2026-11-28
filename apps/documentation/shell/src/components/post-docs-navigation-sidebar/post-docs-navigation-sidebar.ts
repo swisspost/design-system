@@ -1,14 +1,23 @@
-import { LitElement, html } from 'lit';
+import { LitElement, html, nothing, type TemplateResult } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
+import { getPackageVersion } from '@shared/versions';
 import type { Page } from '../../catalog/catalog';
 import type { NavigationSection } from '../../navigation/tree';
 import type { SearchIndex } from '../../catalog/search-index';
 import type { PostDocsNavigationTree } from '../post-docs-navigation-tree/post-docs-navigation-tree';
 import type { PostDocsSearch } from '../post-docs-search/post-docs-search';
+import docsPackage from '../../../../package.json';
 import '../post-docs-navigation-tree/post-docs-navigation-tree';
 import '../post-docs-search/post-docs-search';
 import './post-docs-navigation-sidebar.scss';
 
+// The documented release, the same for all the packages.
+const VERSION = getPackageVersion('@swisspost/design-system-styles');
+
+/**
+ * The navigation from the sidebar breakpoint up: the search above the tree,
+ * whose results take its place.
+ */
 @customElement('post-docs-navigation-sidebar')
 export class PostDocsNavigationSidebar extends LitElement {
   @property({ attribute: false }) public sections: NavigationSection[] = [];
@@ -21,15 +30,25 @@ export class PostDocsNavigationSidebar extends LitElement {
   @query('post-docs-search') private search!: PostDocsSearch;
   @query('post-docs-navigation-tree') private tree!: PostDocsNavigationTree;
 
-  override createRenderRoot() {
+  protected override createRenderRoot() {
     return this;
   }
 
-  public focusSearch() {
+  public focusSearch(): void {
     this.search.focus();
   }
 
-  override render() {
+  // A hidden tree cannot reveal the active page, so a page opened from the
+  // results is revealed once the tree is back.
+  private async handleSearchToggle(event: CustomEvent<boolean>) {
+    this.isSearching = event.detail;
+    if (this.isSearching) return;
+
+    await this.updateComplete;
+    void this.tree.revealActivePage();
+  }
+
+  protected override render(): TemplateResult {
     return html`
       <div class="palette palette-brand d-flex flex-shrink-0">
         <post-logo class="h-40" url="/">Swiss Post Design System, go to the homepage</post-logo>
@@ -37,7 +56,7 @@ export class PostDocsNavigationSidebar extends LitElement {
       <post-docs-search
         id-prefix="sidebar-search"
         .index=${this.searchIndex}
-        @postDocsSearchToggle=${this.onSearchToggle}
+        @postDocsSearchToggle=${this.handleSearchToggle}
       ></post-docs-search>
       <nav
         class="flex-fill overflow-y-auto pb-40"
@@ -50,16 +69,14 @@ export class PostDocsNavigationSidebar extends LitElement {
           .activePage=${this.activePage}
         ></post-docs-navigation-tree>
       </nav>
+      ${VERSION
+        ? html`
+            <p class="version flex-shrink-0 m-0 px-16 py-12 fs-11">
+              v${VERSION} (${docsPackage.version})
+            </p>
+          `
+        : nothing}
     `;
-  }
-
-  // a hidden tree cannot reveal the active page, a page opened from the results is revealed once the tree is back
-  private async onSearchToggle(event: CustomEvent<boolean>) {
-    this.isSearching = event.detail;
-    if (this.isSearching) return;
-
-    await this.updateComplete;
-    void this.tree.revealActivePage();
   }
 }
 

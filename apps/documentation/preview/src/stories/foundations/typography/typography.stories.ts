@@ -5,7 +5,13 @@ import { html } from 'lit/static-html.js';
 const meta: MetaExtended = {
   id: '677cfabf-dbf0-4de2-ad07-6d5bfb9e2375',
   title: 'Foundations/Typography',
-  tags: ['package:styles'],
+  tags: [
+    'package:styles',
+    'keyword:Font Family',
+    'keyword:Font Size',
+    'keyword:Line Height',
+    'keyword:Headings',
+  ],
   parameters: {
     design: {
       type: 'figma',

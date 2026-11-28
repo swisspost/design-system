@@ -1,7 +1,10 @@
 interface GlobalDefinition {
   label: string;
   options: Record<string, string>;
-  /** A hidden global has no menu and is never written into a shared URL, but a URL can still set it. */
+  /**
+   * A hidden global has no menu and is never written into a shared URL, but a
+   * URL can still set it.
+   */
   hidden?: boolean;
 }
 
@@ -33,18 +36,30 @@ export type Globals = { [K in GlobalName]: GlobalValue<K> };
 export type GlobalName = keyof typeof GLOBAL_DEFINITIONS;
 export type GlobalValue<K extends GlobalName> = keyof (typeof GLOBAL_DEFINITIONS)[K]['options'];
 
+// `Object.keys` is typed as `string[]`, as objects may have extra keys, but the
+// definitions are a literal.
 export const GLOBAL_NAMES = Object.keys(GLOBAL_DEFINITIONS) as GlobalName[];
 
-/** The globals that are not hidden, see `GlobalDefinition.hidden`. */
+/**
+ * The globals that are not hidden.
+ *
+ * @see {GlobalDefinition.hidden}
+ */
 export const SHARABLE_GLOBAL_NAMES = GLOBAL_NAMES.filter(name => {
   const definition: GlobalDefinition = GLOBAL_DEFINITIONS[name];
   return !definition.hidden;
 });
 
-/** Shared URLs hold the globals that differ from the defaults, the hidden ones only apply to the person who has set them. */
+/**
+ * The globals of shared URLs: the ones that differ from the defaults, without
+ * the hidden ones.
+ */
 export const SHARABLE_GLOBALS_FILTER: GlobalsFilter = { defaultValues: false, hidden: false };
 
-/** Deep links hold all the sharable globals, so that they never depend on the globals stored by the person who opens them. */
+/**
+ * The globals of deep links: all the sharable ones, so that a deep link never
+ * depends on stored globals.
+ */
 export const DEEP_LINK_GLOBALS_FILTER: GlobalsFilter = { hidden: false };
 
 export const DEFAULT_GLOBALS: Globals = {
@@ -56,9 +71,13 @@ export const DEFAULT_GLOBALS: Globals = {
 };
 
 export class GlobalsChangeEvent extends Event {
-  constructor(readonly globals: Globals) {
+  constructor(public readonly globals: Globals) {
     super('globals-change');
   }
+}
+
+export interface GlobalsEventMap {
+  'globals-change': GlobalsChangeEvent;
 }
 
 export function isGlobalValue<K extends GlobalName>(
@@ -94,7 +113,10 @@ export interface GlobalsFilter {
   hidden?: boolean;
 }
 
-/** Leaves out the globals that the filter excludes, e.g. `{ defaultValues: false }`. Both are kept by default. */
+/**
+ * Leaves out the globals that the filter excludes, e.g.
+ * `{ defaultValues: false }`. Both are kept by default.
+ */
 export function filterGlobals(globals: Partial<Globals>, filter: GlobalsFilter): Partial<Globals> {
   const names = GLOBAL_NAMES.filter(
     name =>

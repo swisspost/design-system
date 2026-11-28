@@ -5,7 +5,7 @@ import { MetaExtended } from '@preview/types/storybook';
 const meta: MetaExtended = {
   id: 'e76192bb-b2eb-487a-b9c1-ef938bccdfc4',
   title: 'Components/List',
-  tags: ['package:styles'],
+  tags: ['package:styles', 'keyword:Description List', 'keyword:Check List'],
   parameters: {
     badges: [],
     design: {

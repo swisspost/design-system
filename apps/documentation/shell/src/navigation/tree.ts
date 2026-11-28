@@ -4,7 +4,10 @@ import { getRootDefinition } from './navigation';
 
 const DEV_TAG: VisibilityTag = `${VISIBILITY_TAG_PREFIX}dev`;
 
-/** A row of the navigation: a page, a folder, or both (a page with subpages, e.g. "Header"). */
+/**
+ * A row of the navigation: a page, a folder, or both (a page with subpages,
+ * e.g. "Header").
+ */
 export interface NavigationNode {
   key: string;
   label: string;
@@ -18,10 +21,12 @@ export interface NavigationNode {
 
 export type NavigationSection =
   | { type: 'home'; label: string; nodes: NavigationNode[] }
-  | { type: 'category'; key: string; label: string; nodes: NavigationNode[] }
+  | { type: 'collapsible'; key: string; label: string; nodes: NavigationNode[] }
   | { type: 'flat'; nodes: NavigationNode[] };
 
-/** Groups the listed pages into sections, in the order of the catalog. */
+/**
+ * Groups the listed pages into sections, in the order of the catalog.
+ */
 export function buildNavigation(catalog: Catalog, devMode: boolean): NavigationSection[] {
   const sections: NavigationSection[] = [];
   const sectionsByRoot = new Map<string, NavigationSection>();
@@ -37,13 +42,14 @@ export function buildNavigation(catalog: Catalog, devMode: boolean): NavigationS
 
       if (layout === 'home') section = { type: 'home', label: 'Home', nodes: [] };
       else if (layout === 'flat') section = { type: 'flat', nodes: [] };
-      else section = { type: 'category', key: toKey([root]), label: root, nodes: [] };
+      else section = { type: 'collapsible', key: toKey([root]), label: root, nodes: [] };
 
       sectionsByRoot.set(root, section);
       sections.push(section);
     }
 
-    // a page titled with its root only (e.g. "Introduction") is listed with the root name
+    // A page titled with its root only (e.g. "Introduction") is listed with the
+    // root name.
     const segments = page.segments.length > 1 ? page.segments.slice(1) : [root];
     insert(section.nodes, segments, [root], page, catalog.canonicalURL(page));
   }
@@ -51,19 +57,24 @@ export function buildNavigation(catalog: Catalog, devMode: boolean): NavigationS
   return sections;
 }
 
-/** Hidden roots and, outside the dev mode, dev pages are reachable by URL only. */
+/**
+ * Whether the page is listed in the navigation and the search. Hidden roots
+ * and, outside dev mode, dev pages are reachable by URL only.
+ */
 export function isListed(page: Page, devMode: boolean): boolean {
   if (getRootDefinition(page.segments[0]).layout === 'hidden') return false;
   return devMode || !page.tags.includes(DEV_TAG);
 }
 
-/** The keys of the section and folders that contain the page, outermost first. */
+/**
+ * The keys of the section and folders that contain the page, outermost first.
+ */
 export function getAncestorKeys(sections: NavigationSection[], pageId: string): string[] {
   for (const section of sections) {
     const path = findPath(section.nodes, pageId);
     if (!path) continue;
 
-    return section.type === 'category' ? [section.key, ...path] : path;
+    return section.type === 'collapsible' ? [section.key, ...path] : path;
   }
 
   return [];
