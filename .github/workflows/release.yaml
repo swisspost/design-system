@@ -59,10 +59,11 @@ jobs:
           pnpm m ls --depth=0 --json > monorepo.json
           node .github/workflows/scripts/check-packages-on-npm.mjs
 
-      # The build output is everything that is ignored by git inside the directories of the
-      # publishable workspace packages (all packages that are not `private`), except:
-      #  - node_modules: reinstalled in the changeset-magic job
-      #  - the changelog generator: rebuilt in the changeset-magic job, because it is executed there
+      # The build output is everything that is ignored by git inside the paths that the
+      # publishable workspace packages publish to npm (`publishConfig.directory` or `files`,
+      # see list-publish-paths.mjs). Build caches like .stencil, .angular or www are not
+      # published, so they are not archived either. The changelog generator is skipped,
+      # it is rebuilt in the changeset-magic job.
       #
       # git can list an ignored directory together with one of its ignored subdirectories
       # (e.g. packages/icons/dist/ and packages/icons/dist/custom-properties/). tar would store
@@ -71,18 +72,14 @@ jobs:
         run: |
           set -euo pipefail
 
-          mapfile -t PACKAGE_DIRS < <(
-            pnpm m ls --depth=0 --json \
-              | jq -r --arg root "$PWD" '.[] | select(.private != true and .path != $root) | .path | ltrimstr($root + "/")' \
-              | grep --invert-match --line-regexp 'packages/changelog-github'
-          )
+          mapfile -t PUBLISH_PATHS < <(pnpm m ls --depth=0 --json | node .github/workflows/scripts/list-publish-paths.mjs)
 
-          if (( ${#PACKAGE_DIRS[@]} == 0 )); then
-            echo "::error::No publishable packages found."
+          if (( ${#PUBLISH_PATHS[@]} == 0 )); then
+            echo "::error::No publish paths found."
             exit 1
           fi
 
-          git ls-files -z --others --ignored --exclude-standard --directory -- "${PACKAGE_DIRS[@]}" \
+          git ls-files -z --others --ignored --exclude-standard --directory -- "${PUBLISH_PATHS[@]}" \
             | grep --null-data --invert-match --extended-regexp '(^|/)node_modules/' \
             | tar --create --gzip --hard-dereference --file "$RUNNER_TEMP/build-output.tar.gz" --exclude=node_modules --null --files-from=-
 
@@ -143,21 +140,17 @@ jobs:
 
       # The archive was created by a job that ran the build toolchain, so its content is validated
       # before it is copied into the workspace. It may only contain regular files and directories
-      # inside the publishable workspace packages, and nothing that pnpm, git or the changeset CLI
-      # would execute or read as configuration. The list of packages is read from the checkout
+      # inside the paths that the packages publish, and nothing that pnpm, git or the changeset CLI
+      # would execute or read as configuration. The list of paths is read from the checkout
       # of this job, not from the archive.
       - name: Restore build output
         run: |
           set -euo pipefail
 
-          mapfile -t PACKAGE_DIRS < <(
-            pnpm m ls --depth=0 --json \
-              | jq -r --arg root "$PWD" '.[] | select(.private != true and .path != $root) | .path | ltrimstr($root + "/")' \
-              | grep --invert-match --line-regexp 'packages/changelog-github'
-          )
+          mapfile -t PUBLISH_PATHS < <(pnpm m ls --depth=0 --json | node .github/workflows/scripts/list-publish-paths.mjs)
 
-          if (( ${#PACKAGE_DIRS[@]} == 0 )); then
-            echo "::error::No publishable packages found."
+          if (( ${#PUBLISH_PATHS[@]} == 0 )); then
+            echo "::error::No publish paths found."
             exit 1
           fi
 
@@ -179,14 +172,14 @@ jobs:
           while IFS= read -r -d '' entry; do
             path="${entry#"$STAGING"/}"
             allowed=false
-            for dir in "${PACKAGE_DIRS[@]}"; do
-              if [[ "$path/" == "$dir/"* || "$dir/" == "$path/"* ]]; then
+            for publish_path in "${PUBLISH_PATHS[@]}"; do
+              if [[ "$path/" == "$publish_path/"* || "$publish_path/" == "$path/"* ]]; then
                 allowed=true
                 break
               fi
             done
             if [[ "$allowed" != true ]]; then
-              echo "::error::The build output contains a path outside of the publishable packages."
+              echo "::error::The build output contains a path that is not published."
               printf 'Path: %q\n' "$path"
               exit 1
             fi
