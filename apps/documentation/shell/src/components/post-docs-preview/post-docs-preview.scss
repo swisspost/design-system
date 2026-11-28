@@ -1,0 +1,25 @@
+$spinner-delay: 300ms;
+
+post-docs-preview {
+  position: relative;
+  display: block;
+  block-size: 100%;
+  // the spinner stays below the mobile navigation panel
+  isolation: isolate;
+
+  &:not(.loaded) {
+    display: none;
+  }
+
+  // on a page change, the spinner appears only after a moment, so that quick changes show none
+  &[data-loading='page'] .spinner-modal {
+    animation: spinner-delay $spinner-delay;
+  }
+}
+
+@keyframes spinner-delay {
+  from,
+  to {
+    visibility: hidden;
+  }
+}

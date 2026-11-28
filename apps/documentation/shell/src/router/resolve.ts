@@ -1,4 +1,9 @@
-import { GLOBAL_NAMES, type Globals, normalizeGlobals } from '@shared/globals';
+import {
+  GLOBAL_NAMES,
+  type Globals,
+  normalizeGlobals,
+  SHARABLE_GLOBAL_NAMES,
+} from '@shared/globals';
 import { BOOKMARK_PATH, decodeUrlComponent, normalizePath } from '@shared/urls';
 import type { Catalog } from '../catalog';
 import { migrateLegacyUrl } from './legacy';
@@ -29,8 +34,19 @@ export function resolve(url: URL, catalog: Catalog): Route {
   };
 }
 
-function readGlobals(params: Record<string, string>): Globals | null {
-  return GLOBAL_NAMES.some(name => Object.hasOwn(params, name)) ? normalizeGlobals(params) : null;
+/**
+ * A shared URL holds all its globals, the missing ones are the defaults.
+ * Hidden globals are never shared, a missing one keeps its current value.
+ */
+function readGlobals(params: Record<string, string>): Partial<Globals> | null {
+  const isShared = SHARABLE_GLOBAL_NAMES.some(name => Object.hasOwn(params, name));
+  const names = GLOBAL_NAMES.filter(
+    name => Object.hasOwn(params, name) || (isShared && SHARABLE_GLOBAL_NAMES.includes(name)),
+  );
+  if (names.length === 0) return null;
+
+  const globals = normalizeGlobals(params);
+  return Object.fromEntries(names.map(name => [name, globals[name]]));
 }
 
 function withoutGlobals(params: Record<string, string>): Record<string, string> {

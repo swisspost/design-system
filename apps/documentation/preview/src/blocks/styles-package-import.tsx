@@ -6,10 +6,15 @@ import {
   Props,
 } from './styles-package-import.utils';
 import { PostIcon } from '@swisspost/design-system-components-react';
-import { getGlobals, subscribeGlobals } from '@preview/globals/globals-host';
+import { globalsHost } from '@preview/globals/globals-host';
+
+function subscribeGlobals(onChange: VoidFunction): VoidFunction {
+  globalsHost.addEventListener('globals-change', onChange);
+  return () => globalsHost.removeEventListener('globals-change', onChange);
+}
 
 export default function PackageTag(props: Props) {
-  const { theme, appearance } = useSyncExternalStore(subscribeGlobals, getGlobals);
+  const { theme, appearance } = useSyncExternalStore(subscribeGlobals, () => globalsHost.current);
   const stylesheet = `@swisspost/design-system-styles/${theme}-${appearance}.scss`;
 
   return (

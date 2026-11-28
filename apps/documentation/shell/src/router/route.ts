@@ -8,8 +8,8 @@ export interface PageRoute {
   page: Page;
   hash: string;
   params: Record<string, string>;
-  /** The globals of the URL, missing ones are the defaults. `null` if the URL has none. */
-  globals: Globals | null;
+  /** The globals of the URL, missing ones are the defaults (hidden ones are left out). `null` if the URL has none. */
+  globals: Partial<Globals> | null;
   canonical: string | null;
 }
 

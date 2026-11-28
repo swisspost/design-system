@@ -1,4 +1,5 @@
 import type { Globals } from './globals';
+import type { Shortcut } from './shortcuts';
 
 export const BRIDGE_SOURCE = 'post-docs';
 
@@ -18,6 +19,7 @@ export type PreviewMessages = MessageDefinitions<{
   rendered: { pageId: string };
   error: { pageId: string };
   navigate: { href: string };
+  shortcut: { name: Shortcut };
 }>;
 
 export type MessageType = keyof Messages;

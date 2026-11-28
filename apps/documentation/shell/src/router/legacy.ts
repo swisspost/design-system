@@ -1,9 +1,4 @@
-import {
-  normalizeGlobals,
-  parseGlobals,
-  stringifyGlobals,
-  withoutDefaultValues,
-} from '@shared/globals';
+import { filterGlobals, normalizeGlobals, parseGlobals, stringifyGlobals } from '@shared/globals';
 import { BOOKMARK_PATH, decodeUrlComponent, normalizePath, previewUrl } from '@shared/urls';
 import { PREVIEW_ORIGIN } from '../config';
 import type { Catalog } from '../catalog';
@@ -13,12 +8,13 @@ const MANAGER_PATHS = new Set(['/', '/index.html']);
 const MANAGER_PARAMS = ['path', 'full', 'nav', 'panel', 'addons', 'shortcuts', 'singleStory'];
 
 /**
- * Rewrites URLs of the former Storybook manager UI (`/?path=/docs/<id>`, `?globals=…`) to current URLs.
+ * Rewrites URLs of the former Storybook manager UI (`/?path=/docs/<id>`, `?globals=…`, `?devModeEnabled=…`) to current URLs.
  * Old story URLs (`/?path=/story/<id>`) leave the shell and open the bare story.
  */
 export function migrateLegacyUrl(url: URL, catalog: Catalog): URL | RedirectRoute | NotFoundRoute {
   const migrated = new URL(url);
   migrateGlobalsParam(migrated);
+  migrateDevModeParam(migrated);
 
   const path = migrated.searchParams.get('path');
   if (path === null || !MANAGER_PATHS.has(normalizePath(migrated.pathname))) return migrated;
@@ -35,7 +31,7 @@ export function migrateLegacyUrl(url: URL, catalog: Catalog): URL | RedirectRout
   }
 
   if (viewMode === 'story' && catalog.isStory(id)) {
-    return { type: 'redirect', href: storyRedirect(id, migrated.searchParams) };
+    return { type: 'redirect', href: migrateStoryUrl(id, migrated.searchParams) };
   }
 
   // old "Copy deep link" URLs end with the story id, the story's anchor is `story--<id>`
@@ -52,12 +48,24 @@ function migrateGlobalsParam(url: URL) {
   if (value === null) return;
 
   url.searchParams.delete('globals');
-  for (const [name, global] of Object.entries(withoutDefaultValues(parseGlobals(value)))) {
+  const globals = filterGlobals(parseGlobals(value), { defaultValues: false });
+  for (const [name, global] of Object.entries(globals)) {
     if (!url.searchParams.has(name)) url.searchParams.set(name, global);
   }
 }
 
-function storyRedirect(storyId: string, search: URLSearchParams): string {
+function migrateDevModeParam(url: URL) {
+  const value = url.searchParams.get('devModeEnabled');
+  if (value === null) return;
+
+  url.searchParams.delete('devModeEnabled');
+
+  if (!url.searchParams.has('mode')) {
+    url.searchParams.set('mode', value === 'true' ? 'dev' : 'default');
+  }
+}
+
+function migrateStoryUrl(storyId: string, search: URLSearchParams): string {
   const globals = normalizeGlobals(Object.fromEntries(search));
   const params = {
     args: search.get('args'),

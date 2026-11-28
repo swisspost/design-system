@@ -1,0 +1,58 @@
+@use '@swisspost/design-system-styles/mixins/media';
+
+// layout values without a token come from the Figma frames ("Storybook Redesign 26")
+$bar-height: 40px;
+$sidebar-width: 300px;
+
+post-docs-shell {
+  display: grid;
+  block-size: 100dvh;
+  grid-template-areas: 'toolbar' 'navigation' 'main';
+  grid-template-rows: $bar-height auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
+
+  @include media.min(md) {
+    grid-template-areas: 'sidebar toolbar' 'sidebar main';
+    grid-template-rows: $bar-height minmax(0, 1fr);
+    grid-template-columns: $sidebar-width minmax(0, 1fr);
+  }
+
+  > post-docs-navigation-sidebar {
+    grid-area: sidebar;
+    z-index: 2;
+
+    @include media.max(md) {
+      display: none;
+    }
+  }
+
+  > post-docs-toolbar {
+    grid-area: toolbar;
+    z-index: 1;
+  }
+
+  // the bar and the panel take part in the shell grid, the panel covers the main area
+  > post-docs-navigation-sheet {
+    display: contents;
+
+    @include media.min(md) {
+      display: none;
+    }
+
+    > .bar {
+      grid-area: navigation;
+      z-index: 2;
+    }
+
+    > .panel {
+      grid-area: main;
+      z-index: 1;
+    }
+  }
+
+  > main {
+    grid-area: main;
+    position: relative;
+    min-block-size: 0;
+  }
+}

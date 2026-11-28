@@ -4,56 +4,45 @@
  * The docs page gets them from its URL and from the shell. Stories with `inline: false` render in
  * their own iframe inside the docs page, whose URL has no globals: they follow the docs page instead.
  */
-import { compareGlobals, type Globals, parseGlobals } from '@shared/globals';
-
-type GlobalsListener = (globals: Globals) => void;
-
-interface GlobalsHost {
-  get(): Globals;
-  subscribe(listener: GlobalsListener): () => void;
-}
+import { compareGlobals, type Globals, GlobalsChangeEvent, parseGlobals } from '@shared/globals';
 
 const HOST_KEY = '__postDocsGlobals__';
 
-const listeners = new Set<GlobalsListener>();
-let globals = connect();
+class GlobalsHost extends EventTarget {
+  private globals: Globals;
 
-export function getGlobals(): Globals {
-  return globals;
-}
+  constructor() {
+    super();
 
-export function setGlobals(next: Globals) {
-  if (compareGlobals(next, globals)) return;
+    const parentHost = getParentHost();
+    this.globals =
+      parentHost?.current ??
+      parseGlobals(new URLSearchParams(location.search).get('globals') ?? '');
 
-  globals = next;
-  for (const listener of listeners) {
-    try {
-      listener(next);
-    } catch {
-      // the listener belongs to a story iframe that is gone
-      listeners.delete(listener);
+    if (parentHost) {
+      parentHost.addEventListener('globals-change', this.onParentChange);
+      window.addEventListener(
+        'pagehide',
+        () => parentHost.removeEventListener('globals-change', this.onParentChange),
+        { once: true },
+      );
     }
   }
-}
 
-/** Calls `listener` whenever the globals change, until the returned function is called. */
-export function subscribeGlobals(listener: GlobalsListener): () => void {
-  listeners.add(listener);
-  return () => listeners.delete(listener);
-}
+  get current(): Globals {
+    return this.globals;
+  }
 
-function connect(): Globals {
-  (window as unknown as Record<string, GlobalsHost>)[HOST_KEY] = {
-    get: getGlobals,
-    subscribe: subscribeGlobals,
+  public set(globals: Globals) {
+    if (compareGlobals(globals, this.globals)) return;
+
+    this.globals = globals;
+    this.dispatchEvent(new GlobalsChangeEvent(globals));
+  }
+
+  private readonly onParentChange = (event: Event) => {
+    this.set((event as GlobalsChangeEvent).globals);
   };
-
-  const parentHost = getParentHost();
-  if (!parentHost) return parseGlobals(new URLSearchParams(location.search).get('globals') ?? '');
-
-  const unsubscribe = parentHost.subscribe(setGlobals);
-  window.addEventListener('pagehide', unsubscribe, { once: true });
-  return parentHost.get();
 }
 
 function getParentHost(): GlobalsHost | null {
@@ -66,3 +55,8 @@ function getParentHost(): GlobalsHost | null {
     return null;
   }
 }
+
+/** Dispatches a `GlobalsChangeEvent` whenever the globals change. */
+export const globalsHost = new GlobalsHost();
+
+(window as unknown as Record<string, GlobalsHost>)[HOST_KEY] = globalsHost;

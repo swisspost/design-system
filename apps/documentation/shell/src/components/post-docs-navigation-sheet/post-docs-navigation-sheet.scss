@@ -1,0 +1,42 @@
+@use '@swisspost/design-system-styles/functions/env';
+@use '@swisspost/design-system-styles/mixins/utilities';
+
+$toolbar-font-weight: 950;
+$footer-padding-block-end: 24px;
+
+post-docs-navigation-sheet {
+  > .bar {
+    font-family: inherit;
+    font-weight: $toolbar-font-weight;
+
+    @include utilities.focus-style;
+    @include utilities.focus-inset;
+
+    > .chevron {
+      transition: transform 150ms ease;
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+    }
+
+    &[aria-expanded='true'] > .chevron {
+      transform: rotate(180deg);
+    }
+  }
+
+  > .panel {
+    display: flex;
+    flex-direction: column;
+    min-block-size: 0;
+    overscroll-behavior: contain;
+
+    &[hidden] {
+      display: none;
+    }
+
+    > post-docs-globals-menus {
+      padding-block-end: env.safe-area-inset(bottom, $footer-padding-block-end);
+    }
+  }
+}
