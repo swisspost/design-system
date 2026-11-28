@@ -17,7 +17,7 @@ import {
 import { stringifyGlobals } from '@shared/globals';
 import { previewUrl } from '@shared/urls';
 import { globalsHost } from '@preview/globals/globals-host';
-import { interceptLinks, linkToShell } from './links';
+import { interceptPageLinks, interceptStoryLinks, pointPageLinksToShell } from './links';
 import { ShellConnection, type ShellMessageEvent } from './shell-connection';
 import { forwardShortcuts } from './shortcuts';
 
@@ -31,7 +31,7 @@ interface RenderPhaseChange {
   storyId: string;
 }
 
-interface UrlPage {
+interface TargetPage {
   id: string;
   params: Record<string, string>;
 }
@@ -64,12 +64,19 @@ class StorybookAdapter {
   // The page Storybook shows, once it has selected one.
   private pageId: string | null = null;
 
-  // The page of the URL, which a reload shows again together with the globals.
-  private urlPage = readUrlPage();
+  // The page the preview is heading to: first the page of the URL, then the
+  // pages the shell sends. The URL keeps it for a reload, with the globals.
+  private targetPage = readTargetPage();
+
+  // A story shown on its own: in the iframe of a docs story that is not
+  // inline, or in a docs frame that a link has loaded the story into.
+  private readonly isStoryView = new URLSearchParams(location.search).get('viewMode') === 'story';
 
   constructor(private readonly channel: Channel) {}
 
   public start(): void {
+    if (this.isStoryView) interceptStoryLinks();
+
     this.reportStorybookEvents();
     this.applyShellMessages();
     shell.start();
@@ -92,7 +99,11 @@ class StorybookAdapter {
   }
 
   private readonly handleSelection = (selection: StorySelection) => {
-    if (isPageSelection(selection)) this.select(selection.storyId);
+    // A story view reports its story as well, so that a shell connected to it
+    // can send the page that belongs there.
+    if (isPageSelection(selection) || (this.isStoryView && selection.viewMode === 'story')) {
+      this.select(selection.storyId);
+    }
   };
 
   private readonly handleStoryError = () => {
@@ -103,21 +114,29 @@ class StorybookAdapter {
   };
 
   private readonly handlePageRendered = (id: string) => {
-    if (shell.origin) linkToShell(shell.origin);
+    if (shell.origin) pointPageLinksToShell(shell.origin);
     shell.rendered(id);
   };
 
   private readonly handleConnect = () => {
     if (shell.origin) {
-      interceptLinks(shell.origin, href => shell.navigate(href));
-      linkToShell(shell.origin);
+      interceptPageLinks(shell.origin, href => shell.navigate(href));
+      pointPageLinksToShell(shell.origin);
     }
 
     forwardShortcuts(name => shell.shortcut(name));
   };
 
   private readonly handlePage = (event: ShellMessageEvent<'page'>) => {
-    this.urlPage = { id: event.payload.id, params: event.payload.params };
+    this.targetPage = { id: event.payload.id, params: event.payload.params };
+
+    // A story view switched to the docs view in place would keep the link
+    // handling of the story, so it is reloaded as the page.
+    if (this.isStoryView) {
+      location.replace(this.pageUrl());
+      return;
+    }
+
     this.replaceUrl();
 
     if (event.payload.id !== this.pageId) {
@@ -143,12 +162,17 @@ class StorybookAdapter {
   }
 
   private replaceUrl() {
-    const params = { ...this.urlPage.params, globals: stringifyGlobals(globalsHost.current) };
-    const url = previewUrl(this.urlPage.id, 'docs', params);
+    const url = this.pageUrl();
 
     if (url !== location.pathname + location.search) {
       history.replaceState(history.state, '', url + location.hash);
     }
+  }
+
+  private pageUrl() {
+    const params = { ...this.targetPage.params, globals: stringifyGlobals(globalsHost.current) };
+
+    return previewUrl(this.targetPage.id, 'docs', params);
   }
 }
 
@@ -227,7 +251,7 @@ function isPageSelection(selection: StorySelection): boolean {
   return selection.viewMode === 'docs';
 }
 
-function readUrlPage(): UrlPage {
+function readTargetPage(): TargetPage {
   const search = new URLSearchParams(location.search);
   const params: Record<string, string> = {};
 
