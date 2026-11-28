@@ -14,9 +14,9 @@ permissions:
   contents: read
 
 jobs:
-  # Everything that runs third-party build tooling (dependency install scripts, Stencil,
-  # Sass, Angular, Storybook, ...) happens in this job. It only has the read-only default
-  # GITHUB_TOKEN: no secrets, no environment and no `id-token: write`.
+  # The packages are installed and built in this job, which runs third-party build tooling
+  # (dependency install scripts, Stencil, Sass, Angular, Storybook, ...). It only has the
+  # read-only default GITHUB_TOKEN: no secrets, no environment and no `id-token: write`.
   # The build output is handed over to the changeset-magic job as an artifact, so the job
   # that is allowed to publish to npm never runs the build toolchain itself.
   build:
@@ -45,7 +45,7 @@ jobs:
       - name: Abort workflow, if uncommitted changes are detected
         run: |
           if [[ $(git status --porcelain) ]]; then
-            echo "Error: Unclean working tree! Commit changes first, then release again..."
+            echo "Error: Unclean working tree! Commit changes first, then release again..." >&2
             exit 1
           fi
 
@@ -210,7 +210,7 @@ jobs:
       - name: Abort workflow, if uncommitted changes are detected
         run: |
           if [[ $(git status --porcelain) ]]; then
-            echo "Error: Unclean working tree! Commit changes first, then release again..."
+            echo "Error: Unclean working tree! Commit changes first, then release again..." >&2
             exit 1
           fi
 
