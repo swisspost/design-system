@@ -14,9 +14,9 @@ permissions:
   contents: read
 
 jobs:
-  # The packages are installed and built in this job, which runs third-party build tooling
-  # (dependency install scripts, Stencil, Sass, Angular, Storybook, ...). It only has the
-  # read-only default GITHUB_TOKEN: no secrets, no environment and no `id-token: write`.
+  # Everything that runs third-party build tooling (dependency install scripts, Stencil,
+  # Sass, Angular, Storybook, ...) happens in this job. It only has the read-only default
+  # GITHUB_TOKEN: no secrets, no environment and no `id-token: write`.
   # The build output is handed over to the changeset-magic job as an artifact, so the job
   # that is allowed to publish to npm never runs the build toolchain itself.
   build:
@@ -45,7 +45,7 @@ jobs:
       - name: Abort workflow, if uncommitted changes are detected
         run: |
           if [[ $(git status --porcelain) ]]; then
-            echo "Error: Unclean working tree! Commit changes first, then release again..." >&2
+            echo "Error: Unclean working tree! Commit changes first, then release again..."
             exit 1
           fi
 
@@ -66,7 +66,8 @@ jobs:
           pnpm m ls --depth=0 --json > monorepo.json
           node .github/workflows/scripts/check-packages-on-npm.mjs
 
-      # The build output is everything below packages/ that is ignored by git, except:
+      # The build output is everything that is ignored by git inside the directories of the
+      # publishable workspace packages (all packages that are not `private`), except:
       #  - node_modules: reinstalled in the changeset-magic job
       #  - the changelog generator: rebuilt in the changeset-magic job, because it is executed there
       #
@@ -77,8 +78,19 @@ jobs:
         run: |
           set -euo pipefail
 
-          git ls-files -z --others --ignored --exclude-standard --directory -- packages \
-            | grep --null-data --invert-match --extended-regexp '(^|/)node_modules/|^packages/changelog-github/' \
+          mapfile -t PACKAGE_DIRS < <(
+            pnpm m ls --depth=0 --json \
+              | jq -r --arg root "$PWD" '.[] | select(.private != true and .path != $root) | .path | ltrimstr($root + "/")' \
+              | grep --invert-match --line-regexp 'packages/changelog-github'
+          )
+
+          if (( ${#PACKAGE_DIRS[@]} == 0 )); then
+            echo "::error::No publishable packages found."
+            exit 1
+          fi
+
+          git ls-files -z --others --ignored --exclude-standard --directory -- "${PACKAGE_DIRS[@]}" \
+            | grep --null-data --invert-match --extended-regexp '(^|/)node_modules/' \
             | tar --create --gzip --hard-dereference --file "$RUNNER_TEMP/build-output.tar.gz" --exclude=node_modules --null --files-from=-
 
       - name: Upload build output
@@ -138,33 +150,56 @@ jobs:
 
       # The archive was created by a job that ran the build toolchain, so its content is validated
       # before it is copied into the workspace. It may only contain regular files and directories
-      # below packages/, and nothing that pnpm, git or the changeset CLI would execute
-      # or read as configuration.
+      # inside the publishable workspace packages, and nothing that pnpm, git or the changeset CLI
+      # would execute or read as configuration. The list of packages is read from the checkout
+      # of this job, not from the archive.
       - name: Restore build output
         run: |
           set -euo pipefail
+
+          mapfile -t PACKAGE_DIRS < <(
+            pnpm m ls --depth=0 --json \
+              | jq -r --arg root "$PWD" '.[] | select(.private != true and .path != $root) | .path | ltrimstr($root + "/")' \
+              | grep --invert-match --line-regexp 'packages/changelog-github'
+          )
+
+          if (( ${#PACKAGE_DIRS[@]} == 0 )); then
+            echo "::error::No publishable packages found."
+            exit 1
+          fi
 
           STAGING="$RUNNER_TEMP/build-output/staging"
 
           mkdir "$STAGING"
           tar --extract --gzip --file "$RUNNER_TEMP/build-output/build-output.tar.gz" --directory "$STAGING" --no-same-owner
 
-          if [[ "$(ls -A "$STAGING")" != "packages" ]]; then
-            echo "::error::The build output must only contain the packages directory."
-            exit 1
-          fi
-
           if [[ -n "$(find "$STAGING" ! -type f ! -type d -print -quit)" ]]; then
             echo "::error::The build output must only contain regular files and directories."
             exit 1
           fi
 
-          if [[ -n "$(find "$STAGING" \( -name node_modules -o -name .git -o -name '.npmrc' -o -name '.pnpmfile.*' \) -print -quit)" || -e "$STAGING/packages/changelog-github" ]]; then
+          if [[ -n "$(find "$STAGING" \( -name node_modules -o -name .git -o -name '.npmrc' -o -name '.pnpmfile.*' \) -print -quit)" ]]; then
             echo "::error::The build output contains paths that must not be restored."
             exit 1
           fi
 
-          cp -R "$STAGING/packages/." packages/
+          while IFS= read -r -d '' entry; do
+            path="${entry#"$STAGING"/}"
+            allowed=false
+            for dir in "${PACKAGE_DIRS[@]}"; do
+              if [[ "$path/" == "$dir/"* || "$dir/" == "$path/"* ]]; then
+                allowed=true
+                break
+              fi
+            done
+            if [[ "$allowed" != true ]]; then
+              echo "::error::The build output contains a path outside of the publishable packages."
+              printf 'Path: %q\n' "$path"
+              exit 1
+            fi
+          done < <(find "$STAGING" -mindepth 1 -print0)
+
+          cp -R "$STAGING/." .
           rm -rf "$RUNNER_TEMP/build-output"
 
       - name: Configure GitHub User
@@ -175,7 +210,7 @@ jobs:
       - name: Abort workflow, if uncommitted changes are detected
         run: |
           if [[ $(git status --porcelain) ]]; then
-            echo "Error: Unclean working tree! Commit changes first, then release again..." >&2
+            echo "Error: Unclean working tree! Commit changes first, then release again..."
             exit 1
           fi
 
