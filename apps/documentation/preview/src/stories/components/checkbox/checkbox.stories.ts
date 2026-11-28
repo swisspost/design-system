@@ -86,7 +86,7 @@ const meta: MetaComponent = {
         'If `true`, the checkbox label is set via an `aria-label` attribute and is therefore not visible.' +
         '<div class="inline-notification inline-notification-info"><p>' +
         'Shown or hidden, a label must always be defined.<br/>' +
-        'More details in our <a href="/?path=/docs/13fb5dfe-6c96-4246-aa6a-6df9569f143f--docs">form labels guidelines</a>.' +
+        'More details in our <a href="/bookmark?page=13fb5dfe-6c96-4246-aa6a-6df9569f143f">form labels guidelines</a>.' +
         '</p></div>',
       control: {
         type: 'boolean',
@@ -117,7 +117,7 @@ const meta: MetaComponent = {
         'If `true`, makes the checkbox appear inactive and disables its functionality.' +
         '<div class="inline-notification inline-notification-info"><p>' +
         'There are accessibility concerns with the disabled state.<br/>' +
-        'More details in our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.' +
+        'More details in our <a href="/bookmark?page=cb34361c-7d3f-4c21-bb9c-874c73e82578">disabled elements guidelines</a>.' +
         '</p></div>',
       control: {
         type: 'boolean',
@@ -129,7 +129,7 @@ const meta: MetaComponent = {
     validation: {
       name: 'Validation',
       description:
-        'Defines the validation state of the checkbox and controls the display of the corresponding return message. <div class="inline-notification inline-notification-info"><p>Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs#checkbox">validation guidelines here</a>.</p></div> ',
+        'Defines the validation state of the checkbox and controls the display of the corresponding return message. <div class="inline-notification inline-notification-info"><p>Please read our <a href="/bookmark?page=1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472#checkbox">validation guidelines here</a>.</p></div> ',
       control: {
         type: 'radio',
         labels: {

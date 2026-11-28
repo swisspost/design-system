@@ -25,7 +25,7 @@ export class MigrationV56Component extends LitElement {
           <a
             aria-hidden="true"
             tabindex="-1"
-            href="/?path=/docs/c23b1d0b-76b3-4e38-aa76-b10c29bb873f--docs#migration-from-v5-to-v6"
+            href="/bookmark?page=c23b1d0b-76b3-4e38-aa76-b10c29bb873f#migration-from-v5-to-v6"
           >
             <post-icon name="link"></post-icon>
           </a>
@@ -178,7 +178,7 @@ export class MigrationV56Component extends LitElement {
                         </p>
                         <p class="info">
                           See the
-                          <a href="/?path=/docs/021d61aa-e039-4858-b4b9-b86a3e772811--docs"
+                          <a href="/bookmark?page=021d61aa-e039-4858-b4b9-b86a3e772811"
                             >Button component documentation</a
                           >
                           for more detailed information.

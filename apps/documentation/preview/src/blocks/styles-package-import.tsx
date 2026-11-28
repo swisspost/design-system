@@ -1,35 +1,16 @@
+import { useSyncExternalStore } from 'react';
 import { Source } from '@storybook/addon-docs/blocks';
-import { useEffect, useState } from 'react';
 import {
   getComponentStyleImports,
   getStyleImportsText,
   Props,
 } from './styles-package-import.utils';
 import { PostIcon } from '@swisspost/design-system-components-react';
-import { addons } from 'storybook/preview-api';
-import { STYLES_CHANGED_EVENT, type StylesChangedPayload } from '@shared/channel';
-
-type StyleSelection = StylesChangedPayload;
-
-const getAllStylesImport = ({ theme, appearance }: StyleSelection) => {
-  return `@use '@swisspost/design-system-styles/${theme.toLowerCase()}-${appearance.toLowerCase()}.scss';`;
-};
+import { getGlobals, subscribeGlobals } from '@preview/globals/globals-host';
 
 export default function PackageTag(props: Props) {
-  const [styleSelection, setStyleSelection] = useState<StyleSelection>({
-    theme: 'Post',
-    appearance: 'Compact',
-  });
-  const allStylesImport = getAllStylesImport(styleSelection);
-
-  useEffect(() => {
-    const channel = addons.getChannel();
-    const updateStyleSelection = (selection: StyleSelection) => setStyleSelection(selection);
-
-    channel.on(STYLES_CHANGED_EVENT, updateStyleSelection);
-
-    return () => channel.off(STYLES_CHANGED_EVENT, updateStyleSelection);
-  }, []);
+  const { theme, appearance } = useSyncExternalStore(subscribeGlobals, getGlobals);
+  const stylesheet = `@swisspost/design-system-styles/${theme}-${appearance}.scss`;
 
   return (
     <>
@@ -44,7 +25,7 @@ export default function PackageTag(props: Props) {
           <strong>
             Make sure the <code>@swisspost/design-system-styles</code> package is already present in
             your project or follow the&nbsp;
-            <a href="/?path=/docs/e53e2de8-0bbf-4f70-babc-074c5466f700--docs">
+            <a href="/bookmark?page=e53e2de8-0bbf-4f70-babc-074c5466f700">
               installation guidelines
             </a>
             .
@@ -53,7 +34,7 @@ export default function PackageTag(props: Props) {
       </p>
       <p>To import all Design System styles:</p>
       <div className="docblock-source-all-design">
-        <Source key={allStylesImport} code={allStylesImport} language="css" />
+        <Source key={stylesheet} code={`@use '${stylesheet}';`} language="css" />
       </div>
       <p>{getStyleImportsText(props)}</p>
       <Source code={getComponentStyleImports(props)} language="css" />

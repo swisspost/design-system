@@ -3,7 +3,7 @@
   "compilerOptions": {
     "paths": {
       "@shell/*": ["./src/*"],
-      "@shared/*": ["../shared/*"]
+      "@shared/*": ["../shared/src/*"]
     }
   },
   "include": ["src"],

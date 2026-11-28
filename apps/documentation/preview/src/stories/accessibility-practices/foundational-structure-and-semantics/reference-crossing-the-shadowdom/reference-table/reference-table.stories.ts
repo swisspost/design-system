@@ -22,14 +22,14 @@ export const ReferencingData = [
         worksAcrossShadow: '❌',
         workaround: '✔️ Elements API - ariaLabelledByElements',
         docPage:
-          '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3401234--docs#ii-referencing-from-the-light-dom-into-the-shadowdom',
+          '/bookmark?page=76ade552-2c03-4d6d-9dce-28daa3401234#ii-referencing-from-the-light-dom-into-the-shadowdom',
       },
       {
         case: 'ShadowDOM ➔ Light DOM/Slot',
         worksAcrossShadow: '❌',
         workaround: '⬇️ Set the "id" on the component host',
         docPage:
-          '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3401234--docs#iii-referencing-from-the-shadowdom-into-the-light-dom',
+          '/bookmark?page=76ade552-2c03-4d6d-9dce-28daa3401234#iii-referencing-from-the-shadowdom-into-the-light-dom',
       },
       {
         case: 'ShadowDOM ➔ Other ShadowDOM',
@@ -37,7 +37,7 @@ export const ReferencingData = [
         workaround:
           'Combine above solutions: ✔️ Elements API - ariaLabelledByElements ⬇️ Set the "id" on the component host',
         docPage:
-          '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3401234--docs#iv-referencing-from-one-shadow-dom-to-another-shadow-dom',
+          '/bookmark?page=76ade552-2c03-4d6d-9dce-28daa3401234#iv-referencing-from-one-shadow-dom-to-another-shadow-dom',
       },
     ],
   },
@@ -49,14 +49,14 @@ export const ReferencingData = [
         worksAcrossShadow: '❌',
         workaround: '✔️ Elements API - ariaLabelledByElements',
         docPage:
-          '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3405678--docs#ii-referencing-from-the-shadowdom-out-to-the-light-dom',
+          '/bookmark?page=76ade552-2c03-4d6d-9dce-28daa3405678#ii-referencing-from-the-shadowdom-out-to-the-light-dom',
       },
       {
         case: 'Light DOM/Slot ➔ ShadowDOM',
         worksAcrossShadow: '❌',
         workaround: '⬇️ Set the "id" on the component host',
         docPage:
-          '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3405678--docs#iii-referencing-from-the-light-dom-into-the-shadowdom',
+          '/bookmark?page=76ade552-2c03-4d6d-9dce-28daa3405678#iii-referencing-from-the-light-dom-into-the-shadowdom',
       },
       {
         case: 'ShadowDOM ➔ Other ShadowDOM',
@@ -64,7 +64,7 @@ export const ReferencingData = [
         workaround:
           'Combine above solutions: ✔️ Elements API - ariaLabelledByElements ⬇️ Set the "id" on the component host',
         docPage:
-          '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3405678--docs#iv-referencing-from-one-shadow-dom-to-another-shadow-dom',
+          '/bookmark?page=76ade552-2c03-4d6d-9dce-28daa3405678#iv-referencing-from-one-shadow-dom-to-another-shadow-dom',
       },
     ],
   },
@@ -76,14 +76,14 @@ export const ReferencingData = [
         worksAcrossShadow: '❌',
         workaround: '✔️ Elements API - ariaDescribedByElements',
         docPage:
-          '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3405910--docs#ii-referencing-from-the-shadowdom-out-to-the-light-dom',
+          '/bookmark?page=76ade552-2c03-4d6d-9dce-28daa3405910#ii-referencing-from-the-shadowdom-out-to-the-light-dom',
       },
       {
         case: 'Light DOM/Slot ➔ ShadowDOM',
         worksAcrossShadow: '❌',
         workaround: '⬇️ Set the "id" on the component host',
         docPage:
-          '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3405910--docs#iii-referencing-from-the-light-dom-into-the-shadowdom',
+          '/bookmark?page=76ade552-2c03-4d6d-9dce-28daa3405910#iii-referencing-from-the-light-dom-into-the-shadowdom',
       },
       {
         case: 'ShadowDOM ➔ Other ShadowDOM',
@@ -91,7 +91,7 @@ export const ReferencingData = [
         workaround:
           'Combine above solutions: ✔️ Elements API - ariaDescribedByElements ⬇️ Set the "id" on the component host',
         docPage:
-          '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3405910--docs#iv-referencing-from-one-shadow-dom-to-another-shadow-dom',
+          '/bookmark?page=76ade552-2c03-4d6d-9dce-28daa3405910#iv-referencing-from-one-shadow-dom-to-another-shadow-dom',
       },
     ],
   },
@@ -103,7 +103,7 @@ export const ReferencingData = [
         worksAcrossShadow:
           '✔️ The relationship is not affected by the ShadowDOM. It will always be valid if the structure is accessible and the "list" element contains its "listitems".',
         workaround: '',
-        docPage: '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa3405112--docs',
+        docPage: '/bookmark?page=76ade552-2c03-4d6d-9dce-28daa3405112',
       },
     ],
   },

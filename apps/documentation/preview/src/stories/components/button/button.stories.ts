@@ -131,7 +131,7 @@ const meta: MetaComponent = {
     icon: {
       name: 'Icon',
       description:
-        'Defines a custom icon. <div class="inline-notification inline-notification-info"><p>To use a custom icon, you must first <a href="/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs">set up the icons in your project</a>.</p></div>',
+        'Defines a custom icon. <div class="inline-notification inline-notification-info"><p>To use a custom icon, you must first <a href="/bookmark?page=40ed323b-9c1a-42ab-91ed-15f97f214608">set up the icons in your project</a>.</p></div>',
       if: {
         arg: 'tag',
         neq: 'input',
@@ -178,7 +178,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, makes the component appear inactive and disables its functionality.<div class="inline-notification inline-notification-info"><p>There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</p></div>',
+        'When set to `true`, makes the component appear inactive and disables its functionality.<div class="inline-notification inline-notification-info"><p>There are accessibility concerns with the disabled state.<br/>Please read our <a href="/bookmark?page=cb34361c-7d3f-4c21-bb9c-874c73e82578">disabled elements guidelines</a>.</p></div>',
       if: {
         arg: 'tag',
         neq: 'a',

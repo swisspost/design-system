@@ -25,7 +25,7 @@ export class MigrationV89Component extends LitElement {
             <a
               aria-hidden="true"
               tabindex="-1"
-              href="/?path=/docs/c23b1d0b-76b3-4e38-aa76-b10c29bb873f--docs#migration-from-v8-to-v9"
+              href="/bookmark?page=c23b1d0b-76b3-4e38-aa76-b10c29bb873f#migration-from-v8-to-v9"
             >
               <post-icon name="link"></post-icon>
             </a>
@@ -111,7 +111,7 @@ export class MigrationV89Component extends LitElement {
                               >PrimeNg migration guide</a
                             >
                             and
-                            <a href="/?path=/docs/d2112bed-c611-4098-a1ad-e654f7d622e7--docs"
+                            <a href="/bookmark?page=d2112bed-c611-4098-a1ad-e654f7d622e7"
                               >PrimeNg Styles package documentation</a
                             >
                             for more detailed information.
